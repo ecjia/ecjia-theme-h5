@@ -7,9 +7,29 @@
 /*========================  购物车 ===========================*/
 
 
-/*========================  结算 ===========================*/
-
-
+/*========================  结算 =========================== */
+.ecjia .ecjia-checkout .flow-address {
+    background: #ffffff;
+    height:5em;
+    padding: .5em 1em;
+}
+.ecjia .ecjia-checkout .flow-address span,
+.ecjia .ecjia-checkout .flow-address .address-info .address-desc {
+    line-height: 4em;
+}
+.ecjia .ecjia-checkout .flow-address .address-info {
+    padding-left: 1em;
+}
+.ecjia .ecjia-checkout .flow-address .address-info span{
+    line-height: normal;
+}
+.ecjia .ecjia-checkout .flow-address .address-info span+span {
+    margin-left: 2em;
+}
+.ecjia .ecjia-checkout .flow-address .address-info span + p.address-desc{
+    margin-top: 1em;
+    line-height: normal;
+}
 
 /*========================  结算完成 ===========================*/
 

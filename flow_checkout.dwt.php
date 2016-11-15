@@ -18,7 +18,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-
+<div class="ecjia-checkout">
+	<div class="flow-address ecjia-margin-b">
+		<span class="ecjiaf-fl">送至：</span>
+		<div class="ecjiaf-fl address-info">
+			<span>{$consignee.consignee|escape}</span>
+			<span>{$consignee.mobile}</span>
+			<p class="ecjia-truncate2 address-desc">{$consignee.address}{$consignee.address_info}</p>
+		</div>
+	</div>
+</div>
 <div class="flow-checkout">
 	<form id="theForm" name="theForm" action="{url path='flow/done'}" method="post">
 		<section class="checkout-add">
