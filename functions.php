@@ -20,6 +20,8 @@ RC_Hook::add_action('goods/category/goods_list', array('goods_controller', 'good
 RC_Hook::add_action('goods/category/asynclist', array('goods_controller', 'asynclist'));
 RC_Hook::add_action('goods/index/init', array('goods_controller', 'goods_index'));
 RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));
+RC_Hook::add_action('goods/index/promotion', array('goods_controller', 'goods_promotion'));
+RC_Hook::add_action('goods/index/new', array('goods_controller', 'goods_new'));
 RC_Hook::add_action('goods/index/price', array('goods_controller', 'goods_price'));
 RC_Hook::add_action('goods/index/add_tags', array('goods_controller', 'add_tags'));
 RC_Hook::add_action('goods/index/tag', array('goods_controller', 'tags_list'));
