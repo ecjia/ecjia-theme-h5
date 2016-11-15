@@ -35,6 +35,7 @@
 
 
 /*========================  结算 =========================== */
+/*定位地址、选择的收货地址 */
 .ecjia .ecjia-checkout .flow-address {
     background: #ffffff;
     height:5em;

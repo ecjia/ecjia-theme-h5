@@ -19,29 +19,19 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 <div class="ecjia-checkout">
-	<div class="flow-address ecjia-margin-b">
-		<span class="ecjiaf-fl">送至：</span>
-		<div class="ecjiaf-fl address-info">
-			<span>{$consignee.consignee|escape}</span>
-			<span>{$consignee.mobile}</span>
-			<p class="ecjia-truncate2 address-desc">{$consignee.address}{$consignee.address_info}</p>
+	<form id="theForm" name="theForm" action="{url path='flow/done'}" method="post">
+		<div class="flow-address ecjia-margin-b">
+			<span class="ecjiaf-fl">送至：</span>
+			<div class="ecjiaf-fl address-info">
+				<span>{$consignee.consignee|escape}</span>
+				<span>{$consignee.mobile}</span>
+				<p class="ecjia-truncate2 address-desc">{$consignee.address}{$consignee.address_info}</p>
+			</div>
 		</div>
-	</div>
+	</form>
 </div>
 <div class="flow-checkout">
 	<form id="theForm" name="theForm" action="{url path='flow/done'}" method="post">
-		<section class="checkout-add">
-			<a href="{url path='flow/consignee_list'}">
-				<div class="consignee-icon"><i class="iconfont icon-location"></i></div>
-				<div class="consignee-msg" for="addressId{$con_list.address_id}">
-					<p class="title">
-						<span class="ecjiaf-fl ecjia-margin-r">{t}收货人{/t}：{$consignee.consignee|escape}</span>
-						<span class="ecjia-margin-l ecjiaf-fl">{t}手机{/t}：{$consignee.mobile}</span>
-					</p>
-					<p class="ecjia-margin-t ecjiaf-wwb">{$consignee.address}</p>
-				</div>
-			</a>
-		</section>
 
 		<section class="checkout-select ecjia-margin-t">
 			<!--{if $total.real_goods_count neq 0}-->
