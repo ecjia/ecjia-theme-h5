@@ -156,11 +156,11 @@ class goods_category {
 				'alias'		=> 'mp',
 				'on'		=> 'mp.goods_id = g.goods_id AND mp.user_rank = "' . $_SESSION ['user_rank'] . '"'
 			),
-			'tag' => array(
-				'type'		=> Component_Model_View::TYPE_LEFT_JOIN,
-				'alias'		=> 'tg',
-				'on'		=> 'g.goods_id = tg.goods_id '
-			),
+// 			'tag' => array(
+// 				'type'		=> Component_Model_View::TYPE_LEFT_JOIN,
+// 				'alias'		=> 'tg',
+// 				'on'		=> 'g.goods_id = tg.goods_id '
+// 			),
 			'goods_cat' => array(
 				'type'		=> Component_Model_View::TYPE_LEFT_JOIN,
 				'alias'		=> 'gc',
@@ -178,7 +178,7 @@ class goods_category {
 			$where[] .= '(('.$children.') OR( gc.cat_id ='. $cat_id .' ))';
 		}
 		if (!empty($keywords)) {
-			$where[] .= "( goods_name LIKE '%$keywords%' OR goods_sn LIKE '%$keywords%' OR keywords LIKE '%$keywords%' OR tag_words LIKE '%$keywords%' )";
+			$where[] .= "( goods_name LIKE '%$keywords%' OR goods_sn LIKE '%$keywords%' OR keywords LIKE '%$keywords%' )";
 		}
 		$this->keywords = $keywords;
 		if ($this->type) {
@@ -217,10 +217,10 @@ class goods_category {
 			$sort = 'sort_order';
 		}
 		/* 获得商品列表 */
-		$count = $db_goods_viewmodel->join(array('member_price', 'tag','goods_cat'))->where($where)->order(array($sort=>$this->order))->count('*');
+		$count = $db_goods_viewmodel->join(array('member_price', 'goods_cat'))->where($where)->order(array($sort=>$this->order))->count('*');
 		$pages = new touch_page($count, $this->size, 6, '', $page);
 
-		$res = $db_goods_viewmodel->join(array('member_price', 'tag','goods_cat'))->field('g.goods_id, g.goods_name, g.goods_name_style, g.market_price, g.is_new, g.is_best, g.is_hot, g.shop_price, g.promote_price, g.goods_type, g.promote_start_date, g.promote_end_date, g.goods_brief, g.goods_thumb , g.goods_img')->where($where)->order(array($sort=>$order))->limit($pages->limit())->select();
+		$res = $db_goods_viewmodel->join(array('member_price', 'goods_cat'))->field('g.goods_id, g.goods_name, g.goods_name_style, g.market_price, g.is_new, g.is_best, g.is_hot, g.shop_price, g.promote_price, g.goods_type, g.promote_start_date, g.promote_end_date, g.goods_brief, g.goods_thumb , g.goods_img')->where($where)->order(array($sort=>$order))->limit($pages->limit())->select();
 		$arr = array();
 		foreach ($res as $row) {
 			// 销量统计
