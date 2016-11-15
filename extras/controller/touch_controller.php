@@ -15,6 +15,8 @@ class touch_controller {
         $base   = goods_list('best', 4);
         $new    = goods_list('new', ecjia::config('page_size'));
         $hot    = goods_list('hot', ecjia::config('page_size'));
+
+        ecjia_front::$controller->assign('more_sales', RC_Uri::url('goods/index/promotion'));
         ecjia_front::$controller->assign('best_goods', $base['list']);
         ecjia_front::$controller->assign('new_goods', $new['list']);
         ecjia_front::$controller->assign('hot_goods', $hot['list']);
@@ -44,7 +46,7 @@ class touch_controller {
         ecjia_front::$controller->assign('goods_list', $goods_list['list']);
         ecjia_front::$controller->assign_lang();
         $sayList = ecjia_front::$controller->fetch('index.dwt');
-        if ($page == 3) $goods_list['is_last'] = 1;
+//         if ($page == 3) $goods_list['is_last'] = 1;
         ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' , 'is_last' => $goods_list['is_last']));
     }
 

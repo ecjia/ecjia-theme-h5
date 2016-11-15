@@ -296,6 +296,30 @@ class goods_controller {
         }
         ecjia_front::$controller->showmessage($res['result'], ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON);
     }
+    
+    /**
+     * 促销商品
+     */
+    public static function goods_promotion() {
+    	$db_goods = RC_DB::table('goods as g')
+			->leftJoin('store_franchisee as s', RC_DB::raw('s.store_id'), '=', RC_DB::raw('g.store_id'));
+		
+		$db_goods->where('is_promote', '1')->where('is_delete', '!=', 1);
+		$result = $db_goods
+			->select('goods_id', 'goods_name', 'promote_price', 
+					'promote_start_date', 'promote_end_date', 'goods_thumb', RC_DB::raw('s.merchants_name'))
+			->get();
+				
+		ecjia_front::$controller->assign('result', $result);
+    	ecjia_front::$controller->display('goods_promotion.dwt');
+    }
+    
+    /**
+     * 新品推荐
+     */
+    public static function goods_new() {
+    	
+    }
 
     /*
      * 商品标签

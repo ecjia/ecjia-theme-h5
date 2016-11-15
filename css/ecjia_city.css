@@ -1,5 +1,32 @@
 /*========================  首页 ===========================*/
+/*首页促销商品*/
+.ecjia-mod.ecjia-sales-model{
+	height: 430px;
+    overflow: hidden;
+}
+.ecjia-mod.ecjia-sales-model .ecjia-sales-hd h2{
+	height:30px;
+	border-bottom:1px solid #eee;
+}
+.ecjia-mod.ecjia-sales-model .more_info{
+	line-height:20px;
+	width:60px;
+	font-size:16px;
+	color:#ccc;
+	float:right;
+	padding-left:10px;
+	border-left:1px solid #ccc;
+}
 
+.ecjia-index .form-group .input .icon-lock {
+	background-color: #9ecc17;
+}
+.ecjia-index .form-group .input .icon-dengluyonghuming {
+	background-color: #47aa4d;
+}
+.ecjia-index .ecjia-margin-t {
+	margin-top: 1em;
+}
 
 /*========================  分类 ===========================*/
 
@@ -41,7 +68,6 @@
 
 
 /*========================  账户余额 ===========================*/
-
 
 
 /*========================  交易记录 ===========================*/

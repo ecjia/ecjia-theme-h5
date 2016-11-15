@@ -24,6 +24,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/showcase_14533874072177.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/win_custom.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_brand_list.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/model_promotions.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_newgoods.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_footer.lbi" --><!-- #EndLibraryItem -->
 <!-- TemplateEndEditable -->
@@ -37,7 +38,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<li class="single_item">
 		<a class="list-page-goods-img" href="{$goods.url}">
 			<span class="goods-img">
-				<img src="{$goods.goods_img}" alt="{$goods.name}">
+				<img src="" alt="{$goods.name}">
 			</span>
 			<span class="list-page-box">
 				<span class="goods-name">{$goods.name}</span>
@@ -46,9 +47,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<span>{$goods.promote_price}</span>
 					<!--{else}-->
 					<span>{$goods.shop_price}</span>
-					<!--{/if}-->
-					<!--{if $goods.market_price}-->
-					<del>{$goods.market_price}</del>
 					<!--{/if}-->
 				</span>
 			</span>

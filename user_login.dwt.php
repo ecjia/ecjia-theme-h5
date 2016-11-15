@@ -15,7 +15,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-<form class="ecjia-form ecjia-icon-form ecjia-login-form ecjia-margin-t" name="formLogin" action="{url path='user/index/signin'}" method="post">
+<form class="ecjia-form  ecjia-index" name="formLogin" action="{url path='user/index/signin'}" method="post">
 	<div class="form-group">
 		<label class="input">
 			<i class="iconfont icon-dengluyonghuming"></i>
