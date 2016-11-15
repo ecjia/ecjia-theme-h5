@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 Name: 订单确认模板
 Description: 订单确认页
@@ -15,7 +15,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </script>
 <!-- {/block} -->
 
-<!-- {block name="con"} -->
+<!-- {block name="ecjia"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 
@@ -29,20 +29,20 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<span class="ecjiaf-fl ecjia-margin-r">{t}收货人{/t}：{$consignee.consignee|escape}</span>
 						<span class="ecjia-margin-l ecjiaf-fl">{t}手机{/t}：{$consignee.mobile}</span>
 					</p>
-					<p class="ecjia-margin-t ecjiaf-wwb">{$consignee.address}</p> 
+					<p class="ecjia-margin-t ecjiaf-wwb">{$consignee.address}</p>
 				</div>
 			</a>
 		</section>
-		
+
 		<section class="checkout-select ecjia-margin-t">
 			<!--{if $total.real_goods_count neq 0}-->
 			<a class="select nopjax" href="javascript:;">
-				<p> 
+				<p>
 					<span>{$lang.shipping_method}</span>
 					<span class="label">{$lang.require_field}</span>
 					<i class="iconfont icon-jiantou-bottom"></i>
 					<span class="ecjiaf-fr select_nav">{$shipping_default}</span>
-				</p> 
+				</p>
 			</a>
 			<div>
 				<ul class="ecjia-list attr-bgcolr">
@@ -64,7 +64,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 			<!--{if $is_exchange_goods neq 1 || $total.real_goods_count neq 0}-->
 			<a class="select nopjax" href="javascript:;">
-				<p> 
+				<p>
 					<span>{$lang.payment_method}</span>
 					<span class="label">{$lang.require_field}</span>
 					<i class="iconfont icon-jiantou-bottom"></i>

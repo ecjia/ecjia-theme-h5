@@ -1,4 +1,4 @@
-<?php 
+<?php
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 {nocache}
@@ -19,7 +19,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<link rel="stylesheet" href="{$theme_url}lib/bootstrap3/css/bootstrap.css">
 
 	<link rel="stylesheet" href="{$theme_url}dist/css/iconfont.min.css">
-	
+
 
 	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.css">
 	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.develop.css">
@@ -48,19 +48,19 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.merchant.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.b2b2c.js" ></script>
 
-    
+
 	<script type="text/javascript" src="{$theme_url}lib/Validform/Validform_v5.3.2_min.js"></script>
-	
+
 	<script type="text/javascript" src="{$theme_url}lib/swiper/js/swiper.min.js"></script>
     <script type="text/javascript" src="{$theme_url}lib/datePicker/js/datePicker.min.js"></script>
     <script type="text/javascript" src="{$theme_url}lib/winderCheck/js/winderCheck.min.js"></script>
 </head>
 <body>
-	<div class="con">
-		<!-- {block name="con"} --><!-- {/block} -->
+	<div class="ecjia">
+		<!-- {block name="ecjia"} --><!-- {/block} -->
 	</div>
 	<!-- {block name="ready_footer"} --><!-- {/block} -->
-	
+
 	<!-- #BeginLibraryItem "/library/page_menu.lbi" -->
 	<!-- #EndLibraryItem -->
 
@@ -83,7 +83,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {else} -->
 <title>{block name="title"}{$page_title}{/block}</title>
 <!-- {block name="meta"} --><!-- {/block} -->
-<!-- {block name="con"} --><!-- {/block} -->
+<!-- {block name="ecjia"} --><!-- {/block} -->
 <!-- {block name="footer"} --><!-- {/block} -->
 <!-- {/if} -->
 {/nocache}

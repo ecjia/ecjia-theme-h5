@@ -12,7 +12,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <script type="text/javascript">ecjia.touch.b2b2c.init();</script>
 <!-- {/block} -->
 
-<!-- {block name="con"} -->
+<!-- {block name="ecjia"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 	<ul class="ecjia-list ecjia-shop-list" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='ansy_merchant_list'}" data-size="10">

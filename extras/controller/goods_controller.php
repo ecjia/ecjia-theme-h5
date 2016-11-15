@@ -173,9 +173,9 @@ class goods_controller {
                 'send_end_date'		=> array('gt'=>$time)
             );
             // $db_bonus_type = RC_Loader::load_app_model ('bonus_type_model');
-            RC_Loader::load_theme('extras/model/goods/goods_bonus_type_model.class.php');
-            $db_bonus_type  = new goods_bonus_type_model();
-            $count = $db_bonus_type->field('type_money')->where($where)->get_field();
+            // RC_Loader::load_theme('extras/model/goods/goods_bonus_type_model.class.php');
+            // $db_bonus_type  = new goods_bonus_type_model();
+            // $count = $db_bonus_type->field('type_money')->where($where)->get_field();
             $goods ['bonus_money'] = floatval($count);
             if ($goods ['bonus_money'] > 0) {
                 $goods ['bonus_money'] = price_format($goods ['bonus_money']);

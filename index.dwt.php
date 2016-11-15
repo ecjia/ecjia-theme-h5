@@ -14,9 +14,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </script>
 <!-- {/block} -->
 
-<!-- {block name="con"} -->
+<!-- {block name="ecjia"} -->
 
-    <!-- TemplateBeginEditable name="页面内容" -->
+<!-- TemplateBeginEditable name="页面内容" -->
 <!-- #BeginLibraryItem "/library/index_header.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_banner.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_nav.lbi" --><!-- #EndLibraryItem -->

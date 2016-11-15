@@ -12,7 +12,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <script type="text/javascript" xmlns="http://www.w3.org/1999/html">ecjia.touch.user.init();</script>
 <!-- {/block} -->
 
-<!-- {block name="con"} -->
+<!-- {block name="ecjia"} -->
 <!-- TemplateBeginEditable name="标题区域" -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 <!-- TemplateEndEditable -->

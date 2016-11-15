@@ -12,7 +12,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <script type="text/javascript">ecjia.touch.searchbox_foucs();</script>
 <!-- {/block} -->
 
-<!-- {block name="con"} -->
+<!-- {block name="ecjia"} -->
 <header class="ecjia-header">
 	<div class="ecjia-header-left">
 		<a class="ecjia-header-icon" href="javascript:history.go(-1)"><i class="iconfont icon-jiantou-left"></i></a>

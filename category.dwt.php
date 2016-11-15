@@ -12,7 +12,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <script type="text/javascript">ecjia.touch.category.init();</script>
 <!-- {/block} -->
 
-<!-- {block name="con"} -->
+<!-- {block name="ecjia"} -->
 <header class="ecjia-header ecjia-header-index ecjia-category-search">
 	<div class="ecjia-header-left">
 		<a href="{if $header_left.href}{$header_left.href}{else}javascript:history.go(-1){/if}"><i class="iconfont icon-jiantou-left"></i></a>

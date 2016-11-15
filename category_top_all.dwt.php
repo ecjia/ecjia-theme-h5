@@ -17,7 +17,7 @@ if (!$('.ecjia-header').is(":visible")) $('.category_left, .category_right').css
 </script>
 <!-- {/block} -->
 
-<!-- {block name="con"} -->
+<!-- {block name="ecjia"} -->
 <div class="category">
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->

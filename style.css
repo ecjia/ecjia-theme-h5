@@ -157,6 +157,8 @@ a.load-list{
 	display: none;
 	color: #9ecc17;
 }
+
+
 /*=================================================页面=========================================*/
 /*登陆*/
 .ecjia-login-form .form-group .input .icon-dengluyonghuming,
@@ -181,6 +183,7 @@ a.load-list{
 .user-new-info .ecjia-icon-num {
     color: #19b2f0;
 }
+
 /*小导航8个*/
 .user-nav .ecjia-row-nav li:nth-of-type(1) i {
 	background: #26aafa;
@@ -258,8 +261,6 @@ a.load-list{
 .ecjia-mod.ecjia-mod-brand .hd {
 	border-color: #ddd;
 }
-
-
 
 /*==================== 输入框CSS ====================*/
 /**
