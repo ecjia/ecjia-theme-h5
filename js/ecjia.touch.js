@@ -22,7 +22,7 @@
 			/* PJAX基础配置项 */
 			ecjia.pjaxoption = {
 				timeout: 10000,
-				container: '.con', /* 内容替换的容器 */
+				container: '.main-content', /* 内容替换的容器 */
 				cache: false,  /* 是否使用缓存 */
 				storage: false,  /* 是否使用本地存储 */
 				titleSuffix: '.pjax' /* 标题后缀 */
@@ -185,12 +185,12 @@
 
 		/* 下方相关商品滑动块的JS */
 		touch_slide : function() {
-			TouchSlide({ 
+			TouchSlide({
 				slideCell:"#picScroll",
 				titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
 				autoPage:"true", //自动分页
 				pnLoop:"false", // 前后按钮不循环
-				switchLoad:"_src" //切换加载，真实图片路径为"_src" 
+				switchLoad:"_src" //切换加载，真实图片路径为"_src"
 			});
 		},
 
@@ -222,8 +222,8 @@
  								$("#selDistricts"+index).children("option:gt(0)").remove();
 	 						}
 	 					}
- 						$.get(url, 
-							{'type':type ,'target':target,'parent':parent }, 
+ 						$.get(url,
+							{'type':type ,'target':target,'parent':parent },
 							function(data){
 								if (data.state == 'success') {
 				 					var opt  =	'';

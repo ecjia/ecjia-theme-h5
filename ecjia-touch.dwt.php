@@ -40,12 +40,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<script type="text/javascript" src="{$theme_url}lib/ecjiaUI/ecjia.js" ></script>
 	<!-- {block name="meta"} --><!-- {/block} -->
 
-	<script type="text/javascript" src="{$theme_url}dist/js/ecjia.touch.min.js" ></script>
-    <script type="text/javascript" src="{$theme_url}dist/js/ecjia.touch.history.min.js" ></script>
-    <script type="text/javascript" src="{$theme_url}dist/js/ecjia.touch.others.min.js" ></script>
-    <script type="text/javascript" src="{$theme_url}dist/js/ecjia.touch.goods.min.js" ></script>
-    <script type="text/javascript" src="{$theme_url}dist/js/ecjia.touch.user.min.js" ></script>
-    <script type="text/javascript" src="{$theme_url}dist/js/ecjia.touch.flow.min.js" ></script>
+	<script type="text/javascript" src="{$theme_url}js/ecjia.touch.js" ></script>
+    <script type="text/javascript" src="{$theme_url}js/ecjia.touch.history.js" ></script>
+    <script type="text/javascript" src="{$theme_url}js/ecjia.touch.others.js" ></script>
+    <script type="text/javascript" src="{$theme_url}js/ecjia.touch.goods.js" ></script>
+    <script type="text/javascript" src="{$theme_url}js/ecjia.touch.user.js" ></script>
+    <script type="text/javascript" src="{$theme_url}js/ecjia.touch.flow.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.merchant.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.b2b2c.js" ></script>
 
