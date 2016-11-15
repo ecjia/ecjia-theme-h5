@@ -22,7 +22,7 @@
 			/* PJAX基础配置项 */
 			ecjia.pjaxoption = {
 				timeout: 10000,
-				container: '.main-content', /* 内容替换的容器 */
+				container: '.ecjia', /* 内容替换的容器 */
 				cache: false,  /* 是否使用缓存 */
 				storage: false,  /* 是否使用本地存储 */
 				titleSuffix: '.pjax' /* 标题后缀 */
