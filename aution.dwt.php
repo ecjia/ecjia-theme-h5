@@ -6,7 +6,7 @@ Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
-<!-- {extends file="touch.dwt.php"} -->
+<!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
 
@@ -36,7 +36,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </script>
 <!-- {/block} -->
 
-<!-- {block name="ecjia"} -->
+<!-- {block name="main-content"} -->
 <header class="ecjia-header">
 	<a class="ecjia-header-icon" href="javascript:history.go(-1)"><i class="glyphicon glyphicon-menu-left"></i></a>
 	<p>{$title}</p>

@@ -6,13 +6,13 @@ Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
-<!-- {extends file="touch.dwt.php"} -->
+<!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
 <script>ecjia.touch.merchant.init();</script>
 <!-- {/block} -->
 
-<!-- {block name="ecjia"} -->
+<!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 

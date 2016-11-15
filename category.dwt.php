@@ -6,13 +6,13 @@ Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
-<!-- {extends file="touch.dwt.php"} -->
+<!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">ecjia.touch.category.init();</script>
 <!-- {/block} -->
 
-<!-- {block name="ecjia"} -->
+<!-- {block name="main-content"} -->
 <header class="ecjia-header ecjia-header-index ecjia-category-search">
 	<div class="ecjia-header-left">
 		<a href="{if $header_left.href}{$header_left.href}{else}javascript:history.go(-1){/if}"><i class="iconfont icon-jiantou-left"></i></a>

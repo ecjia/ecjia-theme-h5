@@ -6,7 +6,7 @@ Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?> defined('IN_ECJIA') or exit('No permission resources.');?>
-<!-- {extends file="touch.dwt.php"} -->
+<!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} //TODO: move -->
 <script type="text/javascript">
@@ -17,7 +17,7 @@ if (!$('.ecjia-header').is(":visible")) $('.category_left, .category_right').css
 </script>
 <!-- {/block} -->
 
-<!-- {block name="ecjia"} -->
+<!-- {block name="main-content"} -->
 <div class="category">
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
