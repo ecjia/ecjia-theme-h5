@@ -34,13 +34,13 @@ class b2b2c_touch_controller {
 		}
 		RC_Loader::load_theme('extras/b2b2c/model/touch/touch_seller_shopwindow_model.class.php');
 
-		$db_seller_window = new touch_seller_shopwindow_model();
-		$where = array(
-			'win_type' => 0,
-			'ru_id' => 0,
-			'is_show' => 1,
-		);
-		$custom = $db_seller_window->field('win_custom')->where($where)->order('win_order ASC')->select();
+		// $db_seller_window = new touch_seller_shopwindow_model();
+		// $where = array(
+		// 	'win_type' => 0,
+		// 	'ru_id' => 0,
+		// 	'is_show' => 1,
+		// );
+		// $custom = $db_seller_window->field('win_custom')->where($where)->order('win_order ASC')->select();
 		ecjia_front::$controller->assign('copyright', ecjia::config('wap_copyright'));
 		ecjia_front::$controller->assign('custom' ,$custom );
 		ecjia_front::$controller->assign('cat_best', $cat_rec[1]);
