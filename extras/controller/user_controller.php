@@ -49,6 +49,8 @@ class user_controller {
             ecjia_front::$controller->assign('enabled_captcha', 1);
             ecjia_front::$controller->assign('rand', mt_rand());
         }
+        $user_img = get_user_img();
+        ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('step', isset($_GET['step']) ? htmlspecialchars($_GET['step']) : '');
         ecjia_front::$controller->assign('anonymous_buy', ecjia::config('anonymous_buy'));
         ecjia_front::$controller->assign('title', RC_Lang::lang('login'));
