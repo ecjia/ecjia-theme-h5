@@ -86,10 +86,10 @@ class b2b2c_goods_controller {
             ecjia_front::$controller->assign('brands',          goods_category::factory()->get_brands_range(intval($_REQUEST['cid']), $brand, $filter));
             /* 获取分类 */
             ecjia_front::$controller->assign('category',        goods_category::factory()->get_top_category());
-        
+
             ecjia_front::$controller->assign('goods_list', $goodslist['list']);
             ecjia_front::$controller->assign('pages', $goodslist['page']);
-        
+
             $cat = get_cat_info(goods_category::factory()->cat_id);  // 获得分类的相关信息
             if (!empty($cat['keywords'])) {
                 if (!empty($cat['keywords'])) {
@@ -103,7 +103,7 @@ class b2b2c_goods_controller {
             ecjia_front::$controller->display('category.dwt');
         }
     }
-    
+
 
     /**
      *商品详情页
@@ -131,7 +131,7 @@ class b2b2c_goods_controller {
         $db_collect_goods                       = new goods_collect_goods_model();
         $db_bonus_type                          = new goods_bonus_type_model();
         $db_cart                                = new goods_cart_model();
-        
+
         $goods_id = isset($_GET ['id']) ? intval($_GET ['id']) : 0;
         $res = $db_goods_model->where(array('is_delete'=>0,'is_on_sale'=>1,'goods_id'=>$goods_id))->count('*');
         if(empty($res)){
@@ -161,7 +161,7 @@ class b2b2c_goods_controller {
                 $goods ['bonus_money'] = price_format($goods ['bonus_money']);
             }
         }
-        /* 
+        /*
          * 取得联系方式 */
         $kf = $db_seller_shopinfo->join('goods')->where(array('goods_id' => $goods_id))->get_field('kf_qq, kf_ww, kf_tel');
         foreach ($kf as $val){
@@ -196,7 +196,7 @@ class b2b2c_goods_controller {
         ecjia_front::$controller->assign('province_list', $province_list);
         ecjia_front::$controller->assign('city_list', $city_list);
         ecjia_front::$controller->assign('district_list', $district_list);
-        
+
         ecjia_front::$controller->assign('warehouse',           $warehouse);
         ecjia_front::$controller->assign('goods',               $goods);
         ecjia_front::$controller->assign('comments',            $comments);
@@ -212,7 +212,7 @@ class b2b2c_goods_controller {
         ecjia_front::$controller->assign('rank_prices',         get_user_rank_prices($goods_id, $shop_price));/*会员等级价格*/
         ecjia_front::$controller->assign('pictures',            get_goods_gallery($goods_id));/*商品相册*/
         ecjia_front::$controller->assign('package_goods_list',  $package_goods_list);
-    
+
         ecjia_front::$controller->assign('volume_price_list',   $volume_price_list);/*商品优惠价格区间*/
         /*检查是否已经存在于用户的收藏夹*/
         if ($_SESSION ['user_id']) {
@@ -257,7 +257,7 @@ class b2b2c_goods_controller {
             $seller_where['ssi.status'] = 1;
             $seller_where['msi.merchants_audit'] = 1;
             $seller_where['msi.user_id'] = $ru_id;
-            
+
             $field ='msi.user_id,ssi.*, CONCAT(shoprz_brandName,shopNameSuffix) as seller_name, c.cat_name, ssi.shop_logo, count(cs.ru_id) as follower';
             $info = $db_merchant_shop_information_viewmodel->join(array('category', 'seller_shopinfo', 'collect_store'))->field($field)->where($seller_where)->find();
 
@@ -265,9 +265,9 @@ class b2b2c_goods_controller {
                 $info['shop_logo'] = str_replace('../', '/', $info['shop_logo']);
             }
             $goods_count = $db_goods_model->where(array('user_id' => $ru_id, 'is_on_sale' => 1, 'is_alone_sale' => 1, 'is_delete' => 0))->count();
-            
+
             $follower_count = $db_collect_store->where(array('ru_id' => $ru_id))->count();
-            
+
             $field = 'count(*) as count, SUM(IF(comment_rank>3,1,0)) as comment_rank, SUM(IF(comment_server>3,1,0)) as comment_server, SUM(IF(comment_delivery>3,1,0)) as comment_delivery';
             $comment = $db_goods_view->join(array('goods'))->field($field)->where(array('g.user_id' => $goods['user_id'], 'parent_id' => 0, 'status' => 1))->find();
 
@@ -315,7 +315,7 @@ class b2b2c_goods_controller {
         $type = intval($_GET['type']) ? intval($_GET['type']) : 0;
         $parent = intval($_GET['parent']) ? intval($_GET['parent']) : 0;
         $check = intval($_GET['checked']) ? intval($_GET['checked']) : 0;
-        
+
         $arr['regions'] = get_regions($type, $parent);
         $arr['type'] = $type;
         $arr['target'] = htmlspecialchars(trim(stripslashes($_GET['target'])));
@@ -324,7 +324,7 @@ class b2b2c_goods_controller {
     }
 
      /**
-     * 根据商品模式获取商品价格和数量 
+     * 根据商品模式获取商品价格和数量
      */
     function goods_modal(){
         RC_Loader::load_theme('extras/b2b2c/functions/goods/b2b2c_front_goods.func.php');
@@ -334,7 +334,7 @@ class b2b2c_goods_controller {
         $goods['goods'] = get_goods($id, $housename, $region_id );
         ecjia_front::$controller->showmessage('地区参数', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, $goods);;
     }
-    
+
 }
 
-// end 
+// end

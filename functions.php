@@ -175,5 +175,5 @@ RC_Hook::add_action('topic/index/info', array('topic_controller', 'info'));
 RC_Hook::add_action('topic/index/async_topic_list', array('topic_controller', 'async_topic_list'));
 
 /* 加载多商户方法路由文件 */
-RC_Loader::load_theme('b2b2c_function.php');
+// RC_Loader::load_theme('b2b2c_function.php');
 // end
