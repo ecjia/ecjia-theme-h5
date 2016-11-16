@@ -105,7 +105,7 @@ class user_address_controller {
             'address'   => htmlspecialchars($_POST['address']),
             'consignee' => htmlspecialchars($_POST['consignee']),
             'mobile'    => htmlspecialchars($_POST['mobile']),
-            'zipcode'   => htmlspecialchars($_POST['zipcode']),
+//             'zipcode'   => htmlspecialchars($_POST['zipcode']),
         );
 	    if (empty($address['district'])) {
 		    ecjia_front::$controller->showmessage('收货人信息填写不完整', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
@@ -153,7 +153,7 @@ class user_address_controller {
             'address'       => htmlspecialchars($_POST['address']),
             'consignee'     => htmlspecialchars($_POST['consignee']),
             'mobile'        => htmlspecialchars($_POST['mobile']),
-            'zipcode'       => htmlspecialchars($_POST['zipcode']),
+//             'zipcode'       => htmlspecialchars($_POST['zipcode']),
             'default'       =>intval($_POST['default'])
         );
         if (update_address($address)) {
