@@ -18,7 +18,7 @@
 .ecjia-mod.ecjia-promotion-model .more_info{
 	line-height:1.2em;
 	width:4em;
-	font-size:.7em;
+	font-size:.9em;
 	color:#aaa;
 	float:right;
 	padding-left:1em;
@@ -118,7 +118,10 @@
 
 /*新品推荐 更多*/
 .ecjia-new-goods .goods-img img{
-	width:100%;
+	width:98%;
+	display: block;
+	margin:0 auto;
+	border:none;
 }
 .ecjia-list-two.list-page-two li a.list-page-goods-img .goods-name {
     margin-top: .3em;
@@ -311,8 +314,26 @@
 .ecjia-login-margin-top {
 	margin-top:3em;
 }
+.ecjia-login .bf{
+	display: block;
+	float: left;
+}
 .ecjia-login-b .around{
 	margin : 1em 7% 1em 7%;
+}
+.ecjia-login .small-text {
+	display: block;
+	float: left;
+	width: 53%;
+}
+.ecjia-login .small-submit {
+	display: block;
+	float: right;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-right: 7%;
+	margin-left : 0.1em;
+	width: 30%;
 }
 .ecjia-login-login-foot {
     overflow: hidden;
@@ -345,7 +366,6 @@
 	background-size: 90%;
 	margin-left: 20%;
 	float: left;
-
 }
 .ecjia-login .thirdparty-weixin {
     height:5em;
@@ -354,6 +374,11 @@
 	background-size: 100%;
 	margin-right: 20%;
 	float: right;
+}
+.ecjia-login .remark-size {
+	margin-right: 7%;
+	margin-left : 7%;
+	float: left;
 }
 .ecjia-login .margin-top {
 	margin-top:3em;
@@ -381,8 +406,6 @@
 }
 .ecjia-login .form-group .input .icon-dengluyonghuming {
 	/*background-color: #47aa4d;*/
-	float: left;
-	margin: 0;
 }
 .ecjia-login .form-group .input .icon-lock {
 	/*background-color: #9ecc17;*/

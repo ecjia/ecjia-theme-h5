@@ -61,31 +61,35 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     			<input type="hidden" name="flag" id="flag" value="register" />
     			<div class="form-group">
     				<label class="input">
-    					<i class="iconfont icon-mobilefill"></i>
+    					<i class="iconfont icon-mobilefill icon-set"></i>
     					<input name="username" type="text" id="username" name="username" datatype="s3-15|m|e" errormsg="{$lang.msg_mast_length}" placeholder="{$lang.label_username}" />
     				</label>
     			</div>
-    			<div class="form-group">
-    				<label class="input">
-    					<i class="iconfont icon-dianziyoujian"></i>
-    					<input name="email" type="email" id="email" datatype="e" errormsg="请输入正确格式的邮箱" placeholder="{$lang.email}" />
+    			<div>
+        			 <ul class="ecjia-login-login-foot">
+        			     <li class="remark-size">{$lang.message_authentication_code}</li>
+        			 </ul>
+    			</div>
+    			<div class="form-group small-text" style="margin-right:0">
+    				<label class="input-1">
+    					<input name="email" type="email" id="email" datatype="e" errormsg="请输入正确格式的邮箱" placeholder="{$lang.input_verification}" />
     				</label>
     			</div>
-    			<div class="form-group">
+				<div class="small-submit">
+                        <input type="hidden" name="referer" value="{$smarty.get.referer}" />
+                        <span><input type="submit" class="btn btn-info login-btn" value="{$lang.return_verification}" /></span>
+            	</div>
+            	<div>
+        			 <ul class="bf">
+        			     <li class="remark-size">{$lang.message_authentication_code}</li>
+        			 </ul>
+    			</div>
+    			<div class="form-group bf">
     				<label class="input">
     					<i class="iconfont icon-lock"></i>
     					<input name="password" id="password1" type="password" datatype="*6-16"  errormsg="请输入6 ~ 16 位的密码" placeholder="{$lang.password}">
     				</label>
     			</div>
-    			<!-- 判断是否启用验证码{if $enabled_captcha} -->
-    			<div class="form-group">
-    				<label class="input captcha-img">
-    					<i class="iconfont icon-pic"></i>
-    					<input name="captcha" id="captcha" type="text" placeholder="{$lang.code}" datatype="*" />
-    					<img src="{url path='captcha/index/init'}" alt="captcha" onClick="this.src='{url path='captcha/index/init'}&t='+Math.random();" />
-    				</label>
-    			</div>
-    			<!--{/if}-->
     			<div class="ecjia-login-b">
     				<input name="act" type="hidden" value="act_register" />
     				<input name="enabled_sms" type="hidden" value="0" />
