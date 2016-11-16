@@ -56,16 +56,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 		<section class="checklist">
 			<a href="{url path='cart/flow/pay'}">
-				<span>{$lang.shipping_method}</span>
+				<span>{$lang.payment_method}</span>
 				<i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$payment_default}</span>
 			</a>
 		</section>
 		<section class="checklist">
 			<a href="{url path='cart/flow/shipping'}">
-				<span>{$lang.payment_method}</span>
+				<span>{$lang.shipping_method}</span>
 				<i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr select_nav ecjia-truncate">{$payment_default}</span>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
 			</a>
 		</section>
 		<section class="checklist error">
