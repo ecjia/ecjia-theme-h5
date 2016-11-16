@@ -636,7 +636,7 @@ select, input, textarea {
 	overflow: hidden;
 }
 .ecjia-form .form-group-text .input input {
-	padding-left: 5em;
+	padding-left: 6em;
 }
 .ecjia-form .form-group .captcha-img img {
 	position: absolute;

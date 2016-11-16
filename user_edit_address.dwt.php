@@ -13,58 +13,33 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 
 <form class="ecjia-form ecjia-margin-t address-add-form" action="{url path='user_address/update_address'}" method="post" name="theForm">
-	<div class="form-group">
+	<div class="form-group form-group-text">
 		<label class="input">
-			<input class="inputBg" name="consignee" placeholder="{$lang.consignee_name}{$lang.require_field}" type="text" value="{$consignee.consignee|escape}" datatype="s1-15" errormsg="请输入正确格式的收货人" />
+			<span>所在地区： </span>
+			<input name="district" placeholder="{t}请选择城市{/t}" type="text" datatype="*" value="" />
 		</label>
 	</div>
-	<div class="form-group">
+	<div class="form-group form-group-text">
 		<label class="input">
-			<input class="inputBg_touch" name="mobile" placeholder="{$lang.mobile}{$lang.require_field}" type="tel" value="{$consignee.mobile|escape}" datatype="m" errormsg="请输入正确格式的联系方式" />
+			<span class="ecjiaf-fl">收货地址： </span>
+			<input name="location" placeholder="{t}写字楼，小区，学校，街道{/t}" type="text" datatype="*" value="" />
 		</label>
 	</div>
-    <div class="form-group">
-        <label class="input">
-            <input name="zipcode" placeholder="邮编" type="number" datatype="n6-6" errormsg="请输入6位数字邮编" value="{$consignee.zipcode|escape}" />
-        </label>
-    </div>
-	<div class="form-group">
-		<div class="ecjiaf-fl">
-			<select class="form-select" id="selCountries" name="country" data-toggle="region_change" data-url="index.php?m=user&c=user_address&a=region" data-type="1" data-target="selProvinces">
-				<option value="0">{$lang.please_select}{$name_of_region[0]}</option>
-				<!-- {foreach from=$country_list item=country} -->
-				<option value="{$country.region_id}" {if $consignee.country eq $country.region_id}selected{/if}>{$country.region_name}</option>
-				<!-- {/foreach} -->
-			</select>
-		</div>
-		<div class="ecjiaf-fl">
-			<select class="form-select" name="province" id="selProvinces" data-toggle="region_change" data-url="index.php?m=user&c=user_address&a=region" data-type="2" data-target="selCities">
-				<option value="0">{$lang.please_select}{$name_of_region[1]}</option>
-				<!-- {foreach from=$province_list item=province} -->
-				<option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
-				<!-- {/foreach} -->
-			</select>
-		</div>
-		<div class="ecjiaf-fl">
-			<select class="form-select" name="city" id="selCities" data-toggle="region_change" data-url="index.php?m=user&c=user_address&a=region" data-type="3" data-target="selDistricts">
-				<option value="0">{$lang.please_select}{$name_of_region[2]}</option>
-				<!-- {foreach from=$city_list item=city} -->
-				<option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
-				<!-- {/foreach} -->
-			</select>
-		</div>
-		<div class="addres-area ecjiaf-fl">
-			<select class="form-select" name="district" id="selDistricts">
-				<option value="0">{$lang.please_select}{$name_of_region[3]}</option>
-				<!-- {foreach from=$district_list item=district} -->
-				<option value="{$district.region_id}" {if $consignee.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
-				<!-- {/foreach} -->
-			</select>
-		</div>
+	<div class="form-group form-group-text">
+		<label class="input">
+			<input name="address" placeholder="{t}楼层，门牌{/t}" value="{$consignee.address|escape}" datatype="*" value="{$consignee.address}" />
+		</label>
 	</div>
-	<div class="form-group">
-		<label class="textarea">
-			<textarea name="address" placeholder="{$lang.detailed_address}{$lang.require_field}" value="{$consignee.address|escape}" datatype="*">{$consignee.address}</textarea>
+	<div class="form-group form-group-text">
+		<label class="input">
+			<span class="ecjiaf-fl">收货姓名： </span>
+			<input name="consignee" placeholder="{t}请输入真实姓名，限6个字{/t}" type="text" value="{$consignee.consignee|escape}" datatype="s1-15" errormsg="请输入正确格式的收货人" />
+		</label>
+	</div>
+	<div class="form-group form-group-text">
+		<label class="input">
+			<span class="ecjiaf-fl">收货电话： </span>
+			<input name="mobile" placeholder="{t}请确保收货电话真实有效{/t}" type="tel" value="{$consignee.mobile|escape}" datatype="m" errormsg="请输入正确格式的联系方式" />
 		</label>
 	</div>
 	<!-- {if $consignee.is_default eq ''} -->

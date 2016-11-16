@@ -61,7 +61,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     			<input type="hidden" name="flag" id="flag" value="register" />
     			<div class="form-group">
     				<label class="input">
-    					<i class="iconfont icon-dengluyonghuming"></i>
+    					<i class="iconfont icon-mobilefill"></i>
     					<input name="username" type="text" id="username" name="username" datatype="s3-15|m|e" errormsg="{$lang.msg_mast_length}" placeholder="{$lang.label_username}" />
     				</label>
     			</div>
