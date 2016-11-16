@@ -89,6 +89,47 @@
 	width:70%;
 	text-align: right;
 }
+.ecjia .ecjia-checkout .flow-goods-list .goods-item li,
+.ecjia .ecjia-checkout .flow-goods-list .goods-list{
+	overflow: hidden;
+	position: relative;
+	padding: 1em;
+}
+.ecjia .ecjia-checkout .flow-goods-list .goods-list li {
+	padding: 0;
+}
+.ecjia .ecjia-checkout .flow-goods-list {
+	background: #ffffff;
+}
+.ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-img,
+.ecjia .ecjia-checkout .flow-goods-list .goods-list .goods-img {
+	display: block;
+    height: 5em;
+    width: 5em;
+}
+.ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-img img,
+.ecjia .ecjia-checkout .flow-goods-list .goods-list .goods-img img {
+	width: 100%;
+}
+.ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-info {
+	width:100%;
+	margin-left: -6em;
+	padding-left: 7em;
+	height:5em;
+	margin-right: -3em;
+	padding-right: 2em;
+}
+.ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-info p:first-child{
+	height: 3.5em;
+	line-height: 1.7;
+}
+.ecjia .ecjia-checkout .flow-goods-list .goods-item span{
+	width:2em;
+	margin-top: 4em;
+}
+.ecjia .ecjia-checkout .flow-goods-list .goods-list{
+
+}
 /*========================  结算完成 ===========================*/
 
 
