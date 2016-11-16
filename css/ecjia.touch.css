@@ -172,9 +172,9 @@ textarea{
  * ecjia-margin-(t/b/l/r)
  * 全局元素间距
  */
-/*.ecjia-margin-t {
+.ecjia-margin-t {
 	margin-top: 1em;
-}*/
+}
 .ecjia-margin-b {
 	margin-bottom: 1em;
 }
@@ -242,22 +242,20 @@ textarea{
 	border-bottom:  1px solid #ddd;
 }
 /*列表中的数字图标扩展*/
-.ecjia-list .ecjia-icon {
-	display: block;
-	width: 1em;
-	height: 1em;
+.ecjia-icon {
+	position: relative;
 }
-.ecjia-list .ecjia-icon-num {
-	top: 0;
+.ecjia-icon .ecjia-icon-num {
+	position: absolute;
+	top:  -.5em;
     width: auto;
-    right: 3em;
+    right: -.5em;
     text-align: center;
     border-radius: 2em;
-    overflow: hidden;
-    min-width: 2em;
-    max-width: 10em;
-    line-height: 2em;
-    height: 2em;
+    min-width: 1.5em;
+    max-width: 3em;
+    line-height: 1.5em;
+    height: 1.5em;
     color: #fff;
     background: #ef3030;
 }
@@ -618,6 +616,20 @@ select, input, textarea {
 	font-size: 1.2em;
 	margin: 0 4%;
 	width: 92%;
+	line-height: 2em;
+}
+/**
+ * btn
+ * 小按钮
+ */
+.btn.small-btn,
+.btn.small-btn:link,
+.btn.small-btn:hover,
+.btn.small-btn:active,
+.btn.small-btn:visited {
+	font-size: 1.2em;
+	margin: 0 30%;
+	width: 40%;
 	line-height: 2em;
 }
 .btn.go-shop {

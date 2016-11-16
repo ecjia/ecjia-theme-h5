@@ -6,6 +6,7 @@
 		init : function(){
             this.init_swiper();
             this.change_index();
+            this.swiper_promotion();
 		},
         init_swiper : function() {
 			var swiper = new Swiper('.swiper-touchIndex', {
@@ -25,6 +26,13 @@
 				//自动播放
 				autoplay: 2500,
 				autoplayDisableOnInteraction: false,
+			});
+        },
+        swiper_promotion : function() {
+			var swiper = new Swiper('.swiper-promotion', {
+		        slidesPerView: 2.5,
+		        paginationClickable: true,
+		        spaceBetween: 30,
 			});
         },
 

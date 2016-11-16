@@ -782,7 +782,7 @@ footer .footer-icon .ecjia-list li a.active i {
 	position: absolute;
 	top: 50%;
 	margin-top: -0.5em;
-}*/
+}
 .checkout-select .check-order-invoice {
 	border-bottom: 1px solid #ddd;
 	padding: 1em 1.5em;
@@ -792,7 +792,8 @@ footer .footer-icon .ecjia-list li a.active i {
 .flow-checkout .checkout-select .panel-collapse ul li，
 .checkout-select .check-order-invoice ul li {
 	overflow: hidden;
-}
+}*/
+
 .flow-checkout .checkout-select .panel-collapse ul li.b_no input ,
 .checkout-select div ul li.b_no input ,
 .cart-check-radio {
@@ -835,7 +836,7 @@ footer .footer-icon .ecjia-list li a.active i {
 .checkout-pro-list ul li.goods-list .label a {
 	font-weight: normal;
 }
-.checkout-pro-list ul.checkout-goods-list li {
+/*.checkout-pro-list ul.checkout-goods-list li {
 	padding: 1em;
 	overflow: hidden;
 }
@@ -855,6 +856,7 @@ footer .footer-icon .ecjia-list li a.active i {
 .checkout-pro-list ul li img {
 	width: 5em;
 }
+
 .checkout-pro-list ul li .flow-checkout-goodsname  {
 	margin-left: -6.2em;
     margin-right: -10.3em;
@@ -873,6 +875,7 @@ footer .footer-icon .ecjia-list li a.active i {
 .checkout-pro-list ul.checkout-goods-list li div.goods-price div {
 	font-size: .8em;
 }
+*/
 .checkout-pro-list ul li .cart-formated-subtotal {
 	text-align: right;
 	width: 8em;
@@ -1668,9 +1671,9 @@ footer .footer-icon .ecjia-list li a.active i {
 /**
  * 商品详情
  */
-.goods-info {
+/*.goods-info {
 	padding-bottom: 3.5em;
-}
+}*/
 .goods-info .goods-price {
 	color: #ef3030;
 }

@@ -301,17 +301,26 @@ class goods_controller {
      * 促销商品
      */
     public static function goods_promotion() {
-    	$db_goods = RC_DB::table('goods as g')
-			->leftJoin('store_franchisee as s', RC_DB::raw('s.store_id'), '=', RC_DB::raw('g.store_id'));
-		
-		$db_goods->where('is_promote', '1')->where('is_delete', '!=', 1);
-		$result = $db_goods
-			->select('goods_id', 'goods_name', 'promote_price', 
-					'promote_start_date', 'promote_end_date', 'goods_thumb', RC_DB::raw('s.merchants_name'))
-			->get();
-				
-		ecjia_front::$controller->assign('result', $result);
+    	$promotion = goods_list('promotion', 6);
+    	ecjia_front::$controller->assign('promotion_goods', $promotion['list']);
+    	
+		ecjia_front::$controller->assign('title', '促销商品');
     	ecjia_front::$controller->display('goods_promotion.dwt');
+    }
+    
+    /**
+     * ajax获取促销商品
+     */
+    public static function ajax_goods() {
+    	$type = htmlspecialchars($_GET['type']);
+    	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+    	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+    	$goods_list = goods_list($type, $limit, $page);
+    	ecjia_front::$controller->assign('goods_list', $goods_list['list']);
+    	ecjia_front::$controller->assign_lang();
+    	$sayList = ecjia_front::$controller->fetch('goods_promotion.dwt');
+    	//         if ($page == 3) $goods_list['is_last'] = 1;
+    	ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $goods_list['is_last']));
     }
     
     /**
