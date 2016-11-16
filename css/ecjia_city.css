@@ -112,7 +112,6 @@
 .ecjia-index .ecjia-margin-t {
 	margin-top: 1em;
 }
-
 /*========================  分类 ===========================*/
 
 
@@ -121,17 +120,13 @@
 	margin-top: 50px;
 }
 
-/*========================  结算 =========================== */
-/*定位地址、选择的收货地址  作为UI 不加页面Class 可直接调用 */
+/*========================  结算 ecjia-checkout =========================== */
+/*定位地址、选择的收货地址 */
 .flow-address {
     height:5em;
     padding: .5em 1em;
 	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
 	background-size: 70%;
-}
-.flow-address span,
-.flow-address .address-info .address-desc {
-    line-height: 4em;
 }
 .flow-address .address-info {
     padding-left: 1em;
@@ -214,9 +209,20 @@
 	width:2em;
 	margin-top: 4em;
 }
-.ecjia .ecjia-checkout .flow-goods-list .goods-list{
-
+.ecjia .ecjia-checkout .cart-order{
+	color: #ef3030;
+	float: right;
 }
+/*======================== 选择支付方式、选择配送方式、选择红包 ecjia-select  ===========================*/
+
+
+/*======================== 发票信息 ecjia-invoice ===========================*/
+
+
+/*======================== 使用积分、订单留言 ecjia-text ===========================*/
+
+
+
 /*========================  结算完成 ===========================*/
 
 
