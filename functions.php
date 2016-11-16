@@ -45,6 +45,12 @@ RC_Hook::add_action('cart/index/drop_goods', array('cart_controller', 'drop_good
 RC_Hook::add_action('cart/index/add_favourable', array('cart_controller', 'add_favourable'));
 RC_Hook::add_action('cart/index/label_favourable', array('cart_controller', 'label_favourable'));
 RC_Hook::add_action('cart/flow/checkout', array('cart_controller', 'checkout'));
+RC_Hook::add_action('cart/flow/pay', array('cart_controller', 'pay'));
+RC_Hook::add_action('cart/flow/shipping', array('cart_controller', 'shipping'));
+RC_Hook::add_action('cart/flow/invoice', array('cart_controller', 'invoice'));
+RC_Hook::add_action('cart/flow/note', array('cart_controller', 'note'));
+RC_Hook::add_action('cart/flow/bonus', array('cart_controller', 'bonus'));
+RC_Hook::add_action('cart/flow/integral', array('cart_controller', 'integral'));
 RC_Hook::add_action('cart/flow/select_shipping', array('cart_controller', 'select_shipping'));
 RC_Hook::add_action('cart/flow/select_payment', array('cart_controller', 'select_payment'));
 RC_Hook::add_action('cart/flow/done', array('cart_controller', 'done'));

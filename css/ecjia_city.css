@@ -117,33 +117,65 @@
 
 
 /*========================  购物车 ===========================*/
-
+.small-btn{
+	margin-top: 50px;
+}
 
 /*========================  结算 =========================== */
-/*定位地址、选择的收货地址 */
-.ecjia .ecjia-checkout .flow-address {
-    background: #ffffff;
+/*定位地址、选择的收货地址  作为UI 不加页面Class 可直接调用 */
+.flow-address {
     height:5em;
     padding: .5em 1em;
+	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
+	background-size: 70%;
 }
-.ecjia .ecjia-checkout .flow-address span,
-.ecjia .ecjia-checkout .flow-address .address-info .address-desc {
+.flow-address span,
+.flow-address .address-info .address-desc {
     line-height: 4em;
 }
-.ecjia .ecjia-checkout .flow-address .address-info {
+.flow-address .address-info {
     padding-left: 1em;
 }
-.ecjia .ecjia-checkout .flow-address .address-info span{
+.flow-address .address-info span{
     line-height: normal;
 }
-.ecjia .ecjia-checkout .flow-address .address-info span+span {
+.flow-address .address-info span+span {
     margin-left: 2em;
 }
-.ecjia .ecjia-checkout .flow-address .address-info span + p.address-desc{
+.flow-address .address-info span + p.address-desc{
     margin-top: 1em;
     line-height: normal;
 }
-
+/*====结束 === */
+.ecjia .ecjia-checkout .checklist{
+	overflow: hidden;
+	background-color: #ffffff;
+	position: relative;
+	border-bottom: 1px solid #ddd;
+	padding: 0 1em;
+	line-height: 3em;
+}
+.ecjia .ecjia-checkout .checklist.error{
+	border: 1px solid #ef3030;
+	box-shadow: 0 0 6px #d59392;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px #d59392;
+    outline: 0 none;
+}
+.ecjia .ecjia-checkout .checklist .iconfont{
+	position: absolute;
+	right: 1em;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.ecjia .ecjia-checkout .checklist a{
+	display: inline-block;
+	width: 100%;
+}
+.ecjia .ecjia-checkout .checklist .select_nav{
+	margin-right: 2em;
+	width:70%;
+	text-align: right;
+}
 /*========================  结算完成 ===========================*/
 
 
@@ -163,8 +195,58 @@
 
 
 /*========================  登录 ===========================*/
-
-
+.ecjia-login {
+	margin-top: 1em;
+}
+.ecjia-login-b {
+	margin-bottom: 1em;
+}
+.ecjia-login-margin-top {
+	margin-top:3em;
+}
+.ecjia-login-b .around{
+	margin : 1em 7% 1.2em 7%;
+}
+.ecjia-login-login-foot {
+    overflow: hidden;
+}
+.ecjia-login .user-img {
+	margin: 10% auto 5% auto;
+    background: #EFEFF4;
+    border: none;
+    overflow: hidden;
+    text-align:center;
+}
+.ecjia-login .login-btn {
+	margin: 0;
+	width: 100%;
+}
+.ecjia-login .margin-top {
+	margin-top:3em;
+}
+.ecjia-login .user-img img {
+	width: 4em;
+	height: 4em;
+    border-radius: 100%;
+    background: #47aa4d;
+}
+.ecjia-login .form-group {
+	margin : 1em 7% 1.2em 7%;
+	border-radius: 0.3em;
+}
+.ecjia-login .form-group .input-1 {
+	display: block;
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	margin: 0;
+}
+.ecjia-login .form-group .input .icon-dengluyonghuming {
+	background-color: #47aa4d;
+}
+.ecjia-login .form-group .input .icon-lock {
+	background-color: #9ecc17;
+}
 /*========================  搜索 ===========================*/
 
 

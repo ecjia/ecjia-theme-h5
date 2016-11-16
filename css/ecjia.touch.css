@@ -620,6 +620,20 @@ select, input, textarea {
 	width: 92%;
 	line-height: 2em;
 }
+/**
+ * btn
+ * 小按钮
+ */
+.btn.small-btn,
+.btn.small-btn:link,
+.btn.small-btn:hover,
+.btn.small-btn:active,
+.btn.small-btn:visited {
+	font-size: 1.2em;
+	margin: 0 30%;
+	width: 40%;
+	line-height: 2em;
+}
 .btn.go-shop {
 	border-color: #ef3030;
 	background-color: #ef3030 !important;

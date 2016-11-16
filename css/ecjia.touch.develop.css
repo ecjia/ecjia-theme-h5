@@ -745,11 +745,11 @@ footer .footer-icon .ecjia-list li a.active i {
 .ecjia-payment-list li {
 	padding: 1em 1.5em;
 }
-.flow-checkout section p {
+/*.flow-checkout section p {
 	padding:0em 1em;
 	border-bottom: 1px solid #ddd;
 }
-/*.flow-checkout .checkout-add .consignee-msg {
+.flow-checkout .checkout-add .consignee-msg {
 	padding-left: 3em;
 }
 .flow-checkout .checkout-add .consignee-msg p {
@@ -762,7 +762,7 @@ footer .footer-icon .ecjia-list li a.active i {
 .flow-checkout .checkout-add a div {
 	border-bottom: 0em;
 }
-.flow-checkout .checkout-add a p ,
+/*.flow-checkout .checkout-add a p ,
 .flow-checkout .checkout-select>a p {
 	overflow: hidden;
 	position: relative;
@@ -777,7 +777,7 @@ footer .footer-icon .ecjia-list li a.active i {
 	display: none;
 	overflow: hidden;
 }
-/*.flow-checkout .checkout-add .consignee-icon i {
+.flow-checkout .checkout-add .consignee-icon i {
 	font-size: 2em;
 	position: absolute;
 	top: 50%;
@@ -802,7 +802,7 @@ footer .footer-icon .ecjia-list li a.active i {
 	border-bottom: 0em;
 	width: 80%;
 }
-.flow-checkout .checkout-select ul li
+/*.flow-checkout .checkout-select ul li
 .checkout-select>a i.iconfont {
 	position: absolute;
 	font-size: 1.6em;
@@ -814,20 +814,20 @@ footer .footer-icon .ecjia-list li a.active i {
 	-o-transition: 0.5s ease;
 	transition: 0.5s ease;
 	-webkit-transform: rotate;
-}
-.flow-checkout .checkout-select a {
+}*/
+/*.flow-checkout .checkout-select a {
 	line-height: 3em;
-}
-.flow-checkout section div input {
+}*/
+/*.flow-checkout section div input {
 	width: 100%;
 	line-height: 2em;
-}
-.flow-checkout section div input.cart-order-surplus {
+}*/
+/*.flow-checkout section div input.cart-order-surplus {
 	width: 40%;
 	line-height: 1.5em;
 	padding-left: 0.5em;
 	border:1px solid #ddd;
-}
+}*/
 .checkout-pro-list ul li.goods-list {
 	padding:0 1em;
 	line-height: 3em;

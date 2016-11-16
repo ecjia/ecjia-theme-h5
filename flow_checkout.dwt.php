@@ -28,6 +28,48 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<p class="ecjia-truncate2 address-desc">{$consignee.address}{$consignee.address_info}</p>
 			</div>
 		</div>
+		<section class="checklist">
+			<a href="{url path='cart/flow/pay'}">
+				<span>{$lang.shipping_method}</span>
+				<i class="iconfont icon-jiantou-right"></i>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
+			</a>
+		</section>
+		<section class="checklist">
+			<a href="{url path='cart/flow/shipping'}">
+				<span>{$lang.payment_method}</span>
+				<i class="iconfont icon-jiantou-right"></i>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$payment_default}</span>
+			</a>
+		</section>
+		<section class="checklist error">
+			<a href="{url path='cart/flow/invoice'}">
+				<span>{$lang.invoice}</span>
+				<i class="iconfont icon-jiantou-right"></i>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
+			</a>
+		</section>
+		<section class="checklist">
+			<a href="{url path='cart/flow/note'}">
+				<span>备注留言</span>
+				<i class="iconfont icon-jiantou-right"></i>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
+			</a>
+		</section>
+		<section class="checklist">
+			<a href="{url path='cart/flow/bonus'}">
+				<span>{$lang.use_integral}</span>
+				<i class="iconfont icon-jiantou-right"></i>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
+			</a>
+		</section>
+		<section class="checklist ecjia-margin-b">
+			<a href="{url path='cart/flow/integral'}">
+				<span>{$lang.use_bonus}</span>
+				<i class="iconfont icon-jiantou-right"></i>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
+			</a>
+		</section>
 	</form>
 </div>
 <div class="flow-checkout">
