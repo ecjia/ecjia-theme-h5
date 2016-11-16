@@ -118,7 +118,7 @@
 	margin-top:3em;
 }
 .ecjia-login-b .around{
-	margin : 1em 7% 1.2em 7%;
+	margin : 1em 7% 1em 7%;
 }
 .ecjia-login-login-foot {
     overflow: hidden;
@@ -134,6 +134,11 @@
 	margin: 0;
 	width: 100%;
 }
+.ecjia-login .margin-right-left {
+	margin-right: 7%;
+	margin-left : 7%;
+	margin-bottom: 7%;
+}
 .ecjia-login .margin-top {
 	margin-top:3em;
 }
@@ -144,7 +149,7 @@
     background: #47aa4d;
 }
 .ecjia-login .form-group {
-	margin : 1em 7% 1.2em 7%;
+	margin : 1em 7% 1em 7%;
 	border-radius: 0.3em;
 }
 .ecjia-login .form-group .input-1 {
@@ -153,6 +158,10 @@
 	width: 100%;
 	overflow: hidden;
 	margin: 0;
+}
+.ecjia-login .form-group .input .icon-left {
+	left:85%;
+	font-size: 1.2em;
 }
 .ecjia-login .form-group .input .icon-dengluyonghuming {
 	background-color: #47aa4d;
