@@ -172,8 +172,13 @@
 	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
 	background-size: 70%;
 }
+.flow-address label{
+	width: 20%;
+}
 .flow-address .address-info {
-    padding-left: 1em;
+	width: 100%;
+	margin-left: -20%;
+	padding-left: 20%;
 }
 .flow-address .address-info span{
     line-height: normal;
@@ -182,7 +187,7 @@
     margin-left: 2em;
 }
 .flow-address .address-info span + p.address-desc{
-    margin-top: 1em;
+    margin-top: .5em;
     line-height: normal;
 }
 /*====结束 === */
