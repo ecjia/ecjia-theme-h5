@@ -13,13 +13,14 @@ class touch_controller {
         $cat_rec = get_recommend_res();/* 首页推荐分类商品 */
         ecjia_front::$controller->assign('navigator', $navigator['touch']);
         $base   = goods_list('best', 4);
-        $new    = goods_list('new', ecjia::config('page_size'));
+        $new    = goods_list('new', 6);
         $hot    = goods_list('hot', ecjia::config('page_size'));
         $promotion = goods_list('promotion', 6);
 
         ecjia_front::$controller->assign('more_sales', RC_Uri::url('goods/index/promotion'));
-        ecjia_front::$controller->assign('promotion_goods', $promotion['list']);
+        ecjia_front::$controller->assign('more_news', RC_Uri::url('goods/index/new'));
         
+        ecjia_front::$controller->assign('promotion_goods', $promotion['list']);
         ecjia_front::$controller->assign('best_goods', $base['list']);
         ecjia_front::$controller->assign('new_goods', $new['list']);
         ecjia_front::$controller->assign('hot_goods', $hot['list']);

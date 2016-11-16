@@ -301,9 +301,6 @@ class goods_controller {
      * 促销商品
      */
     public static function goods_promotion() {
-    	$promotion = goods_list('promotion', 6);
-    	ecjia_front::$controller->assign('promotion_goods', $promotion['list']);
-    	
 		ecjia_front::$controller->assign('title', '促销商品');
     	ecjia_front::$controller->display('goods_promotion.dwt');
     }
@@ -318,16 +315,23 @@ class goods_controller {
     	$goods_list = goods_list($type, $limit, $page);
     	ecjia_front::$controller->assign('goods_list', $goods_list['list']);
     	ecjia_front::$controller->assign_lang();
-    	$sayList = ecjia_front::$controller->fetch('goods_promotion.dwt');
+    	if ($type == 'promotion') {
+    		$sayList = ecjia_front::$controller->fetch('goods_promotion.dwt');
+    	} elseif ($type == 'new') {
+    		$sayList = ecjia_front::$controller->fetch('goods_new.dwt');
+    	}
+    
     	//         if ($page == 3) $goods_list['is_last'] = 1;
     	ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $goods_list['is_last']));
     }
+    
     
     /**
      * 新品推荐
      */
     public static function goods_new() {
-    	
+    	ecjia_front::$controller->assign('title', '新品推荐');
+    	ecjia_front::$controller->display('goods_new.dwt');
     }
 
     /*
