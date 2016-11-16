@@ -21,7 +21,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-checkout">
 	<form id="theForm" name="theForm" action="{url path='flow/done'}" method="post">
 		<div class="flow-address ecjia-margin-b">
-			<span class="ecjiaf-fl">送至：</span>
+			<label class="ecjiaf-fl">送至：</label>
 			<div class="ecjiaf-fl address-info">
 				<span>{$consignee.consignee|escape}</span>
 				<span>{$consignee.mobile}</span>
