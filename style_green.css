@@ -636,16 +636,9 @@ label i.checked {
 .flow-checkout .checkout-add {
 	background:#fff  url('./dist/images/xhx.png') repeat-x 0 bottom;
 }
-.flow-checkout section p {
-	border-bottom-color: #ddd;
-}
 .flow-checkout .checkout-add .consignee-icon i {
 	color: #47aa4d;
 }
-.flow-checkout .checkout-select {
-	background: #fff;
-}
-
 .flow-checkout .checkout-select ul li
 .checkout-select>a i.iconfont {
 	color: #ccc;
