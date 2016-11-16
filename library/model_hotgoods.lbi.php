@@ -1,7 +1,7 @@
 <?php
 /*
-Name: 首页每日上新
-Description: 这是首页每日上新模块,此模块只在首页配合ajaxinfo才能有效
+Name: 首页热门推荐
+Description: 这是首页热门推荐模块,此模块只在首页配合ajaxinfo才能有效
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
