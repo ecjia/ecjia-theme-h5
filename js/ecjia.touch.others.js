@@ -33,6 +33,8 @@
 		        slidesPerView: 2.5,
 		        paginationClickable: true,
 		        spaceBetween: 30,
+		        freeMode : true,
+		        freeModeMomentumVelocityRatio : 5,
 			});
         },
 
