@@ -28,7 +28,6 @@
 	margin-top: 1em;
 }
 
-
 /*========================  分类 ===========================*/
 
 
@@ -60,6 +59,7 @@
     margin-top: 1em;
     line-height: normal;
 }
+/*====结束 === */
 .ecjia .ecjia-checkout .checklist{
 	overflow: hidden;
 	background-color: #ffffff;
@@ -108,8 +108,44 @@
 
 
 /*========================  登录 ===========================*/
-
-
+.ecjia-login {
+	margin-top: 1em;
+}
+.ecjia-login-b {
+	margin-bottom: 1em;
+}
+.ecjia-login-b .around{
+	margin : 1em 5% 1.2em 5%;
+}
+.ecjia-login-login-foot {
+    overflow: hidden;
+}
+.ecjia-login .user-img {
+	margin: 10% auto 5% auto;
+    background: #EFEFF4;
+    border: none;
+    overflow: hidden;
+    text-align:center;
+}
+.ecjia-login .login-btn {
+	margin: 0;
+	width: 100%;
+}
+.ecjia-login .user-img img {
+	width: 4em;
+	height: 4em;
+    border-radius: 100%;
+    background: #F7AA4D;
+}
+.ecjia-login .form-group {
+	margin : 1em 5% 5% 5%;
+}
+.ecjia-login .form-group .input .icon-dengluyonghuming {
+	background-color: #47aa4d;
+}
+.ecjia-login .form-group .input .icon-lock {
+	background-color: #9ecc17;
+}
 /*========================  搜索 ===========================*/
 
 
