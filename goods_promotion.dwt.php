@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!-- {foreach from=$goods_list item=val} -->
 		<li class="ecjia-margin-t">
 			<a class="list-page-goods-img" href="{$val.url}">
-				<span class="goods-img"><img src="{$val.thumb}" alt="{$val.name}"></span>
+				<span class="goods-img"><img src="{$val.goods_img}" alt="{$val.name}"></span>
 				<span class="list-page-box">
 					<span class="goods-name">{$val.name}</span>
 					<span class="list-page-goods-price">

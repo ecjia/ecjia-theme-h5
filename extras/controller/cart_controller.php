@@ -457,8 +457,8 @@ class cart_controller {
             $consignee ['city'],
             $consignee ['district']
         );
-        $shipping_method	= RC_Loader::load_app_class('shipping_method', 'shipping');
-        $shipping_list		= empty($shipping_method) ? array() : $shipping_method->available_shipping_list($region);
+        // $shipping_method	= RC_Loader::load_app_class('shipping_method', 'shipping');
+        // $shipping_list		= empty($shipping_method) ? array() : $shipping_method->available_shipping_list($region);
         $cart_weight_price	= cart_weight_price($flow_type);
         $insure_disabled	= true;
         $cod_disabled		= true;
@@ -1579,7 +1579,37 @@ class cart_controller {
      * 改变支付方式
      */
     public static function pay() {
-
+        $payment_method = RC_Loader::load_app_class('payment_method', 'payment');
+        $payment_list 	= empty($payment_method) ? array() : $payment_method->available_payment_list(1, $cod_fee);
+        /*过滤支付方式*/
+        $pay = array('pay_balance','pay_koolyun','pay_cash');
+        if (isset($payment_list)) {
+            foreach ($payment_list as $key => $payment) {
+                $payment_list [$key] ['format_pay_fee'] = strpos($payment['pay_fee'], '%') !== false ? $payment['pay_fee'] : price_format($payment['pay_fee'], false);
+                if ($payment ['is_cod'] == '1') {
+                    $payment_list [$key] ['format_pay_fee'] = '<span id="ECS_CODFEE">' . $payment_list [$key] ['format_pay_fee'] . '</span>';
+                }
+                /* 如果有易宝神州行支付 如果订单金额大于300 则不显示 */
+                if ($payment ['pay_code'] == 'yeepayszx' && $total ['amount'] > 300) {
+                    unset($payment_list [$key]);
+                }
+                /* 如果有余额支付 不显示*/
+                if(in_array($payment['pay_code'],$pay)){
+                    unset($payment_list[$key]);
+                }
+                if ($_SESSION ['flow_order'] ['pay_id'] == $payment ['pay_id']) {
+                    ecjia_front::$controller->assign('disable_surplus', 1);
+                }
+            }
+        }
+	    reset($payment_list);
+	    $payment_list[key($payment_list)]['default'] = 1;
+	    $payment_default = $payment_list[key($payment_list)]['pay_name'].$payment_list[key($payment_list)]['format_pay_fee'];
+	    ecjia_front::$controller->assign('payment_default',$payment_default);
+        ecjia_front::$controller->assign('payment_list', $payment_list);
+        // _dump($payment_list,1);
+        ecjia_front::$controller->assign('title', RC_Lang::lang('payment_method'));
+        ecjia_front::$controller->assign_title(RC_Lang::lang('payment_method'));
         ecjia_front::$controller->display('flow_pay.dwt');
     }
 
@@ -1587,7 +1617,37 @@ class cart_controller {
      * 改变配送方式
      */
     public static function shipping() {
-
+        RC_Loader::load_theme('extras/model/cart/cart_model.class.php');
+        $db_cart            = new cart_model();
+        $shipping_method	= RC_Loader::load_app_class('shipping_method', 'shipping');
+        $consignee = get_consignee($_SESSION['user_id']);
+        $region = array(
+            $consignee['country'],
+            $consignee['province'],
+            $consignee['city'],
+            $consignee['district']
+        );
+        $payment_method = RC_Loader::load_app_class('payment_method','payment');
+        $shipping_list		= empty($shipping_method) ? array() : $shipping_method->available_shipping_list($region);
+        foreach ($shipping_list as $key => $val) {
+            $shipping_cfg 									= $payment_method->unserialize_config($val['configure']);
+            $shipping_fee 									= ($shipping_count == 0 and $cart_weight_price ['free_shipping'] == 1) ? 0 : $shipping_method->shipping_fee($val ['shipping_code'], unserialize($val ['configure']), $cart_weight_price ['weight'], $cart_weight_price ['amount'], $cart_weight_price ['number']);
+            $shipping_list [$key] ['format_shipping_fee'] 	= price_format($shipping_fee, false);
+            $shipping_list [$key] ['shipping_fee'] 			= $shipping_fee;
+            $shipping_list [$key] ['free_money'] 			= price_format($shipping_cfg ['free_money'], false);
+            $shipping_list [$key] ['insure_formated'] 		= strpos($val ['insure'], '%') === false ? price_format($val ['insure'], false) : $val ['insure'];
+            /* 当前的配送方式是否支持保价 */
+            if ($val ['shipping_id'] == $order ['shipping_id']) {
+            $insure_disabled 	= ($val ['insure'] == 0);
+            $cod_disabled 		= ($val ['support_cod'] == 0);
+            }
+        }
+        reset($shipping_list);
+        ecjia_front::$controller->assign('shipping_default',$shipping_default);
+        ecjia_front::$controller->assign('shipping_list', $shipping_list);
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign('title', RC_Lang::lang('shipping_method'));
+        ecjia_front::$controller->assign_title(RC_Lang::lang('shipping_method'));
         ecjia_front::$controller->display('flow_shipping.dwt');
     }
 

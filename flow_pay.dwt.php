@@ -17,15 +17,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
     <div class="ecjia-select">
-        <h3 class="select-title"></h3>
         <ul class="ecjia-list">
-            <!-- {foreach from=$shipping_list item=rs} -->
-            <label class="select-item" for="shipping_{$rs.shipping_code}">
+            <!-- {foreach from=$payment_list item=rs} -->
+            <label class="select-item" for="{$rs.pay_code}">
                 <li>
-                    <span class="slect-title">{$rs.shipping_name}</span>
+                    <span class="slect-title">{$rs.pay_name}</span>
                     <span class="ecjiaf-fr">
-                        <input type="radio" id="shipping_{$rs.shipping_code}" name="shipping" value="{$rs.shipping_id}">
-                        <label for="shipping_{$rs.shipping_code}"></label>
+                        <input type="radio" id="{$rs.pay_code}" name="payment" value="{$rs.pay_id}">
+                        <label for="{$rs.pay_code}"></label>
                     </span>
                 </li>
             </label>
