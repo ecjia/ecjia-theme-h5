@@ -59,18 +59,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/if} -->
 <!--{if $action eq 'get_password_email'}-->
 <div class="border_bottom_getpassword"></div>
-<form class="ecjia-form ecjia-icon-form ecjia-login-form ecjia-margin-t" name="getPassword" action="{url path='user/index/send_pwd_email'}" method="post">
+<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="getPassword" action="{url path='user/index/send_pwd_email'}" method="post">
 	<!-- 添加id，js用到 -->
 	<div class="form-group">
-		<label class="input">
-			<i class="iconfont icon-dengluyonghuming"></i>
-			<input name="user_name" type="text" placeholder="{$lang.username}" datatype="s3-15|m|e|" errormsg="请输入用户名" />
-		</label>
-	</div>
-	<div class="form-group">
-		<label class="input">
-			<i class="iconfont icon-dianziyoujian"></i>
-			<input name="email" type="email" placeholder="{$lang.email}" datatype="e" errormsg="请输入正确格式的邮箱" />
+		<label class="input-1">
+			<input name="user_name" type="text" placeholder="{$lang.name_or_mobile}" datatype="s3-15|m|e|" errormsg="请输入用户名" />
 		</label>
 	</div>
 	<!-- 判断是否启用验证码{if $enabled_captcha} -->
@@ -83,8 +76,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 	<!--{/if}-->
 	<input name="act" type="hidden" value="send_pwd_email" />
-	<div class="ecjia-margin-t get-pwd-send ecjia-margin-b">
-		<input class="btn btn-info" name="Submit" type="submit" value="{$lang.submit}" />
+	<div class="ecjia-login-b">
+	   <div class="around margin-top">
+	       <input class="btn btn-info login-btn" name="Submit" type="submit" value="{$lang.next}" />
+	   </div>
 	</div>
 </form>
 <!--{/if}-->
