@@ -57,7 +57,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 
         <div class="tab-pane{if $enabled_sms_signin neq 1} active{/if}" id="two">
-    		<form class="ecjia-form ecjia-login-form ecjia-icon-form user-register-form ecjia-margin-t" name="formUser" action="{url path='user/index/signup'}" method="post">
+    		<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="formUser" action="{url path='user/index/signup'}" method="post">
     			<input type="hidden" name="flag" id="flag" value="register" />
     			<div class="form-group">
     				<label class="input">
@@ -86,16 +86,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     				</label>
     			</div>
     			<!--{/if}-->
-    			<p class="ecjia-margin-t ecjia-margin-b ecjia-margin-l user-register-agreement">
-    				<a href="{url path='article/index/info' args='aid=6'}" target="_blank">
-    					<input name="agreement" id="agreement" type="checkbox" data-type="checkbox" value="1" checked="checked" />{$lang.agreement}
-    				《用户协议》</a>
-    			</p>
-    			<div class="ecjia-margin-t ecjia-margin-b">
+    			<div class="ecjia-login-b">
     				<input name="act" type="hidden" value="act_register" />
     				<input name="enabled_sms" type="hidden" value="0" />
     				<input type="hidden" name="back_act" value="{$back_act}" />
-    				<button class="btn btn-info" href="flow_consignee.html" name="Submit" type="submit">同意，注册</button>
+    				<div class="around margin-top">
+    				<button class="btn btn-info login-btn" href="flow_consignee.html" name="Submit" type="submit">{$lang.next}</button>
+    				</div>
     			</div>
     		</form>
     	</div>
