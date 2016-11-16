@@ -113,19 +113,17 @@
 	width:100%;
 }
 .ecjia-list-two.list-page-two li a.list-page-goods-img .goods-name {
-    margin-top: .5em;
+    margin-top: .3em;
 }
 .ecjia-new-goods .merchants-name{
     line-height: 1.8em;
-    margin-top: .5em;
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: .8em;
-	text-align:left;
 	color:#47aa4d;
-	background-color:#eee;
+	background-color:#F0F0F0;
 	width:95%;
 	height:1.8em;
 	margin:0 auto;
