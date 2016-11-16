@@ -28,6 +28,7 @@
 	margin-top: 1em;
 }
 
+
 /*========================  分类 ===========================*/
 
 
@@ -35,32 +36,59 @@
 
 
 /*========================  结算 =========================== */
-/*定位地址、选择的收货地址 */
-.ecjia .ecjia-checkout .flow-address {
-
+/*定位地址、选择的收货地址  作为UI 不加页面Class 可直接调用 */
+.flow-address {
     height:5em;
     padding: .5em 1em;
 	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
 	background-size: 70%;
 }
-.ecjia .ecjia-checkout .flow-address span,
-.ecjia .ecjia-checkout .flow-address .address-info .address-desc {
+.flow-address span,
+.flow-address .address-info .address-desc {
     line-height: 4em;
 }
-.ecjia .ecjia-checkout .flow-address .address-info {
+.flow-address .address-info {
     padding-left: 1em;
 }
-.ecjia .ecjia-checkout .flow-address .address-info span{
+.flow-address .address-info span{
     line-height: normal;
 }
-.ecjia .ecjia-checkout .flow-address .address-info span+span {
+.flow-address .address-info span+span {
     margin-left: 2em;
 }
-.ecjia .ecjia-checkout .flow-address .address-info span + p.address-desc{
+.flow-address .address-info span + p.address-desc{
     margin-top: 1em;
     line-height: normal;
 }
-
+.ecjia .ecjia-checkout .checklist{
+	overflow: hidden;
+	background-color: #ffffff;
+	position: relative;
+	border-bottom: 1px solid #ddd;
+	padding: 0 1em;
+	line-height: 3em;
+}
+.ecjia .ecjia-checkout .checklist.error{
+	border: 1px solid #ef3030;
+	box-shadow: 0 0 6px #d59392;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px #d59392;
+    outline: 0 none;
+}
+.ecjia .ecjia-checkout .checklist .iconfont{
+	position: absolute;
+	right: 1em;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.ecjia .ecjia-checkout .checklist a{
+	display: inline-block;
+	width: 100%;
+}
+.ecjia .ecjia-checkout .checklist .select_nav{
+	margin-right: 2em;
+	width:70%;
+	text-align: right;
+}
 /*========================  结算完成 ===========================*/
 
 
