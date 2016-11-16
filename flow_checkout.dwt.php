@@ -97,9 +97,20 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</a>
 		</section>
 
+		<section class="ecjia-margin-t checkout-select checkout-pro-list">
+			<!-- #BeginLibraryItem "/Library/order_total.lbi" -->
+			<!-- #EndLibraryItem -->
+		</section>
 
+		<section class="ecjia-margin-t ecjia-margin-b">
+			<input type="hidden" class="hidden_rec_id" value="{$rec_id}">
+			<input class="btn btn-info" name="submit" type="submit" value="{$lang.order_submit}"/>
+			<input name="step" type="hidden" value="done" />
+		</section>
 	</form>
 </div>
+
+
 <div class="flow-checkout">
 	<form id="theForm" name="theForm" action="{url path='flow/done'}" method="post">
 
@@ -208,16 +219,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 		</section>
 		{/if}
-		<section class="ecjia-margin-t checkout-select checkout-pro-list">
-			<!-- #BeginLibraryItem "/Library/order_total.lbi" -->
-			<!-- #EndLibraryItem -->
-		</section>
-
-		<section class="ecjia-margin-t ecjia-margin-b">
-			<input type="hidden" class="hidden_rec_id" value="{$rec_id}">
-			<input class="btn btn-info" name="submit" type="submit" value="{$lang.order_submit}"/>
-			<input name="step" type="hidden" value="done" />
-		</section>
 	</form>
 </div>
 <!-- {/block} -->

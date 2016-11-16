@@ -112,7 +112,6 @@
 .ecjia-index .ecjia-margin-t {
 	margin-top: 1em;
 }
-
 /*========================  分类 ===========================*/
 
 
@@ -214,8 +213,9 @@
 	width:2em;
 	margin-top: 4em;
 }
-.ecjia .ecjia-checkout .flow-goods-list .goods-list{
-
+.ecjia .ecjia-checkout .cart-order{
+	color: #ef3030;
+	float: right;
 }
 /*========================  结算完成 ===========================*/
 
