@@ -14,21 +14,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <form class="ecjia-form ecjia-margin-t address-add-form" action="{url path='user_address/update_address'}" method="post" name="theForm">
 	<div class="form-group">
-		<label class="input">
-			<input class="inputBg" name="consignee" placeholder="{$lang.consignee_name}{$lang.require_field}" type="text" value="{$consignee.consignee|escape}" datatype="s1-15" errormsg="请输入正确格式的收货人" />
-		</label>
-	</div>
-	<div class="form-group">
-		<label class="input">
-			<input class="inputBg_touch" name="mobile" placeholder="{$lang.mobile}{$lang.require_field}" type="tel" value="{$consignee.mobile|escape}" datatype="m" errormsg="请输入正确格式的联系方式" />
-		</label>
-	</div>
-    <div class="form-group">
-        <label class="input">
-            <input name="zipcode" placeholder="邮编" type="number" datatype="n6-6" errormsg="请输入6位数字邮编" value="{$consignee.zipcode|escape}" />
-        </label>
-    </div>
-	<div class="form-group">
+		<span class="ecjiaf-fl">所在地区： </span>
 		<div class="ecjiaf-fl">
 			<select class="form-select" id="selCountries" name="country" data-toggle="region_change" data-url="index.php?m=user&c=user_address&a=region" data-type="1" data-target="selProvinces">
 				<option value="0">{$lang.please_select}{$name_of_region[0]}</option>
@@ -64,7 +50,19 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<div class="form-group">
 		<label class="textarea">
-			<textarea name="address" placeholder="{$lang.detailed_address}{$lang.require_field}" value="{$consignee.address|escape}" datatype="*">{$consignee.address}</textarea>
+			<input name="address" placeholder="{t}楼层，门牌{/t}" value="{$consignee.address|escape}" datatype="*" value="{$consignee.address}" />
+		</label>
+	</div>
+	<div class="form-group">
+		<label class="input">
+			<span class="ecjiaf-fl">收货姓名： </span>
+			<input class="ecjiaf-fr" name="consignee" placeholder="{t}请输入真实姓名，限6个字{/t}" type="text" value="{$consignee.consignee|escape}" datatype="s1-15" errormsg="请输入正确格式的收货人" />
+		</label>
+	</div>
+	<div class="form-group">
+		<span class="ecjiaf-fl">收货电话： </span>
+		<label class="input">
+			<input class="inputBg_touch" name="mobile" placeholder="{t}请确保收货电话真实有效{/t}" type="tel" value="{$consignee.mobile|escape}" datatype="m" errormsg="请输入正确格式的联系方式" />
 		</label>
 	</div>
 	<!-- {if $consignee.is_default eq ''} -->
