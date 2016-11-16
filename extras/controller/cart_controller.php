@@ -1580,8 +1580,8 @@ class cart_controller {
      */
     public static function pay() {
         $payment_method = RC_Loader::load_app_class('payment_method', 'payment');
-$payment_list 	= empty($payment_method) ? array() : $payment_method->available_payment_list(1, $cod_fee);
-/*过滤支付方式*/
+        $payment_list 	= empty($payment_method) ? array() : $payment_method->available_payment_list(1, $cod_fee);
+        /*过滤支付方式*/
         $pay = array('pay_balance','pay_koolyun','pay_cash');
         if (isset($payment_list)) {
             foreach ($payment_list as $key => $payment) {
