@@ -2,7 +2,7 @@
 /**
  * 购物车模块控制器代码
  */
-class cart_controller { 
+class cart_controller {
     /**
      * 购物车列表
      */
@@ -42,14 +42,14 @@ class cart_controller {
         ecjia_front::$controller->assign_title(RC_Lang::lang('shopping_cart'));
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('cart_list.dwt');
-    } 
+    }
     /**
      * 立即购买
      */
     public static function add_to_cart() {
         // $db_goods = RC_Loader::load_app_model ( "cart_goods_model" );
         // $db_attribute_viewmodel = RC_Loader::load_app_model ( "attribute_viewmodel" );
-        RC_Loader::load_theme('extras/model/cart/cart_goods_model.class.php'); 
+        RC_Loader::load_theme('extras/model/cart/cart_goods_model.class.php');
         RC_Loader::load_theme('extras/model/cart/cart_attribute_viewmodel.class.php');
         $db_goods                = new cart_goods_model();
         $db_attribute_viewmodel  = new cart_attribute_viewmodel();
@@ -129,12 +129,12 @@ class cart_controller {
                 } else {
                     $message = ecjia::config('cart_confirm') == 1 ? RC_Lang::lang('addto_cart_success_1') : RC_Lang::lang('addto_cart_success_2');
                 }
-                ecjia_front::$controller->showmessage('商品成功加入购物车', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON,array('is_show' => true,'link' =>RC_Uri::url('goods/index/init&id='.$goods['goods_id'])));
+                ecjia_front::$controller->showmessage('商品成功加入购物车', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON,array('is_show' => true,'pjaxurl' =>RC_Uri::url('goods/index/init&id='.$goods['goods_id'])));
             } else {
                 ecjia_front::$controller->showmessage($res_add->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
             }
         }
-    } 
+    }
     /**
      * 点击刷新购物车
      */
@@ -143,13 +143,13 @@ class cart_controller {
         // $db_goods_viewmodel = RC_Loader::load_app_model('goods_viewmodel');
         // $db_cart_viewmodel   = RC_Loader::load_app_model('cart_viewmodel');
         // $db_products         = RC_Loader::load_app_model('products_model');
-        RC_Loader::load_theme('extras/model/cart/cart_model.class.php'); 
+        RC_Loader::load_theme('extras/model/cart/cart_model.class.php');
         RC_Loader::load_theme('extras/model/cart/cart_goods_viewmodel.class.php');
         RC_Loader::load_theme('extras/model/cart/cart_products_model.class.php');
         RC_Loader::load_theme('extras/model/cart/cart_viewmodel.class.php');
         $db_goods_viewmodel = new cart_goods_viewmodel();
-        $db_cart            = new cart_model(); 
-        $db_products        = new cart_products_model(); 
+        $db_cart            = new cart_model();
+        $db_products        = new cart_products_model();
         $db_cart_viewmodel  = new cart_viewmodel();
         /*是否有接收值*/
         if(!empty($_POST['rec_id']) && !empty($_POST['goods_number'])){
@@ -1576,19 +1576,54 @@ class cart_controller {
     }
 
     /**
-     *  订单提交后修改付款方式
+     * 改变支付方式
      */
-    public static function get_total() {
-      // TODO : func
+    public static function pay() {
+
+        ecjia_front::$controller->display('flow_pay.dwt');
     }
 
     /**
-     * 更换支付方式
+     * 改变配送方式
      */
-    public static function change_payment() {
-       // TODO: func
+    public static function shipping() {
+
+        ecjia_front::$controller->display('flow_shipping.dwt');
+    }
+
+    /**
+     * 开发票
+     */
+    public static function invoice() {
+
+        ecjia_front::$controller->display('flow_invoice.dwt');
+    }
+
+    /**
+     * 增加订单留言
+     */
+    public static function note() {
+
+        ecjia_front::$controller->display('flow_note.dwt');
+    }
+
+    /**
+     * 选择使用红包
+     */
+    public static function bonus() {
+
+        ecjia_front::$controller->display('flow_bonus.dwt');
+    }
+
+    /**
+     * 使用积分
+     */
+    public static function integral() {
+
+        ecjia_front::$controller->display('flow_integral.dwt');
     }
 
 }
+
 
 // end
