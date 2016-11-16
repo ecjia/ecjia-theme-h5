@@ -52,8 +52,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <input type="submit" class="btn btn-info login-btn" value="{$lang.login}" />
 	    </div>	
 	</div>
-	<div class="ecjia-login-b">
+	<ul>
+	<li style="text-align:center;">其他帐号登陆</li>
+	<li class="thirdparty-qq"></li>
+	<li class="thirdparty-weixin"></li>
+	</ul>
 
-	</div>
 </form>
 <!-- {/block} -->
