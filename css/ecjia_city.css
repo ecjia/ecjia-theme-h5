@@ -104,6 +104,14 @@
 .ecjia-promotion-list img.sales-icon{
 	width:10%;
 }
+.ecjia-promotion-list .list-page-goods-img .goods-img{
+	display: block;
+    height: 0;
+    padding-bottom: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
 .ecjia-promotion-list .list-page-goods-img .goods-img img{
    	width:100%;
 }
