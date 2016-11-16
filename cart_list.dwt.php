@@ -19,7 +19,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-
+<div class="flow-address ecjia-margin-b">
+	<span class="ecjiaf-fl">{t}送至：{/t}</span>
+	<div class="ecjiaf-fl address-info">
+		<span>{t}宋倩倩{/t}</span>
+		<span>{t}13764274559{/t}</span>
+		<p class="ecjia-truncate2 address-desc">{t}伸大厦中山北路3553号3001室{/t}</p>
+	</div>
+</div>
 <!-- {if $goods_list } -->
 	<ul class="ecjia-list cart-goods-list ecjia-margin-b">
 		<!-- {foreach from=$goods_list item=goods key=k} -->
@@ -82,13 +89,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div> 
 <!--{else}-->
 <div class="flow-no-pro ecjia-margin-t ecjia-margin-b">
-	<!-- <img src="{$theme_url}images/gwc.png">
-	<p class="text-center">{$lang.empty_shopping}</p> -->
 	<div class="ecjia-nolist">
-		<i class="iconfont icon-gouwuche"></i>
-		<p>{t}您的购物车空空如也{/t}</p>
+		<img src="{$theme_url}images/cart.png">
+		<p>{t}购物车无商品{/t}</p>
 	</div>
-	<a class="btn btn-info" type="button" href="{url path='touch/index/init'}">{$lang.go_shopping}</a>
+	<a class="btn small-btn" type="button" href="{url path='touch/index/init'}">{t}去逛逛{/t}</a>
 </div>
 <!-- {/if} -->
 <!-- {/block} -->
