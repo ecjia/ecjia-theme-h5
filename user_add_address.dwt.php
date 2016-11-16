@@ -18,21 +18,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <form class="ecjia-form address-add-form" name="theForm" action="{url path='user/user_address/inster_addres'}" method="post">
 	<div class="form-group">
-		<label class="input">
-			<input name="consignee" placeholder="{$lang.consignee_name}{$lang.require_field}" type="text" value="{$consignee.consignee|escape}" datatype="*1-15" errormsg="请输入正确格式联系人" />
-		</label>
-	</div>
-	<div class="form-group">
-		<label class="input">			
-			<input name="mobile" placeholder="{$lang.mobile}{$lang.require_field}" type="tel" value="{$consignee.mobile|escape}" datatype="m" errormsg="请输入正确格式的联系方式" />
-		</label>
-	</div>
-    <div class="form-group">
-		<label class="input">
-			<input name="zipcode" placeholder="邮编" type="number" datatype="n6-6" errormsg="请输入6位数字邮编" value="{$consignee.zipcode|escape}" />
-		</label>
-	</div>
-	<div class="form-group">
+		<span class="ecjiaf-fl">所在地区： </span>
 		<div class="ecjiaf-fl">
 			<select class="form-select" id="selCountries" name="country" data-toggle="region_change" data-url="index.php?m=user&c=user_address&a=region" data-type="1" data-target="selProvinces">
 				<option value="0">{$lang.please_select}{$name_of_region[0]}</option>
@@ -67,12 +53,30 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="textarea">
-			<textarea name="address" placeholder="{$lang.detailed_address}{$lang.require_field}" type="text" datatype="*">{$consignee.address|escape}</textarea>
+			<label class="textarea">
+				<input name="address" placeholder="{t}楼层，门牌{/t}" type="text" datatype="*" value="{$consignee.address|escape}" />
+			</label>
+	</div>
+	<div class="form-group">
+		<span class="ecjiaf-fl">收货姓名： </span>
+		<label class="input ecjiaf-fl">
+			<input name="consignee" placeholder="{t}请输入真实姓名，限6个字{/t}" type="text" value="{$consignee.consignee|escape}" datatype="*1-15" errormsg="请输入正确格式联系人" />
+		</label>
+	</div>
+	<div class="form-group">
+		<span class="ecjiaf-fl">收货电话： </span>
+		<label class="input ecjiaf-fl">
+			<input name="mobile" placeholder="{t}请确保收货电话真实有效{/t}" type="tel" value="{$consignee.mobile|escape}" datatype="m" errormsg="请输入正确格式的联系方式" />
+		</label>
+	</div>
+    <div class="form-group">
+    	<span class="ecjiaf-fl">邮编： </span>
+		<label class="input">
+			<input name="zipcode" placeholder="邮编" type="number" datatype="n6-6" errormsg="请输入6位数字邮编" value="{$consignee.zipcode|escape}" />
 		</label>
 	</div>
 	<div class="ecjia-margin-t ecjia-margin-b">
-		<input class="btn btn-info nopjax" name="submit" type="submit" value="{$lang.add_address}"/>
+		<input class="btn btn-info nopjax" name="submit" type="submit" value="{t}保存{/t}"/>
 		<input name="address_id" type="hidden" value="{$consignee.address_id}" />
 	</div>
 </form>
