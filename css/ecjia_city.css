@@ -261,8 +261,19 @@
 	float: right;
 }
 /*======================== 选择支付方式、选择配送方式、选择红包 ecjia-select  ===========================*/
-
-
+.ecjia .ecjia-select .slect-title {
+	font-size: 1.2em;
+}
+.ecjia .ecjia-select li{
+	padding: .5em 1em;
+}
+.ecjia .ecjia-select label.select-item{
+	width: 100%;
+	margin:0;
+	display: table;
+	font-weight: normal;
+	line-height: normal;
+}
 /*======================== 发票信息 ecjia-invoice ===========================*/
 
 
