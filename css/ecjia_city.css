@@ -1,21 +1,106 @@
 /*========================  首页 ===========================*/
 /*首页促销商品*/
-.ecjia-mod.ecjia-sales-model{
-	height: 430px;
+.ecjia-mod.ecjia-promotion-model{
     overflow: hidden;
 }
-.ecjia-mod.ecjia-sales-model .ecjia-sales-hd h2{
+.ecjia-mod.ecjia-promotion-model .ecjia-sales-hd h2{
 	height:30px;
 	border-bottom:1px solid #eee;
+	color:#333;
 }
-.ecjia-mod.ecjia-sales-model .more_info{
+.ecjia-mod.ecjia-promotion-model .ecjia-sales-hd h2 i{
+	color:#884597;
+}
+.ecjia-mod.ecjia-promotion-model .more_info{
 	line-height:20px;
 	width:60px;
 	font-size:16px;
-	color:#ccc;
+	color:#CACACA;
 	float:right;
 	padding-left:10px;
 	border-left:1px solid #ccc;
+}
+.swiper-promotion {
+	overflow: hidden;
+}
+.swiper-promotion .swiper-slide {
+    position: relative;
+	float: left;
+    margin-right: 2%;
+    border-bottom: none;
+    padding: 0 0 0.4em 0;
+    margin: 0 2% 0.5em 0;
+	background: #fff;
+}
+.ecjia-promotion-model img.sales-icon {
+    position: absolute;
+    width: 20%;
+    top: 0em;
+}
+.ecjia-promotion-model .swiper-slide a {
+    display: block;
+}
+
+.ecjia-promotion-model .swiper-slide .list-page-goods-img .goods-img {
+    display: block;
+    height: 0;
+    padding-bottom: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.ecjia-promotion-model a.list-page-goods-img .goods-name {
+    height: 1.4em;
+    line-height: 1.5em;
+    margin-top: .5em;
+    padding: 0 .5em 0 .5em;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: .9em;
+	font-family: Helvetica, '宋体', Arial, sans-serif;
+	text-align:left;
+}
+
+.ecjia-promotion-model .list-page-box .list-page-goods-price {
+    overflow: hidden;
+    display: block;
+    padding-left: .5em;
+	text-align:left;
+}
+.ecjia-promotion-model .list-page-goods-price span {
+    color: #FF0030;
+	font-size: 1.0em;
+}
+.ecjia-promotion-model .list-page-goods-price span del{
+	font-size: 0.9em;
+	display:block
+}
+.ecjia-promotion-model img.sales-icon {
+    position: absolute;
+    width: 20%;
+    top: 0em;
+	right:0em;
+}
+
+.ecjia-promotion-list{
+	overflow: hidden;
+	padding: 1em;
+}
+.ecjia-promotion-list li{
+	background: #fff;
+	margin-top: 1em;
+	position: relative;
+}
+.ecjia-promotion-list li:first-child{
+	margin-top: 0;
+}
+.ecjia-promotion-list img.sales-icon{
+	width:10%;
+}
+.ecjia-promotion-list .list-page-goods-img .goods-img img{
+   	width:100%;
 }
 
 .ecjia-index .form-group .input .icon-lock {

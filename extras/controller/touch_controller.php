@@ -15,8 +15,11 @@ class touch_controller {
         $base   = goods_list('best', 4);
         $new    = goods_list('new', ecjia::config('page_size'));
         $hot    = goods_list('hot', ecjia::config('page_size'));
+        $promotion = goods_list('promotion', 6);
 
         ecjia_front::$controller->assign('more_sales', RC_Uri::url('goods/index/promotion'));
+        ecjia_front::$controller->assign('promotion_goods', $promotion['list']);
+        
         ecjia_front::$controller->assign('best_goods', $base['list']);
         ecjia_front::$controller->assign('new_goods', $new['list']);
         ecjia_front::$controller->assign('hot_goods', $hot['list']);
