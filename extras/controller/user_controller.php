@@ -55,6 +55,7 @@ class user_controller {
         ecjia_front::$controller->assign('anonymous_buy', ecjia::config('anonymous_buy'));
         ecjia_front::$controller->assign('title', RC_Lang::lang('login'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('login'));
+        ecjia_front::$controller->assign('header_right' , array('info' => '注册', 'href' => RC_Uri::url('user/index/register')));
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_login.dwt');
     }
@@ -136,6 +137,16 @@ class user_controller {
     ecjia_front::$controller->assign_lang();
     ecjia_front::$controller->display('user_set_password.dwt');
         
+    }
+    
+    public static function reset_password() {
+    /*验证码相关设置*/
+    $captcha = intval(ecjia::config('captcha'));
+
+    ecjia_front::$controller->assign('title', RC_Lang::lang('reset_new_password'));
+    ecjia_front::$controller->assign_title(RC_Lang::lang('get_password'));
+    ecjia_front::$controller->assign_lang();
+    ecjia_front::$controller->display('user_reset_password.dwt');
     }
 
     /**

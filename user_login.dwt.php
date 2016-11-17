@@ -56,7 +56,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<li style="text-align:center;">其他帐号登陆</li>
 	<li class="thirdparty-qq"></li>
 	<li class="thirdparty-weixin"></li>
+	<li class="maijia"><a href=''>我是卖家>></a></li>
 	</ul>
-
 </form>
 <!-- {/block} -->

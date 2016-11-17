@@ -49,7 +49,8 @@ class user_front extends ecjia_front {
 			'region',
 			'send_captcha',
 			'act_register',
-		    'set_password'
+		    'set_password',
+		    'reset_password'
 		);
 		/*未登录处理*/
 		if (empty($_SESSION['user_id']) && !in_array($this->action, $without)) {

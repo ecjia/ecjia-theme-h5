@@ -19,44 +19,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-<!--{if $action eq 'get_password_phone' && $enabled_sms_signin eq 1}-->
-<form name="getPassword" action="{url path='user/index/get_password_phone'}" method="post">
-	<div class="flow-consignee" id="tabBox1-bd">
-		<!-- 添加id，js用到 -->
-		<section>
-			<ul>
-				<li>
-					<div class="input-text">
-						{$lang.mobile}：
-						<span>
-							<input name="mobile" id="mobile_phone" type="tel" />
-						</span>
-					</div>
-				</li>
-				<li>
-					<div class="input-text code">
-						{$lang.code}：
-						<span>
-							<input id="mobile_code" name="mobile_code" type="text" />
-						</span>
-						<a id="zphone" name="sendsms" onclick="sendSms();" type="botton">{$lang.get_code}</a>
-					</div>
-				</li>
-			</ul>
-		</section>
-	</div>
-	<div>
-		<input name="act" type="hidden" value="send_pwd_sms" />
-		<input id="sms_code" name="sms_code" type="hidden" value="{$sms_code}" />
-		<input class="btn btn-info" name="Submit" type="submit" value="{$lang.submit}" />
-	</div>
-	<p>
-		<a class="f6" href="{url path='user/index/get_password_question'}">{$lang.get_password_by_question}</a>
-		&nbsp;&nbsp;
-		<a class="f6" href="{url path='user/index/get_password_email'}">{$lang.get_password_by_mail}</a>
-	</p>
-</form>
-<!-- {/if} -->
+
 <!--{if $action eq 'get_password_email'}-->
 <div class="border_bottom_getpassword"></div>
 <form class="ecjia-form ecjia-login ecjia-login-margin-top" name="getPassword" action="{url path='user/index/send_pwd_email'}" method="post">
