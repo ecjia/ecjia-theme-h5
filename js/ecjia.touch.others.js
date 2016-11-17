@@ -31,10 +31,9 @@
         swiper_promotion : function() {
 			var swiper = new Swiper('.swiper-promotion', {
 		        slidesPerView: 2.5,
-		        paginationClickable: true,
 		        spaceBetween: 30,
-		        freeMode : true,
-		        freeModeMomentumVelocityRatio : 5,
+                freeMode : true,
+                freeModeMomentumVelocityRatio : 5,
 			});
         },
 
