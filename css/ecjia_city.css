@@ -310,8 +310,7 @@
 	margin-top:3em;
 }
 .ecjia-login .bf{
-	display: block;
-	float: left;
+	clear: both
 }
 .ecjia-login-b .around{
 	margin : 1em 7% 1em 7%;
@@ -405,6 +404,8 @@
 .ecjia-login .form-group .input .icon-lock {
 	/*background-color: #9ecc17;*/
 }
+
+
 /*========================  搜索 ===========================*/
 
 

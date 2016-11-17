@@ -127,6 +127,25 @@ class user_controller {
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_register.dwt');
     }
+    
+    public static function set_password() {
+        /*验证码相关设置*/
+//         if (intval(ecjia::config('captcha')) > 0) {
+//             ecjia_front::$controller->assign('enabled_captcha', 1);
+//             ecjia_front::$controller->assign('rand', mt_rand());
+//         }
+//         /*短信开启*/
+//         if (intval(ecjia::config('sms_signin')) > 0) {
+//             ecjia_front::$controller->assign('enabled_sms_signin', ecjia::config('sms_signin'));
+//             $_SESSION['sms_code'] = $sms_code = md5(mt_rand(1000, 9999));
+//             ecjia_front::$controller->assign('sms_code', $sms_code);
+//         }
+//         ecjia_front::$controller->assign('title', RC_Lang::lang('register'));
+//         ecjia_front::$controller->assign('back_act', isset(ecjia_front::$controller->back_act) ? ecjia_front::$controller->back_act : '');
+//         ecjia_front::$controller->assign_title(RC_Lang::lang('register'));
+//         ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_set_password.dwt');
+    }
 
     /**
      * 验证注册
@@ -159,10 +178,10 @@ class user_controller {
             }
             $ucdata = empty($user->ucdata) ? "" : $user->ucdata;
             ecjia_front::$controller->showmessage(sprintf(RC_Lang::lang('register_success'), $username . $ucdata),ecjia::MSGSTAT_SUCCESS| ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('user/index/init'),'is_show' => false));
-        } else {
-            $errmsg = is_ecjia_error($result) ?  $result->get_error_message() : '';
-            ecjia_front::$controller->showmessage($errmsg, ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-        }
+//     } else {
+//             $errmsg = is_ecjia_error($result) ?  $result->get_error_message() : '';
+//             ecjia_front::$controller->showmessage($errmsg, ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+       }
     }
 
     /**
@@ -236,9 +255,9 @@ class user_controller {
                 /*发送邮件出错*/
                 ecjia_front::$controller->showmessage(RC_Lang::lang('fail_send_password'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
             }
-        } else {
-            /*用户名与邮件地址不匹配*/
-            ecjia_front::$controller->showmessage(RC_Lang::lang('username_no_email'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+//         } else {
+//             /*用户名与邮件地址不匹配*/
+//             ecjia_front::$controller->showmessage(RC_Lang::lang('username_no_email'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         }
     }
 

@@ -61,7 +61,8 @@ class user_front extends ecjia_front {
 			'login',
             'signin',
 			'register',
-            'signup'
+            'signup',
+		    'set_password'
 		);
 		if (!empty($_SESSION['user_id']) && in_array($this->action, $deny)) {
 			$this->redirect(RC_Uri::url('user/index/init'));
