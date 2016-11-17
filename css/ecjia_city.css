@@ -377,6 +377,18 @@
 	margin: 0;
 	width: 100%;
 }
+.ecjia-login .p-top3 {
+	margin-top: 3em;
+}
+.ecjia-login .p-bottom {
+	margin: 1em 7% -1em 7%;
+}
+.ecjia-login .text-color {
+	color: #ADADAD;
+}
+.ecjia-login .text-size {
+	font-size: 1.1em;
+}
 .ecjia-login .margin-right-left {
 	margin-right: 7%;
 	margin-left : 7%;
