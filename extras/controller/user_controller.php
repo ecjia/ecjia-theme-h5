@@ -145,7 +145,7 @@ class user_controller {
         $user_img = get_user_img();
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('title', RC_Lang::lang('bind_signin'));
-        ecjia_front::$controller->assign_title(RC_Lang::lang('set_password'));
+        ecjia_front::$controller->assign_title(RC_Lang::lang('bind_signin'));
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_bind_signin.dwt');
     }
@@ -154,10 +154,10 @@ class user_controller {
     public static function bind_signup() {
         $user = integrate::init_users();
     
-        ecjia_front::$controller->assign('title', RC_Lang::lang('set_password'));
-        ecjia_front::$controller->assign_title(RC_Lang::lang('set_password'));
+        ecjia_front::$controller->assign('title', "注册绑定");
+        ecjia_front::$controller->assign_title("注册绑定");
         ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('user_set_password.dwt');
+        ecjia_front::$controller->display('user_bind_signup.dwt');
     }
     
     public static function reset_password() {
@@ -165,7 +165,7 @@ class user_controller {
     $captcha = intval(ecjia::config('captcha'));
 
     ecjia_front::$controller->assign('title', RC_Lang::lang('reset_new_password'));
-    ecjia_front::$controller->assign_title(RC_Lang::lang('get_password'));
+    ecjia_front::$controller->assign_title(RC_Lang::lang('reset_new_password'));
     ecjia_front::$controller->assign_lang();
     ecjia_front::$controller->display('user_reset_password.dwt');
     }
