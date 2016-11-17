@@ -329,6 +329,7 @@
 /*========================  登录 ===========================*/
 .ecjia-login {
 	margin-top: 1em;
+	background-color: #F7F7F7;
 }
 .ecjia-login-b {
 	margin-bottom: 1em;
@@ -361,7 +362,7 @@
 }
 .ecjia-login .user-img {
 	margin: 5% auto 5% auto;
-    background: #EFEFF4;
+    background: #F7F7F7;
     border: none;
     overflow: hidden;
     text-align:center;
@@ -389,15 +390,19 @@
 .ecjia-login .thirdparty-qq {
     height:5em;
     padding: 3em 2em;
-	background: url(../images/qq.png) no-repeat bottom #EFEFF4;
+	background: url(../images/qq.png) no-repeat bottom #F7F7F7;
 	background-size: 90%;
 	margin-left: 20%;
 	float: left;
 }
+.ecjia-login .maijia {
+    margin-top: 30%;
+    text-align:center;
+}
 .ecjia-login .thirdparty-weixin {
     height:5em;
     padding: 3.2em 2em;
-	background: url(../images/weixin.png) no-repeat bottom #EFEFF4;
+	background: url(../images/weixin.png) no-repeat bottom #F7F7F7;
 	background-size: 100%;
 	margin-right: 20%;
 	float: right;
