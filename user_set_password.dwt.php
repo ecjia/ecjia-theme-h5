@@ -1,7 +1,7 @@
 <?php
 /*
-Name: 安全问题找回密码模板
-Description: 安全问题找回密码页
+Name: 显示注册页面模板
+Description: 显示注册页面首页
 Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
@@ -10,121 +10,84 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">
-	{foreach from=$lang.password_js item=item key=key}
-		var {$key} = "{$item}";
-	{/foreach}
+    ecjia.touch.user.init();
 </script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-<!--{if $action eq 'get_password_phone' && $enabled_sms_signin eq 1}-->
-<form name="getPassword" action="{url path='user/index/get_password_phone'}" method="post">
-	<div class="flow-consignee" id="tabBox1-bd">
-		<!-- 添加id，js用到 -->
-		<section>
-			<ul>
-				<li>
-					<div class="input-text">
-						{$lang.mobile}：
-						<span>
-							<input name="mobile" id="mobile_phone" type="tel" />
-						</span>
-					</div>
-				</li>
-				<li>
-					<div class="input-text code">
-						{$lang.code}：
-						<span>
-							<input id="mobile_code" name="mobile_code" type="text" />
-						</span>
-						<a id="zphone" name="sendsms" onclick="sendSms();" type="botton">{$lang.get_code}</a>
-					</div>
-				</li>
-			</ul>
-		</section>
-	</div>
-	<div>
-		<input name="act" type="hidden" value="send_pwd_sms" />
-		<input id="sms_code" name="sms_code" type="hidden" value="{$sms_code}" />
-		<input class="btn btn-info" name="Submit" type="submit" value="{$lang.submit}" />
-	</div>
-	<p>
-		<a class="f6" href="{url path='user/index/get_password_question'}">{$lang.get_password_by_question}</a>
-		&nbsp;&nbsp;
-		<a class="f6" href="{url path='user/index/get_password_email'}">{$lang.get_password_by_mail}</a>
-	</p>
-</form>
-<!-- {/if} -->
-<!--{if $action eq 'get_password_email'}-->
-<div class="border_bottom_getpassword"></div>
-<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="getPassword" action="{url path='user/index/send_pwd_email'}" method="post">
-	<!-- 添加id，js用到 -->
-	<div class="form-group">
-		<label class="input-1">
-			<input name="user_name" type="text" placeholder="{$lang.name_or_mobile}" datatype="s3-15|m|e|" errormsg="请输入用户名" />
-		</label>
-	</div>
-	<!-- 判断是否启用验证码{if $enabled_captcha} -->
-		<div class="form-group">
-			<label class="input captcha-img">
-				<i class="glyphicon glyphicon-picture"></i>
-				<input type="text" placeholder="{$lang.comment_captcha}" name="captcha" datatype="*" />
-				<img class="captcha-img ecjiaf-fr" src="{url path='captcha/index/init' args="is_login=1&rand={$rand}"}" alt="captcha" onClick="this.src='{url path='captcha/index/init' args="is_login=1&t=Math.random()"}'" />
-			</label>
+<div class="user-register">
+    <!--{if $enabled_sms_signin eq 1} 支持手机短信功能-->
+	<ul class="ecjia-list ecjia-list-two ecjia-nav" role="tablist">
+		<li class="active"><a href="#one" role="tab" data-toggle="tab">{$lang.mobile_login}</a></li>
+		<li><a href="#two" role="tab" data-toggle="tab">{$lang.emaill_login}</a></li>
+	</ul>
+    <!-- {/if} -->
+	<div class="tab-content">
+		<div class="tab-pane{if $enabled_sms_signin eq 1} active{/if} phone-register" id="one">
+            <form class="ecjia-form ecjia-login-form ecjia-icon-form user-register-form ecjia-margin-t" name="formUser" data-valid="novalid" action="{url path='user/index/act_register'}" method="post">
+                <input type="hidden" name="flag" id="flag" value="register" />
+    			<div class="form-group">
+    				<label class="input">
+    					<i class="iconfont icon-mobilefill"></i>
+                        <input name="mobile" id="mobile_phone" type="tel" placeholder="{$lang.no_mobile}" />
+    				</label>
+    			</div>
+    			<div class="form-group">
+    				<label class="input send-code">
+    					<i class="iconfont icon-yanzhengma"></i>
+                        <input class="ecjiaf-fl" name="mobile_code" id="mobile_code" type="text" placeholder="{$lang.no_code}">
+                        <a class="ecjiaf-fr" data-toggle="send_captcha" data-url="{url path='user/index/send_captcha'}" href="javascript:void(0)">发送验证码</a>
+    				</label>
+    			</div>
+    			<p class="ecjia-margin-t ecjia-margin-b ecjia-margin-l user-register-agreement">
+    				<a href="{url path='article/index/info' args='aid=6'}" target="_blank">
+    					<input name="agreement" id="agreement" type="checkbox" data-type="checkbox" value="1" checked="checked" />{$lang.agreement}
+    				《用户协议》</a>
+    			</p>
+    			<div class="ecjia-margin-t ecjia-margin-b">
+					<input id="agreement1" name="agreement" type="hidden" value="1" checked="checked" >
+					<input name="enabled_sms" type="hidden" value="1" />
+					<input type="hidden" name="sms_code" value="{$sms_code}" id="sms_code" />
+					<input type="hidden" name="back_act" value="{$back_act}" />
+					<button class="btn btn-info" name="Submit" type="submit">同意，注册</button>
+    			</div>
+    		</form>
 		</div>
-	<!--{/if}-->
-	<input name="act" type="hidden" value="send_pwd_email" />
-	<div class="ecjia-login-b">
-	   <div class="around margin-top">
-	       <input class="btn btn-info login-btn" name="Submit" type="submit" value="{$lang.next}" />
-	   </div>
-	</div>
-</form>
-<!--{/if}-->
-<!--{if $action eq 'get_password_question'}-->
-<div class="border_bottom_getpassword"></div>
-<form class="ecjia-form ecjia-icon-form ecjia-login-form ecjia-margin-t" name="getPassword" action="{url path='user/index/question_get_password'}" method="post">
-	<div class="flow-consignee" id="tabBox1-bd">
-		<!-- 添加id，js用到 -->
-		<div class="form-group">
-			<label class="input">
-				<i class="iconfont icon-dengluyonghuming"></i>
-				<input name="user_name" type="text" placeholder="{$lang.username}" datatype="*" />
-			</label>
-		</div>
-		<div class="form-group">
-			<label class="select">
-				<i class="iconfont icon-jiantou-bottom"></i>
-				<select name='sel_question'>
-					{foreach from=$password_question key=key item=question}
-						<option value="{$key}">{$question}</option>
-					{/foreach}
-				</select>
-			</label>
-		</div>
-		<div class="form-group">
-			<div>
-				<input name="passwd_answer" placeholder="{$lang.passwd_answer}" type="text" datatype="*"/>
-			</div>
-		</div>
-		<!-- 判断是否启用验证码{if $enabled_captcha} -->
-		<div class="form-group">
-			<div>
-				<span class="form-captcha">
-					<input placeholder="{$lang.comment_captcha}" type="text" name="captcha"/>
-				</span>
-				<img class="captcha-img ecjiaf-fr" src="{url path='captcha/index/init' args="is_login=1&rand={$rand}"}" alt="captcha" onClick="this.src='{url path='captcha/index/init' args="is_login=1&t=Math.random()"}'" />
-			</div>
-		</div>
-		<!--{/if}-->
-	</div>
-	<input name="act" type="hidden" value="send_pwd_email" />
-	<div class="get-pwd-send ecjia-margin-t ecjia-margin-b">
-		<input class="btn btn-info" name="Submit" type="submit" value="{$lang.submit}" />
-	</div>
-</form>
-<!--{/if}-->
 
+        <div class="tab-pane{if $enabled_sms_signin neq 1} active{/if}" id="two">
+    		<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="formUser" action="{url path='user/index/signup'}" method="post">
+    			<input type="hidden" name="flag" id="flag" value="register" />
+    			<div class="form-group">
+    				<label class="input">
+    					<i class="iconfont icon-gerenzhongxin icon-set"></i>
+    					<input name="username" type="text" id="username" name="username" datatype="s3-15|m|e" errormsg="{$lang.msg_mast_length}" placeholder="{$lang.input_name}" />
+    				</label>
+    			</div>
+    			<div>
+        			 <ul class="ecjia-login-login-foot">
+        			     <li class="remark-size">{$lang.set_your_password}</li>
+        			 </ul>
+    			</div>
+
+    			<div class="form-group bf">
+    				<label class="input">
+    					<i class="iconfont icon-unlock"></i>
+    					<i class="iconfont icon-attention icon-left"></i>
+    					<input name="password" id="password1" type="password" datatype="*6-16"  errormsg="请输入6 ~ 16 位的密码" placeholder="{$lang.input_passwd}">
+    				</label>
+    			</div>
+    			<div class="ecjia-login-b">
+    				<input name="act" type="hidden" value="act_register" />
+    				<input name="enabled_sms" type="hidden" value="0" />
+    				<input type="hidden" name="back_act" value="{$back_act}" />
+    				<div class="around margin-top">
+    				<button class="btn btn-info login-btn" href="flow_consignee.html" name="Submit" type="submit">{$lang.login_finish}</button>
+    				</div>
+    			</div>
+    		</form>
+    	</div>
+	</div>
+</div>
 <!-- {/block} -->
