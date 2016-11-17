@@ -137,6 +137,17 @@ class user_controller {
     ecjia_front::$controller->display('user_set_password.dwt');
         
     }
+    
+    public static function reset_password() {
+    /*验证码相关设置*/
+    $captcha = intval(ecjia::config('captcha'));
+
+    ecjia_front::$controller->assign('title', RC_Lang::lang('reset_new_password'));
+    ecjia_front::$controller->assign_title(RC_Lang::lang('get_password'));
+    ecjia_front::$controller->assign_lang();
+    ecjia_front::$controller->display('user_reset_password.dwt');
+        
+    }
 
     /**
      * 验证注册
