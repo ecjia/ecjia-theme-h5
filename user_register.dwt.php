@@ -80,14 +80,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                         <span><input type="submit" class="btn btn-info login-btn" value="{$lang.return_verification}" /></span>
             	</div>
             	<div>
-        			 <ul class="bf">
-        			     <li class="remark-size">{$lang.message_authentication_code}</li>
+        			 <ul class="ecjia-login-login-foot bf">
+        			     <li class="remark-size">{$lang.invitation_code}</li>
         			 </ul>
     			</div>
     			<div class="form-group bf">
     				<label class="input">
-    					<i class="iconfont icon-lock"></i>
-    					<input name="password" id="password1" type="password" datatype="*6-16"  errormsg="请输入6 ~ 16 位的密码" placeholder="{$lang.password}">
+    					<i class="iconfont icon-yanzhengma"></i>
+    					<input name="password" id="password1" type="password" datatype="*6-16"  errormsg="请输入6 ~ 16 位的密码">
     				</label>
     			</div>
     			<div class="ecjia-login-b">
