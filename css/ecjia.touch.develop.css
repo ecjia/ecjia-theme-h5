@@ -1280,12 +1280,14 @@ footer .footer-icon .ecjia-list li a.active i {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
+/*
 .user-address-list li  a i {
 	position: absolute;
-	right: 4em;
-	top: 1em;
+	right: 8em;
+	top: 6em;
 	font-size: 1.2em;
 }
+*/
 .user-address-list li a i.icon-delete {
 	position: absolute;
 	right: 1.5em;
