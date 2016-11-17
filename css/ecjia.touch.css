@@ -754,6 +754,8 @@ select, input, textarea {
 .two-btn .btn:active,
 .two-btn .btn:visited {
 	float: left;
+	font-size: 1em;
+	line-height: 1.2em;
 	width: 48%;
 	margin: 0;
 	margin-right: 4%;
@@ -785,7 +787,7 @@ select, input, textarea {
 	font-size: 1.2em;
 	margin: 0 4%;
 	width: 92%;
-	line-height: 1.2em;
+	line-height: 2em;
 }
 /**
  * btn
@@ -796,10 +798,10 @@ select, input, textarea {
 .btn.small-btn:hover,
 .btn.small-btn:active,
 .btn.small-btn:visited {
-	font-size: 1.2em;
-	margin: 0 30%;
-	width: 40%;
-	line-height: 2em;
+	font-size: 1em;
+	margin: 0 37.5%;
+	width: 25%;
+	line-height: 1.2em;
 }
 .btn.go-shop {
 	border-color: #ef3030;
