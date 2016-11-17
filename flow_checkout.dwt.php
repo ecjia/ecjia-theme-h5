@@ -32,7 +32,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<section class="flow-goods-list ecjia-margin-b">
 			<ul class="goods-item">
 				<!-- {foreach from=$goods_list item=goods} -->
-				<li class="ecjia-margin-b">
+				<li>
 					<div class="ecjiaf-fl goods-img">
 						<img src="{$goods.goods_img}"/>
 					</div>
@@ -40,7 +40,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<p class="ecjia-truncate2">{$goods.goods_name}</p>
 						<p>{$goods.formated_goods_price}</p>
 					</div>
-					<span class="ecjiaf-fr"> X {$goods.goods_number}</span>
+					<span class="ecjiaf-fr goods-price"> X {$goods.goods_number}</span>
 				</li>
 				<!-- {/foreach} -->
 			</ul>

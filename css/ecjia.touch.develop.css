@@ -1357,7 +1357,7 @@ footer .footer-icon .ecjia-list li a.active i {
  */
 
 /*订单列表*/
-.user-order-nav li {
+/*.user-order-nav li {
 	line-height: 3.5em;
 	font-size: 1.2em;
 }
@@ -1447,7 +1447,7 @@ footer .footer-icon .ecjia-list li a.active i {
 .user-order-list li .order-list-foot .order-bottom-btn a.btn-default {
     background: #fff;
     color: #888;
-}
+}*/
 /**
  * 订单详情
  */
