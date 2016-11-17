@@ -365,6 +365,16 @@
 	font-size: 1.2em;
 }
 
+.ecjia-form .form-group .input label {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 2.4em;
+	height: 2.4em;
+	line-height: 2.4em;
+	border-radius: 5px;
+	text-align: center;
+}
 /*========================  账户余额 ===========================*/
 
 
@@ -541,7 +551,7 @@
 }
 .ecjia-order-list .order-ft span.two-btn{
     text-align: right;
-    margin-top: .3em;
+    margin-top: .5em;
 }
 .ecjia-order-list .order-ft span.two-btn .btn{
     float: right;
