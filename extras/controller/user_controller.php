@@ -130,13 +130,44 @@ class user_controller {
     }
     
     public static function set_password() {
-    $user = integrate::init_users();
-
-    ecjia_front::$controller->assign('title', RC_Lang::lang('set_password'));
-    ecjia_front::$controller->assign_title(RC_Lang::lang('set_password'));
-    ecjia_front::$controller->assign_lang();
-    ecjia_front::$controller->display('user_set_password.dwt');
+        $user = integrate::init_users();
+    
+        ecjia_front::$controller->assign('title', RC_Lang::lang('set_password'));
+        ecjia_front::$controller->assign_title(RC_Lang::lang('set_password'));
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_set_password.dwt');
+    }
+    
+    /* 第三方登陆 */
+    public static function bind_signin() {
+        $user = integrate::init_users();
         
+        $user_img = get_user_img();
+        ecjia_front::$controller->assign('user_img', $user_img);
+        ecjia_front::$controller->assign('title', RC_Lang::lang('bind_signin'));
+        ecjia_front::$controller->assign_title(RC_Lang::lang('bind_signin'));
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_bind_signin.dwt');
+    }
+    
+    /* 第三方登陆快速注册 */
+    public static function bind_signup() {
+        $user = integrate::init_users();
+    
+        ecjia_front::$controller->assign('title', "注册绑定");
+        ecjia_front::$controller->assign_title("注册绑定");
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_bind_signup.dwt');
+    }
+    
+    /* 第三方登陆绑定 */
+    public static function bind_login() {
+        $user = integrate::init_users();
+    
+        ecjia_front::$controller->assign('title', "登录绑定");
+        ecjia_front::$controller->assign_title("登录绑定");
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_bind_login.dwt');
     }
     
     public static function reset_password() {
@@ -144,7 +175,7 @@ class user_controller {
     $captcha = intval(ecjia::config('captcha'));
 
     ecjia_front::$controller->assign('title', RC_Lang::lang('reset_new_password'));
-    ecjia_front::$controller->assign_title(RC_Lang::lang('get_password'));
+    ecjia_front::$controller->assign_title(RC_Lang::lang('reset_new_password'));
     ecjia_front::$controller->assign_lang();
     ecjia_front::$controller->display('user_reset_password.dwt');
     }

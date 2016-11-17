@@ -65,12 +65,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     					<input name="username" type="text" id="username" name="username" datatype="s3-15|m|e" errormsg="{$lang.msg_mast_length}" placeholder="{$lang.label_username}" />
     				</label>
     			</div>
-    			<div>
-        			 <ul class="ecjia-login-login-foot">
-        			     <li class="remark-size">{$lang.message_authentication_code}</li>
-        			 </ul>
-    			</div>
-    			<div class="form-group small-text" style="margin-right:0">
+    			 <li class="remark-size">{$lang.message_authentication_code}</li>
+    			<div class="form-group small-text">
     				<label class="input-1">
     					<input name="email" type="email" id="email" datatype="e" errormsg="请输入正确格式的邮箱" placeholder="{$lang.input_verification}" />
     				</label>
@@ -79,11 +75,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                         <input type="hidden" name="referer" value="{$smarty.get.referer}" />
                         <span><input type="submit" class="btn btn-info login-btn" value="{$lang.return_verification}" /></span>
             	</div>
-            	<div>
-        			 <ul class="ecjia-login-login-foot bf">
-        			     <li class="remark-size">{$lang.invitation_code}</li>
-        			 </ul>
-    			</div>
+        		<li class="remark-size">{$lang.invitation_code}</li>
     			<div class="form-group bf">
     				<label class="input">
     					<i class="iconfont icon-yanzhengma"></i>

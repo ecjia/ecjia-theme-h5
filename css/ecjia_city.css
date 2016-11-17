@@ -367,14 +367,15 @@
 	margin : 1em 7% 1em 7%;
 }
 .ecjia-login .small-text {
+	margin-right:0 !important;
+	margin-top: 0 !important; 
 	display: block;
 	float: left;
-	width: 53%;
+	width: 54%;
 }
 .ecjia-login .small-submit {
 	display: block;
 	float: right;
-	margin-top: 1em;
 	margin-bottom: 1em;
 	margin-right: 7%;
 	margin-left : 0.1em;
@@ -399,6 +400,18 @@
 .ecjia-login .login-btn {
 	margin: 0;
 	width: 100%;
+}
+.ecjia-login .p-top3 {
+	margin-top: 3em;
+}
+.ecjia-login .p-bottom {
+	margin: 1em 7% -1em 7%;
+}
+.ecjia-login .text-color {
+	color: #ADADAD;
+}
+.ecjia-login .text-size {
+	font-size: 1.1em;
 }
 .ecjia-login .margin-right-left {
 	margin-right: 7%;
@@ -433,6 +446,7 @@
 .ecjia-login .remark-size {
 	margin-right: 7%;
 	margin-left : 7%;
+	margin-bottom: 1em;
 	float: left;
 }
 .ecjia-login .user-img img {
