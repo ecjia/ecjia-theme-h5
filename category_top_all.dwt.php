@@ -27,8 +27,14 @@ if (!$('.ecjia-header').is(":visible")) $('.category_left, .category_right').css
         <!--{/foreach}-->
     </ul>
     <div class="category_right">
-        <div class="cat_list">
+		<div class="cat_list ecjia-category-list">
             <a href="{$cat_url}"><img src="{$category_logo}" alt=""></a>
+            <div class="hd">
+                <h5>
+                    <span class="line"></span>
+                    <span class="goods-index-title">{$category_name}</span>
+                </h5>
+            </div>
             <ul class="ecjia-margin-t">
                 <!--{foreach from=$child item=children }-->
                 <li>

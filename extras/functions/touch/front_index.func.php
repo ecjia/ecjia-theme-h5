@@ -83,6 +83,8 @@ function goods_list($type = 'best', $limit, $page) {
 		if ($vo['promote_price'] > 0) {
 			$promote_price = bargain_price($vo['promote_price'], $vo['promote_start_date'], $vo['promote_end_date']);
 			$goods[$key]['promote_price'] = $promote_price > 0 ? price_format($promote_price) : '';
+			$goods[$key]['promote_start_date']	= $vo['promote_start_date'];
+			$goods[$key]['promote_end_date']	= $vo['promote_end_date'];
 		} else {
 			$goods[$key]['promote_price'] = '';
 		}

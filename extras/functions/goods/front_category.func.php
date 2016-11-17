@@ -12,7 +12,7 @@ function get_categories_tree($cat_id = 0) {
 	$cat_arr = array();
 	if ($count) {
 		/* 获取当前分类及其子分类 */
-		$res = $db_category->field('cat_id,cat_name,style,parent_id,is_show')->where(array('parent_id' => 0,'is_show'   => 1))->order( array ('sort_order'=> 'asc','cat_id'=> 'asc'))->select();
+		$res = $db_category->field('cat_id, category_img, cat_name, style, parent_id, is_show')->where(array('parent_id' => 0,'is_show'   => 1))->order( array ('sort_order'=> 'asc','cat_id'=> 'asc'))->select();
 		foreach ( $res as $key => $row ) {
 			$cat_arr [$row ['cat_id']] ['id'] = $row ['cat_id'];
 			$cat_arr [$row ['cat_id']] ['name'] = $row ['cat_name'];
@@ -22,7 +22,7 @@ function get_categories_tree($cat_id = 0) {
 				if(!empty($cat_id)){
 					$child_category = get_child_tree ( $cat_id );
 				}else{
-					$child_category = get_child_tree ( $row ['cat_id'] );
+					$child_category = get_child_tree ( $row ['category_img'] );
 				}
 			}
 		}
@@ -40,16 +40,16 @@ function get_child_tree($tree_id = 0) {
 	$three_arr = array();
 	$count = $db_category->where(array('parent_id' => $tree_id, 'is_show' => 1))->count();
 	if ($count > 0) {
-		$res = $db_category->field('cat_id, cat_name ,style, parent_id, is_show')->where(array('parent_id' => $tree_id, 'is_show' => 1))->order(array('sort_order' => 'asc', 'cat_id' => 'asc'))->select();
+		$res = $db_category->field('cat_id, category_img, cat_name ,style, parent_id, is_show')->where(array('parent_id' => $tree_id, 'is_show' => 1))->order(array('sort_order' => 'asc', 'cat_id' => 'asc'))->select();
 		foreach ( $res as $row ) {
 			$three_arr [$row ['cat_id']] ['id'] = $row ['cat_id'];
 			$three_arr [$row ['cat_id']] ['name'] = $row ['cat_name'];
 			$three_arr [$row ['cat_id']] ['url'] = RC_Uri::url('category/goods_list', array ('cid' => $row ['cat_id'] ));
 			$three_arr [$row ['cat_id']] ['cat_id'] = get_child_tree ( $row ['cat_id'] );
-			if(empty($row ['style'])){
+			if(empty($row ['category_img'])){
 				$three_arr [$row ['cat_id']] ['icon'] = RC_Uri::admin_url('statics/images/nopic.png');
 			}else{
-				$three_arr [$row ['cat_id']] ['icon'] = get_image_path('',$row ['style']);
+				$three_arr [$row ['cat_id']] ['icon'] = get_image_path('',$row ['category_img']);
 			}
 		}
 	}

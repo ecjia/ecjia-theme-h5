@@ -15,11 +15,13 @@ class goods_controller {
 	    $arr  = current($category['category']);
         if (empty($cat_id)) {
             $category_logo = $arr['icon'];
+            $category_name = $arr['name'];
             $cat_url = RC_Uri::url('goods/category/goods_list&cid='.$arr['id']);
         } else {
             foreach ($category['category'] as $key => $val) {
                 if ($key == $cat_id) {
                     $category_logo = $val['icon'];
+                    $category_name = $val['name'];
                     $cat_url = RC_Uri::url('goods/category/goods_list&cid='.$cat_id);
                 }
             }
@@ -31,6 +33,8 @@ class goods_controller {
         ecjia_front::$controller->assign('category', $category['category']);
         ecjia_front::$controller->assign('child', $category['child']);
         ecjia_front::$controller->assign('category_logo', $category_logo);
+        ecjia_front::$controller->assign('category_name', $category_name);
+        
         ecjia_front::$controller->assign('cat_url', $cat_url);
         ecjia_front::$controller->assign('title', RC_Lang::lang('catalog'));
         ecjia_front::$controller->assign('page_title', RC_Lang::lang('catalog'));
@@ -395,6 +399,15 @@ class goods_controller {
         ecjia_front::$controller->assign_title('发表评论');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('goods_comment.dwt');
+    }
+    
+    /**
+     * 店铺列表
+     */
+    public static function store_list() {
+    	ecjia_front::$controller->assign('shop_logo', RC_Uri::admin_url('statics/images/nopic.png'));
+    	ecjia_front::$controller->assign('title', '店铺列表');
+    	ecjia_front::$controller->display('store_list.dwt');
     }
 }
 
