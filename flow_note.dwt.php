@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
     <div class="ecjia-select">
-        <span class="select-title ecjia-margin-l">订单留言</span>
+        <span class="select-title ecjia-margin-l">备注留言</span>
         <div class="input">
             <textarea name="name"></textarea>
         </div>

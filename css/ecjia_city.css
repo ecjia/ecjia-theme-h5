@@ -286,8 +286,14 @@
 .ecjia .ecjia-select .input{
     padding: 0 1em;
 }
-.ecjia .ecjia-select .input textarea{
+.ecjia .ecjia-select .input textarea,
+.ecjia .ecjia-select .input input{
     width: 100%;
+    border: 1px solid #ddd;
+    line-height: 1.2em;
+    height: 3em;
+}
+.ecjia .ecjia-select .input textarea{
     height: 7em;
 }
 /*======================== 发票信息 ecjia-invoice ===========================*/
