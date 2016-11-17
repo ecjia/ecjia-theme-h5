@@ -160,6 +160,16 @@ class user_controller {
         ecjia_front::$controller->display('user_bind_signup.dwt');
     }
     
+    /* 第三方登陆绑定 */
+    public static function bind_login() {
+        $user = integrate::init_users();
+    
+        ecjia_front::$controller->assign('title', "登录绑定");
+        ecjia_front::$controller->assign_title("登录绑定");
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_bind_login.dwt');
+    }
+    
     public static function reset_password() {
     /*验证码相关设置*/
     $captcha = intval(ecjia::config('captcha'));
