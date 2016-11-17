@@ -129,22 +129,13 @@ class user_controller {
     }
     
     public static function set_password() {
-        /*验证码相关设置*/
-//         if (intval(ecjia::config('captcha')) > 0) {
-//             ecjia_front::$controller->assign('enabled_captcha', 1);
-//             ecjia_front::$controller->assign('rand', mt_rand());
-//         }
-//         /*短信开启*/
-//         if (intval(ecjia::config('sms_signin')) > 0) {
-//             ecjia_front::$controller->assign('enabled_sms_signin', ecjia::config('sms_signin'));
-//             $_SESSION['sms_code'] = $sms_code = md5(mt_rand(1000, 9999));
-//             ecjia_front::$controller->assign('sms_code', $sms_code);
-//         }
-//         ecjia_front::$controller->assign('title', RC_Lang::lang('register'));
-//         ecjia_front::$controller->assign('back_act', isset(ecjia_front::$controller->back_act) ? ecjia_front::$controller->back_act : '');
-//         ecjia_front::$controller->assign_title(RC_Lang::lang('register'));
-//         ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('user_set_password.dwt');
+    $user = integrate::init_users();
+
+    ecjia_front::$controller->assign('title', RC_Lang::lang('set_password'));
+    ecjia_front::$controller->assign_title(RC_Lang::lang('set_password'));
+    ecjia_front::$controller->assign_lang();
+    ecjia_front::$controller->display('user_set_password.dwt');
+        
     }
 
     /**
@@ -255,9 +246,9 @@ class user_controller {
                 /*发送邮件出错*/
                 ecjia_front::$controller->showmessage(RC_Lang::lang('fail_send_password'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
             }
-//         } else {
-//             /*用户名与邮件地址不匹配*/
-//             ecjia_front::$controller->showmessage(RC_Lang::lang('username_no_email'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+        } else {
+            /*用户名与邮件地址不匹配*/
+            ecjia_front::$controller->showmessage(RC_Lang::lang('username_no_email'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         }
     }
 
