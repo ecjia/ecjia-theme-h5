@@ -16,7 +16,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group form-group-text">
 		<label class="input">
 			<span>所在地区： </span>
-			<input name="district" placeholder="{t}请选择城市{/t}" type="text" datatype="*" value="" />
+			<input name="district" placeholder="{t}请选择城市{/t}" type="text" datatype="*" value=""/><i class="iconfont icon-jiantou-right"></i>
 		</label>
 	</div>
 	<div class="form-group form-group-text">

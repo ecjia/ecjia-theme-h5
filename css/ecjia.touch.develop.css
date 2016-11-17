@@ -395,12 +395,14 @@ footer .footer-icon .ecjia-list li a.active i {
     top: .9em;
     border-radius: 5px;
 }
+/*
 .nav-header a span:last-child{
 	position: absolute;
     right: 1.5em;
     line-height: 100%;
     top: 1.4em;
 }
+*/
 .nav-header span {
 	color: #999;
 }
