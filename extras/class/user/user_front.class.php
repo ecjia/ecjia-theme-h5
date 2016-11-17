@@ -48,7 +48,8 @@ class user_front extends ecjia_front {
 			'dump_user_info',
 			'region',
 			'send_captcha',
-			'act_register'
+			'act_register',
+		    'set_password'
 		);
 		/*未登录处理*/
 		if (empty($_SESSION['user_id']) && !in_array($this->action, $without)) {
@@ -61,7 +62,7 @@ class user_front extends ecjia_front {
 			'login',
             'signin',
 			'register',
-            'signup'
+            'signup',
 		);
 		if (!empty($_SESSION['user_id']) && in_array($this->action, $deny)) {
 			$this->redirect(RC_Uri::url('user/index/init'));

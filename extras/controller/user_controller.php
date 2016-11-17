@@ -127,6 +127,16 @@ class user_controller {
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_register.dwt');
     }
+    
+    public static function set_password() {
+    $user = integrate::init_users();
+
+    ecjia_front::$controller->assign('title', RC_Lang::lang('set_password'));
+    ecjia_front::$controller->assign_title(RC_Lang::lang('set_password'));
+    ecjia_front::$controller->assign_lang();
+    ecjia_front::$controller->display('user_set_password.dwt');
+        
+    }
 
     /**
      * 验证注册
@@ -159,10 +169,10 @@ class user_controller {
             }
             $ucdata = empty($user->ucdata) ? "" : $user->ucdata;
             ecjia_front::$controller->showmessage(sprintf(RC_Lang::lang('register_success'), $username . $ucdata),ecjia::MSGSTAT_SUCCESS| ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('user/index/init'),'is_show' => false));
-        } else {
-            $errmsg = is_ecjia_error($result) ?  $result->get_error_message() : '';
-            ecjia_front::$controller->showmessage($errmsg, ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-        }
+//     } else {
+//             $errmsg = is_ecjia_error($result) ?  $result->get_error_message() : '';
+//             ecjia_front::$controller->showmessage($errmsg, ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+       }
     }
 
     /**

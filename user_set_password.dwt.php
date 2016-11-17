@@ -61,33 +61,21 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     			<input type="hidden" name="flag" id="flag" value="register" />
     			<div class="form-group">
     				<label class="input">
-    					<i class="iconfont icon-mobilefill icon-set"></i>
-    					<input name="username" type="text" id="username" name="username" datatype="s3-15|m|e" errormsg="{$lang.msg_mast_length}" placeholder="{$lang.label_username}" />
+    					<i class="iconfont icon-gerenzhongxin icon-set"></i>
+    					<input name="username" type="text" id="username" name="username" datatype="s3-15|m|e" errormsg="{$lang.msg_mast_length}" placeholder="{$lang.input_name}" />
     				</label>
     			</div>
     			<div>
         			 <ul class="ecjia-login-login-foot">
-        			     <li class="remark-size">{$lang.message_authentication_code}</li>
+        			     <li class="remark-size">{$lang.set_your_password}</li>
         			 </ul>
     			</div>
-    			<div class="form-group small-text" style="margin-right:0">
-    				<label class="input-1">
-    					<input name="email" type="email" id="email" datatype="e" errormsg="请输入正确格式的邮箱" placeholder="{$lang.input_verification}" />
-    				</label>
-    			</div>
-				<div class="small-submit">
-                        <input type="hidden" name="referer" value="{$smarty.get.referer}" />
-                        <span><input type="submit" class="btn btn-info login-btn" value="{$lang.return_verification}" /></span>
-            	</div>
-            	<div>
-        			 <ul class="ecjia-login-login-foot bf">
-        			     <li class="remark-size">{$lang.invitation_code}</li>
-        			 </ul>
-    			</div>
+
     			<div class="form-group bf">
     				<label class="input">
-    					<i class="iconfont icon-yanzhengma"></i>
-    					<input name="password" id="password1" type="password" datatype="*6-16"  errormsg="请输入6 ~ 16 位的密码">
+    					<i class="iconfont icon-unlock"></i>
+    					<i class="iconfont icon-attention icon-left"></i>
+    					<input name="password" id="password1" type="password" datatype="*6-16"  errormsg="请输入6 ~ 16 位的密码" placeholder="{$lang.input_passwd}">
     				</label>
     			</div>
     			<div class="ecjia-login-b">
@@ -95,7 +83,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     				<input name="enabled_sms" type="hidden" value="0" />
     				<input type="hidden" name="back_act" value="{$back_act}" />
     				<div class="around margin-top">
-    				<button class="btn btn-info login-btn" href="flow_consignee.html" name="Submit" type="submit">{$lang.next}</button>
+    				<button class="btn btn-info login-btn" href="flow_consignee.html" name="Submit" type="submit">{$lang.login_finish}</button>
     				</div>
     			</div>
     		</form>
