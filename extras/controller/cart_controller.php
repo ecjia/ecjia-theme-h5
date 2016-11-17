@@ -1655,7 +1655,8 @@ class cart_controller {
      * 开发票
      */
     public static function invoice() {
-
+        ecjia_front::$controller->assign('title', RC_Lang::lang('invoice'));
+        ecjia_front::$controller->assign_title(RC_Lang::lang('invoice'));
         ecjia_front::$controller->display('flow_invoice.dwt');
     }
 
@@ -1664,6 +1665,8 @@ class cart_controller {
      */
     public static function note() {
 
+        ecjia_front::$controller->assign('title', '备注留言');
+        ecjia_front::$controller->assign_title('备注留言');
         ecjia_front::$controller->display('flow_note.dwt');
     }
 
@@ -1671,7 +1674,8 @@ class cart_controller {
      * 选择使用红包
      */
     public static function bonus() {
-
+        ecjia_front::$controller->assign('title', RC_Lang::lang('use_bonus'));
+        ecjia_front::$controller->assign_title(RC_Lang::lang('use_bonus'));
         ecjia_front::$controller->display('flow_bonus.dwt');
     }
 
@@ -1679,7 +1683,8 @@ class cart_controller {
      * 使用积分
      */
     public static function integral() {
-
+        ecjia_front::$controller->assign('title', RC_Lang::lang('use_integral'));
+        ecjia_front::$controller->assign_title(RC_Lang::lang('use_integral'));
         ecjia_front::$controller->display('flow_integral.dwt');
     }
 
