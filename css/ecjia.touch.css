@@ -785,7 +785,7 @@ select, input, textarea {
 	font-size: 1.2em;
 	margin: 0 4%;
 	width: 92%;
-	line-height: 2em;
+	line-height: 1.2em;
 }
 /**
  * btn

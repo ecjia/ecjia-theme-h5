@@ -245,46 +245,44 @@
     border-top: 8px solid transparent;
     display: inline-block;
 }
-
-
 /*end*/
-.ecjia .ecjia-checkout .flow-goods-list .goods-item li,
-.ecjia .ecjia-checkout .flow-goods-list .goods-list{
+/* 订单商品列表 */
+.ecjia .ecjia-checkout .flow-goods-list {
+	background: #ffffff;
+    border-bottom: 1px solid #ddd;
+}
+.ecjia .ecjia-checkout .flow-goods-list .goods-item,
+.ecjia .ecjia-checkout .flow-goods-list .goods-list {
 	overflow: hidden;
 	position: relative;
 	padding: 1em;
 }
-.ecjia .ecjia-checkout .flow-goods-list .goods-list li {
-	padding: 0;
-}
-.ecjia .ecjia-checkout .flow-goods-list {
-	background: #ffffff;
-}
-.ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-img,
-.ecjia .ecjia-checkout .flow-goods-list .goods-list .goods-img {
-	display: block;
-    height: 5em;
-    width: 5em;
+.ecjia .ecjia-checkout .flow-goods-list .goods-item li{
+    margin-right: 0;
 }
 .ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-img img,
-.ecjia .ecjia-checkout .flow-goods-list .goods-list .goods-img img {
+.ecjia .ecjia-checkout .flow-goods-list .goods-list .goods-img img{
 	width: 100%;
+    height: 5em;
+    width: 5em;
 }
 .ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-info {
 	width:100%;
 	margin-left: -6em;
 	padding-left: 7em;
 	height:5em;
-	margin-right: -3em;
+	margin-right: -2em;
 	padding-right: 2em;
 }
 .ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-info p:first-child{
 	height: 3.5em;
 	line-height: 1.7;
 }
-.ecjia .ecjia-checkout .flow-goods-list .goods-item span{
-	width:2em;
-	margin-top: 4em;
+.ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-price{
+	margin-top: 3.5em;
+}
+.ecjia .ecjia-checkout .flow-goods-list .goods-item span.ecjia-icon-num{
+    display:none;
 }
 .ecjia .ecjia-checkout .cart-order{
 	color: #ef3030;
@@ -480,8 +478,53 @@
 
 
 /*========================  订单列表 ===========================*/
-
-
+.ecjia-order-list .ecjia-order-item {
+    background: #ffffff;
+    overflow: hidden;
+}
+.ecjia-order-list .ecjia-order-item .flow-goods-list{
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.ecjia-order-list .ecjia-order-item .order-hd,
+.ecjia-order-list .ecjia-order-item .order-ft{
+    height: 3em;
+    line-height: 3em;
+    padding: 0 1em;
+}
+.ecjia-order-list .ecjia-order-item .order-hd i{
+    font-size: 1.5em;
+    margin-right: .5em;
+}
+.ecjia-order-list .order-ft span {
+    display: inline-block;
+    width: 50%;
+}
+.ecjia-order-list .order-ft span.two-btn{
+    text-align: right;
+    margin-top: .3em;
+}
+.ecjia-order-list .order-ft span.two-btn .btn{
+    float: right;
+    margin: 0 0 0 4%;
+}
+.ecjia-order-list .order-ft span.two-btn .btn:nth-of-type(2) {
+    margin-left: 0;
+}
+.ecjia-order-list .flow-goods-list .goods-item li{
+    width: 100%;
+    position: relative;
+}
+.ecjia-order-list .goods-item .goods-name{
+    position: absolute;
+    display: block;
+    width: 100%;
+    top: 50%;
+    max-height: 3em;
+    line-height: 1.5em;
+    transform: translateY(-50%);
+    padding-left: 6em;
+}
 /*========================  订单详情 ===========================*/
 
 
