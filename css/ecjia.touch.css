@@ -556,7 +556,7 @@ select, input, textarea {
 }
 .ecjia-form .form-group .input i {
 	position: absolute;
-	left: 0;
+	right: 0;
 	top: 0;
 	width: 2.4em;
 	height: 2.4em;
