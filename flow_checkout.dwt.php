@@ -85,6 +85,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<section class="checklist">
 			<a href="{url path='cart/flow/integral'}">
 				<span>{$lang.use_integral}</span>
+				<span class="icon-font">1000积分可用</span>
 				<i class="iconfont icon-jiantou-right"></i>
 				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
 			</a>
@@ -92,6 +93,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<section class="checklist ecjia-margin-b">
 			<a href="{url path='cart/flow/bonus'}">
 				<span>{$lang.use_bonus}</span>
+				<span class="icon-font">无可用</span>
 				<i class="iconfont icon-jiantou-right"></i>
 				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
 			</a>
