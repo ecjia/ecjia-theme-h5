@@ -31,6 +31,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<li class="goods-img ecjiaf-fl ecjia-margin-r  ecjia-icon">
 						<img class="ecjiaf-fl" src="http://www.ecjia-city.dev/content/uploads/images/201611/thumb_img/1020_G_1479340294572.jpg" alt="" />
 						<span class="ecjia-icon-num top">1</span>
+						<span class="ecjiaf-fl goods-name ecjia-truncate2">爱大厨四菜私人厨师上门做饭</span>
 					</li>
 				</ul>
 			</div>
@@ -44,25 +45,27 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</li>
 
 		<li class="ecjia-order-item ecjia-checkout ecjia-margin-t">
-			<div class="order-hd">
-				<i class="iconfont icon-shop"></i>华联-申隆店专营店 <i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr">待收货</span>
-			</div>
-			<div class="flow-goods-list">
-				<ul class="goods-item">
-					<li class="goods-img ecjiaf-fl ecjia-margin-r  ecjia-icon">
-						<img class="ecjiaf-fl" src="http://www.ecjia-city.dev/content/uploads/images/201611/thumb_img/1020_G_1479340294572.jpg" alt="" />
-						<span class="ecjia-icon-num top">1</span>
-						<span class="ecjiaf-fl goods-name ecjia-truncate2">爱大厨四菜私人厨师上门做饭</span>
-					</li>
-				</ul>
-			</div>
-			<div class="order-ft">
-				<span>订单金额：￥155.50</span>
-				<span class="two-btn ecjiaf-fr">
-					<a class="btn  ecjiaf-fr" href="#">再次购买</a>
-				</span>
-			</div>
+			<a href="#">
+				<div class="order-hd">
+					<i class="iconfont icon-shop"></i>华联-申隆店专营店 <i class="iconfont icon-jiantou-right"></i>
+					<span class="ecjiaf-fr">待收货</span>
+				</div>
+				<div class="flow-goods-list">
+					<ul class="goods-item">
+						<li class="goods-img ecjiaf-fl ecjia-margin-r  ecjia-icon">
+							<img class="ecjiaf-fl" src="http://www.ecjia-city.dev/content/uploads/images/201611/thumb_img/1020_G_1479340294572.jpg" alt="" />
+							<span class="ecjia-icon-num top">1</span>
+							<span class="ecjiaf-fl goods-name ecjia-truncate2">爱大厨四菜私人厨师上门做饭</span>
+						</li>
+					</ul>
+				</div>
+				<div class="order-ft">
+					<span>订单金额：￥155.50</span>
+					<span class="two-btn ecjiaf-fr">
+						<a class="btn  ecjiaf-fr" href="#">再次购买</a>
+					</span>
+				</div>
+			</a>
 		</li>
 	</ul>
 </div>

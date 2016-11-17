@@ -368,7 +368,7 @@
 }
 .ecjia-login .small-text {
 	margin-right:0 !important;
-	margin-top: 0 !important; 
+	margin-top: 0 !important;
 	display: block;
 	float: left;
 	width: 54%;
@@ -528,6 +528,9 @@
 .ecjia-order-list .flow-goods-list .goods-item li{
     width: 100%;
     position: relative;
+}
+.ecjia-order-list .flow-goods-list .goods-list .goods-name{
+    display: none;
 }
 .ecjia-order-list .goods-item .goods-name{
     position: absolute;
