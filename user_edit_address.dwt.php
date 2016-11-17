@@ -16,13 +16,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group form-group-text">
 		<label class="input">
 			<span>所在地区： </span>
-			<input name="district" placeholder="{t}请选择城市{/t}" type="text" datatype="*" value=""/><i class="iconfont icon-jiantou-right"></i>
+			<input name="district" placeholder="{t}请选择城市{/t}" type="text" datatype="*" value=""/>
+			<i class="iconfont icon-jiantou-right"></i>
 		</label>
 	</div>
 	<div class="form-group form-group-text">
 		<label class="input">
 			<span class="ecjiaf-fl">收货地址： </span>
 			<input name="location" placeholder="{t}写字楼，小区，学校，街道{/t}" type="text" datatype="*" value="" />
+			<i class="iconfont icon-focus"></i>
 		</label>
 	</div>
 	<div class="form-group form-group-text">
