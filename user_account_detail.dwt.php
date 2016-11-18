@@ -12,29 +12,25 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 
-<div class="user-account-detail">
-	<div class="hd">
-		<div class="banner ecjia-margin-b">
-			<p>{t}账户总额{/t}</p>
-			<span class="price">￥{$surplus_amount}</span>
-			<p><a href="{url path='user/user_account/account_list'}"><i class="iconfont icon-calendar"></i>查看明细</a></p>
-		</div>
-		<div class="nav nav-list-two">
-			<a class="ecjiaf-fl" href="{url path='user/user_account/recharge'}"><i class="iconfont icon-recharge"></i>{t}充值{/t}</a>
-			<a class="ecjiaf-fl" href="{url path='user/user_account/withdraw'}"><i class="iconfont icon-recharge"></i>{t}提现{/t}</a>
-		</div>
+<div class="ecjia-account-detail ecjia-margin-t">
+	<div class="account-bonus ecjiaf-bt">
+		<a href="{url path='user/user_bonus/bonus'}">
+			<i class="iconfont icon-qianbao"></i>
+			我的余额
+			<span class="ecjiaf-fr">{$surplus_amount}<i class="iconfont icon-jiantou-right"></i></span>
+		</a>
 	</div>
-	<div class="ecjia-margin-t account-bonus">
+	<div class="account-bonus ecjiaf-bt">
 		<a href="{url path='user/user_bonus/bonus'}">
 			<i class="iconfont icon-redpacket"></i>
 			红包
-			<span class="ecjiaf-fr">{$bonus_number}个<i class="iconfont icon-jiantou-right"></i></span>
+			<span class="ecjiaf-fr">{$bonus_number}<i class="iconfont icon-jiantou-right"></i></span>
 		</a>
 	</div>
-	<div class="ecjia-margin-t account-bonus integral">
+	<div class="account-bonus integral ecjiaf-bt">
 		<i class="iconfont icon-copy"></i>
 		积分
-		<span class="ecjiaf-fr">{$integral}分</span>
+		<span class="ecjiaf-fr">{$integral}</span>
 	</div>
 </div>
 <!-- {/block} -->
