@@ -241,6 +241,41 @@ textarea{
 	border-bottom-color: #ddd;
 	border-bottom:  1px solid #ddd;
 }
+/* 全局短列表 */
+.ecjia-list.list-short{
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+.ecjia-list.list-short li {
+	border-bottom: 0;
+	position: relative;
+}
+.ecjia-list.list-short li span{
+	display: block;
+	width: 90%;
+	margin: 0 0 0 10%;
+}
+.ecjia-list.list-short li+li::before{
+	content: '';
+	position: absolute;
+	display: block;
+	width: 90%;
+	left: 10%;
+	top: 0;
+	border-bottom: 1px solid #ddd;
+}
+.ecjia-list.list-short li i {
+	position: absolute;
+	font-size: 2.5em;
+	line-height: 1.3em;
+	color: #999;
+	font-weight: normal;
+}
+.ecjia-list.list-short li i:nth-of-type(2n){
+	right: 1%;
+	font-size: 1.5em;
+	line-height: 2em;
+}
 /*列表中的数字图标扩展*/
 .ecjia-icon {
 	position: relative;
