@@ -398,6 +398,10 @@
 .ecjia-login .bf{
 	clear: both
 }
+.ecjia-login-margin-lr {
+	margin-left: 0!important;
+	margin-right: 0!important;
+}
 .ecjia-login-b .around{
 	margin : 1em 7% 1em 7%;
 }
@@ -490,10 +494,6 @@
     border-radius: 100%;
     background: #47aa4d;
 }
-.ecjia-login .form-group {
-	margin : 1em 7% 1em 7%;
-	border-radius: 0.3em;
-}
 .ecjia-login .form-group .margin-top {
 	margin-top:3em;
 }
@@ -505,23 +505,66 @@
 	overflow: hidden;
 	margin: 0;
 }
-.ecjia-login .form-group .input .icon-left {
-	left:85%;
-	font-size: 1.2em;
-}
 .ecjia-login .form-group .input .padding-left05 {
 	padding-left: 0.5em;
-}
-.ecjia-login .form-group .input .icon-dengluyonghuming {
-	/*background-color: #47aa4d;*/
-}
-.ecjia-login .form-group .input .icon-lock {
-	/*background-color: #9ecc17;*/
 }
 .ecjia-login-edit-password-form input {
 	padding-left: 0em !important;
 }
-
+.ecjia-login-user-profile-form .border-top {
+	border-top: 0.1em solid #ddd;
+}
+.ecjia-login-user-profile-form .edit-password {
+	background-color: #fff;
+	padding: 1em;
+	border-bottom: 0.1em solid #ddd;
+	border-top: 0.1em solid #ddd;
+	font-weight: bold;
+	line-height: 1.5em;
+}
+.ecjia-login-user-profile-form .edit-password label {
+	padding-right: 1em;
+	float: right;
+}
+.ecjia-login-nav-header {
+	text-align: left;
+	padding: .5em .5em;
+	overflow: hidden;
+	background: #fff;
+	color: #333;
+	position: relative;
+	border-bottom:1px solid #ddd;
+}
+.ecjia-login-nav-header a {
+	display: block;
+	line-height: 1.6;
+}
+.ecjia-login-nav-header span {
+	color: #999;
+}
+.ecjia-login-nav-header i.icon {
+    margin: 0 auto;
+    overflow: hidden;
+    font-size: 1.2em;
+    width: 1.4em;
+    height: 1.4em;
+    text-align: center;
+    line-height: 0.9em;
+    position: absolute;
+    left: 1em;
+    top: .9em;
+    border-radius: 5px;
+}
+.ecjia-login-nav-header a .icon-name {
+	font-size: 1.3em;
+	color: #333;
+	padding-left: 2.5em;
+}
+.ecjia-login-nav-header i {
+	font-size: 1.2em;
+	position: relative;
+	top: 0px;
+}
 /*========================  搜索 ===========================*/
 
 

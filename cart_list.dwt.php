@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 Name: 购物车列表模板
 Description: 购物车列表页
@@ -56,7 +56,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<!-- {/if} -->
 					</div>
 				</div>
-				
+
 				<div>{$goods.goods_price}</div>
 				<div class="cart-goods-drop">
 					<div class="ecjia-input-number ecjia-margin-t">
@@ -67,7 +67,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					</div>
 					<a href="javascript:void(0)" data-toggle="del_list"  data-url="{url path='cart/index/drop_goods'}" data-msg="{$lang.drop_goods_confirm}" data-id="{$goods.rec_id}" ><i class="iconfont icon-delete"></i></a>
 				</div>
-				
+
 				<!-- {if $goods.fitting || $goods.favourable} -->
 				<div class="ecjia-favourable-btn ecjia-margin-t two-btn">
 					<!-- {if $goods.fitting} -->
@@ -86,14 +86,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="cart-btn-checkout ecjia-margin-t">
 		<div class="ecjia-margin-l ecjia-margin-b">{$lang.goods_price}：<span class="cart-goods-price" id="goods_subtotal">{$total.goods_price}</span></div>
 		<a class="btn btn-info goods-checkout ecjia-margin-b nopjax" type="button"data-url="{url path='flow/checkout'}"   href="{url path='flow/checkout'}">{$lang.check_out}<!-- （<b id="total_number">{$total.total_number}</b>） --></a>
-	</div> 
+	</div>
 <!--{else}-->
 <div class="flow-no-pro ecjia-margin-t ecjia-margin-b">
 	<div class="ecjia-nolist">
 		<img src="{$theme_url}images/cart.png">
 		<p>{t}购物车无商品{/t}</p>
 	</div>
-	<a class="btn small-btn" type="button" href="{url path='touch/index/init'}">{t}去逛逛{/t}</a>
+	<a class="btn btn-small" type="button" href="{url path='touch/index/init'}">{t}去逛逛{/t}</a>
 </div>
 <!-- {/if} -->
 <!-- {/block} -->

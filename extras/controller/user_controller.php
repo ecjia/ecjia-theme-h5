@@ -170,6 +170,17 @@ class user_controller {
         ecjia_front::$controller->display('user_bind_login.dwt');
     }
     
+    /* 用户中心编辑用户名称 */
+    public static function modify_username() {
+        $user = integrate::init_users();
+    
+        ecjia_front::$controller->assign('title', "用户名");
+        ecjia_front::$controller->assign_title("用户名");
+        ecjia_front::$controller->assign('header_right' , array('info' => '保存', 'href' => RC_Uri::url('user/index/edit_profile')));
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_modify_username.dwt');
+    }
+    
     public static function reset_password() {
     /*验证码相关设置*/
     $captcha = intval(ecjia::config('captcha'));

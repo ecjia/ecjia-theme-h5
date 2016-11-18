@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 Name: 商品描述模板
 Description: 这是商品描述首页
@@ -9,7 +9,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-<script type="text/javascript">ecjia.touch.goods.init();</script>
+<!-- <script type="text/javascript">ecjia.touch.goods.init();</script> -->
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -25,7 +25,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</ul>
 	<!-- Tab panes -->
 	<div class="bd">
-		<div class="goods-describe ecjia-margin-b active" id="one"> 
+		<div class="goods-describe ecjia-margin-b active" id="one">
 			<!-- {if $goods.goods_desc} -->
 			{$goods.goods_desc}
 			<!-- {else} -->
@@ -46,7 +46,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<td bgcolor="#FFFFFF" align="left" width="30%" class="f1">[{$property.name|escape:html}]</td>
 					<td bgcolor="#FFFFFF" align="left" width="70%">{$property.value}</td>
 				</tr>
-				<!-- {/foreach}--> 
+				<!-- {/foreach}-->
 				<!-- {/foreach}-->
 			</table>
 			<!-- {else} -->
@@ -82,5 +82,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 	</div>
 	<!-- {/if} -->
-</div>	
+</div>
 <!-- {/block} -->
