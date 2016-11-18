@@ -793,11 +793,11 @@ select, input, textarea {
  * btn
  * 小按钮
  */
-.btn.small-btn,
-.btn.small-btn:link,
-.btn.small-btn:hover,
-.btn.small-btn:active,
-.btn.small-btn:visited {
+.btn.btn-small,
+.btn.btn-small:link,
+.btn.btn-small:hover,
+.btn.btn-small:active,
+.btn.btn-small:visited {
 	font-size: 1em;
 	margin: 0 37.5%;
 	width: 25%;
@@ -853,7 +853,6 @@ select, input, textarea {
 	display: block;
 	width: 4em;
 	height: 3.5em;
-	/*padding: 1em 0;*/
 	line-height: 3.5em;
 }
 .ecjia-header .ecjia-header-left a.ecjia-header-logo {
