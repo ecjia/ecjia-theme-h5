@@ -398,6 +398,10 @@
 .ecjia-login .bf{
 	clear: both
 }
+.ecjia-login-margin-lr {
+	margin-left: 0!important;
+	margin-right: 0!important;
+}
 .ecjia-login-b .around{
 	margin : 1em 7% 1em 7%;
 }
@@ -517,8 +521,6 @@
 	border-top: 0.1em solid #ddd;
 	font-weight: bold;
 	line-height: 1.5em;
-	margin-left: 1em;
-	margin-right: 1em;
 }
 .ecjia-login-user-profile-form .edit-password label {
 	padding-right: 1em; 
