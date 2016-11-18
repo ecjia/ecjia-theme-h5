@@ -14,9 +14,9 @@ Color: green
 /*
 	全局 CSS
  */
-body{
-	 background: #f7f7f7;
-	  color: #555;
+html,body{
+	background: #f7f7f7;
+	color: #555;
 }
 a,
 a:link,

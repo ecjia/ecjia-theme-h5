@@ -29,7 +29,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="flow-goods-list">
 				<ul class="goods-list">
 					<li class="goods-img ecjiaf-fl ecjia-margin-r  ecjia-icon">
-						<img class="ecjiaf-fl" src="http://www.ecjia-city.dev/content/uploads/images/201611/thumb_img/1020_G_1479340294572.jpg" alt="" />
+						<img class="ecjiaf-fl" src="http://10.10.10.74/ecjia-city/content/uploads/images/201611/thumb_img/1020_G_1479340294572.jpg" alt="" />
 						<span class="ecjia-icon-num top">1</span>
 						<span class="ecjiaf-fl goods-name ecjia-truncate2">爱大厨四菜私人厨师上门做饭</span>
 					</li>
