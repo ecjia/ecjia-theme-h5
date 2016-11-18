@@ -7,6 +7,7 @@
             this.init_swiper();
             this.change_index();
             this.swiper_promotion();
+            this.promote_time();
 		},
         init_swiper : function() {
 			var swiper = new Swiper('.swiper-touchIndex', {
@@ -35,6 +36,45 @@
                 freeMode : true,
                 freeModeMomentumVelocityRatio : 5,
 			});
+        },
+        promote_time : function() {
+        	var serverTime = Math.round(new Date().getTime()/1000) * 1000; //服务器时间，毫秒数 
+        	var dateTime = new Date(); 
+        	var difference = dateTime.getTime() - serverTime; //客户端与服务器时间偏移量 
+        	var InterValObj;
+        	clearInterval(InterValObj);
+        	
+        	InterValObj = setInterval(function(){ 
+        		$(".promote-time").each(function(){ 
+        			var obj = $(this); 
+        			var endTime = new Date((parseInt(obj.attr('value')) + 8*3600) * 1000); 
+        			var nowTime = new Date(); 
+        			var nMS=endTime.getTime() - nowTime.getTime() + difference; 
+        			var myD=Math.floor(nMS/(1000 * 60 * 60 * 24)); //天 
+        			var myH=Math.floor(nMS/(1000*60*60)) % 24; //小时 
+        			var myM=Math.floor(nMS/(1000*60)) % 60; //分钟 
+        			var myS=Math.floor(nMS/1000) % 60; //秒 
+    	    
+        			var type = obj.attr('data-type');
+        			var hh = checkTime(myH);
+        			var mm = checkTime(myM);
+        			var ss = checkTime(myS);
+    	    
+        			if(myD>= 0){ 
+        				if (type == 1) {
+        					msg = '距离活动结束还有';
+        					var str = msg + myD + '天 <span class="end-time">'+ hh +'</span> : <span class="end-time">' + mm + '</span> : <span class="end-time">' + ss + '</span>';
+        				} else {
+        					msg = '剩余';
+        					var str = msg + myD+"天 "+hh+":"+mm+":"+ss; 
+        				}
+        				
+        			}else{ 
+        				var str = "已结束！";  
+        			} 
+        			obj.html(str); 
+        		}); 
+        	}, 1000); //每个1秒执行一次 
         },
 
 		close_bottom_banner : function() {
@@ -67,8 +107,14 @@
                     $('.focus').css('margin-top','');
                 }
             })
-        }
-
-
+        },
+    	
 	};
+	
+	function checkTime(i) {    
+		if (i < 10) {    
+			i = "0" + i;    
+		}    
+		return i;    
+    }
 })(ecjia, jQuery);
