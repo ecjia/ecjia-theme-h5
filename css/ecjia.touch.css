@@ -543,11 +543,8 @@ select, input, textarea {
 }
 .ecjia-form .form-group {
 	padding: 0.5em 1em;
-	margin-right: 1em;
-	margin-left: 1em;
 	overflow: hidden;
 	margin-bottom: 0;
-	border-radius: 5px;
 	border-bottom: 1px solid #ddd;
 }
 .ecjia-form .form-group .input,
@@ -563,18 +560,13 @@ select, input, textarea {
 	position: absolute;
 	left: 0;
 	top: 0;
-	color: #ddd;
-	font-weight: normal;
-	line-height: 1.3em;
-	font-size: 1.7em;
+	width: 2.4em;
+	height: 2.4em;
+	line-height: 2.4em;
+	border-radius: 5px;
 	text-align: center;
 }
-.ecjia-form .form-group .input .icon-left{
-	left: 90%;
-}
-.ecjia-form .form-group .input .icon-left + input{
-	padding-right: 3em;
-}
+
 .ecjia-form .form-group input,
 .ecjia-form .form-group textarea,
 .ecjia-form select {
@@ -591,7 +583,7 @@ select, input, textarea {
 	outline: 0 none;
 }
 .ecjia-form .form-group .input input {
-	padding-left: 3em;
+	padding-left: 3.4em;
 	width: 100%;
 }
 .ecjia-form .form-group .form-label input,
@@ -803,11 +795,11 @@ select, input, textarea {
  * btn
  * 小按钮
  */
-.btn.btn-small,
-.btn.btn-small:link,
-.btn.btn-small:hover,
-.btn.btn-small:active,
-.btn.btn-small:visited {
+.btn.small-btn,
+.btn.small-btn:link,
+.btn.small-btn:hover,
+.btn.small-btn:active,
+.btn.small-btn:visited {
 	font-size: 1em;
 	margin: 0 37.5%;
 	width: 25%;
@@ -863,6 +855,7 @@ select, input, textarea {
 	display: block;
 	width: 4em;
 	height: 3.5em;
+	/*padding: 1em 0;*/
 	line-height: 3.5em;
 }
 .ecjia-header .ecjia-header-left a.ecjia-header-logo {
