@@ -507,7 +507,23 @@
 .ecjia-login-edit-password-form input {
 	padding-left: 0em !important;
 }
-
+.ecjia-login-user-profile-form .border-top {
+	border-top: 0.1em solid #ddd;
+}
+.ecjia-login-user-profile-form .edit-password {
+	background-color: #fff;
+	padding: 1em;
+	border-bottom: 0.1em solid #ddd;
+	border-top: 0.1em solid #ddd;
+	font-weight: bold;
+	line-height: 1.5em;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+.ecjia-login-user-profile-form .edit-password label {
+	padding-right: 1em; 
+	float: right;
+}
 /*========================  搜索 ===========================*/
 
 
