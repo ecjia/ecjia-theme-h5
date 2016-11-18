@@ -44,6 +44,17 @@
 .ecjia-promotion-model .swiper-slide a {
     display: block;
 }
+.ecjia-promotion-model .swiper-slide .promote-time{
+    position: relative;
+    display: block;
+    width: 100%;
+    background: rgba(0,0,0,.4);
+    bottom: 1.5em;
+    font-size: .8em;
+    text-align: center;
+    color: #fff;
+    line-height: 1.6em;
+}
 
 .ecjia-promotion-model .swiper-slide .list-page-goods-img .goods-img {
     display: block;
@@ -62,9 +73,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: .9em;
+    font-size: 1em;
 	font-family: Helvetica, '宋体', Arial, sans-serif;
 	text-align:left;
+	font-weight:500;
+    color:#555;
 }
 
 .ecjia-promotion-model .list-page-box .list-page-goods-price {
@@ -75,7 +88,7 @@
 }
 .ecjia-promotion-model .list-page-goods-price span {
     color: #FF0030;
-	font-size: 1.0em;
+	font-size: 1.1em;
 }
 .ecjia-promotion-model .list-page-goods-price span del{
 	font-size: 0.9em;
@@ -110,6 +123,18 @@
     padding-bottom: 100%;
     overflow: hidden;
     margin: 0 auto;
+}
+.ecjia-promotion-list .promote-time{
+    position: relative;
+    display: block;
+    width: 100%;
+    background: rgba(0,0,0,.4);
+    bottom: 2.8em;
+    font-size: 1em;
+    text-align: center;
+    color: #fff;
+    height: 2.8em;
+    line-height: 2.8em;
 }
 
 .ecjia-promotion-list .list-page-goods-img .goods-img img{
@@ -493,7 +518,9 @@
 .ecjia-login .form-group .input .icon-lock {
 	/*background-color: #9ecc17;*/
 }
-
+.ecjia-login-edit-password-form input {
+	padding-left: 0em !important;
+}
 
 /*========================  搜索 ===========================*/
 
@@ -562,6 +589,58 @@
 
 
 /*========================  红包 ===========================*/
+
+/*========================  分类店铺 ===========================*/
+.ecjia-store-list {
+    background:#EFEFF4;
+    height:auto;
+}
+.ecjia-store-list .single_item{
+    background:#f7f7f7;
+    border-bottom:1px solid #eee;
+    margin-bottom:.5em;
+}
+.ecjia-store-list .single_store{
+    width:98%;
+    margin:0 auto;
+}
+.ecjia-store-list .store_info{
+    border-bottom:1px solid #eee;
+}
+.ecjia-store-list .store_info span{
+    float:left;
+}
+.ecjia-store-list .store-image img{
+    width:3em;
+    height:3em;
+}
+
+/*========================  所有分类 ===========================*/
+.ecjia-category-list .hd {
+    position: relative;
+    height: 3em;
+    border: none;
+    padding: 0.7em 0;
+}
+.ecjia-category-list .hd h5 {
+    padding-left: 0;
+    text-align: center;
+    line-height: .1em;
+    font-weight: 400;
+    font-size: .8em;
+}
+.ecjia-category-list .line {
+    height: 1px;
+    width: 100%;
+    display: block;
+    padding-top: 1em;
+    margin: 0 auto;
+    border-bottom: 1px solid #ccc;
+}
+.ecjia-category-list .goods-index-title {
+    padding: 0 1em;
+    background-color: #FFFFFF;
+}
 
 /*========================  底部导航 ===========================*/
 .ecjia-bottom-bar-pannel {
