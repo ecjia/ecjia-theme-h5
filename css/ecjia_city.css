@@ -490,10 +490,6 @@
     border-radius: 100%;
     background: #47aa4d;
 }
-.ecjia-login .form-group {
-	margin : 1em 7% 1em 7%;
-	border-radius: 0.3em;
-}
 .ecjia-login .form-group .margin-top {
 	margin-top:3em;
 }
@@ -505,18 +501,8 @@
 	overflow: hidden;
 	margin: 0;
 }
-.ecjia-login .form-group .input .icon-left {
-	left:85%;
-	font-size: 1.2em;
-}
 .ecjia-login .form-group .input .padding-left05 {
 	padding-left: 0.5em;
-}
-.ecjia-login .form-group .input .icon-dengluyonghuming {
-	/*background-color: #47aa4d;*/
-}
-.ecjia-login .form-group .input .icon-lock {
-	/*background-color: #9ecc17;*/
 }
 .ecjia-login-edit-password-form input {
 	padding-left: 0em !important;

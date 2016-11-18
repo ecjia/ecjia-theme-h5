@@ -541,8 +541,11 @@ select, input, textarea {
 }
 .ecjia-form .form-group {
 	padding: 0.5em 1em;
+	margin-right: 1em;
+	margin-left: 1em;
 	overflow: hidden;
 	margin-bottom: 0;
+	border-radius: 5px;
 	border-bottom: 1px solid #ddd;
 }
 .ecjia-form .form-group .input,
@@ -558,13 +561,18 @@ select, input, textarea {
 	position: absolute;
 	left: 0;
 	top: 0;
-	width: 2.4em;
-	height: 2.4em;
-	line-height: 2.4em;
-	border-radius: 5px;
+	color: #ddd;
+	font-weight: normal;
+	line-height: 1.3em;
+	font-size: 1.7em;
 	text-align: center;
 }
-
+.ecjia-form .form-group .input .icon-left{
+	left: 90%;
+}
+.ecjia-form .form-group .input .icon-left + input{
+	padding-right: 3em;
+}
 .ecjia-form .form-group input,
 .ecjia-form .form-group textarea,
 .ecjia-form select {
@@ -581,7 +589,7 @@ select, input, textarea {
 	outline: 0 none;
 }
 .ecjia-form .form-group .input input {
-	padding-left: 3.4em;
+	padding-left: 3em;
 	width: 100%;
 }
 .ecjia-form .form-group .form-label input,
