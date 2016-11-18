@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 Name: 获取配送地址列表模板
 Description: 获取配送地址列表首页
@@ -31,7 +31,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="ajaxinfo"} -->
-	<!-- 配送地址 start--> 
+	<!-- 配送地址 start-->
 	<!-- {foreach from=$addres_list item=value} 循环地址列表 -->
 	<li class=" checkout-add single_item ">
 		<div class="consignee">
@@ -47,8 +47,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<a href="{$value.url}"><i class="iconfont icon-bianji"></i></a>
 				<a class="nopjax" href="{url path='user_address/del_address_list' args="id={$value.address_id}"}"><i class="iconfont icon-delete"></i></a>
 			</a>
-		</div> 
+		</div>
 	</li>
 	<!-- {/foreach} -->
-	<!-- 配送地址end--> 
+	<!-- 配送地址end-->
 <!-- {/block} -->
