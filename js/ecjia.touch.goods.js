@@ -9,6 +9,7 @@
 			ecjia.touch.category.openSelection();
 			ecjia.touch.category.selectionValue();
 			ecjia.touch.category.clear_filter();
+			ecjia.touch.category.goods_show();
 		},
 
 		openSelection : function() {
@@ -81,8 +82,29 @@
 					}
 				});
 			});
-		}
+		},
+		
+		goods_show : function() {
+			$('.view-more').on('click', function(e){
+				e.preventDefault();
+				var $this = $(this);
 
+				if ($this.hasClass('retract')) {
+					$this.parent().siblings('.single_store').children().find('.goods-hide-list').hide();
+				} else {
+					$this.parent().siblings('.single_store').children().find('.goods-hide-list').fadeIn("slow");
+				}
+				$this.addClass('hide').siblings('.goods-info').removeClass('hide');
+			});
+			
+			$('.category_left li').on('click', function(){
+				$('.ecjia-category-list').removeClass('show');
+				var $this = $(this)
+					cat_id = $this.children('a').attr('data-val');
+				$this.addClass('active').siblings('li').removeClass('active');
+				$('#category_' + cat_id).removeClass('hide').siblings('.ecjia-category-list').addClass('hide');
+			});
+		}
 	};
 
 	ecjia.touch.comment = {
