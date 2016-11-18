@@ -336,7 +336,7 @@ textarea{
 	font-size: 1em;
 }
 .ecjia-nav li.active {
-	border-bottom: 1px solid #ddd;
+	border-bottom: 2px solid #ddd;
 }
 /**
  * ecjia-nolist
