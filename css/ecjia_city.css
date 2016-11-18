@@ -517,6 +517,8 @@
 	border-top: 0.1em solid #ddd;
 	font-weight: bold;
 	line-height: 1.5em;
+	margin-left: 1em;
+	margin-right: 1em;
 }
 .ecjia-login-user-profile-form .edit-password label {
 	padding-right: 1em; 

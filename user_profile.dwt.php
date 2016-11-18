@@ -11,13 +11,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-<div class="ecjia-login">
-	<div class="user-img">
-	   <img src="{$user_img}">
-	</div>
+<div class="ecjia-user-info ecjia_user-info-edit ecjia-margin-b">
+	<div class="user-img"><img src="{$user_img}"></div>
 </div>
 <form class="ecjia-form ecjia-login-user-profile-form" name="user_profile" action="{url path='user/user_profile/update_profile'}" method="post">
-	<div class="form-group form-group-text edit-password">
+	<div class="form-group form-group-text">
 		<label class="input">
 			<span>用户名 </span>
 			<input name="district" placeholder="{t}请输入用户名{/t}" type="text" href="{url path='index/logout'}" datatype="*" value=""/>
