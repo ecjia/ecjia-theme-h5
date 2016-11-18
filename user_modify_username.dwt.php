@@ -13,7 +13,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 
 <form class="ecjia-login ecjia-form ecjia-login-user-profile-form" name="user_profile" action="{url path='user/user_profile/update_profile'}" method="post">
-	<div class="form-group ecjia-login-margin-lr ecjia-margin-t">
+	<div class="form-group ecjia-login-margin-lr ecjia-margin-t ecjiaf-bt">
 		<label class="input">
 			<input name="email ecjiaf-fl" type="email" placeholder="test测试"  value="{$profile.name}" datatype="e" errormsg="请输入正确格式的邮箱" />
 		</label>
