@@ -518,7 +518,9 @@
 .ecjia-login .form-group .input .icon-lock {
 	/*background-color: #9ecc17;*/
 }
-
+.ecjia-login-edit-password-form input {
+	padding-left: 0em !important;
+}
 
 /*========================  搜索 ===========================*/
 
