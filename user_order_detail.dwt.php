@@ -15,16 +15,44 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-<div class="ecjia-order-detail">
+<div class="ecjia-order-detail ">
 	<ul class="ecjia-list ecjia-list-two ecjia-nav">
 		<li class="active"><a class="nopjax" href="#one" role="tab" data-toggle="tab">顶单状态</a></li>
 		<li class=""><a class="nopjax" href="#two" role="tab" data-toggle="tab"	>顶单详情</a></li>
 	</ul>
 	<div class="goods-describe ecjia-margin-b active" id="one">
-123123
+
 	</div>
-	<div class="goods-describe ecjia-margin-b" id="two">
-456456
+	<div class="ecjia-checkout">
+		<div class="goods-describe ecjia-margin-b flow-goods-list" id="two">
+			<ul class="goods-item">
+				<li>
+					<div class="ecjiaf-fl goods-img">
+						<img src="http://www.ecjia-city.dev/content/uploads/images/201611/goods_img/1065_G_1479324537953.jpg">
+					</div>
+					<div class="ecjiaf-fl goods-info">
+						<p class="ecjia-truncate2">乌金石茶盘组合配套干泡小茶盘水果盘茶具茶海杯垫原创设计</p>
+						<p>￥168.00</p>
+					</div>
+					<span class="ecjiaf-fr goods-price"> X 1</span>
+				</li>
+			</ul>
+			<ul class="ecjia-list ecjia-margin-t">
+				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
+				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
+				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
+				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
+				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
+				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
+				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
+				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
+			</ul>
+			<div class="order-ft-link">
+				<a class="btn btn-small" href="#">联系卖家</a>
+				<a class="btn btn-small" href="#">再次购买</a>
+				<a class="btn btn-small" href="#">取消订单</a>
+			</div>
+		</div>
 	</div>
 </div>
 

@@ -190,8 +190,9 @@ class user_order_controller {
     	);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($arr)->send()->getBody();
         $data = (array)json_decode($data);
-        // _dump((array)($data['data']),1);
+        _dump((array)($data['data']),2);
         ecjia_front::$controller->assign('order', (array)($data['data']));
+        ecjia_front::$controller->assign('title', RC_Lang::lang('order_detail'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('order_detail'));
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_order_detail.dwt');

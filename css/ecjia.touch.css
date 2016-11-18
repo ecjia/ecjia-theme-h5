@@ -321,6 +321,8 @@ textarea{
 	padding: 0;
 	text-align: center;
 	border-bottom: none;
+	padding: 0 0 0.4em 0;
+	margin:0 2% 0.5em 0;
 }
 .ecjia-list-two li:nth-of-type(2n) {
 	margin-right: 0;
@@ -362,7 +364,10 @@ textarea{
  * 扩展列表nav下划线
  * 依赖:ecjia-list、ecjia-list-three（+）
  */
-
+.ecjia-nav li{
+	margin: 0;
+	padding: 0;
+}
 .ecjia-nav li a {
 	display: block;
 	width: 100%;
@@ -830,11 +835,11 @@ select, input, textarea {
  * btn
  * 小按钮
  */
-.btn.small-btn,
-.btn.small-btn:link,
-.btn.small-btn:hover,
-.btn.small-btn:active,
-.btn.small-btn:visited {
+.btn.btn-small,
+.btn.btn-small:link,
+.btn.btn-small:hover,
+.btn.btn-small:active,
+.btn.btn-small:visited {
 	font-size: 1em;
 	margin: 0 37.5%;
 	width: 25%;
