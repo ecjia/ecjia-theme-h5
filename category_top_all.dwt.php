@@ -14,6 +14,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 $('.category').css({height:document.documentElement.clientHeight});
 if (!$('.ecjia-header').is(":visible")) $('.category_left, .category_right').css({marginTop : 0, paddingTop : 0});
 {/literal}
+
+ecjia.touch.category.init();
 </script>
 <!-- {/block} -->
 
@@ -22,44 +24,36 @@ if (!$('.ecjia-header').is(":visible")) $('.category_left, .category_right').css
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
     <ul class="ecjia-list category_left">
-        <!--{foreach from=$category item=cat}-->
-        <li{if $cat.id eq $check_cat} class="active"{/if}><a href="{$cat.url}" data-rh="1">{$cat.name|escape:html}</a></li>
+        <!--{foreach from=$data item=cat}-->
+        <li{if $cat.id eq $cat_id} class="active"{/if}><a href="javascript:;" data-rh="1" data-val="{$cat.id}">{$cat.name|escape:html}</a></li>
         <!--{/foreach}-->
     </ul>
     <div class="category_right">
-		<div class="cat_list ecjia-category-list">
-            <a href="{$cat_url}"><img src="{$category_logo}" alt=""></a>
-            <div class="hd">
-                <h5>
-                    <span class="line"></span>
-                    <span class="goods-index-title">{$category_name}</span>
-                </h5>
+		<!--{foreach from=$data item=children}-->
+			<div class="cat_list ecjia-category-list {if $cat_id eq $children.id}show{else}hide{/if}" id="category_{$children.id}">
+	            <a href="{RC_Uri::url('goods/category/store_list')}&cid={$children.id}"><img src="{$children.image}" alt="{$children.name}"></a>
+	            <div class="hd">
+	                <h5>
+	                    <span class="line"></span>
+	                    <span class="goods-index-title">{$children.name}</span>
+	                </h5>
+	            </div>
+	            <!-- {if $children.children} -->
+	            <ul class="ecjia-margin-t">
+	                <!--{foreach from=$children.children item=cat}-->
+	                <li>
+	                    <a href="{RC_Uri::url('goods/category/store_list')}&cid={$cat.id}">
+	                        <div class="cat-img">
+	                            <img src="{$cat.image}" alt="{$cat.name}">
+	                        </div>
+	                        <div class="child_name">{$cat.name}</div>
+	                    </a>
+	                </li>
+		           	<!--{/foreach}-->
+	            </ul>
+	            <!-- {/if} -->
             </div>
-            <ul class="ecjia-margin-t">
-                <!--{foreach from=$child item=children }-->
-                <li>
-                    <a href="{$children.url}">
-                        <div class="cat-img">
-                            <img src="{$children.icon}" alt="">
-                        </div>
-                        <div class="child_name">{$children.name}</div>
-                    </a>
-                </li>
-                <!-- {if $children.cat_id} -->
-                <!--{foreach from=$children.cat_id item=cat }-->
-                <li>
-                    <a href="{$cat.url}">
-                        <div class="cat-img">
-                            <img src="{$cat.icon}" alt="">
-                        </div>
-                        <div class="child_name">{$cat.name}</div>
-                    </a>
-                </li>
-                <!--{/foreach}-->
-                <!-- {/if} -->
-                <!--{/foreach}-->
-            </ul>
-        </div>
+    	<!--{/foreach}-->
     </div>
 </div>
 <!-- {/block} -->

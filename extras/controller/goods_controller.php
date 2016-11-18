@@ -9,33 +9,16 @@ class goods_controller {
      * 获取分类信息
      */
     public static function top_all() {
-        $cat_id = isset($_GET['cid']) && intval($_GET['cid']) > 0 ? intval($_GET['cid']) : 0;
-        $category = get_categories_tree($cat_id);
-	    $check_cat = !empty($cat_id)? intval($cat_id) : key($category['category']);
-	    $arr  = current($category['category']);
-        if (empty($cat_id)) {
-            $category_logo = $arr['icon'];
-            $category_name = $arr['name'];
-            $cat_url = RC_Uri::url('goods/category/goods_list&cid='.$arr['id']);
-        } else {
-            foreach ($category['category'] as $key => $val) {
-                if ($key == $cat_id) {
-                    $category_logo = $val['icon'];
-                    $category_name = $val['name'];
-                    $cat_url = RC_Uri::url('goods/category/goods_list&cid='.$cat_id);
-                }
-            }
-        }
-        foreach ($category['category'] as $key => $val) {
-            $category['category'][$key]['name'] = str_replace("ECSHOP", "", $val['name']);
-        }
-        ecjia_front::$controller->assign('check_cat', $check_cat);
-        ecjia_front::$controller->assign('category', $category['category']);
-        ecjia_front::$controller->assign('child', $category['child']);
-        ecjia_front::$controller->assign('category_logo', $category_logo);
-        ecjia_front::$controller->assign('category_name', $category_name);
+    	$cat_id = isset($_GET['cid']) && intval($_GET['cid']) > 0 ? intval($_GET['cid']) : 0;
+    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_CATEGORY)->run();//send()->getBody();
+    	 
+    	if (empty($cat_id)) {
+    		$cat_id = $data[0]['id'];
+    	}
+    	
+    	ecjia_front::$controller->assign('cat_id', $cat_id);
+    	ecjia_front::$controller->assign('data', $data);
         
-        ecjia_front::$controller->assign('cat_url', $cat_url);
         ecjia_front::$controller->assign('title', RC_Lang::lang('catalog'));
         ecjia_front::$controller->assign('page_title', RC_Lang::lang('catalog'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('catalog'));
@@ -405,6 +388,15 @@ class goods_controller {
      * 店铺列表
      */
     public static function store_list() {
+    	$cid = intval($_GET['cid']);
+    	$arr = array(
+    		'category_id' 	=> $cid,
+    		'pagination' 	=> array('count' => 10, 'page' => 1),
+    		'location' 		=> array('longitude' => '121.416359', 'latitude' => '31.235371')
+    	);
+    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SELLER_LIST)->data($arr)->run();//send()->getBody();
+    	
+    	ecjia_front::$controller->assign('data', $data);
     	ecjia_front::$controller->assign('shop_logo', RC_Uri::admin_url('statics/images/nopic.png'));
     	ecjia_front::$controller->assign('title', '店铺列表');
     	ecjia_front::$controller->display('store_list.dwt');

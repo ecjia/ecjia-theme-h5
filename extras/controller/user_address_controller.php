@@ -191,6 +191,33 @@ class user_address_controller {
         $arr['target'] = htmlspecialchars(trim(stripslashes($_GET['target'])));
         ecjia_front::$controller->showmessage('地区参数', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, $arr);
     }
+    
+    /**
+     * 定位当前位置
+     */
+    public static function near_location() {
+        ecjia_front::$controller->assign('title', '您当前地址列表');
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign_title('当前位置');
+        ecjia_front::$controller->display('user_near_location.dwt');
+    }
+    
+    /**
+     * 定位列表
+     */
+    public static function location() {
+        $province_list = get_regions(1, 1);
+        $city_list = get_regions(2);
+        $district_list = get_regions(3);
+        ecjia_front::$controller->assign('country_list', get_regions());
+        ecjia_front::$controller->assign('shop_province_list', get_regions(1, ecjia::config('shop_country')));
+        ecjia_front::$controller->assign('province_list', $province_list);
+        ecjia_front::$controller->assign('city_list', $city_list);
+        ecjia_front::$controller->assign('district_list', $district_list);
+        ecjia_front::$controller->assign_title('定位');
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_location.dwt');
+    }
 
 }
 

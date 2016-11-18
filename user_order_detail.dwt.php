@@ -15,6 +15,41 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
+<div class="ecjia-order-detail">
+	<ul class="ecjia-list ecjia-list-two ecjia-nav">
+		<li class="active"><a class="nopjax" href="#one" role="tab" data-toggle="tab">顶单状态</a></li>
+		<li class=""><a class="nopjax" href="#two" role="tab" data-toggle="tab"	>顶单详情</a></li>
+	</ul>
+	<div class="goods-describe ecjia-margin-b active" id="one">
+123123
+	</div>
+	<div class="goods-describe ecjia-margin-b" id="two">
+456456
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="flow-checkout">
 	<section class="checkout-add">
 		<a href="{url path='flow/consignee_list'}">

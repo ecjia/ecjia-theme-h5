@@ -18,6 +18,8 @@ RC_Hook::add_action('goods/category/top_all', array('goods_controller', 'top_all
 RC_Hook::add_action('goods/category/all', array('goods_controller', 'all'));
 RC_Hook::add_action('goods/category/goods_list', array('goods_controller', 'goods_list'));
 RC_Hook::add_action('goods/category/asynclist', array('goods_controller', 'asynclist'));
+RC_Hook::add_action('goods/category/store_list', array('goods_controller', 'store_list'));
+
 RC_Hook::add_action('goods/index/init', array('goods_controller', 'goods_index'));
 RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));
 RC_Hook::add_action('goods/index/promotion', array('goods_controller', 'goods_promotion'));
@@ -124,6 +126,8 @@ RC_Hook::add_action('user/user_address/edit_address', array('user_address_contro
 RC_Hook::add_action('user/user_address/update_address', array('user_address_controller', 'update_address'));
 RC_Hook::add_action('user/user_address/del_address_list', array('user_address_controller', 'del_address_list'));
 RC_Hook::add_action('user/user_address/region', array('user_address_controller', 'region'));
+RC_Hook::add_action('user/user_address/location', array('user_address_controller', 'location'));
+RC_Hook::add_action('user/user_address/near_location', array('user_address_controller', 'near_location'));
 
 RC_Loader::load_theme('extras/controller/user_bonus_controller.php');
 RC_Hook::add_action('user/user_bonus/bonus', array('user_bonus_controller', 'bonus'));

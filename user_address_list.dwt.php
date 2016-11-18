@@ -21,7 +21,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<section>
 	<!-- {if $addres_list} -->
-		<ul class="ecjia-list list-one user-address-list" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_addres_list'}" data-size="10">			
+		<ul class="ecjia-list list-one ecjia-address-list" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_addres_list'}" data-size="10">			
 			<!-- 配送地址 start--> 
 			<!-- 配送地址end--> 
 		</ul>
