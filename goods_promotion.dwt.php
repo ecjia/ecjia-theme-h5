@@ -29,7 +29,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<a class="list-page-goods-img" href="{$val.url}">
 				<span class="goods-img">
                     <img src="{$val.goods_img}" alt="{$val.name}">
-                    <span class="promote-time">距离活动结束还有365天 02:02:40</span>    
+                    <span class="promote-time" data-type="1" value="{$val.promote_end_date}"></span>    
                 </span>
 				<span class="list-page-box">
 					<span class="goods-name">{$val.name}</span>

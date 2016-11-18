@@ -126,6 +126,8 @@ RC_Hook::add_action('user/user_address/edit_address', array('user_address_contro
 RC_Hook::add_action('user/user_address/update_address', array('user_address_controller', 'update_address'));
 RC_Hook::add_action('user/user_address/del_address_list', array('user_address_controller', 'del_address_list'));
 RC_Hook::add_action('user/user_address/region', array('user_address_controller', 'region'));
+RC_Hook::add_action('user/user_address/location', array('user_address_controller', 'location'));
+RC_Hook::add_action('user/user_address/near_location', array('user_address_controller', 'near_location'));
 
 RC_Loader::load_theme('extras/controller/user_bonus_controller.php');
 RC_Hook::add_action('user/user_bonus/bonus', array('user_bonus_controller', 'bonus'));
