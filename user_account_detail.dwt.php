@@ -12,7 +12,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 
-<div class="ecjia-account-detail ecjia-margin-t">
+<div class="ecjia-account ecjia-margin-t">
 	<div class="account-bonus ecjiaf-bt">
 		<a href="{url path='user/user_bonus/bonus'}">
 			<i class="iconfont icon-qianbao"></i>

@@ -23,7 +23,7 @@ class user_controller {
         // ecjia_front::$controller->assign('user_notice', ecjia::config('user_notice'));
         // ecjia_front::$controller->assign('title', RC_Lang::lang('user_center'));
         // ecjia_front::$controller->assign_title(RC_Lang::lang('user_center'));
-        // $user_img = get_user_img();
+        $user_img = get_user_img();
         // $surplus_amount = get_user_surplus($user_id);
         // $user = $db_users->where(array('user_id'=>$user_id))->find();
         // unset($user['question']);
@@ -35,7 +35,7 @@ class user_controller {
         // }
         // ecjia_front::$controller->assign('integral',intval($user['pay_points']));
         // ecjia_front::$controller->assign('surplus_amount', intval($surplus_amount));
-        // ecjia_front::$controller->assign('user_img', $user_img);
+        ecjia_front::$controller->assign('user_img', $user_img);
   
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user.dwt');
@@ -169,17 +169,6 @@ class user_controller {
         // ecjia_front::$controller->assign_title("登录绑定");
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_bind_login.dwt');
-    }
-
-    /* 用户中心编辑用户名称 */
-    public static function modify_username() {
-        // $user = integrate::init_users();
-        //
-        // ecjia_front::$controller->assign('title', "用户名");
-        // ecjia_front::$controller->assign_title("用户名");
-        // ecjia_front::$controller->assign('header_right' , array('info' => '保存', 'href' => RC_Uri::url('user/index/edit_profile')));
-        ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('user_modify_username.dwt');
     }
 
     public static function reset_password() {

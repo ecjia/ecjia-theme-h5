@@ -95,7 +95,6 @@ RC_Hook::add_action('user/index/mobile_register', array('user_controller', 'mobi
 RC_Hook::add_action('user/index/bind_signin', array('user_controller', 'bind_signin'));
 RC_Hook::add_action('user/index/bind_signup', array('user_controller', 'bind_signup'));
 RC_Hook::add_action('user/index/bind_login', array('user_controller', 'bind_login'));
-RC_Hook::add_action('user/index/modify_username', array('user_controller', 'modify_username'));
 RC_Hook::add_action('user/index/signup', array('user_controller', 'signup'));
 RC_Hook::add_action('user/index/validate_email', array('user_controller', 'validate_email'));
 RC_Hook::add_action('user/index/get_password_email', array('user_controller', 'get_password_email'));
@@ -177,6 +176,7 @@ RC_Hook::add_action('user/user_package/add_server', array('user_package_controll
 
 RC_Loader::load_theme('extras/controller/user_profile_controller.php');
 RC_Hook::add_action('user/user_profile/edit_profile', array('user_profile_controller', 'edit_profile'));
+RC_Hook::add_action('user/user_profile/modify_username', array('user_profile_controller', 'modify_username'));
 RC_Hook::add_action('user/user_profile/update_profile', array('user_profile_controller', 'update_profile'));
 RC_Hook::add_action('user/user_profile/edit_password', array('user_profile_controller', 'edit_password'));
 

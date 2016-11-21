@@ -538,37 +538,37 @@
 }
 /*========================  账户余额 ===========================*/
 
-.ecjia-account-detail .account-bonus {
+.ecjia-account .account-bonus {
 	background: #fff;
 	padding:1em;
 }
-.ecjia-account-detail .account-bonus a {
+.ecjia-account .account-bonus a {
 	display: block;
 }
-.ecjia-account-detail .account-bonus span {
+.ecjia-account .account-bonus span {
 	color: #999;
 }
-.ecjia-account-detail .account-bonus span i {
+.ecjia-account .account-bonus span i {
 	font-size: 1.5em;
 }
-.ecjia-account-detail .account-bonus i.icon-qianbao {
+.ecjia-account .account-bonus i.icon-qianbao {
 	padding:.2em;
 	font-size: 1.2em;
 	border-radius: 5px;
 }
-.ecjia-account-detail .account-bonus i.icon-redpacket {
+.ecjia-account .account-bonus i.icon-redpacket {
 	padding:.2em;
 	font-size: 1.2em;
 	border-radius: 5px;
 }
-.ecjia-account-detail .account-bonus.integral i {
+.ecjia-account .account-bonus.integral i {
 	padding:.2em;
 	font-size: 1.2em;
 	border-radius: 5px;
 }
-.ecjia-account-detail .account-bonus i.icon-redpacket,
-.ecjia-account-detail .account-bonus i.icon-copy,
-.ecjia-account-detail .account-bonus i.icon-qianbao{
+.ecjia-account .account-bonus i.icon-redpacket,
+.ecjia-account .account-bonus i.icon-copy,
+.ecjia-account .account-bonus i.icon-qianbao{
     vertical-align: middle;
     margin-top: -.4em;
     margin-right: .5em;
