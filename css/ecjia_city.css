@@ -487,7 +487,44 @@
 }
 /*========================  账户余额 ===========================*/
 
+.ecjia-account .ecjia-margin-t3{
+	margin-top: 3em;
+}
 
+.ecjia-account .form-group .box {
+	position: relative;
+	overflow: hidden;
+	border-bottom: none;
+}
+.ecjia-account .form-group .package-server {
+	border-bottom: none;
+}
+.ecjia-account .form-group .package-server select {
+	left: auto;
+	right: 0.5em;
+}
+.ecjia-account .form-group .box span {
+	position: absolute;
+	left: 5em;
+	top: -0.5em;
+	right: 1em;
+}
+.ecjia-account p {
+	padding: 1em 1em;
+	font-size: 1em;
+}
+.ecjia-account p1 {
+	padding: 1em 0.1em;
+	font-size: 1em;
+}
+.ecjia-account .btn-recharge ,
+.ecjia-account .btn-recharge:hover {
+	border: none;
+	margin-top: 1em;
+}
+.ecjia-account .ecjia-widthdraw {
+	margin: 1em 1em 2em 1em;
+}
 /*========================  交易记录 ===========================*/
 
 
@@ -733,8 +770,27 @@
     padding-left: 6em;
 }
 /*========================  订单详情 ===========================*/
-
-
+.ecjia-order-detail .ecjia-checkout{
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.ecjia-order-detail .ecjia-checkout .flow-goods-list{
+    background: none;
+}
+.ecjia-order-detail .ecjia-checkout .flow-goods-list .goods-item{
+    background: #ffffff;
+}
+.ecjia-order-detail .order-ft-link{
+    text-align: center;
+    padding: 1em 0;
+}
+.ecjia-order-detail .order-ft-link .btn-small{
+    margin: 0;
+    margin-right: 4%;
+}
+.ecjia-order-detail .order-ft-link .btn-small:last-child{
+    margin-right: 0;
+}
 /*========================  文章 ===========================*/
 
 
@@ -796,7 +852,7 @@
 }
 .ecjia-store-list .store-name span{
 	color: #FF1919;
-	display:inline-block; 
+	display:inline-block;
 	border:1px solid #FF1919;
 	border-radius:4px;
 	font-weight:500;
@@ -823,7 +879,7 @@
 }
 .ecjia-store-list .store-promotion .promotion-label{
 	color: #fff;
-	display:inline-block; 
+	display:inline-block;
 	border:1px solid #FF1919;
 	border-radius:4px;
 	font-weight:500;
