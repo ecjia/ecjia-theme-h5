@@ -30,10 +30,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<li class="single_item">
 		<a class="list-page-goods-img" href="{$goods.url}">
 			<span class="goods-img">
-				<img src="{$goods.thumb}" alt="{$goods.name}">
+				<img src="{$goods.img.thumb}" alt="{$goods.name}">
 			</span>
 			<span class="list-page-box">
-				<p class="merchants-name"><i class="iconfont icon-shop"></i>宝美生活馆专营店</p>
+				<p class="merchants-name"><i class="iconfont icon-shop"></i>{$goods.seller_name}</p>
 				<span class="goods-name">{$goods.name}</span>
 				<span class="list-page-goods-price">
 					<!--{if $goods.promote_price}-->
