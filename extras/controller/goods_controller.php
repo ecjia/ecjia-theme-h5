@@ -10,7 +10,7 @@ class goods_controller {
      */
     public static function top_all() {
     	$cat_id = isset($_GET['cid']) && intval($_GET['cid']) > 0 ? intval($_GET['cid']) : 0;
-    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_CATEGORY)->run();//send()->getBody();
+    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_CATEGORY)->run();
     	 
     	if (empty($cat_id)) {
     		$cat_id = $data[0]['id'];
