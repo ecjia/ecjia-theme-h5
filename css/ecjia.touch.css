@@ -317,7 +317,7 @@ textarea{
  */
 .ecjia-list-two li {
 	float: left;
-	width: 50%;
+	width: 49%;
 	padding: 0;
 	text-align: center;
 	border-bottom: none;
@@ -367,6 +367,7 @@ textarea{
 .ecjia-nav li{
 	margin: 0;
 	padding: 0;
+	width: 50%;
 }
 .ecjia-nav li a {
 	display: block;
