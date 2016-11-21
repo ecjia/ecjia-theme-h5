@@ -487,43 +487,40 @@
 }
 /*========================  账户余额 ===========================*/
 
-.ecjia-account .ecjia-margin-t3{
-	margin-top: 3em;
+.ecjia-account-detail .account-bonus {
+	background: #fff;
+	padding:1em;
 }
-
-.ecjia-account .form-group .box {
-	position: relative;
-	overflow: hidden;
-	border-bottom: none;
+.ecjia-account-detail .account-bonus a {
+	display: block;
 }
-.ecjia-account .form-group .package-server {
-	border-bottom: none;
+.ecjia-account-detail .account-bonus span {
+	color: #999;
 }
-.ecjia-account .form-group .package-server select {
-	left: auto;
-	right: 0.5em;
+.ecjia-account-detail .account-bonus span i {
+	font-size: 1.5em;
 }
-.ecjia-account .form-group .box span {
-	position: absolute;
-	left: 5em;
-	top: -0.5em;
-	right: 1em;
+.ecjia-account-detail .account-bonus i.icon-qianbao {
+	padding:.2em;
+	font-size: 1.2em;
+	border-radius: 5px;
 }
-.ecjia-account p {
-	padding: 1em 1em;
-	font-size: 1em;
+.ecjia-account-detail .account-bonus i.icon-redpacket {
+	padding:.2em;
+	font-size: 1.2em;
+	border-radius: 5px;
 }
-.ecjia-account p1 {
-	padding: 1em 0.1em;
-	font-size: 1em;
+.ecjia-account-detail .account-bonus.integral i {
+	padding:.2em;
+	font-size: 1.2em;
+	border-radius: 5px;
 }
-.ecjia-account .btn-recharge ,
-.ecjia-account .btn-recharge:hover {
-	border: none;
-	margin-top: 1em;
-}
-.ecjia-account .ecjia-widthdraw {
-	margin: 1em 1em 2em 1em;
+.ecjia-account-detail .account-bonus i.icon-redpacket,
+.ecjia-account-detail .account-bonus i.icon-copy,
+.ecjia-account-detail .account-bonus i.icon-qianbao{
+    vertical-align: middle;
+    margin-top: -.4em;
+    margin-right: .5em;
 }
 /*========================  交易记录 ===========================*/
 
@@ -541,6 +538,13 @@
 .ecjia-login-b {
 	margin-bottom: 1em;
 }
+.ecjia-login-b .btn-c{
+	background-color: #FFFFFF;
+	color: #000000;
+}
+.ecjia-login-margin-l {
+	margin-left: 92%;
+}
 .ecjia-login-margin-top {
 	margin-top:3em;
 }
@@ -556,18 +560,16 @@
 }
 .ecjia-login .small-text {
 	margin-right:0 !important;
-	margin-top: 0 !important;
 	display: block;
 	float: left;
-	width: 54%;
+	width: 62%;
 }
 .ecjia-login .small-submit {
 	display: block;
 	float: right;
 	margin-bottom: 1em;
-	margin-right: 7%;
 	margin-left : 0.1em;
-	width: 30%;
+	width: 35%;
 }
 .ecjia-login-login-foot {
     overflow: hidden;
@@ -632,9 +634,10 @@
 	float: right;
 }
 .ecjia-login .remark-size {
-	margin-right: 7%;
-	margin-left : 7%;
-	margin-bottom: 1em;
+	margin-top: 0.5em;
+	margin-right: 10%;
+	margin-left : 2%;
+	margin-bottom: 0.5em;
 	float: left;
 }
 .ecjia-login .user-img img {

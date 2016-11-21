@@ -37,7 +37,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	    <p class="p-bottom">已有账号</p>
 	    <div class="around">
             <input type="hidden" name="referer" value="{$smarty.get.referer}" />
-            <input type="submit" class="btn btn-info login-btn" value="立即关联" />
+            <input type="submit" class="btn btn-info login-btn btn-c" style="background-color: #FFFFFF, font-color: #DDD" value="立即关联" />
 	    </div>	
 	</div>
 </form>
