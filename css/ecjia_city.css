@@ -11,10 +11,16 @@
 	padding-right: 0;
 	font-weight: 500;
 }
+.ecjia-row-nav{
+	border-bottom:0;
+}
+.ecjia-row-nav.index {
+	padding-bottom: 0;
+}
 /*首页广告位*/
 .ecjia-mod .ecjia-adsense-model{
 	height: auto;
-	padding-top: 1.5em;
+	padding-top: 1em;
 }
 .ecjia-mod .ecjia-adsense-model .adsense-item{
 	padding: 0 .7em;
