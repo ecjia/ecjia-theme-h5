@@ -35,6 +35,11 @@ class touch_controller {
         ecjia_front::$controller->assign('adsense_group', $data['adsense_group']);
         
         //首页促销商品
+        if (!empty($data['promote_goods'])) {
+        	foreach ($data['promote_goods'] as $k => $v) {
+        		$data['promote_goods'][$k]['promote_end_date'] = RC_Time::local_strtotime($v['promote_end_date']);
+        	}
+        }
         ecjia_front::$controller->assign('promotion_goods', $data['promote_goods']);
         
         //新品推荐
