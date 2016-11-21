@@ -28,19 +28,24 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<li class="ecjia-margin-t">
 			<a class="list-page-goods-img" href="{$val.url}">
 				<span class="goods-img">
-                    <img src="{$val.goods_img}" alt="{$val.name}">
+                    <img src="{$val.img.thumb}" alt="{$val.name}">
                     <span class="promote-time" data-type="1" value="{$val.promote_end_date}"></span>    
                 </span>
 				<span class="list-page-box">
-					<span class="goods-name">{$val.name}</span>
+					<span class="goods-name">
+						{if $val.manage_mode eq 'self'}
+						<span class="self-label">自营</span>
+						{/if}
+						<span class="name-label">{$val.name}</span>
+					</span>
 					<span class="list-page-goods-price">
 						<!--{if $val.promote_price}-->
 						<span>{$val.promote_price}</span>
 						<!--{else}-->
 						<span>{$val.shop_price}</span>
 						<!--{/if}-->
-						<!--{if $val.market_price}-->
-	          			<del>原价：{$val.market_price}</del>
+						<!--{if $val.shop_price}-->
+	          			<del>原价：{$val.shop_price}</del>
 	          			<!--{/if}-->
 					</span>
 				</span>

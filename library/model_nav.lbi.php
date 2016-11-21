@@ -9,14 +9,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <nav class="container-fluid user-nav">
 	<ul class="row ecjia-row-nav index">
 		<!--{foreach from=$navigator item=nav}-->
-		<li class="col-sm-3 col-xs-3">
+		<li class="col-sm-3 col-xs-2">
 			<a href="{$nav.url}">
-				<!-- {if $nav.icon} -->
-				<img src="{$nav.icon}" />
+				<!-- {if $nav.image} -->
+				<img src="{$nav.image}" />
 				<!-- {else} -->
 				<img src="{$theme_url}dist/images/default_icon.png" alt="">
 				<!-- {/if} -->
-				<p class="text-center">{$nav.name}</p>
+				<p class="text-center">{$nav.text}</p>
 			</a>
 		</li>
 		<!--{/foreach}-->

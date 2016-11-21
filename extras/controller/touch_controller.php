@@ -11,7 +11,7 @@ class touch_controller {
         /* 自定义导航栏 */
         $navigator = get_touch_nav();
         $cat_rec = get_recommend_res();/* 首页推荐分类商品 */
-        ecjia_front::$controller->assign('navigator', $navigator['touch']);
+        
         $base   = goods_list('best', 4);
         $new    = goods_list('new', 6);
         $hot    = goods_list('hot', ecjia::config('page_size'));
@@ -25,8 +25,11 @@ class touch_controller {
         	'location' => array('longitude' => '121.416359', 'latitude' => '31.235371')
         );
         
-        //首页广告
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DATA)->data($arr)->run();
+        
+        ecjia_front::$controller->assign('navigator', $data['mobile_menu']);
+        
+        //首页广告
         if (!empty($data['adsense_group'])) {
         	foreach ($data['adsense_group'] as $k => $v) {
         		$data['adsense_group'][$k]['count'] = count($v['adsense']);
@@ -70,15 +73,23 @@ class touch_controller {
      * ajax获取商品
      */
     public static function ajax_goods() {
-//         $type = htmlspecialchars($_GET['type']);
-//         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
-//         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-//         $goods_list = goods_list($type, $limit, $page);
-//         ecjia_front::$controller->assign('goods_list', $goods_list['list']);
-//         ecjia_front::$controller->assign_lang();
-//         $sayList = ecjia_front::$controller->fetch('index.dwt');
-// //         if ($page == 3) $goods_list['is_last'] = 1;
-//         ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' , 'is_last' => $goods_list['is_last']));
+        $type = htmlspecialchars($_GET['type']);
+        $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+        $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+        
+        $arr = array(
+        	'action_type' 	=> $type,	
+ 			'pagination' 	=> array('count' => $limit, 'page' => $page),
+			'location' 		=> array('longitude' => '121.416359', 'latitude' => '31.235371')
+        );
+        
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($arr)->run();
+        ecjia_front::$controller->assign('goods_list', $data);
+        ecjia_front::$controller->assign_lang();
+        $sayList = ecjia_front::$controller->fetch('index.dwt');
+        
+//         if ($page == 3) $goods_list['is_last'] = 1;
+        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $goods_list['is_last']));
     }
 
     /**
