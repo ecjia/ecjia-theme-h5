@@ -38,14 +38,14 @@
 	margin-top: .3em;
 }
 .ecjia-mod .ecjia-adsense-model li.img-item{
-	width:32%;
+	width:32.6%;
 	float: left;
-	margin: .5em 2% 0 0;
+	margin: .3em 1% 0 0;
 }
 .ecjia-mod .ecjia-adsense-model li.img-th-item{
-	width:32%;
+	width:32.6%;
 	float: left;
-	margin: .5em 2% 0 0;
+	margin: .3em 1% 0 0;
 }
 .ecjia-mod .ecjia-adsense-model li.img-item:nth-of-type(4n){
 	margin-right:0;
@@ -168,6 +168,8 @@
 	background: #fff;
 	margin-top: 1em;
 	position: relative;
+	border-top-left-radius: .3em;
+	border-top-right-radius: .3em;
 }
 .ecjia-promotion-list li:first-child{
 	margin-top: 0;
@@ -205,6 +207,8 @@
 
 .ecjia-promotion-list .list-page-goods-img .goods-img img{
    	width: 100%;
+	border-top-left-radius: .3em;
+	border-top-right-radius: .3em;
 }
 .ecjia-promotion-list .promote-time .end-time{
     color: #333;
