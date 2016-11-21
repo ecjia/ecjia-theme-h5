@@ -91,6 +91,7 @@ RC_Hook::add_action('user/index/signin', array('user_controller', 'signin'));
 RC_Hook::add_action('user/index/register', array('user_controller', 'register'));
 RC_Hook::add_action('user/index/set_password', array('user_controller', 'set_password'));
 RC_Hook::add_action('user/index/reset_password', array('user_controller', 'reset_password'));
+RC_Hook::add_action('user/index/mobile_register', array('user_controller', 'mobile_register'));
 RC_Hook::add_action('user/index/bind_signin', array('user_controller', 'bind_signin'));
 RC_Hook::add_action('user/index/bind_signup', array('user_controller', 'bind_signup'));
 RC_Hook::add_action('user/index/bind_login', array('user_controller', 'bind_login'));

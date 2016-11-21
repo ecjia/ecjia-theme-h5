@@ -609,11 +609,12 @@
 	margin-right:0 !important;
 	display: block;
 	float: left;
-	width: 62%;
+	width: 55%;
 }
 .ecjia-login .small-submit {
 	display: block;
 	float: right;
+	margin-right: 3%;
 	margin-bottom: 1em;
 	margin-left : 0.1em;
 	width: 35%;
@@ -630,6 +631,9 @@
 }
 .ecjia-login .margin-top {
 	margin-top: 3em;
+}
+.ecjia-login .text-st {
+	margin-left: 7%;
 }
 .ecjia-login .margin-top4 {
 	margin-top: 4em !important;
