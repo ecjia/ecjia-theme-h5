@@ -13,17 +13,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 
 <div class="user-account-detail">
-	<form  class="ecjia-form user-account-recharge" data-valid="novalid" name="ecjia-form user-profile-form" action="{url path='user/user_account/recharge_account'}" method="post">
+	<form  class="ecjia-form ecjia-account" data-valid="novalid" name="ecjia-form user-profile-form" action="{url path='user/user_account/recharge_account'}" method="post">
+		<p>{t}账户充值：TEST测试{/t}</p>
 		<div class="form-group form-group-text">
 			<label class="input">
-				<span class="ecjiaf-fl">{t}充值金额{/t}</span>
-				<input type="number" placeholder="{t}请输入充值金额{/t}" name="amount" value="" datatype="n"/>
+				<span class="ecjiaf-fl">{t}金额{/t}</span>
+				<input placeholder="{t}建议充入100元以上金额{/t}" name="amount" value="" datatype="n"/>
 			</label>
 		</div>
 
-		<p>{t}温馨提醒：充值金额最好在1元到1万元之间{/t}</p>
-
-		<div class="form-group form-group-text">
+		<div class="form-group form-group-text ecjia-margin-t">
 			<label>
 				<span class="ecjia-margin-r">{t}充值方式{/t}</span>
 				<select name="payment_id">
@@ -34,15 +33,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</label>
 		</div>
 
-		<div class="form-group form-group-text textarea-recharge">
-			<label class="textarea">
-				<!-- <span class="ecjiaf-fl">{t}备注信息{/t}</span> -->
-				<textarea type="text" placeholder="{t}请输备注信息{/t}" name="user_note" datatype="*" value=""></textarea>
-			</label>
-		</div>
-		
 		<input name="act" type="hidden" value="profile" />
-		<div class=" text-center">
+		<div class=" text-center ecjia-margin-t3">
 			<input class="btn btn-recharge" name="submit" type="submit" value="{t}立即充值{/t}" />
 		</div>
 	</form>

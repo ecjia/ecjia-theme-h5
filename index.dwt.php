@@ -21,6 +21,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/model_banner.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_nav.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_brand_list.lbi" --><!-- #EndLibraryItem -->
+
+<!-- {if $adsense_group} -->
+<!-- #BeginLibraryItem "/library/model_adsense.lbi" --><!-- #EndLibraryItem -->
+<!-- {/if} -->
+
 <!-- {if $promotion_goods} -->
 <!-- #BeginLibraryItem "/library/model_promotions.lbi" --><!-- #EndLibraryItem -->
 <!-- {/if} -->
@@ -35,24 +40,19 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {/block} -->
 
-
 <!-- {block name="ajaxinfo"} -->
 	<!-- 异步商品列表 start-->
 	<!-- {foreach from=$goods_list item=goods} 循环商品 -->
 	<li class="single_item">
-		<a class="list-page-goods-img" href="{$goods.url}">
+		<a class="list-page-goods-img" href="{RC_Uri::url('goods/index/init')}&id={$goods.id}">
 			<span class="goods-img">
-				<img src="" alt="{$goods.name}">
+				<img src="{$goods.img.thumb}" alt="{$goods.name}">
 			</span>
 			<span class="list-page-box">
-				<p class="merchants-name"><i class="iconfont icon-shop"></i>宝美生活馆专营店</p>
+				<p class="merchants-name"><i class="iconfont icon-shop"></i>{$goods.seller_name}</p>
 				<span class="goods-name">{$goods.name}</span>
 				<span class="list-page-goods-price">
-					<!--{if $goods.promote_price}-->
-					<span>{$goods.promote_price}</span>
-					<!--{else}-->
 					<span>{$goods.shop_price}</span>
-					<!--{/if}-->
 				</span>
 			</span>
 		</a>

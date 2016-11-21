@@ -1,28 +1,86 @@
 /*========================  首页 ===========================*/
+.ecjia-row-nav li:nth-child(4n+1) {
+    clear: none;
+}
+.ecjia-row-nav li:nth-child(5n+1) {
+    clear: both;
+}
+.ecjia-row-nav .col-xs-2 {
+    width: 19.666667%;
+	padding-left: 0;
+	padding-right: 0;
+	font-weight: 500;
+}
+/*首页广告位*/
+.ecjia-mod .ecjia-adsense-model{
+	height: auto;
+	padding-top: 1.5em;
+}
+.ecjia-mod .ecjia-adsense-model .adsense-item{
+	padding: 0 .7em;
+	height: auto;
+    overflow: hidden;
+}
+
+.ecjia-mod .ecjia-adsense-model .adsense-item .adsense-title h2{
+	font-weight: 500;
+	color: #333;
+	font-size: 1.1em;
+	padding: .5em 0 .2em 0;
+}
+.ecjia-mod .ecjia-adsense-model .adsense-item .adsense-group{
+	height: auto;
+	overflow: hidden;
+}
+.ecjia-mod .ecjia-adsense-model li.adsense-single{
+	width: 100%;
+	height: 120%;
+	margin-top: .3em;
+}
+.ecjia-mod .ecjia-adsense-model li.img-item{
+	width:32%;
+	float: left;
+	margin: .5em 2% 0 0;
+}
+.ecjia-mod .ecjia-adsense-model li.img-th-item{
+	width:32%;
+	float: left;
+	margin: .5em 2% 0 0;
+}
+.ecjia-mod .ecjia-adsense-model li.img-item:nth-of-type(4n){
+	margin-right:0;
+}
+.ecjia-mod .ecjia-adsense-model li.img-th-item:nth-of-type(3n){
+	margin-right:0;
+}
+.ecjia-mod .ecjia-adsense-model li.adsense-single img{
+	width: 100%;
+	border-radius: .4em;
+}
 /*首页促销商品*/
 .ecjia-mod.ecjia-promotion-model{
     overflow: hidden;
 }
 .ecjia-mod.ecjia-promotion-model .ecjia-sales-hd h2{
-	height:1.8em;
-	border-bottom:1px solid #eee;
-	color:#333;
-	font-size:1em;
-	line-height:1.2em;
-	padding-left:2.1em;
+	height: 1.8em;
+	border-bottom: 1px solid #eee;
+	color: #333;
+	font-size: 1em;
+	line-height: 1.2em;
+	padding-left: 2.1em;
 }
 .ecjia-mod.ecjia-promotion-model .ecjia-sales-hd h2 i{
-	font-size:1.2em;
-	color:#884597;
+	font-size: 1.2em;
+	color: #884597;
 }
 .ecjia-mod.ecjia-promotion-model .more_info{
-	line-height:1.2em;
-	width:4em;
-	font-size:.9em;
-	color:#aaa;
-	float:right;
-	padding-left:1em;
-	border-left:1px solid #ccc;
+	line-height: 1.2em;
+	width: 4em;
+	font-size: .9em;
+	color: #aaa;
+	float: right;
+	padding-left: 1em;
+	border-left: 1px solid #ccc;
 }
 .swiper-promotion {
 	overflow: hidden;
@@ -55,7 +113,6 @@
     color: #fff;
     line-height: 1.6em;
 }
-
 .ecjia-promotion-model .swiper-slide .list-page-goods-img .goods-img {
     display: block;
     height: 0;
@@ -63,7 +120,6 @@
     overflow: hidden;
     margin: 0 auto;
 }
-
 .ecjia-promotion-model a.list-page-goods-img .goods-name {
     height: 1.4em;
     line-height: 1.5em;
@@ -75,11 +131,10 @@
     white-space: nowrap;
     font-size: 1em;
 	font-family: Helvetica, '宋体', Arial, sans-serif;
-	text-align:left;
-	font-weight:500;
-    color:#555;
+	text-align: left;
+	font-weight: 500;
+    color: #555;
 }
-
 .ecjia-promotion-model .list-page-box .list-page-goods-price {
     overflow: hidden;
     display: block;
@@ -92,7 +147,7 @@
 }
 .ecjia-promotion-model .list-page-goods-price span del{
 	font-size: 0.9em;
-	display:block
+	display: block
 }
 .ecjia-promotion-model img.sales-icon {
     position: absolute;
@@ -100,7 +155,6 @@
     top: 0em;
 	right:0em;
 }
-
 /*促销商品 更多*/
 .ecjia-promotion-list{
 	overflow: hidden;
@@ -137,23 +191,22 @@
     line-height: 2.8em;
 }
 .ecjia-promotion-list .list-page-goods-img .goods-img img{
-   	width:100%;
+   	width: 100%;
 }
 .ecjia-promotion-list .promote-time .end-time{
-    color:#333;
+    color: #333;
     border-radius: 4px;
     font-weight: 500;
     font-size: 1.2em;
     background: #fff;
-	padding:.2em;
+	padding: .2em;
 }
-
 /*新品推荐 更多*/
 .ecjia-new-goods .goods-img img{
-	width:98%;
+	width: 98%;
 	display: block;
 	margin:0 auto;
-	border:none;
+	border: none;
 }
 .ecjia-list-two.list-page-two li a.list-page-goods-img .goods-name {
     margin-top: .3em;
@@ -165,20 +218,48 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: .8em;
-	color:#47aa4d;
-	background-color:#F0F0F0;
-	width:95%;
-	height:1.8em;
-	margin:0 auto;
+	color: #47aa4d;
+	background-color: #F0F0F0;
+	width: 95%;
+	height: 1.8em;
+	margin: 0 auto;
+	font-weight: 500;
 }
 .ecjia-new-goods .icon-shop{
 	font-size: 1.1em;
-	padding:0 .2em;
+	padding: 0 .2em;
+	top:0;
+}
+.ecjia-list-two.list-page-two li a.list-page-goods-img .goods-name{
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	display: -webkit-box; 
+	-webkit-line-clamp: 2; 
+	-webkit-box-orient: vertical;
+	height: 3em;
+	white-space: pre-line;
+	font-weight: 500;
+	color: #333;
+	font-size: 1em;
 }
 .ecjia-new-goods .list-page-goods-price span{
 	display: block;
-	margin:.5em 0 0 .5em;
-	color:#FF0030;
+	margin: .5em 0 0 .5em;
+	color: #FF0030;
+}
+.ecjia-new-goods .ecjia-list-two li {
+    float: left;
+    width: 48%;
+    padding: 0;
+    text-align: left;
+    border-bottom: none;
+    padding: 0 0 0.4em 0;
+    margin: 0 1% 0.3em 1.5%;
+	border-radius: 4px;
+}
+.ecjia-new-goods .ecjia-list-two li:nth-of-type(2n) {
+	margin-left: 0;
+    border-left: 0;
 }
 /*end */
 
@@ -440,12 +521,51 @@
 }
 /*========================  账户余额 ===========================*/
 
+.ecjia-account .ecjia-margin-t3{
+	margin-top: 3em;
+}
 
+.ecjia-account .form-group .box {
+	position: relative;
+	overflow: hidden;
+	border-bottom: none;
+}
+.ecjia-account .form-group .package-server {
+	border-bottom: none;
+}
+.ecjia-account .form-group .package-server select {
+	left: auto;
+	right: 0.5em;
+}
+.ecjia-account .form-group .box span {
+	position: absolute;
+	left: 5em;
+	top: -0.5em;
+	right: 1em;
+}
+.ecjia-account p {
+	padding: 1em 1em;
+	font-size: 1em;
+}
+.ecjia-account p1 {
+	padding: 1em 0.1em;
+	font-size: 1em;
+}
+.ecjia-account .btn-recharge ,
+.ecjia-account .btn-recharge:hover {
+	border: none;
+	margin-top: 1em;
+}
+.ecjia-account .ecjia-widthdraw {
+	margin: 1em 1em 2em 1em;
+}
 /*========================  交易记录 ===========================*/
 
 
 /*========================  红包 ===========================*/
-
+.ecjia-bonus-border-right a{
+	border-right: 1px solid #CCC;
+}
 
 /*========================  登录 ===========================*/
 .ecjia-login {
