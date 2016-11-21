@@ -164,7 +164,7 @@ class comment_controller {
     //     } else {
     //         ecjia_front::$controller->showmessage(RC_Lang::lang('cmt_submit_done'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('goods/index/comment', array('id' =>$cmt['id']))));
     //     }
-    // }
+    }
 
 }
 
