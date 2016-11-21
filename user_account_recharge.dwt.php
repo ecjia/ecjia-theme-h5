@@ -14,11 +14,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <div class="user-account-detail">
 	<form  class="ecjia-form ecjia-account" data-valid="novalid" name="ecjia-form user-profile-form" action="{url path='user/user_account/recharge_account'}" method="post">
-		 <p>{t}账户充值：TEST测试{/t}</p>
+		<p>{t}账户充值：TEST测试{/t}</p>
 		<div class="form-group form-group-text">
 			<label class="input">
 				<span class="ecjiaf-fl">{t}金额{/t}</span>
-				<input type="number" placeholder="{t}建议充入100元以上金额{/t}" name="amount" value="" datatype="n"/>
+				<input placeholder="{t}建议充入100元以上金额{/t}" name="amount" value="" datatype="n"/>
 			</label>
 		</div>
 

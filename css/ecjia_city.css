@@ -463,13 +463,20 @@
 	right: 1em;
 }
 .ecjia-account p {
-	padding: 1em 1.5em;
+	padding: 1em 1em;
+	font-size: 1em;
+}
+.ecjia-account p1 {
+	padding: 1em 0.1em;
 	font-size: 1em;
 }
 .ecjia-account .btn-recharge ,
 .ecjia-account .btn-recharge:hover {
 	border: none;
 	margin-top: 1em;
+}
+.ecjia-account .ecjia-widthdraw {
+	margin: 1em 1em 2em 1em;
 }
 /*========================  交易记录 ===========================*/
 
