@@ -440,7 +440,37 @@
 }
 /*========================  账户余额 ===========================*/
 
+.ecjia-account .ecjia-margin-t3{
+	margin-top: 3em;
+}
 
+.ecjia-account .form-group .box {
+	position: relative;
+	overflow: hidden;
+	border-bottom: none;
+}
+.ecjia-account .form-group .package-server {
+	border-bottom: none;
+}
+.ecjia-account .form-group .package-server select {
+	left: auto;
+	right: 0.5em;
+}
+.ecjia-account .form-group .box span {
+	position: absolute;
+	left: 5em;
+	top: -0.5em;
+	right: 1em;
+}
+.ecjia-account p {
+	padding: 1em 1.5em;
+	font-size: 1em;
+}
+.ecjia-account .btn-recharge ,
+.ecjia-account .btn-recharge:hover {
+	border: none;
+	margin-top: 1em;
+}
 /*========================  交易记录 ===========================*/
 
 
