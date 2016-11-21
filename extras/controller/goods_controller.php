@@ -296,20 +296,30 @@ class goods_controller {
      * ajax获取促销商品
      */
     public static function ajax_goods() {
-    	// $type = htmlspecialchars($_GET['type']);
-    	// $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
-    	// $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-    	// $goods_list = goods_list($type, $limit, $page);
-    	// ecjia_front::$controller->assign('goods_list', $goods_list['list']);
-    	// ecjia_front::$controller->assign_lang();
-    	// if ($type == 'promotion') {
-    	// 	$sayList = ecjia_front::$controller->fetch('goods_promotion.dwt');
-    	// } elseif ($type == 'new') {
-    	// 	$sayList = ecjia_front::$controller->fetch('goods_new.dwt');
-    	// }
-        //
-    	// //         if ($page == 3) $goods_list['is_last'] = 1;
-    	// ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $goods_list['is_last']));
+    	 $type = htmlspecialchars($_GET['type']);
+        $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+        $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+        
+        $arr = array(
+        	'action_type' 	=> $type,	
+ 			'pagination' 	=> array('count' => $limit, 'page' => $page),
+			'location' 		=> array('longitude' => '121.416359', 'latitude' => '31.235371')
+        );
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($arr)->run();
+        if (!empty($data)) {
+        	foreach ($data as $k => $v) {
+        		$data[$k]['promote_end_date'] = RC_Time::local_strtotime($v['promote_end_date']);
+        	}
+        }
+        ecjia_front::$controller->assign('goods_list', $data);
+        ecjia_front::$controller->assign_lang();
+    	if ($type == 'promotion') {
+    		$sayList = ecjia_front::$controller->fetch('goods_promotion.dwt');
+    	} elseif ($type == 'new') {
+    		$sayList = ecjia_front::$controller->fetch('goods_new.dwt');
+    	}
+//     	if ($page == 3) $goods_list['is_last'] = 1;
+    	ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $goods_list['is_last']));
     }
 
 

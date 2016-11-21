@@ -58,6 +58,17 @@ class user_profile_controller {
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_profile.dwt');
     }
+    
+    /* 用户中心编辑用户名称 */
+    public static function modify_username() {
+        // $user = integrate::init_users();
+        //
+        // ecjia_front::$controller->assign('title', "用户名");
+        // ecjia_front::$controller->assign_title("用户名");
+        // ecjia_front::$controller->assign('header_right' , array('info' => '保存', 'href' => RC_Uri::url('user/index/edit_profile')));
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_modify_username.dwt');
+    }
 
     /**
      * 修改个人资料
@@ -152,7 +163,7 @@ class user_profile_controller {
         //     ecjia_front::$controller->assign('title', RC_Lang::lang('edit_password'));
         //     ecjia_front::$controller->assign_title(RC_Lang::lang('edit_password'));
             ecjia_front::$controller->assign_lang();
-        //     ecjia_front::$controller->display('user_edit_password.dwt');
+            ecjia_front::$controller->display('user_edit_password.dwt');
         // } else {
         //     ecjia_front::$controller->redirect(RC_Uri::url('login'));
         // }

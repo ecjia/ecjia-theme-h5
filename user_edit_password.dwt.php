@@ -19,7 +19,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-<form class="ecjia-form ecjia-login-edit-password-form ecjia-margin-t" name="formPassword" action="{url path='user/index/update_password'}" method="post" >
+<form class="ecjia-form ecjia-login-edit-password-form ecjia-login-margin-top" name="formPassword" action="{url path='user/index/update_password'}" method="post" >
 	<div class="form-group">
 		<label class="input">
 			<input name="old_password" placeholder="请输入旧密码" type="password" datatype="s6-16" errormsg="请输入6-16位格式的密码">
