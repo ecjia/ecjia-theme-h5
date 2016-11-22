@@ -206,19 +206,45 @@ class user_address_controller {
      * 定位列表
      */
     public static function location() {
-        $province_list = get_regions(1, 1);
-        $city_list = get_regions(2);
-        $district_list = get_regions(3);
-        ecjia_front::$controller->assign('country_list', get_regions());
-        ecjia_front::$controller->assign('shop_province_list', get_regions(1, ecjia::config('shop_country')));
-        ecjia_front::$controller->assign('province_list', $province_list);
-        ecjia_front::$controller->assign('city_list', $city_list);
-        ecjia_front::$controller->assign('district_list', $district_list);
+    	ecjia_front::$controller->assign('title', '上海');
         ecjia_front::$controller->assign_title('定位');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_location.dwt');
     }
-
+    /**
+     * 异步地址列表
+     */
+    public static function async_location() {
+    	$user_id = $_SESSION['user_id'];
+    	$size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+    	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+    	$consignee_list = get_consignee_list($user_id, 0, $size, $page);
+    	$address_list = array();
+    	if ($consignee_list['list']) {
+    		foreach ($consignee_list['list'] as $k => $v) {
+    			$address = '';
+    			if ($v['province']) {
+    				$address .= get_region_name($v['province']);
+    			}
+    			if ($v['city']) {
+    				$address .= get_region_name($v['city']);
+    			}
+    			if ($v['district']) {
+    				$address .= get_region_name($v['district']);
+    			}
+    			$v['address'] = $address . ' ' . $v['address'];
+    			$v['url'] = RC_Uri::url('edit_address', array(
+    					'id' => $v['address_id']
+    			));
+    			$address_list[] = $v;
+    		}
+    	}
+    	ecjia_front::$controller->assign('addres_list', $address_list);
+    	$sayList = ecjia_front::$controller->fetch('user_location.dwt');
+    	ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' ,
+    
+    	'is_last' => $consignee_list['is_last']));
+    }
 }
 
 // end

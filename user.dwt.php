@@ -111,27 +111,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<span class="ecjiaf-fr"><i class="iconfont  icon-jiantou-right"></i>
 	</a>
 </div>
-
-<div class="ecjia-login-nav-header">
-	<a href="{url path='user/user_address/address_list'}">
-		<i class="iconfont icon icon-searchlist"></i>
-		<span class="icon-name">店铺入驻查询</span>
-		<span class="ecjiaf-fr"><i class="iconfont  icon-jiantou-right"></i>
-	</a>
-</div>
-<div class="ecjia-login-nav-header ecjia-margin-t ecjiaf-bt">
-	<a href="{url path='user/user_package/service'}">
-		<i class="iconfont icon icon-kefu"></i>
-		<span class="icon-name">官网客服</span>
-		<span class="ecjiaf-fr"><i class="iconfont  icon-jiantou-right"></i>
-	</a>
-</div>
-<div class="ecjia-login-nav-header">
-	<a href="{url path='user/user_address/address_list'}">
-		<i class="iconfont icon icon-eclogo"></i>
-		<span class="icon-name">官网网站</span>
-		<span class="ecjiaf-fr"><i class="iconfont  icon-jiantou-right"></i>
-	</a>
-</div>
-<div class="ecjia-margin-t">
+<div class="ecjia-margin-t"></div>
 <!-- {/block} -->

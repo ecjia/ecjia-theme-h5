@@ -245,6 +245,18 @@ class user_account_controller {
         // /* 如果成功提交 */
         // ecjia_front::$controller->showmessage(RC_Lang::lang('surplus_appl_submit'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => RC_Uri::url('user/user_account/account_detail')));
     }
+    
+    /**
+     * 充值提现列表
+     */
+    public static function cash_list() {
+        // $sur_amount = get_user_surplus($_SESSION['user_id']);
+        // ecjia_front::$controller->assign('title', '账户提现');
+        // ecjia_front::$controller->assign_title('账户提现');
+        // ecjia_front::$controller->assign('sur_amount', $sur_amount);
+        // ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_cash_list.dwt');
+    }
 
 }
 
