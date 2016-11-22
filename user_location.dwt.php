@@ -1,7 +1,7 @@
 <?php 
 /*
-Name: 定位列表模板
-Description: 定位列表页
+Name: 定位当前位置模板
+Description: 定位当前位置页
 Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
@@ -16,42 +16,43 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 
-<form class="ecjia-form ecjia-margin-t" name="theForm" action="{url path='user/user_address/inster_addres'}" method="post">
-	<div class="form-group form-group-text">
-		<label class="input">
-			<span>所在地区： </span>
-			<input name="district" placeholder="{t}请选择城市{/t}" type="text" datatype="*" value="" />
-			<label class="iconfont icon-jiantou-right"></label>
-		</label>
+<form class="ecjia-list ecjia-address-list" action="" method="post" id="searchForm" name="searchForm">
+	<div class="nav-header ecjia-margin-t">
+		<i class="iconfont icon-search"></i>
+		<input id="keywordBox" name="keywords" type="search" placeholder="小区，写字楼，学校">
 	</div>
-	<div class="form-group form-group-text">
-		<label class="input">
-			<span class="ecjiaf-fl">收货地址： </span>
-			<input name="location" placeholder="{t}写字楼，小区，学校，街道{/t}" type="text" datatype="*" value="" />
-			<label class="iconfont icon-focus"></label>
-		</label>
+	<div class="nav-header ecjia-margin-t">
+		<a href="{url path='user/user_address/near_location'}" type="botton">
+			<i class="iconfont icon-focus"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t}定位到当前位置{/t}
+			<span class="ecjiaf-fr"><i class="iconfont icon-jiantou-right"></i></span>
+		</a>
 	</div>
-	<div class="form-group form-group-text">
-		<label class="input">
-			<input name="address" placeholder="{t}楼层，门牌{/t}" type="text" datatype="*" value="{$consignee.address|escape}" />
-		</label>
-	</div>
-	<div class="form-group form-group-text">
-		<label class="input">
-			<span class="ecjiaf-fl">收货姓名： </span>
-			<input name="consignee" placeholder="{t}请输入真实姓名，限6个字{/t}" type="text" value="{$consignee.consignee|escape}" datatype="*1-15" errormsg="请输入正确格式联系人" />
-		</label>
-	</div>
-	<div class="form-group form-group-text">
-		<label class="input">
-			<span class="ecjiaf-fl">收货电话： </span>
-			<input name="mobile" placeholder="{t}请确保收货电话真实有效{/t}" type="tel" value="{$consignee.mobile|escape}" datatype="m" errormsg="请输入正确格式的联系方式" />
-		</label>
-	</div>
-	<div class="ecjia-margin-t ecjia-margin-b">
-		<input class="btn btn-info nopjax" name="submit" type="submit" value="{t}保存{/t}"/>
-		<input name="address_id" type="hidden" value="{$consignee.address_id}" />
+	<ul class="list-one" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_location'}" data-size="10">
+		<div class="form-group address-backgroundw"><span>我的收货地址</span></div>			
+		<!-- 配送地址 start--> 
+		
+		<!-- 配送地址end--> 
+	</ul>
+	<div class="ecjia-margin-t address-list-center">
+		<a type="botton" href="{url path='user/user_address/address_list'}">
+			<i class="iconfont icon-roundadd"></i> {t}管理收货地址{/t}
+		</a>
 	</div>
 </form>
-
+<!-- {/block} -->
+<!-- {block name="ajaxinfo"} -->
+	<!-- 配送地址 start--> 
+	<!-- {foreach from=$addres_list item=value} 循环地址列表 -->
+		<li class="ecjia-margin-b">
+			<i class="iconfont icon-round"></i>
+			<div class="list">
+				<div>
+					<p class="ecjiaf-fl">{$value.consignee}</p>
+					<p class="ecjiaf-fl ecjia-margin-l ecjia-address-mobile">{$value.mobile}</p>
+				</div><br />
+				<div class="ecjia-margin-top address ecjiaf-wwb">{$value.address}</div>	
+			</div>
+		</li>
+	<!-- {/foreach} -->
+	<!-- 配送地址end--> 
 <!-- {/block} -->

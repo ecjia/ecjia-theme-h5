@@ -472,7 +472,7 @@
 
 
 /*========================  地址列表 ===========================*/
-.ecjia-address-list {
+ .ecjia-address-list {
 	margin-top: 1em;
 }
  .ecjia-address-list li  a i {
@@ -518,7 +518,14 @@
 	line-height: 3em;
 	padding-left: 1em;
 }
-
+.ecjia-address-list .address-backgroundw-location {
+	background-color: #FFF;
+	position: absolute;
+	top: -1em;
+	border-bottom:  1px solid #ddd;	
+	line-height: 3em;
+	padding-left: 11px;	
+}
 .ecjia-address-list .address-backgroundw i.icon-jiantou-bottom {
 	position: absolute;
 	left: 4em;
@@ -527,6 +534,12 @@
 .ecjia-address-list .address-backgroundw i.icon-search {
 	position: absolute;
 	left: 6em;
+	top: 0.9em;
+	z-index: 6;
+}
+.ecjia-address-list .nav-header i.icon-search {
+	position: absolute;
+	left: 1em;
 	top: 0.9em;
 	z-index: 6;
 }
@@ -541,9 +554,51 @@
 	padding-left: 1.6em;
 	border: 1px solid #F0F0F0;
 }
+.ecjia-address-list .address-backgroundw-location input {
+	position: absolute;
+	top: 0.4em;
+	height: 2em;
+	width: 34em;
+	border-radius: 10px;
+	z-index: 5;
+	padding-left: 1.6em;
+	margin-left: -1em;
+	border: 1px solid #F0F0F0;
+}
 .ecjia-address-list .address-icons {
     position: relative;
     left: 1em;
+}
+.ecjia-address-list .nav-header a>i {
+	position: absolute;
+	color: green;
+	left: 0.5em;
+	top: 0.9em;
+}
+.ecjia-address-list li>i {
+	position: absolute;
+	top: 1.8em;
+	color: green;
+	font-size: 400;
+}
+.ecjia-address-list .ecjia-margin-b .list {
+	padding-left: 2em;
+	margin-top: 0em;
+}
+.ecjia-address-list .ecjia-margin-b .list .ecjia-margin-top {
+	margin-top: 0.2em;
+}
+.ecjia-address-list .address-list-center {
+	text-align: center;
+	padding: 1em .5em;
+	overflow: hidden;
+	background: #fff;
+	color: #333;
+	position: relative;
+	border-bottom:1px solid #ddd;	
+}
+.ecjia-address-list .address-list-center a>i {
+	color: green;
 }
 /*========================  账户余额 ===========================*/
 
