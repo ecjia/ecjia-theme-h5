@@ -117,4 +117,8 @@
 		}    
 		return i;    
     }
+	
+    $(document).on('pjax:complete', function() {
+        ecjia.touch.index.swiper_promotion();
+    });
 })(ecjia, jQuery);

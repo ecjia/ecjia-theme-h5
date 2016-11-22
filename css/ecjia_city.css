@@ -67,6 +67,10 @@
 .ecjia-mod.ecjia-promotion-model{
     overflow: hidden;
 }
+.ecjia-mod.ecjia-promotion-model .hd{
+    border-top: 0;
+	color: #FF5000
+}
 .ecjia-mod.ecjia-promotion-model .ecjia-sales-hd h2{
 	height: 1.8em;
 	border-bottom: 1px solid #eee;
@@ -283,6 +287,26 @@
 .ecjia-new-goods .ecjia-list-two li:nth-of-type(2n) {
 	margin-left: 0;
     border-left: 0;
+}
+/*热门推荐*/
+.ecjia-mod.ecjia-new-goods .line{
+    width: 96%;
+}
+.ecjia-mod.ecjia-new-goods.goods-index-list .hd{
+    height:2.5em;
+}
+.ecjia-mod.ecjia-new-goods h2{
+    font-size: 1em;
+    color: #bbb;
+}
+.ecjia-mod.ecjia-new-goods.goods-index-list.ecjia-mod .line{
+    border-bottom: 1px solid #ddd;
+}
+.ecjia-mod.ecjia-new-goods .hd i{
+    position: relative;
+    left: 0;
+    line-height: 0;
+    width: 1.5em;
 }
 /*end */
 
