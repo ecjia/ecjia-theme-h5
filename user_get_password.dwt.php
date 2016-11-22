@@ -24,13 +24,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="border_bottom_getpassword"></div>
 <form class="ecjia-form ecjia-login ecjia-login-margin-top" name="getPassword" action="{url path='user/index/send_pwd_email'}" method="post">
 	<!-- 添加id，js用到 -->
-	<div class="form-group">
+	<div class="form-group margin-right-left">
 		<label class="input-1">
 			<input name="user_name" type="text" placeholder="{$lang.name_or_mobile}" datatype="s3-15|m|e|" errormsg="请输入用户名" />
 		</label>
 	</div>
 	<!-- 判断是否启用验证码{if $enabled_captcha} -->
-		<div class="form-group">
+		<div class="form-group margin-right-left">
 			<label class="input captcha-img">
 				<i class="glyphicon glyphicon-picture"></i>
 				<input type="text" placeholder="{$lang.comment_captcha}" name="captcha" datatype="*" />
@@ -51,13 +51,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <form class="ecjia-form ecjia-icon-form ecjia-login-form ecjia-margin-t" name="getPassword" action="{url path='user/index/question_get_password'}" method="post">
 	<div class="flow-consignee" id="tabBox1-bd">
 		<!-- 添加id，js用到 -->
-		<div class="form-group">
+		<div class="form-group margin-right-left">
 			<label class="input">
 				<i class="iconfont icon-dengluyonghuming"></i>
 				<input name="user_name" type="text" placeholder="{$lang.username}" datatype="*" />
 			</label>
 		</div>
-		<div class="form-group">
+		<div class="form-group margin-right-left">
 			<label class="select">
 				<i class="iconfont icon-jiantou-bottom"></i>
 				<select name='sel_question'>
@@ -67,13 +67,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</select>
 			</label>
 		</div>
-		<div class="form-group">
+		<div class="form-group margin-right-left">
 			<div>
 				<input name="passwd_answer" placeholder="{$lang.passwd_answer}" type="text" datatype="*"/>
 			</div>
 		</div>
 		<!-- 判断是否启用验证码{if $enabled_captcha} -->
-		<div class="form-group">
+		<div class="form-group margin-right-left">
 			<div>
 				<span class="form-captcha">
 					<input placeholder="{$lang.comment_captcha}" type="text" name="captcha"/>

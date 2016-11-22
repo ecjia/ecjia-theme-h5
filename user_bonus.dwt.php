@@ -32,23 +32,22 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 <!-- {/block} -->
 <!-- {block name="ajaxinfo"} -->
 <!--{foreach from=$bonus item=item}-->
-	<li class="ecjia-margin-b list-l-size">
-        <div class="{if $item.status eq '未使用'}user-bonus-head{else}user-bonus-head-expired{/if}">
-                <p class="font-s">
-                <span class="{if $item.status eq '未使用'}no-type-money{else}type-money{/if}">{$item.type_money}</span>
-           </p>
-        </div>
-	</li>
-	<li class="ecjia-margin-b list-r-size">
+    	<li class="ecjia-margin-b list-l-size">
+            <div class="{if $item.status eq '未使用'}user-bonus-head{else}user-bonus-head-expired{/if}">
+                    <p class="font-s">
+                    <span class="{if $item.status eq '未使用'}no-type-money{else}type-money{/if}">{$item.type_money}</span>
+               </p>
+            </div>
+    	</li>
+    	<div>
+	<li class="ecjia-margin-b list-r-size font-rs">
         <div>
-           <p class="{if $item.status eq '未使用'}{else}expired{/if}">
-                {$item.status}
-           </p>
            <p>
                 <span>{$item.use_startdate}-{$item.use_enddate}</span>
            </p>
         </div>
 	</li>
+	</div>
 <!-- {foreachelse} -->
 	<div class="ecjia-nolist">
 		<i class="iconfont icon-redpacket"></i>

@@ -17,13 +17,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 <form class="ecjia-form  ecjia-login" name="formLogin" action="{url path='user/index/signin'}" method="post">
 	<div class="user-img"><img src="{$user_img}"></div>
-	<div class="form-group">
+	<div class="form-group margin-right-left">
 		<label class="input">
 			<i class="iconfont icon-dengluyonghuming"></i>
 			<input placeholder="{$lang.name_or_mobile}" name="username" datatype="s3-15|m|e" errormsg="用户名错误请重新输入！" autocomplete="off" />
 		</label>
 	</div>
-	<div class="form-group ecjia-margin-t">
+	<div class="form-group ecjia-margin-t margin-right-left">
 		<label class="input">
 			<i class="iconfont icon-lock "></i>
 			<i class="iconfont icon-attention ecjia-login-margin-l"></i>
@@ -40,9 +40,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<!--{/if}-->
 	<div class="ecjia-login-b ecjia-login-login-foot margin-right-left">
-		<a class="ecjiaf-fr ecjia-margin-r" href="{url path='index/get_password_email'}">{$lang.forgot_password}?</a>
+		<a class="ecjiaf-fr" href="{url path='index/get_password_email'}">{$lang.forgot_password}?</a>
 		<!-- {if $anonymous_buy eq 1 && $step eq 'flow'} 是否允许未登录用户购物 -->
-		<a class="ecjiaf-fr ecjia-margin-r" href="{url path='cart/flow/consignee' args="direct_shopping=1"}">{$lang.direct_shopping}</a>
+		<a class="ecjiaf-fr" href="{url path='cart/flow/consignee' args="direct_shopping=1"}">{$lang.direct_shopping}</a>
 		<!-- {/if} -->
 	</div>
 	<div class="ecjia-login-b">
