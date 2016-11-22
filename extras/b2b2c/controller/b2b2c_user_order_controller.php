@@ -145,7 +145,7 @@ class b2b2c_user_order_controller {
             /*未付款*/
             $order['handler'] = '<a class="nopjax btn btn-info nopjax " href="' . $pay_online['pay_online'] . '">去' . $payment_info['pay_name'] . '支付</a>';
 
-            $order['handler_left'] = '<a class="nopjax cancel_order ecjiaf-fl btn" href="' . RC_Uri::url('user/user_order/cancel_order',array('order_id' => $order_id)). '">' . 取消订单 . '</a>';
+            $order['handler_left'] = '<a class="nopjax cancel_order ecjiaf-fl btn" href="' . RC_Uri::url('user/user_order/cancel_order',array('order_id' => $order_id)). '">' .'取消订单</a>';
 
         } else {
             /* 对配送状态的处理 */
