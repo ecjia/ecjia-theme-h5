@@ -21,7 +21,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <div class="tab-pane{if $enabled_sms_signin neq 1} active{/if}" id="two">
 		<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="formUser" action="{url path='user/index/signup'}" method="post">
 			<input type="hidden" name="flag" id="flag" value="register" />
-			<div class="form-group ecjia-margin-t">
+			<div class="form-group ecjia-margin-t margin-right-left">
 				<label class="input">
 					<i class="iconfont icon-mobilefill icon-set"></i>
 					<input name="username" type="text" id="username" name="username" datatype="s3-15|m|e" errormsg="{$lang.msg_mast_length}" placeholder="请输入手机号" />
@@ -36,22 +36,22 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                     <input type="hidden" name="referer" value="{$smarty.get.referer}" />
                     <span><input type="submit" class="btn btn-info login-btn" value="{$lang.return_verification}" /></span>
         	</div>
-			<div class="form-group bf ecjia-margin-t">
+			<div class="form-group bf ecjia-margin-t margin-right-left">
 				<label class="input">
 					<i class="iconfont icon-yanzhengma"></i>
 					<input name="password" id="password1" type="password" datatype="*6-16" placeholder="邀请码6位数字或字母" errormsg="邀请码6位数字或字母">
 				</label>
 			</div>
-			<div class="form-group ecjia-margin-t">
+			<div class="form-group ecjia-margin-t margin-right-left">
 				<label class="input">
 					<i class="iconfont icon-yanzhengma"></i>
 					<input name="password" id="password1" type="password" datatype="*6-16" placeholder="我的音乐" errormsg="我的音乐">
 				</label>
 			</div>
-			<div class="form-group ecjia-margin-t">
+			<div class="form-group ecjia-margin-t margin-right-left">
 				<label class="input">
 					<i class="iconfont icon-unlock"></i>
-					<i class="iconfont icon-attention icon-left"></i>
+					<i class="iconfont icon-attention ecjia-login-margin-l"></i>
 					<input name="password" id="password1" type="password" datatype="*6-16" placeholder="请输入密码" errormsg="请输入密码">
 				</label>
 			</div>

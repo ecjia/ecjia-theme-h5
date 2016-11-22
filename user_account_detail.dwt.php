@@ -14,7 +14,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <div class="ecjia-account ecjia-margin-t">
 	<div class="account-bonus ecjiaf-bt">
-		<a href="{url path='user/user_bonus/bonus'}">
+		<a href="{url path='user/user_account/account_list'}">
 			<i class="iconfont icon-qianbao"></i>
 			我的余额
 			<span class="ecjiaf-fr">{$surplus_amount}<i class="iconfont icon-jiantou-right"></i></span>

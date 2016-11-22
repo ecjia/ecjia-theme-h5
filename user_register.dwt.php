@@ -59,7 +59,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <div class="tab-pane{if $enabled_sms_signin neq 1} active{/if}" id="two">
     		<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="formUser" action="{url path='user/index/signup'}" method="post">
     			<input type="hidden" name="flag" id="flag" value="register" />
-    			<div class="form-group">
+    			<div class="form-group margin-right-left">
     				<label class="input">
     					<i class="iconfont icon-mobilefill icon-set"></i>
     					<input name="username" type="text" id="username" name="username" datatype="s3-15|m|e" errormsg="{$lang.msg_mast_length}" placeholder="{$lang.label_username}" />
@@ -76,7 +76,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                         <span><input type="submit" class="btn btn-info login-btn" value="{$lang.return_verification}" /></span>
             	</div>
         		<li class="remark-size">{$lang.invitation_code}</li>
-    			<div class="form-group bf">
+    			<div class="form-group bf margin-right-left">
     				<label class="input">
     					<i class="iconfont icon-yanzhengma"></i>
     					<input name="password" id="password1" type="password" datatype="*6-16"  errormsg="请输入6 ~ 16 位的密码">

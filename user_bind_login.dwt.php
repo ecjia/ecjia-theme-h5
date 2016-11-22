@@ -16,13 +16,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 <form class="ecjia-form  ecjia-login ecjia-login-margin-top" name="formLogin" action="{url path='user/index/signin'}" method="post">
-	<div class="form-group">
+	<div class="form-group margin-right-left">
 		<label class="input">
 			<i class="iconfont icon-dengluyonghuming"></i>
 			<input placeholder="{$lang.name_or_mobile}" name="username" datatype="s3-15|m|e" errormsg="用户名错误请重新输入！" autocomplete="off" />
 		</label>
 	</div>
-	<div class="form-group ecjia-margin-t">
+	<div class="form-group ecjia-margin-t margin-right-left">
 		<label class="input">
 			<i class="iconfont icon-lock "></i>
 			<i class="iconfont icon-attention ecjia-login-margin-l"></i>

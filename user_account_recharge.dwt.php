@@ -12,17 +12,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 
-<div class="user-account-detail">
+<div class="ecjia-form">
 	<form  class="ecjia-form ecjia-account" data-valid="novalid" name="ecjia-form user-profile-form" action="{url path='user/user_account/recharge_account'}" method="post">
-		<p>{t}账户充值：TEST测试{/t}</p>
-		<div class="form-group form-group-text">
+		<p class="account-top text-ty">{t}账户充值：TEST测试{/t}</p>
+		<div class="form-group form-group-text account-lr-fom">
 			<label class="input">
 				<span class="ecjiaf-fl">{t}金额{/t}</span>
 				<input placeholder="{t}建议充入100元以上金额{/t}" name="amount" value="" datatype="n"/>
 			</label>
 		</div>
 
-		<div class="form-group form-group-text ecjia-margin-t">
+		<div class="form-group form-group-text ecjia-margin-t account-lr-fom">
 			<label>
 				<span class="ecjia-margin-r">{t}充值方式{/t}</span>
 				<select name="payment_id">
@@ -34,7 +34,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 
 		<input name="act" type="hidden" value="profile" />
-		<div class=" text-center ecjia-margin-t3">
+		<div class=" text-center account-top">
 			<input class="btn btn-recharge" name="submit" type="submit" value="{t}立即充值{/t}" />
 		</div>
 	</form>

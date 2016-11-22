@@ -16,15 +16,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 <form class="ecjia-form  ecjia-login ecjia-login-margin-top" name="formLogin" action="{url path='user/index/reset_password'}" method="post">
-	<div class="form-group">
+	<div class="form-group margin-right-left">
 		<label class="input">
-			<i class="iconfont icon-attention icon-left"></i>
+			<i class="iconfont icon-attention ecjia-login-margin-l"></i>
 			<input class="padding-left05" placeholder="{$lang.input_new_password}" name="password" type="password" datatype="*6-16" errormsg="密码错误请重新输入！" autocomplete="off" />
 		</label>
 	</div>
-	<div class="form-group margin-top4">
+	<div class="form-group margin-top4 margin-right-left">
 		<label class="input">
-			<i class="iconfont icon-attention icon-left"></i>
+			<i class="iconfont icon-attention ecjia-login-margin-l"></i>
 			<input class="padding-left05" data-rule='notEmpty' name="captcha" placeholder="{$lang.input_new_password_again}"/>
 		</label>
 	</div>

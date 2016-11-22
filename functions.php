@@ -116,6 +116,7 @@ RC_Hook::add_action('user/user_account/withdraw', array('user_account_controller
 RC_Hook::add_action('user/user_account/withdraw_account', array('user_account_controller', 'withdraw_account'));
 RC_Hook::add_action('user/user_account/detail', array('user_account_controller', 'detail'));
 RC_Hook::add_action('user/user_account/account_list', array('user_account_controller', 'account_list'));
+RC_Hook::add_action('user/user_account/cash_list', array('user_account_controller', 'cash_list'));
 
 RC_Loader::load_theme('extras/controller/user_address_controller.php');
 RC_Hook::add_action('user/user_address/address_list', array('user_address_controller', 'address_list'));
@@ -128,6 +129,7 @@ RC_Hook::add_action('user/user_address/del_address_list', array('user_address_co
 RC_Hook::add_action('user/user_address/region', array('user_address_controller', 'region'));
 RC_Hook::add_action('user/user_address/location', array('user_address_controller', 'location'));
 RC_Hook::add_action('user/user_address/near_location', array('user_address_controller', 'near_location'));
+RC_Hook::add_action('user/user_address/async_location', array('user_address_controller', 'async_location'));
 
 RC_Loader::load_theme('extras/controller/user_bonus_controller.php');
 RC_Hook::add_action('user/user_bonus/bonus', array('user_bonus_controller', 'bonus'));
