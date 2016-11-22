@@ -117,6 +117,7 @@ RC_Hook::add_action('user/user_account/withdraw_account', array('user_account_co
 RC_Hook::add_action('user/user_account/detail', array('user_account_controller', 'detail'));
 RC_Hook::add_action('user/user_account/account_list', array('user_account_controller', 'account_list'));
 RC_Hook::add_action('user/user_account/cash_list', array('user_account_controller', 'cash_list'));
+RC_Hook::add_action('user/user_account/ajax_cash_list', array('user_account_controller', 'ajax_cash_list'));
 
 RC_Loader::load_theme('extras/controller/user_address_controller.php');
 RC_Hook::add_action('user/user_address/address_list', array('user_address_controller', 'address_list'));

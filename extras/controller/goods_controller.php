@@ -319,7 +319,7 @@ class goods_controller {
     		$sayList = ecjia_front::$controller->fetch('goods_new.dwt');
     	}
 //     	if ($page == 3) $goods_list['is_last'] = 1;
-    	ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $goods_list['is_last']));
+    	ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $data['is_last']));
     }
 
 
@@ -405,7 +405,7 @@ class goods_controller {
     		'location' 		=> array('longitude' => '121.416359', 'latitude' => '31.235371')
     	);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SELLER_LIST)->data($arr)->run();
-
+		
     	ecjia_front::$controller->assign('data', $data);
 //     	ecjia_front::$controller->assign('shop_logo', RC_Uri::admin_url('statics/images/nopic.png'));
     	ecjia_front::$controller->assign('title', '分类店铺');

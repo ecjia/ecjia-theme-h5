@@ -89,7 +89,7 @@ class touch_controller {
         $sayList = ecjia_front::$controller->fetch('index.dwt');
         
 //         if ($page == 3) $goods_list['is_last'] = 1;
-        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $goods_list['is_last']));
+        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $data['is_last']));
     }
 
     /**

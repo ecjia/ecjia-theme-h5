@@ -773,7 +773,56 @@
     margin-right: .5em;
 }
 /*========================  交易记录 ===========================*/
+.ecjia-account-record {
+	height: auto;
+}
+.ecjia-account-record li {
+	border: none;
+	padding: .5em;
+}
+.ecjia-account-record p {
+	display: block;
+	width: 96%;
+	margin: 0 auto;
+}
+.ecjia-account-record .account-record-list li.record-list{
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.ecjia-account-record .account-record-list li.record-list{
+	border-bottom: 1px solid #eee;
+}
+.ecjia-account-record .account-record-list .record-l{
+	float: left;
+	width: 20%;
+}
+.ecjia-account-record .account-record-list span.user-photo img{
+	width: 4em;
+	height: 4em;
+}
+.ecjia-account-record .account-record-list .record-r{
+	float: left;
+	width: 80%;
+	text-align: right;
+	padding-bottom: 1em;
+	padding-top: .7em;
+	border-bottom: 1px solid #ddd;
+}
 
+.ecjia-account-record .account-record-list li.record-single:last-child .record-r{
+	border: none;
+}
+
+
+.ecjia-account-record .account-record-list .record-r p{
+	color: #333;
+	font-weight: 500;
+}
+.ecjia-account-record .account-record-list .record-r .record-r-l{
+	float: left;
+	width: 60%;
+	text-align: left;
+}
 
 /*========================  红包 ===========================*/
 .ecjia-bonus{

@@ -250,12 +250,24 @@ class user_account_controller {
      * 充值提现列表
      */
     public static function cash_list() {
-        // $sur_amount = get_user_surplus($_SESSION['user_id']);
-        // ecjia_front::$controller->assign('title', '账户提现');
-        // ecjia_front::$controller->assign_title('账户提现');
-        // ecjia_front::$controller->assign('sur_amount', $sur_amount);
-        // ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('user_cash_list.dwt');
+    	ecjia_front::$controller->assign('title', '交易记录');
+    	ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
+    	ecjia_front::$controller->display('user_cash_list.dwt');
+       
+    }
+    
+    public static function ajax_cash_list() {
+    	$type = htmlspecialchars($_GET['type']);
+    	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+    	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+    	
+    	$data = RC_DB::table('account_log')->where('user_id', 1042)->get();
+    	
+    	ecjia_front::$controller->assign('sur_amount', $data);
+    	ecjia_front::$controller->assign_lang();
+    	$sayList = ecjia_front::$controller->fetch('user_cash_list.dwt');
+    	
+    	ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $data['is_last']));
     }
 
 }
