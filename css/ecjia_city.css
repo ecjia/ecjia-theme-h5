@@ -490,8 +490,89 @@
 
 
 /*========================  我的 ===========================*/
-
-
+.ecjia-user-new-info {
+	padding:1em;
+	overflow: hidden;
+	line-height: 6em;
+	position: relative;
+	background: rgba(71, 170, 77, 0.7) none repeat scroll 0 0;
+}
+.ecjia-user-new-info .user-img {
+	border-radius: 100%;
+	line-height: 0em;
+	border: 0.3em solid #fff;
+	padding: 2.7px;
+}
+.ecjia-user-new-info .user-rank-name,
+.ecjia-user-new-info .user-rank-name a{
+	color: #fff;
+	line-height: 1em;
+}
+.ecjia-user-new-info .user-rank-name span:first-child {
+	font-size: 1.4em;
+	line-height: 2em;
+}
+.ecjia-user-new-info i {
+	font-size: 1.2em;
+	line-height: 3.2em;
+	color: #fff;
+	position: absolute;
+	right: 1em;
+}
+.ecjia-user-new-info .ecjia-icon-num {
+	position: absolute;
+    right: 1.8em;
+    line-height: 1.5;
+    background: #fff;
+    padding: .1em;
+    min-width: 1.8em;
+    max-width: 10em;
+    top: 3.2em;
+    font-size: .7em;
+    border-radius: 2em;
+    text-align: center;
+}
+.ecjia-user .user-img img {
+	width: 4em;
+	height: 4em;
+    border-radius: 100%;
+}
+.ecjia-user dl {
+	text-align: center;
+}
+.ecjia-user dl dt,
+.ecjia-user dl dd {
+	font-size: 1em
+}
+.ecjia-user .user-nav {
+	position: absolute;
+	background: rgba(0, 0, 0, 0.4);
+	bottom: 0;
+	width: 100%;
+	height: 4.4em;
+}
+.ecjia-user .user-nav li {
+	float: left;
+	width: 33.3%;
+	text-align: center;
+	padding: 0.5em 0;
+}
+.ecjia-user .user-nav li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-right: 1px solid #666;
+}
+.ecjia-user .user-nav li:nth-child(3) a {
+	border-right: 0;
+}
+.ecjia-user .user-nav li a .num {
+	font-size: 1.4em;
+}
+.ecjia-user .ecjia_user-info-edit {
+	border-bottom: 1px solid #ddd;
+	background-color: #fff;
+}
 /*========================  地址列表 ===========================*/
 .ecjia-address-list {
 	margin-top: 1em;
@@ -723,6 +804,7 @@
 .ecjia-login .login-btn {
 	margin: 0;
 	width: 100%;
+	height: 3em;
 }
 .ecjia-login .p-top3 {
 	margin-top: 3em;
@@ -813,6 +895,9 @@
 	background: #fff;
 	color: #333;
 	position: relative;
+	border-top:1px solid #ddd;
+}
+.ecjia-login-nav-bottom {
 	border-bottom:1px solid #ddd;
 }
 .ecjia-login-nav-header a {
