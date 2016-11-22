@@ -926,6 +926,7 @@
 }
 .ecjia-order-detail .order-log-list{
     padding: 0 1em;
+    overflow: hidden;
 }
 .order-log-item {
     position: relative;
@@ -955,22 +956,32 @@
     border-bottom: 10px solid transparent;
     border-right: 10px solid #fff;
 }
+.order-log-item:first-child .order-log::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform:translateY(-50%);
+    -o-transform:translateY(-50%);
+    background: #47aa4d;
+    width: 1em;
+    height: 1em;
+    border-radius: 100%;
+    left: -4em;
+    z-index: 99;
+}
 .order-log-item:first-child{
     background: #c9f7db;
 }
 .order-log-item:first-child .order-log::before{
     border-right-color: #c9f7db;
 }
-.order-log-item:first-child .order-log::after{
-    /*content: '';
-    position: absolute;
-    width: 1.3em;
-    height: 1.3em;
-    background: #fff;
-    border-radius: 100%;
-    left: -4.2em;
-    top: 50%;
-    transform: translateY(-50%);*/
+.order-log-item:first-child::after{
+    width: 1.5em;
+    height: 1.5em;
+    left: -3.75em;
 }
 .order-log-item .order-log .order-time{
     color: #a8a8a8;

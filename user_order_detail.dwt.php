@@ -26,21 +26,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<span>已发货</span><span class="ecjiaf-fr order-time">2016-11-18 13:20</span>
 				<p>订单号为20142312324的商品已发货，请您耐心等待</p>
 			</div>
-			<span></span>
 		</div>
 		<div class="order-log-item">
 			<div class="order-log">
 				<span>已发货</span><span class="ecjiaf-fr order-time">2016-11-18 13:20</span>
 				<p>订单号为20142312324的商品已发货，请您耐心等待</p>
 			</div>
-			<span></span>
 		</div>
 		<div class="order-log-item">
 			<div class="order-log">
 				<span>已发货</span><span class="ecjiaf-fr order-time">2016-11-18 13:20</span>
 				<p>订单号为20142312324的商品已发货，请您耐心等待</p>
 			</div>
-			<span></span>
 		</div>
 	</div>
 	<div class="ecjia-checkout goods-describe ecjia-margin-b" id="two">
