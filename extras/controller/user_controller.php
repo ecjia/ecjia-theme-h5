@@ -45,18 +45,18 @@ class user_controller {
      * 登录
      */
     public static function login() {
-        // $captcha = intval(ecjia::config('captcha'));
-        // if (($captcha & CAPTCHA_LOGIN) && (!($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2))) {
-        //     ecjia_front::$controller->assign('enabled_captcha', 1);
-        //     ecjia_front::$controller->assign('rand', mt_rand());
-        // }
-        // $user_img = get_user_img();
-        // ecjia_front::$controller->assign('user_img', $user_img);
-        // ecjia_front::$controller->assign('step', isset($_GET['step']) ? htmlspecialchars($_GET['step']) : '');
-        // ecjia_front::$controller->assign('anonymous_buy', ecjia::config('anonymous_buy'));
-        // ecjia_front::$controller->assign('title', RC_Lang::lang('login'));
-        // ecjia_front::$controller->assign_title(RC_Lang::lang('login'));
-        // ecjia_front::$controller->assign('header_right' , array('info' => '注册', 'href' => RC_Uri::url('user/index/register')));
+        $captcha = intval(ecjia::config('captcha'));
+        if (($captcha & CAPTCHA_LOGIN) && (!($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2))) {
+            ecjia_front::$controller->assign('enabled_captcha', 1);
+            ecjia_front::$controller->assign('rand', mt_rand());
+        }
+        $user_img = get_user_img();
+        ecjia_front::$controller->assign('user_img', $user_img);
+        ecjia_front::$controller->assign('step', isset($_GET['step']) ? htmlspecialchars($_GET['step']) : '');
+        ecjia_front::$controller->assign('anonymous_buy', ecjia::config('anonymous_buy'));
+        ecjia_front::$controller->assign('title', RC_Lang::lang('login'));
+        ecjia_front::$controller->assign_title(RC_Lang::lang('login'));
+        ecjia_front::$controller->assign('header_right' , array('info' => '注册', 'href' => RC_Uri::url('user/index/register')));
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_login.dwt');
     }
@@ -65,47 +65,47 @@ class user_controller {
      * 验证登录
      */
     public static function signin() {
-        // // RC_Loader::load_app_class('integrate', 'user', false);
-        // RC_Loader::load_theme('extras/class/user/integrate.class.php');
-    	// $user = integrate::init_users();
-        // // $db_users = RC_Loader::load_app_model ( "users_model" );
-        // RC_Loader::load_theme('extras/model/user/touch_users_model.class.php');
-        // $db_users  = new touch_users_model();
-        // /*登录处理*/
-        // $username = htmlspecialchars($_POST['username']);
-        // $password = htmlspecialchars($_POST['password']);
-        // /* 检查验证码 */
-        // $captcha = intval(ecjia::config('captcha'));
-        // if (($captcha & CAPTCHA_LOGIN) && (!($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2))) {
-        //     if (empty($_POST['captcha'])) {
-        //         ecjia_front::$controller->showmessage(RC_Lang::lang('invalid_captcha'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-        //     }
-        //     if ($_SESSION['captcha_word'] !== strtolower($_POST['captcha'])) {
-        //         ecjia_front::$controller->showmessage(RC_Lang::lang('invalid_captcha'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-        //     }
-        // }
-        // /*用户名是邮箱格式*/
-        // if (is_email($username)) {
-        //     $username_try = $db_users->where(array('email'=>$username))->get_field('user_name');
-        //     $username = $username_try ? $username_try : $username;
-        // }
-        // /*用户名是手机格式*/
-        // if (is_mobile($username)) {
-        //     $username_try = $db_users->where(array('mobile_phone'=>$username))->get_field('user_name');
-        //     $username = $username_try ? $username_try : $username;
-        // }
-        // if ($user->login($username, $password,1)) {
-        //     update_user_info();
-        //     recalculate_price();
-        //     $referer = empty($_POST['referer']) ? RC_Uri::url('user/index/init') : urldecode($_POST['referer']);
-        //     ecjia_front::$controller->showmessage(RC_Lang::lang('login_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('is_show' => false, 'pjaxurl'=>$referer));
-        // } else {
-        //     $_SESSION['login_fail']++;
-        //     if ($_SESSION['login_fail'] == 3) {
-        //         ecjia_front::$controller->showmessage(RC_Lang::lang('login_failure'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl'=>RC_Uri::url('user/index/login')));
-        //     }
-        //     ecjia_front::$controller->showmessage(RC_Lang::lang('login_failure'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('is_show' => true));
-        // }
+        // RC_Loader::load_app_class('integrate', 'user', false);
+        RC_Loader::load_theme('extras/class/user/integrate.class.php');
+    	$user = integrate::init_users();
+        // $db_users = RC_Loader::load_app_model ( "users_model" );
+        RC_Loader::load_theme('extras/model/user/touch_users_model.class.php');
+        $db_users  = new touch_users_model();
+        /*登录处理*/
+        $username = htmlspecialchars($_POST['username']);
+        $password = htmlspecialchars($_POST['password']);
+        /* 检查验证码 */
+        $captcha = intval(ecjia::config('captcha'));
+        if (($captcha & CAPTCHA_LOGIN) && (!($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2))) {
+            if (empty($_POST['captcha'])) {
+                ecjia_front::$controller->showmessage(RC_Lang::lang('invalid_captcha'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+            if ($_SESSION['captcha_word'] !== strtolower($_POST['captcha'])) {
+                ecjia_front::$controller->showmessage(RC_Lang::lang('invalid_captcha'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+        }
+        /*用户名是邮箱格式*/
+        if (is_email($username)) {
+            $username_try = $db_users->where(array('email'=>$username))->get_field('user_name');
+            $username = $username_try ? $username_try : $username;
+        }
+        /*用户名是手机格式*/
+        if (is_mobile($username)) {
+            $username_try = $db_users->where(array('mobile_phone'=>$username))->get_field('user_name');
+            $username = $username_try ? $username_try : $username;
+        }
+        if ($user->login($username, $password,1)) {
+            update_user_info();
+            recalculate_price();
+            $referer = empty($_POST['referer']) ? RC_Uri::url('user/index/init') : urldecode($_POST['referer']);
+            ecjia_front::$controller->showmessage(RC_Lang::lang('login_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('is_show' => false, 'pjaxurl'=>$referer));
+        } else {
+            $_SESSION['login_fail']++;
+            if ($_SESSION['login_fail'] == 3) {
+                ecjia_front::$controller->showmessage(RC_Lang::lang('login_failure'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl'=>RC_Uri::url('user/index/login')));
+            }
+            ecjia_front::$controller->showmessage(RC_Lang::lang('login_failure'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('is_show' => true));
+        }
     }
 
     /**

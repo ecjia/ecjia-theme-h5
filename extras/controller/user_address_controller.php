@@ -245,6 +245,15 @@ class user_address_controller {
     
     	'is_last' => $consignee_list['is_last']));
     }
+    /**
+     * 我的位置
+     */
+    public static function my_location() {
+        ecjia_front::$controller->assign('title', '您当前地址列表');
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign_title('当前位置');
+        ecjia_front::$controller->display('user_my_location.dwt');
+    }
 }
 
 // end
