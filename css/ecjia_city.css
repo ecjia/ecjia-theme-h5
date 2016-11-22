@@ -881,7 +881,7 @@
     content: '';
     position: absolute;
     top:50%;
-    left: -1.2em;
+    left: -1em;
     transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
