@@ -31,27 +31,21 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 </div>
 <!-- {/block} -->
 <!-- {block name="ajaxinfo"} -->
-<!--{foreach from=$bonus item=item}-->
-    	<li class="ecjia-margin-b list-l-size">
-            <div class="{if $item.status eq '未使用'}user-bonus-head{else}user-bonus-head-expired{/if}">
-                    <p class="font-s">
-                    <span class="{if $item.status eq '未使用'}no-type-money{else}type-money{/if}">{$item.type_money}</span>
-               </p>
-            </div>
-    	</li>
-    	<div>
-	<li class="ecjia-margin-b list-r-size font-rs">
-        <div>
-           <p>
-                <span>{$item.use_startdate}-{$item.use_enddate}</span>
-           </p>
-        </div>
-	</li>
-	</div>
-<!-- {foreachelse} -->
-	<div class="ecjia-nolist">
-		<i class="iconfont icon-redpacket"></i>
-		<p>{t}还没有红包哦~{/t}</p>
-	</div>
-<!--{/foreach}-->
+	<!--{foreach from=$bonus item=item}-->
+		<li class="ecjia-margin-b list-l-size">
+			<div class="user-bonus-info {if $item.status eq '未使用'}user-bonus-head{else}user-bonus-head-expired{/if}">
+				<div class="type-l {if $item.status eq '未使用'}no-type-money{else}type-money{/if}">￥20.00</div>
+				<div class="type-r">
+					<p class="type-name">{$item.type_name}</p>
+					<p class="min_goods_amount">满￥39.90使用</p>
+					<p class="type-date">2016.11.01-2016.12.01</p>
+				</div>
+			</div>
+		</li>
+	<!-- {foreachelse} -->
+		<div class="ecjia-nolist">
+			<i class="iconfont icon-redpacket"></i>
+			<p>{t}还没有红包哦~{/t}</p>
+		</div>
+	<!--{/foreach}-->
 <!-- {/block} -->
