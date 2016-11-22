@@ -43,7 +43,7 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 					<div class="record-r">
 						<div class="record-r-l">
 							<p>wu21st-充值</p>
-							<p>今天</p>
+							<p class="record-time">今天</p>
 						</div>
 						<div class="record-r-r">
 							<p>100.00</p>
@@ -58,7 +58,7 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 					<div class="record-r">
 						<div class="record-r-l">
 							<p>wu21st-充值</p>
-							<p>今天</p>
+							<p class="record-time">今天</p>
 						</div>
 						<div class="record-r-r">
 							<p>100.00</p>
@@ -73,7 +73,7 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 					<div class="record-r">
 						<div class="record-r-l">
 							<p>wu21st-充值</p>
-							<p>今天</p>
+							<p class="record-time">今天</p>
 						</div>
 						<div class="record-r-r">
 							<p>100.00</p>
