@@ -778,12 +778,12 @@
 	position: relative;
 	margin-bottom: 1em;
 }
-.ecjia-bonus.ecjia-list-two .user-bonus-head{
+.ecjia-bonus.ecjia-list-two .user-bonus-info{
 	width: 100%;
     overflow: hidden;
 	padding: .5em 0;
 }
-.ecjia-bonus.ecjia-list-two .user-bonus-head .type-l{
+.ecjia-bonus.ecjia-list-two .user-bonus-info .type-l{
 	font-size: 1.1em;
     float: left;
     width: 32%;
@@ -793,17 +793,17 @@
 	border-right: 1px solid #ddd;
 	line-height: 6em;
 }
-.ecjia-bonus.ecjia-list-two .user-bonus-head .type-r{
+.ecjia-bonus.ecjia-list-two .user-bonus-info .type-r{
 	width: 68%;
 	float: left;
     text-align: left;
 	padding-left: .5em;
 	color: #aaa;
 }
-.ecjia-bonus.ecjia-list-two .user-bonus-head .type-r p{
+.ecjia-bonus.ecjia-list-two .user-bonus-info .type-r p{
 	padding-top: .4em;
 }
-.ecjia-bonus.ecjia-list-two .user-bonus-head .type-r p.type-name{
+.ecjia-bonus.ecjia-list-two .user-bonus-info .type-r p.type-name{
 	font-size: 1.2em;
 }
 

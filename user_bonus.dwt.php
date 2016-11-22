@@ -33,7 +33,7 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 <!-- {block name="ajaxinfo"} -->
 	<!--{foreach from=$bonus item=item}-->
 		<li class="ecjia-margin-b list-l-size">
-			<div class="{if $item.status eq '未使用'}user-bonus-head{else}user-bonus-head-expired{/if}">
+			<div class="user-bonus-info {if $item.status eq '未使用'}user-bonus-head{else}user-bonus-head-expired{/if}">
 				<div class="type-l {if $item.status eq '未使用'}no-type-money{else}type-money{/if}">￥20.00</div>
 				<div class="type-r">
 					<p class="type-name">{$item.type_name}</p>
