@@ -9,11 +9,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="hd">
 		<h2>
 			<span class="line"></span>
-			<span class="goods-index-title">热门推荐</span>
+			<span class="goods-index-title"><i class="iconfont icon-icon47"></i>热门推荐</span>
 		</h2>
 	</div>
 	<div class="bd">
-		<ul class="ecjia-margin-b ecjia-list ecjia-list-two list-page-two" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='index/ajax_goods' args='type=hot'}" >
+		<ul class="ecjia-list ecjia-list-two list-page-two" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='index/ajax_goods' args='type=hot'}" >
 		</ul>
 	</div>
 </div>

@@ -38,8 +38,3 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 	</div>
 </div>
-<style media="screen">
-{literal}
-.ecjia-promotion-model .hd {color:#FF5000}
-{/literal}
-</style>

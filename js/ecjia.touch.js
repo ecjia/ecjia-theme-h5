@@ -149,6 +149,7 @@
 					$("#load_more_btn").remove();
 				}
 				ecjia.touch.more_callback();
+				ecjia.touch.update_hot_time();
 			});
 		},
 
@@ -321,14 +322,26 @@
 
 		searchbox_foucs : function() {
 			$("#keywordBox").focus();
+		},
+		
+		//更新热门推荐时间
+		update_hot_time : function() {
+			var nowTime = new Date(),
+	    		hour = checkTime(nowTime.getHours()),
+	    		minute = checkTime(nowTime.getMinutes()),
+	    		time = hour + ':' + minute;
+			var html = '<i class="iconfont icon-icon47"></i>' + time + ' 热门推荐已更新';
+    		$('.ecjia-new-goods').find('.goods-index-title').html(html);
 		}
-
-
 	};
 
-
-
-
+	function checkTime(i) {    
+		if (i < 10) {    
+			i = "0" + i;    
+		}    
+		return i;    
+    }
+	
 	//PJAX跳转执行
 	$(document).on('pjax:complete', function() {
         window.onscroll = null;
