@@ -573,6 +573,26 @@
 	border-bottom: 1px solid #ddd;
 	background-color: #fff;
 }
+.ecjia-user-head .ecjia-list.list-short li  {
+	padding: .5em 1em;
+}
+.ecjia-user-head .ecjia-list.list-short li i  {
+	font-size: 1.5em;
+	line-height: 1.3em;
+}
+.ecjia-user .ecjia-list.list-short li i  {
+	font-size: 1.5em;
+	line-height: 2.3em;
+}
+.ecjia-user .border-t {
+	border-top: 1px solid #ddd;
+}
+.ecjia-user .border-b {
+	border-bottom: 1px solid #ddd;
+}
+.ecjia-user .ecjia-margin-b {
+	margin-bottom: 3.5em;
+}
 /*========================  地址列表 ===========================*/
 .ecjia-address-list {
 	margin-top: 1em;
@@ -1032,48 +1052,6 @@
 .ecjia-login-user-profile-form .edit-password label {
 	padding-right: 1em;
 	float: right;
-}
-.ecjia-login-nav-header {
-	text-align: left;
-	padding: .5em .5em;
-	overflow: hidden;
-	background: #fff;
-	color: #333;
-	position: relative;
-	border-top:1px solid #ddd;
-}
-.ecjia-login-nav-bottom {
-	border-bottom:1px solid #ddd;
-}
-.ecjia-login-nav-header a {
-	display: block;
-	line-height: 1.6;
-}
-.ecjia-login-nav-header span {
-	color: #999;
-}
-.ecjia-login-nav-header i.icon {
-    margin: 0 auto;
-    overflow: hidden;
-    font-size: 1.2em;
-    width: 1.4em;
-    height: 1.4em;
-    text-align: center;
-    line-height: 0.9em;
-    position: absolute;
-    left: 1em;
-    top: .9em;
-    border-radius: 5px;
-}
-.ecjia-login-nav-header a .icon-name {
-	font-size: 1.3em;
-	color: #333;
-	padding-left: 2.5em;
-}
-.ecjia-login-nav-header i {
-	font-size: 1.2em;
-	position: relative;
-	top: 0px;
 }
 /*========================  搜索 ===========================*/
 
