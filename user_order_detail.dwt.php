@@ -17,8 +17,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 <div class="ecjia-order-detail">
 	<ul class="ecjia-list ecjia-list-two ecjia-nav">
-		<li class="active"><a class="nopjax" href="#one" role="tab" data-toggle="tab">顶单状态</a></li>
-		<li class=""><a class="nopjax" href="#two" role="tab" data-toggle="tab"	>顶单详情</a></li>
+		<li class="active"><a class="nopjax" href="#one" role="tab" data-toggle="tab">订单状态</a></li>
+		<li class=""><a class="nopjax" href="#two" role="tab" data-toggle="tab"	>订单详情</a></li>
 	</ul>
 	<div class="goods-describe ecjia-margin-t active order-log-list" id="one">
 		<div class="order-log-item">
@@ -26,21 +26,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<span>已发货</span><span class="ecjiaf-fr order-time">2016-11-18 13:20</span>
 				<p>订单号为20142312324的商品已发货，请您耐心等待</p>
 			</div>
-			<span></span>
 		</div>
 		<div class="order-log-item">
 			<div class="order-log">
 				<span>已发货</span><span class="ecjiaf-fr order-time">2016-11-18 13:20</span>
 				<p>订单号为20142312324的商品已发货，请您耐心等待</p>
 			</div>
-			<span></span>
 		</div>
 		<div class="order-log-item">
 			<div class="order-log">
 				<span>已发货</span><span class="ecjiaf-fr order-time">2016-11-18 13:20</span>
 				<p>订单号为20142312324的商品已发货，请您耐心等待</p>
 			</div>
-			<span></span>
 		</div>
 	</div>
 	<div class="ecjia-checkout goods-describe ecjia-margin-b" id="two">

@@ -258,10 +258,10 @@
 	top:0;
 }
 .ecjia-list-two.list-page-two li a.list-page-goods-img .goods-name{
-	overflow: hidden; 
-	text-overflow: ellipsis; 
-	display: -webkit-box; 
-	-webkit-line-clamp: 2; 
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 	height: 3em;
 	white-space: pre-line;
@@ -539,7 +539,10 @@
 	line-height: 3em;
 	padding-left: 1em;
 }
-
+.ecjia-address-list .nav-header {
+	height: 3em;
+	top: -1em;
+}
 .ecjia-address-list .address-backgroundw i.icon-jiantou-bottom {
 	position: absolute;
 	left: 4em;
@@ -549,6 +552,12 @@
 	position: absolute;
 	left: 6em;
 	top: 0.9em;
+	z-index: 6;
+}
+.ecjia-address-list .nav-header i.icon-search {
+	position: absolute;
+	left: 1em;
+	top: 0.7em;
 	z-index: 6;
 }
 .ecjia-address-list .address-backgroundw input {
@@ -562,9 +571,51 @@
 	padding-left: 1.6em;
 	border: 1px solid #F0F0F0;
 }
+.ecjia-address-list .nav-header input {
+	position: absolute;
+	top: 0.4em;
+	height: 2em;
+	width: 34em;
+	border-radius: 10px;
+	z-index: 5;
+	padding-left: 1.6em;
+	margin-left: 0.3em;
+	border: 1px solid #F0F0F0;
+}
 .ecjia-address-list .address-icons {
     position: relative;
     left: 1em;
+}
+.ecjia-address-list .nav-header a>i {
+	position: absolute;
+	color: green;
+	left: 0.5em;
+	top: 0.9em;
+}
+.ecjia-address-list li>i {
+	position: absolute;
+	top: 1.8em;
+	color: green;
+	font-size: 400;
+}
+.ecjia-address-list .ecjia-margin-b .list {
+	padding-left: 2em;
+	margin-top: 0em;
+}
+.ecjia-address-list .ecjia-margin-b .list .ecjia-margin-top {
+	margin-top: 0.2em;
+}
+.ecjia-address-list .address-list-center {
+	text-align: center;
+	padding: 1em .5em;
+	overflow: hidden;
+	background: #fff;
+	color: #333;
+	position: relative;
+	border-bottom:1px solid #ddd;	
+}
+.ecjia-address-list .address-list-center a>i {
+	color: green;
 }
 /*========================  账户余额 ===========================*/
 
@@ -944,6 +995,101 @@
 }
 .ecjia-order-detail .order-ft-link .btn-small:last-child{
     margin-right: 0;
+}
+.ecjia-order-detail .order-log-list{
+    padding: 0 1em;
+    overflow: hidden;
+}
+.order-log-item {
+    position: relative;
+    font-weight: lighter;
+    background: #ffffff;
+    margin-bottom: 1em;
+    width: 80%;
+    float: right;
+    border-radius: 10px;
+    padding: 1em .5em;
+    color: #9d9d9d;
+}
+.order-log-item .order-log{
+    position: relative;
+}
+.order-log-item .order-log::before{
+    content: '';
+    position: absolute;
+    top:50%;
+    left: -1em;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform:translateY(-50%);
+    -o-transform:translateY(-50%);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #fff;
+}
+.order-log-item:first-child .order-log::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform:translateY(-50%);
+    -o-transform:translateY(-50%);
+    background: #47aa4d;
+    width: 1em;
+    height: 1em;
+    border-radius: 100%;
+    left: -4em;
+    z-index: 99;
+}
+.order-log-item:first-child{
+    background: #c9f7db;
+}
+.order-log-item:first-child .order-log::before{
+    border-right-color: #c9f7db;
+}
+.order-log-item:first-child::after{
+    width: 1.5em;
+    height: 1.5em;
+    left: -3.75em;
+}
+.order-log-item .order-log .order-time{
+    color: #a8a8a8;
+}
+.order-log-item::after{
+    content:'';
+    position: absolute;
+    left: -3.5em;
+    display: block;
+    width: 1em;
+    height: 1em;
+    border:1px solid #ddd;
+    top: 50%;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform:translateY(-50%);
+    -o-transform:translateY(-50%);
+    background: #fff;
+    border-radius: 100%;
+}
+.order-log-item::before{
+    content: '';
+    width: 1px;
+    position: absolute;
+    top: 0;
+    left: -3em;
+    height: calc(100% + 1em);
+    background: #ddd;
+}
+.order-log-item:first-child::before{
+    height: calc(50% + 1em);
+    top: 50%;
+}
+.order-log-item:last-child::before{
+    height: 50%;
 }
 /*========================  文章 ===========================*/
 

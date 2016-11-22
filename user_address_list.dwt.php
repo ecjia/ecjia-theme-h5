@@ -12,10 +12,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 
-<div class="flow-consignee-list">
+<div class="flow-consignee-list ecjia-address-list">
 	<div class="nav-header ecjia-margin-t">
 		<a class="" href="{url path='user/user_address/add_address'}" type="botton">
-			<i class="iconfont icon-roundadd"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t}新建收货地址{/t}
+			<i class="iconfont icon-roundadd"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t}新建收货地址{/t}
 			<span class="ecjiaf-fr"><i class="iconfont icon-jiantou-right"></i></span>
 		</a>
 	</div>
