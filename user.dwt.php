@@ -17,8 +17,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 <!-- TemplateEndEditable -->
 
-<!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
-<!-- TemplateEndEditable -->
 <div class="ecjia-user-info user-new-info">
 	<div class="user-img ecjiaf-fl"><a href="{url path='user/user_profile/edit_profile'}"><img src="{$user_img}" alt=""></a></div>
 	<div class="ecjiaf-fl ecjia-margin-l user-rank-name">
@@ -112,4 +110,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</a>
 </div>
 <div class="ecjia-margin-t"></div>
+<!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
+
 <!-- {/block} -->

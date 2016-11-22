@@ -69,7 +69,7 @@
 }
 .ecjia-mod.ecjia-promotion-model .hd{
     border-top: 0;
-	color: #FF5000
+	color: #FF5000;
 }
 .ecjia-mod.ecjia-promotion-model .ecjia-sales-hd h2{
 	height: 1.8em;
@@ -620,6 +620,9 @@
 
 
 /*========================  红包 ===========================*/
+.ecjia-bonus{
+	height: auto;
+}
 .ecjia-bonus-border-right a{
 	border-right: 1px solid #CCC;
 }
@@ -635,25 +638,43 @@
 	line-height: 3.4em;
 	font-size: 1em;
 }
-.ecjia-bonus .list-l-size {
-	margin-left: 9%;
-	margin-right: 0;
-	height: 8em;
-	width: 30%;
+.ecjia-bonus.ecjia-list-two li.list-l-size{
+	width: 95%;
+	margin: 0 auto;
+	float: none;
+	border: none;
+	position: relative;
+	margin-bottom: 1em;
 }
-.ecjia-bonus .list-r-size {
-	margin-right: 6%;
-	height: 8em;
-	width: 50%;
+.ecjia-bonus.ecjia-list-two .user-bonus-head{
+	width: 100%;
+    overflow: hidden;
+	padding: .5em 0;
 }
-.ecjia-bonus .list-l-size .font-s {
-	font-size: 1.5em;
-	margin-top: 2em;
+.ecjia-bonus.ecjia-list-two .user-bonus-head .type-l{
+	font-size: 1.1em;
+    float: left;
+    width: 32%;
+	overflow: hidden;
+	color: #FF1919;
+	font-weight: 500;
+	border-right: 1px solid #ddd;
+	line-height: 6em;
 }
-.ecjia-bonus .list-l-size .font-rs {
-	font-size: 1.5em;
-	margin-top: 2em;
+.ecjia-bonus.ecjia-list-two .user-bonus-head .type-r{
+	width: 68%;
+	float: left;
+    text-align: left;
+	padding-left: .5em;
+	color: #aaa;
 }
+.ecjia-bonus.ecjia-list-two .user-bonus-head .type-r p{
+	padding-top: .4em;
+}
+.ecjia-bonus.ecjia-list-two .user-bonus-head .type-r p.type-name{
+	font-size: 1.2em;
+}
+
 /*========================  登录 ===========================*/
 .ecjia-login {
 	margin-top: 1em;
@@ -1112,7 +1133,7 @@
 .ecjia-bottom-bar-pannel {
     position: fixed;
     height: 44px;
-    z-index: 28;
+    z-index: 1;
     bottom: 0;
     left: 0;
 }
