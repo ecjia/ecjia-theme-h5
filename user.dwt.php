@@ -110,7 +110,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
     <div class="ecjia-margin-t border-t border-b">
         <li>
-        	<a href="{url path='user/user_order/order_list'}">
+        	<a href="{url path='article/help/init'}">
         		<i class="iconfont icon icon-kefu"></i>
         		<span class="icon-name">帮助中心</span>
         		<i class="iconfont  icon-jiantou-right"></i>
