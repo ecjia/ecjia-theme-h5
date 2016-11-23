@@ -411,6 +411,22 @@ class goods_controller {
     	ecjia_front::$controller->assign('title', '分类店铺');
     	ecjia_front::$controller->display('store_list.dwt');
     }
+    
+    /**
+     * 店铺详情
+     */
+    public static function store_detail() {
+    	$store_id = intval($_GET['store_id']);
+    	$store_id = 63;
+    	$arr = array(
+    			'seller_id' 	=> $store_id,
+    	);
+    	
+    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data($arr)->run();
+    	ecjia_front::$controller->assign('data', $data);
+    	ecjia_front::$controller->assign('title', '店铺详情');
+    	ecjia_front::$controller->display('store_detail.dwt');
+    }
 }
 
 // end

@@ -1,0 +1,91 @@
+<?php 
+/*
+Name: 店铺详情
+Description: 这是店铺详情页
+Libraries: page_menu,page_header
+*/
+defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
+?>
+<!-- {extends file="ecjia-touch.dwt.php"} -->
+
+<!-- {block name="footer"} -->
+<script type="text/javascript">ecjia.touch.category.init();</script>
+<!-- {/block} -->
+
+<!-- {block name="main-content"} -->
+<!-- #BeginLibraryItem "/library/page_header.lbi" -->
+<!-- #EndLibraryItem -->
+
+<div class="ecjia-store-detail">
+	<div class="item1">
+		<div class="item1-info">
+			<div class="store-info">
+				<div class="basic-info">
+					<div class="store-left">
+						<img src="{$data.seller_logo}">
+					</div>
+					<div class="store-right">
+						<div class="store-name">{$data.seller_name}{if $data.location.distance}{$data.location.distance}m{/if}{if $data.manage_mode eq 'self'}<span>自营</span>{/if}</div>
+						<div class="store-range">
+							<i class="iconfont icon-remind"></i>{$data.label_trade_time}
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+				{if $data.goods_count}
+				<ul class="store-goods">
+					<li class="goods-info">
+						<span class="store-goods-count">{$data.goods_count.count}</span><br>
+						<span class="store-goods-name">全部商品</span>
+					</li>
+					<li class="goods-info">
+						<span class="store-goods-count">{$data.goods_count.new_goods}</span><br>
+						<span class="">上新</span>
+					</li>
+					<li class="goods-info">
+						<span class="store-goods-count">{$data.goods_count.best_goods}</span><br>
+						<span class="">促销</span>
+					</li>
+					<li class="goods-info">
+						<span class="store-goods-count">{$data.goods_count.hot_goods}</span><br>
+						<span class="">店铺动态</span>
+					</li>
+				</ul>
+				<ul class="comments">
+					<li>
+						<span class="comment-name">商品评分</span>
+						<span class="comment-result">{$data.comment.comment_goods}</span>	
+					</li>
+					<li>
+						<span class="comment-name">服务评分</span>
+						<span class="comment-result">{$data.comment.comment_goods}</span>	
+					</li>
+					<li>
+						<span class="comment-name">时效评分</span>
+						<span class="comment-result">{$data.comment.comment_goods}</span>	
+					</li>
+				</ul>
+				<div class="store-tel">
+					<span class="tel-name">商家电话</span>
+					<span class="tel-result">{$data.telephone}</span>
+				</div>
+				<ul class="store-other-info">
+					<li>
+						<span class="other-info-name">公司名称</span>
+						<span class="other-info-result">{if $data.shop_name}{$data.shop_name}{else}暂无{/if}</span>
+					</li>
+					<li>
+						<span class="other-info-name">所在地区</span>
+						<span class="other-info-result">{if $data.shop_address}{$data.shop_address}{else}暂无{/if}</span>
+					</li>
+					<li>
+						<span class="other-info-name">店铺公告</span>
+						<span class="other-info-result">{if $data.seller_notice}{$data.seller_notice}{else}暂无{/if}</span>
+					</li>
+				</ul>
+				{/if}
+			</div>
+		</div>
+	</div>
+</div>
+<!-- {/block} -->
