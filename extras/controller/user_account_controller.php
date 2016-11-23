@@ -59,6 +59,7 @@ class user_account_controller {
         // ecjia_front::$controller->assign('surplus_amount', $surplus_amount);
         // ecjia_front::$controller->assign_title(RC_Lang::lang('label_user_surplus'));
         // ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign('hideinfo', '123');
         ecjia_front::$controller->display('user_account_detail.dwt');
     }
     /**

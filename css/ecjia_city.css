@@ -580,10 +580,25 @@
 	font-size: 1.5em;
 	line-height: 1.3em;
 }
+.ecjia-user .ecjia-list.list-short li a{
+	line-height: 1.7em;
+}
 .ecjia-user .ecjia-list.list-short li i  {
 	font-size: 1.5em;
 	line-height: 2.3em;
 }
+.ecjia-list.list-short li span{
+	display: inline;
+	margin-left: 8%;
+}
+.ecjia-user .ecjia-list.list-short li span.icon-price{
+    float: right;
+    width: 35%;
+   	text-align: right;
+   	padding-right: 1em;
+   	color: red;
+}
+
 .ecjia-user .border-t {
 	border-top: 1px solid #ddd;
 }
@@ -862,7 +877,6 @@
 	padding-top: .7em;
 	border-bottom: 1px solid #ddd;
 }
-
 .ecjia-account-record .account-record-list li.record-single:last-child .record-r{
 	border: none;
 }
@@ -874,13 +888,11 @@
 .ecjia-account-record .account-record-list .record-r p.record-time{
 	color: #bbb;
 }
-
 .ecjia-account-record .account-record-list .record-r .record-r-l{
 	float: left;
 	width: 60%;
 	text-align: left;
 }
-
 /*========================  红包 ===========================*/
 .ecjia-bonus{
 	height: auto;
