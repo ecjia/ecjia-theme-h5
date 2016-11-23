@@ -4,13 +4,14 @@
  */
 class article_controller {
     /**
-     *  文章分类
+     *  帮助中心页
      */
     public static function init() {
         // $cat_id = intval($_GET['id']);
         // ecjia_front::$controller->assign('article_categories', article_categories_tree($cat_id)); //文章分类树
-        // ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('article_cat.dwt');
+    	ecjia_front::$controller->assign('title', '帮助中心');
+    	ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('article_init.dwt');
     }
     /**
      * 文章列表

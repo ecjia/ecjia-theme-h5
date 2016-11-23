@@ -32,7 +32,7 @@ RC_Hook::add_action('goods/index/comment', array('goods_controller', 'comment'))
 
 //文章
 RC_Loader::load_theme('extras/controller/article_controller.php');
-RC_Hook::add_action('article/index/init', array('article_controller', 'init'));
+RC_Hook::add_action('article/help/init', array('article_controller', 'init'));
 RC_Hook::add_action('article/index/art_list', array('article_controller', 'art_list'));
 RC_Hook::add_action('article/index/asynclist', array('article_controller', 'asynclist'));
 RC_Hook::add_action('article/index/info', array('article_controller', 'info'));
