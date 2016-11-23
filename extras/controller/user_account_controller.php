@@ -196,6 +196,7 @@ class user_account_controller {
         // ecjia_front::$controller->assign_title('账户提现');
         // ecjia_front::$controller->assign('sur_amount', $sur_amount);
         // ecjia_front::$controller->assign_lang();
+//         ecjia_front::$controller->assign('hideinfo', '123');
         ecjia_front::$controller->display('user_account_withdraw.dwt');
     }
 
@@ -250,6 +251,7 @@ class user_account_controller {
      * 充值提现列表
      */
     public static function cash_list() {
+        ecjia_front::$controller->assign('hideinfo', '123');
     	ecjia_front::$controller->assign('title', '交易记录');
     	ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
     	ecjia_front::$controller->display('user_cash_list.dwt');

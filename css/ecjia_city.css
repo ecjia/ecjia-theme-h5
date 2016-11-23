@@ -930,7 +930,7 @@
 	margin-left: 0 !important;
 }
 .ecjia-account .text-ty {
-	margin-left: 7%;
+	margin-left: 5%;
 }
 .ecjia-account .account-bonus span {
 	color: #999;
@@ -960,9 +960,43 @@
     margin-top: -.4em;
     margin-right: .5em;
 }
+.ecjia-account.ecjia-form .form-group-text {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
 /*========================  交易记录 ===========================*/
 .ecjia-account-record {
 	height: auto;
+}
+.ecjia-account.ecjia-nav li a {
+	display: block;
+	width: 100%;
+	height: 2.4em;
+	line-height: 2.2em;
+	font-size: 1em;
+	border-bottom: 2px solid #ddd;
+	margin-top: 2em;
+	margin-bottom: 1em;
+	border-top: 2px solid #ddd;
+}
+.ecjia-account.ecjia-nav li.active {
+	/*background: #FFF;*/
+}
+.ecjia-account.ecjia-nav .left-bottom {
+	border-left: 1px solid #cccccc;
+	border-radius:.4em 0 0 .4em;
+}
+.ecjia-account.ecjia-nav .right-bottom {
+	border-radius: 0 .4em .4em 0;
+}
+.ecjia-account-list {
+	margin-right: 5%;
+	margin-left: 5%;
+}
+.ecjia-account-list-f {
+	background: #FFF;
 }
 .ecjia-account-record li {
 	border: none;

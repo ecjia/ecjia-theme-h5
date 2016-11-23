@@ -19,12 +19,11 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 
-<ul class="ecjia-list ecjia-list-three ecjia-bonus ecjia-margin-b ecjia-bonus-border-right">
+<ul class="ecjia-list ecjia-list-three ecjia-bonus ecjia-nav ecjia-margin-b ecjia-bonus-border-right">
 	<li {if $status eq 'notused'} class="active three-btn"{/if}><a href="{url path='user/user_bonus/bonus' args='status=notused'}">{t}可使用{/t}</a></li>
 	<li {if $status eq 'used'} class="active three-btn"{/if}><a href="{url path='user/user_bonus/bonus' args='status=used'}">{t}已使用{/t}</a></li>
 	<li {if $status eq 'overdue'} class="active three-btn"{/if}><a href="{url path='user/user_bonus/bonus' args='status=overdue'}">{t}已过期{/t}</a></li>
 </ul>
-
 <div>
 	<ul class="ecjia-list ecjia-bonus ecjia-list-two" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_bonus_list' args="status={$status}"}" data-size="10">
 	</ul>
