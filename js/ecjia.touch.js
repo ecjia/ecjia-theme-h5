@@ -13,6 +13,7 @@
 			ecjia.touch.toggle_collapse();
 			ecjia.touch.close_banner();
 			ecjia.touch.close_app_download();
+			ecjia.touch.searchbox_foucs();
 		},
 
 		/**
@@ -321,7 +322,28 @@
 		},
 
 		searchbox_foucs : function() {
-			$("#keywordBox").focus();
+			var k = $('#keywordBox').val(); 
+			$('#keywordBox').val('').focus().val(k); 
+			
+			$('.btn-search').off('click').on('click', function(e) {
+				var val = $('input[name="keywords"]').val();
+				if (val == '') {
+					$("#keywordBox").focus(); 
+					return false;
+				} else {
+					$('form[name="searchForm"]').submit();
+				}
+			});
+			
+			$('.ecjia-search-header .bg').on('click', function(){
+				var $this = $(this),
+					url = $this.attr('data-url'),
+					keywords = $this.attr('data-val');
+					if (keywords && keywords != undefined) {
+						url += '&keywords=' + keywords;
+					};
+					ecjia.pjax(url);
+			});
         },
         
         //更新热门推荐时间

@@ -15,7 +15,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="swiper-container swiper-touchIndex">
 			<div class="swiper-wrapper">
 				<!--{foreach from=$cycleimage item=img}-->
-				<div class="swiper-slide"><a target="_blank" href="{$img.photo.url}"><img src="{$img.photo.url}" /></a></div>
+				<div class="swiper-slide"><a target="_blank" href=""><img src="{$img.photo.url}" /></a></div>
 				<!--{/foreach}-->
 			</div>
 			<!-- Add Pagination -->
