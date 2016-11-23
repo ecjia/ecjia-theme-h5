@@ -13,7 +13,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
+<!-- #BeginLibraryItem "/library/index_header.lbi" -->
 <!-- #EndLibraryItem -->
 
 <ul class="ecjia-store-list">
@@ -21,7 +21,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<li class="single_item">
 		<ul class="single_store">
 			<li class="store-info">
-				<a href="">
+				<a href="{RC_Uri::url('goods/category/store_goods')}&store_id={$val.id}">
 				<div class="basic-info">
 					<div class="store-left">
 						<img src="{$val.seller_logo}">
@@ -30,7 +30,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<div class="store-name">{$val.seller_name}{if $val.manage_mode eq 'self'}<span>自营</span>{/if}</div>
 						<div class="store-range">
 							<i class="iconfont icon-remind"></i>{$val.label_trade_time}
+							{if $val.distance}
 							<span class="store-distance">{$val.distance}m</span>
+							{/if}
 						</div>
 					</div>
 					<div class="clear"></div>

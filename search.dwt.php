@@ -18,13 +18,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<a class="ecjia-header-icon" href="javascript:history.go(-1)"><i class="iconfont icon-jiantou-left"></i></a>
 	</div>
 	<div class="ecjia-search-header">
-		<form class="ecjia-form" action="{url path='goods/category/goods_list'}<!-- {if $id} -->&id={$id}<!-- {/if} -->" data-valid='novalid'  method="post" id="searchForm" name="searchForm">
-			<select name="type_val" id="select_type">
-				<option value="1">商品</option>
-				<option value="2">店铺</option>
-			</select>
-			<input id="keywordBox" name="keywords" type="search" placeholder="{$lang.no_keywords}" autofocus="autofocus">
-			<button type="submit" value="{$lang.search}"><i class="iconfont icon-search"></i></button>
+		<form class="ecjia-form" action="{url path='goods/category/store_list'}" data-valid='novalid' method="post" id="searchForm" name="searchForm">
+			<input id="keywordBox" name="keywords" type="search" placeholder="搜索附近商品和门店" autofocus="autofocus" {if $keywords}value="{$keywords}"{/if}>
+			<button type="submit" class="btn-search"><i class="iconfont icon-search"></i></button>
 		</form>
 	</div>
 </header>
@@ -35,7 +31,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</p>
 	<div class="hot-search-list">
 		<!-- {foreach from=$tags item=ky} -->
-		<a href="{url path='goods/category/goods_list' args="keywords={$ky}"}">{$ky}</a> 
+		<a href="{url path='goods/category/store_list' args="keywords={$ky}"}">{$ky}</a> 
 		<!-- {/foreach} -->
 	</div>
 </div>
