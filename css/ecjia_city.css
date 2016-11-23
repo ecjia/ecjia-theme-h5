@@ -1,4 +1,51 @@
 /*========================  首页 ===========================*/
+.ecjia-header.ecjia-header-index {
+    background: #47aa4d;
+	position: fixed;
+    z-index: 9;
+	height: 45px;
+}
+.ecjia-header-index .ecjia-search-header {
+    left: .5em;
+    right: .5em;
+}
+.ecjia-header.ecjia-header-index a{
+	color: #aaa;
+}
+.ecjia-header.ecjia-header-index i {
+	padding-left: .5em;
+	padding-right: .5em;
+	font-size: 1.2em;
+}
+.ecjia-header-index .ecjia-search-header .bg {
+    background: #fff;
+    width: 100%;
+    height: 30px;
+	left:0;
+    border-radius: 4px;
+	position: absolute;
+    display: inline-block;
+    color: #aaa;
+    font-size: 14px;
+    line-height: 30px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.ecjia-search-header .ecjia-form input {
+    padding-left: .5em
+}
+.focus {
+	margin-top: 45px;
+}
+.ecjia-search-header {
+	position: absolute;
+    top: 0.5em;
+    right: 1em;
+    height: 2.4em;
+    border-radius: 5px;
+}
+
 .ecjia-row-nav li:nth-child(4n+1) {
     clear: none;
 }
@@ -320,7 +367,128 @@
 	margin-top: 1em;
 }
 /*========================  分类 ===========================*/
-
+.category .ecjia-header{
+	position: fixed;
+    height: 49px;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.category .category_left{
+	position: fixed;
+	margin-top: 0;
+	padding-top: 0;
+	float: none;
+	overflow: auto;
+}
+.category .category_right{
+	margin-top: 49px;
+	padding-top: 0;
+	padding-bottom: 4em;
+	height: auto;
+}
+/*========================  店铺商品 ===========================*/
+.ecjia-header.ecjia-store-banner {
+	background: #fff;
+	height: 10em;
+	position: relative;
+}
+.ecjia-header.ecjia-store-banner i{
+	z-index: 2;
+}
+.ecjia-header.ecjia-store-banner img{
+	position: absolute;
+	width: 100%;
+	left: 0;
+	z-index: 1;
+	height: 10em;
+}
+.ecjia-store-brief {
+	height: auto;
+}
+.ecjia-store-brief .store-info{
+	width:100%;
+	margin:0 auto;
+	background:#FFFFFF;
+    border-bottom:1px solid #eee;
+    margin-bottom:.5em;
+	height:auto;
+	min-height:5em;
+	overflow:hidden;
+}
+.ecjia-store-brief .store-info .clear{
+	clear:both;
+}
+.ecjia-store-brief .store-info .basic-info{
+	height:auto;
+	padding:.5em;
+}
+.ecjia-store-brief .store-left{
+	float: left;
+	width: 20%;
+}
+.ecjia-store-brief .store-left img{
+    width:5em;
+    height:5em;
+	border-radius:50%;
+	border:2px solid #47aa4d;
+}
+.ecjia-store-brief .store-right{
+	float:left;
+	width:80%;
+}
+.ecjia-store-brief .store-right div{
+	padding-left:.5em;
+}
+.ecjia-store-brief .store-name{
+	color: #333;
+    font-size: 1em;
+	padding-top: 1em;
+	font-weight: 500;
+}
+.ecjia-store-brief .store-name span{
+	color: #FF1919;
+	display:inline-block;
+	border:1px solid #FF1919;
+	border-radius:4px;
+	font-weight:500;
+	font-size: .8em;
+	margin-left:.4em;
+}
+.ecjia-store-brief .store-range i{
+	top:0;
+	font-size:1.1em;
+	padding-right:.3em;
+}
+.ecjia-store-brief .store-range{
+	line-height:2em;
+	color:#aaa;
+}
+.ecjia-store-brief .store-distance{
+	float:right;
+	color: #aaa;
+    font-size: 1.2em;
+	font-weight:500;
+}
+.ecjia-store-brief .store-promotion li{
+	padding:0 0 .5em .5em;
+}
+.ecjia-store-brief .store-promotion .promotion-label{
+	color: #fff;
+	display:inline-block;
+	border:1px solid #FF1919;
+	border-radius:4px;
+	font-weight:500;
+	font-size: .8em;
+	background: #FF1919;
+	padding:.1em .2em;
+}
+.ecjia-store-brief .store-promotion .promotion-name{
+	font-weight:500;
+	font-size: .8em;
+	padding-left:.5em;
+	color: #333;
+}
 
 /*========================  购物车 ===========================*/
 .small-btn{
@@ -580,10 +748,25 @@
 	font-size: 1.5em;
 	line-height: 1.3em;
 }
+.ecjia-user .ecjia-list.list-short li a{
+	line-height: 1.7em;
+}
 .ecjia-user .ecjia-list.list-short li i  {
 	font-size: 1.5em;
 	line-height: 2.3em;
 }
+.ecjia-list.list-short li span{
+	display: inline;
+	margin-left: 8%;
+}
+.ecjia-user .ecjia-list.list-short li span.icon-price{
+    float: right;
+    width: 35%;
+   	text-align: right;
+   	padding-right: 1em;
+   	color: red;
+}
+
 .ecjia-user .border-t {
 	border-top: 1px solid #ddd;
 }
@@ -762,7 +945,7 @@
 	margin-left: 0 !important;
 }
 .ecjia-account .text-ty {
-	margin-left: 7%;
+	margin-left: 5%;
 }
 .ecjia-account .account-bonus span {
 	color: #999;
@@ -792,9 +975,43 @@
     margin-top: -.4em;
     margin-right: .5em;
 }
+.ecjia-account.ecjia-form .form-group-text {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
 /*========================  交易记录 ===========================*/
 .ecjia-account-record {
 	height: auto;
+}
+.ecjia-account.ecjia-nav li a {
+	display: block;
+	width: 100%;
+	height: 2.4em;
+	line-height: 2.2em;
+	font-size: 1em;
+	border-bottom: 2px solid #ddd;
+	margin-top: 2em;
+	margin-bottom: 1em;
+	border-top: 2px solid #ddd;
+}
+.ecjia-account.ecjia-nav li.active {
+	/*background: #FFF;*/
+}
+.ecjia-account.ecjia-nav .left-bottom {
+	border-left: 1px solid #cccccc;
+	border-radius:.4em 0 0 .4em;
+}
+.ecjia-account.ecjia-nav .right-bottom {
+	border-radius: 0 .4em .4em 0;
+}
+.ecjia-account-list {
+	margin-right: 5%;
+	margin-left: 5%;
+}
+.ecjia-account-list-f {
+	background: #FFF;
 }
 .ecjia-account-record li {
 	border: none;
@@ -828,7 +1045,6 @@
 	padding-top: .7em;
 	border-bottom: 1px solid #ddd;
 }
-
 .ecjia-account-record .account-record-list li.record-single:last-child .record-r{
 	border: none;
 }
@@ -840,13 +1056,11 @@
 .ecjia-account-record .account-record-list .record-r p.record-time{
 	color: #bbb;
 }
-
 .ecjia-account-record .account-record-list .record-r .record-r-l{
 	float: left;
 	width: 60%;
 	text-align: left;
 }
-
 /*========================  红包 ===========================*/
 .ecjia-bonus{
 	height: auto;
@@ -1242,6 +1456,7 @@
 .ecjia-store-list {
     background:#EFEFF4;
     height:auto;
+	margin-top: 45px;
 }
 .ecjia-store-list li.single_item{
     background:#FFFFFF;
@@ -1286,8 +1501,8 @@
 .ecjia-store-list .store-name{
 	color: #333;
     font-size: 1em;
-	padding-top:.5em;
-	font-weight:500;
+	padding-top: 1em;
+	font-weight: 500;
 }
 .ecjia-store-list .store-name span{
 	color: #FF1919;

@@ -19,12 +19,15 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 
-<ul class="ecjia-list ecjia-list-three ecjia-nav ecjia-margin-b ecjia-bonus-border-right">
-	<li {if $status eq 'notused'} class="active"{/if}><a href="{url path='user/user_bonus/bonus' args='status=notused'}">{t}全部{/t}</a></li>
-	<li {if $status eq 'used'} class="active"{/if}><a href="{url path='user/user_bonus/bonus' args='status=used'}">{t}提现{/t}</a></li>
-	<li {if $status eq 'overdue'} class="active"{/if}><a href="{url path='user/user_bonus/bonus' args='status=overdue'}">{t}充值{/t}</a></li>
-</ul>
-
+<div class="ecjia-account-list-f">
+    <div class="ecjia-account-list">
+        <ul class="ecjia-list ecjia-list-three ecjia-nav ecjia-account ecjia-margin-b ecjia-bonus-border-right">
+        	<li {if $status eq 'notused'}" class="active"{/if}><a class="left-bottom" href="{url path='user/user_account/cash_list' args='status=notused'}">{t}全部{/t}</a></li>
+        	<li {if $status eq 'used'} class="active"{/if}><a href="{url path='user/user_account/cash_list' args='status=used'}">{t}提现{/t}</a></li>
+        	<li {if $status eq 'overdue'} class="active"{/if}><a class="right-bottom" href="{url path='user/user_account/cash_list' args='status=overdue'}">{t}充值{/t}</a></li>
+        </ul>
+    </div>
+</div>
 <div>
 	<ul class="ecjia-list ecjia-account-record" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_account/ajax_cash_list' args="type={$type}"}" data-size="10">
 	</ul>

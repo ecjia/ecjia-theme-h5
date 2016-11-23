@@ -20,6 +20,7 @@ ecjia.touch.category.init();
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
+
 <div class="category">
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
@@ -56,4 +57,5 @@ ecjia.touch.category.init();
     	<!--{/foreach}-->
     </div>
 </div>
+<!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
 <!-- {/block} -->
