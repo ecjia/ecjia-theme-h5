@@ -64,8 +64,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </ul>
 
 <div class="ecjia-user">
-<ul class="ecjia-list list-short">
-    <div class="ecjia-margin-t border-t border-b">
+<ul>
+    <div class="ecjia-margin-t ecjia-list list-short">
        <li>
         	<a href="{url path='user/user_address/address_list'}">
         		<i class="iconfont icon icon-location"></i>
@@ -75,7 +75,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </li>
     </div>
     
-    <div class="ecjia-margin-t border-b border-t">
+    <div class="ecjia-margin-t ecjia-list list-short">
         <li>
         	<a href="{url path='user/user_order/order_list'}">
         		<i class="iconfont icon icon-homefill"></i>
@@ -92,7 +92,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </li>
     </div>
     
-    <div class="ecjia-margin-t border-t border-b">
+    <div class="ecjia-margin-t ecjia-list list-short">
         <li>
         	<a href="{url path='user/user_package/service'}">
         		<i class="iconfont icon icon-kefu"></i>
@@ -108,7 +108,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
     </div>
-    <div class="ecjia-margin-t border-t border-b">
+    <div class="ecjia-margin-t ecjia-list list-short">
         <li>
         	<a href="{url path='article/help/init'}">
         		<i class="iconfont icon icon-kefu"></i>
