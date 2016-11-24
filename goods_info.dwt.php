@@ -16,12 +16,50 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 
-<div class="goods-desc-info">
+<div class="ecjia-goods-detail-header-title">
+	<ul>
+		<li class="active"><a class="nopjax" href="#goods-info-one" role="tab" data-toggle="tab">商品</a></li>
+		<li><a class="nopjax" href="#goods-info-two" role="tab" data-toggle="tab">详情</a></li>
+	</ul>
+</div>
+
+<div class="ecjia-goods-basic-info"  id="goods-info-one">
+	<form class="" name="addcartForm" action="{url path='cart/index/add_to_cart'}" method="post">
+		<div class="goods-pictures">
+			<!-- {foreach from=$goods_infos item=vals} -->
+				<div><img src="{$val.url}" title="" alt="" /></div>
+			<!-- {/foreach} -->
+		</div>
+		<div class="goods-name">{$goods_infos.goods_name}</div>	
+		<div>
+			<span class="shop_price">{$goods_infos.shop_price}</span>
+			<span class="market-price">市场价：{$goods_infos.market_price}</span>
+			<span>距结束</span>
+			<button type="submit" class="btn btn-small">加入购物车</button>
+			<p><span>满减</span>  <span>优惠活动</span></p>
+		</div>
+	</form>
+	<div class="blong-store-name"></div>
+	<div class="may-like-goods">
+		<div>也许你还喜欢</div>
+		<div class="may-like-goods-list">
+			<!-- {foreach from=$related_goods item=vals} -->
+				<div class="single-goods">
+					<a href=""><img src="{$val.url}" title="" alt="" /></a>
+					<p>{$vals.goods_name}</p>
+					<p><span>价格</span> <span></span></p>
+				</div>
+			<!-- {/foreach} -->
+		</div>
+	</div>
+</div>
+
+<div class="goods-desc-info active" id="goods-info-two">
 	<!--商品描述-->
 	<!-- Nav tabs -->
 	<ul class="ecjia-list ecjia-list-two ecjia-nav goods-desc-nav">
-		<li class="active"><a class="nopjax" href="#one" role="tab" data-toggle="tab">{$lang.goods_brief}</a></li>
-		<li><a class="nopjax" href="#two" role="tab" data-toggle="tab">{$lang.goods_attr}</a></li>
+		<li class="active"><a class="nopjax" href="#one" role="tab" data-toggle="tab">图文详情</a></li>
+		<li><a class="nopjax" href="#two" role="tab" data-toggle="tab">规格参数</a></li>
 	</ul>
 	<!-- Tab panes -->
 	<div class="bd">

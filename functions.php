@@ -25,7 +25,7 @@ RC_Hook::add_action('goods/category/store_detail', array('goods_controller', 'st
 RC_Hook::add_action('goods/category/store_goods', array('goods_controller', 'store_goods'));
 
 
-RC_Hook::add_action('goods/index/init', array('goods_controller', 'goods_index'));
+RC_Hook::add_action('goods/index/init', array('goods_controller', 'goods_index'));//商品详情页
 RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));
 RC_Hook::add_action('goods/index/promotion', array('goods_controller', 'goods_promotion'));
 RC_Hook::add_action('goods/index/ajax_goods', array('goods_controller', 'ajax_goods'));
