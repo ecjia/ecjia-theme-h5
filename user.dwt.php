@@ -64,8 +64,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </ul>
 
 <div class="ecjia-user">
-<ul>
-    <div class="ecjia-margin-t ecjia-list list-short">
+
+    <ul class="ecjia-margin-t ecjia-list list-short">
        <li>
         	<a href="{url path='user/user_address/address_list'}">
         		<i class="iconfont icon icon-location"></i>
@@ -73,9 +73,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
-    </div>
-    
-    <div class="ecjia-margin-t ecjia-list list-short">
+    </ul>
+
+    <ul class="ecjia-margin-t ecjia-list list-short">
         <li>
         	<a href="{url path='user/user_order/order_list'}">
         		<i class="iconfont icon icon-homefill"></i>
@@ -90,9 +90,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
-    </div>
-    
-    <div class="ecjia-margin-t ecjia-list list-short">
+    </ul>
+
+    <ul class="ecjia-margin-t ecjia-list list-short">
         <li>
         	<a href="{url path='user/user_package/service'}">
         		<i class="iconfont icon icon-kefu"></i>
@@ -107,8 +107,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
-    </div>
-    <div class="ecjia-margin-t ecjia-list list-short">
+    </ul>
+    <ul class="ecjia-margin-t ecjia-list list-short">
         <li>
         	<a href="{url path='article/help/init'}">
         		<i class="iconfont icon icon-kefu"></i>
@@ -123,9 +123,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
-    </div>
-    <div class="ecjia-margin-b"></div>
-</ul>
+    </ul>
 </div>
 <!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
 

@@ -17,16 +17,29 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 <form class="ecjia-list ecjia-article" action="" method="post" id="searchForm" name="searchForm">
 	<ul class="list-one user-address-list">
+		<span>购物流程</span>
 		<li>
 			<div class="form-group form-group-text">
-				华东师范大学（中北校区）
-				<i class="iconfont icon-jiantou-right"></i>
+				<span>如何注册账号</span>
+				<i class="ecjiaf-fr iconfont icon-jiantou-right"></i>
 			</div>
 		</li>
 		<li>
 			<div class="form-group form-group-text">
-				华东师范大学（中北校区）
-				<i class="iconfont icon-jiantou-right"></i>
+				<span>购物流程</span>
+				<i class="ecjiaf-fr iconfont icon-jiantou-right"></i>
+			</div>
+		</li>
+		<li>
+			<div class="form-group form-group-text">
+				<span>如何购买下单</span>
+				<i class="ecjiaf-fr iconfont icon-jiantou-right"></i>
+			</div>
+		</li>
+		<li>
+			<div class="form-group form-group-text">
+				<span>如何查找想要的商品</span>
+				<i class="ecjiaf-fr iconfont icon-jiantou-right"></i>
 			</div>
 		</li>
 	</ul>

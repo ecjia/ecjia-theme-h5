@@ -658,12 +658,18 @@
 
 
 /*========================  我的 ===========================*/
+.ecjia-user {
+    padding-bottom: calc(44px + 1em);
+}
 .ecjia-user-new-info {
 	padding:1em;
 	overflow: hidden;
 	line-height: 6em;
 	position: relative;
 	background: rgba(71, 170, 77, 0.7) none repeat scroll 0 0;
+}
+.ecjia-user.ecjia-form .form-group .input input {
+	padding-left: 0!important;
 }
 .ecjia-user-new-info .user-img {
 	border-radius: 100%;
@@ -766,8 +772,30 @@
    	padding-right: 1em;
    	color: red;
 }
+.ecjia-user .ecjia-list.list-short .user_img{
+    margin-top: 10em!important	;
+}
 .ecjia-user .ecjia-margin-b {
 	margin-bottom: 3.5em;
+}
+.ecjia-user .margin-no-l {
+    display: inline;
+    margin-left: 0%!important;
+}
+.ecjia-user .margin-r-icon {
+    right:2%;
+}
+.ecjia-user .text-color {
+	color: black!important;
+}
+.ecjia-user .user-img-text img {
+	background: #47aa4d none repeat scroll 0 0;
+    border-radius: 100%;
+    height: 3em;
+    margin-left: 82%;
+    position: absolute;
+    top: 0.2em;
+    width: 3em;
 }
 /*========================  地址列表 ===========================*/
 
@@ -792,6 +820,7 @@
 }
 .ecjia-account .text-ty {
 	margin-left: 5%;
+	color: #A4A4A4;
 }
 .ecjia-account .account-bonus span {
 	color: #999;
@@ -1057,9 +1086,6 @@
 	background-size: 90%;
 	margin-left: 20%;
 	float: left;
-}
-.ecjia-login.ecjia-form .form-group .input input {
-	padding-left: 0;
 }
 .ecjia-login .maijia {
     margin-top: 30%;
