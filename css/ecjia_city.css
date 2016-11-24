@@ -658,6 +658,9 @@
 
 
 /*========================  我的 ===========================*/
+.ecjia-user {
+    padding-bottom: calc(44px + 1em);
+}
 .ecjia-user-new-info {
 	padding:1em;
 	overflow: hidden;
