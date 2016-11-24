@@ -449,9 +449,8 @@ class goods_controller {
      */
     public static function store_detail() {
     	$store_id = intval($_GET['store_id']);
-    	$store_id = 63;
     	$arr = array(
-    		'seller_id' 	=> $store_id,
+    		'seller_id' => $store_id,
     	);
     	
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data($arr)->run();

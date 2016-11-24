@@ -36,19 +36,22 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<ul class="store-goods">
 					<li class="goods-info">
 						<span class="store-goods-count">{$data.goods_count.count}</span><br>
-						<span class="store-goods-name">全部商品</span>
+						<span class="store-goods-desc">全部商品</span>
+						<span class="goods-border"></span>
 					</li>
 					<li class="goods-info">
 						<span class="store-goods-count">{$data.goods_count.new_goods}</span><br>
-						<span class="">上新</span>
+						<span class="store-goods-desc">上新</span>
+						<span class="goods-border"></span>
 					</li>
 					<li class="goods-info">
 						<span class="store-goods-count">{$data.goods_count.best_goods}</span><br>
-						<span class="">促销</span>
+						<span class="store-goods-desc">促销</span>
+						<span class="goods-border"></span>
 					</li>
 					<li class="goods-info">
 						<span class="store-goods-count">{$data.goods_count.hot_goods}</span><br>
-						<span class="">店铺动态</span>
+						<span class="store-goods-desc">店铺动态</span>
 					</li>
 				</ul>
 				<ul class="comments">
@@ -65,22 +68,24 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<span class="comment-result">{$data.comment.comment_goods}</span>	
 					</li>
 				</ul>
+				<div class="store-hr"></div>
 				<div class="store-tel">
 					<span class="tel-name">商家电话</span>
 					<span class="tel-result">{$data.telephone}</span>
 				</div>
+				<div class="store-hr"></div>
 				<ul class="store-other-info">
 					<li>
 						<span class="other-info-name">公司名称</span>
-						<span class="other-info-result">{if $data.shop_name}{$data.shop_name}{else}暂无{/if}</span>
+						<p class="other-info-result">{if $data.shop_name}{$data.shop_name}{else}暂无{/if}</p>
 					</li>
 					<li>
 						<span class="other-info-name">所在地区</span>
-						<span class="other-info-result">{if $data.shop_address}{$data.shop_address}{else}暂无{/if}</span>
+						<p class="other-info-result">{if $data.shop_address}{$data.shop_address}{else}暂无{/if}</p>
 					</li>
 					<li>
 						<span class="other-info-name">店铺公告</span>
-						<span class="other-info-result">{if $data.seller_notice}{$data.seller_notice}{else}暂无{/if}</span>
+						<p class="other-info-result">{if $data.seller_notice}{$data.seller_notice}{else}暂无{/if}</p>
 					</li>
 				</ul>
 				{/if}
