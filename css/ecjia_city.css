@@ -713,8 +713,29 @@
 	position: relative;
 	background: rgba(71, 170, 77, 0.7) none repeat scroll 0 0;
 }
-.ecjia-user.ecjia-form .form-group .input input {
-	padding-left: 0!important;
+.ecjia-user.ecjia-form .form-group {
+	margin-left: 0;
+	margin-right: 0;
+	padding-right: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.ecjia-user.ecjia-list li {
+	padding: 1em 1em 0em 3em;
+}
+.ecjia-user .ecjia-list.list-short li {
+	padding-bottom: .5em;
+	padding-top: .5em;
+}
+.ecjia-user .ecjia-list.list-short li span {
+	margin-left: 0;
+}
+.ecjia-user.ecjia-list.list-short li{
+	padding-bottom: .3em;
+	padding-top: .3em;
+}
+.ecjia-user.ecjia-form .form-group .input, .ecjia-form .form-group .form-label, .ecjia-form .form-group .textarea {
+	line-height: 0;
 }
 .ecjia-user-new-info .user-img {
 	border-radius: 100%;
@@ -794,6 +815,9 @@
 }
 .ecjia-user-head .ecjia-list.list-short li  {
 	padding: .5em 1em;
+}
+.ecjia-user-passwd {
+	padding:0!important;
 }
 .ecjia-user-head .ecjia-list.list-short li i  {
 	font-size: 1.5em;
