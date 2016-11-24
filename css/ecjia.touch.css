@@ -346,7 +346,7 @@ textarea{
 }
 
 /**
- * ecjia-list-two
+ * ecjia-list-four
  * 全局四栏列表样式
  * 依赖:ecjia-list
  */
@@ -789,17 +789,16 @@ select, input, textarea {
  * two-btn
  * 按钮组--两个按钮
  */
-/*.two-btn {
+.two-btn {
 	overflow: hidden;
-	padding: 0.6em;
-}*/
+}
 .two-btn .btn,
 .two-btn .btn:link,
 .two-btn .btn:hover,
 .two-btn .btn:active,
 .two-btn .btn:visited {
 	float: left;
-	font-size: 1em;
+	font-size: 1.5em;
 	line-height: 1.2em;
 	width: 48%;
 	margin: 0;
@@ -838,11 +837,11 @@ select, input, textarea {
  * btn
  * 小按钮
  */
-.btn.small-btn,
-.btn.small-btn:link,
-.btn.small-btn:hover,
-.btn.small-btn:active,
-.btn.small-btn:visited {
+.btn.btn-small,
+.btn.btn-small:link,
+.btn.btn-small:hover,
+.btn.btn-small:active,
+.btn.btn-small:visited {
 	font-size: 1em;
 	margin: 0 37.5%;
 	width: 25%;
