@@ -664,6 +664,9 @@ label i.checked {
 	color: #999;
 	border-color: #999;
 }
+.ecjia-flow-done .flow-success p::before {
+    background: #50ad0b;
+}
 /*==================================================
 	ECJia css BY: JiHongFei
   ==================================================*/
