@@ -865,22 +865,15 @@
 	position: relative;
 	background: rgba(71, 170, 77, 0.7) none repeat scroll 0 0;
 }
-.ecjia-user.ecjia-form .form-group {
+.ecjia-user.ecjia-form .form-group {	
 	margin-left: 0;
 	margin-right: 0;
 	padding-right: 0;
 	padding-top: 0;
 	padding-bottom: 0;
 }
-.ecjia-user.ecjia-list li {
-	padding: 1em 1em 0em 3em;
-}
-.ecjia-user .ecjia-list.list-short li {
-	padding-bottom: .5em;
-	padding-top: .5em;
-}
 .ecjia-user .ecjia-list.list-short li span {
-	margin-left: 0;
+	/*margin-left: 0;*/
 }
 .ecjia-user.ecjia-list.list-short li{
 	padding-bottom: .3em;
