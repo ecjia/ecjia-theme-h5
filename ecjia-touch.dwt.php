@@ -25,6 +25,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.develop.css">
 	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.b2b2c.css">
 	<link rel="stylesheet" href="{$theme_url}css/ecjia_city.css">
+	<link rel="stylesheet" href="{$theme_url}css/ecjia_help.css">
 	<link rel="stylesheet" href="{$theme_url}dist/other/swiper.min.css">
     <link rel="stylesheet" href="{$theme_url}lib/datePicker/css/datePicker.min.css">
     <link rel="stylesheet" href="{$theme_url}lib/winderCheck/css/winderCheck.min.css">

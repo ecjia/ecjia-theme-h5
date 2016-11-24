@@ -19,48 +19,78 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 
-<ul class="ecjia-list ecjia-list-three ecjia-nav ecjia-margin-b ecjia-bonus-border-right">
-	<li {if $status eq 'notused'} class="active"{/if}><a href="{url path='user/user_bonus/bonus' args='status=notused'}">{t}可使用{/t}</a></li>
-	<li {if $status eq 'used'} class="active"{/if}><a href="{url path='user/user_bonus/bonus' args='status=used'}">{t}已使用{/t}</a></li>
-	<li {if $status eq 'overdue'} class="active"{/if}><a href="{url path='user/user_bonus/bonus' args='status=overdue'}">{t}已过期{/t}</a></li>
-</ul>
-
-<form class="ecjia-margin-b form-group" name="addBouns" action="{url path='user/user_bonus/add_bonus'}" method="post" onSubmit="return addBonus()" role="form">
-	<div class="input-group user-from-bonus">
-		<input type="text" class="form-control" name="bonus_sn" placeholder="{$lang.bonus_number}">
-		<span class="input-group-btn">
-			<button class="btn" type="submit">{$lang.add_bonus}</button>
-		</span>
-	</div>
-</form>
-
+<div class="ecjia-account-list-f">
+    <div class="ecjia-account-list">
+        <ul class="ecjia-list ecjia-list-three ecjia-nav ecjia-account ecjia-margin-b ecjia-bonus-border-right">
+        	<li {if $status eq 'notused'}" class="active"{/if}><a class="left-bottom" href="{url path='user/user_account/cash_list' args='status=notused'}">{t}全部{/t}</a></li>
+        	<li {if $status eq 'used'} class="active"{/if}><a href="{url path='user/user_account/cash_list' args='status=used'}">{t}提现{/t}</a></li>
+        	<li {if $status eq 'overdue'} class="active"{/if}><a class="right-bottom" href="{url path='user/user_account/cash_list' args='status=overdue'}">{t}充值{/t}</a></li>
+        </ul>
+    </div>
+</div>
 <div>
-	<ul class="ecjia-list user-bonus" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_bonus_list' args="status={$status}"}" data-size="10">
-		<!-- 红包 start-->
-
-		<!-- 红包 end--> 
+	<ul class="ecjia-list ecjia-account-record" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_account/ajax_cash_list' args="type={$type}"}" data-size="10">
 	</ul>
 </div>
 <!-- {/block} -->
 <!-- {block name="ajaxinfo"} -->
-<!--{foreach from=$bonus item=item}-->
-	<li class="ecjia-margin-b">
-		<div class="{if $item.status eq '未使用'}user-bonus-head{else}user-bonus-head-expired{/if}"></div>
-		<p class="title ecjia-margin-t">
-			<span class="{if $item.status eq '未使用'}no-type-money{else}type-money{/if}">{$item.type_money}</span>
-			<span class="ecjiaf-fr">{$item.type_name}</span>
-		</p>
-		<p class="{if $item.status eq '未使用'}{else}expired{/if}">
-			{$item.status}
-		</p>
-		<p>
-			<span>{$item.use_startdate}-{$item.use_enddate}</span>
-		</p>
-	</li>
+<!--{foreach from=$sur_amount item=item}-->
+	<ul class="account-record-list">
+		<p class="record-time">本月</p>
+		<li class="ecjia-margin-b record-list">
+			<ul>
+				<li class="record-single">
+					<div class="record-l">
+						<span class="user-photo"><img src="{$theme_url}/images/default_user.png" /></span>
+					</div>
+					<div class="record-r">
+						<div class="record-r-l">
+							<p>wu21st-充值</p>
+							<p class="record-time">今天</p>
+						</div>
+						<div class="record-r-r">
+							<p>100.00</p>
+							<p>交易进行中</p>
+						</div>
+					</div>
+				</li>
+				<li class="record-single">
+					<div class="record-l">
+						<span class="user-photo"><img src="{$theme_url}/images/default_user.png" /></span>
+					</div>
+					<div class="record-r">
+						<div class="record-r-l">
+							<p>wu21st-充值</p>
+							<p class="record-time">今天</p>
+						</div>
+						<div class="record-r-r">
+							<p>100.00</p>
+							<p>交易进行中</p>
+						</div>
+					</div>
+				</li>
+				<li class="record-single">
+					<div class="record-l">
+						<span class="user-photo"><img src="{$theme_url}/images/default_user.png" /></span>
+					</div>
+					<div class="record-r">
+						<div class="record-r-l">
+							<p>wu21st-充值</p>
+							<p class="record-time">今天</p>
+						</div>
+						<div class="record-r-r">
+							<p>100.00</p>
+							<p>交易进行中</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</li>
+	</ul>
 <!-- {foreachelse} -->
 	<div class="ecjia-nolist">
-		<i class="iconfont icon-redpacket"></i>
-		<p>{t}还没有红包哦~{/t}</p>
+		<i class="iconfont icon-more"></i>
+		<p>{t}暂无任何记录{/t}</p>
 	</div>
 <!--{/foreach}-->
 <!-- {/block} -->

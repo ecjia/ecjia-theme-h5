@@ -18,7 +18,12 @@ RC_Hook::add_action('goods/category/top_all', array('goods_controller', 'top_all
 RC_Hook::add_action('goods/category/all', array('goods_controller', 'all'));
 RC_Hook::add_action('goods/category/goods_list', array('goods_controller', 'goods_list'));
 RC_Hook::add_action('goods/category/asynclist', array('goods_controller', 'asynclist'));
-RC_Hook::add_action('goods/category/store_list', array('goods_controller', 'store_list'));
+
+RC_Hook::add_action('goods/category/store_list', array('goods_controller', 'store_list'));//店铺分类列表
+RC_Hook::add_action('goods/category/store_detail', array('goods_controller', 'store_detail'));//店铺详情
+
+RC_Hook::add_action('goods/category/store_goods', array('goods_controller', 'store_goods'));
+
 
 RC_Hook::add_action('goods/index/init', array('goods_controller', 'goods_index'));
 RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));
@@ -32,7 +37,7 @@ RC_Hook::add_action('goods/index/comment', array('goods_controller', 'comment'))
 
 //文章
 RC_Loader::load_theme('extras/controller/article_controller.php');
-RC_Hook::add_action('article/index/init', array('article_controller', 'init'));
+RC_Hook::add_action('article/help/init', array('article_controller', 'init'));
 RC_Hook::add_action('article/index/art_list', array('article_controller', 'art_list'));
 RC_Hook::add_action('article/index/asynclist', array('article_controller', 'asynclist'));
 RC_Hook::add_action('article/index/info', array('article_controller', 'info'));
@@ -117,6 +122,7 @@ RC_Hook::add_action('user/user_account/withdraw_account', array('user_account_co
 RC_Hook::add_action('user/user_account/detail', array('user_account_controller', 'detail'));
 RC_Hook::add_action('user/user_account/account_list', array('user_account_controller', 'account_list'));
 RC_Hook::add_action('user/user_account/cash_list', array('user_account_controller', 'cash_list'));
+RC_Hook::add_action('user/user_account/ajax_cash_list', array('user_account_controller', 'ajax_cash_list'));
 
 RC_Loader::load_theme('extras/controller/user_address_controller.php');
 RC_Hook::add_action('user/user_address/address_list', array('user_address_controller', 'address_list'));

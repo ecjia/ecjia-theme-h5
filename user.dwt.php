@@ -17,8 +17,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 <!-- TemplateEndEditable -->
 
-<!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
-<!-- TemplateEndEditable -->
 <div class="ecjia-user-info user-new-info">
 	<div class="user-img ecjiaf-fl"><a href="{url path='user/user_profile/edit_profile'}"><img src="{$user_img}" alt=""></a></div>
 	<div class="ecjiaf-fl ecjia-margin-l user-rank-name">
@@ -33,14 +31,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</a>
 </div>
 
-<div class="ecjia-login-nav-header">
-	<a href="{url path='user/user_account/account_detail'}">
-		<i class="iconfont icon red icon-qianbao"></i>
-		<span class="icon-name">{t}我的钱包{/t}</span>
-		<span class="ecjiaf-fr"><i class="iconfont  icon-jiantou-right"></i></span>
-	</a>
+<div class="ecjia-user-head">
+    <div class="ecjia-list list-short">
+        <li>
+        	<a href="{url path='user/user_account/account_detail'}">
+        		<i class="iconfont icon red icon-qianbao"></i>
+        		<span class="icon-name">{t}我的钱包{/t}</span>
+        		<i class="iconfont  icon-jiantou-right"></i></span>
+        	</a>
+    	</li>
+    </div>
 </div>
-<ul class="ecjia-list bonus ecjia-nav-child ecjia-list-three">
+<ul class="ecjia-list bonus ecjia-nav-child ecjia-list-three ecjia-login-nav-bottom">
 	<li>
 		<a href="{url path='user/user_account/account_detail'}">
 			<p>{$surplus_amount}</p>
@@ -61,55 +63,70 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</li>
 </ul>
 
-<div class="ecjia-login-nav-header ecjia-margin-t ecjia-margin-b">
-	<a href="{url path='user/user_address/address_list'}">
-		<i class="iconfont icon icon-location"></i>
-		<span class="icon-name">地址管理</span>
-		<span class="ecjiaf-fr"><i class="iconfont  icon-jiantou-right"></i>
-	</a>
+<div class="ecjia-user">
+<ul class="ecjia-list list-short">
+    <div class="ecjia-margin-t border-t border-b">
+       <li>
+        	<a href="{url path='user/user_address/address_list'}">
+        		<i class="iconfont icon icon-location"></i>
+        		<span class="icon-name">地址管理</span>
+        		<i class="iconfont  icon-jiantou-right"></i>
+        	</a>
+        </li>
+    </div>
+    
+    <div class="ecjia-margin-t border-b border-t">
+        <li>
+        	<a href="{url path='user/user_order/order_list'}">
+        		<i class="iconfont icon icon-homefill"></i>
+        		<span class="icon-name">掌柜管理</span>
+        		<i class="iconfont  icon-jiantou-right"></i>
+        	</a>
+        </li>
+        <li>
+        	<a href="{url path='user/user_address/address_list'}">
+        		<i class="iconfont icon icon-searchlist"></i>
+        		<span class="icon-name">店铺入驻查询</span>
+        		<i class="iconfont  icon-jiantou-right"></i>
+        	</a>
+        </li>
+    </div>
+    
+    <div class="ecjia-margin-t border-t border-b">
+        <li>
+        	<a href="{url path='user/user_package/service'}">
+        		<i class="iconfont icon icon-kefu"></i>
+        		<span class="icon-name">官网客服</span>
+        		<i class="iconfont  icon-jiantou-right"></i>
+        	</a>
+        </li>
+        <li>
+        	<a href="{url path='user/user_address/address_list'}">
+        		<i class="iconfont icon icon-eclogo"></i>
+        		<span class="icon-name">官网网站</span>
+        		<i class="iconfont  icon-jiantou-right"></i>
+        	</a>
+        </li>
+    </div>
+    <div class="ecjia-margin-t border-t border-b">
+        <li>
+        	<a href="{url path='article/help/init'}">
+        		<i class="iconfont icon icon-kefu"></i>
+        		<span class="icon-name">帮助中心</span>
+        		<i class="iconfont  icon-jiantou-right"></i>
+        	</a>
+        </li>
+        <li>
+        	<a href="{url path='user/user_address/address_list'}">
+        		<i class="iconfont icon icon-eclogo"></i>
+        		<span class="icon-name">公司介绍</span>
+        		<i class="iconfont  icon-jiantou-right"></i>
+        	</a>
+        </li>
+    </div>
+    <div class="ecjia-margin-b"></div>
+</ul>
 </div>
+<!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
 
-<div class="ecjia-login-nav-header ecjia-margin-t ecjiaf-bt">
-	<a href="{url path='user/user_order/order_list'}">
-		<i class="iconfont icon icon-homefill"></i>
-		<span class="icon-name">掌柜管理</span>
-		<span class="ecjiaf-fr"><i class="iconfont  icon-jiantou-right"></i>
-	</a>
-</div>
-<div class="ecjia-login-nav-header">
-	<a href="{url path='user/user_address/address_list'}">
-		<i class="iconfont icon icon-searchlist"></i>
-		<span class="icon-name">店铺入驻查询</span>
-		<span class="ecjiaf-fr"><i class="iconfont  icon-jiantou-right"></i>
-	</a>
-</div>
-<div class="ecjia-login-nav-header ecjia-margin-t ecjiaf-bt">
-	<a href="{url path='user/user_package/service'}">
-		<i class="iconfont icon icon-kefu"></i>
-		<span class="icon-name">官网客服</span>
-		<span class="ecjiaf-fr"><i class="iconfont  icon-jiantou-right"></i>
-	</a>
-</div>
-<div class="ecjia-login-nav-header">
-	<a href="{url path='user/user_address/address_list'}">
-		<i class="iconfont icon icon-eclogo"></i>
-		<span class="icon-name">官网网站</span>
-		<span class="ecjiaf-fr"><i class="iconfont  icon-jiantou-right"></i>
-	</a>
-</div>
-<div class="ecjia-login-nav-header ecjia-margin-t ecjiaf-bt">
-	<a href="{url path='user/user_order/order_list'}">
-		<i class="iconfont icon icon-kefu"></i>
-		<span class="icon-name">帮助中心</span>
-		<span class="ecjiaf-fr"><i class="iconfont  icon-jiantou-right"></i>
-	</a>
-</div>
-<div class="ecjia-login-nav-header">
-	<a href="{url path='user/user_address/address_list'}">
-		<i class="iconfont icon icon-eclogo"></i>
-		<span class="icon-name">公司介绍</span>
-		<span class="ecjiaf-fr"><i class="iconfont  icon-jiantou-right"></i>
-	</a>
-</div>
-<div class="ecjia-margin-t"></div>
 <!-- {/block} -->

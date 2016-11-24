@@ -63,6 +63,7 @@ class touch_controller {
         ecjia_front::$controller->assign('searchs', insert_search());
         ecjia_front::$controller->assign('shop_pc_url', ecjia::config('shop_pc_url'));
         ecjia_front::$controller->assign('copyright', ecjia::config('wap_copyright'));
+        ecjia_front::$controller->assign('active', 1);
         ecjia_front::$controller->assign_title();
         ecjia_front::$controller->assign_lang();
 
@@ -89,18 +90,22 @@ class touch_controller {
         $sayList = ecjia_front::$controller->fetch('index.dwt');
         
 //         if ($page == 3) $goods_list['is_last'] = 1;
-        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $goods_list['is_last']));
+        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $data['is_last']));
     }
 
     /**
      * 搜索
      */
     public static function search() {
-        // $search_keywords = explode(',', ecjia::config('search_keywords'));
-        // shuffle($search_keywords);
-        // ecjia_front::$controller->assign('tags', array_slice($search_keywords, 0, 12));
-        // ecjia_front::$controller->assign('searchs', insert_search());
-        // ecjia_front::$controller->assign_lang();
+    	$search_keywords = explode(',', ecjia::config('search_keywords'));
+        shuffle($search_keywords);
+        ecjia_front::$controller->assign('tags', array_slice($search_keywords, 0, 12));
+        ecjia_front::$controller->assign('searchs', insert_search());
+        ecjia_front::$controller->assign_lang();
+        
+        $keywords = !empty($_GET['keywords']) ? trim($_GET['keywords']) : '';
+        ecjia_front::$controller->assign('keywords', $keywords);
+        
         ecjia_front::$controller->display('search.dwt');
     }
 
