@@ -1784,11 +1784,11 @@
 
 .ecjia-store-detail .item1{
     background:#FFFFFF;
-    border-bottom:1px solid #eee;
     margin-bottom:.5em;
 	height:auto;
 	min-height:5em;
 	overflow:hidden;
+	border-bottom:1px solid #ddd;
 }
 
 .ecjia-store-detail .item1-info{
@@ -1810,7 +1810,8 @@
 
 .ecjia-store-detail .store-info .basic-info{
 	height:auto;
-	padding:.5em;
+	padding: .6em 1em;
+	overflow:hidden;
 }
 
 .ecjia-store-detail .store-left{
@@ -1860,77 +1861,94 @@
 }
 
 .ecjia-store-detail .store-goods{
-	border-top:1.5px solid #ddd;
-	border-bottom:1.5px solid #ddd;
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;
 	height: 30%;
 	overflow: hidden;
 	clear:both;
 }
 
 .ecjia-store-detail .store-goods li.goods-info{
-	height:auto;
-	padding:.6em 0;
+	height: auto;
+	padding:1.5em 0;
 	float:left;
 	width:25%;
-	overflow:hidden;
+	text-align: center;
+	position: relative;
 }
-
+.ecjia-store-detail .store-goods li.goods-info .goods-border{
+    height: 1.7em;
+    position: absolute;
+    border: 0.5px solid #ccc;
+    left: 100%;
+	top: 2em;
+}
 .ecjia-store-detail .store-goods li.goods-info .store-goods-count{
-   padding: 0 0.7em;
+   	padding: 1em 0.7em;
+	color: #333;
 }
-
-.ecjia-store-detail .store-goods li.goods-info .store-goods-name{
-   padding: 0 0.7em;
+.ecjia-store-detail .store-goods li.goods-info .store-goods-desc{
+   	padding: 0 0.7em;
+	color: #bbb;
 }
-
 .ecjia-store-detail .comments{
-	border-bottom:1.5px solid #ddd;
+	border-bottom:1px solid #ddd;
 	height: 30%;
 	overflow: hidden;
 	clear:both;
 	padding:.5em 0;
 }
-
+.ecjia-store-detail .comments li {
+	padding: .4em;
+	color: #333;
+}
+.ecjia-store-detail .store-hr{
+	height: .8em;
+	background: #F7F7F7;
+}
 .ecjia-store-detail .comments li .comment-name{
 	padding: 0 0.7em;
 }
-
 .ecjia-store-detail .comments li .comment-result{
 	float:right;
 	padding-right:0.5em;
+	color: #47b34f;
 }
-
 .ecjia-store-detail .store-tel{
-	border-bottom:1.5px solid #ddd;
-	padding:.5em 0;
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+	padding:1em;
 	height: 30%;
 	overflow: hidden;
 	clear:both;
+	color: #333;
+	font-weight: 500;
 }
-
-.ecjia-store-detail .store-tel .tel-name {
-	padding: 0 0.7em;
-}
-
 .ecjia-store-detail .store-tel .tel-result {
-	padding-left:0.7em;
+	padding-left: 4em;
+	color: #333;
+	font-weight: 600;
 }
-
 .ecjia-store-detail .store-other-info{
 	height: 30%;
 	overflow: hidden;
 	clear:both;
 }
-
 .ecjia-store-detail .store-other-info li{
-	border-bottom:1.5px solid #ddd;
-	padding:0.5em 0;
+	border-top:1px solid #ddd;
+	padding:1em;
+	overflow: auto;
 }
-
 .ecjia-store-detail .store-other-info .other-info-name{
-	padding: 0 0.7em;
+	float:left;
+	color: #333;
+	font-weight: 500;
 }
-
-.ecjia-store-detail .store-other-info .other-info-result{
-	padding-left:0.7em;
+.ecjia-store-detail .store-other-info p.other-info-result{
+	position: relative;
+    margin-left: 8em;
+    font-size: 1em;
+   	color: #333;
+	font-weight: 500;
+    overflow: hidden;
 }

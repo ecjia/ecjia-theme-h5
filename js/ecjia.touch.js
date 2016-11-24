@@ -326,12 +326,13 @@
 			$('#keywordBox').val('').focus().val(k); 
 			
 			$('.btn-search').off('click').on('click', function(e) {
-				var val = $('input[name="keywords"]').val();
+				var val = $('input[name="keywords"]').val(),
+					url = $('.ecjia-form').attr('data-url');
 				if (val == '') {
 					$("#keywordBox").focus(); 
 					return false;
 				} else {
-					$('form[name="searchForm"]').submit();
+					ecjia.pjax(url + '&keywords=' + val);
 				}
 			});
 			
@@ -392,6 +393,7 @@
 		if ($('.ecjia-menu').hasClass('active')) {
 			$('.ecjia-menu').removeClass('active');
 		}
+		ecjia.touch.searchbox_foucs();
 	});
 
 })(ecjia, jQuery);
