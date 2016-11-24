@@ -48,8 +48,8 @@ class user_profile_controller {
         //             break;
         //     }
         // }
-        // $user_img = get_user_img();
-        // ecjia_front::$controller->assign('user_img', $user_img);
+        $user_img = get_user_img();
+        ecjia_front::$controller->assign('user_img', $user_img);
         // ecjia_front::$controller->assign('title', RC_Lang::lang('profile'));
         // ecjia_front::$controller->assign('extend_info_list', $extend_info_list);
         // ecjia_front::$controller->assign('passwd_questions', RC_Lang::lang('passwd_questions'));

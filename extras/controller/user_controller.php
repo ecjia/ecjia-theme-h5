@@ -147,6 +147,8 @@ class user_controller {
         // ecjia_front::$controller->assign('user_img', $user_img);
         // ecjia_front::$controller->assign('title', RC_Lang::lang('bind_signin'));
         // ecjia_front::$controller->assign_title(RC_Lang::lang('bind_signin'));
+        $user_img = get_user_img();
+        ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_bind_signin.dwt');
     }

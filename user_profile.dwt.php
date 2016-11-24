@@ -11,31 +11,39 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-<div class="ecjia-login">
-	<div class="user-img"><img src="{$user_img}"></div>
+
+<div class="ecjia-user ecjia-account">
+    <ul>
+        <div class="ecjia-margin-t ecjia-list list-short">
+            <li>
+            		<span class="icon-name margin-no-l">头像 </span>
+            		<div class="user-img-text"><img src="{$user_img}"></div>
+            </li>
+            <li>
+            	<a href="{url path='user/user_profile/modify_username'}">
+            		<span class="icon-name margin-no-l">用户名 </span>
+            		<span class="icon-price text-color">向日葵</span>
+            		<i class="iconfont icon-jiantou-right  margin-r-icon"></i>
+            	</a>
+            </li>
+             <li>
+            		<span class="icon-name margin-no-l">用户等级</span>
+            		<span class="icon-price text-color">非特殊等级</span>
+            </li>
+        </div>
+        <div class="ecjia-margin-t ecjia-list list-short">
+            <li>
+                    <a href="{url path='user/user_profile/edit_password'}">
+            		<span class="icon-name margin-no-l">修改密码</span>
+            		<span class="icon-price"></span>
+            		<i class="iconfont  icon-jiantou-right  margin-r-icon"></i>
+            		</a>
+            </li>
+        </div>
+    </ul>
 </div>
-<form class="ecjia-form ecjia-login-user-profile-form" name="user_profile" action="{url path='user/user_profile/update_profile'}" method="post">
-	<div class="form-group form-group-text ecjiaf-bt ecjia-login-margin-lr">
-		<label class="input">
-			<span>用户名 </span>
-			<input name="district" placeholder="{t}请输入用户名{/t}" type="text" href="{url path='index/logout'}" datatype="*" value=""/>
-			<label class="iconfont icon-jiantou-right"></label>
-		</label>
-	</div>
-	<div class="form-group form-group-text ecjia-login-margin-lr">
-		<label class="input">
-			<span>{t}用户等级{/t}</span>
-			<input name="email" type="email" placeholder="{$lang.no_emaill}"  value="{$profile.name}" datatype="e" errormsg="请输入正确格式的邮箱" />
-		</label>
-	</div>
-	<div class="edit-password ecjia-margin-t">
-		<a href="{url path='user/user_profile/edit_password'}">
-			<span>{t}修改密码{/t}</span>
-			<label class="iconfont icon-jiantou-right a" ></label>
-		</a>
-	</div>
-    <div class="ecjia-margin-t ecjia-login-margin-top">
-		<a class="btn btn-info nopjax" href="{url path='index/logout'}">{t}退出登录{/t}</a>
-	</div>
-</form>
+<div class="ecjia-margin-t">
+	<a class="btn btn-info nopjax" href="{url path='index/logout'}">{t}退出登录{/t}</a>
+</div>
+
 <!-- {/block} -->
