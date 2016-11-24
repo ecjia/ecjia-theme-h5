@@ -20,9 +20,8 @@ ecjia.touch.category.init();
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-
 <div class="category">
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
+<!-- #BeginLibraryItem "/library/index_header.lbi" -->
 <!-- #EndLibraryItem -->
     <ul class="ecjia-list category_left">
         <!--{foreach from=$data item=cat}-->

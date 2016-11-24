@@ -8,20 +8,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
-<!-- {block name="footer"} -->
-<script type="text/javascript">ecjia.touch.searchbox_foucs();</script>
-<!-- {/block} -->
-
 <!-- {block name="main-content"} -->
 <header class="ecjia-header">
 	<div class="ecjia-header-left">
 		<a class="ecjia-header-icon" href="javascript:history.go(-1)"><i class="iconfont icon-jiantou-left"></i></a>
 	</div>
 	<div class="ecjia-search-header">
-		<form class="ecjia-form" action="{url path='goods/category/store_list'}" data-valid='novalid' method="post" id="searchForm" name="searchForm">
+		<div class="ecjia-form" data-url="{url path='goods/category/store_list'}">
 			<input id="keywordBox" name="keywords" type="search" placeholder="搜索附近商品和门店" autofocus="autofocus" {if $keywords}value="{$keywords}"{/if}>
-			<button type="submit" class="btn-search"><i class="iconfont icon-search"></i></button>
-		</form>
+			<button type="button" class="btn-search"><i class="iconfont icon-search"></i></button>
+		</div>
 	</div>
 </header>
 
