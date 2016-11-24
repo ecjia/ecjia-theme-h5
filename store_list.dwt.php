@@ -16,6 +16,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/index_header.lbi" -->
 <!-- #EndLibraryItem -->
 
+<!-- {if $data} -->
 <ul class="ecjia-store-list">
 	<!-- {foreach from=$data item=val} -->
 	<li class="single_item">
@@ -51,10 +52,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				{if $val.seller_goods}
 				<ul class="store-goods">
 					<!-- {foreach from=$val.seller_goods key=key item=goods} -->
-						<li class="goods-info {if $key gt 3}goods-hide-list{/if}">
+						<li class="goods-info {if $key gt 2}goods-hide-list{/if}">
 							<span class="goods-image"><img src="{$goods.img.thumb}"></span>
-							<span class="goods-name">{$goods.name}</span>
-							<span class="goods-price">{$goods.shop_price}</span>
+							<p>
+								{$goods.name}
+								<label class="price">{$goods.shop_price}</label>
+							</p>
 						</li>
 					<!-- {/foreach} -->
 				</ul>
@@ -75,4 +78,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</li>
 	<!-- {/foreach} -->
 </ul>
+<!-- {else} -->
+<div class="search-no-pro ecjia-margin-t ecjia-margin-b">
+	<div class="ecjia-nolist">
+		<p>没有找到您要的商品</p>
+	</div>
+</div>
+<!-- {/if} -->
 <!-- {/block} -->

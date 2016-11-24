@@ -24,8 +24,12 @@ class touch_controller {
         $arr = array(
         	'location' => array('longitude' => '121.416359', 'latitude' => '31.235371')
         );
-        
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DATA)->data($arr)->run();
+        $cache_key = 'home_data';
+        $data = RC_Cache::app_cache_get($cache_key, 'index');
+        if (!$data) {
+        	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DATA)->data($arr)->run();
+        	RC_Cache::app_cache_set($cache_key, $data, 'index', 60*24);//24小时缓存
+        }
         
         ecjia_front::$controller->assign('navigator', $data['mobile_menu']);
         
