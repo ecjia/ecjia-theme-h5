@@ -346,7 +346,7 @@ textarea{
 }
 
 /**
- * ecjia-list-two
+ * ecjia-list-four
  * 全局四栏列表样式
  * 依赖:ecjia-list
  */
@@ -789,10 +789,10 @@ select, input, textarea {
  * two-btn
  * 按钮组--两个按钮
  */
-/*.two-btn {
+.two-btn {
 	overflow: hidden;
-	padding: 0.6em;
-}*/
+	margin: 1em;
+}
 .two-btn .btn,
 .two-btn .btn:link,
 .two-btn .btn:hover,

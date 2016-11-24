@@ -770,154 +770,7 @@
 	margin-bottom: 3.5em;
 }
 /*========================  地址列表 ===========================*/
-.ecjia-address-list {
-	margin-top: 1em;
-}
- .ecjia-address-list li  a i {
-	position: absolute;
-	right: 8em;
-	top: 5em;
-	font-size: 1.2em;
-}
-.ecjia-address-list li {
-	position: relative;
-	overflow: hidden;
-}
-.ecjia-address-list li a i.icon-delete {
-	position: absolute;
-	right: 1.5em;
-}
-.ecjia-form .form-group .input label {
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: 2.4em;
-	height: 2.4em;
-	line-height: 2.4em;
-	border-radius: 5px;
-	text-align: center;
-}
-.ecjia-list .form-group span {
-	padding-left: 0.6em;
-	position: relative;
-	font-weight: 400;
-	font-size: 1em;
-	color: #b2b2b2;
-}
-.ecjia-list .form-group p {
-	padding-left: 1.5em;
-	position: relative;
-	font-size: 1em;
-}
-.ecjia-address-list .address-backgroundw {
-	background-color: #FFF;
-	border-bottom:  1px solid #ddd;
-	position: relative;
-	line-height: 3em;
-	padding-left: 1em;
-}
-.ecjia-address-list .address-background-mylocation {
-	background-color: #FFF;
-	border-bottom:  1px solid #ddd;
-	position: relative;
-	line-height: 3em;
-	padding-left: 1em;
-}
-.ecjia-address-list .nav-header {
-	height: 3em;
-	top: -1em;
-}
-.ecjia-address-list .address-backgroundw i.icon-jiantou-bottom {
-	position: absolute;
-	left: 4em;
-	top: 1em;
-}
-.ecjia-address-list .address-backgroundw i.icon-search {
-	position: absolute;
-	left: 6em;
-	top: 0.9em;
-	z-index: 6;
-}
-.ecjia-address-list .nav-header i.icon-search {
-	position: absolute;
-	left: 1em;
-	top: 0.7em;
-	z-index: 6;
-}
-.ecjia-address-list .address-backgroundw input {
-	position: absolute;
-	left: 5.5em;
-	top: 0.4em;
-	height: 2em;
-	width: 25em;
-	border-radius: 10px;
-	z-index: 5;
-	padding-left: 1.6em;
-	border: 1px solid #F0F0F0;
-}
-.ecjia-address-list .address-background-mylocation input {
-	position: absolute;
-	left: 1.5em;
-	top: 0.4em;
-	height: 2em;
-	width: 32em;
-	border-radius: 10px;
-	z-index: 5;
-	border: 1px solid #F0F0F0;
-	text-align: center;
-	background-color: #F0F0F0;
-}
-.ecjia-address-list .address-background-mylocation i {
-	z-index: 8;
-	left: 13.2em;
-	top: -0.1em;
-}
-.ecjia-address-list .nav-header input {
-	position: absolute;
-	top: 0.4em;
-	height: 2em;
-	width: 34em;
-	border-radius: 10px;
-	z-index: 5;
-	padding-left: 1.6em;
-	margin-left: 0.3em;
-	border: 1px solid #F0F0F0;
-}
-.ecjia-address-list .address-icons {
-    position: relative;
-    left: 1em;
-}
-.ecjia-address-list .nav-header a>i {
-	position: absolute;
-	color: green;
-	left: 0.5em;
-	top: 0.9em;
-}
-.ecjia-address-list li>i {
-	position: absolute;
-	top: 1.8em;
-	color: green;
-	font-size: 400;
-}
-.ecjia-address-list .ecjia-margin-b .list {
-	padding-left: 2em;
-	margin-top: 0em;
-}
-.ecjia-address-list .ecjia-margin-b .list .ecjia-margin-top {
-	margin-top: 0.2em;
-}
-.ecjia-address-list .address-list-center {
-	text-align: center;
-	padding: 1em .5em;
-	overflow: hidden;
-	background: #fff;
-	color: #333;
-	position: relative;
-	border-bottom:1px solid #ddd;	
-}
-.ecjia-address-list .address-list-center a>i {
-	color: green;
-}
+
 /*========================  账户余额 ===========================*/
 
 .ecjia-account .account-bonus {
@@ -1671,4 +1524,163 @@
 	height:auto;
 	border: 0;
     vertical-align: middle;
+}
+/*========================  店铺详情 ===========================*/
+.ecjia-store-detail {
+    background:#EFEFF4;
+    height:auto;
+}
+
+.ecjia-store-detail .item1{
+    background:#FFFFFF;
+    border-bottom:1px solid #eee;
+    margin-bottom:.5em;
+	height:auto;
+	min-height:5em;
+	overflow:hidden;
+}
+
+.ecjia-store-detail .item1-info{
+	height:auto;
+	overflow:hidden;
+}
+
+.ecjia-store-list .item1-info{
+	height:auto;
+	overflow:hidden;
+}
+.ecjia-store-list .item1-info .clear{
+	clear:both;
+}
+.ecjia-store-list .store-info{
+	width:95%;
+	margin:0 auto;
+}
+
+.ecjia-store-detail .store-info .basic-info{
+	height:auto;
+	padding:.5em;
+}
+
+.ecjia-store-detail .store-left{
+	float:left;
+	width:20%;
+}
+
+.ecjia-store-detail .store-left img{
+    width:5em;
+    height:5em;
+	border-radius:50%;
+	border:2px solid #47aa4d;
+}
+
+.ecjia-store-detail .store-right{
+	float:left;
+	width:80%;
+}
+
+.ecjia-store-detail .store-right div{
+	padding-left:.5em;
+}
+
+.ecjia-store-detail .store-name{
+	color: #333;
+    font-size: 1em;
+	padding-top:.5em;
+	font-weight:500;
+}
+.ecjia-store-detail .store-name span{
+	color: #FF1919;
+	display:inline-block;
+	border:1px solid #FF1919;
+	border-radius:4px;
+	font-weight:500;
+	font-size: .8em;
+	margin-left:.4em;
+}
+.ecjia-store-detail .store-range i{
+	top:0;
+	font-size:1.1em;
+	padding-right:.3em;
+}
+.ecjia-store-detail .store-range{
+	line-height:2em;
+	color:#aaa;
+}
+
+.ecjia-store-detail .store-goods{
+	border-top:1.5px solid #ddd;
+	border-bottom:1.5px solid #ddd;
+	height: 30%;
+	overflow: hidden;
+	clear:both;
+}
+
+.ecjia-store-detail .store-goods li.goods-info{
+	height:auto;
+	padding:.6em 0;
+	float:left;
+	width:20%;
+	overflow:hidden;
+}
+
+.ecjia-store-detail .store-goods li.goods-info .store-goods-count{
+   padding: 0 0.7em;
+}
+
+.ecjia-store-detail .store-goods li.goods-info .store-goods-name{
+   padding: 0 0.7em;
+}
+
+.ecjia-store-detail .comments{
+	border-bottom:1.5px solid #ddd;
+	height: 30%;
+	overflow: hidden;
+	clear:both;
+}
+
+.ecjia-store-detail .comments li .comment-name{
+	padding: 0 0.7em;
+}
+
+.ecjia-store-detail .comments li .comment-result{
+	float:right;
+	padding-right:0.5em;
+}
+
+.ecjia-store-detail .store-tel{
+	border-bottom:1.5px solid #ddd;
+	border-bottom:1.5px solid #ddd;
+	padding:.5em 0;
+	height: 30%;
+	overflow: hidden;
+	clear:both;
+}
+
+.ecjia-store-detail .store-tel .tel-name {
+	padding: 0 0.7em;
+}
+
+.ecjia-store-detail .store-tel .tel-result {
+	padding-left:0.7em;
+}
+
+.ecjia-store-detail .store-other-info{
+	border-bottom:1.5px solid #ddd;
+	height: 30%;
+	overflow: hidden;
+	clear:both;
+}
+
+.ecjia-store-detail .store-other-info li{
+	border-bottom:1.5px solid #ddd;
+	padding:0.5em 0;
+}
+
+.ecjia-store-detail .store-other-info .other-info-name{
+	padding: 0 0.7em;
+}
+
+.ecjia-store-detail .store-other-info .other-info-result{
+	padding-left:0.7em;
 }

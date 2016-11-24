@@ -18,8 +18,12 @@ RC_Hook::add_action('goods/category/top_all', array('goods_controller', 'top_all
 RC_Hook::add_action('goods/category/all', array('goods_controller', 'all'));
 RC_Hook::add_action('goods/category/goods_list', array('goods_controller', 'goods_list'));
 RC_Hook::add_action('goods/category/asynclist', array('goods_controller', 'asynclist'));
-RC_Hook::add_action('goods/category/store_list', array('goods_controller', 'store_list'));
+
+RC_Hook::add_action('goods/category/store_list', array('goods_controller', 'store_list'));//店铺分类列表
+RC_Hook::add_action('goods/category/store_detail', array('goods_controller', 'store_detail'));//店铺详情
+
 RC_Hook::add_action('goods/category/store_goods', array('goods_controller', 'store_goods'));
+
 
 RC_Hook::add_action('goods/index/init', array('goods_controller', 'goods_index'));
 RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));
