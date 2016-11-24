@@ -1152,6 +1152,9 @@
     display: inline-block;
     width: 50%;
 }
+.ecjia-order-list .order-ft .two-btn .btn{
+    font-size: 1em;
+}
 .ecjia-order-list .order-ft span.two-btn{
     text-align: right;
     margin-top: .5em;
