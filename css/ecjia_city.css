@@ -1123,6 +1123,27 @@
 
 
 /*========================  商品详情 ===========================*/
+ .ecjia-goods-detail-header-title {
+    bottom: 0;
+    font-size: 1.4em;
+    left: 4em;
+    position: relative;
+    top: -1.9em;
+}
+.ecjia-goods-detail-header-title ul{
+	position: absolute;
+	width:18em;
+	margin-left:-9em;
+	left: 50%;
+	
+}
+.ecjia-goods-detail-header-title li {
+	float:left;
+	width:9em;
+}
+.ecjia-goods-detail-header-title li a {
+	color:#fff;
+}
 
 
 /*========================  订单列表 ===========================*/
