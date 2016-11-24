@@ -791,7 +791,6 @@ select, input, textarea {
  */
 .two-btn {
 	overflow: hidden;
-	margin: 1em;
 }
 .two-btn .btn,
 .two-btn .btn:link,
@@ -799,7 +798,7 @@ select, input, textarea {
 .two-btn .btn:active,
 .two-btn .btn:visited {
 	float: left;
-	font-size: 1em;
+	font-size: 1.5em;
 	line-height: 1.2em;
 	width: 48%;
 	margin: 0;
@@ -838,11 +837,11 @@ select, input, textarea {
  * btn
  * 小按钮
  */
-.btn.small-btn,
-.btn.small-btn:link,
-.btn.small-btn:hover,
-.btn.small-btn:active,
-.btn.small-btn:visited {
+.btn.btn-small,
+.btn.btn-small:link,
+.btn.btn-small:hover,
+.btn.btn-small:active,
+.btn.btn-small:visited {
 	font-size: 1em;
 	margin: 0 37.5%;
 	width: 25%;
