@@ -1061,6 +1061,9 @@
 	margin-left: 20%;
 	float: left;
 }
+.ecjia-login.ecjia-form .form-group .input input {
+	padding-left: 0;
+}
 .ecjia-login .maijia {
     margin-top: 30%;
     text-align:center;
@@ -1626,7 +1629,7 @@
 	height:auto;
 	padding:.6em 0;
 	float:left;
-	width:20%;
+	width:25%;
 	overflow:hidden;
 }
 
@@ -1643,6 +1646,7 @@
 	height: 30%;
 	overflow: hidden;
 	clear:both;
+	padding:.5em 0;
 }
 
 .ecjia-store-detail .comments li .comment-name{
@@ -1655,7 +1659,6 @@
 }
 
 .ecjia-store-detail .store-tel{
-	border-bottom:1.5px solid #ddd;
 	border-bottom:1.5px solid #ddd;
 	padding:.5em 0;
 	height: 30%;
@@ -1672,7 +1675,6 @@
 }
 
 .ecjia-store-detail .store-other-info{
-	border-bottom:1.5px solid #ddd;
 	height: 30%;
 	overflow: hidden;
 	clear:both;
@@ -1690,3 +1692,4 @@
 .ecjia-store-detail .store-other-info .other-info-result{
 	padding-left:0.7em;
 }
+
