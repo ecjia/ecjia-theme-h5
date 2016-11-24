@@ -2,8 +2,28 @@
 /*==============  Add By Xwb   ================*/
 
 /*============== 帮助中心  ================*/
-
-
+.ecjia-article ul {
+	background-color: #EFEFEF;	
+}
+.ecjia-article ul>span {
+	font-size: 22px;
+	font-weight: bold;
+	margin-left: 1em;
+	line-height: 2em;
+	background-color: #EFEFEF;
+}
+.ecjia-article .list-one li {
+	height: 3em;
+	padding: 0 1em;
+	line-height: 3em;
+}
+.ecjia-article .list-one li .form-group-text span {
+	font-size: 22px;
+	font-weight: bold;
+}
+.ecjia-article .list-one li .form-group-text i.icon-jiantou-right {
+	padding-top: 0.9em;
+}
 /*============== 地址列表  ================*/
 .ecjia-address-list {
 	margin-top: 1em;
@@ -32,14 +52,14 @@
 	border-radius: 5px;
 	text-align: center;
 }
-.ecjia-address-list .ecjia-list .form-group span {
+.ecjia-address-list .user-address-list .form-group span {
 	padding-left: 0.6em;
 	position: relative;
 	font-weight: 400;
 	font-size: 1em;
 	color: #b2b2b2;
 }
-.ecjia-address-list .ecjia-list .form-group p {
+.ecjia-address-list .user-address-list .form-group p {
 	padding-left: 1.5em;
 	position: relative;
 	font-size: 1em;

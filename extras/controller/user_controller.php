@@ -36,7 +36,7 @@ class user_controller {
         // ecjia_front::$controller->assign('integral',intval($user['pay_points']));
         // ecjia_front::$controller->assign('surplus_amount', intval($surplus_amount));
         ecjia_front::$controller->assign('user_img', $user_img);
-  
+
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user.dwt');
     }
@@ -147,6 +147,8 @@ class user_controller {
         // ecjia_front::$controller->assign('user_img', $user_img);
         // ecjia_front::$controller->assign('title', RC_Lang::lang('bind_signin'));
         // ecjia_front::$controller->assign_title(RC_Lang::lang('bind_signin'));
+        $user_img = get_user_img();
+        ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_bind_signin.dwt');
     }
@@ -180,7 +182,7 @@ class user_controller {
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_reset_password.dwt');
     }
-    
+
     public static function mobile_register() {
         /*验证码相关设置*/
         // $captcha = intval(ecjia::config('captcha'));
@@ -356,11 +358,11 @@ class user_controller {
      * 退出
      */
     public static function logout() {
-    	// $user = integrate::init_users();
-        // $back_act = RC_Uri::url('user/index/login');
-        // $user->logout();
-        // $ucdata = empty($user->ucdata) ? "" : $user->ucdata;
-        // ecjia_front::$controller->showmessage(RC_Lang::lang('logout') . $ucdata,ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $back_act,'is_show' => false));
+    	$user = integrate::init_users();
+        $back_act = RC_Uri::url('user/index/login');
+        $user->logout();
+        $ucdata = empty($user->ucdata) ? "" : $user->ucdata;
+        ecjia_front::$controller->showmessage(RC_Lang::lang('logout') . $ucdata,ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $back_act,'is_show' => false));
     }
 
     /**
@@ -458,7 +460,7 @@ class user_controller {
         ecjia_front::$controller->display('user_mobile_register.dwt');
 
     }
-    
+
 
 }
 

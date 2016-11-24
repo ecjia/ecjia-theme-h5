@@ -48,8 +48,8 @@ class user_profile_controller {
         //             break;
         //     }
         // }
-        // $user_img = get_user_img();
-        // ecjia_front::$controller->assign('user_img', $user_img);
+        $user_img = get_user_img();
+        ecjia_front::$controller->assign('user_img', $user_img);
         // ecjia_front::$controller->assign('title', RC_Lang::lang('profile'));
         // ecjia_front::$controller->assign('extend_info_list', $extend_info_list);
         // ecjia_front::$controller->assign('passwd_questions', RC_Lang::lang('passwd_questions'));
@@ -66,6 +66,7 @@ class user_profile_controller {
         // ecjia_front::$controller->assign('title', "用户名");
         // ecjia_front::$controller->assign_title("用户名");
         // ecjia_front::$controller->assign('header_right' , array('info' => '保存', 'href' => RC_Uri::url('user/index/edit_profile')));
+        ecjia_front::$controller->assign('hideinfo', '123');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_modify_username.dwt');
     }
@@ -163,6 +164,7 @@ class user_profile_controller {
         //     ecjia_front::$controller->assign('title', RC_Lang::lang('edit_password'));
         //     ecjia_front::$controller->assign_title(RC_Lang::lang('edit_password'));
             ecjia_front::$controller->assign_lang();
+            ecjia_front::$controller->assign('hideinfo', '123');
             ecjia_front::$controller->display('user_edit_password.dwt');
         // } else {
         //     ecjia_front::$controller->redirect(RC_Uri::url('login'));

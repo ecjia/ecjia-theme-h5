@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 Name: 提交订单结算模板
 Description: 提交订单结算页
@@ -15,65 +15,46 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
+<div class="ecjia-flow-done">
+    <div class="flow-success">
+        <p>恭喜您，订单已经生成~</p>
+    </div>
+    <ul class="ecjia-list ecjia-margin-t">
+        <li>
+            应付金额：<span class="ecjiaf-fr">￥155.50</span>
+        </li>
+        <li>
+            支付方式：<span class="ecjiaf-fr">支付方式</span>
+        </li>
+    </ul>
+    <div class="ecjia-margin-t ecjia-margin-b flow-msg">
+        支付成功
+    </div>
+    <ul class="ecjia-list ecjia-margin-t">
+        <li>
+            其他支付方式 <span class="ecjiaf-fr"><i class="iconfont icon-jiantou-bottom"></i></span>
+        </li>
+    </ul>
+    <ul class="ecjia-list list-short">
+        <li>
+            <span class="icon-name">支付宝</span>
+        </li>
+        <li>
+            <span class="icon-name">余额支付</span>
+        </li>
+        <li>
+            <span class="icon-name">**支付</span>
+        </li>
+    </ul>
+    <div class="ecjia-margin-t ecjia-margin-b two-btn">
+        <a class="btn" href="#">去购物</a>
+        <a class="btn" href="#">查看订单</a>
+    </div>
 
-<section class="flow-done"> 
-	<div class="done-message">
-		<i class="iconfont icon-check"></i>
-		<p>{t}感谢您在本店购物！您的订单已提交成功！{/t}</p>
-	</div>
-	<p>
-		{$lang.remember_order_number}
-		<b>{$order.order_sn}</b>
-	</p>
-	<p>
-		<!--{if $order.shipping_name}-->
-		{$lang.select_shipping}：
-		<b>{$order.shipping_name}</b>
-		<!--{/if}-->
-	</p>
-	<p>
-		{$lang.order_amount}：
-		<b>{$total.amount_formated}</b>
-	</p>
-	<!--{if $virtual_card}-->
-	<div class="alert alert-warning" role="alert">
-		<!--{foreach from=$virtual_card item=vgoods}-->
-		<h3 style="color:#2359B1; font-size:15px;">{$vgoods.goods_name}</h3>
-		<!--{foreach from=$vgoods.info item=card}-->
-		<ul style="list-style:none;padding:0;margin:0;clear:both">
-			<!--{if $card.card_sn}-->
-			<li> 
-				<strong>{$lang.card_sn}：</strong>
-				<span style="color:red;">{$card.card_sn}</span>
-			</li>
-			<!--{/if}-->
-			<!--{if $card.card_password}-->
-			<li> 
-				<strong>{$lang.card_password}：</strong>
-				<span style="color:red;">{$card.card_password}</span>
-			</li>
-			<!--{/if}-->
-			<!--{if $card.end_date}-->
-			<li>
-				<strong>{$lang.end_date}：</strong>
-				{$card.end_date}
-			</li>
-			<!--{/if}-->
-		</ul>
-		<!--{/foreach}-->
-		<!--{/foreach}-->
-	</div>
-	<!-- {/if} -->
-	<!-- <p class="text-center">{$order_submit_back}</p> -->
-</section>
-<section class="ecjia-margin-t">
-	<!-- {if $pay_online} -->
-	<p class="text-center nopjax">{$pay_online}</p>
-	<!-- {else} -->
-	<div class="two-btn cart-flow-done">
-		<a class="btn btn-info" href="{url path='user/user_order/order_list&status=unshipped'}">查看订单</a>
-		<a class="btn btn-info flow-done-shop" href="{url path='touch/index/init'}">继续购物</a>
-	</div>
-	<!--{/if}-->
-</section>
+    <div class="ecjia-margin-t ecjia-margin-b">
+        <a class="btn" href="#">确认支付</a>
+    </div>
+</div>
+
+
 <!-- {/block} -->
