@@ -766,13 +766,6 @@
    	padding-right: 1em;
    	color: red;
 }
-
-.ecjia-user .border-t {
-	border-top: 1px solid #ddd;
-}
-.ecjia-user .border-b {
-	border-bottom: 1px solid #ddd;
-}
 .ecjia-user .ecjia-margin-b {
 	margin-bottom: 3.5em;
 }
