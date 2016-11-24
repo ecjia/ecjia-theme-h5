@@ -1058,6 +1058,9 @@
 	margin-left: 20%;
 	float: left;
 }
+.ecjia-login.ecjia-form .form-group .input input {
+	padding-left: 0;
+}
 .ecjia-login .maijia {
     margin-top: 30%;
     text-align:center;
