@@ -22,15 +22,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</label>
 		</div>
 
-		<div class="form-group form-group-text ecjia-margin-t account-lr-fom">
-			<label>
-				<span class="ecjia-margin-r">{t}充值方式{/t}</span>
+		<div class="form-group form-group-text ecjia-margin-t account-lr-fom ecjia-account-padding">
 				<select name="payment_id">
 					<!--{foreach from=$payment_list item=payment}-->
 					<option value='{$payment.pay_id}'>{$payment.pay_name}</option>
  					<!-- {/foreach} -->
 				</select>
-			</label>
 		</div>
 
 		<input name="act" type="hidden" value="profile" />

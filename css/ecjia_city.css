@@ -1075,6 +1075,9 @@
 .ecjia-account-record {
 	height: auto;
 }
+.ecjia-account-padding {
+	padding: 0 !important;
+}
 .ecjia-account.ecjia-nav li a {
 	display: block;
 	width: 100%;
@@ -1151,6 +1154,18 @@
 	width: 60%;
 	text-align: left;
 }
+.ecjia-account.ecjia-form .select {
+	width: 100%;
+}
+.ecjia-account.ecjia-form .select select {
+	margin-top: .5em;
+	margin-bottom: .5em;
+	border-color: #FFF;
+	position: relative;
+	font-size: 1.1em;
+	font-weight: bold;
+	width: 100%;
+}
 /*========================  红包 ===========================*/
 .ecjia-bonus{
 	height: auto;
@@ -1212,19 +1227,9 @@
 	margin-top: 1em;
 	background-color: #F7F7F7;
 }
-.ecjia-login-b {
-	margin-bottom: 1em;
-	margin-left: -4%;
-	margin-right: -5%;
-}
-.ecjia-login-b .btn-c{
-	background-color: #FFFFFF;
-	color: #000000;
-}
 .ecjia-login-margin-l {
 	margin-left: 92%;
 	margin-top: 0.2em;
-
 }
 .ecjia-login-margin-top {
 	margin-top:3em;
@@ -1236,7 +1241,7 @@
 	margin-left: 0!important;
 	margin-right: 0!important;
 }
-.ecjia-login-b .around{
+.ecjia-login .around{
 	margin : 1em 7% 1em 7%;
 }
 .ecjia-login .small-text {
@@ -1388,7 +1393,9 @@
 .ecjia-goods-basic-info{
 	display:none;
 }
-
+.goods-desc-info .goods-desc-nav {
+	border-bottom:0;
+}
 /*========================  订单列表 ===========================*/
 .ecjia-order-list .ecjia-order-item {
     background: #ffffff;
