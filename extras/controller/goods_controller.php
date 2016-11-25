@@ -135,9 +135,6 @@ class goods_controller {
         // ecjia_front::$controller->showmessage('成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list'=>$list, 'is_last'=>$goodslist['is_last']));
     }
 
-    /**
-     *商品详情页
-     */
     public static function goods_index() {
     //    // $db_goods_model  = RC_Loader::load_app_model('goods_model');
     //     // $db_collect_goods = RC_Loader::load_app_model ( "collect_goods_model" );
@@ -245,7 +242,20 @@ class goods_controller {
     //     ecjia_front::$controller->assign('promotion',		get_promotion_info($goods ['goods_id']));
     //     ecjia_front::$controller->assign_title($goods['goods_name']);
     //     ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('goods.dwt');
+	    $goods_id = isset($_GET['id']) ? $_GET['id'] : 0;
+	    $rec_type = isset($_GET['rec_type']) ? $_GET['rec_type'] : 0;
+	    $object_id= isset($_GET['object_id']) ? $_GET['object_id'] : 0;
+	    $goods_id = 412;
+	    $par = array(
+	    		'goods_id' => $goods_id,
+	    		'rec_type' => $rec_type,
+	    		'object_id'=> $object_id,
+	    		'location' => array('longitude' => '121.41618102314', 'latitude' => '31.235278361951'),
+	    );
+	    $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($par)->run();
+//     	_dump($goods_info, 1);
+	    ecjia_front::$controller->assign('goods_info', $goods_info);
+        ecjia_front::$controller->display('goods_info.dwt');
     }
 
     /**
