@@ -406,12 +406,33 @@
 	padding-top: 0;
 	float: none;
 	overflow: auto;
+	text-align: center;
+	width: 6.5em;
+	color: #333;
+	font-weight: 500;
+	font-size: .9em;
+	background: #F6F6F6;
+	border-right: none;
+}
+.category .category_left li{
+	line-height: 3.5em;
+	height: 3.5em;
+	background: #F6F6F6;
+	border-bottom: 1px solid #eee;
+	border-right: 1px solid #eee;
+}
+.category .category_left li.active{
+	border-right: none;
+}
+.category .category_left li.active a{
+	color: #47aa4d;
 }
 .category .category_right{
 	margin-top: 49px;
 	padding-top: 0;
 	padding-bottom: 4em;
 	height: auto;
+	margin-left: 5.5em;
 }
 /*========================  店铺商品 ===========================*/
 .ecjia-header.ecjia-store-banner {
