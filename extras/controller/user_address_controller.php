@@ -254,6 +254,48 @@ class user_address_controller {
         ecjia_front::$controller->assign_title('当前位置');
         ecjia_front::$controller->display('user_my_location.dwt');
     }
+
+    /**
+     * 获取指定地区的子级地区
+     */
+    public function get_region(){
+        $type      = !empty($_GET['type'])   ? intval($_GET['type'])   : 0;
+        $parent        = !empty($_GET['parent']) ? intval($_GET['parent']) : 0;
+        $arr['regions'] = ecjia_region::instance()->region_datas($type, $parent);
+        $arr['type']    = $type;
+        $arr['target']  = !empty($_GET['target']) ? stripslashes(trim($_GET['target'])) : '';
+        $arr['target']  = htmlspecialchars($arr['target']);
+        echo json_encode($arr);
+    }
+     /**
+     * 根据地区获取经纬度
+     */
+    public function getgeohash(){
+        $shop_province      = !empty($_REQUEST['province'])    ? intval($_REQUEST['province'])           : 0;
+        $shop_city          = !empty($_REQUEST['city'])        ? intval($_REQUEST['city'])               : 0;
+        $shop_district      = !empty($_REQUEST['district'])    ? intval($_REQUEST['district'])           : 0;
+        $shop_address       = !empty($_REQUEST['address'])     ? htmlspecialchars($_REQUEST['address'])  : 0;
+        if(empty($shop_province)){
+            $this->showmessage('请选择省份', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'province'));
+        }
+        if(empty($shop_city)){
+            $this->showmessage('请选择城市', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'city'));
+        }
+        if(empty($shop_district)){
+            $this->showmessage('请选择地区', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'district'));
+        }
+        if(empty($shop_address)){
+            $this->showmessage('请填写详细地址', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'address'));
+        }
+        $city_name = RC_DB::table('region')->where('region_id', $shop_city)->pluck('region_name');
+        $city_district = RC_DB::table('region')->where('region_id', $shop_district)->pluck('region_name');
+        $address = $city_name.'市'.$shop_address;
+        $shop_point = file_get_contents("http://api.map.baidu.com/geocoder/v2/?address='".$address."&output=json&ak=E70324b6f5f4222eb1798c8db58a017b");
+        $shop_point = (array)json_decode($shop_point);
+        $shop_point['result'] = (array)$shop_point['result'];
+        $location = (array)$shop_point['result']['location'];
+        echo json_encode($location);
+    }
 }
 
 // end
