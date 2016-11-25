@@ -41,6 +41,7 @@ class cart_controller {
         // ecjia_front::$controller->assign('title', RC_Lang::lang('shopping_cart'));
         // ecjia_front::$controller->assign_title(RC_Lang::lang('shopping_cart'));
         // ecjia_front::$controller->assign_lang();
+    	ecjia_front::$controller->assign('active', 3);
         ecjia_front::$controller->display('cart_list.dwt');
     }
     /**
