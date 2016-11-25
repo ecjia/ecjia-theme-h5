@@ -1388,7 +1388,9 @@
 .ecjia-goods-basic-info{
 	display:none;
 }
-
+.goods-desc-info .goods-desc-nav {
+	border-bottom:0;
+}
 /*========================  订单列表 ===========================*/
 .ecjia-order-list .ecjia-order-item {
     background: #ffffff;
