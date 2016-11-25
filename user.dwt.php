@@ -17,14 +17,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 <!-- TemplateEndEditable -->
 
-<div class="ecjia-user-info user-new-info">
-	<div class="user-img ecjiaf-fl"><a href="{url path='user/user_profile/edit_profile'}"><img src="{$user_img}" alt=""></a></div>
+<div class="ecjia-user-info user-new-info ecjia-user">
+	<a href="{url path='user/user_profile/edit_profile'}"><div class="user-img ecjiaf-fl"><img src="{$user_img}" alt=""></a></div>
 	<div class="ecjiaf-fl ecjia-margin-l user-rank-name">
 		<span>{$info.username}</span>
-		<span>{$rank_name}</span>
+		<span class="ecjia-user-buttom">{$rank_name}</span>
 	</div>
 	<a href="{url path='user/user_message/msg_list'}">
-		<i class="iconfont icon-pinglun"></i>
+		<i class="iconfont icon-settings"></i>
 		{if $order_num.msg_num}
 		<span class="ecjia-icon ecjia-icon ecjia-icon-num">{$order_num.msg_num}</span>
 		{/if}

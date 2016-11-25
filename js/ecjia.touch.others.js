@@ -51,7 +51,7 @@
         	InterValObj = setInterval(function(){ 
         		$(".promote-time").each(function(){ 
         			var obj = $(this); 
-        			var endTime = new Date((parseInt(obj.attr('value')) + 8*3600) * 1000); 
+        			var endTime = new Date((parseInt(obj.attr('value')) + 8*3600) * 1000);
         			var nowTime = new Date(); 
         			var nMS=endTime.getTime() - nowTime.getTime() + difference; 
         			var myD=Math.floor(nMS/(1000 * 60 * 60 * 24)); //天 
@@ -67,21 +67,20 @@
         			if(myD>= 0){ 
         				if (type == 1) {
         					msg = '距离活动结束还有';
-        					var str = msg + myD + '天 <span class="end-time">'+ hh +'</span> : <span class="end-time">' + mm + '</span> : <span class="end-time">' + ss + '</span>';
+        					var str = msg + myD + '天 &nbsp;&nbsp;<span class="end-time">'+ hh +'</span> : <span class="end-time">' + mm + '</span> : <span class="end-time">' + ss + '</span>';
         				} else {
         					msg = '剩余';
-        					var str = msg + myD+"天 "+hh+":"+mm+":"+ss; 
+        					var str = msg + myD+"天&nbsp;"+hh+":"+mm+":"+ss; 
         				}
-        				
         			}else{ 
         				var str = "已结束！";  
         			} 
         			obj.html(str); 
         		}); 
-        	}, 1000); //每个1秒执行一次 
+        	}, 1000); //每隔1秒执行一次 
         },
 
-		close_bottom_banner : function() {
+        close_bottom_banner : function() {
             $.cookie('hide_bottom_banner', 1);
 			$('.bottom-banner').remove();
 		},

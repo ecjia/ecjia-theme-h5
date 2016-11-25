@@ -35,8 +35,14 @@ class user_controller {
         // }
         // ecjia_front::$controller->assign('integral',intval($user['pay_points']));
         // ecjia_front::$controller->assign('surplus_amount', intval($surplus_amount));
+        
+        //网店信息
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
+        ecjia_front::$controller->assign('data', $data);
+        
         ecjia_front::$controller->assign('user_img', $user_img);
-
+        ecjia_front::$controller->assign('active', 5);
+        
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user.dwt');
     }

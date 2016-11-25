@@ -253,8 +253,10 @@ class goods_controller {
 	    		'location' => array('longitude' => '121.41618102314', 'latitude' => '31.235278361951'),
 	    );
 	    $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($par)->run();
-//     	_dump($goods_info, 1);
+// 	    _dump($goods_info, 1);
+	    $goods_desc = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DESC)->data(array('goods_id' => $goods_id))->run();
 	    ecjia_front::$controller->assign('goods_info', $goods_info);
+	    ecjia_front::$controller->assign('goods_desc', $goods_desc);
         ecjia_front::$controller->display('goods_info.dwt');
     }
 
@@ -435,6 +437,7 @@ class goods_controller {
     	);
     	
     	if (!empty($keywords)) {
+    		insert_search($keywords);//记录搜索
     		$arr['keywords'] = $keywords;
     		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($arr)->run();
     		ecjia_front::$controller->assign('keywords', $keywords);
@@ -459,6 +462,7 @@ class goods_controller {
      */
     public static function store_detail() {
     	$store_id = intval($_GET['store_id']);
+    	//$store_id = 63;
     	$arr = array(
     		'seller_id' => $store_id,
     	);
