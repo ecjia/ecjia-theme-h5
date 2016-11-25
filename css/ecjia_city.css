@@ -1390,11 +1390,51 @@
 .ecjia-goods-detail-header-title li a {
 	color:#fff;
 }
-.ecjia-goods-basic-info{
-	display:none;
-}
-.goods-desc-info .goods-desc-nav {
+.goods-desc-info .goods-desc-nav-new {
 	border-bottom:0;
+}
+.goods-info .goods-info-property .goods-style-name-new{
+	padding:1.5em 1em .5em 1em;
+	border-bottom:none;
+}
+.goods-info .goods-info-property .goods-price-new{
+	padding:0.2em 0.5em 0.5em 0.5em;
+}
+.goods-type .goods-option-con-new{
+	padding:.6em;
+}
+.ecjia-merchants-name .icon-jiantou-right{
+	float:right;
+	clear:both;
+}
+
+.ecjia-favourable-goods-list .store-promotion .promotion{
+	width:50%;
+	float:left;
+}
+.ecjia-favourable-goods-list .store-promotion li{
+	padding:.2em 0;
+}
+
+.ecjia-favourable-goods-list .store-promotion .promotion-label{
+	color: #fff;
+	display:inline-block;
+	border:1px solid #FF1919;
+	border-radius:4px;
+	font-weight:500;
+	font-size: .6em;
+	background: #FF1919;
+	padding:0.1em 0.2 0.1em 0.1em;
+}
+.ecjia-favourable-goods-list .store-promotion .promotion-name{
+	font-weight:500;
+	font-size: .65em;
+	padding-left:.5em;
+	color: #333;
+	background:#fff;
+}
+.ecjia-form .may-like{
+	color:#FF1919;
 }
 /*========================  订单列表 ===========================*/
 .ecjia-order-list .ecjia-order-item {
