@@ -59,7 +59,8 @@
 .ecjia-search-history p.title{
 	padding: .5em;
 	padding-left: .5em;
-	color: 555;
+	color: #555;
+	border-bottom: 1px solid #eee;
 }
 .ecjia-search-history .title i{
 	top: -1px;
@@ -67,9 +68,6 @@
 }
 .ecjia-search-history .title a{
 	float: right;
-}
-.ecjia-search-history .ecjia-list{
-	border-top: 1px solid #eee;
 }
 .ecjia-search-history .ecjia-list li{
 	padding: .5em 1em;
