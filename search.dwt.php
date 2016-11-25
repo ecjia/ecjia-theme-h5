@@ -15,7 +15,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<div class="ecjia-search-header">
 		<div class="ecjia-form" data-url="{url path='goods/category/store_list'}">
-			<input id="keywordBox" name="keywords" type="search" placeholder="搜索附近商品和门店" autofocus="autofocus" {if $keywords}value="{$keywords}"{/if}>
+			<input id="keywordBox" name="keywords" type="search" placeholder="搜索附近商品和门店" {if $keywords}value="{$keywords}"{/if}>
 			<button type="button" class="btn-search"><i class="iconfont icon-search"></i></button>
 		</div>
 	</div>

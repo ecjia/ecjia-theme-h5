@@ -326,11 +326,11 @@
 			$('#keywordBox').val('').focus().val(k); 
 			
 			$('.btn-search').off('click').on('click', function(e) {
-				var val = $('input[name="keywords"]').val(),
+				var val = $('input[name="keywords"]').val().trim(),
 					url = $('.ecjia-form').attr('data-url');
-				if (val == '') {
-					$("#keywordBox").focus(); 
-					return false;
+				if (!val) {
+					$("#keywordBox").blur(); 
+					return;
 				} else {
 					ecjia.pjax(url + '&keywords=' + val);
 				}
