@@ -10,7 +10,27 @@
 			ecjia.touch.category.selectionValue();
 			ecjia.touch.category.clear_filter();
 			ecjia.touch.category.goods_show();
+			ecjia.touch.category.add_tocart();
 		},
+
+        add_tocart:function(){
+            $("[data-toggle='add-to-cart']").on('click',function(ev){
+                var offset = $('.icon-gouwuche').offset(),
+                    flyer = $('<img class="u-flyer" src="http://cityo2o.ecjia.com/content/uploads/images/201603/goods_img/350_G_1459301046358.jpg" alt="">');
+                flyer.fly({
+                    start: {
+                        left: ev.pageX,
+                        top:  ev.pageY - $('body').scrollTop()
+                    },
+                    end: {
+                        left: offset.left,
+                        top: offset.top - $('body').scrollTop(),
+                        width : 0,
+                        height : 0,
+                    }
+                });
+            })
+        },
 
 		openSelection : function() {
 			/*商品列表页面点击显示筛选*/
@@ -83,7 +103,7 @@
 				});
 			});
 		},
-		
+
 		goods_show : function() {
 			$('.view-more').on('click', function(e){
 				e.preventDefault();
@@ -96,7 +116,7 @@
 				}
 				$this.addClass('hide').siblings('.goods-info').removeClass('hide');
 			});
-			
+
 			$('.category_left li').on('click', function(){
 				$('.ecjia-category-list').removeClass('show');
 				var $this = $(this)

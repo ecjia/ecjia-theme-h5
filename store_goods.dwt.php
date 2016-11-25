@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 Name: 店铺商品
 Description: 这是店铺商品页
@@ -21,7 +21,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</a>
 	</div>
 </div>
-
 <div class="ecjia-store-brief">
 	<li class="store-info">
 		<a href="{RC_Uri::url('goods/category/store_detail')}&store_id={$store_info.id}">
@@ -55,7 +54,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		{/if}
 	</li>
 	<div class="a1n">
-		<div class="wg"> 
+		<div class="wg">
 			<div class="wh"><span class="wp"><i class="iconfont icon-search"></i>搜索店内商品</span></div>
 		</div>
 		<div class="a21">
@@ -67,7 +66,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					</a>
 				</li>
 				<!-- {/if} -->
-				
+
 				<!-- {if $store_info.goods_count.hot_goods gt 0} -->
 				<li class="a1p a1t">
 					<a class="data-pjax" href="{RC_Uri::url('goods/category/store_goods')}&store_id={$store_id}&type=hot">
@@ -75,7 +74,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					</a>
 				</li>
 				<!-- {/if} -->
-				
+
 				<!-- {if $store_info.goods_count.new_goods gt 0} -->
 				<li class="a1p a1t">
 					<a class="data-pjax" href="{RC_Uri::url('goods/category/store_goods')}&store_id={$store_id}&type=new">
@@ -83,14 +82,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					</a>
 				</li>
 				<!-- {/if} -->
-				
+
 				<li class="a1p a1t">
 					<a href="{RC_Uri::url('goods/category/store_goods')}&store_id={$store_id}&type=all">
 						<strong class="a1s {if (!$category_id && !$action_type) || $action_type eq 'all'}active{/if}">全部</strong>
 					</a>
 				</li>
-				
-				
+
+
 				<!-- {if $store_category} -->
 					<!-- {foreach from=$store_category item=val} -->
 					<li class="a1p">
@@ -101,7 +100,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<!-- {/foreach} -->
 				<!-- {/if} -->
 			</ul>
-			
+
 			<div class="a20">
 				{$type_name}
 				（{$goods_num}）
@@ -113,7 +112,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							<!-- {foreach from=$suggest_goods item=goods} -->
 							<li>
 								<a class="linksGoods w">
-									<img class="pic" src="{$goods.img.small}"> 
+									<img class="pic" src="{$goods.img.small}">
 									<dl>
 										<dt>{$goods.name}</dt>
 										<dd><label>{$goods.shop_price}</label></dd>
@@ -122,17 +121,22 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							</li>
 							<!-- {/foreach} -->
 						<!-- {/if} -->
-						
+
 						<!-- {if $goods_list} -->
 							<!-- {foreach from=$goods_list item=goods} -->
 							<li>
 								<a class="linksGoods w">
-									<img class="pic" src="{$goods.img.small}"> 
+									<img class="pic" src="{$goods.img.small}">
 									<dl>
 										<dt>{$goods.name}</dt>
 										<dd><label>{$goods.shop_price}</label></dd>
 									</dl>
 								</a>
+                                <div class="input-number">
+                                    <i class="iconfont icon-roundadd" data-toggle="add-to-cart"></i>
+                                    <span></span>
+                                    <i></i>
+                                </div>
 							</li>
 							<!-- {/foreach} -->
 						<!-- {/if} -->
@@ -141,5 +145,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 		</div>
 	</div>
+    <div class="store-add-cart">
+        <i class="iconfont icon-gouwuche"></i>
+        <span>购物车是空的</span>
+        <span class="ecjiaf-fr checkout">去结算</span>
+    </div>
 </div>
 <!-- {/block} -->

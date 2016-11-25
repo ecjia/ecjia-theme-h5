@@ -603,6 +603,22 @@
     overflow: hidden;
     padding: 1em .5em .5em 0;
 }
+.ecjia-store-brief .a1n .a1x li .input-number{
+    position: absolute;
+    right: 1em;
+    top: 2.5em;
+    color: #47aa4d;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+.u-flyer{
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    position: fixed;
+    z-index: 9999;
+}
 .ecjia-store-brief .a1n .a1x .r2 .pic {
     width: 5em;
     height: 5em;
@@ -641,7 +657,31 @@
     white-space: nowrap;
 }
 
-
+.store-add-cart{
+    overflow: hidden;
+    height: 4em;
+    position: fixed;
+    left: 0;
+    right:0;
+    bottom: 0;
+    background: #fff;
+    padding-left: 1em;
+    line-height: 4em;
+}
+.store-add-cart i{
+    font-size: 1.7em;
+    margin-right: .5em;
+    padding: .3em;
+    color: #fff;
+    background: #ddd;
+    border-radius: 100%;
+}
+.store-add-cart .checkout{
+    display: inline-block;
+    width: 6em;
+    background: #9d9d9d;
+    text-align: center;
+}
 /*========================  购物车 ===========================*/
 .small-btn{
 	margin-top: 50px;
@@ -866,7 +906,7 @@
 	background: rgba(71, 170, 77, 0.7) none repeat scroll 0 0;
 }
 .ecjia-user.ecjia-form .form-group {
-	padding-left: 0;	
+	padding-left: 0;
 	margin-left: 0;
 	margin-right: 0;
 	padding-right: 0;
@@ -1376,7 +1416,7 @@
 	width:18em;
 	margin-left:-9em;
 	left: 50%;
-	
+
 }
 .ecjia-goods-detail-header-title li {
 	float:left;
