@@ -14,6 +14,7 @@
 			ecjia.touch.close_banner();
 			ecjia.touch.close_app_download();
 			ecjia.touch.searchbox_foucs();
+			ecjia.touch.del_history();
 		},
 
 		/**
@@ -326,11 +327,11 @@
 			$('#keywordBox').val('').focus().val(k); 
 			
 			$('.btn-search').off('click').on('click', function(e) {
-				var val = $('input[name="keywords"]').val(),
+				var val = $('input[name="keywords"]').val().trim(),
 					url = $('.ecjia-form').attr('data-url');
-				if (val == '') {
-					$("#keywordBox").focus(); 
-					return false;
+				if (!val) {
+					$("#keywordBox").blur(); 
+					return;
 				} else {
 					ecjia.pjax(url + '&keywords=' + val);
 				}
@@ -345,6 +346,19 @@
 					};
 					ecjia.pjax(url);
 			});
+        },
+        
+        del_history : function() {
+        	$(document).on('click', '[data-toggle="del_history"]', function(e){
+        		e.preventDefault();
+        		var $this	= $(this);
+        		var url		= $this.attr('data-href') || $this.attr('href');
+        		
+        		$.get(url, function(data){
+					ecjia.pjax(data.pjaxurl);
+					return false;
+				}, 'json');
+        	});
         },
         
         //更新热门推荐时间
@@ -384,6 +398,7 @@
 
 	//PJAX前进、返回执行
 	$(document).on('pjax:popstate', function() {
+		
 	});
 
 	//PJAX历史和跳转都会执行的方法

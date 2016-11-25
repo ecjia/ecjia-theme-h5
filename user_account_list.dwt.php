@@ -12,26 +12,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 
-<ul class="ecjia-list ecjia-account-list">
-	<!--{foreach from=$account_log item=item}-->
-	<li class="{if $item.amount gt 0} recharge {else} carries {/if}">
-		<a href="{url path='user/user_account/detail' args="id={$item.log_id}"}">
-			<p class="title">
-				{if $item.amount gt 0} 充值:{else} 提现:{/if}
-				<span class="">{$item.amount}</span>
-				<span class="ecjiaf-fr change_time">{$item.change_time}</span>
-			</p>
-		</a>
-	</li>
-	<!--{foreachelse}-->
+<ul class="ecjia-list ecjia-account">
 	<div class="ecjia-nolist">
 		<i class="glyphicon glyphicon-piggy-bank"></i>
+		{if $account_log}
+		<span class="nolist-size">可用余额：<span> ￥99999</span></span>
+		{else}
 		<p>{t}暂无账单记录{/t}</p>
+		{/if}
 	</div>
-	<!--{/foreach}-->
-	<div class="two-btn account-btn">
-		<input class="btn btn-recharge" name="submit" type="submit" value="{t}充值{/t}" />
-		<input class="btn btn-recharge" name="submit" type="submit" value="{t}提现{/t}" />
+	<div class="two-btn">
+		<a href="{url path='user/user_account/recharge'}"><input class="btn ecjiaf-fl" name="submit" type="submit" value="{t}充值{/t}" /></a>
+		<a href="{url path='user/user_account/withdraw'}"><input class="btn ecjiaf-fr" name="submit" type="submit" value="{t}提现{/t}" /></a>
 	</div>
 </ul>
 <!-- {/block} -->

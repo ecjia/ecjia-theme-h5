@@ -437,6 +437,7 @@ class goods_controller {
     	);
     	
     	if (!empty($keywords)) {
+    		insert_search($keywords);//记录搜索
     		$arr['keywords'] = $keywords;
     		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($arr)->run();
     		ecjia_front::$controller->assign('keywords', $keywords);
