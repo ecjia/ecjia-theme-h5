@@ -32,6 +32,7 @@
     white-space: nowrap;
     overflow: hidden;
 }
+/*搜索*/
 .ecjia-search-header .ecjia-form input {
     padding-left: .5em
 }
@@ -51,6 +52,26 @@
 	font-size: 15px;
     color: #888;
     text-align: center;
+}
+.ecjia-search-history {
+	background: #f4f4f4;
+}
+.ecjia-search-history p.title{
+	padding: .5em;
+	padding-left: .5em;
+	color: #555;
+	border-bottom: 1px solid #eee;
+}
+.ecjia-search-history .title i{
+	top: -1px;
+	padding-right: .3em;
+}
+.ecjia-search-history .title a{
+	float: right;
+}
+.ecjia-search-history .ecjia-list li{
+	padding: .5em 1em;
+	border-bottom: 1px solid #eee;
 }
 
 .ecjia-row-nav li:nth-child(4n+1) {
@@ -1518,7 +1539,9 @@
 .ecjia-goods-basic-info{
 	display:none;
 }
-
+.goods-desc-info .goods-desc-nav {
+	border-bottom:0;
+}
 /*========================  订单列表 ===========================*/
 .ecjia-order-list .ecjia-order-item {
     background: #ffffff;
@@ -1896,7 +1919,8 @@
     -moz-box-shadow: 0 0 10px 0 rgba(155,143,143,0.6);
 }
 .ecjia-floor-container {
-    width: 100%;
+    max-width: 640px;
+	margin: 0 auto;
     height: 100%;
     overflow: hidden;
     font-size: 0;

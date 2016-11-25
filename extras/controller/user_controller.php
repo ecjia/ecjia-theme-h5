@@ -36,7 +36,8 @@ class user_controller {
         // ecjia_front::$controller->assign('integral',intval($user['pay_points']));
         // ecjia_front::$controller->assign('surplus_amount', intval($surplus_amount));
         ecjia_front::$controller->assign('user_img', $user_img);
-
+        ecjia_front::$controller->assign('active', 5);
+        
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user.dwt');
     }

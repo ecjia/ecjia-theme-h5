@@ -58,33 +58,30 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!--商品描述-->
 	<!-- Nav tabs -->
 	<ul class="ecjia-list ecjia-list-two ecjia-nav goods-desc-nav">
-		<li class="active"><a class="nopjax" href="#one" role="tab" data-toggle="tab">图文详情</a></li>
+		<li class="active">
+			<a class="nopjax" href="#one" role="tab" data-toggle="tab">图文详情</a>
+		</li>
 		<li><a class="nopjax" href="#two" role="tab" data-toggle="tab">规格参数</a></li>
 	</ul>
 	<!-- Tab panes -->
 	<div class="bd">
 		<div class="goods-describe ecjia-margin-b active" id="one">
-			<!-- {if $goods.goods_desc} -->
-			{$goods.goods_desc}
+			<!-- {if $goods_desc} -->
+			{$goods_desc}
 			<!-- {else} -->
 			<div class="ecjia-nolist">
 				<p class="tags_list_font">{t}此商品暂时没有详情{/t}</p>
 			</div>
 			<!-- {/if} -->
 		</div>
-		<div class="goods-describe ecjia-margin-b" id="two">
-		<!-- {if $properties} -->
+		<div class="goods-describe ecjia-margin-b" id="two" style="padding:0;">
+		<!-- {if $goods_info.properties} -->
 			<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#dddddd">
-				<!-- {foreach from=$properties item=property_group key=key} -->
+				<!-- {foreach from=$goods_info.properties item=property_group} -->
 				<tr>
-					<th colspan="2" bgcolor="#FFFFFF">{$key|escape}</th>
+					<td bgcolor="#FFFFFF" align="left" width="30%" class="f1">{$property_group.name|escape:html}</td>
+					<td bgcolor="#FFFFFF" align="left" width="70%">{$property_group.value}</td>
 				</tr>
-				<!-- {foreach from=$property_group item=property} -->
-				<tr>
-					<td bgcolor="#FFFFFF" align="left" width="30%" class="f1">[{$property.name|escape:html}]</td>
-					<td bgcolor="#FFFFFF" align="left" width="70%">{$property.value}</td>
-				</tr>
-				<!-- {/foreach}-->
 				<!-- {/foreach}-->
 			</table>
 			<!-- {else} -->
@@ -94,7 +91,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<!-- {/if} -->
 		</div>
 	</div>
-
 	<!-- 相关商品 -->
 	<!-- {if $related_goods} 猜你喜欢 -->
 	<div class="goods-link-like ecjia-margin-b">

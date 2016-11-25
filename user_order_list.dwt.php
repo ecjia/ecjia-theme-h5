@@ -87,7 +87,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</ul>
 	<!-- {$page} -->
 </div>
+<!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
 <!-- {/block} -->
+
 <!-- {block name="ajaxinfo"} -->
 <!-- {foreach from=$order item=orders} 循环订单列表 -->
 	<li class="ecjia-margin-t">
