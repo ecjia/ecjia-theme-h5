@@ -68,8 +68,12 @@
 .ecjia-search-history .title a{
 	float: right;
 }
+.ecjia-search-history .ecjia-list{
+	border-top: 1px solid #eee;
+}
 .ecjia-search-history .ecjia-list li{
 	padding: .5em 1em;
+	border-bottom: 1px solid #eee;
 }
 
 .ecjia-row-nav li:nth-child(4n+1) {
