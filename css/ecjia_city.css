@@ -32,6 +32,7 @@
     white-space: nowrap;
     overflow: hidden;
 }
+/*搜索*/
 .ecjia-search-header .ecjia-form input {
     padding-left: .5em
 }
@@ -51,6 +52,24 @@
 	font-size: 15px;
     color: #888;
     text-align: center;
+}
+.ecjia-search-history {
+	background: #f4f4f4;
+}
+.ecjia-search-history p.title{
+	padding: .5em;
+	padding-left: .5em;
+	color: 555;
+}
+.ecjia-search-history .title i{
+	top: -1px;
+	padding-right: .3em;
+}
+.ecjia-search-history .title a{
+	float: right;
+}
+.ecjia-search-history .ecjia-list li{
+	padding: .5em 1em;
 }
 
 .ecjia-row-nav li:nth-child(4n+1) {

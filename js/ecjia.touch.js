@@ -14,6 +14,7 @@
 			ecjia.touch.close_banner();
 			ecjia.touch.close_app_download();
 			ecjia.touch.searchbox_foucs();
+			ecjia.touch.del_history();
 		},
 
 		/**
@@ -347,6 +348,19 @@
 			});
         },
         
+        del_history : function() {
+        	$(document).on('click', '[data-toggle="del_history"]', function(e){
+        		e.preventDefault();
+        		var $this	= $(this);
+        		var url		= $this.attr('data-href') || $this.attr('href');
+        		
+        		$.get(url, function(data){
+					ecjia.pjax(data.pjaxurl);
+					return false;
+				}, 'json');
+        	});
+        },
+        
         //更新热门推荐时间
         update_hot_time : function() {
             var nowTime = new Date(),
@@ -384,6 +398,7 @@
 
 	//PJAX前进、返回执行
 	$(document).on('pjax:popstate', function() {
+		
 	});
 
 	//PJAX历史和跳转都会执行的方法

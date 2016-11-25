@@ -101,15 +101,12 @@ class touch_controller {
      * 搜索
      */
     public static function search() {
-    	$search_keywords = explode(',', ecjia::config('search_keywords'));
-        shuffle($search_keywords);
-        ecjia_front::$controller->assign('tags', array_slice($search_keywords, 0, 12));
-        ecjia_front::$controller->assign('searchs', insert_search());
-        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign('searchs', get_search());
         
         $keywords = !empty($_GET['keywords']) ? trim($_GET['keywords']) : '';
         ecjia_front::$controller->assign('keywords', $keywords);
         
+        ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('search.dwt');
     }
 
@@ -117,8 +114,9 @@ class touch_controller {
      * 清除搜索
      */
     public static function del_search() {
-        // setcookie('ECJia[search]', '', 1);
-        // ecjia_front::$controller->showmessage('成功清除搜索历史记录', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('touch/index/search'), 'is_show' => false));
+        setcookie('ECJia[search]', '', 1);
+        
+        ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('touch/index/search')));
     }
 
     public static function download() {
