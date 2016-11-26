@@ -36,7 +36,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                     <input type="hidden" name="referer" value="{$smarty.get.referer}" />
                     <span><input type="submit" class="btn btn-info login-btn" value="{$lang.return_verification}" /></span>
         	</div>
-			<div class="form-group bf ecjia-margin-t margin-right-left">
+			<div class="form-group bf margin-right-left five-margin-top">
 				<label class="input">
 					<i class="iconfont icon-yanzhengma"></i>
 					<input name="password" id="password1" type="password" datatype="*6-16" placeholder="邀请码6位数字或字母" errormsg="邀请码6位数字或字母">
