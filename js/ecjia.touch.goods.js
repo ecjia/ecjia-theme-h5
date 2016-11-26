@@ -18,15 +18,18 @@
                 var offset = $('.icon-gouwuche').offset(),
                     flyer = $('<img class="u-flyer" src="http://cityo2o.ecjia.com/content/uploads/images/201603/goods_img/350_G_1459301046358.jpg" alt="">');
                 flyer.fly({
-                    start: {
+                    start: { // 开始时位置
                         left: ev.pageX,
                         top:  ev.pageY - $('body').scrollTop()
                     },
-                    end: {
+                    end: { // 结束时位置
                         left: offset.left,
                         top: offset.top - $('body').scrollTop(),
                         width : 0,
                         height : 0,
+                    },
+                    onEnd: function(){ // 回调方法
+                        !$('.store-add-cart').hasClass('active') && $('.store-add-cart').addClass('active');
                     }
                 });
             })

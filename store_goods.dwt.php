@@ -146,8 +146,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 	</div>
     <div class="store-add-cart">
-        <i class="iconfont icon-gouwuche"></i>
-        <span>购物车是空的</span>
+        <div class="ecjia-icon">
+            <i class="iconfont icon-gouwuche"></i>
+            <span class="ecjia-icon-num">0</span>
+        </div>
+
+        <span class="font-price">购物车是空的</span>
         <span class="ecjiaf-fr checkout">去结算</span>
     </div>
 </div>

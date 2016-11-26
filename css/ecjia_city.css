@@ -452,6 +452,7 @@
 }
 .ecjia-store-brief {
 	height: auto;
+    padding-bottom: 4em;
 }
 .ecjia-store-brief .store-info{
 	width:100%;
@@ -700,7 +701,6 @@
 }
 
 .store-add-cart{
-    overflow: hidden;
     height: 4em;
     position: fixed;
     left: 0;
@@ -710,18 +710,41 @@
     padding-left: 1em;
     line-height: 4em;
 }
+.store-add-cart .ecjia-icon{
+    display: inline-block;
+}
+.store-add-cart .ecjia-icon-num {
+    display: none;
+}
 .store-add-cart i{
     font-size: 1.7em;
     margin-right: .5em;
     padding: .3em;
     color: #fff;
-    background: #ddd;
+    background: #b4b4b4;
     border-radius: 100%;
+}
+.store-add-cart.active .ecjia-icon-num{
+    display: block;
+    top: -1em;
+    right: .5em;
+    background: #ef3030;
+    z-index: 9999;
+}
+.store-add-cart.active i{
+    background: #47aa4d;
+    font-size: 2em;
+    top: -.5em;
+}
+.store-add-cart.active .font-price{
+    padding-left: 1em;
+    color: #ef3030;
 }
 .store-add-cart .checkout{
     display: inline-block;
     width: 6em;
-    background: #9d9d9d;
+    color: #ffffff;
+    background: #808080;
     text-align: center;
 }
 /*========================  购物车 ===========================*/
@@ -1107,7 +1130,7 @@
 	line-height: 0em;
 	border: 0.3em solid #fff;
 	padding: 2.7px;
-	position: absolute;  
+	position: absolute;
 	left: 41%;
 	right: 45;
     top: 3em;
@@ -1286,7 +1309,7 @@
 	position: absolute;
 	left: 0;
 	right: 0;
-	line-height: 600%;	
+	line-height: 600%;
 }
 .ecjia-account .ecjia-nolist .nolist-size span{
 	color: red;
