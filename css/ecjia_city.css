@@ -583,7 +583,7 @@
 .ecjia-store-brief .a1o {
 	float:left;
     z-index: 10;
-    width: 25%;
+    width: 20%;
     padding-bottom: 62px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -609,7 +609,7 @@
 	font-weight: 500;
 	text-align: center;
 	position: relative;
-	padding: 1em;
+	padding: 1.2em .5em;
 }
 .ecjia-store-brief .a1r .a1s, .a1n .active {
     background: #fff;
@@ -628,10 +628,10 @@
     overflow: hidden;
     z-index: 11;
     text-overflow: ellipsis;
-	width: 75%;
+	width: 80%;
 }
 .ecjia-store-brief .a1n .a1x {
-	width: 75%;
+	width: 80%;
     z-index: 10;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -2176,7 +2176,7 @@
 .ecjia-store-detail .store-goods li.goods-info .goods-border{
     height: 1.7em;
     position: absolute;
-    border: 0.5px solid #ccc;
+    border: 1px solid #ccc;
     left: 100%;
 	top: 2em;
 }
