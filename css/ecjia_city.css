@@ -406,12 +406,33 @@
 	padding-top: 0;
 	float: none;
 	overflow: auto;
+	text-align: center;
+	width: 6.5em;
+	color: #333;
+	font-weight: 500;
+	font-size: .9em;
+	background: #F6F6F6;
+	border-right: none;
+}
+.category .category_left li{
+	line-height: 3.5em;
+	height: 3.5em;
+	background: #F6F6F6;
+	border-bottom: 1px solid #eee;
+	border-right: 1px solid #eee;
+}
+.category .category_left li.active{
+	border-right: none;
+}
+.category .category_left li.active a{
+	color: #47aa4d;
 }
 .category .category_right{
 	margin-top: 49px;
 	padding-top: 0;
 	padding-bottom: 4em;
 	height: auto;
+	margin-left: 5.5em;
 }
 /*========================  店铺商品 ===========================*/
 .ecjia-header.ecjia-store-banner {
@@ -431,6 +452,7 @@
 }
 .ecjia-store-brief {
 	height: auto;
+    padding-bottom: 4em;
 }
 .ecjia-store-brief .store-info{
 	width:100%;
@@ -561,7 +583,7 @@
 .ecjia-store-brief .a1o {
 	float:left;
     z-index: 10;
-    width: 25%;
+    width: 20%;
     padding-bottom: 62px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -587,7 +609,7 @@
 	font-weight: 500;
 	text-align: center;
 	position: relative;
-	padding: 1em;
+	padding: 1.2em .5em;
 }
 .ecjia-store-brief .a1r .a1s, .a1n .active {
     background: #fff;
@@ -606,10 +628,10 @@
     overflow: hidden;
     z-index: 11;
     text-overflow: ellipsis;
-	width: 75%;
+	width: 80%;
 }
 .ecjia-store-brief .a1n .a1x {
-	width: 75%;
+	width: 80%;
     z-index: 10;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -623,6 +645,22 @@
     display: block;
     overflow: hidden;
     padding: 1em .5em .5em 0;
+}
+.ecjia-store-brief .a1n .a1x li .input-number{
+    position: absolute;
+    right: 1em;
+    top: 2.5em;
+    color: #47aa4d;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+.u-flyer{
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    position: fixed;
+    z-index: 9999;
 }
 .ecjia-store-brief .a1n .a1x .r2 .pic {
     width: 5em;
@@ -662,7 +700,53 @@
     white-space: nowrap;
 }
 
-
+.store-add-cart{
+    height: 4em;
+    position: fixed;
+    left: 0;
+    right:0;
+    bottom: 0;
+    background: #fff;
+    padding-left: 1em;
+    line-height: 4em;
+}
+.store-add-cart .ecjia-icon{
+    display: inline-block;
+}
+.store-add-cart .ecjia-icon-num {
+    display: none;
+}
+.store-add-cart i{
+    font-size: 1.7em;
+    margin-right: .5em;
+    padding: .3em;
+    color: #fff;
+    background: #b4b4b4;
+    border-radius: 100%;
+}
+.store-add-cart.active .ecjia-icon-num{
+    display: block;
+    top: -1em;
+    right: .5em;
+    background: #ef3030;
+    z-index: 9999;
+}
+.store-add-cart.active i{
+    background: #47aa4d;
+    font-size: 2em;
+    top: -.5em;
+}
+.store-add-cart.active .font-price{
+    padding-left: 1em;
+    color: #ef3030;
+}
+.store-add-cart .checkout{
+    display: inline-block;
+    width: 6em;
+    color: #ffffff;
+    background: #808080;
+    text-align: center;
+}
 /*========================  购物车 ===========================*/
 .small-btn{
 	margin-top: 50px;
@@ -887,7 +971,7 @@
 	background: rgba(71, 170, 77, 0.7) none repeat scroll 0 0;
 }
 .ecjia-user.ecjia-form .form-group {
-	padding-left: 0;	
+	padding-left: 0;
 	margin-left: 0;
 	margin-right: 0;
 	padding-right: 0;
@@ -1046,7 +1130,7 @@
 	line-height: 0em;
 	border: 0.3em solid #fff;
 	padding: 2.7px;
-	position: absolute;  
+	position: absolute;
 	left: 41%;
 	right: 45;
     top: 3em;
@@ -1228,7 +1312,7 @@
 	position: absolute;
 	left: 0;
 	right: 0;
-	line-height: 600%;	
+	line-height: 600%;
 }
 .ecjia-account .ecjia-nolist .nolist-size span{
 	color: red;
@@ -1535,7 +1619,7 @@
 	width:18em;
 	margin-left:-9em;
 	left: 50%;
-	
+
 }
 .ecjia-goods-detail-header-title li {
 	float:left;
@@ -1544,11 +1628,51 @@
 .ecjia-goods-detail-header-title li a {
 	color:#fff;
 }
-.ecjia-goods-basic-info{
-	display:none;
-}
-.goods-desc-info .goods-desc-nav {
+.goods-desc-info .goods-desc-nav-new {
 	border-bottom:0;
+}
+.goods-info .goods-info-property .goods-style-name-new{
+	padding:1.5em 1em .5em 1em;
+	border-bottom:none;
+}
+.goods-info .goods-info-property .goods-price-new{
+	padding:0.2em 0.5em 0.5em 0.5em;
+}
+.goods-type .goods-option-con-new{
+	padding:.6em;
+}
+.ecjia-merchants-name .icon-jiantou-right{
+	float:right;
+	clear:both;
+}
+
+.ecjia-favourable-goods-list .store-promotion .promotion{
+	width:50%;
+	float:left;
+}
+.ecjia-favourable-goods-list .store-promotion li{
+	padding:.2em 0;
+}
+
+.ecjia-favourable-goods-list .store-promotion .promotion-label{
+	color: #fff;
+	display:inline-block;
+	border:1px solid #FF1919;
+	border-radius:4px;
+	font-weight:500;
+	font-size: .6em;
+	background: #FF1919;
+	padding:0.1em 0.2 0.1em 0.1em;
+}
+.ecjia-favourable-goods-list .store-promotion .promotion-name{
+	font-weight:500;
+	font-size: .65em;
+	padding-left:.5em;
+	color: #333;
+	background:#fff;
+}
+.ecjia-form .may-like{
+	color:#FF1919;
 }
 /*========================  订单列表 ===========================*/
 .ecjia-order-list .ecjia-order-item {
@@ -2061,7 +2185,7 @@
 .ecjia-store-detail .store-goods li.goods-info .goods-border{
     height: 1.7em;
     position: absolute;
-    border: 0.5px solid #ccc;
+    border: 1px solid #ccc;
     left: 100%;
 	top: 2em;
 }

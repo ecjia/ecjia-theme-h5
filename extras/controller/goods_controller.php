@@ -245,7 +245,7 @@ class goods_controller {
 	    $goods_id = isset($_GET['id']) ? $_GET['id'] : 0;
 	    $rec_type = isset($_GET['rec_type']) ? $_GET['rec_type'] : 0;
 	    $object_id= isset($_GET['object_id']) ? $_GET['object_id'] : 0;
-	    //$goods_id = 890;
+	    $goods_id = 412;
 	    $par = array(
 	    		'goods_id' => $goods_id,
 	    		'rec_type' => $rec_type,
@@ -253,6 +253,7 @@ class goods_controller {
 	    		'location' => array('longitude' => '121.41618102314', 'latitude' => '31.235278361951'),
 	    );
 	    $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($par)->run();
+// 	    _dump($goods_info, 1);
 	    $goods_desc = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DESC)->data(array('goods_id' => $goods_id))->run();
 	    ecjia_front::$controller->assign('goods_info', $goods_info);
 	    ecjia_front::$controller->assign('goods_desc', $goods_desc);

@@ -11,7 +11,6 @@ class article_controller {
         // ecjia_front::$controller->assign('article_categories', article_categories_tree($cat_id)); //文章分类树
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_HELP)->run();
     	ecjia_front::$controller->assign('data', $data);
-    	
     	ecjia_front::$controller->assign('title', '帮助中心');
     	ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('article_init.dwt');
@@ -53,9 +52,10 @@ class article_controller {
     public static function info() {
         // /* 文章详情 */
         $article_id = intval($_GET['aid']);
+        $title = trim($_GET['title']);
         // $article = get_article_info($article_id);
         // ecjia_front::$controller->assign('article', $article);
-        // ecjia_front::$controller->assign('title',   $article['title']);
+        ecjia_front::$controller->assign('title', $title);
         // ecjia_front::$controller->assign_lang();
         
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_HELP_DETAIL)->data(array('article_id' => $article_id))->run();
