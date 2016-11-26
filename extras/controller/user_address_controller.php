@@ -9,33 +9,34 @@ class user_address_controller {
      */
     public static function address_list() {
         // /*赋值于模板*/
-        // $user_id = $_SESSION['user_id'];
-        // $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
-        // $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-        // $consignee_list = get_consignee_list($user_id, 0, $size, $page);
-        // if (!empty($consignee_list['list'])) {
-        //     foreach ($consignee_list['list'] as $k => $v) {
-        //         $address = '';
-        //         if ($v['province']) {
-        //             $address .= get_region_name($v['province']);
-        //         }
-        //         if ($v['city']) {
-        //             $address .= get_region_name($v['city']);
-        //         }
-        //         if ($v['district']) {
-        //             $address .= get_region_name($v['district']);
-        //         }
-        //         $v['address'] = $address . ' ' . $v['address'];
-        //         $v['url'] = RC_Uri::url('edit_address', array(
-        //             'id' => $v['address_id']
-        //         ));
-        //         $address_list[] = $v;
-        //     }
-        // }
-        // ecjia_front::$controller->assign('addres_list', $address_list);
-        // ecjia_front::$controller->assign('page', $consignee_list['page']);
-        // ecjia_front::$controller->assign('title', RC_Lang::lang('consignee_info'));
-        // ecjia_front::$controller->assign_title(RC_Lang::lang('consignee_info'));
+        $user_id = $_SESSION['user_id'];
+        $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+        $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+        $consignee_list = get_consignee_list($user_id, 0, $size, $page);
+        if (!empty($consignee_list['list'])) {
+            foreach ($consignee_list['list'] as $k => $v) {
+                $address = '';
+                if ($v['province']) {
+                    $address .= get_region_name($v['province']);
+                }
+                if ($v['city']) {
+                    $address .= get_region_name($v['city']);
+                }
+                if ($v['district']) {
+                    $address .= get_region_name($v['district']);
+                }
+                $v['address'] = $address . ' ' . $v['address'];
+                $v['url'] = RC_Uri::url('edit_address', array(
+                    'id' => $v['address_id']
+                ));
+                $address_list[] = $v;
+            }
+        }
+        ecjia_front::$controller->assign('addres_list', $address_list);
+        ecjia_front::$controller->assign('page', $consignee_list['page']);
+        ecjia_front::$controller->assign('title', RC_Lang::lang('consignee_info'));
+        ecjia_front::$controller->assign_title(RC_Lang::lang('consignee_info'));
+		ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_address_list.dwt');
     }
@@ -44,33 +45,33 @@ class user_address_controller {
      * 异步地址列表
      */
     public static function async_addres_list() {
-        // $user_id = $_SESSION['user_id'];
-        // $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
-        // $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-        // $consignee_list = get_consignee_list($user_id, 0, $size, $page);
-        // $address_list = array();
-        // if ($consignee_list['list']) {
-        //     foreach ($consignee_list['list'] as $k => $v) {
-        //         $address = '';
-        //         if ($v['province']) {
-        //             $address .= get_region_name($v['province']);
-        //         }
-        //         if ($v['city']) {
-        //             $address .= get_region_name($v['city']);
-        //         }
-        //         if ($v['district']) {
-        //             $address .= get_region_name($v['district']);
-        //         }
-        //         $v['address'] = $address . ' ' . $v['address'];
-        //         $v['url'] = RC_Uri::url('edit_address', array(
-        //             'id' => $v['address_id']
-        //         ));
-        //         $address_list[] = $v;
-        //     }
-        // }
-        // ecjia_front::$controller->assign('addres_list', $address_list);
-        // $sayList = ecjia_front::$controller->fetch('user_address_list.dwt');
-        // ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' , 'is_last' => $consignee_list['is_last']));
+        $user_id = $_SESSION['user_id'];
+        $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+        $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+        $consignee_list = get_consignee_list($user_id, 0, $size, $page);
+        $address_list = array();
+        if ($consignee_list['list']) {
+            foreach ($consignee_list['list'] as $k => $v) {
+                $address = '';
+                if ($v['province']) {
+                    $address .= get_region_name($v['province']);
+                }
+                if ($v['city']) {
+                    $address .= get_region_name($v['city']);
+                }
+                if ($v['district']) {
+                    $address .= get_region_name($v['district']);
+                }
+                $v['address'] = $address . ' ' . $v['address'];
+                $v['url'] = RC_Uri::url('edit_address', array(
+                    'id' => $v['address_id']
+                ));
+                $address_list[] = $v;
+            }
+        }
+        ecjia_front::$controller->assign('addres_list', $address_list);
+        $sayList = ecjia_front::$controller->fetch('user_address_list.dwt');
+        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' , 'is_last' => $consignee_list['is_last']));
     }
 
     /**
@@ -87,6 +88,7 @@ class user_address_controller {
         // ecjia_front::$controller->assign('city_list', $city_list);
         // ecjia_front::$controller->assign('district_list', $district_list);
         // ecjia_front::$controller->assign_title(RC_Lang::lang('add_address'));
+        ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_add_address.dwt');
     }
@@ -134,6 +136,7 @@ class user_address_controller {
         // ecjia_front::$controller->assign('city_list', $city_list);
         // ecjia_front::$controller->assign('district_list', $district_list);
         // ecjia_front::$controller->assign_title(RC_Lang::lang('edit_address'));
+        ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_edit_address.dwt');
     }
@@ -196,6 +199,7 @@ class user_address_controller {
      * 定位当前位置
      */
     public static function near_location() {
+    	ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign('title', '您当前地址列表');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign_title('当前位置');
@@ -206,6 +210,7 @@ class user_address_controller {
      * 定位列表
      */
     public static function location() {
+    	ecjia_front::$controller->assign('hideinfo', '1');
     	ecjia_front::$controller->assign('title', '上海');
         ecjia_front::$controller->assign_title('定位');
         ecjia_front::$controller->assign_lang();
@@ -249,6 +254,7 @@ class user_address_controller {
      * 我的位置
      */
     public static function my_location() {
+    	ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign('title', '您当前地址列表');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign_title('当前位置');

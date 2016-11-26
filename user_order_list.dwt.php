@@ -71,57 +71,72 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</li>
 	</ul>
 </div>
-<ul class="ecjia-list ecjia-list-four ecjia-nav">
-	<li{if $status eq 'unpayed'} class="active"{/if}><a data-rh="1" href="{url path='user_order/order_list' args='status=unpayed'}">{t}待付款{/t}</a></li>
-	<li{if $status eq 'unshipped'} class="active"{/if}><a data-rh="1" href="{url path='user/user_order/order_list' args='status=unshipped'}">{t}待发货{/t}</a></li>
-	<li{if $status eq 'confiroed'} class="active"{/if}><a data-rh="1" href="{url path='user/user_order/order_list' args='status=confiroed'}">{t}待确认{/t}</a></li>
-	<li{if $status eq 'success_order'} class="active"{/if}><a data-rh="1" href="{url path='user/user_order/order_list' args='status=success_order'}">{t}已完成{/t}</a></li>
-</ul>
-<div>
-	<ul class="ecjia-list user-order-list ecjia-margin-b" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user_order/async_order_list' args="status={$status}"}" data-size="10" data-pay="1">
-		<!-- 用户订单 start-->
-		<li class="ecjia-margin-t ecjia-order">
 
-		</li>
-		<!-- 用户订单end-->
-	</ul>
-	<!-- {$page} -->
+<div class="page-content">
+    <ul class="ecjia-list">
+      <li class="alert-text">Alert With Text</li>
+      <li class="alert-text-title">Alert With Text and Title</li>
+      <li class="alert-text-title-callback">Alert With Text and Title and Callback</li>
+      <li class="alert-text-callback">Alert With Text and Callback</li>
+      <li class="confirm-ok">Confirm with text and Ok callback</li>
+      <li class="confirm-ok-cancel">Confirm with text, Ok and Cancel callbacks</li>
+      <li class="confirm-title-ok">Confirm with text, title and Ok callback</li>
+      <li class="confirm-title-ok-cancel">Confirm with text, title, Ok</li>
+    </ul>
 </div>
-<!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
-<!-- {/block} -->
+<script type="text/javascript">
+        var myApp = new Framework7();
+        // var $ = Dom7;
+        $('.alert-text').on('click', function () {
+            myApp.alert('Here goes alert text');
+        });
 
-<!-- {block name="ajaxinfo"} -->
-<!-- {foreach from=$order item=orders} 循环订单列表 -->
-	<li class="ecjia-margin-t">
-		<div class="hd">
-			<p>{$orders.order_time}</p>
-			<p class="order-status">{$orders.order_status}</p>
-		</div>
-		<a href="{url path='user_order/order_detail' args="order_id={$orders.order_id}" }">
-			<div class="bd">
-				<div class="order-goods-img">
-					<img src="{$orders.img}">
-				</div>
-				<div  class="order-goods-sort">
-					<p>{$orders.goods_name}</p>
-					<p class="price-num">{t}价格{/t}：<span>{$orders.goods_price}</span></p>
-				</div>
-			</div>
-		</a>
-		<div class="order-list-foot">
-			<p>{t}共{/t}{$orders.goods_number}{t}件商品{/t}</p>
-			<p class="sum-goods-price">{t}合计{/t}：<span>{$orders.order_price.formated_total_fee}</span></p>
-			<div class="order-bottom-btn{if $orders.handler} two-btn{/if}">
-				{if $orders.handler}{$orders.handler}{/if}
-				<a class='btn nopjax' href="{url path='user_order/order_detail' args="order_id={$orders.order_id}" }">{t}查看详情{/t}</a>
-			</div>
+        $('.alert-text-title').on('click', function () {
+            myApp.alert('Here goes alert text', 'Custom Title!');
+        });
 
-		</div>
-	</li>
-<!-- {foreachelse} -->
-<div class="ecjia-nolist">
-	<i class="iconfont icon-icon04"></i>
-	<p>{t}您还没有订单~{/t}</p>
-</div>
-<!-- {/foreach} -->
+        $('.alert-text-title-callback').on('click', function () {
+            myApp.alert('Here goes alert text', 'Custom Title!', function () {
+                myApp.alert('Button clicked!')
+            });
+        });
+
+        $('.alert-text-callback').on('click', function () {
+            myApp.alert('Here goes alert text', function () {
+                myApp.alert('Button clicked!')
+            });
+        });
+
+        $('.confirm-ok').on('click', function () {
+            myApp.confirm('Are you sure?', function () {
+                myApp.alert('You clicked Ok button');
+            });
+        });
+
+        $('.confirm-ok-cancel').on('click', function () {
+            myApp.confirm('Are you sure?',
+              function () {
+                myApp.alert('You clicked Ok button');
+              },
+              function () {
+                myApp.alert('You clicked Cancel button');
+              }
+            );
+        });
+        $('.confirm-title-ok').on('click', function () {
+            myApp.confirm('Are you sure?', 'Custom Title', function () {
+                myApp.alert('You clicked Ok button');
+            });
+        });
+        $('.confirm-title-ok-cancel').on('click', function () {
+            myApp.confirm('Are you sure?', 'Custom Title',
+              function () {
+                myApp.alert('You clicked Ok button');
+              },
+              function () {
+                myApp.alert('You clicked Cancel button');
+              }
+            );
+        });
+</script>
 <!-- {/block} -->

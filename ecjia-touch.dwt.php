@@ -26,6 +26,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.b2b2c.css">
 	<link rel="stylesheet" href="{$theme_url}css/ecjia_city.css">
 	<link rel="stylesheet" href="{$theme_url}css/ecjia_help.css">
+    <!-- 弹窗 -->
+	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.models.css">
 	<link rel="stylesheet" href="{$theme_url}dist/other/swiper.min.css">
     <link rel="stylesheet" href="{$theme_url}lib/datePicker/css/datePicker.min.css">
     <link rel="stylesheet" href="{$theme_url}lib/winderCheck/css/winderCheck.min.css">
@@ -49,9 +51,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.flow.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.merchant.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.b2b2c.js" ></script>
+
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.goods_detail.js" ></script>
-
-
+    <script type="text/javascript" src="{$theme_url}js/ecjia.touch.fly.js" ></script>
+    <!-- 弹窗 -->
+    <script type="text/javascript" src="{$theme_url}js/ecjia.touch.intro.js" ></script>
 	<script type="text/javascript" src="{$theme_url}lib/Validform/Validform_v5.3.2_min.js"></script>
 
 	<script type="text/javascript" src="{$theme_url}lib/swiper/js/swiper.min.js"></script>

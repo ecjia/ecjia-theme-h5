@@ -234,6 +234,34 @@ class user_controller {
 // //             $errmsg = is_ecjia_error($result) ?  $result->get_error_message() : '';
 // //             ecjia_front::$controller->showmessage($errmsg, ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 //        }
+            
+        $mobile = is_mobile($_GET['mobile']) ? htmlspecialchars($_GET['mobile']) : '';
+        if (empty($mobile)){
+            ecjia_front::$controller->showmessage(__('请输入手机号码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+        $code = rand(100000, 999999);
+        $tpl_name = 'sms_get_validate';
+        $tpl = RC_Api::api('sms', 'sms_template', $tpl_name);
+        if (!empty($tpl)) {
+//             $this->assign('code', $code);
+//             $this->assign('service_phone', 	ecjia::config('service_phone'));
+            $content = $this->fetch_string($tpl['template_content']);
+            
+            $options = array(
+                'mobile' 		=> $mobile,
+                'msg'			=> $content,
+                'template_id' 	=> $tpl['template_id'],
+            );
+            $response = RC_Api::api('sms', 'sms_send', $options);
+            if ($response === true) {
+                $_SESSION['temp_mobile']	= $mobile;
+                $_SESSION['temp_code'] 		= $code;
+                $_SESSION['temp_code_time'] = RC_Time::gmtime();
+                ecjia_front::$controller->showmessage(__('请手机验证码发送成功，请注意查收'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+            } else {
+                ecjia_front::$controller->showmessage(__('手机验证码发送失败'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+        };
     }
 
     /**
@@ -286,6 +314,15 @@ class user_controller {
             ecjia_front::$controller->display('user_get_password.dwt');
         // }
     }
+    
+    /**
+     * 发送手机验证码找回密码
+     */
+    public static function send_pwd_mobile() {
+        $mobile = $_POST['mobile'];
+        _dump($_POST,1);
+    }
+    
 
     /**
      * 发送密码修改确认邮件
