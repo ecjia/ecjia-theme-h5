@@ -27,19 +27,21 @@
 .ecjia-address-list {
 	margin-top: 1em;
 }
- .ecjia-address-list li  a i {
+ .ecjia-address-list li  a i.icon-bianji1 {
 	position: absolute;
-	right: 8em;
-	top: 5em;
-	font-size: 1.2em;
+	right: 35%;
+	top: 72%;
+ 	color: #7B7B7B;
+}
+.ecjia-address-list li a i.icon-delete {
+	position: absolute;
+	right: 1em;
+	top: 72%;
+	color: #7B7B7B;
 }
 .ecjia-address-list li {
 	position: relative;
 	overflow: hidden;
-}
-.ecjia-address-list li a i.icon-delete {
-	position: absolute;
-	right: 1.5em;
 }
 .ecjia-address-list .form-group .input label {
 	position: absolute;
@@ -51,14 +53,14 @@
 	border-radius: 5px;
 	text-align: center;
 }
-.ecjia-address-list .user-address-list .form-group span {
+.ecjia-address-list .user-address-list .form-group-text span {
 	padding-left: 0.6em;
 	position: relative;
 	font-weight: 400;
 	font-size: 1em;
 	color: #b2b2b2;
 }
-.ecjia-address-list .user-address-list .form-group p {
+.ecjia-address-list .user-address-list .form-group-text p {
 	padding-left: 1.5em;
 	position: relative;
 	font-size: 1em;
@@ -70,16 +72,22 @@
 	line-height: 3em;
 	padding-left: 1em;
 }
+.ecjia-address-list .address-backgroundw span {
+	color: #000;	
+}
+.ecjia-address-list .list-one .address-backgroundw>span {
+	color: #C1C1C1;
+}
 .ecjia-address-list .address-background-mylocation {
 	background-color: #FFF;
 	border-bottom:  1px solid #ddd;
 	position: relative;
 	line-height: 3em;
-	padding-left: 1em;
+	text-align: center;
 }
 .ecjia-address-list .nav-header {
 	height: 3em;
-	top: -1em;
+	padding-top: 0.6em;
 }
 .ecjia-address-list .address-backgroundw i.icon-jiantou-bottom {
 	position: absolute;
@@ -95,7 +103,7 @@
 .ecjia-address-list .nav-header i.icon-search {
 	position: absolute;
 	left: 1em;
-	top: 0.7em;
+	top: 0.6em;
 	z-index: 6;
 }
 .ecjia-address-list .address-backgroundw input {
@@ -103,35 +111,36 @@
 	left: 5.5em;
 	top: 0.4em;
 	height: 2em;
-	width: 25em;
-	border-radius: 10px;
+	width: 60%;
+	border-radius: 5px;
 	z-index: 5;
 	padding-left: 1.6em;
 	border: 1px solid #F0F0F0;
 }
 .ecjia-address-list .address-background-mylocation input {
 	position: absolute;
-	left: 1.5em;
+	left: 2.5%;
 	top: 0.4em;
 	height: 2em;
-	width: 32em;
-	border-radius: 10px;
+	width: 95%;
+	border-radius: 5px;
 	z-index: 5;
 	border: 1px solid #F0F0F0;
 	text-align: center;
 	background-color: #F0F0F0;
 }
-.ecjia-address-list .address-background-mylocation i {
+.ecjia-address-list .address-background-mylocation .icon-search {
+	position: relative;
 	z-index: 8;
-	left: 13.2em;
 	top: -0.1em;
+	padding-right: 5.5em;
 }
 .ecjia-address-list .nav-header input {
 	position: absolute;
 	top: 0.4em;
 	height: 2em;
-	width: 34em;
-	border-radius: 10px;
+	width: 95%;
+	border-radius: 5px;
 	z-index: 5;
 	padding-left: 1.6em;
 	margin-left: 0.3em;
@@ -142,22 +151,25 @@
     left: 1em;
 }
 .ecjia-address-list .nav-header a>i {
-	position: absolute;
+	position: relative;
+	left: 0.6em;
+	top: 1px;
+}
+.ecjia-address-list a>i {
 	color: green;
-	left: 0.5em;
-	top: 0.9em;
+	font-size: 20px;
 }
 .ecjia-address-list li>i {
 	position: absolute;
-	top: 1.8em;
-	color: green;
-	font-size: 400;
+	top: 1.4em;
+    font-size: 20px;
+    color: #C1C1C1;
 }
-.ecjia-address-list .ecjia-margin-b .list {
+.ecjia-address-list .list {
 	padding-left: 2em;
 	margin-top: 0em;
 }
-.ecjia-address-list .ecjia-margin-b .list .ecjia-margin-top {
+.ecjia-address-list .list .ecjia-margin-top {
 	margin-top: 0.2em;
 }
 .ecjia-address-list .address-list-center {
@@ -169,11 +181,24 @@
 	position: relative;
 	border-bottom:1px solid #ddd;	
 }
-.ecjia-address-list .address-list-center a>i {
-	color: green;
+.ecjia-address-list .ecjia-margin-l {
+	margin-left: 7em;
 }
 
-
-
-
-
+.ecjia-address-list .list-one li .is-default>.icon-roundcheckfill {
+	position: relative;
+    margin-left: 0.2em;
+    top: -1px;
+	color: green;
+    font-size: 18px;
+}
+.ecjia-address-list .list-one li .not-default>.icon-round {
+	position: relative;
+    margin-left: 0.2em;
+    top: -1px;
+	color: green;
+    font-size: 18px;
+}
+.ecjia-address-list .list-one li .icon-location {
+	color: #b2b2b2;
+}

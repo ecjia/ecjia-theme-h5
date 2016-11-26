@@ -13,27 +13,25 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
 
 <form class="ecjia-list ecjia-address-list" action="" method="post" id="searchForm" name="searchForm">
-	<div class="nav-header ecjia-margin-t">
+	<div class="nav-header">
 		<i class="iconfont icon-search"></i>
 		<input id="keywordBox" name="keywords" type="search" placeholder="小区，写字楼，学校">
 	</div>
-	<div class="nav-header ecjia-margin-t">
-		<a href="{url path='user/user_address/near_location'}" type="botton">
-			<i class="iconfont icon-focus"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t}定位到当前位置{/t}
+	<div class="nav-header ecjia-margin-t ecjia-margin-b">
+		<a href="{url path='user/user_address/near_location'}" type="bottom">
+			<i class="iconfont icon-focus"></i>&nbsp;&nbsp;&nbsp;&nbsp;{t}定位到当前位置{/t}
 			<span class="ecjiaf-fr"><i class="iconfont icon-jiantou-right"></i></span>
 		</a>
 	</div>
 	<ul class="list-one" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_location'}" data-size="10">
-		<div class="form-group address-backgroundw"><span>我的收货地址</span></div>			
+		<div class="address-backgroundw"><span>我的收货地址</span></div>			
 		<!-- 配送地址 start--> 
 		
 		<!-- 配送地址end--> 
 	</ul>
-	<div class="ecjia-margin-t address-list-center">
+	<div class="address-list-center">
 		<a type="botton" href="{url path='user/user_address/address_list'}">
 			<i class="iconfont icon-roundadd"></i> {t}管理收货地址{/t}
 		</a>
@@ -43,7 +41,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="ajaxinfo"} -->
 	<!-- 配送地址 start--> 
 	<!-- {foreach from=$addres_list item=value} 循环地址列表 -->
-		<li class="ecjia-margin-b">
+		<li>
 			<i class="iconfont icon-round"></i>
 			<div class="list">
 				<div>

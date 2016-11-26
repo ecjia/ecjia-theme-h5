@@ -13,8 +13,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
 
 <form class="ecjia-form ecjia-margin-t" name="theForm" action="{url path='user/user_address/inster_addres'}" method="post">
 	<div class="ecjia-address-list">
@@ -29,7 +27,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<label class="input">
 				<span class="ecjiaf-fl">收货地址： </span>
 				<input name="location" placeholder="{t}写字楼，小区，学校，街道{/t}" type="text" datatype="*" value="" />
-				<label class="iconfont icon-focus"></label>
+				<a href={url path='user/user_address/near_location'}>
+					<label class="iconfont icon-focus"></label>
+				</a>
 			</label>
 		</div>
 		<div class="form-group form-group-text">

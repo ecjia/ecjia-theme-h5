@@ -19,7 +19,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<ul class="list-one user-address-list">
 		<!-- {foreach from=$data item=value} 帮助中心 -->
 			<span>{$value.name}</span>
-			<!-- {foreach from=$value.article item=val} 帮助中心 -->
+			<!-- {foreach from=$value.article item=val} -->
 				<li>
 					<div class="form-group form-group-text">
 						<a href="{RC_uri::url('article/index/info')}&title={$val.title}&aid={$val.id}">

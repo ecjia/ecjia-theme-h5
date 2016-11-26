@@ -9,13 +9,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
 
 <form class=" ecjia-form ecjia-margin-t address-add-form" action="{url path='user_address/update_address'}" method="post" name="theForm">
 	<div class="ecjia-address-list">
 		<div class="form-group form-group-text">
-			<label class="input">
+			<label class="ecjia-margin-b input">
 				<span>所在地区： </span>
 				<input name="district" placeholder="{t}请选择城市{/t}" type="text" datatype="*" value=""/>
 				<label class="iconfont icon-jiantou-right"></label>
