@@ -13,8 +13,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
 
 <form class="ecjia-list ecjia-address-list" action="" method="post" id="searchForm" name="searchForm">
 	<div class="address-backgroundw">
@@ -25,19 +23,19 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<ul class="list-one user-address-list">
 		<li>
-			<div class="form-group form-group-text">
+			<div class="form-group-text">
 				<i class="iconfont icon-location"></i><span>华东师范大学（中北校区）</span>
 				<p>普陀区中山北路3556号</p>
 			</div>
 		</li>
 		<li>
-			<div class="form-group form-group-text">
+			<div class="form-group-text">
 				<i class="iconfont icon-location"></i><span>伸大厦-东门</span>
 				<p>普陀区中山北路3553号</p>
 			</div>
 		</li>
 		<li>
-			<div class="form-group form-group-text">
+			<div class="form-group-text">
 				<i class="iconfont icon-location"></i><span>智学教育</span>
 				<p>普陀区中山北路3556号</p>
 			</div>

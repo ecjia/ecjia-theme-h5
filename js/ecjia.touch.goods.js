@@ -16,15 +16,16 @@
         add_tocart:function(){
             $("[data-toggle='add-to-cart']").on('click',function(ev){
                 var offset = $('.icon-gouwuche').offset(),
-                    flyer = $('<img class="u-flyer" src="http://cityo2o.ecjia.com/content/uploads/images/201603/goods_img/350_G_1459301046358.jpg" alt="">');
+                    flyer = $('<img class="u-flyer" src="http://cityo2o.ecjia.com/content/uploads/images/201603/goods_img/350_G_1459301046358.jpg" alt="" style="width:50px;height:50px;">');
+                console.log(flyer);
                 flyer.fly({
                     start: { // 开始时位置
-                        left: ev.pageX,
-                        top:  ev.pageY - $('body').scrollTop()
+                        left: ev.pageX - 40,
+                        top:  ev.pageY - $('body').scrollTop() - 40
                     },
                     end: { // 结束时位置
-                        left: offset.left,
-                        top: offset.top - $('body').scrollTop(),
+                        left: offset.left - 30,
+                        top: offset.top - $('body').scrollTop() + 100,
                         width : 0,
                         height : 0,
                     },

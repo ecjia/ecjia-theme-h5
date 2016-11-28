@@ -337,7 +337,7 @@
 				}
 			});
 			
-			$('.ecjia-search-header .bg').on('click', function(){
+			$('.search-goods').on('click', function(){
 				var $this = $(this),
 					url = $this.attr('data-url'),
 					keywords = $this.attr('data-val');
