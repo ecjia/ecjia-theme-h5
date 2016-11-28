@@ -2230,10 +2230,16 @@
 	color: #333;
 	font-weight: 500;
 }
-.ecjia-store-detail .store-tel .tel-result {
-	padding-left: 4em;
-	color: #333;
-	font-weight: 600;
+.ecjia-store-detail .tel-name{
+	float:left;
+}
+.ecjia-store-detail .store-tel p.tel-result {
+	position: relative;
+    margin-left: 8em;
+    font-size: 1em;
+   	color: #333;
+	font-weight: 500;
+    overflow: hidden;
 }
 .ecjia-store-detail .store-other-info{
 	height: 30%;
