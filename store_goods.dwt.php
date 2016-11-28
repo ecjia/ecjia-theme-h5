@@ -55,7 +55,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</li>
 	<div class="a1n">
 		<div class="wg">
-			<div class="wh"><span class="wp"><i class="iconfont icon-search"></i>搜索店内商品</span></div>
+			<div class="wh search-goods" data-url="{RC_Uri::url('touch/index/search')}&store_id={$store_id}" {if $keywords}style="text-align: left;" data-val="{$keywords}"{/if}>
+				<span class="wp"><i class="iconfont icon-search"></i>搜索店内商品</span>
+			</div>
 		</div>
 		<div class="a21">
 			<ul class="a1o">
@@ -118,6 +120,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 										<dd><label>{$goods.shop_price}</label></dd>
 									</dl>
 								</a>
+								<div class="input-number">
+                                    <i class="iconfont icon-roundadd" data-toggle="add-to-cart"></i>
+                                    <span></span>
+                                    <i></i>
+                                </div>
 							</li>
 							<!-- {/foreach} -->
 						<!-- {/if} -->

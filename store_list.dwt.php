@@ -19,6 +19,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {if $data} -->
 <ul class="ecjia-store-list">
 	<!-- {foreach from=$data item=val} -->
+	<!-- {if !$store_id} -->
 	<li class="single_item">
 		<ul class="single_store">
 			<li class="store-info">
@@ -69,14 +70,38 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<li class="goods-info view-more">
 				查看更多（{$val.goods_count-3}）<i class="iconfont icon-jiantou-bottom"></i>
 			</li>
-			
 			<li class="goods-info view-more retract hide">
 				收起<i class="iconfont icon-jiantou-top"></i>
 			</li>
 		</ul>
 		{/if}
 	</li>
+	<!-- {else} -->
+	<li class="search-goods-list">
+		<a class="linksGoods w">
+			<img class="pic" src="{$val.img.small}">
+			<dl>
+				<dt>{$val.name}</dt>
+				<dd><label>{$val.shop_price}</label></dd>
+			</dl>
+		</a>
+		<div class="input-number">
+			<i class="iconfont icon-roundadd" data-toggle="add-to-cart"></i>
+			<span></span>
+			<i></i>
+		</div>
+	</li>
+	<!-- {/if} -->
 	<!-- {/foreach} -->
+	<div class="store-add-cart">
+        <div class="ecjia-icon">
+            <i class="iconfont icon-gouwuche"></i>
+            <span class="ecjia-icon-num">0</span>
+        </div>
+
+        <span class="font-price">购物车是空的</span>
+        <span class="ecjiaf-fr checkout">去结算</span>
+    </div>
 </ul>
 <!-- {else} -->
 <div class="search-no-pro ecjia-margin-t ecjia-margin-b">

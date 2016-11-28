@@ -433,6 +433,8 @@ class goods_controller {
      */
     public static function store_list() {
     	$cid = intval($_GET['cid']);
+    	$store_id = intval($_GET['store_id']);
+    	
     	$keywords = !empty($_POST['keywords']) ? trim($_POST['keywords']) : (!empty($_GET['keywords']) ? trim($_GET['keywords']) : '');
     	
     	$arr = array(
@@ -442,8 +444,23 @@ class goods_controller {
     	
     	if (!empty($keywords)) {
     		insert_search($keywords);//记录搜索
-    		$arr['keywords'] = $keywords;
-    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($arr)->run();
+    		if (!empty($store_id)) {
+    			$arr['filter']['keywords'] = $keywords;
+    			$arr['seller_id'] = $store_id;
+    			
+    			$cache_key = 'merchant_goods_list'.$store_id.$keywords;
+    			$data = RC_Cache::app_cache_get($cache_key, 'goods');
+    			if (!$data) {
+    				$data = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_LIST)->data($arr)->run();
+    			}
+    			if (array_key_exists('data', $data)) {
+    				$data = array();
+    			}
+    			ecjia_front::$controller->assign('store_id', $store_id);
+    		} else {
+    			$arr['keywords'] = $keywords;
+    			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($arr)->run();
+    		}
     		ecjia_front::$controller->assign('keywords', $keywords);
     	} else {
     		$arr['category_id'] = $cid;
@@ -466,7 +483,6 @@ class goods_controller {
      */
     public static function store_detail() {
     	$store_id = intval($_GET['store_id']);
-    	$store_id = 63;
     	$arr = array(
     		'seller_id' => $store_id,
     	);
@@ -482,7 +498,6 @@ class goods_controller {
     public static function store_goods() {
     	$store_id 		= intval($_GET['store_id']);
     	$category_id 	= intval($_GET['category_id']);
-    	$store_id = 63;
     	//店铺信息
     	$cache_key = 'store_info_'.$store_id;
     	$store_info = RC_Cache::app_cache_get($cache_key, 'goods');

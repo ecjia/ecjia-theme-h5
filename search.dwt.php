@@ -14,7 +14,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<a class="ecjia-header-icon" href="javascript:history.go(-1)"><i class="iconfont icon-jiantou-left"></i></a>
 	</div>
 	<div class="ecjia-search-header">
-		<div class="ecjia-form" data-url="{url path='goods/category/store_list'}">
+		<div class="ecjia-form" data-url="{url path='goods/category/store_list'}{if $store_id neq 0}&store_id={$store_id}{/if}">
 			<input id="keywordBox" name="keywords" type="search" placeholder="搜索附近商品和门店" {if $keywords}value={$keywords}{/if}>
 			<button type="button" class="btn-search"><i class="iconfont icon-search"></i></button>
 		</div>
@@ -29,7 +29,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="ecjia-list">
 		<ul>
 			<!-- {foreach from=$searchs item=search} -->
-			<li><a href='{url path="goods/category/store_list" args="keywords={$search}"}'>{$search}</a></li>
+			<li><a href='{url path="goods/category/store_list" args="{if $store_id neq 0}store_id={$store_id}&{/if}keywords={$search}"}'>{$search}</a></li>
 			<!-- {/foreach} -->
 		</ul>
 	</div>

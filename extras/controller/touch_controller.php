@@ -106,6 +106,9 @@ class touch_controller {
         $keywords = !empty($_GET['keywords']) ? trim($_GET['keywords']) : '';
         ecjia_front::$controller->assign('keywords', $keywords);
         
+        $store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
+        ecjia_front::$controller->assign('store_id', $store_id);
+        
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('search.dwt');
     }

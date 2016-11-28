@@ -656,8 +656,8 @@
 }
 .u-flyer{
     display: block;
-    width: 50px;
-    height: 50px;
+    width: 5px;
+    height: 5px;
     border-radius: 50px;
     position: fixed;
     z-index: 9999;
@@ -673,11 +673,11 @@
     float: left;
 	border: 1px solid #eee;
 }
-.r2 dl {
+.ecjia-store-brief .r2 dl {
     margin-left: 5em;
 	border-bottom: 1px solid #eee;
 }
-.r2 dl dt {
+.ecjia-store-brief .r2 dl dt {
     font-size: 1em;
     color: #333;
     text-overflow: ellipsis;
@@ -692,7 +692,7 @@
     display: -ms-box;
     display: -moz-box;
 }
-.r2 li label {
+.ecjia-store-brief .r2 li label {
     font-size: 1em;
     color: #ff3434;
 	padding-top: 2.5em;
@@ -2061,6 +2061,62 @@
 }
 .ecjia-store-list .store-goods .goods-hide-list{
 	display:none;
+}
+
+.ecjia-store-list li.search-goods-list {
+    position: relative;
+    padding-left: .5em;
+	background: #FFFFFF;
+}
+.ecjia-store-list li a.linksGoods {
+    display: block;
+    overflow: hidden;
+    padding: 1em .5em .5em 0;
+}
+.ecjia-store-list li .input-number{
+    position: absolute;
+    right: 1em;
+    top: 2.5em;
+    color: #47aa4d;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+.ecjia-store-list .pic {
+    width: 5em;
+    height: 5em;
+    display: inline-block;
+    -webkit-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    float: left;
+	border: 1px solid #eee;
+}
+.ecjia-store-list dl {
+    margin-left: 5em;
+	border-bottom: 1px solid #eee;
+}
+.ecjia-store-list dl dt {
+    font-size: 1em;
+    color: #333;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-left: .5em;
+    max-height: 4em;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -ms-box-orient: vertical;
+    -moz-box-orient: vertical;
+    display: -webkit-box;
+    display: -ms-box;
+    display: -moz-box;
+}
+.ecjia-store-list li.search-goods-list label {
+    font-size: 1em;
+    color: #ff3434;
+	padding-top: 2.5em;
+    padding-left: .5em;
+    white-space: nowrap;
 }
 
 /*========================  所有分类 ===========================*/
