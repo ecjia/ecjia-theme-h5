@@ -706,10 +706,10 @@ window.Framework7 = function (params) {
             return;
         }
         modal.data('f7-modal-shown', true);
-        modal.removeData('f7-modal-shown');
-        // app.once('close', function() {
-        //
-        // });
+
+        modal.once('close', function() {
+            modal.removeData('f7-modal-shown');
+        });
         var isPopover = modal.hasClass('popover');
         var isPopup = modal.hasClass('popup');
         var isLoginScreen = modal.hasClass('login-screen');
@@ -769,38 +769,6 @@ window.Framework7 = function (params) {
             else modal.trigger('opened');
         });
         return true;
-    };
-    // app.once = function (eventName, targetSelector, listener, capture) {
-    //     var dom = this;
-    //     if (typeof targetSelector === 'function') {
-    //         targetSelector = false;
-    //         listener = arguments[1];
-    //         capture = arguments[2];
-    //     }
-    //     function proxy(e) {
-    //         listener(e);
-    //         dom.off(eventName, targetSelector, proxy, capture);
-    //     }
-    //     dom.on(eventName, targetSelector, proxy, capture);
-    // };
-
-    app.transitionEnd = function (callback) {
-        var events = ['webkitTransitionEnd', 'transitionend', 'oTransitionEnd', 'MSTransitionEnd', 'msTransitionEnd'],
-            i, j, dom = this;
-        function fireCallBack(e) {
-            /*jshint validthis:true */
-            if (e.target !== this) return;
-            callback.call(this, e);
-            for (i = 0; i < events.length; i++) {
-                dom.off(events[i], fireCallBack);
-            }
-        }
-        if (callback) {
-            for (i = 0; i < events.length; i++) {
-                dom.on(events[i], fireCallBack);
-            }
-        }
-        return this;
     };
 
     app.closeModal = function (modal) {
