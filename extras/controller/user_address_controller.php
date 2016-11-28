@@ -8,35 +8,38 @@ class user_address_controller {
      * 收货地址列表界面
      */
     public static function address_list() {
-        // /*赋值于模板*/
-        $user_id = $_SESSION['user_id'];
-        $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
-        $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-        $consignee_list = get_consignee_list($user_id, 0, $size, $page);
-        if (!empty($consignee_list['list'])) {
-            foreach ($consignee_list['list'] as $k => $v) {
-                $address = '';
-                if ($v['province']) {
-                    $address .= get_region_name($v['province']);
-                }
-                if ($v['city']) {
-                    $address .= get_region_name($v['city']);
-                }
-                if ($v['district']) {
-                    $address .= get_region_name($v['district']);
-                }
-                $v['address'] = $address . ' ' . $v['address'];
-                $v['url'] = RC_Uri::url('edit_address', array(
-                    'id' => $v['address_id']
-                ));
-                $address_list[] = $v;
-            }
-        }
-        ecjia_front::$controller->assign('addres_list', $address_list);
-        ecjia_front::$controller->assign('page', $consignee_list['page']);
-        ecjia_front::$controller->assign('title', RC_Lang::lang('consignee_info'));
-        ecjia_front::$controller->assign_title(RC_Lang::lang('consignee_info'));
-		ecjia_front::$controller->assign('hideinfo', '1');
+        /*赋值于模板*/
+//         $user_id = $_SESSION['user_id'];
+//         $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+//         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+//         $consignee_list = get_consignee_list($user_id, 0, $size, $page);
+//         if (!empty($consignee_list['list'])) {
+//             foreach ($consignee_list['list'] as $k => $v) {
+//                 $address = '';
+//                 if ($v['province']) {
+//                     $address .= get_region_name($v['province']);
+//                 }
+//                 if ($v['city']) {
+//                     $address .= get_region_name($v['city']);
+//                 }
+//                 if ($v['district']) {
+//                     $address .= get_region_name($v['district']);
+//                 }
+//                 $v['address'] = $address . ' ' . $v['address'];
+//                 $v['url'] = RC_Uri::url('edit_address', array(
+//                     'id' => $v['address_id']
+//                 ));
+//                 $address_list[] = $v;
+//             }
+//         }
+//         ecjia_front::$controller->assign('addres_list', $address_list);
+//         ecjia_front::$controller->assign('page', $consignee_list['page']);
+//         ecjia_front::$controller->assign('title', RC_Lang::lang('consignee_info'));
+//         ecjia_front::$controller->assign_title(RC_Lang::lang('consignee_info'));
+    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => 'cac36e13e26a1084b4d9731d7b653b8b64a2c17d'))->run();
+//     	_dump($address_list, 1);
+		ecjia_front::$controller->assign('address_list', $address_list);
+        ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_address_list.dwt');
     }
@@ -44,32 +47,35 @@ class user_address_controller {
     /**
      * 异步地址列表
      */
-    public static function async_addres_list() {
+    public static function async_address_list() {
+    	_dump(1,1);
         $user_id = $_SESSION['user_id'];
         $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-        $consignee_list = get_consignee_list($user_id, 0, $size, $page);
-        $address_list = array();
-        if ($consignee_list['list']) {
-            foreach ($consignee_list['list'] as $k => $v) {
-                $address = '';
-                if ($v['province']) {
-                    $address .= get_region_name($v['province']);
-                }
-                if ($v['city']) {
-                    $address .= get_region_name($v['city']);
-                }
-                if ($v['district']) {
-                    $address .= get_region_name($v['district']);
-                }
-                $v['address'] = $address . ' ' . $v['address'];
-                $v['url'] = RC_Uri::url('edit_address', array(
-                    'id' => $v['address_id']
-                ));
-                $address_list[] = $v;
-            }
-        }
-        ecjia_front::$controller->assign('addres_list', $address_list);
+//         $consignee_list = get_consignee_list($user_id, 0, $size, $page);
+//         $address_list = array();
+//         if ($consignee_list['list']) {
+//             foreach ($consignee_list['list'] as $k => $v) {
+//                 $address = '';
+//                 if ($v['province']) {
+//                     $address .= get_region_name($v['province']);
+//                 }
+//                 if ($v['city']) {
+//                     $address .= get_region_name($v['city']);
+//                 }
+//                 if ($v['district']) {
+//                     $address .= get_region_name($v['district']);
+//                 }
+//                 $v['address'] = $address . ' ' . $v['address'];
+//                 $v['url'] = RC_Uri::url('edit_address', array(
+//                     'id' => $v['address_id']
+//                 ));
+//                 $address_list[] = $v;
+//             }
+//         }
+//     	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => 'cac36e13e26a1084b4d9731d7b653b8b64a2c17d'))->run();
+    	_dump($address_list, 1);
+		ecjia_front::$controller->assign('address_list', $address_list);
         $sayList = ecjia_front::$controller->fetch('user_address_list.dwt');
         ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' , 'is_last' => $consignee_list['is_last']));
     }
