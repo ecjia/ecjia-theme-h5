@@ -9,6 +9,9 @@
 			ecjia.touch.user.show_share_click();
 			ecjia.touch.user.loginout_click();
 			ecjia.touch.user.clear_history();
+			ecjia.touch.user.get_code();
+			ecjia.touch.user.fast_reset_pwd();
+			ecjia.touch.user.register_password();
 			$(function(){
 				$(".del").click(function(){
 					if(!confirm('您确定要删除吗？')){
@@ -60,7 +63,76 @@
 				}
 			});
 		},
-
+		/* 注册验证码 */
+		get_code : function (){
+			var InterValObj; 	//timer变量，控制时间
+    		var count = 120; 	//间隔函数，1秒执行
+    		var curCount;		//当前剩余秒数
+    		
+			$('#get_code').on('click', function(e){
+				e.preventDefault();
+				var url = $(this).attr('data-url')+'&mobile=' + $("input[name='mobile']").val();
+				$.get(url, function (data) {
+				    	if (data.state == 'success') {
+					  　    	 curCount = count;
+					     $("#mobile").attr("readonly", "true");
+					     $("#get_code").attr("disabled", "true");
+					     $("#get_code").val("重新发送" + curCount + "(s)");
+					     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+					}
+				    ecjia.touch.showmessage(data);
+			    }, 'json');
+			});
+			
+		    //timer处理函数
+		    function SetRemainTime() {
+		        if (curCount == 0) {     
+		            window.clearInterval(InterValObj);		//停止计时器
+		            $("#mobile").removeAttr("readonly");	//启用按钮
+		            $("#get_code").removeAttr("disabled");	//启用按钮
+		            $("#get_code").val("重新发送验证码");
+		        } else {
+		            curCount--;
+		            $("#get_code").attr("disabled", "true");
+		            $("#get_code").val("重新发送" + curCount + "(s)");
+		        }
+		    };
+		},
+		/* 注册提交表单 */
+		fast_reset_pwd : function (){
+			$(".next-btn").on('click', function(e){
+				e.preventDefault();
+				var url = $(this).attr('data-url'),
+					mobile = $("input[name='mobile']").val().trim(),
+					code = $("input[name='code']").val().trim();
+				if (code == '') {
+					return false;
+				}
+				var info = {
+					'mobile': mobile,
+					'code': code
+				};
+				$.post(url, info, function(data){
+					ecjia.touch.showmessage(data);
+				});
+			});
+		},
+		/* 处理注册  */
+		register_password : function (){
+			$("#signin").on('click', function(e){
+				e.preventDefault();
+				var url = $(this).attr('data-url'),
+				    username = $("input[name='username']").val().trim(),
+				    password = $("input[name='password']").val().trim();
+				var info = {
+					'username': username,
+					'password': password
+				};
+				$.post(url, info, function(data){
+					ecjia.touch.showmessage(data);
+				});
+			});
+		},
 		// add_attention_click : function(){
 		// 	$('[data-toggle="add_to_attention"]').on('click', function(){
 		// 			var $this 		= $(this),
@@ -116,6 +188,7 @@
 			})
 		},
 	};
+
 
 	// ecjia.touch.getpwd = {
 	// 	init : function () {
