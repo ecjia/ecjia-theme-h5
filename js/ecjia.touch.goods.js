@@ -11,21 +11,32 @@
 			ecjia.touch.category.clear_filter();
 			ecjia.touch.category.goods_show();
 			ecjia.touch.category.add_tocart();
+			ecjia.touch.category.remove_tocart();
+			ecjia.touch.category.toggle_cart();
+			ecjia.touch.category.toggle_category();
 		},
 
         add_tocart:function(){
             $("[data-toggle='add-to-cart']").on('click',function(ev){
-                var offset = $('.icon-gouwuche').offset(),
-                    flyer = $('<img class="u-flyer" src="http://cityo2o.ecjia.com/content/uploads/images/201603/goods_img/350_G_1459301046358.jpg" alt="" style="width:50px;height:50px;">');
-                console.log(flyer);
+            	var $this = $(this);
+            	var show = $this.parent('.box').children('label');
+            	var val =  parseInt(show.html()) + 1;
+            	if (val > 0) {
+            		show.html(val).addClass('show').removeClass('hide');
+            		$this.parent('.box').children('.reduce').addClass('show').removeClass('hide');
+            	}
+            	
+            	var img = $this.parent().parent().children('img').attr('src');
+                var offset = $('.store-add-cart .a4x').offset(),
+                    flyer = $('<img class="u-flyer" src="'+ img  +'" alt="" style="width:50px;height:50px;">');
                 flyer.fly({
                     start: { // 开始时位置
                         left: ev.pageX - 40,
                         top:  ev.pageY - $('body').scrollTop() - 40
                     },
                     end: { // 结束时位置
-                        left: offset.left - 30,
-                        top: offset.top - $('body').scrollTop() + 100,
+                        left: offset.left + 15,
+                        top: offset.top - $('body').scrollTop() + 30,
                         width : 0,
                         height : 0,
                     },
@@ -33,7 +44,109 @@
                         !$('.store-add-cart').hasClass('active') && $('.store-add-cart').addClass('active');
                     }
                 });
-            })
+            });
+        },
+        
+        remove_tocart : function() {
+            $("[data-toggle='remove-to-cart']").on('click', function(ev){
+            	var $this = $(this);
+            	var show = $this.parent('.box').children('label');
+            	var val =  parseInt(show.html()) - 1;
+            	if (val == 0) {
+            		show.html(val).removeClass('show').addClass('hide');
+            		$this.parent('.box').children('.reduce').removeClass('show').addClass('hide');
+            	} else {
+            		show.html(val);
+            	}
+            });
+        },
+        
+        toggle_cart : function() {
+        	$('.show_cart').on('click', function(e){
+        		e.preventDefault();
+        		var bool = $('.store-add-cart').find('.a4x').attr('show');
+        		if (bool) {
+        			ecjia.touch.category.show_cart();
+        		} else {
+        			ecjia.touch.category.hide_cart();
+        		}
+        	});
+        	
+        	$('.a53').on('click', function(e){
+        		e.preventDefault();
+        		ecjia.touch.category.hide_cart();
+        	});
+        },
+        
+        show_cart : function() {
+        	var height = -($('.store-add-cart').find('.minicart-content').height()) + 'px';
+			$('.show_cart').css('transform', 'translateY('+ height +')');
+			$('.store-add-cart').find('.a4x').removeAttr('show');
+			$('.store-add-cart').find('.a4z').css('transform', 'translateX(-60px)');
+    		$('.store-add-cart').find('.a53').css('display', 'block');
+    		$('.store-add-cart').find('.minicart-content').css('transform', 'translateY(-100%)');	
+        },
+        
+        hide_cart : function() {
+        	$('.show_cart').css('transform', 'translateY(0px)');
+			$('.store-add-cart').find('.a4x').attr('show', true);
+			$('.store-add-cart').find('.a4z').css('transform', 'translateX(0px)');
+    		$('.store-add-cart').find('.a53').css('display', 'none');
+    		$('.store-add-cart').find('.minicart-content').css('transform', 'translateY(0px)');	
+        },
+        
+        toggle_category: function() {
+        	$('[data-toggle="toggle-category"]').on('click', function(e){
+        		var $this = $(this),
+        			url = $this.attr('data-href');
+        			name = $this.html().trim(),
+        			li = $this.parent('li');
+        		
+        		//同一父类下子类切换点击
+        		if ($this.hasClass('a1u')) {
+        			$this.addClass('active').siblings('span').removeClass('active');	
+        		//父类单击切换显示
+        		} else if (li.hasClass('a1t')) {
+        			li.removeClass('a1t').addClass('a1r');
+        		} else {
+        			//为父类增加选中效果，移除其他父类的选中效果
+            		li.addClass('a1r').removeClass('a1t').siblings('li').removeClass('a1t').removeClass('a1r');
+            		//点击父类有子类
+            		if (li.children('strong').hasClass('a1v')) {
+            			//移除父类的选中效果
+            			if (li.hasClass('a1t')) {
+            				li.removeClass('a1t').addClass('a1r');	
+            			} else {
+            				li.removeClass('a1r').addClass('a1t');	
+            			}
+            			//默认给父类的第一个子类选中
+            			if (!$this.siblings('strong').children('span').hasClass('active')) {
+            				$this.siblings('strong').children('span').eq(0).addClass('active');
+            			}
+            		} else {
+            			//点击无子类的分类，去除其他有子类分类的子类选中效果
+            			li.siblings('li').children('strong.a1v').children('span').removeClass('active');
+            		}
+        		}
+        		
+        		$.get(url, function(data){
+        			var ul = $('.a1z.r2.a0h').children('ul');
+        			ul.html('');
+        			if (data.num > 0) {
+        				var html = '';
+        				for (i = 0; i < data.list.length; i++) {
+        					html += '<li><a class="linksGoods w"><img class="pic" src='+ data.list[i].img.small +'>' +
+        						'<dl><dt>'+ data.list[i].name +'</dt><dd><label>'+ data.list[i].shop_price +'</label></dd></dl>' + 
+        						'<div class="box">' + 
+        						'<span class="reduce show" data-toggle="remove-to-cart">减</span>' + 
+        						'<label class="show">1</label>' + 
+        						'<span class="add storeSearchCart" data-toggle="add-to-cart">加</span>' + 
+        						'</div></a></li>';
+        				};
+        				ul.html(html);
+        			}
+        		});
+        	});
         },
 
 		openSelection : function() {

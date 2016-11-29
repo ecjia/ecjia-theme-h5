@@ -13,153 +13,226 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<div class="ecjia-header ecjia-store-banner">
-	<div class="ecjia-header-left">
-		<a href="javascript:ecjia.touch.history.back();">
-			<i class="iconfont icon-jiantou-left"></i>
-			<img src="{$store_info.seller_banner}">
-		</a>
-	</div>
-</div>
-<div class="ecjia-store-brief">
-	<li class="store-info">
-		<a href="{RC_Uri::url('goods/category/store_detail')}&store_id={$store_info.id}">
-			<div class="basic-info">
-				<div class="store-left">
-					<img src="{$store_info.seller_logo}">
-				</div>
-				<div class="store-right">
-					<div class="store-name">
-						{$store_info.seller_name}
-						{if $store_info.distance}&nbsp;{$store_info.distance}m{/if}
-						{if $store_info.manage_mode eq 'self'}<span>自营</span>{/if}
-						<label class="store-distance"><i class="iconfont icon-jiantou-right"></i></label>
-					</div>
-					<div class="store-range">
-						<i class="iconfont icon-remind"></i>{$store_info.label_trade_time}
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-		</a>
-		{if $store_info.favourable_list}
-		<ul class="store-promotion">
-			<!-- {foreach from=$store_info.favourable_list item=list} -->
-			<li class="promotion">
-				<span class="promotion-label">{$list.type_label}</span>
-				<span class="promotion-name">{$list.name}</span>
-			</li>
-			<!-- {/foreach} -->
-		</ul>
-		{/if}
-	</li>
-	<div class="a1n">
-		<div class="wg">
-			<div class="wh search-goods" data-url="{RC_Uri::url('touch/index/search')}&store_id={$store_id}" {if $keywords}style="text-align: left;" data-val="{$keywords}"{/if}>
-				<span class="wp"><i class="iconfont icon-search"></i>搜索店内商品</span>
-			</div>
+	<div class="ecjia-header ecjia-store-banner">
+		<div class="ecjia-header-left">
+			<a href="javascript:ecjia.touch.history.back();">
+				<i class="iconfont icon-jiantou-left"></i>
+				<img src="{$store_info.seller_banner}">
+			</a>
 		</div>
-		<div class="a21">
-			<ul class="a1o">
-				<!-- {if $store_info.goods_count.best_goods gt 0} -->
-				<li class="a1p a1t">
-					<a class="data-pjax" href="{RC_Uri::url('goods/category/store_goods')}&store_id={$store_id}&type=best">
-						<strong class="a1s {if $action_type eq 'best'}active{/if}">精选</strong>
-					</a>
+	</div>
+	<div class="ecjia-store-brief">
+		<li class="store-info">
+			<a href="{RC_Uri::url('goods/category/store_detail')}&store_id={$store_info.id}">
+				<div class="basic-info">
+					<div class="store-left">
+						<img src="{$store_info.seller_logo}">
+					</div>
+					<div class="store-right">
+						<div class="store-name">
+							{$store_info.seller_name}
+							{if $store_info.distance} {$store_info.distance}m{/if}
+							{if $store_info.manage_mode eq 'self'}<span>自营</span>{/if}
+							<label class="store-distance"><i class="iconfont icon-jiantou-right"></i></label>
+						</div>
+						<div class="store-range">
+							<i class="iconfont icon-remind"></i>{$store_info.label_trade_time}
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</a>
+			{if $store_info.favourable_list}
+			<ul class="store-promotion">
+				<!-- {foreach from=$store_info.favourable_list item=list} -->
+				<li class="promotion">
+					<span class="promotion-label">{$list.type_label}</span>
+					<span class="promotion-name">{$list.name}</span>
 				</li>
-				<!-- {/if} -->
-
-				<!-- {if $store_info.goods_count.hot_goods gt 0} -->
-				<li class="a1p a1t">
-					<a class="data-pjax" href="{RC_Uri::url('goods/category/store_goods')}&store_id={$store_id}&type=hot">
-						<strong class="a1s {if $action_type eq 'hot'}active{/if}">热销</strong>
-					</a>
-				</li>
-				<!-- {/if} -->
-
-				<!-- {if $store_info.goods_count.new_goods gt 0} -->
-				<li class="a1p a1t">
-					<a class="data-pjax" href="{RC_Uri::url('goods/category/store_goods')}&store_id={$store_id}&type=new">
-						<strong class="a1s {if $action_type eq 'new'}active{/if}">新品</strong>
-					</a>
-				</li>
-				<!-- {/if} -->
-
-				<li class="a1p a1t">
-					<a href="{RC_Uri::url('goods/category/store_goods')}&store_id={$store_id}&type=all">
-						<strong class="a1s {if (!$category_id && !$action_type) || $action_type eq 'all'}active{/if}">全部</strong>
-					</a>
-				</li>
-
-
-				<!-- {if $store_category} -->
-					<!-- {foreach from=$store_category item=val} -->
-					<li class="a1p">
-						<a href="{RC_Uri::url('goods/category/store_goods')}&store_id={$store_id}&category_id={$val.id}">
-						<strong class="a1s {if $val.id eq $category_id}active{/if}">{$val.name}</strong>
-						</a>
-					</li>
-					<!-- {/foreach} -->
-				<!-- {/if} -->
+				<!-- {/foreach} -->
 			</ul>
-
-			<div class="a20">
-				{$type_name}
-				（{$goods_num}）
+			{/if}
+		</li>
+	</div>
+	<div class="ecjia-store-goods">
+		<div class="a1n a2g">
+			<div class="wg">
+				<div class="wh search-goods" data-url="{RC_Uri::url('touch/index/search')}&store_id={$store_id}" {if $keywords}style="text-align: left;" data-val="{$keywords}"{/if}>
+					<span class="wp"><i class="iconfont icon-search"></i>搜索店内商品</span>
+				</div>
 			</div>
-			<div class="a1x wd ">
-				<div class="a1z r2 a0h">
-					<ul>
-						<!-- {if $suggest_goods} -->
-							<!-- {foreach from=$suggest_goods item=goods} -->
-							<li>
-								<a class="linksGoods w">
-									<img class="pic" src="{$goods.img.small}">
-									<dl>
-										<dt>{$goods.name}</dt>
-										<dd><label>{$goods.shop_price}</label></dd>
-									</dl>
-								</a>
-								<div class="input-number">
-                                    <i class="iconfont icon-roundadd" data-toggle="add-to-cart"></i>
-                                    <span></span>
-                                    <i></i>
-                                </div>
-							</li>
-							<!-- {/foreach} -->
-						<!-- {/if} -->
-
-						<!-- {if $goods_list} -->
-							<!-- {foreach from=$goods_list item=goods} -->
-							<li>
-								<a class="linksGoods w">
-									<img class="pic" src="{$goods.img.small}">
-									<dl>
-										<dt>{$goods.name}</dt>
-										<dd><label>{$goods.shop_price}</label></dd>
-									</dl>
-								</a>
-                                <div class="input-number">
-                                    <i class="iconfont icon-roundadd" data-toggle="add-to-cart"></i>
-                                    <span></span>
-                                    <i></i>
-                                </div>
-							</li>
-							<!-- {/foreach} -->
-						<!-- {/if} -->
-					</ul>
+			<div class="a21 clearfix">
+				<ul class="a1o">
+					<!-- {if $store_info.goods_count.best_goods gt 0} -->
+					<li class="a1p {if $action_type eq 'best'}a1r{/if}">
+						<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=best" data-toggle="toggle-category">精选</strong>
+					</li>
+					<!-- {/if} -->
+	
+					<!-- {if $store_info.goods_count.hot_goods gt 0} -->
+					<li class="a1p {if $action_type eq 'hot'}a1r{/if}">
+						<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=hot" data-toggle="toggle-category">热销</strong>
+					</li>
+					<!-- {/if} -->
+	
+					<!-- {if $store_info.goods_count.new_goods gt 0} -->
+					<li class="a1p {if $action_type eq 'new'}a1r{/if}">
+						<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=new" data-toggle="toggle-category">新品</strong>
+					</li>
+					<!-- {/if} -->
+	
+					<li class="a1p {if (!$category_id && !$action_type) || $action_type eq 'all'}a1r{/if}">
+						<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=all" data-toggle="toggle-category">
+						全部
+						</strong>
+					</li>
+	
+					<!-- {if $store_category} -->
+						<!-- {foreach from=$store_category item=val} -->
+						<li class="a1p {if $val.id eq $category_id}a1r{/if}">
+							<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&category_id={$val.id}" data-toggle="toggle-category">{$val.name}</strong>
+							<!-- {if $val.children} -->
+								<strong class="a1v">
+								<!-- {foreach from=$val.children item=v} -->
+								<span class="a1u h a1w" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&category_id={$val.id}" data-toggle="toggle-category">
+									{$v.name}
+								</span>
+								<!-- {/foreach} -->
+								</strong>
+							<!-- {/if} -->
+						</li>
+						<!-- {/foreach} -->
+					<!-- {/if} -->
+				</ul>
+	
+				<div class="a20">
+					{$type_name}({$goods_num})
+				</div>
+				<div class="a1x wd ">
+					<div class="a1z r2 a0h">
+						<ul>
+							<!-- {if $suggest_goods} -->
+								<!-- {foreach from=$suggest_goods item=goods} -->
+								<li>
+									<a class="linksGoods w">
+										<img class="pic" src="{$goods.img.small}">
+										<dl>
+											<dt>{$goods.name}</dt>
+											<dd><label>{$goods.shop_price}</label></dd>
+										</dl>
+										<div class="box">
+		                                    <span class="reduce show" data-toggle="remove-to-cart">减</span>
+	                                		<label class="show">1</label>
+	                                		<span class="add storeSearchCart" data-toggle="add-to-cart">加</span>
+	                                	</div>
+									</a>
+								</li>
+								<!-- {/foreach} -->
+							<!-- {/if} -->
+	
+							<!-- {if $goods_list} -->
+								<!-- {foreach from=$goods_list item=goods} -->
+								<li>
+									<a class="linksGoods w">
+										<img class="pic" src="{$goods.img.small}">
+										<dl>
+											<dt>{$goods.name}</dt>
+											<dd><label>{$goods.shop_price}</label></dd>
+										</dl>
+										<div class="box">
+		                                    <span class="reduce show" data-toggle="remove-to-cart">减</span>
+	                                		<label class="show">1</label>
+	                                		<span class="add storeSearchCart" data-toggle="add-to-cart">加</span>
+	                                	</div>
+									</a>
+								</li>
+								<!-- {/foreach} -->
+							<!-- {/if} -->
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-    <div class="store-add-cart">
-        <div class="ecjia-icon">
-            <i class="iconfont icon-gouwuche"></i>
-            <span class="ecjia-icon-num">0</span>
-        </div>
 
-        <span class="font-price">购物车是空的</span>
-        <span class="ecjiaf-fr checkout">去结算</span>
-    </div>
+<div class="store-add-cart a4w" style="">
+	<div class="a52"></div>
+	<a href="javascript:void 0;" class="a4x light show_cart" style="transform: translateY(0px);" show="false"><i class="a4y">1</i></a>
+	<div class="a4z" style="transform: translateX(0px);">
+		<div class="">￥6.90</div>
+	</div>
+	<a class="a51 " href="javascript:void 0;">去结算</a>
+	<div class="minicart-content" style="transform: translateY(0px); display: block;">
+		<i class="a57"></i>
+		<div class="a58 ">
+			<span class="a69 a6a checked" checkallgoods="" onclick="">全选</span><p class="a6c">(已选1件，共0.75kg)</p><a href="javascript:void 0;" class="a59" deleteall="" clstag="pageclick|keycount|cart_clean_20160623_1|1">清空购物车</a>
+		</div>
+		<div class="a5b" style="height: auto;">
+			<div class="a5l single">
+				<ul class="minicart-goods-list single"> 
+					<li class="a5n single last">
+						<span class="a69 a5o checked" checkgoods=""></span>
+						<a class="a5r" href="">
+							<table class="a5s">
+								<tbody>
+									<tr>
+										<td style=" width:62px; "><img class="a5t" src=""> </td>
+										<td>
+											<div class="a5w">【热销TOP1】赣南脐橙-中果4个/份   约750-850g</div> 
+											<span class="a5p">￥6.90</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</a>
+						<a class="a5u reduce" minusgoods="" tap="" data-toggle="remove-to-cart"></a>
+						<lable class="a5x">1</lable>
+						<a class="a5v " addgoods="" tap="" data-toggle="add-to-cart"></a>
+					</li>
+					<li class="a5n single last" goodsid="2005033203" normalgoods_="">
+						<span class="a69 a5o checked" checkgoods=""></span>
+						<a class="a5r" href="">
+							<table class="a5s">
+								<tbody>
+									<tr>
+										<td style=" width:62px; "><img class="a5t" src=""> </td>
+										<td>
+											<div class="a5w">【热销TOP1】赣南脐橙-中果4个/份   约750-850g</div> 
+											<span class="a5p">￥6.90</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</a>
+						<a class="a5u reduce" minusgoods="" tap="" data-toggle="remove-to-cart"></a>
+						<lable class="a5x">1</lable>
+						<a class="a5v " addgoods="" tap="" data-toggle="add-to-cart"></a>
+					</li>
+					<li class="a5n single last" goodsid="2005033203" normalgoods_="">
+						<span class="a69 a5o checked" checkgoods=""></span>
+						<a class="a5r" href="">
+							<table class="a5s">
+								<tbody>
+									<tr>
+										<td style=" width:62px; "><img class="a5t" src=""> </td>
+										<td>
+											<div class="a5w">【热销TOP1】赣南脐橙-中果4个/份   约750-850g</div> 
+											<span class="a5p">￥6.90</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</a>
+						<a class="a5u reduce" minusgoods="" tap="" data-toggle="remove-to-cart"></a>
+						<lable class="a5x">1</lable>
+						<a class="a5v " addgoods="" tap="" data-toggle="add-to-cart"></a>
+					</li>												
+				</ul>
+				<div class="a5m single" style=""></div>
+			</div>
+		</div>
+	<div style="height:50px;" discountpromptmsgheight=""></div>
+	</div>
+	<div class="a53" cartmask="" clstag="pageclick|keycount|cart_close_20160623_1|1" style="display: none;"></div>
 </div>
 <!-- {/block} -->
