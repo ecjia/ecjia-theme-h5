@@ -93,15 +93,90 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</li>
 	<!-- {/if} -->
 	<!-- {/foreach} -->
-	<div class="store-add-cart">
-        <div class="ecjia-icon">
-            <i class="iconfont icon-gouwuche"></i>
-            <span class="ecjia-icon-num">0</span>
-        </div>
-
-        <span class="font-price">购物车是空的</span>
-        <span class="ecjiaf-fr checkout">去结算</span>
-    </div>
+	
+	<!-- {if $store_id} -->
+	<div class="store-add-cart a4w" style="">
+		<div class="a52"></div>
+		<a href="javascript:void 0;" class="a4x light show_cart" carticon="" clstag="" style="transform: translateY(0px);" show="false"><i class="a4y">1</i></a>
+		<div class="a4z" pricearea="" style="transform: translateX(0px);">
+			<div class="">￥6.90</div>
+		</div>
+		<a class="a51 " qujiesuan="" href="javascript:void 0;" onclick="">去结算</a>
+		<div class="minicart-content" cartcontent="" style="transform: translateY(0px); display: block;">
+			<i class="a57"></i>
+			<div class="a58 ">
+				<span class="a69 a6a checked" checkallgoods="" onclick="">全选</span><p class="a6c">(已选1件，共0.75kg)</p><a href="javascript:void 0;" class="a59" deleteall="" clstag="pageclick|keycount|cart_clean_20160623_1|1">清空购物车</a>
+			</div>
+			<div class="a5b" cartitemlist="" style="height: auto;">
+				<div class="a5l single">
+					<ul class="minicart-goods-list single"> 
+						<li class="a5n single last" goodsid="2005033203" normalgoods_="">
+							<span class="a69 a5o checked" checkgoods=""></span>
+							<a class="a5r" href="">
+							<table class="a5s">
+								<tbody>
+									<tr>
+										<td style=" width:62px; "><img class="a5t" src=""> </td>
+										<td>
+											<div class="a5w">【热销TOP1】赣南脐橙-中果4个/份   约750-850g</div> 
+											<span class="a5p">￥6.90</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							</a>
+							<a class="a5u reduce" minusgoods="" tap="" data-toggle="remove-to-cart"></a>
+							<lable class="a5x">1</lable>
+							<a class="a5v " addgoods="" tap="" data-toggle="add-to-cart"></a>
+						</li>
+						<li class="a5n single last" goodsid="2005033203" normalgoods_="">
+							<span class="a69 a5o checked" checkgoods=""></span>
+							<a class="a5r" href="">
+							<table class="a5s">
+								<tbody>
+									<tr>
+										<td style=" width:62px; "><img class="a5t" src=""> </td>
+										<td>
+											<div class="a5w">【热销TOP1】赣南脐橙-中果4个/份   约750-850g</div> 
+											<span class="a5p">￥6.90</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							</a>
+							<a class="a5u reduce" minusgoods="" tap="" data-toggle="remove-to-cart"></a>
+							<lable class="a5x">1</lable>
+							<a class="a5v " addgoods="" tap="" data-toggle="add-to-cart"></a>
+						</li>
+						<li class="a5n single last" goodsid="2005033203" normalgoods_="">
+							<span class="a69 a5o checked" checkgoods=""></span>
+							<a class="a5r" href="">
+							<table class="a5s">
+								<tbody>
+									<tr>
+										<td style=" width:62px; "><img class="a5t" src=""> </td>
+										<td>
+											<div class="a5w">【热销TOP1】赣南脐橙-中果4个/份   约750-850g</div> 
+											<span class="a5p">￥6.90</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							</a>
+							<a class="a5u reduce" minusgoods="" tap="" data-toggle="remove-to-cart"></a>
+							<lable class="a5x">1</lable>
+							<a class="a5v " addgoods="" tap="" data-toggle="add-to-cart"></a>
+						</li>												
+					</ul>
+					<div class="a5m single" style=""></div>
+				</div>
+			</div>
+		<div style="height:50px;" discountpromptmsgheight=""></div>
+		</div>
+		<div giftcontent="">  </div>
+		<div class="a53" cartmask="" clstag="pageclick|keycount|cart_close_20160623_1|1" style="display: none;"></div>
+	</div>
+    <!-- {/if} -->
 </ul>
 <!-- {else} -->
 <div class="search-no-pro ecjia-margin-t ecjia-margin-b">

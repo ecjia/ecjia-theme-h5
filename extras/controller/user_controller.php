@@ -23,7 +23,7 @@ class user_controller {
         // ecjia_front::$controller->assign('user_notice', ecjia::config('user_notice'));
         // ecjia_front::$controller->assign('title', RC_Lang::lang('user_center'));
         // ecjia_front::$controller->assign_title(RC_Lang::lang('user_center'));
-        $user_img = get_user_img();
+        //$user_img = get_user_img();
         // $surplus_amount = get_user_surplus($user_id);
         // $user = $db_users->where(array('user_id'=>$user_id))->find();
         // unset($user['question']);
@@ -35,7 +35,6 @@ class user_controller {
         // }
         // ecjia_front::$controller->assign('integral',intval($user['pay_points']));
         // ecjia_front::$controller->assign('surplus_amount', intval($surplus_amount));
-        
         //网店信息
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
         ecjia_front::$controller->assign('data', $data);
@@ -72,46 +71,57 @@ class user_controller {
      */
     public static function signin() {
         // RC_Loader::load_app_class('integrate', 'user', false);
-        RC_Loader::load_theme('extras/class/user/integrate.class.php');
-    	$user = integrate::init_users();
+//         RC_Loader::load_theme('extras/class/user/integrate.class.php');
+//     	$user = integrate::init_users();
         // $db_users = RC_Loader::load_app_model ( "users_model" );
-        RC_Loader::load_theme('extras/model/user/touch_users_model.class.php');
-        $db_users  = new touch_users_model();
+//         RC_Loader::load_theme('extras/model/user/touch_users_model.class.php');
+//         $db_users  = new touch_users_model();
         /*登录处理*/
+
+        /* 检查验证码 */
+//         $captcha = intval(ecjia::config('captcha'));
+//         if (($captcha & CAPTCHA_LOGIN) && (!($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2))) {
+//             if (empty($_POST['captcha'])) {
+//                 ecjia_front::$controller->showmessage(RC_Lang::lang('invalid_captcha'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+//             }
+//             if ($_SESSION['captcha_word'] !== strtolower($_POST['captcha'])) {
+//                 ecjia_front::$controller->showmessage(RC_Lang::lang('invalid_captcha'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+//             }
+//         }
+        /*用户名是邮箱格式*/
+//         if (is_email($username)) {
+//             $username_try = $db_users->where(array('email'=>$username))->get_field('user_name');
+//             $username = $username_try ? $username_try : $username;
+//         }
+//         /*用户名是手机格式*/
+//         if (is_mobile($username)) {
+//             $username_try = $db_users->where(array('mobile_phone'=>$username))->get_field('user_name');
+//             $username = $username_try ? $username_try : $username;
+//         }
+//         if ($user->login($username, $password,1)) {
+//             update_user_info();
+//             recalculate_price();
+//             $referer = empty($_POST['referer']) ? RC_Uri::url('user/index/init') : urldecode($_POST['referer']);
+//             ecjia_front::$controller->showmessage(RC_Lang::lang('login_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('is_show' => false, 'pjaxurl'=>$referer));
+//         } else {
+//             $_SESSION['login_fail']++;
+//             if ($_SESSION['login_fail'] == 3) {
+//                 ecjia_front::$controller->showmessage(RC_Lang::lang('login_failure'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl'=>RC_Uri::url('user/index/login')));
+//             }
+//             ecjia_front::$controller->showmessage(RC_Lang::lang('login_failure'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('is_show' => true));
+//         }
         $username = htmlspecialchars($_POST['username']);
         $password = htmlspecialchars($_POST['password']);
-        /* 检查验证码 */
-        $captcha = intval(ecjia::config('captcha'));
-        if (($captcha & CAPTCHA_LOGIN) && (!($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2))) {
-            if (empty($_POST['captcha'])) {
-                ecjia_front::$controller->showmessage(RC_Lang::lang('invalid_captcha'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-            }
-            if ($_SESSION['captcha_word'] !== strtolower($_POST['captcha'])) {
-                ecjia_front::$controller->showmessage(RC_Lang::lang('invalid_captcha'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-            }
-        }
-        /*用户名是邮箱格式*/
-        if (is_email($username)) {
-            $username_try = $db_users->where(array('email'=>$username))->get_field('user_name');
-            $username = $username_try ? $username_try : $username;
-        }
-        /*用户名是手机格式*/
-        if (is_mobile($username)) {
-            $username_try = $db_users->where(array('mobile_phone'=>$username))->get_field('user_name');
-            $username = $username_try ? $username_try : $username;
-        }
-        if ($user->login($username, $password,1)) {
-            update_user_info();
-            recalculate_price();
-            $referer = empty($_POST['referer']) ? RC_Uri::url('user/index/init') : urldecode($_POST['referer']);
-            ecjia_front::$controller->showmessage(RC_Lang::lang('login_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('is_show' => false, 'pjaxurl'=>$referer));
+//         $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+        _dump($_SERVER,1);
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNIN)->data(array('token'=>'0506fe9988b56eadfb349cdcddfd25b3d8df700c', 'name' => $username, 'password' =>$password))->send()->getBody();
+        $data = json_decode($data,true);
+        if ($data['status']['succeed'] == 1) {
+            ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('init')));
         } else {
-            $_SESSION['login_fail']++;
-            if ($_SESSION['login_fail'] == 3) {
-                ecjia_front::$controller->showmessage(RC_Lang::lang('login_failure'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl'=>RC_Uri::url('user/index/login')));
-            }
-            ecjia_front::$controller->showmessage(RC_Lang::lang('login_failure'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('is_show' => true));
+            ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('login')));
         }
+
     }
 
     /**
@@ -198,6 +208,22 @@ class user_controller {
         //
         // ecjia_front::$controller->assign('title', RC_Lang::lang('reset_new_password'));
         // ecjia_front::$controller->assign_title(RC_Lang::lang('reset_new_password'));
+        $passwordf = !empty($_POST['passwordf']) ? $_POST['passwordf'] : '';
+        $passwords = !empty($_POST['passwords']) ? $_POST['passwords'] : '';
+        $mobile = is_mobile($_SESSION['mobile']) ? $_SESSION['mobile'] : '';
+        if ($passwordf != $passwords) {
+            ecjia_front::$controller->showmessage(__('两次密码输入不一致'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('reset_password')));
+        }
+        $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+        if ($passwordf) {
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_RESET_PASSWORD)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile, 'password' => $passwordf))->send()->getBody();;
+            $data = json_decode($data,true);
+            if ($data['status']['succeed'] == 1) {
+                ecjia_front::$controller->showmessage(__('重置密码成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('login')));
+            } else {
+                ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('mobile_register')));
+            }
+        }
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_reset_password.dwt');
     }
@@ -208,9 +234,25 @@ class user_controller {
         //
         // ecjia_front::$controller->assign('title', RC_Lang::lang('reset_new_password'));
         // ecjia_front::$controller->assign_title(RC_Lang::lang('reset_new_password'));
-        ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('user_mobile_register.dwt');
+        $code = !empty($_POST['code']) ? $_POST['code'] : '';
+        $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+        $mobile = !empty($_SESSION['mobile']) ? $_SESSION['mobile'] : '';     
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_FORGET_PASSWORD)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile, 'code' => $code))->send()->getBody();
+        $data = json_decode($data,true);
+        if (!empty($code)) {
+            if ($data['status']['succeed'] == 1) {
+                ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('reset_password')));
+            } else {
+                ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('mobile_register')));
+            }
+        } else {
+            ecjia_front::$controller->assign_lang();
+            ecjia_front::$controller->display('user_mobile_register.dwt');
+        }
+       
     }
+    
+    
 
     /**
      * 验证注册
@@ -273,6 +315,7 @@ class user_controller {
         };
     }
     
+    /*注册用户验证码接受*/
     public static function validate_code() {
         $code = !empty($_POST['code']) ? trim($_POST['code']) : '';
         $mobile = is_mobile($_POST['mobile']) ? htmlspecialchars($_POST['mobile']) : '';
@@ -282,6 +325,7 @@ class user_controller {
             ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('set_password')));
         }
     }
+    
     /**
      * 邮件验证
      */
@@ -317,7 +361,6 @@ class user_controller {
         //     ecjia_front::$controller->assign('uid', $uid);
         //     ecjia_front::$controller->assign('code', $code);
         //     ecjia_front::$controller->assign('title', RC_Lang::lang('reset_password'));
-            ecjia_front::$controller->assign_lang();
         //     ecjia_front::$controller->display('user_reset_password.dwt');
         // } else {
         //     /*验证码相关设置*/
@@ -328,19 +371,21 @@ class user_controller {
         //     }
         //     ecjia_front::$controller->assign('title', RC_Lang::lang('get_password'));
         //     ecjia_front::$controller->assign_title(RC_Lang::lang('get_password'));
+            $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+            if ($_POST['mobile']) {
+                $mobile = is_mobile($_POST['mobile']) ? $_POST['mobile'] : '';
+            } else {
+                $mobile = is_mobile($_SESSION['mobile']) ? $_SESSION['mobile'] : '';
+            }
+            if (!empty($mobile)) {
+                $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_FORGET_PASSWORD)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile))->run();
+                ecjia_front::$controller->showmessage(__("已发送验证码短信至：$mobile"), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl'=>RC_Uri::url('user/index/mobile_register')));
+            }
             ecjia_front::$controller->assign_lang();
             ecjia_front::$controller->display('user_get_password.dwt');
         // }
     }
     
-    /**
-     * 发送手机验证码找回密码
-     */
-    public static function send_pwd_mobile() {
-        $mobile = $_POST['mobile'];
-    }
-    
-
     /**
      * 发送密码修改确认邮件
      */
