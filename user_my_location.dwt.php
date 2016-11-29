@@ -19,14 +19,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     var map = new BMap.Map("allmap");
     var point = new BMap.Point(116.331398,39.897445);
     map.centerAndZoom(point,12);
-
+    map.enableScrollWheelZoom();
+    
     var geolocation = new BMap.Geolocation();
     geolocation.getCurrentPosition(function(r){
         if(this.getStatus() == BMAP_STATUS_SUCCESS){
             var mk = new BMap.Marker(r.point);
             map.addOverlay(mk);
             map.panTo(r.point);
-            alert('您的位置：'+r.point.lng+','+r.point.lat);
+//             alert('您的位置：'+r.point.lng+','+r.point.lat);
         }
         else {
             alert('failed'+this.getStatus());

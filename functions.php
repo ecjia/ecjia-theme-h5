@@ -22,8 +22,8 @@ RC_Hook::add_action('goods/category/asynclist', array('goods_controller', 'async
 RC_Hook::add_action('goods/category/store_list', array('goods_controller', 'store_list'));//店铺分类列表
 RC_Hook::add_action('goods/category/store_detail', array('goods_controller', 'store_detail'));//店铺详情
 
-RC_Hook::add_action('goods/category/store_goods', array('goods_controller', 'store_goods'));
-
+RC_Hook::add_action('goods/category/store_goods', array('goods_controller', 'store_goods'));//店铺商品
+RC_Hook::add_action('goods/category/ajax_category_goods', array('goods_controller', 'ajax_category_goods'));//获取分类商品
 
 RC_Hook::add_action('goods/index/init', array('goods_controller', 'goods_index'));//商品详情页
 RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));
@@ -128,7 +128,7 @@ RC_Hook::add_action('user/user_account/ajax_cash_list', array('user_account_cont
 
 RC_Loader::load_theme('extras/controller/user_address_controller.php');
 RC_Hook::add_action('user/user_address/address_list', array('user_address_controller', 'address_list'));
-RC_Hook::add_action('user/user_address/async_addres_list', array('user_address_controller', 'async_addres_list'));
+RC_Hook::add_action('user/user_address/async_address_list', array('user_address_controller', 'async_address_list'));
 RC_Hook::add_action('user/user_address/add_address', array('user_address_controller', 'add_address'));
 RC_Hook::add_action('user/user_address/inster_addres', array('user_address_controller', 'inster_addres'));
 RC_Hook::add_action('user/user_address/edit_address', array('user_address_controller', 'edit_address'));
@@ -171,6 +171,7 @@ RC_Hook::add_action('user/user_message/async_msg_list', array('user_message_cont
 RC_Hook::add_action('user/user_message/msg_detail', array('user_message_controller', 'msg_detail'));
 RC_Hook::add_action('user/user_message/del_msg', array('user_message_controller', 'del_msg'));
 
+//订单
 RC_Loader::load_theme('extras/controller/user_order_controller.php');
 RC_Hook::add_action('user/user_order/order_list', array('user_order_controller', 'order_list'));
 RC_Hook::add_action('user/user_order/cancel_order', array('user_order_controller', 'cancel_order'));
