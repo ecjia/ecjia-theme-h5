@@ -1812,6 +1812,14 @@
 .ecjia-order-detail .ecjia-checkout .flow-goods-list{
     background: none;
 }
+.ecjia .ecjia-order-detail .ecjia-checkout .flow-goods-list .goods-item li {
+	height: 6rem;
+    margin: 1rem 0;
+}
+.ecjia .ecjia-order-detail .ecjia-checkout .flow-goods-list .goods-item {
+	padding: 0 1rem;
+	height:auto;
+}
 .ecjia-order-detail .ecjia-checkout .flow-goods-list .goods-item{
     background: #ffffff;
 }
