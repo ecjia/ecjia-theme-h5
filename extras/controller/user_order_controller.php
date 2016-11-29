@@ -46,9 +46,8 @@ class user_order_controller {
         $rs_token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
         
         $params_order = array('token' => $rs_token['access_token'],'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order/* array('token' => '7b2d831fa531543f8c7c7e474cd9c8bfdfd434f9') */)->run();
-        _dump($rs_token);
-        _dump($data,1);
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();//->send()->getBody();
+        ecjia_front::$controller->assign('order_list', $data);
         ecjia_front::$controller->assign_title(RC_Lang::lang('order_list_lnk'));
         ecjia_front::$controller->assign('title', RC_Lang::lang('order_list_lnk'));
         ecjia_front::$controller->assign('active', 4);

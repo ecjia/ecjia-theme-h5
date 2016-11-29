@@ -857,6 +857,7 @@
 	width: 100%;
     height: 5em;
     width: 5em;
+	border: 1px solid #ddd;
 }
 .ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-info {
 	width:100%;
