@@ -60,11 +60,16 @@ class user_front extends ecjia_front {
 		    'register_signup'
 		);
 		/*未登录处理*/
-		if (empty($_SESSION['user_id']) && !in_array($this->action, $without)) {
+		if (!ecjia_touch_user::singleton()->isSignin() && !in_array($this->action, $without)) {
 			$url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
 			$this->redirect(RC_Uri::url('user/index/login', array('referer' => urlencode($url))));
 			exit();
 		}
+		
+// 		if ($this->action == 'init') {
+// // 		    _dump(1,1);
+// 		}
+		
 		/*已经登录，不能访问的方法*/
 		$deny = array(
 			'login',

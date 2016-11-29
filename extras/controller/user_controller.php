@@ -35,6 +35,15 @@ class user_controller {
         // }
         // ecjia_front::$controller->assign('integral',intval($user['pay_points']));
         // ecjia_front::$controller->assign('surplus_amount', intval($surplus_amount));
+        
+        
+//         if (!ecjia_touch_user::singleton()->isSignin()) {
+            
+//         }
+        
+//         $user = ecjia_touch_user::singleton()->getUserinfo();
+//         _dump($user,1);
+        
         //网店信息
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
         ecjia_front::$controller->assign('data', $data);
@@ -113,11 +122,17 @@ class user_controller {
         $username = htmlspecialchars($_POST['username']);
         $password = htmlspecialchars($_POST['password']);
 //         $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-        _dump($_SERVER,1);
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNIN)->data(array('token'=>'0506fe9988b56eadfb349cdcddfd25b3d8df700c', 'name' => $username, 'password' =>$password))->send()->getBody();
-        $data = json_decode($data,true);
-        if ($data['status']['succeed'] == 1) {
-            ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('init')));
+//         _dump($_SERVER,1);
+        
+        $data = ecjia_touch_user::singleton()->signin($username, $password);
+//         _dump($data);
+        
+        $user = ecjia_touch_user::singleton()->getUserinfo();
+//         _dump($user,1);
+//         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNIN)->data(array('token'=>'0506fe9988b56eadfb349cdcddfd25b3d8df700c', 'name' => $username, 'password' =>$password))->send()->getBody();
+//         $data = json_decode($data,true);
+        if ($data) {
+            ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/index/init')));
         } else {
             ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('login')));
         }
