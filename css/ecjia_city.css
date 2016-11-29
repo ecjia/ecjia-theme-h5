@@ -1,3 +1,9 @@
+/* 全局样式 */
+
+.ecjia-color-green {
+	color:#47AA4D;
+}
+
 /*========================  首页 ===========================*/
 .ecjia-header.ecjia-header-index {
     background: #47aa4d;
@@ -841,6 +847,7 @@
 	overflow: hidden;
 	position: relative;
 	padding: 1em;
+	height: 7em;
 }
 .ecjia .ecjia-checkout .flow-goods-list .goods-item li{
     margin-right: 0;
@@ -1760,6 +1767,9 @@
     display: inline-block;
     width: 50%;
 }
+.ecjia-order-list .order-ft span span {
+    width: auto;
+}
 .ecjia-order-list .order-ft .two-btn .btn{
     font-size: 1em;
 }
@@ -1791,6 +1801,8 @@
     transform: translateY(-50%);
     padding-left: 6em;
 }
+.ecjia-order-list .goods-img-more {    padding-top: 1em;}
+.ecjia-order-list .goods-img-more i {font-size:2em}
 /*========================  订单详情 ===========================*/
 .ecjia-order-detail .ecjia-checkout{
     border-top: 1px solid #ddd;
