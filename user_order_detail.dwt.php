@@ -21,38 +21,30 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<li class=""><a class="nopjax" href="#two" role="tab" data-toggle="tab"	>订单详情</a></li>
 	</ul>
 	<div class="goods-describe ecjia-margin-t active order-log-list" id="one">
+		<!-- {foreach from=$order.order_status_log item=info} -->
 		<div class="order-log-item">
 			<div class="order-log">
-				<span>已发货</span><span class="ecjiaf-fr order-time">2016-11-18 13:20</span>
-				<p>订单号为20142312324的商品已发货，请您耐心等待</p>
+				<span>{$info.order_status}</span><span class="ecjiaf-fr order-time">{$info.time}</span>
+				<p>{$info.message}</p>
 			</div>
 		</div>
-		<div class="order-log-item">
-			<div class="order-log">
-				<span>已发货</span><span class="ecjiaf-fr order-time">2016-11-18 13:20</span>
-				<p>订单号为20142312324的商品已发货，请您耐心等待</p>
-			</div>
-		</div>
-		<div class="order-log-item">
-			<div class="order-log">
-				<span>已发货</span><span class="ecjiaf-fr order-time">2016-11-18 13:20</span>
-				<p>订单号为20142312324的商品已发货，请您耐心等待</p>
-			</div>
-		</div>
+		<!-- {/foreach} -->
 	</div>
 	<div class="ecjia-checkout goods-describe ecjia-margin-b" id="two">
 		<div class="flow-goods-list">
 			<ul class="goods-item">
+				<!-- {foreach from=$order.goods_list item=goods} -->
 				<li>
 					<div class="ecjiaf-fl goods-img">
-						<img src="http://www.ecjia-city.dev/content/uploads/images/201611/goods_img/1065_G_1479324537953.jpg">
+						<img src="{$goods.img.thumb}" alt="{$goods.name}" title="{$goods.name}" />
 					</div>
 					<div class="ecjiaf-fl goods-info">
-						<p class="ecjia-truncate2">乌金石茶盘组合配套干泡小茶盘水果盘茶具茶海杯垫原创设计</p>
-						<p>￥168.00</p>
+						<p class="ecjia-truncate2">{$goods.name}</p>
+						<p>{$goods.formated_shop_price}</p>
 					</div>
-					<span class="ecjiaf-fr goods-price"> X 1</span>
+					<span class="ecjiaf-fr goods-price"> X {$goods.goods_number}</span>
 				</li>
+				<!-- {/foreach} -->
 			</ul>
 			<ul class="ecjia-list ecjia-margin-t">
 				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>

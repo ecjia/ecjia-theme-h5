@@ -46,9 +46,8 @@ class user_order_controller {
         $rs_token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
         
         $params_order = array('token' => $rs_token['access_token'],'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order/* array('token' => '7b2d831fa531543f8c7c7e474cd9c8bfdfd434f9') */)->run();
-        _dump($rs_token);
-        _dump($data,1);
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();//->send()->getBody();
+        ecjia_front::$controller->assign('order_list', $data);
         ecjia_front::$controller->assign_title(RC_Lang::lang('order_list_lnk'));
         ecjia_front::$controller->assign('title', RC_Lang::lang('order_list_lnk'));
         ecjia_front::$controller->assign('active', 4);
@@ -118,7 +117,6 @@ class user_order_controller {
     */
     public static function order_detail() {
         // $user_id = $_SESSION['user_id'];
-        // $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         // /*订单详情*/
         // $order = get_order_detail($order_id, $user_id);
         // if ( $order['pay_status'] == PS_UNPAYED && $order['pay_code'] != 'pay_cod' ) {
@@ -194,13 +192,18 @@ class user_order_controller {
         // ecjia_front::$controller->assign('order', $order);
         // ecjia_front::$controller->assign('goods_list', $goods_list);
 
-    	$arr = array(
-    		'order_id' => '2332'
-    	);
-    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($arr)->send()->getBody();
-        $data = (array)json_decode($data);
-        _dump((array)($data['data']),2);
-        ecjia_front::$controller->assign('order', (array)($data['data']));
+        
+        
+        $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
+        if (empty($order_id)) {
+            ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+        }
+        
+        $rs_token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+        $params_order = array('token' => $rs_token['access_token'], 'order_id' => $order_id);
+    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
+        _dump($data,2);
+        ecjia_front::$controller->assign('order', $data);
         ecjia_front::$controller->assign('title', RC_Lang::lang('order_detail'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('order_detail'));
         ecjia_front::$controller->assign_lang();
