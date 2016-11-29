@@ -21,7 +21,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<div class="nav-header ecjia-margin-t ecjia-margin-b">
 		<a href="{url path='user/user_address/near_location'}" type="bottom">
-			<i class="iconfont icon-focus"></i>&nbsp;&nbsp;&nbsp;&nbsp;{t}定位到当前位置{/t}
+			<i class="iconfont icon-focus"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t}定位到当前位置{/t}
 			<span class="ecjiaf-fr"><i class="iconfont icon-jiantou-right"></i></span>
 		</a>
 	</div>

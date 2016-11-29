@@ -93,6 +93,7 @@ RC_Loader::load_theme('extras/controller/user_controller.php');
 RC_Hook::add_action('user/index/init', array('user_controller', 'init'));
 RC_Hook::add_action('user/index/login', array('user_controller', 'login'));
 RC_Hook::add_action('user/index/signin', array('user_controller', 'signin'));
+RC_Hook::add_action('user/index/register_signup', array('user_controller', 'register_signup'));
 RC_Hook::add_action('user/index/register', array('user_controller', 'register'));
 RC_Hook::add_action('user/index/set_password', array('user_controller', 'set_password'));
 RC_Hook::add_action('user/index/reset_password', array('user_controller', 'reset_password'));
@@ -101,6 +102,7 @@ RC_Hook::add_action('user/index/bind_signin', array('user_controller', 'bind_sig
 RC_Hook::add_action('user/index/bind_signup', array('user_controller', 'bind_signup'));
 RC_Hook::add_action('user/index/bind_login', array('user_controller', 'bind_login'));
 RC_Hook::add_action('user/index/signup', array('user_controller', 'signup'));
+RC_Hook::add_action('user/index/validate_code', array('user_controller', 'validate_code'));
 RC_Hook::add_action('user/index/validate_email', array('user_controller', 'validate_email'));
 RC_Hook::add_action('user/index/get_password_email', array('user_controller', 'get_password_email'));
 RC_Hook::add_action('user/index/get_password_question', array('user_controller', 'get_password_question'));
@@ -126,7 +128,7 @@ RC_Hook::add_action('user/user_account/ajax_cash_list', array('user_account_cont
 
 RC_Loader::load_theme('extras/controller/user_address_controller.php');
 RC_Hook::add_action('user/user_address/address_list', array('user_address_controller', 'address_list'));
-RC_Hook::add_action('user/user_address/async_addres_list', array('user_address_controller', 'async_addres_list'));
+RC_Hook::add_action('user/user_address/async_address_list', array('user_address_controller', 'async_address_list'));
 RC_Hook::add_action('user/user_address/add_address', array('user_address_controller', 'add_address'));
 RC_Hook::add_action('user/user_address/inster_addres', array('user_address_controller', 'inster_addres'));
 RC_Hook::add_action('user/user_address/edit_address', array('user_address_controller', 'edit_address'));
@@ -169,6 +171,7 @@ RC_Hook::add_action('user/user_message/async_msg_list', array('user_message_cont
 RC_Hook::add_action('user/user_message/msg_detail', array('user_message_controller', 'msg_detail'));
 RC_Hook::add_action('user/user_message/del_msg', array('user_message_controller', 'del_msg'));
 
+//订单
 RC_Loader::load_theme('extras/controller/user_order_controller.php');
 RC_Hook::add_action('user/user_order/order_list', array('user_order_controller', 'order_list'));
 RC_Hook::add_action('user/user_order/cancel_order', array('user_order_controller', 'cancel_order'));

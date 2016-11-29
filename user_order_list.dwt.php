@@ -25,22 +25,43 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="order-hd">
 				<a class="ecjiaf-db" href="#">
 					<i class="iconfont icon-shop"></i>华联-申隆店专营店 <i class="iconfont icon-jiantou-right"></i>
-					<span class="ecjiaf-fr">待收货</span>
+					<span class="ecjiaf-fr ecjia-color-green">待收货</span>
 				</a>
 			</div>
 			<div class="flow-goods-list">
-				<a class="ecjiaf-db" href="#">
-					<ul class="goods-list">
+				<a class="ecjiaf-db" href='{url path="user/user_order/order_detail" args="order_id={$list.order_id}"}'>
+					<ul class="goods-list"><!-- goods-list 多个商品隐藏商品名称 -->
 						<li class="goods-img ecjiaf-fl ecjia-margin-r  ecjia-icon">
-							<img class="ecjiaf-fl" src="http://10.10.10.74/ecjia-city/content/uploads/images/201611/thumb_img/1020_G_1479340294572.jpg" alt="" />
+							<img class="ecjiaf-fl" src="" alt="" />
 							<span class="ecjia-icon-num top">1</span>
 							<span class="ecjiaf-fl goods-name ecjia-truncate2">爱大厨四菜私人厨师上门做饭</span>
+						</li>
+						<li class="goods-img ecjiaf-fl ecjia-margin-r  ecjia-icon">
+							<img class="ecjiaf-fl" src="" alt="" />
+							<span class="ecjia-icon-num top">1</span>
+							<span class="ecjiaf-fl goods-name ecjia-truncate2">爱大厨四菜私人厨师上门做饭</span>
+						</li>
+						<li class="goods-img ecjiaf-fl ecjia-margin-r  ecjia-icon">
+							<img class="ecjiaf-fl" src="" alt="" />
+							<span class="ecjia-icon-num top">1</span>
+							<span class="ecjiaf-fl goods-name ecjia-truncate2">爱大厨四菜私人厨师上门做饭</span>
+						</li>
+						<li class="goods-img ecjiaf-fl ecjia-margin-r  ecjia-icon">
+							<img class="ecjiaf-fl" src="" alt="" />
+							<span class="ecjia-icon-num top">1</span>
+							<span class="ecjiaf-fl goods-name ecjia-truncate2">爱大厨四菜私人厨师上门做饭</span>
+						</li>
+						<!-- 判断不能大于4个 -->
+						<li class="goods-img-more">
+							<i class="icon iconfont">&#xe62e;</i>
+							<p class="ecjia-fz-small">共8件</p>
 						</li>
 					</ul>
 				</a>
 			</div>
 			<div class="order-ft">
-				<span>订单金额：￥155.50</span>
+				<span><a href="#">订单金额：<span class="ecjia-fz-big">￥15.50</span></a></span>
+				
 				<span class="two-btn ecjiaf-fr">
 					<a class="btn  ecjiaf-fr" href="#">确认收货</a>
 					<a class="btn  ecjiaf-fr" href="#">再次购买</a>
@@ -51,19 +72,21 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<li class="ecjia-order-item ecjia-checkout ecjia-margin-t">
 			<div class="order-hd">
 				<i class="iconfont icon-shop"></i>华联-申隆店专营店 <i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr">待收货</span>
+				<span class="ecjiaf-fr ecjia-color-green">待收货</span>
 			</div>
 			<div class="flow-goods-list">
-				<ul class="goods-item">
+				<a class="ecjiaf-db" href='{url path="user/user_order/order_detail" args="order_id={$list.order_id}"}'>
+				<ul class="goods-item"><!-- goods-item -->
 					<li class="goods-img ecjiaf-fl ecjia-margin-r  ecjia-icon">
-						<img class="ecjiaf-fl" src="http://www.ecjia-city.dev/content/uploads/images/201611/thumb_img/1020_G_1479340294572.jpg" alt="" />
+						<img class="ecjiaf-fl" src="" alt="" />
 						<span class="ecjia-icon-num top">1</span>
 						<span class="ecjiaf-fl goods-name ecjia-truncate2">爱大厨四菜私人厨师上门做饭</span>
 					</li>
 				</ul>
+				</a>
 			</div>
 			<div class="order-ft">
-				<span>订单金额：￥155.50</span>
+				<span>订单金额：<span class="ecjia-fz-big">￥155.50</span></span>
 				<span class="two-btn ecjiaf-fr">
 					<a class="btn  ecjiaf-fr" href="#">再次购买</a>
 				</span>

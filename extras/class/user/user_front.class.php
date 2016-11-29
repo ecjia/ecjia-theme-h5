@@ -54,7 +54,10 @@ class user_front extends ecjia_front {
 		    'bind_signin',
 		    'bind_signup',
 		    'bind_login',
-		    'mobile_register'
+		    'mobile_register',
+		    'validate_code',
+		    'reset_password',
+		    'register_signup'
 		);
 		/*未登录处理*/
 		if (empty($_SESSION['user_id']) && !in_array($this->action, $without)) {

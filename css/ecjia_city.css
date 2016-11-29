@@ -1,3 +1,9 @@
+/* 全局样式 */
+
+.ecjia-color-green {
+	color:#47AA4D;
+}
+
 /*========================  首页 ===========================*/
 .ecjia-header.ecjia-header-index {
     background: #47aa4d;
@@ -1254,6 +1260,7 @@
 	overflow: hidden;
 	position: relative;
 	padding: 1em;
+	height: 7em;
 }
 .ecjia .ecjia-checkout .flow-goods-list .goods-item li{
     margin-right: 0;
@@ -1894,14 +1901,14 @@
 	margin-right:0 !important;
 	display: block;
 	float: left;
-	width: 51%;
+	width: 48%;
 	margin-left: 7%;
 }
 .ecjia-login .small-submit {
 	display: block;
 	float: right;
 	margin-right: 7%;
-	width: 32%;
+	width: 35%;
 }
 .ecjia-login-login-foot {
     overflow: hidden;
@@ -1923,6 +1930,11 @@
 	margin-top: 4em !important;
 }
 .ecjia-login .login-btn {
+	margin: 0;
+	width: 100%;
+	height: 3em;
+}
+.ecjia-login .next-btn {
 	margin: 0;
 	width: 100%;
 	height: 3em;
@@ -2168,6 +2180,9 @@
     display: inline-block;
     width: 50%;
 }
+.ecjia-order-list .order-ft span span {
+    width: auto;
+}
 .ecjia-order-list .order-ft .two-btn .btn{
     font-size: 1em;
 }
@@ -2199,6 +2214,8 @@
     transform: translateY(-50%);
     padding-left: 6em;
 }
+.ecjia-order-list .goods-img-more {    padding-top: 1em;}
+.ecjia-order-list .goods-img-more i {font-size:2em}
 /*========================  订单详情 ===========================*/
 .ecjia-order-detail .ecjia-checkout{
     border-top: 1px solid #ddd;
