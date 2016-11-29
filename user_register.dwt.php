@@ -55,7 +55,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<input name="enabled_sms" type="hidden" value="0" />
 				<input type="hidden" name="back_act" value="{$back_act}" />
 				<div class="around margin-top">
-				<button class="btn btn-info next-btn" type="button" data-url="{RC_Uri::url('user/index/validate_code')}">{$lang.next}</button>
+				<button class="btn btn-info next-btn" type="button" data-url="{RC_Uri::url('user/index/get_password_validate')}">{$lang.next}</button>
 				</div>
 			</div>
 		</form>

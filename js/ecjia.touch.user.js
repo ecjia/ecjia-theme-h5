@@ -12,6 +12,8 @@
 			ecjia.touch.user.get_code();
 			ecjia.touch.user.fast_reset_pwd();
 			ecjia.touch.user.register_password();
+			ecjia.touch.user.mobile_register();
+			ecjia.touch.user.reset_password();
 			$(function(){
 				$(".del").click(function(){
 					if(!confirm('您确定要删除吗？')){
@@ -127,6 +129,36 @@
 				var info = {
 					'username': username,
 					'password': password
+				};
+				$.post(url, info, function(data){
+					ecjia.touch.showmessage(data);
+				});
+			});
+		},
+		/*找回密码重置密码*/
+		mobile_register : function (){
+			$("input[name='mobile_register']").on('click', function(e){
+				e.preventDefault();
+				var url = $(this).attr('data-url'),
+					code = $("input[name='code']").val().trim();
+				var info = {
+					'code': code
+				};
+				$.post(url, info, function(data){
+					ecjia.touch.showmessage(data);
+				});
+			});
+		},
+		/*设置新密码*/
+		reset_password : function (){
+			$("input[name='reset_password']").on('click', function(e){
+				e.preventDefault();
+				var url = $(this).attr('data-url'),
+					passwordf = $("input[name='passwordf']").val().trim();
+					passwords = $("input[name='passwords']").val().trim();
+				var info = {
+					'passwordf': passwordf,
+					'passwords': passwords
 				};
 				$.post(url, info, function(data){
 					ecjia.touch.showmessage(data);
