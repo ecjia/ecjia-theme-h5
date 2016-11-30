@@ -56,8 +56,7 @@ class user_front extends ecjia_front {
 		    'bind_login',
 		    'mobile_register',
 		    'validate_code',
-		    'reset_password',
-		    'register_signup'
+		    'reset_password'
 		);
 		/*未登录处理*/
 		if (!ecjia_touch_user::singleton()->isSignin() && !in_array($this->action, $without)) {

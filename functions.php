@@ -93,7 +93,6 @@ RC_Loader::load_theme('extras/controller/user_controller.php');
 RC_Hook::add_action('user/index/init', array('user_controller', 'init'));
 RC_Hook::add_action('user/index/login', array('user_controller', 'login'));
 RC_Hook::add_action('user/index/signin', array('user_controller', 'signin'));
-RC_Hook::add_action('user/index/register_signup', array('user_controller', 'register_signup'));
 RC_Hook::add_action('user/index/register', array('user_controller', 'register'));
 RC_Hook::add_action('user/index/set_password', array('user_controller', 'set_password'));
 RC_Hook::add_action('user/index/reset_password', array('user_controller', 'reset_password'));
