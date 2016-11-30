@@ -50,7 +50,7 @@ class user_profile_controller {
         // }
         $user_img = get_user_img();
         ecjia_front::$controller->assign('user_img', $user_img);
-        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array())->run();
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
         // ecjia_front::$controller->assign('title', RC_Lang::lang('profile'));
         // ecjia_front::$controller->assign('extend_info_list', $extend_info_list);
         // ecjia_front::$controller->assign('passwd_questions', RC_Lang::lang('passwd_questions'));
@@ -68,9 +68,18 @@ class user_profile_controller {
         // ecjia_front::$controller->assign('title', "用户名");
         // ecjia_front::$controller->assign_title("用户名");
         // ecjia_front::$controller->assign('header_right' , array('info' => '保存', 'href' => RC_Uri::url('user/index/edit_profile')));
-        ecjia_front::$controller->assign('hideinfo', '123');
-        ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('user_modify_username.dwt');
+        $name = !empty($_POST['username']) ? $_POST['username'] :'';
+        if (!empty($name)) {
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_UPDATE)->data(array('user_name' => $name))->run();
+            ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/user_profile/edit_profile')));
+        } else {
+            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+            ecjia_front::$controller->assign('user', $user);
+            ecjia_front::$controller->assign('hideinfo', '123');
+            ecjia_front::$controller->assign_lang();
+            ecjia_front::$controller->display('user_modify_username.dwt');
+        }
+        
     }
 
     /**
