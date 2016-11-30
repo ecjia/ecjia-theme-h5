@@ -161,7 +161,7 @@ RC_Hook::add_action('user/user_message/del_msg', array('user_message_controller'
 //订单
 RC_Loader::load_theme('extras/controller/user_order_controller.php');
 RC_Hook::add_action('user/user_order/order_list', array('user_order_controller', 'order_list'));
-RC_Hook::add_action('user/user_order/cancel_order', array('user_order_controller', 'cancel_order'));
+RC_Hook::add_action('user/user_order/order_cancel', array('user_order_controller', 'order_cancel'));
 RC_Hook::add_action('user/user_order/async_order_list', array('user_order_controller', 'async_order_list'));
 RC_Hook::add_action('user/user_order/order_tracking', array('user_order_controller', 'order_tracking'));
 RC_Hook::add_action('user/user_order/order_detail', array('user_order_controller', 'order_detail'));

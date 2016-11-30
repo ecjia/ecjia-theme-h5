@@ -1609,8 +1609,15 @@ class cart_controller {
 	    // ecjia_front::$controller->assign('payment_default',$payment_default);
         // ecjia_front::$controller->assign('payment_list', $payment_list);
         // // _dump($payment_list,1);
-        // ecjia_front::$controller->assign('title', RC_Lang::lang('payment_method'));
-        // ecjia_front::$controller->assign_title(RC_Lang::lang('payment_method'));
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)
+        ->send()->getBody();
+        $data = json_decode($data,true);
+        _dump($data,2);
+        ecjia_front::$controller->assign('payment_list', $data['data']['payment']);
+        ecjia_front::$controller->assign_lang();
+        
+        ecjia_front::$controller->assign('title', RC_Lang::lang('payment_method'));
+        ecjia_front::$controller->assign_title(RC_Lang::lang('payment_method'));
         ecjia_front::$controller->display('flow_pay.dwt');
     }
 

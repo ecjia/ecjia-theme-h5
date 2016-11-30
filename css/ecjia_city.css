@@ -1,5 +1,4 @@
 /* 全局样式 */
-
 .ecjia-color-green {
 	color:#47AA4D;
 }
@@ -1310,7 +1309,7 @@
 	font-size: 1.2em;
 }
 .ecjia .ecjia-select li{
-	padding: .5em 1em;
+	padding: 1em;
 }
 .ecjia .ecjia-select label.select-item{
 	width: 100%;
@@ -2096,6 +2095,15 @@
 }
 .goods-desc-info .goods-desc-nav-new {
 	border-bottom:0;
+}
+.goods-desc-info .goods-desc-nav-new li.active{
+	border-bottom-color:#ff1919;
+}
+.goods-desc-info .goods-desc-nav-new li.active .a1{
+	color:#ff1919;
+}
+.goods-desc-info .goods-desc-nav-new li.active .a2{
+	color:#ff1919;
 }
 .goods-add-cart{
     width: 136px;
