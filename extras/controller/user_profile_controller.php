@@ -50,11 +50,13 @@ class user_profile_controller {
         // }
         $user_img = get_user_img();
         ecjia_front::$controller->assign('user_img', $user_img);
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array())->run();
         // ecjia_front::$controller->assign('title', RC_Lang::lang('profile'));
         // ecjia_front::$controller->assign('extend_info_list', $extend_info_list);
         // ecjia_front::$controller->assign('passwd_questions', RC_Lang::lang('passwd_questions'));
         // ecjia_front::$controller->assign('profile', $user_info);
         // ecjia_front::$controller->assign_title(RC_Lang::lang('profile'));
+        ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_profile.dwt');
     }

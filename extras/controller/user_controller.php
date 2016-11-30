@@ -41,13 +41,12 @@ class user_controller {
             
 //         }
         
-//         $user = ecjia_touch_user::singleton()->getUserinfo();
-//         _dump($user,1);
-        
         //网店信息
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
-        ecjia_front::$controller->assign('data', $data);
-        
+        $user_img = get_user_img();
+        $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+//         ecjia_front::$controller->assign('data', $data);
+        ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('active', 5);
         
@@ -231,7 +230,7 @@ class user_controller {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_RESET_PASSWORD)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile, 'password' => $passwordf))->send()->getBody();;
             $data = json_decode($data,true);
             if ($data['status']['succeed'] == 1) {
-                ecjia_front::$controller->showmessage(__('重置密码成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('login')));
+                ecjia_front::$controller->showmessage(__('您已成功找回密码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('login')));
             } else {
                 ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('mobile_register')));
             }
@@ -469,10 +468,11 @@ class user_controller {
      * 退出
      */
     public static function logout() {
-    	$user = integrate::init_users();
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNOUT)->run();
+//     	$user = integrate::init_users();
         $back_act = RC_Uri::url('user/index/login');
-        $user->logout();
-        $ucdata = empty($user->ucdata) ? "" : $user->ucdata;
+//         $user->logout();
+//         $ucdata = empty($user->ucdata) ? "" : $user->ucdata;
         ecjia_front::$controller->showmessage(RC_Lang::lang('logout') . $ucdata,ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $back_act,'is_show' => false));
     }
 
