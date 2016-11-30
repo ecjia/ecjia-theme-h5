@@ -42,7 +42,7 @@ class user_controller {
 //         }
         
         //网店信息
-        $user_img = get_user_img();
+//         $user_img = get_user_img();
         $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
 //         ecjia_front::$controller->assign('data', $data);
@@ -63,7 +63,7 @@ class user_controller {
             ecjia_front::$controller->assign('enabled_captcha', 1);
             ecjia_front::$controller->assign('rand', mt_rand());
         }
-        $user_img = get_user_img();
+//         $user_img = get_user_img();
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('step', isset($_GET['step']) ? htmlspecialchars($_GET['step']) : '');
         ecjia_front::$controller->assign('anonymous_buy', ecjia::config('anonymous_buy'));
