@@ -1391,6 +1391,20 @@
 	position: relative;
 	background: rgba(71, 170, 77, 0.7) none repeat scroll 0 0;
 }
+.ecjia-user .no-login {
+	border: 1px solid #00F;
+    width: 35%;
+    height: 26%;
+    text-align: center;
+    position: absolute;
+    padding: 1px;
+    border-color: #FFf;
+    top: 3.5em;
+    line-height: 2.3em;
+    margin-left: 33%;
+    color: #FFF;
+    border-radius: 30px;
+}
 .ecjia-user.ecjia-form .form-group {
 	padding-left: 0;
 	margin-left: 0;
@@ -1552,8 +1566,8 @@
 	border: 0.3em solid #fff;
 	padding: 2.7px;
 	position: absolute;
-	left: 41%;
-	right: 45;
+	left: 43%;
+	right: 43%;
     top: 3em;
     margin: 0;
 }
@@ -1603,8 +1617,8 @@
     text-align: center;
 }
 .ecjia-user.ecjia-user-info .user-img img {
-	width: 4em;
-	height: 4em;
+	width: 100%;
+	height: 100%;
     border-radius: 100%;
 }
 .ecjia-user.ecjia-user-info dl {
