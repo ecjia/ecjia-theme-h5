@@ -167,6 +167,7 @@ RC_Hook::add_action('user/user_order/order_detail', array('user_order_controller
 RC_Hook::add_action('user/user_order/affirm_received', array('user_order_controller', 'affirm_received'));
 RC_Hook::add_action('user/user_order/edit_payment', array('user_order_controller', 'edit_payment'));
 RC_Hook::add_action('user/user_order/edit_surplus', array('user_order_controller', 'edit_surplus'));
+RC_Hook::add_action('user/user_order/buy_again', array('user_order_controller', 'buy_again'));
 
 RC_Loader::load_theme('extras/controller/user_package_controller.php');
 RC_Hook::add_action('user/user_package/service', array('user_package_controller', 'service'));
@@ -192,12 +193,12 @@ RC_Hook::add_action('user/user_tag/del_tag', array('user_tag_controller', 'del_t
  * step：3
  * 这里开始 注册“方法函数”自动加载列表 到Hook自动加载列表，为自动加载做准备
  */
-RC_Hook::add_action('class_article_function',   function () {RC_Loader::load_theme('extras/classes/utillity/article_function.class.php');});
-RC_Hook::add_action('class_cart_function',      function () {RC_Loader::load_theme('extras/classes/utillity/cart_function.class.php');});
-RC_Hook::add_action('class_goods_function',     function () {RC_Loader::load_theme('extras/classes/utillity/goods_function.class.php');});
-RC_Hook::add_action('class_orders_function',    function () {RC_Loader::load_theme('extras/classes/utillity/orders_function.class.php');});
-RC_Hook::add_action('class_touch_function',     function () {RC_Loader::load_theme('extras/classes/utillity/touch_function.class.php');});
-RC_Hook::add_action('class_user_function',      function () {RC_Loader::load_theme('extras/classes/utillity/user_function.class.php');});
+RC_Hook::add_action('class_touch_function',     function () {RC_Loader::load_theme('extras/classes/utility/touch_function.class.php');});
+RC_Hook::add_action('class_article_function',   function () {RC_Loader::load_theme('extras/classes/utility/article_function.class.php');});
+RC_Hook::add_action('class_cart_function',      function () {RC_Loader::load_theme('extras/classes/utility/cart_function.class.php');});
+RC_Hook::add_action('class_goods_function',     function () {RC_Loader::load_theme('extras/classes/utility/goods_function.class.php');});
+RC_Hook::add_action('class_orders_function',    function () {RC_Loader::load_theme('extras/classes/utility/orders_function.class.php');});
+RC_Hook::add_action('class_user_function',      function () {RC_Loader::load_theme('extras/classes/utility/user_function.class.php');});
 
 /**
  * step:5

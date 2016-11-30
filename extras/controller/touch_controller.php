@@ -8,15 +8,6 @@ class touch_controller {
      * 首页信息
      */
     public static function init() {
-        /* 自定义导航栏 */
-        $navigator = get_touch_nav();
-        $cat_rec = get_recommend_res();/* 首页推荐分类商品 */
-        
-        $base   = goods_list('best', 4);
-        $new    = goods_list('new', 6);
-        $hot    = goods_list('hot', ecjia::config('page_size'));
-        $promotion = goods_list('promotion', 6);
-
         ecjia_front::$controller->assign('more_sales', RC_Uri::url('goods/index/promotion'));
         ecjia_front::$controller->assign('more_news', RC_Uri::url('goods/index/new'));
         ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
@@ -59,12 +50,10 @@ class touch_controller {
         ecjia_front::$controller->assign('cat_best', $cat_rec[1]);
         ecjia_front::$controller->assign('cat_new', $cat_rec[2]);
         ecjia_front::$controller->assign('cat_hot', $cat_rec[3]);
-        ecjia_front::$controller->assign('brand_list', get_brands(0, $app = 'goods_list'));
-        ecjia_front::$controller->assign('logo_url', get_image_path('', ecjia::config('wap_logo')));
         
         ecjia_front::$controller->assign('cycleimage', $data['player']);
         ecjia_front::$controller->assign('page_header', 'index');
-        ecjia_front::$controller->assign('searchs', insert_search());
+        ecjia_front::$controller->assign('searchs', user_function::insert_search());
         ecjia_front::$controller->assign('shop_pc_url', ecjia::config('shop_pc_url'));
         ecjia_front::$controller->assign('copyright', ecjia::config('wap_copyright'));
         ecjia_front::$controller->assign('active', 1);
@@ -101,7 +90,7 @@ class touch_controller {
      * 搜索
      */
     public static function search() {
-        ecjia_front::$controller->assign('searchs', get_search());
+        ecjia_front::$controller->assign('searchs', user_function::get_search());
         
         $keywords = !empty($_GET['keywords']) ? trim($_GET['keywords']) : '';
         ecjia_front::$controller->assign('keywords', $keywords);
