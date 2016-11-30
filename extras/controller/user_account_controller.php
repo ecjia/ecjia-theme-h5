@@ -59,6 +59,9 @@ class user_account_controller {
         // ecjia_front::$controller->assign('surplus_amount', $surplus_amount);
         // ecjia_front::$controller->assign_title(RC_Lang::lang('label_user_surplus'));
         // ecjia_front::$controller->assign_lang();
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        ecjia_front::$controller->assign('user', $user);
+        
         ecjia_front::$controller->assign('hideinfo', '123');
         ecjia_front::$controller->display('user_account_detail.dwt');
     }
@@ -96,6 +99,8 @@ class user_account_controller {
         // ecjia_front::$controller->assign('title','资金明细');
         // ecjia_front::$controller->assign_title('资金明细');
         // ecjia_front::$controller->assign('account_log', $res);
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->display('user_account_list.dwt');
     }
     /**

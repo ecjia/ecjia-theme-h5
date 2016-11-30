@@ -21,23 +21,39 @@ class touch_controller {
         	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DATA)->data($arr)->run();
         	RC_Cache::app_cache_set($cache_key, $data, 'index', 60*24);//24小时缓存
         }
+       
+        //处理ecjiaopen url
+        if (!empty($data)) {
+        	foreach ($data as $k => $v) {
+        		if ($k == 'player' || $k == 'mobile_menu') {
+        			foreach ($v as $key => $val) {
+        				if (strpos($val['url'], 'ecjiaopen://') === 0) {
+        					$data[$k][$key]['url'] = with(new ecjia_open($val['url']))->toHttpUrl();
+        				}
+        			}
+        		} elseif ($k == 'adsense_group' || $k == 'promote_goods') {
+        			foreach ($v as $key => $val) {
+        				if (isset($val['adsense'])) {
+        					foreach ($val['adsense'] as $k_k => $v_v) {
+        						if (strpos($v_v['url'], 'ecjiaopen://') === 0) {
+        							$data[$k][$key]['adsense'][$k_k]['url'] = with(new ecjia_open($v_v['url']))->toHttpUrl();
+        						}
+        					}
+        				}
+        				$data['adsense_group'][$key]['count'] = count($val['adsense']);
+        				$data['promote_goods'][$key]['promote_end_date'] = RC_Time::local_strtotime($val['promote_end_date']);
+        			}
+        		}
+        	}
+        }
         
+        //首页菜单
         ecjia_front::$controller->assign('navigator', $data['mobile_menu']);
         
         //首页广告
-        if (!empty($data['adsense_group'])) {
-        	foreach ($data['adsense_group'] as $k => $v) {
-        		$data['adsense_group'][$k]['count'] = count($v['adsense']);
-        	}
-        }
         ecjia_front::$controller->assign('adsense_group', $data['adsense_group']);
         
         //首页促销商品
-        if (!empty($data['promote_goods'])) {
-        	foreach ($data['promote_goods'] as $k => $v) {
-        		$data['promote_goods'][$k]['promote_end_date'] = RC_Time::local_strtotime($v['promote_end_date']);
-        	}
-        }
         ecjia_front::$controller->assign('promotion_goods', $data['promote_goods']);
         
         //新品推荐

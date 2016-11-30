@@ -963,6 +963,11 @@
     transition: transform .4s ease-out 0s;
     -webkit-transition: -webkit-transform .4s ease-out 0s;
 }
+.store-add-cart.a4w .a4z .a50 {
+    font-size: 15px;
+    color: #999;
+	font-family: 'Microsoft YaHei',Verdana,Arial,Helvetica,sans-serif;
+}
 .store-add-cart.a4w .a51 {
     position: absolute;
     z-index: 13;
@@ -972,6 +977,9 @@
     color: #fff;
     line-height: 48px;
     background-color: #47b34f;
+}
+.store-add-cart.a4w .a51.disabled {
+    background-color: #bebebe;
 }
 .store-add-cart.a4w .minicart-content, .a56 {
     position: absolute;
@@ -2088,6 +2096,15 @@
 .goods-desc-info .goods-desc-nav-new {
 	border-bottom:0;
 }
+.goods-desc-info .goods-desc-nav-new li.active{
+	border-bottom-color:#ff1919;
+}
+.goods-desc-info .goods-desc-nav-new li.active .a1{
+	color:#ff1919;
+}
+.goods-desc-info .goods-desc-nav-new li.active .a2{
+	color:#ff1919;
+}
 .goods-add-cart{
     width: 136px;
     text-align: center;
@@ -2661,12 +2678,71 @@
     display: -ms-box;
     display: -moz-box;
 }
-.ecjia-store-list li.search-goods-list label {
+.ecjia-store-list li.search-goods-list dd label {
+	color: #ff3434
+}
+
+.ecjia-store-list li.search-goods-list dl dd:nth-of-type(1) {
+    padding-left: 5px;
+    min-height: 20px;
+    overflow: hidden;
+    padding-top: 0px;
+}
+.ecjia-store-list li.search-goods-list dl dd {
+    padding-top: 1em;
+	padding-left: .5em;
+}
+
+.ecjia-store-list .box {
+    position: absolute;
+    right: 0;
+    bottom: 0em;
+}
+.ecjia-store-list .box span {
+    background-color: #fffaeb;
+}
+.ecjia-store-list .box span.reduce {
+    background-position: -3em 0;
+	padding-left: .8em;
+}
+.ecjia-store-list .box span {
+    float: left;
+    text-indent: -99999px;
+    display: inline-block;
+    background-image: url(../images/icon/addNumSprite.png);
+    background-repeat: no-repeat;
+	background-color: #FFF;
+    -webkit-background-size: 400% 100%;
+    background-size: 400% 100%;
+    width: 2.8em;
+    height: 2.2em;
+    vertical-align: top;
+    border: 0 none;
+    background-origin: content-box;
+    padding-bottom: .1em;
+}
+.ecjia-store-list .box span.add {
+    background-position: 0 0;
+    padding-right: .8em;
+	margin-bottom: .8em;
+}
+.ecjia-store-list .box label {
+    float: left;
+    color: #333333;
     font-size: 1em;
-    color: #ff3434;
-	padding-top: 2.5em;
-    padding-left: .5em;
-    white-space: nowrap;
+    padding: 0;
+    width: 2em;
+    height: 2.4em;
+    overflow: hidden;
+    display: inline-block;
+    text-align: center;
+    line-height: 1.5em;
+    vertical-align: top;
+    -webkit-background-origin: content-box;
+    background-origin: content-box;
+    background-color: transparent;
+    margin-top: .3em;
+	margin-bottom: 0;
 }
 
 /*========================  所有分类 ===========================*/
