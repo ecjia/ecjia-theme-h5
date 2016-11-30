@@ -48,8 +48,8 @@ class user_profile_controller {
         //             break;
         //     }
         // }
-        $user_img = get_user_img();
-        ecjia_front::$controller->assign('user_img', $user_img);
+//         $user_img = get_user_img();
+//         ecjia_front::$controller->assign('user_img', $user_img);
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
         // ecjia_front::$controller->assign('title', RC_Lang::lang('profile'));
         // ecjia_front::$controller->assign('extend_info_list', $extend_info_list);
@@ -174,6 +174,25 @@ class user_profile_controller {
         // if (!empty($_SESSION['user_id']) && $_SESSION['user_id'] > 0) {
         //     ecjia_front::$controller->assign('title', RC_Lang::lang('edit_password'));
         //     ecjia_front::$controller->assign_title(RC_Lang::lang('edit_password'));
+            $old_password = !empty($_POST['old_password']) ? $_POST['old_password'] : '';
+            $new_password = !empty($_POST['new_password']) ? $_POST['new_password'] : '';
+            $comfirm_password = !empty($_POST['comfirm_password']) ? $_POST['comfirm_password'] : '';
+            
+            if (!empty($old_password)) {
+                if ($new_password == $comfirm_password) {
+                    $token = ecjia_touch_user::singleton()->getToken();
+                    $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_PASSWORD)->data(array('token' => $token, 'password' => $old_password, 'new_password' => $new_password))->send()->getBody();
+                    $data = json_decode($data,true);
+                if ($data['status']['succeed'] == 1) {
+                    ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/index/login')));
+                } else {
+                    ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_profile/edit_password')));
+                }
+                    
+                } else {
+                    ecjia_front::$controller->showmessage(__('两次输入的密码不一致'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_profile/edit_password')));
+                }
+            }
             ecjia_front::$controller->assign_lang();
             ecjia_front::$controller->assign('hideinfo', '123');
             ecjia_front::$controller->display('user_edit_password.dwt');

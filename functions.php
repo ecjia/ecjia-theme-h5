@@ -141,12 +141,6 @@ RC_Hook::add_action('user/user_bonus/bonus', array('user_bonus_controller', 'bon
 RC_Hook::add_action('user/user_bonus/add_bonus', array('user_bonus_controller', 'add_bonus'));
 RC_Hook::add_action('user/user_bonus/async_bonus_list', array('user_bonus_controller', 'async_bonus_list'));
 
-RC_Loader::load_theme('extras/controller/user_booking_controller.php');
-RC_Hook::add_action('user/user_booking/booking_list', array('user_booking_controller', 'booking_list'));
-RC_Hook::add_action('user/user_booking/async_booking_list', array('user_booking_controller', 'async_booking_list'));
-RC_Hook::add_action('user/user_booking/del_booking', array('user_booking_controller', 'del_booking'));
-RC_Hook::add_action('user/user_booking/add_booking', array('user_booking_controller', 'add_booking'));
-RC_Hook::add_action('user/user_booking/insert_booking', array('user_booking_controller', 'insert_booking'));
 
 RC_Loader::load_theme('extras/controller/user_collection_controller.php');
 RC_Hook::add_action('user/user_collection/collection_list', array('user_collection_controller', 'collection_list'));
@@ -156,10 +150,6 @@ RC_Hook::add_action('user/user_collection/del_attention', array('user_collection
 RC_Hook::add_action('user/user_collection/delete_collection', array('user_collection_controller', 'delete_collection'));
 RC_Hook::add_action('user/user_collection/add_collection', array('user_collection_controller', 'add_collection'));
 
-RC_Loader::load_theme('extras/controller/user_comment_controller.php');
-RC_Hook::add_action('user/user_comment/comment_list', array('user_comment_controller', 'comment_list'));
-RC_Hook::add_action('user/user_comment/async_comment_list', array('user_comment_controller', 'async_comment_list'));
-RC_Hook::add_action('user/user_comment/delete_comment', array('user_comment_controller', 'delete_comment'));
 
 RC_Loader::load_theme('extras/controller/user_message_controller.php');
 RC_Hook::add_action('user/user_message/msg_list', array('user_message_controller', 'msg_list'));
@@ -197,22 +187,18 @@ RC_Loader::load_theme('extras/controller/user_tag_controller.php');
 RC_Hook::add_action('user/user_tag/tag_list', array('user_tag_controller', 'tag_list'));
 RC_Hook::add_action('user/user_tag/del_tag', array('user_tag_controller', 'del_tag'));
 
-// topic 专题
-RC_Loader::load_theme('extras/controller/topic_controller.php');
-RC_Hook::add_action('topic/index/init', array('topic_controller', 'init'));
-RC_Hook::add_action('topic/index/info', array('topic_controller', 'info'));
-RC_Hook::add_action('topic/index/async_topic_list', array('topic_controller', 'async_topic_list'));
+
 
 /**
  * step：3
  * 这里开始 注册“方法函数”自动加载列表 到Hook自动加载列表，为自动加载做准备
  */
 RC_Hook::add_action('class_touch_function',     function () {RC_Loader::load_theme('extras/classes/utility/touch_function.class.php');});
-RC_Hook::add_action('class_article_function',   function () {RC_Loader::load_theme('extras/classes/utillity/article_function.class.php');});
-RC_Hook::add_action('class_cart_function',      function () {RC_Loader::load_theme('extras/classes/utillity/cart_function.class.php');});
-RC_Hook::add_action('class_goods_function',     function () {RC_Loader::load_theme('extras/classes/utillity/goods_function.class.php');});
-RC_Hook::add_action('class_orders_function',    function () {RC_Loader::load_theme('extras/classes/utillity/orders_function.class.php');});
-RC_Hook::add_action('class_user_function',      function () {RC_Loader::load_theme('extras/classes/utillity/user_function.class.php');});
+RC_Hook::add_action('class_article_function',   function () {RC_Loader::load_theme('extras/classes/utility/article_function.class.php');});
+RC_Hook::add_action('class_cart_function',      function () {RC_Loader::load_theme('extras/classes/utility/cart_function.class.php');});
+RC_Hook::add_action('class_goods_function',     function () {RC_Loader::load_theme('extras/classes/utility/goods_function.class.php');});
+RC_Hook::add_action('class_orders_function',    function () {RC_Loader::load_theme('extras/classes/utility/orders_function.class.php');});
+RC_Hook::add_action('class_user_function',      function () {RC_Loader::load_theme('extras/classes/utility/user_function.class.php');});
 
 /**
  * step:5
