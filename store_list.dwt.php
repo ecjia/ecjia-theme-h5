@@ -82,13 +82,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<img class="pic" src="{$val.img.small}">
 			<dl>
 				<dt>{$val.name}</dt>
+				<dd></dd>
 				<dd><label>{$val.shop_price}</label></dd>
 			</dl>
 		</a>
-		<div class="input-number">
-			<i class="iconfont icon-roundadd" data-toggle="add-to-cart"></i>
-			<span></span>
-			<i></i>
+		<div class="box">
+			<span class="reduce show" data-toggle="remove-to-cart">减</span>
+			<label class="show">1</label>
+			<span class="add storeSearchCart" data-toggle="add-to-cart">加</span>
 		</div>
 	</li>
 	<!-- {/if} -->
@@ -105,7 +106,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="minicart-content" cartcontent="" style="transform: translateY(0px); display: block;">
 			<i class="a57"></i>
 			<div class="a58 ">
-				<span class="a69 a6a checked" checkallgoods="" onclick="">全选</span><p class="a6c">(已选1件，共0.75kg)</p><a href="javascript:void 0;" class="a59" deleteall="" clstag="pageclick|keycount|cart_clean_20160623_1|1">清空购物车</a>
+				<span class="a69 a6a checked" checkallgoods="" onclick="">全选</span><p class="a6c">(已选1件，共0.75kg)</p><a href="javascript:void 0;" class="a59" data-toggle="deleteall">清空购物车</a>
 			</div>
 			<div class="a5b" cartitemlist="" style="height: auto;">
 				<div class="a5l single">

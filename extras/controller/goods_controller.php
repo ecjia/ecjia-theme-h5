@@ -42,8 +42,6 @@ class goods_controller {
         $keywords = htmlspecialchars($_REQUEST['keywords']);
         $val = mysql_like_quote(trim($keywords));
         
-        
-        
         // $brand = intval($_REQUEST['brand']);
         // $type = intval($_REQUEST['type']);
         //
@@ -572,8 +570,40 @@ class goods_controller {
     		$goods_num = count($goods_list);
     	}
     	
-    	ecjia_front::$controller->assign('goods_list', $goods_list);
+    	$token = 'cb753377df06afef1c779e3808381105522a023b';
+    	$arr = array(
+    		'token' 	=> $token, 
+    		'seller_id' => $store_id, 
+    		'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371')
+    	);
+    	$cache_key = 'cart_list'.$store_id.$token;
+//     	$cart_list = RC_Cache::app_cache_get($cache_key, 'goods');
+//     	if (!$cart_list) {
+    		//店铺购物车商品
+    		$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
+    		RC_Cache::app_cache_set($cache_key, $cart_list, 'goods', 60*24);//24小时缓存
+//     	}
 
+    	$goods_cart_list = array();
+    	if (!empty($cart_list['cart_list'][0]['goods_list'])) {
+    		foreach ($cart_list['cart_list'][0]['goods_list'] as $k => $v) {
+    			if (!empty($v['goods_number'])) {
+    				$goods_cart_list[$v['goods_id']] = array('num' => $v['goods_number'], 'rec_id' => $v['rec_id']);
+    			}
+    		}
+    	}
+    	if (!empty($goods_list)) {
+    		foreach ($goods_list as $k => $v) {
+    			if (array_key_exists($v['id'], $goods_cart_list)) {
+    				if (!empty($goods_cart_list[$v['id']]['num'])) {
+    					$goods_list[$k]['num'] = $goods_cart_list[$v['id']]['num'];
+    					$goods_list[$k]['rec_id'] = $goods_cart_list[$v['id']]['rec_id'];
+    				}
+    			}
+    		}
+    	}
+    	
+    	ecjia_front::$controller->assign('goods_list', $goods_list);
     	ecjia_front::$controller->assign('type_name', $type_name);
     	ecjia_front::$controller->assign('store_id', $store_id);
     	ecjia_front::$controller->assign('category_id', $category_id);
@@ -658,7 +688,63 @@ class goods_controller {
     			}
     		}
     	}
+    	
+    	$token = 'cb753377df06afef1c779e3808381105522a023b';
+    	$arr = array(
+    		'token' 	=> $token,
+    		'seller_id' => $store_id,
+    		'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371')
+    	);
+    	$cache_key = 'cart_list'.$store_id.$token;
+    	$cart_list = RC_Cache::app_cache_get($cache_key, 'goods');
+    	if (!$cart_list) {
+    		//店铺购物车商品
+    		$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
+    		RC_Cache::app_cache_set($cache_key, $cart_list, 'goods', 60*24);//24小时缓存
+    	}
+    	 
+    	$goods_cart_list = array();
+    	if (!empty($cart_list['cart_list'][0]['goods_list'])) {
+    		foreach ($cart_list['cart_list'][0]['goods_list'] as $k => $v) {
+    			if (!empty($v['goods_number'])) {
+    				$goods_cart_list[$v['goods_id']] = array('num' => $v['goods_number'], 'rec_id' => $v['rec_id']);
+    			}
+    		}
+    	}
+    	if (!empty($goods_list)) {
+    		foreach ($goods_list as $k => $v) {
+    			if (array_key_exists($v['id'], $goods_cart_list)) {
+    				if (!empty($goods_cart_list[$v['id']]['num'])) {
+    					$goods_list[$k]['num'] = $goods_cart_list[$v['id']]['num'];
+    					$goods_list[$k]['rec_id'] = $goods_cart_list[$v['id']]['rec_id'];
+    				}
+    			}
+    		}
+    	}
     	ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $goods_list, 'name' => $type_name, 'num' => $goods_num));
+    }
+    
+    public static function update_cart() {
+    	$rec_id 	= intval($_POST['rec_id']);
+    	$new_number = intval($_POST['val']);
+    	$store_id 	= intval($_POST['store_id']);
+    	
+    	$token = 'cb753377df06afef1c779e3808381105522a023b';
+    	$arr = array(
+    		'token' 	=> $token,
+    		'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371'),
+    		'rec_id'	=> $rec_id,
+    	);
+    	if (!empty($store_id)) {
+    		$arr['seller_id'] = $store_id;
+    	}
+    	if (!empty($new_number)) {
+    		$arr['new_number'] = $new_number;
+    		ecjia_touch_manager::make()->api(ecjia_touch_api::CART_UPDATE)->data($arr)->run();
+    	} else {
+    		ecjia_touch_manager::make()->api(ecjia_touch_api::CART_DELETE)->data($arr)->run();
+    	}
+    	ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON);
     }
     
 }
