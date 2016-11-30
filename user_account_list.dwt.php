@@ -15,8 +15,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <ul class="ecjia-list ecjia-account">
 	<div class="ecjia-nolist">
 		<i class="glyphicon glyphicon-piggy-bank"></i>
-		{if $account_log}
-		<span class="nolist-size">可用余额：<span> ￥99999</span></span>
+		{if $user}
+		<span class="nolist-size">可用余额：<span>{$user.formated_user_money}</span></span>
 		{else}
 		<p>{t}暂无账单记录{/t}</p>
 		{/if}

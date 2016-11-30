@@ -214,3 +214,17 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
     ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
 });
 
+/* ecjiaopen协议 */
+ecjia_open::macro('goods_seller_list', function($querys) {
+    return RC_Uri::url('goods/category/store_list', array('cid' => $querys['category_id']));
+});
+
+ecjia_open::macro('goods_detail', function($querys) {
+	return RC_Uri::url('goods/index/show', array('goods_id' => $querys['goods_id']));
+});
+	
+ecjia_open::macro('seller', function($querys) {
+// 	return RC_Uri::url('goods/seller/store_list', array('cid' => $querys['category_id']));
+});
+
+
