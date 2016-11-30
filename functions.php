@@ -1,8 +1,5 @@
 <?php
-// RC_Hook::add_action('ecjia_controller', function ($arg) {
-//     RC_Loader::load_theme('extras/controller/front_controller.php');
-//     new front_controller();
-// });
+
 RC_Loader::load_app_class('touch', 'touch', false);
 
 RC_Loader::load_theme('extras/controller/touch_controller.php');
