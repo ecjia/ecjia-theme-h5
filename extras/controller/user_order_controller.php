@@ -205,6 +205,11 @@ class user_order_controller {
                 ->send()->getBody();
                 $rs = json_decode($rs,true);
                 if (! $rs['status']['succeed']) {
+                    if ($_GET['from'] == 'list') {
+                        $url = RC_Uri::url('user/user_order/order_list');
+                    } else {
+                        $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
+                    }
                     $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
                     ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url));
                 }
@@ -252,9 +257,23 @@ class user_order_controller {
         // $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
         // $orders = get_user_orders($where, $size, $page, $order);
         // ecjia_front::$controller->assign('order', $orders['list']);
-        ecjia_front::$controller->assign_lang();
+//         ecjia_front::$controller->assign_lang();
         // $sayList = ecjia_front::$controller->fetch('user_order_list.dwt');
         // ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' , 'is_last' => $orders['is_last']));
+        
+        
+        $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+        $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+        
+        $params_order = array('token' => touch_function::get_token(), 'pagination' => array('count' => $size, 'page' => $page), 'type' => '');
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)
+        ->send()->getBody();
+        $data = json_decode($data, true);
+        
+        ecjia_front::$controller->assign('order_list', $data['data']);
+        ecjia_front::$controller->assign_lang();
+        $sayList = ecjia_front::$controller->fetch('user_order_list.dwt');
+        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $data['paginated']['more'] ? 0 : 1));
     }
 
     /**
