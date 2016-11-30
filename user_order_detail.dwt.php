@@ -47,19 +47,33 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<!-- {/foreach} -->
 			</ul>
 			<ul class="ecjia-list ecjia-margin-t">
-				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
-				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
-				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
-				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
-				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
-				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
-				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
-				<li>商品金额:<span class="ecjiaf-fr">￥155.50</span></li>
+				<li>商品金额：<span class="ecjiaf-fr">{$order.formated_goods_amount}</span></li>
+				<li>积分抵扣：<span class="ecjiaf-fr">{$order.formated_integral_money}</span></li>
+				<li>红包抵扣：<span class="ecjiaf-fr">{$order.formated_bonus}</span></li>
+				<li>税费金额：<span class="ecjiaf-fr">{$order.formated_tax}</span></li>
+				<li>优惠：<span class="ecjiaf-fr">{$order.formated_discount}</span></li>
+				<li>运费：<span class="ecjiaf-fr">{$order.formated_shipping_fee}</span></li>
+				<li>共计：<span class="ecjiaf-fr">{$order.formated_total_fee}</span></li>
+			</ul>
+			<ul class="ecjia-list ecjia-margin-t">
+			    <li>发货时间：<span class="">{if $order.shipping_time}{$order.shipping_time}{else}未发货{/if}</span></li>
+				<li>收货人：<span class="">{$order.consignee} {$order.mobile}</span></li>
+				<li>收货地址：<span class="">{$order.province} {$order.city} {$order.district}{$order.address}</span></li>
+				<li>配送方式：<span class="">{$order.shipping_name}</span></li>
+			</ul>
+			<ul class="ecjia-list ecjia-margin-t">
+				<li>订单号：<span class="">{$order.order_sn}</span></li>
+				<li>下单时间：<span class="">{$order.formated_add_time}</span></li>
+				<li>支付方式：<span class="">{$order.pay_name}</span></li>
+				<li>备注：<span class="">{if $order.postscript}{$order.postscript}{else}无{/if}</span></li>
+				<li>商家电话：<span class="">{$order.service_phone}</span></li>
 			</ul>
 			<div class="order-ft-link">
-				<a class="btn btn-small" href="#">联系卖家</a>
-				<a class="btn btn-small" href="#">再次购买</a>
-				<a class="btn btn-small" href="#">取消订单</a>
+				<a class="btn btn-small" href="tel://{$order.service_phone}">联系卖家</a>
+				{if $order.pay_status eq 0}<a class="btn btn-small" href="#">取消订单</a> <a class="btn btn-small" href="#">去支付</a>
+				{else} <a class="btn btn-small" href="#">再次购买</a>
+				{/if}
+				{if $list.shipping_status eq '1'} <a class="btn btn-small" href="#">确认收货</a>{/if}
 			</div>
 		</div>
 	</div>
