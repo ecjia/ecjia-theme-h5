@@ -43,10 +43,11 @@ class user_order_controller {
         // ecjia_front::$controller->assign('status', $status);
         // ecjia_front::$controller->assign('page', $orders['page']);
         
-        $rs_token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-        
-        $params_order = array('token' => $rs_token['access_token'],'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();//->send()->getBody();
+        $params_order = array('token' => get_token(), 'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)
+        ->run();
+//         ->send()->getBody();
+        _dump($data,2);
         ecjia_front::$controller->assign('order_list', $data);
         ecjia_front::$controller->assign_title(RC_Lang::lang('order_list_lnk'));
         ecjia_front::$controller->assign('title', RC_Lang::lang('order_list_lnk'));
@@ -69,7 +70,13 @@ class user_order_controller {
         // } else {
         //     ecjia_front::$controller->showmessage($res->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url));
         // }
+        
+//         order/cancel
     }
+    
+    // 再次购买 重新加入购物车
+    
+    
 
     /**
     * ajax获取订单
@@ -199,8 +206,7 @@ class user_order_controller {
             ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         }
         
-        $rs_token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-        $params_order = array('token' => $rs_token['access_token'], 'order_id' => $order_id);
+        $params_order = array('token' => get_token(), 'order_id' => $order_id);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
         _dump($data,2);
         ecjia_front::$controller->assign('order', $data);

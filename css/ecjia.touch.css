@@ -626,7 +626,7 @@ select, input, textarea {
 	outline: 0 none;
 }
 .ecjia-form .form-group .input input {
-	padding-left: 3em;
+	padding-left: 2em;
 	width: 100%;
 }
 .ecjia-form .form-group .form-label input,

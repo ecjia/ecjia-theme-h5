@@ -22,13 +22,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <li>
             	<a href="{url path='user/user_profile/modify_username'}">
             		<span class="icon-name margin-no-l">用户名 </span>
-            		<span class="icon-price text-color">向日葵</span>
+            		<span class="icon-price text-color">{$user.name}</span>
             		<i class="iconfont icon-jiantou-right  margin-r-icon"></i>
             	</a>
             </li>
              <li>
             		<span class="icon-name margin-no-l">用户等级</span>
-            		<span class="icon-price text-color">非特殊等级</span>
+            		<span class="icon-price text-color">{$user.rank_name}</span>
             </li>
         </div>
         <div class="ecjia-margin-t ecjia-list list-short">

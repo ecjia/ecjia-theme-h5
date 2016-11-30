@@ -1,8 +1,5 @@
 <?php
-RC_Hook::add_action('ecjia_controller', function ($arg) {
-    RC_Loader::load_theme('extras/controller/front_controller.php');
-    new front_controller();
-});
+
 RC_Loader::load_app_class('touch', 'touch', false);
 
 RC_Loader::load_theme('extras/controller/touch_controller.php');
@@ -93,7 +90,6 @@ RC_Loader::load_theme('extras/controller/user_controller.php');
 RC_Hook::add_action('user/index/init', array('user_controller', 'init'));
 RC_Hook::add_action('user/index/login', array('user_controller', 'login'));
 RC_Hook::add_action('user/index/signin', array('user_controller', 'signin'));
-RC_Hook::add_action('user/index/register_signup', array('user_controller', 'register_signup'));
 RC_Hook::add_action('user/index/register', array('user_controller', 'register'));
 RC_Hook::add_action('user/index/set_password', array('user_controller', 'set_password'));
 RC_Hook::add_action('user/index/reset_password', array('user_controller', 'reset_password'));
@@ -181,6 +177,7 @@ RC_Hook::add_action('user/user_order/order_detail', array('user_order_controller
 RC_Hook::add_action('user/user_order/affirm_received', array('user_order_controller', 'affirm_received'));
 RC_Hook::add_action('user/user_order/edit_payment', array('user_order_controller', 'edit_payment'));
 RC_Hook::add_action('user/user_order/edit_surplus', array('user_order_controller', 'edit_surplus'));
+RC_Hook::add_action('user/user_order/buy_again', array('user_order_controller', 'buy_again'));
 
 RC_Loader::load_theme('extras/controller/user_package_controller.php');
 RC_Hook::add_action('user/user_package/service', array('user_package_controller', 'service'));
@@ -206,6 +203,28 @@ RC_Hook::add_action('topic/index/init', array('topic_controller', 'init'));
 RC_Hook::add_action('topic/index/info', array('topic_controller', 'info'));
 RC_Hook::add_action('topic/index/async_topic_list', array('topic_controller', 'async_topic_list'));
 
-/* 加载多商户方法路由文件 */
-// RC_Loader::load_theme('b2b2c_function.php');
-// end
+/**
+ * step：3
+ * 这里开始 注册“方法函数”自动加载列表 到Hook自动加载列表，为自动加载做准备
+ */
+RC_Hook::add_action('class_touch_function',     function () {RC_Loader::load_theme('extras/classes/utility/touch_function.class.php');});
+RC_Hook::add_action('class_article_function',   function () {RC_Loader::load_theme('extras/classes/utillity/article_function.class.php');});
+RC_Hook::add_action('class_cart_function',      function () {RC_Loader::load_theme('extras/classes/utillity/cart_function.class.php');});
+RC_Hook::add_action('class_goods_function',     function () {RC_Loader::load_theme('extras/classes/utillity/goods_function.class.php');});
+RC_Hook::add_action('class_orders_function',    function () {RC_Loader::load_theme('extras/classes/utillity/orders_function.class.php');});
+RC_Hook::add_action('class_user_function',      function () {RC_Loader::load_theme('extras/classes/utillity/user_function.class.php');});
+
+/**
+ * step:5
+ * 这个方法在前台控制器加载后执行，这个时候环境初始化完毕，这里开始正式进入主题框架的流程
+ */
+RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
+
+
+    if (ROUTE_M == 'user') {
+        
+    }
+
+    ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
+});
+

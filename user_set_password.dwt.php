@@ -57,7 +57,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 
         <div class="tab-pane{if $enabled_sms_signin neq 1} active{/if}" id="two">
-    		<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="register" action="{url path='user/index/register_signup'}" method="post">
+    		<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="register" action="{url path='user/index/set_password'}" method="post">
     			<input type="hidden" name="flag" id="flag" value="register" />
     			<div class="form-group margin-right-left">
     				<label class="input">
@@ -80,7 +80,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     			</div>
     			<div class="ecjia-login-b">
     				<div class="around margin-top">
-    				<button class="btn btn-info login-btn" name="signin" data-url="{RC_Uri::url('user/index/register_signup')}" type="submit">{$lang.login_finish}</button>
+    				<button class="btn btn-info login-btn" name="signin" data-url="{RC_Uri::url('user/index/set_password')}" type="submit">{$lang.login_finish}</button>
     				</div>
     			</div>
     		</form>
