@@ -32,15 +32,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="flow-goods-list">
 				<a class="ecjiaf-db" href='{url path="user/user_order/order_detail" args="order_id={$list.order_id}"}'>
 					<ul class="{if count($list.goods_list) > 1}goods-list{else}goods-item{/if}"><!-- goods-list 多个商品隐藏商品名称,goods-item -->
-						<!-- {foreach from=$list.goods_list item=goods} -->
+						<!-- {foreach from=$list.goods_list item=goods name=goods} -->
 						<!-- {if $smarty.foreach.goods.iteration gt 4} -->
 						<!-- 判断不能大于4个 -->
 						<li class="goods-img-more">
 							<i class="icon iconfont">&#xe62e;</i>
 							<p class="ecjia-fz-small">共{$list.goods_number}件</p>
 						</li>
-						{break}
-						{/if} 
+						<!-- {break} -->
+						<!-- {/if} -->
 						<li class="goods-img ecjiaf-fl ecjia-margin-r ecjia-icon">
 							<img class="ecjiaf-fl" src="{$goods.img.thumb}" alt="{$goods.name}" title="{$goods.name}" />
 							{if $goods.goods_number gt 1}<span class="ecjia-icon-num top">{$goods.goods_number}</span>{/if}
