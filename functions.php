@@ -1,8 +1,8 @@
 <?php
-RC_Hook::add_action('ecjia_controller', function ($arg) {
-    RC_Loader::load_theme('extras/controller/front_controller.php');
-    new front_controller();
-});
+// RC_Hook::add_action('ecjia_controller', function ($arg) {
+//     RC_Loader::load_theme('extras/controller/front_controller.php');
+//     new front_controller();
+// });
 RC_Loader::load_app_class('touch', 'touch', false);
 
 RC_Loader::load_theme('extras/controller/touch_controller.php');
@@ -205,6 +205,17 @@ RC_Hook::add_action('topic/index/init', array('topic_controller', 'init'));
 RC_Hook::add_action('topic/index/info', array('topic_controller', 'info'));
 RC_Hook::add_action('topic/index/async_topic_list', array('topic_controller', 'async_topic_list'));
 
-/* 加载多商户方法路由文件 */
-// RC_Loader::load_theme('b2b2c_function.php');
-// end
+/**
+ * step:5
+ * 这个方法在前台控制器加载后执行，这个时候环境初始化完毕，这里开始正式进入主题框架的流程
+ */
+RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
+
+
+    if (ROUTE_M == 'user') {
+        
+    }
+
+    ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
+});
+
