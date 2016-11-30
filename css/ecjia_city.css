@@ -447,10 +447,15 @@
 	width: 100%;
 	max-width: 640px;
 }
+.page_hearer_hide{
+	display: none;
+}
 .ecjia-header.ecjia-store-banner {
 	background: #fff;
-	height: 9em;
-	position: relative;
+    height: 9em;
+    position: fixed;
+    width: 100%;
+    max-width: 640px;
 }
 .ecjia-header.ecjia-store-banner i{
 	z-index: 2;
@@ -465,7 +470,10 @@
 }
 .ecjia-store-brief {
 	height: auto;
-	position: relative;
+    position: fixed;
+    width: 100%;
+	top: 9em;
+	max-width: 640px;
 }
 .ecjia-store-brief .store-info{
 	width:100%;
@@ -519,7 +527,7 @@
 .ecjia-store-brief .store-name i{
 	position: absolute;
 	top: 1.2em;
-	right: .5em;
+	right: 0em;
 	font-size:1.1em;
 }
 .ecjia-store-brief .store-range{
@@ -557,37 +565,27 @@
 	color: #333;
 }
 .ecjia-store-goods {
-	position: fixed;
-    max-width: 640px;
-    width: 100%;
 }
 .ecjia-store-goods .a2g {
     display: block;
 }
 .ecjia-store-goods .a1n {
-    position: relative;
+    position: fixed;
+    top: 15em;
+    bottom: 0;
+    width: 100%;
+	max-width: 640px;
     z-index: 8;
-    -webkit-transform: translate3d(0,0,0);
-    -ms-transform: translate3d(0,0,0);
-    -o-transform: translate3d(0,0,0);
-    -moz-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-    -webkit-transition: -webkit-transform 400ms ease-in-out;
-    -ms-transition: -ms-transform 400ms ease-in-out;
-    -moz-transition: -moz-transform 400ms ease-in-out;
-    -o-transition: -o-transform 400ms ease-in-out;
-    transition: transform 400ms ease-in-out;
+    padding-bottom: 45px;
 }
-
 .ecjia-store-goods .wg{
-	position: absolute;
-	left: 0;
-	right: 0;
+	position: relative;
+    position: relative;
+    padding-top: 1px;
     background: #eaeaea;
-    padding: .3em .5em;
-    -webkit-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    box-sizing: border-box;;
+    height: 40px;
+    line-height: 40px;
+    padding: 5px 10px;
 }
 .ecjia-store-goods .wg .wh {
     height: 28px;
@@ -613,11 +611,10 @@
 }
 .ecjia-store-goods .a21 {
 	position: absolute;
-    top: 2.6em;
+    top: 40px;
     left: 0;
     bottom: 0;
     width: 100%;
-	height: 40em;
     background-color: #FFF;
 }
 .clearfix:after {
@@ -708,7 +705,7 @@
 	font-weight: 500;
 	text-align: center;
 	position: relative;
-	padding: 1.2em 1em;
+	padding: 1.2em .5em;
 }
 .ecjia-store-goods .a1o li.active {
     background: #fff;
@@ -732,7 +729,7 @@
 }
 .ecjia-store-goods .a1n .a1x {
 	position: absolute;
-    top: 1.5em;
+    top: 2em;
     bottom: 0;
     left: 6em;
     right: 0;
@@ -742,6 +739,12 @@
     background-color: #FFF;
     overflow: auto;
 	-webkit-overflow-scrolling: touch;
+}
+.ecjia-store-goods .a1n .a1x .a1z {
+	padding-bottom: 20px;
+    background: #fff;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
 .ecjia-store-goods .a1n .a1x li {
     position: relative;
@@ -903,7 +906,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 3.5em;
+    height: 48px;
     background-color: #fff;
     border-top: 1px solid #bbb;
 }
@@ -1391,6 +1394,20 @@
 	position: relative;
 	background: rgba(71, 170, 77, 0.7) none repeat scroll 0 0;
 }
+.ecjia-user .no-login {
+	border: 1px solid #00F;
+    width: 35%;
+    height: 26%;
+    text-align: center;
+    position: absolute;
+    padding: 1px;
+    border-color: #FFf;
+    top: 3.5em;
+    line-height: 2.3em;
+    margin-left: 33%;
+    color: #FFF;
+    border-radius: 30px;
+}
 .ecjia-user.ecjia-form .form-group {
 	padding-left: 0;
 	margin-left: 0;
@@ -1552,8 +1569,8 @@
 	border: 0.3em solid #fff;
 	padding: 2.7px;
 	position: absolute;
-	left: 41%;
-	right: 45;
+	left: 43%;
+	right: 43%;
     top: 3em;
     margin: 0;
 }
@@ -1603,8 +1620,8 @@
     text-align: center;
 }
 .ecjia-user.ecjia-user-info .user-img img {
-	width: 4em;
-	height: 4em;
+	width: 100%;
+	height: 100%;
     border-radius: 100%;
 }
 .ecjia-user.ecjia-user-info dl {
@@ -2321,8 +2338,8 @@
     background: none;
 }
 .ecjia .ecjia-order-detail .ecjia-checkout .flow-goods-list .goods-item li {
-	height: 6rem;
-    margin: 1rem 0;
+	height: 5em;
+    margin: 1em 0;
 }
 .ecjia .ecjia-order-detail .ecjia-checkout .flow-goods-list .goods-item {
 	padding: 0 1rem;
