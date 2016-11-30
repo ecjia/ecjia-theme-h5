@@ -207,7 +207,7 @@ RC_Hook::add_action('topic/index/async_topic_list', array('topic_controller', 'a
  * step：3
  * 这里开始 注册“方法函数”自动加载列表 到Hook自动加载列表，为自动加载做准备
  */
-RC_Hook::add_action('class_touch_function',         function () {RC_Loader::load_theme('extras/class/utility/touch_function.class.php');});
+RC_Hook::add_action('class_touch_function',     function () {RC_Loader::load_theme('extras/classes/utility/touch_function.class.php');});
 RC_Hook::add_action('class_article_function',   function () {RC_Loader::load_theme('extras/classes/utillity/article_function.class.php');});
 RC_Hook::add_action('class_cart_function',      function () {RC_Loader::load_theme('extras/classes/utillity/cart_function.class.php');});
 RC_Hook::add_action('class_goods_function',     function () {RC_Loader::load_theme('extras/classes/utillity/goods_function.class.php');});
