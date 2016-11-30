@@ -41,13 +41,12 @@ class user_controller {
             
 //         }
         
-//         $user = ecjia_touch_user::singleton()->getUserinfo();
-//         _dump($user,1);
-        
         //网店信息
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
-        ecjia_front::$controller->assign('data', $data);
-        
+        $user_img = get_user_img();
+        $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array())->run();
+//         ecjia_front::$controller->assign('data', $data);
+        ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('active', 5);
         

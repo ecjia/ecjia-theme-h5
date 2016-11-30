@@ -18,17 +18,20 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- TemplateEndEditable -->
 
 <div class="ecjia-user-info user-new-info ecjia-user">
-	<a href="{url path='user/user_profile/edit_profile'}"><div class="user-img ecjiaf-fl"><img src="{$user_img}" alt=""></a></div>
-	<div class="ecjiaf-fl ecjia-margin-l user-rank-name">
-		<span>{$info.username}</span>
-		<span class="ecjia-user-buttom">{$rank_name}</span>
-	</div>
-	<a href="{url path='user/user_message/msg_list'}">
-		<i class="iconfont icon-settings"></i>
-		{if $order_num.msg_num}
-		<span class="ecjia-icon ecjia-icon ecjia-icon-num">{$order_num.msg_num}</span>
-		{/if}
-	</a>
+    {if $user.id}
+    	<a href="{url path='user/user_profile/edit_profile'}"><div class="user-img ecjiaf-fl"><img src="{$user_img}" alt=""></a></div>
+    	<div class="ecjiaf-fl ecjia-margin-l user-rank-name">
+    		<span>{$user.name}</span>
+    		<span class="ecjia-user-buttom">{$user.rank_name}</span>
+    	</div>
+    	<a href="{url path='user/user_message/msg_list'}">
+    		{if $order_num.msg_num}
+    		<span class="ecjia-icon ecjia-icon ecjia-icon-num">{$order_num.msg_num}</span>
+    		{/if}
+    	</a>
+	{else}
+	   <a href="{url path='user/index/login'}"><div class="no-login">登陆 / 注册</div></a>
+	{/if}
 </div>
 
 <div class="ecjia-user-head">
@@ -45,19 +48,19 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <ul class="ecjia-list bonus ecjia-nav-child ecjia-list-three ecjia-login-nav-bottom">
 	<li>
 		<a href="{url path='user/user_account/account_detail'}">
-			<p>{$surplus_amount}</p>
+		    <p>{if $user.formated_user_money}{$user.formated_user_money}{else}{'- -'}{/if}</p>
 			<p>余额</p>
 		</a>
 	</li>
 	<li>
 		<a href="{url path='user/user_bonus/bonus'}">
-			<p>{$order_num.bonus}</p>
+		    <p>{if $user.user_bonus_count}{$user.user_bonus_count}{else}{'- -'}{/if}</p>
 			<p>红包</p>
 		</a>
 	</li>
 	<li>
 		<a href="{url path='user/user_bonus/bonus'}">
-			<p>{$integral}</p>
+			<p>{if $user.user_points}{$user.user_points}{else}{'- -'}{/if}</p>
 			<p>积分</p>
 		</a>
 	</li>
@@ -70,23 +73,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	<a href="{url path='user/user_address/address_list'}">
         		<i class="iconfont icon icon-location"></i>
         		<span class="icon-name">地址管理</span>
-        		<i class="iconfont  icon-jiantou-right"></i>
-        	</a>
-        </li>
-    </ul>
-
-    <ul class="ecjia-margin-t ecjia-list list-short">
-        <li>
-        	<a href="{url path='user/user_order/order_list'}">
-        		<i class="iconfont icon icon-homefill"></i>
-        		<span class="icon-name">掌柜管理</span>
-        		<i class="iconfont  icon-jiantou-right"></i>
-        	</a>
-        </li>
-        <li>
-        	<a href="{url path='user/user_address/address_list'}">
-        		<i class="iconfont icon icon-searchlist"></i>
-        		<span class="icon-name">店铺入驻查询</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
@@ -120,6 +106,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	<a href="{url path='user/user_address/address_list'}">
         		<i class="iconfont icon icon-eclogo"></i>
         		<span class="icon-name">公司介绍</span>
+        		<i class="iconfont  icon-jiantou-right"></i>
+        	</a>
+        </li>
+    </ul>
+     <ul class="ecjia-margin-t ecjia-list list-short">
+       <li>
+        	<a href="{url path='user/user_address/address_list'}">
+        		<i class="iconfont icon icon-settings"></i>
+        		<span class="icon-name">设置</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
