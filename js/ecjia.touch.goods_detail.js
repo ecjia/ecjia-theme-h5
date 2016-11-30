@@ -4,8 +4,11 @@
 ;(function(ecjia, $) {
 	ecjia.touch.goods_detail = {
 		init : function(){
-			ecjia.touch.goods_detail.promote_time();
 			ecjia.touch.goods_detail.change();
+			ecjia.touch.goods_detail.promote_time();
+			ecjia.touch.category.add_tocart();
+			ecjia.touch.category.remove_tocart();
+			ecjia.touch.category.toggle_cart();
 		},
 		change: function() {
 			$('.goods-p').on('click', function (e) {
@@ -65,7 +68,66 @@
         			obj.html(str); 
         		}); 
         	}, 1000); //每隔1秒执行一次 
-        }	
+        },		
+	    add_tocart:function(){
+            $("[data-toggle='add-to-cart']").on('click',function(ev){
+            	var $this = $(this);
+            	var show = $this.parent('.box').children('label');
+            	var val =  parseInt(show.html()) + 1;
+            	if (val > 0) {
+            		show.html(val).addClass('show').removeClass('hide');
+            		$this.parent('.box').children('.reduce').addClass('show').removeClass('hide');
+            	}
+            	
+            	var img = $this.parent().parent().children('img').attr('src');
+                var offset = $('.store-add-cart .a4x').offset(),
+                    flyer = $('<img class="u-flyer" src="'+ img  +'" alt="" style="width:50px;height:50px;">');
+                flyer.fly({
+                    start: { // 开始时位置
+                        left: ev.pageX - 40,
+                        top:  ev.pageY - $('body').scrollTop() - 40
+                    },
+                    end: { // 结束时位置
+                        left: offset.left + 15,
+                        top: offset.top - $('body').scrollTop() + 30,
+                        width : 0,
+                        height : 0,
+                    },
+                    onEnd: function(){ // 回调方法
+                        !$('.store-add-cart').hasClass('active') && $('.store-add-cart').addClass('active');
+                    }
+                });
+            });
+        },
+        remove_tocart : function() {
+            $("[data-toggle='remove-to-cart']").on('click', function(ev){
+            	var $this = $(this);
+            	var show = $this.parent('.box').children('label');
+            	var val =  parseInt(show.html()) - 1;
+            	if (val == 0) {
+            		show.html(val).removeClass('show').addClass('hide');
+            		$this.parent('.box').children('.reduce').removeClass('show').addClass('hide');
+            	} else {
+            		show.html(val);
+            	}
+            });
+        },
+        toggle_cart : function() {
+        	$('.show_cart').on('click', function(e){
+        		e.preventDefault();
+        		var bool = $('.store-add-cart').find('.a4x').attr('show');
+        		if (bool) {
+        			ecjia.touch.category.show_cart();
+        		} else {
+        			ecjia.touch.category.hide_cart();
+        		}
+        	});
+        	
+        	$('.a53').on('click', function(e){
+        		e.preventDefault();
+        		ecjia.touch.category.hide_cart();
+        	});
+        }    
 	};
 	
 	function checkTime(i) {    

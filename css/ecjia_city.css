@@ -2089,6 +2089,15 @@
 .goods-desc-info .goods-desc-nav-new {
 	border-bottom:0;
 }
+.goods-desc-info .goods-desc-nav-new li.active{
+	border-bottom-color:#ff1919;
+}
+.goods-desc-info .goods-desc-nav-new li.active .a1{
+	color:#ff1919;
+}
+.goods-desc-info .goods-desc-nav-new li.active .a2{
+	color:#ff1919;
+}
 .goods-add-cart{
     width: 136px;
     text-align: center;
