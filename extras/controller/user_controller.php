@@ -307,6 +307,9 @@ class user_controller {
         $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile))->send()->getBody();
         $data = json_decode($data,true);
+        if ($data['data']['registered'] == 1) {
+            ecjia_front::$controller->showmessage(__('手机号码已被绑定'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
         if ($data['status']['succeed'] == 1) {
             ecjia_front::$controller->showmessage(__('请手机验证码发送成功，请注意查收'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
         } else {
@@ -322,9 +325,6 @@ class user_controller {
         $mobile = is_mobile($_POST['mobile']) ? htmlspecialchars($_POST['mobile']) : '';
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile, 'code' => $code))->send()->getBody();
         $data = json_decode($data,true);
-        if ($data['data']['registered'] == 1) {
-            ecjia_front::$controller->showmessage(__('手机号码已被绑定'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-        }
         if ($data['status']['succeed'] == 1) {
             ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/index/set_password')));
         } else {
