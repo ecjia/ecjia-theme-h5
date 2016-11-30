@@ -19,7 +19,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             	<a href="{url path='user/user_account/account_list'}">
             		<i class="iconfont icon icon-qianbao"></i>
             		<span class="icon-name">我的余额 </span>
-            		<span class="icon-price">￥49545446</span>
+            		<span class="icon-price">{$user.formated_user_money}</span>
             		<i class="iconfont icon-jiantou-right"></i>
             	</a>
             </li>
@@ -27,14 +27,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             	<a href="{url path='user/user_bonus/bonus'}">
             		<i class="iconfont icon icon-redpacket"></i>
             		<span class="icon-name">红包</span>
-            		<span class="icon-price">456</span>
+            		<span class="icon-price">{$user.user_bonus_count}</span>
             		<i class="iconfont  icon-jiantou-right"></i>
             	</a>
             </li>
             <li>
             		<i class="iconfont icon icon-copy"></i>
             		<span class="icon-name">积分</span>
-            		<span class="icon-price">456</span>
+            		<span class="icon-price">{$user.user_points}</span>
             </li>
         </div>
     </ul>
