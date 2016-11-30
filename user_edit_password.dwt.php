@@ -19,7 +19,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-<form class="ecjia-form ecjia-login-edit-password-form ecjia-login-margin-top" name="formPassword" action="{url path='user/index/update_password'}" method="post" >
+<form class="ecjia-form ecjia-login-edit-password-form ecjia-login-margin-top" name="formPassword" action="{url path='user/user_profile/edit_password'}" method="post" >
 	<div class="ecjia-user ecjia-account ecjia-form">
         <ul>
             <div class="ecjia-list list-short form-group">
