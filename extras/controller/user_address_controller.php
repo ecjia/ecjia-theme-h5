@@ -37,8 +37,7 @@ class user_address_controller {
 //         ecjia_front::$controller->assign('title', RC_Lang::lang('consignee_info'));
 //         ecjia_front::$controller->assign_title(RC_Lang::lang('consignee_info'));
     	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => 'cac36e13e26a1084b4d9731d7b653b8b64a2c17d'))->run();
-//     	_dump($address_list, 1);
-		ecjia_front::$controller->assign('address_list', $address_list);
+	    ecjia_front::$controller->assign('address_list', $address_list);
         ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_address_list.dwt');
@@ -48,7 +47,6 @@ class user_address_controller {
      * 异步地址列表
      */
     public static function async_address_list() {
-    	_dump(1,1);
         $user_id = $_SESSION['user_id'];
         $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
@@ -74,7 +72,6 @@ class user_address_controller {
 //             }
 //         }
 //     	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => 'cac36e13e26a1084b4d9731d7b653b8b64a2c17d'))->run();
-    	_dump($address_list, 1);
 		ecjia_front::$controller->assign('address_list', $address_list);
         $sayList = ecjia_front::$controller->fetch('user_address_list.dwt');
         ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' , 'is_last' => $consignee_list['is_last']));
@@ -94,6 +91,9 @@ class user_address_controller {
         // ecjia_front::$controller->assign('city_list', $city_list);
         // ecjia_front::$controller->assign('district_list', $district_list);
         // ecjia_front::$controller->assign_title(RC_Lang::lang('add_address'));
+    	$add_address = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_ADD)->data(array('token' => 'c7d023a7be8ebe07d5a516d3c54b27b919c899fb'))->run();
+    	ecjia_front::$controller->assign('add_address', $add_address);
+    	_dump($add_address, 1);
         ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_add_address.dwt');
@@ -129,19 +129,21 @@ class user_address_controller {
      * 编辑收货地址的处理
      */
     public static function edit_address() {
-        // $id             = isset($_GET['id']) ? intval($_GET['id']) : '';
-        // $consignee      = get_consignee_list($_SESSION['user_id'], $id); /*获得用户对应收货人信息*/
-        // $province_list  = get_regions(1, 1);
-        // $city_list      = get_regions(2, $consignee['province']);
-        // $district_list  = get_regions(3, $consignee['city']);
-        // ecjia_front::$controller->assign('title', RC_Lang::lang('edit_address'));
-        // ecjia_front::$controller->assign('consignee', $consignee);
-        // ecjia_front::$controller->assign('country_list', get_regions());
-        // ecjia_front::$controller->assign('shop_province_list', get_regions(1, ecjia::config('shop_country')));
-        // ecjia_front::$controller->assign('province_list', $province_list);
-        // ecjia_front::$controller->assign('city_list', $city_list);
-        // ecjia_front::$controller->assign('district_list', $district_list);
-        // ecjia_front::$controller->assign_title(RC_Lang::lang('edit_address'));
+        $id             = isset($_GET['id']) ? intval($_GET['id']) : '';
+//         $consignee      = get_consignee_list($_SESSION['user_id'], $id); /*获得用户对应收货人信息*/
+//         $province_list  = get_regions(1, 1);
+//         $city_list      = get_regions(2, $consignee['province']);
+//         $district_list  = get_regions(3, $consignee['city']);
+//         ecjia_front::$controller->assign('title', RC_Lang::lang('edit_address'));
+//         ecjia_front::$controller->assign('consignee', $consignee);
+//         ecjia_front::$controller->assign('country_list', get_regions());
+//         ecjia_front::$controller->assign('shop_province_list', get_regions(1, ecjia::config('shop_country')));
+//         ecjia_front::$controller->assign('province_list', $province_list);
+//         ecjia_front::$controller->assign('city_list', $city_list);
+//         ecjia_front::$controller->assign('district_list', $district_list);
+//         ecjia_front::$controller->assign_title(RC_Lang::lang('edit_address'));
+        $edit_address = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data(array('token' => 'c7d023a7be8ebe07d5a516d3c54b27b919c899fb', 'address_id' => $id))->run();
+        ecjia_front::$controller->assign('edit_address', $edit_address);
         ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_edit_address.dwt');
@@ -176,7 +178,7 @@ class user_address_controller {
      * 删除收货地址
      */
     public static function del_address_list() {
-        // $id = intval($_GET['id']);
+        $id = intval($_GET['id']);
         // // $db_users = RC_Loader::load_app_model ( "users_model" );
         // RC_Loader::load_theme('extras/model/user/touch_users_model.class.php');
         // $db_users       = new touch_users_model();
@@ -187,6 +189,9 @@ class user_address_controller {
         // } else {
         //     ecjia_front::$controller->showmessage('该地址为默认的收货地址，不能删除', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
         // }
+    	$del_address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_DELETE)->data(array('token' => 'c7d023a7be8ebe07d5a516d3c54b27b919c899fb', 'address_id' => $id))->run();
+//     	_dump($del_address_list, 1);
+//     	ecjia_front::$controller->assign('del_address_list', $del_address_list);
     }
 
     /**
