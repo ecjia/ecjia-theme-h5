@@ -177,6 +177,7 @@ RC_Hook::add_action('user/user_order/order_detail', array('user_order_controller
 RC_Hook::add_action('user/user_order/affirm_received', array('user_order_controller', 'affirm_received'));
 RC_Hook::add_action('user/user_order/edit_payment', array('user_order_controller', 'edit_payment'));
 RC_Hook::add_action('user/user_order/edit_surplus', array('user_order_controller', 'edit_surplus'));
+RC_Hook::add_action('user/user_order/buy_again', array('user_order_controller', 'buy_again'));
 
 RC_Loader::load_theme('extras/controller/user_package_controller.php');
 RC_Hook::add_action('user/user_package/service', array('user_package_controller', 'service'));
@@ -201,6 +202,14 @@ RC_Loader::load_theme('extras/controller/topic_controller.php');
 RC_Hook::add_action('topic/index/init', array('topic_controller', 'init'));
 RC_Hook::add_action('topic/index/info', array('topic_controller', 'info'));
 RC_Hook::add_action('topic/index/async_topic_list', array('topic_controller', 'async_topic_list'));
+
+/**
+ * step：3
+ * 这里开始 注册“方法函数”自动加载列表 到Hook自动加载列表，为自动加载做准备
+ */
+RC_Hook::add_action('class_touch_function',         function () {RC_Loader::load_theme('extras/class/utility/touch_function.class.php');});
+RC_Hook::add_action('class_cart_function',          function () {RC_Loader::load_theme('extras/class/utility/cart_function.class.php');});
+RC_Hook::add_action('class_user_function',          function () {RC_Loader::load_theme('extras/class/utility/user_function.class.php');});
 
 /**
  * step:5
