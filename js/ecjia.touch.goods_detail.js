@@ -4,8 +4,30 @@
 ;(function(ecjia, $) {
 	ecjia.touch.goods_detail = {
 		init : function(){
-            this.promote_time();
+			ecjia.touch.goods_detail.promote_time();
+			ecjia.touch.goods_detail.change();
 		},
+		change: function() {
+			$('.goods-p').on('click', function (e) {
+				var id = $(this).attr('data-type');
+				if (id == 1) {
+					$('.p1').show();
+					$('.p2').hide();
+					$('#goods-info-one').show();
+					$('#goods-info-two').hide();
+				} else {
+					$('.p2').show();
+					$('.p1').hide();
+					$('#goods-info-two').show();
+					$('#goods-info-one').hide();
+				}
+			});
+			//购物车按钮
+			$('.add-cart-a').on('click', function (e) {
+				$('.ecjia-goods-plus-box').show();
+				$('.add-cart-a').hide();
+			});
+        },
         promote_time : function() {
         	var serverTime = Math.round(new Date().getTime()/1000) * 1000; //服务器时间，毫秒数 
         	var dateTime = new Date(); 

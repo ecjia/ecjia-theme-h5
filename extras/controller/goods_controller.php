@@ -245,7 +245,7 @@ class goods_controller {
 	    $goods_id = isset($_GET['id']) ? $_GET['id'] : 0;
 	    $rec_type = isset($_GET['rec_type']) ? $_GET['rec_type'] : 0;
 	    $object_id= isset($_GET['object_id']) ? $_GET['object_id'] : 0;
-	    $goods_id = 412;
+	    //$goods_id = 412;
 	    $par = array(
 	    		'goods_id' => $goods_id,
 	    		'rec_type' => $rec_type,

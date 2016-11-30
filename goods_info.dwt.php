@@ -19,8 +19,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 <div class="ecjia-goods-detail-header-title">
 	<ul>
-		<li class="active"><a class="nopjax" href="#goods-info-one" role="tab" data-toggle="tab">商品</a></li>
-		<li><a class="nopjax" href="#goods-info-two" role="tab" data-toggle="tab">详情</a></li>
+		<li><a class="nopjax goods-p" href="#goods-info-one" role="tab" data-toggle="tab" data-type="1">商品</a><p class="p1">—</p></li>
+		<li><a class="nopjax goods-p" href="#goods-info-two" role="tab" data-toggle="tab" data-type="2">详情</a><p class="p2">—</p></li>
 	</ul>
 </div>
 
@@ -63,8 +63,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	                	<div class="ecjia-left-time">
 	                		<i class="iconfont icon-remind"></i>
 							<span class="promote-time" data-type="1" value="{$goods_info.promote_end_time}"></span>
-	                	</div>
-	                		                	
+	                	</div>	          			
+	                	<a class="goods-add-cart add-cart-a" href="javascript:void 0;">加入购物车</a>
+	                	<div class="ecjia-goods-plus-box" style="display: none;">
+		                     <span class="reduce show" data-toggle="remove-to-cart">减</span>
+	                         <label class="show">1</label>
+	                         <span class="add storeSearchCart" data-toggle="add-to-cart">加</span>
+	                    </div>
 	                	<!-- {if $goods_info.favourable_list} -->
 			                	<div class="ecjia-favourable-goods-list">
 				                	<ul class="store-promotion">
@@ -81,7 +86,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<!-- {/if} -->
 	                <!--{else}-->
 	                {$goods_info.shop_price}
-	                <del>市场价：{$goods_info.market_price}</del>
+	                <del>市场价：{$goods_info.market_price}</del>	                
+	                <a class="goods-add-cart market-goods-add-cart add-cart-a" href="javascript:void 0;">加入购物车</a>
+	                <div class="ecjia-goods-plus-box" style="display: none;">
+	                     <span class="reduce show" data-toggle="remove-to-cart">减</span>
+                         <label class="show">1</label>
+                         <span class="add storeSearchCart" data-toggle="add-to-cart">加</span>
+                    </div>
 	                <!-- {/if} -->
 	            </div>
 	        </div>
@@ -134,7 +145,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!--商品描述-->
 	<!-- Nav tabs -->
 	<ul class="ecjia-list ecjia-list-two ecjia-nav goods-desc-nav goods-desc-nav-new">
-		<li class="">
+		<li class="active">
 			<a class="nopjax" href="#one" role="tab" data-toggle="tab">图文详情</a>
 		</li>
 		<li><a class="nopjax" href="#two" role="tab" data-toggle="tab">规格参数</a></li>
