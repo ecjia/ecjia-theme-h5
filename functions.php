@@ -89,28 +89,34 @@ RC_Hook::add_action('favourable/index/goods_list', array('favourable_controller'
 //会员
 RC_Loader::load_theme('extras/controller/user_controller.php');
 RC_Hook::add_action('user/index/init', array('user_controller', 'init'));
-RC_Hook::add_action('user/index/login', array('user_controller', 'login'));
-RC_Hook::add_action('user/index/signin', array('user_controller', 'signin'));
-RC_Hook::add_action('user/index/register', array('user_controller', 'register'));
-RC_Hook::add_action('user/index/set_password', array('user_controller', 'set_password'));
-RC_Hook::add_action('user/index/reset_password', array('user_controller', 'reset_password'));
-RC_Hook::add_action('user/index/mobile_register', array('user_controller', 'mobile_register'));
-RC_Hook::add_action('user/index/bind_signin', array('user_controller', 'bind_signin'));
-RC_Hook::add_action('user/index/bind_signup', array('user_controller', 'bind_signup'));
-RC_Hook::add_action('user/index/bind_login', array('user_controller', 'bind_login'));
-RC_Hook::add_action('user/index/signup', array('user_controller', 'signup'));
-RC_Hook::add_action('user/index/validate_code', array('user_controller', 'validate_code'));
-RC_Hook::add_action('user/index/validate_email', array('user_controller', 'validate_email'));
-RC_Hook::add_action('user/index/get_password_email', array('user_controller', 'get_password_email'));
-RC_Hook::add_action('user/index/get_password_question', array('user_controller', 'get_password_question'));
-RC_Hook::add_action('user/index/question_get_password', array('user_controller', 'question_get_password'));
-RC_Hook::add_action('user/index/send_pwd_email', array('user_controller', 'send_pwd_email'));
-RC_Hook::add_action('user/index/update_password', array('user_controller', 'update_password'));
-RC_Hook::add_action('user/index/logout', array('user_controller', 'logout'));
-RC_Hook::add_action('user/index/history', array('user_controller', 'history'));
-RC_Hook::add_action('user/index/clear_history', array('user_controller', 'clear_history'));
-RC_Hook::add_action('user/index/send_captcha', array('user_controller', 'send_captcha'));
-RC_Hook::add_action('user/index/act_register', array('user_controller', 'phone_register'));
+// RC_Hook::add_action('user/index/validate_email', array('user_controller', 'validate_email'));
+// RC_Hook::add_action('user/index/get_password_question', array('user_controller', 'get_password_question'));
+// RC_Hook::add_action('user/index/question_get_password', array('user_controller', 'question_get_password'));
+// RC_Hook::add_action('user/index/send_pwd_email', array('user_controller', 'send_pwd_email'));
+// RC_Hook::add_action('user/index/update_password', array('user_controller', 'update_password'));
+// RC_Hook::add_action('user/index/history', array('user_controller', 'history'));
+// RC_Hook::add_action('user/index/clear_history', array('user_controller', 'clear_history'));
+// RC_Hook::add_action('user/index/send_captcha', array('user_controller', 'send_captcha'));
+// RC_Hook::add_action('user/index/act_register', array('user_controller', 'phone_register'));
+
+//登陆注册
+RC_Loader::load_theme('extras/controller/user_privilege_controller.php');
+RC_Hook::add_action('user/privilege/login', array('user_privilege_controller', 'login'));
+RC_Hook::add_action('user/privilege/signin', array('user_privilege_controller', 'signin'));
+RC_Hook::add_action('user/privilege/signup', array('user_privilege_controller', 'signup'));
+RC_Hook::add_action('user/privilege/register', array('user_privilege_controller', 'register'));
+RC_Hook::add_action('user/privilege/bind_signup', array('user_privilege_controller', 'bind_signup'));
+RC_Hook::add_action('user/privilege/bind_signin', array('user_privilege_controller', 'bind_signin'));
+RC_Hook::add_action('user/privilege/bind_login', array('user_privilege_controller', 'bind_login'));
+RC_Hook::add_action('user/privilege/validate_code', array('user_privilege_controller', 'validate_code'));
+RC_Hook::add_action('user/privilege/set_password', array('user_privilege_controller', 'set_password'));
+RC_Hook::add_action('user/privilege/logout', array('user_privilege_controller', 'logout'));
+
+//找回密码
+RC_Loader::load_theme('extras/controller/user_get_password_controller.php');
+RC_Hook::add_action('user/get_password/get_password_email', array('user_get_password_controller', 'get_password_email'));
+RC_Hook::add_action('user/get_password/mobile_register', array('user_get_password_controller', 'mobile_register'));
+RC_Hook::add_action('user/get_password/reset_password', array('user_get_password_controller', 'reset_password'));
 
 RC_Loader::load_theme('extras/controller/user_account_controller.php');
 RC_Hook::add_action('user/user_account/account_detail', array('user_account_controller', 'account_detail'));

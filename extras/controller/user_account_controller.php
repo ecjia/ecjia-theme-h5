@@ -142,6 +142,8 @@ class user_account_controller {
         // }
         // ecjia_front::$controller->assign('payment_list', $payment_list);
         // ecjia_front::$controller->assign_lang();
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->display('user_account_recharge.dwt');
     }
 
