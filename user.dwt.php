@@ -30,7 +30,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     		{/if}
     	</a>
 	{else}
-	   <a href="{url path='user/index/login'}"><div class="no-login">登陆 / 注册</div></a>
+	   <a href="{url path='user/privilege/login'}"><div class="no-login">登陆 / 注册</div></a>
 	{/if}
 </div>
 
@@ -45,7 +45,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     	</li>
     </div>
 </div>
-<ul class="ecjia-list bonus ecjia-nav-child ecjia-list-three ecjia-login-nav-bottom">
+<ul class="ecjia-list bonus ecjia-nav-child-f ecjia-list-three ecjia-login-nav-bottom">
 	<li>
 		<a href="{url path='user/user_account/account_detail'}">
 		    <p>{if $user.formated_user_money}{$user.formated_user_money}{else}{'- -'}{/if}</p>
@@ -59,10 +59,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</a>
 	</li>
 	<li>
-		<a href="{url path='user/user_bonus/bonus'}">
-			<p>{if $user.user_points}{$user.user_points}{else}{'- -'}{/if}</p>
-			<p>积分</p>
-		</a>
+		<p>{if $user.user_points}{$user.user_points}{else}{'- -'}{/if}</p>
+		<p>积分</p>
 	</li>
 </ul>
 

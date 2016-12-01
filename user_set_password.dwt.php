@@ -57,7 +57,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 
         <div class="tab-pane{if $enabled_sms_signin neq 1} active{/if}" id="two">
-    		<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="register" action="{url path='user/index/set_password'}" method="post">
+    		<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="register" action="{url path='user/privilege/set_password'}" method="post">
     			<input type="hidden" name="flag" id="flag" value="register" />
     			<div class="form-group margin-right-left">
     				<label class="input">

@@ -21,9 +21,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 
-<!--{if $action eq 'get_password_email'}-->
 <div class="border_bottom_getpassword"></div>
-<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="getPassword" action="{url path='user/index/get_password_email'}" method="post">
+<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="getPassword" action="{url path='user/get_password/get_password_email'}" method="post">
 	<!-- 添加id，js用到 -->
 	<div class="form-group margin-right-left">
 		<label class="input-1">
@@ -41,9 +40,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<input name="act" type="hidden" value="send_pwd_email" />
 	<div class="ecjia-login-b">
 	   <div class="around margin-top">
-	       <input class="btn btn-info login-btn" name="get_password" type="submit" value="{$lang.next}" data-url="{RC_Uri::url('user/index/get_password_email')}"/>
+	       <input class="btn btn-info login-btn" name="get_password" type="submit" value="{$lang.next}" data-url="{RC_Uri::url('user/get_password/get_password_email')}"/>
 	   </div>
 	</div>
 </form>
-<!--{/if}-->
 <!-- {/block} -->

@@ -25,7 +25,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</ul>
     <!-- {/if} -->
     <div class="tab-pane{if $enabled_sms_signin neq 1} active{/if}" id="two">
-		<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="form" action="{url path='user/index/set_password'}" method="post">
+		<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="form" action="{url path='user/privilege/set_password'}" method="post">
 			<input type="hidden" name="flag" id="flag" value="register" />
 			<div class="form-group margin-right-left">
 				<label class="input">
@@ -41,7 +41,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 			<div class="small-submit">
                     <input type="hidden" name="referer" value="{$smarty.get.referer}" />
-                    <input type="button" class="btn btn-info login-btn" value="{$lang.return_verification}" data-url="{url path='user/index/signup'}" id="get_code" />
+                    <input type="button" class="btn btn-info login-btn" value="{$lang.return_verification}" data-url="{url path='user/privilege/signup'}" id="get_code" />
         	</div>
     		<li class="remark-size">{$lang.invitation_code}</li>
 			<div class="form-group bf margin-right-left">
@@ -55,7 +55,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<input name="enabled_sms" type="hidden" value="0" />
 				<input type="hidden" name="back_act" value="{$back_act}" />
 				<div class="around margin-top">
-				<button class="btn btn-info next-btn" type="button" data-url="{RC_Uri::url('user/index/validate_code')}">{$lang.next}</button>
+				<button class="btn btn-info next-btn" type="button" data-url="{RC_Uri::url('user/privilege/validate_code')}">{$lang.next}</button>
 				</div>
 			</div>
 		</form>
