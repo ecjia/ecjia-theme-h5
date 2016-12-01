@@ -1671,6 +1671,10 @@
 .ecjia-user .icon-location {
     color: #ebaa00;
 }
+.ecjia-nav-child-f li {
+	padding:1em .5em .5em;
+	line-height: 2em;
+}
 /*========================  地址列表 ===========================*/
 
 /*========================  账户余额 ===========================*/
@@ -1729,6 +1733,9 @@
 	border-right: 1px solid #ddd;
 	border-top: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
+}
+.ecjia-account.ecjia-form .form-group-text .input input {
+	padding-left: 3em;
 }
 /*========================  交易记录 ===========================*/
 .ecjia-account-record {
