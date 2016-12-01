@@ -52,7 +52,7 @@ class user_get_password_controller {
         // ecjia_front::$controller->assign_title(RC_Lang::lang('reset_new_password'));
         $passwordf = !empty($_POST['passwordf']) ? $_POST['passwordf'] : '';
         $passwords = !empty($_POST['passwords']) ? $_POST['passwords'] : '';
-        $mobile = is_mobile($_SESSION['mobile']) ? $_SESSION['mobile'] : '';
+        $mobile    = !empty($_SESSION['mobile']) ? $_SESSION['mobile'] : '';
         if ($passwordf != $passwords) {
             ecjia_front::$controller->showmessage(__('两次密码输入不一致'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('reset_password')));
         }

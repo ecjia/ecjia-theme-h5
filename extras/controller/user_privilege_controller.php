@@ -19,7 +19,7 @@ class user_privilege_controller {
         ecjia_front::$controller->assign('anonymous_buy', ecjia::config('anonymous_buy'));
         ecjia_front::$controller->assign('title', RC_Lang::lang('login'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('login'));
-        ecjia_front::$controller->assign('header_right' , array('info' => '注册', 'href' => RC_Uri::url('user/index/register')));
+        ecjia_front::$controller->assign('header_right' , array('info' => '注册', 'href' => RC_Uri::url('user/privilege/register')));
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_login.dwt');
     }
@@ -30,10 +30,10 @@ class user_privilege_controller {
     public static function logout() {
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNOUT)->run();
         //     	$user = integrate::init_users();
-        $back_act = RC_Uri::url('user/index/login');
+        $back_act = RC_Uri::url('user/privilege/login');
         //         $user->logout();
         //         $ucdata = empty($user->ucdata) ? "" : $user->ucdata;
-        ecjia_front::$controller->showmessage(RC_Lang::lang('logout') . $ucdata,ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $back_act,'is_show' => false));
+        ecjia_front::$controller->showmessage(RC_Lang::lang('logout') . $ucdata,ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $back_act));
     }
     
     /**
@@ -47,7 +47,7 @@ class user_privilege_controller {
         if ($data) {
             ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/index/init')));
         } else {
-            ecjia_front::$controller->showmessage(__("用户信息错误或者账号不存在"), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/index/login')));
+            ecjia_front::$controller->showmessage(__("用户信息错误或者账号不存在"), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/privilege/login')));
         }
     }
     
@@ -63,7 +63,7 @@ class user_privilege_controller {
      * 验证注册
      */
     public static function signup() {
-        $mobile = is_mobile($_GET['mobile']) ? htmlspecialchars($_GET['mobile']) : '';
+        $mobile = !empty($_GET['mobile']) ? htmlspecialchars($_GET['mobile']) : '';
         $_SESSION['mobile'] = $mobile;
         $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile))->send()->getBody();
@@ -80,8 +80,8 @@ class user_privilege_controller {
     
     /* 第三方登陆 */
     public static function bind_signin() {
-        $user_img = get_user_img();
-        ecjia_front::$controller->assign('user_img', $user_img);
+//         $user_img = get_user_img();
+//         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_bind_signin.dwt');
     }
@@ -105,11 +105,11 @@ class user_privilege_controller {
     /*注册用户验证码接受*/
     public static function validate_code() {
         $code = !empty($_POST['code']) ? trim($_POST['code']) : '';
-        $mobile = is_mobile($_POST['mobile']) ? htmlspecialchars($_POST['mobile']) : '';
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile, 'code' => $code))->send()->getBody();
+        $mobile = !empty($_POST['mobile']) ? htmlspecialchars($_POST['mobile']) : '';
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code))->send()->getBody();
         $data = json_decode($data,true);
         if ($data['status']['succeed'] == 1) {
-            ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/index/set_password')));
+            ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/set_password')));
         } else {
             ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
@@ -120,7 +120,7 @@ class user_privilege_controller {
         //
         // ecjia_front::$controller->assign('title', RC_Lang::lang('set_password'));
         // ecjia_front::$controller->assign_title(RC_Lang::lang('set_password'));
-        $mobile = is_mobile($_SESSION['mobile']) ? $_SESSION['mobile'] : '';
+        $mobile = !empty($_SESSION['mobile']) ? $_SESSION['mobile'] : '';
         $username = !empty($_POST['username']) ? $_POST['username'] : '';
         $password = is_numeric($_POST['password']) ? $_POST['password'] : '';
         if (!empty($username) && !empty($password)) {

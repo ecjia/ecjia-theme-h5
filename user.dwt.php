@@ -30,7 +30,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     		{/if}
     	</a>
 	{else}
-	   <a href="{url path='user/index/login'}"><div class="no-login">登陆 / 注册</div></a>
+	   <a href="{url path='user/privilege/login'}"><div class="no-login">登陆 / 注册</div></a>
 	{/if}
 </div>
 
