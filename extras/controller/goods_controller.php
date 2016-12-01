@@ -459,6 +459,39 @@ class goods_controller {
     			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($arr)->run();
     		}
     		ecjia_front::$controller->assign('keywords', $keywords);
+    		
+    		//购物车商品
+    		$token = 'cb753377df06afef1c779e3808381105522a023b';
+    		$paramater = array(
+    			'token' 	=> $token,
+    			'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371')
+    		);
+    		if (!empty($store_id)) {
+    			$paramater['seller_id'] = $store_id;
+    		}
+    		$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($paramater)->run();
+    		 
+    		$goods_cart_list = array();
+    		if (!empty($cart_list['cart_list'][0]['goods_list'])) {
+    			foreach ($cart_list['cart_list'][0]['goods_list'] as $k => $v) {
+    				if (!empty($v['goods_number'])) {
+    					$goods_cart_list[$v['goods_id']] = array('num' => $v['goods_number'], 'rec_id' => $v['rec_id']);
+    				}
+    			}
+    		}
+    		if (!empty($data)) {
+    			foreach ($data as $k => $v) {
+    				if (array_key_exists($v['id'], $goods_cart_list)) {
+    					if (!empty($goods_cart_list[$v['id']]['num'])) {
+    						$data[$k]['num'] = $goods_cart_list[$v['id']]['num'];
+    						$data[$k]['rec_id'] = $goods_cart_list[$v['id']]['rec_id'];
+    					}
+    				}
+    			}
+    		}
+    		ecjia_front::$controller->assign('cart_list', $cart_list['cart_list'][0]['goods_list']);
+    		ecjia_front::$controller->assign('count', $cart_list['cart_list'][0]['total']);
+    		
     	} else {
     		$arr['category_id'] = $cid;
     		$goods_seller_key = 'goods_seller_list_'.$cid;
@@ -755,8 +788,8 @@ class goods_controller {
     	if (is_array($rec_id)) {
     		$arr['rec_id'] = implode(',', $rec_id);
     		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_DELETE)->data($arr)->run();
-
-    		ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('goods/category/store_goods', array('store_id' => $store_id))));
+    		
+    		ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON);
     	} else {
     		if (!empty($new_number)) {
     			$arr['new_number'] = $new_number;

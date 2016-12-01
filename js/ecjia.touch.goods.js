@@ -137,7 +137,6 @@
         		'store_id' 	: store_id,
         		'goods_id'  : goods_id == undefined ? 0 : goods_id
         	};
-        	
         	//更新购物车中商品
             $.post(url, info, function(data){
             	$('.la-ball-atom').remove();
@@ -339,7 +338,7 @@
             					'rec_id' : rec_id,
             				};
             				$.post(url, info, function(data) {
-            					ecjia.pjax(data.url);
+            					ecjia.pjax(window.location.href);
 //            					ecjia.touch.category.hide_cart(true);
             				});
 			          	},
