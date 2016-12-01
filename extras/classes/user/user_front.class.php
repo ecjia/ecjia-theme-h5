@@ -1,41 +1,66 @@
 <?php
+defined('IN_ECJIA') or exit('No permission resources.');
+
 /**
  * ecjia 前端页面控制器父类
  */
-defined('IN_ECJIA') or exit('No permission resources.');
-
-class user_front extends ecjia_front {
-	protected $user_id;
-	protected $action;
+class user_front {
+    
+    private $public_route;
 
 	public function __construct() {
-		parent::__construct();
-		RC_Loader::load_theme('extras/functions/user/front_user.func.php');
-		/*属性赋值*/
-		$this->user_id = $_SESSION['user_id'];
-		$this->action = ROUTE_A;
 		/*验证登录*/
-		$this->check_login();
+// 		$this->check_login();
 		/*用户信息*/
-		$info = get_user_default($this->user_id);
-		/*如果是显示页面，对页面进行相应赋值*/
-		$this->assign('action', $this->action);
-		$this->assign('info', $info);
+// 		$info = get_user_default($this->user_id);
+//         $info = ecjia_touch_user::singleton()->getUserinfo();
+// 		/*如果是显示页面，对页面进行相应赋值*/
+// 		$this->assign('action', $this->action);
+// 		$this->assign('info', $info);
+		
+		
+		if (!$this->check_login()) {
+		    /*未登录处理*/
+            $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
+//             _dump($url,1);
+            ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login', array('referer' => urlencode($url))));
+		}
+		
+		
+	}
+	
+	protected function publicRoute() {
+	    $this->public_route = array(
+	        'user/privilege/login',
+	        'user/privilege/signin',
+	        'user/privilege/register',
+	        'user/privilege/register',
+	        
+	        'user/get_password/get_password_phone',
+	        'user/get_password/get_password_email',
+	        'user/get_password/pwd_question_name',
+	        'user/get_password/send_pwd_email',
+	        'user/get_password/update_password',
+	        'user/get_password/forget_pwd',
+	        'user/get_password/reset_pwd_mail',
+	        'user/get_password/reset_pwd_form',
+	        'user/get_password/reset_pwd'
+	    );
 	}
 
 	/**
-	* 未登录验证
-	*/
+	 * 未登录验证
+	 */
 	private function check_login() {
 		/*不需要登录的操作或自己验证是否登录（如ajax处理）的方法*/
 		$without = array(
-			'login',
-			'register',
-			'get_password_phone',
-			'get_password_email',
-			'pwd_question_name',
-			'send_pwd_email',
-			'update_password',
+// 			'login',
+// 			'register',
+// 			'get_password_phone',
+// 			'get_password_email',
+// 			'pwd_question_name',
+// 			'send_pwd_email',
+// 			'update_password',
 			'check_answer',
 			'logout',
 			'add_collection',
@@ -58,28 +83,19 @@ class user_front extends ecjia_front {
 		    'validate_code',
 		    'reset_password'
 		);
-		/*未登录处理*/
-		if (!ecjia_touch_user::singleton()->isSignin() && !in_array($this->action, $without)) {
-			$url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
-			$this->redirect(RC_Uri::url('user/index/login', array('referer' => urlencode($url))));
-			exit();
+		
+		//验证公开路由
+		$route_controller = ROUTE_M . '/' . ROUTE_C . '/' . ROUTE_A;
+		if (in_array($route_controller, $this->public_route)) {
+		    return true;
 		}
 		
-// 		if ($this->action == 'init') {
-// // 		    _dump(1,1);
-// 		}
-		
-		/*已经登录，不能访问的方法*/
-		$deny = array(
-			'login',
-            'signin',
-			'register',
-            'signup',
-		);
-		if (!empty($_SESSION['user_id']) && in_array($this->action, $deny)) {
-			$this->redirect(RC_Uri::url('user/index/init'));
-			exit();
+		//验证登录身份
+		if (ecjia_touch_user::singleton()->isSignin()) {
+		    return true;
 		}
+		
+		return false;
 	}
 
 }
