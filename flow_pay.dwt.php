@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
     <div class="ecjia-select">
-        <ul class="ecjia-list">
+        <ul class="ecjia-list ecjia-margin-t">
             <!-- {foreach from=$payment_list item=rs} -->
             <label class="select-item" for="{$rs.pay_code}">
                 <li>
@@ -30,9 +30,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </label>
             <!-- {/foreach} -->
         </ul>
+        
         <div class="ecjia-margin-t ecjia-margin-b">
             <a class="btn btn-info" href="#">确定</a>
         </div>
-
     </div>
+    
+    
 <!-- {/block} -->

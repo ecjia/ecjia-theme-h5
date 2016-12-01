@@ -409,6 +409,7 @@
 			$('.ecjia-menu').removeClass('active');
 		}
 		ecjia.touch.searchbox_foucs();
+		ecjia.touch.category.init();
 	});
 
 })(ecjia, jQuery);

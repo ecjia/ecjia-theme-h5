@@ -21,6 +21,7 @@ RC_Hook::add_action('goods/category/store_detail', array('goods_controller', 'st
 
 RC_Hook::add_action('goods/category/store_goods', array('goods_controller', 'store_goods'));//店铺商品
 RC_Hook::add_action('goods/category/ajax_category_goods', array('goods_controller', 'ajax_category_goods'));//获取分类商品
+RC_Hook::add_action('goods/category/update_cart', array('goods_controller', 'update_cart'));//更新购物车中商品
 
 RC_Hook::add_action('goods/index/init', array('goods_controller', 'goods_index'));//商品详情页
 RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));
@@ -166,7 +167,7 @@ RC_Hook::add_action('user/user_message/del_msg', array('user_message_controller'
 //订单
 RC_Loader::load_theme('extras/controller/user_order_controller.php');
 RC_Hook::add_action('user/user_order/order_list', array('user_order_controller', 'order_list'));
-RC_Hook::add_action('user/user_order/cancel_order', array('user_order_controller', 'cancel_order'));
+RC_Hook::add_action('user/user_order/order_cancel', array('user_order_controller', 'order_cancel'));
 RC_Hook::add_action('user/user_order/async_order_list', array('user_order_controller', 'async_order_list'));
 RC_Hook::add_action('user/user_order/order_tracking', array('user_order_controller', 'order_tracking'));
 RC_Hook::add_action('user/user_order/order_detail', array('user_order_controller', 'order_detail'));
