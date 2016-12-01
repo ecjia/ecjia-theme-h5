@@ -1580,6 +1580,8 @@
 	right: 43%;
     top: 3em;
     margin: 0;
+    width: 4em;
+    height: 4em;
 }
 .ecjia-user.user-new-info .user-rank-name,
 .ecjia-user.user-new-info .user-rank-name a{
