@@ -18,6 +18,7 @@ class user_front {
 // 		$this->assign('action', $this->action);
 // 		$this->assign('info', $info);
 		
+	    $this->makePublicRoute();
 		
 		if (!$this->check_login()) {
 		    /*未登录处理*/
@@ -29,7 +30,7 @@ class user_front {
 		
 	}
 	
-	protected function publicRoute() {
+	protected function makePublicRoute() {
 	    $this->public_route = array(
 	        'user/privilege/login',
 	        'user/privilege/signin',
