@@ -201,6 +201,8 @@ RC_Hook::add_action('class_goods_function',     function () {RC_Loader::load_the
 RC_Hook::add_action('class_orders_function',    function () {RC_Loader::load_theme('extras/classes/utility/orders_function.class.php');});
 RC_Hook::add_action('class_user_function',      function () {RC_Loader::load_theme('extras/classes/utility/user_function.class.php');});
 
+RC_Hook::add_action('class_user_front',      function () {RC_Loader::load_theme('extras/classes/user/user_front.class.php');});
+
 /**
  * step:5
  * 这个方法在前台控制器加载后执行，这个时候环境初始化完毕，这里开始正式进入主题框架的流程
@@ -209,7 +211,7 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
 
 
     if (ROUTE_M == 'user') {
-        
+        new user_front();
     }
 
     ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
