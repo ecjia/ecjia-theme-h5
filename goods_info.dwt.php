@@ -26,27 +26,27 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- 切换商品页面start -->
 <div class="ecjia-goods-basic-info"  id="goods-info-one">
-<!--商品图片相册-->
-	<div class="goods-img" id="focus">
+<!--商品图片相册start-->
+	<div class="focus" id="focus">
+		<div class="hd">
+			<ul></ul>
+		</div>
 		<div class="bd">
 			<!-- Swiper -->
-			<div class="swiper-container goods-imgshow">
+			<div class="swiper-container swiper-goods-img">
 				<div class="swiper-wrapper">
 					<!--{foreach from=$goods_info.pictures item=picture}-->
 						<div class="swiper-slide">
-							<img src="{$picture.url}" style="height:325px;" />
+							<img src="{$picture.url}"/>
 						</div>
 					<!--{/foreach}-->
-					 <div class="scroller-slidenext">
-	                    <i class="slidenext-icon iconfont icon-roundrightfill"></i>
-	                    <span class="slidenext-msg">滑动查看详情</span>
-	                </div>
 				</div>
 				<!-- Add Pagination -->
 				<div class="swiper-pagination"></div>
 			</div>
 		</div>
-	</div>	
+	</div>
+<!--商品图片相册end-->
 	<!--商品属性介绍-->
 	<form action="{url path='cart/index/add_to_cart'}" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
 	    <div class="goods-info">
@@ -64,7 +64,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	                		<i class="iconfont icon-remind"></i>
 							<span class="promote-time" data-type="1" value="{$goods_info.promote_end_time}"></span>
 	                	</div>	          			
-	                	<a class="goods-add-cart add-cart-a" href="javascript:void 0;">加入购物车</a>
+	                	<a class="goods-add-cart add-cart-a" href="javascript:void 0;" ><span>加入购物车</span></a>
 	                	<div class="ecjia-goods-plus-box" style="display: none;">
 		                     <span class="reduce show" data-toggle="remove-to-cart">减</span>
 	                         <label class="show">1</label>
@@ -87,7 +87,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	                <!--{else}-->
 	                {$goods_info.shop_price}
 	                <del>市场价：{$goods_info.market_price}</del>	                
-	                <a class="goods-add-cart market-goods-add-cart add-cart-a" href="javascript:void 0;">加入购物车</a>
+	                <a class="goods-add-cart market-goods-add-cart add-cart-a" href="javascript:void 0;" ><span>加入购物车</span></a>
 	                <div class="ecjia-goods-plus-box" style="display: none;">
 	                     <span class="reduce show" data-toggle="remove-to-cart">减</span>
                          <label class="show">1</label>
@@ -182,6 +182,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- 切换详情页面end -->
 
 
+
 <div class="store-add-cart a4w" style="">
 	<div class="a52"></div>
 	<a href="javascript:void 0;" class="a4x light show_cart" style="transform: translateY(0px);" show="false"><i class="a4y">1</i></a>
@@ -192,7 +193,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="minicart-content" style="transform: translateY(0px); display: block;">
 		<i class="a57"></i>
 		<div class="a58 ">
-			<span class="a69 a6a checked" checkallgoods="" onclick="">全选</span><p class="a6c">(已选1件，共0.75kg)</p><a href="javascript:void 0;" class="a59" deleteall="" clstag="pageclick|keycount|cart_clean_20160623_1|1">清空购物车</a>
+			<span class="a69 a6a checked" checkallgoods="" onclick="">全选</span>
+			<p class="a6c">(已选1件，共0.75kg)</p>
+			<a href="javascript:void 0;" class="a59" data-toggle="deleteall">清空购物车</a>
 		</div>
 		<div class="a5b" style="height: auto;">
 			<div class="a5l single">
@@ -203,7 +206,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							<table class="a5s">
 								<tbody>
 									<tr>
-										<td style=" width:62px; "><img class="a5t" src=""> </td>
+										<td style=" width:62px;"><img class="a5t" src=""> </td>
 										<td>
 											<div class="a5w">【热销TOP1】赣南脐橙-中果4个/份   约750-850g</div> 
 											<span class="a5p">￥6.90</span>
@@ -216,44 +219,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<lable class="a5x">1</lable>
 						<a class="a5v " addgoods="" tap="" data-toggle="add-to-cart"></a>
 					</li>
-					<li class="a5n single last" goodsid="2005033203" normalgoods_="">
-						<span class="a69 a5o checked" checkgoods=""></span>
-						<a class="a5r" href="">
-							<table class="a5s">
-								<tbody>
-									<tr>
-										<td style=" width:62px; "><img class="a5t" src=""> </td>
-										<td>
-											<div class="a5w">【热销TOP1】赣南脐橙-中果4个/份   约750-850g</div> 
-											<span class="a5p">￥6.90</span>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</a>
-						<a class="a5u reduce" minusgoods="" tap="" data-toggle="remove-to-cart"></a>
-						<lable class="a5x">1</lable>
-						<a class="a5v " addgoods="" tap="" data-toggle="add-to-cart"></a>
-					</li>
-					<li class="a5n single last" goodsid="2005033203" normalgoods_="">
-						<span class="a69 a5o checked" checkgoods=""></span>
-						<a class="a5r" href="">
-							<table class="a5s">
-								<tbody>
-									<tr>
-										<td style=" width:62px; "><img class="a5t" src=""> </td>
-										<td>
-											<div class="a5w">【热销TOP1】赣南脐橙-中果4个/份   约750-850g</div> 
-											<span class="a5p">￥6.90</span>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</a>
-						<a class="a5u reduce" minusgoods="" tap="" data-toggle="remove-to-cart"></a>
-						<lable class="a5x">1</lable>
-						<a class="a5v " addgoods="" tap="" data-toggle="add-to-cart"></a>
-					</li>												
+												
 				</ul>
 				<div class="a5m single" style=""></div>
 			</div>

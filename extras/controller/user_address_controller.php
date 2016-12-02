@@ -36,7 +36,8 @@ class user_address_controller {
 //         ecjia_front::$controller->assign('page', $consignee_list['page']);
 //         ecjia_front::$controller->assign('title', RC_Lang::lang('consignee_info'));
 //         ecjia_front::$controller->assign_title(RC_Lang::lang('consignee_info'));
-    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => 'cac36e13e26a1084b4d9731d7b653b8b64a2c17d'))->run();
+		$token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token['access_token']))->run();
 	    ecjia_front::$controller->assign('address_list', $address_list);
         ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
@@ -91,9 +92,10 @@ class user_address_controller {
         // ecjia_front::$controller->assign('city_list', $city_list);
         // ecjia_front::$controller->assign('district_list', $district_list);
         // ecjia_front::$controller->assign_title(RC_Lang::lang('add_address'));
-    	$add_address = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_ADD)->data(array('token' => 'c7d023a7be8ebe07d5a516d3c54b27b919c899fb'))->run();
+        $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+        $add_address = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_ADD)->data(array('token' => $token['access_token']))->run();
+
     	ecjia_front::$controller->assign('add_address', $add_address);
-    	_dump($add_address, 1);
         ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_add_address.dwt');
@@ -179,18 +181,29 @@ class user_address_controller {
      */
     public static function del_address_list() {
         $id = intval($_GET['id']);
-        // // $db_users = RC_Loader::load_app_model ( "users_model" );
-        // RC_Loader::load_theme('extras/model/user/touch_users_model.class.php');
-        // $db_users       = new touch_users_model();
-        // $count = $db_users->where(array('user_id' => $_SESSION['user_id'], 'address_id' => $id))->count();
-        // if (empty($count)) {
-        //     drop_consignee($id);
-        //     ecjia_front::$controller->showmessage(RC_Lang::lang('del_address_true'),ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list') ,'is_show' => false));
-        // } else {
-        //     ecjia_front::$controller->showmessage('该地址为默认的收货地址，不能删除', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
-        // }
-    	$del_address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_DELETE)->data(array('token' => 'c7d023a7be8ebe07d5a516d3c54b27b919c899fb', 'address_id' => $id))->run();
-//     	_dump($del_address_list, 1);
+//         $db_users = RC_Loader::load_app_model ( "users_model" );
+//         RC_Loader::load_theme('extras/model/user/touch_users_model.class.php');
+//         $db_users       = new touch_users_model();
+//         $count = $db_users->where(array('user_id' => $_SESSION['user_id'], 'address_id' => $id))->count();
+//         if (empty($count)) {
+//             drop_consignee($id);
+//             ecjia_front::$controller->showmessage(RC_Lang::lang('del_address_true'),ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list') ,'is_show' => false));
+//         } else {
+//             ecjia_front::$controller->showmessage('该地址为默认的收货地址，不能删除', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
+//         }
+		$token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+        $address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data(array('token' => $token['access_token'], 'address_id' => $id))->run();
+        ecjia_front::$controller->assign('address_info', $address_info);
+
+        if ($address_info['default_address'] == 0) {
+    	    ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_DELETE)->data(array('token' => $token['access_token'], 'address_id' => $id))->run();
+    	    ecjia_front::$controller->showmessage('删除成功', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
+        } else {
+            ecjia_front::$controller->showmessage('该地址为默认的收货地址，不能删除', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
+        }
+
+
+//     	$del_address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_DELETE)->data(array('token' => $token['access_token'], 'address_id' => $id))->run();
 //     	ecjia_front::$controller->assign('del_address_list', $del_address_list);
     }
 
@@ -258,7 +271,7 @@ class user_address_controller {
     	ecjia_front::$controller->assign('addres_list', $address_list);
     	$sayList = ecjia_front::$controller->fetch('user_location.dwt');
     	ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' ,
-    
+
     	'is_last' => $consignee_list['is_last']));
     }
     /**

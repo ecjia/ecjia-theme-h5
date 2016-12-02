@@ -14,7 +14,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 
-<div class="page_hearer_hide">
+<div class="page_hearer_hide ecjia-fixed">
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 </div>
@@ -124,10 +124,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 										<dt>{$goods.name}</dt>
 										<dd><label>{$goods.shop_price}</label></dd>
 									</dl>
-									<div class="box">
+									<div class="box" id="goods_{$goods.id}">
 	                                    <span class="reduce {if $goods.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$goods.rec_id}">减</span>
                                 		<label class="{if $goods.num}show{else}hide{/if}">{$goods.num}</label>
-                                		<span class="add storeSearchCart" data-toggle="add-to-cart" rec_id="{$goods.rec_id}">加</span>
+                                		<span class="add" data-toggle="add-to-cart" rec_id="{$goods.rec_id}" goods_id="{$goods.id}">加</span>
                                 	</div>
 								</a>
 							</li>
@@ -142,49 +142,95 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 </div>
 
-<div class="store-add-cart a4w" style="">
+<div class="store-add-cart a4w">
 	<div class="a52"></div>
-	<a href="javascript:void 0;" class="a4x light show_cart" style="transform: translateY(0px);" show="false"><i class="a4y">1</i></a>
+	<a href="javascript:void 0;" class="a4x {if $count.goods_number}light{else}disabled{/if} show_cart" style="transform: translateY(0px);" show="false">
+		{if $count.goods_number}
+		<i class="a4y">
+		{$count.goods_number}
+		</i>
+		{/if}
+	</a>
 	<div class="a4z" style="transform: translateX(0px);">
-		<div class="">￥6.90</div>
+		{if !$count.goods_number}
+			<div class="a50">购物车是空的</div>
+		{else}
+		<div>
+			{$count.goods_price}{if $count.discount}<label>(已减{$count.discount})</label>{/if}
+		</div>
+		{/if}
 	</div>
-	<a class="a51 " href="javascript:void 0;">去结算</a>
+	<a class="a51 {if !$count.goods_number}disabled{/if}" href="javascript:void 0;">去结算</a>
 	<div class="minicart-content" style="transform: translateY(0px); display: block;">
 		<i class="a57"></i>
 		<div class="a58 ">
 			<span class="a69 a6a checked" checkallgoods="" onclick="">全选</span>
-			<p class="a6c">(已选1件，共0.75kg)</p>
-			<a href="javascript:void 0;" class="a59" data-toggle="deleteall">清空购物车</a>
+			<p class="a6c">(已选{$count.goods_number}件)</p>
+			<a href="javascript:void 0;" class="a59" data-toggle="deleteall" data-url="{RC_Uri::url('goods/category/update_cart')}">清空购物车</a>
 		</div>
-		<div class="a5b" style="height: auto;">
+		<div class="a5b" style="max-height: 18em;">
 			<div class="a5l single">
 				<ul class="minicart-goods-list single"> 
-					<li class="a5n single last">
+					<!-- {foreach from=$cart_list item=cart} -->
+					<li class="a5n single">
 						<span class="a69 a5o checked" checkgoods=""></span>
-						<a class="a5r" href="">
-							<table class="a5s">
-								<tbody>
-									<tr>
-										<td style=" width:62px;"><img class="a5t" src=""> </td>
-										<td>
-											<div class="a5w">【热销TOP1】赣南脐橙-中果4个/份   约750-850g</div> 
-											<span class="a5p">￥6.90</span>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</a>
-						<a class="a5u reduce" minusgoods="" tap="" data-toggle="remove-to-cart"></a>
-						<lable class="a5x">1</lable>
-						<a class="a5v " addgoods="" tap="" data-toggle="add-to-cart"></a>
+						<table class="a5s">
+							<tbody>
+								<tr>
+									<td style="width:75px; height:75px">
+										<img class="a7g" src="{$cart.img.small}">
+									</td>
+									<td>
+										<div class="a7j">{$cart.goods_name}</div> 
+										<span class="a7c">{$cart.formated_goods_price}</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="box" id="goods_cart_{$cart.goods_id}">
+							<a class="a5u reduce" data-toggle="remove-to-cart" rec_id="{$cart.rec_id}"></a>
+							<lable class="a5x">{$cart.goods_number}</lable>
+							<a class="a5v " data-toggle="add-to-cart" rec_id="{$cart.rec_id}" goods_id="{$cart.goods_id}"></a>
+						</div>
 					</li>
-												
+					<input type="hidden" name="rec_id" value="{$cart.rec_id}" />
+					<!-- {/foreach} -->
 				</ul>
-				<div class="a5m single" style=""></div>
+				<div class="a5m single"></div>
 			</div>
 		</div>
-	<div style="height:50px;" discountpromptmsgheight=""></div>
+		<div style="height:50px;"></div>
 	</div>
-	<div class="a53" cartmask="" clstag="pageclick|keycount|cart_close_20160623_1|1" style="display: none;"></div>
+	<!-- 遮罩层 -->
+	<div class="a53" style="display: none;"></div>
 </div>
+<!-- {/block} -->
+
+<!-- {block name="ajaxinfo"} -->
+	<!-- 异步购物车列表 start-->
+	<!-- {foreach from=$list item=val} 循环商品 -->
+	<li class="a5n single">
+		<span class="a69 a5o checked" checkgoods=""></span>
+		<table class="a5s">
+			<tbody>
+				<tr>
+					<td style="width:75px; height:75px">
+						<img class="a7g" src="{$val.img.small}">
+					</td>
+					<td>
+						<div class="a7j">{$val.goods_name}</div> 
+						<span class="a7c">{$val.formated_goods_price}</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="box" id="goods_cart_{$val.goods_id}">
+			<a class="a5u reduce" data-toggle="remove-to-cart" rec_id="{$val.rec_id}"></a>
+			<lable class="a5x">{$val.goods_number}</lable>
+			<a class="a5v" data-toggle="add-to-cart" rec_id="{$val.rec_id}" goods_id="{$val.goods_id}"></a>
+		</div>
+	</li>
+	<input type="hidden" name="rec_id" value="{$val.rec_id}" />
+	<!-- {/foreach} -->
+	<!-- 异步购物车列表end -->
 <!-- {/block} -->

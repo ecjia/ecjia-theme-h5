@@ -1,7 +1,7 @@
 <?php
 /*
-Name: 文章详情模板
-Description: 文章详情页
+Name: 网店信息页
+Description: 网店信息页
 Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');

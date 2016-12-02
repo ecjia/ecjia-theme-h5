@@ -323,20 +323,20 @@
 		},
 
 		searchbox_foucs : function() {
-			var k = $('#keywordBox').val(); 
-			$('#keywordBox').val('').focus().val(k); 
-			
+			var k = $('#keywordBox').val();
+			$('#keywordBox').val('').focus().val(k);
+
 			$('.btn-search').off('click').on('click', function(e) {
 				var val = $('input[name="keywords"]').val().trim(),
 					url = $('.ecjia-form').attr('data-url');
 				if (!val) {
-					$("#keywordBox").blur(); 
+					$("#keywordBox").blur();
 					return;
 				} else {
 					ecjia.pjax(url + '&keywords=' + val);
 				}
 			});
-			
+
 			$('.search-goods').on('click', function(){
 				var $this = $(this),
 					url = $this.attr('data-url'),
@@ -347,36 +347,36 @@
 					ecjia.pjax(url);
 			});
         },
-        
+
         del_history : function() {
         	$(document).on('click', '[data-toggle="del_history"]', function(e){
         		e.preventDefault();
         		var $this	= $(this);
         		var url		= $this.attr('data-href') || $this.attr('href');
-        		
+
         		$.get(url, function(data){
 					ecjia.pjax(data.pjaxurl);
 					return false;
 				}, 'json');
         	});
         },
-        
+
         //更新热门推荐时间
         update_hot_time : function() {
             var nowTime = new Date(),
                 hour = checkTime(nowTime.getHours()),
                 minute = checkTime(nowTime.getMinutes()),
                 time = hour + ':' + minute;
-            var html = '<i class="iconfont icon-icon47"></i>' + time + ' 热门推荐已更新';
+            var html = '<i class="icon-goods-hot"></i>' + time + ' 热门推荐已更新';
             $('.ecjia-new-goods').find('.goods-index-title').html(html);
 		}
 	};
 
-    function checkTime(i) {    
-        if (i < 10) {    
-            i = "0" + i;    
-        }    
-        return i;    
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
     }
 
 	//PJAX跳转执行
@@ -398,7 +398,7 @@
 
 	//PJAX前进、返回执行
 	$(document).on('pjax:popstate', function() {
-		
+
 	});
 
 	//PJAX历史和跳转都会执行的方法

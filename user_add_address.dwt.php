@@ -7,20 +7,20 @@ Libraries: page_menu,page_header
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {extends file="ecjia-touch.dwt.php"} -->
-
 <!-- {block name="footer"} -->
-<script type="text/javascript">ecjia.touch.region_change();</script>
+
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-
 <form class="ecjia-address-list" name="theForm" action="{url path='user/user_address/inster_addres'}" method="post">
 	<div class="form-group form-group-text ecjia-margin-b">
+		<a id="district" onclick="district()">
 		<label class="input">
 			<span>所在地区： </span>
 			<input name="district" placeholder="{t}请选择城市{/t}" type="text" datatype="*" value="{$add_address.city_name|escape}" />
 			<i class="iconfont icon-jiantou-right"></i>
 		</label>
+		</a>
 	</div>
 	<div class="form-group form-group-text margin-bottom0">
 		<label class="input">

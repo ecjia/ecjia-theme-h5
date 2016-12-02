@@ -14,7 +14,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 <!-- TemplateBeginEditable name="标题区域" -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 <!-- TemplateEndEditable -->
 
 <div class="ecjia-user-info user-new-info ecjia-user">
@@ -108,14 +107,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
     </ul>
-     <ul class="ecjia-margin-t ecjia-list list-short">
-       <li>
-        	<a href="{url path='user/user_address/address_list'}">
-        		<i class="iconfont icon icon-settings"></i>
-        		<span class="icon-name">设置</span>
-        		<i class="iconfont  icon-jiantou-right"></i>
-        	</a>
-        </li>
+    <ul class="ecjia-margin-t ecjia-list list-short">
+        <!-- {foreach from=$shop item=value} 网店信息 -->
+            <li>
+            	<a href="{RC_uri::url('user/index/shop_detail')}&article_id={$value.id}">
+            		<i class="iconfont icon icon-eclogo"></i>
+            		<span class="icon-name">{$value.title}</span>
+            		<i class="iconfont  icon-jiantou-right"></i>
+            	</a>
+            </li>
+        <!-- {/foreach} -->
     </ul>
 </div>
 <!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->

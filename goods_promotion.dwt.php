@@ -13,9 +13,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
-
 <div class="ecjia-promotion-model">
 	<ul class="ecjia-promotion-list" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='index/ajax_goods' args='type=promotion'}">
 	</ul>

@@ -86,99 +86,83 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<dd><label>{$val.shop_price}</label></dd>
 			</dl>
 		</a>
-		<div class="box">
-			<span class="reduce show" data-toggle="remove-to-cart">减</span>
-			<label class="show">1</label>
-			<span class="add storeSearchCart" data-toggle="add-to-cart">加</span>
+		<div class="box" id="goods_{$val.id}">
+			<span class="reduce {if $val.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$val.rec_id}">减</span>
+			<label class="{if $val.num}show{else}hide{/if}">{$val.num}</label>
+			<span class="add" data-toggle="add-to-cart" rec_id="{$val.rec_id}" goods_id="{$val.id}">加</span>
 		</div>
 	</li>
 	<!-- {/if} -->
 	<!-- {/foreach} -->
+</ul>
 	
 	<!-- {if $store_id} -->
-	<div class="store-add-cart a4w" style="">
+	<div class="store-add-cart a4w">
 		<div class="a52"></div>
-		<a href="javascript:void 0;" class="a4x light show_cart" carticon="" clstag="" style="transform: translateY(0px);" show="false"><i class="a4y">1</i></a>
-		<div class="a4z" pricearea="" style="transform: translateX(0px);">
-			<div class="">￥6.90</div>
+		<a href="javascript:void 0;" class="a4x {if $count.goods_number}light{else}disabled{/if} show_cart" style="transform: translateY(0px);" show="false">
+			{if $count.goods_number}
+			<i class="a4y">
+			{$count.goods_number}
+			</i>
+			{/if}
+		</a>
+		<div class="a4z" style="transform: translateX(0px);">
+			{if !$count.goods_number}
+				<div class="a50">购物车是空的</div>
+			{else}
+			<div>
+				{$count.goods_price}{if $count.discount}<label>(已减{$count.discount})</label>{/if}
+			</div>
+			{/if}
 		</div>
-		<a class="a51 " qujiesuan="" href="javascript:void 0;" onclick="">去结算</a>
-		<div class="minicart-content" cartcontent="" style="transform: translateY(0px); display: block;">
+		<a class="a51 {if !$count.goods_number}disabled{/if}" href="javascript:void 0;">去结算</a>
+		<div class="minicart-content" style="transform: translateY(0px); display: block;">
 			<i class="a57"></i>
 			<div class="a58 ">
-				<span class="a69 a6a checked" checkallgoods="" onclick="">全选</span><p class="a6c">(已选1件，共0.75kg)</p><a href="javascript:void 0;" class="a59" data-toggle="deleteall">清空购物车</a>
+				<span class="a69 a6a checked" checkallgoods="" onclick="">全选</span>
+				<p class="a6c">(已选{$count.goods_number}件)</p>
+				<a href="javascript:void 0;" class="a59" data-toggle="deleteall" data-url="{RC_Uri::url('goods/category/update_cart')}">清空购物车</a>
 			</div>
-			<div class="a5b" cartitemlist="" style="height: auto;">
+			<div class="a5b" style="max-height: 18em;">
 				<div class="a5l single">
 					<ul class="minicart-goods-list single"> 
-						<li class="a5n single last" goodsid="2005033203" normalgoods_="">
+						<!-- {foreach from=$cart_list item=cart} -->
+						<li class="a5n single">
 							<span class="a69 a5o checked" checkgoods=""></span>
-							<a class="a5r" href="">
 							<table class="a5s">
 								<tbody>
 									<tr>
-										<td style=" width:62px; "><img class="a5t" src=""> </td>
+										<td style="width:75px; height:75px">
+											<img class="a7g" src="{$cart.img.small}">
+										</td>
 										<td>
-											<div class="a5w">【热销TOP1】赣南脐橙-中果4个/份   约750-850g</div> 
-											<span class="a5p">￥6.90</span>
+											<div class="a7j">{$cart.goods_name}</div> 
+											<span class="a7c">{$cart.formated_goods_price}</span>
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							</a>
-							<a class="a5u reduce" minusgoods="" tap="" data-toggle="remove-to-cart"></a>
-							<lable class="a5x">1</lable>
-							<a class="a5v " addgoods="" tap="" data-toggle="add-to-cart"></a>
+							<div class="box" id="goods_cart_{$cart.goods_id}">
+								<a class="a5u reduce" data-toggle="remove-to-cart" rec_id="{$cart.rec_id}"></a>
+								<lable class="a5x">{$cart.goods_number}</lable>
+								<a class="a5v " data-toggle="add-to-cart" rec_id="{$cart.rec_id}" goods_id="{$cart.goods_id}"></a>
+							</div>
 						</li>
-						<li class="a5n single last" goodsid="2005033203" normalgoods_="">
-							<span class="a69 a5o checked" checkgoods=""></span>
-							<a class="a5r" href="">
-							<table class="a5s">
-								<tbody>
-									<tr>
-										<td style=" width:62px; "><img class="a5t" src=""> </td>
-										<td>
-											<div class="a5w">【热销TOP1】赣南脐橙-中果4个/份   约750-850g</div> 
-											<span class="a5p">￥6.90</span>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							</a>
-							<a class="a5u reduce" minusgoods="" tap="" data-toggle="remove-to-cart"></a>
-							<lable class="a5x">1</lable>
-							<a class="a5v " addgoods="" tap="" data-toggle="add-to-cart"></a>
-						</li>
-						<li class="a5n single last" goodsid="2005033203" normalgoods_="">
-							<span class="a69 a5o checked" checkgoods=""></span>
-							<a class="a5r" href="">
-							<table class="a5s">
-								<tbody>
-									<tr>
-										<td style=" width:62px; "><img class="a5t" src=""> </td>
-										<td>
-											<div class="a5w">【热销TOP1】赣南脐橙-中果4个/份   约750-850g</div> 
-											<span class="a5p">￥6.90</span>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							</a>
-							<a class="a5u reduce" minusgoods="" tap="" data-toggle="remove-to-cart"></a>
-							<lable class="a5x">1</lable>
-							<a class="a5v " addgoods="" tap="" data-toggle="add-to-cart"></a>
-						</li>												
+						<input type="hidden" name="rec_id" value="{$cart.rec_id}" />
+						<!-- {/foreach} -->
 					</ul>
-					<div class="a5m single" style=""></div>
+					<div class="a5m single"></div>
 				</div>
 			</div>
-		<div style="height:50px;" discountpromptmsgheight=""></div>
+			<div style="height:50px;"></div>
 		</div>
-		<div giftcontent="">  </div>
-		<div class="a53" cartmask="" clstag="pageclick|keycount|cart_close_20160623_1|1" style="display: none;"></div>
+		<!-- 遮罩层 -->
+		<div class="a53" style="display: none;"></div>
 	</div>
-    <!-- {/if} -->
-</ul>
+	<input type="hidden" value="{RC_Uri::url('goods/category/update_cart')}" name="update_cart_url" />
+	<input type="hidden" value="{$store_id}" name="store_id" />
+	<!-- {/if} -->
+	
 <!-- {else} -->
 <div class="search-no-pro ecjia-margin-t ecjia-margin-b">
 	<div class="ecjia-nolist">
