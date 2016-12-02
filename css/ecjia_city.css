@@ -1842,15 +1842,15 @@
 	text-align: left;
 }
 .ecjia-account.ecjia-form .select {
+	position: relative;
 	width: 100%;
 }
 .ecjia-account.ecjia-form .select select {
 	margin-top: .5em;
 	margin-bottom: .5em;
 	border-color: #FFF;
-	position: relative;
-	font-size: 1.1em;
 	font-weight: bold;
+	padding-left: .5em;
 	width: 100%;
 }
 /*========================  红包 ===========================*/
