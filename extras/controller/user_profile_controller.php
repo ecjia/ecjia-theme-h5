@@ -58,6 +58,7 @@ class user_profile_controller {
         // ecjia_front::$controller->assign_title(RC_Lang::lang('profile'));
         ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign('hideinfo', 1);
         ecjia_front::$controller->display('user_profile.dwt');
     }
     

@@ -49,6 +49,7 @@ class user_privilege_controller {
         } else {
             ecjia_front::$controller->showmessage(__("用户信息错误或者账号不存在"), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/privilege/login')));
         }
+        ecjia_front::$controller->assign('hideinfo', 1);
     }
     
     /**
@@ -56,6 +57,7 @@ class user_privilege_controller {
      */
     public static function register() {
         ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign('hideinfo', 1);
         ecjia_front::$controller->display('user_register.dwt');
     }
     
