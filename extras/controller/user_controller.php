@@ -45,14 +45,31 @@ class user_controller {
 //         $user_img = get_user_img();
         $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
-//         ecjia_front::$controller->assign('data', $data);
+//         _dump($shop, 1);
         ecjia_front::$controller->assign('user', $user);
+        ecjia_front::$controller->assign('shop', $shop);
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('active', 5);
+        ecjia_front::$controller->assign('hideinfo', 1);
         
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user.dwt');
     }
+    /**
+     * 网店信息内容
+     */
+    public static function shop_detail() {
+        $article_id = intval($_GET['article_id']);
+        $shop_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO_DETAIL)->data(array('article_id' => $article_id))->run();
+        
+//         _dump($shop_detail, 1);
+        ecjia_front::$controller->assign('data', $shop_detail);
+        ecjia_front::$controller->assign('hideinfo', 1);
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_shop_detail.dwt');
+    }
+    
+    
 
     /**
      * 邮件验证

@@ -20,7 +20,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     // 百度地图API功能
     var map = new BMap.Map("allmap");
     var point = new BMap.Point(116.331398,39.897445);
-    map.centerAndZoom(point,12);
+    map.centerAndZoom(point,13);
+    map.enableScrollWheelZoom();  
     
     var geolocation = new BMap.Geolocation();
     geolocation.getCurrentPosition(function(r){
@@ -33,15 +34,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     		var mPoint = new BMap.Point(r.point.lng, r.point.lat);
 
     		var mOption = {
-			    poiRadius : 500,           //半径为1000米内的POI,默认100米
-			    numPois : 10                //列举出50个POI,默认10个
+			    poiRadius : 500,           //半径为500米内的POI,默认100米
+			    numPois : 50                //列举出50个POI,默认10个
 			}
 			
     		myGeo.getLocation(mPoint, function mCallback(rs) {
     			var allPois = rs.surroundingPois;       //获取全部POI（该点半径为100米内有6个POI点）
     			console.log(allPois);
                 for(i=0;i<allPois.length;++i){
-                    document.getElementById("panel").innerHTML += "<p style='font-size:12px;' lng='"+ allPois[i].point.lng +"'>" + (i+1) + "、" + allPois[i].title + ",地址:" + allPois[i].address + "</p>";
+                    document.getElementById("panel").innerHTML += "<p style='font-size:12px;' lng='"+ allPois[i].point.lng +"'>" + (i+1) + "、" + allPois[i].title + ",地址:" + allPois[i].address + "</p>" + "<hr>";
                     map.addOverlay(new BMap.Marker(allPois[i].point));                
                 }
         	}, mOption);
@@ -67,7 +68,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<input id="keywordBox" name="keywords" type="search" placeholder="搜索地点">
 	</div>
     <div id="allmap" style="height: 20em;width: 100%"></div>
-    <div id="panel" style="width:100%;height:340px;border:1px solid gray;border-left:0;float:left;"></div>
+    <div id="panel" style="width:100%;height:100%;border:1px solid gray;"></div>
 </form>
 
 <!-- {/block} -->

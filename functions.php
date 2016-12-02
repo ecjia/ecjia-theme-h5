@@ -89,6 +89,7 @@ RC_Hook::add_action('favourable/index/goods_list', array('favourable_controller'
 //会员
 RC_Loader::load_theme('extras/controller/user_controller.php');
 RC_Hook::add_action('user/index/init', array('user_controller', 'init'));
+RC_Hook::add_action('user/index/shop_detail', array('user_controller', 'shop_detail'));
 // RC_Hook::add_action('user/index/validate_email', array('user_controller', 'validate_email'));
 // RC_Hook::add_action('user/index/get_password_question', array('user_controller', 'get_password_question'));
 // RC_Hook::add_action('user/index/question_get_password', array('user_controller', 'question_get_password'));
