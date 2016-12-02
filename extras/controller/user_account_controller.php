@@ -143,6 +143,9 @@ class user_account_controller {
         // ecjia_front::$controller->assign('payment_list', $payment_list);
         // ecjia_front::$controller->assign_lang();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->run();
+        $payment = $pay['payment'];
+        ecjia_front::$controller->assign('payment', $payment);
         ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->display('user_account_recharge.dwt');
     }
@@ -205,6 +208,9 @@ class user_account_controller {
         // ecjia_front::$controller->assign('sur_amount', $sur_amount);
         // ecjia_front::$controller->assign_lang();
 //         ecjia_front::$controller->assign('hideinfo', '123');
+
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->display('user_account_withdraw.dwt');
     }
 

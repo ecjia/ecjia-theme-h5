@@ -37,7 +37,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <div class="ecjia-list list-short">
         <li>
         	<a href="{url path='user/user_account/account_detail'}">
-        		<i class="iconfont icon red icon-qianbao"></i>
+        		<div class="icon-wallet"></div>
         		<span class="icon-name">{t}我的钱包{/t}</span>
         		<i class="iconfont  icon-jiantou-right"></i></span>
         	</a>
@@ -68,8 +68,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-margin-t ecjia-list list-short">
        <li>
         	<a href="{url path='user/user_address/address_list'}">
-        		<i class="iconfont icon icon-location"></i>
+        		<div class="icon-address-list"></div>
         		<span class="icon-name">地址管理</span>
+        		<i class="iconfont  icon-jiantou-right"></i>
+        	</a>
+        </li>
+       <li>
+        	<a href="{url path='user/user_address/address_list'}">
+        		<div class="icon-expand"></div>
+        		<span class="icon-name">推广</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
@@ -78,14 +85,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-margin-t ecjia-list list-short">
         <li>
         	<a href="{url path='user/user_package/service'}">
-        		<i class="iconfont icon icon-kefu"></i>
+        		<div class="icon-website-service"></div>
         		<span class="icon-name">官网客服</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
         <li>
         	<a href="{url path='user/user_address/address_list'}">
-        		<i class="iconfont icon icon-eclogo"></i>
+        		<div class="icon-offical-website"></div>
         		<span class="icon-name">官网网站</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
@@ -94,15 +101,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-margin-t ecjia-list list-short">
         <li>
         	<a href="{url path='article/help/init'}">
-        		<i class="iconfont icon icon-kefu"></i>
+        		<div class="icon-message-center"></div>
         		<span class="icon-name">帮助中心</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
         <li>
         	<a href="{url path='user/user_address/address_list'}">
-        		<i class="iconfont icon icon-eclogo"></i>
-        		<span class="icon-name">公司介绍</span>
+        		<div class="icon-message-center"></div>
+        		<span class="icon-name">消息中心</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
@@ -111,7 +118,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <!-- {foreach from=$shop item=value} 网店信息 -->
             <li>
             	<a href="{RC_uri::url('user/index/shop_detail')}&article_id={$value.id}">
-            		<i class="iconfont icon icon-eclogo"></i>
+            		<div class="icon-shop-info"></div>
             		<span class="icon-name">{$value.title}</span>
             		<i class="iconfont  icon-jiantou-right"></i>
             	</a>

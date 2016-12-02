@@ -1460,6 +1460,7 @@ footer{
 }
 /*========================  我的 ===========================*/
 .ecjia-user {
+	margin-top: 1em;
     padding-bottom: calc(44px + 1em);
 }
 .ecjia-user-new-info {
@@ -1590,12 +1591,82 @@ footer{
 .ecjia-user .ecjia-list.list-short li a{
 	line-height: 1.7em;
 }
-.ecjia-user .ecjia-list.list-short li i  {
-	font-size: 1.5em;
-	line-height: 2.3em;
+.ecjia-user .ecjia-list.list-short li a>.icon-jiantou-right {
+	right: 1%
+}
+.ecjia-user-head .ecjia-list.list-short li .icon-wallet  {
+	width: 25px;
+	height: 25px;
+	margin-left: 1%;
+	margin-top: 1%;	
+    background: url('../images/user_center/50x50_1.png') no-repeat;
+    background-size: 100%;
+    float: left;
+}
+.ecjia-user .ecjia-list.list-short li .icon-address-list  {
+	width: 25px;
+	height: 25px;
+	margin-left: 1%;
+	margin-top: 1%;	
+    background: url('../images/user_center/50x50_3.png') no-repeat;
+    background-size: 100%;
+    float: left;
+}
+.ecjia-user .ecjia-list.list-short li .icon-expand  {
+	width: 25px;
+	height: 25px;
+	margin-left: 1%;
+	margin-top: 1%;	
+    background: url('../images/user_center/50x50_14.png') no-repeat;
+    background-size: 100%;
+    float: left;
+}
+.ecjia-user .ecjia-list.list-short li .icon-website-service  {
+	width: 25px;
+	height: 25px;
+	margin-left: 1%;
+	margin-top: 1%;	
+    background: url('../images/user_center/50x50_5.png') no-repeat;
+    background-size: 100%;
+    float: left;
+}
+.ecjia-user .ecjia-list.list-short li .icon-offical-website  {
+	width: 25px;
+	height: 25px;
+	margin-left: 1%;
+	margin-top: 1%;	
+    background: url('../images/user_center/50x50_6.png') no-repeat;
+    background-size: 100%;
+    float: left;
+}
+.ecjia-user .ecjia-list.list-short li .icon-help-center  {
+	width: 25px;
+	height: 25px;
+	margin-left: 1%;
+	margin-top: 1%;	
+    background: url('../images/user_center/50x50_14.png') no-repeat;
+    background-size: 100%;
+    float: left;
+}
+.ecjia-user .ecjia-list.list-short li .icon-message-center {
+	width: 25px;
+	height: 25px;
+	margin-left: 1%;
+	margin-top: 1%;	
+    background: url('../images/user_center/50x50_14.png') no-repeat;
+    background-size: 100%;
+    float: left;
+}
+.ecjia-user .ecjia-list.list-short li .icon-shop-info  {
+	width: 25px;
+	height: 25px;
+	margin-left: 1%;
+	margin-top: 1%;	
+    background: url('../images/user_center/50x50_14.png') no-repeat;
+    background-size: 100%;
+    float: left;
 }
 .ecjia-list.list-short li span{
-	display: inline;
 	margin-left: 8%;
 }
 .ecjia-user .ecjia-list.list-short li span.icon-price{

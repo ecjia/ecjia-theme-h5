@@ -58,6 +58,7 @@ class user_profile_controller {
         // ecjia_front::$controller->assign_title(RC_Lang::lang('profile'));
         ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign('hideinfo', 1);
         ecjia_front::$controller->display('user_profile.dwt');
     }
     
@@ -184,7 +185,7 @@ class user_profile_controller {
                     $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_PASSWORD)->data(array('token' => $token, 'password' => $old_password, 'new_password' => $new_password))->send()->getBody();
                     $data = json_decode($data,true);
                 if ($data['status']['succeed'] == 1) {
-                    ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/index/login')));
+                    ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/login')));
                 } else {
                     ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_profile/edit_password')));
                 }
