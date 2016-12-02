@@ -33,38 +33,42 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	{/if}
 </div>
 
-<div class="ecjia-user-head">
-    <div class="ecjia-list list-short">
-        <li>
+
+
+
+<div class="ecjia-user-head ecjia-user">
+     <ul class="ecjia-margin-t ecjia-list list-short">
+       <li>
         	<a href="{url path='user/user_account/account_detail'}">
         		<div class="icon-wallet"></div>
         		<span class="icon-name">{t}我的钱包{/t}</span>
-        		<i class="iconfont  icon-jiantou-right"></i></span>
+        		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
-    	</li>
-    </div>
+        </li>
+    </ul>
 </div>
-<ul class="ecjia-list bonus ecjia-nav-child-f ecjia-list-three ecjia-login-nav-bottom">
-	<li>
-		<a href="{url path='user/user_account/account_detail'}">
-		    <p>{if $user.formated_user_money}{$user.formated_user_money}{else}{'- -'}{/if}</p>
-			<p>余额</p>
-		</a>
-	</li>
-	<li>
-		<a href="{url path='user/user_bonus/bonus'}">
-		    <p>{if $user.user_bonus_count}{$user.user_bonus_count}{else}{'- -'}{/if}</p>
-			<p>红包</p>
-		</a>
-	</li>
-	<li>
-		<p>{if $user.user_points}{$user.user_points}{else}{'- -'}{/if}</p>
-		<p>积分</p>
-	</li>
-</ul>
+<div class="ecjia-user-border-b">
+    <ul class="ecjia-user ecjia-list bonus ecjia-nav-child-f ecjia-list-three ecjia-login-nav-bottom">
+    	<li>
+    		<a href="{url path='user/user_account/account_detail'}">
+    		    <p>{if $user.formated_user_money}{$user.formated_user_money}{else}{'- -'}{/if}</p>
+    			<p>余额</p>
+    		</a>
+    	</li>
+    	<li>
+    		<a href="{url path='user/user_bonus/bonus'}">
+    		    <p>{if $user.user_bonus_count}{$user.user_bonus_count}{else}{'- -'}{/if}</p>
+    			<p>红包</p>
+    		</a>
+    	</li>
+    	<li>
+    		<p>{if $user.user_points}{$user.user_points}{else}{'- -'}{/if}</p>
+    		<p>积分</p>
+    	</li>
+    </ul>
+</div>
 
-<div class="ecjia-user">
-
+<div class="ecjia-user ecjia-user-head">
     <ul class="ecjia-margin-t ecjia-list list-short">
        <li>
         	<a href="{url path='user/user_address/address_list'}">

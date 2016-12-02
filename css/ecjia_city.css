@@ -1460,8 +1460,8 @@ footer{
 }
 /*========================  我的 ===========================*/
 .ecjia-user {
-	margin-top: 1em;
-    padding-bottom: calc(44px + 1em);
+	margin-top: 0.4em;
+    /*padding-bottom: calc(44px + 1em);*/
 }
 .ecjia-user-new-info {
 	padding:1em;
@@ -1491,6 +1491,15 @@ footer{
 	padding-right: 0;
 	padding-top: 0;
 	padding-bottom: 0;
+}
+.ecjia-user.ecjia-list{
+	margin-top: 0;
+}
+.ecjia-user .ecjia-list{
+	margin-top: .5em;
+}
+.ecjia-user-border-b {
+	border-bottom: 1px solid #ddd;
 }
 .ecjia-user .ecjia-list.list-short li span {
 	/*margin-left: 0;*/
@@ -1589,10 +1598,10 @@ footer{
 	line-height: 1.3em;
 }
 .ecjia-user .ecjia-list.list-short li a{
-	line-height: 1.7em;
+	line-height: 2.5em;
 }
 .ecjia-user .ecjia-list.list-short li a>.icon-jiantou-right {
-	right: 1%
+	right: 1%;
 }
 .ecjia-user-head .ecjia-list.list-short li .icon-wallet  {
 	width: 25px;
@@ -1666,7 +1675,12 @@ footer{
     background-size: 100%;
     float: left;
 }
+.ecjia-user .ecjia-list.list-short li i {
+	font-size: 1.5em;
+	line-height: 2.3em;
+}
 .ecjia-list.list-short li span{
+	display: inline;
 	margin-left: 8%;
 }
 .ecjia-user .ecjia-list.list-short li span.icon-price{
