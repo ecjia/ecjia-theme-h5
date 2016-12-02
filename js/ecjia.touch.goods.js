@@ -22,7 +22,7 @@
             	if ($this.hasClass('disabled')) {
             		return false;
             	}
-            	$this.addClass('disabled');
+            	$this.parent('.box').children('span').addClass('disabled');
             	var rec_id = $this.attr('rec_id');
             	var goods_id = $this.attr('goods_id');
             	
@@ -77,7 +77,7 @@
             	if ($this.hasClass('disabled')) {
             		return false;
             	}
-            	$this.addClass('disabled');
+            	$this.parent('.box').children('span').addClass('disabled');
             	
             	var rec_id = $this.attr('rec_id');
             	var type;
@@ -175,7 +175,7 @@
             		ecjia.touch.category.add_tocart();
     				ecjia.touch.category.remove_tocart();
             	}
-            	div.removeClass('disabled');
+            	div.parent('.box').children('span').removeClass('disabled');
             });
         },
         
