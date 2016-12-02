@@ -25,7 +25,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!-- 异步商品列表 start-->
 	<!-- {foreach from=$goods_list item=goods} 循环商品 -->
 	<li class="single_item">
-		<a class="list-page-goods-img" href="{$goods.url}">
+		<a class="list-page-goods-img" href="{RC_Uri::url('goods/index/init')}&id={$goods.id}">
 			<span class="goods-img">
 				<img src="{$goods.img.thumb}" alt="{$goods.name}">
 			</span>

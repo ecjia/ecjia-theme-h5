@@ -19,8 +19,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 <div class="ecjia-goods-detail-header-title">
 	<ul>
-		<li><a class="nopjax goods-p" href="#goods-info-one" role="tab" data-toggle="tab" data-type="1">商品</a><p class="p1">—</p></li>
-		<li><a class="nopjax goods-p" href="#goods-info-two" role="tab" data-toggle="tab" data-type="2">详情</a><p class="p2">—</p></li>
+		<li><a class="nopjax goods-tab tab1" href="#goods-info-one" role="tab" data-toggle="tab" data-type="1">商品</a></li>
+		<li><a class="nopjax goods-tab tab2" href="#goods-info-two" role="tab" data-toggle="tab" data-type="2">详情</a></li>
 	</ul>
 </div>
 
@@ -53,7 +53,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	        <div class="goods-info-property ecjia-margin-b">
 	            <!--商品描述-->
 	            <div class="goods-style-name goods-style-name-new">
-	                <div class="goods-name ecjiaf-fl">{if $goods_info.merchant_info.manage_mode eq 'self'}<span>自营</span>{/if}{$goods_info.goods_name}</div>
+	                <div class=" ecjiaf-fl goods-name-new">{if $goods_info.merchant_info.manage_mode eq 'self'}<span>自营</span>{/if}{$goods_info.goods_name}</div>
 	            </div>
 	            <div class="goods-price goods-price-new">
 	                <!-- $goods.is_promote and $goods.gmt_end_time -->
@@ -63,13 +63,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	                	<div class="ecjia-left-time">
 	                		<i class="iconfont icon-remind"></i>
 							<span class="promote-time" data-type="1" value="{$goods_info.promote_end_time}"></span>
-	                	</div>	          			
-	                	<a class="goods-add-cart add-cart-a" href="javascript:void 0;" ><span>加入购物车</span></a>
-	                	<div class="ecjia-goods-plus-box" style="display: none;">
-		                     <span class="reduce show" data-toggle="remove-to-cart">减</span>
-	                         <label class="show">1</label>
-	                         <span class="add storeSearchCart" data-toggle="add-to-cart">加</span>
-	                    </div>
+	                	</div>
+	                	{if $rec_id eq 0}	          			
+	                		<a class="goods-add-cart add-cart-a" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}"  href="javascript:void 0;" style="display: none;"><span>加入购物车</span></a>
+	                	{else}
+		                	<div class="ecjia-goods-plus-box" id="goods_{$goods_info.id}">
+			                     <span class="reduce show" data-toggle="remove-to-cart">减</span>
+		                         <label class="show">{$num}</label>
+		                         <span class="add storeSearchCart" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
+		                    </div>
+	                    {/if}
 	                	<!-- {if $goods_info.favourable_list} -->
 			                	<div class="ecjia-favourable-goods-list">
 				                	<ul class="store-promotion">
@@ -86,21 +89,26 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<!-- {/if} -->
 	                <!--{else}-->
 	                {$goods_info.shop_price}
-	                <del>市场价：{$goods_info.market_price}</del>	                
-	                <a class="goods-add-cart market-goods-add-cart add-cart-a" href="javascript:void 0;" ><span>加入购物车</span></a>
-	                <div class="ecjia-goods-plus-box" style="display: none;">
-	                     <span class="reduce show" data-toggle="remove-to-cart">减</span>
-                         <label class="show">1</label>
-                         <span class="add storeSearchCart" data-toggle="add-to-cart">加</span>
-                    </div>
+	                <del>市场价：{$goods_info.market_price}</del>	
+	                {if $rec_id eq 0}                
+	                	<a class="goods-add-cart market-goods-add-cart add-cart-a" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}" href="javascript:void 0;" ><span>加入购物车</span></a>
+	                {else}
+		                <div class="ecjia-goods-plus-box ecjia-market-plus-box" style="display: none;">
+		                     <span class="reduce show" data-toggle="remove-to-cart">减</span>
+	                         <label class="show">{$num}</label>
+	                         <span class="add storeSearchCart" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
+	                    </div>
+                    {/if}
 	                <!-- {/if} -->
 	            </div>
+	            <input type="hidden" value="{RC_Uri::url('goods/category/update_cart')}" name="update_cart_url" />
+				<input type="hidden" value="{$goods_info.seller_id}" name="store_id" />
 	        </div>
-	        <div class="bd goods-type ecjia-margin-t">
+	        <div class="bd goods-type ecjia-margin-t store-name">
 	            <div class="goods-option-con goods-num goods-option-con-new">
 	                <a class="ecjia-merchants-name" href='{url path="goods/category/store_goods" args="store_id={$goods_info.seller_id}"}'>
 	                	<i class="iconfont icon-shop"></i>
-	                	{$goods_info.seller_name}
+	                		<span class="style-store-name">{$goods_info.seller_name}</span>
 	                	<i class="iconfont icon-jiantou-right"></i>
 	                </a>
 	            </div>
@@ -115,6 +123,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		                <div class="bd">
 							<ul class="ecjia-list ecjia-like-goods-list">
 								<!--{foreach from=$goods_info.related_goods item=goods name=goods}-->
+								<!-- {if $smarty.foreach.goods.index < 6 } -->
 								<li>
 									<a href='{url path="goods/index/init" args="id={$goods.goods_id}"}'>
 										<img src="{$goods.img.url}" />
@@ -128,6 +137,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 										<!--{/if}-->
 									</p>
 								</li>
+								<!--{/if}-->
 								<!--{/foreach}-->
 							</ul>
 						</div>
@@ -181,52 +191,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 <!-- 切换详情页面end -->
 
-
-
-<div class="store-add-cart a4w" style="">
-	<div class="a52"></div>
-	<a href="javascript:void 0;" class="a4x light show_cart" style="transform: translateY(0px);" show="false"><i class="a4y">1</i></a>
-	<div class="a4z" style="transform: translateX(0px);">
-		<div class="">￥6.90</div>
-	</div>
-	<a class="a51 " href="javascript:void 0;">去结算</a>
-	<div class="minicart-content" style="transform: translateY(0px); display: block;">
-		<i class="a57"></i>
-		<div class="a58 ">
-			<span class="a69 a6a checked" checkallgoods="" onclick="">全选</span>
-			<p class="a6c">(已选1件，共0.75kg)</p>
-			<a href="javascript:void 0;" class="a59" data-toggle="deleteall">清空购物车</a>
-		</div>
-		<div class="a5b" style="height: auto;">
-			<div class="a5l single">
-				<ul class="minicart-goods-list single"> 
-					<li class="a5n single last">
-						<span class="a69 a5o checked" checkgoods=""></span>
-						<a class="a5r" href="">
-							<table class="a5s">
-								<tbody>
-									<tr>
-										<td style=" width:62px;"><img class="a5t" src=""> </td>
-										<td>
-											<div class="a5w">【热销TOP1】赣南脐橙-中果4个/份   约750-850g</div> 
-											<span class="a5p">￥6.90</span>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</a>
-						<a class="a5u reduce" minusgoods="" tap="" data-toggle="remove-to-cart"></a>
-						<lable class="a5x">1</lable>
-						<a class="a5v " addgoods="" tap="" data-toggle="add-to-cart"></a>
-					</li>
-												
-				</ul>
-				<div class="a5m single" style=""></div>
-			</div>
-		</div>
-	<div style="height:50px;" discountpromptmsgheight=""></div>
-	</div>
-	<div class="a53" cartmask="" clstag="pageclick|keycount|cart_close_20160623_1|1" style="display: none;"></div>
-</div>
-
 <!-- {/block} -->
+

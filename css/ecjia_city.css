@@ -445,8 +445,8 @@ footer{
 	border-right: none;
 }
 .category .category_left li{
-	line-height: 3.5em;
-	height: 3.5em;
+	line-height: 4em;
+	height: 4em;
 	background: #F6F6F6;
 	border-bottom: 1px solid #eee;
 	border-right: 1px solid #eee;
@@ -462,7 +462,7 @@ footer{
 	padding-top: 0;
 	padding-bottom: 4em;
 	height: auto;
-	margin-left: 5.5em;
+	margin-left: 5.8em;
 	-webkit-overflow-scrolling: touch;
 }
 /*========================  店铺商品 ===========================*/
@@ -2222,22 +2222,22 @@ footer{
  .ecjia-goods-detail-header-title {
     bottom: 0;
     font-size: 1.4em;
-    left: 4em;
     position: relative;
     top: -1.9em;
 }
 .ecjia-goods-detail-header-title ul{
 	position: absolute;
-	width:18em;
-	margin-left:-9em;
-	left: 50%;
+	text-align:center;
+	width:100%;
 }
 .ecjia-goods-detail-header-title li {
 	float:left;
-	width:9em;
+	width:50%;
 }
 .ecjia-goods-detail-header-title li a {
 	color:#fff;
+	border-bottom:0.12em solid #fff;
+	padding-bottom:0.48em;
 }
 .p1 {
 	margin-top:-20px;
@@ -2271,17 +2271,18 @@ footer{
 	color:#ff1919;
 }
 .goods-add-cart{
-    width: 136px;
+    width: 85px;
     text-align: center;
     color: #fff;
-    line-height: 44px;
+    line-height: 38px;
     background-color: #47b34f;
 	margin-top:-43px;
 	float:right;
 	border-radius:4px;
 	clear:both;
 	border:none;
-	font-size:24px;
+	font-size:14px;
+	font-weight:bold;
 }
 .add-cart-a span {
 	color:#fff;
@@ -2339,7 +2340,18 @@ footer{
 	padding-right:19px;
 }
 .market-goods-add-cart{
-	margin-top:-4px;
+	margin-top:-1px;
+}
+.ecjia-market-plus-box{
+	top:0px;
+}
+
+.goods-info .goods-info-property .goods-style-name .goods-name-new{
+	margin-right:-10em;
+	max-height:2.8em;
+	overflow:hidden;
+	padding-right:11em;
+	font-weight:bold;
 }
 .goods-info .goods-info-property .goods-style-name-new{
 	padding:1.1em 1em .2em 1em;
@@ -2358,7 +2370,8 @@ footer{
 	margin-right:.4em;
 }
 .goods-info .goods-info-property .goods-price-new{
-	padding:0.1em 0.5em 0.5em 0.5em;
+	padding:0.1em 0.5em 1em 0.5em;
+	color:#ff1919;
 }
 .goods-info .goods-price-new .ecjia-promote_price-span{
 	background:#fff;
@@ -2391,17 +2404,34 @@ footer{
 }
 .goods-type .goods-option-con-new{
 	padding:.6em;
+	font-weight:bold;
+	color:#000;
+	height:55px;
+	line-height:34px;
+	font-size:18px;
+	
 }
 .ecjia-merchants-name .icon-jiantou-right{
 	float:right;
 	clear:both;
+	margin-top:5px;
+}
+/*.ecjia-favourable-goods-list{
+	width:100%;
+}*/
+.goods-info.ecjia-merchants-name span .style-store-name{
+	margin-top:5px;
+}
+.goods_info .store-name{
+	height:20px;
+	line-height:20px;
 }
 .ecjia-favourable-goods-list .store-promotion .promotion{
-	width:50%;
+	/*width:50%;*/
 	float:left;
 }
 .ecjia-favourable-goods-list .store-promotion li{
-	padding:.25em 0;
+	padding: 0;
 }
 .ecjia-favourable-goods-list .store-promotion .promotion-label{
 	color: #fff;
@@ -2422,6 +2452,7 @@ footer{
 }
 .may-like-literal{
 	padding:.6em ;
+	font-size:19px;
 }
 .goods-info .address-warehouse-new{
 	padding:0;
@@ -2440,13 +2471,14 @@ footer{
 	width:33.33%;
 	height:15em;
 	border-bottom:0;
-	padding: 1em;
+	padding: .85em;
 }
 .ecjia-like-goods-list li .link-goods-price{
 	color:#FF1919;
 }
 .ecjia-like-goods-list li img{
 	border:0.5px solid #ddd;
+	width:100%;
 }
 .ecjia-goods-name-new{
 	height:53px;
@@ -2546,14 +2578,15 @@ footer{
 }
 .order-log-item {
     position: relative;
-    font-weight: lighter;
     background: #ffffff;
     margin-bottom: 1em;
-    width: 80%;
+    width: 90%;
     float: right;
     border-radius: 10px;
     padding: 1em .5em;
-    color: #9d9d9d;
+}
+.order-log-item:nth-child(2) {
+	color:#999;
 }
 .order-log-item .order-log{
     position: relative;
@@ -2585,7 +2618,7 @@ footer{
     width: 1em;
     height: 1em;
     border-radius: 100%;
-    left: -4em;
+    left: -3em;
     z-index: 99;
 }
 .order-log-item:first-child{
@@ -2597,15 +2630,15 @@ footer{
 .order-log-item:first-child::after{
     width: 1.5em;
     height: 1.5em;
-    left: -3.75em;
+    left: -2.75em;
 }
 .order-log-item .order-log .order-time{
-    color: #a8a8a8;
+    color: #999;
 }
 .order-log-item::after{
     content:'';
     position: absolute;
-    left: -3.5em;
+    left: -2.5em;
     display: block;
     width: 1em;
     height: 1em;
@@ -2624,7 +2657,7 @@ footer{
     width: 1px;
     position: absolute;
     top: 0;
-    left: -3em;
+    left: -2em;
     height: calc(100% + 1em);
     background: #ddd;
 }

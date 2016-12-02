@@ -23,7 +23,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!-- 异步促销商品列表 start-->
 	<!-- {foreach from=$goods_list item=val} -->
 		<li class="ecjia-margin-t">
-			<a class="list-page-goods-img" href="{$val.url}">
+			<a class="list-page-goods-img" href="{RC_Uri::url('goods/index/init')}&id={$val.id}">
 				<span class="goods-img">
                     <img src="{$val.img.thumb}" alt="{$val.name}">
                     <span class="promote-time" data-type="1" value="{$val.promote_end_date}"></span>    

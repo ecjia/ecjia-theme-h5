@@ -250,13 +250,49 @@ class goods_controller {
 	    		'object_id'=> $object_id,
 	    		'location' => array('longitude' => '121.41618102314', 'latitude' => '31.235278361951'),
 	    );
+	    /*商品基本信息*/
 	    $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($par)->run();
-		
 	    if (!empty($goods_info['promote_end_date'])) {
 	    	$goods_info['promote_end_time'] = RC_Time::local_strtotime($goods_info['promote_end_date']);
 	    }
-	    
+	   
+		/*商品所属店铺购物车列表*/
+	    $token = '118bc67dda0823007b6859f9e941800cc8a19164';
+	    $options = array(
+	    		'token' 	=> $token,
+	    		'seller_id' => $goods_info['seller_id'],
+	    		'location'	=> array('longitude' => '121.41618102314', 'latitude' => '31.235278361951')
+	    );
+	   	$cart_goods_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($options)->run();
+		/*购物车商品总数*/
+	   	$total_num = '';
+		if (!empty($cart_goods_list['cart_list'][0]['goods_list'])) {
+			$total_num = count($cart_goods_list['cart_list'][0]['goods_list']);
+		}
+		
+	   	$cart_goods_id = array();
+	   	$rec_id = '';
+	   	$num = '';
+	   	if (!empty($cart_goods_list['cart_list'][0]['goods_list'])) {
+	   		foreach ($cart_goods_list['cart_list'][0]['goods_list'] as $key => $val) {
+	   			$cart_goods_id[] = $val['goods_id'];
+	   			$num = $val['goods_number'];
+	   		}
+	   	}
+	   	
+		if (in_array($goods_id, $cart_goods_id)) {
+			foreach ($cart_goods_list['cart_list'][0]['goods_list'] as $key => $val) {
+				$rec_id = $val['rec_id'];
+			} 
+		} else {
+			$rec_id = 0;
+		}
+		
+	    /*商品描述*/
 	    $goods_desc = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DESC)->data(array('goods_id' => $goods_id))->run();
+	    ecjia_front::$controller->assign('rec_id', $rec_id);
+	    ecjia_front::$controller->assign('num', $num);
+	    ecjia_front::$controller->assign('total_num', $total_num);
 	    ecjia_front::$controller->assign('goods_info', $goods_info);
 	    ecjia_front::$controller->assign('goods_desc', $goods_desc);
         ecjia_front::$controller->display('goods_info.dwt');
@@ -442,7 +478,7 @@ class goods_controller {
     	);
     	
     	if (!empty($keywords)) {
-    		user_function::insert_search($keywords);//记录搜索
+    		user_function::insert_search($keywords, $store_id);//记录搜索
     		if (!empty($store_id)) {
     			$arr['filter']['keywords'] = $keywords;
     			$arr['seller_id'] = $store_id;
@@ -506,7 +542,6 @@ class goods_controller {
 		
     	ecjia_front::$controller->assign('data', $data);
 //     	ecjia_front::$controller->assign('shop_logo', RC_Uri::admin_url('statics/images/nopic.png'));
-    	ecjia_front::$controller->assign('title', '分类店铺');
     	ecjia_front::$controller->display('store_list.dwt');
     }
     
@@ -528,7 +563,6 @@ class goods_controller {
     	}
     	
     	ecjia_front::$controller->assign('data', $store_info);
-    	ecjia_front::$controller->assign('title', '店铺详情');
     	ecjia_front::$controller->display('store_detail.dwt');
     }
     /**
