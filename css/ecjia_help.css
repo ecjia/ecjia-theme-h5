@@ -2,6 +2,9 @@
 /*==============  Add By Xwb   ================*/
 
 /*============== 帮助中心  ================*/
+.ecjia-article {
+	margin-top: 1em;
+}
 .ecjia-article ul {
 	background-color: #EFEFEF;	
 }
