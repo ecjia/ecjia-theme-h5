@@ -445,8 +445,8 @@ footer{
 	border-right: none;
 }
 .category .category_left li{
-	line-height: 3.5em;
-	height: 3.5em;
+	line-height: 4em;
+	height: 4em;
 	background: #F6F6F6;
 	border-bottom: 1px solid #eee;
 	border-right: 1px solid #eee;
@@ -462,7 +462,7 @@ footer{
 	padding-top: 0;
 	padding-bottom: 4em;
 	height: auto;
-	margin-left: 5.5em;
+	margin-left: 5.8em;
 	-webkit-overflow-scrolling: touch;
 }
 /*========================  店铺商品 ===========================*/

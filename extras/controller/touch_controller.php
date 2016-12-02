@@ -117,14 +117,14 @@ class touch_controller {
      * 搜索
      */
     public static function search() {
-        ecjia_front::$controller->assign('searchs', user_function::get_search());
-        
         $keywords = !empty($_GET['keywords']) ? trim($_GET['keywords']) : '';
         ecjia_front::$controller->assign('keywords', $keywords);
         
         $store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
         ecjia_front::$controller->assign('store_id', $store_id);
         
+        ecjia_front::$controller->assign('searchs', user_function::get_search($store_id));
+
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('search.dwt');
     }
@@ -132,10 +132,15 @@ class touch_controller {
     /**
      * 清除搜索
      */
-    public static function del_search() {
-        setcookie('ECJia[search]', '', 1);
+    public static function del_search($store_id = 0) {
+    	$store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
+    	$ecjia_search = 'ECJia[search]';
+    	if (!empty($store_id)) {
+    		$ecjia_search .= '['.$store_id.']';
+    	}
+        setcookie($ecjia_search, '', 1);
         
-        ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('touch/index/search')));
+        ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON);
     }
 
     public static function download() {

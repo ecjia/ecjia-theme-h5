@@ -442,7 +442,7 @@ class goods_controller {
     	);
     	
     	if (!empty($keywords)) {
-    		user_function::insert_search($keywords);//记录搜索
+    		user_function::insert_search($keywords, $store_id);//记录搜索
     		if (!empty($store_id)) {
     			$arr['filter']['keywords'] = $keywords;
     			$arr['seller_id'] = $store_id;
