@@ -98,10 +98,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {foreach from=$order_list item=list} -->
 		<li class="ecjia-order-item ecjia-checkout ecjia-margin-t">
 			<div class="order-hd">
-				<a class="ecjiaf-db" href='{url path="goods/category/store_goods" args="store_id={$list.seller_id}"}'>
+				<a class="ecjiaf-fl" href='{url path="goods/category/store_goods" args="store_id={$list.seller_id}"}'>
 					<i class="iconfont icon-shop"></i>{$list.seller_name} <i class="iconfont icon-jiantou-right"></i>
-					<span class="ecjiaf-fr ecjia-color-green">{$list.label_order_status}</span>
 				</a>
+				<a class="ecjiaf-fr" href='{url path="user/user_order/order_detail" args="order_id={$list.order_id}"}'><span class="ecjia-color-green">{$list.label_order_status}</span></a>
 			</div>
 			<div class="flow-goods-list">
 				<a class="ecjiaf-db" href='{url path="user/user_order/order_detail" args="order_id={$list.order_id}"}'>
@@ -127,11 +127,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="order-ft">
 				<span><a href="#">订单金额：<span class="ecjia-fz-big">{$list.formated_total_fee}</span></a></span>
 				<span class="two-btn ecjiaf-fr">
-				{if $list.order_status_code eq 'await_pay'} <a class="btn ecjiaf-fr" href="#">去支付</a>
+				{if $list.order_status_code eq 'await_pay'} <a class="btn btn-hollow ecjiaf-fr" href="#">去支付</a>
 				<!-- if $list.order_status_code eq 'finished' || $list.order_status_code eq 'canceled' -->
-				{else} <a class="btn ecjiaf-fr" href='{url path="user/user_order/buy_again" args="order_id={$order.order_id}&from=list"}'>再次购买</a>
+				{else} <a class="btn btn-hollow ecjiaf-fr" href='{url path="user/user_order/buy_again" args="order_id={$order.order_id}&from=list"}'>再次购买</a>
 				{/if}
-				{if $list.shipping_status eq '1'} <a class="btn ecjiaf-fr" href="#">确认收货</a>{/if}
+				{if $list.shipping_status eq '1'} <a class="btn btn-hollow ecjiaf-fr" href="#">确认收货</a>{/if}
 				</span>
 			</div>
 		</li>

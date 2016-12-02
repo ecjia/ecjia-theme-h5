@@ -43,7 +43,7 @@ class user_order_controller {
         // ecjia_front::$controller->assign('status', $status);
         // ecjia_front::$controller->assign('page', $orders['page']);
         
-        $params_order = array('token' => touch_function::get_token(), 'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
+        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)
         ->run();
 //         ->send()->getBody();
@@ -144,7 +144,7 @@ class user_order_controller {
             ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         }
     
-        $params_order = array('token' => touch_function::get_token(), 'order_id' => $order_id);
+        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
         _dump($data,2);
         ecjia_front::$controller->assign('order', $data);
@@ -163,7 +163,7 @@ class user_order_controller {
             ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         }
         
-        $params_order = array('token' => touch_function::get_token(), 'order_id' => $order_id);
+        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_CANCEL)->data($params_order)
 //         ->run();
         ->send()->getBody();
@@ -185,7 +185,7 @@ class user_order_controller {
             ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         }
         
-        $params_order = array('token' => touch_function::get_token(), 'order_id' => $order_id);
+        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
         if (!$data) {
             ecjia_front::$controller->showmessage('error', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
@@ -193,7 +193,7 @@ class user_order_controller {
         if (isset($data['goods_list'])) {
             foreach ($data['goods_list'] as $goods) {
                 $params_cart = array(
-                    'token' => touch_function::get_token(),
+                    'token' => ecjia_touch_user::singleton()->getToken(),
                     'goods_id' => $goods['goods_id'],
                     'number' => $goods['goods_number'],
                     'location' => array(
@@ -265,7 +265,7 @@ class user_order_controller {
         $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
         
-        $params_order = array('token' => touch_function::get_token(), 'pagination' => array('count' => $size, 'page' => $page), 'type' => '');
+        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'pagination' => array('count' => $size, 'page' => $page), 'type' => '');
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)
         ->send()->getBody();
         $data = json_decode($data, true);
@@ -297,7 +297,7 @@ class user_order_controller {
             ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         }
         
-        $params_order = array('token' => touch_function::get_token(), 'order_id' => $order_id);
+        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_AFFIRMRECEIVED)->data($params_order)
         ->send()->getBody();
         $data = json_decode($data,true);

@@ -27,9 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<p class="ecjia-truncate2 address-desc">{t}伸大厦中山北路3553号3001室{/t}</p>
 	</div>
 </div>
-<!-- {if $goods_list } -->
 	<ul class="ecjia-list cart-goods-list ecjia-margin-b">
-		<!-- {foreach from=$goods_list item=goods key=k} -->
 		<li>
 			<label class="ecjiaf-fl ecjia-margin-r" for="cat_{$goods.rec_id}">
 				<input class="checkbox" data-trigger="checkbox" id="cat_{$goods.rec_id}" type="checkbox" checked="checked" value="{$goods.rec_id}" name="check_goods" >
@@ -81,13 +79,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<!-- {/if} -->
 			</div>
 		</li>
-		<!-- {/foreach} -->
 	</ul>
 	<div class="cart-btn-checkout ecjia-margin-t">
 		<div class="ecjia-margin-l ecjia-margin-b">{$lang.goods_price}：<span class="cart-goods-price" id="goods_subtotal">{$total.goods_price}</span></div>
 		<a class="btn btn-info goods-checkout ecjia-margin-b nopjax" type="button"data-url="{url path='flow/checkout'}"   href="{url path='flow/checkout'}">{$lang.check_out}<!-- （<b id="total_number">{$total.total_number}</b>） --></a>
 	</div>
-<!--{else}-->
 <div class="flow-no-pro ecjia-margin-t ecjia-margin-b">
 	<div class="ecjia-nolist">
 		<img src="{$theme_url}images/cart.png">
@@ -95,6 +91,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<a class="btn btn-small" type="button" href="{url path='touch/index/init'}">{t}去逛逛{/t}</a>
 </div>
-<!-- {/if} -->
 <!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
 <!-- {/block} -->

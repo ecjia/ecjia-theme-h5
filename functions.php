@@ -74,6 +74,7 @@ RC_Hook::add_action('cart/flow/consignee', array('cart_controller', 'consignee')
 RC_Hook::add_action('cart/flow/update_consignee', array('cart_controller', 'update_consignee'));
 RC_Hook::add_action('cart/flow/async_addres_list', array('cart_controller', 'async_addres_list'));
 RC_Hook::add_action('cart/flow/drop_consignee', array('cart_controller', 'drop_consignee'));
+RC_Hook::add_action('cart/flow/goods_list', array('cart_controller', 'goods_list'));
 
 //评论
 RC_Loader::load_theme('extras/controller/comment_controller.php');
@@ -89,6 +90,7 @@ RC_Hook::add_action('favourable/index/goods_list', array('favourable_controller'
 //会员
 RC_Loader::load_theme('extras/controller/user_controller.php');
 RC_Hook::add_action('user/index/init', array('user_controller', 'init'));
+RC_Hook::add_action('user/index/shop_detail', array('user_controller', 'shop_detail'));
 // RC_Hook::add_action('user/index/validate_email', array('user_controller', 'validate_email'));
 // RC_Hook::add_action('user/index/get_password_question', array('user_controller', 'get_password_question'));
 // RC_Hook::add_action('user/index/question_get_password', array('user_controller', 'question_get_password'));

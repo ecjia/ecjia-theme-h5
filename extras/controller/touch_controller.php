@@ -21,7 +21,7 @@ class touch_controller {
         	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DATA)->data($arr)->run();
         	RC_Cache::app_cache_set($cache_key, $data, 'index', 60*24);//24小时缓存
         }
-       
+       	
         //处理ecjiaopen url
         if (!empty($data)) {
         	foreach ($data as $k => $v) {
@@ -40,13 +40,16 @@ class touch_controller {
         						}
         					}
         				}
-        				$data['adsense_group'][$key]['count'] = count($val['adsense']);
-        				$data['promote_goods'][$key]['promote_end_date'] = RC_Time::local_strtotime($val['promote_end_date']);
+        				if ($k == 'adsense_group') {
+        					$data['adsense_group'][$key]['count'] = count($val['adsense']);
+        				}
+        				if ($k == 'promote_goods') {
+        					$data['promote_goods'][$key]['promote_end_date'] = RC_Time::local_strtotime($val['promote_end_date']);
+        				}
         			}
         		}
         	}
         }
-        
         //首页菜单
         ecjia_front::$controller->assign('navigator', $data['mobile_menu']);
         
@@ -87,18 +90,26 @@ class touch_controller {
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
         
-        $arr = array(
+        $paramater = array(
         	'action_type' 	=> $type,	
  			'pagination' 	=> array('count' => $limit, 'page' => $page),
 			'location' 		=> array('longitude' => '121.416359', 'latitude' => '31.235371')
         );
         
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($arr)->run();
+        $cache_key = 'goods_list_'.$type.'_'.$limit.'_'.$page;
+        $arr = RC_Cache::app_cache_get($cache_key, 'goods');
+        if (!$arr) {
+        	$arr = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($paramater)->send()->getBody();
+        	RC_Cache::app_cache_set($cache_key, $arr, 'goods', 60*24);//24小时缓存
+        }
+        $list = json_decode($arr, true);
+
+        $data = !empty($list['data']) ? $list['data'] : array();
         ecjia_front::$controller->assign('goods_list', $data);
         ecjia_front::$controller->assign_lang();
         $sayList = ecjia_front::$controller->fetch('index.dwt');
         
-//         if ($page == 3) $goods_list['is_last'] = 1;
+        if ($list['paginated']['more'] == 0) $data['is_last'] = 1;
         ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $data['is_last']));
     }
 
@@ -106,14 +117,14 @@ class touch_controller {
      * 搜索
      */
     public static function search() {
-        ecjia_front::$controller->assign('searchs', user_function::get_search());
-        
         $keywords = !empty($_GET['keywords']) ? trim($_GET['keywords']) : '';
         ecjia_front::$controller->assign('keywords', $keywords);
         
         $store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
         ecjia_front::$controller->assign('store_id', $store_id);
         
+        ecjia_front::$controller->assign('searchs', user_function::get_search($store_id));
+
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('search.dwt');
     }
@@ -121,10 +132,15 @@ class touch_controller {
     /**
      * 清除搜索
      */
-    public static function del_search() {
-        setcookie('ECJia[search]', '', 1);
+    public static function del_search($store_id = 0) {
+    	$store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
+    	$ecjia_search = 'ECJia[search]';
+    	if (!empty($store_id)) {
+    		$ecjia_search .= '['.$store_id.']';
+    	}
+        setcookie($ecjia_search, '', 1);
         
-        ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('touch/index/search')));
+        ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON);
     }
 
     public static function download() {

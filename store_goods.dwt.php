@@ -21,10 +21,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <div class="ecjia-header ecjia-store-banner">
 	<div class="ecjia-header-left">
-		<a href="javascript:ecjia.touch.history.back();">
-			<i class="iconfont icon-jiantou-left"></i>
-			<img src="{$store_info.seller_banner}">
-		</a>
+		<img src="{$store_info.seller_banner}">
 	</div>
 </div>
 <div class="ecjia-store-brief">
@@ -118,18 +115,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<!-- {if $goods_list} -->
 							<!-- {foreach from=$goods_list item=goods} -->
 							<li>
-								<a class="linksGoods w">
+								<a class="linksGoods w" href="{RC_Uri::url('goods/index/init')}&id={$goods.id}">
 									<img class="pic" src="{$goods.img.small}">
 									<dl>
 										<dt>{$goods.name}</dt>
 										<dd><label>{$goods.shop_price}</label></dd>
 									</dl>
-									<div class="box" id="goods_{$goods.id}">
-	                                    <span class="reduce {if $goods.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$goods.rec_id}">减</span>
-                                		<label class="{if $goods.num}show{else}hide{/if}">{$goods.num}</label>
-                                		<span class="add" data-toggle="add-to-cart" rec_id="{$goods.rec_id}" goods_id="{$goods.id}">加</span>
-                                	</div>
 								</a>
+								<div class="box" id="goods_{$goods.id}">
+	                            	<span class="reduce {if $goods.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$goods.rec_id}">减</span>
+                                	<label class="{if $goods.num}show{else}hide{/if}">{$goods.num}</label>
+                        			<span class="add" data-toggle="add-to-cart" rec_id="{$goods.rec_id}" goods_id="{$goods.id}">加</span>
+                       			</div>
 							</li>
 							<!-- {/foreach} -->
 						<!-- {/if} -->
@@ -144,7 +141,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <div class="store-add-cart a4w">
 	<div class="a52"></div>
-	<a href="javascript:void 0;" class="a4x {if $count.goods_number}light{else}disabled{/if} show_cart" style="transform: translateY(0px);" show="false">
+	<a href="javascript:void 0;" class="a4x {if $count.goods_number}light{else}disabled{/if} outcartcontent show show_cart" show="false">
 		{if $count.goods_number}
 		<i class="a4y">
 		{$count.goods_number}
@@ -156,12 +153,19 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="a50">购物车是空的</div>
 		{else}
 		<div>
-			{$count.goods_price}{if $count.discount}<label>(已减{$count.discount})</label>{/if}
+			{$count.goods_price}{if $count.discount neq 0}<label>(已减{$count.discount})</label>{/if}
 		</div>
 		{/if}
 	</div>
 	<a class="a51 {if !$count.goods_number}disabled{/if}" href="javascript:void 0;">去结算</a>
 	<div class="minicart-content" style="transform: translateY(0px); display: block;">
+		<a href="javascript:void 0;" class="a4x {if $count.goods_number}light{else}disabled{/if} incartcontent show_cart" show="false">
+			{if $count.goods_number}
+			<i class="a4y">
+			{$count.goods_number}
+			</i>
+			{/if}
+		</a>
 		<i class="a57"></i>
 		<div class="a58 ">
 			<span class="a69 a6a checked" checkallgoods="" onclick="">全选</span>

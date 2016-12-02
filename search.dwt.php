@@ -8,6 +8,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
+<!-- {block name="footer"} -->
+<script type="text/javascript">ecjia.touch.enter_search();</script>
+<!-- {/block} -->
+
 <!-- {block name="main-content"} -->
 <header class="ecjia-header">
 	<div class="ecjia-header-left">
@@ -23,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <div class="ecjia-search-history">
 	<p class="title">
-		<i class="iconfont icon-time"></i>{t}搜索历史{/t}{if $searchs}<a class="nopjax" data-toggle="del_history" href="{url path='touch/index/del_search'}">{t}清除记录{/t}</a>{/if}
+		<i class="iconfont icon-time"></i>{t}搜索历史{/t}{if $searchs}<a class="nopjax" data-toggle="del_history" href="{url path='touch/index/del_search'}{if $store_id}&store_id={$store_id}{/if}">{t}清除记录{/t}</a>{/if}
 	</p>
 	<!-- {if $searchs} -->
 	<div class="ecjia-list">

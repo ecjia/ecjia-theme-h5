@@ -347,6 +347,14 @@
 					ecjia.pjax(url);
 			});
         },
+        
+        enter_search : function() {
+			$("body").keyup(function () {  
+                if (event.which == 13){  
+                	$('.btn-search').trigger('click');
+                }  
+            }); 
+        },
 
         del_history : function() {
         	$(document).on('click', '[data-toggle="del_history"]', function(e){
@@ -355,8 +363,7 @@
         		var url		= $this.attr('data-href') || $this.attr('href');
 
         		$.get(url, function(data){
-					ecjia.pjax(data.pjaxurl);
-					return false;
+					ecjia.pjax(window.location.href);
 				}, 'json');
         	});
         },
@@ -367,7 +374,7 @@
                 hour = checkTime(nowTime.getHours()),
                 minute = checkTime(nowTime.getMinutes()),
                 time = hour + ':' + minute;
-            var html = '<i class="iconfont icon-icon47"></i>' + time + ' 热门推荐已更新';
+            var html = '<i class="icon-goods-hot"></i>' + time + ' 热门推荐已更新';
             $('.ecjia-new-goods').find('.goods-index-title').html(html);
 		}
 	};
