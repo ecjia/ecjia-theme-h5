@@ -2461,14 +2461,15 @@ footer{
 }
 .order-log-item {
     position: relative;
-    font-weight: lighter;
     background: #ffffff;
     margin-bottom: 1em;
-    width: 80%;
+    width: 90%;
     float: right;
     border-radius: 10px;
     padding: 1em .5em;
-    color: #9d9d9d;
+}
+.order-log-item:nth-child(2) {
+	color:#999;
 }
 .order-log-item .order-log{
     position: relative;
@@ -2500,7 +2501,7 @@ footer{
     width: 1em;
     height: 1em;
     border-radius: 100%;
-    left: -4em;
+    left: -3em;
     z-index: 99;
 }
 .order-log-item:first-child{
@@ -2512,15 +2513,15 @@ footer{
 .order-log-item:first-child::after{
     width: 1.5em;
     height: 1.5em;
-    left: -3.75em;
+    left: -2.75em;
 }
 .order-log-item .order-log .order-time{
-    color: #a8a8a8;
+    color: #999;
 }
 .order-log-item::after{
     content:'';
     position: absolute;
-    left: -3.5em;
+    left: -2.5em;
     display: block;
     width: 1em;
     height: 1em;
@@ -2539,7 +2540,7 @@ footer{
     width: 1px;
     position: absolute;
     top: 0;
-    left: -3em;
+    left: -2em;
     height: calc(100% + 1em);
     background: #ddd;
 }
