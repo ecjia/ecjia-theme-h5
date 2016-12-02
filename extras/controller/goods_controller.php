@@ -506,7 +506,6 @@ class goods_controller {
 		
     	ecjia_front::$controller->assign('data', $data);
 //     	ecjia_front::$controller->assign('shop_logo', RC_Uri::admin_url('statics/images/nopic.png'));
-    	ecjia_front::$controller->assign('title', '分类店铺');
     	ecjia_front::$controller->display('store_list.dwt');
     }
     
@@ -528,7 +527,6 @@ class goods_controller {
     	}
     	
     	ecjia_front::$controller->assign('data', $store_info);
-    	ecjia_front::$controller->assign('title', '店铺详情');
     	ecjia_front::$controller->display('store_detail.dwt');
     }
     /**
