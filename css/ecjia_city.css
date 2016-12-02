@@ -2414,8 +2414,8 @@ footer{
     transform: translateY(-50%);
     padding-left: 6em;
 }
-.ecjia-order-list .goods-img-more {    padding-top: 1em;}
-.ecjia-order-list .goods-img-more i {font-size:2em}
+.goods-list .goods-img-more {padding-top: 1em;}
+.goods-list .goods-img-more i {font-size:2em}
 /*========================  订单详情 ===========================*/
 .ecjia-order-detail .ecjia-checkout{
     border-top: 1px solid #ddd;

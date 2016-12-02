@@ -74,6 +74,7 @@ RC_Hook::add_action('cart/flow/consignee', array('cart_controller', 'consignee')
 RC_Hook::add_action('cart/flow/update_consignee', array('cart_controller', 'update_consignee'));
 RC_Hook::add_action('cart/flow/async_addres_list', array('cart_controller', 'async_addres_list'));
 RC_Hook::add_action('cart/flow/drop_consignee', array('cart_controller', 'drop_consignee'));
+RC_Hook::add_action('cart/flow/goods_list', array('cart_controller', 'goods_list'));
 
 //评论
 RC_Loader::load_theme('extras/controller/comment_controller.php');
