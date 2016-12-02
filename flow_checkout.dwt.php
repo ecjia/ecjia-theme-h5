@@ -23,32 +23,27 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="flow-address ecjia-margin-b">
 			<label class="ecjiaf-fl">送至：</label>
 			<div class="ecjiaf-fl address-info">
-				<span>{$consignee.consignee|escape}</span>
-				<span>{$consignee.mobile}</span>
-				<p class="ecjia-truncate2 address-desc">{$consignee.address}{$consignee.address_info}</p>
+				<span>{$data.consignee.consignee|escape}</span>
+				<span>{$data.consignee.mobile}</span>
+				<p class="ecjia-truncate2 address-desc">{$data.consignee.address}{$data.consignee.address_info}</p>
 			</div>
 		</div>
 
 		<section class="flow-goods-list ecjia-margin-b">
-			<ul class="goods-item">
-				<!-- {foreach from=$goods_list item=goods} -->
-				<li>
-					<div class="ecjiaf-fl goods-img">
-						<img src="{$goods.goods_img}"/>
-					</div>
-					<div class="ecjiaf-fl goods-info">
-						<p class="ecjia-truncate2">{$goods.goods_name}</p>
-						<p>{$goods.formated_goods_price}</p>
-					</div>
-					<span class="ecjiaf-fr goods-price"> X {$goods.goods_number}</span>
+			<ul class="{if count($data.goods_list) > 1}goods-list{else}goods-item{/if}"><!-- goods-list 多个商品隐藏商品名称,goods-item -->
+				<!-- {foreach from=$data.goods_list item=goods name=goods} -->
+				<!-- {if $smarty.foreach.goods.iteration gt 3} -->
+				<!-- 判断不能大于4个 -->
+				<li class="goods-img-more">
+					<i class="icon iconfont">&#xe62e;</i>
+					<p class="ecjia-fz-small">共{$list.goods_number}件</p>
 				</li>
-				<!-- {/foreach} -->
-			</ul>
-			<ul class="goods-list">
-				<!-- {foreach from=$goods_list item=goods} -->
-				<li class="goods-img ecjiaf-fl ecjia-margin-r  ecjia-icon">
-					<img src="{$goods.goods_img}" />
-					<span class="ecjia-icon-num top">{$goods.goods_number}</span>
+				<!-- {break} -->
+				<!-- {/if} -->
+				<li class="goods-img ecjiaf-fl ecjia-margin-r ecjia-icon">
+					<img class="ecjiaf-fl" src="{$goods.img.thumb}" alt="{$goods.goods_name}" title="{$goods.goods_name}" />
+					{if $goods.goods_number gt 1}<span class="ecjia-icon-num top">{$goods.goods_number}</span>{/if}
+					<span class="ecjiaf-fl goods-name ecjia-truncate2">{$goods.goods_name}</span>
 				</li>
 				<!-- {/foreach} -->
 			</ul>
