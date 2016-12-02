@@ -192,6 +192,15 @@ del { color: #bbb; }
 .input-group-btn .btn {
 	color: #fff;
 }
+/* 空心按钮 */
+.btn-hollow,
+.btn-hollow:link,
+.btn-hollow:hover,
+.btn-hollow:active,
+.btn-hollow:visited {
+	background-color: #fff;
+	color:#47aa4d;
+}
 /* 登陆 */
 .ecjia-login-form .form-group .input .icon-dengluyonghuming,
 .user-register-form .form-group .input .icon-mobilefill  {
