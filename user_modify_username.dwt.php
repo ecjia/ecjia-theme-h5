@@ -9,8 +9,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
 <form class="ecjia-user ecjia-form ecjia-login-user-profile-form ecjia-login-margin-top" name="user_profile" action="{url path='user/user_profile/modify_username'}" method="post">
 	<div class="form-group ecjia-login-margin-lr ecjiaf-bt">
 		<label class="input ecjia-login-pa-left">

@@ -18,8 +18,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
 
 <div class="border_bottom_getpassword"></div>
 <form class="ecjia-form ecjia-login ecjia-login-margin-top" name="getPassword" action="{url path='user/get_password/get_password_email'}" method="post">
