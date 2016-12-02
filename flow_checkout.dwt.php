@@ -30,13 +30,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 
 		<section class="flow-goods-list ecjia-margin-b">
+			<a href='{url path="cart/flow/goods_list" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 			<ul class="{if count($data.goods_list) > 1}goods-list{else}goods-item{/if}"><!-- goods-list 多个商品隐藏商品名称,goods-item -->
 				<!-- {foreach from=$data.goods_list item=goods name=goods} -->
 				<!-- {if $smarty.foreach.goods.iteration gt 3} -->
 				<!-- 判断不能大于4个 -->
 				<li class="goods-img-more">
 					<i class="icon iconfont">&#xe62e;</i>
-					<p class="ecjia-fz-small">共{$list.goods_number}件</p>
+					<p class="ecjia-fz-small">共{$total_goods_number}件</p>
 				</li>
 				<!-- {break} -->
 				<!-- {/if} -->
@@ -47,6 +48,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</li>
 				<!-- {/foreach} -->
 			</ul>
+			</a>
 		</section>
 
 		<section class="checklist">
