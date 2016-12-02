@@ -1910,15 +1910,15 @@ footer{
 	text-align: left;
 }
 .ecjia-account.ecjia-form .select {
+	position: relative;
 	width: 100%;
 }
 .ecjia-account.ecjia-form .select select {
 	margin-top: .5em;
 	margin-bottom: .5em;
 	border-color: #FFF;
-	position: relative;
-	font-size: 1.1em;
 	font-weight: bold;
+	padding-left: .5em;
 	width: 100%;
 }
 /*========================  红包 ===========================*/
@@ -2406,14 +2406,14 @@ footer{
 .ecjia-order-list .order-ft span.two-btn .btn:nth-of-type(2) {
     margin-left: 0;
 }
-.ecjia-order-list .flow-goods-list .goods-item li{
+ .flow-goods-list .goods-item li{
     width: 100%;
     position: relative;
 }
-.ecjia-order-list .flow-goods-list .goods-list .goods-name{
+.flow-goods-list .goods-list .goods-name{
     display: none;
 }
-.ecjia-order-list .goods-item .goods-name{
+.ecjia-checkout .goods-item .goods-name{
     position: absolute;
     display: block;
     width: 100%;
@@ -2423,8 +2423,8 @@ footer{
     transform: translateY(-50%);
     padding-left: 6em;
 }
-.ecjia-order-list .goods-img-more {    padding-top: 1em;}
-.ecjia-order-list .goods-img-more i {font-size:2em}
+.goods-list .goods-img-more {padding-top: 1em;}
+.goods-list .goods-img-more i {font-size:2em}
 /*========================  订单详情 ===========================*/
 .ecjia-order-detail .ecjia-checkout{
     border-top: 1px solid #ddd;
