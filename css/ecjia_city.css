@@ -2146,6 +2146,9 @@ footer{
 	margin-left:6px;
 	display:none;
 }
+.ecjia-goods-basic-info .focus{
+	margin-top:0px;
+}
 #goods-info-two{
 	display:none;
 }
@@ -2174,7 +2177,7 @@ footer{
 	border:none;
 	font-size:24px;
 }
-.goods-price a {
+.add-cart-a span {
 	color:#fff;
 }
 .ecjia-goods-plus-box {

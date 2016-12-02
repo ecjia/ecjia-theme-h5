@@ -70,12 +70,9 @@
         		}); 
         	}, 1000); //每隔1秒执行一次 
         },	
-        goods_img : function() {
-            var startX, moveEndX,
-                next_has_class,
-                obj_nextmsg = $('.scroller-slidenext .slidenext-msg'),
-                obj_nexticon = $('.scroller-slidenext .slidenext-icon');
-			var swiper = new Swiper('.goods-imgshow', {
+    	goods_img : function() {
+			var swiper = new Swiper('.swiper-goods-img', {
+				pagination: '.swiper-pagination',
 				grabCursor: true,
 				centeredSlides: true,
 				coverflow: {
@@ -87,33 +84,9 @@
 				},
 				//无限滚动
 				slidesPerView: 1,
-                onTouchStart : function(s,e) {
-                    startX = e.touches && e.touches[0].pageX ? e.touches[0].pageX : e.pageX;
-                },
-                onTouchMove : function(s,e) {
-                    if (s.isEnd) {
-                        moveEndX = e.touches && e.touches[0].pageX ? e.touches[0].pageX : e.pageX;
-                        next_has_class = obj_nexticon.hasClass("active");
-                        if (moveEndX - startX < -80) {
-                            !next_has_class && obj_nexticon.addClass("active");
-                            !next_has_class && obj_nextmsg.text('释放查看详情');
-                        } else {
-                            next_has_class && obj_nexticon.removeClass("active");
-                            next_has_class && obj_nextmsg.text('滑动查看详情');
-                        }
-                    }
-                },
-                onTouchEnd : function(s,e) {
-                    if (s.isEnd) {
-                        moveEndX = e.changedTouches && e.changedTouches[0].pageX ? e.changedTouches[0].pageX : e.pageX;
-                        if (moveEndX - startX < -80) {
-                            console.log($('.goods_info'));
-                            $('.goods_info').trigger('click');
-                        }
-                    }
-                }
+				loop: true,
 			});
-		},
+        },
 	    add_tocart:function(){
             $("[data-toggle='add-to-cart']").off('click').on('click', function(ev){
             	var $this = $(this);
