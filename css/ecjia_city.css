@@ -116,9 +116,9 @@
 	padding-bottom: 1em;
 }
 .ecjia-mod .ecjia-adsense-model .adsense-item .adsense-title h2{
-	font-weight: 500;
+	font-weight: normal;
 	color: #333;
-	font-size: 1.1em;
+	font-size: 1.2em;
 	padding: 1em 0 .5em 0;
 }
 .ecjia-mod .ecjia-adsense-model .adsense-item .adsense-group{
@@ -162,8 +162,8 @@
 	height: 2.3em;
 	border-bottom: 1px solid #eee;
 	color: #333;
-	font-size: 1.1em;
-	font-weight: 500;
+	font-size: 1.2em;
+	font-weight: normal;
 	line-height: 1.5em;
 	padding-left: 2.3em;
 }
@@ -188,7 +188,7 @@
 	color: #bbb;
 	float: right;
 	padding-left: 1em;
-	border-left: 1px solid #ccc;
+	border-left: 1px solid #eee;
 }
 .swiper-promotion {
 	overflow: hidden;
@@ -198,7 +198,6 @@
 	float: left;
     margin-right: 2%;
     border-bottom: none;
-    padding: 0 0 0.4em 0;
     margin: 0 2% 0.5em 0;
 	background: #fff;
 }
@@ -215,11 +214,11 @@
     display: block;
     width: 100%;
     background: rgba(0,0,0,.4);
-    bottom: 1.5em;
+    bottom: 1.7em;
     font-size: .8em;
     text-align: center;
     color: #fff;
-    line-height: 1.6em;
+    line-height: 1.9em;
 }
 .ecjia-promotion-model .swiper-slide .list-page-goods-img .goods-img {
     display: block;
@@ -232,7 +231,7 @@
     height: 1.6em;
     line-height: 1.5em;
     margin-top: .5em;
-    padding: 0 .5em 0 .5em;
+    padding: 0 0 0 .5em;
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -240,7 +239,7 @@
     font-size: 1em;
 	font-family: Helvetica, '宋体', Arial, sans-serif;
 	text-align: left;
-	font-weight: 500;
+	font-weight: normal;
     color: #555;
 }
 .ecjia-promotion-model a.list-page-goods-img .goods-name .name-label{
@@ -250,9 +249,8 @@
 .ecjia-promotion-model .list-page-box .list-page-goods-price {
     overflow: hidden;
     display: block;
-    padding-left: .5em;
-	padding-bottom: .5em;
-	text-align:left;
+	padding: .2em 0 .5em .5em;
+	text-align: left;
 }
 .ecjia-promotion-model .list-page-goods-price span {
     color: #FF0030;
@@ -322,7 +320,7 @@
 .ecjia-promotion-list .promote-time .end-time{
     color: #333;
     border-radius: 4px;
-    font-weight: 500;
+    font-weight: normal;
     font-size: 1.2em;
     background: #fff;
 	padding: .2em;
@@ -349,7 +347,7 @@
 	width: 95%;
 	height: 1.8em;
 	margin: 0 auto;
-	font-weight: 500;
+	font-weight: normal;
 }
 .ecjia-new-goods .icon-shop{
 	font-size: 1.1em;
@@ -364,7 +362,7 @@
 	-webkit-box-orient: vertical;
 	height: 3em;
 	white-space: pre-line;
-	font-weight: 500;
+	font-weight: normal;
 	color: #333;
 	font-size: 1em;
 }
@@ -391,7 +389,7 @@
     width: 96%;
 }
 .ecjia-mod.ecjia-new-goods.goods-index-list .hd{
-    height:2.5em;
+    height: 2em;
 }
 .ecjia-mod.ecjia-new-goods h2{
     font-size: .9em;
@@ -441,7 +439,7 @@ footer{
 	text-align: center;
 	width: 6.5em;
 	color: #333;
-	font-weight: 500;
+	font-weight: normal;
 	font-size: .9em;
 	background: #F6F6F6;
 	border-right: none;
@@ -538,7 +536,7 @@ footer{
 	color: #333;
     font-size: 1.1em;
 	padding-top: .8em;
-	font-weight: 500;
+	font-weight: normal;
 	position: relative;
 }
 .ecjia-store-brief .store-name span{
@@ -728,7 +726,7 @@ footer{
     -webkit-box-pack: center;
     -moz-box-pack: center;
     box-pack: center;
-	font-weight: 500;
+	font-weight: normal;
 	text-align: center;
 	position: relative;
 	padding: 1.2em .5em;
@@ -1952,7 +1950,7 @@ footer{
     width: 32%;
 	overflow: hidden;
 	color: #FF1919;
-	font-weight: 500;
+	font-weight: normal;
 	border-right: 1px solid #ddd;
 	line-height: 6em;
 }
@@ -2555,7 +2553,7 @@ footer{
 .ecjia-store-list {
     background:#EFEFF4;
     height:auto;
-	margin-top: 45px;
+	margin-top: 3.5em;
 }
 .ecjia-store-list li.single_item{
     background:#FFFFFF;
@@ -2578,7 +2576,7 @@ footer{
 }
 .ecjia-store-list .store-info .basic-info{
 	height:auto;
-	padding:.5em;
+	padding: .8em .2em;
 }
 .ecjia-store-list .store-left{
 	float:left;
@@ -2601,7 +2599,7 @@ footer{
 	color: #333;
     font-size: 1.1em;
 	padding-top: .5em;
-	font-weight: 500;
+	font-weight: normal;
 }
 .ecjia-store-list .store-name span{
 	color: #FF1919;
@@ -2635,19 +2633,17 @@ footer{
 	display:inline-block;
 	border:1px solid #FF1919;
 	border-radius:4px;
-	font-weight:500;
 	font-size: .8em;
 	background: #FF1919;
-	padding:.1em .2em;
+	padding: .1em .2em;
 }
 .ecjia-store-list .store-promotion .promotion-name{
-	font-weight:500;
 	font-size: 1em;
 	padding-left:.5em;
 	color: #333;
 }
 .ecjia-store-list .store-goods{
-	border-top:1.5px dotted #ddd;
+	border-top: 1px dotted #ddd;
 	height: auto;
 	overflow: hidden;
 }
@@ -2660,11 +2656,11 @@ footer{
 	overflow:hidden;
 }
 .ecjia-store-list ul>li.view-more{
-	text-align:center;
-	line-height:3em;
-	color:#47aa4d;
-	border-top:1.5px solid #eee;
-	width:100%;
+	text-align: center;
+	line-height: 3em;
+	color: #47aa4d;
+	border-top: 1px solid #eee;
+	width: 100%;
 	cursor: pointer;
 }
 .ecjia-store-list .store-goods li.goods-info .goods-image {
@@ -2698,6 +2694,7 @@ footer{
     position: absolute;
     right: 0;
     color: #ff3434;
+	font-weight: normal;
 }
 .ecjia-store-list .store-goods .goods-hide-list{
 	display:none;
@@ -2829,7 +2826,7 @@ footer{
     text-align: center;
     line-height: .1em;
     font-weight: 400;
-    font-size: .8em;
+    font-size: 1em;
 }
 .ecjia-category-list .line {
     height: 1px;
@@ -2837,7 +2834,7 @@ footer{
     display: block;
     padding-top: 1em;
     margin: 0 auto;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #eee;
 }
 .ecjia-category-list .goods-index-title {
     padding: 0 1em;
@@ -3040,7 +3037,7 @@ footer{
 	overflow: hidden;
 	clear:both;
 	color: #333;
-	font-weight: 500;
+	font-weight: normal;
 }
 .ecjia-store-detail .tel-name{
 	float:left;
@@ -3050,7 +3047,7 @@ footer{
     margin-left: 8em;
     font-size: 1em;
    	color: #333;
-	font-weight: 500;
+	font-weight: normal;
     overflow: hidden;
 }
 .ecjia-store-detail .store-other-info{
@@ -3066,13 +3063,13 @@ footer{
 .ecjia-store-detail .store-other-info .other-info-name{
 	float:left;
 	color: #333;
-	font-weight: 500;
+	font-weight: normal;
 }
 .ecjia-store-detail .store-other-info p.other-info-result{
 	position: relative;
     margin-left: 8em;
     font-size: 1em;
    	color: #333;
-	font-weight: 500;
+	font-weight: normal;
     overflow: hidden;
 }
