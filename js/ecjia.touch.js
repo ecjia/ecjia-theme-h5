@@ -367,7 +367,7 @@
                 hour = checkTime(nowTime.getHours()),
                 minute = checkTime(nowTime.getMinutes()),
                 time = hour + ':' + minute;
-            var html = '<i class="iconfont icon-icon47"></i>' + time + ' 热门推荐已更新';
+            var html = '<i class="icon-goods-hot"></i>' + time + ' 热门推荐已更新';
             $('.ecjia-new-goods').find('.goods-index-title').html(html);
 		}
 	};
