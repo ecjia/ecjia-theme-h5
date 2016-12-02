@@ -2,7 +2,9 @@
 .ecjia-color-green {
 	color:#47AA4D;
 }
-
+.ecjia-list{
+	margin-top: .5em;
+}
 /*========================  首页 ===========================*/
 .ecjia-header.ecjia-header-index {
     background: #47aa4d;
@@ -78,7 +80,9 @@
 	padding: .5em 1em;
 	border-bottom: 1px solid #eee;
 }
-
+.ecjia-row-nav.index{
+	padding: 0 .5em;
+}
 .ecjia-row-nav li:nth-child(4n+1) {
     clear: none;
 }
@@ -90,6 +94,10 @@
 	padding-left: 0;
 	padding-right: 0;
 	font-weight: 500;
+	font-size: 1em;
+}
+.ecjia-row-nav .col-xs-2 img{
+	width: 3.5em;
 }
 .ecjia-row-nav{
 	border-bottom:0;
@@ -107,7 +115,9 @@
 	height: auto;
     overflow: hidden;
 }
-
+.ecjia-mod .ecjia-adsense-model li.adsense-item:last-child{
+	padding-bottom: 1em;
+}
 .ecjia-mod .ecjia-adsense-model .adsense-item .adsense-title h2{
 	font-weight: 500;
 	color: #333;
@@ -155,7 +165,8 @@
 	height: 1.8em;
 	border-bottom: 1px solid #eee;
 	color: #333;
-	font-size: 1em;
+	font-size: 1.1em;
+	font-weight: 500;
 	line-height: 1.2em;
 	padding-left: 2.1em;
 }
@@ -252,7 +263,7 @@
 /*促销商品 更多*/
 .ecjia-promotion-list{
 	overflow: hidden;
-	padding: 1em;
+	padding: .5em 1em;
 }
 .ecjia-promotion-list li{
 	background: #fff;
@@ -357,7 +368,6 @@
 .ecjia-new-goods .ecjia-list-two li {
     float: left;
     width: 48%;
-    padding: 0;
     text-align: left;
     border-bottom: none;
     padding: 0 0 0.4em 0;
@@ -387,6 +397,9 @@
     left: 0;
     line-height: 0;
     width: 1.5em;
+}
+footer{
+	padding-bottom: 3em;
 }
 /*end */
 
@@ -936,6 +949,9 @@
     background-size: 50px 125px;
     transition: transform .5s ease-out 0s;
     -webkit-transition: -webkit-transform .5s ease-out 0s;
+}
+.store-add-cart.a4w .a4x.show{
+	visibility: visible;
 }
 .store-add-cart.a4w .a4y {
     position: absolute;
