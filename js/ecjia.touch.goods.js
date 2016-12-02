@@ -22,7 +22,8 @@
             	if ($this.hasClass('disabled')) {
             		return false;
             	}
-            	$this.parent('.box').children('span').addClass('disabled');
+            	$('.box').children('span').addClass('disabled');
+            	
             	var rec_id = $this.attr('rec_id');
             	var goods_id = $this.attr('goods_id');
             	
@@ -67,7 +68,7 @@
                         }
                     });
             	}
-            	ecjia.touch.category.update_cart(rec_id, val, goods_id, $this);
+            	ecjia.touch.category.update_cart(rec_id, val, goods_id);
             });
         },
         
@@ -77,7 +78,7 @@
             	if ($this.hasClass('disabled')) {
             		return false;
             	}
-            	$this.parent('.box').children('span').addClass('disabled');
+            	$('.box').children('span').addClass('disabled');
             	
             	var rec_id = $this.attr('rec_id');
             	var type;
@@ -114,7 +115,7 @@
                 	}
                 	show.html(val);
             	}
-            	ecjia.touch.category.update_cart(rec_id, val, 0, $this);
+            	ecjia.touch.category.update_cart(rec_id, val, 0);
             });
         },
         
@@ -175,7 +176,7 @@
             		ecjia.touch.category.add_tocart();
     				ecjia.touch.category.remove_tocart();
             	}
-            	div.parent('.box').children('span').removeClass('disabled');
+            	$('.box').children('span').removeClass('disabled');
             });
         },
         
