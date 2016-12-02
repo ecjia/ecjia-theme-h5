@@ -10,7 +10,6 @@
     background: #47aa4d;
 	position: fixed;
     z-index: 9;
-	height: 45px;
 }
 .ecjia-header-index .ecjia-search-header {
     left: .5em;
@@ -27,14 +26,14 @@
 .ecjia-header-index .ecjia-search-header .bg {
     background: #fff;
     width: 100%;
-    height: 30px;
+    height: 2.5em;
 	left:0;
     border-radius: 4px;
 	position: absolute;
     display: inline-block;
     color: #aaa;
-    font-size: 14px;
-    line-height: 30px;
+    font-size: 1em;
+    line-height: 2.5em;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
@@ -48,9 +47,6 @@
 }
 .ecjia-search-header {
 	position: absolute;
-    top: 0.5em;
-    right: 1em;
-    height: 2.4em;
     border-radius: 5px;
 }
 .search-no-pro .ecjia-nolist{
@@ -415,8 +411,7 @@ footer{
 /*========================  分类 ===========================*/
 .category .ecjia-header{
 	position: fixed;
-    height: 49px;
-    top: 0;
+    height: 3.5em;
 }
 .category .category_left{
 	position: fixed;
@@ -446,7 +441,7 @@ footer{
 	color: #47aa4d;
 }
 .category .category_right{
-	margin-top: 49px;
+	margin-top: 3.5em;
 	padding-top: 0;
 	padding-bottom: 4em;
 	height: auto;
