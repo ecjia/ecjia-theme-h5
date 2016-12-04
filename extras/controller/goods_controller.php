@@ -255,7 +255,13 @@ class goods_controller {
 	    if (!empty($goods_info['promote_end_date'])) {
 	    	$goods_info['promote_end_time'] = RC_Time::local_strtotime($goods_info['promote_end_date']);
 	    }
-	   
+	    if (!empty($goods_info['related_goods'])){
+	    	foreach ($goods_info['related_goods'] as $k => $v) {
+	    		if (strlen(trim($v['name'])) > 15) {
+	    			$goods_info['related_goods'][$k]['name'] = mb_substr(trim($v['name']), 0, 15, 'UTF-8').'..';
+	    		} 
+	    	}
+	    }
 		/*商品所属店铺购物车列表*/
 	    $token = '118bc67dda0823007b6859f9e941800cc8a19164';
 	    $options = array(

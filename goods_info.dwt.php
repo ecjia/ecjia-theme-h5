@@ -37,7 +37,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<div class="swiper-wrapper">
 					<!--{foreach from=$goods_info.pictures item=picture}-->
 						<div class="swiper-slide">
-							<img src="{$picture.url}"/>
+							<img  src="{$picture.url}"/>
 						</div>
 					<!--{/foreach}-->
 				</div>
@@ -50,7 +50,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!--商品属性介绍-->
 	<form action="{url path='cart/index/add_to_cart'}" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
 	    <div class="goods-info">
-	        <div class="goods-info-property ecjia-margin-b">
+	        <div class="goods-info-property  goods-info-property-new ecjia-margin-b">
 	            <!--商品描述-->
 	            <div class="goods-style-name goods-style-name-new">
 	                <div class=" ecjiaf-fl goods-name-new">{if $goods_info.merchant_info.manage_mode eq 'self'}<span>自营</span>{/if}{$goods_info.goods_name}</div>
@@ -58,34 +58,40 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	            <div class="goods-price goods-price-new">
 	                <!-- $goods.is_promote and $goods.gmt_end_time -->
 	                <!--{if ($goods_info.promote_price gt 0) AND ($goods_info.promote_start_date lt $goods_info.promote_end_date) } 促销-->
-	                	<span class="ecjia-promote_price-span">{$goods_info.formated_promote_price}</span>
-	                	<del> 原价：{$goods_info.shop_price}</del></br>
-	                	<div class="ecjia-left-time">
-	                		<i class="iconfont icon-remind"></i>
-							<span class="promote-time" data-type="1" value="{$goods_info.promote_end_time}"></span>
-	                	</div>
-	                	{if $rec_id eq 0}	          			
-	                		<a class="goods-add-cart add-cart-a" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}"  href="javascript:void 0;" style="display: none;"><span>加入购物车</span></a>
-	                	{else}
-		                	<div class="ecjia-goods-plus-box" id="goods_{$goods_info.id}">
-			                     <span class="reduce show" data-toggle="remove-to-cart">减</span>
-		                         <label class="show">{$num}</label>
-		                         <span class="add storeSearchCart" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
+		                <div class="ecjia-price-time">
+		                	<div class="time-left">
+			                	<span class="ecjia-promote_price-span">{$goods_info.formated_promote_price}</span>
+			                	<del> 原价：{$goods_info.shop_price}</del></br>
+			                	<div class="ecjia-left-time">
+			                		<i class="iconfont icon-remind"></i>
+									<span class="promote-time" data-type="1" value="{$goods_info.promote_end_time}"></span>
+			                	</div>
+			                </div>
+			                <div class="cart-plus-right">
+			                	{if $rec_id eq 0}	          			
+			                		<a class="goods-add-cart add-cart-a" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}"  href="javascript:void 0;" style="display: none;"><span>加入购物车</span></a>
+			                	{else}
+				                	<div class="ecjia-goods-plus-box" id="goods_{$goods_info.id}">
+					                     <span class="reduce show" data-toggle="remove-to-cart">减</span>
+				                         <label class="show">{$num}</label>
+				                         <span class="add storeSearchCart" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
+				                    </div>
+			                    {/if}
 		                    </div>
-	                    {/if}
+		                 </div>
 	                	<!-- {if $goods_info.favourable_list} -->
-			                	<div class="ecjia-favourable-goods-list">
-				                	<ul class="store-promotion">
-				                	<!-- {foreach from=$goods_info.favourable_list item=favour  name=foo} -->
-				                	<!-- {if $smarty.foreach.foo.index < 2 } -->
-										<li class="promotion">
-										<span class="promotion-label">{$favour.type_label}</span>
-										<span class="promotion-name">{$favour.name}</span>
-										</li>
-									 <!-- {/if} -->
-									<!-- {/foreach} -->
-									</ul>
-								</div>
+	                	<div class="ecjia-favourable-goods-list">
+		                	<ul class="store-promotion">
+		                	<!-- {foreach from=$goods_info.favourable_list item=favour  name=foo} -->
+		                	<!-- {if $smarty.foreach.foo.index < 2 } -->
+								<li class="promotion">
+								<span class="promotion-label">{$favour.type_label}</span>
+								<span class="promotion-name">{$favour.name}</span>
+								</li>
+							 <!-- {/if} -->
+							<!-- {/foreach} -->
+							</ul>
+						</div>
 						<!-- {/if} -->
 	                <!--{else}-->
 	                {$goods_info.shop_price}
@@ -107,7 +113,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	        <div class="bd goods-type ecjia-margin-t store-name">
 	            <div class="goods-option-con goods-num goods-option-con-new">
 	                <a class="ecjia-merchants-name" href='{url path="goods/category/store_goods" args="store_id={$goods_info.seller_id}"}'>
-	                	<i class="iconfont icon-shop"></i>
+	                	<i style="top:0;" class="iconfont icon-shop"></i>
 	                		<span class="style-store-name">{$goods_info.seller_name}</span>
 	                	<i class="iconfont icon-jiantou-right"></i>
 	                </a>
@@ -126,16 +132,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 								<!-- {if $smarty.foreach.goods.index < 6 } -->
 								<li>
 									<a href='{url path="goods/index/init" args="id={$goods.goods_id}"}'>
-										<img src="{$goods.img.url}" />
+										<img src="{$goods.img.url}"/>
 									</a>
-									<p class="link-goods-name ecjia-goods-name-new">{$goods.name|truncate:16}</p>
-									<p class="link-goods-price">
+									<p class="link-goods-name ecjia-goods-name-new">{$goods.name}</p>
+									<div class="link-goods-price">
 										<!--{if $goods.promote_price}-->
-										{$goods.formated_promote_price}
+										{$goods.promote_price}
+										<div class="goods-price-plus"></div>
 										<!--{else}-->
 										{$goods.market_price}
+										<div class="goods-price-plus"></div>
 										<!--{/if}-->
-									</p>
+									</div>
 								</li>
 								<!--{/if}-->
 								<!--{/foreach}-->
@@ -154,7 +162,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="goods-desc-info active" id="goods-info-two">
 	<!--商品描述-->
 	<!-- Nav tabs -->
-	<ul class="ecjia-list ecjia-list-two ecjia-nav goods-desc-nav-new">
+	<ul class="ecjia-list ecjia-list-new ecjia-list-two ecjia-nav goods-desc-nav-new">
 		<li class="active">
 			<a class="nopjax a1" href="#one" role="tab" data-toggle="tab">图文详情</a>
 		</li>

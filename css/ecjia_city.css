@@ -2228,7 +2228,9 @@ footer{
 .ecjia-goods-detail-header-title ul{
 	position: absolute;
 	text-align:center;
-	width:100%;
+	width:34%;
+	right:32%;
+	left:34%;
 }
 .ecjia-goods-detail-header-title li {
 	float:left;
@@ -2236,8 +2238,8 @@ footer{
 }
 .ecjia-goods-detail-header-title li a {
 	color:#fff;
-	border-bottom:0.12em solid #fff;
-	padding-bottom:0.48em;
+	border-bottom:0.2em solid #fff;
+	padding-bottom:0.4em;
 }
 .p1 {
 	margin-top:-20px;
@@ -2258,6 +2260,9 @@ footer{
 #goods-info-two{
 	display:none;
 }
+#goods-info-two .ecjia-list-new{
+	margin-top:0;
+}
 .goods-desc-info .goods-desc-nav-new {
 	border-bottom:0;
 }
@@ -2269,6 +2274,18 @@ footer{
 }
 .goods-desc-info .goods-desc-nav-new li.active .a2{
 	color:#ff1919;
+}
+.goods-info .ecjia-price-time{
+	width:100%;
+}
+.goods-info .ecjia-price-time .time-left{
+	width:63%;
+	float:left;
+}
+.goods-info .ecjia-price-time .cart-plus-right{
+	width:37%;
+	float:right;
+	height:2.8em;
 }
 .goods-add-cart{
     width: 85px;
@@ -2291,9 +2308,7 @@ footer{
     position: relative;
     right: 0;
     bottom: 0em;
-	float:right;
-	top:-44px;
-	line-height:40px;
+	margin-top:.8em;
 }
 
 .goods-price-new .ecjia-goods-plus-box span {
@@ -2337,7 +2352,7 @@ footer{
     background-color: transparent;
     margin-top: 2px;
 	margin-bottom: 0;
-	padding-right:19px;
+	padding-right:.5em;
 }
 .market-goods-add-cart{
 	margin-top:-1px;
@@ -2345,17 +2360,19 @@ footer{
 .ecjia-market-plus-box{
 	top:0px;
 }
-
+.goods-info.goods-info-property-new{
+	width:100%;
+}
 .goods-info .goods-info-property .goods-style-name .goods-name-new{
-	margin-right:-10em;
 	max-height:2.8em;
 	overflow:hidden;
-	padding-right:11em;
 	font-weight:bold;
+	width:100%;
 }
 .goods-info .goods-info-property .goods-style-name-new{
 	padding:1.1em 1em .2em 1em;
 	border-bottom:none;
+	width:100%;
 }
 .goods-info .goods-info-property .goods-price .ecjia-goods-plus-box span{
 	background-color:#fff;
@@ -2376,21 +2393,33 @@ footer{
 .goods-info .goods-price-new .ecjia-promote_price-span{
 	background:#fff;
 	color:#ff1919;
-	font-size:.8em
+	font-size:.95em
 }
 .goods-info .ecjia-left-time{
 	border:1px solid #FF1919;
-	width:33%;
-	height:23px;
-	line-height:23px;
+	width:77%;
+	height:.9em;
+	line-height:.9em;
 }
+/*.goods-info .ecjia-left-time i {
+	visibility: hidden;
+    position: absolute;
+    z-index: 14;
+    left: 0;
+    top: 0;
+    width: 80px;
+    height: 48px;
+    background: url(../images/icon/cart.png) 10px 5px no-repeat;
+    background-size: 50px 125px;
+    transition: transform .5s ease-out 0s;
+    -webkit-transition: -webkit-transform .5s ease-out 0s;
+}*/
 .goods-info .ecjia-left-time .promote-time{
-	line-height:20px;
-	height:20px;
-	font-size:.5em;
+	height:.9em;
+	font-size:.55em;
 	display:inline-block;
 	float:right;
-	margin-right:3px;
+	width:86%;	
 }
 .goods-info .ecjia-left-time .iconfont{
 	background: #FF1919;
@@ -2401,6 +2430,7 @@ footer{
 .goods-info .goods-price-new .ecjia-left-time span{
 	background-color: #fff;
 	color:#FF1919;
+	
 }
 .goods-type .goods-option-con-new{
 	padding:.6em;
@@ -2409,16 +2439,15 @@ footer{
 	height:55px;
 	line-height:34px;
 	font-size:18px;
-	
 }
 .ecjia-merchants-name .icon-jiantou-right{
 	float:right;
 	clear:both;
 	margin-top:5px;
 }
-/*.ecjia-favourable-goods-list{
-	width:100%;
-}*/
+.ecjia-favourable-goods-list{
+	padding-bottom:.5em;
+}
 .goods-info.ecjia-merchants-name span .style-store-name{
 	margin-top:5px;
 }
@@ -2429,9 +2458,11 @@ footer{
 .ecjia-favourable-goods-list .store-promotion .promotion{
 	/*width:50%;*/
 	float:left;
+	clear:both;
 }
 .ecjia-favourable-goods-list .store-promotion li{
 	padding: 0;
+	margin-bottom:.5em;
 }
 .ecjia-favourable-goods-list .store-promotion .promotion-label{
 	color: #fff;
@@ -2469,9 +2500,8 @@ footer{
 .ecjia-like-goods-list li{
 	float:left;
 	width:33.33%;
-	height:15em;
 	border-bottom:0;
-	padding: .85em;
+	padding:0.3em 0.5em;
 }
 .ecjia-like-goods-list li .link-goods-price{
 	color:#FF1919;
@@ -2481,8 +2511,20 @@ footer{
 	width:100%;
 }
 .ecjia-goods-name-new{
-	height:53px;
+	height:3em;
 }
+/*.goods-price-plus{
+	background: url(../images/icon/op.png);
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+	background-origin:content-box;
+	display:inline-block;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	height:91px;
+	width:25px;
+}*/
 /*========================  订单列表 ===========================*/
 .ecjia-order-list .ecjia-order-item {
     background: #ffffff;
