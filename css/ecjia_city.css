@@ -507,6 +507,10 @@ footer{
 .page_hearer_hide{
 	display: none;
 }
+.page_hearer_hide .ecjia-header-right a i {
+    font-size: 1.5em;
+    line-height: 1.5;
+}
 .ecjia-header.ecjia-store-banner {
 	background: #fff;
     height: 9em;

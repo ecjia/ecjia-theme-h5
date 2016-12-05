@@ -714,6 +714,13 @@ class goods_controller {
     	ecjia_front::$controller->assign('category_id', $category_id);
     	
     	ecjia_front::$controller->assign('title', $store_info['seller_name']);
+    	ecjia_front::$controller->assign('header_left', ' ');
+    	
+    	$header_right = array(
+    		'href' => '#',
+    		'info' => '<i class="iconfont icon-location"></i>'
+    	);
+    	ecjia_front::$controller->assign('header_right', $header_right);
     	
     	ecjia_front::$controller->display('store_goods.dwt');
     }
