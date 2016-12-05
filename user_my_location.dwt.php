@@ -64,7 +64,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <form class="ecjia-list ecjia-address-list" action="" method="post" name="searchForm">
 	<div class="address-background-mylocation">
-		<i class="iconfont icon-search"></i>
+		<i class="iconfont icon-search1"></i>
 		<input id="keywordBox" name="keywords" type="search" placeholder="搜索地点">
 	</div>
     <div id="allmap" style="height: 20em;width: 100%"></div>

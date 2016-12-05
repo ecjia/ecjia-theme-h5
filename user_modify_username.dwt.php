@@ -10,7 +10,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 <form class="ecjia-user ecjia-form ecjia-login-user-profile-form ecjia-login-margin-top" name="user_profile" action="{url path='user/user_profile/modify_username'}" method="post">
-	<div class="form-group ecjia-login-margin-lr ecjiaf-bt">
+	<div class="form-group ecjia-login-margin-lr ecjiaf-bt right-angle">
 		<label class="input ecjia-login-pa-left">
 			<input name="username" type="text" placeholder="test测试"  value="{$user.name}" datatype="s5-21|m|e" errormsg="用户名必须为4-20个字符"/>
 		</label>

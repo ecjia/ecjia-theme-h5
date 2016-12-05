@@ -9,9 +9,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-<script type="text/javascript">
-    ecjia.touch.user.init();
-</script>
+<script type="text/javascript">ecjia.touch.user.init();</script>
+
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -75,7 +74,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     				<label class="input">
     					<i class="iconfont icon-unlock"></i>
     					<i class="iconfont icon-attention ecjia-login-margin-l"></i>
-    					<input name="password" id="password1" type="password" datatype="*6-16"  errormsg="请输入6 ~ 16 位的密码" placeholder="{$lang.input_passwd}">
+    					<input name="password" id="password" type="password" datatype="*6-16"  errormsg="请输入6 ~ 16 位的密码" placeholder="{$lang.input_passwd}">
     				</label>
     			</div>
     			<div class="ecjia-login-b">
