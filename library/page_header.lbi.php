@@ -20,15 +20,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <header class="ecjia-header">
 	<div class="ecjia-header-left">
-		<a href="{if $header_left.href}{$header_left.href}{else}javascript:ecjia.touch.history.back();{/if}">
-			<!-- {if $header_left.icon neq ''} -->
-			<i class="{$header_left.icon}"></i>
-			<!-- {elseif $header_left.info neq ''} -->
-			<span>{$header_left.info}</span>
-			<!-- {else} -->
-			<i class="iconfont icon-jiantou-left"></i>
-			<!-- {/if} -->
-		</a>
 	</div>
 	<div class="ecjia-header-title">{$title}</div>
 	<!-- {if $header_right} -->
