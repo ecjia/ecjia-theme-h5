@@ -14,6 +14,7 @@
 			ecjia.touch.user.register_password();
 			ecjia.touch.user.mobile_register();
 			ecjia.touch.user.reset_password();
+			ecjia.touch.user.show_password();
 			$(function(){
 				$(".del").click(function(){
 					if(!confirm('您确定要删除吗？')){
@@ -163,6 +164,26 @@
 				$.post(url, info, function(data){
 					ecjia.touch.showmessage(data);
 				});
+			});
+		},
+		/*查看密码*/
+		show_password : function (){
+			$(".icon-attention").on('click', function(e){
+				e.preventDefault();
+				if ($("#password").attr("type") == "password") {
+		            $("#password").attr("type", "text")
+		        }
+		        else {
+		            $("#password").attr("type", "password")
+		        }
+				
+				if ($("#password2").attr("type") == "password") {
+		            $("#password2").attr("type", "text")
+		            alert(password2);
+		        }
+		        else {
+		            $("#password2").attr("type", "password")
+		        }
 			});
 		},
 		// add_attention_click : function(){

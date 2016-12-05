@@ -10,12 +10,10 @@ class user_get_password_controller {
         $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
         if ($_POST['mobile']) {
             $mobile = !empty($_POST['mobile']) ? $_POST['mobile'] : '';
-        } else {
-            $mobile = !empty($_SESSION['mobile']) ? $_SESSION['mobile'] : '';
-        }
+        } 
         if (!empty($mobile)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_FORGET_PASSWORD)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile))->run();
-            ecjia_front::$controller->showmessage(__("已发送验证码短信至：$mobile"), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl'=>RC_Uri::url('user/get_password/mobile_register')));
+            ecjia_front::$controller->showmessage(__("短信已发送到手机".$mobile."，请注意查看"), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl'=>RC_Uri::url('user/get_password/mobile_register')));
         }
         ecjia_front::$controller->assign('title', '找回密码');
         ecjia_front::$controller->assign_lang();
