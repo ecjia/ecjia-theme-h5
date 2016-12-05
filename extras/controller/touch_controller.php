@@ -117,7 +117,7 @@ class touch_controller {
      * 搜索
      */
     public static function search() {
-        $keywords = !empty($_GET['keywords']) ? trim($_GET['keywords']) : '';
+        $keywords = isset($_GET['keywords']) ? $_GET['keywords'] : '';
         ecjia_front::$controller->assign('keywords', $keywords);
         
         $store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;

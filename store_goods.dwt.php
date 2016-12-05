@@ -68,24 +68,24 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<ul class="a1o">
 				<!-- {if $store_info.goods_count.best_goods gt 0} -->
 				<li class="a1p {if $action_type eq 'best'}a1r{/if}">
-					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=best" data-toggle="toggle-category">精选</strong>
+					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=best" data-toggle="toggle-category" data-type="best">精选</strong>
 				</li>
 				<!-- {/if} -->
 
 				<!-- {if $store_info.goods_count.hot_goods gt 0} -->
 				<li class="a1p {if $action_type eq 'hot'}a1r{/if}">
-					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=hot" data-toggle="toggle-category">热销</strong>
+					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=hot" data-toggle="toggle-category" data-type="hot">热销</strong>
 				</li>
 				<!-- {/if} -->
 
 				<!-- {if $store_info.goods_count.new_goods gt 0} -->
 				<li class="a1p {if $action_type eq 'new'}a1r{/if}">
-					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=new" data-toggle="toggle-category">新品</strong>
+					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=new" data-toggle="toggle-category" data-type="new">新品</strong>
 				</li>
 				<!-- {/if} -->
 
 				<li class="a1p {if (!$category_id && !$action_type) || $action_type eq 'all'}a1r{/if}">
-					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=all" data-toggle="toggle-category">全部</strong>
+					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=all" data-toggle="toggle-category" data-type="all">全部</strong>
 				</li>
 
 				<!-- {if $store_category} -->
@@ -109,32 +109,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="a20">
 				{$type_name}({$goods_num})
 			</div>
-			<div class="a1x wd ">
+			<div class="a1x wd">
 				<div class="a1z r2 a0h">
-					<ul data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='goods/category/ajax_category_goods'}">
-						<!-- {if $goods_list} -->
-							<!-- {foreach from=$goods_list item=goods} -->
-							<li>
-								<a class="linksGoods w" href="{RC_Uri::url('goods/index/init')}&id={$goods.id}">
-									<img class="pic" src="{$goods.img.small}">
-									<dl>
-										<dt>{$goods.name}</dt>
-										<dd><label>{$goods.shop_price}</label></dd>
-									</dl>
-								</a>
-								<div class="box" id="goods_{$goods.id}">
-	                            	<span class="reduce {if $goods.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$goods.rec_id}">减</span>
-                                	<label class="{if $goods.num}show{else}hide{/if}">{$goods.num}</label>
-                        			<span class="add" data-toggle="add-to-cart" rec_id="{$goods.rec_id}" goods_id="{$goods.id}">加</span>
-                       			</div>
-							</li>
-							<!-- {/foreach} -->
-						<!-- {/if} -->
+					<ul data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='goods/category/ajax_category_goods'}&store_id={$store_id}" data-type="{$action_type}">
 					</ul>
 				</div>
 			</div>
 			<input type="hidden" value="{RC_Uri::url('goods/category/update_cart')}" name="update_cart_url" />
 			<input type="hidden" value="{$store_id}" name="store_id" />
+			<input type="hidden" value="{$action_type}" name="type" />
 		</div>
 	</div>
 </div>

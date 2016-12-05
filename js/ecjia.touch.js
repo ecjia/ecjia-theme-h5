@@ -84,6 +84,7 @@
 						url			: $this.attr('data-url'),
 						size		: $this.attr('data-size'),
 						page		: $this.attr('data-page'),
+						type		: $this.attr('data-type'),
 					};
 				ecjia.touch.more(options);
 				var loaderimgurl = $this.attr('data-loadimg') || false;
@@ -108,20 +109,24 @@
 				offset		: 100,						//offset		滑动预留
 				trigger		: '.load-list',				//trigger		点击的触发器
 				lock		: false,					//lock			锁
+				type		: '',						//type			商品类型
 			},
-				options		= $.extend({}, defaults, options),
-				scroll_list = function(){
-					if (!options.lock && ($(window).scrollTop() > $(document).height() - $(window).height() - options.offset)) {
-						options.lock = true;
-						ecjia.touch.load_list(options);
-						options.page++;
-					}
-				};
+			options		= $.extend({}, defaults, options),
+			scroll_list = function(){
+				if (!options.lock && ($(window).scrollTop() > $(document).height() - $(window).height() - options.offset)) {
+					options.lock = true;
+					ecjia.touch.load_list(options);
+					options.page++;
+				}
+			};
 			scroll_list();
 			if (options.scroll) {
 				window.onscroll = function(){
 					scroll_list();
 				};
+				$('.wd').scroll(function(){
+					scroll_list();
+				});
 			} else {
 				var add_more_btn = '<button id="load_more_btn" class="btn btn-default btn-lg">点击加载更多</button>';
 				$('[data-flag="add_load_more_btn"]').after(add_more_btn);
@@ -142,7 +147,8 @@
 			$(options.trigger).show();
 			$.get(options.url, {
 				page : options.page,
-				size : options.size
+				size : options.size,
+				action_type : options.type
 			}, function(data){
 				$(options.areaSelect).append(data.list);
 				options.lock = data.is_last;
@@ -152,6 +158,8 @@
 				}
 				ecjia.touch.more_callback();
                 ecjia.touch.update_hot_time();
+                ecjia.touch.category.add_tocart();
+				ecjia.touch.category.remove_tocart();
 			});
 		},
 

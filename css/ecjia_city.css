@@ -2819,6 +2819,11 @@ footer{
 /*========================  红包 ===========================*/
 
 /*========================  分类店铺 ===========================*/
+.ecjia-store-goods-list{
+	margin-bottom: 3.5em;
+	background:#FFFFFF;
+	padding-bottom: 7em;
+}
 .ecjia-store-list {
     background:#EFEFF4;
     height:auto;

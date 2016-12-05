@@ -201,6 +201,7 @@
         },
         
         show_cart : function(bool) {
+        	ecjia.touch.category.check_all();
         	if (bool) {
         		$('.store-add-cart').children('.a4x').addClass('light').removeClass('disabled');
         		$('.store-add-cart').children('.a51').removeClass('disabled');
@@ -274,36 +275,42 @@
             			li.siblings('li').children('strong.a1v').children('span').removeClass('active');
             		}
         		}
-        		var info = {'category_id' : category_id};
+        		
+        		var type = $this.attr('data-type') == undefined ? category_id : $this.attr('data-type');
+        		var info = {'action_type' : type};
         		if (bool) {
+        			$('.wd').find('[data-toggle="asynclist"]').attr('data-type', type).html('');
+            		$('.load-list').remove();
+            		ecjia.touch.asynclist();
+            		
             		$.get(url, info, function(data) {
-            			var ul = $('.a1z.r2.a0h').children('ul');
-            			ul.html('');
-            			if (data.num > 0) {
-            				var html = '';
-            				for (i = 0; i < data.goods_list.length; i++) {
-            					if (data.goods_list[i].num) {
-            						var label_show = '<span class="reduce show" data-toggle="remove-to-cart" rec_id='+ data.goods_list[i].rec_id +'>减</span>' + 
-            						'<label class="show">'+ data.goods_list[i].num  +'</label>';
-            					} else {
-            						var label_show = '<span class="reduce hide" data-toggle="remove-to-cart">减</span>' + 
-            						'<label class="hide"></label>';
-            					}
-            					if (data.goods_list[i].rec_id == undefined) {
-            						data.goods_list[i].rec_id = '';
-            					}
-            					if (data.goods_list[i] !== '') {
-                					html += '<li><a class="linksGoods w"><img class="pic" src='+ data.goods_list[i].img.small +'>' +
-            						'<dl><dt>'+ data.goods_list[i].name +'</dt><dd><label>'+ data.goods_list[i].shop_price +'</label></dd></dl>' + 
-            						'<div class="box" id="goods_'+ data.goods_list[i].id +'">' + label_show + 
-            						'<span class="add" data-toggle="add-to-cart" rec_id="'+ data.goods_list[i].rec_id +'" goods_id="'+ data.goods_list[i].id +'">加</span>' +
-            						'</div></a></li>';
-            					}
-            				};
-            				ul.html(html);
-            				ecjia.touch.category.add_tocart();
-            				ecjia.touch.category.remove_tocart();
-            			}
+//            			var ul = $('.a1z.r2.a0h').children('ul');
+//            			ul.html('');
+//            			if (data.num > 0) {
+//            				var html = '';
+//            				for (i = 0; i < data.goods_list.length; i++) {
+//            					if (data.goods_list[i].num) {
+//            						var label_show = '<span class="reduce show" data-toggle="remove-to-cart" rec_id='+ data.goods_list[i].rec_id +'>减</span>' + 
+//            						'<label class="show">'+ data.goods_list[i].num  +'</label>';
+//            					} else {
+//            						var label_show = '<span class="reduce hide" data-toggle="remove-to-cart">减</span>' + 
+//            						'<label class="hide"></label>';
+//            					}
+//            					if (data.goods_list[i].rec_id == undefined) {
+//            						data.goods_list[i].rec_id = '';
+//            					}
+//            					if (data.goods_list[i] !== '') {
+//                					html += '<li><a class="linksGoods w"><img class="pic" src='+ data.goods_list[i].img.small +'>' +
+//            						'<dl><dt>'+ data.goods_list[i].name +'</dt><dd><label>'+ data.goods_list[i].shop_price +'</label></dd></dl>' + 
+//            						'<div class="box" id="goods_'+ data.goods_list[i].id +'">' + label_show + 
+//            						'<span class="add" data-toggle="add-to-cart" rec_id="'+ data.goods_list[i].rec_id +'" goods_id="'+ data.goods_list[i].id +'">加</span>' +
+//            						'</div></a></li>';
+//            					}
+//            				};
+//            				ul.html(html);
+//            				ecjia.touch.category.add_tocart();
+//            				ecjia.touch.category.remove_tocart();
+//            			}
             			$('.a20').html(data.name + '(' + data.num + ')');
             		});
         		}
@@ -313,7 +320,6 @@
         scroll : function() {
             var $wd = $('.wd'),
             	beforeScrollTop = $wd.scrollTop();
-            
             $wd.scroll(function() {
 	            var afterScrollTop = $wd.scrollTop(),
 	                delta = afterScrollTop - beforeScrollTop;
