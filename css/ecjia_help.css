@@ -5,15 +5,25 @@
 .ecjia-article {
 	margin-top: 1em;
 }
+.ecjia-article.ecjia-article0 {
+	margin-top: 0;
+}
+.ecjia-article .article-info {
+	margin-left: 1em;
+	margin-right: 1em;
+}
+.ecjia-article .ecjia-list {
+	margin-top: 0;
+}
 .ecjia-article ul {
 	background-color: #EFEFEF;	
 }
 .ecjia-article ul>span {
-	font-size: 22px;
+	font-size: 18px;
 	font-weight: bold;
 	color: #232323;
 	margin-left: 3%;
-	line-height: 2em;
+	line-height: 2.5em;
 	background-color: #EFEFEF;
 	font-family: '黑体';
 }
@@ -22,30 +32,29 @@
 	padding: 1% 3%;
 	line-height: 3em;
 }
+.ecjia-article .ecjia-list.list-short li+li::before{
+	content: '';
+	position: absolute;
+	display: block;
+	width: 100%;
+	left: 3%;
+	top: 0;
+	border-bottom: 1px solid #ddd;
+}
 .ecjia-article .list-one li .form-group-text span {
-	font-size: 22px;
-	color: #000;
+	margin-left: 0;
+	font-size: 17px;
 	font-family: '黑体';
 	font-weight: normal;
 }
 .ecjia-article .list-one li .form-group-text i.icon-jiantou-right {
-	padding-top: 0.9em;
+	padding-top: 0.4em;
+	font-size: 20px;
+	right: 0;
 }
 /*============== 地址列表  ================*/
 .ecjia-address-list {
 	margin-top: 1em;
-}
- .ecjia-address-list li  a i.icon-bianji1 {
-	position: absolute;
-	right: 35%;
-	top: 74.5%;
- 	color: #7B7B7B;
-}
-.ecjia-address-list li a i.icon-delete {
-	position: absolute;
-	right: 1em;
-	top: 74.5%;
-	color: #7B7B7B;
 }
 .ecjia-address-list li {
 	position: relative;
@@ -98,18 +107,6 @@
 	left: 4em;
 	top: 1em;
 }
-.ecjia-address-list .address-backgroundw i.icon-search {
-	position: absolute;
-	left: 6em;
-	top: 0.9em;
-	z-index: 6;
-}
-.ecjia-address-list .nav-header i.icon-search {
-	position: absolute;
-	left: 1em;
-	top: 0.6em;
-	z-index: 6;
-}
 .ecjia-address-list .address-backgroundw input {
 	position: absolute;
 	left: 5.5em;
@@ -133,12 +130,6 @@
 	text-align: center;
 	background-color: #F0F0F0;
 }
-.ecjia-address-list .address-background-mylocation .icon-search {
-	position: relative;
-	z-index: 8;
-	top: -0.1em;
-	padding-right: 5.5em;
-}
 .ecjia-address-list .nav-header input {
 	position: absolute;
 	top: 0.4em;
@@ -153,15 +144,6 @@
 .ecjia-address-list .address-icons {
     position: relative;
     left: 1em;
-}
-.ecjia-address-list .nav-header a>i {
-	position: relative;
-	left: 0.6em;
-	top: 1px;
-}
-.ecjia-address-list a>i {
-	color: green;
-	font-size: 18px;
 }
 .ecjia-address-list li>i {
 	position: absolute;
@@ -189,23 +171,6 @@
 	margin-left: 7em;
 }
 
-.ecjia-address-list .list-one li .is-default>.icon-roundcheckfill {
-	position: relative;
-    margin-left: 0.2em;
-    top: -1px;
-	color: green;
-    font-size: 18px;
-}
-.ecjia-address-list .list-one li .not-default>.icon-round {
-	position: relative;
-    margin-left: 0.2em;
-    top: -1px;
-	color: green;
-    font-size: 18px;
-}
-.ecjia-address-list .list-one li .icon-location {
-	color: #b2b2b2;
-}
 .ecjia-address-list .form-group {
 	overflow: hidden;
 	border-bottom: 1px solid #ddd;
@@ -259,9 +224,83 @@
 	padding-left: 8em;
 	height: 3em;
 }
-.ecjia-address-list .form-group .input a>i {
-	color: green;
-	font-size: 1.5em;
+
+/*
+ * 地址列表的小图标
+ */
+
+.ecjia-address-list .nav-header a>i {
+    left: 2%;
+}
+
+.ecjia-address-list .nav-header a .icon-add-address  {
+	width: 25px;
+	height: 25px;
+	margin-left: 1%;
+	margin-top: 0.3%;
+    background: url('../images/address_list/50x50_4.png') no-repeat;
+    background-size: 100%;
+    float: left;
+}
+.ecjia-address-list .ecjia-list li .icon-is-default  {
+	width: 20px;
+	height: 20px;
+	margin-top: 0.3%;	
+    background: url('../images/address_list/50x50_2.png') no-repeat;
+    background-size: 100%;
+    float: left;
+}
+.ecjia-address-list .ecjia-list li .icon-not-default  {
+	width: 20px;
+	height: 20px;
+	margin-top: 0.3%;	
+    background: url('../images/address_list/50x50_3.png') no-repeat;
+    background-size: 100%;
+    float: left;
+}
+.ecjia-address-list .ecjia-list li .icon-edit-address  {
+	width: 20px;
+	height: 20px;
+	margin-top: 2%;
+    background: url('../images/address_list/50x50_5.png') no-repeat;
+    background-size: 100%;
+    float: left;
+}
+.ecjia-address-list .ecjia-list li .icon-delete-address  {
+	width: 20px;
+	height: 20px;
+	margin-top: 2%;	
+    background: url('../images/address_list/50x50_6.png') no-repeat;
+    background-size: 100%;
+    float: left;
+}
+.ecjia-address-list .ecjia-list li a.edit-address {
+	position: absolute;	
+	right: 25%;
+	top: 76%;
+}
+.ecjia-address-list .ecjia-list li a.delete-address {
+	position: absolute;
+    float: right;
+    top: 76%;
+    right: 2%;
+}
+.ecjia-address-list .nav-header .img-search {
+	width: 30px;
+	height: 30px;
+	margin-top: 2%;	
+	margin-left: -1%;
+    background: url('../images/address_list/search200x200.png') no-repeat;
+    background-size: 100%;
+	z-index: 99;
+}
+.ecjia-address-list .nav-header a div.position {
+	width: 25px;
+	height: 25px;
+	margin-left: 1%;
+    background: url('../images/address_list/50x50_1.png') no-repeat;
+    background-size: 100%;
+	float: left;
 }
 
 

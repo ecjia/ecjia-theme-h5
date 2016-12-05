@@ -42,11 +42,11 @@ class user_controller {
 //         }
         
         //网店信息
-//         $user_img = get_user_img();
+        $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
-//         _dump($shop, 1);
         ecjia_front::$controller->assign('user', $user);
+        ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('shop', $shop);
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('active', 5);
@@ -61,8 +61,6 @@ class user_controller {
     public static function shop_detail() {
         $article_id = intval($_GET['article_id']);
         $shop_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO_DETAIL)->data(array('article_id' => $article_id))->run();
-        
-//         _dump($shop_detail, 1);
         ecjia_front::$controller->assign('data', $shop_detail);
         ecjia_front::$controller->assign('hideinfo', 1);
         ecjia_front::$controller->assign_lang();
