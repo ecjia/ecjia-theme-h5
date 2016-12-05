@@ -2471,7 +2471,7 @@ footer{
 	text-align:center;
 }
 .goods-info .goods-info-property .goods-style-name-new{
-	padding:1.1em 1em .2em 1em;
+	padding:1.1em 1em 1em 1em;
 	border-bottom:none;
 	width:100%;
 }
@@ -2501,7 +2501,7 @@ footer{
 	width:77%;
 	height:.9em;
 	line-height:.9em;
-	margin-top:7px;
+	margin-top:9px;
 }
 .goods-info .ecjia-left-time .detail-clock-icon {
 	width: .8em;
@@ -2546,9 +2546,9 @@ footer{
 .goods-type .goods-option-con-new{
 	padding:.6em;
 	color:#000;
-	height:55px;
+	height:50px;
 	line-height:34px;
-	font-size:18px;
+	font-size:15px;
 }
 .ecjia-merchants-name .icon-jiantou-right{
 	float:right;
@@ -2573,6 +2573,7 @@ footer{
 .ecjia-favourable-goods-list .store-promotion li{
 	padding: 0;
 	margin-bottom:.5em;
+	margin-top:0.3em;
 }
 .ecjia-favourable-goods-list .store-promotion .promotion-label{
 	color: #fff;
@@ -2592,7 +2593,9 @@ footer{
 	background:#fff;
 }
 .may-like-literal{
-	padding:.6em ;
+	height:50px;
+	line-height:50px;
+	padding-left:0.6em;
 	border-bottom:0.5px solid #ddd;
 }
 .goods-info .address-warehouse-new{
@@ -2600,9 +2603,7 @@ footer{
 }
 .ecjia-form .may-like{
 	color:#FF1919;
-}
-.ecjia-may-like-border{
-	border-bottom:0.2px solid #ddd;
+	font-size:18px;
 }
 .ecjia-like-goods-list{
 	padding-bottom:1em;
@@ -2623,6 +2624,7 @@ footer{
 }
 .ecjia-goods-name-new{
 	height:3em;
+	margin-top:9px;
 }
 .goods-price-plus{
 	background: url(../images/icon/goods-plus.png);
@@ -2646,13 +2648,16 @@ footer{
 	width:30%;
 	height:30%;
 }
-/*.goods-detail-title-border{
-	border:1px solid #ddd;
+.goods-detail-title-border{
+	border:0.5px solid #ddd;
 	position:absolute;
 	top:4.2em;
 	height:2.1em;
 	left:50%;
-}*/
+}
+.goods-desc-info .goods-describe table tr td, .goods-desc-info .goods-describe table tr th{
+	padding: 0 0;
+}
 /*========================  订单列表 ===========================*/
 .ecjia-order-list .ecjia-order-item {
     background: #ffffff;

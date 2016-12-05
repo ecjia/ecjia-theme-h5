@@ -128,9 +128,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	        <!-- {if $goods_info.related_goods} -->
 		        <div class="address-warehouse ecjia-margin-t address-warehouse-new">
 		            <div class="ecjia-form may-like-literal">
-		               <p class="may-like">也许你还喜欢</p>
+		               <span class="may-like">也许你还喜欢</span>
 		            </div>
-					<div class="ecjia-may-like-border"></div>
 		            <div class="ecjia-margin-b form-group ecjia-form">
 		                <div class="bd">
 							<ul class="ecjia-list ecjia-like-goods-list">
@@ -186,7 +185,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 			<!-- {/if} -->
 		</div>
-		<div class="goods-describe ecjia-margin-b" id="two" style="padding:0;">
+		<div class="goods-describe goods-describe-new ecjia-margin-b" id="two" style="padding:0 0 0 17px;">
 		<!-- {if $goods_info.properties} -->
 			<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#dddddd">
 				<!-- {foreach from=$goods_info.properties item=property_group} -->

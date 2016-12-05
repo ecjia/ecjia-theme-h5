@@ -1313,7 +1313,7 @@ label i.checked {
  */
 .goods-desc-info .bd .goods-describe,
 .goods-desc-info .bd .goods-describe h6 {
-	background: #f2f2f2 none repeat scroll 0 0;
+	background: #fff none repeat scroll 0 0;
     font-weight: normal;
     line-height: 24px;
     padding: 10px;
