@@ -5,12 +5,15 @@
 .ecjia-article {
 	margin-top: 1em;
 }
-.ecjia-article0 {
+.ecjia-article.ecjia-article0 {
 	margin-top: 0;
 }
-.article-info {
+.ecjia-article .article-info {
 	margin-left: 1em;
 	margin-right: 1em;
+}
+.ecjia-article .ecjia-list {
+	margin-top: 0;
 }
 .ecjia-article ul {
 	background-color: #EFEFEF;	
@@ -45,7 +48,7 @@
 	font-weight: normal;
 }
 .ecjia-article .list-one li .form-group-text i.icon-jiantou-right {
-	padding-top: 0.9em;
+	padding-top: 0.4em;
 	font-size: 20px;
 	right: 0;
 }
