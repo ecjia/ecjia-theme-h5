@@ -1061,6 +1061,29 @@ footer{
     -webkit-transition: -webkit-transform .5s ease-out 0s;
     background-color: #fff;
 }
+.a5l .store-promotion {
+	border-bottom: 1px solid #eee;
+	margin-top: .5em;
+	margin-bottom: .5em;
+}
+.a5l .store-promotion li {
+    padding-bottom: .5em;
+	margin-left: 10px;
+}
+.a5l .store-promotion .promotion-label {
+    color: #fff;
+    display: inline-block;
+    border: 1px solid #FF1919;
+    border-radius: 4px;
+    font-size: .8em;
+    background: #FF1919;
+    padding: .1em .2em;
+}
+.a5l .store-promotion .promotion-name {
+    font-size: .9em;
+    padding-left: .5em;
+    color: #333;
+}
 .store-add-cart.a4w .a57 {
     position: absolute;
     left: 29px;
