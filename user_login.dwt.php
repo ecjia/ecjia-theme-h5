@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<label class="input">
 			<i class="iconfont icon-lock "></i>
 			<i class="iconfont icon-attention ecjia-login-margin-l"></i>
-			<input placeholder="{$lang.input_passwd}" name="password" type="password" datatype="*6-16" errormsg="密码错误请重新输入！" autocomplete="off" />
+			<input placeholder="{$lang.input_passwd}" id="password" name="password" type="password" datatype="*6-16" errormsg="密码错误请重新输入！" autocomplete="off" />
 		</label>
 	</div>
 	<!-- 判断是否启用验证码{if $enabled_captcha} -->

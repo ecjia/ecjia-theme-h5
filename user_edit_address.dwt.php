@@ -23,7 +23,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<span class="ecjiaf-fl">收货地址： </span>
 			<input name="location" placeholder="{t}写字楼，小区，学校，街道{/t}" type="text" datatype="*" value="{$edit_address.address|escape}" />
 			<a href={url path='user/user_address/near_location'}>
-				<i class="iconfont icon-focus"></i>
+				<div class="position"></div>
 			</a>
 		</label>
 	</div>

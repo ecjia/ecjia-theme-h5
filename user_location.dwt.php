@@ -16,16 +16,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <form class="ecjia-list ecjia-address-list" action="" method="post" id="searchForm" name="searchForm">
 	<div class="nav-header">
-		<i class="iconfont icon-search"></i>
+		<div class="img-search"></div>
 		<input id="keywordBox" name="keywords" type="search" placeholder="小区，写字楼，学校">
 	</div>
 	<div class="nav-header ecjia-margin-t ecjia-margin-b">
 		<a href="{url path='user/user_address/near_location'}" type="bottom">
-			<i class="iconfont icon-focus"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t}定位到当前位置{/t}
+			<div class="position"></div>&nbsp;&nbsp;&nbsp;&nbsp;{t}定位到当前位置{/t}
 			<span class="ecjiaf-fr"><i class="iconfont icon-jiantou-right"></i></span>
 		</a>
 	</div>
-	<ul class="list-one" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_location'}" data-size="10">
+	<ul class="list-one" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_address/async_location'}" data-size="10">
 		<div class="address-backgroundw"><span>我的收货地址</span></div>			
 		<!-- 配送地址 start--> 
 		
@@ -42,7 +42,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!-- 配送地址 start--> 
 	<!-- {foreach from=$addres_list item=value} 循环地址列表 -->
 		<li>
-			<i class="iconfont icon-round"></i>
+			<div class="circle"></div>
 			<div class="list">
 				<div>
 					<p class="ecjiaf-fl">{$value.consignee}</p>

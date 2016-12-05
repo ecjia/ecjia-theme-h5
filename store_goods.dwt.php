@@ -68,24 +68,24 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<ul class="a1o">
 				<!-- {if $store_info.goods_count.best_goods gt 0} -->
 				<li class="a1p {if $action_type eq 'best'}a1r{/if}">
-					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=best" data-toggle="toggle-category">精选</strong>
+					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=best" data-toggle="toggle-category" data-type="best">精选</strong>
 				</li>
 				<!-- {/if} -->
 
 				<!-- {if $store_info.goods_count.hot_goods gt 0} -->
 				<li class="a1p {if $action_type eq 'hot'}a1r{/if}">
-					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=hot" data-toggle="toggle-category">热销</strong>
+					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=hot" data-toggle="toggle-category" data-type="hot">热销</strong>
 				</li>
 				<!-- {/if} -->
 
 				<!-- {if $store_info.goods_count.new_goods gt 0} -->
 				<li class="a1p {if $action_type eq 'new'}a1r{/if}">
-					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=new" data-toggle="toggle-category">新品</strong>
+					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=new" data-toggle="toggle-category" data-type="new">新品</strong>
 				</li>
 				<!-- {/if} -->
 
 				<li class="a1p {if (!$category_id && !$action_type) || $action_type eq 'all'}a1r{/if}">
-					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=all" data-toggle="toggle-category">全部</strong>
+					<strong class="a1s" data-href="{RC_Uri::url('goods/category/ajax_category_goods')}&store_id={$store_id}&type=all" data-toggle="toggle-category" data-type="all">全部</strong>
 				</li>
 
 				<!-- {if $store_category} -->
@@ -109,47 +109,30 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="a20">
 				{$type_name}({$goods_num})
 			</div>
-			<div class="a1x wd ">
+			<div class="a1x wd">
 				<div class="a1z r2 a0h">
-					<ul>
-						<!-- {if $goods_list} -->
-							<!-- {foreach from=$goods_list item=goods} -->
-							<li>
-								<a class="linksGoods w" href="{RC_Uri::url('goods/index/init')}&id={$goods.id}">
-									<img class="pic" src="{$goods.img.small}">
-									<dl>
-										<dt>{$goods.name}</dt>
-										<dd><label>{$goods.shop_price}</label></dd>
-									</dl>
-								</a>
-								<div class="box" id="goods_{$goods.id}">
-	                            	<span class="reduce {if $goods.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$goods.rec_id}">减</span>
-                                	<label class="{if $goods.num}show{else}hide{/if}">{$goods.num}</label>
-                        			<span class="add" data-toggle="add-to-cart" rec_id="{$goods.rec_id}" goods_id="{$goods.id}">加</span>
-                       			</div>
-							</li>
-							<!-- {/foreach} -->
-						<!-- {/if} -->
+					<ul data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='goods/category/ajax_category_goods'}&store_id={$store_id}" data-type="{$action_type}">
 					</ul>
 				</div>
 			</div>
 			<input type="hidden" value="{RC_Uri::url('goods/category/update_cart')}" name="update_cart_url" />
 			<input type="hidden" value="{$store_id}" name="store_id" />
+			<input type="hidden" value="{$action_type}" name="type" />
 		</div>
 	</div>
 </div>
 
 <div class="store-add-cart a4w">
 	<div class="a52"></div>
-	<a href="javascript:void 0;" class="a4x {if $count.goods_number}light{else}disabled{/if} outcartcontent show show_cart" show="false">
-		{if $count.goods_number}
+	<a href="javascript:void 0;" class="a4x {if $real_count.goods_number}light{else}disabled{/if} outcartcontent show show_cart" show="false">
+		{if $real_count.goods_number}
 		<i class="a4y">
-		{$count.goods_number}
+		{$real_count.goods_number}
 		</i>
 		{/if}
 	</a>
 	<div class="a4z" style="transform: translateX(0px);">
-		{if !$count.goods_number}
+		{if !$real_count.goods_number}
 			<div class="a50">购物车是空的</div>
 		{else}
 		<div>
@@ -160,24 +143,35 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<a class="a51 {if !$count.goods_number}disabled{/if}" href="javascript:void 0;">去结算</a>
 	<div class="minicart-content" style="transform: translateY(0px); display: block;">
 		<a href="javascript:void 0;" class="a4x {if $count.goods_number}light{else}disabled{/if} incartcontent show_cart" show="false">
-			{if $count.goods_number}
+			{if $real_count.goods_number}
 			<i class="a4y">
-			{$count.goods_number}
+			{$real_count.goods_number}
 			</i>
 			{/if}
 		</a>
 		<i class="a57"></i>
 		<div class="a58 ">
-			<span class="a69 a6a checked" checkallgoods="" onclick="">全选</span>
+			<span class="a69 a6a {if $count.check_all}checked{/if}" data-toggle="toggle_checkbox" data-children=".checkbox" id="checkall">全选</span>
 			<p class="a6c">(已选{$count.goods_number}件)</p>
 			<a href="javascript:void 0;" class="a59" data-toggle="deleteall" data-url="{RC_Uri::url('goods/category/update_cart')}">清空购物车</a>
 		</div>
+		
 		<div class="a5b" style="max-height: 18em;">
 			<div class="a5l single">
-				<ul class="minicart-goods-list single"> 
+				{if $store_info.favourable_list}
+				<ul class="store-promotion" id="store-promotion">
+					<!-- {foreach from=$store_info.favourable_list item=list} -->
+					<li class="promotion">
+						<span class="promotion-label">{$list.type_label}</span>
+						<span class="promotion-name">{$list.name}</span>
+					</li>
+					<!-- {/foreach} -->
+				</ul>
+				{/if}
+				<ul class="minicart-goods-list single">
 					<!-- {foreach from=$cart_list item=cart} -->
 					<li class="a5n single">
-						<span class="a69 a5o checked" checkgoods=""></span>
+						<span class="a69 a5o {if $cart.is_checked}checked{/if} checkbox" data-toggle="toggle_checkbox" rec_id="{$cart.rec_id}"></span>
 						<table class="a5s">
 							<tbody>
 								<tr>
@@ -192,9 +186,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							</tbody>
 						</table>
 						<div class="box" id="goods_cart_{$cart.goods_id}">
-							<a class="a5u reduce" data-toggle="remove-to-cart" rec_id="{$cart.rec_id}"></a>
+							<span class="a5u reduce" data-toggle="remove-to-cart" rec_id="{$cart.rec_id}"></span>
 							<lable class="a5x">{$cart.goods_number}</lable>
-							<a class="a5v " data-toggle="add-to-cart" rec_id="{$cart.rec_id}" goods_id="{$cart.goods_id}"></a>
+							<span class="a5v " data-toggle="add-to-cart" rec_id="{$cart.rec_id}" goods_id="{$cart.goods_id}"></span>
 						</div>
 					</li>
 					<input type="hidden" name="rec_id" value="{$cart.rec_id}" />
@@ -214,7 +208,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!-- 异步购物车列表 start-->
 	<!-- {foreach from=$list item=val} 循环商品 -->
 	<li class="a5n single">
-		<span class="a69 a5o checked" checkgoods=""></span>
+		<span class="a69 a5o {if $val.is_checked}checked{/if} checkbox" data-toggle="toggle_checkbox" rec_id="{$val.rec_id}"></span>
 		<table class="a5s">
 			<tbody>
 				<tr>
@@ -229,9 +223,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</tbody>
 		</table>
 		<div class="box" id="goods_cart_{$val.goods_id}">
-			<a class="a5u reduce" data-toggle="remove-to-cart" rec_id="{$val.rec_id}"></a>
+			<span class="a5u reduce" data-toggle="remove-to-cart" rec_id="{$val.rec_id}"></span>
 			<lable class="a5x">{$val.goods_number}</lable>
-			<a class="a5v" data-toggle="add-to-cart" rec_id="{$val.rec_id}" goods_id="{$val.goods_id}"></a>
+			<span class="a5v" data-toggle="add-to-cart" rec_id="{$val.rec_id}" goods_id="{$val.goods_id}"></span>
 		</div>
 	</li>
 	<input type="hidden" name="rec_id" value="{$val.rec_id}" />

@@ -1,7 +1,7 @@
 <?php 
 /*
-Name: å•†å“æè¿°æ¨¡æ¿
-Description: è¿™æ˜¯å•†å“æè¿°é¦–é¡µ
+Name: 店铺祥情页
+Description: 店铺的基本信息，公司介绍，联系方式等信息展示
 Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');

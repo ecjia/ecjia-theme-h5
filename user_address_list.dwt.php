@@ -19,7 +19,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-address-list">
 	<div class="nav-header ecjia-margin-t ecjia-margin-b">
 		<a class="" href="{url path='user/user_address/add_address'}" type="botton">
-			<i class="iconfont icon-roundadd"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t}新建收货地址{/t}
+			<div class="icon-add-address"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t}新建收货地址{/t}
 			<span class="ecjiaf-fr"><i class="iconfont icon-jiantou-right"></i></span>
 		</a>
 	</div>
@@ -37,14 +37,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<div class="address ecjiaf-wwb">{$value.province_name} {$value.city_name} {$value.address} {$value.address_info}</div>
 				<hr />
 				<!-- {if $value.default_address eq 1} -->
-				<p class="is-default"><i class="iconfont icon-roundcheckfill"></i> {t}设为默认{/t}</p>
+				<p><i class="icon-is-default"></i>&nbsp;&nbsp;{t}设为默认{/t}</p>
 				<!-- {else} -->
-				<p class="not-default"><i class="iconfont icon-round"></i> {t}设为默认{/t}</p>
+				<p><i class="icon-not-default"></i>&nbsp;&nbsp;{t}设为默认{/t}</p>
 				<!-- {/if} -->
 				
-				<a href="{RC_uri::url('user/user_address/edit_address')}&id={$value.id}"><i class="iconfont icon-bianji1">{t}编辑{/t}</i></a>
+				<a class="edit-address" href="{RC_uri::url('user/user_address/edit_address')}&id={$value.id}"><div class="icon-edit-address"></div>{t}编辑{/t}</a>
 				
-			    <a class="nopjax" href="javascript:;" data-toggle="del_list" data-url="{url path='user/user_address/del_address_list'}" data-id="{$value.id}" data-msg="{t}你确定要删除此收货地址吗？{/t}"><i class="iconfont icon-delete">{t}删除{/t}</i></a>
+			    <a class="delete-address nopjax" href="javascript:;" data-toggle="del_list" data-url="{url path='user/user_address/del_address_list'}" data-id="{$value.id}" data-msg="{t}你确定要删除此收货地址吗？{/t}"><div class="icon-delete-address"></div>{t}删除{/t}</a>
 		
 			</li>
 			<!-- {/foreach} -->
