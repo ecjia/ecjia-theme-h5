@@ -36,8 +36,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 
 
-<div class="ecjia-user-head ecjia-user ecjia-color-green">
-     <ul class="ecjia-margin-t ecjia-list list-short">
+<div class="ecjia-user-head ecjia-user ecjia-color-green ecjia-user-marg-t">
+     <ul class="ecjia-user-marg-t ecjia-list list-short ecjia-user-no-border-t">
        <li>
         	<a href="{url path='user/user_account/account_detail'}">
         		<div class="icon-wallet"></div>
@@ -120,7 +120,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
     </ul>
-    <ul class="ecjia-margin-t ecjia-list list-short">
+    <ul class="ecjia-margin-t ecjia-list list-short ecjia-margin-b">
         <!-- {foreach from=$shop item=value} 网店信息 -->
             <li>
             	<a href="{RC_uri::url('user/index/shop_detail')}&article_id={$value.id}">
@@ -130,7 +130,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             	</a>
             </li>
         <!-- {/foreach} -->
-        <div class="ecjia-margin-b"></div>
     </ul>
 </div>
 <!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->

@@ -455,6 +455,9 @@ footer{
 .ecjia-index .ecjia-margin-t {
 	margin-top: 1em;
 }
+.ecjia-index .ecjia-margin-t2 {
+	margin-top: 2em;
+}
 /*========================  分类 ===========================*/
 .category .ecjia-header{
 	position: fixed;
@@ -1490,7 +1493,7 @@ footer{
 }
 /*========================  我的 ===========================*/
 .ecjia-user {
-	margin-top: 0.4em;
+	/*margin-top: 0.4em;*/
     /*padding-bottom: calc(44px + 1em);*/
 }
 .ecjia-user-new-info {
@@ -1499,6 +1502,9 @@ footer{
 	line-height: 6em;
 	position: relative;
 	background: rgba(71, 170, 77, 0.7) none repeat scroll 0 0;
+}
+.ecjia-user-no-border-t {
+	border-top:0!important;
 }
 .ecjia-user .no-login {
 	border: 1px solid #00F;
@@ -1522,6 +1528,11 @@ footer{
 	padding-top: 0;
 	padding-bottom: 0;
 }
+.ecjia-user.ecjia-form .form-group .input input {
+	padding: .5em 1em;
+    font-size: 1.2em;
+    height: 2.8em;
+}
 .ecjia-user.ecjia-list{
 	margin-top: 0;
 }
@@ -1529,13 +1540,14 @@ footer{
 	font-size: 1.5em;
 }
 .ecjia-user .ecjia-list{
-	margin-top: .5em;
+	margin-top: 1em;
 }
 .ecjia-user-border-b {
 	border-bottom: 1px solid #ddd;
 }
 .ecjia-user .ecjia-list.list-short li span {
 	/*margin-left: 0;*/
+	/*padding: .5em 1em;*/
 }
 .ecjia-user.ecjia-list.list-short li{
 	padding-bottom: .3em;
@@ -1648,7 +1660,7 @@ footer{
 .ecjia-user .ecjia-list.list-short li .icon-help-center  {
 	width: 25px;
 	height: 25px;
-	margin-left: 1%;
+	margin-left: -1%;
 	margin-top: 1%;	
     background: url('../images/user_center/help_center.png') no-repeat;
     background-size: 100%;
@@ -1657,7 +1669,7 @@ footer{
 .ecjia-user .ecjia-list.list-short li .icon-address-list  {
 	width: 25px;
 	height: 25px;
-	margin-left: 1%;
+	margin-left: -1%;
 	margin-top: 1%;	
     background: url('../images/user_center/50x50_3.png') no-repeat;
     background-size: 100%;
@@ -1666,7 +1678,7 @@ footer{
 .ecjia-user .ecjia-list.list-short li .icon-expand  {
 	width: 25px;
 	height: 25px;
-	margin-left: 1%;
+	margin-left: -1%;
 	margin-top: 1%;	
     background: url('../images/user_center/expand.png') no-repeat;
     background-size: 100%;
@@ -1675,7 +1687,7 @@ footer{
 .ecjia-user .ecjia-list.list-short li .icon-website-service  {
 	width: 25px;
 	height: 25px;
-	margin-left: 1%;
+	margin-left: -1%;
 	margin-top: 1%;	
     background: url('../images/user_center/50x50_5.png') no-repeat;
     background-size: 100%;
@@ -1684,7 +1696,7 @@ footer{
 .ecjia-user .ecjia-list.list-short li .icon-offical-website  {
 	width: 25px;
 	height: 25px;
-	margin-left: 1%;
+	margin-left: -1%;
 	margin-top: 1%;	
     background: url('../images/user_center/50x50_6.png') no-repeat;
     background-size: 100%;
@@ -1693,7 +1705,7 @@ footer{
 .ecjia-user .ecjia-list.list-short li .icon-message-center {
 	width: 25px;
 	height: 25px;
-	margin-left: 1%;
+	margin-left: -1%;
 	margin-top: 1%;	
     background: url('../images/user_center/message_center.png') no-repeat;
     background-size: 100%;
@@ -1702,7 +1714,7 @@ footer{
 .ecjia-user .ecjia-list.list-short li .icon-shop-info  {
 	width: 25px;
 	height: 25px;
-	margin-left: 1%;
+	margin-left: -1%;
 	margin-top: 1%;	
     background: url('../images/user_center/50x50_14.png') no-repeat;
     background-size: 100%;
@@ -1718,7 +1730,7 @@ footer{
 	font-size: 1.2em;
 }
 .ecjia-user .ecjia-list.list-short li+li::before {
-	left: 3.5em;
+	left: 3.1em;
 }
 .ecjia-user .ecjia-list.list-short li span.icon-price{
     float: right;
@@ -1773,6 +1785,9 @@ footer{
     margin: 0;
     width: 4em;
     height: 4em;
+}
+.ecjia-user-marg-t {
+	margin-top: 0!important;
 }
 .ecjia-user.user-new-info .user-rank-name,
 .ecjia-user.user-new-info .user-rank-name a{
@@ -1898,16 +1913,28 @@ footer{
 	margin-left: 5%;
 	color: #A4A4A4;
 }
+.ecjia-account-passwd-on {
+	padding: 0!important;
+    height: 2em!important;
+    font-size: 1em!important;
+}
 .ecjia-account .account-bonus span {
 	color: #999;
 }
 .ecjia-account .account-bonus span i {
 	font-size: 1.5em;
 }
+.ecjia-account .ecjia-list.list-short li+li::before {
+	width: 97%;
+    left: 3%;
+}
 .ecjia-account .account-bonus i.icon-qianbao {
 	padding:.2em;
 	font-size: 1.2em;
 	border-radius: 5px;
+}
+.ecjia-account .ecjia-list li {
+	padding: .5em 1em;
 }
 .ecjia-account .account-bonus i.icon-redpacket {
 	padding:.2em;
@@ -2143,6 +2170,9 @@ footer{
 	float: right;
 	margin-right: 7%;
 	width: 35%;
+}
+.ecjia-login.ecjia-form .form-group {
+	background-color: #FFF;
 }
 .ecjia-login-login-foot {
     overflow: hidden;
