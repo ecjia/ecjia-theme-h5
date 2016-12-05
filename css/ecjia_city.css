@@ -5,6 +5,15 @@
 .ecjia-list{
 	margin-top: .5em;
 }
+.ecjia-menu {
+    background-image: url("../dist/images/menu.pink.png");
+}
+.ecjia-menu a {
+    color: #fff;
+}
+.la-ball-atom {
+    color: #6fdafc;
+}
 /*========================  首页 ===========================*/
 .ecjia-header.ecjia-header-index {
     background: #47aa4d;
@@ -103,6 +112,9 @@
 	padding-bottom: 0;
 }
 /*首页广告位*/
+.ecjia-mod {
+    background: #fff;
+}
 .ecjia-mod .ecjia-adsense-model{
 	height: auto;
 	padding-top: 1em;
