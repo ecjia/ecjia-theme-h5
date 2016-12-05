@@ -11,10 +11,28 @@
 .ecjia-menu a {
     color: #fff;
 }
+.ecjia-menu .iconfont{
+	line-height: 0;
+	top: 0;
+}
 .la-ball-atom {
     color: #6fdafc;
 }
 /*========================  首页 ===========================*/
+.ecjia-header {
+    background: #47aa4d;
+    color: #fff;
+}
+.ecjia-header a {
+    color: #fff;
+}
+.ecjia-search-header button {
+    background: #fff;
+    border-left-color: #ccc;
+}
+.ecjia-search-header button i {
+    color: #ccc;
+}
 .ecjia-header.ecjia-header-index {
     background: #47aa4d;
 	position: fixed;
