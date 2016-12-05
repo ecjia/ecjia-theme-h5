@@ -31,9 +31,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
         <li>
+            <a>
         		<div class="iconfont icon icon-copy ecjia-user-phono"></div>
         		<span class="icon-name">积分</span>
         		<span class="icon-price">{$user.user_points}</span>
+        	</a>
         </li>
     </ul>
 </div>

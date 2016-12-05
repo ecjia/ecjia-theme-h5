@@ -42,7 +42,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!-- 配送地址 start--> 
 	<!-- {foreach from=$addres_list item=value} 循环地址列表 -->
 		<li>
-			<i class="iconfont icon-round"></i>
+			<div class="circle"></div>
 			<div class="list">
 				<div>
 					<p class="ecjiaf-fl">{$value.consignee}</p>
