@@ -53,6 +53,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				{if $val.seller_goods}
 				<ul class="store-goods">
 					<!-- {foreach from=$val.seller_goods key=key item=goods} -->
+						<a href="{RC_Uri::url('goods/index/init')}&id={$goods.goods_id}">
 						<li class="goods-info {if $key gt 2}goods-hide-list{/if}">
 							<span class="goods-image"><img src="{$goods.img.thumb}"></span>
 							<p>
@@ -60,6 +61,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 								<label class="price">{$goods.shop_price}</label>
 							</p>
 						</li>
+						</a>
 					<!-- {/foreach} -->
 				</ul>
 				{/if}

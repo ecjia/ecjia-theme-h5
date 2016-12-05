@@ -33,38 +33,42 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	{/if}
 </div>
 
-<div class="ecjia-user-head">
-    <div class="ecjia-list list-short">
-        <li>
+
+
+
+<div class="ecjia-user-head ecjia-user ecjia-color-green ecjia-user-marg-t">
+     <ul class="ecjia-user-marg-t ecjia-list list-short ecjia-user-no-border-t">
+       <li>
         	<a href="{url path='user/user_account/account_detail'}">
         		<div class="icon-wallet"></div>
         		<span class="icon-name">{t}我的钱包{/t}</span>
-        		<i class="iconfont  icon-jiantou-right"></i></span>
+        		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
-    	</li>
-    </div>
+        </li>
+    </ul>
 </div>
-<ul class="ecjia-list bonus ecjia-nav-child-f ecjia-list-three ecjia-login-nav-bottom">
-	<li>
-		<a href="{url path='user/user_account/account_detail'}">
-		    <p>{if $user.formated_user_money}{$user.formated_user_money}{else}{'- -'}{/if}</p>
-			<p>余额</p>
-		</a>
-	</li>
-	<li>
-		<a href="{url path='user/user_bonus/bonus'}">
-		    <p>{if $user.user_bonus_count}{$user.user_bonus_count}{else}{'- -'}{/if}</p>
-			<p>红包</p>
-		</a>
-	</li>
-	<li>
-		<p>{if $user.user_points}{$user.user_points}{else}{'- -'}{/if}</p>
-		<p>积分</p>
-	</li>
-</ul>
+<div class="ecjia-user-border-b">
+    <ul class="ecjia-user ecjia-list bonus ecjia-nav-child-f ecjia-list-three ecjia-login-nav-bottom">
+    	<li>
+    		<a href="{url path='user/user_account/account_list'}">
+    		    <p>{if $user.formated_user_money}{$user.formated_user_money}{else}{'- -'}{/if}</p>
+    			<p>余额</p>
+    		</a>
+    	</li>
+    	<li>
+    		<a href="{url path='user/user_bonus/bonus'}">
+    		    <p>{if $user.user_bonus_count}{$user.user_bonus_count}{else}{if $user.user_bonus_count eq '0'}{0}{else}{'- -'}{/if}{/if}</p>
+    			<p>红包</p>
+    		</a>
+    	</li>
+    	<li>
+    		<p>{if $user.user_points}{$user.user_points}{else}{'- -'}{/if}</p>
+    		<p>积分</p>
+    	</li>
+    </ul>
+</div>
 
-<div class="ecjia-user">
-
+<div class="ecjia-user ecjia-user-head">
     <ul class="ecjia-margin-t ecjia-list list-short">
        <li>
         	<a href="{url path='user/user_address/address_list'}">
@@ -87,13 +91,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	<a href="{url path='user/user_package/service'}">
         		<div class="icon-website-service"></div>
         		<span class="icon-name">官网客服</span>
+        		<span class="icon-price">{'4001-021-758'}</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
         <li>
-        	<a href="{url path='user/user_address/address_list'}">
+        	<a href="https://ecjia.com/">
         		<div class="icon-offical-website"></div>
         		<span class="icon-name">官网网站</span>
+        		<span class="icon-price">{'www.ecjia.com'}</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
@@ -101,7 +107,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-margin-t ecjia-list list-short">
         <li>
         	<a href="{url path='article/help/init'}">
-        		<div class="icon-message-center"></div>
+        		<div class="icon-help-center"></div>
         		<span class="icon-name">帮助中心</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
@@ -114,7 +120,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
     </ul>
-    <ul class="ecjia-margin-t ecjia-list list-short">
+    <ul class="ecjia-margin-t ecjia-list list-short ecjia-margin-b">
         <!-- {foreach from=$shop item=value} 网店信息 -->
             <li>
             	<a href="{RC_uri::url('user/index/shop_detail')}&article_id={$value.id}">

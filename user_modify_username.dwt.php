@@ -17,9 +17,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<p class="ecjia-margin-l ecjia-margin-t">4-20个字符，可由中英文、数字、"——"、"-"组成</p>
 	<div class="ecjia-login-b ecjia-login">
-	    <div class="around p-top3">
+	    <div class="p-top3">
             <input type="hidden" name="referer" value="{$smarty.get.referer}" />
-            <input type="submit" class="btn btn-info login-btn" value="确定" />
+            <input type="submit" class="btn btn-info nopjax" value="确定" />
 	    </div>	
 	</div>
 </form>
