@@ -8,14 +8,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div id="total_number">
 <ul class="ecjia-list">
 
-      <!-- {if ecjia::config('use_integral')} 是否使用积分-->
+      {if 0}<!-- {if ecjia::config('use_integral')} 是否使用积分-->
       <li>获得积分：<span class="cart-order">{$total.will_get_integral}积分</span></li>
-      <!-- {/if} -->
+      <!-- {/if} -->{/if}
 
       <!-- {if ecjia::config('use_bonus') && $total.will_get_bonus gt 0} 是否使用红包-->
       <li>获得{$lang.bonus}：<span class="cart-order">{$total.will_get_bonus}{$lang.bonus}</span></li>
       <!-- {/if} -->
 
+      <!-- 总价 -->
       <li>{$lang.goods_all_price}: <span class="cart-order">{$total.goods_price_formated}</span></li>
 
       <!-- {if $total.discount gt 0} 折扣 -->
@@ -26,15 +27,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
       <li>{$lang.tax}:<span class="cart-order">{$total.tax_formated}</span></li>
       <!-- {/if} -->
 
-      <!-- {if $total.shipping_fee > 0} 配送费用 -->
-      <li>{$lang.shipping_fee}:<span class="cart-order">{$total.shipping_fee_formated}</span></li>
-      <!-- {/if} -->
+      <!--  配送费用 -->
+      <li>运费:<span class="cart-order">{$total.shipping_fee_formated}</span></li>
 
       <!-- {if $total.shipping_insure > 0} 保价费用 -->
       <li>{$lang.insure_fee}:<span class="cart-order">{$total.shipping_insure_formated}</span></li>
       <!-- {/if} -->
 
-      <!-- {if $total.pay_fee > 0} 支付费用 -->
+      <!-- {if $total.pay_fee > 0} 支付手续费 -->
       <li>{$lang.pay_fee}:<span class="cart-order">{$total.pay_fee_formated}</span></li>
       <!-- {/if} -->
 
@@ -60,6 +60,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
       <!-- {/if} -->
       <!-- {/if} 使用余额或积分或红包 -->
 
+      <!-- 总金额 -->
       <li>{$lang.total_fee}: <span class="cart-order">{$total.amount_formated}</span></li>
 
       <!-- {if $is_group_buy} -->

@@ -16,13 +16,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-    <div class="ecjia-select">
-        <span class="select-title ecjia-margin-l">备注留言</span>
+<form id="theForm" name="theForm" action="{url path='cart/flow/checkout'}" method="post">
+    <div class="ecjia-select ecjia-margin-t">
+        <span class="select-title ecjia-margin-l">备注内容</span>
         <div class="input">
-            <textarea name="name"></textarea>
+            <textarea name="note">{$note}</textarea>
         </div>
         <div class="ecjia-margin-t ecjia-margin-b">
-            <a class="btn btn-info" href="#">确定</a>
+            <input type="hidden" name="address_id" value="{$address_id}">
+            <input type="hidden" name="rec_id" value="{$rec_id}" />
+			<input class="btn btn-info" name="note_update" type="submit" value="确定"/>
         </div>
     </div>
+</form>
 <!-- {/block} -->

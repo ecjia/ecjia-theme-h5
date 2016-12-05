@@ -1517,6 +1517,12 @@ footer{
     background: none;
     color: #333;
 }
+.ecjia-flow-done .ecjia-list {
+    margin-top: 0;
+}
+.ecjia-flow-done .ecjia-list.list-short {
+    border-top: none;
+}
 /*========================  我的 ===========================*/
 .ecjia-user {
 	/*margin-top: 0.4em;*/

@@ -513,7 +513,7 @@
 		},
 
 		goods_show : function() {
-			$('.view-more').on('click', function(e){
+			$(document).off('click').on('click', '.view-more', function(e){
 				e.preventDefault();
 				var $this = $(this);
 
@@ -525,7 +525,7 @@
 				$this.addClass('hide').siblings('.goods-info').removeClass('hide');
 			});
 
-			$('.category_left li').on('click', function(){
+			$('.category_left li').off('click').on('click', function(){
 				$('.ecjia-category-list').removeClass('show');
 				var $this = $(this)
 					cat_id = $this.children('a').attr('data-val');
