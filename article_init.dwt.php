@@ -13,8 +13,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<form class="ecjia-list ecjia-article" action="" method="post" id="searchForm" name="searchForm">
-	<ul class="list-one user-address-list">
+<form class="ecjia-article ecjia-article0" action="" method="post" id="searchForm" name="searchForm">
+	<ul class="list-one user-address-list ecjia-list list-short">
 		<!-- {foreach from=$data item=value} 帮助中心 -->
 			<span>{$value.name}</span>
 			<!-- {foreach from=$value.article item=val} -->
