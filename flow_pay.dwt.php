@@ -14,8 +14,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
+<form id="theForm" name="theForm" action="{url path='cart/flow/checkout'}" method="post">
     <div class="ecjia-select">
         <ul class="ecjia-list ecjia-margin-t">
             <!-- {foreach from=$payment_list item=rs} -->
@@ -23,7 +23,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <li>
                     <span class="slect-title">{$rs.pay_name}</span>
                     <span class="ecjiaf-fr">
-                        <input type="radio" id="{$rs.pay_code}" name="payment" value="{$rs.pay_id}">
+                        <input type="radio" id="{$rs.pay_code}" name="payment" value="{$rs.pay_id}" {if $smarty.get.pay_id eq $rs.pay_id}checked="true"{/if}>
                         <label for="{$rs.pay_code}"></label>
                     </span>
                 </li>
@@ -32,9 +32,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </ul>
         
         <div class="ecjia-margin-t ecjia-margin-b">
-            <a class="btn btn-info" href="#">确定</a>
+            <input type="hidden" name="address_id" value="{$address_id}">
+            <input type="hidden" name="rec_id" value="{$rec_id}" />
+			<input class="btn btn-info" name="payment_update" type="submit" value="确定"/>
         </div>
     </div>
-    
+</form>
     
 <!-- {/block} -->

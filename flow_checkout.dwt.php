@@ -16,7 +16,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 <div class="ecjia-checkout">
 	<form id="theForm" name="theForm" action="{url path='flow/done'}" method="post">
@@ -52,58 +51,65 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</section>
 
 		<section class="checklist">
-			<a href="{url path='cart/flow/pay'}">
+			<a href='{url path="cart/flow/pay" args="address_id={$address_id}&rec_id={$rec_id}&pay_id={$selected_payment.pay_id}"}'>
 				<span>{$lang.payment_method}</span>
 				<i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr select_nav ecjia-truncate">{$payment_default}</span>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$selected_payment.pay_name}</span>
+				<input type="hidden" name="payment" value="{$selected_payment.pay_id}" />
 			</a>
 		</section>
 		<section class="checklist">
-			<a href="{url path='cart/flow/shipping'}">
+			<a href='{url path="cart/flow/shipping" args="address_id={$address_id}&rec_id={$rec_id}&shipping_id={$selected_shipping.shipping_id}"}'>
 				<span>{$lang.shipping_method}</span>
 				<i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$selected_shipping.shipping_name}</span>
+				<input type="hidden" name="payment" value="{$selected_shipping.shipping_id}" />
 			</a>
 		</section>
-		<section class="checklist error">
-			<a href="{url path='cart/flow/invoice'}">
-				<span>{$lang.invoice}</span>
-				<i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
-			</a>
-		</section>
-		<section class="checklist">
-			<a href="{url path='cart/flow/note'}">
-				<span>备注留言</span>
-				<i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
-			</a>
-		</section>
-		<section class="checklist">
-			<a href="{url path='cart/flow/integral'}">
-				<span>{$lang.use_integral}</span>
-				<span class="icon-font">1000积分可用</span>
+		<section class="checklist "><!-- error -->
+			<a href='{url path="cart/flow/invoice" args="address_id={$address_id}&rec_id={$rec_id}"}'>
+				<span>发票信息<!-- invoice --></span>
 				<i class="iconfont icon-jiantou-right"></i>
 				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
 			</a>
 		</section>
 		<section class="checklist ecjia-margin-b">
-			<a href="{url path='cart/flow/bonus'}">
+			<a href='{url path="cart/flow/note" args="address_id={$address_id}&rec_id={$rec_id}"}'>
+				<span>备注留言</span>
+				<i class="iconfont icon-jiantou-right"></i>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
+			</a>
+		</section>
+		
+		{if $data.allow_use_bonus}
+		<section class="checklist">
+			<a href='{url path="cart/flow/bonus" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>{$lang.use_bonus}</span>
 				<span class="icon-font">无可用</span>
 				<i class="iconfont icon-jiantou-right"></i>
 				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
 			</a>
 		</section>
+		{/if}
+		{if $data.allow_use_integral}
+		<section class="checklist ecjia-margin-b">
+			<a href='{url path="cart/flow/integral" args="address_id={$address_id}&rec_id={$rec_id}"}'>
+				<span>{$lang.use_integral}</span>
+				<span class="icon-font">{$data.your_integral}积分可用</span>
+				<i class="iconfont icon-jiantou-right"></i>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
+			</a>
+		</section>
+		{/if}
 
 		<section class="ecjia-margin-t checkout-select checkout-pro-list">
-			<!-- #BeginLibraryItem "/Library/order_total.lbi" -->
-			<!-- #EndLibraryItem -->
+			<!-- #BeginLibraryItem "/library/order_total.lbi" --><!-- #EndLibraryItem -->
 		</section>
+		<p class="ecjia-margin-t ecjia-margin-l ecjia-fz-small ecjia-color-green">本订单由{$data.goods_list.0.seller_name}发货并提供售后服务</p>
 
 		<section class="ecjia-margin-t ecjia-margin-b">
 			<input type="hidden" class="hidden_rec_id" value="{$rec_id}">
-			<input class="btn btn-info" name="submit" type="submit" value="{$lang.order_submit}"/>
+			<input class="btn btn-info" name="submit" type="submit" value="提交订单"/>
 			<input name="step" type="hidden" value="done" />
 		</section>
 	</form>
