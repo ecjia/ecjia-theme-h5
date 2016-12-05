@@ -55,7 +55,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<span>{$lang.payment_method}</span>
 				<i class="iconfont icon-jiantou-right"></i>
 				<span class="ecjiaf-fr select_nav ecjia-truncate">{$selected_payment.pay_name}</span>
-				<input type="hidden" name="payment" value="{$selected_payment.pay_id}" />
+				<input type="hidden" name="pay_id" value="{$selected_payment.pay_id}" />
 			</a>
 		</section>
 		<section class="checklist">
@@ -63,7 +63,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<span>{$lang.shipping_method}</span>
 				<i class="iconfont icon-jiantou-right"></i>
 				<span class="ecjiaf-fr select_nav ecjia-truncate">{$selected_shipping.shipping_name}</span>
-				<input type="hidden" name="payment" value="{$selected_shipping.shipping_id}" />
+				<input type="hidden" name="shipping_id" value="{$selected_shipping.shipping_id}" />
 			</a>
 		</section>
 		<section class="checklist "><!-- error -->
@@ -77,7 +77,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<a href='{url path="cart/flow/note" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>备注留言</span>
 				<i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$note}</span>
 			</a>
 		</section>
 		
@@ -108,7 +108,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<p class="ecjia-margin-t ecjia-margin-l ecjia-fz-small ecjia-color-green">本订单由{$data.goods_list.0.seller_name}发货并提供售后服务</p>
 
 		<section class="ecjia-margin-t ecjia-margin-b">
-			<input type="hidden" class="hidden_rec_id" value="{$rec_id}">
+			<input type="hidden" name="rec_id" value="{$rec_id}">
+			<input type="hidden" name="address_id" value="{$address_id}">
 			<input class="btn btn-info" name="submit" type="submit" value="提交订单"/>
 			<input name="step" type="hidden" value="done" />
 		</section>

@@ -19,7 +19,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <p>恭喜您，订单已经生成~</p>
     </div>
     <ul class="ecjia-list ecjia-margin-t">
-        <li> 应付金额：<span class="ecjiaf-fr">￥155.50</span></li>
+        <li>应付金额：<span class="ecjiaf-fr">{if $data.order_info.formatted_order_amount}{$data.order_info.formatted_order_amount}{else}{$data.order_info.goods_price}{/if}</span></li>
         <li>支付方式：<span class="ecjiaf-fr flow-msg">支付方式</span></li>
     </ul>
     <div class="ecjia-margin-t ecjia-margin-b flow-msg">支付成功</div>
