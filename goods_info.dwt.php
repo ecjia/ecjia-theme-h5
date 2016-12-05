@@ -35,11 +35,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<!-- Swiper -->
 			<div class="swiper-container swiper-goods-img">
 				<div class="swiper-wrapper">
+					{if $goods_info.pictures}
 					<!--{foreach from=$goods_info.pictures item=picture}-->
 						<div class="swiper-slide">
 							<img  src="{$picture.url}"/>
 						</div>
 					<!--{/foreach}-->
+					{else}
+						<div class="swiper-slide">
+							<img  src="{$theme_url}images/default-goods-pic.png"/>
+						</div>
+					{/if}
 				</div>
 				<!-- Add Pagination -->
 				<div class="swiper-pagination"></div>
@@ -63,7 +69,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			                	<span class="ecjia-promote_price-span">{$goods_info.formated_promote_price}</span>
 			                	<del> 原价：{$goods_info.shop_price}</del></br>
 			                	<div class="ecjia-left-time">
-			                		<i class="iconfont icon-remind"></i>
+			                		<span class="detail-clock-icon"></span>
 									<span class="promote-time" data-type="1" value="{$goods_info.promote_end_time}"></span>
 			                	</div>
 			                </div>
@@ -137,10 +143,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 									<p class="link-goods-name ecjia-goods-name-new">{$goods.name}</p>
 									<div class="link-goods-price">
 										<!--{if $goods.promote_price}-->
-										{$goods.promote_price}
+										<span>{$goods.promote_price}</span>
 										<div class="goods-price-plus"></div>
 										<!--{else}-->
-										{$goods.market_price}
+										<span>{$goods.market_price}</span>
 										<div class="goods-price-plus"></div>
 										<!--{/if}-->
 									</div>
@@ -162,11 +168,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="goods-desc-info active" id="goods-info-two">
 	<!--商品描述-->
 	<!-- Nav tabs -->
-	<ul class="ecjia-list ecjia-list-new ecjia-list-two ecjia-nav goods-desc-nav-new">
+	<ul class="ecjia-list ecjia-list-new ecjia-list-two ecjia-list-two-new ecjia-nav goods-desc-nav-new">
 		<li class="active">
 			<a class="nopjax a1" href="#one" role="tab" data-toggle="tab">图文详情</a>
+			<span class="goods-detail-title-border"></span>
 		</li>
-		<li><a class="nopjax a2" href="#two" role="tab" data-toggle="tab">规格参数</a></li>
+		<li style="border-left:none;"><a class="nopjax a2" href="#two" role="tab" data-toggle="tab">规格参数</a></li>
 	</ul>
 	<!-- Tab panes -->
 	<div class="bd">
@@ -191,7 +198,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</table>
 			<!-- {else} -->
 			<div class="ecjia-nolist">
-				<p class="tags_list_font">{t}此商品暂时没有属性{/t}</p>
+				<img  src="{$theme_url}images/property.png">
+				<p class="tags_list_font">{t}暂无任何规格参数{/t}</p>
 			</div>
 			<!-- {/if} -->
 		</div>
