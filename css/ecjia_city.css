@@ -2120,11 +2120,15 @@ footer{
 }
 .ecjia-account-record .account-record-list .record-l{
 	float: left;
-	width: 20%;
+	width: 16%;
 }
 .ecjia-account .ecjia-green {
 	background-color: #47AA4D;
-	color: #FFF;
+	color: #FFF!important;
+}
+.ecjia-account .ecjia-green-rf {
+	border-right: 2px solid #47AA4D;
+	color: #47AA4D;
 }
 .ecjia-account-record .account-record-list span.user-photo img{
 	width: 4em;
@@ -2132,7 +2136,7 @@ footer{
 }
 .ecjia-account-record .account-record-list .record-r{
 	float: left;
-	width: 80%;
+	width: 84%;
 	text-align: right;
 	padding-bottom: 1em;
 	padding-top: .7em;
@@ -2171,7 +2175,7 @@ footer{
 	height: auto;
 }
 .ecjia-bonus-border-right a{
-	border-right: 2px solid #47AA4D;
+	border-right: 2px solid #ddd;
 }
 .ecjia-bonus .three-btn{
 	margin: 0;

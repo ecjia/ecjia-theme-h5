@@ -295,10 +295,28 @@ class user_account_controller {
     	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('page' => $page, 'count' => $limit,'type' => $type))->send()->getBody();
     	$data = json_decode($data,true);
+    	$now_mon =  substr(date('Y-m-d H:i:s',time()),5,2);
+    	$now_day =  substr(date('Y-m-d H:i:s',time()),0,10);
+    	$time = '';
+    	foreach ($data['data'] as $key => $val) {
+    	    if ($time != substr($val['add_time'],5,2)) {
+    	        $time = substr($val['add_time'],5,2);
+    	        $day = substr($val['add_time'],8,2);
+    	    }
+    	    $arr[$time][$key] = $data['data'][$key];
+    	    $day = substr($val['add_time'],0,10);
+    	    if ($day == $now_day) {
+    	        $arr[$time][$key]['add_time'] = '今天'.substr($val['add_time'],11,5);
+    	    } else {
+    	        $arr[$time][$key]['add_time'] = substr($val['add_time'],5,11);
+    	    }
+    	}
     	$user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
     	ecjia_front::$controller->assign('user_img', $user_img);
     	ecjia_front::$controller->assign('type', $type);
-    	ecjia_front::$controller->assign('sur_amount', $data['data']);
+    	ecjia_front::$controller->assign('now_mon', $now_mon);
+    	ecjia_front::$controller->assign('now_day', $now_day);
+    	ecjia_front::$controller->assign('sur_amount', $arr);
     	ecjia_front::$controller->assign_lang();
     	$sayList = ecjia_front::$controller->fetch('user_cash_list.dwt');
     	ecjia_front::$controller->assign('hideinfo', '123');
