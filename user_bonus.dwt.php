@@ -17,10 +17,10 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 
 <!-- {block name="main-content"} -->
 
-<ul class="ecjia-list ecjia-list-three ecjia-bonus ecjia-nav ecjia-margin-b ecjia-bonus-border-right">
-	<li {if $smarty.get.status eq 'allow_use'} class="green-bottom"{else}class=""{/if}><a {if $status eq 'allow_use'} class="active three-btn"{/if} href="{url path='user/user_bonus/bonus' args='status=allow_use'}">{t}可使用{/t}</a></li>
-	<li {if $smarty.get.status eq 'expired'} class="green-bottom"{else}class=""{/if}><a {if $status eq 'expired'} class="active three-btn"{/if} href="{url path='user/user_bonus/bonus' args='status=expired'}">{t}已使用{/t}</a></li>
-	<li {if $smarty.get.status eq 'is_used'} class="green-bottom"{else}class=""{/if}><a {if $status eq 'is_used'} class="active three-btn"{/if} href="{url path='user/user_bonus/bonus' args='status=is_used'}">{t}已过期{/t}</a></li>
+<ul class="ecjia-list ecjia-list-three ecjia-bonus ecjia-nav ecjia-bonus-border-right">
+	<li {if $smarty.get.status eq 'allow_use'} class="red-bottom"{elseif $smarty.get.status eq ''}class="red-bottom"{else}class=''{/if}><a {if $smarty.get.status eq 'allow_use'} class="red-font"{else}class=""{/if} href="{url path='user/user_bonus/bonus' args='status=allow_use'}">{t}可使用{/t}</a></li>
+	<li {if $smarty.get.status eq 'expired'} class="red-bottom"{else}class=""{/if}><a {if $smarty.get.status eq 'expired'} class="red-font"{else}class=""{/if} href="{url path='user/user_bonus/bonus' args='status=expired'}">{t}已使用{/t}</a></li>
+	<li {if $smarty.get.status eq 'is_used'} class="red-bottom"{else}class=""{/if}><a {if $smarty.get.status eq 'is_used'} class="red-font right-border"{else}class="right-border"{/if} href="{url path='user/user_bonus/bonus' args='status=is_used'}">{t}已过期{/t}</a></li>
 </ul>
 <div>
 	<ul class="ecjia-list ecjia-bonus ecjia-list-two" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_bonus_list' args="status={$status}"}" data-size="10">
@@ -32,7 +32,7 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 		<li class="ecjia-margin-b list-l-size">
 			<div class="user-bonus-info {if $item.label_status eq '未使用'}user-bonus-head{else}user-bonus-head-expired{/if}">
 				<div class="type-l {if $item.label_status eq '未使用'}no-type-money{else}type-money{/if}">{$item.formatted_bonus_amount}</div>
-				<div class="type-r">
+				<div  {if $item.status eq 'allow_use'} class="type-r"{else}class="type-r color-3a"{/if}>
 					<p class="type-name">{$item.bonus_name}</p>
 					<p class="min_goods_amount">{$item.seller_name}</p>
 					<p class="type-date">{$item.formatted_start_date}{'-'}{$item.formatted_end_date}</p>
