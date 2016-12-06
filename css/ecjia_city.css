@@ -1,4 +1,12 @@
 /* 全局样式 */
+html, body {
+    background: #f7f7f7;
+    color: #555;
+}
+.ecjia-row-nav {
+    border-bottom-color: #e3e3e3;
+    background: #FFF;
+}
 .ecjia-color-green {
 	color:#47AA4D;
 }
@@ -516,7 +524,7 @@ footer{
 .page_hearer_hide{
 	display: none;
 }
-.page_hearer_hide .ecjia-header-right a i {
+.ecjia-header .ecjia-header-right a i {
     font-size: 1.5em;
     line-height: 1.5;
 }
@@ -1020,16 +1028,13 @@ footer{
 }
 .store-add-cart.a4w .a4y {
     position: absolute;
-    left: 44px;
+    left: 45px;
     height: 1.2em;
 	width: 1.2em;
-    line-height: .7em;
+    line-height: .6em;
     overflow: hidden;
-    text-align: center;
-    color: #fff;
-    background-color: #ff5d5c;
-    border-radius: 4em;
-    font-size: 1em;
+    background-color: #ff3434;
+    font-size: .9em;
 	font-style: normal;
 }
 .store-add-cart.a4w .a4z {

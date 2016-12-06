@@ -513,12 +513,17 @@ class goods_controller {
     	ecjia_front::$controller->assign('data', $store_info);
     	ecjia_front::$controller->display('store_detail.dwt');
     }
+    
     /**
      * 店铺商品
      */
     public static function store_goods() {
     	$store_id 		= intval($_GET['store_id']);
     	$category_id 	= intval($_GET['category_id']);
+    	
+    	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+    	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+    	
     	//店铺信息
     	$cache_key = 'store_info_'.$store_id;
     	$store_info = RC_Cache::app_cache_get($cache_key, 'goods');
@@ -561,7 +566,7 @@ class goods_controller {
     	if (!empty($action_type) && $action_type != 'all') {
     		$parameter = array(
     			'action_type' 	=> $action_type,
-    			'pagination' 	=> array('count' => 10, 'page' => 1),
+    			'pagination' 	=> array('count' => $limit, 'page' => $page),
     			'seller_id'		=> $store_id
     		);
     		$suggest_goods_key = 'suggest_goods_'.$store_id.'_'.$action_type.'_'.$limit.'_'.$page;
@@ -573,12 +578,11 @@ class goods_controller {
     		$data = json_decode($data, true);
     		$goods_num = $data['paginated']['count'];
     		$goods_list = $data['data'];
-    		
     	} else {
     		//店铺分类商品
     		$arr = array(
     			'filter' 		=> array('category_id' => $category_id),
-    			'pagination' 	=> array('count' => 10, 'page' => 1),
+    			'pagination' 	=> array('count' => $limit, 'page' => $page),
     			'seller_id'		=> $store_id
     		);
     		 

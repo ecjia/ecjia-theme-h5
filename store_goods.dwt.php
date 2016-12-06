@@ -23,6 +23,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="ecjia-header-left">
 		<img src="{$store_info.seller_banner}">
 	</div>
+	<div class="ecjia-header-right">
+		<a href="{$header_right.href}">
+			<!-- {if $header_right.icon neq ''} -->
+			<i class="{$header_left.icon}"></i>
+			<!-- {elseif $header_right.info neq ''} -->
+			<span>{$header_right.info}</span>
+			<!-- {/if} -->
+		</a>
+	</div>
 </div>
 <div class="ecjia-store-brief">
 	<li class="store-info">
@@ -156,7 +165,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<a href="javascript:void 0;" class="a59" data-toggle="deleteall" data-url="{RC_Uri::url('goods/category/update_cart')}">清空购物车</a>
 		</div>
 		
-		<div class="a5b" style="max-height: 18em;">
+		<div class="a5b" style="max-height: 21em;">
 			<div class="a5l single">
 				{if $store_info.favourable_list}
 				<ul class="store-promotion" id="store-promotion">
