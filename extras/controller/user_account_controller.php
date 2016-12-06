@@ -268,6 +268,9 @@ class user_account_controller {
         if ($amount > $user_money) {
             ecjia_front::$controller->showmessage(__('余额不足，请确定提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/user_account/withdraw')));
         }
+        if (strlen($note) > '300') {
+            ecjia_front::$controller->showmessage(__('输入的文字超过规定字数'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/user_account/withdraw')));
+        }
         if (empty($amount)) {
             ecjia_front::$controller->showmessage(__('请输入提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         } else {
@@ -280,25 +283,26 @@ class user_account_controller {
      * 充值提现列表
      */
     public static function cash_list() {
+        $_SESSION['status'] = !empty($_GET['status']) ? $_GET['status'] : '';
         ecjia_front::$controller->assign('hideinfo', '123');
-    	ecjia_front::$controller->assign('title', '交易记录');
-    	ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
+//     	ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
     	ecjia_front::$controller->display('user_cash_list.dwt');
-       
     }
     
     public static function ajax_cash_list() {
-    	$type = htmlspecialchars($_GET['type']);
+    	$type = htmlspecialchars($_SESSION['status']);
     	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
     	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-    	
-    	$data = RC_DB::table('account_log')->where('user_id', 1042)->get();
-    	
-    	ecjia_front::$controller->assign('sur_amount', $data);
+    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('page' => $page, 'count' => $limit,'type' => $type))->send()->getBody();
+    	$data = json_decode($data,true);
+    	$user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
+    	ecjia_front::$controller->assign('user_img', $user_img);
+    	ecjia_front::$controller->assign('type', $type);
+    	ecjia_front::$controller->assign('sur_amount', $data['data']);
     	ecjia_front::$controller->assign_lang();
     	$sayList = ecjia_front::$controller->fetch('user_cash_list.dwt');
-    	
-    	ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $data['is_last']));
+    	ecjia_front::$controller->assign('hideinfo', '123');
+    	ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page'));
     }
 
 }

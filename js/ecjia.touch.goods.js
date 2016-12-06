@@ -154,11 +154,21 @@
         	
         	//更新购物车中商品
             $.post(url, info, function(data){
+            	if (data.state == 'error') {
+//            		var myApp = new Framework7();
+//            		myApp.modal({
+//            		    title:  '',
+//            		    text: data.message,
+//            		    buttons: false
+//            		})
+            		alert(data.message);
+            		$('.la-ball-atom').remove();
+            		return false;
+            	}
             	if (data.count == null) {
             		ecjia.touch.category.hide_cart(true);
             	} else {
             		ecjia.touch.category.show_cart(true);
-            		
             		var goods_number = data.count.goods_number;
             		for (i = 0; i < data.list.length; i++) {
             			if (data.say_list) {
@@ -194,6 +204,7 @@
     				ecjia.touch.category.remove_tocart();
     				ecjia.touch.category.toggle_checkbox();
             	}
+            	ecjia.touch.category.check_all();
             	$('.la-ball-atom').remove();
             	$('[data-toggle="toggle_checkbox"]').removeClass('disabled');
             	$('.box').children('span').removeClass('disabled');
@@ -201,7 +212,6 @@
         },
         
         show_cart : function(bool) {
-        	ecjia.touch.category.check_all();
         	if (bool) {
         		$('.store-add-cart').children('.a4x').addClass('light').removeClass('disabled');
         		$('.store-add-cart').children('.a51').removeClass('disabled');
@@ -278,8 +288,9 @@
         		
         		var type = $this.attr('data-type') == undefined ? category_id : $this.attr('data-type');
         		var info = {'action_type' : type};
+        		$('.wd').find('[data-toggle="asynclist"]').attr('data-type', type).html('');
+        		
         		if (bool) {
-        			$('.wd').find('[data-toggle="asynclist"]').attr('data-type', type).html('');
             		$('.load-list').remove();
             		ecjia.touch.asynclist();
             		
@@ -382,13 +393,14 @@
         
         toggle_checkbox : function() {
         	$('[data-toggle="toggle_checkbox"]').off('click').on('click', function(e){
-        		$('.box').children('span').addClass('disabled');
-        		$('.minicart-content').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
-        		
         		var $this = $(this);
         		if ($this.hasClass('disabled')) {
         			return false;
         		}
+        		
+        		$('.box').children('span').addClass('disabled');
+        		$('.minicart-content').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+        		
         		$('[data-toggle="toggle_checkbox"]').addClass('disabled');
         		
         		if ($this.hasClass('checked')) {

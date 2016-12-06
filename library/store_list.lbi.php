@@ -1,7 +1,7 @@
 <?php
 /*
-Name: 店铺商品模版
-Description: 这是店铺商品
+Name: 店铺列表模版
+Description: 这是店铺列表
 Libraries: store_goods
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');

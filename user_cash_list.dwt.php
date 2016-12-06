@@ -18,13 +18,12 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-
 <div class="ecjia-account-list-f">
     <div class="ecjia-account-list">
-        <ul class="ecjia-list ecjia-list-three ecjia-nav ecjia-account ecjia-margin-b ecjia-bonus-border-right">
-        	<li {if $status eq 'notused'}" class="active"{/if}><a class="left-bottom" href="{url path='user/user_account/cash_list' args='status=notused'}">{t}全部{/t}</a></li>
-        	<li {if $status eq 'used'} class="active"{/if}><a href="{url path='user/user_account/cash_list' args='status=used'}">{t}提现{/t}</a></li>
-        	<li {if $status eq 'overdue'} class="active"{/if}><a class="right-bottom" href="{url path='user/user_account/cash_list' args='status=overdue'}">{t}充值{/t}</a></li>
+        <ul class="ecjia-list ecjia-list-three ecjia-nav ecjia-account ecjia-bonus-border-right">
+        	<li><a {if $smarty.get.status eq ''}class="ecjia-green left-bottom"{else}class="left-bottom"{/if} id="left-bottom" href="{url path='user/user_account/cash_list' args='status='}">{t}全部{/t}</a></li>
+        	<li><a {if $smarty.get.status eq 'raply'}class="ecjia-green"{/if} href="{url path='user/user_account/cash_list' args='status=raply'}">{t}提现{/t}</a></li>
+        	<li><a {if $smarty.get.status eq 'deposit'}class="ecjia-green right-bottom"{else}class="right-bottom"{/if} id="right-bottom" href="{url path='user/user_account/cash_list' args='status=deposit'}">{t}充值{/t}</a></li>
         </ul>
     </div>
 </div>
@@ -41,46 +40,16 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 			<ul>
 				<li class="record-single">
 					<div class="record-l">
-						<span class="user-photo"><img src="{$theme_url}/images/default_user.png" /></span>
+						<span class="user-photo"><img src="{$user_img}" alt=""></span>
 					</div>
 					<div class="record-r">
 						<div class="record-r-l">
-							<p>wu21st-充值</p>
+							<p>{$item.type_lable}</p>
 							<p class="record-time">今天</p>
 						</div>
 						<div class="record-r-r">
-							<p>100.00</p>
-							<p>交易进行中</p>
-						</div>
-					</div>
-				</li>
-				<li class="record-single">
-					<div class="record-l">
-						<span class="user-photo"><img src="{$theme_url}/images/default_user.png" /></span>
-					</div>
-					<div class="record-r">
-						<div class="record-r-l">
-							<p>wu21st-充值</p>
-							<p class="record-time">今天</p>
-						</div>
-						<div class="record-r-r">
-							<p>100.00</p>
-							<p>交易进行中</p>
-						</div>
-					</div>
-				</li>
-				<li class="record-single">
-					<div class="record-l">
-						<span class="user-photo"><img src="{$theme_url}/images/default_user.png" /></span>
-					</div>
-					<div class="record-r">
-						<div class="record-r-l">
-							<p>wu21st-充值</p>
-							<p class="record-time">今天</p>
-						</div>
-						<div class="record-r-r">
-							<p>100.00</p>
-							<p>交易进行中</p>
+							<p>{$item.amount}</p>
+							<p>{$item.pay_status}</p>
 						</div>
 					</div>
 				</li>
