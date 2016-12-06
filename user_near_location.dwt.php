@@ -18,25 +18,25 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="address-backgroundw">
 		<span>上海市</span>
 		<i class="iconfont icon-jiantou-bottom"></i>
-		<i class="iconfont icon-search"></i>
+		<i class="img-search"></i>
 		<input id="keywordBox" name="keywords" type="search" placeholder="请输入搜索关键词！">
 	</div>
 	<ul class="list-one user-address-list">
 		<li>
 			<div class="form-group-text">
-				<i class="iconfont icon-location"></i><span>华东师范大学（中北校区）</span>
+				<div class="location"></div><span>华东师范大学（中北校区）</span>
 				<p>普陀区中山北路3556号</p>
 			</div>
 		</li>
 		<li>
 			<div class="form-group-text">
-				<i class="iconfont icon-location"></i><span>伸大厦-东门</span>
+				<div class="location"></div><span>伸大厦-东门</span>
 				<p>普陀区中山北路3553号</p>
 			</div>
 		</li>
 		<li>
 			<div class="form-group-text">
-				<i class="iconfont icon-location"></i><span>智学教育</span>
+				<div class="location"></div><span>智学教育</span>
 				<p>普陀区中山北路3556号</p>
 			</div>
 		</li>

@@ -14,7 +14,7 @@ class user_function
 			$cookie_search = $_COOKIE ['ECJia'] ['search'];
 		}
 		
-		if (!empty($keywords)) {
+		if (isset($keywords)) {
 			if (!empty($cookie_search)) {
 				$history = explode(',', $cookie_search);
 				array_unshift($history, $keywords);
