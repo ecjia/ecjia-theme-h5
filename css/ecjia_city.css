@@ -10,6 +10,9 @@ html, body {
 .ecjia-color-green {
 	color:#47AA4D;
 }
+a.ecjia-color-green {
+	color:#47AA4D;
+}
 .ecjia-list{
 	margin-top: .5em;
 }
@@ -1556,10 +1559,6 @@ footer{
     font-size: 1.1em;
     line-height: 1.3em;
 }
-.ecjia-flow-done .two-btn .btn:last-child{
-    background: none;
-    color: #333;
-}
 /* .ecjia-flow-done .ecjia-list {
     margin-top: 0;
 } */
@@ -2834,6 +2833,7 @@ footer{
 }
 .ecjia-order-detail .ecjia-checkout .flow-goods-list{
     background: none;
+	padding-bottom:4em;
 }
 .ecjia .ecjia-order-detail .ecjia-checkout .flow-goods-list .goods-item li {
 	height: 5em;
@@ -2848,7 +2848,14 @@ footer{
 }
 .ecjia-order-detail .order-ft-link{
     text-align: center;
-    padding: 1em 0;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    max-width: 640px;
+    height: 3.2em;
+	line-height:3.2em;
+	border-top:1px solid #ddd;
+    background-color: #fff;
 }
 .ecjia-order-detail .order-ft-link .btn-small{
     margin: 0;
