@@ -221,7 +221,6 @@ RC_Hook::add_action('class_user_front',      function () {RC_Loader::load_theme(
  */
 RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
 
-
     if (ROUTE_M == 'user') {
         new user_front();
     }
@@ -241,5 +240,10 @@ ecjia_open::macro('goods_detail', function($querys) {
 ecjia_open::macro('seller', function($querys) {
 // 	return RC_Uri::url('goods/seller/store_list', array('cid' => $querys['category_id']));
 });
+
+//支付响应提示模板
+RC_Hook::add_filter('payment_respond_template', function($respond, $msg){
+    return pay_controller::notify($msg);
+}, 10, 2);
 
 
