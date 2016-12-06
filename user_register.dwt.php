@@ -28,7 +28,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="form-group margin-right-left">
 				<label class="input">
 					<i class="iconfont icon-mobilefill icon-set"></i>
-					<input name="mobile" type="text" id=""mobile"" name=""mobile"" datatype="s3-15|m|e" errormsg="{$lang.msg_mast_length}" placeholder="请输入手机号" />
+					<input name="mobile" type="text" id=""mobile"" name="mobile" placeholder="请输入手机号" />
 				</label>
 			</div>
 			 <li class="remark-size">{$lang.message_authentication_code}</li>
@@ -45,7 +45,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="form-group bf margin-right-left">
 				<label class="input">
 					<i class="iconfont icon-yanzhengma"></i>
-					<input name="text" id="text" type="text" datatype="*6-16"  errormsg="请输入6 ~ 16 位的密码">
+					<input name="text" id="text" type="text">
 				</label>
 			</div>
 			<div class="ecjia-login-b">

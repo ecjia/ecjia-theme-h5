@@ -20,14 +20,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group margin-right-left">
 		<label class="input">
 			<i class="iconfont icon-dengluyonghuming"></i>
-			<input placeholder="{$lang.name_or_mobile}" name="username" datatype="s3-15|m|e" errormsg="用户名错误请重新输入！" autocomplete="off" />
+			<input placeholder="{$lang.name_or_mobile}" name="username">
 		</label>
 	</div>
 	<div class="form-group ecjia-margin-t margin-right-left">
 		<label class="input">
 			<i class="iconfont icon-lock "></i>
 			<i class="iconfont icon-attention ecjia-login-margin-l"></i>
-			<input placeholder="{$lang.input_passwd}" id="password" name="password" type="password" datatype="*6-16" errormsg="密码错误请重新输入！" autocomplete="off" />
+			<input placeholder="{$lang.input_passwd}" id="password" name="password" type="password">
 		</label>
 	</div>
 	<!-- 判断是否启用验证码{if $enabled_captcha} -->

@@ -261,6 +261,19 @@ class user_account_controller {
         // $surplus['rec_id']  = insert_user_account($surplus, $amount);
         // /* 如果成功提交 */
         // ecjia_front::$controller->showmessage(RC_Lang::lang('surplus_appl_submit'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => RC_Uri::url('user/user_account/account_detail')));
+        $amount = !empty($_POST['amount']) ? $_POST['amount'] : '';
+        $note   = !empty($_POST['user_note']) ? $_POST['user_note'] : '';
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        $user_money = ltrim($user['formated_user_money'], '￥');
+        if ($amount > $user_money) {
+            ecjia_front::$controller->showmessage(__('余额不足，请确定提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/user_account/withdraw')));
+        }
+        if (empty($amount)) {
+            ecjia_front::$controller->showmessage(__('请输入提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        } else {
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RAPLY)->data(array('amount' => $amount, 'note' => $note))->run();
+            ecjia_front::$controller->showmessage(__($data), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/user_account/withdraw')));
+        }
     }
     
     /**
