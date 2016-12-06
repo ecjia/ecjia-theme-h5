@@ -19,33 +19,35 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <p>恭喜您，订单已经生成~</p>
     </div>
     <ul class="ecjia-list ecjia-margin-t">
-        <li>应付金额：<span class="ecjiaf-fr">{if $data.order_info.formatted_order_amount}{$data.order_info.formatted_order_amount}{else}{$data.order_info.goods_price}{/if}</span></li>
-        <li>支付方式：<span class="ecjiaf-fr flow-msg">支付方式</span></li>
+        <li>应付金额：<span class="ecjiaf-fr">{if $data.formated_order_amount}{$data.formated_order_amount}{else}{$data.order_amount}{/if}</span></li>
+        <li>支付方式：<span class="ecjiaf-fr flow-msg">{$data.pay_name}</span></li>
     </ul>
-    <div class="ecjia-margin-t ecjia-margin-b flow-msg">支付成功</div>
+    <div class="ecjia-margin-t ecjia-margin-b flow-msg">{$pay_error}</div>
+    {if $payment_list}
     <ul class="ecjia-list ecjia-margin-t">
         <li>
-            其他支付方式 <span class="ecjiaf-fr"><i class="iconfont icon-jiantou-bottom"></i></span>
+                        其它支付方式 <span class="ecjiaf-fr"><i class="iconfont icon-jiantou-bottom"></i></span>
         </li>
     </ul>
-    <ul class="ecjia-list list-short">
+    <ul class="ecjia-list list-short payment-list">
+    <!-- {foreach from=$payment_list item=list} -->
         <li>
-            <span class="icon-name">支付宝</span>
+            <span class="icon-name" data-code="{$list.pay_code}"><a href='{url path="cart/flow/done" args="order_id={$data.order_id}&pay_id={$list.pay_id}&pay_code={$list.pay_code}"}'>{$list.pay_name}</a></span>
         </li>
-        <li>
-            <span class="icon-name">余额支付</span>
-        </li>
-        <li>
-            <span class="icon-name">**支付</span>
-        </li>
+    <!-- {/foreach} -->
     </ul>
-    <div class="ecjia-margin-t ecjia-margin-b two-btn">
-        <a class="btn" href="#">去购物</a>
-        <a class="btn" href="#">查看订单</a>
-    </div>
+    {/if}
 
+    {if $pay_online}
     <div class="ecjia-margin-t ecjia-margin-b">
-        <a class="btn" href="#">确认支付</a>
+        <!-- <a class="btn" href="#">确认支付</a> -->
+        {$pay_online}
+    </div>
+    {/if}
+    
+    <div class="ecjia-margin-t ecjia-margin-b two-btn">
+        <a class="btn" href='{url path="touch/index/init"}'>去购物</a>
+        <a class="btn" href='{url path="user/user_order/order_detail" args="order_id={$data.order_id}"}'>查看订单</a>
     </div>
 </div>
 
