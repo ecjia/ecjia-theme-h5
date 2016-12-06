@@ -2580,7 +2580,10 @@ footer{
 	color:#000;
 	height:50px;
 	line-height:34px;
-	font-size:15px;
+	font-size:17px;
+}
+.ecjia-merchants-name{
+	
 }
 .ecjia-merchants-name .icon-jiantou-right{
 	float:right;
@@ -2635,7 +2638,7 @@ footer{
 }
 .ecjia-form .may-like{
 	color:#FF1919;
-	font-size:18px;
+	font-size:17px;
 }
 .ecjia-like-goods-list{
 	padding-bottom:1em;
@@ -2672,10 +2675,24 @@ footer{
 	width:22px;
 	float:right;
 }
+.seller-name-icon{
+	background: url(../images/icon/seller-name-icon.png);
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+	background-origin:content-box;
+	display:inline-block;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	height:22px;
+	width:22px;
+	margin-bottom:-4px;
+}
 .goods-describe .ecjia-nolist{
 	font-size:1em;
 	background-color:#fff;
 	padding-top:13em;
+	padding-bottom:21em;
 }
 .goods-describe .ecjia-nolist img{
 	width:30%;
@@ -2690,6 +2707,9 @@ footer{
 }
 .goods-desc-info .goods-describe table tr td, .goods-desc-info .goods-describe table tr th{
 	padding: 0 0;
+}
+.goods-desc-info .goods-describe table tr td, .goods-desc-info .goods-describe table tr:last-child{
+	border-bottom:none;
 }
 /*========================  订单列表 ===========================*/
 .ecjia-order-list .ecjia-order-item {
