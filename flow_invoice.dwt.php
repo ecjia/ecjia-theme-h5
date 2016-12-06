@@ -14,9 +14,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-    <div class="ecjia-select">
+    <div class="ecjia-select ecjia-margin-t">
         <span class="select-title ecjia-margin-l">您总共有1000个积分</span>
         <div class="input">
             <input type="text" name="name" value="" placeholder="您本次最多可以使用3个积分">

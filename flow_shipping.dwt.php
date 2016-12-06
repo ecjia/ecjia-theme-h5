@@ -14,25 +14,29 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
+<form id="theForm" name="theForm" action="{url path='cart/flow/checkout'}" method="post">
     <div class="ecjia-select">
         <h3 class="select-title"></h3>
         <ul class="ecjia-list">
-            <!-- {foreach from=$shipping_list item=rs} -->
-            <label class="select-item" for="shipping_{$rs.shipping_code}">
+            <!-- {foreach from=$shipping_list item=list} -->
+            <label class="select-item" for="shipping_{$list.shipping_code}">
                 <li>
-                    <span class="slect-title">{$rs.shipping_name}</span>
+                    <span class="slect-title">{$list.shipping_name}</span>
                     <span class="ecjiaf-fr">
-                        <input type="radio" id="shipping_{$rs.shipping_code}" name="shipping" value="{$rs.shipping_id}">
-                        <label for="shipping_{$rs.shipping_code}"></label>
+                        <input type="radio" id="shipping_{$list.shipping_code}" name="shipping" value="{$list.shipping_id}"
+                        {if $smarty.get.shipping_id eq $list.shipping_id} checked="true"{/if}>
+                        <label for="shipping_{$list.shipping_code}"></label>
                     </span>
                 </li>
             </label>
             <!-- {/foreach} -->
         </ul>
         <div class="ecjia-margin-t ecjia-margin-b">
-            <a class="btn btn-info" href="#">确定</a>
+            <input type="hidden" name="address_id" value="{$address_id}">
+            <input type="hidden" name="rec_id" value="{$rec_id}" />
+			<input class="btn btn-info" name="shipping_update" type="submit" value="确定"/>
         </div>
     </div>
+</form>
 <!-- {/block} -->

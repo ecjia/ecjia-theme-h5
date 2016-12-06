@@ -599,16 +599,16 @@ class cart_controller {
         // ecjia_front::$controller->assign('step', ROUTE_A);
         
         $_POST['address_id'] = 540;
-        $_POST['rec_id'] = '7223,7701,8025,8026,8027';
+        $_POST['rec_id'] = '8115,8116,8117,8118,8119';
         $address_id = empty($_POST['address_id']) ? 0 : intval($_POST['address_id']);
         $rec_id = empty($_POST['rec_id']) ? 0 : trim($_POST['rec_id']);
-
+        
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
         if(empty($rec_id)) {
-            ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         if (empty($address_id)) {
-            ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         
         $params_cart = array(
@@ -624,16 +624,79 @@ class cart_controller {
         ->send()->getBody();
         $rs = json_decode($rs,true);
         if (! $rs['status']['succeed']) {
-            $url = '';
+            $url = RC_Uri::url('cart/index/init');
             ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url));
         }
-        $total_goods_number = 0;
-        foreach ($rs['data']['goods_list'] as $cart) {
-            $total_goods_number += $cart['goods_number'];
+        $cart_key = md5($address_id.$rec_id);
+        $_SESSION['cart'][$cart_key]['data'] = $rs['data'];
+        
+        //支付方式
+        $payment_id = 0;
+        if ($_POST['payment_update']) {
+            $payment_id = $_SESSION['cart'][$cart_key]['pay_id'] = empty($_POST['payment']) ? 0 : intval($_POST['payment']);
+        } else {
+            if (isset($_SESSION['cart'][$cart_key]['pay_id'])) {
+                $payment_id = $_SESSION['cart'][$cart_key]['pay_id'];
+            }
         }
+        if ($payment_id) {
+            $payment_list = touch_function::change_array_key($rs['data']['payment_list'], 'pay_id');
+            $selected_payment = $payment_list[$payment_id];
+            
+        } else {
+            $selected_payment = $rs['data']['payment_list'][0];
+        }
+        
+        //配送方式
+        $shipping_id = 0;
+        if ($_POST['shipping_update']) {
+            $shipping_id = $_SESSION['cart'][$cart_key]['shipping_id'] = empty($_POST['shipping']) ? 0 : intval($_POST['shipping']);
+        } else {
+            if (isset($_SESSION['cart'][$cart_key]['shipping_id'])) {
+                $shipping_id = $_SESSION['cart'][$cart_key]['shipping_id'];
+            }
+        }
+        if ($shipping_id) {
+            $shipping_list = touch_function::change_array_key($rs['data']['shipping_list'], 'shipping_id');
+            $selected_shipping = $shipping_list[$shipping_id];
+        } else {
+            $selected_shipping = $rs['data']['shipping_list'][0];
+        }
+        
+        //留言
+        if ($_POST['note_update']) {
+            $_SESSION['cart'][$cart_key]['note'] = empty($_POST['note']) ? '' : trim($_POST['note']);
+        }
+        ecjia_front::$controller->assign('note', $_SESSION['cart'][$cart_key]['note']);
+        //积分
+        if ($_POST['integral_update']) {
+            $_SESSION['cart'][$cart_key]['integral'] = empty($_POST['integral']) ? '' : intval($_POST['integral']);
+        }
+        
+        //total
+        $total['goods_number'] = 0;
+        $total['goods_price'] = 0;
+        foreach ($rs['data']['goods_list'] as $cart) {
+            $total['goods_number'] += $cart['goods_number'];
+            $total['goods_price'] += $cart['subtotal'];
+        }
+        $total['goods_price_formated'] = price_format($total['goods_price']);
+        $total['shipping_fee'] = $selected_shipping['shipping_fee']; //$rs['data']['shipping_list'];
+        $total['shipping_fee_formated'] = price_format($total['shipping_fee']);
+        $total['discount'] = $rs['data']['discount'];
+        $total['discount_formated'] = $rs['data']['discount_formated'];
+        
+        $total['pay_fee'] = $selected_payment['pay_fee']; 
+        $total['pay_fee_formated'] = price_format($total['pay_fee']);
+        $total['amount'] = $total['goods_price'] + $total['shipping_fee'] + $total['pay_fee'] - $total['discount']; 
+        $total['amount_formated'] = price_format($total['amount']);
+        
         _dump($rs,2);
         ecjia_front::$controller->assign('data', $rs['data']);
-        ecjia_front::$controller->assign('total_goods_number', $total_goods_number);
+        ecjia_front::$controller->assign('total_goods_number', $total['goods_number']);
+        ecjia_front::$controller->assign('selected_payment', $selected_payment);
+        ecjia_front::$controller->assign('selected_shipping', $selected_shipping);
+        ecjia_front::$controller->assign('total', $total);
         ecjia_front::$controller->assign('address_id', $address_id);
         ecjia_front::$controller->assign('rec_id', $rec_id);
         
@@ -1245,6 +1308,149 @@ class cart_controller {
     //     ecjia_front::$controller->assign('title', RC_Lang::lang('order_submit'));
     //     ecjia_front::$controller->assign_title(RC_Lang::lang('order_submit'));
     //     ecjia_front::$controller->assign_lang();
+    
+        
+        $address_id = empty($_POST['address_id']) ? 0 : intval($_POST['address_id']);
+        $rec_id = empty($_POST['rec_id']) ? 0 : trim($_POST['rec_id']);
+        $pay_id = empty($_POST['pay_id']) ? 0 : intval($_POST['pay_id']);
+        $shipping_id = empty($_POST['shipping_id']) ? 0 : intval($_POST['shipping_id']);
+        $postscript = empty($_POST['note']) ? 0 : trim($_POST['note']);
+        
+        $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
+        if(empty($rec_id)) {
+            ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/flow/checkout')));
+        }
+        if (empty($address_id)) {
+            ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/flow/checkout')));
+        }
+        
+        $params = array(
+            'token' => ecjia_touch_user::singleton()->getToken(),
+            'address_id' => $address_id,
+            'rec_id' => $rec_id,
+            'shipping_id' => $shipping_id,
+            'pay_id' => $pay_id,
+            'postscript' => $postscript,
+            'location' => array(
+                'longitude' => '121.41709899974',
+                'latitude' => '31.235476867103'
+            ),
+        );
+        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::FLOW_DONE)->data($params)
+        ->send()->getBody();
+        $rs = json_decode($rs,true);
+        if (! $rs['status']['succeed']) {
+            $url = RC_Uri::url('cart/flow/checkout');
+            ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url));
+        }
+        
+        //支付方式
+//         $rs['data']['order_info']['pay_code']
+
+        $payment_method = RC_Loader::load_app_class('payment_method', 'payment');
+        $order = $rs['data']['order_info'];
+        /* 支付方式 */
+        if ($order['pay_code']) {
+            $payment            = $payment_method->payment_info($order['pay_code']);
+            $order ['pay_name'] = addslashes($payment ['pay_name']);
+        }
+        /* 如果全部使用余额支付，检查余额是否足够 */
+        if ($payment ['pay_code'] == 'pay_balance' && $order ['order_amount'] > 0) {
+            if ($order ['order_amount'] > ($user_info ['user_money'] + $user_info ['credit_line'])) {
+                //余额不足
+                ecjia_front::$controller->showmessage(RC_Lang::lang('balance_not_enough'),ecjia::MSGSTAT_ERROR |ecjia::MSGTYPE_JSON);
+            } else {
+                $order ['surplus'] = $order ['order_amount'];
+                $order ['order_amount'] = 0;
+            }
+        }
+        
+        /* 处理余额、积分、红包 */
+        if ($order ['user_id'] > 0 && $order ['surplus'] > 0) {
+            log_account_change($order ['user_id'], $order ['surplus'] * (- 1), 0, 0, 0, sprintf(RC_Lang::lang('pay_order'), $order ['order_sn']));
+        }
+        if ($order ['user_id'] > 0 && $order ['integral'] > 0) {
+            log_account_change($order ['user_id'], 0, 0, 0, $order ['integral'] * (- 1), sprintf(RC_Lang::lang('pay_order'), $order ['order_sn']));
+        }
+        if ($order ['bonus_id'] > 0 && $temp_amout > 0) {
+            use_bonus($order ['bonus_id'], $new_order_id);
+        }
+        
+        /* 插入支付日志 */
+        $order ['log_id'] = insert_pay_log($new_order_id, $order ['order_amount'], PAY_ORDER);
+        
+        /* 取得支付信息，生成支付代码 */
+        if ($order ['order_amount'] > 0) {
+            RC_Loader::load_app_class('payment_abstract', 'payment', false);
+            $payment_method = RC_Loader::load_app_class('payment_method','payment');
+            $payment_info = $payment_method->payment_info_by_id($order ['pay_id']);
+            /*取得支付信息，生成支付代码*/
+            $payment_config = $payment_method->unserialize_config($payment_info['pay_config']);
+            $handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
+            $handler->set_orderinfo($order);
+            $handler->set_mobile(true);
+            /* 这是一个支付的抽象类payment_abstract */
+            $pay_online = $handler->get_code(payment_abstract::PAYCODE_PARAM);
+            // $db_payment_model = RC_loader::load_app_model('payment_model', 'payment');
+            RC_Loader::load_theme('extras/model/cart/cart_payment_model.class.php');
+            $db_payment_model  = new cart_payment_model();
+            $pay_code = $payment_method->payment_info_by_name($pay_online['pay_name']);
+            $pay_code = array_column($pay_code,'pay_code');
+            if(in_array('pay_cod',$pay_code)|| in_array('pay_bank', $pay_code)){
+                if(in_array('pay_cod',$pay_code)){
+                    $link = RC_uri::url('user/user_order/order_list').'&status=unshipped';
+                }elseif(in_array('pay_bank', $pay_code)){
+                    $link = RC_uri::url('user/user_order/order_list');
+                }
+                $pay_online_btn = '<a class="btn btn-info nopjax" href="' . $link . '">去订单列表查看订单</a>';
+            }else{
+                $pay_online_btn = '<a class="btn btn-info nopjax" href="' . $pay_online['pay_online'] . '">去' . $pay_online['pay_name'] . '支付</a>';
+            }
+            ecjia_front::$controller->assign('pay_online', $pay_online_btn);
+        }
+        
+        //如果是货到付款，状态设置为已确认。
+        if($payment['pay_code'] == 'pay_cod') {
+            $order['order_status'] = 1;
+            $store_info = RC_DB::table('store_franchisee')->where('store_id', $store_group[0])->first();
+            /* 货到付款判断是否是自营*/
+            if ($store_info['manage_mode'] != 'self') {
+                return new ecjia_error('pay_not_support', '货到付款不支持非自营商家！');
+            }
+        }
+        /*货到付款不显示*/
+        if ($payment ['pay_code'] != 'pay_balance') {
+            /* 生成订单后，修改支付，配送方式 */
+            /*支付方式*/
+            $payment_method = RC_Loader::load_app_class('payment_method', 'payment');
+            $payment_list   = empty($payment_method) ? array() : $payment_method->available_payment_list(1, $cod_fee);
+            if (isset($payment_list)) {
+                foreach ($payment_list as $key => $payment) {
+                    /*过滤掉当前的支付方式*/
+                    if ($payment ['pay_id'] == $order ['pay_id']) {
+                        unset($payment_list [$key]);
+                    }
+                    /* 如果有余额支付 */
+                    if ($payment ['pay_code'] == 'balance') {
+                        /* 如果未登录，不显示 */
+                        if ($_SESSION ['user_id'] == 0) {
+                            unset($payment_list [$key]);
+                        } else {
+                            if ($_SESSION ['flow_order'] ['pay_id'] == $payment ['pay_id']) {
+                                ecjia_front::$controller->assign('disable_surplus', 1);
+                            }
+                        }
+                    }
+                }
+            }
+            ecjia_front::$controller->assign('payment_list', $payment_list);
+            ecjia_front::$controller->assign('pay_code', 'no_balance');
+        }
+        
+        ecjia_front::$controller->assign('data', $rs['data']);
+        ecjia_front::$controller->assign('address_id', $address_id);
+        ecjia_front::$controller->assign('rec_id', $rec_id);
+        
         ecjia_front::$controller->display('flow_done.dwt');
     }
 
@@ -1693,11 +1899,28 @@ class cart_controller {
 	    // ecjia_front::$controller->assign('payment_default',$payment_default);
         // ecjia_front::$controller->assign('payment_list', $payment_list);
         // // _dump($payment_list,1);
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)
+        
+        
+        /* $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)
         ->send()->getBody();
-        $data = json_decode($data,true);
-        _dump($data,2);
-        ecjia_front::$controller->assign('payment_list', $data['data']['payment']);
+        $data = json_decode($data,true); */
+        $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
+        $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
+        
+        $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
+        if(empty($rec_id)) {
+            ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
+        if (empty($address_id)) {
+            ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
+        
+        $cart_key = md5($address_id.$rec_id);
+        $data = $_SESSION['cart'][$cart_key]['data'];
+        _dump($_SESSION['cart'],2);
+        ecjia_front::$controller->assign('payment_list', $data['payment_list']);
+        ecjia_front::$controller->assign('address_id', $address_id);
+        ecjia_front::$controller->assign('rec_id', $rec_id);
         ecjia_front::$controller->assign_lang();
         
         ecjia_front::$controller->assign('title', RC_Lang::lang('payment_method'));
@@ -1737,9 +1960,28 @@ class cart_controller {
         // reset($shipping_list);
         // ecjia_front::$controller->assign('shipping_default',$shipping_default);
         // ecjia_front::$controller->assign('shipping_list', $shipping_list);
-        // ecjia_front::$controller->assign_lang();
-        // ecjia_front::$controller->assign('title', RC_Lang::lang('shipping_method'));
-        // ecjia_front::$controller->assign_title(RC_Lang::lang('shipping_method'));
+        
+        $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
+        $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
+        
+        $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
+        if(empty($rec_id)) {
+            ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
+        if (empty($address_id)) {
+            ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
+        
+        $cart_key = md5($address_id.$rec_id);
+        $data = $_SESSION['cart'][$cart_key]['data'];
+        _dump($_SESSION['cart'],2);
+        ecjia_front::$controller->assign('shipping_list', $data['shipping_list']);
+        ecjia_front::$controller->assign('address_id', $address_id);
+        ecjia_front::$controller->assign('rec_id', $rec_id);
+        
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign('title', RC_Lang::lang('shipping_method'));
+        ecjia_front::$controller->assign_title(RC_Lang::lang('shipping_method'));
         ecjia_front::$controller->display('flow_shipping.dwt');
     }
 
@@ -1756,6 +1998,23 @@ class cart_controller {
      * 增加订单留言
      */
     public static function note() {
+        
+        $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
+        $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
+        
+        $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
+        if(empty($rec_id)) {
+            ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
+        if (empty($address_id)) {
+            ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
+        
+        $cart_key = md5($address_id.$rec_id);
+        $data = $_SESSION['cart'][$cart_key];
+        ecjia_front::$controller->assign('note', $data['note']);
+        ecjia_front::$controller->assign('address_id', $address_id);
+        ecjia_front::$controller->assign('rec_id', $rec_id);
 
         ecjia_front::$controller->assign('title', '备注留言');
         ecjia_front::$controller->assign_title('备注留言');
@@ -1775,7 +2034,24 @@ class cart_controller {
      * 使用积分
      */
     public static function integral() {
-        ecjia_front::$controller->assign('title', RC_Lang::lang('use_integral'));
+        $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
+        $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
+        
+        $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
+        if(empty($rec_id)) {
+            ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
+        if (empty($address_id)) {
+            ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
+        
+        $cart_key = md5($address_id.$rec_id);
+        $data = $_SESSION['cart'][$cart_key];
+        ecjia_front::$controller->assign('data', $data);
+        ecjia_front::$controller->assign('address_id', $address_id);
+        ecjia_front::$controller->assign('rec_id', $rec_id);
+        
+//         ecjia_front::$controller->assign('title', RC_Lang::lang('use_integral'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('use_integral'));
         ecjia_front::$controller->display('flow_integral.dwt');
     }

@@ -17,7 +17,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 <div class="ecjia-order-list ">
 	<ul class="ecjia-margin-b" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user_order/async_order_list'}" data-size="10" data-page="1">
@@ -138,7 +137,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<!-- {foreachelse} -->
     	<div class="ecjia-nolist">
         	<i class="iconfont icon-icon04"></i>
-        	<p>{t}您还没有订单~{/t}</p>
+        	<p>{t}暂无相关订单{/t}</p>
         </div>
 		<!-- {/foreach} -->
 <!-- {/block} -->

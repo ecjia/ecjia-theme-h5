@@ -19,13 +19,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group margin-right-left">
 		<label class="input">
 			<i class="iconfont icon-attention ecjia-login-margin-l"></i>
-			<input class="padding-left05" id="password" placeholder="{$lang.input_new_password}" name="passwordf" type="password" datatype="*6-16" errormsg="密码错误请重新输入！" autocomplete="off" />
+			<input class="padding-left05" id="password" placeholder="{$lang.input_new_password}" name="passwordf" type="password" errormsg="密码错误请重新输入！" autocomplete="off" />
 		</label>
 	</div>
 	<div class="form-group margin-top4 margin-right-left">
 		<label class="input">
-			<i class="iconfont icon-attention ecjia-login-margin-l"></i>
-			<input class="padding-left05" id="password2" type="password" datatype="*6-16" errormsg="密码错误请重新输入！" name="passwords" placeholder="{$lang.input_new_password_again}"/>
+			<i class="iconfont icon-attention ecjia-login-margin-l show-password"></i>
+			<input class="padding-left05" id="password2" type="password" errormsg="密码错误请重新输入！" name="passwords" placeholder="{$lang.input_new_password_again}"/>
 		</label>
 	</div>
 	<div class="ecjia-login-b margin-top4">

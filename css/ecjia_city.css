@@ -1519,6 +1519,12 @@ footer{
     background: none;
     color: #333;
 }
+.ecjia-flow-done .ecjia-list {
+    margin-top: 0;
+}
+.ecjia-flow-done .ecjia-list.list-short {
+    border-top: none;
+}
 /*========================  我的 ===========================*/
 .ecjia-user {
 	/*margin-top: 0.4em;*/
@@ -1689,7 +1695,7 @@ footer{
 .ecjia-user-head .ecjia-list.list-short li .icon-wallet  {
 	width: 25px;
 	height: 25px;
-	margin-left: 1%;
+	margin-left: -1%;
 	margin-top: 1%;	
     background: url('../images/user_center/50x50_1.png') no-repeat;
     background-size: 100%;
@@ -2645,6 +2651,7 @@ footer{
 .ecjia-like-goods-list li .link-goods-price{
 	color:#FF1919;
 	font-size:16px;
+	margin-bottom:2px;
 }
 .ecjia-like-goods-list li img{
 	border:0.5px solid #ddd;
@@ -3402,4 +3409,9 @@ footer{
    	color: #333;
 	font-weight: normal;
     overflow: hidden;
+}
+/*======================== 推广 ===========================*/
+.ecjia-spread{
+	background:#fff;
+    height:auto;
 }

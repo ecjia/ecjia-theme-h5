@@ -13,5 +13,15 @@ class touch_function
         }
     
     }
+    
+    public static function change_array_key($array, $new_key) {
+        $new_array = array();
+        if($array) {
+            foreach ($array as $val) {
+                $new_array[$val[$new_key]] = $val;
+            }
+        }
+        return $new_array;
+    }
 
 }
