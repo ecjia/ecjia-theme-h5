@@ -22,9 +22,9 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 <div class="ecjia-account-list-f">
     <div class="ecjia-account-list">
         <ul class="ecjia-list ecjia-list-three ecjia-nav ecjia-account ecjia-margin-b ecjia-bonus-border-right">
-        	<li {if $status eq 'notused'}" class="active"{/if}><a class="left-bottom" href="{url path='user/user_account/cash_list' args='status=notused'}">{t}全部{/t}</a></li>
-        	<li {if $status eq 'used'} class="active"{/if}><a href="{url path='user/user_account/cash_list' args='status=used'}">{t}提现{/t}</a></li>
-        	<li {if $status eq 'overdue'} class="active"{/if}><a class="right-bottom" href="{url path='user/user_account/cash_list' args='status=overdue'}">{t}充值{/t}</a></li>
+        	<li {if $status eq 'notused'}" class="active"{/if}><a class="left-bottom" href="{url path='user/user_account/cash_list' args='status='}">{t}全部{/t}</a></li>
+        	<li {if $status eq 'used'} class="active"{/if}><a href="{url path='user/user_account/cash_list' args='status=raply'}">{t}提现{/t}</a></li>
+        	<li {if $status eq 'overdue'} class="active"{/if}><a class="right-bottom" href="{url path='user/user_account/cash_list' args='status=deposit'}">{t}充值{/t}</a></li>
         </ul>
     </div>
 </div>
