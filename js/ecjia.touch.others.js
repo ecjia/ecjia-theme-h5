@@ -8,10 +8,6 @@
             this.change_index();
             this.swiper_promotion();
             this.promote_time();
-            
-            $(document).on('pjax:end', function() {
-                ecjia.touch.index.swiper_promotion();
-            });
 		},
         init_swiper : function() {
 			var swiper = new Swiper('.swiper-touchIndex', {

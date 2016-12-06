@@ -25,6 +25,9 @@
 .ecjia-header a {
     color: #fff;
 }
+.ecjia-header .ecjia-header-title{
+	color: #fff;
+}
 .ecjia-search-header button {
     background: #fff;
     border-left-color: #ccc;
@@ -701,7 +704,7 @@ footer{
 }
 .ecjia-store-goods .a1p {
     color: #333;
-    font-size: .8em;
+    font-size: 1em;
 	border-bottom: 1px solid #e8e8e8;
 }
 .ecjia-store-goods .a1p.a1t {
