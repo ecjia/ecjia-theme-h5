@@ -1964,6 +1964,11 @@ footer{
 .ecjia-account .account-bonus span {
 	color: #999;
 }
+.ecjia-account .cash_list {
+	text-align: center;
+	margin-top: 2em;
+	font-size: 1.2em;
+}
 .ecjia-account .account-bonus span i {
 	font-size: 1.5em;
 }
@@ -2052,7 +2057,7 @@ footer{
 .ecjia-account .two-btn{
 	width: 100%;
     text-align: center;
-    margin-left: 17%;
+    margin-left: 18%;
 }
 .ecjia-account .two-btn .btn{
 	width: 30%;

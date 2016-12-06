@@ -25,5 +25,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<a href="{url path='user/user_account/recharge'}"><input class="btn ecjiaf-fl" name="submit" type="submit" value="{t}充值{/t}" /></a>
 		<a href="{url path='user/user_account/withdraw'}"><input class="btn ecjiaf-fr" name="submit" type="submit" value="{t}提现{/t}" /></a>
 	</div>
+	<a href="{url path='user/user_account/cash_list'}"><p class="cash_list">交易记录</p></a>
 </ul>
 <!-- {/block} -->

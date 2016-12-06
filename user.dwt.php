@@ -88,7 +88,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
     <ul class="ecjia-margin-t ecjia-list list-short">
         <li>
-        	<a href="{url path='user/user_package/service'}">
+        	<a href="tel:4001021758">
         		<div class="icon-website-service"></div>
         		<span class="icon-name">官网客服</span>
         		<span class="icon-price">{'4001-021-758'}</span>

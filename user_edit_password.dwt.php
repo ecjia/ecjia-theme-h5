@@ -23,17 +23,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <div class="ecjia-list list-short form-group right-angle">
                 <li>
                 	<label class="input">
-            			<input class="ecjia-account-passwd-on ecjia-user-height-2" name="old_password" placeholder="请输入旧密码" type="password" datatype="s6-16" errormsg="请输入6-16位格式的密码">
+            			<input class="ecjia-account-passwd-on ecjia-user-height-2" name="old_password" placeholder="请输入旧密码" type="password">
             		</label>
                 </li>
                 <li>
                 	<label class="input">
-            			<input class="ecjia-account-passwd-on ecjia-user-height-2" name="new_password" placeholder="请输入新密码" datatype="s6-16" type="password" errormsg="请输入6-16位格式的密码">
+            			<input class="ecjia-account-passwd-on ecjia-user-height-2" name="new_password" placeholder="请输入新密码" type="password">
             		</label>
                 </li>
                  <li>
             		<label class="input">
-            			<input class="ecjia-account-passwd-on ecjia-user-height-2" name="comfirm_password" placeholder="请确认新密码" type="password" datatype="s6-16" errormsg="请输入6-16位格式的密码">
+            			<input class="ecjia-account-passwd-on ecjia-user-height-2" name="comfirm_password" placeholder="请确认新密码" type="password">
             		</label>
                 </li>
             </div>
