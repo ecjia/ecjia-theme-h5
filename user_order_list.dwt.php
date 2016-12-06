@@ -94,7 +94,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="ajaxinfo"} -->
-<!-- {foreach from=$order_list1 item=list} -->
+<!-- {foreach from=$order_list item=list} -->
 		<li class="ecjia-order-item ecjia-checkout ecjia-margin-t">
 			<div class="order-hd">
 				<a class="ecjiaf-fl" href='{url path="goods/category/store_goods" args="store_id={$list.seller_id}"}'>
