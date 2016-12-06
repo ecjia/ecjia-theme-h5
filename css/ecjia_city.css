@@ -655,7 +655,7 @@ footer{
 .ecjia-store-goods .wh {
     position: relative;
     background: #fff;
-    border-radius: 2px;
+    border-radius: 3px;
 }
 .ecjia-store-goods .wp i {
 	font-size: 1.2em;
@@ -701,7 +701,7 @@ footer{
 }
 .ecjia-store-goods .a1p {
     color: #333;
-    font-size: 13px;
+    font-size: .8em;
 	border-bottom: 1px solid #e8e8e8;
 }
 .ecjia-store-goods .a1p.a1t {
@@ -724,6 +724,7 @@ footer{
     font-size: 13px;
     color: #666;
     background-color: #FFF;
+	font-weight: normal;
 }
 .ecjia-store-goods .a1u.active {
     background: #fff;
@@ -1027,7 +1028,7 @@ footer{
     z-index: 13;
     left: 70px;
     bottom: 0;
-    line-height: 35px;
+    line-height: 48px;
     font-size: 1em;
     color: #ff3434;
     transition: transform .4s ease-out 0s;
@@ -1053,6 +1054,7 @@ footer{
     color: #fff;
     line-height: 48px;
     background-color: #47b34f;
+	font-size: 1.1em;
 }
 .store-add-cart.a4w .a51.disabled {
     background-color: #bebebe;
@@ -3326,11 +3328,12 @@ footer{
 	position: relative;
 }
 .ecjia-store-detail .store-goods li.goods-info .goods-border{
-    height: 1.7em;
+	height: 2em;
     position: absolute;
-    border: 1px solid #ccc;
     left: 100%;
-	top: 2em;
+    top: 2em;
+    width: .1em;
+    background: #ddd;
 }
 .ecjia-store-detail .store-goods li.goods-info .store-goods-count{
    	padding: 1em 0.7em;
