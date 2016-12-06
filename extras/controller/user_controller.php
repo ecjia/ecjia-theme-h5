@@ -67,7 +67,17 @@ class user_controller {
         ecjia_front::$controller->display('user_shop_detail.dwt');
     }
     
-    
+    /**
+     * 推广页面
+     */
+    public static function spread() {
+    	$token = '6dee0c4c8938deadd0ac9fb3e4b48092d8f633fd';
+    	$invite_user_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_USER)->data(array('token' => $token))->run();
+    	$aa = strpos(trim($invite_user_detail['invite_explain']),'；',0);    	
+    	ecjia_front::$controller->assign('invite_user', $invite_user_detail);
+    	ecjia_front::$controller->assign('title', '推广');
+    	ecjia_front::$controller->display('spread.dwt');
+    }
 
     /**
      * 邮件验证
