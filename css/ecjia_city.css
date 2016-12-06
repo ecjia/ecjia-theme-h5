@@ -2030,10 +2030,10 @@ footer{
 	height: 2.4em;
 	line-height: 2.2em;
 	font-size: 1em;
-	border-bottom: 2px solid #ddd;
-	margin-top: 2em;
+	border-bottom: 2px solid #47AA4D;
+	margin-top: 1em;
 	margin-bottom: 1em;
-	border-top: 2px solid #ddd;
+	border-top: 2px solid #47AA4D;
 }
 .ecjia-account .no-border {
 	border-radius:0!important;
@@ -2076,7 +2076,7 @@ footer{
 	/*background: #FFF;*/
 }
 .ecjia-account.ecjia-nav .left-bottom {
-	border-left: 1px solid #cccccc;
+	border-left: 1px solid #47AA4D;
 	border-radius:.4em 0 0 .4em;
 }
 .ecjia-account.ecjia-nav .right-bottom {
@@ -2084,6 +2084,11 @@ footer{
 }
 .ecjia-account-list-f {
 	background: #FFF;
+	border-bottom: 1px solid #ccc;
+}
+.ecjia-account-list-f .ecjia-account-list {
+	width: 93%;
+	margin-left: 3.5%;
 }
 .ecjia-account-record li {
 	border: none;
@@ -2104,6 +2109,10 @@ footer{
 .ecjia-account-record .account-record-list .record-l{
 	float: left;
 	width: 20%;
+}
+.ecjia-account .ecjia-green {
+	background-color: #47AA4D;
+	color: #FFF;
 }
 .ecjia-account-record .account-record-list span.user-photo img{
 	width: 4em;
@@ -2150,7 +2159,7 @@ footer{
 	height: auto;
 }
 .ecjia-bonus-border-right a{
-	border-right: 1px solid #CCC;
+	border-right: 2px solid #47AA4D;
 }
 .ecjia-bonus .three-btn{
 	margin: 0;
