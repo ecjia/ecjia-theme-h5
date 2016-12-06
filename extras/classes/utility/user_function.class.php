@@ -11,7 +11,8 @@ class user_function
 			$cookie_search = $_COOKIE ['ECJia'] ['search'][$store_id];
 			$ecjia_search .= '['.$store_id.']';
 		} else {
-			$cookie_search = $_COOKIE ['ECJia'] ['search'];
+			$cookie_search = $_COOKIE ['ECJia'] ['search']['other'];
+			$ecjia_search .= '[other]';
 		}
 		
 		if (isset($keywords)) {
@@ -37,7 +38,7 @@ class user_function
 		if (!empty($store_id)) {
 			return empty($_COOKIE ['ECJia'] ['search'][$store_id]) ? array() : explode(',', $_COOKIE ['ECJia'] ['search'][$store_id]);
 		} else {
-			return empty($_COOKIE ['ECJia'] ['search']) ? array() : explode(',', $_COOKIE ['ECJia'] ['search']);
+			return empty($_COOKIE ['ECJia'] ['search']['other']) ? array() : explode(',', $_COOKIE ['ECJia'] ['search']['other']);
 		}
 	}
 }

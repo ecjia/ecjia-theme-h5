@@ -137,6 +137,8 @@ class touch_controller {
     	$ecjia_search = 'ECJia[search]';
     	if (!empty($store_id)) {
     		$ecjia_search .= '['.$store_id.']';
+    	} else {
+    		$ecjia_search .= '[other]';
     	}
         setcookie($ecjia_search, '', 1);
         
