@@ -3,14 +3,15 @@
 
 /*============== 帮助中心  ================*/
 .ecjia-article {
-	margin-top: 1em;
+	padding-top: 1em;
 }
 .ecjia-article.ecjia-article0 {
 	margin-top: 0;
 }
 .ecjia-article.article-info {
-	margin-left: 1em;
-	margin-right: 1em;
+	padding-left: 1em;
+	padding-right: 1em;
+	background-color: #FFF;
 }
 .ecjia-article .ecjia-list {
 	margin-top: 0;
@@ -48,9 +49,9 @@
 	font-weight: normal;
 }
 .ecjia-article .list-one li .form-group-text i.icon-jiantou-right {
-	padding-top: 0.4em;
+	padding-top: 0.8em;
 	font-size: 20px;
-	right: 0;
+	right: 2%;
 }
 .ecjia-article .article-info-con{
 	background-color:#FFF; 
@@ -95,6 +96,8 @@
 	color: #C1C1C1;
 }
 .ecjia-address-list .address-background-mylocation {
+	height: 3em;
+	width: 100%;
 	background-color: #FFF;
 	border-bottom:  1px solid #ddd;
 	position: relative;
@@ -121,9 +124,7 @@
 	border: 1px solid #F0F0F0;
 }
 .ecjia-address-list .address-background-mylocation input {
-	position: absolute;
-	left: 2.5%;
-	top: 0.4em;
+	position: relative;
 	height: 2em;
 	width: 95%;
 	border-radius: 5px;
@@ -334,13 +335,17 @@
 	z-index: 99;
 	float: right;
 }
-.ecjia-address-list .address-background-mylocation>.icon-search1 {
-	width: 28px;
-	height: 28px;
-	margin-top: -2.5em;
-	background-size: 100%;
-	background: url('../images/address_list/search200x200.png') no-repeat;
-	z-index: 99;
+.ecjia-address-list .address-background-mylocation .icon-search {
+	position: absolute;
+	z-index: 8;
+	top: 1em;
+	left: 40%;
+}
+.ecjia-address-list .address-background-mylocation>span {
+	position: absolute;
+	z-index: 8;
+	left: 45%;
+	top: 1%;
 }
 
 
