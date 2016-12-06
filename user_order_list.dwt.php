@@ -130,7 +130,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<!-- if $list.order_status_code eq 'finished' || $list.order_status_code eq 'canceled' -->
 				{else} <a class="btn btn-hollow ecjiaf-fr" href='{url path="user/user_order/buy_again" args="order_id={$list.order_id}&from=list"}'>再次购买</a>
 				{/if}
-				{if $list.shipping_status eq '1'} <a class="btn btn-hollow ecjiaf-fr" href='{url path="user/user_order/affirm_received" args="order_id={$list.order_id}&from=list"}'>确认收货-未测试</a>{/if}
+				{if $list.shipping_status eq '1'} <a class="btn btn-hollow ecjiaf-fr" href='{url path="user/user_order/affirm_received" args="order_id={$list.order_id}&from=list"}'>确认收货</a>{/if}
 				</span>
 			</div>
 		</li>

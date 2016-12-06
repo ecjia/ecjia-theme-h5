@@ -301,16 +301,16 @@ class user_order_controller {
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_AFFIRMRECEIVED)->data($params_order)
         ->send()->getBody();
         $data = json_decode($data,true);
-        //         _dump($data,1);
+                _dump($data,2);
         if (isset($_GET['from']) && $_GET['from'] == 'list') {
             $url = RC_Uri::url('user/user_order/order_list');
         } else {
             $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
         }
         if ($data['status']['succeed']) {
-            ecjia_front::$controller->showmessage('操作成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON,array('pjaxurl' => $url,'is_show' => false));
+            ecjia_front::$controller->showmessage('操作成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url,'is_show' => false));
         } else {
-            ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON,array('pjaxurl' => $url));
+            ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url));
         }
     }
 
