@@ -29,6 +29,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					</div>
 					<div class="clear"></div>
 				</div>
+				{if $data.favourable_list}
+				<ul class="store-promotion">
+					<!-- {foreach from=$data.favourable_list item=list} -->
+					<li class="promotion">
+						<span class="promotion-label">{$list.type_label}</span>
+						<span class="promotion-name">{$list.name}</span>
+					</li>
+					<!-- {/foreach} -->
+				</ul>
+				{/if}
+					
 				{if $data.goods_count}
 				<ul class="store-goods">
 					<li class="goods-info">
