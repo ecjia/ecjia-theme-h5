@@ -13,7 +13,11 @@ html, body {
 a.ecjia-color-green {
 	color:#47AA4D;
 }
-.width-80-p {width:80%}
+.width-25-p {width:25%}
+.width-75-p {width:75%}
+.ecjia .ecjia-margin-t-n {
+	margin-top: 0;
+}
 .ecjia-list{
 	margin-top: .5em;
 }
