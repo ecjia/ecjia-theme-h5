@@ -81,7 +81,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</li>
 		<!-- {else} -->
 		<li class="search-goods-list">
-			<a class="linksGoods w">
+			<a class="linksGoods w nopjax"  href="{RC_Uri::url('goods/index/init')}&id={$val.id}">
 				<img class="pic" src="{$val.img.small}">
 				<dl>
 					<dt>{$val.name}</dt>
@@ -185,7 +185,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="ajaxinfo"} -->
 	<!-- {foreach from=$goods_list item=val} -->
 		<li class="search-goods-list">
-			<a class="linksGoods w">
+			<a class="linksGoods w nopjax" href="{RC_Uri::url('goods/index/init')}&id={$val.id}">
 				<img class="pic" src="{$val.img.small}">
 				<dl>
 					<dt>{$val.name}</dt>
