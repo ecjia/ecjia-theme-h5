@@ -383,7 +383,6 @@ class goods_controller {
     	);
     	
     	if ($keywords !== '') {
-    		user_function::insert_search($keywords, $store_id);//记录搜索
     		if (!empty($store_id)) {
     			$arr['filter']['keywords'] = $keywords;
     			$arr['seller_id'] = $store_id;
@@ -439,6 +438,8 @@ class goods_controller {
     			if ($type == 'ajax_get') {
     				ecjia_front::$controller->assign('goods_list', $arr_list);
     				$say_list = ecjia_front::$controller->fetch('store_list.dwt');
+    			} else {
+    				user_function::insert_search($keywords, $store_id);//记录搜索
     			}
     		} else {
     			$arr['keywords'] = $keywords;
@@ -455,6 +456,8 @@ class goods_controller {
     			if ($type == 'ajax_get') {
     				ecjia_front::$controller->assign('data', $arr_list);
     				$say_list = ecjia_front::$controller->fetch('library/store_list.lbi');
+    			} else {
+    				user_function::insert_search($keywords, $store_id);//记录搜索
     			}
     		}
     		
@@ -471,7 +474,6 @@ class goods_controller {
     		$data = json_decode($data, true);
     		$arr_list = $data['data'];
     		
-    		//todo
     		if ($type == 'ajax_get') {
     			ecjia_front::$controller->assign('data', $arr_list);
     			$say_list = ecjia_front::$controller->fetch('library/store_list.lbi');
@@ -486,6 +488,7 @@ class goods_controller {
     	
     	if ($type == 'ajax_get') {
     		ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $say_list, 'is_last' => $data['is_last']));
+    		return false;
     	}
     	ecjia_front::$controller->display('store_list.dwt');
     }
