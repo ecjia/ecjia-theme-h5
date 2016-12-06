@@ -25,6 +25,9 @@
 .ecjia-header a {
     color: #fff;
 }
+.ecjia-header .ecjia-header-title{
+	color: #fff;
+}
 .ecjia-search-header button {
     background: #fff;
     border-left-color: #ccc;
@@ -655,7 +658,7 @@ footer{
 .ecjia-store-goods .wh {
     position: relative;
     background: #fff;
-    border-radius: 2px;
+    border-radius: 3px;
 }
 .ecjia-store-goods .wp i {
 	font-size: 1.2em;
@@ -701,7 +704,7 @@ footer{
 }
 .ecjia-store-goods .a1p {
     color: #333;
-    font-size: 13px;
+    font-size: 1em;
 	border-bottom: 1px solid #e8e8e8;
 }
 .ecjia-store-goods .a1p.a1t {
@@ -724,6 +727,7 @@ footer{
     font-size: 13px;
     color: #666;
     background-color: #FFF;
+	font-weight: normal;
 }
 .ecjia-store-goods .a1u.active {
     background: #fff;
@@ -1027,7 +1031,7 @@ footer{
     z-index: 13;
     left: 70px;
     bottom: 0;
-    line-height: 35px;
+    line-height: 48px;
     font-size: 1em;
     color: #ff3434;
     transition: transform .4s ease-out 0s;
@@ -1053,6 +1057,7 @@ footer{
     color: #fff;
     line-height: 48px;
     background-color: #47b34f;
+	font-size: 1.1em;
 }
 .store-add-cart.a4w .a51.disabled {
     background-color: #bebebe;
@@ -2585,7 +2590,10 @@ footer{
 	color:#000;
 	height:50px;
 	line-height:34px;
-	font-size:15px;
+	font-size:17px;
+}
+.ecjia-merchants-name{
+	
 }
 .ecjia-merchants-name .icon-jiantou-right{
 	float:right;
@@ -2640,7 +2648,7 @@ footer{
 }
 .ecjia-form .may-like{
 	color:#FF1919;
-	font-size:18px;
+	font-size:17px;
 }
 .ecjia-like-goods-list{
 	padding-bottom:1em;
@@ -2677,10 +2685,24 @@ footer{
 	width:22px;
 	float:right;
 }
+.seller-name-icon{
+	background: url(../images/icon/seller-name-icon.png);
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+	background-origin:content-box;
+	display:inline-block;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	height:22px;
+	width:22px;
+	margin-bottom:-4px;
+}
 .goods-describe .ecjia-nolist{
 	font-size:1em;
 	background-color:#fff;
 	padding-top:13em;
+	padding-bottom:21em;
 }
 .goods-describe .ecjia-nolist img{
 	width:30%;
@@ -2695,6 +2717,9 @@ footer{
 }
 .goods-desc-info .goods-describe table tr td, .goods-desc-info .goods-describe table tr th{
 	padding: 0 0;
+}
+.goods-desc-info .goods-describe table tr td, .goods-desc-info .goods-describe table tr:last-child{
+	border-bottom:none;
 }
 /*========================  订单列表 ===========================*/
 .ecjia-order-list .ecjia-order-item {
@@ -3331,11 +3356,12 @@ footer{
 	position: relative;
 }
 .ecjia-store-detail .store-goods li.goods-info .goods-border{
-    height: 1.7em;
+	height: 2em;
     position: absolute;
-    border: 1px solid #ccc;
     left: 100%;
-	top: 2em;
+    top: 2em;
+    width: .1em;
+    background: #ddd;
 }
 .ecjia-store-detail .store-goods li.goods-info .store-goods-count{
    	padding: 1em 0.7em;

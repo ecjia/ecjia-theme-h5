@@ -425,6 +425,8 @@
 		}
 		ecjia.touch.searchbox_foucs();
 		ecjia.touch.category.init();
+		ecjia.touch.index.swiper_promotion();
+		ecjia.touch.ecjia_menu();
 	});
 
 })(ecjia, jQuery);
