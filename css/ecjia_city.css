@@ -1,4 +1,12 @@
 /* 全局样式 */
+html, body {
+    background: #f7f7f7;
+    color: #555;
+}
+.ecjia-row-nav {
+    border-bottom-color: #e3e3e3;
+    background: #FFF;
+}
 .ecjia-color-green {
 	color:#47AA4D;
 }
@@ -17,6 +25,13 @@
 }
 .la-ball-atom {
     color: #6fdafc;
+}
+.modal-overlay.modal-overlay-visible {
+	position: fixed;
+}
+.modal.modal-in{
+	position: fixed;
+	margin-top: 0;
 }
 /*========================  首页 ===========================*/
 .ecjia-header {
@@ -509,7 +524,7 @@ footer{
 .page_hearer_hide{
 	display: none;
 }
-.page_hearer_hide .ecjia-header-right a i {
+.ecjia-header .ecjia-header-right a i {
     font-size: 1.5em;
     line-height: 1.5;
 }
@@ -704,7 +719,7 @@ footer{
 }
 .ecjia-store-goods .a1p {
     color: #333;
-    font-size: 1em;
+    font-size: .9em;
 	border-bottom: 1px solid #e8e8e8;
 }
 .ecjia-store-goods .a1p.a1t {
@@ -1013,17 +1028,13 @@ footer{
 }
 .store-add-cart.a4w .a4y {
     position: absolute;
-    top: 0px;
-    left: 44px;
-    padding: 0 5px;
-    height: 15px;
-    line-height: 15px;
+    left: 45px;
+    height: 1.2em;
+	width: 1.2em;
+    line-height: .6em;
     overflow: hidden;
-    text-align: center;
-    color: #fff;
-    background-color: #ff5d5c;
-    border-radius: 7px;
-    font-size: 10px;
+    background-color: #ff3434;
+    font-size: .9em;
 	font-style: normal;
 }
 .store-add-cart.a4w .a4z {
@@ -1041,6 +1052,7 @@ footer{
 	color: #aaa;
 	font-size: .9em;
 	font-weight: normal;
+	margin-bottom: 0;
 }
 .store-add-cart.a4w .a4z .a50 {
 	line-height: 48px;
@@ -2927,7 +2939,6 @@ footer{
 .ecjia-store-goods-list{
 	margin-bottom: 3.5em;
 	background:#FFFFFF;
-	padding-bottom: 7em;
 }
 .ecjia-store-list {
     background:#EFEFF4;
@@ -2952,6 +2963,27 @@ footer{
 .ecjia-store-list .store-info{
 	width:95%;
 	margin:0 auto;
+}
+.store-info .store-promotion {
+	margin-bottom: .5em;
+}
+.store-info .store-promotion li {
+    padding-bottom: .5em;
+	margin-left: 10px;
+}
+.store-info .store-promotion .promotion-label {
+    color: #fff;
+    display: inline-block;
+    border: 1px solid #FF1919;
+    border-radius: 4px;
+    font-size: .8em;
+    background: #FF1919;
+    padding: .1em .2em;
+}
+.store-info .store-promotion .promotion-name {
+    font-size: .9em;
+    padding-left: .5em;
+    color: #333;
 }
 .ecjia-store-list .store-info .basic-info{
 	height:auto;
@@ -3349,8 +3381,8 @@ footer{
 }
 
 .ecjia-store-detail .store-goods{
-	border-top:1px solid #ddd;
-	border-bottom:1px solid #ddd;
+	border-top:1px solid #eee;
+	border-bottom:1px solid #eee;
 	height: 30%;
 	overflow: hidden;
 	clear:both;
@@ -3381,7 +3413,7 @@ footer{
 	color: #bbb;
 }
 .ecjia-store-detail .comments{
-	border-bottom:1px solid #ddd;
+	border-bottom:1px solid #eee;
 	height: 30%;
 	overflow: hidden;
 	clear:both;
@@ -3404,8 +3436,8 @@ footer{
 	color: #47b34f;
 }
 .ecjia-store-detail .store-tel{
-	border-top:1px solid #ddd;
-	border-bottom:1px solid #ddd;
+	border-top:1px solid #eee;
+	border-bottom:1px solid #eee;
 	padding:1em;
 	height: 30%;
 	overflow: hidden;
@@ -3430,7 +3462,7 @@ footer{
 	clear:both;
 }
 .ecjia-store-detail .store-other-info li{
-	border-top:1px solid #ddd;
+	border-top:1px solid #eee;
 	padding:1em;
 	overflow: auto;
 }
