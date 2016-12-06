@@ -283,19 +283,22 @@ class user_account_controller {
      * 充值提现列表
      */
     public static function cash_list() {
+        $_SESSION['status'] = !empty($_GET['status']) ? $_GET['status'] : '';
         ecjia_front::$controller->assign('hideinfo', '123');
 //     	ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
     	ecjia_front::$controller->display('user_cash_list.dwt');
-       
     }
     
     public static function ajax_cash_list() {
-    	$type = htmlspecialchars($_GET['status']);
+    	$type = htmlspecialchars($_SESSION['status']);
     	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
     	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('page' => $page, 'count' => $limit,'type' => $type))->send()->getBody();
     	$data = json_decode($data,true);
-    	ecjia_front::$controller->assign('sur_amount', $data);
+    	$user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
+    	ecjia_front::$controller->assign('user_img', $user_img);
+    	ecjia_front::$controller->assign('type', $type);
+    	ecjia_front::$controller->assign('sur_amount', $data['data']);
     	ecjia_front::$controller->assign_lang();
     	$sayList = ecjia_front::$controller->fetch('user_cash_list.dwt');
     	ecjia_front::$controller->assign('hideinfo', '123');

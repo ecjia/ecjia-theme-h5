@@ -48,7 +48,6 @@ class user_controller {
         ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('shop', $shop);
-        ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('active', 5);
         ecjia_front::$controller->assign('hideinfo', 1);
         
