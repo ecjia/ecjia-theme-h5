@@ -1164,7 +1164,7 @@ footer{
     color: #666;
 }
 .store-add-cart.a4w .a5b {
-    background-color: #fbfbfb;
+    background-color: #fff;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
 }
@@ -1193,15 +1193,14 @@ footer{
     height: 70px;
     top: 5px;
     left: 0;
-    vertical-align: center;
     line-height: 70px;
     text-align: center;
     color: #fff;
+	font-size: .8em;
 }
 .store-add-cart.a4w .a5n.disabled .a7c{
-	color: #9C2424;
+	color: #CA9A9A;
 }
-
 .store-add-cart.a4w li.a5n:last {
 	border-bottom: none;
 }
@@ -2472,7 +2471,6 @@ footer{
 	float:left;
 }
 .goods-info .ecjia-price-time .cart-plus-right{
-	width:37%;
 	float:right;
 	height:2.8em;
 }
@@ -2482,13 +2480,13 @@ footer{
     color: #fff;
     line-height: 38px;
     background-color: #47b34f;
-	margin-top:-43px;
 	float:right;
 	border-radius:4px;
 	clear:both;
 	border:none;
 	font-size:14px;
 	font-weight:bold;
+	margin-top: .5em;
 }
 .add-cart-a span {
 	color:#fff;
@@ -2497,7 +2495,7 @@ footer{
     position: relative;
     right: 0;
     bottom: 0em;
-	margin-top:.8em;
+	margin-top:.5em;
 }
 
 .goods-price-new .ecjia-goods-plus-box span {
@@ -2542,6 +2540,7 @@ footer{
     margin-top: 2px;
 	margin-bottom: 0;
 	padding-right:.5em;
+	font-weight: normal;
 }
 .market-goods-add-cart{
 	margin-top:-1px;
@@ -2587,7 +2586,7 @@ footer{
 }
 .goods-info .ecjia-left-time{
 	border:1px solid #FF1919;
-	width:77%;
+	width:80%;
 	height:.9em;
 	line-height:.9em;
 	margin-top:9px;
@@ -2692,6 +2691,10 @@ footer{
 }
 .goods-info .address-warehouse-new{
 	padding:0;
+	padding-bottom: 48px;
+}
+.goods-info .goods-info-property {
+    background: #fff;
 }
 .ecjia-form .may-like{
 	color:#FF1919;
@@ -2963,9 +2966,9 @@ footer{
 
 /*========================  分类店铺 ===========================*/
 .ecjia-store-goods-list{
-	margin-bottom: 3.5em;
 	background:#FFFFFF;
 	margin-bottom: 48px;
+	padding-bottom: 7em;
 }
 .ecjia-store-list {
     background:#EFEFF4;
@@ -3143,10 +3146,13 @@ footer{
     padding-left: .5em;
 	background: #FFFFFF;
 }
+.ecjia-store-list li.search-goods-list:first-child{
+	padding-top: .5em;
+}
 .ecjia-store-list li a.linksGoods {
     display: block;
     overflow: hidden;
-    padding: 1em .5em .5em 0;
+    padding: 0 .5em .5em 0;
 }
 .ecjia-store-list li .input-number{
     position: absolute;
@@ -3202,7 +3208,6 @@ footer{
     padding-top: 1em;
 	padding-left: .5em;
 }
-
 .ecjia-store-list .box {
     position: absolute;
     right: 0;

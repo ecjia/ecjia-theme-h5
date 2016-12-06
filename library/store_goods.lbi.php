@@ -26,7 +26,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     	<span class="reduce {if $goods.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$goods.rec_id}">减</span>
     	<label class="{if $goods.num}show{else}hide{/if}">{$goods.num}</label>
 		<span class="add" data-toggle="add-to-cart" rec_id="{$goods.rec_id}" goods_id="{$goods.id}">加</span>
-		</div>
+	</div>
 </li>
 <!-- {/foreach} -->	
 <!-- {/block} -->
