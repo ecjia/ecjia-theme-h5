@@ -162,7 +162,7 @@
 				});
  			});
 		},
-
+		
 		select_attr :function(){
 			$('.flow-checkout .checkout-select label').on('click',function(){
 				var pay = $.trim($(this).text());

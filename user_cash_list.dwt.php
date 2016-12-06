@@ -21,9 +21,9 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 <div class="ecjia-account-list-f">
     <div class="ecjia-account-list">
         <ul class="ecjia-list ecjia-list-three ecjia-nav ecjia-account ecjia-bonus-border-right">
-        	<li><a {if $smarty.get.status eq ''}class="ecjia-green left-bottom"{else}class="left-bottom"{/if} id="left-bottom" href="{url path='user/user_account/cash_list' args='status='}">{t}全部{/t}</a></li>
-        	<li><a {if $smarty.get.status eq 'raply'}class="ecjia-green"{/if} href="{url path='user/user_account/cash_list' args='status=raply'}">{t}提现{/t}</a></li>
-        	<li><a {if $smarty.get.status eq 'deposit'}class="ecjia-green right-bottom"{else}class="right-bottom"{/if} id="right-bottom" href="{url path='user/user_account/cash_list' args='status=deposit'}">{t}充值{/t}</a></li>
+        	<li><a {if $smarty.get.status eq ''}class="ecjia-green left-bottom ecjia-green-rf"{else}class="left-bottom ecjia-green-rf"{/if} id="left-bottom" href="{url path='user/user_account/cash_list' args='status='}">{t}全部{/t}</a></li>
+        	<li><a {if $smarty.get.status eq 'raply'}class="ecjia-green ecjia-green-rf"{else}class="ecjia-green-rf"{/if} href="{url path='user/user_account/cash_list' args='status=raply'}">{t}提现{/t}</a></li>
+        	<li><a {if $smarty.get.status eq 'deposit'}class="ecjia-green right-bottom ecjia-green-rf"{else}class="right-bottom ecjia-green-rf"{/if} id="right-bottom" href="{url path='user/user_account/cash_list' args='status=deposit'}">{t}充值{/t}</a></li>
         </ul>
     </div>
 </div>
@@ -33,11 +33,12 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 </div>
 <!-- {/block} -->
 <!-- {block name="ajaxinfo"} -->
-<!--{foreach from=$sur_amount item=item}-->
+<!--{foreach from=$sur_amount key=key item=group}-->
 	<ul class="account-record-list">
-		<p class="record-time">本月</p>
+		<p class="record-time">{if $key eq $now_mon}{'本月'}{else}{$key}{'月'}{/if}</p>
 		<li class="ecjia-margin-b record-list">
 			<ul>
+			{foreach from=$group item=item}
 				<li class="record-single">
 					<div class="record-l">
 						<span class="user-photo"><img src="{$user_img}" alt=""></span>
@@ -45,7 +46,7 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 					<div class="record-r">
 						<div class="record-r-l">
 							<p>{$item.type_lable}</p>
-							<p class="record-time">今天</p>
+							<p class="record-time">{$item.add_time}</p>
 						</div>
 						<div class="record-r-r">
 							<p>{$item.amount}</p>
@@ -53,6 +54,7 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 						</div>
 					</div>
 				</li>
+			{/foreach}
 			</ul>
 		</li>
 	</ul>
