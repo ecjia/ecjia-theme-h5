@@ -16,13 +16,11 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
 
 <ul class="ecjia-list ecjia-list-three ecjia-bonus ecjia-nav ecjia-margin-b ecjia-bonus-border-right">
-	<li {if $status eq 'allow_use'} class="active three-btn"{/if}><a href="{url path='user/user_bonus/bonus' args='status=allow_use'}">{t}可使用{/t}</a></li>
-	<li {if $status eq 'expired'} class="active three-btn"{/if}><a href="{url path='user/user_bonus/bonus' args='status=expired'}">{t}已使用{/t}</a></li>
-	<li {if $status eq 'is_used'} class="active three-btn"{/if}><a href="{url path='user/user_bonus/bonus' args='status=is_used'}">{t}已过期{/t}</a></li>
+	<li {if $smarty.get.status eq 'allow_use'} class="green-bottom"{else}class=""{/if}><a {if $status eq 'allow_use'} class="active three-btn"{/if} href="{url path='user/user_bonus/bonus' args='status=allow_use'}">{t}可使用{/t}</a></li>
+	<li {if $smarty.get.status eq 'expired'} class="green-bottom"{else}class=""{/if}><a {if $status eq 'expired'} class="active three-btn"{/if} href="{url path='user/user_bonus/bonus' args='status=expired'}">{t}已使用{/t}</a></li>
+	<li {if $smarty.get.status eq 'is_used'} class="green-bottom"{else}class=""{/if}><a {if $status eq 'is_used'} class="active three-btn"{/if} href="{url path='user/user_bonus/bonus' args='status=is_used'}">{t}已过期{/t}</a></li>
 </ul>
 <div>
 	<ul class="ecjia-list ecjia-bonus ecjia-list-two" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_bonus_list' args="status={$status}"}" data-size="10">

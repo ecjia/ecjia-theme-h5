@@ -2173,6 +2173,9 @@ footer{
 .ecjia-bonus-border-right a{
 	border-right: 2px solid #47AA4D;
 }
+.ecjia-bonus li.green-bottom {
+    border-bottom: 2px solid #47AA4D;
+}
 .ecjia-bonus .three-btn{
 	margin: 0;
 	padding: 0;

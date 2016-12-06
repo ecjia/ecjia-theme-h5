@@ -54,6 +54,7 @@ class user_bonus_controller {
         $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('bonus_type' => $status))->send()->getBody();
         $bonus = json_decode($bonus,true);
         $bonus = $bonus['data'];
+//         _dump($bonus, 1);
         ecjia_front::$controller->assign('bonus', $bonus);
         $sayList = ecjia_front::$controller->fetch('user_bonus.dwt');
         ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page'));
