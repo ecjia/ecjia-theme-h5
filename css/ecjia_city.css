@@ -1684,7 +1684,7 @@ footer{
 .ecjia-user-head .ecjia-list.list-short li .icon-wallet  {
 	width: 25px;
 	height: 25px;
-	margin-left: 1%;
+	margin-left: -1%;
 	margin-top: 1%;	
     background: url('../images/user_center/50x50_1.png') no-repeat;
     background-size: 100%;

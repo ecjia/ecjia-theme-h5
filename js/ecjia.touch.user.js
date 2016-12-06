@@ -169,17 +169,14 @@
 		/*查看密码*/
 		show_password : function (){
 			$(".icon-attention").on('click', function(e){
-				e.preventDefault();
 				if ($("#password").attr("type") == "password") {
 		            $("#password").attr("type", "text")
 		        }
 		        else {
 		            $("#password").attr("type", "password")
 		        }
-				
 				if ($("#password2").attr("type") == "password") {
 		            $("#password2").attr("type", "text")
-		            alert(password2);
 		        }
 		        else {
 		            $("#password2").attr("type", "password")
