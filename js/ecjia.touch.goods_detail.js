@@ -29,11 +29,6 @@
 					$('#goods-info-one').hide();
 				}
 			});
-			//购物车按钮
-			$('.add-cart-a').on('click', function (e) {
-				$('.ecjia-goods-plus-box').show();
-				$('.add-cart-a').hide();
-			});
         },
         promote_time : function() {
         	var serverTime = Math.round(new Date().getTime()/1000) * 1000; //服务器时间，毫秒数 

@@ -23,51 +23,72 @@
             	if ($this.hasClass('disabled')) {
             		return false;
             	}
-            	$('.box').children('span').addClass('disabled');
             	
             	var rec_id = $this.attr('rec_id');
             	var goods_id = $this.attr('goods_id');
             	
-            	if ($this.hasClass('a5v')) {
-            		$('.minicart-content').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
-            		var val = parseInt($this.prev().html()) + 1;
-            		$this.prev().html(val);
-            		$('#goods_'+goods_id).children('.show').html(val);
-            	} else {
+            	//商品详情中添加商品到购物车逻辑
+            	if ($this.hasClass('goods-add-cart')) {
             		$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
-            		var show = $this.parent('.box').children('label');
-            		if (show.html() != '') {
-            			var val = parseInt(show.html()) + 1;
-            		} else {
-            			var val = 1;
-            		}
-	            	if (val > 0) {
-	            		show.html(val).addClass('show').removeClass('hide');
-	            		$this.parent('.box').children('.reduce').addClass('show').removeClass('hide');
-	            	}
-	            	
-	            	var img = $this.parent().parent().find('img').attr('src');
-	                var offset = $('.store-add-cart .a4x').offset(),
-	                    flyer = $('<img class="u-flyer" src="'+ img  +'" alt="" style="width:50px;height:50px;">');
+            		$this.addClass('hide');
+            		var show = $this.parent().children('.ecjia-goods-plus-box');
+            		var val = parseInt(show.children('label').html()) + 1;
+            		show.removeClass('hide').children('label').html(val);
+            		show.children().removeClass('hide');
+            	} else {
+                	$('.box').children('span').addClass('disabled');
+                	if ($this.hasClass('a5v')) {
+                		$('.minicart-content').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+                		var val = parseInt($this.prev().html()) + 1;
+                		$this.prev().html(val);
+                		$('#goods_'+goods_id).children('label').html(val);
+                	} else {
+                		$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+                		var show = $this.parent('.box').children('label');
+                		
+                		if (show.html() != '') {
+                			var val = parseInt(show.html()) + 1;
+                		} else {
+                			var val = 1;
+                		}
+                		
+    	            	if (val > 0) {
+    	            		show.html(val).addClass('show').removeClass('hide');
+    	            		$this.parent('.box').children('.reduce').addClass('show').removeClass('hide');
+    	            	}
+    	            	
+    	            	var img = $this.parent().parent().find('img').attr('src');
+    	            	if (img != undefined) {
+        	                var offset = $('.store-add-cart .a4x').offset(),
+    	                    	flyer = $('<img class="u-flyer" src="'+ img  +'" alt="" style="width:50px;height:50px;">');
+    	            	}
+                	}
+                	if (flyer != undefined) {
+                        flyer.fly({
+                            start: { // 开始时位置
+                                left: ev.pageX - 40,
+                                top:  ev.pageY - $('body').scrollTop() - 40
+                            },
+                            end: { // 结束时位置
+                                left: offset.left,
+                                top: offset.top - $('body').scrollTop() + 60,
+                                width : 0,
+                                height : 0,
+                            },
+                            vertex_Rtop : 50,
+                            onEnd: function(){ // 回调方法
+                                !$('.store-add-cart').hasClass('active') && $('.store-add-cart').addClass('active');
+                                $('img.u-flyer').remove();
+                            }
+                        });
+                	}
             	}
-            	if (flyer != undefined) {
-                    flyer.fly({
-                        start: { // 开始时位置
-                            left: ev.pageX - 40,
-                            top:  ev.pageY - $('body').scrollTop() - 40
-                        },
-                        end: { // 结束时位置
-                            left: offset.left,
-                            top: offset.top - $('body').scrollTop() + 60,
-                            width : 0,
-                            height : 0,
-                        },
-                        vertex_Rtop : 50,
-                        onEnd: function(){ // 回调方法
-                            !$('.store-add-cart').hasClass('active') && $('.store-add-cart').addClass('active');
-                            $('img.u-flyer').remove();
-                        }
-                    });
+            	if (isNaN(val)) {
+            		if ($this.attr('data-num') != ''){
+            			val = parseInt($this.attr('data-num')) + 1;
+            		} else {
+            			val = 1;
+            		}
             	}
             	ecjia.touch.category.update_cart(rec_id, val, goods_id);
             });
@@ -98,8 +119,15 @@
             			}
             			type = 'remove';
             			$('#goods_'+goods_id).children('.reduce').removeClass('show').addClass('hide');
-            			$('#goods_'+goods_id).children('.show').removeClass('show').addClass('hide');
+            			$('#goods_'+goods_id).children('label').removeClass('show').addClass('hide');
             			$('#goods_'+goods_id).children('span').attr('rec_id', '');
+            			
+            			//显示商品详情页的移除购物车按钮
+            			var span_add = $('#goods_'+goods_id).siblings('span');
+            			if (span_add.hasClass('goods-add-cart')) {
+            				$('#goods_'+goods_id).children('span').addClass('hide');
+            				span_add.removeClass('hide');
+            			}
             		} else {
             			$this.next().html(val);
             		}
@@ -113,6 +141,12 @@
                 		show.removeClass('show').addClass('hide');
                 		$this.parent('.box').children('.reduce').removeClass('show').addClass('hide');
                 		span.attr('rec_id', '');
+                		
+                		var span_add = $this.parent().siblings('span');
+                		if (span_add.hasClass('goods-add-cart')) {
+                			$this.parent().children('span').addClass('hide');
+            				span_add.removeClass('hide');
+                    	}
                 	}
                 	show.html(val);
             	}
@@ -155,12 +189,6 @@
         	//更新购物车中商品
             $.post(url, info, function(data){
             	if (data.state == 'error') {
-//            		var myApp = new Framework7();
-//            		myApp.modal({
-//            		    title:  '',
-//            		    text: data.message,
-//            		    buttons: false
-//            		})
             		alert(data.message);
             		$('.la-ball-atom').remove();
             		return false;
