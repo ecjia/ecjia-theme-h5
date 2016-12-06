@@ -50,7 +50,7 @@ class pay_controller {
         
         $order = $rs_pay['data']['payment'];
         
-        _dump($order);
+//         _dump($order);
         $need_other_payment = 0;
         if ($order ['pay_code'] == 'pay_balance') {
             if ($rs_pay['data']['payment']['error_message']) {
@@ -75,12 +75,12 @@ class pay_controller {
             $payment_list = touch_function::change_array_key($rs_payment['data']['payment'], 'pay_code');
             //             _dump($payment_list);
             unset($payment_list[$order['pay_code']]);
-            _dump($payment_list);
+//             _dump($payment_list);
             //过滤当前支付方式
             //             foreach
             ecjia_front::$controller->assign('payment_list', $payment_list);
         }
-        _dump($rs_pay);
+//         _dump($rs_pay);
         
         $order['formated_order_amount'] = price_format($order['order_amount']);
         $order['order_id'] = $order_id;
