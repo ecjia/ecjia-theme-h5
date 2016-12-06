@@ -179,13 +179,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				{/if}
 				<ul class="minicart-goods-list single">
 					<!-- {foreach from=$cart_list item=cart} -->
-					<li class="a5n single">
-						<span class="a69 a5o {if $cart.is_checked}checked{/if} checkbox" data-toggle="toggle_checkbox" rec_id="{$cart.rec_id}"></span>
+					<li class="a5n single {if $cart.is_disabled eq 1}disabled{/if}">
+						<span class="a69 a5o {if $cart.is_checked}checked{/if} checkbox {if $cart.is_disabled eq 1}disabled{/if}" data-toggle="toggle_checkbox" rec_id="{$cart.rec_id}"></span>
 						<table class="a5s">
 							<tbody>
 								<tr>
 									<td style="width:75px; height:75px">
 										<img class="a7g" src="{$cart.img.small}">
+										<div class="product_empty">
+										{if $cart.is_disabled eq 1}无货{/if}
+										</div>
 									</td>
 									<td>
 										<div class="a7j">{$cart.goods_name}</div> 
@@ -195,9 +198,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							</tbody>
 						</table>
 						<div class="box" id="goods_cart_{$cart.goods_id}">
-							<span class="a5u reduce" data-toggle="remove-to-cart" rec_id="{$cart.rec_id}"></span>
+							<span class="a5u reduce {if $cart.is_disabled eq 1}disabled{/if}" data-toggle="remove-to-cart" rec_id="{$cart.rec_id}"></span>
 							<lable class="a5x">{$cart.goods_number}</lable>
-							<span class="a5v " data-toggle="add-to-cart" rec_id="{$cart.rec_id}" goods_id="{$cart.goods_id}"></span>
+							<span class="a5v {if $cart.is_disabled eq 1}disabled{/if}" data-toggle="add-to-cart" rec_id="{$cart.rec_id}" goods_id="{$cart.goods_id}"></span>
 						</div>
 					</li>
 					<input type="hidden" name="rec_id" value="{$cart.rec_id}" />
@@ -216,13 +219,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="ajaxinfo"} -->
 	<!-- 异步购物车列表 start-->
 	<!-- {foreach from=$list item=val} 循环商品 -->
-	<li class="a5n single">
-		<span class="a69 a5o {if $val.is_checked}checked{/if} checkbox" data-toggle="toggle_checkbox" rec_id="{$val.rec_id}"></span>
+	<li class="a5n single {if $val.is_disabled eq 1}disabled{/if}">
+		<span class="a69 a5o {if $val.is_checked}checked{/if} checkbox {if $val.is_disabled eq 1}disabled{/if}" data-toggle="toggle_checkbox" rec_id="{$val.rec_id}"></span>
 		<table class="a5s">
 			<tbody>
 				<tr>
 					<td style="width:75px; height:75px">
 						<img class="a7g" src="{$val.img.small}">
+						<div class="product_empty">
+						{if $cart.is_disabled eq 1}无货{/if}
+						</div>
 					</td>
 					<td>
 						<div class="a7j">{$val.goods_name}</div> 
@@ -232,9 +238,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</tbody>
 		</table>
 		<div class="box" id="goods_cart_{$val.goods_id}">
-			<span class="a5u reduce" data-toggle="remove-to-cart" rec_id="{$val.rec_id}"></span>
+			<span class="a5u reduce {if $val.is_disabled eq 1}disabled{/if}" data-toggle="remove-to-cart" rec_id="{$val.rec_id}"></span>
 			<lable class="a5x">{$val.goods_number}</lable>
-			<span class="a5v" data-toggle="add-to-cart" rec_id="{$val.rec_id}" goods_id="{$val.goods_id}"></span>
+			<span class="a5v {if $val.is_disabled eq 1}disabled{/if}" data-toggle="add-to-cart" rec_id="{$val.rec_id}" goods_id="{$val.goods_id}"></span>
 		</div>
 	</li>
 	<input type="hidden" name="rec_id" value="{$val.rec_id}" />
