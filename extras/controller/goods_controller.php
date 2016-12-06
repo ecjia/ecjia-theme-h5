@@ -623,6 +623,10 @@ class goods_controller {
     				$cart_list['cart_list'][0]['total']['check_all'] = false;
     				$cart_list['cart_list'][0]['total']['goods_number'] -= $v['goods_number'];
     			}
+    			//test
+//     			if ($k == 1) {
+//     				$cart_list['cart_list'][0]['goods_list'][$k]['is_disabled'] = 1;
+//     			}
     		}
     	} else {
     		$cart_list['cart_list'][0]['total']['check_all'] = false;
@@ -853,7 +857,6 @@ class goods_controller {
     	
 		//店铺购物车商品
     	$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($paramater)->run();
-    	
     	$cart_goods_list = $cart_list['cart_list'][0]['goods_list'];
     	$cart_count = $cart_list['cart_list'][0]['total'];
     	 

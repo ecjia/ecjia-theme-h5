@@ -824,6 +824,7 @@ footer{
     background: #fff;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+	margin-top: .5em;
 }
 .ecjia-store-goods .a1n .a1x li {
     position: relative;
@@ -832,7 +833,7 @@ footer{
 .ecjia-store-goods .a1n .a1x li a.linksGoods {
     display: block;
     overflow: hidden;
-    padding: 1em .5em .5em 0;
+    padding: 0em .5em .5em 0;
 }
 .ecjia-store-goods .a1n .a1x li .input-number{
     position: absolute;
@@ -884,9 +885,10 @@ footer{
 .ecjia-store-goods .r2 li label {
     font-size: 1em;
     color: #ff3434;
-	padding-top: 2.5em;
+	padding-top: 1.5em;
     padding-left: .5em;
-    white-space: nowrap;
+    padding-bottom: 1em;
+	white-space: nowrap;
 }
 .ecjia-store-goods .r2 .box {
     position: absolute;
@@ -953,7 +955,7 @@ footer{
 .store-add-cart i{
     font-size: 1.7em;
     margin-right: .5em;
-    padding: .3em;
+   	padding: .3em;
     color: #fff;
     background: #b4b4b4;
     border-radius: 100%;
@@ -1028,13 +1030,17 @@ footer{
 }
 .store-add-cart.a4w .a4y {
     position: absolute;
-    left: 45px;
-    height: 1.2em;
-	width: 1.2em;
-    line-height: .6em;
+	top: 0px;
+    left: 44px;
+    padding: 0 5px;
+    height: 15px;
+    line-height: 15px;
     overflow: hidden;
-    background-color: #ff3434;
-    font-size: .9em;
+    text-align: center;
+    color: #fff;
+    background-color: #ff5d5c;
+    border-radius: 7px;
+	font-size: 10px;
 	font-style: normal;
 }
 .store-add-cart.a4w .a4z {
@@ -1171,11 +1177,31 @@ footer{
 }
 .store-add-cart.a4w .a5n {
     position: relative;
-    padding: 0 0 10px 30px;
+    padding: 0 0 5px 30px;
     margin-left: 10px;
     line-height: 36px;
     color: #333;
 }
+.store-add-cart.a4w .a5n.disabled{
+	color: #aaa;
+}
+.store-add-cart.a4w .a5n.disabled .product_empty{
+	position: absolute;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 2;
+    width: 70px;
+    height: 70px;
+    top: 5px;
+    left: 0;
+    vertical-align: center;
+    line-height: 70px;
+    text-align: center;
+    color: #fff;
+}
+.store-add-cart.a4w .a5n.disabled .a7c{
+	color: #9C2424;
+}
+
 .store-add-cart.a4w li.a5n:last {
 	border-bottom: none;
 }
@@ -1208,7 +1234,7 @@ footer{
     text-align: left;
     vertical-align: top;
     position: relative;
-    height: 50px;
+    height: 80px;
 }
 .store-add-cart.a4w .a5s td:nth-of-type(2n){
 	border-bottom: 1px solid #e8e8e8;
@@ -1306,7 +1332,7 @@ footer{
 	border-radius: 4px;
 }
 .store-add-cart.a4w .a7j {
-    line-height: 2em;
+    line-height: 1.6em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -1407,7 +1433,7 @@ footer{
 /* 订单商品列表 */
 .ecjia .ecjia-checkout .flow-goods-list {
 	background: #ffffff;
-    border-bottom: 1px solid #ddd;
+    /* border-bottom: 1px solid #ddd; */
 }
 .ecjia .ecjia-checkout .flow-goods-list .goods-item,
 .ecjia .ecjia-checkout .flow-goods-list .goods-list {
@@ -1534,9 +1560,9 @@ footer{
     background: none;
     color: #333;
 }
-.ecjia-flow-done .ecjia-list {
+/* .ecjia-flow-done .ecjia-list {
     margin-top: 0;
-}
+} */
 .ecjia-flow-done .ecjia-list.list-short {
     border-top: none;
 }
@@ -2120,11 +2146,15 @@ footer{
 }
 .ecjia-account-record .account-record-list .record-l{
 	float: left;
-	width: 20%;
+	width: 16%;
 }
 .ecjia-account .ecjia-green {
 	background-color: #47AA4D;
-	color: #FFF;
+	color: #FFF!important;
+}
+.ecjia-account .ecjia-green-rf {
+	border-right: 2px solid #47AA4D;
+	color: #47AA4D;
 }
 .ecjia-account-record .account-record-list span.user-photo img{
 	width: 4em;
@@ -2132,7 +2162,7 @@ footer{
 }
 .ecjia-account-record .account-record-list .record-r{
 	float: left;
-	width: 80%;
+	width: 84%;
 	text-align: right;
 	padding-bottom: 1em;
 	padding-top: .7em;
@@ -2171,7 +2201,7 @@ footer{
 	height: auto;
 }
 .ecjia-bonus-border-right a{
-	border-right: 2px solid #47AA4D;
+	border-right: 2px solid #ddd;
 }
 .ecjia-bonus li.green-bottom {
     border-bottom: 2px solid #47AA4D;
@@ -2847,7 +2877,10 @@ footer{
     border-radius: 10px;
     padding: 1em .5em;
 }
-.order-log-item:nth-child(2) {
+.order-log-item:nth-child(1) {
+	color:inherit;
+}
+.order-log-item {
 	color:#999;
 }
 .order-log-item .order-log{
@@ -2942,6 +2975,7 @@ footer{
 .ecjia-store-goods-list{
 	margin-bottom: 3.5em;
 	background:#FFFFFF;
+	margin-bottom: 48px;
 }
 .ecjia-store-list {
     background:#EFEFF4;
