@@ -598,8 +598,8 @@ class cart_controller {
         // ecjia_front::$controller->assign('integral_scale', ecjia::config('integral_scale'));
         // ecjia_front::$controller->assign('step', ROUTE_A);
         
-        $_POST['address_id'] = 540;
-        $_POST['rec_id'] = '8188,8189';
+//         $_POST['address_id'] = 540;
+//         $_POST['rec_id'] = '8188,8189';
         $address_id = empty($_POST['address_id']) ? 0 : intval($_POST['address_id']);
         $rec_id = empty($_POST['rec_id']) ? 0 : trim($_POST['rec_id']);
         
