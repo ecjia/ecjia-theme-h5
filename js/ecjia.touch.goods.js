@@ -158,7 +158,6 @@
             		ecjia.touch.category.hide_cart(true);
             	} else {
             		ecjia.touch.category.show_cart(true);
-            		
             		var goods_number = data.count.goods_number;
             		for (i = 0; i < data.list.length; i++) {
             			if (data.say_list) {
@@ -194,6 +193,7 @@
     				ecjia.touch.category.remove_tocart();
     				ecjia.touch.category.toggle_checkbox();
             	}
+            	ecjia.touch.category.check_all();
             	$('.la-ball-atom').remove();
             	$('[data-toggle="toggle_checkbox"]').removeClass('disabled');
             	$('.box').children('span').removeClass('disabled');
@@ -201,7 +201,6 @@
         },
         
         show_cart : function(bool) {
-        	ecjia.touch.category.check_all();
         	if (bool) {
         		$('.store-add-cart').children('.a4x').addClass('light').removeClass('disabled');
         		$('.store-add-cart').children('.a51').removeClass('disabled');
