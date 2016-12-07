@@ -840,7 +840,7 @@ footer{
 .ecjia-store-goods .a1n .a1x li a.linksGoods {
     display: block;
     overflow: hidden;
-    padding: 1em .5em .5em 0;
+    padding: .5em .5em 0 0;
 }
 .ecjia-store-goods .a1n .a1x li .input-number{
     position: absolute;
@@ -862,10 +862,6 @@ footer{
     width: 5em;
     height: 5em;
     display: inline-block;
-    -webkit-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
     float: left;
 	border: 1px solid #eee;
 }
@@ -1036,6 +1032,7 @@ footer{
 }
 .store-add-cart.a4w .a4y {
     position: absolute;
+	top: 0;
     left: 45px;
     height: 1.2em;
 	width: 1.2em;
@@ -1179,12 +1176,11 @@ footer{
 }
 .store-add-cart.a4w .a5n {
     position: relative;
-    padding: 0 0 10px 30px;
+    padding: 0 0 5px 30px;
     margin-left: 10px;
     line-height: 36px;
     color: #333;
 }
-<<<<<<< HEAD
 .store-add-cart.a4w .a5n.disabled{
 	color: #aaa;
 }
@@ -1236,7 +1232,7 @@ footer{
     text-align: left;
     vertical-align: top;
     position: relative;
-    height: 50px;
+    height: 85px;
 }
 .store-add-cart.a4w .a5s td:nth-of-type(2n){
 	border-bottom: 1px solid #e8e8e8;
@@ -1331,7 +1327,6 @@ footer{
 .store-add-cart.a4w img.a7g  {
     vertical-align: auto;
 	border: 1px solid #eee;
-	border-radius: 4px;
 }
 .store-add-cart.a4w .a7j {
     line-height: 2em;
