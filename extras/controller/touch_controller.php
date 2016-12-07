@@ -143,7 +143,7 @@ class touch_controller {
     	}
         setcookie($ecjia_search, '', 1);
         
-        ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON);
+        ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('touch/index/search')));
     }
 
     public static function download() {
