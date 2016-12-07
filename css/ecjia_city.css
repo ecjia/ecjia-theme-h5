@@ -21,9 +21,7 @@ a.ecjia-color-green {
 .ecjia .ecjia-margin-t-n {
 	margin-top: 0;
 }
-.ecjia-list{
-	margin-top: .5em;
-}
+
 .ecjia-menu {
     background-image: url("../dist/images/menu.pink.png");
 }
@@ -1403,10 +1401,9 @@ footer{
 /*定位地址、选择的收货地址 */
 .flow-address {
     height:5em;
-    padding: .5em 1em;
+    padding: 1em 1em .5em;
 	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
 	background-size: 70%;
-	margin-top: 3.5em;
 }
 .flow-address label{
 	width: 20%;
@@ -1614,6 +1611,16 @@ footer{
 .ecjia-flow-done .ecjia-list.list-short {
     border-top: none;
 }
+.payment-list li span{
+	background: #fff url(../images/icon/wallet-icon.png) no-repeat 0 center;background-size: 28px;
+    padding-left: 40px;
+    height: 2em;
+    line-height: 2em;}
+	
+.payment-list li span.pay_balance{ background: #fff url(../images/icon/wallet-icon.png) no-repeat 0 center;background-size: 28px;}
+.payment-list li span.pay_alipay{ background: #fff url(../images/icon/alipay-icon.png) no-repeat 0 center;background-size: 28px;}
+.payment-list li span.pay_wxpay{ background: #fff url(../images/icon/wxpay-icon.png) no-repeat 0 center;background-size: 28px;}
+.payment-list li span.pay_cod{ background: #fff url(../images/icon/pay-cod.png) no-repeat 0 center;background-size: 28px;}
 /*========================  我的 ===========================*/
 .ecjia-user {
 	/*margin-top: 0.4em;*/
@@ -2059,13 +2066,17 @@ footer{
 	text-align: center;
 	margin-top: 2em;
 	font-size: 1.2em;
+	width: 19%;
+	margin-left: 40%;
+	border-bottom: 1px solid #47AA4D;
+	color: #47AA4D;
 }
 .ecjia-account .user-img{
-	margin: 5% auto 5% auto;
+	margin: 0 auto 5% auto;
     background: #F7F7F7;
     border: none;
     overflow: hidden;
-    padding: 1em 31% 0 35%;
+    padding: 2em 31% 0 35%;
     position: relative;
 }
 .ecjia-account .user-img img{
@@ -2087,16 +2098,44 @@ footer{
     position: relative;
 }
 .ecjia-account .record-status {
-	font-size: 1.5em;
+	font-size: 1.2em;
 	text-align: center;
     position: relative;
-    color: #BFBFBF;
+    color: #A2A09F;
 }
 .ecjia-account .record-info {
 	margin: .5em 1em .5em 1em;
 	position: relative;
-	font-size: 1.2em;
-	color: #BFBFBF;
+	font-size: 1.1em;
+	color: #A2A09F;
+}
+.ecjia-account .btn-bottom {
+	position: fixed;
+    bottom: 0px;
+    margin-bottom: 1.2em;
+    width: 130%!important;
+    margin-left: 2.5em!important;
+}
+.ecjia-account .btn-c {
+	background: #A2A09F!important;
+	border: 0;
+}
+.ecjia-account .apply {
+	float: left;
+    font-size: 1.5em;
+    margin-right: 2em;
+    width: 3em;
+    line-height: 2em;
+}
+.ecjia-account .apply-img {
+    background: url('../images/user_center/apply.png') no-repeat;
+    background-size: 100%;
+    float: left;
+    width: 2em;
+    height: 2em;
+    margin-left: .5em;
+    margin-right: .5em;
+    margin-top: .5em;
 }
 .ecjia-account .record-info .record-key {
 	margin-bottom: .5em;
@@ -2104,6 +2143,10 @@ footer{
 .ecjia-account .record-info .record-val {
 	margin-bottom: .5em;
 	float: right;
+}
+.ecjia-account .ecjia-btn-e5 {
+	background: #E58E31!important;
+	border-color: #E58E31!important;
 }
 .ecjia-account .account-bonus span i {
 	font-size: 1.5em;
@@ -2161,6 +2204,7 @@ footer{
 	border-bottom: 2px solid #47AA4D;
 	margin-top: 1em;
 	margin-bottom: 1em;
+	color: #47AA4D;
 	border-top: 2px solid #47AA4D;
 }
 .ecjia-account .no-border {
@@ -2204,7 +2248,7 @@ footer{
 	/*background: #FFF;*/
 }
 .ecjia-account.ecjia-nav .left-bottom {
-	border-left: 1px solid #47AA4D;
+	border-left: 2px solid #47AA4D;
 	border-radius:.4em 0 0 .4em;
 }
 .ecjia-account.ecjia-nav .right-bottom {
@@ -2212,15 +2256,20 @@ footer{
 }
 .ecjia-account-list-f {
 	background: #FFF;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 1em;
 }
 .ecjia-account-list-f .ecjia-account-list {
 	width: 93%;
 	margin-left: 3.5%;
 }
+.ecjia-account-list-f .ecjia-account-list .ecjia-list{
+	margin-top: 0;
+}
 .ecjia-account-record li {
 	border: none;
-	padding: .5em;
+	padding: 0 .5em 0 .5em;
+	margin-top: 1em;
 }
 .ecjia-account-record p {
 	display: block;
@@ -2228,8 +2277,8 @@ footer{
 	margin: 0 auto;
 }
 .ecjia-account-record .account-record-list li.record-list{
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
 }
 .ecjia-account-record .account-record-list li.record-list{
 	border-bottom: 1px solid #eee;
@@ -2240,7 +2289,7 @@ footer{
 }
 .ecjia-account .ecjia-green {
 	background-color: #47AA4D;
-	color: #FFF;
+	color: #FFF!important;
 }
 .ecjia-account-record .account-record-list span.user-photo img{
 	width: 4em;
@@ -2253,6 +2302,13 @@ footer{
 	padding-bottom: 1em;
 	padding-top: .7em;
 	border-bottom: 1px solid #eee;
+}
+.account-record-big{
+	font-size: 1.2em!important;
+	margin-bottom: .3em!important;
+}
+.account-record-sm{
+	font-size: .9em!important;
 }
 .ecjia-account-record .account-record-list li.record-single:last-child .record-r{
 	border: none;
@@ -2289,8 +2345,11 @@ footer{
 .ecjia-bonus-border-right a{
 	border-right: 1px solid #eee;
 }
+.ecjia-bonus-border-right1 a{
+	border-right: 2px solid #47AA4D;
+}
 .ecjia-bonus-border-right a.right-border {
-	border-right: 0px solid #FFF;
+	border-right: 0px solid #47AA4D;
 }
 .ecjia-bonus li.red-bottom {
     border-bottom: 1px solid #FF1919;
@@ -2954,11 +3013,13 @@ footer{
     transform: translateY(-50%);
     padding-left: 6em;
 }
-.goods-list .goods-img-more {padding-top: 1em;}
-.goods-list .goods-img-more i {font-size:2em}
+.goods-list .goods-img-more {    height: 5em;
+    line-height: 5em;}
+.goods-list .goods-img-more i {font-size:2em;top: 0.1em;}
 /*========================  订单详情 ===========================*/
 .ecjia-order-detail .ecjia-checkout{
     border-top: 1px solid #eee;
+	border-bottom: none;
 }
 .ecjia-order-detail .ecjia-checkout .flow-goods-list{
     background: none;

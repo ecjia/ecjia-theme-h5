@@ -47,10 +47,9 @@ class pay_controller {
         if ($rs_pay['data']['payment']['error_message']) {
             ecjia_front::$controller->assign('pay_error', $rs_pay['data']['payment']['error_message']);
         }
-        
         $order = $rs_pay['data']['payment'];
         
-//         _dump($order);
+//         _dump($order,2);
         $need_other_payment = 0;
         if ($order ['pay_code'] == 'pay_balance') {
             if ($rs_pay['data']['payment']['error_message']) {
@@ -82,7 +81,10 @@ class pay_controller {
         }
 //         _dump($rs_pay);
         
-        $order['formated_order_amount'] = price_format($order['order_amount']);
+        if ($order['pay_code'] != 'pay_balance') {
+            $order['formated_order_amount'] = price_format($order['order_amount']);
+        }
+        
         $order['order_id'] = $order_id;
         ecjia_front::$controller->assign('data', $order);
         ecjia_front::$controller->assign('pay_online', $order['pay_online']);

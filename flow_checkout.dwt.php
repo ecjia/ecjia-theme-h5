@@ -36,7 +36,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<!-- 判断不能大于4个 -->
 				<li class="goods-img-more">
 					<i class="icon iconfont">&#xe62e;</i>
-					<p class="ecjia-fz-small">共{$total_goods_number}件</p>
+					<p class="ecjia-fz-small ecjiaf-ib">共{$total_goods_number}件</p>
 				</li>
 				<!-- {break} -->
 				<!-- {/if} -->
