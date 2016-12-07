@@ -238,7 +238,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		
 		<div class="a5b" style="max-height: 21em;">
 			<div class="a5l single">
-				{if $store_info.favourable_list}
+				{if $goods_info.favourable_list}
 				<ul class="store-promotion" id="store-promotion">
 					<!-- {foreach from=$goods_info.favourable_list item=list} -->
 					<li class="promotion">

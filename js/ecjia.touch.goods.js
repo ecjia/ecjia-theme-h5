@@ -521,7 +521,8 @@
 		},
 
 		goods_show : function() {
-			$(document).off('click').on('click', '.view-more', function(e){
+			$(document).off('click', '.view-more');
+			$(document).on('click', '.view-more', function(e){
 				e.preventDefault();
 				var $this = $(this);
 

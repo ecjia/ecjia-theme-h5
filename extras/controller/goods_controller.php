@@ -451,6 +451,14 @@ class goods_controller {
     			} else {
     				user_function::insert_search($keywords, $store_id);//记录搜索
     			}
+    			
+    			$cache_key = 'store_info_'.$store_id;
+    			$store_info = RC_Cache::app_cache_get($cache_key, 'goods');
+    			if (!$store_info) {
+    				$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data(array('seller_id' => $store_id, 'location' => array('longitude' => '121.416359', 'latitude' => '31.235371')))->run();
+    				RC_Cache::app_cache_set($cache_key, $store_info, 'goods', 60*24);//24小时缓存
+    			}
+    			ecjia_front::$controller->assign('store_info', $store_info);
     		} else {
     			$arr['keywords'] = $keywords;
     				
