@@ -151,7 +151,7 @@ class goods_controller {
 	    }
 	    
 		/*商品所属店铺购物车列表*/
-	   	$token = 'cb753377df06afef1c779e3808381105522a023b';
+	   	$token = ecjia_touch_user::singleton()->getToken();
 	   	$options = array(
 	   		'token' 	=> $token,
 	   		'seller_id' => $goods_info['seller_id'],
@@ -406,7 +406,7 @@ class goods_controller {
     			$data = json_decode($data, true);
     			$arr_list = $data['data'];
     			//购物车商品
-    			$token = touch_function::get_token();
+    			$token = ecjia_touch_user::singleton()->getToken();
     			$paramater = array(
     				'token' 	=> $token,
     				'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371')
@@ -612,7 +612,7 @@ class goods_controller {
     		}
     	}
     	
-    	$token = 'cb753377df06afef1c779e3808381105522a023b';
+    	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
     		'token' 	=> $token, 
     		'seller_id' => $store_id, 
@@ -757,7 +757,7 @@ class goods_controller {
     		}
     	}
     	
-    	$token = 'cb753377df06afef1c779e3808381105522a023b';
+    	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
     		'token' 	=> $token,
     		'seller_id' => $store_id,
@@ -801,7 +801,7 @@ class goods_controller {
     	$goods_id   = intval($_POST['goods_id']);
     	$checked	= isset($_POST['checked']) ? $_POST['checked'] : '';
     	
-    	$token = 'cb753377df06afef1c779e3808381105522a023b';
+    	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
     		'token' 	=> $token,
     		'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371'),
@@ -854,7 +854,7 @@ class goods_controller {
     		}
     	}
     	
-    	$token = 'cb753377df06afef1c779e3808381105522a023b';
+    	$token = ecjia_touch_user::singleton()->getToken();
     	$paramater = array(
     		'token' 	=> $token,
     		'seller_id' => $store_id,
