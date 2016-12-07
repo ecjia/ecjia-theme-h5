@@ -45,6 +45,12 @@ a.ecjia-color-green {
 /*========================  首页 ===========================*/
 .ecjia-header {
     background: #47aa4d;
+	position: fixed;
+    top: 0;
+    width: 100%;
+    max-width: 640px;
+    z-index: 2;
+    overflow: hidden;
 }
 .ecjia-header a {
     color: #fff;
@@ -58,6 +64,33 @@ a.ecjia-color-green {
 }
 .ecjia-search-header button i {
     color: #ccc;
+}
+.ecjia-search-header.ecjia-search .ecjia-form{
+	position: absolute;
+	right: 3.1em;
+    left: .2em;
+	background: #fff;
+    border-radius: 4px;
+}
+.ecjia-search-header.ecjia-search input{
+	padding-left: 2em;
+	padding-top: .5em;
+}
+.ecjia-search-header.ecjia-search .cancel{
+	position: absolute;
+	top:0;
+	right:.2em;
+	line-height: 2.5em;
+	color: #fff;
+}
+.ecjia-search-header.ecjia-search i{
+	line-height: 2em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+	color: #aaa;
+	font-size: 1.2em;
 }
 .ecjia-header.ecjia-header-index {
     background: #47aa4d;
@@ -92,15 +125,14 @@ a.ecjia-color-green {
     overflow: hidden;
 }
 /*搜索*/
-.ecjia-search-header .ecjia-form input {
-    padding-left: .5em
-}
 .focus {
 	margin-top: 45px;
 }
 .ecjia-search-header {
 	position: absolute;
     border-radius: 5px;
+	left: .5em;
+	right: .5em;
 }
 .search-no-pro .ecjia-nolist{
 	padding-top: 180px;
@@ -110,6 +142,7 @@ a.ecjia-color-green {
     text-align: center;
 }
 .ecjia-search-history {
+	margin-top: 3.5em;
 	background: #f4f4f4;
 }
 .ecjia-search-history p.title{
@@ -125,9 +158,11 @@ a.ecjia-color-green {
 .ecjia-search-history .title a{
 	float: right;
 }
-.ecjia-search-history .ecjia-list li{
+.ecjia-search-history li{
 	padding: .5em 1em;
 	border-bottom: 1px solid #eee;
+	overflow: hidden;
+	background: #fff;
 }
 .ecjia-row-nav.index{
 	padding: 0 .5em;
@@ -956,7 +991,6 @@ footer{
     display: none;
 }
 .store-add-cart i{
-    font-size: 1.7em;
     margin-right: .5em;
     padding: .3em;
     color: #fff;
@@ -1036,12 +1070,12 @@ footer{
 	top: 0;
     left: 45px;
     height: 1.2em;
-	width: 1.2em;
     line-height: .6em;
     overflow: hidden;
     background-color: #ff3434;
     font-size: .9em;
 	font-style: normal;
+	border-radius: 10px;
 }
 .store-add-cart.a4w .a4z {
     position: absolute;
@@ -1356,6 +1390,7 @@ footer{
     padding: .5em 1em;
 	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
 	background-size: 70%;
+	margin-top: 3.5em;
 }
 .flow-address label{
 	width: 20%;
@@ -2300,7 +2335,7 @@ footer{
 
 /*========================  登录 ===========================*/
 .ecjia-login {
-	margin-top: 1em;
+	margin-top: 6em;
 	background-color: #F7F7F7;
 }
 .ecjia-login-margin-l {
@@ -2338,6 +2373,8 @@ footer{
 }
 .ecjia-login-login-foot {
     overflow: hidden;
+	margin-right: 12%;
+    margin-top: 2%;	
 }
 .ecjia-login .user-img {
 	margin: 5% auto 5% auto;
@@ -2406,6 +2443,24 @@ footer{
 	background: url(../images/weixin.png) no-repeat bottom #F7F7F7;
 	background-size: 100%;
 	margin-right: 20%;
+	float: right;
+}
+.ecjia-login .margin-right-left label .img-register-mobile {
+	position: absolute;
+    margin-top: 1.8%;
+	width: 25px;
+	height: 25px;
+    background: url('../images/register/50x50_1.png') no-repeat;
+    background-size: 100%;
+	float: right;
+}
+.ecjia-login .margin-right-left label .img-register-invitationcode {
+	position: absolute;
+    margin-top: 1.8%;
+	width: 25px;
+	height: 25px;
+    background: url('../images/register/50x50_2.png') no-repeat;
+    background-size: 100%;
 	float: right;
 }
 .ecjia-login .remark-size {
@@ -2546,10 +2601,9 @@ footer{
     position: relative;
     right: 0;
     bottom: 0em;
-	margin-top:.5em;
 	float: right;
+	top: .3em;
 }
-
 .goods-price-new .ecjia-goods-plus-box span {
     float: left;
     text-indent: -99999px;
@@ -2559,39 +2613,38 @@ footer{
 	background-color: #FFF;
     -webkit-background-size: 400% 100%;
     background-size: 400% 100%;
-	height:1.7em;
-	width:2.4em;
+	height:1.3em;
+	width:2em;
     vertical-align: top;
     border: 0 none;
     background-origin: content-box;
     padding-bottom: .1em;
 }
 .ecjia-goods-plus-box span.reduce {
-    background-position: -3em 0;
+    background-position: -2em 0;
 	padding-left: .8em;
 }
 .ecjia-goods-plus-box span.add {
-    background-position: 0 0;
+    background-position: .2em 0;
     padding-right: .8em;
-	margin-bottom: .8em;
 }
 .ecjia-goods-plus-box label {
     float: left;
     color: #333333;
-    font-size: 1em;
+    font-size: .8em;
     padding: 0;
-    height: 2.4em;
     overflow: hidden;
     display: inline-block;
     text-align: center;
-    line-height: 1.5em;
+    line-height: 1.2em;
     vertical-align: top;
     -webkit-background-origin: content-box;
     background-origin: content-box;
     background-color: transparent;
     margin-top: 2px;
 	margin-bottom: 0;
-	padding-right:.5em;
+	padding-left:.3em;
+	padding-right:.3em;
 	font-weight: normal;
 }
 .market-goods-add-cart{
@@ -2628,7 +2681,7 @@ footer{
 	margin-right:.4em;
 }
 .goods-info .goods-info-property .goods-price-new{
-	padding:0.1em 0.5em 1em 0.5em;
+	padding:0.1em 0.5em .5em 0.5em;
 	color:#ff1919;
 }
 .goods-info .goods-price-new .ecjia-promote_price-span{
@@ -2699,7 +2752,6 @@ footer{
 	margin-top:5px;
 }
 .ecjia-favourable-goods-list{
-	padding-bottom:.5em;
 }
 .goods-info.ecjia-merchants-name span .style-store-name{
 	margin-top:5px;
@@ -2715,31 +2767,33 @@ footer{
 }
 .ecjia-favourable-goods-list .store-promotion li{
 	padding: 0;
-	margin-bottom:.5em;
-	margin-top:0.3em;
+	margin: 1em 0 .5em .7em;
+	font-weight: normal;
+	font-size: 1em;
 }
 .ecjia-favourable-goods-list .store-promotion .promotion-label{
 	color: #fff;
 	display:inline-block;
 	border:1px solid #FF1919;
 	border-radius:4px;
-	font-weight:500;
-	font-size: .6em;
 	background: #FF1919;
-	padding:0.1em 0.2 0.1em 0.1em;
+	padding: .1em .4em;
+	font-size: .8em;
 }
 .ecjia-favourable-goods-list .store-promotion .promotion-name{
-	font-weight:500;
-	font-size: .65em;
-	padding-left:.5em;
-	color: #333;
-	background:#fff;
+	padding-left: .2em;
+    color: #333;
+    background: #fff;
+    padding-top: .1em;
+    display: block;
+    float: right;
 }
 .may-like-literal{
 	height:50px;
 	line-height:50px;
 	padding-left:0.6em;
-	border-bottom:0.5px solid #eee;
+	border-bottom:1px solid #eee;
+	background: #fff;
 }
 .goods-info .address-warehouse-new{
 	padding:0;
@@ -2754,6 +2808,7 @@ footer{
 }
 .ecjia-like-goods-list{
 	padding-bottom:1em;
+	margin-top: 0;
 }
 .ecjia-like-goods-list li{
 	float:left;
