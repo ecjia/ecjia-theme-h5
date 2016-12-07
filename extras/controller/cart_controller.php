@@ -599,9 +599,9 @@ class cart_controller {
         // ecjia_front::$controller->assign('step', ROUTE_A);
         
 //         $_POST['address_id'] = 540;
-//         $_POST['rec_id'] = '8188,8189';
-        $address_id = empty($_POST['address_id']) ? 0 : intval($_POST['address_id']);
-        $rec_id = empty($_POST['rec_id']) ? 0 : trim($_POST['rec_id']);
+//         $_POST['rec_id'] = '8466,8467,8468,8469';
+        $address_id = empty($_REQUEST['address_id']) ? 0 : intval($_REQUEST['address_id']);
+        $rec_id = empty($_REQUEST['rec_id']) ? 0 : trim($_REQUEST['rec_id']);
         
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
         if(empty($rec_id)) {
