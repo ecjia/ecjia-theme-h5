@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<input type="hidden" name="flag" id="flag" value="register" />
 			<div class="form-group margin-right-left">
 				<label class="input">
-					<i class="iconfont icon-mobilefill icon-set"></i>
+					<div class="img-register-mobile"></div>
 					<input name="mobile" type="text" id=""mobile"" name="mobile" placeholder="请输入手机号" />
 				</label>
 			</div>
@@ -44,7 +44,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     		<li class="remark-size">{$lang.invitation_code}</li>
 			<div class="form-group bf margin-right-left">
 				<label class="input">
-					<i class="iconfont icon-yanzhengma"></i>
+					<div class="img-register-invitationcode"></div>
 					<input name="text" id="text" type="text">
 				</label>
 			</div>
