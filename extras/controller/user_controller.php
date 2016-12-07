@@ -70,9 +70,15 @@ class user_controller {
      * 推广页面
      */
     public static function spread() {
-    	$token = '6dee0c4c8938deadd0ac9fb3e4b48092d8f633fd';
+    	$token = ecjia_touch_user::singleton()->getToken();
     	$invite_user_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_USER)->data(array('token' => $token))->run();
-    	$aa = strpos(trim($invite_user_detail['invite_explain']),'；',0);    	
+    	//$aa = strpos(trim($invite_user_detail['invite_explain']),'；',0);   
+		if (!empty($invite_user_detail['invite_explain'])) {
+			if (strpos($invite_user_detail['invite_explain'], '；')) {
+				$invite_user_detail['invite_explain_new'] = explode('；', $invite_user_detail['invite_explain']);
+			}
+		}
+		
     	ecjia_front::$controller->assign('invite_user', $invite_user_detail);
     	ecjia_front::$controller->assign('title', '推广');
     	ecjia_front::$controller->display('spread.dwt');

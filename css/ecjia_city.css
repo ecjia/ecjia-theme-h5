@@ -3774,6 +3774,8 @@ footer{
 	background-size: 100% 100%;
 	height:5em;
 	width:100%;
+	position:relative;
+	margin-top:3.5em;
 	background-origin: content-box;
 }
 .ecjia-spread .qrcode_image {
@@ -3810,8 +3812,8 @@ footer{
 }
 .ecjia-spread .invite-template{
 	width:100%;
-	padding-left:.5em;
-	padding-right:.5em;
+	padding-left:1em;
+	padding-right:1em;
 	padding-bottom:1.5em;
 }
 .ecjia-spread .invite-template .invite-template-style{
@@ -3819,11 +3821,12 @@ footer{
 	border-radius: 7px;
 	padding-left:.5em;
 	padding-right:.5em;
+	height:4em;
 }
 .ecjia-spread .go-to-spread{
 	width:100%;
-	padding-left:.5em;
-	padding-right:.5em;
+	padding-left:1em;
+	padding-right:1em;
 	padding-bottom:1.5em;
 }
 .ecjia-spread .go-to-spread .would-spread{
@@ -3842,8 +3845,8 @@ footer{
 .ecjia-spread .invite_explain .invite_explain-literal{
 	font-weight:bold;
 	font-size:16px;
-	padding-left:.5em;
+	padding-left:1em;
 }
 .ecjia-spread .invite_explain .invite_explain-content{
-	padding-left:.5em;
+	padding-left:1em;
 }
