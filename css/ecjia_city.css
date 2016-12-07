@@ -2340,6 +2340,8 @@ footer{
 }
 .ecjia-login-login-foot {
     overflow: hidden;
+	margin-right: 12%;
+    margin-top: 2%;	
 }
 .ecjia-login .user-img {
 	margin: 5% auto 5% auto;
@@ -2408,6 +2410,24 @@ footer{
 	background: url(../images/weixin.png) no-repeat bottom #F7F7F7;
 	background-size: 100%;
 	margin-right: 20%;
+	float: right;
+}
+.ecjia-login .margin-right-left label .img-register-mobile {
+	position: absolute;
+    margin-top: 1.8%;
+	width: 25px;
+	height: 25px;
+    background: url('../images/register/50x50_1.png') no-repeat;
+    background-size: 100%;
+	float: right;
+}
+.ecjia-login .margin-right-left label .img-register-invitationcode {
+	position: absolute;
+    margin-top: 1.8%;
+	width: 25px;
+	height: 25px;
+    background: url('../images/register/50x50_2.png') no-repeat;
+    background-size: 100%;
 	float: right;
 }
 .ecjia-login .remark-size {

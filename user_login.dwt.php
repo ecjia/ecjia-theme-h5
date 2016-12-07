@@ -39,7 +39,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</label>
 	</div>
 	<!--{/if}-->
-	<div class="ecjia-login-login-foot margin-right-left ecjia-margin-b">
+	<div class="ecjia-login-login-foot ecjia-margin-b">
 		<a class="ecjiaf-fr" href="{url path='user/get_password/get_password_email'}">{$lang.forgot_password}?</a>
 		<!-- {if $anonymous_buy eq 1 && $step eq 'flow'} 是否允许未登录用户购物 -->
 		<a class="ecjiaf-fr" href="{url path='cart/flow/consignee' args="direct_shopping=1"}">{$lang.direct_shopping}</a>
@@ -52,7 +52,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	    </div>	
 	</div>
 	<ul>
-	<li style="text-align:center;">其他帐号登陆</li>
+	<li style="text-align:center;">其他帐号登录</li>
 	<li class="thirdparty-qq"></li>
 	<li class="thirdparty-weixin"></li>
 	</ul>
