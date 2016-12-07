@@ -2502,6 +2502,7 @@ footer{
     right: 0;
     bottom: 0em;
 	margin-top:.5em;
+	float: right;
 }
 
 .goods-price-new .ecjia-goods-plus-box span {
