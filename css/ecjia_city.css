@@ -10,6 +10,14 @@ html, body {
 .ecjia-color-green {
 	color:#47AA4D;
 }
+a.ecjia-color-green {
+	color:#47AA4D;
+}
+.width-25-p {width:25%}
+.width-75-p {width:75%}
+.ecjia .ecjia-margin-t-n {
+	margin-top: 0;
+}
 .ecjia-list{
 	margin-top: .5em;
 }
@@ -832,7 +840,7 @@ footer{
 .ecjia-store-goods .a1n .a1x li a.linksGoods {
     display: block;
     overflow: hidden;
-    padding: 1em .5em .5em 0;
+    padding: .5em .5em 0 0;
 }
 .ecjia-store-goods .a1n .a1x li .input-number{
     position: absolute;
@@ -854,10 +862,6 @@ footer{
     width: 5em;
     height: 5em;
     display: inline-block;
-    -webkit-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
     float: left;
 	border: 1px solid #eee;
 }
@@ -1028,6 +1032,7 @@ footer{
 }
 .store-add-cart.a4w .a4y {
     position: absolute;
+	top: 0;
     left: 45px;
     height: 1.2em;
 	width: 1.2em;
@@ -1158,7 +1163,7 @@ footer{
     color: #666;
 }
 .store-add-cart.a4w .a5b {
-    background-color: #fbfbfb;
+    background-color: #fff;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
 }
@@ -1171,10 +1176,29 @@ footer{
 }
 .store-add-cart.a4w .a5n {
     position: relative;
-    padding: 0 0 10px 30px;
+    padding: 0 0 5px 30px;
     margin-left: 10px;
     line-height: 36px;
     color: #333;
+}
+.store-add-cart.a4w .a5n.disabled{
+	color: #aaa;
+}
+.store-add-cart.a4w .a5n.disabled .product_empty{
+	position: absolute;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 2;
+    width: 70px;
+    height: 70px;
+    top: 5px;
+    left: 0;
+    line-height: 70px;
+    text-align: center;
+    color: #fff;
+	font-size: .8em;
+}
+.store-add-cart.a4w .a5n.disabled .a7c{
+	color: #CA9A9A;
 }
 .store-add-cart.a4w li.a5n:last {
 	border-bottom: none;
@@ -1208,7 +1232,7 @@ footer{
     text-align: left;
     vertical-align: top;
     position: relative;
-    height: 50px;
+    height: 85px;
 }
 .store-add-cart.a4w .a5s td:nth-of-type(2n){
 	border-bottom: 1px solid #e8e8e8;
@@ -1303,7 +1327,6 @@ footer{
 .store-add-cart.a4w img.a7g  {
     vertical-align: auto;
 	border: 1px solid #eee;
-	border-radius: 4px;
 }
 .store-add-cart.a4w .a7j {
     line-height: 2em;
@@ -1530,13 +1553,12 @@ footer{
     font-size: 1.1em;
     line-height: 1.3em;
 }
+
 .ecjia-flow-done .two-btn .btn:last-child{
     background: none;
     color: #333;
 }
-.ecjia-flow-done .ecjia-list {
-    margin-top: 0;
-}
+
 .ecjia-flow-done .ecjia-list.list-short {
     border-top: none;
 }
@@ -1803,7 +1825,7 @@ footer{
     margin-top: 10em!important	;
 }
 .ecjia-user .ecjia-margin-b {
-	margin-bottom: 15%;
+	padding-bottom: 15%;
 }
 .ecjia-user .margin-no-l {
     display: inline;
@@ -1985,6 +2007,51 @@ footer{
 	text-align: center;
 	margin-top: 2em;
 	font-size: 1.2em;
+}
+.ecjia-account .user-img{
+	margin: 5% auto 5% auto;
+    background: #F7F7F7;
+    border: none;
+    overflow: hidden;
+    padding: 1em 31% 0 35%;
+    position: relative;
+}
+.ecjia-account .user-img img{
+	width: 4em;
+	height: 4em;
+    border-radius: 100%;
+    background: #47aa4d;
+    margin-right: 1em;
+}
+.ecjia-account .user-name {
+	float: right;
+    line-height: 3.5em;
+    font-size: 1.2em;
+    position: relative;
+}
+.ecjia-account .record-money {
+	font-size: 2em;
+	text-align: center;
+    position: relative;
+}
+.ecjia-account .record-status {
+	font-size: 1.5em;
+	text-align: center;
+    position: relative;
+    color: #BFBFBF;
+}
+.ecjia-account .record-info {
+	margin: .5em 1em .5em 1em;
+	position: relative;
+	font-size: 1.2em;
+	color: #BFBFBF;
+}
+.ecjia-account .record-info .record-key {
+	margin-bottom: .5em;
+}
+.ecjia-account .record-info .record-val {
+	margin-bottom: .5em;
+	float: right;
 }
 .ecjia-account .account-bonus span i {
 	font-size: 1.5em;
@@ -2457,7 +2524,6 @@ footer{
 	float:left;
 }
 .goods-info .ecjia-price-time .cart-plus-right{
-	width:37%;
 	float:right;
 	height:2.8em;
 }
@@ -2467,13 +2533,13 @@ footer{
     color: #fff;
     line-height: 38px;
     background-color: #47b34f;
-	margin-top:-43px;
 	float:right;
 	border-radius:4px;
 	clear:both;
 	border:none;
 	font-size:14px;
 	font-weight:bold;
+	margin-top: .5em;
 }
 .add-cart-a span {
 	color:#fff;
@@ -2482,7 +2548,8 @@ footer{
     position: relative;
     right: 0;
     bottom: 0em;
-	margin-top:.8em;
+	margin-top:.5em;
+	float: right;
 }
 
 .goods-price-new .ecjia-goods-plus-box span {
@@ -2527,6 +2594,7 @@ footer{
     margin-top: 2px;
 	margin-bottom: 0;
 	padding-right:.5em;
+	font-weight: normal;
 }
 .market-goods-add-cart{
 	margin-top:-1px;
@@ -2572,7 +2640,7 @@ footer{
 }
 .goods-info .ecjia-left-time{
 	border:1px solid #FF1919;
-	width:77%;
+	width:80%;
 	height:.9em;
 	line-height:.9em;
 	margin-top:9px;
@@ -2677,6 +2745,10 @@ footer{
 }
 .goods-info .address-warehouse-new{
 	padding:0;
+	padding-bottom: 48px;
+}
+.goods-info .goods-info-property {
+    background: #fff;
 }
 .ecjia-form .may-like{
 	color:#FF1919;
@@ -2819,6 +2891,12 @@ footer{
 }
 .ecjia-order-detail .ecjia-checkout .flow-goods-list{
     background: none;
+	padding-bottom:4em;
+}
+
+.ecjia-order-detail .flow-goods-list .ecjia-list li {
+	border-bottom:none;
+	padding:.8em 1em;
 }
 .ecjia .ecjia-order-detail .ecjia-checkout .flow-goods-list .goods-item li {
 	height: 5em;
@@ -2833,7 +2911,14 @@ footer{
 }
 .ecjia-order-detail .order-ft-link{
     text-align: center;
-    padding: 1em 0;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    max-width: 640px;
+    height: 3.2em;
+	line-height:3.2em;
+	border-top:1px solid #ddd;
+    background-color: #fff;
 }
 .ecjia-order-detail .order-ft-link .btn-small{
     margin: 0;
@@ -2855,7 +2940,10 @@ footer{
     border-radius: 10px;
     padding: 1em .5em;
 }
-.order-log-item:nth-child(2) {
+.order-log-item:nth-child(1) {
+	color:inherit;
+}
+.order-log-item {
 	color:#999;
 }
 .order-log-item .order-log{
@@ -2948,8 +3036,9 @@ footer{
 
 /*========================  分类店铺 ===========================*/
 .ecjia-store-goods-list{
-	margin-bottom: 3.5em;
-	background:#FFFFFF;
+    background:#FFFFFF;
+    margin-bottom: 48px;
+    padding-bottom: 7em;
 }
 .ecjia-store-list {
     background:#EFEFF4;
@@ -3127,10 +3216,13 @@ footer{
     padding-left: .5em;
 	background: #FFFFFF;
 }
+.ecjia-store-list li.search-goods-list:first-child{
+	padding-top: .5em;
+}
 .ecjia-store-list li a.linksGoods {
     display: block;
     overflow: hidden;
-    padding: 1em .5em .5em 0;
+    padding: 0 .5em .5em 0;
 }
 .ecjia-store-list li .input-number{
     position: absolute;
@@ -3183,10 +3275,9 @@ footer{
     padding-top: 0px;
 }
 .ecjia-store-list li.search-goods-list dl dd {
-    padding-top: 1em;
+    padding-top: 1.5em;
 	padding-left: .5em;
 }
-
 .ecjia-store-list .box {
     position: absolute;
     right: 0;

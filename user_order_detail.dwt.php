@@ -15,7 +15,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #EndLibraryItem -->
 <div class="ecjia-order-detail">
-	<ul class="ecjia-list ecjia-list-two ecjia-nav">
+	<ul class="ecjia-list ecjia-list-two ecjia-nav ecjia-margin-t-n">
 		<li class="active"><a class="nopjax" href="#one" role="tab" data-toggle="tab">订单状态</a></li>
 		<li class=""><a class="nopjax" href="#two" role="tab" data-toggle="tab"	>订单详情</a></li>
 	</ul>
@@ -55,17 +55,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<li>共计：<span class="ecjiaf-fr">{$order.formated_total_fee}</span></li>
 			</ul>
 			<ul class="ecjia-list ecjia-margin-t">
-			    <li>发货时间：<span class="">{if $order.shipping_time}{$order.shipping_time}{else}未发货{/if}</span></li>
-				<li>收货人：<span class="">{$order.consignee} {$order.mobile}</span></li>
-				<li>收货地址：<span class="">{$order.province} {$order.city} {$order.district}{$order.address}</span></li>
-				<li>配送方式：<span class="">{$order.shipping_name}</span></li>
+			    <li><span class="ecjiaf-fl width-25-p">发货时间：</span><span class="ecjiaf-fr width-75-p">{if $order.shipping_time}{$order.shipping_time}{else}未发货{/if}</span></li>
+				<li><span class="ecjiaf-fl width-25-p">收货人：</span><span class="ecjiaf-fr width-75-p">{$order.consignee} {$order.mobile}</span></li>
+				<li><span class="ecjiaf-fl width-25-p">收货地址：</span><span class="ecjiaf-fr width-75-p">{$order.province} {$order.city} {$order.district}{$order.address}</span></li>
+				<li><span class="ecjiaf-fl width-25-p">配送方式：</span><span class="ecjiaf-fr width-75-p">{$order.shipping_name}</span></li>
 			</ul>
 			<ul class="ecjia-list ecjia-margin-t">
-				<li>订单号：<span class="">{$order.order_sn}</span></li>
-				<li>下单时间：<span class="">{$order.formated_add_time}</span></li>
-				<li>支付方式：<span class="">{$order.pay_name}</span></li>
-				<li>备注：<span class="">{if $order.postscript}{$order.postscript}{else}无{/if}</span></li>
-				<li>商家电话：<span class="">{$order.service_phone}</span></li>
+				<li><span class="ecjiaf-fl width-25-p">订单号：</span><span class="ecjiaf-fr width-75-p">{$order.order_sn}</span></li>
+				<li><span class="ecjiaf-fl width-25-p">下单时间：</span><span class="ecjiaf-fr width-75-p">{$order.formated_add_time}</span></li>
+				<li><span class="ecjiaf-fl width-25-p">支付方式：</span><span class="ecjiaf-fr width-75-p">{$order.pay_name}</span></li>
+				<li><span class="ecjiaf-fl width-25-p">备注：</span><span class="ecjiaf-fr width-75-p">{if $order.postscript}{$order.postscript}{else}无{/if}</span></li>
+				<li><span class="ecjiaf-fl width-25-p">商家电话：</span><span class="ecjiaf-fr width-75-p">{$order.service_phone}</span></li>
 			</ul>
 			<div class="order-ft-link">
 				<a class="btn btn-small btn-hollow" href="tel://{$order.service_phone}">联系卖家</a>

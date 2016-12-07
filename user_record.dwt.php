@@ -21,14 +21,14 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 <div class="ecjia-account-list-f">
     <div class="ecjia-account-list">
         <ul class="ecjia-list ecjia-list-three ecjia-nav ecjia-account ecjia-bonus-border-right">
-        	<li><a {if $smarty.get.status eq ''}class="ecjia-green left-bottom ecjia-green-rf"{else}class="left-bottom ecjia-green-rf"{/if} id="left-bottom" href="{url path='user/user_account/cash_list' args='status='}">{t}全部{/t}</a></li>
-        	<li><a {if $smarty.get.status eq 'raply'}class="ecjia-green ecjia-green-rf"{else}class="ecjia-green-rf"{/if} href="{url path='user/user_account/cash_list' args='status=raply'}">{t}提现{/t}</a></li>
-        	<li><a {if $smarty.get.status eq 'deposit'}class="ecjia-green right-bottom ecjia-green-rf"{else}class="right-bottom ecjia-green-rf"{/if} id="right-bottom" href="{url path='user/user_account/cash_list' args='status=deposit'}">{t}充值{/t}</a></li>
+        	<li><a {if $smarty.get.status eq ''}class="ecjia-green left-bottom ecjia-green-rf"{else}class="left-bottom ecjia-green-rf"{/if} id="left-bottom" href="{url path='user/user_account/record' args='status='}">{t}全部{/t}</a></li>
+        	<li><a {if $smarty.get.status eq 'raply'}class="ecjia-green ecjia-green-rf"{else}class="ecjia-green-rf"{/if} href="{url path='user/user_account/record' args='status=raply'}">{t}提现{/t}</a></li>
+        	<li><a {if $smarty.get.status eq 'deposit'}class="ecjia-green right-bottom ecjia-green-rf"{else}class="right-bottom ecjia-green-rf"{/if} id="right-bottom" href="{url path='user/user_account/record' args='status=deposit'}">{t}充值{/t}</a></li>
         </ul>
     </div>
 </div>
 <div>
-	<ul class="ecjia-list ecjia-account-record" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_account/ajax_cash_list' args="type={$type}"}" data-size="10">
+	<ul class="ecjia-list ecjia-account-record" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_account/ajax_record' args="type={$type}"}" data-size="10">
 	</ul>
 </div>
 <!-- {/block} -->
@@ -40,7 +40,9 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 			<ul>
 			{foreach from=$group item=item}
 				<li class="record-single">
+				<a href="url path="user/user_account/record_info"">
 					<div class="record-l">
+					
 						<span class="user-photo"><img src="{$user_img}" alt=""></span>
 					</div>
 					<div class="record-r">
@@ -53,6 +55,7 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 							<p>{$item.pay_status}</p>
 						</div>
 					</div>
+					</a>
 				</li>
 			{/foreach}
 			</ul>
