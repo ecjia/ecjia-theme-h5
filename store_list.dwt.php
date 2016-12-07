@@ -133,7 +133,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<p class="a6c">(已选{$count.goods_number}件)</p>
 				<a href="javascript:void 0;" class="a59" data-toggle="deleteall" data-url="{RC_Uri::url('goods/category/update_cart')}">清空购物车</a>
 			</div>
-			<div class="a5b" style="max-height: 18em;">
+			<div class="a5b" style="max-height: 21em;">
 				<div class="a5l single">
 					{if $store_info.favourable_list}
 					<ul class="store-promotion" id="store-promotion">
