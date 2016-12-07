@@ -2413,6 +2413,7 @@ footer{
 	float: left;
     text-align: left;
 	padding-left: .8em;
+	position: relative;
 }
 .ecjia-bonus.ecjia-list-two .user-bonus-info .color-3a{
 	color: #aaa;
@@ -2422,6 +2423,26 @@ footer{
 }
 .ecjia-bonus.ecjia-list-two .user-bonus-info .type-r p.type-name{
 	font-size: 1.2em;
+}
+.ecjia-bonus.ecjia-list-two .list-l-size .user-bonus-info .img-is-used {
+	width: 100px;
+	height: 80px;
+    right: 12%;
+	position: absolute;
+    background: url('../images/wallet/icon-used3x.png') no-repeat;
+    background-size: 100%;
+	z-index: 99;
+	float: right;
+}
+.ecjia-bonus.ecjia-list-two .list-l-size .user-bonus-info .img-expired {
+	width: 100px;
+	height: 80px;
+    right: 12%;
+	position: absolute;
+    background: url('../images/wallet/icon-overdue3x.png') no-repeat;
+    background-size: 100%;
+	z-index: 99;
+	float: right;
 }
 
 /*========================  登录 ===========================*/
@@ -2604,11 +2625,14 @@ footer{
 
 
 /*========================  商品详情 ===========================*/
- .ecjia-goods-detail-header-title {
+.ecjia-goods-detail-header-title {
     bottom: 0;
     font-size: 1.4em;
-    position: relative;
-    top: -1.9em;
+ 	background:#47aa4d none repeat scroll 0 0;
+ 	height:2.5em;
+ 	line-height:2.65em;
+ 	position:fixed;
+ 	text-align:center;
 }
 .ecjia-goods-detail-header-title ul{
 	position: absolute;
