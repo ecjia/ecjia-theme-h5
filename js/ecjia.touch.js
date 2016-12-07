@@ -336,7 +336,7 @@
 
 			$('.btn-search').off('click').on('click', function(e) {
 				var val = $('input[name="keywords"]').val().trim(),
-					url = $('.ecjia-form').attr('data-url');
+					url = $('.ecjia-form').attr('action');
 				if (!val) {
 					$("#keywordBox").blur();
 					return;
@@ -365,14 +365,29 @@
         },
 
         del_history : function() {
+        	$(document).off('click', '[data-toggle="del_history"]');
         	$(document).on('click', '[data-toggle="del_history"]', function(e){
         		e.preventDefault();
         		var $this	= $(this);
         		var url		= $this.attr('data-href') || $this.attr('href');
 
-        		$.get(url, function(data){
-					ecjia.pjax(window.location.href);
-				}, 'json');
+        		var myApp = new Framework7();
+        		myApp.modal({
+        			title: '确定清空搜索记录？',
+        			buttons: [
+			          {
+			            text: '取消',
+			          },
+			          {
+			            text: '确定',
+			            onClick: function() {
+			            	$.get(url, function(data){
+								ecjia.pjax(window.location.href);
+							}, 'json');
+			          	},
+			          }
+			        ]
+        		});
         	});
         },
 

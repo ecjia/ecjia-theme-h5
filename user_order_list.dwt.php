@@ -110,7 +110,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<!-- 判断不能大于4个 -->
 						<li class="goods-img-more">
 							<i class="icon iconfont">&#xe62e;</i>
-							<p class="ecjia-fz-small">共{$list.goods_number}件</p>
+							<p class="ecjia-fz-small ecjiaf-ib">共{$list.goods_number}件</p>
 						</li>
 						<!-- {break} -->
 						<!-- {/if} -->
@@ -124,7 +124,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</a>
 			</div>
 			<div class="order-ft">
-				<span><a href="#">订单金额：<span class="ecjia-fz-big">{$list.formated_total_fee}</span></a></span>
+				<span><a href="#">订单金额：<span>{$list.formated_total_fee}</span></a></span>
 				<span class="two-btn ecjiaf-fr">
 				{if $list.order_status_code eq 'await_pay'} <a class="btn btn-hollow ecjiaf-fr" href='{url path="pay/index/init" args="order_id={$list.order_id}&from=list"}'>去支付</a>
 				<!-- if $list.order_status_code eq 'finished' || $list.order_status_code eq 'canceled' -->

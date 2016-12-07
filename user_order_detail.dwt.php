@@ -9,7 +9,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-<script type="text/javascript">ecjia.touch.goods.init();ecjia.touch.user.init();</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -19,7 +18,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<li class="active"><a class="nopjax" href="#one" role="tab" data-toggle="tab">订单状态</a></li>
 		<li class=""><a class="nopjax" href="#two" role="tab" data-toggle="tab"	>订单详情</a></li>
 	</ul>
-	<div class="goods-describe ecjia-margin-t active order-log-list" id="one">
+	<div class="goods-describe active order-log-list" id="one">
 		<!-- {foreach from=$order.order_status_log item=info} -->
 		<div class="order-log-item">
 			<div class="order-log">
@@ -34,6 +33,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<ul class="goods-item">
 				<!-- {foreach from=$order.goods_list item=goods} -->
 				<li>
+				    <a href='{url path="goods/index/init" args="id={$goods.goods_id}"}'>
 					<div class="ecjiaf-fl goods-img">
 						<img src="{$goods.img.thumb}" alt="{$goods.name}" title="{$goods.name}" />
 					</div>
@@ -41,18 +41,19 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<p class="ecjia-truncate2">{$goods.name}</p>
 						<p>{$goods.formated_shop_price}</p>
 					</div>
-					<span class="ecjiaf-fr goods-price"> X {$goods.goods_number}</span>
+					<span class="ecjiaf-fr goods-price"> x {$goods.goods_number}</span>
+					</a>
 				</li>
 				<!-- {/foreach} -->
 			</ul>
 			<ul class="ecjia-list ecjia-margin-t">
-				<li>商品金额：<span class="ecjiaf-fr">{$order.formated_goods_amount}</span></li>
-				<li>积分抵扣：<span class="ecjiaf-fr">{$order.formated_integral_money}</span></li>
-				<li>红包抵扣：<span class="ecjiaf-fr">{$order.formated_bonus}</span></li>
-				<li>税费金额：<span class="ecjiaf-fr">{$order.formated_tax}</span></li>
-				<li>优惠：<span class="ecjiaf-fr">{$order.formated_discount}</span></li>
-				<li>运费：<span class="ecjiaf-fr">{$order.formated_shipping_fee}</span></li>
-				<li>共计：<span class="ecjiaf-fr">{$order.formated_total_fee}</span></li>
+				<li>商品金额：<span class="ecjiaf-fr ecjia-color-999">{$order.formated_goods_amount}</span></li>
+				<li>积分抵扣：<span class="ecjiaf-fr ecjia-color-999">{$order.formated_integral_money}</span></li>
+				<li>红包抵扣：<span class="ecjiaf-fr ecjia-color-999">{$order.formated_bonus}</span></li>
+				<li>税费金额：<span class="ecjiaf-fr ecjia-color-999">{$order.formated_tax}</span></li>
+				<li>优惠：<span class="ecjiaf-fr ecjia-color-999">{$order.formated_discount}</span></li>
+				<li>运费：<span class="ecjiaf-fr ecjia-color-999">{$order.formated_shipping_fee}</span></li>
+				<li>共计：<span class="ecjiaf-fr ecjia-color-999">{$order.formated_total_fee}</span></li>
 			</ul>
 			<ul class="ecjia-list ecjia-margin-t">
 			    <li><span class="ecjiaf-fl width-25-p">发货时间：</span><span class="ecjiaf-fr width-75-p">{if $order.shipping_time}{$order.shipping_time}{else}未发货{/if}</span></li>

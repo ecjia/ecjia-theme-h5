@@ -135,6 +135,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 			<div class="a5b" style="max-height: 18em;">
 				<div class="a5l single">
+					{if $store_info.favourable_list}
+					<ul class="store-promotion" id="store-promotion">
+						<!-- {foreach from=$store_info.favourable_list item=list} -->
+						<li class="promotion">
+							<span class="promotion-label">{$list.type_label}</span>
+							<span class="promotion-name">{$list.name}</span>
+						</li>
+						<!-- {/foreach} -->
+					</ul>
+					{/if}
 					<ul class="minicart-goods-list single"> 
 						<!-- {foreach from=$cart_list item=cart} -->
 						<li class="a5n single">
