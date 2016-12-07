@@ -47,6 +47,12 @@ a.ecjia-color-green {
 /*========================  首页 ===========================*/
 .ecjia-header {
     background: #47aa4d;
+	position: fixed;
+    top: 0;
+    width: 100%;
+    max-width: 640px;
+    z-index: 2;
+    overflow: hidden;
 }
 .ecjia-header a {
     color: #fff;
@@ -1357,6 +1363,7 @@ footer{
     padding: .5em 1em;
 	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
 	background-size: 70%;
+	margin-top: 3.5em;
 }
 .flow-address label{
 	width: 20%;
@@ -2301,7 +2308,7 @@ footer{
 
 /*========================  登录 ===========================*/
 .ecjia-login {
-	margin-top: 1em;
+	margin-top: 6em;
 	background-color: #F7F7F7;
 }
 .ecjia-login-margin-l {
@@ -2738,7 +2745,8 @@ footer{
 	height:50px;
 	line-height:50px;
 	padding-left:0.6em;
-	border-bottom:0.5px solid #eee;
+	border-bottom:1px solid #eee;
+	background: #fff;
 }
 .goods-info .address-warehouse-new{
 	padding:0;
@@ -2753,6 +2761,7 @@ footer{
 }
 .ecjia-like-goods-list{
 	padding-bottom:1em;
+	margin-top: 0;
 }
 .ecjia-like-goods-list li{
 	float:left;
