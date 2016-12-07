@@ -382,7 +382,7 @@
 			            text: '确定',
 			            onClick: function() {
 			            	$.get(url, function(data){
-								ecjia.pjax(window.location.href);
+								ecjia.pjax(data.pjaxurl);
 							}, 'json');
 			          	},
 			          }

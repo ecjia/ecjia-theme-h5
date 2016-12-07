@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 
 <!-- {if $data} -->
-<div class="ecjia-store-goods-list">
+<div class="ecjia-store-goods-list" {if $store_id && $count_search > 6}style="padding-bottom:7em;"{/if}>
 	<ul class="ecjia-store-list" {if $is_last neq 1}data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='goods/category/store_list'}&type=ajax_get{if $store_id}{/if}&store_id={$store_id}&keywords={$keywords}" data-page="2"{/if}>
 		<!-- {foreach from=$data item=val} -->
 		<!-- {if !$store_id} -->
@@ -133,7 +133,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<p class="a6c">(已选{$count.goods_number}件)</p>
 				<a href="javascript:void 0;" class="a59" data-toggle="deleteall" data-url="{RC_Uri::url('goods/category/update_cart')}">清空购物车</a>
 			</div>
-			<div class="a5b" style="max-height: 18em;">
+			<div class="a5b" style="max-height: 21em;">
 				<div class="a5l single">
 					{if $store_info.favourable_list}
 					<ul class="store-promotion" id="store-promotion">
@@ -186,7 +186,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {else} -->
 <div class="search-no-pro ecjia-margin-t ecjia-margin-b">
 	<div class="ecjia-nolist">
-		<p><img src="{$theme_url}images/no_goods_270.png"></p>
+		{if !$store_id}
+		<p><img src="{$theme_url}images/no_store.png"></p>
+		{else}
+		<p><img src="{$theme_url}images/no_goods.png"></p>
+		{/if}
+		暂无搜索结果
 	</div>
 </div>
 <!-- {/if} -->
