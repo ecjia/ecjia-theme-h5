@@ -122,8 +122,9 @@ class touch_controller {
         
         $store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
         ecjia_front::$controller->assign('store_id', $store_id);
-        
+
         ecjia_front::$controller->assign('searchs', user_function::get_search($store_id));
+        ecjia_front::$controller->assign('searchs_count', count(user_function::get_search($store_id)));
 
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('search.dwt');

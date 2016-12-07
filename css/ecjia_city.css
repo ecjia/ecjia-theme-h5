@@ -146,23 +146,37 @@ a.ecjia-color-green {
 	background: #f4f4f4;
 }
 .ecjia-search-history p.title{
-	padding: .5em;
-	padding-left: .5em;
+	padding: 1em 1em .5em 1em;
 	color: #555;
-	border-bottom: 1px solid #eee;
 }
 .ecjia-search-history .title i{
-	top: -1px;
 	padding-right: .3em;
 }
 .ecjia-search-history .title a{
 	float: right;
 }
 .ecjia-search-history li{
-	padding: .5em 1em;
+	background-size: 12px;
+    padding: .8em 0 0 1em;
+    line-height: 20px;
+}
+.ecjia-search-history li:last-child{
+	border-bottom:none;
+}
+.ecjia-search-history li p{
 	border-bottom: 1px solid #eee;
-	overflow: hidden;
+	padding-bottom: .8em;
+}
+.ecjia-search-history li p.border-none{
+	border-bottom: none;
+}
+.ecjia-search-history ul{
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
 	background: #fff;
+}
+.ecjia-no-record{
+	background-image: url(../images/no_search_record.png);
 }
 .ecjia-row-nav.index{
 	padding: 0 .5em;
@@ -2595,11 +2609,14 @@ footer{
 
 
 /*========================  商品详情 ===========================*/
- .ecjia-goods-detail-header-title {
+.ecjia-goods-detail-header-title {
     bottom: 0;
     font-size: 1.4em;
-    position: relative;
-    top: -1.9em;
+ 	background:#47aa4d none repeat scroll 0 0;
+ 	height:2.5em;
+ 	line-height:2.65em;
+ 	position:fixed;
+ 	text-align:center;
 }
 .ecjia-goods-detail-header-title ul{
 	position: absolute;
