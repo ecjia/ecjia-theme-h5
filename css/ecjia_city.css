@@ -13,6 +13,9 @@ html, body {
 a.ecjia-color-green {
 	color:#47AA4D;
 }
+.ecjia-color-999 {
+	color:#999;
+}
 .width-25-p {width:25%}
 .width-75-p {width:75%}
 .ecjia .ecjia-margin-t-n {
@@ -2832,6 +2835,9 @@ footer{
     background: #ffffff;
     overflow: hidden;
 }
+.ecjia-order-list .ecjia-order-item:first-child{
+	margin:0;
+}
 .ecjia-order-list .ecjia-order-item .flow-goods-list{
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
@@ -2889,7 +2895,6 @@ footer{
 /*========================  订单详情 ===========================*/
 .ecjia-order-detail .ecjia-checkout{
     border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
 }
 .ecjia-order-detail .ecjia-checkout .flow-goods-list{
     background: none;
@@ -2930,7 +2935,8 @@ footer{
     margin-right: 0;
 }
 .ecjia-order-detail .order-log-list{
-    padding: 0 1em;
+    padding: 1em;
+	border-top: 1px solid #eee;
     overflow: hidden;
 }
 .order-log-item {
