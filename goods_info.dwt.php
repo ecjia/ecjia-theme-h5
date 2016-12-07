@@ -20,8 +20,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 <div class="ecjia-goods-detail-header-title">
 	<ul>
-		<li><a class="nopjax goods-tab tab1" href="#goods-info-one" role="tab" data-toggle="tab" data-type="1">商品</a></li>
-		<li><a class="nopjax goods-tab tab2" href="#goods-info-two" role="tab" data-toggle="tab" data-type="2">详情</a></li>
+		<li><a class="goods-tab tab1" href="javascript:;" data-type="1">商品</a></li>
+		<li><a class="goods-tab tab2" href="javascript:;" data-type="2">详情</a></li>
 	</ul>
 </div>
 
