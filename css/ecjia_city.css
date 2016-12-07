@@ -1387,10 +1387,9 @@ footer{
 /*定位地址、选择的收货地址 */
 .flow-address {
     height:5em;
-    padding: .5em 1em;
+    padding: 1em 1em .5em;
 	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
 	background-size: 70%;
-	margin-top: 3.5em;
 }
 .flow-address label{
 	width: 20%;
@@ -2938,8 +2937,9 @@ footer{
     transform: translateY(-50%);
     padding-left: 6em;
 }
-.goods-list .goods-img-more {padding-top: 1em;}
-.goods-list .goods-img-more i {font-size:2em}
+.goods-list .goods-img-more {    height: 5em;
+    line-height: 5em;}
+.goods-list .goods-img-more i {font-size:2em;top: 0.1em;}
 /*========================  订单详情 ===========================*/
 .ecjia-order-detail .ecjia-checkout{
     border-top: 1px solid #eee;
