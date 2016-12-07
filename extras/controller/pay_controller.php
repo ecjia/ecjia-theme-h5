@@ -91,6 +91,14 @@ class pay_controller {
         ecjia_front::$controller->display('pay.dwt');
     }
     
+    public static function notify($mag) {
+       
+        ecjia_front::$controller->assign('mag', $mag);
+        ecjia_front::$controller->assign('theme_url', str_replace('notify/', '', RC_Theme::get_template_directory_uri() . '/'));
+        
+        ecjia_front::$controller->display('pay_notify.dwt');
+    }
+    
 }
 
 // end

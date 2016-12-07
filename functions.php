@@ -95,6 +95,7 @@ RC_Hook::add_action('favourable/index/goods_list', array('favourable_controller'
 RC_Loader::load_theme('extras/controller/user_controller.php');
 RC_Hook::add_action('user/index/init', array('user_controller', 'init'));
 RC_Hook::add_action('user/index/shop_detail', array('user_controller', 'shop_detail'));
+RC_Hook::add_action('user/index/spread', array('user_controller', 'spread'));
 // RC_Hook::add_action('user/index/validate_email', array('user_controller', 'validate_email'));
 // RC_Hook::add_action('user/index/get_password_question', array('user_controller', 'get_password_question'));
 // RC_Hook::add_action('user/index/question_get_password', array('user_controller', 'question_get_password'));
@@ -104,6 +105,7 @@ RC_Hook::add_action('user/index/shop_detail', array('user_controller', 'shop_det
 // RC_Hook::add_action('user/index/clear_history', array('user_controller', 'clear_history'));
 // RC_Hook::add_action('user/index/send_captcha', array('user_controller', 'send_captcha'));
 // RC_Hook::add_action('user/index/act_register', array('user_controller', 'phone_register'));
+
 
 //登陆注册
 RC_Loader::load_theme('extras/controller/user_privilege_controller.php');
@@ -222,7 +224,6 @@ RC_Hook::add_action('class_user_front',      function () {RC_Loader::load_theme(
  */
 RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
 
-
     if (ROUTE_M == 'user') {
         new user_front();
     }
@@ -242,5 +243,10 @@ ecjia_open::macro('goods_detail', function($querys) {
 ecjia_open::macro('seller', function($querys) {
 // 	return RC_Uri::url('goods/seller/store_list', array('cid' => $querys['category_id']));
 });
+
+//支付响应提示模板
+RC_Hook::add_filter('payment_respond_template', function($respond, $msg){
+    return pay_controller::notify($msg);
+}, 10, 2);
 
 
