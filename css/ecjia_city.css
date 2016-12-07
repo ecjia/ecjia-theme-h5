@@ -2460,11 +2460,14 @@ footer{
 
 
 /*========================  商品详情 ===========================*/
- .ecjia-goods-detail-header-title {
+.ecjia-goods-detail-header-title {
     bottom: 0;
     font-size: 1.4em;
-    position: relative;
-    top: -1.9em;
+ 	background:#47aa4d none repeat scroll 0 0;
+ 	height:2.5em;
+ 	line-height:2.65em;
+ 	position:fixed;
+ 	text-align:center;
 }
 .ecjia-goods-detail-header-title ul{
 	position: absolute;
