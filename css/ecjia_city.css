@@ -21,9 +21,7 @@ a.ecjia-color-green {
 .ecjia .ecjia-margin-t-n {
 	margin-top: 0;
 }
-.ecjia-list{
-	margin-top: .5em;
-}
+
 .ecjia-menu {
     background-image: url("../dist/images/menu.pink.png");
 }
@@ -2890,6 +2888,7 @@ footer{
 /*========================  订单详情 ===========================*/
 .ecjia-order-detail .ecjia-checkout{
     border-top: 1px solid #eee;
+	border-bottom: none;
 }
 .ecjia-order-detail .ecjia-checkout .flow-goods-list{
     background: none;
