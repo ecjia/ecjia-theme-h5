@@ -38,7 +38,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<div class="swiper-wrapper">
 					{if $goods_info.pictures}
 					<!--{foreach from=$goods_info.pictures item=picture}-->
-						<div class="swiper-slide">
+						<div class="swiper-slide" style="margin-top:3.5em;">
 							<img  src="{$picture.url}"/>
 						</div>
 					<!--{/foreach}-->
@@ -170,11 +170,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!--商品描述-->
 	<!-- Nav tabs -->
 	<ul class="ecjia-list ecjia-list-new ecjia-list-two ecjia-list-two-new ecjia-nav goods-desc-nav-new">
-		<li class="active">
-			<a class="nopjax a1" href="#one-info" role="tab" data-toggle="tab">图文详情</a>
+		<li class="active goods-desc-li-info one-li" data-id="1">
+			<a class="a1" href="javascript:;">图文详情</a>
 			<span class="goods-detail-title-border"></span>
 		</li>
-		<li style="border-left:none;"><a class="nopjax a2" href="#two-info" role="tab" data-toggle="tab">规格参数</a></li>
+		<li class="goods-desc-li-info two-li" style="border-left:none;" data-id="2"><a class="a2" href="javascript:;">规格参数</a></li>
 	</ul>
 	<!-- Tab panes -->
 	<div class="bd">

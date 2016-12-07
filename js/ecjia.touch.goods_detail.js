@@ -29,20 +29,20 @@
 					$('#goods-info-one').hide();
 				}
 			});
-//			$('.goods-desc-info').on('click', function (e) {
-//				var type = $(this).attr('data-id');
-//				if (type == 1) {
-//					$('#one').show();
-//					$('#two').hide();
-//					$('.one-li').addClass('active');
-//					$('.two-li').removeClass('active');
-//				} else {
-//					$('#two').show();
-//					$('#one').hide();
-//					$('.two-li').addClass('active');
-//					$('.one-li').removeClass('active');
-//				}
-//			});
+			$('.goods-desc-li-info').on('click', function (e) {
+				var type = $(this).attr('data-id');			
+				if (type == 1) {
+					$('#one-info').show();
+					$('#two-info').hide();
+					$('.one-li').addClass('active');
+					$('.two-li').removeClass('active');
+				} else {
+					$('#two-info').show();
+					$('#one-info').hide();
+					$('.two-li').addClass('active');
+					$('.one-li').removeClass('active');
+				}
+			});
         },
         promote_time : function() {
         	var serverTime = Math.round(new Date().getTime()/1000) * 1000; //服务器时间，毫秒数 
