@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 <!-- #EndLibraryItem -->
-<div class="ecjia-checkout">
+<div class="ecjia-checkout ecjia-padding-b">
 	<form id="theForm" name="theForm" action="{url path='flow/done'}" method="post">
 		<div class="flow-address ecjia-margin-b">
 			<label class="ecjiaf-fl">送至：</label>
@@ -37,6 +37,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<li class="goods-img-more">
 					<i class="icon iconfont">&#xe62e;</i>
 					<p class="ecjia-fz-small ecjiaf-ib">共{$total_goods_number}件</p>
+					<i class="icon iconfont icon-right">&#xe6aa;</i>
 				</li>
 				<!-- {break} -->
 				<!-- {/if} -->
@@ -107,7 +108,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</section>
 		<p class="ecjia-margin-t ecjia-margin-l ecjia-color-green">本订单由{$data.goods_list.0.seller_name}发货并提供售后服务</p>
 
-		<section class="ecjia-margin-t ecjia-margin-b" style="height:auto;overflow:hidden;">
+		<section class="ecjia-margin-t">
 			<input type="hidden" name="rec_id" value="{$rec_id}">
 			<input type="hidden" name="address_id" value="{$address_id}">
 			<input class="btn btn-info" name="submit" type="submit" value="提交订单"/>

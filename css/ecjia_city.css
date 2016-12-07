@@ -45,6 +45,9 @@ a.ecjia-color-green {
 	position: fixed;
 	margin-top: 0;
 }
+.ecjia-padding-b {
+	padding-bottom:1em
+}
 /*========================  首页 ===========================*/
 .ecjia-header {
     background: #47aa4d;
@@ -1537,9 +1540,12 @@ footer{
 .ecjia .ecjia-checkout .flow-goods-list .goods-item span.ecjia-icon-num{
     display:none;
 }
-.ecjia .ecjia-checkout .cart-order{
+ .ecjia-checkout .cart-order{
 	color: #ef3030;
 	float: right;
+}
+.ecjia-checkout .ecjia-color-green {
+	color: #47AA4D;
 }
 .ecjia-checkout .ecjia-list li {
 	border-bottom:none;
@@ -3067,7 +3073,8 @@ footer{
 }
 .goods-list .goods-img-more {    height: 5em;
     line-height: 5em;}
-.goods-list .goods-img-more i {font-size:2em;top: 0.1em;}
+.goods-list .goods-img-more i {font-size:1.8em;top: 0.1em;}
+.goods-list .goods-img-more .icon-right {font-size:1.2em;top: 0;}
 /*========================  订单详情 ===========================*/
 .ecjia-order-detail .ecjia-checkout{
     border-top: 1px solid #eee;
