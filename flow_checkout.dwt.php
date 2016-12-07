@@ -86,9 +86,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<section class="checklist">
 			<a href='{url path="cart/flow/bonus" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>{$lang.use_bonus}</span>
-				<span class="icon-font">无可用</span>
+				<span class="ecjia-tag">无可用</span>
 				<i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
+				<!-- <span class="ecjiaf-fr select_nav ecjia-truncate">xxx红包</span> -->
 			</a>
 		</section>
 		{/if}
@@ -96,9 +96,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<section class="checklist ecjia-margin-b">
 			<a href='{url path="cart/flow/integral" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>{$lang.use_integral}</span>
-				<span class="icon-font">{$data.your_integral}积分可用</span>
+				<span class="ecjia-tag">{$data.your_integral}积分可用</span>
 				<i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
+				<!-- <span class="ecjiaf-fr select_nav ecjia-truncate">33分</span> -->
 			</a>
 		</section>
 		{/if}
