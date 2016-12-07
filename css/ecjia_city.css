@@ -955,7 +955,6 @@ footer{
     display: none;
 }
 .store-add-cart i{
-    font-size: 1.7em;
     margin-right: .5em;
     padding: .3em;
     color: #fff;
@@ -1035,12 +1034,12 @@ footer{
 	top: 0;
     left: 45px;
     height: 1.2em;
-	width: 1.2em;
     line-height: .6em;
     overflow: hidden;
     background-color: #ff3434;
     font-size: .9em;
 	font-style: normal;
+	border-radius: 10px;
 }
 .store-add-cart.a4w .a4z {
     position: absolute;
@@ -2548,10 +2547,9 @@ footer{
     position: relative;
     right: 0;
     bottom: 0em;
-	margin-top:.5em;
 	float: right;
+	top: .3em;
 }
-
 .goods-price-new .ecjia-goods-plus-box span {
     float: left;
     text-indent: -99999px;
@@ -2561,39 +2559,38 @@ footer{
 	background-color: #FFF;
     -webkit-background-size: 400% 100%;
     background-size: 400% 100%;
-	height:1.7em;
-	width:2.4em;
+	height:1.3em;
+	width:2em;
     vertical-align: top;
     border: 0 none;
     background-origin: content-box;
     padding-bottom: .1em;
 }
 .ecjia-goods-plus-box span.reduce {
-    background-position: -3em 0;
+    background-position: -2em 0;
 	padding-left: .8em;
 }
 .ecjia-goods-plus-box span.add {
-    background-position: 0 0;
+    background-position: .2em 0;
     padding-right: .8em;
-	margin-bottom: .8em;
 }
 .ecjia-goods-plus-box label {
     float: left;
     color: #333333;
-    font-size: 1em;
+    font-size: .8em;
     padding: 0;
-    height: 2.4em;
     overflow: hidden;
     display: inline-block;
     text-align: center;
-    line-height: 1.5em;
+    line-height: 1.2em;
     vertical-align: top;
     -webkit-background-origin: content-box;
     background-origin: content-box;
     background-color: transparent;
     margin-top: 2px;
 	margin-bottom: 0;
-	padding-right:.5em;
+	padding-left:.3em;
+	padding-right:.3em;
 	font-weight: normal;
 }
 .market-goods-add-cart{
@@ -2630,7 +2627,7 @@ footer{
 	margin-right:.4em;
 }
 .goods-info .goods-info-property .goods-price-new{
-	padding:0.1em 0.5em 1em 0.5em;
+	padding:0.1em 0.5em .5em 0.5em;
 	color:#ff1919;
 }
 .goods-info .goods-price-new .ecjia-promote_price-span{
@@ -2701,7 +2698,6 @@ footer{
 	margin-top:5px;
 }
 .ecjia-favourable-goods-list{
-	padding-bottom:.5em;
 }
 .goods-info.ecjia-merchants-name span .style-store-name{
 	margin-top:5px;
@@ -2717,25 +2713,26 @@ footer{
 }
 .ecjia-favourable-goods-list .store-promotion li{
 	padding: 0;
-	margin-bottom:.5em;
-	margin-top:0.3em;
+	margin: 1em 0 .5em .7em;
+	font-weight: normal;
+	font-size: 1em;
 }
 .ecjia-favourable-goods-list .store-promotion .promotion-label{
 	color: #fff;
 	display:inline-block;
 	border:1px solid #FF1919;
 	border-radius:4px;
-	font-weight:500;
-	font-size: .6em;
 	background: #FF1919;
-	padding:0.1em 0.2 0.1em 0.1em;
+	padding: .1em .4em;
+	font-size: .8em;
 }
 .ecjia-favourable-goods-list .store-promotion .promotion-name{
-	font-weight:500;
-	font-size: .65em;
-	padding-left:.5em;
-	color: #333;
-	background:#fff;
+	padding-left: .2em;
+    color: #333;
+    background: #fff;
+    padding-top: .1em;
+    display: block;
+    float: right;
 }
 .may-like-literal{
 	height:50px;

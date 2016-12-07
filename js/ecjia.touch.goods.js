@@ -23,9 +23,10 @@
             	if ($this.hasClass('disabled')) {
             		return false;
             	}
-            	
             	var rec_id = $this.attr('rec_id');
             	var goods_id = $this.attr('goods_id');
+            	
+            	$('.box').children('span').addClass('disabled');
             	
             	//商品详情中添加商品到购物车逻辑
             	if ($this.hasClass('goods-add-cart')) {
@@ -36,7 +37,6 @@
             		show.removeClass('hide').children('label').html(val);
             		show.children().removeClass('hide');
             	} else {
-                	$('.box').children('span').addClass('disabled');
                 	if ($this.hasClass('a5v')) {
                 		$('.minicart-content').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
                 		var val = parseInt($this.prev().html()) + 1;
@@ -89,6 +89,7 @@
             		} else {
             			val = 1;
             		}
+            		$this.attr('data-num', val);
             	}
             	ecjia.touch.category.update_cart(rec_id, val, goods_id);
             });
@@ -126,7 +127,7 @@
             			var span_add = $('#goods_'+goods_id).siblings('span');
             			if (span_add.hasClass('goods-add-cart')) {
             				$('#goods_'+goods_id).children('span').addClass('hide');
-            				span_add.removeClass('hide');
+            				span_add.removeClass('hide').addClass('disabled');
             			}
             		} else {
             			$this.next().html(val);
@@ -145,7 +146,7 @@
                 		var span_add = $this.parent().siblings('span');
                 		if (span_add.hasClass('goods-add-cart')) {
                 			$this.parent().children('span').addClass('hide');
-            				span_add.removeClass('hide');
+            				span_add.removeClass('hide').addClass('disabled');
                     	}
                 	}
                 	show.html(val);
@@ -236,6 +237,7 @@
             	$('.la-ball-atom').remove();
             	$('[data-toggle="toggle_checkbox"]').removeClass('disabled');
             	$('.box').children('span').removeClass('disabled');
+            	$('.goods-add-cart').removeClass('disabled');
             });
         },
         

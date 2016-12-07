@@ -83,31 +83,31 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			                    </div>
 		                    </div>
 		                 </div>
-	                	<!-- {if $goods_info.favourable_list} -->
-	                	<div class="ecjia-favourable-goods-list">
-		                	<ul class="store-promotion">
-		                	<!-- {foreach from=$goods_info.favourable_list item=favour  name=foo} -->
-		                	<!-- {if $smarty.foreach.foo.index < 2 } -->
-								<li class="promotion">
-								<span class="promotion-label">{$favour.type_label}</span>
-								<span class="promotion-name">{$favour.name}</span>
-								</li>
-							 <!-- {/if} -->
-							<!-- {/foreach} -->
-							</ul>
-						</div>
-						<!-- {/if} -->
 	                <!--{else}-->
 	                {$goods_info.shop_price}
 	                <del>市场价：{$goods_info.market_price}</del>	
-	                	<span class="goods-add-cart market-goods-add-cart add-cart-a {if $rec_id}hide{/if}" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加入购物车</span>
-		                <div class="ecjia-goods-plus-box ecjia-market-plus-box {if !$rec_id}hide{/if} box" id="goods_{$goods_info.id}">
-		                     <span class="reduce show" data-toggle="remove-to-cart" rec_id="{$rec_id}">减</span>
-	                         <label>{if !$rec_id}0{else}{$num}{/if}</label>
-	                         <span class="add storeSearchCart" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
-	                    </div>
+                	<span class="goods-add-cart market-goods-add-cart add-cart-a {if $rec_id}hide{/if}" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加入购物车</span>
+	                <div class="ecjia-goods-plus-box ecjia-market-plus-box {if !$rec_id}hide{/if} box" id="goods_{$goods_info.id}">
+	                     <span class="reduce show" data-toggle="remove-to-cart" rec_id="{$rec_id}">减</span>
+                         <label>{if !$rec_id}0{else}{$num}{/if}</label>
+                         <span class="add storeSearchCart" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
+                    </div>
 	                <!-- {/if} -->
 	            </div>
+	            <!-- {if $goods_info.favourable_list} -->
+                	<div class="ecjia-favourable-goods-list">
+	                	<ul class="store-promotion">
+	                	<!-- {foreach from=$goods_info.favourable_list item=favour  name=foo} -->
+	                	<!-- {if $smarty.foreach.foo.index < 2 } -->
+							<li class="promotion">
+							<span class="promotion-label">{$favour.type_label}</span>
+							<span class="promotion-name">{$favour.name}</span>
+							</li>
+						 <!-- {/if} -->
+						<!-- {/foreach} -->
+						</ul>
+					</div>
+				<!-- {/if} -->
 	            <input type="hidden" value="{RC_Uri::url('goods/category/update_cart')}" name="update_cart_url" />
 				<input type="hidden" value="{$goods_info.seller_id}" name="store_id" />
 	        </div>
