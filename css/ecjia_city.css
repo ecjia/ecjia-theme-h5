@@ -2012,6 +2012,51 @@ footer{
 	margin-top: 2em;
 	font-size: 1.2em;
 }
+.ecjia-account .user-img{
+	margin: 5% auto 5% auto;
+    background: #F7F7F7;
+    border: none;
+    overflow: hidden;
+    padding: 1em 31% 0 35%;
+    position: relative;
+}
+.ecjia-account .user-img img{
+	width: 4em;
+	height: 4em;
+    border-radius: 100%;
+    background: #47aa4d;
+    margin-right: 1em;
+}
+.ecjia-account .user-name {
+	float: right;
+    line-height: 3.5em;
+    font-size: 1.2em;
+    position: relative;
+}
+.ecjia-account .record-money {
+	font-size: 2em;
+	text-align: center;
+    position: relative;
+}
+.ecjia-account .record-status {
+	font-size: 1.5em;
+	text-align: center;
+    position: relative;
+    color: #BFBFBF;
+}
+.ecjia-account .record-info {
+	margin: .5em 1em .5em 1em;
+	position: relative;
+	font-size: 1.2em;
+	color: #BFBFBF;
+}
+.ecjia-account .record-info .record-key {
+	margin-bottom: .5em;
+}
+.ecjia-account .record-info .record-val {
+	margin-bottom: .5em;
+	float: right;
+}
 .ecjia-account .account-bonus span i {
 	font-size: 1.5em;
 }

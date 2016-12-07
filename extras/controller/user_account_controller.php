@@ -282,14 +282,14 @@ class user_account_controller {
     /**
      * 充值提现列表
      */
-    public static function cash_list() {
+    public static function record() {
         $_SESSION['status'] = !empty($_GET['status']) ? $_GET['status'] : '';
         ecjia_front::$controller->assign('hideinfo', '123');
 //     	ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
-    	ecjia_front::$controller->display('user_cash_list.dwt');
+    	ecjia_front::$controller->display('user_record.dwt');
     }
     
-    public static function ajax_cash_list() {
+    public static function ajax_record() {
     	$type = htmlspecialchars($_SESSION['status']);
     	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
     	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
@@ -318,11 +318,27 @@ class user_account_controller {
     	ecjia_front::$controller->assign('now_day', $now_day);
     	ecjia_front::$controller->assign('sur_amount', $arr);
     	ecjia_front::$controller->assign_lang();
-    	$sayList = ecjia_front::$controller->fetch('user_cash_list.dwt');
+    	$sayList = ecjia_front::$controller->fetch('user_record.dwt');
     	ecjia_front::$controller->assign('hideinfo', '123');
     	ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page'));
     }
 
+    /**
+     * 充值提现详情
+     */
+    public static function record_info() {
+       
+        $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
+        ecjia_front::$controller->assign('user_img', $user_img);
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('page' => $page, 'count' => $limit,'type' => $type))->send()->getBody();
+        $data = json_decode($data,true);
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        ecjia_front::$controller->assign('user', $user);
+        ecjia_front::$controller->assign('sur_amount', $data['data'][5]);
+        $_SESSION['status'] = !empty($_GET['status']) ? $_GET['status'] : '';
+        ecjia_front::$controller->assign('hideinfo', '123');
+        ecjia_front::$controller->display('user_record_info.dwt');
+    }
 }
 
 // end
