@@ -16,13 +16,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
-<div class="ecjia-goods-detail-header-title">
+<div class="ecjia-goods-detail-header-title ecjia-header-index" style="background:#47aa4d none repeat scroll 0 0;">
 	<ul>
 		<li><a class="goods-tab tab1" href="javascript:;" data-type="1">商品</a></li>
 		<li><a class="goods-tab tab2" href="javascript:;" data-type="2">详情</a></li>
 	</ul>
+</div>
+<div class="header-title-fixed">
 </div>
 
 <!-- 切换商品页面start -->
@@ -38,7 +38,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<div class="swiper-wrapper">
 					{if $goods_info.pictures}
 					<!--{foreach from=$goods_info.pictures item=picture}-->
-						<div class="swiper-slide">
+						<div class="swiper-slide" style="margin-top:3.5em;">
 							<img  src="{$picture.url}"/>
 						</div>
 					<!--{/foreach}-->
@@ -75,22 +75,22 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			                	</div>
 			                </div>
 			                <div class="cart-plus-right">
-			                	<span class="goods-add-cart add-cart-a {if $rec_id}hide{/if}" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加入购物车</span>
-			                	<div class="ecjia-goods-plus-box {if !$rec_id}hide{/if} box" id="goods_{$goods_info.id}">
-			                		<span class="reduce" data-toggle="remove-to-cart" rec_id="{$rec_id}">减</span>
-    								<label>{if !$rec_id}0{else}{$num}{/if}</label>
-									<span class="add storeSearchCart" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
-			                    </div>
+			                	<span class="goods-add-cart add-cart-a {if $rec_id}hide{/if}" data-toggle="add-to-cart" goods_id="{$goods_info.id}">加入购物车</span>
+                                <div class="ecjia-goods-plus-box {if !$rec_id}hide{/if} box" id="goods_{$goods_info.id}">
+                                    <span class="reduce" data-toggle="remove-to-cart" rec_id="{$rec_id}">减</span>
+                                    <label>{if !$rec_id}0{else}{$num}{/if}</label>
+                                    <span class="add storeSearchCart" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
+                                </div>
 		                    </div>
 		                 </div>
 	                <!--{else}-->
 	                {$goods_info.shop_price}
 	                <del>市场价：{$goods_info.market_price}</del>	
                 	<span class="goods-add-cart market-goods-add-cart add-cart-a {if $rec_id}hide{/if}" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加入购物车</span>
-	                <div class="ecjia-goods-plus-box ecjia-market-plus-box {if !$rec_id}hide{/if} box" id="goods_{$goods_info.id}">
-	                     <span class="reduce show" data-toggle="remove-to-cart" rec_id="{$rec_id}">减</span>
-                         <label>{if !$rec_id}0{else}{$num}{/if}</label>
-                         <span class="add storeSearchCart" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
+              		<div class="ecjia-goods-plus-box ecjia-market-plus-box {if !$rec_id}hide{/if} box" id="goods_{$goods_info.id}">
+              			<span class="reduce show" data-toggle="remove-to-cart" rec_id="{$rec_id}">减</span>
+                     	<label>{if !$rec_id}0{else}{$num}{/if}</label>
+              			<span class="add storeSearchCart" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
                     </div>
 	                <!-- {/if} -->
 	            </div>
@@ -160,19 +160,19 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 
 <!-- 切换详情页面start -->
-<div class="goods-desc-info active" id="goods-info-two">
+<div class="goods-desc-info active" id="goods-info-two" style="margin-top:3.5em;">
 	<!--商品描述-->
 	<!-- Nav tabs -->
 	<ul class="ecjia-list ecjia-list-new ecjia-list-two ecjia-list-two-new ecjia-nav goods-desc-nav-new">
-		<li class="active">
-			<a class="nopjax a1" href="#one" role="tab" data-toggle="tab">图文详情</a>
+		<li class="active goods-desc-li-info one-li" data-id="1">
+			<a class="a1" href="javascript:;">图文详情</a>
 			<span class="goods-detail-title-border"></span>
 		</li>
-		<li style="border-left:none;"><a class="nopjax a2" href="#two" role="tab" data-toggle="tab">规格参数</a></li>
+		<li class="goods-desc-li-info two-li" style="border-left:none;" data-id="2"><a class="a2" href="javascript:;">规格参数</a></li>
 	</ul>
 	<!-- Tab panes -->
 	<div class="bd">
-		<div class="goods-describe ecjia-margin-b active" id="one">
+		<div class="goods-describe ecjia-margin-b active" id="one-info">
 			<!-- {if $goods_desc} -->
 			{$goods_desc}
 			<!-- {else} -->
@@ -181,7 +181,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 			<!-- {/if} -->
 		</div>
-		<div class="goods-describe goods-describe-new ecjia-margin-b" id="two" style="padding:0 0 0 17px;">
+		<div class="goods-describe goods-describe-new ecjia-margin-b" id="two-info" style="padding:0 0 0 17px;">
 		<!-- {if $goods_info.properties} -->
 			<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#dddddd">
 				<!-- {foreach from=$goods_info.properties item=property_group} -->
@@ -201,89 +201,88 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 </div>
 <!-- 切换详情页面end -->
-
 <div class="store-add-cart a4w">
-	<div class="a52"></div>
-	<a href="javascript:void 0;" class="a4x {if $real_count.goods_number}light{else}disabled{/if} outcartcontent show show_cart" show="false">
-		{if $real_count.goods_number}
-		<i class="a4y">
-		{$real_count.goods_number}
-		</i>
-		{/if}
-	</a>
-	<div class="a4z" style="transform: translateX(0px);">
-		{if !$real_count.goods_number}
-			<div class="a50">购物车是空的</div>
-		{else}
-		<div>
-			{$count.goods_price}{if $count.discount neq 0}<label>(已减{$count.discount})</label>{/if}
-		</div>
-		{/if}
-	</div>
-	<a class="a51 {if !$count.goods_number}disabled{/if}" href="javascript:void 0;">去结算</a>
-	<div class="minicart-content" style="transform: translateY(0px); display: block;">
-		<a href="javascript:void 0;" class="a4x {if $count.goods_number}light{else}disabled{/if} incartcontent show_cart" show="false">
-			{if $real_count.goods_number}
-			<i class="a4y">
-			{$real_count.goods_number}
-			</i>
-			{/if}
-		</a>
-		<i class="a57"></i>
-		<div class="a58 ">
-			<span class="a69 a6a {if $count.check_all}checked{/if}" data-toggle="toggle_checkbox" data-children=".checkbox" id="checkall">全选</span>
-			<p class="a6c">(已选{$count.goods_number}件)</p>
-			<a href="javascript:void 0;" class="a59" data-toggle="deleteall" data-url="{RC_Uri::url('goods/category/update_cart')}">清空购物车</a>
-		</div>
-		
-		<div class="a5b" style="max-height: 21em;">
-			<div class="a5l single">
-				{if $goods_info.favourable_list}
-				<ul class="store-promotion" id="store-promotion">
-					<!-- {foreach from=$goods_info.favourable_list item=list} -->
-					<li class="promotion">
-						<span class="promotion-label">{$list.type_label}</span>
-						<span class="promotion-name">{$list.name}</span>
-					</li>
-					<!-- {/foreach} -->
-				</ul>
-				{/if}
-				<ul class="minicart-goods-list single">
-					<!-- {foreach from=$cart_list item=cart} -->
-					<li class="a5n single {if $cart.is_disabled eq 1}disabled{/if}">
-						<span class="a69 a5o {if $cart.is_checked}checked{/if} checkbox {if $cart.is_disabled eq 1}disabled{/if}" data-toggle="toggle_checkbox" rec_id="{$cart.rec_id}"></span>
-						<table class="a5s">
-							<tbody>
-								<tr>
-									<td style="width:75px; height:75px">
-										<img class="a7g" src="{$cart.img.small}">
-										<div class="product_empty">
-										{if $cart.is_disabled eq 1}无货{/if}
-										</div>
-									</td>
-									<td>
-										<div class="a7j">{$cart.goods_name}</div> 
-										<span class="a7c">{$cart.formated_goods_price}</span>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<div class="box" id="goods_cart_{$cart.goods_id}">
-							<span class="a5u reduce {if $cart.is_disabled eq 1}disabled{/if}" data-toggle="remove-to-cart" rec_id="{$cart.rec_id}"></span>
-							<lable class="a5x">{$cart.goods_number}</lable>
-							<span class="a5v {if $cart.is_disabled eq 1}disabled{/if}" data-toggle="add-to-cart" rec_id="{$cart.rec_id}" goods_id="{$cart.goods_id}"></span>
-						</div>
-					</li>
-					<input type="hidden" name="rec_id" value="{$cart.rec_id}" />
-					<!-- {/foreach} -->
-				</ul>
-				<div class="a5m single"></div>
-			</div>
-		</div>
-		<div style="height:50px;"></div>
-	</div>
-	<!-- 遮罩层 -->
-	<div class="a53" style="display: none;"></div>
+    <div class="a52"></div>
+    <a href="javascript:void 0;" class="a4x {if $real_count.goods_number}light{else}disabled{/if} outcartcontent show show_cart" show="false">
+        {if $real_count.goods_number}
+        <i class="a4y">
+        {$real_count.goods_number}
+        </i>
+        {/if}
+    </a>
+    <div class="a4z" style="transform: translateX(0px);">
+        {if !$real_count.goods_number}
+            <div class="a50">购物车是空的</div>
+        {else}
+        <div>
+            {$count.goods_price}{if $count.discount neq 0}<label>(已减{$count.discount})</label>{/if}
+        </div>
+        {/if}
+    </div>
+    <a class="a51 {if !$count.goods_number}disabled{/if}" href="javascript:void 0;">去结算</a>
+    <div class="minicart-content" style="transform: translateY(0px); display: block;">
+        <a href="javascript:void 0;" class="a4x {if $count.goods_number}light{else}disabled{/if} incartcontent show_cart" show="false">
+            {if $real_count.goods_number}
+            <i class="a4y">
+            {$real_count.goods_number}
+            </i>
+            {/if}
+        </a>
+        <i class="a57"></i>
+        <div class="a58 ">
+            <span class="a69 a6a {if $count.check_all}checked{/if}" data-toggle="toggle_checkbox" data-children=".checkbox" id="checkall">全选</span>
+            <p class="a6c">(已选{$count.goods_number}件)</p>
+            <a href="javascript:void 0;" class="a59" data-toggle="deleteall" data-url="{RC_Uri::url('goods/category/update_cart')}">清空购物车</a>
+        </div>
+        
+        <div class="a5b" style="max-height: 21em;">
+            <div class="a5l single">
+                {if $goods_info.favourable_list}
+                <ul class="store-promotion" id="store-promotion">
+                    <!-- {foreach from=$goods_info.favourable_list item=list} -->
+                    <li class="promotion">
+                        <span class="promotion-label">{$list.type_label}</span>
+                        <span class="promotion-name">{$list.name}</span>
+                    </li>
+                    <!-- {/foreach} -->
+                </ul>
+                {/if}
+                <ul class="minicart-goods-list single">
+                    <!-- {foreach from=$cart_list item=cart} -->
+                    <li class="a5n single {if $cart.is_disabled eq 1}disabled{/if}">
+                        <span class="a69 a5o {if $cart.is_checked}checked{/if} checkbox {if $cart.is_disabled eq 1}disabled{/if}" data-toggle="toggle_checkbox" rec_id="{$cart.rec_id}"></span>
+                        <table class="a5s">
+                            <tbody>
+                                <tr>
+                                    <td style="width:75px; height:75px">
+                                        <img class="a7g" src="{$cart.img.small}">
+                                        <div class="product_empty">
+                                        {if $cart.is_disabled eq 1}无货{/if}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="a7j">{$cart.goods_name}</div> 
+                                        <span class="a7c">{$cart.formated_goods_price}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="box" id="goods_cart_{$cart.goods_id}">
+                            <span class="a5u reduce {if $cart.is_disabled eq 1}disabled{/if}" data-toggle="remove-to-cart" rec_id="{$cart.rec_id}"></span>
+                            <lable class="a5x">{$cart.goods_number}</lable>
+                            <span class="a5v {if $cart.is_disabled eq 1}disabled{/if}" data-toggle="add-to-cart" rec_id="{$cart.rec_id}" goods_id="{$cart.goods_id}"></span>
+                        </div>
+                    </li>
+                    <input type="hidden" name="rec_id" value="{$cart.rec_id}" />
+                    <!-- {/foreach} -->
+                </ul>
+                <div class="a5m single"></div>
+            </div>
+        </div>
+        <div style="height:50px;"></div>
+    </div>
+    <!-- 遮罩层 -->
+    <div class="a53" style="display: none;"></div>
 </div>
 <!-- {/block} -->
 

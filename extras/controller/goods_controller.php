@@ -404,7 +404,11 @@ class goods_controller {
     				RC_Cache::app_cache_set($merchant_goods_key, $data, 'goods', 60*24);//24小时缓存
     			}
     			$data = json_decode($data, true);
-    			$arr_list = $data['data'];
+    			if ($data['status']['succeed'] == 1) {
+    				$arr_list = $data['data'];
+    			} else {
+    				$arr_list = $data['data']['data'];
+    			}
     			//购物车商品
     			$token = ecjia_touch_user::singleton()->getToken();
     			$paramater = array(
@@ -417,6 +421,7 @@ class goods_controller {
     			$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($paramater)->run();
     			 
     			$goods_cart_list = array();
+    			$cart_list['cart_list'][0]['total']['check_all'] = true;
     			if (!empty($cart_list['cart_list'][0]['goods_list'])) {
     				foreach ($cart_list['cart_list'][0]['goods_list'] as $k => $v) {
     					if (!empty($v['goods_number'])) {
@@ -478,7 +483,6 @@ class goods_controller {
     				user_function::insert_search($keywords, $store_id);//记录搜索
     			}
     		}
-    		
     		ecjia_front::$controller->assign('store_id', $store_id);
     		ecjia_front::$controller->assign('keywords', $keywords);
     	} else {
@@ -503,6 +507,7 @@ class goods_controller {
     	
     	ecjia_front::$controller->assign('is_last', $data['is_last']);
     	ecjia_front::$controller->assign('data', $arr_list);
+    	ecjia_front::$controller->assign('count_search', count($arr_list));
     	
     	if ($type == 'ajax_get') {
     		ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $say_list, 'is_last' => $data['is_last']));

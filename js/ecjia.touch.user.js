@@ -76,24 +76,28 @@
 				e.preventDefault();
 				var url = $(this).attr('data-url')+'&mobile=' + $("input[name='mobile']").val();
 				$.get(url, function (data) {
-				    	if (data.state == 'success') {
+				    if (data.state == 'success') {
 					  　    	 curCount = count;
 					     $("#mobile").attr("readonly", "true");
 					     $("#get_code").attr("disabled", "true");
 					     $("#get_code").val("重新发送" + curCount + "(s)");
+					     $("#get_code").attr("class", "btn btn-org login-btn");
 					     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-					}
+				    }
 				    ecjia.touch.showmessage(data);
 			    }, 'json');
 			});
-			
+			  
 		    //timer处理函数
 		    function SetRemainTime() {
+		    	
 		        if (curCount == 0) {     
 		            window.clearInterval(InterValObj);		//停止计时器
 		            $("#mobile").removeAttr("readonly");	//启用按钮
 		            $("#get_code").removeAttr("disabled");	//启用按钮
 		            $("#get_code").val("重新发送验证码");
+		            $("#get_code").attr("class", "btn btn-info login-btn");
+		            
 		        } else {
 		            curCount--;
 		            $("#get_code").attr("disabled", "true");

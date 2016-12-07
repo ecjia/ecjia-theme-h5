@@ -144,6 +144,10 @@ a.ecjia-color-green {
     color: #888;
     text-align: center;
 }
+.search-no-pro .ecjia-nolist img{
+	width: 10em;
+    height: 10em;
+}
 .ecjia-search-history {
 	margin-top: 3.5em;
 	background: #f4f4f4;
@@ -179,7 +183,20 @@ a.ecjia-color-green {
 	background: #fff;
 }
 .ecjia-no-record{
-	background-image: url(../images/no_search_record.png);
+   	position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding-top: 330px;
+    font-size: 16px;
+	color: #aaa;
+    line-height: 26px;
+    text-align: center;
+    background: #fff url(../images/no_search_record.png) center 170px no-repeat;
+	margin: 0 auto;
+	max-width: 640px;
+	background-size: 10em;
 }
 .ecjia-row-nav.index{
 	padding: 0 .5em;
@@ -1362,8 +1379,7 @@ footer{
     height: 40px;
     overflow: hidden;
     text-align: center;
-    font-size: 16px;
-	font-style: normal;
+    font-size: 1em;
 	font-weight: normal;
 }
 .store-add-cart.a4w .a5v {
@@ -2409,6 +2425,7 @@ footer{
 	float: left;
     text-align: left;
 	padding-left: .8em;
+	position: relative;
 }
 .ecjia-bonus.ecjia-list-two .user-bonus-info .color-3a{
 	color: #aaa;
@@ -2418,6 +2435,26 @@ footer{
 }
 .ecjia-bonus.ecjia-list-two .user-bonus-info .type-r p.type-name{
 	font-size: 1.2em;
+}
+.ecjia-bonus.ecjia-list-two .list-l-size .user-bonus-info .img-is-used {
+	width: 100px;
+	height: 80px;
+    right: 12%;
+	position: absolute;
+    background: url('../images/wallet/icon-used3x.png') no-repeat;
+    background-size: 100%;
+	z-index: 99;
+	float: right;
+}
+.ecjia-bonus.ecjia-list-two .list-l-size .user-bonus-info .img-expired {
+	width: 100px;
+	height: 80px;
+    right: 12%;
+	position: absolute;
+    background: url('../images/wallet/icon-overdue3x.png') no-repeat;
+    background-size: 100%;
+	z-index: 99;
+	float: right;
 }
 
 /*========================  登录 ===========================*/
@@ -2600,11 +2637,14 @@ footer{
 
 
 /*========================  商品详情 ===========================*/
- .ecjia-goods-detail-header-title {
+.ecjia-goods-detail-header-title {
     bottom: 0;
     font-size: 1.4em;
-    position: relative;
-    top: -1.9em;
+ 	background:#47aa4d none repeat scroll 0 0;
+ 	height:2.5em;
+ 	line-height:2.65em;
+ 	position:fixed;
+ 	text-align:center;
 }
 .ecjia-goods-detail-header-title ul{
 	position: absolute;
@@ -3184,7 +3224,6 @@ footer{
 .ecjia-store-goods-list{
     background:#FFFFFF;
     margin-bottom: 48px;
-    padding-bottom: 7em;
 }
 .ecjia-store-list {
     background:#EFEFF4;
@@ -3459,7 +3498,6 @@ footer{
 }
 .ecjia-store-list .box label {
     float: left;
-    color: #333333;
     font-size: 1em;
     padding: 0;
     width: 2em;
@@ -3474,6 +3512,7 @@ footer{
     background-color: transparent;
     margin-top: .3em;
 	margin-bottom: 0;
+	font-weight: normal;
 }
 
 /*========================  所有分类 ===========================*/
