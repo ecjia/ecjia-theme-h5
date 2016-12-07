@@ -2940,7 +2940,10 @@ footer{
     border-radius: 10px;
     padding: 1em .5em;
 }
-.order-log-item:nth-child(2) {
+.order-log-item:nth-child(1) {
+	color:inherit;
+}
+.order-log-item {
 	color:#999;
 }
 .order-log-item .order-log{
