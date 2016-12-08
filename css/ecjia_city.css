@@ -2628,7 +2628,8 @@ footer{
 .ecjia-bonus li.red-bottom {
     border-bottom: 1px solid #FF1919;
 }
-.ecjia-bonus li a.red-font {
+.ecjia-bonus li a.red-font,
+.ecjia-user-head .ecjia-list li>a .icon-price {
 	color: #FF1919;
 }
 .ecjia-bonus .three-btn{
@@ -2719,6 +2720,11 @@ footer{
 	margin: -10% 0 0 -90px;
     background: url('../images/wallet/nobonus_180.png') no-repeat;
     background-size: 100%;
+}
+.ecjia-spread .ecjia-margin-b>a img {
+    position: relative;
+    width: 25.3125em;	
+    height: 9.375em;
 }
 
 /*========================  登录 ===========================*/
