@@ -179,6 +179,7 @@ a.ecjia-color-green {
 	max-width: 66%;
     position: relative;
     display: inline-block;
+	z-index:2;
 }
 .ecjia-address img{
     width: 15px;
@@ -186,6 +187,7 @@ a.ecjia-color-green {
 }
 .ecjia-address .address-text {
 	margin:0px 5px 0px 5px;
+	color: #ffffff;
 }
 
 /*搜索*/
@@ -2136,7 +2138,60 @@ footer{
 	padding:1em .5em .5em;
 	line-height: 2em;
 }
-/*========================  地址列表 ===========================*/
+/*========================  城市选择 ===========================*/
+.cityall {
+	background: #f4f4f4 none repeat scroll 0 0;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+}
+.select-city {
+    color: #b0b0b0;
+    font-size: 14px;
+    line-height: 40px;
+    margin: 0 10px;
+    position: relative;
+    text-align: center;
+}
+.select-city::before {
+    border-top: 1px dashed #b0b0b0;
+    content: "";
+    height: 0;
+    left: 0;
+    margin-top: -1px;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+}
+.select-city span {
+    background-color: #f4f4f4;
+    display: inline-block;
+    padding: 0 6px;
+    position: relative;
+    z-index: 1;
+}
+.city {
+    box-sizing: border-box;
+    padding: 10px 62px 10px 10px;
+    width: 125%;
+}
+.city li {
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid #dddddd;
+    color: #333333;
+    display: inline-block;
+    float: left;
+    margin: 5px 20px 5px 20px;
+    padding: 10px 0;
+    text-align: center;
+    width: 20%;
+}
+.city li.curr {
+    background: #f3f3f3 none repeat scroll 0 0;
+    border: 1px solid #d0d0d0;
+}
+
+
 
 /*========================  账户余额 ===========================*/
 
