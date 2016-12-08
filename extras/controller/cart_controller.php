@@ -627,6 +627,9 @@ class cart_controller {
             $rec_id = empty($_POST['rec_id']) ? 0 : trim($_POST['rec_id']);
             $pay_id = empty($_POST['pay_id']) ? 0 : intval($_POST['pay_id']);
             $shipping_id = empty($_POST['shipping_id']) ? 0 : intval($_POST['shipping_id']);
+            $inv_payee = empty($_POST['inv_payee']) ? '' : trim($_POST['inv_payee']);
+            $inv_content = empty($_POST['inv_content']) ? '' : trim($_POST['inv_content']);
+            $inv_type = empty($_POST['inv_type']) ? '' : trim($_POST['inv_type']);
             $postscript = empty($_POST['note']) ? '' : trim($_POST['note']);
 //             RC_Logger::getlogger('debug')->info($_POST);
             if(empty($rec_id)) {
@@ -642,6 +645,9 @@ class cart_controller {
                 'rec_id' => $rec_id,
                 'shipping_id' => $shipping_id,
                 'pay_id' => $pay_id,
+                'inv_payee'		=> $inv_payee,
+                'inv_type'		=> $inv_type,
+    			'inv_content'	=> $inv_content,
                 'postscript' => $postscript,
                 'location' => array(
                     'longitude' => '121.41709899974',
