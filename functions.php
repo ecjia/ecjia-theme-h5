@@ -23,8 +23,7 @@ RC_Hook::add_action('goods/category/store_goods', array('goods_controller', 'sto
 RC_Hook::add_action('goods/category/ajax_category_goods', array('goods_controller', 'ajax_category_goods'));//获取分类商品
 RC_Hook::add_action('goods/category/update_cart', array('goods_controller', 'update_cart'));//更新购物车中商品
 
-RC_Hook::add_action('goods/index/init', array('goods_controller', 'goods_index'));//商品详情页
-RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));
+RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));//商品详情页
 RC_Hook::add_action('goods/index/promotion', array('goods_controller', 'goods_promotion'));
 RC_Hook::add_action('goods/index/ajax_goods', array('goods_controller', 'ajax_goods'));
 RC_Hook::add_action('goods/index/new', array('goods_controller', 'goods_new'));

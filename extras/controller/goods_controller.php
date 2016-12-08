@@ -133,8 +133,11 @@ class goods_controller {
         // return ecjia_front::$controller->showmessage('成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list'=>$list, 'is_last'=>$goodslist['is_last']));
     }
 
-    public static function goods_index() {
-    	$goods_id = isset($_GET['id']) ? $_GET['id'] : 0;
+    /**
+     * 商品详情
+     */
+    public static function goods_info() {
+    	$goods_id = isset($_GET['goods_id']) ? $_GET['goods_id'] : 0;
 	    $rec_type = isset($_GET['rec_type']) ? $_GET['rec_type'] : 0;
 	    $object_id= isset($_GET['object_id']) ? $_GET['object_id'] : 0;
 	    //$goods_id = 412;
@@ -149,7 +152,6 @@ class goods_controller {
 	    if (!empty($goods_info['promote_end_date'])) {
 	    	$goods_info['promote_end_time'] = RC_Time::local_strtotime($goods_info['promote_end_date']);
 	    }
-	    
 		/*商品所属店铺购物车列表*/
 	   	$token = ecjia_touch_user::singleton()->getToken();
 	   	$options = array(
@@ -205,23 +207,6 @@ class goods_controller {
 	    ecjia_front::$controller->assign('count', $cart_goods_list['cart_list'][0]['total']);
 	    ecjia_front::$controller->assign('real_count', $cart_goods_list['total']);
 	    
-        ecjia_front::$controller->display('goods_info.dwt');
-    }
-
-    /**
-     * 商品信息
-     */
-    public static function goods_info() {
-        // $goods_id = isset($_GET ['id']) ? intval($_GET ['id']) : 0;
-        // /* 获得商品的信息 */
-        // $goods = get_goods_info($goods_id);
-        // ecjia_front::$controller->assign('goods', $goods);
-        // $properties = get_goods_properties($goods_id); // 获得商品的规格和属性
-        // ecjia_front::$controller->assign('properties', $properties['pro']); // 商品属性
-        // ecjia_front::$controller->assign('specification', $properties['spe']); // 商品规格
-        // ecjia_front::$controller->assign('title', RC_Lang::lang('detail_intro'));
-        // ecjia_front::$controller->assign_title(RC_Lang::lang('detail_intro'));
-        // ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('goods_info.dwt');
     }
 
