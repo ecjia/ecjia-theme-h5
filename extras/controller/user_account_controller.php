@@ -108,7 +108,7 @@ class user_account_controller {
     	$type = htmlspecialchars($_SESSION['status']);
     	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
     	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('page' => $page, 'count' => $limit,'type' => $type))->send()->getBody();
+    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'type' => $type))->send()->getBody();
     	$data = json_decode($data,true);
     	$now_mon =  substr(date('Y-m-d H:i:s',time()),5,2);
     	$now_day =  substr(date('Y-m-d H:i:s',time()),0,10);
@@ -134,7 +134,11 @@ class user_account_controller {
     	ecjia_front::$controller->assign('sur_amount', $arr);
     	ecjia_front::$controller->assign_lang();
     	$sayList = ecjia_front::$controller->fetch('user_record.dwt');
-    	return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page'));
+    	if ($data['paginated']['more'] == 0) {
+    	    $more = 1;
+    	}
+    	return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $more));
+
     }
 
     /**
