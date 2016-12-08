@@ -2721,11 +2721,6 @@ footer{
     background: url('../images/wallet/nobonus_180.png') no-repeat;
     background-size: 100%;
 }
-.ecjia-spread .ecjia-margin-b>a img {
-    position: relative;
-    width: 25.3125em;	
-    height: 9.375em;
-}
 
 /*========================  登录 ===========================*/
 .ecjia-login {
@@ -4148,3 +4143,31 @@ footer{
 .ecjia-spread .invite_explain .invite_explain-content{
 	padding-left:1em;
 }
+.ecjia-spread .ecjia-margin-b>a img {
+    position: relative;
+    width: 25.3125em;	
+    height: 9.375em;
+}
+.ecjia-spread .ecjia-bottom-bar-pannel .tab5 li {
+	text-align: center;
+    width: 50%;
+    float: left;
+    height: 100%;
+	border-right: 1px solid #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
