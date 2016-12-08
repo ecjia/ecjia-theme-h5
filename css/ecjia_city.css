@@ -189,6 +189,7 @@ a.ecjia-color-green {
 	max-width: 66%;
     position: relative;
     display: inline-block;
+	z-index:2;
 }
 .ecjia-address img{
     width: 15px;
@@ -196,6 +197,7 @@ a.ecjia-color-green {
 }
 .ecjia-address .address-text {
 	margin:0px 5px 0px 5px;
+	color: #ffffff;
 }
 
 /*搜索*/
@@ -1730,9 +1732,14 @@ footer{
 	display: inline-block;
 	width: 100%;
 }
-.ecjia .ecjia-checkout .checklist .select_nav{
+.ecjia-checkout .checklist .select_nav{
 	margin-right: 2em;
 	width:70%;
+	text-align: right;
+}
+.ecjia-checkout .checklist .select_nav_short{
+	margin-right: 2em;
+	width:50%;
 	text-align: right;
 }
 
@@ -1811,6 +1818,9 @@ footer{
 .ecjia .ecjia-select .input textarea{
     height: 7em;
 }
+.ecjia-checkout-bonus ul {border-top:1px solid #eee}
+.ecjia-checkout-bonus li label{ margin-top: 3px;margin-right:5px; font-size:1.1em;}
+.ecjia-checkout-bonus li label:before,.ecjia-checkout-bonus li label:after{ margin-top: -2px;margin-right:3px; font-size:1.2em;}
 /*======================== 发票信息 ecjia-invoice ===========================*/
 
 
@@ -2287,7 +2297,60 @@ footer{
 	padding:1em .5em .5em;
 	line-height: 2em;
 }
-/*========================  地址列表 ===========================*/
+/*========================  城市选择 ===========================*/
+.cityall {
+	background: #f4f4f4 none repeat scroll 0 0;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+}
+.select-city {
+    color: #b0b0b0;
+    font-size: 14px;
+    line-height: 40px;
+    margin: 0 10px;
+    position: relative;
+    text-align: center;
+}
+.select-city::before {
+    border-top: 1px dashed #b0b0b0;
+    content: "";
+    height: 0;
+    left: 0;
+    margin-top: -1px;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+}
+.select-city span {
+    background-color: #f4f4f4;
+    display: inline-block;
+    padding: 0 6px;
+    position: relative;
+    z-index: 1;
+}
+.city {
+    box-sizing: border-box;
+    padding: 10px 62px 10px 10px;
+    width: 125%;
+}
+.city li {
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid #dddddd;
+    color: #333333;
+    display: inline-block;
+    float: left;
+    margin: 5px 20px 5px 20px;
+    padding: 10px 0;
+    text-align: center;
+    width: 20%;
+}
+.city li.curr {
+    background: #f3f3f3 none repeat scroll 0 0;
+    border: 1px solid #d0d0d0;
+}
+
+
 
 /*========================  账户余额 ===========================*/
 
@@ -2723,11 +2786,6 @@ footer{
 	margin: -10% 0 0 -90px;
     background: url('../images/wallet/nobonus_180.png') no-repeat;
     background-size: 100%;
-}
-.ecjia-spread .ecjia-margin-b>a img {
-    position: relative;
-    width: 25.3125em;	
-    height: 9.375em;
 }
 
 /*========================  登录 ===========================*/
@@ -4059,11 +4117,10 @@ footer{
 .ecjia-my-reward{
 	float:right;
 	position:relative;
-	top:-2.5em;
-	right:.5em;
-}
-.ecjia-my-reward span .ecjia-my-reward-literal{
 	font-size:16px;
+	border-bottom:2px solid #47aa4d;
+	margin-top:-14px;
+	right:1.5em;
 }
 .ecjia-spread{
 	background:#fff;
@@ -4076,7 +4133,6 @@ footer{
 	height:5em;
 	width:100%;
 	position:relative;
-	margin-top:3.5em;
 	background-origin: content-box;
 }
 .ecjia-spread .qrcode_image {
@@ -4132,7 +4188,6 @@ footer{
 }
 .ecjia-spread .go-to-spread .would-spread{
 	font-size:21px;
-	border:1px solid #eee;
 	border-radius: 7px;
 	height:45px;
 	line-height:45px;
@@ -4142,6 +4197,7 @@ footer{
 }
 .ecjia-spread .invite_explain{
 	width:100%;
+	padding-bottom:2em;
 }
 .ecjia-spread .invite_explain .invite_explain-literal{
 	font-weight:bold;
@@ -4150,4 +4206,28 @@ footer{
 }
 .ecjia-spread .invite_explain .invite_explain-content{
 	padding-left:1em;
+}
+.ecjia-spread .share-buttons .cancel-butoons{
+	height:45px;
+	line-height:45px;
+	border-radius:7px;
+}
+.ecjia-spread .bottom-elastic-layer{
+	display:none;
+}
+
+.ecjia-spread .ecjia-margin-b>a img {
+    position: relative;
+    width: 25.3125em;	
+    height: 9.375em;
+}
+.ecjia-spread .ecjia-bottom-bar-pannel .tab5{
+	border-top: 1px solid #ddd;
+}
+.ecjia-spread .ecjia-bottom-bar-pannel .tab5 li {
+	text-align: center;
+    width: 50%;
+    float: left;
+    height: 100%;
+	border-right: 1px solid #ddd;
 }

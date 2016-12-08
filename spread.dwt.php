@@ -9,12 +9,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-<script type="text/javascript">ecjia.touch.category.init();</script>
+<script type="text/javascript">ecjia.touch.spread.init();</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
+
 <div class="ecjia-spread">
 	<div class="ecjia-bg-qr-code">
 		<div class="bg-img"></div>
@@ -32,6 +31,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="go-to-spread">
 		<a class="" href="javascript:;"><div class="would-spread">我要推广</div></a>
 	</div>
+	<div class="ecjia-my-reward"><a href="{url path='user/user_bonus/my_reward'}">我的奖励</a></div>
 	<div class="invite_explain"> 
 		<p class="invite_explain-literal">邀请说明：</p>
 		<div class="invite_explain-content">
@@ -45,8 +45,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				{$invite_user.invite_explain}
 			{/if}
 		</div>
-		
 	</div>
+	<!--底部弹层start-->
+		<div class="bottom-elastic-layer" style="margin-top:-20em;">
+			<div class="share-buttons">
+				<p>111111111</p>
+				<p>111111111</p>
+				<p>111111111</p>
+			</div>
+			<div class="cancel-butoons">取消</div>
+		</div>
+	<!--底部弹层end-->
 </div>
 
 

@@ -51,7 +51,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.merchant.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.b2b2c.js" ></script>
 
+    
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.goods_detail.js" ></script>
+    <script type="text/javascript" src="{$theme_url}js/ecjia.touch.spread.js" ></script>
+    
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.fly.js" ></script>
     <!-- 弹窗 -->
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.intro.js" ></script>

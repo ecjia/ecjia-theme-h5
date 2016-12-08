@@ -23,30 +23,30 @@ class user_profile_controller {
     
     /* 用户中心编辑用户名称 */
     public static function modify_username() {
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        ecjia_front::$controller->assign('user', $user);
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_modify_username.dwt');
+    }
+
+    /* 处理用户中心编辑用户名称 */
+    public static function modify_username_account() {
         $name = !empty($_POST['username']) ? $_POST['username'] :'';
+        if (strlen($name) > 20 || strlen($name) < 4) {
+              return ecjia_front::$controller->showmessage(__('用户名格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_profile/modify_username')) );
+        }
         if (!empty($name)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_UPDATE)->data(array('user_name' => $name))->send()->getBody();
             $data = json_decode($data,true);
             if ($data['status']['succeed'] == 1) {
-                return ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/user_profile/edit_profile')));
+                ecjia_front::$controller->redirect(RC_Uri::url('user/user_profile/edit_profile'));
             } else {
                 return ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
-        } else {
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
-            ecjia_front::$controller->assign('user', $user);
-            ecjia_front::$controller->assign_lang();
-            ecjia_front::$controller->display('user_modify_username.dwt');
         }
-        
     }
-
-    /**
-     * 修改个人资料
-     */
-    public static function update_profile() {
-    }
-
+    
+    
     /**
      * 修改密码页面
      */

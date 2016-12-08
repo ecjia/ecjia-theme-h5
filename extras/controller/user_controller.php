@@ -72,15 +72,19 @@ class user_controller {
     public static function spread() {
     	$token = ecjia_touch_user::singleton()->getToken();
     	$invite_user_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_USER)->data(array('token' => $token))->run();
-    	//$aa = strpos(trim($invite_user_detail['invite_explain']),'；',0);   
 		if (!empty($invite_user_detail['invite_explain'])) {
 			if (strpos($invite_user_detail['invite_explain'], '；')) {
 				$invite_user_detail['invite_explain_new'] = explode('；', $invite_user_detail['invite_explain']);
 			}
 		}
-		
+		if (!empty($invite_user_detail['invite_explain_new'])) {
+			foreach ($invite_user_detail['invite_explain_new'] as $key => $val) {
+				if (empty($val)) {
+					unset($invite_user_detail[$key]);
+				}
+			}
+		}
     	ecjia_front::$controller->assign('invite_user', $invite_user_detail);
-    	ecjia_front::$controller->assign('title', '推广');
     	ecjia_front::$controller->display('spread.dwt');
     }
 
