@@ -90,9 +90,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<section class="checklist">
 			<a href='{url path="cart/flow/bonus" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>{$lang.use_bonus}</span>
-				<span class="ecjia-tag">无可用</span>
+				<span class="ecjia-tag">{count($data.bonus)}个可用</span>
 				<i class="iconfont icon-jiantou-right"></i>
-				<!-- <span class="ecjiaf-fr select_nav ecjia-truncate">xxx红包</span> -->
+				<span class="ecjiaf-fr select_nav_short ecjia-truncate">{$data.bonus[$temp.bonus].bonus_name}</span>
+				<input type="hidden" name="bonus" value="{$temp.bonus}">
 			</a>
 		</section>
 		{/if}

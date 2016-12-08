@@ -1639,9 +1639,14 @@ footer{
 	display: inline-block;
 	width: 100%;
 }
-.ecjia .ecjia-checkout .checklist .select_nav{
+.ecjia-checkout .checklist .select_nav{
 	margin-right: 2em;
 	width:70%;
+	text-align: right;
+}
+.ecjia-checkout .checklist .select_nav_short{
+	margin-right: 2em;
+	width:50%;
 	text-align: right;
 }
 
@@ -1720,6 +1725,9 @@ footer{
 .ecjia .ecjia-select .input textarea{
     height: 7em;
 }
+.ecjia-checkout-bonus ul {border-top:1px solid #eee}
+.ecjia-checkout-bonus li label{ margin-top: 3px;margin-right:5px; font-size:1.1em;}
+.ecjia-checkout-bonus li label:before,.ecjia-checkout-bonus li label:after{ margin-top: -2px;margin-right:3px; font-size:1.2em;}
 /*======================== 发票信息 ecjia-invoice ===========================*/
 
 

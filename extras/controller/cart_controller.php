@@ -384,6 +384,10 @@ class cart_controller {
             $url = RC_Uri::url('cart/index/init');
             return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url));
         }
+        //红包改键
+        if ($rs['data']['bonus']) {
+            $rs['data']['bonus'] = touch_function::change_array_key($rs['data']['bonus'], 'bonus_id');
+        }
         $cart_key = md5($address_id.$rec_id);
         $_SESSION['cart'][$cart_key]['data'] = $rs['data'];
         
@@ -437,6 +441,13 @@ class cart_controller {
             $_SESSION['cart'][$cart_key]['temp']['note'] = empty($_POST['note']) ? '' : trim($_POST['note']);
         }
         //红包
+        if ($_POST['bonus_update']) {
+            $_SESSION['cart'][$cart_key]['temp']['bonus'] = empty($_POST['bonus']) ? '' : trim($_POST['bonus']);
+        }
+        //红包清空
+        if ($_POST['bonus_clear']) {
+            $_SESSION['cart'][$cart_key]['temp']['bonus'] = '';
+        }
         
         //积分
         if ($_POST['integral_update']) {
@@ -632,6 +643,8 @@ class cart_controller {
             $inv_type = empty($_POST['inv_type']) ? '' : trim($_POST['inv_type']);
             $postscript = empty($_POST['note']) ? '' : trim($_POST['note']);
             $integral = empty($_POST['integral']) ? 0 : intval($_POST['integral']);
+            $bonus = empty($_POST['bonus']) ? 0 : intval($_POST['bonus']);
+            
 //             RC_Logger::getlogger('debug')->info($_POST);
             if(empty($rec_id)) {
                 return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
@@ -651,6 +664,7 @@ class cart_controller {
     			'inv_content'	=> $inv_content,
                 'postscript' => $postscript,
                 'integral' => $integral,
+                'bonus' => $bonus,
                 'location' => array(
                     'longitude' => '121.41709899974',
                     'latitude' => '31.235476867103'
@@ -1265,6 +1279,27 @@ class cart_controller {
      * 选择使用红包
      */
     public static function bonus() {
+        $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
+        $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
+        
+        $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
+        if(empty($rec_id)) {
+            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
+        }
+        if (empty($address_id)) {
+            return ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
+        }
+        
+        $cart_key = md5($address_id.$rec_id);
+        $data = $_SESSION['cart'][$cart_key]['data'];
+        if ($data['allow_use_bonus'] == 0) {
+            return ecjia_front::$controller->showmessage('红包不可用', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
+        }
+        ecjia_front::$controller->assign('data', $data);
+        ecjia_front::$controller->assign('temp', $_SESSION['cart'][$cart_key]['temp']);
+        ecjia_front::$controller->assign('address_id', $address_id);
+        ecjia_front::$controller->assign('rec_id', $rec_id);
+        
         ecjia_front::$controller->assign('title', RC_Lang::lang('use_bonus'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('use_bonus'));
         ecjia_front::$controller->display('flow_bonus.dwt');
