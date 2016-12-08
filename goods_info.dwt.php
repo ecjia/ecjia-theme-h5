@@ -39,7 +39,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					{if $goods_info.pictures}
 					<!--{foreach from=$goods_info.pictures item=picture}-->
 						<div class="swiper-slide" style="margin-top:3.5em;">
-							<img  src="{$picture.url}"/>
+							<img src="{$picture.thumb}"/>
 						</div>
 					<!--{/foreach}-->
 					{else}
@@ -133,7 +133,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 								<!--{foreach from=$goods_info.related_goods item=goods name=goods}-->
 								<!-- {if $smarty.foreach.goods.index < 6 } -->
 								<li>
-									<a href='{url path="goods/index/init" args="id={$goods.goods_id}"}'>
+									<a href='{url path="goods/index/show" args="goods_id={$goods.goods_id}"}'>
 										<img src="{$goods.img.url}"/>
 									</a>
 									<p class="link-goods-name ecjia-goods-name-new">{$goods.name}</p>
