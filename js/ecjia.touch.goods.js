@@ -160,8 +160,14 @@
         		var bool = $('.store-add-cart').find('.a4x').attr('show');
         		if (bool) {
         			ecjia.touch.category.show_cart();
+        			//禁用滚动条
+        			$("body").css({overflow:"hidden"});    							
+        			$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});    	
         		} else {
         			ecjia.touch.category.hide_cart();
+        			//启用用滚动条
+        			$("body").css({overflow:"auto"});    
+        			$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});    	
         		}
         	});
         	
@@ -270,6 +276,9 @@
     			$('.store-add-cart').children('.a51').addClass('disabled');
     			$('.minicart-goods-list').html('');
         	}
+        	//启用用滚动条
+			$("body").css({overflow:"auto"});    
+			$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});    	
         },
         
         toggle_category: function() {
@@ -334,7 +343,7 @@
             $wd.scroll(function() {
 	            var afterScrollTop = $wd.scrollTop(),
 	                delta = afterScrollTop - beforeScrollTop;
-	            if (delta > 5) {
+	            if (delta > 1) {
 	            	ecjia.touch.category.scroll_show_hide(true);
 	            } else {
 	            	ecjia.touch.category.scroll_show_hide(false);

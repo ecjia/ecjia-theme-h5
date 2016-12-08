@@ -345,6 +345,7 @@
 	left: 45%;
 	top: 1%;
 }
-
-
+.ecjia-address-list .form-group .input input[type=text] {
+    border-radius: 0;
+}
 

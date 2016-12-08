@@ -31,7 +31,7 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 	<!--{foreach from=$bonus item=item}-->
 		<li class="ecjia-margin-b list-l-size">
 			<div class="user-bonus-info {if $item.label_status eq '未使用'}user-bonus-head{else}user-bonus-head-expired{/if}">
-				<div class="type-l {if $item.label_status eq '未使用'}no-type-money{else}type-money{/if}">{$item.formatted_bonus_amount}</div>
+				<div {if $item.status eq 'allow_use'} class="type-l"{else}class="type-l color-3a"{/if}">{$item.formatted_bonus_amount}</div>
 				<div  {if $item.status eq 'allow_use'} class="type-r"{else}class="type-r color-3a"{/if}>
 				    <div {if $item.status eq 'expired'}class="img-is-used"{elseif $item.status eq 'is_used'}class="img-expired"{else}class=""{/if}></div>
 					<p class="type-name">{$item.bonus_name}</p>

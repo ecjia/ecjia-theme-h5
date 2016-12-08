@@ -17,79 +17,37 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
+	
 <div class="flow-address ecjia-margin-b">
 	<span class="ecjiaf-fl">{t}送至：{/t}</span>
 	<div class="ecjiaf-fl address-info">
-		<span>{t}宋倩倩{/t}</span>
-		<span>{t}13764274559{/t}</span>
-		<p class="ecjia-truncate2 address-desc">{t}伸大厦中山北路3553号3001室{/t}</p>
+		<span>{$default_address.consignee}</span>
+		<span>{$default_address.mobile}</span>
+		<p class="ecjia-truncate2 address-desc">{$default_address.address}</p>
 	</div>
 </div>
-	<ul class="ecjia-list cart-goods-list ecjia-margin-b">
-		<li>
-			<label class="ecjiaf-fl ecjia-margin-r" for="cat_{$goods.rec_id}">
-				<input class="checkbox" data-trigger="checkbox" id="cat_{$goods.rec_id}" type="checkbox" checked="checked" value="{$goods.rec_id}" name="check_goods" >
-			</label>
-			<div class="ecjiaf-fl ecjia-margin-l cart-goods-img">
-				<a href="{url path='goods/index/init' args="id={$goods.goods_id}"}">
-					<img src="{$goods.goods_thumb}" title="{$goods.goods_name}">
-				</a>
+<!-- {if $cart_list} -->
+<div class="ecjia-flow-cart">
+	<ul>
+		<!-- {foreach from=$cart_list item=val} -->
+		<li class="cart-single">
+			<div class="cart-title">
+				<span class="cart-check-all" data-toggle="toggle_checkbox"></span>
+				<span class="store-title">{$val.store_name}</span>
+				<span class="edit-title">编辑</span>
 			</div>
-			<div class="ecjiaf-fl cart-goods-sort">
-				<div class="cart-goods-hd">
-					<div class="cart-goods-name">
-						<a href="{url path='goods/index/init' args="id={$goods.goods_id}"}">
-							{$goods.goods_name}
-						</a>
-					<!-- {if $goods.parent_id gt 0} 配件 -->
-						<span style="color:#FF0000">（{$lang.accessories}）</span>
-						<!-- {/if} -->
-						<!-- {if $goods.is_gift gt 0} 赠品 -->
-						<span style="color:#FF0000">（{$lang.largess}）</span>
-						<!-- {/if} -->
-						<!-- {if $show_goods_attribute eq 1 && $goods.goods_attr} 显示商品属性 -->
-						<p class="goods-attribute">{$goods.goods_attr|nl2br}</p>
-						<!-- {/if} -->
-					</div>
-				</div>
-
-				<div>{$goods.goods_price}</div>
-				<div class="cart-goods-drop">
-					<div class="ecjia-input-number ecjia-margin-t">
-						<span class="ecjia-number-group-addon" data-toggle="change_goods_number" data-status="del" data-url="{url path='cart/index/ajax_update_cart'}" data-rec_id="{{$goods.rec_id}}">－</span>
-						<input class="ecjia-number-contro" id="back_number{$goods.rec_id}" type="hidden" value="{$goods.goods_number}" />
-						<input class="ecjia-number-contro" id="goods_number{$goods.rec_id}" name="{$goods.rec_id}" type="text" autocomplete="off" value="{$goods.goods_number}" data-toggle="change_goods_number_blur" data-url="{url path='cart/index/ajax_update_cart'}" data-rec_id="{{$goods.rec_id}}" />
-						<span class="ecjia-number-group-addon" data-toggle="change_goods_number" data-status="add" data-url="{url path='cart/index/ajax_update_cart'}" data-rec_id="{{$goods.rec_id}}" >＋</span>
-					</div>
-					<a href="javascript:void(0)" data-toggle="del_list"  data-url="{url path='cart/index/drop_goods'}" data-msg="{$lang.drop_goods_confirm}" data-id="{$goods.rec_id}" ><i class="iconfont icon-delete"></i></a>
-				</div>
-
-				<!-- {if $goods.fitting || $goods.favourable} -->
-				<div class="ecjia-favourable-btn ecjia-margin-t two-btn">
-					<!-- {if $goods.fitting} -->
-					<a class="btn btn-info goods-fitting ecjia-margin-l" href="{url path='cart/index/goods_fittings'}">相关配件</a>
-					<!-- {/if} -->
-
-					<!-- {if $goods.favourable }-->
-					<a class="btn btn-info goods-acitivty ecjia-margin-t" onClick="location.href='{url path='cart/index/label_favourable'}'">优惠活动</a>
-					<!-- {/if} -->
-				</div>
-				<!-- {/if} -->
-			</div>
+			
 		</li>
+		<!-- {/foreach} -->
 	</ul>
-	<div class="cart-btn-checkout ecjia-margin-t">
-		<div class="ecjia-margin-l ecjia-margin-b">{$lang.goods_price}：<span class="cart-goods-price" id="goods_subtotal">{$total.goods_price}</span></div>
-		<a class="btn btn-info goods-checkout ecjia-margin-b nopjax" type="button"data-url="{url path='flow/checkout'}"   href="{url path='flow/checkout'}">{$lang.check_out}<!-- （<b id="total_number">{$total.total_number}</b>） --></a>
-	</div>
+</div>
+<!-- {else} -->
 <div class="flow-no-pro ecjia-margin-t ecjia-margin-b">
 	<div class="ecjia-nolist">
-		<img src="{$theme_url}images/cart.png">
-		<p>{t}购物车无商品{/t}</p>
+		您还没有添加商品
+		<a class="btn btn-small" type="button" href="{url path='touch/index/init'}">{t}去逛逛{/t}</a>
 	</div>
-	<a class="btn btn-small" type="button" href="{url path='touch/index/init'}">{t}去逛逛{/t}</a>
 </div>
+<!-- {/if} -->
 <!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
 <!-- {/block} -->
