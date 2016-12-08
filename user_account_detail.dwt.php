@@ -35,6 +35,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		<span class="icon-price">{$user.user_points}</span>
         	</a>
         </li>
+        <li>
+            <a href="{url path='user/user_bonus/get_integral'}">
+        		<div class="iconfont icon icon-copy ecjia-user-phono"></div>
+        		<span class="icon-name">赚积分</span>
+        		<i class="iconfont  icon-jiantou-right"></i>
+        	</a>
+        </li>
     </ul>
 </div>
 <!-- {/block} -->

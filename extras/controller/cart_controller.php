@@ -7,8 +7,8 @@ class cart_controller {
      * 购物车列表
      */
     public static function init() {
-    	$token = '3d01e032db6418ea8dea1da92462f529529183c8';
-    	
+    	$token = ecjia_touch_user::singleton()->getToken();
+    	$token = 'dc95ed438539e788df0890ece1fd301ef30a7fe19ab98eb9a0436baf09c06e96';
     	//所有地址
     	$cache_key = 'address_list_'.$token;
     	$address_list = RC_Cache::app_cache_get($cache_key, 'user_address');
@@ -25,18 +25,27 @@ class cart_controller {
     			}
     		}
     	}
-    	
-    	
     	$arr = array(
     		'token' 	=> $token,
     		'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371')
     	);
     	//店铺购物车商品
     	$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
-    	
-    	
+    	if (!empty($cart_list['cart_list'])) {
+    		foreach ($cart_list['cart_list'] as $k => $v) {
+    			$cart_list['cart_list'][$k]['total']['check_all'] = true;
+    			if (!empty($v['goods_list'])) {
+    				foreach ($v['goods_list'] as $key => $val) {
+    					if ($val['is_checked'] == 0) {
+    						$cart_list['cart_list'][$k]['total']['check_all'] = false;
+    					}
+    				}
+    			}
+    		}
+    	}
+
     	ecjia_front::$controller->assign('default_address', $default_address);
-    	ecjia_front::$controller->assign('cart_list', $cart_list);
+    	ecjia_front::$controller->assign('cart_list', $cart_list['cart_list']);
     	
         ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->assign('active', 3);
