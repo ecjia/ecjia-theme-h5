@@ -60,8 +60,8 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 	</ul>
 <!-- {foreachelse} -->
 	<div class="ecjia-nolist">
-		<i class="iconfont icon-more"></i>
-		<p>{t}暂无任何记录{/t}</p>
+		<div class="no-record"></div>
+		<p>{t}暂无明细记录{/t}</p>
 	</div>
 <!--{/foreach}-->
 <!-- {/block} -->

@@ -34,6 +34,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <div class="two-btn btn-bottom">
                 <input name="record_type" type="hidden" value={$sur_amount.type} />
                 <input name="account_id" type="hidden" value={$sur_amount.account_id}>
+                <input name="payment_id" type="hidden" value={$sur_amount.payment_id} />
         		<input class="btn ecjiaf-fl btn-c" id="record_cancel" name="submit" type="submit" value="{t}取消{/t}" />
         		<input class="btn ecjiaf-fr" name="submit" type="submit" value="{t}充值{/t}" />
         	</div>
