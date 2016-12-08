@@ -201,6 +201,16 @@ del { color: #bbb; }
 	background-color: #fff;
 	color:#47aa4d;
 }
+/* 空心按钮 */
+.btn-hollow-danger,
+.btn-hollow-danger:link,
+.btn-hollow-danger:hover,
+.btn-hollow-danger:active,
+.btn-hollow-danger:visited {
+	border-color:#eee;
+	background-color: #fff;
+	color:#FE0808;
+}
 /* 登陆 */
 .ecjia-login-form .form-group .input .icon-dengluyonghuming,
 .user-register-form .form-group .input .icon-mobilefill  {
