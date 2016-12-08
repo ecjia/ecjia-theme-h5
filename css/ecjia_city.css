@@ -97,6 +97,9 @@ a.ecjia-color-green {
     font-size: 0.8em;
 }
 /*========================  首页 ===========================*/
+.goods-index-list .bd {
+    margin-bottom: 2em;
+}
 .ecjia-header {
     background: #47aa4d;
 	position: fixed;
@@ -3891,7 +3894,7 @@ footer{
 /*========================  底部导航 ===========================*/
 .ecjia-bottom-bar-pannel {
     position: fixed;
-    height: 48px;
+    height: 44px;
     z-index: 1;
     bottom: 0;
     left: 0;
@@ -3927,15 +3930,15 @@ footer{
 }
 .ecjia-bottom-bar-pannel .ecjia-bar-img {
     display: inline-block;
-    width: 60px;
+    width: 57px;
+    height: 44px;
 }
 .ecjia-bottom-bar-pannel .ecjia-bar-img img {
+    max-height: 100%;
     max-width: 100%;
-    width: 60px;
+    width: auto;
     overflow: hidden;
-	border: 0;
-    vertical-align: middle;
-	height: 48px;
+	height: auto;
 }
 /*========================  店铺详情 ===========================*/
 .ecjia-store-detail {
