@@ -72,13 +72,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<span>发票信息<!-- invoice --></span>
 				<i class="iconfont icon-jiantou-right"></i>
 				<span class="ecjiaf-fr select_nav ecjia-truncate">{$temp.inv_payee} {$temp.inv_content} {$temp.inv_type}</span>
+				<input type="hidden" name="inv_payee" value="{$temp.inv_payee}" />
+				<input type="hidden" name="inv_content" value="{$temp.inv_content}" />
+				<input type="hidden" name="inv_type" value="{$temp.inv_type}" />
 			</a>
 		</section>
 		<section class="checklist ecjia-margin-b">
 			<a href='{url path="cart/flow/note" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>备注留言</span>
 				<i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr select_nav ecjia-truncate">{$temp.note}<input type="hidden" name="note" value="{$temp.note}" /></span>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$temp.note}</span>
+				<input type="hidden" name="note" value="{$temp.note}" />
 			</a>
 		</section>
 		

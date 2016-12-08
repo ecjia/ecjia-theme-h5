@@ -156,7 +156,9 @@ RC_Loader::load_theme('extras/controller/user_bonus_controller.php');
 RC_Hook::add_action('user/user_bonus/bonus', array('user_bonus_controller', 'bonus'));
 RC_Hook::add_action('user/user_bonus/add_bonus', array('user_bonus_controller', 'add_bonus'));
 RC_Hook::add_action('user/user_bonus/async_bonus_list', array('user_bonus_controller', 'async_bonus_list'));
-
+RC_Hook::add_action('user/user_bonus/my_reward', array('user_bonus_controller', 'my_reward'));
+RC_Hook::add_action('user/user_bonus/reward_detail', array('user_bonus_controller', 'reward_detail'));
+RC_Hook::add_action('user/user_bonus/get_integral', array('user_bonus_controller', 'get_integral'));
 
 RC_Loader::load_theme('extras/controller/user_collection_controller.php');
 RC_Hook::add_action('user/user_collection/collection_list', array('user_collection_controller', 'collection_list'));

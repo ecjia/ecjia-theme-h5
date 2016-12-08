@@ -16,11 +16,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <form class="ecjia-list ecjia-address-list" action="" method="post" id="searchForm" name="searchForm">
 	<div class="nav-header">
+		<a href="{url path='user/user_address/near_location'}">
 		<div class="img-search"></div>
-		<input id="keywordBox" name="keywords" type="search" placeholder="小区，写字楼，学校">
+		<input id="keywordBox" name="keywords" type="search" placeholder="小区、写字楼、学校">
+		</a>
 	</div>
 	<div class="nav-header ecjia-margin-t ecjia-margin-b">
-		<a href="{url path='user/user_address/near_location'}" type="bottom">
+		<a href="{url path='user/user_address/my_location'}" type="bottom">
 			<div class="position"></div>&nbsp;&nbsp;&nbsp;&nbsp;{t}定位到当前位置{/t}
 			<span class="ecjiaf-fr"><i class="iconfont icon-jiantou-right"></i></span>
 		</a>

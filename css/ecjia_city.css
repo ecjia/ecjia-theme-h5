@@ -189,6 +189,7 @@ a.ecjia-color-green {
 	max-width: 66%;
     position: relative;
     display: inline-block;
+	z-index:2;
 }
 .ecjia-address img{
     width: 15px;
@@ -196,6 +197,7 @@ a.ecjia-color-green {
 }
 .ecjia-address .address-text {
 	margin:0px 5px 0px 5px;
+	color: #ffffff;
 }
 
 /*搜索*/
@@ -1517,6 +1519,9 @@ footer{
 	margin: 0 30%;
 	margin-top: 1em;
 }
+.ecjia-flow-cart{
+	margin-bottom: 48px;
+}
 .ecjia-flow-cart .cart-single{
 	background: #fff;
 	margin-top: .8em;
@@ -1528,20 +1533,23 @@ footer{
     border-bottom: 1px solid #eee;
 	position: relative;
 }
-.ecjia-flow-cart .check-wrapper{
+.ecjia-flow-cart .item .check-wrapper{
 	position: absolute;
     top: 12px;
     left: 0;
     margin-top: 0;
     margin-left: 10px;
 }
-.ecjia-flow-cart .check-wrapper .cart-checkbox{
+.ecjia-flow-cart .item .check-wrapper .cart-checkbox{
     width: 20px;
     height: 20px;
 	background-image: url(../images/icon/ck.png);
     background-size: 20px 220px;
     background-repeat: no-repeat;
 	display: block;
+}
+.ecjia-flow-cart .item .check-wrapper .cart-checkbox.checked{
+	background-position: 0px -200px;
 }
 .ecjia-flow-cart .shop-title-content{
 	width: 100%;
@@ -1572,20 +1580,102 @@ footer{
 	padding-left: 20px;
 }
 .ecjia-flow-cart .item-goods {
-    padding-left: 40px;
-	position: relative;
+    position: relative;
+    line-height: 36px;
+	padding-left: 40px;
 }
-.item-goods {
-    text-align: left;
-    clear: both;
-    background-color: #ffffff;
+.ecjia-flow-cart .item-goods .cart-checkbox{
+    position: absolute;
+    z-index: 3;
+    left: 10px;
+    width: 20px;
+    height: 60px;
+    background-position: 0px 20px;
+    background-image: url(../images/icon/ck.png);
+    background-size: 20px 220px;
+    background-repeat: no-repeat;
 }
-.shp-cart-item-core{
+.ecjia-flow-cart .item-goods .cart-checkbox.checked{
+	background-position: 0px -180px;
+}
+.ecjia-flow-cart .item-goods .cart-product{
 	position: relative;
-    margin: 10px 0;
+	margin: 12px 0;
+	box-sizing: border-box;
+}
+.ecjia-flow-cart .item-goods .cart-product-photo{
+	width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ecjia-flow-cart .item-goods .cart-product-photo img{
+	width: 70px;
+    height: 70px;
+	border: 1px solid #eee;
+}
+.ecjia-flow-cart .item-goods .cart-product-info{
+	padding-left: 80px;
+    padding-right: 10px;
+    width: 100%;
     box-sizing: border-box;
 }
-
+.ecjia-flow-cart .item-goods .cart-product-name{
+    max-height: 40px;
+	height: 40px;
+    line-height: 20px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: normal;
+}
+.ecjia-flow-cart .item-goods .cart-product-price{
+	color: #ff3434; 
+}
+.ecjia-flow-cart .ecjia-input-number {
+	width: 6.5em;
+	color: #aaa;
+	position: absolute;
+	right: .5em;
+	bottom: .2em;
+	height: 1.8em
+}
+.ecjia-flow-cart .ecjia-input-number .ecjia-number-contro {
+    width: 3em;
+	color: #333;
+	font-size: 1.1em;
+	line-height: 1.5em;
+    height: 1.5em;
+}
+.ecjia-flow-cart .ecjia-input-number .ecjia-number-group-addon {
+	width: 1em;
+	line-height: 1.3em;
+}
+.item-count{
+	position: relative;
+	height: 48px;
+	border-top: 1px solid #eee;
+}
+.item-count span{
+	line-height: 48px;
+}
+.item-count .count{
+	margin-left: 10px;
+}
+.item-count .price{
+	color: #ff3434;
+}
+.ecjia-flow-cart .check-cart{
+	position: absolute;
+    right: 0;
+    width: 115px;
+    text-align: center;
+    color: #fff;
+    line-height: 48px;
+    background-color: #47b34f;
+    font-size: 1.1em;
+}
 /*========================  结算 ecjia-checkout =========================== */
 /*定位地址、选择的收货地址 */
 .flow-address {
@@ -2196,7 +2286,60 @@ footer{
 	padding:1em .5em .5em;
 	line-height: 2em;
 }
-/*========================  地址列表 ===========================*/
+/*========================  城市选择 ===========================*/
+.cityall {
+	background: #f4f4f4 none repeat scroll 0 0;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+}
+.select-city {
+    color: #b0b0b0;
+    font-size: 14px;
+    line-height: 40px;
+    margin: 0 10px;
+    position: relative;
+    text-align: center;
+}
+.select-city::before {
+    border-top: 1px dashed #b0b0b0;
+    content: "";
+    height: 0;
+    left: 0;
+    margin-top: -1px;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+}
+.select-city span {
+    background-color: #f4f4f4;
+    display: inline-block;
+    padding: 0 6px;
+    position: relative;
+    z-index: 1;
+}
+.city {
+    box-sizing: border-box;
+    padding: 10px 62px 10px 10px;
+    width: 125%;
+}
+.city li {
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid #dddddd;
+    color: #333333;
+    display: inline-block;
+    float: left;
+    margin: 5px 20px 5px 20px;
+    padding: 10px 0;
+    text-align: center;
+    width: 20%;
+}
+.city li.curr {
+    background: #f3f3f3 none repeat scroll 0 0;
+    border: 1px solid #d0d0d0;
+}
+
+
 
 /*========================  账户余额 ===========================*/
 
@@ -2540,7 +2683,8 @@ footer{
 .ecjia-bonus li.red-bottom {
     border-bottom: 1px solid #FF1919;
 }
-.ecjia-bonus li a.red-font {
+.ecjia-bonus li a.red-font,
+.ecjia-user-head .ecjia-list li>a .icon-price {
 	color: #FF1919;
 }
 .ecjia-bonus .three-btn{
@@ -3962,11 +4106,10 @@ footer{
 .ecjia-my-reward{
 	float:right;
 	position:relative;
-	top:-2.5em;
-	right:.5em;
-}
-.ecjia-my-reward span .ecjia-my-reward-literal{
 	font-size:16px;
+	border-bottom:2px solid #47aa4d;
+	margin-top:-14px;
+	right:1.5em;
 }
 .ecjia-spread{
 	background:#fff;
@@ -3979,7 +4122,6 @@ footer{
 	height:5em;
 	width:100%;
 	position:relative;
-	margin-top:3.5em;
 	background-origin: content-box;
 }
 .ecjia-spread .qrcode_image {
@@ -4035,7 +4177,6 @@ footer{
 }
 .ecjia-spread .go-to-spread .would-spread{
 	font-size:21px;
-	border:1px solid #eee;
 	border-radius: 7px;
 	height:45px;
 	line-height:45px;
@@ -4045,6 +4186,7 @@ footer{
 }
 .ecjia-spread .invite_explain{
 	width:100%;
+	padding-bottom:2em;
 }
 .ecjia-spread .invite_explain .invite_explain-literal{
 	font-weight:bold;
@@ -4054,3 +4196,31 @@ footer{
 .ecjia-spread .invite_explain .invite_explain-content{
 	padding-left:1em;
 }
+.ecjia-spread .ecjia-margin-b>a img {
+    position: relative;
+    width: 25.3125em;	
+    height: 9.375em;
+}
+.ecjia-spread .ecjia-bottom-bar-pannel .tab5 li {
+	text-align: center;
+    width: 50%;
+    float: left;
+    height: 100%;
+	border-right: 1px solid #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
