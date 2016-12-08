@@ -2406,11 +2406,12 @@ footer{
 .ecjia-account .two-btn{
 	width: 100%;
     text-align: center;
-    margin-left: 18%;
 }
 .ecjia-account .two-btn .btn{
 	width: 30%;
-	margin-right: 1em;
+	margin-right: .5em;
+	margin-left: .5em;
+	line-height: 1.5em;
 	background-color: #47AA4D;
 	color: #FFF;
 	height: 2.3em;
