@@ -801,10 +801,11 @@ select, input, textarea {
 .two-btn .btn:visited {
 	display:inline-block;
 	font-size: 1.2em;
-	line-height: 1.5em;
+	line-height: 1.2em;
 	width: 47%;
 	margin: 0;
 	margin: 0 1%;
+	text-align:center;
 }
 .two-btn .btn:nth-of-type(2) {
 	margin-right: 0;
