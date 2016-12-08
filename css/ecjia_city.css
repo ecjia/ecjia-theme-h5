@@ -97,6 +97,9 @@ a.ecjia-color-green {
     font-size: 0.8em;
 }
 /*========================  首页 ===========================*/
+.goods-index-list .bd {
+    margin-bottom: 2em;
+}
 .ecjia-header {
     background: #47aa4d;
 	position: fixed;
@@ -1586,7 +1589,6 @@ footer{
 }
 .ecjia-flow-cart .item-goods .cart-checkbox{
     position: absolute;
-    z-index: 3;
     left: 10px;
     width: 20px;
     height: 60px;
@@ -1646,7 +1648,7 @@ footer{
 	color: #333;
 	font-size: 1.1em;
 	line-height: 1.5em;
-    height: 1.5em;
+    height: 1.7em;
 }
 .ecjia-flow-cart .ecjia-input-number .ecjia-number-group-addon {
 	width: 1em;
@@ -1676,6 +1678,10 @@ footer{
     background-color: #47b34f;
     font-size: 1.1em;
 }
+.ecjia-flow-cart .check-cart.disabled{
+	background-color: #bebebe;
+}
+
 /*========================  结算 ecjia-checkout =========================== */
 /*定位地址、选择的收货地址 */
 .flow-address {
@@ -3888,7 +3894,7 @@ footer{
 /*========================  底部导航 ===========================*/
 .ecjia-bottom-bar-pannel {
     position: fixed;
-    height: 48px;
+    height: 44px;
     z-index: 1;
     bottom: 0;
     left: 0;
@@ -3924,15 +3930,15 @@ footer{
 }
 .ecjia-bottom-bar-pannel .ecjia-bar-img {
     display: inline-block;
-    width: 60px;
+    width: 57px;
+    height: 44px;
 }
 .ecjia-bottom-bar-pannel .ecjia-bar-img img {
+    max-height: 100%;
     max-width: 100%;
-    width: 60px;
+    width: auto;
     overflow: hidden;
-	border: 0;
-    vertical-align: middle;
-	height: 48px;
+	height: auto;
 }
 /*========================  店铺详情 ===========================*/
 .ecjia-store-detail {
@@ -4213,6 +4219,15 @@ footer{
 .ecjia-spread .invite_explain .invite_explain-content{
 	padding-left:1em;
 }
+.ecjia-spread .share-buttons .cancel-butoons{
+	height:45px;
+	line-height:45px;
+	border-radius:7px;
+}
+.ecjia-spread .bottom-elastic-layer{
+	display:none;
+}
+
 .ecjia-spread .ecjia-margin-b>a img {
     position: relative;
     width: 25.3125em;	
@@ -4242,18 +4257,4 @@ footer{
 	position: relative;
 	margin: 15px 25% 0 0;
 	float: right;
-} 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

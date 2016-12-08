@@ -822,8 +822,9 @@ class goods_controller {
     	$store_id 	= intval($_POST['store_id']);
     	$goods_id   = intval($_POST['goods_id']);
     	$checked	= isset($_POST['checked']) ? $_POST['checked'] : '';
-    	
-	   	$token = ecjia_touch_user::singleton()->getToken();
+    	$response   = isset($_POST['response']) ? true : false;
+
+    	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
     		'token' 	=> $token,
     		'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371'),
@@ -831,7 +832,6 @@ class goods_controller {
     	if (!empty($store_id)) {
     		$arr['seller_id'] = $store_id;
     	}
-    	
     	//修改购物车中商品选中状态
     	if ($checked !== '') {
     		if (is_array($rec_id)) {
@@ -848,7 +848,6 @@ class goods_controller {
     			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_DELETE)->data($arr)->run();
     		
     			return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON);
-    			return;
     		} else {
     			if (!empty($new_number)) {
     				$arr['new_number'] = $new_number;
@@ -863,7 +862,6 @@ class goods_controller {
     					$data = json_decode($data, true);
     					if ($data['status']['succeed'] == 0) {
     						return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-    						return false;
     					}
     				}
     			} else {
@@ -887,6 +885,11 @@ class goods_controller {
     	$cart_goods_list = $cart_list['cart_list'][0]['goods_list'];
     	$cart_count = $cart_list['cart_list'][0]['total'];
     	 
+    	//购物车列表 切换状态直接返回
+    	if ($response) {
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('count' => $cart_count, 'response' => $response));
+    	}
+    	
     	$data_rec = '';
     	if (!empty($cart_goods_list)) {
     		foreach ($cart_goods_list as $k => $v) {
