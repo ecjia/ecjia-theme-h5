@@ -97,10 +97,10 @@ class user_controller {
         //     if ($id > 0) {
         //         $db_users->where('user_id = ' . $id)->update(array('is_validated'=>1));
         //         $row = $db_users->field('user_name, email')->where(array('user_id' => $id))->find();
-        //         ecjia_front::$controller->showmessage(sprintf(RC_Lang::lang('validate_ok'), $row['user_name'], $row['email'] ), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('is_show' => false));
+        //         return ecjia_front::$controller->showmessage(sprintf(RC_Lang::lang('validate_ok'), $row['user_name'], $row['email'] ), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('is_show' => false));
         //     }
         // }
-        // ecjia_front::$controller->showmessage(RC_Lang::lang('validate_fail'),ecjia::MSGSTAT_SUCCESS| ecjia::MSGTYPE_JSON);
+        // return ecjia_front::$controller->showmessage(RC_Lang::lang('validate_fail'),ecjia::MSGSTAT_SUCCESS| ecjia::MSGTYPE_JSON);
 //     }
 
     /**
@@ -118,14 +118,14 @@ class user_controller {
         //     $code = md5($user_info['user_id'] . ecjia::config('hash_code') . $user_info['reg_time']);
         //     /*发送邮件的函数*/
         //     if (send_pwd_email($user_info['user_id'], $user_name, $email, $code)) {
-        //         ecjia_front::$controller->showmessage(RC_Lang::lang('send_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON);
+        //         return ecjia_front::$controller->showmessage(RC_Lang::lang('send_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON);
         //     } else {
         //         /*发送邮件出错*/
-        //         ecjia_front::$controller->showmessage(RC_Lang::lang('fail_send_password'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+        //         return ecjia_front::$controller->showmessage(RC_Lang::lang('fail_send_password'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         //     }
         // } else {
         //     /*用户名与邮件地址不匹配*/
-        //     ecjia_front::$controller->showmessage(RC_Lang::lang('username_no_email'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+        //     return ecjia_front::$controller->showmessage(RC_Lang::lang('username_no_email'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         // }
 //     }
 
@@ -146,10 +146,10 @@ class user_controller {
         // $mobile                 = isset($_POST['mobile']) ? base64_decode(htmlspecialchars($_POST['mobile'])) : ''; // 手机号
         // $question               = isset($_POST['question']) ? base64_decode(htmlspecialchars($_POST['question'])) : ''; // 问题
         // if (RC_String::str_len($new_password) < 6) {
-        //     ecjia_front::$controller->showmessage(RC_Lang::lang('passport_js/password_shorter'),ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+        //     return ecjia_front::$controller->showmessage(RC_Lang::lang('passport_js/password_shorter'),ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         // }
 	    // if($new_password != $comfirm_password){
-		//     ecjia_front::$controller->showmessage('两次输入密码不一致，请重新输入', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+		//     return ecjia_front::$controller->showmessage('两次输入密码不一致，请重新输入', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 	    // }
         // $user_info = $user->get_profile_by_id($user_id); // 论坛记录
         // /*短信找回，邮件找回，问题找回，登录修改密码*/
@@ -167,12 +167,12 @@ class user_controller {
         //         $where['user_id'] = $user_id;
         //         $db_users->where($where)->update($data);
         //         $user->logout();
-        //         ecjia_front::$controller->showmessage(RC_Lang::lang('edit_password_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl'=>RC_Uri::url('user/index/init')));
+        //         return ecjia_front::$controller->showmessage(RC_Lang::lang('edit_password_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl'=>RC_Uri::url('user/index/init')));
         //     } else {
-        //         ecjia_front::$controller->showmessage(RC_Lang::lang('edit_password_failure'),ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+        //         return ecjia_front::$controller->showmessage(RC_Lang::lang('edit_password_failure'),ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         //     }
         // } else {
-        //     ecjia_front::$controller->showmessage(RC_Lang::lang('edit_password_failure'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+        //     return ecjia_front::$controller->showmessage(RC_Lang::lang('edit_password_failure'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         // }
 //     }
 
@@ -196,7 +196,7 @@ class user_controller {
      */
 //     public static function clear_history() {
         // setcookie('ECS[history]', '', 1);
-        // ecjia_front::$controller->showmessage('成功清除浏览历史', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl'=>RC_Uri::url('user/index/history'),'is_show' => false));
+        // return ecjia_front::$controller->showmessage('成功清除浏览历史', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl'=>RC_Uri::url('user/index/history'),'is_show' => false));
 //     }
 
     /**
@@ -208,7 +208,7 @@ class user_controller {
 //         RC_Loader::load_app_class('integrate', 'user', false);
 //         $user = integrate::init_users();
 //         if($user->check_user($value)) {
-//             ecjia_front::$controller->showmessage('此手机号已经注册，请直接登陆!',ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+//             return ecjia_front::$controller->showmessage('此手机号已经注册，请直接登陆!',ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 //         }
 //         //发送短信
 //         $tpl_name = 'sms_register_validate';
@@ -233,9 +233,9 @@ class user_controller {
 //             $_SESSION['bindcode_lifetime'] = RC_Time::gmtime();
 //             $_SESSION['bind_value'] = $value;
 // //            $_SESSION['bind_type'] = $type;
-//             ecjia_front::$controller->showmessage('success',ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON,array('is_show' => false));
+//             return ecjia_front::$controller->showmessage('success',ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON,array('is_show' => false));
 //         } else {
-//             ecjia_front::$controller->showmessage('短信发送失败',ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+//             return ecjia_front::$controller->showmessage('短信发送失败',ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 //         }
 //     }
     /*
@@ -247,23 +247,23 @@ class user_controller {
         // $value = $_POST['mobile'];
         // $code = $_POST['mobile_code'];
         // if($user->check_user($value)) {
-        //     ecjia_front::$controller->showmessage('此手机号已经注册，请直接登陆!',ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        //     return ecjia_front::$controller->showmessage('此手机号已经注册，请直接登陆!',ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         // } else {
         //     //判断值是否为空
         //     if ( empty($value) || empty($code)) {
-        //         ecjia_front::$controller->showmessage('请输入信息',ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        //         return ecjia_front::$controller->showmessage('请输入信息',ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         //     }
         //     //判断校验码是否过期
         //     if ($_SESSION['bindcode_lifetime'] + 180 < RC_Time::gmtime()) {
-        //         ecjia_front::$controller->showmessage('验证码已过期，请重新获取！',ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        //         return ecjia_front::$controller->showmessage('验证码已过期，请重新获取！',ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         //     }
         //     //判断校验码是否正确
         //     if ($code != $_SESSION['bind_code'] ) {
-        //         ecjia_front::$controller->showmessage('验证码错误，请重新填写！',ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        //         return ecjia_front::$controller->showmessage('验证码错误，请重新填写！',ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         //     }
         //     //校验其他信息
         //     if ($value != $_SESSION['bind_value']) {
-        //         ecjia_front::$controller->showmessage('信息错误，请重新获取验证码!',ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        //         return ecjia_front::$controller->showmessage('信息错误，请重新获取验证码!',ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         //     }
         // }
         // ecjia_front::$controller->assign('mobile',$value);
