@@ -22,8 +22,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<li><a class="goods-tab tab2" href="javascript:;" data-type="2">详情</a></li>
 	</ul>
 </div>
-<div class="header-title-fixed">
-</div>
 
 <!-- 切换商品页面start -->
 <div class="ecjia-goods-basic-info"  id="goods-info-one">
@@ -163,7 +161,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="goods-desc-info active" id="goods-info-two" style="margin-top:3.5em;">
 	<!--商品描述-->
 	<!-- Nav tabs -->
-	<ul class="ecjia-list ecjia-list-new ecjia-list-two ecjia-list-two-new ecjia-nav goods-desc-nav-new">
+	<ul class="ecjia-list ecjia-list-new ecjia-list-two ecjia-list-two-new ecjia-nav ecjia-nav-new goods-desc-nav-new">
 		<li class="active goods-desc-li-info one-li" data-id="1">
 			<a class="a1" href="javascript:;">图文详情</a>
 			<span class="goods-detail-title-border"></span>

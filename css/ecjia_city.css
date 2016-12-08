@@ -2700,6 +2700,16 @@ footer{
 #goods-info-two{
 	display:none;
 }
+#goods-info-two .ecjia-nav-new li.active{
+	border-bottom:none !important;
+}
+#goods-info-two .ecjia-nav-new li.active a{
+	border-bottom:2px solid #ff1919;
+	width:39%;
+	font-size:1em;
+	height:3em;
+	margin-left:30%;
+}
 #goods-info-two .ecjia-list-new{
 	margin-top:0;
 }
