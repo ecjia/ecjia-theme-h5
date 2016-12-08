@@ -82,7 +82,7 @@
 }
 .ecjia-address-list .address-backgroundw {
 	background-color: #FFF;
-	border-bottom:  1px solid #ddd;
+	vertical-align: middle;
 	position: relative;
 	line-height: 3em;
 	padding-left: 1em;
@@ -107,18 +107,17 @@
 	padding-top: 0.6em;
 }
 .ecjia-address-list .address-backgroundw i.icon-jiantou-bottom {
-	position: absolute;
-	left: 4em;
-	top: 1em;
+	position: relative;
 }
 .ecjia-address-list .address-backgroundw input {
 	position: absolute;
 	left: 5.5em;
-	top: 0.4em;
+	top: 7px;
+	line-height: 3em;
 	height: 2em;
 	width: 60%;
 	border-radius: 5px;
-	padding-left: 1.6em;
+	padding-left: 2em;
 	border: 1px solid #F0F0F0;
 }
 .ecjia-address-list .address-background-mylocation input {
@@ -310,7 +309,7 @@
 	width: 28px;
 	height: 28px;
 	margin-left: 5%;
-	margin-top: 2%;
+	margin-top: 1.6%;
     background: url('../images/address_list/search200x200.png') no-repeat;
     background-size: 100%;
 	z-index: 99;
