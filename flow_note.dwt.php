@@ -14,7 +14,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 <form id="theForm" name="theForm" action="{url path='cart/flow/checkout'}" method="post">
     <div class="ecjia-select ecjia-margin-t">

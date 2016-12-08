@@ -15,6 +15,7 @@
 			ecjia.touch.category.scroll();
 			ecjia.touch.category.deleteall();
 			ecjia.touch.category.toggle_checkbox();
+			ecjia.touch.category.check_cart();
 		},
 
         add_tocart:function(){
@@ -223,6 +224,7 @@
             			discount_html = '<label>(已减'+ data.count.discount +')<label>';
             		}
             		$('.a4z').html('<div>'+ data.count.goods_price + discount_html + '</div>');
+            		$('.cart-check').attr('data-rec', data.data_rec);
             		
             		ecjia.touch.category.add_tocart();
     				ecjia.touch.category.remove_tocart();
@@ -433,7 +435,7 @@
         	});
         },
 
-        check_all : function () {
+        check_all : function() {
         	var chknum = $(".minicart-goods-list .checkbox").size();	//选项总个数 
 		    var chk = 0; 
 		    $(".minicart-goods-list .checkbox").each(function () {   
@@ -446,6 +448,30 @@
 		    } else {//不全选 
 		        $("#checkall").removeClass("checked"); 
 		    } 
+        },
+        
+        check_cart : function() {
+        	$('.check_cart').off('click').on('click', function(e) {
+        		e.preventDefault();
+        		var $this = $(this),
+        			url = $this.attr('href'),
+        			store_id = $this.attr('data-store'),
+        			address_id = $this.attr('data-address'),
+        			rec_id = $this.attr('data-rec');
+        		if ($this.hasClass('disabled')) {
+        			return false;
+        		}
+        		if (store_id != undefined) {
+        			url += '&store_id=' + store_id;
+        		}
+        		if (address_id != undefined) {
+        			url += '&address_id=' + address_id;
+        		}
+        		if (rec_id != undefined) {
+        			url += '&rec_id=' + rec_id;
+        		}
+        		ecjia.pjax(url);
+        	});
         },
         
 		openSelection : function() {
