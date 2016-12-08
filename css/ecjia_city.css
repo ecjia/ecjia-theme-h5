@@ -168,6 +168,26 @@ a.ecjia-color-green {
     white-space: nowrap;
     overflow: hidden;
 }
+
+/*== 顶部定位  ==*/
+.ecjia-web {
+	line-height: 2em;
+    text-align: center;
+    width: 100%;
+}
+.ecjia-web .ecjia-address{
+	max-width: 66%;
+    position: relative;
+    display: inline-block;
+}
+.ecjia-address img{
+    width: 15px;
+	height:15px;
+}
+.ecjia-address .address-text {
+	margin:0px 5px 0px 5px;
+}
+
 /*搜索*/
 .focus {
 	margin-top: 45px;
