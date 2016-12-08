@@ -4146,3 +4146,11 @@ footer{
 .ecjia-spread .invite_explain .invite_explain-content{
 	padding-left:1em;
 }
+.ecjia-spread .share-buttons .cancel-butoons{
+	height:45px;
+	line-height:45px;
+	border-radius:7px;
+}
+.ecjia-spread .bottom-elastic-layer{
+	display:none;
+}
