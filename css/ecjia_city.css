@@ -86,6 +86,16 @@ a.ecjia-color-green {
     display: inline-block;
 }
 /*end*/
+.select-title {
+    font-size: 1em;
+    line-height: 2em;
+}
+.select-title-big {
+    font-size: 1.2em;
+}
+.select-title-small {
+    font-size: 0.8em;
+}
 /*========================  首页 ===========================*/
 .ecjia-header {
     background: #47aa4d;
@@ -1774,9 +1784,6 @@ footer{
 	border-bottom:none;
 }
 /*======================== 选择支付方式、选择配送方式、选择红包 ecjia-select  ===========================*/
-.ecjia .ecjia-select .slect-title {
-	font-size: 1.2em;
-}
 .ecjia .ecjia-select li{
 	padding: 1em;
 }
@@ -1787,10 +1794,7 @@ footer{
 	font-weight: normal;
 	line-height: normal;
 }
-.ecjia .ecjia-select .select-title {
-    font-size: 1.2em;
-    line-height: 2em;
-}
+
 .ecjia .ecjia-select .input{
     padding: 0 1em;
 }
@@ -2490,11 +2494,12 @@ footer{
 .ecjia-account .two-btn{
 	width: 100%;
     text-align: center;
-    margin-left: 18%;
 }
 .ecjia-account .two-btn .btn{
 	width: 30%;
-	margin-right: 1em;
+	margin-right: .5em;
+	margin-left: .5em;
+	line-height: 1.5em;
 	background-color: #47AA4D;
 	color: #FFF;
 	height: 2.3em;
@@ -2531,6 +2536,15 @@ footer{
 	display: block;
 	width: 96%;
 	margin: 0 auto;
+}
+.ecjia-list.ecjia-account-record>.ecjia-nolist>p {
+	margin: 40% 0 0 2%;
+	position: absolute;
+}
+.ecjia-bonus .ecjia-nolist>p {
+	margin: 40% 0 0 -60px;
+	left: 50%;
+	position: absolute;
 }
 .ecjia-account-record .account-record-list li.record-list{
 	border-top: 1px solid #eee;
@@ -2687,6 +2701,24 @@ footer{
     background-size: 100%;
 	z-index: 99;
 	float: right;
+}
+.ecjia-list.ecjia-account-record .ecjia-nolist .no-record {
+	width: 180px;
+	height: 180px;
+	position: absolute;
+	left: 50%;
+	margin: -10% 0 0 -90px;
+    background: url('../images/wallet/norecord_180.png') no-repeat;
+    background-size: 100%;
+}
+.ecjia-bonus .ecjia-nolist .img-nobonus {
+	width: 180px;
+	height: 180px;
+	position: absolute;
+	left: 50%;
+	margin: -10% 0 0 -90px;
+    background: url('../images/wallet/nobonus_180.png') no-repeat;
+    background-size: 100%;
 }
 
 /*========================  登录 ===========================*/
