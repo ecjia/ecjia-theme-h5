@@ -24,6 +24,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</ul>
 </div>
 
+<!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
 <!-- <div class="page-content">
     <ul class="ecjia-list">
       <li class="alert-text">Alert With Text</li>
@@ -110,7 +111,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<!-- 判断不能大于4个 -->
 						<li class="goods-img-more">
 							<i class="icon iconfont">&#xe62e;</i>
-							<p class="ecjia-fz-small">共{$list.goods_number}件</p>
+							<p class="ecjia-fz-small ecjiaf-ib">共{$list.goods_number}件</p>
 						</li>
 						<!-- {break} -->
 						<!-- {/if} -->
@@ -140,4 +141,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	<p>{t}暂无相关订单{/t}</p>
         </div>
 		<!-- {/foreach} -->
+		
 <!-- {/block} -->

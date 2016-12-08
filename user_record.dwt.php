@@ -16,11 +16,9 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
 <div class="ecjia-account-list-f">
     <div class="ecjia-account-list">
-        <ul class="ecjia-list ecjia-list-three ecjia-nav ecjia-account ecjia-bonus-border-right">
+        <ul class="ecjia-list ecjia-list-three ecjia-nav ecjia-account ecjia-bonus-border-right1">
         	<li><a {if $smarty.get.status eq ''}class="ecjia-green left-bottom ecjia-green-rf"{else}class="left-bottom ecjia-green-rf"{/if} id="left-bottom" href="{url path='user/user_account/record' args='status='}">{t}全部{/t}</a></li>
         	<li><a {if $smarty.get.status eq 'raply'}class="ecjia-green ecjia-green-rf"{else}class="ecjia-green-rf"{/if} href="{url path='user/user_account/record' args='status=raply'}">{t}提现{/t}</a></li>
         	<li><a {if $smarty.get.status eq 'deposit'}class="ecjia-green right-bottom ecjia-green-rf"{else}class="right-bottom ecjia-green-rf"{/if} id="right-bottom" href="{url path='user/user_account/record' args='status=deposit'}">{t}充值{/t}</a></li>
@@ -40,22 +38,21 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 			<ul>
 			{foreach from=$group item=item}
 				<li class="record-single">
-				<a href="url path="user/user_account/record_info"">
+				<a href="{RC_Uri::url('user/user_account/record_info')}&account_id={$item.account_id}">
 					<div class="record-l">
-					
 						<span class="user-photo"><img src="{$user_img}" alt=""></span>
 					</div>
 					<div class="record-r">
 						<div class="record-r-l">
-							<p>{$item.type_lable}</p>
-							<p class="record-time">{$item.add_time}</p>
+							<p class="account-record-big">{$item.type_lable}</p>
+							<p class="record-time account-record-sm">{$item.add_time}</p>
 						</div>
 						<div class="record-r-r">
-							<p>{$item.amount}</p>
-							<p>{$item.pay_status}</p>
+							<p class="account-record-big">{$item.amount}</p>
+							<p class="account-record-sm">{$item.pay_status}</p>
 						</div>
-					</div>
 					</a>
+				</form>
 				</li>
 			{/foreach}
 			</ul>

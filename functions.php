@@ -137,6 +137,7 @@ RC_Hook::add_action('user/user_account/account_list', array('user_account_contro
 RC_Hook::add_action('user/user_account/record', array('user_account_controller', 'record'));
 RC_Hook::add_action('user/user_account/ajax_record', array('user_account_controller', 'ajax_record'));
 RC_Hook::add_action('user/user_account/record_info', array('user_account_controller', 'record_info'));
+RC_Hook::add_action('user/user_account/record_cancel', array('user_account_controller', 'record_cancel'));
 
 RC_Loader::load_theme('extras/controller/user_address_controller.php');
 RC_Hook::add_action('user/user_address/address_list', array('user_address_controller', 'address_list'));

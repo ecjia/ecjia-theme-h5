@@ -336,7 +336,7 @@
 
 			$('.btn-search').off('click').on('click', function(e) {
 				var val = $('input[name="keywords"]').val().trim(),
-					url = $('.ecjia-form').attr('data-url');
+					url = $('.ecjia-form').attr('action');
 				if (!val) {
 					$("#keywordBox").blur();
 					return;
@@ -382,7 +382,7 @@
 			            text: '确定',
 			            onClick: function() {
 			            	$.get(url, function(data){
-								ecjia.pjax(window.location.href);
+								ecjia.pjax(data.pjaxurl);
 							}, 'json');
 			          	},
 			          }

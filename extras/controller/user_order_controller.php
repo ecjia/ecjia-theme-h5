@@ -8,40 +8,6 @@ class user_order_controller {
      * 获取全部订单
      */
     public static function order_list() {
-        // $status = empty($_GET['status']) ? 'unpayed' : $_GET['status'];
-        // if ($status == '' || $status == 'unpayed') {
-        //     $where = array(
-        //         'pay_status' => 0,
-        //         'order_status' => array('neq' => OS_CANCELED),
-        //         'p.pay_code' => array('neq' => 'pay_cod'),
-        //     );
-        //     $order = array('add_time' =>DESC );
-        // } elseif($status == 'unshipped') {
-        //     $where[] = '( p.pay_code = "pay_cod" OR pay_status = "2" )';
-        //     $where[] .= '(shipping_status = 0 OR shipping_status = 3 OR shipping_status = 5)';
-        //     $where['order_status'] = array('neq' => OS_CANCELED);
-        //     $order = array('order_id' =>DESC );
-        // } elseif($status == 'confiroed') {
-        //     $where = array(
-        //         'shipping_status' 	=> 1,
-        //         'order_status' => array('neq' => OS_CANCELED),
-        //     );
-        //     $order = array('shipping_time' =>DESC );
-        // }elseif($status == 'success_order') {
-        //     $where = array(
-        //         'pay_status'		=> PS_PAYED,
-        //         'order_status' => array('neq' => OS_CANCELED),
-        //         'shipping_status'	=> SS_RECEIVED
-        //     );
-        //     $order = array('confirm_time' => DESC);
-        // }
-        // $where['user_id'] = $_SESSION['user_id'];
-        // $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
-        // $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-        // $orders = get_user_orders($where, $size, $page, $order);
-        // ecjia_front::$controller->assign('order', $orders['list']);
-        // ecjia_front::$controller->assign('status', $status);
-        // ecjia_front::$controller->assign('page', $orders['page']);
         
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)

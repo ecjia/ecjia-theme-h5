@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 <!-- #EndLibraryItem -->
-<div class="ecjia-checkout">
+<div class="ecjia-checkout ecjia-padding-b">
 	<form id="theForm" name="theForm" action="{url path='flow/done'}" method="post">
 		<div class="flow-address ecjia-margin-b">
 			<label class="ecjiaf-fl">送至：</label>
@@ -36,7 +36,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<!-- 判断不能大于4个 -->
 				<li class="goods-img-more">
 					<i class="icon iconfont">&#xe62e;</i>
-					<p class="ecjia-fz-small">共{$total_goods_number}件</p>
+					<p class="ecjia-fz-small ecjiaf-ib">共{$total_goods_number}件</p>
+					<i class="icon iconfont icon-right">&#xe6aa;</i>
 				</li>
 				<!-- {break} -->
 				<!-- {/if} -->
@@ -77,7 +78,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<a href='{url path="cart/flow/note" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>备注留言</span>
 				<i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr select_nav ecjia-truncate">{$note}</span>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$note}<input type="hidden" name="note" value="{$note}" /></span>
 			</a>
 		</section>
 		
@@ -85,9 +86,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<section class="checklist">
 			<a href='{url path="cart/flow/bonus" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>{$lang.use_bonus}</span>
-				<span class="icon-font">无可用</span>
+				<span class="ecjia-tag">无可用</span>
 				<i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
+				<!-- <span class="ecjiaf-fr select_nav ecjia-truncate">xxx红包</span> -->
 			</a>
 		</section>
 		{/if}
@@ -95,9 +96,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<section class="checklist ecjia-margin-b">
 			<a href='{url path="cart/flow/integral" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>{$lang.use_integral}</span>
-				<span class="icon-font">{$data.your_integral}积分可用</span>
+				<span class="ecjia-tag">{$data.your_integral}积分可用</span>
 				<i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr select_nav ecjia-truncate">{$shipping_default}</span>
+				<!-- <span class="ecjiaf-fr select_nav ecjia-truncate">33分</span> -->
 			</a>
 		</section>
 		{/if}
@@ -105,9 +106,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<section class="ecjia-margin-t checkout-select checkout-pro-list">
 			<!-- #BeginLibraryItem "/library/order_total.lbi" --><!-- #EndLibraryItem -->
 		</section>
-		<p class="ecjia-margin-t ecjia-margin-l ecjia-fz-small ecjia-color-green">本订单由{$data.goods_list.0.seller_name}发货并提供售后服务</p>
+		<p class="ecjia-margin-t ecjia-margin-l ecjia-color-green">本订单由{$data.goods_list.0.seller_name}发货并提供售后服务</p>
 
-		<section class="ecjia-margin-t ecjia-margin-b">
+		<section class="ecjia-margin-t">
 			<input type="hidden" name="rec_id" value="{$rec_id}">
 			<input type="hidden" name="address_id" value="{$address_id}">
 			<input class="btn btn-info" name="submit" type="submit" value="提交订单"/>
@@ -116,17 +117,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</form>
 </div>
 
-
+{if 0}
 <div class="flow-checkout">
 	<form id="theForm" name="theForm" action="{url path='flow/done'}" method="post">
-
-{if 0}
-
 		<section class="checkout-select checkout-pro-list ecjia-margin-t">
 			<li class="order-check"><input name="postscript" type="text" placeholder="{t}给卖家留言{/t}"></li>
 		</section>
 			<section class="checkout-select ecjia-margin-t">
-
 			<!-- {if $inv_content_list} 能否开发票 -->
 			<a class="select nopjax" href="javascript:;">
 				<p>
@@ -164,7 +161,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</ul>
 			</div>
 			<!--{/if}-->
-
 			<!-- {if $allow_use_bonus and $bonus_list} 是否使用红包 -->
 			<a class="select nopjax" href="javascript:;">
 				<p>
@@ -222,9 +218,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</ul>
 			</div>
 			<!-- {/if} 是否使用积分 -->
-
 		</section>
-		{/if}
 	</form>
 </div>
+{/if}
 <!-- {/block} -->

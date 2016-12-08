@@ -144,7 +144,8 @@ class user_address_controller {
 //         ecjia_front::$controller->assign('city_list', $city_list);
 //         ecjia_front::$controller->assign('district_list', $district_list);
 //         ecjia_front::$controller->assign_title(RC_Lang::lang('edit_address'));
-        $edit_address = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data(array('token' => 'c7d023a7be8ebe07d5a516d3c54b27b919c899fb', 'address_id' => $id))->run();
+        $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+        $edit_address = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data(array('token' => $token['access_token'], 'address_id' => $id))->run();
         ecjia_front::$controller->assign('edit_address', $edit_address);
         ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();

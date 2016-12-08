@@ -15,8 +15,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
 <form class="ecjia-form ecjia-login ecjia-login-margin-top" action="{url path='user/get_password/get_password_email'}" method="post">
     <p class="text-st">请输入收到的短信验证码</p>
 	<div class="form-group small-text">
@@ -26,7 +24,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<div class="small-submit">
             <input type="hidden" name="referer" value="{$smarty.get.referer}" />
-            <span><input type="submit" class="btn btn-info login-btn" value="{$lang.return_verification}" /></span>
+            <span><input type="submit" id="get_code" class="btn btn-info login-btn" value="{$lang.return_verification}" /></span>
 	</div>
 	 <a href="{url path='user/get_password/reset_password'}">
 	 <div class="around">

@@ -45,12 +45,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<a class="ecjiaf-fr" href="{url path='cart/flow/consignee' args="direct_shopping=1"}">{$lang.direct_shopping}</a>
 		<!-- {/if} -->
 	</div>
-	<div class="ecjia-login">
-	    <div class="around">
-            <input type="hidden" name="referer" value="{$smarty.get.referer}" />
-            <input type="submit" class="btn btn-info login-btn" value="{$lang.login}" />
-	    </div>	
-	</div>
+    <div class="around">
+        <input type="hidden" name="referer" value="{$smarty.get.referer}" />
+        <input type="submit" class="btn btn-info login-btn" value="{$lang.login}" />
+    </div>	
 	<ul>
 	<li style="text-align:center;">其他帐号登录</li>
 	<li class="thirdparty-qq"></li>

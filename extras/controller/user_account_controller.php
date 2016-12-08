@@ -145,7 +145,11 @@ class user_account_controller {
         // ecjia_front::$controller->assign_lang();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
         $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->run();
-        $payment = $pay['payment'];
+        foreach ($pay['payment'] as $key => $val) {
+            if ($val['pay_name'] != '余额支付' && $val['pay_name'] != '货到付款') {
+                $payment[$key] = $val;
+            }
+        }
         ecjia_front::$controller->assign('hideinfo', 1);
         ecjia_front::$controller->assign('payment', $payment);
         ecjia_front::$controller->assign('user', $user);
@@ -198,6 +202,7 @@ class user_account_controller {
         // } else {
         //     ecjia_front::$controller->showmessage('支付方式无法支付', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT);
         // }
+        _dump($_POST,1);
     }
 
     /**
@@ -266,16 +271,16 @@ class user_account_controller {
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
         $user_money = ltrim($user['formated_user_money'], '￥');
         if ($amount > $user_money) {
-            ecjia_front::$controller->showmessage(__('余额不足，请确定提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/user_account/withdraw')));
+            ecjia_front::$controller->showmessage(__('余额不足，请确定提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_account/withdraw')));
         }
         if (strlen($note) > '300') {
-            ecjia_front::$controller->showmessage(__('输入的文字超过规定字数'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/user_account/withdraw')));
+            ecjia_front::$controller->showmessage(__('输入的文字超过规定字数'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_account/withdraw')));
         }
         if (empty($amount)) {
             ecjia_front::$controller->showmessage(__('请输入提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         } else {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RAPLY)->data(array('amount' => $amount, 'note' => $note))->run();
-            ecjia_front::$controller->showmessage(__($data), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/user_account/withdraw')));
+            ecjia_front::$controller->showmessage(__($data), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/user_account/account_list')));
         }
     }
     
@@ -327,18 +332,41 @@ class user_account_controller {
      * 充值提现详情
      */
     public static function record_info() {
-       
+        $account_id = !empty($_GET['account_id']) ? $_GET['account_id'] : '';
         $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         ecjia_front::$controller->assign('user_img', $user_img);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('page' => $page, 'count' => $limit,'type' => $type))->send()->getBody();
         $data = json_decode($data,true);
+        $account_key = '';
+        foreach ($data['data'] as $key => $val) {
+            if ($data['data'][$key]['account_id'] == $account_id) {
+                $account_key = $key;
+            }
+        }
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
         ecjia_front::$controller->assign('user', $user);
-        ecjia_front::$controller->assign('sur_amount', $data['data'][5]);
+        ecjia_front::$controller->assign('sur_amount', $data['data'][$account_key]);
         $_SESSION['status'] = !empty($_GET['status']) ? $_GET['status'] : '';
         ecjia_front::$controller->assign('hideinfo', '123');
         ecjia_front::$controller->display('user_record_info.dwt');
     }
+    
+    /**
+     * 提现充值取消
+     */
+    public static function record_cancel() {
+        $account_id = !empty($_POST['account_id']) ? $_POST['account_id'] : '';
+        $record_type = !empty($_POST['record_type']) ? $_POST['record_type'] : '';
+        $submit = !empty($_POST['submit']) ? $_POST['submit'] : '';
+        if ($submit == '取消') {
+                $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_CANCEL)->data(array('account_id' => $account_id))->send()->getBody();
+                ecjia_front::$controller->showmessage(__('取消该交易记录'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/user_account/record')));
+        } elseif ($submit == '充值') {
+            
+        }
+    }
+    
+    
 }
 
 // end

@@ -9,8 +9,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
 
 <ul class="ecjia-list ecjia-account">
 	<div class="ecjia-nolist">
@@ -23,7 +21,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<div class="two-btn">
 		<a href="{url path='user/user_account/recharge'}"><input class="btn ecjiaf-fl" name="submit" type="submit" value="{t}充值{/t}" /></a>
-		<a href="{url path='user/user_account/withdraw'}"><input class="btn ecjiaf-fr" name="submit" type="submit" value="{t}提现{/t}" /></a>
+		<a href="{url path='user/user_account/withdraw'}"><input class="btn ecjiaf-fr ecjia-btn-e5" name="submit" type="submit" value="{t}提现{/t}" /></a>
 	</div>
 	<a href="{url path='user/user_account/record'}"><p class="cash_list">交易记录</p></a>
 </ul>
