@@ -7,11 +7,6 @@
 			ecjia.touch.goods_detail.change();
 			ecjia.touch.goods_detail.promote_time();
 			ecjia.touch.goods_detail.goods_img();
-//			ecjia.touch.goods_detail.add_tocart();
-//			ecjia.touch.goods_detail.update_cart();
-//			ecjia.touch.goods_detail.remove_tocart();
-//			ecjia.touch.goods_detail.toggle_cart();
-//			ecjia.touch.goods_detail.scroll();
 		},
 		change: function() {
 			$('.tab2').css("border-bottom", "none");

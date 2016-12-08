@@ -13,7 +13,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 <form class="ecjia-address-list" name="theForm" action="{url path='user/user_address/inster_addres'}" method="post">
-	<div class="form-group form-group-text ecjia-margin-b">
+	<div class="form-group form-group-text">
 		<a id="district" onclick="district()">
 		<label class="input">
 			<span>所在地区： </span>
