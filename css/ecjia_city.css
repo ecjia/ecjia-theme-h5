@@ -884,11 +884,11 @@ footer{
 .ecjia-store-goods .a1n .a1x {
 	position: absolute;
     top: 2em;
-    bottom: 0;
+    bottom: 5em;
     left: 6em;
     right: 0;
     padding-top: 0;
-	padding-bottom: 6em;
+	padding-bottom: 7em;
     z-index: 10;
     background-color: #FFF;
     overflow: auto;
@@ -1412,14 +1412,57 @@ footer{
 .small-btn{
 	margin-top: 50px;
 }
+.flow-no-pro .ecjia-nolist{
+	position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding-top: 310px;
+    font-size: 16px;
+    color: #aaa;
+    line-height: 26px;
+    text-align: center;
+    background: url(../images/cart.png) center 140px no-repeat;
+    margin: 0 auto;
+    max-width: 640px;
+    background-size: 10em;
+}
+.flow-no-pro .ecjia-nolist a.btn.btn-small{
+	background: #47aa4d;
+	width: 35%;
+	font-size: .8em;
+	margin: 0 30%;
+	margin-top: 1em;
+}
+.ecjia-flow-cart .cart-title {
+    position: relative;
+    line-height: 40px;
+    min-height: 40px;
+    color: #666;
+    border-bottom: 1px solid #ebebeb;
+}
+.ecjia-flow-cart .cart-title .cart-check-all{
+	position: absolute;
+    z-index: 3;
+    left: -10px;
+    top: 6px;
+    width: 50px;
+    height: 60px;
+    background-position: 10px 20px;
+	background-image: url(../images/icon/ck.png);
+    background-size: 20px 220px;
+    background-repeat: no-repeat;
+	display: block;
+}
 
 /*========================  结算 ecjia-checkout =========================== */
 /*定位地址、选择的收货地址 */
 .flow-address {
-    height:5em;
-    padding: 1em 1em .5em;
+    height:5.5em;
+    padding: .5em 1em .5em;
 	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
-	background-size: 70%;
+	background-size: 100%;
 }
 .flow-address label{
 	width: 20%;

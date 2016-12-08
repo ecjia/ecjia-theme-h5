@@ -7,39 +7,37 @@ class cart_controller {
      * 购物车列表
      */
     public static function init() {
-        // $_SESSION['flow_type'] = CART_GENERAL_GOODS;
-        // /* 如果是一步购物，跳到结算中心 */
-        // if (ecjia::config('one_step_buy') == '1') {
-        //     ecjia_front::$controller->showmessage('一步购物，直接进入结算中心', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl'=>RC_Uri::url('flow/checkout')));
-        // }
-        // /*取得商品列表，计算合计*/
-        // $cart_goods = get_cart_goods();
-        // ecjia_front::$controller->assign('goods_list', $cart_goods ['goods_list']);
-        // ecjia_front::$controller->assign('total', $cart_goods ['total']);
-        // if ($cart_goods['goods_list']) {
-        //     /*相关产品*/
-        //     $linked_goods = get_linked_goods($cart_goods ['goods_list']);
-        //     ecjia_front::$controller->assign('linked_goods', $linked_goods);
-        // }
-        // /*购物车的描述的格式化*/
-        // ecjia_front::$controller->assign('shopping_money', sprintf(RC_Lang::lang('shopping_money'), $cart_goods ['total'] ['goods_price']));
-        // ecjia_front::$controller->assign('market_price_desc', sprintf(RC_Lang::lang('than_market_price'), $cart_goods ['total'] ['market_price'], $cart_goods ['total'] ['saving'], $cart_goods ['total'] ['save_rate']));
-        // /*计算折扣*/
-        // $discount = compute_discount();
-        // ecjia_front::$controller->assign('discount', $discount ['discount']);
-        // /*折扣信息*/
-        // $favour_name = empty($discount ['name']) ? '' : join(',', $discount ['name']);
-        // ecjia_front::$controller->assign('your_discount', sprintf(RC_Lang::lang('your_discount'), $favour_name, price_format($discount ['discount'])));
-        // /*增加是否在购物车里显示商品图*/
-        // ecjia_front::$controller->assign('show_goods_thumb', ecjia::config('show_goods_in_cart'));
-        // /*增加是否在购物车里显示商品属性*/
-        // ecjia_front::$controller->assign('show_goods_attribute', ecjia::config('show_attr_in_cart'));
-        //
-        // ecjia_front::$controller->assign('currency_format', ecjia::config('currency_format'));
-        // ecjia_front::$controller->assign('integral_scale', ecjia::config('integral_scale'));
-        // ecjia_front::$controller->assign('step', 'cart');
-        ecjia_front::$controller->assign('title', RC_Lang::lang('shopping_cart'));
-        ecjia_front::$controller->assign_title(RC_Lang::lang('shopping_cart'));
+    	$token = '3d01e032db6418ea8dea1da92462f529529183c8';
+    	
+    	//所有地址
+    	$cache_key = 'address_list_'.$token;
+    	$address_list = RC_Cache::app_cache_get($cache_key, 'user_address');
+    	if (!$address_list) {
+    		$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
+    		RC_Cache::app_cache_set($cache_key, $address_list, 'user_address', 60*24);//24小时缓存
+    	}
+
+    	$default_address = array();
+    	if (!empty($address_list)) {
+    		foreach ($address_list as $k => $v) {
+    			if ($v['default_address'] == 1) {
+    				$default_address = $v;
+    			}
+    		}
+    	}
+    	
+    	
+    	$arr = array(
+    		'token' 	=> $token,
+    		'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371')
+    	);
+    	//店铺购物车商品
+    	$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
+    	
+    	
+    	ecjia_front::$controller->assign('default_address', $default_address);
+    	ecjia_front::$controller->assign('cart_list', $cart_list);
+    	
         ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->assign('active', 3);
         ecjia_front::$controller->display('cart_list.dwt');

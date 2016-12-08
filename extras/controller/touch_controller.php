@@ -110,7 +110,7 @@ class touch_controller {
         $sayList = ecjia_front::$controller->fetch('index.dwt');
         
         if ($list['paginated']['more'] == 0) $data['is_last'] = 1;
-        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $data['is_last']));
+        return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $data['is_last']));
     }
 
     /**
@@ -143,7 +143,7 @@ class touch_controller {
     	}
         setcookie($ecjia_search, '', 1);
         
-        ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('touch/index/search')));
+        return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('touch/index/search')));
     }
 
     public static function download() {
