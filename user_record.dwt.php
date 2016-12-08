@@ -16,8 +16,6 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
 <div class="ecjia-account-list-f">
     <div class="ecjia-account-list">
         <ul class="ecjia-list ecjia-list-three ecjia-nav ecjia-account ecjia-bonus-border-right1">

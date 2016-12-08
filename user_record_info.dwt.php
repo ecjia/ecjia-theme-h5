@@ -7,16 +7,12 @@ Libraries: page_menu,page_header
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {extends file="ecjia-touch.dwt.php"} -->
-
 <!-- {block name="footer"} -->
 <script type="text/javascript">
 </script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
-
 <div class="ecjia-account" method="post">
     <div class="user-img"><img src="{$user_img}">
         <p class="user-name">{$user.name}</p>
@@ -33,18 +29,24 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
     {if $sur_amount.pay_status eq '已完成'}
     {else}
+        <form name="formPassword" action="{url path='user/user_account/record_cancel'}" method="post" >
         {if $sur_amount.type eq 'deposit'}
             <div class="two-btn btn-bottom">
-        		<a href="{url path='user/user_account/recharge'}"><input class="btn ecjiaf-fl btn-c" name="submit" type="submit" value="{t}取消{/t}" /></a>
-        		<a href="{url path='user/user_account/withdraw'}"><input class="btn ecjiaf-fr" name="submit" type="submit" value="{t}充值{/t}" /></a>
+                <input name="record_type" type="hidden" value={$sur_amount.type} />
+                <input name="account_id" type="hidden" value={$sur_amount.account_id}>
+        		<input class="btn ecjiaf-fl btn-c" id="record_cancel" name="submit" type="submit" value="{t}取消{/t}" />
+        		<input class="btn ecjiaf-fr" name="submit" type="submit" value="{t}充值{/t}" />
         	</div>
         {else if}
             <div class="two-btn btn-bottom">
                 <p class="apply-img"></p>
                 <p class="apply">已申请</p>
-                <a href="{url path='user/user_account/withdraw'}"><input class="btn ecjiaf-fr btn-c" name="submit" type="submit" value="{t}取消{/t}" /></a>
+                <input name="record_type" type="hidden" value={$sur_amount.type} />
+                <input name="account_id" type="hidden" value={$sur_amount.account_id}>
+                <input class="btn ecjiaf-fr btn-c" id="record_cancel" name="submit" type="submit" value="{t}取消{/t}" />
         	</div>	
         {/if}	
+        </form>
 	{/if}
 </div>
 
