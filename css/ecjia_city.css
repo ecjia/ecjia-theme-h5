@@ -1507,6 +1507,9 @@ footer{
 	margin: 0 30%;
 	margin-top: 1em;
 }
+.ecjia-flow-cart{
+	margin-bottom: 48px;
+}
 .ecjia-flow-cart .cart-single{
 	background: #fff;
 	margin-top: .8em;
@@ -1518,20 +1521,23 @@ footer{
     border-bottom: 1px solid #eee;
 	position: relative;
 }
-.ecjia-flow-cart .check-wrapper{
+.ecjia-flow-cart .item .check-wrapper{
 	position: absolute;
     top: 12px;
     left: 0;
     margin-top: 0;
     margin-left: 10px;
 }
-.ecjia-flow-cart .check-wrapper .cart-checkbox{
+.ecjia-flow-cart .item .check-wrapper .cart-checkbox{
     width: 20px;
     height: 20px;
 	background-image: url(../images/icon/ck.png);
     background-size: 20px 220px;
     background-repeat: no-repeat;
 	display: block;
+}
+.ecjia-flow-cart .item .check-wrapper .cart-checkbox.checked{
+	background-position: 0px -200px;
 }
 .ecjia-flow-cart .shop-title-content{
 	width: 100%;
@@ -1562,20 +1568,102 @@ footer{
 	padding-left: 20px;
 }
 .ecjia-flow-cart .item-goods {
-    padding-left: 40px;
-	position: relative;
+    position: relative;
+    line-height: 36px;
+	padding-left: 40px;
 }
-.item-goods {
-    text-align: left;
-    clear: both;
-    background-color: #ffffff;
+.ecjia-flow-cart .item-goods .cart-checkbox{
+    position: absolute;
+    z-index: 3;
+    left: 10px;
+    width: 20px;
+    height: 60px;
+    background-position: 0px 20px;
+    background-image: url(../images/icon/ck.png);
+    background-size: 20px 220px;
+    background-repeat: no-repeat;
 }
-.shp-cart-item-core{
+.ecjia-flow-cart .item-goods .cart-checkbox.checked{
+	background-position: 0px -180px;
+}
+.ecjia-flow-cart .item-goods .cart-product{
 	position: relative;
-    margin: 10px 0;
+	margin: 12px 0;
+	box-sizing: border-box;
+}
+.ecjia-flow-cart .item-goods .cart-product-photo{
+	width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ecjia-flow-cart .item-goods .cart-product-photo img{
+	width: 70px;
+    height: 70px;
+	border: 1px solid #eee;
+}
+.ecjia-flow-cart .item-goods .cart-product-info{
+	padding-left: 80px;
+    padding-right: 10px;
+    width: 100%;
     box-sizing: border-box;
 }
-
+.ecjia-flow-cart .item-goods .cart-product-name{
+    max-height: 40px;
+	height: 40px;
+    line-height: 20px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: normal;
+}
+.ecjia-flow-cart .item-goods .cart-product-price{
+	color: #ff3434; 
+}
+.ecjia-flow-cart .ecjia-input-number {
+	width: 6.5em;
+	color: #aaa;
+	position: absolute;
+	right: .5em;
+	bottom: .2em;
+	height: 1.8em
+}
+.ecjia-flow-cart .ecjia-input-number .ecjia-number-contro {
+    width: 3em;
+	color: #333;
+	font-size: 1.1em;
+	line-height: 1.5em;
+    height: 1.5em;
+}
+.ecjia-flow-cart .ecjia-input-number .ecjia-number-group-addon {
+	width: 1em;
+	line-height: 1.3em;
+}
+.item-count{
+	position: relative;
+	height: 48px;
+	border-top: 1px solid #eee;
+}
+.item-count span{
+	line-height: 48px;
+}
+.item-count .count{
+	margin-left: 10px;
+}
+.item-count .price{
+	color: #ff3434;
+}
+.ecjia-flow-cart .check-cart{
+	position: absolute;
+    right: 0;
+    width: 115px;
+    text-align: center;
+    color: #fff;
+    line-height: 48px;
+    background-color: #47b34f;
+    font-size: 1.1em;
+}
 /*========================  结算 ecjia-checkout =========================== */
 /*定位地址、选择的收货地址 */
 .flow-address {
