@@ -15,9 +15,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-<div class="ecjia-my-reward">
-	<a href="javascript:;"><span class="ecjia-my-reward-literal" style="color:#fff;font-size:16px;">我的奖励</span></a>
-</div>
 <div class="ecjia-spread">
 	<div class="ecjia-bg-qr-code">
 		<div class="bg-img"></div>
@@ -38,7 +35,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="invite_explain"> 
 		<p class="invite_explain-literal">邀请说明：</p>
 		<div class="invite_explain-content">
-			<p>{$invite_user.invite_explain}</p>
+			{if $invite_user.invite_explain_new}
+				<!--{foreach from=$invite_user.invite_explain_new item=invite}-->
+					{if $invite}
+						<p>{$invite}；</p>
+					{/if}
+				<!--{/foreach}-->
+			{else}
+				{$invite_user.invite_explain}
+			{/if}
 		</div>
 		
 	</div>

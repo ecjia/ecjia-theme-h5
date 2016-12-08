@@ -18,8 +18,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <div class="ecjia-address-list">
 	<div class="nav-header ecjia-margin-t ecjia-margin-b">
-		<a class="" href="{url path='user/user_address/add_address'}" type="botton">
-			<div class="icon-add-address"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t}新建收货地址{/t}
+		<a href="{url path='user/user_address/add_address'}">
+			<i class="icon-add-address"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t}新建收货地址{/t}
 			<span class="ecjiaf-fr"><i class="iconfont icon-jiantou-right"></i></span>
 		</a>
 	</div>
@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!-- {if $address_list} -->
 		<ul class="ecjia-list list-one" id="J_ItemList">
 			<!-- 配送地址 start-->
-			<!-- {foreach from=$address_list item=value} 循环地址列表 -->
+			<!-- {foreach from=$address_list item=value}-->
 			<li>
 				<div>
 					<p class="ecjiaf-fl">{$value.consignee}</p>
@@ -53,9 +53,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<!-- {$page} -->
 		<!-- {else} -->
 		<div class="ecjia-nolist">
-			<i class="iconfont icon-location"></i>
-			<p class="address_list_font">{t}您还没有收货地址哦{/t}</p>
-			<p class="address_list_font_two">{t}赶快来添加您的第一个收货地址吧{/t}</p>
+			<img src="{$theme_url}images/address.png">
+			<p class="address_list_font">{t}暂无收货地址，请添加{/t}</p>
 		</div>
 	<!-- {/if} -->
 	</section>

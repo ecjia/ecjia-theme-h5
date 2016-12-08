@@ -34,7 +34,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<input name="act" type="hidden" value="send_pwd_email" />
 	<div class="ecjia-login-b">
 	   <div class="around margin-top">
-	       <input class="btn btn-info login-btn" name="get_password" type="submit" value="{$lang.next}" data-url="{RC_Uri::url('user/get_password/get_password_email')}"/>
+	       <input class="btn btn-info login-btn" name="get_password" type="submit" value="{$lang.next}" data-url="{RC_Uri::url('user/get_password/mobile_register')}"/>
 	   </div>
 	</div>
 </form>

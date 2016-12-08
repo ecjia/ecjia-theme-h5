@@ -72,10 +72,10 @@
     		var count = 120; 	//间隔函数，1秒执行
     		var curCount;		//当前剩余秒数
     		
-			$('#get_code').on('click', function(e){
+    		$('#get_code').on('click', function(e){
 				e.preventDefault();
 				var url = $(this).attr('data-url')+'&mobile=' + $("input[name='mobile']").val();
-				$.get(url, function (data) {
+				$.get(url, function(data){
 				    if (data.state == 'success') {
 					  　    	 curCount = count;
 					     $("#mobile").attr("readonly", "true");
