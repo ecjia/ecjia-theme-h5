@@ -390,10 +390,10 @@ class cart_controller {
         //支付方式
         $payment_id = 0;
         if ($_POST['payment_update']) {
-            $payment_id = $_SESSION['cart'][$cart_key]['pay_id'] = empty($_POST['payment']) ? 0 : intval($_POST['payment']);
+            $payment_id = $_SESSION['cart'][$cart_key]['temp']['pay_id'] = empty($_POST['payment']) ? 0 : intval($_POST['payment']);
         } else {
-            if (isset($_SESSION['cart'][$cart_key]['pay_id'])) {
-                $payment_id = $_SESSION['cart'][$cart_key]['pay_id'];
+            if (isset($_SESSION['cart'][$cart_key]['temp']['pay_id'])) {
+                $payment_id = $_SESSION['cart'][$cart_key]['temp']['pay_id'];
             }
         }
         if ($payment_id) {
@@ -407,10 +407,10 @@ class cart_controller {
         //配送方式
         $shipping_id = 0;
         if ($_POST['shipping_update']) {
-            $shipping_id = $_SESSION['cart'][$cart_key]['shipping_id'] = empty($_POST['shipping']) ? 0 : intval($_POST['shipping']);
+            $shipping_id = $_SESSION['cart'][$cart_key]['temp']['shipping_id'] = empty($_POST['shipping']) ? 0 : intval($_POST['shipping']);
         } else {
-            if (isset($_SESSION['cart'][$cart_key]['shipping_id'])) {
-                $shipping_id = $_SESSION['cart'][$cart_key]['shipping_id'];
+            if (isset($_SESSION['cart'][$cart_key]['temp']['shipping_id'])) {
+                $shipping_id = $_SESSION['cart'][$cart_key]['temp']['shipping_id'];
             }
         }
         if ($shipping_id) {
@@ -420,18 +420,27 @@ class cart_controller {
             $selected_shipping = $rs['data']['shipping_list'][0];
         }
         //发票
+        if ($_POST['inv_update']) {
+            $_SESSION['cart'][$cart_key]['temp']['inv_payee'] = empty($_POST['inv_payee']) ? '' : trim($_POST['inv_payee']);
+            $_SESSION['cart'][$cart_key]['temp']['inv_content'] = empty($_POST['inv_content']) ? '' : trim($_POST['inv_content']);
+            $_SESSION['cart'][$cart_key]['temp']['inv_type'] = empty($_POST['inv_type']) ? '' : trim($_POST['inv_type']);
+        }
+        //发票清空
+        if ($_POST['inv_clear']) {
+            $_SESSION['cart'][$cart_key]['temp']['inv_payee'] = '';
+            $_SESSION['cart'][$cart_key]['temp']['inv_content'] = '';
+            $_SESSION['cart'][$cart_key]['temp']['inv_type'] = '';
+        }
         
         //留言
         if ($_POST['note_update']) {
-            $_SESSION['cart'][$cart_key]['note'] = empty($_POST['note']) ? '' : trim($_POST['note']);
-            $cart['note'] = $_SESSION['cart'][$cart_key]['note'];
+            $_SESSION['cart'][$cart_key]['temp']['note'] = empty($_POST['note']) ? '' : trim($_POST['note']);
         }
         //红包
         
         //积分
         if ($_POST['integral_update']) {
-            $_SESSION['cart'][$cart_key]['integral'] = empty($_POST['integral']) ? 0 : intval($_POST['integral']);
-            $cart['integral'] = $_SESSION['cart'][$cart_key]['integral'];
+            $_SESSION['cart'][$cart_key]['temp']['integral'] = empty($_POST['integral']) ? 0 : intval($_POST['integral']);
         }
         
         //total
@@ -452,7 +461,7 @@ class cart_controller {
         $total['amount'] = $total['goods_price'] + $total['shipping_fee'] + $total['pay_fee'] - $total['discount']; 
         $total['amount_formated'] = price_format($total['amount']);
         
-        _dump($rs,2);
+//         _dump($rs,2);
         ecjia_front::$controller->assign('data', $rs['data']);
         ecjia_front::$controller->assign('total_goods_number', $total['goods_number']);
         ecjia_front::$controller->assign('selected_payment', $selected_payment);
@@ -460,7 +469,7 @@ class cart_controller {
         ecjia_front::$controller->assign('total', $total);
         ecjia_front::$controller->assign('address_id', $address_id);
         ecjia_front::$controller->assign('rec_id', $rec_id);
-        ecjia_front::$controller->assign('cart', $cart);
+        ecjia_front::$controller->assign('temp', $_SESSION['cart'][$cart_key]['temp']);
         
         ecjia_front::$controller->assign('title', '结算');
         ecjia_front::$controller->assign_title('结算');
@@ -1189,6 +1198,29 @@ class cart_controller {
      * 开发票
      */
     public static function invoice() {
+
+        $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
+        $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
+        
+        $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
+        if(empty($rec_id)) {
+            ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
+        if (empty($address_id)) {
+            ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
+        
+        $cart_key = md5($address_id.$rec_id);
+        $data = $_SESSION['cart'][$cart_key]['data'];
+        $temp = $_SESSION['cart'][$cart_key]['temp'];
+//         _dump($data,2);
+        ecjia_front::$controller->assign('inv_content_list', $data['inv_content_list']);
+        ecjia_front::$controller->assign('inv_type_list', $data['inv_type_list']);
+        ecjia_front::$controller->assign('temp', $temp);
+        unset($data);unset($temp);
+        ecjia_front::$controller->assign('address_id', $address_id);
+        ecjia_front::$controller->assign('rec_id', $rec_id);
+        
         ecjia_front::$controller->assign('title', RC_Lang::lang('invoice'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('invoice'));
         ecjia_front::$controller->display('flow_invoice.dwt');
@@ -1211,7 +1243,7 @@ class cart_controller {
         }
         
         $cart_key = md5($address_id.$rec_id);
-        $data = $_SESSION['cart'][$cart_key];
+        $data = $_SESSION['cart'][$cart_key]['temp'];
         ecjia_front::$controller->assign('note', $data['note']);
         ecjia_front::$controller->assign('address_id', $address_id);
         ecjia_front::$controller->assign('rec_id', $rec_id);
@@ -1246,7 +1278,7 @@ class cart_controller {
         }
         
         $cart_key = md5($address_id.$rec_id);
-        $data = $_SESSION['cart'][$cart_key];
+        $data = $_SESSION['cart'][$cart_key]['data'];
         ecjia_front::$controller->assign('data', $data);
         ecjia_front::$controller->assign('address_id', $address_id);
         ecjia_front::$controller->assign('rec_id', $rec_id);
