@@ -73,7 +73,26 @@ class user_bonus_controller {
             ecjia_front::$controller->showmessage(RC_Lang::lang('add_bonus_sucess'),ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON,array('is_show' => false));
         }
     }
-
+    /**
+     * 我的奖励
+     */
+    public static function my_reward() {
+        ecjia_front::$controller->display('user_my_reward.dwt');
+    }
+    
+    /**
+     * 奖励明细
+     */
+    public static function reward_detail() {
+        ecjia_front::$controller->display('user_reward_detail.dwt');
+    }
+    
+    /**
+     * 赚积分
+     */
+    public static function get_integral() {
+        ecjia_front::$controller->display('user_get_integral.dwt');
+    }
 }
 
 // end

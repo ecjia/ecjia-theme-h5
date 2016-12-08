@@ -18,7 +18,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 	
-<div class="flow-address ecjia-margin-b">
+<div class="flow-address ecjia-margin-b flow-cart">
 	<span class="ecjiaf-fl">{t}送至：{/t}</span>
 	<div class="ecjiaf-fl address-info">
 		<span>{$default_address.consignee}</span>
@@ -31,12 +31,23 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<ul>
 		<!-- {foreach from=$cart_list item=val} -->
 		<li class="cart-single">
-			<div class="cart-title">
-				<span class="cart-check-all" data-toggle="toggle_checkbox"></span>
-				<span class="store-title">{$val.store_name}</span>
-				<span class="edit-title">编辑</span>
+			<div class="item">
+				<div class="check-wrapper">
+					<span class="cart-checkbox"></span>
+				</div>
+				<div class="shop-title-content">
+					<span class="shop-title-name"><i class="iconfont icon-shop"></i>{$val.seller_name}</span>
+					<span class="shop-edit">编辑</span>
+				</div>
 			</div>
-			
+			<div class="item-goods">
+				<div class="check-wrapper">
+					<span class="cart-checkbox"></span>
+				</div>
+				<div class="shp-cart-item-core">
+                                                
+        		</div>
+			</div>
 		</li>
 		<!-- {/foreach} -->
 	</ul>

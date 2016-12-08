@@ -23,8 +23,7 @@ RC_Hook::add_action('goods/category/store_goods', array('goods_controller', 'sto
 RC_Hook::add_action('goods/category/ajax_category_goods', array('goods_controller', 'ajax_category_goods'));//获取分类商品
 RC_Hook::add_action('goods/category/update_cart', array('goods_controller', 'update_cart'));//更新购物车中商品
 
-RC_Hook::add_action('goods/index/init', array('goods_controller', 'goods_index'));//商品详情页
-RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));
+RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));//商品详情页
 RC_Hook::add_action('goods/index/promotion', array('goods_controller', 'goods_promotion'));
 RC_Hook::add_action('goods/index/ajax_goods', array('goods_controller', 'ajax_goods'));
 RC_Hook::add_action('goods/index/new', array('goods_controller', 'goods_new'));
@@ -157,7 +156,9 @@ RC_Loader::load_theme('extras/controller/user_bonus_controller.php');
 RC_Hook::add_action('user/user_bonus/bonus', array('user_bonus_controller', 'bonus'));
 RC_Hook::add_action('user/user_bonus/add_bonus', array('user_bonus_controller', 'add_bonus'));
 RC_Hook::add_action('user/user_bonus/async_bonus_list', array('user_bonus_controller', 'async_bonus_list'));
-
+RC_Hook::add_action('user/user_bonus/my_reward', array('user_bonus_controller', 'my_reward'));
+RC_Hook::add_action('user/user_bonus/reward_detail', array('user_bonus_controller', 'reward_detail'));
+RC_Hook::add_action('user/user_bonus/get_integral', array('user_bonus_controller', 'get_integral'));
 
 RC_Loader::load_theme('extras/controller/user_collection_controller.php');
 RC_Hook::add_action('user/user_collection/collection_list', array('user_collection_controller', 'collection_list'));

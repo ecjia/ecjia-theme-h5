@@ -20,7 +20,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
       <li>{$lang.goods_all_price}: <span class="cart-order">{$total.goods_price_formated}</span></li>
 
       <!-- {if $total.discount gt 0} 折扣 -->
-      <li>{$lang.discount}:<span class="cart-order ecjia-color-green">{$total.discount_formated}</span></li>
+      <li>{$lang.discount}:<span class="cart-order ecjia-color-green">-{$total.discount_formated}</span></li>
       <!-- {/if} -->
 
       <!-- {if $total.tax gt 0} 税 -->
