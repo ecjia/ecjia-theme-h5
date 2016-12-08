@@ -317,7 +317,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </div>
         <!-- {/if} -->
         <div class="goods-detail">
-            <a href="{url path='goods/index/show' args="id={$goods.goods_id}"}">
+            <a href="{url path='goods/index/show' args="goods_id={$goods.goods_id}"}">
                 点击查看图文详情
                 <!-- <i class="iconfont icon-jiantou-right ecjiaf-fr"></i> -->
             </a>

@@ -362,10 +362,10 @@ class cart_controller {
         
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
         if(empty($rec_id)) {
-            ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         if (empty($address_id)) {
-            ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         
         $params_cart = array(
@@ -382,7 +382,7 @@ class cart_controller {
         $rs = json_decode($rs,true);
         if (! $rs['status']['succeed']) {
             $url = RC_Uri::url('cart/index/init');
-            ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url));
+            return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url));
         }
         $cart_key = md5($address_id.$rec_id);
         $_SESSION['cart'][$cart_key]['data'] = $rs['data'];
@@ -419,23 +419,27 @@ class cart_controller {
         } else {
             $selected_shipping = $rs['data']['shipping_list'][0];
         }
+        //发票
         
         //留言
         if ($_POST['note_update']) {
             $_SESSION['cart'][$cart_key]['note'] = empty($_POST['note']) ? '' : trim($_POST['note']);
+            $cart['note'] = $_SESSION['cart'][$cart_key]['note'];
         }
-        ecjia_front::$controller->assign('note', $_SESSION['cart'][$cart_key]['note']);
+        //红包
+        
         //积分
         if ($_POST['integral_update']) {
-            $_SESSION['cart'][$cart_key]['integral'] = empty($_POST['integral']) ? '' : intval($_POST['integral']);
+            $_SESSION['cart'][$cart_key]['integral'] = empty($_POST['integral']) ? 0 : intval($_POST['integral']);
+            $cart['integral'] = $_SESSION['cart'][$cart_key]['integral'];
         }
         
         //total
         $total['goods_number'] = 0;
         $total['goods_price'] = 0;
-        foreach ($rs['data']['goods_list'] as $cart) {
-            $total['goods_number'] += $cart['goods_number'];
-            $total['goods_price'] += $cart['subtotal'];
+        foreach ($rs['data']['goods_list'] as $item) {
+            $total['goods_number'] += $item['goods_number'];
+            $total['goods_price'] += $item['subtotal'];
         }
         $total['goods_price_formated'] = price_format($total['goods_price']);
         $total['shipping_fee'] = $selected_shipping['shipping_fee']; //$rs['data']['shipping_list'];
@@ -456,6 +460,7 @@ class cart_controller {
         ecjia_front::$controller->assign('total', $total);
         ecjia_front::$controller->assign('address_id', $address_id);
         ecjia_front::$controller->assign('rec_id', $rec_id);
+        ecjia_front::$controller->assign('cart', $cart);
         
         ecjia_front::$controller->assign('title', '结算');
         ecjia_front::$controller->assign_title('结算');
@@ -472,10 +477,10 @@ class cart_controller {
         
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
         if(empty($rec_id)) {
-            ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         if (empty($address_id)) {
-            ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         
         $params_cart = array(
@@ -492,7 +497,7 @@ class cart_controller {
         $rs = json_decode($rs,true);
         if (! $rs['status']['succeed']) {
             $url = '';
-            ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url));
+            return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url));
         }
         $total_goods_number = 0;
         foreach ($rs['data']['goods_list'] as $cart) {
@@ -616,10 +621,10 @@ class cart_controller {
             $postscript = empty($_POST['note']) ? '' : trim($_POST['note']);
 //             RC_Logger::getlogger('debug')->info($_POST);
             if(empty($rec_id)) {
-                ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
+                return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
             }
             if (empty($address_id)) {
-                ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
+                return ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
             }
             
             $params = array(
@@ -641,7 +646,7 @@ class cart_controller {
 //             RC_Logger::getlogger('debug')->info($rs);
             if (! $rs['status']['succeed']) {
                 $url = RC_Uri::url('cart/flow/checkout');
-                ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url));
+                return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url));
             }
 //             RC_Logger::getlogger('debug')->info($rs);
 //             $_SESSION['cart']['order_info'][$rs['data']['order_id']] = $rs['data'];
