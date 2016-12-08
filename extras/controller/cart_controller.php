@@ -8,7 +8,8 @@ class cart_controller {
      */
     public static function init() {
     	$token = ecjia_touch_user::singleton()->getToken();
-    	$token = 'dc95ed438539e788df0890ece1fd301ef30a7fe19ab98eb9a0436baf09c06e96';
+//     	$token = 'dc95ed438539e788df0890ece1fd301ef30a7fe19ab98eb9a0436baf09c06e96';
+
     	//所有地址
     	$cache_key = 'address_list_'.$token;
     	$address_list = RC_Cache::app_cache_get($cache_key, 'user_address');
@@ -34,10 +35,13 @@ class cart_controller {
     	if (!empty($cart_list['cart_list'])) {
     		foreach ($cart_list['cart_list'] as $k => $v) {
     			$cart_list['cart_list'][$k]['total']['check_all'] = true;
+    			$cart_list['cart_list'][$k]['total']['check_one'] = false;
     			if (!empty($v['goods_list'])) {
     				foreach ($v['goods_list'] as $key => $val) {
     					if ($val['is_checked'] == 0) {
-    						$cart_list['cart_list'][$k]['total']['check_all'] = false;
+    						$cart_list['cart_list'][$k]['total']['check_all'] = false;	//全部选择
+    					} else {
+    						$cart_list['cart_list'][$k]['total']['check_one'] = true;	//至少选择了一个
     					}
     				}
     			}

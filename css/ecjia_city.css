@@ -1584,7 +1584,6 @@ footer{
 }
 .ecjia-flow-cart .item-goods .cart-checkbox{
     position: absolute;
-    z-index: 3;
     left: 10px;
     width: 20px;
     height: 60px;
@@ -1674,6 +1673,10 @@ footer{
     background-color: #47b34f;
     font-size: 1.1em;
 }
+.ecjia-flow-cart .check-cart.disabled{
+	background-color: #bebebe;
+}
+
 /*========================  结算 ecjia-checkout =========================== */
 /*定位地址、选择的收货地址 */
 .flow-address {
