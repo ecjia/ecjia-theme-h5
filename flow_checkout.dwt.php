@@ -90,20 +90,33 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<section class="checklist">
 			<a href='{url path="cart/flow/bonus" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>{$lang.use_bonus}</span>
-				<span class="ecjia-tag">无可用</span>
+				<span class="ecjia-tag">{count($data.bonus)}个可用</span>
 				<i class="iconfont icon-jiantou-right"></i>
-				<!-- <span class="ecjiaf-fr select_nav ecjia-truncate">xxx红包</span> -->
+				<span class="ecjiaf-fr select_nav_short ecjia-truncate">{$data.bonus[$temp.bonus].bonus_name}</span>
+				<input type="hidden" name="bonus" value="{$temp.bonus}">
 			</a>
 		</section>
 		{/if}
 		{if $data.allow_use_integral}
 		<section class="checklist ecjia-margin-b">
-			<a href='{url path="cart/flow/integral" args="address_id={$address_id}&rec_id={$rec_id}"}'>
-				<span>{$lang.use_integral}</span>
-				<span class="ecjia-tag">{$data.your_integral}积分可用</span>
-				<i class="iconfont icon-jiantou-right"></i>
-				<!-- <span class="ecjiaf-fr select_nav ecjia-truncate">33分</span> -->
-			</a>
+				{if $data.order_max_integral eq 0}
+				<a href='javascript:;' title="不可用">
+				    <span class="ecjia-color-999">{$lang.use_integral}</span>
+				    <span class="ecjia-tag">不可用</span>
+				</a>
+				{else}
+				<a href='{url path="cart/flow/integral" args="address_id={$address_id}&rec_id={$rec_id}"}'>
+				    <span>{$lang.use_integral}</span>
+    				{if $temp.integral lte 0}<span class="ecjia-tag">{$data.your_integral}积分可用</span>{/if}
+    				<i class="iconfont icon-jiantou-right"></i>
+    				{if $temp.integral gt 0}
+    				<span class="ecjiaf-fr select_nav ecjia-truncate">{$temp.integral}积分</span>
+    				<input type="hidden" name="integral" value="{$temp.integral}" />
+    				{/if}
+				</a>
+				{/if}
+				
+			
 		</section>
 		{/if}
 
