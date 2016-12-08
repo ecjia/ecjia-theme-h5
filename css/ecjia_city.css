@@ -3874,11 +3874,10 @@ footer{
 .ecjia-my-reward{
 	float:right;
 	position:relative;
-	top:-2.5em;
-	right:.5em;
-}
-.ecjia-my-reward span .ecjia-my-reward-literal{
 	font-size:16px;
+	border-bottom:2px solid #47aa4d;
+	margin-top:-14px;
+	right:1.5em;
 }
 .ecjia-spread{
 	background:#fff;
@@ -3891,7 +3890,6 @@ footer{
 	height:5em;
 	width:100%;
 	position:relative;
-	margin-top:3.5em;
 	background-origin: content-box;
 }
 .ecjia-spread .qrcode_image {
@@ -3947,7 +3945,6 @@ footer{
 }
 .ecjia-spread .go-to-spread .would-spread{
 	font-size:21px;
-	border:1px solid #eee;
 	border-radius: 7px;
 	height:45px;
 	line-height:45px;
@@ -3957,6 +3954,7 @@ footer{
 }
 .ecjia-spread .invite_explain{
 	width:100%;
+	padding-bottom:2em;
 }
 .ecjia-spread .invite_explain .invite_explain-literal{
 	font-weight:bold;
