@@ -64,16 +64,23 @@ class user_privilege_controller {
      * 验证注册
      */
     public static function signup() {
+        $chars = "/^13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$/";
         $mobile = !empty($_GET['mobile']) ? htmlspecialchars($_GET['mobile']) : '';
-        $_SESSION['mobile'] = $mobile;
-        $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile))->send()->getBody();
-        $data = json_decode($data,true);
-        if ($_SESSION['mobile']) {
-            return ecjia_front::$controller->showmessage(__('短信已发送到手机'.$mobile.'，请注意查看'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+        if (preg_match($chars, $mobile)) {
+            $_SESSION['mobile'] = $mobile;
+            $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile))->send()->getBody();
+            $data = json_decode($data,true);
+            if ($_SESSION['mobile']) {
+                return ecjia_front::$controller->showmessage(__('短信已发送到手机'.$mobile.'，请注意查看'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+            } else {
+                return ecjia_front::$controller->showmessage(__('手机验证码发送失败'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
         } else {
-            return ecjia_front::$controller->showmessage(__('手机验证码发送失败'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+                return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
+        
+        
     }
     
     /* 第三方登陆 */
