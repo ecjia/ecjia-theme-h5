@@ -2383,10 +2383,11 @@ footer{
 	padding: 0 .5em 0 .5em;
 	margin-top: 1em;
 }
-.ecjia-account-record p {
-	display: block;
-	width: 96%;
-	margin: 0 auto;
+.ecjia-account-record p,
+.ecjia-bonus .ecjia-nolist p {
+    margin: 40% 0 0 -60px;
+    left: 50%;
+    position: absolute;
 }
 .ecjia-account-record .account-record-list li.record-list{
 	border-top: 1px solid #eee;
@@ -2543,6 +2544,24 @@ footer{
     background-size: 100%;
 	z-index: 99;
 	float: right;
+}
+.ecjia-list.ecjia-account-record .ecjia-nolist .no-record {
+	width: 180px;
+	height: 180px;
+	position: absolute;
+	left: 50%;
+	margin: -10% 0 0 -90px;
+    background: url('../images/wallet/norecord_180.png') no-repeat;
+    background-size: 100%;
+}
+.ecjia-bonus .ecjia-nolist .img-nobonus {
+	width: 180px;
+	height: 180px;
+	position: absolute;
+	left: 50%;
+	margin: -10% 0 0 -90px;
+    background: url('../images/wallet/nobonus_180.png') no-repeat;
+    background-size: 100%;
 }
 
 /*========================  登录 ===========================*/
