@@ -94,7 +94,6 @@
 	color: #C1C1C1;
 }
 .ecjia-address-list .address-background-mylocation {
-	height: 3em;
 	width: 100%;
 	background-color: #FFF;
 	border-bottom:  1px solid #ddd;
@@ -113,7 +112,6 @@
 	position: absolute;
 	left: 5.5em;
 	top: 7px;
-	line-height: 3em;
 	height: 2em;
 	width: 60%;
 	border-radius: 5px;
@@ -309,7 +307,7 @@
 	width: 28px;
 	height: 28px;
 	margin-left: 5%;
-	margin-top: 1.6%;
+	margin-top: 1.8%;
     background: url('../images/address_list/search200x200.png') no-repeat;
     background-size: 100%;
 	z-index: 99;

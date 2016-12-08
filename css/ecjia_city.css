@@ -4201,12 +4201,15 @@ footer{
     width: 25.3125em;	
     height: 9.375em;
 }
+.ecjia-spread .ecjia-bottom-bar-pannel .tab5{
+	border-top: 1px solid #ddd;
+}
 .ecjia-spread .ecjia-bottom-bar-pannel .tab5 li {
 	text-align: center;
     width: 50%;
     float: left;
     height: 100%;
-	border-right: 1px solid #000;
+	border-right: 1px solid #ddd;
 }
 
 
