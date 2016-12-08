@@ -14,10 +14,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <div class="ecjia-floor ecjia-bottom-bar-pannel">
         <ul class="tab5">
             <li>
-                <div>111</div>
+                <a href="{url path='user/user_bonus/reward_detail'}">
+                    <span>111</span>
+                </a>
             </li>
             <li>
-                <div>111</div>
+                <a href="{url path='user/user_bonus/get_reward'}">
+                    <span>111</span>
+                </a>
             </li>
         </ul>
     </div>

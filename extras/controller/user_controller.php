@@ -84,9 +84,7 @@ class user_controller {
 				}
 			}
 		}
-		
     	ecjia_front::$controller->assign('invite_user', $invite_user_detail);
-    	//ecjia_front::$controller->assign('title', '推广');
     	ecjia_front::$controller->display('spread.dwt');
     }
 
