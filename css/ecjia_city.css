@@ -4205,11 +4205,11 @@ footer{
 }
 .ecjia-spread .ecjia-list .reward-num1 {
     position: relative;
-    vertical-align: middle;
     text-align: center;
 	top: 20%;
 	color: #04b62a;
 	font-size: 5em;
+	height: .5em;
 }
 .ecjia-spread .ecjia-list .reward-num2 {
     position: relative;
@@ -4218,6 +4218,7 @@ footer{
 	top: 20%;
 	color: #00aaf2;
 	font-size: 5em;
+	height: .3em;
 }
 .ecjia-spread .ecjia-list .reward-num3 {
     position: relative;
@@ -4226,6 +4227,7 @@ footer{
 	top: 20%;
 	color: #ff5d20;
 	font-size: 5em;
+	height: .3em;
 }
 .ecjia-spread .ecjia-list .reward-shadow {
 	position: relative;
@@ -4242,8 +4244,8 @@ footer{
 
 .ecjia-spread .ecjia-list .reward-hint {
     position: relative;
-    vertical-align: middle;
-    text-align: center;		
+    height: 60%;
+    left: 70%;
 }
 .ecjia-spread .ecjia-list .reward-hint img {
     position: relative;
