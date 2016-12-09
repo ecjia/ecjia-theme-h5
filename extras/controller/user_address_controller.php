@@ -104,7 +104,7 @@ class user_address_controller {
     /**
      * 插入收货地址
      */
-    public static function inster_addres() {
+    public static function inster_address() {
 //         $user_id = $_SESSION['user_id'];
 //         $address = array(
 //             'user_id'   => $user_id,
@@ -241,6 +241,18 @@ class user_address_controller {
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_location.dwt');
     }
+    
+    /**
+     * 选择城市
+     */
+    public static function city() {
+    	ecjia_front::$controller->assign('hideinfo', '1');
+    	ecjia_front::$controller->assign('title', '上海');
+    	ecjia_front::$controller->assign_title('定位');
+    	ecjia_front::$controller->assign_lang();
+    	ecjia_front::$controller->display('user_address_city.dwt');
+    }
+    
     /**
      * 异步地址列表
      */
