@@ -3,6 +3,9 @@ html, body {
     background: #f7f7f7;
     color: #555;
 }
+[type="radio"] + label:before, [type="radio"] + label:after{
+	margin: 0 4px; 
+}
 .ecjia-row-nav {
     border-bottom-color: #e3e3e3;
     background: #FFF;
@@ -1821,6 +1824,8 @@ footer{
 /*======================== 选择支付方式、选择配送方式、选择红包 ecjia-select  ===========================*/
 .ecjia .ecjia-select li{
 	padding: 1em;
+	height: 3.5em;
+    line-height: 1.7em;
 }
 .ecjia .ecjia-select label.select-item{
 	width: 100%;
@@ -1847,7 +1852,7 @@ footer{
 .ecjia-checkout-bonus {padding-bottom:5em}
 .ecjia-checkout-bonus ul {border-top:1px solid #eee}
 .ecjia-checkout-bonus li label{ margin-top: 3px;margin-right:5px; font-size:1.1em;}
-.ecjia-checkout-bonus li label:before,.ecjia-checkout-bonus li label:after{ margin-top: -2px;margin-right:3px; font-size:1.2em;}
+.ecjia-checkout-bonus li label:before,.ecjia-checkout-bonus li label:after{margin-right:3px; font-size:1.2em;}
 .ecjia-checkout-bonus .two-btn {
 	padding: 1em;
     background-color: #fff;
