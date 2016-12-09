@@ -18,11 +18,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <ul class="ecjia-list list-short">
             <li>
                 <div class="reward-title">获得的积分奖励</div>
-                <div class="reward-num1">0</div>
-                <div class="reward-hint">
-                    <a href="#" class="alert-text1">
-                        <img src="./images/wallet/60x60_3g.png">
-                    </a>
+                <div >
+                    <div class="reward-num1">{$intive_total.invite_integral_reward}</div>
+                    <div class="reward-hint">
+                        <a href="#" class="alert-text1">
+                            <img src="./images/wallet/60x60_3g.png">
+                        </a>
+                    </div>
                 </div>
                 <div class="reward-shadow">
                     <img src="./images/wallet/220x30.png">
@@ -30,7 +32,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </li>
             <li>
                 <div class="reward-title">获得的红包奖励</div>
-                <div class="reward-num2">0</div>
+                <div class="reward-num2">{$intive_total.invite_bouns_reward}</div>
                 <div class="reward-hint">
                     <a href="#" class="alert-text2">
                         <img src="./images/wallet/60x60_3b.png">
@@ -42,7 +44,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </li>
             <li>
                 <div class="reward-title">获得的现金奖励</div>
-                <div class="reward-num3">0.00</div>
+                <div class="reward-num3">{$intive_total.invite_balance_reward}</div>
                 <div class="reward-hint">
                     <a href="#" class="alert-text3">
                         <img src="./images/wallet/60x60_4o.png">
