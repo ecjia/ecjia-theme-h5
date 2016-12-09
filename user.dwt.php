@@ -62,8 +62,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     		</a>
     	</li>
     	<li>
-    		<p>{if $user.user_points}{$user.user_points}{else}{'- -'}{/if}</p>
-    		<p>积分</p>
+    	    <a href="{url path='user/user_account/account_detail'}">
+        		<p>{if $user.user_points}{$user.user_points}{else}{'- -'}{/if}</p>
+        		<p>积分</p>
+    		</a>
     	</li>
     </ul>
 </div>
