@@ -29,16 +29,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 
 		<section class="flow-goods-list ecjia-margin-b">
-			<a href='{url path="cart/flow/goods_list" args="address_id={$address_id}&rec_id={$rec_id}"}'>
+			{if count($data.goods_list) gt 1}<a href='{url path="cart/flow/goods_list" args="address_id={$address_id}&rec_id={$rec_id}"}'>{/if}
 			<ul class="{if count($data.goods_list) > 1}goods-list{else}goods-item{/if}"><!-- goods-list 多个商品隐藏商品名称,goods-item -->
 				<!-- {foreach from=$data.goods_list item=goods name=goods} -->
 				<!-- {if $smarty.foreach.goods.iteration gt 3} -->
-				<!-- 判断不能大于4个 -->
-				<li class="goods-img-more">
-					<i class="icon iconfont">&#xe62e;</i>
-					<p class="ecjiaf-ib">共{$total_goods_number}件</p>
-					<i class="icon iconfont icon-right">&#xe6aa;</i>
-				</li>
 				<!-- {break} -->
 				<!-- {/if} -->
 				<li class="goods-img ecjiaf-fl ecjia-margin-r ecjia-icon">
@@ -47,8 +41,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<span class="ecjiaf-fl goods-name ecjia-truncate2">{$goods.goods_name}</span>
 				</li>
 				<!-- {/foreach} -->
+				<!-- {if count($data.goods_list) gt 1} -->
+				<!-- 判断不能大于4个 -->
+				<li class="goods-img-more">
+					<!-- {if count($data.goods_list) gt 3} --><i class="icon iconfont">&#xe62e;</i>{/if}
+					<p class="ecjiaf-ib">共{$total_goods_number}件</p>
+					<i class="icon iconfont icon-right">&#xe6aa;</i>
+				</li>
+				<!-- {/if} -->
 			</ul>
-			</a>
+			{if count($data.goods_list) gt 1}</a>{/if}
 		</section>
 
 		<section class="checklist">

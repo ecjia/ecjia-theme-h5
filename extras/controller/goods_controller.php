@@ -809,6 +809,11 @@ class goods_controller {
     		}
     	}
     	
+    	if ($page == 1) {
+    		ecjia_front::$controller->assign('page', $page);
+    		ecjia_front::$controller->assign('type_name', $type_name);
+    		ecjia_front::$controller->assign('goods_num', $goods_num);
+    	}
     	ecjia_front::$controller->assign('goods_list', $goods_list);
     	$say_list = ecjia_front::$controller->fetch('library/store_goods.lbi');
     		

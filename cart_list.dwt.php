@@ -44,13 +44,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<li class="item-goods cart_item_{$val.seller_id}">
 					<span class="cart-checkbox checkbox_{$val.seller_id} {if $v.is_checked eq 1}checked{/if}" data-store="{$val.seller_id}" rec_id="{$v.rec_id}" goods_id="{$v.goods_id}" data-num="{$v.goods_number}"></span>
 					<div class="cart-product">
-						<a class="cart-product-photo" href="{RC_Uri::url('goods/index/show')}&goods_id={$v.goods_id}"><img src="{$v.img.thumb}"></a>
+						<a class="cart-product-photo" href="{RC_Uri::url('goods/index/show')}&goods_id={$v.goods_id}">
+							<img src="{$v.img.thumb}">
+							{if $v.is_disabled}
+							<div class="product_empty">库存不足</div>
+							{/if}
+						</a>
 						<div class="cart-product-info">
-							<div class="cart-product-name"><a href="{RC_Uri::url('goods/index/show')}&goods_id={$v.goods_id}">{$v.goods_name}</a></div>
-							<div class="cart-product-price">{$v.formated_goods_price}</div>
-							<div class="ecjia-input-number input_number_{$val.seller_id}" data-store="{$val.seller_id}">
+							<div class="cart-product-name {if $v.is_disabled}disabled{/if}"><a href="{RC_Uri::url('goods/index/show')}&goods_id={$v.goods_id}">{$v.goods_name}</a></div>
+							<div class="cart-product-price {if $v.is_disabled}disabled{/if}">{$v.formated_goods_price}</div>
+							<div class="ecjia-input-number input_number_{$val.seller_id} {if $v.is_disabled}disabled{/if}" data-store="{$val.seller_id}">
 		                        <span class="ecjia-number-group-addon" data-toggle="remove-to-cart" rec_id="{$v.rec_id}" goods_id="{$v.goods_id}">－</span>
-		                        <input class="ecjia-number-contro" value="{$v.goods_number}" autocomplete="off"/>
+		                        <input type="tel" class="ecjia-number-contro" value="{$v.goods_number}" autocomplete="off" rec_id="{$v.rec_id}"/>
 		                        <span class="ecjia-number-group-addon" data-toggle="add-to-cart" rec_id="{$v.rec_id}" goods_id="{$v.goods_id}">＋</span>
 		                    </div>
 						</div>
