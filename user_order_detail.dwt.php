@@ -53,10 +53,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<li>税费金额：<span class="ecjiaf-fr ecjia-color-999">{$order.formated_tax}</span></li>
 				<li>优惠：<span class="ecjiaf-fr ecjia-color-999">{$order.formated_discount}</span></li>
 				<li>运费：<span class="ecjiaf-fr ecjia-color-999">{$order.formated_shipping_fee}</span></li>
-				<li>共计：<span class="ecjiaf-fr ecjia-color-999">{$order.formated_total_fee}</span></li>
+				<li>共计：<span class="ecjiaf-fr ecjia-color-999">{$order.formated_surplus}</span></li>
 			</ul>
 			<ul class="ecjia-list ecjia-margin-t">
-			    <li><span class="ecjiaf-fl width-25-p">发货时间：</span><span class="ecjiaf-fr width-75-p">{if $order.shipping_time}{$order.shipping_time}{else}未发货{/if}</span></li>
+			    <li><span class="ecjiaf-fl width-25-p">发货时间：</span><span class="ecjiaf-fr width-75-p">{if $order.shipping_time}{$order.shipping_time}{else}暂未发货{/if}</span></li>
 				<li><span class="ecjiaf-fl width-25-p">收货人：</span><span class="ecjiaf-fr width-75-p">{$order.consignee} {$order.mobile}</span></li>
 				<li><span class="ecjiaf-fl width-25-p">收货地址：</span><span class="ecjiaf-fr width-75-p">{$order.province} {$order.city} {$order.district}{$order.address}</span></li>
 				<li><span class="ecjiaf-fl width-25-p">配送方式：</span><span class="ecjiaf-fr width-75-p">{$order.shipping_name}</span></li>
@@ -71,7 +71,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="order-ft-link">
 				<a class="btn btn-small btn-hollow" href="tel://{$order.service_phone}">联系卖家</a>
 				{if $order.pay_status eq 0 && $order.order_status lt 2}<a class="btn btn-small btn-hollow" href='{url path="user/user_order/order_cancel" args="order_id={$order.order_id}"}'>取消订单</a> <a class="btn btn-small btn-hollow" href='{url path="pay/index/init" args="order_id={$order.order_id}"}'>去支付</a>{/if}
-				{if $order.order_status gt 1} <a class="btn btn-small btn-hollow" href='{url path="user/user_order/buy_again" args="order_id={$order.order_id}"}'>再次购买</a>{/if}
+				{if $order.order_status gt 1 || ($order.shipping_status eq 0 && $order.pay_status neq 0)} <a class="btn btn-small btn-hollow" href='{url path="user/user_order/buy_again" args="order_id={$order.order_id}"}'>再次购买</a>{/if}
 				{if $order.shipping_status eq '1'} <a class="btn btn-small btn-hollow" href='{url path="user/user_order/affirm_received" args="order_id={$order.order_id}"}'>确认收货</a>{/if}
 			</div>
 		</div>
