@@ -11,13 +11,23 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 
 <div class="ecjia-spread ecjia-margin-t">
-    <div class="ecjia-floor ecjia-bottom-bar-pannel">
+    <div class="ecjia-bottom-bar-pannel">
         <ul class="tab5">
             <li>
-                <div>111</div>
+                <a href="{url path='user/user_bonus/reward_detail'}">
+                    <div class="qrcode_image2">
+                        <img src="./images/wallet/50_5.png">
+                    </div>
+                    <span>奖励明细</span>
+                </a>
             </li>
             <li>
-                <div>111</div>
+                <a href="{url path='user/user_bonus/get_integral'}">
+                    <div class="qrcode_image2">
+                        <img src="./images/wallet/50_5.png">
+                    </div>
+                    <span>赚积分</span>
+                </a>
             </li>
         </ul>
     </div>

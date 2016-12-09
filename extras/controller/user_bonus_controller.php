@@ -17,7 +17,6 @@ class user_bonus_controller {
      * 异步加载红包列表
      */
     public static function async_bonus_list() {
-        $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $cur_date = RC_Time::gmtime();
@@ -26,7 +25,8 @@ class user_bonus_controller {
         $bonus = json_decode($bonus,true);
         ecjia_front::$controller->assign('bonus', $bonus['data']);
         $sayList = ecjia_front::$controller->fetch('user_bonus.dwt');
-        if ($data['paginated']['more'] == 0) {
+        $more = 0;
+        if ($bonus['paginated']['more'] == 0) {
             $more = 1;
         }
         ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page', 'is_last' => $more));
