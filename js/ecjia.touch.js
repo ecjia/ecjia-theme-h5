@@ -20,8 +20,10 @@
 		
 		substr : function() {
 			var str = $(".address-text").html();
-			str = str.length>18?str.substring(0,18)+'...':str;
-			var str = $(".address-text").html(str);
+			if(str){
+				str = str.length>18?str.substring(0,18)+'...':str;
+				var str = $(".address-text").html(str);
+			}
         },
 
 		/**
