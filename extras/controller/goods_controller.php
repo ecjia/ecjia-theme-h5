@@ -686,7 +686,7 @@ class goods_controller {
     	ecjia_front::$controller->assign('header_left', ' ');
     	
     	$header_right = array(
-    		'href' => '#',
+    		'href' => RC_Uri::url('goods/category/store_position', array('longitude' => '121.416359', 'latitude')),
     		'info' => '<i class="iconfont icon-location"></i>'
     	);
     	ecjia_front::$controller->assign('header_right', $header_right);

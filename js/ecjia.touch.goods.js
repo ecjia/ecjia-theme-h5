@@ -31,7 +31,7 @@
         add_tocart:function(){
             $("[data-toggle='add-to-cart']").off('click').on('click', function(ev){
             	var $this = $(this);
-            	if ($this.hasClass('disabled')) {
+            	if ($this.hasClass('disabled') || $this.parents('.item-goods').hasClass('disabled')) {
             		return false;
             	}
             	var rec_id = $this.attr('rec_id');
@@ -115,7 +115,7 @@
         remove_tocart : function() {
             $("[data-toggle='remove-to-cart']").off('click').on('click', function(ev){
             	var $this = $(this);
-            	if ($this.hasClass('disabled')) {
+            	if ($this.hasClass('disabled') || $this.parents('.item-goods').hasClass('disabled')) {
             		return false;
             	}
             	var rec_id = $this.attr('rec_id');
@@ -504,6 +504,9 @@
         	});
         	
         	$('.ecjia-number-contro').off('focus').on('focus', function(){
+        		if ($(this).hasClass('disabled')) {
+        			return false;
+        		}
         		var v = $(this).val();
         		
         		$(this).off('blur').on('blur', function(){
@@ -673,11 +676,13 @@
             		var chknum = $(".checkbox_" + store_id).size();	//选项总个数 
         		    var chk = 0; 
         		    $(".checkbox_" + store_id).each(function () {   
-        		        if ($(this).hasClass("checked") == true){ 
+        		        if ($(this).hasClass("checked")){ 
         		            chk++; 
         		        } 
-        		        rec_id.push($(this).attr('rec_id'));
-        		    }); 
+        		        if (!$(this).hasClass('disabled')) {
+        		        	rec_id.push($(this).attr('rec_id'));
+        		        }
+        		    });
         		    
             		if ($this.hasClass('check_all')) {
             			if ($this.hasClass('checked')) {
