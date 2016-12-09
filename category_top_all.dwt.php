@@ -10,11 +10,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} //TODO: move -->
 <script type="text/javascript">
-{literal}
-$('.category').css({height:document.documentElement.clientHeight});
-if (!$('.ecjia-header').is(":visible")) $('.category_left, .category_right').css({marginTop : 0, paddingTop : 0});
-{/literal}
-ecjia.touch.category.init();
+	ecjia.touch.category.init();
 </script>
 <!-- {/block} -->
 
@@ -24,7 +20,7 @@ ecjia.touch.category.init();
 <!-- #EndLibraryItem -->
     <ul class="ecjia-list category_left">
         <!--{foreach from=$data item=cat}-->
-        <li{if $cat.id eq $cat_id} class="active"{/if}><a href="#" data-rh="1" data-val="{$cat.id}">{$cat.name|escape:html}</a></li>
+        <li{if $cat.id eq $cat_id} class="active"{/if}><a href="javascript:;" data-rh="1" data-val="{$cat.id}">{$cat.name|escape:html}</a></li>
         <!--{/foreach}-->
     </ul>
     <div class="category_right">

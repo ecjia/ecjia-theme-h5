@@ -20,6 +20,11 @@
 			
 			ecjia.touch.category.check_goods();	//购物车列表 单选多选切换
 			ecjia.touch.category.cart_edit();	//购物车列表编辑
+			
+			//分类列表 点击分类切换 滚动到顶部
+			$('.category_left li').on('click', function(){
+				 $(window).scrollTop(0); 
+			});
 		},
 
 		//加入购物车
@@ -36,7 +41,8 @@
             		$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
             		var val = parseInt($this.siblings('input').val()) + 1;
             		$this.siblings('input').val(val);
-            		ecjia.touch.category.update_cart(rec_id, val, goods_id);
+            		var store_id = $this.parent().attr('data-store');
+            		ecjia.touch.category.update_cart(rec_id, val, goods_id, '', store_id);
             	} else {
                 	$('.box').children('span').addClass('disabled');
                 	//商品详情中添加商品到购物车逻辑
@@ -132,7 +138,8 @@
             			li.remove();
             		} else {
             			$this.siblings('input').val(val);
-            			ecjia.touch.category.update_cart(rec_id, val);
+            			var store_id = $this.parent().attr('data-store');
+            			ecjia.touch.category.update_cart(rec_id, val, '', '', store_id);
             		}
             	} else {
 		        	$('.box').children('span').addClass('disabled');
@@ -499,6 +506,41 @@
         		}
         		ecjia.touch.category.update_cart(rec_id, 0, 0, checked, true);
         	});
+        	
+        	$('.ecjia-number-contro').off('focus').on('focus', function(){
+        		var v = $(this).val();
+        		
+        		$(this).off('blur').on('blur', function(){
+            		var $this = $(this),
+            			val = $this.val(),
+            			rec_id = $this.attr('rec_id'),
+            			store_id = $this.parent().attr('data-store');
+            			
+            		var ex = /^\d+$/;
+            		if (v == val) {
+            			return false;
+            		}
+            		if (val <= 0 || !ex.test(val)) {
+            			var myApp = new Framework7();
+                		myApp.modal({
+                			title: '修改数量失败请重试',
+                			buttons: [
+        			          {
+        			            text: '确定',
+        			            onClick: function() {
+        			            	ecjia.pjax(window.location.href);
+        			          	},
+        			          }
+        			        ]
+                		});
+            		} else {
+            			$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+            			ecjia.touch.category.update_cart(rec_id, val, 0, '', store_id);
+            		}
+            		return false;
+            	});
+        		return false;
+        	});
         },
 
         //店铺首页全选
@@ -586,11 +628,14 @@
                 			buttons: [
         			          {
         			            text: '取消',
+        			            onClick: function() {
+        			            	$('.modal').remove();
+        			            	return false;
+        			            }
         			          },
         			          {
         			            text: '确定',
         			            onClick: function() {
-        			            	$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
         			            	ecjia.touch.category.update_cart(rec_id, 0, 0, '', store_id);
         	            			var li = $this.parents('.cart-single');
         	            			li.remove();
