@@ -47,9 +47,10 @@ class pay_controller {
         if ($rs_pay['data']['payment']['error_message']) {
             ecjia_front::$controller->assign('pay_error', $rs_pay['data']['payment']['error_message']);
         }
+        _dump($rs_pay,2);
         $order = $rs_pay['data']['payment'];
         
-//         _dump($order,2);
+        _dump($order,2);
         $need_other_payment = 0;
         if ($order ['pay_code'] == 'pay_balance') {
             if ($rs_pay['data']['payment']['error_message']) {
@@ -60,7 +61,7 @@ class pay_controller {
             $need_other_payment = 1;
         }
         
-        if ($need_other_payment) {
+        if ($need_other_payment && $order['order_pay_status'] == 0) {
             $params = array(
                 'token' => ecjia_touch_user::singleton()->getToken(),
             );
