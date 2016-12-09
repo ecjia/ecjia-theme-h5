@@ -8,7 +8,17 @@
             this.change_index();
             this.swiper_promotion();
             this.promote_time();
+            this.substr();
 		},
+		
+		substr : function() {
+			var str = $(".address-text").html();
+			if(str){
+				str = str.length>13?str.substring(0,13)+'...':str;
+				var str = $(".address-text").html(str);
+			}
+        },
+
         init_swiper : function() {
 			var swiper = new Swiper('.swiper-touchIndex', {
 				pagination: '.swiper-pagination',
