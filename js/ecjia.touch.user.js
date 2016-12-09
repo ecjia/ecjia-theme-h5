@@ -109,26 +109,25 @@
 		
 		click_code : function (){
 			$(document).ready(function (data){
-				var act = $("#act").val();
 				var count = 120; 
 				curCount = count;
 				$("#mobile1").attr("readonly", "true");
-			    $("#get_code1").attr("disabled", "true");
-			    $("#get_code1").val("重新发送" + curCount + "(s)");
-			    $("#get_code1").attr("class", "btn btn-org login-btn");
+			    $('input[name="get_code1"]').attr("disabled", "true");
+			    $('input[name="get_code1"]').val("重新发送" + curCount + "(s)");
+			    $('input[name="get_code1"]').attr("class", "btn btn-org login-btn");
 			    InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 				ecjia.touch.showmessage(data);
 				function SetRemainTime() {
 			       if (curCount == 0) {     
 			           window.clearInterval(InterValObj);		//停止计时器
 			           $("#mobile1").removeAttr("readonly");	//启用按钮
-			           $("#get_code1").removeAttr("disabled");	//启用按钮
-			           $("#get_code1").val("重新发送验证码");
-			           $("#get_code1").attr("class", "btn btn-info login-btn");
+			           $('input[name="get_code1"]').removeAttr("disabled");	//启用按钮
+			           $('input[name="get_code1"]').val("重新发送验证码");
+			           $('input[name="get_code1"]').attr("class", "btn btn-info login-btn");
 			       } else {
 			           curCount--;
-			           $("#get_code1").attr("disabled", "true");
-			           $("#get_code1").val("重新发送" + curCount + "(s)");
+			           $('input[name="get_code1"]').attr("disabled", "true");
+			           $('input[name="get_code1"]').val("重新发送" + curCount + "(s)");
 			       }
 			    };
 			});
