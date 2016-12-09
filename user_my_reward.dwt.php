@@ -18,14 +18,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <ul class="ecjia-list list-short">
             <li>
                 <div class="reward-title">获得的积分奖励</div>
-                <div >
                     <div class="reward-num1">{$intive_total.invite_integral_reward}</div>
                     <div class="reward-hint">
                         <a href="#" class="alert-text1">
                             <img src="./images/wallet/60x60_3g.png">
                         </a>
                     </div>
-                </div>
                 <div class="reward-shadow">
                     <img src="./images/wallet/220x30.png">
                 </div>

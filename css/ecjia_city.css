@@ -19,6 +19,9 @@ a.ecjia-color-green {
 .ecjia-color-999 {
 	color:#999;
 }
+.ecjia-color-red {
+	color:#FF2500;
+}
 .width-25-p {width:25%}
 .width-75-p {width:75%}
 .ecjia .ecjia-margin-t-n {
@@ -54,6 +57,23 @@ a.ecjia-color-green {
 .ecjia-padding-b {
 	padding-bottom:1em
 }
+/* 选择样式 */
+.ecjia-check {
+    width: 20px;
+    height: 20px;
+	margin:2px;
+	padding:0;
+    background: url(../images/icon/ck.png)  0 0 no-repeat;
+    background-size: 20px 220px;
+}
+.ecjia-check-checked {
+	background-position: 0px -200px;
+}
+.ecjia-check-edit {
+	background-position: 0px -100px;
+}
+/* 选择样式end */
+
 /*标签*/
 .ecjia-tag{
     font-size: .8em;
@@ -965,11 +985,11 @@ footer{
 .ecjia-store-goods .a1n .a1x {
 	position: absolute;
     top: 0;
-    bottom: 0;
+    bottom: 5em;
     left: 6em;
     right: 0;
     padding-top: 0;
-	padding-bottom: 5em;
+	padding-bottom: 7em;
     z-index: 10;
     background-color: #FFF;
     overflow: auto;
@@ -1636,7 +1656,7 @@ footer{
     line-height: 70px;
     text-align: center;
     color: #fff;
-    font-size: 1em;
+    font-size: 15px;
 }
 
 .ecjia-flow-cart .item-goods .cart-product-photo img{
@@ -1827,6 +1847,7 @@ footer{
 }
 .ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-price{
 	margin-top: 3.5em;
+    max-width: 3em;
 }
 .ecjia .ecjia-checkout .flow-goods-list .goods-item span.ecjia-icon-num{
     display:none;
@@ -3026,8 +3047,8 @@ footer{
 }
 .ecjia-login .small-submit input.btn-org {
     color: #FFF;
-    background-color: #E58D31;
-    border-color: #E58D33;
+    background-color: #e78e20;
+    border-color: #e78e20;
 }
 /*========================  搜索 ===========================*/
 
@@ -3412,6 +3433,9 @@ footer{
 	border-bottom:none;
 }
 /*========================  订单列表 ===========================*/
+.ecjia-order-list {
+	padding-bottom:4em;
+}
 .ecjia-order-list .ecjia-order-item {
     background: #ffffff;
     overflow: hidden;
@@ -3458,7 +3482,9 @@ footer{
     width: 100%;
     position: relative;
 }
-.flow-goods-list .goods-list .goods-name{
+.flow-goods-list .goods-list .goods-name,
+.flow-goods-list .goods-list .goods-info,
+.flow-goods-list .goods-list .goods-price{
     display: none;
 }
 .ecjia-checkout .goods-item .goods-name{
@@ -4205,11 +4231,11 @@ footer{
 }
 .ecjia-spread .ecjia-list .reward-num1 {
     position: relative;
-    vertical-align: middle;
     text-align: center;
 	top: 20%;
 	color: #04b62a;
 	font-size: 5em;
+	height: .5em;
 }
 .ecjia-spread .ecjia-list .reward-num2 {
     position: relative;
@@ -4218,6 +4244,7 @@ footer{
 	top: 20%;
 	color: #00aaf2;
 	font-size: 5em;
+	height: .3em;
 }
 .ecjia-spread .ecjia-list .reward-num3 {
     position: relative;
@@ -4226,6 +4253,7 @@ footer{
 	top: 20%;
 	color: #ff5d20;
 	font-size: 5em;
+	height: .3em;
 }
 .ecjia-spread .ecjia-list .reward-shadow {
 	position: relative;
@@ -4242,8 +4270,8 @@ footer{
 
 .ecjia-spread .ecjia-list .reward-hint {
     position: relative;
-    vertical-align: middle;
-    text-align: center;		
+    height: 60%;
+    left: 70%;
 }
 .ecjia-spread .ecjia-list .reward-hint img {
     position: relative;

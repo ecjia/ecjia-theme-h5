@@ -28,6 +28,7 @@ class user_get_password_controller {
                 return ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/get_password/mobile_register')));
             }
         }
+        ecjia_front::$controller->assign('title', '找回密码');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_mobile_register.dwt');
     }
@@ -60,6 +61,7 @@ class user_get_password_controller {
                return ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/get_password/mobile_register')));
             }
         }
+        ecjia_front::$controller->assign('title', '设置新密码');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_reset_password.dwt');
     }
