@@ -44,13 +44,14 @@ class cart_controller {
     						$cart_list['cart_list'][$k]['total']['check_one'] = true;	//至少选择了一个
     					}
     					
-    					if ($val['is_disabled'] == 0) {
+    					if ($val['is_disabled'] == 0 && $val['is_checked'] == 1) {
     						if ($key == 0) {
     							$cart_list['cart_list'][$k]['total']['data_rec'] = $val['rec_id'];
     						} else {
     							$cart_list['cart_list'][$k]['total']['data_rec'] .= ','.$val['rec_id'];
     						}
     					}
+    					$cart_list['cart_list'][$k]['total']['data_rec'] = trim($cart_list['cart_list'][$k]['total']['data_rec'], ',');
     				}
     			}
     		}
