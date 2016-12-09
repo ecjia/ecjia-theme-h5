@@ -21,7 +21,7 @@
 		substr : function() {
 			var str = $(".address-text").html();
 			if(str){
-				str = str.length>18?str.substring(0,18)+'...':str;
+				str = str.length>18?str.substring(0,16)+'...':str;
 				var str = $(".address-text").html(str);
 			}
         },
