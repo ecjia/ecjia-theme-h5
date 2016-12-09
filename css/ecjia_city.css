@@ -42,7 +42,7 @@ a.ecjia-color-green {
 	top: 0;
 }
 .la-ball-atom {
-    color: #6fdafc;
+    color: #47AA4D;
 }
 .modal-overlay.modal-overlay-visible {
 	position: fixed;
@@ -953,11 +953,6 @@ footer{
     border-left: 2px solid #47b34f;
 }
 .ecjia-store-goods .a20 {
-	position: absolute;
-	left: 6em;
-	top: 0;
-	right: 0;
-    height: 2em;
 	line-height: 2em;
     color: #47b34f;
 	padding-left: .5em;
@@ -969,7 +964,7 @@ footer{
 }
 .ecjia-store-goods .a1n .a1x {
 	position: absolute;
-    top: 2em;
+    top: 0;
     bottom: 0;
     left: 6em;
     right: 0;
