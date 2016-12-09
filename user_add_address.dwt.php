@@ -12,12 +12,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<form class="ecjia-address-list" name="theForm" action="{url path='user/user_address/inster_addres'}" method="post">
+<form class="ecjia-address-list" name="theForm" action="{url path='user/user_address/inster_address'}" method="post">
 	<div class="form-group form-group-text">
-		<a id="district" onclick="district()">
+		<a id="district" href="{url path='user/user_address/city' args="city=addcity"}">
 		<label class="input">
 			<span>所在地区： </span>
-			<input name="district" placeholder="{t}请选择城市{/t}" type="text" datatype="*" value="{$add_address.city_name|escape}" />
+			<input name="district" placeholder="{t}请选择城市{/t}" type="text" datatype="*" value="{$smarty.get.city}" />
 			<i class="iconfont icon-jiantou-right"></i>
 		</label>
 		</a>
@@ -25,8 +25,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group form-group-text margin-bottom0">
 		<label class="input">
 			<span class="ecjiaf-fl">收货地址： </span>
-			<input name="location" placeholder="{t}写字楼，小区，学校，街道{/t}" type="text" datatype="*" value="{$add_address.address|escape}" />
-			<a href={url path='user/user_address/near_location'}>
+			<a href="{url path='user/user_address/near_location' args="city={$smarty.get.city}"}">
+				<input name="location" placeholder="{t}写字楼，小区，学校，街道{/t}" type="text" datatype="*" value="{$smarty.get.address}" />
+			</a>
+			
+			<a href="{url path='user/user_address/my_location'}">
 				<div class="position"></div>
 			</a>
 		</label>

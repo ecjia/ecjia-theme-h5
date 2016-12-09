@@ -23,7 +23,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <li>应付金额：<span class="ecjiaf-fr">{if $data.formated_order_amount}{$data.formated_order_amount}{else}{$data.order_amount}{/if}</span></li>
         <li>支付方式：<span class="ecjiaf-fr flow-msg">{$data.pay_name}</span></li>
     </ul>
-    <div class="ecjia-margin-t ecjia-margin-b flow-msg">{$pay_error}</div>
+    <div class="ecjia-margin-t ecjia-margin-b flow-msg">{if $data.pay_status eq 'success'}支付成功！{else}{$pay_error}{/if}</div>
     {if $payment_list}
     <ul class="ecjia-list ecjia-margin-t">
         <li>
@@ -45,10 +45,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
     {/if}
     
-    <!-- <div class="ecjia-margin-t ecjia-margin-b two-btn">
+    {if $data.pay_status eq 'success'}
+    <div class="ecjia-margin-t ecjia-margin-b two-btn">
         <a class="btn" href='{url path="touch/index/init"}'>去购物</a>
         <a class="btn" href='{url path="user/user_order/order_detail" args="order_id={$data.order_id}"}'>查看订单</a>
-    </div> -->
+    </div>
+    {/if}
 </div>
 
 

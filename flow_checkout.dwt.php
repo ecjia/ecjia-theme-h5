@@ -29,16 +29,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 
 		<section class="flow-goods-list ecjia-margin-b">
-			<a href='{url path="cart/flow/goods_list" args="address_id={$address_id}&rec_id={$rec_id}"}'>
+			{if count($data.goods_list) gt 1}<a href='{url path="cart/flow/goods_list" args="address_id={$address_id}&rec_id={$rec_id}"}'>{/if}
 			<ul class="{if count($data.goods_list) > 1}goods-list{else}goods-item{/if}"><!-- goods-list 多个商品隐藏商品名称,goods-item -->
 				<!-- {foreach from=$data.goods_list item=goods name=goods} -->
 				<!-- {if $smarty.foreach.goods.iteration gt 3} -->
-				<!-- 判断不能大于4个 -->
-				<li class="goods-img-more">
-					<i class="icon iconfont">&#xe62e;</i>
-					<p class="ecjiaf-ib">共{$total_goods_number}件</p>
-					<i class="icon iconfont icon-right">&#xe6aa;</i>
-				</li>
 				<!-- {break} -->
 				<!-- {/if} -->
 				<li class="goods-img ecjiaf-fl ecjia-margin-r ecjia-icon">
@@ -47,8 +41,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<span class="ecjiaf-fl goods-name ecjia-truncate2">{$goods.goods_name}</span>
 				</li>
 				<!-- {/foreach} -->
+				<!-- {if count($data.goods_list) gt 1} -->
+				<!-- 判断不能大于4个 -->
+				<li class="goods-img-more">
+					<!-- {if count($data.goods_list) gt 3} --><i class="icon iconfont">&#xe62e;</i>{/if}
+					<p class="ecjiaf-ib">共{$total_goods_number}件</p>
+					<i class="icon iconfont icon-right">&#xe6aa;</i>
+				</li>
+				<!-- {/if} -->
 			</ul>
-			</a>
+			{if count($data.goods_list) gt 1}</a>{/if}
 		</section>
 
 		<section class="checklist">
@@ -67,16 +69,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<input type="hidden" name="shipping_id" value="{$selected_shipping.shipping_id}" />
 			</a>
 		</section>
+		{if $data.allow_can_invoice}
 		<section class="checklist "><!-- error -->
 			<a href='{url path="cart/flow/invoice" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>发票信息<!-- invoice --></span>
 				<i class="iconfont icon-jiantou-right"></i>
-				<span class="ecjiaf-fr select_nav ecjia-truncate">{$temp.inv_payee} {$temp.inv_content} {$temp.inv_type}</span>
+				<span class="ecjiaf-fr select_nav ecjia-truncate">{$temp.inv_payee}</span>
 				<input type="hidden" name="inv_payee" value="{$temp.inv_payee}" />
 				<input type="hidden" name="inv_content" value="{$temp.inv_content}" />
 				<input type="hidden" name="inv_type" value="{$temp.inv_type}" />
 			</a>
 		</section>
+		{/if}
 		<section class="checklist ecjia-margin-b">
 			<a href='{url path="cart/flow/note" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>备注留言</span>
@@ -88,13 +92,20 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		
 		{if $data.allow_use_bonus}
 		<section class="checklist">
-			<a href='{url path="cart/flow/bonus" args="address_id={$address_id}&rec_id={$rec_id}"}'>
+			{if $data.bonus|count gt 0}
+			    <a href='{url path="cart/flow/bonus" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>{$lang.use_bonus}</span>
 				<span class="ecjia-tag">{count($data.bonus)}个可用</span>
 				<i class="iconfont icon-jiantou-right"></i>
 				<span class="ecjiaf-fr select_nav_short ecjia-truncate">{$data.bonus[$temp.bonus].bonus_name}</span>
 				<input type="hidden" name="bonus" value="{$temp.bonus}">
 			</a>
+			{else}
+			<a href='javascript:;' title="不可用">
+			    <span class="ecjia-color-999">{$lang.use_bonus}</span>
+			    <span class="ecjia-tag ecjia-tag-disable">不可用</span>
+			</a>
+			{/if}
 		</section>
 		{/if}
 		{if $data.allow_use_integral}
@@ -102,7 +113,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				{if $data.order_max_integral eq 0}
 				<a href='javascript:;' title="不可用">
 				    <span class="ecjia-color-999">{$lang.use_integral}</span>
-				    <span class="ecjia-tag">不可用</span>
+				    <span class="ecjia-tag ecjia-tag-disable">不可用</span>
 				</a>
 				{else}
 				<a href='{url path="cart/flow/integral" args="address_id={$address_id}&rec_id={$rec_id}"}'>

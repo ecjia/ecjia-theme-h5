@@ -23,9 +23,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</label>
 	</div>
 	<div class="small-submit">
-            <input type="hidden" name="referer" value="{$smarty.get.referer}" />
-            <span><input type="submit" id="get_code" class="btn btn-info login-btn" value="{$lang.return_verification}" /></span>
-	</div>
+            <input type="hidden" name='mobile' value={$mobile} />
+            <input type="button" class="btn login-btn" value="{$lang.return_verification}" data-url="{url path='user/get_password/get_password_email'}" id="get_code" />
+    </div>
 	 <a href="{url path='user/get_password/reset_password'}">
 	 <div class="around">
 	       <input class="btn btn-info login-btn ecjia-login-margin-top" id="mobile_register" name="mobile_register" type="submit" data-url="{RC_Uri::url('user/get_password/mobile_register')}" value="下一步" />
