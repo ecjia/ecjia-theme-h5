@@ -50,6 +50,10 @@ class user_bonus_controller {
      * 我的奖励
      */
     public static function my_reward() {
+		$token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+    	$invite_reward = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_REWARD)->data(array('token' => $token['access_token']))->run();
+        $intive_total = $invite_reward[invite_total];
+        ecjia_front::$controller->assign('intive_total', $intive_total);
         ecjia_front::$controller->display('user_my_reward.dwt');
     }
     

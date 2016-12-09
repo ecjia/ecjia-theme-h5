@@ -10,7 +10,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 
-<div class="ecjia-user ecjia-user-head">
-    奖励明细
+<div class="ecjia-spread">
+    <div class="">
+        
+    </div>
+
 </div>
 <!-- {/block} -->
