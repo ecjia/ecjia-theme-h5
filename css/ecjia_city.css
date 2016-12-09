@@ -2907,6 +2907,7 @@ footer{
 }
 .ecjia-login .text-st {
 	margin-left: 7%;
+	margin-bottom: .8em;
 }
 .ecjia-login .margin-top4 {
 	margin-top: 4em !important;
@@ -3030,7 +3031,7 @@ footer{
 }
 .ecjia-login .small-submit input.btn-org {
     color: #FFF;
-    background-color: #E58D33;
+    background-color: #E58D31;
     border-color: #E58D33;
 }
 /*========================  搜索 ===========================*/

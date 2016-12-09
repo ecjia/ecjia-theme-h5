@@ -108,22 +108,6 @@
 		},
 		
 		click_code : function (){
-			$('#get_password').on('click', function(e){
-				e.preventDefault();
-				$this = $(this);
-				$this.ajaxSubmit({
-					alert(1);
-					dataType:"json",
-					success:function(data){
-						if(data.state == 'success'){
-							window.location.href = data.url;
-						}
-					}
-				});
-			})
-			
-			
-			
 			$(document).ready(function (data){
 				var act = $("#act").val();
 				var count = 120; 

@@ -34,13 +34,10 @@ class user_get_password_controller {
 
     public static function mobile_register_account() {
         $mobile = !empty($_POST['mobile']) ? $_POST['mobile'] : $_SESSION['mobile'];
-        $flush = !empty($_POST['mobile']) ? 'have' : '';
         $_SESSION['mobile'] = $mobile;
-        $back_url = RC_Uri::url('user/get_password/mobile_register');
         if (!empty($mobile)) {
-//             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_FORGET_PASSWORD)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile))->run();
-//             return ecjia_front::$controller->showmessage(__("短信已发送到手机".$mobile."，请注意查看"), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl'=>RC_Uri::url('user/get_password/mobile_register', array('get_password' => $flush))));
-            return ecjia_front::$controller->showmessage(__("短信已发送到手机".$mobile."，请注意查看"), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_FORGET_PASSWORD)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile))->run();
+            return ecjia_front::$controller->showmessage(__("短信已发送到手机".$mobile."，请注意查看"), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl'=>RC_Uri::url('user/get_password/mobile_register')));
         }
     }
     
@@ -51,7 +48,7 @@ class user_get_password_controller {
         $mobile    = !empty($_SESSION['mobile']) ? $_SESSION['mobile'] : '';
         
         if ($passwordf != $passwords) {
-            return ecjia_front::$controller->showmessage(__('两次密码输入不一致'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/get_password/reset_password')));
+            return ecjia_front::$controller->showmessage(__('两次密码输入不一致'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
         if ($passwordf) {

@@ -14,7 +14,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </script>
 <!-- {/block} -->
 <!-- {block name="main-content"} -->
-<form class="ecjia-login ecjia-login-margin-top"  action="{url path='user/get_password/mobile_register_account'}" method="post">
+<form class="ecjia-login ecjia-login-margin-top" name="getPassword" action="{url path='user/get_password/mobile_register_account'}" method="post">
 	<!-- 添加id，js用到 -->
 	<div class="ecjia-form">
     	<div class="form-group margin-right-left">
@@ -25,7 +25,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     	<input name="act" type="hidden" value="send_pwd_email"/>
     	<div class="ecjia-login-b">
     	   <div class="around margin-top">
-    	       <input class="btn btn-info login-btn" id="get_password" type="submit" value="{$lang.next}">
+    	       <input class="btn btn-info login-btn" name="get_password" type="submit" value="{$lang.next}">
     	   </div>
     	</div>
 	</div>

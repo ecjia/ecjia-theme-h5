@@ -11,7 +11,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="footer"} -->
 <script type="text/javascript">
     ecjia.touch.user.init();
-    //判断用户输入的校验码是否正确然后才可以进入重置密码
 </script>
 <!-- {/block} -->
 
@@ -25,7 +24,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     		</label>
     	</div>
     	<div class="small-submit">
-    	    <input id="act" type="hidden" value={$act}>
     	    <input name="mobile1" type="hidden" value={$mobile} />
             <input type="button" class="btn login-btn" value="{$lang.return_verification}" data-url="{url path='user/get_password/mobile_register_account'}" id="get_code1" />
         </div>
