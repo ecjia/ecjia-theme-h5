@@ -49,7 +49,9 @@ class user_front {
 	        'user/privilege/validate_code',
 	        'user/privilege/set_password',
 	        'user/get_password/mobile_register',
-	        'user/get_password/reset_password'
+	        'user/get_password/reset_password',
+	        'user/privilege/signin',
+	        'user/privilege/signup',
 	    );
 	}
 
