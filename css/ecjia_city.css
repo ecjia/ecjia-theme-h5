@@ -2754,7 +2754,7 @@ footer{
     border-bottom: 1px solid #FF1919;
 }
 .ecjia-bonus li a.red-font,
-.ecjia-user-head .ecjia-list li>a .icon-price {
+.ecjia-user.ecjia-user-head .ecjia-list li>a .icon-price-red {
 	color: #FF1919;
 }
 .ecjia-bonus .three-btn{
@@ -2902,6 +2902,7 @@ footer{
 }
 .ecjia-login .text-st {
 	margin-left: 7%;
+	margin-bottom: .8em;
 }
 .ecjia-login .margin-top4 {
 	margin-top: 4em !important;
@@ -3025,7 +3026,7 @@ footer{
 }
 .ecjia-login .small-submit input.btn-org {
     color: #FFF;
-    background-color: #E58D33;
+    background-color: #E58D31;
     border-color: #E58D33;
 }
 /*========================  搜索 ===========================*/
@@ -4182,7 +4183,7 @@ footer{
 	right:1.5em;
 }
 .ecjia-spread{
-	background:#fff;
+	background: #fff;
     height:auto;
 }
 .ecjia-spread .bg-img{
@@ -4194,7 +4195,79 @@ footer{
 	position:relative;
 	background-origin: content-box;
 }
+.ecjia-spread .ecjia-list .reward-title {
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+	top: 12%;
+	color: #787878;
+	font-size: 18px;
+}
+.ecjia-spread .ecjia-list .reward-num1 {
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+	top: 20%;
+	color: #04b62a;
+	font-size: 5em;
+}
+.ecjia-spread .ecjia-list .reward-num2 {
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+	top: 20%;
+	color: #00aaf2;
+	font-size: 5em;
+}
+.ecjia-spread .ecjia-list .reward-num3 {
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+	top: 20%;
+	color: #ff5d20;
+	font-size: 5em;
+}
+.ecjia-spread .ecjia-list .reward-shadow {
+	position: relative;
+    vertical-align: middle;
+    text-align: center;
+    left: 1%;
+	top: 4%;
+}
+.ecjia-spread .ecjia-list .reward-shadow img {
+	position: relative;
+	width: 136px;
+	height: 18px;
+}
+
+.ecjia-spread .ecjia-list .reward-hint {
+    position: relative;
+    vertical-align: middle;
+    text-align: center;		
+    top: -32%;
+}
+.ecjia-spread .ecjia-list .reward-hint img {
+    position: relative;
+	width: 30px;
+	height: 30px;
+    left: 12%	
+}
 .ecjia-spread .qrcode_image,
+.ecjia-spread .qrcode_image2
+ {
+	height:auto;
+	width:100%;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+}
+.ecjia-spread .qrcode_image3
+ {
+	height:auto;
+	width:100%;
+    position: relative;
+    left: 2%;
+}
 .ecjia-spread .qrcode_image2
  {
 	height:auto;
@@ -4210,10 +4283,17 @@ footer{
 }
 .ecjia-spread .qrcode_image2 img{
 	position:relative;
-	height:28px;
-	width:28px;
+	height:30px;
+	width:30px;
 	float: left;
-	margin: 11px 0 0 28%;
+	margin: 10px 0 0 28%;
+}
+.ecjia-spread .qrcode_image3 img{
+	position:relative;
+	height:30px;
+	width:30px;
+	float: left;
+	margin: 10px 0 0 30%;
 }
 .ecjia-spread .my-invite-code{
 	width:100%;
@@ -4311,6 +4391,27 @@ footer{
 }
 .ecjia-spread .ecjia-bottom-bar-pannel .tab5 li a span {
 	position: relative;
-	margin: 15px 25% 0 0;
-	float: right;
+    top: 15px;
+    left: -8%;
 }
+.ecjia-spread .ecjia-list li {
+	background: #FFF;
+	width: 100%;
+	height: 15em;
+}
+.ecjia-spread .ecjia-list.list-short li+li::before {
+    content: '';
+    position: relative;
+    display: block;
+    width: 80%;
+    top: 0;
+    vertical-align: middle;
+    text-align: center;
+}
+.ecjia-spread-pb {
+	padding-bottom: 10%;
+}
+
+
+
+

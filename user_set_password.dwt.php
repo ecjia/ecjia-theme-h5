@@ -41,8 +41,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     			<div class="form-group bf margin-right-left">
     				<label class="input">
     					<i class="iconfont icon-unlock"></i>
-    					<i class="iconfont icon-attention ecjia-login-margin-l"></i>
-    					<input name="password" id="password" type="password" errormsg="请输入6 ~ 16 位的密码" placeholder="{$lang.input_passwd}">
+    					<i class="iconfont icon-attention ecjia-login-margin-l" id="password1"></i>
+    					<input name="password" id="password-1" type="password" errormsg="请输入6 ~ 16 位的密码" placeholder="{$lang.input_passwd}">
     				</label>
     			</div>
     			<div class="ecjia-login-b">

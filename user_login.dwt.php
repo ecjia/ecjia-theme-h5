@@ -26,8 +26,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group ecjia-margin-t margin-right-left">
 		<label class="input">
 			<i class="iconfont icon-lock "></i>
-			<i class="iconfont icon-attention ecjia-login-margin-l"></i>
-			<input placeholder="{$lang.input_passwd}" id="password" name="password" type="password">
+			<i class="iconfont icon-attention ecjia-login-margin-l" id="password1"></i>
+			<input placeholder="{$lang.input_passwd}" id="password-1" name="password" type="password">
 		</label>
 	</div>
 	<!-- 判断是否启用验证码{if $enabled_captcha} -->

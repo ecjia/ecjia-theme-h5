@@ -52,6 +52,7 @@ class user_front {
 	        'user/get_password/reset_password',
 	        'user/privilege/signin',
 	        'user/privilege/signup',
+	        'user/get_password/mobile_register_account'
 	    );
 	}
 
