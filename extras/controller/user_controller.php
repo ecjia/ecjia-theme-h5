@@ -8,39 +8,6 @@ class user_controller {
      * 会员中心欢迎页
      */
     public static function init() {
-        // $user_id = $_SESSION['user_id'];
-        // RC_Loader::load_theme('extras/model/user/touch_users_model.class.php');
-        // $db_users = new touch_users_model();
-        // RC_Loader::load_theme('extras/functions/user/front_account.func.php');
-        // /*用户等级*/
-        // $rank = get_rank_info();
-        //
-        // $base   = goods_list('new', 10);
-        // ecjia_front::$controller->assign('new_goods', $base['list']);
-        //
-        // ecjia_front::$controller->assign('rank_name', $rank['rank_name']);
-        // ecjia_front::$controller->assign('order_num', get_order_num());
-        // ecjia_front::$controller->assign('user_notice', ecjia::config('user_notice'));
-        // ecjia_front::$controller->assign('title', RC_Lang::lang('user_center'));
-        // ecjia_front::$controller->assign_title(RC_Lang::lang('user_center'));
-        //$user_img = get_user_img();
-        // $surplus_amount = get_user_surplus($user_id);
-        // $user = $db_users->where(array('user_id'=>$user_id))->find();
-        // unset($user['question']);
-        // unset($user['answer']);
-        // /* 格式化帐户余额 */
-        // if ($user) {
-        //     $user['formated_user_money'] = price_format($user['user_money'], false);
-        //     $user['formated_frozen_money'] = price_format($user['frozen_money'], false);
-        // }
-        // ecjia_front::$controller->assign('integral',intval($user['pay_points']));
-        // ecjia_front::$controller->assign('surplus_amount', intval($surplus_amount));
-        
-        
-//         if (!ecjia_touch_user::singleton()->isSignin()) {
-            
-//         }
-        
         //网店信息
         $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();

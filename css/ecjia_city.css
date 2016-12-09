@@ -4157,7 +4157,9 @@ footer{
 	position:relative;
 	background-origin: content-box;
 }
-.ecjia-spread .qrcode_image {
+.ecjia-spread .qrcode_image,
+.ecjia-spread .qrcode_image2
+ {
 	height:auto;
 	width:100%;
     position: relative;
@@ -4168,6 +4170,13 @@ footer{
 	position:relative;
 	height:14em;
 	width:14em;
+}
+.ecjia-spread .qrcode_image2 img{
+	position:relative;
+	height:28px;
+	width:28px;
+	float: left;
+	margin: 11px 0 0 28%;
 }
 .ecjia-spread .my-invite-code{
 	width:100%;
@@ -4243,13 +4252,28 @@ footer{
     width: 25.3125em;	
     height: 9.375em;
 }
-.ecjia-spread .ecjia-bottom-bar-pannel .tab5{
-	border-top: 1px solid #ddd;
+.ecjia-spread .ecjia-bottom-bar-pannel {
+    position: fixed;
+    height: 50px;
+	width: 100%;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+}
+.ecjia-spread .ecjia-bottom-bar-pannel .tab5 {
+    height: 100%;
+    position: relative;
+    background-color: #fff;    
+    overflow-x: hidden;
+    box-shadow: 0 0 10px 0 rgba(155,143,143,0.6);
 }
 .ecjia-spread .ecjia-bottom-bar-pannel .tab5 li {
-	text-align: center;
     width: 50%;
-    float: left;
     height: 100%;
 	border-right: 1px solid #ddd;
+}
+.ecjia-spread .ecjia-bottom-bar-pannel .tab5 li a span {
+	position: relative;
+	margin: 15px 25% 0 0;
+	float: right;
 }
