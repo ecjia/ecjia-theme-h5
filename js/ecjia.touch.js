@@ -16,7 +16,7 @@
 			ecjia.touch.searchbox_foucs();
 			ecjia.touch.del_history();
 		},
-
+		
 		/**
 		 * 设置PJAX
 		 */

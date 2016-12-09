@@ -8,6 +8,7 @@
 			ecjia.touch.category.selectionValue();
 			ecjia.touch.category.clear_filter();
 			ecjia.touch.category.goods_show();
+			
 			ecjia.touch.category.add_tocart();
 			ecjia.touch.category.remove_tocart();
 			ecjia.touch.category.toggle_cart();
@@ -17,9 +18,16 @@
 			ecjia.touch.category.toggle_checkbox();
 			ecjia.touch.category.check_cart();
 			
-			ecjia.touch.category.check_goods();
+			ecjia.touch.category.check_goods();	//购物车列表 单选多选切换
+			ecjia.touch.category.cart_edit();	//购物车列表编辑
+			
+			//分类列表 点击分类切换 滚动到顶部
+			$('.category_left li').on('click', function(){
+				 $(window).scrollTop(0); 
+			});
 		},
 
+		//加入购物车
         add_tocart:function(){
             $("[data-toggle='add-to-cart']").off('click').on('click', function(ev){
             	var $this = $(this);
@@ -33,7 +41,8 @@
             		$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
             		var val = parseInt($this.siblings('input').val()) + 1;
             		$this.siblings('input').val(val);
-            		ecjia.touch.category.update_cart(rec_id, val, goods_id);
+            		var store_id = $this.parent().attr('data-store');
+            		ecjia.touch.category.update_cart(rec_id, val, goods_id, '', store_id);
             	} else {
                 	$('.box').children('span').addClass('disabled');
                 	//商品详情中添加商品到购物车逻辑
@@ -102,6 +111,7 @@
             });
         },
         
+        //移除购物车
         remove_tocart : function() {
             $("[data-toggle='remove-to-cart']").off('click').on('click', function(ev){
             	var $this = $(this);
@@ -120,7 +130,6 @@
             			
             			if (li.siblings('li').length == 0) {
             				li.parents('.cart-single').remove();
-            				
             				if ($('li.cart-single').length == 0) {
             					$('.ecjia-flow-cart').remove();
             					$('.flow-no-pro').removeClass('hide');
@@ -129,7 +138,8 @@
             			li.remove();
             		} else {
             			$this.siblings('input').val(val);
-            			ecjia.touch.category.update_cart(rec_id, val);
+            			var store_id = $this.parent().attr('data-store');
+            			ecjia.touch.category.update_cart(rec_id, val, '', '', store_id);
             		}
             	} else {
 		        	$('.box').children('span').addClass('disabled');
@@ -183,6 +193,7 @@
             });
         },
         
+        //切换购物车 弹出/隐藏 效果
         toggle_cart : function() {
         	$('.show_cart').off('click').on('click', function(e){
         		e.preventDefault();
@@ -209,6 +220,7 @@
         	});
         },
         
+        //更新购物车
         update_cart : function(rec_id, val, goods_id, checked, store) {
         	var url = $('input[name="update_cart_url"]').val();
         	var store_id = $('input[name="store_id"]').val();
@@ -218,6 +230,7 @@
         		store_id = store;
         		response = true;//直接返回
         	}
+        	
         	var info = {
         		'val' 		: val,
         		'rec_id' 	: rec_id,
@@ -232,12 +245,15 @@
             	if (data.state == 'error') {
             		alert(data.message);
             		$('.la-ball-atom').remove();
+            		ecjia.pjax(window.location.href);
             		return false;
             	}
             	if (data.response == true) {
             		$('.la-ball-atom').remove();
-            		$('.item-count').children('.price_' + store_id).html(data.count.goods_price);
-            		return false;
+            		if (data.count != null) {
+            			$('.item-count').children('.price_' + store_id).html(data.count.goods_price);
+            		}
+            		return true;
             	}
             	if (data.count == null) {
             		ecjia.touch.category.hide_cart(true);
@@ -287,6 +303,7 @@
             });
         },
         
+        //显示购物车
         show_cart : function(bool) {
         	if (bool) {
         		$('.store-add-cart').children('.a4x').addClass('light').removeClass('disabled');
@@ -301,6 +318,7 @@
         	}
         },
         
+        //隐藏购物车
         hide_cart : function(bool) {
 			$('.store-add-cart').find('.a4z').css('transform', 'translateX(0px)');
     		$('.store-add-cart').find('.a53').css('display', 'none');
@@ -324,6 +342,7 @@
 			$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});    	
         },
         
+        //店铺首页切换分类
         toggle_category: function() {
         	$('[data-toggle="toggle-category"]').off('click').on('click', function(e){
         		var $this = $(this),
@@ -408,6 +427,7 @@
         	}
         },
         
+        //店铺首页 商品详情 店铺内搜索 清空购物车
         deleteall : function() {
         	$('[data-toggle="deleteall"]').off('click').on('click', function(e){
         		e.preventDefault();
@@ -442,6 +462,7 @@
         	});
         },
         
+        //店铺首页 单选
         toggle_checkbox : function() {
         	$('[data-toggle="toggle_checkbox"]').off('click').on('click', function(e){
         		var $this = $(this);
@@ -485,8 +506,44 @@
         		}
         		ecjia.touch.category.update_cart(rec_id, 0, 0, checked, true);
         	});
+        	
+        	$('.ecjia-number-contro').off('focus').on('focus', function(){
+        		var v = $(this).val();
+        		
+        		$(this).off('blur').on('blur', function(){
+            		var $this = $(this),
+            			val = $this.val(),
+            			rec_id = $this.attr('rec_id'),
+            			store_id = $this.parent().attr('data-store');
+            			
+            		var ex = /^\d+$/;
+            		if (v == val) {
+            			return false;
+            		}
+            		if (val <= 0 || !ex.test(val)) {
+            			var myApp = new Framework7();
+                		myApp.modal({
+                			title: '修改数量失败请重试',
+                			buttons: [
+        			          {
+        			            text: '确定',
+        			            onClick: function() {
+        			            	ecjia.pjax(window.location.href);
+        			          	},
+        			          }
+        			        ]
+                		});
+            		} else {
+            			$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+            			ecjia.touch.category.update_cart(rec_id, val, 0, '', store_id);
+            		}
+            		return false;
+            	});
+        		return false;
+        	});
         },
 
+        //店铺首页全选
         check_all : function() {
         	var chknum = $(".minicart-goods-list .checkbox").size();	//选项总个数 
 		    var chk = 0; 
@@ -502,6 +559,7 @@
 		    } 
         },
         
+        //店铺首页 去结算
         check_cart : function() {
         	$('.check_cart').off('click').on('click', function(e) {
         		e.preventDefault();
@@ -510,7 +568,32 @@
         			store_id = $this.attr('data-store'),
         			address_id = $this.attr('data-address'),
         			rec_id = $this.attr('data-rec');
-        		if ($this.hasClass('disabled')) {
+        		if ($this.hasClass('edit_button')) {
+        			var myApp = new Framework7();
+        			myApp.modal({
+            			title: '确定删除该店铺下全部商品？',
+            			buttons: [
+    			          {
+    			            text: '取消',
+    			          },
+    			          {
+    			            text: '确定',
+    			            onClick: function() {
+    			            	$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+    			            	ecjia.touch.category.update_cart(rec_id, 0, 0, '', store_id);
+    		        			var li = $this.parents('.cart-single');
+    		        			li.remove();
+    		    				if ($('li.cart-single').length == 0) {
+    		    					$('.ecjia-flow-cart').remove();
+    		    					$('.flow-no-pro').removeClass('hide');
+    		    				}
+    		        			return false;
+    			          	},
+    			          }
+    			        ]
+            		});
+        		}
+        		if ($this.hasClass('disabled') || $this.hasClass('edit_button')) {
         			return false;
         		}
         		if (store_id != undefined) {
@@ -529,56 +612,137 @@
         //购物车列表 单选多选切换
         check_goods : function() {
         	$('.cart-checkbox').off('click').on('click', function() {
-        		$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
         		var $this = $(this),
         			store_id = $this.attr('data-store'),
         			checked,
         			rec_id = [];
         		
-        		if ($this.hasClass('checked')) {
-        			$this.removeClass('checked');
-        			checked = 0;
-    			} else {
-    				$this.addClass('checked');
-    				checked = 1;
-    			}
-        		
-        		var chknum = $(".checkbox_" + store_id).size();	//选项总个数 
-    		    var chk = 0; 
-    		    $(".checkbox_" + store_id).each(function () {   
-    		        if ($(this).hasClass("checked") == true){ 
-    		            chk++; 
-    		        } 
-    		        rec_id.push($(this).attr('rec_id'));
-    		    }); 
-    		    
-        		if ($this.hasClass('check_all')) {
-        			if ($this.hasClass('checked')) {
-        				$(".checkbox_" + store_id).addClass('checked');
-        				checked = 1;
-        				$('.check-cart_' + store_id).removeClass('disabled');
+        		//删除
+        		if ($this.hasClass('edit')) {
+        			//全部删除
+        			if ($this.hasClass('check_all')) {
+            			rec_id = $('.check_cart_' + store_id).attr('data-rec');
+            			var myApp = new Framework7();
+                		myApp.modal({
+                			title: '确定删除该店铺下全部商品？',
+                			buttons: [
+        			          {
+        			            text: '取消',
+        			            onClick: function() {
+        			            	$('.modal').remove();
+        			            	return false;
+        			            }
+        			          },
+        			          {
+        			            text: '确定',
+        			            onClick: function() {
+        			            	ecjia.touch.category.update_cart(rec_id, 0, 0, '', store_id);
+        	            			var li = $this.parents('.cart-single');
+        	            			li.remove();
+        	        				if ($('li.cart-single').length == 0) {
+        	        					$('.ecjia-flow-cart').remove();
+        	        					$('.flow-no-pro').removeClass('hide');
+        	        				}
+        	            			return false;
+        			          	},
+        			          }
+        			    	]
+                		});
+            		//删除单个
         			} else {
-        				$(".checkbox_" + store_id).removeClass('checked');
-        				checked = 0;
-        				$('.check-cart_' + store_id).addClass('disabled');
+        				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+            			rec_id = $this.attr('rec_id');
+            			ecjia.touch.category.update_cart(rec_id, '', '' , '');
+            			var li = $this.parents('.item-goods');
+            			if (li.siblings('li').length == 0) {
+            				li.parents('.cart-single').remove();
+            				if ($('li.cart-single').length == 0) {
+            					$('.ecjia-flow-cart').remove();
+            					$('.flow-no-pro').removeClass('hide');
+            				}
+            			}
+            			li.remove();
+            			return false;
         			}
         		} else {
-        		    if (chknum == chk) {//全选 
-        		        $("#store_check_" + store_id).addClass("checked"); 
-        		    } else {//不全选 
-        		        $("#store_check_" + store_id).removeClass("checked"); 
-        		    }
-        		    //至少选中一个
-        		    if (chk > 0) {
-        		    	$('.check-cart_' + store_id).removeClass('disabled');
-        		    } else {
-        		    	$('.check-cart_' + store_id).addClass('disabled');
-        		    }
-        		    rec_id = $this.attr('rec_id');
+        			$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+            		if ($this.hasClass('checked')) {
+            			$this.removeClass('checked');
+            			checked = 0;
+        			} else {
+        				$this.addClass('checked');
+        				checked = 1;
+        			}
+            		
+            		var chknum = $(".checkbox_" + store_id).size();	//选项总个数 
+        		    var chk = 0; 
+        		    $(".checkbox_" + store_id).each(function () {   
+        		        if ($(this).hasClass("checked") == true){ 
+        		            chk++; 
+        		        } 
+        		        rec_id.push($(this).attr('rec_id'));
+        		    }); 
+        		    
+            		if ($this.hasClass('check_all')) {
+            			if ($this.hasClass('checked')) {
+            				$(".checkbox_" + store_id).addClass('checked');
+            				checked = 1;
+            				$('.check_cart_' + store_id).removeClass('disabled');
+            			} else {
+            				$(".checkbox_" + store_id).removeClass('checked');
+            				checked = 0;
+            				$('.check_cart_' + store_id).addClass('disabled');
+            			}
+            		} else {
+            		    if (chknum == chk) {//全选 
+            		        $("#store_check_" + store_id).addClass("checked"); 
+            		    } else {//不全选 
+            		        $("#store_check_" + store_id).removeClass("checked"); 
+            		    }
+            		    //至少选中一个
+            		    if (chk > 0) {
+            		    	$('.check_cart_' + store_id).removeClass('disabled');
+            		    } else {
+            		    	$('.check_cart_' + store_id).addClass('disabled');
+            		    }
+            		    rec_id = $this.attr('rec_id');
+            		}
+            		ecjia.touch.category.update_cart(rec_id, 0, 0, checked, store_id);
         		}
-        		ecjia.touch.category.update_cart(rec_id, 0, 0, checked, store_id);
         	});
         },
+        
+        //购物车列表 编辑
+        cart_edit : function() {
+        	$('.shop-edit').off('click').on('click', function(){
+        		var $this = $(this),
+        			store_id = $this.attr('data-store'),
+        			type = $this.attr('data-type'),
+        			data_type,
+        			text,
+        			color,
+        			button_text;
+        		if (type == 'edit') {
+        			data_type = 'complete';
+        			text = '完成';
+        			button_text = '全部删除';
+        			$this.addClass('edit_font_color');
+        			$('.check_cart_' + store_id).text(button_text).addClass('edit_button');
+        			$('#store_check_' + store_id).addClass('edit');
+        			$('.checkbox_' + store_id).addClass('edit');
+        		} else {
+        			data_type = 'edit';
+        			text = '编辑';
+        			button_text = '去结算';
+        			$this.removeClass('edit_font_color');
+        			$('.check_cart_' + store_id).text(button_text).removeClass('edit_button');
+        			$('#store_check_' + store_id).removeClass('edit');
+        			$('.checkbox_' + store_id).removeClass('edit');
+        		}
+        		$this.attr('data-type', data_type).text(text);
+        	});
+        },
+        
 		openSelection : function() {
 			/*商品列表页面点击显示筛选*/
 			$('[data-toggle="openSelection"]').on('click', function(e){
@@ -711,75 +875,74 @@
  			ecjia.touch.goods.warehouse();
  		},
 
-	area_change : function() {
-	$('[data-toggle="region_change"]').on('change', function() {
-			var $this		= $(this),
-				id 			= $this.attr("id"),
-				url 		= $this.attr("data-url"),
-				type    	= $this.attr("data-type"),
-				target 		= $this.attr("data-target"),
-				check 		= $this.attr("data-city"),
-				parent 		= $this.val();
-				if($("#selCountries").val()== 0 ){
-					$("#selProvinces").children("option:gt(0)").remove();
-					$("#selCities").children("option:gt(0)").remove();
-					$("#selDistricts").children("option:gt(0)").remove();
-					$("#selDistricts").hide();
-				}else{
-					if( id == "selCountries"){
+ 		area_change : function() {
+ 			$('[data-toggle="region_change"]').on('change', function() {
+				var $this		= $(this),
+					id 			= $this.attr("id"),
+					url 		= $this.attr("data-url"),
+					type    	= $this.attr("data-type"),
+					target 		= $this.attr("data-target"),
+					check 		= $this.attr("data-city"),
+					parent 		= $this.val();
+					if($("#selCountries").val()== 0 ){
+						$("#selProvinces").children("option:gt(0)").remove();
+						$("#selCities").children("option:gt(0)").remove();
+						$("#selDistricts").children("option:gt(0)").remove();
 						$("#selDistricts").hide();
-					}else if( id == "selProvinces"){
-						$("#selDistricts").hide();
-						if($("#selProvinces").val()== 0 ){
-							$("#selCities").children("option:gt(0)").remove();
+					}else{
+						if( id == "selCountries"){
+							$("#selDistricts").hide();
+						}else if( id == "selProvinces"){
+							$("#selDistricts").hide();
+							if($("#selProvinces").val()== 0 ){
+								$("#selCities").children("option:gt(0)").remove();
+							}
+						}else if( id == "selCities"){
+							$("#selDistricts").show();
+							if($("#selCities").val()== 0 ){
+								$("#selDistricts").children("option:gt(0)").remove();
+							}
 						}
-					}else if( id == "selCities"){
-						$("#selDistricts").show();
-						if($("#selCities").val()== 0 ){
-							$("#selDistricts").children("option:gt(0)").remove();
-						}
-					}
-					$.get(url,
-					{'type':type ,'target':target,'parent':parent, 'checked': check},
-					function(data){
-						if (data.state == 'success') {
-		 					var opt  =	'';
-		 					if(data.regions){
-		 						for (var i= 0 ; i<data.regions.length; i ++){
-									if(data.check){
-										if (data.regions[i].region_id == data.check ){
-											opt +=	'<option value="'+data.regions[i].region_id+'" selected="selected">'+data.regions[i].region_name+'</option>';
+						$.get(url,
+						{'type':type ,'target':target,'parent':parent, 'checked': check},
+						function(data){
+							if (data.state == 'success') {
+			 					var opt  =	'';
+			 					if(data.regions){
+			 						for (var i= 0 ; i<data.regions.length; i ++){
+										if(data.check){
+											if (data.regions[i].region_id == data.check ){
+												opt +=	'<option value="'+data.regions[i].region_id+'" selected="selected">'+data.regions[i].region_name+'</option>';
+											}else{
+												opt +=	'<option value="'+data.regions[i].region_id+'">'+data.regions[i].region_name+'</option>';
+											}
 										}else{
-											opt +=	'<option value="'+data.regions[i].region_id+'">'+data.regions[i].region_name+'</option>';
+											if (i == 0){
+												opt +=	'<option value="'+data.regions[i].region_id+'" selected="selected">'+data.regions[i].region_name+'</option>';
+											}else{
+												opt +=	'<option value="'+data.regions[i].region_id+'">'+data.regions[i].region_name+'</option>';
+											}
 										}
-									}else{
-										if (i == 0){
-											opt +=	'<option value="'+data.regions[i].region_id+'" selected="selected">'+data.regions[i].region_name+'</option>';
-										}else{
-											opt +=	'<option value="'+data.regions[i].region_id+'">'+data.regions[i].region_name+'</option>';
-										}
-									}
+				 					}
+				 					if( id == "selCountries"){
+				 						$("#selProvinces").children("option:gt(0)").remove();
+				 						$("#selProvinces").children("option").after(opt);
+				 					}else if( id == "selProvinces"){
+				 						$("#selCities").children("option:gt(0)").remove();
+				 						$("#selCities").children("option").after(opt);
+				 						$('[data-target="selDistricts"][id="selCities"]').change();
+				 					}else if( id == "selCities"){
+				 						$("#selDistricts").children("option:gt(0)").remove();
+				 						$("#selDistricts").children("option").after(opt);
+				 					}
 			 					}
-			 					if( id == "selCountries"){
-			 						$("#selProvinces").children("option:gt(0)").remove();
-			 						$("#selProvinces").children("option").after(opt);
-			 					}else if( id == "selProvinces"){
-			 						$("#selCities").children("option:gt(0)").remove();
-			 						$("#selCities").children("option").after(opt);
-			 						$('[data-target="selDistricts"][id="selCities"]').change();
-			 					}else if( id == "selCities"){
-			 						$("#selDistricts").children("option:gt(0)").remove();
-			 						$("#selDistricts").children("option").after(opt);
-			 					}
-		 					}
-		 				} else {
-		 					ecjia.touch.showmessage(data);
-		 				}
-				}, 'json');
+			 				} else {
+			 					ecjia.touch.showmessage(data);
+			 				}
+					}, 'json');
 				}
-
-		})
-},
+			})
+		},
 
 		address_change : function(){
 			$('select[id="selCities"]').on('change', function(){

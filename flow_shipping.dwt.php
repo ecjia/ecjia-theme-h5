@@ -18,7 +18,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <form id="theForm" name="theForm" action='{url path="cart/flow/checkout" args="address_id={$address_id}&rec_id={$rec_id}"}' method="post">
     <div class="ecjia-select">
         <h3 class="select-title"></h3>
-        <ul class="ecjia-list">
+        <ul class="ecjia-list ecjia-margin-t">
             <!-- {foreach from=$shipping_list item=list} -->
             <label class="select-item" for="shipping_{$list.shipping_code}">
                 <li>
@@ -28,6 +28,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                         {if $smarty.get.shipping_id eq $list.shipping_id} checked="true"{/if}>
                         <label for="shipping_{$list.shipping_code}"></label>
                     </span>
+                    <span class="ecjiaf-fr">{$list.format_shipping_fee}</span>
+                    
                 </li>
             </label>
             <!-- {/foreach} -->
