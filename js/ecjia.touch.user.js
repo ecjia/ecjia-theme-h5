@@ -10,6 +10,7 @@
 			ecjia.touch.user.loginout_click();
 			ecjia.touch.user.clear_history();
 			ecjia.touch.user.get_code();
+			ecjia.touch.user.click_code();
 			ecjia.touch.user.fast_reset_pwd();
 			ecjia.touch.user.register_password();
 			ecjia.touch.user.mobile_register();
@@ -90,7 +91,6 @@
 				    ecjia.touch.showmessage(data);
 			    });
 			});
-			  
 		    //timer处理函数
 		    function SetRemainTime() {
 		        if (curCount == 0) {     
@@ -106,6 +106,50 @@
 		        }
 		    };
 		},
+		
+		click_code : function (){
+			$('#get_password').on('click', function(e){
+				e.preventDefault();
+				$this = $(this);
+				$this.ajaxSubmit({
+					alert(1);
+					dataType:"json",
+					success:function(data){
+						if(data.state == 'success'){
+							window.location.href = data.url;
+						}
+					}
+				});
+			})
+			
+			
+			
+			$(document).ready(function (data){
+				var act = $("#act").val();
+				var count = 120; 
+				curCount = count;
+				$("#mobile1").attr("readonly", "true");
+			    $("#get_code1").attr("disabled", "true");
+			    $("#get_code1").val("重新发送" + curCount + "(s)");
+			    $("#get_code1").attr("class", "btn btn-org login-btn");
+			    InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+				ecjia.touch.showmessage(data);
+				function SetRemainTime() {
+			       if (curCount == 0) {     
+			           window.clearInterval(InterValObj);		//停止计时器
+			           $("#mobile1").removeAttr("readonly");	//启用按钮
+			           $("#get_code1").removeAttr("disabled");	//启用按钮
+			           $("#get_code1").val("重新发送验证码");
+			           $("#get_code1").attr("class", "btn btn-info login-btn");
+			       } else {
+			           curCount--;
+			           $("#get_code1").attr("disabled", "true");
+			           $("#get_code1").val("重新发送" + curCount + "(s)");
+			       }
+			    };
+			});
+		},
+		
 		/* 注册提交表单 */
 		fast_reset_pwd : function (){
 			$(".next-btn").on('click', function(e){
