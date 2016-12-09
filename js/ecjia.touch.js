@@ -4,6 +4,7 @@
 ;(function(ecjia, $) {
 	ecjia.touch = {
 		init : function() {
+			ecjia.touch.substr();
 			ecjia.touch.setpjax();
 			ecjia.touch.asynclist();
 			ecjia.touch.ecjia_menu();
@@ -16,6 +17,14 @@
 			ecjia.touch.searchbox_foucs();
 			ecjia.touch.del_history();
 		},
+		
+		substr : function() {
+			var str = $(".address-text").html();
+			if(str){
+				str = str.length>18?str.substring(0,16)+'...':str;
+				var str = $(".address-text").html(str);
+			}
+        },
 
 		/**
 		 * 设置PJAX
