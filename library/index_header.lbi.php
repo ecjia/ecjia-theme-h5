@@ -13,9 +13,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-header ecjia-header-index" style="height:5em">
 	<div class="ecjia-web">
 		<div class="ecjia-address">
-			<a href="{url path='user/user_address/location'}" >
+			<a href="{url path='user/user_address/location' class="data-pjax" args="city={if $smarty.get.city}{$smarty.get.city}{else}上海{/if}"}" >
 			    <span><img src="{$theme_url}images/address_list/50x50_2l.png"></span>
-				<span class="address-text">上海市普陀区中山北路</span>
+				<span class="address-text">{if $smarty.get.address}{$smarty.get.address}{else}上海市普陀区中山北路上海市普陀区中山北路上海市普陀区中山北路{/if}</span>
 				<span><img src="{$theme_url}images/address_list/down.png"></span>
 			</a>
 		</div>
