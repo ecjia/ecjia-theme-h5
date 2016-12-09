@@ -10,8 +10,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">ecjia.touch.region_change();</script>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=P4C6rokKFWHjXELjOnogw3zbxC0VYubo"></script>
-
 <script type="text/javascript">
 	// 百度地图API功能
 	function G(id) {

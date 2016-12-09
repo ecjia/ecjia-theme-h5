@@ -115,9 +115,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<!-- {/if} -->
 			</ul>
 
-			<div class="a20">
-				{$type_name}({$goods_num})
-			</div>
 			<div class="a1x wd">
 				<div class="a1z r2 a0h">
 					<ul data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='goods/category/ajax_category_goods'}&store_id={$store_id}" data-type="{$action_type}">
