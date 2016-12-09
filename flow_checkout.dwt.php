@@ -36,9 +36,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<!-- {break} -->
 				<!-- {/if} -->
 				<li class="goods-img ecjiaf-fl ecjia-margin-r ecjia-icon">
-					<img class="ecjiaf-fl" src="{$goods.img.thumb}" alt="{$goods.goods_name}" title="{$goods.goods_name}" />
+					{if 0}<img class="ecjiaf-fl" src="{$goods.img.thumb}" alt="{$goods.goods_name}" title="{$goods.goods_name}" />
 					{if $goods.goods_number gt 1}<span class="ecjia-icon-num top">{$goods.goods_number}</span>{/if}
-					<span class="ecjiaf-fl goods-name ecjia-truncate2">{$goods.goods_name}</span>
+					<span class="ecjiaf-fl goods-name ecjia-truncate2">{$goods.goods_name}</span>{/if}
+					
+					<div class="ecjiaf-fl">
+					<img class="ecjiaf-fl" src="{$goods.img.thumb}" alt="{$goods.goods_name}" title="{$goods.goods_name}" />
+					</div>
+					<div class="ecjiaf-fl goods-info">
+						<p class="ecjia-truncate2">{$goods.goods_name}</p>
+						<p class="ecjia-color-red">{$goods.formated_goods_price}</p>
+					</div>
+					<span class="ecjiaf-fr goods-price"> x {$goods.goods_number}</span>
 				</li>
 				<!-- {/foreach} -->
 				<!-- {if count($data.goods_list) gt 1} -->
