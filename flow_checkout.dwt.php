@@ -67,6 +67,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<input type="hidden" name="shipping_id" value="{$selected_shipping.shipping_id}" />
 			</a>
 		</section>
+		{if $data.allow_can_invoice}
 		<section class="checklist "><!-- error -->
 			<a href='{url path="cart/flow/invoice" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>发票信息<!-- invoice --></span>
@@ -77,6 +78,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<input type="hidden" name="inv_type" value="{$temp.inv_type}" />
 			</a>
 		</section>
+		{/if}
 		<section class="checklist ecjia-margin-b">
 			<a href='{url path="cart/flow/note" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>备注留言</span>
