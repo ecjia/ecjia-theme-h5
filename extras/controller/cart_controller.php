@@ -471,7 +471,11 @@ class cart_controller {
         
         //积分
         if ($_POST['integral_update']) {
-            $_SESSION['cart'][$cart_key]['temp']['integral'] = empty($_POST['integral']) ? 0 : intval($_POST['integral']);
+            if ($_POST['integral_update'] >  $_SESSION['cart'][$cart_key]['data']['order_max_integral']) {
+                return ecjia_front::$controller->showmessage('积分使用超出订单限制', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            } else {
+                $_SESSION['cart'][$cart_key]['temp']['integral'] = empty($_POST['integral']) ? 0 : intval($_POST['integral']);
+            }
         }
         
         //total
@@ -484,14 +488,24 @@ class cart_controller {
         $total['goods_price_formated'] = price_format($total['goods_price']);
         $total['shipping_fee'] = $selected_shipping['shipping_fee']; //$rs['data']['shipping_list'];
         $total['shipping_fee_formated'] = price_format($total['shipping_fee']);
-        $total['discount'] = $rs['data']['discount'];
-        $total['discount_formated'] = $rs['data']['discount_formated'];
+        $total['discount_bonus'] = 0;
+        if ($_SESSION['cart'][$cart_key]['temp']['bonus']) {
+            $temp_bonus_id = $_SESSION['cart'][$cart_key]['temp']['bonus'];
+            $total['discount_bonus'] = $_SESSION['cart'][$cart_key]['data']['bonus'][$temp_bonus_id]['bonus_amount'];
+        }
+        $total['discount_integral'] = 0;
+        if ($_SESSION['cart'][$cart_key]['temp']['integral']) {
+            $total['discount_integral'] = $_SESSION['cart'][$cart_key]['temp']['integral']/100;
+        }
+
+        $total['discount'] = $rs['data']['discount'] + $total['discount_bonus'] + $total['discount_integral'];//优惠金额 -红包 -积分
+        $total['discount_formated'] = price_format($total['discount']);
         
         $total['pay_fee'] = $selected_payment['pay_fee']; 
         $total['pay_fee_formated'] = price_format($total['pay_fee']);
         $total['amount'] = $total['goods_price'] + $total['shipping_fee'] + $total['pay_fee'] - $total['discount']; 
         $total['amount_formated'] = price_format($total['amount']);
-        
+                _dump($total,2);
         _dump($rs,2);
         ecjia_front::$controller->assign('data', $rs['data']);
         ecjia_front::$controller->assign('total_goods_number', $total['goods_number']);
