@@ -15,6 +15,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
+<!-- #BeginLibraryItem "/library/page_header.lbi" -->
+<!-- #EndLibraryItem -->
 <form class="ecjia-login ecjia-login-margin-top" action="{url path='user/get_password/mobile_register'}" method="post">
     <div class="ecjia-form">
         <p class="text-st">请输入收到的短信验证码{$mobile}</p>
