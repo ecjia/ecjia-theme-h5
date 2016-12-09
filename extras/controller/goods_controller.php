@@ -817,7 +817,7 @@ class goods_controller {
     }
     
     public static function update_cart() {
-    	$rec_id 	= is_array(($_POST['rec_id'])) ? $_POST['rec_id'] : intval($_POST['rec_id']);
+    	$rec_id 	= is_array(($_POST['rec_id'])) ? $_POST['rec_id'] : $_POST['rec_id'];
     	$new_number = intval($_POST['val']);
     	$store_id 	= intval($_POST['store_id']);
     	$goods_id   = intval($_POST['goods_id']);

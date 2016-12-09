@@ -61,6 +61,9 @@ a.ecjia-color-green {
     position: relative;
     margin: 0 1em;
 }
+.ecjia-tag-disable{
+    background: #999;
+}
 .ecjia-tag-l::before {
     content: "";
     position: absolute;
@@ -1524,6 +1527,7 @@ footer{
 }
 .ecjia-flow-cart{
 	margin-bottom: 48px;
+	font-weight: normal;
 }
 .ecjia-flow-cart .cart-single{
 	background: #fff;
@@ -1554,6 +1558,9 @@ footer{
 .ecjia-flow-cart .item .check-wrapper .cart-checkbox.checked{
 	background-position: 0px -200px;
 }
+.ecjia-flow-cart .item .check-wrapper .cart-checkbox.edit{
+	background-position: 0px -100px;
+}
 .ecjia-flow-cart .shop-title-content{
 	width: 100%;
     height: 100%;
@@ -1562,7 +1569,6 @@ footer{
 }
 .ecjia-flow-cart .shop-title-name{
 	max-width: 300px;
-    display: inline-block;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -1571,6 +1577,12 @@ footer{
 	top: 0;
 	padding-right: .5em;
 	font-size: 1.2em;
+}
+.ecjia-flow-cart .self-store{
+	color: #FF1919;
+    border: 1px solid #FF1919;
+    border-radius: 4px;
+    margin-left: .4em;
 }
 .ecjia-flow-cart .shop-edit{
 	float: right;
@@ -1592,13 +1604,16 @@ footer{
     left: 10px;
     width: 20px;
     height: 60px;
-    background-position: 0px 20px;
+    background-position: 0px 30px;
     background-image: url(../images/icon/ck.png);
     background-size: 20px 220px;
     background-repeat: no-repeat;
 }
 .ecjia-flow-cart .item-goods .cart-checkbox.checked{
-	background-position: 0px -180px;
+	background-position: 0px -170px;
+}
+.ecjia-flow-cart .item-goods .cart-checkbox.edit{
+	background-position: 0px -70px;
 }
 .ecjia-flow-cart .item-goods .cart-product{
 	position: relative;
@@ -1630,7 +1645,6 @@ footer{
 	overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-weight: normal;
 }
 .ecjia-flow-cart .item-goods .cart-product-price{
 	color: #ff3434; 
@@ -1668,7 +1682,7 @@ footer{
 .item-count .price{
 	color: #ff3434;
 }
-.ecjia-flow-cart .check-cart{
+.ecjia-flow-cart .check_cart{
 	position: absolute;
     right: 0;
     width: 115px;
@@ -1678,10 +1692,18 @@ footer{
     background-color: #47b34f;
     font-size: 1.1em;
 }
-.ecjia-flow-cart .check-cart.disabled{
+.ecjia-flow-cart .check_cart.disabled{
 	background-color: #bebebe;
 }
-
+.ecjia-flow-cart .check_cart.edit_button{
+	background-color: #47b34f;
+}
+.ecjia-flow-cart .edit_font_color{
+	color: #47b34f;
+}
+.flow-nomore-msg{
+	height: 48px;
+}
 /*========================  结算 ecjia-checkout =========================== */
 /*定位地址、选择的收货地址 */
 .flow-address {
@@ -1728,7 +1750,7 @@ footer{
 .ecjia .ecjia-checkout .checklist .iconfont{
 	position: absolute;
 	right: 1em;
-	top: 50%;
+	top: 45%;
 	transform: translateY(-50%);
 }
 .ecjia .ecjia-checkout .checklist a{
@@ -1819,11 +1841,20 @@ footer{
     height: 3em;
 }
 .ecjia .ecjia-select .input textarea{
-    height: 7em;
+    min-height: 7em;
+	padding:.5em;
 }
+.ecjia-checkout-bonus {padding-bottom:5em}
 .ecjia-checkout-bonus ul {border-top:1px solid #eee}
 .ecjia-checkout-bonus li label{ margin-top: 3px;margin-right:5px; font-size:1.1em;}
 .ecjia-checkout-bonus li label:before,.ecjia-checkout-bonus li label:after{ margin-top: -2px;margin-right:3px; font-size:1.2em;}
+.ecjia-checkout-bonus .two-btn {
+	padding: 1em;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    position: fixed;
+    bottom: 0;
+    width: 100%;}
 /*======================== 发票信息 ecjia-invoice ===========================*/
 
 

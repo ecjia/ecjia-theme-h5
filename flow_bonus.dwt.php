@@ -30,10 +30,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 </li>
             </label>
            <!-- {foreachelse} -->
-           <label>暂无</label>
+           <label class="select-item" for="{$list.bonus_id}">
+                <li>
+                    <span class="ecjia-color-999">暂无可用红包</span>
+                </li>
+            </label>
            <!-- {/foreach} -->
         </ul>
-        <div class="ecjia-margin-t ecjia-margin-b two-btn">
+        <div class="two-btn">
             <input type="hidden" name="address_id" value="{$address_id}">
             <input type="hidden" name="rec_id" value="{$rec_id}" />
             <input class="btn btn-hollow-danger" name="bonus_clear" type="submit" value="清空"/>

@@ -43,11 +43,18 @@ class cart_controller {
     					} else {
     						$cart_list['cart_list'][$k]['total']['check_one'] = true;	//至少选择了一个
     					}
+    					if ($key == 0) {
+    						$cart_list['cart_list'][$k]['total']['data_rec'] = $val['rec_id'];
+    					} else {
+    						$cart_list['cart_list'][$k]['total']['data_rec'] .= ','.$val['rec_id'];
+    					}
+    					
     				}
     			}
     		}
     	}
 
+// 		_dump($cart_list['cart_list'],1);
     	ecjia_front::$controller->assign('default_address', $default_address);
     	ecjia_front::$controller->assign('cart_list', $cart_list['cart_list']);
     	
