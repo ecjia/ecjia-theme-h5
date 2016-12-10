@@ -4428,6 +4428,7 @@ footer{
     width: 50%;
     height: 100%;
 	border-right: 1px solid #ddd;
+	float: left;
 }
 .ecjia-spread .ecjia-bottom-bar-pannel .tab5 li a span {
 	position: relative;
