@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<form class="ecjia-form ecjia-login-edit-password-form ecjia-login-margin-top" name="formPassword" action="{url path='user/user_profile/edit_password'}" method="post" >
+<form class="ecjia-form ecjia-login-edit-password-form ecjia-login-padding-top" name="formPassword" action="{url path='user/user_profile/edit_password'}" method="post" >
 	<div class="ecjia-user ecjia-account ecjia-form">
         <ul>
             <div class="ecjia-list list-short form-group right-angle">
@@ -40,7 +40,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </ul>
     </div>
     <input name="act" type="hidden" value="edit_password" />
-    <div class="ecjia-login-margin-top ecjia-margin-b">
+    <div class="ecjia-login-padding-top ecjia-margin-b">
     	<input class="btn btn-info" name="submit" type="submit" value="确定" />
     </div>
 </form>

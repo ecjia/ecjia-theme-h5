@@ -71,7 +71,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 
 <div class="ecjia-user ecjia-user-head">
-    <ul class="ecjia-margin-t ecjia-list list-short">
+    <ul class="ecjia-list list-short">
        <li>
         	<a href="{url path='user/user_address/address_list'}">
         		<div class="icon-address-list"></div>
@@ -88,7 +88,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </li>
     </ul>
 
-    <ul class="ecjia-margin-t ecjia-list list-short">
+    <ul class="ecjia-list list-short">
         <li>
         	<a href="tel:4001021758">
         		<div class="icon-website-service"></div>
@@ -106,7 +106,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
     </ul>
-    <ul class="ecjia-margin-t ecjia-list list-short">
+    <ul class="ecjia-list list-short">
         <li>
         	<a href="{url path='article/help/init'}">
         		<div class="icon-help-center"></div>
@@ -122,7 +122,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
     </ul>
-    <ul class="ecjia-margin-t ecjia-list list-short ecjia-margin-b">
+    <ul class="ecjia-list list-short ecjia-margin-b">
         <!-- {foreach from=$shop item=value} 网店信息 -->
             <li>
             	<a href="{RC_uri::url('user/index/shop_detail')}&article_id={$value.id}">
