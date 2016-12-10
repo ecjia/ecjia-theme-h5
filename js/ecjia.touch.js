@@ -15,6 +15,7 @@
 			ecjia.touch.close_app_download();
 			ecjia.touch.searchbox_foucs();
 			ecjia.touch.del_history();
+			ecjia.touch.enter_search();
 		},
 		
 		/**
@@ -331,9 +332,6 @@
 		},
 
 		searchbox_foucs : function() {
-			var k = $('#keywordBox').val();
-			$('#keywordBox').val('').focus().val(k);
-
 			$('.btn-search').off('click').on('click', function(e) {
 				var val = $('input[name="keywords"]').val().trim(),
 					url = $('.ecjia-form').attr('action');
@@ -342,17 +340,22 @@
 					return;
 				} else {
 					ecjia.pjax(url + '&keywords=' + val);
+					$('.ecjia-mod').show();
+					$('.ecjia-search-panel').hide();
+					$('#keywordBox').val('');
+					return false;
 				}
 			});
-
-			$('.search-goods').on('click', function(){
-				var $this = $(this),
-					url = $this.attr('data-url'),
-					keywords = $this.attr('data-val');
-					if (keywords && keywords != undefined) {
-						url += '&keywords=' + keywords;
-					};
-					ecjia.pjax(url);
+			$('.search-goods').off('click').on('click', function(){
+				$('.ecjia-mod').hide();
+				$('.ecjia-search-panel').show();
+				$('#keywordBox').val('').focus();
+			});
+			
+			$('.search-cancel').off('click').on('click', function(){
+				$('.ecjia-mod').show();
+				$('.ecjia-search-panel').hide();
+				$('#keywordBox').val('');
 			});
         },
         

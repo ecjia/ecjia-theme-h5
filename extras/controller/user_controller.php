@@ -12,7 +12,11 @@ class user_controller {
         $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        if (!empty($user['avatar_img'])) {
+            $user_img = $user['avatar_img'];
+        }
         ecjia_front::$controller->assign('user', $user);
+   
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('shop', $shop);
         ecjia_front::$controller->assign('active', 'mine');

@@ -6,7 +6,7 @@ Description: 这是底部导航模块
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 
-<div class="ecjia-floor ecjia-bottom-bar-pannel o {$active}">
+<div class="ecjia-mod ecjia-floor ecjia-bottom-bar-pannel o {$active}">
 	<a class="index" href="{RC_Uri::url('touch/index/init')}">首页</a>
 	<a class="category" href="{RC_Uri::url('goods/category/top_all')}">分类</a>
 	<a class="cartList" href="{RC_Uri::url('cart/index/init')}">购物车</a>

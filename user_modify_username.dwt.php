@@ -13,11 +13,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="ecjia-form">
     	<div class="form-group ecjia-login-margin-lr ecjiaf-bt right-angle">
     		<label class="input">
-    			<input class="ecjia-login-pa-left" name="username" type="text" placeholder="test测试"  value="{$user.name}">
+    			<input class="ecjia-login-pa-left" name="username" type="text" placeholder="请输入用户名"  value="{$user.name}">
     		</label>
     	</div>
-    	<p class="ecjia-margin-l ecjia-margin-t">4-20个字符，可由中英文、数字、"——"、"-"组成</p>
-    	<div class="ecjia-login-b ecjia-login">
+    	<p class="ecjia-margin-l ecjia-margin-t">请输入4-20个字符</p>
+    	<div class="ecjia-login-b ecjia-login-padding-top">
     	    <div class="p-top3">
                 <input type="hidden" name="referer" value="{$smarty.get.referer}" />
                 <input type="submit" class="btn btn-info nopjax" value="确定" />

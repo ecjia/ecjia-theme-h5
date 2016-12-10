@@ -6,7 +6,7 @@ Description: 这是首页和用户中心页面的快速导航模块
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {if $navigator} -->
-<nav class="container-fluid user-nav">
+<nav class="ecjia-mod container-fluid user-nav">
 	<ul class="row ecjia-row-nav index">
 		<!--{foreach from=$navigator item=nav}-->
 		<li class="col-sm-3 col-xs-2">

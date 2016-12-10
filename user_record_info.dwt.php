@@ -44,7 +44,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <p class="apply">已申请</p>
                 <input name="record_type" type="hidden" value={$sur_amount.type} />
                 <input name="account_id" type="hidden" value={$sur_amount.account_id}>
-                <input class="btn ecjiaf-fr btn-c" id="record_cancel" name="submit" type="submit" value="{t}取消{/t}" />
+                <input class="btn ecjiaf-fr btn-c ecjia-fl" id="record_cancel" name="submit" type="submit" value="{t}取消{/t}" />
         	</div>	
         {/if}	
         </form>
