@@ -174,7 +174,9 @@ ecjia.touch.category.init();
 									</td>
 									<td>
 										<div class="a7j">{$cart.goods_name}</div> 
-										<span class="a7c">{$cart.formated_goods_price}</span>
+										<span class="a7c">
+										{if $cart.goods_price eq 0}免费{else}{$cart.formated_goods_price}{/if}
+										</span>
 									</td>
 								</tr>
 							</tbody>
