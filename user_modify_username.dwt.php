@@ -9,7 +9,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="main-content"} -->
-<form class="ecjia-user ecjia-login-user-profile-form ecjia-login-margin-top" name="user_profile" action="{url path='user/user_profile/modify_username_account'}" method="post">
+<form class="ecjia-user ecjia-login-user-profile-form ecjia-login-padding-top" name="user_profile" action="{url path='user/user_profile/modify_username_account'}" method="post">
 	<div class="ecjia-form">
     	<div class="form-group ecjia-login-margin-lr ecjiaf-bt right-angle">
     		<label class="input ecjia-login-pa-left">

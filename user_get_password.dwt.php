@@ -16,7 +16,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-<form class="ecjia-login ecjia-login-margin-top" name="getPassword" action="{url path='user/get_password/mobile_register_account'}" method="post">
+<form class="ecjia-login ecjia-login-padding-top" name="getPassword" action="{url path='user/get_password/mobile_register_account'}" method="post">
 	<!-- 添加id，js用到 -->
 	<div class="ecjia-form">
     	<div class="form-group margin-right-left">
