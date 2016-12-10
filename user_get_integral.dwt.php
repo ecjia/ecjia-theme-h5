@@ -10,7 +10,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 
-<div class="ecjia-spread ecjia-margin-t">
+<div class="ecjia-spread">
     <div class="ecjia-margin-b">
     	<a href="{url path='user/index/spread'}">
             <div class="qrcode_image">

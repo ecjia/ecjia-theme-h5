@@ -31,7 +31,7 @@
         add_tocart:function(){
             $("[data-toggle='add-to-cart']").off('click').on('click', function(ev){
             	var $this = $(this);
-            	if ($this.hasClass('disabled')) {
+            	if ($this.hasClass('disabled') || $this.parents('.item-goods').hasClass('disabled') || $this.hasClass('limit_click')) {
             		return false;
             	}
             	var rec_id = $this.attr('rec_id');
@@ -44,7 +44,7 @@
             		var store_id = $this.parent().attr('data-store');
             		ecjia.touch.category.update_cart(rec_id, val, goods_id, '', store_id);
             	} else {
-                	$('.box').children('span').addClass('disabled');
+                	$('.box').children('span').addClass('limit_click');
                 	//商品详情中添加商品到购物车逻辑
                 	if ($this.hasClass('goods-add-cart')) {
                 		$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
@@ -115,7 +115,7 @@
         remove_tocart : function() {
             $("[data-toggle='remove-to-cart']").off('click').on('click', function(ev){
             	var $this = $(this);
-            	if ($this.hasClass('disabled')) {
+            	if ($this.hasClass('disabled') || $this.parents('.item-goods').hasClass('disabled') || $this.hasClass('limit_click')) {
             		return false;
             	}
             	var rec_id = $this.attr('rec_id');
@@ -127,7 +127,6 @@
             			var li = $this.parents('.item-goods');
             			
             			ecjia.touch.category.update_cart(rec_id, '', '' , '', store_id);
-            			
             			if (li.siblings('li').length == 0) {
             				li.parents('.cart-single').remove();
             				if ($('li.cart-single').length == 0) {
@@ -142,7 +141,7 @@
             			ecjia.touch.category.update_cart(rec_id, val, '', '', store_id);
             		}
             	} else {
-		        	$('.box').children('span').addClass('disabled');
+		        	$('.box').children('span').addClass('limit_click');
 		        	var goods_id = $this.parent('.box').children('.a5v').attr('goods_id');
 		        	
 		        	if ($this.hasClass('a5u')) {
@@ -251,7 +250,14 @@
             	if (data.response == true) {
             		$('.la-ball-atom').remove();
             		if (data.count != null) {
-            			$('.item-count').children('.price_' + store_id).html(data.count.goods_price);
+            			$('.price_' + store_id).html(data.count.goods_price);
+            			if (data.data_rec) {
+            				$('.check_cart_' + store_id).attr('data-rec', data.data_rec);
+            				$('.check_cart_' + store_id).removeClass('disabled');
+            			} else {
+            				$('.check_cart_' + store_id).attr('data-rec', '');
+            				$('.check_cart_' + store_id).addClass('disabled');
+            			}
             		}
             		return true;
             	}
@@ -289,7 +295,14 @@
             			discount_html = '<label>(已减'+ data.count.discount +')<label>';
             		}
             		$('.a4z').html('<div>'+ data.count.goods_price + discount_html + '</div>');
-            		$('.cart-check').attr('data-rec', data.data_rec);
+            		
+            		if (data.data_rec) {
+            			$('.check_cart').attr('data-rec', data.data_rec);
+            			$('.check_cart').removeClass('disabled');
+            		} else {
+            			$('.check_cart').attr('data-rec', '');
+            			$('.check_cart').addClass('disabled');
+            		}
             		
             		ecjia.touch.category.add_tocart();
     				ecjia.touch.category.remove_tocart();
@@ -297,8 +310,8 @@
             	}
             	ecjia.touch.category.check_all();
             	$('.la-ball-atom').remove();
-            	$('[data-toggle="toggle_checkbox"]').removeClass('disabled');
-            	$('.box').children('span').removeClass('disabled');
+            	$('[data-toggle="toggle_checkbox"]').removeClass('limit_click');//店铺首页 允许其他单选框点击
+            	$('.box').children('span').removeClass('limit_click');//店铺首页 允许其他加减按钮点击
             	$('.goods-add-cart').removeClass('disabled');
             });
         },
@@ -462,13 +475,13 @@
         toggle_checkbox : function() {
         	$('[data-toggle="toggle_checkbox"]').off('click').on('click', function(e){
         		var $this = $(this);
-        		if ($this.hasClass('disabled')) {
+        		if ($this.hasClass('disabled') || $this.hasClass('limit_click')) {
         			return false;
         		}
-        		$('.box').children('span').addClass('disabled');
+        		$('.box').children('span').addClass('limit_click');	//禁止其他加减按钮点击
         		$('.minicart-content').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
         		
-        		$('[data-toggle="toggle_checkbox"]').addClass('disabled');
+        		$('[data-toggle="toggle_checkbox"]').addClass('limit_click');//禁止其他单选点击
         		
         		if ($this.hasClass('checked')) {
         			$this.removeClass('checked');
@@ -478,7 +491,6 @@
         		
         		var checked;
         		if ($this.attr('data-children')) {
-        			var data_all 	= $this;
         			var children	= $this.attr('data-children');
         			var options		= {thisobj : $this, children : children};
         			if(!options.children) options.children = $('.checkbox');
@@ -491,12 +503,11 @@
         				checked = 1;
         			}
         			var rec_id = [];
-
     				$('.minicart-goods-list .checkbox').each(function(){
     					rec_id.push($(this).attr('rec_id'));
     				});
         		} else {
-        			ecjia.touch.category.check_all();
+//        			ecjia.touch.category.check_all();
         			checked = $this.hasClass('checked') ? 1 : 0;
         			var rec_id = $this.attr('rec_id');
         		}
@@ -504,6 +515,9 @@
         	});
         	
         	$('.ecjia-number-contro').off('focus').on('focus', function(){
+        		if ($(this).hasClass('disabled')) {
+        			return false;
+        		}
         		var v = $(this).val();
         		
         		$(this).off('blur').on('blur', function(){
@@ -648,7 +662,7 @@
         			} else {
         				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
             			rec_id = $this.attr('rec_id');
-            			ecjia.touch.category.update_cart(rec_id, '', '' , '');
+            			ecjia.touch.category.update_cart(rec_id, '', '' , '', store_id);
             			var li = $this.parents('.item-goods');
             			if (li.siblings('li').length == 0) {
             				li.parents('.cart-single').remove();
@@ -661,6 +675,10 @@
             			return false;
         			}
         		} else {
+        			//购物车中库存不足的商品不可以修改
+        			if ($this.hasClass('disabled'))　{
+        				return false;
+        			}
         			$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
             		if ($this.hasClass('checked')) {
             			$this.removeClass('checked');
@@ -673,33 +691,25 @@
             		var chknum = $(".checkbox_" + store_id).size();	//选项总个数 
         		    var chk = 0; 
         		    $(".checkbox_" + store_id).each(function () {   
-        		        if ($(this).hasClass("checked") == true){ 
+        		        if ($(this).hasClass("checked")){ 
         		            chk++; 
         		        } 
         		        rec_id.push($(this).attr('rec_id'));
-        		    }); 
+        		    });
         		    
             		if ($this.hasClass('check_all')) {
             			if ($this.hasClass('checked')) {
             				$(".checkbox_" + store_id).addClass('checked');
             				checked = 1;
-            				$('.check_cart_' + store_id).removeClass('disabled');
             			} else {
             				$(".checkbox_" + store_id).removeClass('checked');
             				checked = 0;
-            				$('.check_cart_' + store_id).addClass('disabled');
             			}
             		} else {
             		    if (chknum == chk) {//全选 
             		        $("#store_check_" + store_id).addClass("checked"); 
             		    } else {//不全选 
             		        $("#store_check_" + store_id).removeClass("checked"); 
-            		    }
-            		    //至少选中一个
-            		    if (chk > 0) {
-            		    	$('.check_cart_' + store_id).removeClass('disabled');
-            		    } else {
-            		    	$('.check_cart_' + store_id).addClass('disabled');
             		    }
             		    rec_id = $this.attr('rec_id');
             		}

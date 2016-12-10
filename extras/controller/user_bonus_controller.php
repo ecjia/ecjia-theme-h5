@@ -61,6 +61,9 @@ class user_bonus_controller {
      * 奖励明细
      */
     public static function reward_detail() {
+		$token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+    	$invite_reward = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_REWARD)->data(array('token' => $token['access_token']))->run();
+    	ecjia_front::$controller->assign('reward_detail', $reward_detail);
         ecjia_front::$controller->display('user_reward_detail.dwt');
     }
     

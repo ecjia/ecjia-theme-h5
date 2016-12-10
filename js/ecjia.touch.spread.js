@@ -19,6 +19,12 @@
 		    });
 			var $$ = Dom7;
 			
+			var mySwiper3 = myApp.swiper('.swiper-3', {
+				  pagination:'.swiper-3 .swiper-pagination',
+				  spaceBetween: 10,
+				  slidesPerView: 3
+				});
+			
 			$$('.alert-text1').on('click', function () {
 			    myApp.alert('邀请成功即可获得积分奖励' + '<br>' + '积分可在购买商品时使用');
 			});

@@ -15,6 +15,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
+<!-- #BeginLibraryItem "/library/page_header.lbi" -->
+<!-- #EndLibraryItem -->
+
 <div class="user-register">
     <!--{if $enabled_sms_signin eq 1} 支持手机短信功能-->
 	<ul class="ecjia-list ecjia-list-two ecjia-nav" role="tablist">

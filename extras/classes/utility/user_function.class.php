@@ -41,4 +41,26 @@ class user_function
 			return empty($_COOKIE ['ECJia'] ['search']['other']) ? array() : explode(',', $_COOKIE ['ECJia'] ['search']['other']);
 		}
 	}
+	
+	/**
+	 * 获取用户默认address_id
+	 */
+	public static function default_address_id($token) {
+		//所有地址
+		$cache_key = 'address_list_'.$token;
+		$address_list = RC_Cache::app_cache_get($cache_key, 'user_address');
+		if (!$address_list) {
+			$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
+			RC_Cache::app_cache_set($cache_key, $address_list, 'user_address', 60*24);//24小时缓存
+		}
+		$address_id = '';
+		if (!empty($address_list)) {
+			foreach ($address_list as $k => $v) {
+				if ($v['default_address'] == 1) {
+					$address_id = $v['id'];
+				}
+			}
+		}
+		return $address_id;
+	}
 }

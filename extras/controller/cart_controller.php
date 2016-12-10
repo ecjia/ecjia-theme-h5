@@ -40,26 +40,28 @@ class cart_controller {
     				foreach ($v['goods_list'] as $key => $val) {
     					if ($val['is_checked'] == 0) {
     						$cart_list['cart_list'][$k]['total']['check_all'] = false;	//全部选择
-    					} else {
+    					} elseif ($val['is_disabled'] == 0) {
     						$cart_list['cart_list'][$k]['total']['check_one'] = true;	//至少选择了一个
     					}
-    					if ($key == 0) {
-    						$cart_list['cart_list'][$k]['total']['data_rec'] = $val['rec_id'];
-    					} else {
-    						$cart_list['cart_list'][$k]['total']['data_rec'] .= ','.$val['rec_id'];
-    					}
     					
+    					if ($val['is_disabled'] == 0 && $val['is_checked'] == 1) {
+    						if ($key == 0) {
+    							$cart_list['cart_list'][$k]['total']['data_rec'] = $val['rec_id'];
+    						} else {
+    							$cart_list['cart_list'][$k]['total']['data_rec'] .= ','.$val['rec_id'];
+    						}
+    					}
+    					$cart_list['cart_list'][$k]['total']['data_rec'] = trim($cart_list['cart_list'][$k]['total']['data_rec'], ',');
     				}
     			}
     		}
     	}
 
-// 		_dump($cart_list['cart_list'],1);
     	ecjia_front::$controller->assign('default_address', $default_address);
     	ecjia_front::$controller->assign('cart_list', $cart_list['cart_list']);
     	
         ecjia_front::$controller->assign_lang();
-    	ecjia_front::$controller->assign('active', 3);
+    	ecjia_front::$controller->assign('active', 'cartList');
         ecjia_front::$controller->display('cart_list.dwt');
     }
     /**

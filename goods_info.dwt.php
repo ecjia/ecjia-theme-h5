@@ -217,7 +217,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </div>
         {/if}
     </div>
-    <a class="a51 {if !$count.goods_number}disabled{/if}" href="javascript:void 0;">去结算</a>
+    <a class="a51 {if !$count.check_one}disabled{/if} check_cart" href="{RC_Uri::url('cart/flow/checkout')}" data-store="{$goods_info.seller_id}" data-address="{$address_id}" data-rec="{$data_rec}">去结算</a>
     <div class="minicart-content" style="transform: translateY(0px); display: block;">
         <a href="javascript:void 0;" class="a4x {if $count.goods_number}light{else}disabled{/if} incartcontent show_cart" show="false">
             {if $real_count.goods_number}
@@ -255,7 +255,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                                     <td style="width:75px; height:75px">
                                         <img class="a7g" src="{$cart.img.small}">
                                         <div class="product_empty">
-                                        {if $cart.is_disabled eq 1}无货{/if}
+                                        {if $cart.is_disabled eq 1}库存不足{/if}
                                         </div>
                                     </td>
                                     <td>
@@ -283,4 +283,3 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <div class="a53" style="display: none;"></div>
 </div>
 <!-- {/block} -->
-

@@ -11,7 +11,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 
 <div class="user-account-withdraw">
-	<form class="ecjia-form ecjia-account ecjia-margin-t" data-valid="novalid" name="ecjia-form user-profile-form" action="{url path='user/user_account/withdraw_account'}" method="post">
+	<form class="ecjia-form ecjia-account" data-valid="novalid" name="ecjia-form user-profile-form" action="{url path='user/user_account/withdraw_account'}" method="post">
 		<p class="account-top text-ty">{t}账户余额：{$user.formated_user_money}{/t}</p>
 		<div class="form-group form-group-text account-lr-fom no-border">
 			<label class="input">

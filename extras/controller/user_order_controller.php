@@ -16,7 +16,7 @@ class user_order_controller {
         ecjia_front::$controller->assign('order_list', $data);
         ecjia_front::$controller->assign_title(RC_Lang::lang('order_list_lnk'));
         ecjia_front::$controller->assign('title', RC_Lang::lang('order_list_lnk'));
-        ecjia_front::$controller->assign('active', 4);
+        ecjia_front::$controller->assign('active', 'orderList');
     	
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_order_list.dwt');
