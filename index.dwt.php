@@ -26,7 +26,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/model_newgoods.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_hotgoods.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/model_search.lbi" --><!-- #EndLibraryItem -->
 <!-- TemplateEndEditable -->
 
 <!-- {/block} -->

@@ -9,12 +9,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-<script type="text/javascript">ecjia.touch.category.init();</script>
+<script type="text/javascript">
+ecjia.touch.category.init();
+</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/index_header.lbi" --><!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/model_search.lbi" --><!-- #EndLibraryItem -->
 
 <!-- {if $data} -->
 <div class="ecjia-mod ecjia-store-goods-list" {if $store_id && $count_search > 6}style="padding-bottom:7em;"{/if}>

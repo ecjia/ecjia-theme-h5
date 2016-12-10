@@ -9,7 +9,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-<script type="text/javascript">ecjia.touch.category.init();</script>
+<script type="text/javascript">
+ecjia.touch.category.init();
+</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -17,7 +19,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-mod page_hearer_hide ecjia-fixed">
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 </div>
-<!-- #BeginLibraryItem "/library/model_search.lbi" --><!-- #EndLibraryItem -->
 
 <div class="ecjia-mod ecjia-header ecjia-store-banner">
 	<div class="ecjia-header-left">

@@ -15,8 +15,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/model_search.lbi" --><!-- #EndLibraryItem -->
-
 <div class="ecjia-mod category">
 <!-- #BeginLibraryItem "/library/index_header.lbi" --><!-- #EndLibraryItem -->
     <ul class="ecjia-list category_left">

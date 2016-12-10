@@ -1,14 +1,14 @@
 <?php
 /*
-Name: 促销专场模块
-Description: 这是首页的促销专场模块
+Name: 搜索模块
+Description: 这是搜索模块
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <div class="ecjia-search-panel">
 	<header class="ecjia-header">
 		<div class="ecjia-search-header ecjia-search">
-			<form class="ecjia-form" action="{url path='goods/category/store_list'}{if $store_id neq 0}&store_id={$store_id}{/if}">
+			<form class="ecjia-form" action="{url path='goods/category/store_list'}{if $store_id neq 0}&store_id={$store_id}{/if}" name="search-form">
 				<input id="keywordBox" name="keywords" type="search" placeholder="{if $store_id neq 0}搜索店内商品{else}搜索附近门店{/if}" {if $keywords}value={$keywords}{/if}>
 				<i class="iconfont icon-search btn-search"></i>
 			</form>

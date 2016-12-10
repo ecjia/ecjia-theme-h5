@@ -537,6 +537,7 @@ class goods_controller {
     	if ($type == 'ajax_get') {
     		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $say_list, 'is_last' => $data['is_last']));
     	}
+    	
     	ecjia_front::$controller->display('store_list.dwt');
     }
     

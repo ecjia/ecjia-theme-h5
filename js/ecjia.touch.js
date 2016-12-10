@@ -13,9 +13,8 @@
 			ecjia.touch.toggle_collapse();
 			ecjia.touch.close_banner();
 			ecjia.touch.close_app_download();
-			ecjia.touch.searchbox_foucs();
+			ecjia.touch.search_header();
 			ecjia.touch.del_history();
-			ecjia.touch.enter_search();
 		},
 		
 		/**
@@ -331,32 +330,47 @@
 			});
 		},
 
-		searchbox_foucs : function() {
+		search_header : function() {
+            var k = $('#keywordBox').val();
+            $('#keywordBox').val('').focus().val(k);
+
+            
+//			$('.ecjia-mod').show();
+//			$('.ecjia-search-panel').hide();
+//			$('#keywordBox').val('');
+			
 			$('.btn-search').off('click').on('click', function(e) {
 				var val = $('input[name="keywords"]').val().trim(),
-					url = $('.ecjia-form').attr('action');
+					url = $('.ecjia-form').attr('action'),
+					form = $('.ecjia-form');
 				if (!val) {
 					$("#keywordBox").blur();
-					return;
+					return false;
 				} else {
 					ecjia.pjax(url + '&keywords=' + val);
-					$('.ecjia-mod').show();
-					$('.ecjia-search-panel').hide();
-					$('#keywordBox').val('');
 					return false;
 				}
 			});
 			$('.search-goods').off('click').on('click', function(){
-				$('.ecjia-mod').hide();
-				$('.ecjia-search-panel').show();
-				$('#keywordBox').val('').focus();
+//				$('.ecjia-mod').hide();
+//				$('.ecjia-search-panel').show();
+//				$('#keywordBox').val('').focus();
+//				return false;
+                var $this = $(this),
+                url = $this.attr('data-url'),
+                keywords = $this.attr('data-val');
+                if (keywords && keywords != undefined) {
+                    url += '&keywords=' + keywords;
+                };
+                ecjia.pjax(url);
 			});
 			
-			$('.search-cancel').off('click').on('click', function(){
-				$('.ecjia-mod').show();
-				$('.ecjia-search-panel').hide();
-				$('#keywordBox').val('');
-			});
+//			$('.search-cancel').off('click').on('click', function(){
+//				$('.ecjia-mod').show();
+//				$('.ecjia-search-panel').hide();
+//				$('#keywordBox').val('');
+//				return false;
+//			});
         },
         
         enter_search : function() {
@@ -441,7 +455,7 @@
 		if ($('.ecjia-menu').hasClass('active')) {
 			$('.ecjia-menu').removeClass('active');
 		}
-		ecjia.touch.searchbox_foucs();
+		ecjia.touch.search_header();
 		ecjia.touch.category.init();
 		ecjia.touch.index.swiper_promotion();
 		ecjia.touch.ecjia_menu();
