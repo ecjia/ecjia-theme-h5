@@ -155,7 +155,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 										<td style="width:75px; height:75px">
 											<img class="a7g" src="{$cart.img.small}">
 											{if $cart.is_disabled eq 1}
-											<div class="product_empty">无货</div>
+											<div class="product_empty">库存不足</div>
 											{/if}
 										</td>
 										<td>
