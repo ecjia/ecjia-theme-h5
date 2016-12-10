@@ -64,7 +64,8 @@ class user_bonus_controller {
 		$token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
     	$invite_reward = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_REWARD)->data(array('token' => $token['access_token']))->run();
     	$month = $invite_reward[invite_record];
-//     	_dump($month, 1);
+    	$invite_record = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_RECORD)->data(array('token' => $token['access_token'], 'date' => "2016-12"))->run();
+    	ecjia_front::$controller->assign('invite_record', $invite_record);
     	ecjia_front::$controller->assign('month', $month);
         ecjia_front::$controller->display('user_reward_detail.dwt');
     }
