@@ -527,6 +527,10 @@ class goods_controller {
     	if ($data['paginated']['more'] == 0) $data['is_last'] = 1;
     	
     	ecjia_front::$controller->assign('is_last', $data['is_last']);
+    	
+    	if (array_key_exists('data', $arr_list) && $arr_list['pager']['total'] == 0) {
+    		$arr_list = array();
+    	}
     	ecjia_front::$controller->assign('data', $arr_list);
     	ecjia_front::$controller->assign('count_search', count($arr_list));
     	

@@ -31,7 +31,7 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 </div>
 <!-- {/block} -->
 <!-- {block name="ajaxinfo"} -->
-<!--{foreach from=$sur_amount key=key item=group}-->
+    {foreach from=$sur_amount key=key item=group}
 	<ul class="account-record-list">
 		<p class="record-time">{if $key eq $now_mon}{'本月'}{else}{$key}{'月'}{/if}</p>
 		<li class="ecjia-margin-b record-list">
@@ -58,7 +58,7 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 			</ul>
 		</li>
 	</ul>
-<!-- {foreachelse} -->
+    {foreachelse}
 	<div class="ecjia-nolist">
 		<div class="no-record"></div>
 		<p>{t}暂无明细记录{/t}</p>
