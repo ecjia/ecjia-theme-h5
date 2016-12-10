@@ -16,7 +16,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="form-group form-group-text account-lr-fom no-border">
 			<label class="input">
 				<span>{t}金额{/t}</span>
-				<input placeholder="{t}建议提现100元以上的金额{/t}" name="amount" value="" datatype="n"/>
+				<input type="number" placeholder="{t}建议提现100元以上的金额{/t}" name="amount" value="" datatype="n"/>
 			</label>
 		</div>
 		<div class="account-top2">

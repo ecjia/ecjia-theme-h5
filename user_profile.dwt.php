@@ -41,7 +41,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
        </li>
    </div>
 </div>
-<div class="ecjia-margin-t">
+<div class="ecjia-login-padding-top">
 	<a class="btn btn-info nopjax" href="{url path='user/privilege/logout'}">{t}退出登录{/t}</a>
 </div>
 
