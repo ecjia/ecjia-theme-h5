@@ -18,14 +18,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <div class="reward-detail">
         <div class="swiper-container swiper-3">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><span>Slide 1</span></div>
-                <div class="swiper-slide"><span>Slide 2</span></div>
-                <div class="swiper-slide"><span>Slide 10</span></div>
-                <div class="swiper-slide"><span>Slide 10</span></div>
-                <div class="swiper-slide"><span>Slide 10</span></div>
-                <div class="swiper-slide"><span>Slide 10</span></div>
-                <div class="swiper-slide"><span>Slide 10</span></div>
-                <div class="swiper-slide"><span>Slide 10</span></div>
+                <div class="swiper-slide"><img src="./images/wallet/240x240.png"></div>
+                <div class="swiper-slide"><img src="./images/wallet/240x240.png"></div>
+                <div class="swiper-slide"><img src="./images/wallet/240x240.png"></div>
+                <div class="swiper-slide"><img src="./images/wallet/240x240.png"></div>
+                <div class="swiper-slide"><img src="./images/wallet/240x240.png"></div>
+                <div class="swiper-slide"><img src="./images/wallet/240x240.png"></div>
             </div>
         </div>
     </div>

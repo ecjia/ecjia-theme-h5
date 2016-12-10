@@ -4287,8 +4287,8 @@ footer{
 	height: 30px;
 }
 .ecjia-spread .qrcode_image,
-.ecjia-spread .qrcode_image2
- {
+.ecjia-spread .qrcode_image2,
+ .ecjia-spread .swiper-slide {
 	height:auto;
 	width:100%;
     position: relative;
@@ -4310,7 +4310,12 @@ footer{
     vertical-align: middle;
     text-align: center;
 }
-.ecjia-spread .qrcode_image img{
+.ecjia-spread .swiper-slide img {
+	position:relative;
+	height: 120px;
+	width: 120px;
+}
+.ecjia-spread .qrcode_image img {
 	position:relative;
 	height:14em;
 	width:14em;
@@ -4447,15 +4452,15 @@ footer{
 }
 .ecjia-spread .reward-detail {
 	width: 100%;
-	height: 8em;
 	background-color: #FFF;
 	position: fixed;
 	margin-top: 0;
+	z-index: 10;
+	border-bottom: 1px solid #ddd;
 }
 .ecjia-spread .reward-detail .swiper-slide {
     background: #fff;
     box-sizing: border-box;
-    border: 1px solid #ccc;
 }
 .ecjia-spread .reward-detail .swiper-slide span {
     text-align:center;
