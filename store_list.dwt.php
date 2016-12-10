@@ -13,11 +13,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/index_header.lbi" -->
-<!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/index_header.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/model_search.lbi" --><!-- #EndLibraryItem -->
 
 <!-- {if $data} -->
-<div class="ecjia-store-goods-list" {if $store_id && $count_search > 6}style="padding-bottom:7em;"{/if}>
+<div class="ecjia-mod ecjia-store-goods-list" {if $store_id && $count_search > 6}style="padding-bottom:7em;"{/if}>
 	<ul class="ecjia-store-list" {if $is_last neq 1}data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='goods/category/store_list'}&type=ajax_get{if $store_id}{/if}&store_id={$store_id}&keywords={$keywords}" data-page="2"{/if}>
 		<!-- {foreach from=$data item=val} -->
 		<!-- {if !$store_id} -->
@@ -100,7 +100,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</ul>
 </div>
 <!-- {else} -->
-<div class="search-no-pro ecjia-margin-t ecjia-margin-b">
+<div class="ecjia-mod search-no-pro ecjia-margin-t ecjia-margin-b">
 	<div class="ecjia-nolist">
 		{if !$store_id}
 		<p><img src="{$theme_url}images/no_store.png"></p>
@@ -113,7 +113,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/if} -->
 
 <!-- {if $store_id} -->
-<div class="store-add-cart a4w">
+<div class="ecjia-mod store-add-cart a4w">
 	<div class="a52"></div>
 	<a href="javascript:void 0;" class="a4x {if $real_count.goods_number}light{else}disabled{/if} outcartcontent show show_cart" show="false">
 		{if $real_count.goods_number}

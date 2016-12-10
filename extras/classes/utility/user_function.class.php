@@ -14,7 +14,6 @@ class user_function
 			$cookie_search = $_COOKIE ['ECJia'] ['search']['other'];
 			$ecjia_search .= '[other]';
 		}
-		
 		if (isset($keywords)) {
 			if (!empty($cookie_search)) {
 				$history = explode(',', $cookie_search);
@@ -23,9 +22,9 @@ class user_function
 				while (count($history) > ecjia::config('history_number')) {
 					array_pop($history);
 				}
-				setcookie($ecjia_search, implode(',', $history), RC_Time::gmtime() + 3600 * 24 * 30);
+				return setcookie($ecjia_search, implode(',', $history), RC_Time::gmtime() + 3600 * 24 * 30);
 			} else {
-				setcookie($ecjia_search, $keywords, RC_Time::gmtime() + 3600 * 24 * 30);
+				return setcookie($ecjia_search, $keywords, RC_Time::gmtime() + 3600 * 24 * 30);
 			}
 		}
 	}

@@ -15,9 +15,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<div class="category">
-<!-- #BeginLibraryItem "/library/index_header.lbi" -->
-<!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/model_search.lbi" --><!-- #EndLibraryItem -->
+
+<div class="ecjia-mod category">
+<!-- #BeginLibraryItem "/library/index_header.lbi" --><!-- #EndLibraryItem -->
     <ul class="ecjia-list category_left">
         <!--{foreach from=$data item=cat}-->
         <li{if $cat.id eq $cat_id} class="active"{/if}><a href="javascript:;" data-rh="1" data-val="{$cat.id}">{$cat.name|escape:html}</a></li>
