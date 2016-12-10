@@ -14,12 +14,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 
-<div class="page_hearer_hide ecjia-fixed">
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
+<div class="ecjia-mod page_hearer_hide ecjia-fixed">
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 </div>
+<!-- #BeginLibraryItem "/library/model_search.lbi" --><!-- #EndLibraryItem -->
 
-<div class="ecjia-header ecjia-store-banner">
+<div class="ecjia-mod ecjia-header ecjia-store-banner">
 	<div class="ecjia-header-left">
 		<img src="{$store_info.seller_banner}">
 	</div>
@@ -33,7 +33,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</a>
 	</div>
 </div>
-<div class="ecjia-store-brief">
+<div class="ecjia-mod ecjia-store-brief">
 	<li class="store-info">
 		<a href="{RC_Uri::url('goods/category/store_detail')}&store_id={$store_info.id}">
 			<div class="basic-info">
@@ -66,7 +66,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		{/if}
 	</li>
 </div>
-<div class="ecjia-store-goods">
+<div class="ecjia-mod ecjia-store-goods">
 	<div class="a1n a2g">
 		<div class="wg">
 			<div class="wh search-goods" data-url="{RC_Uri::url('touch/index/search')}&store_id={$store_id}" {if $keywords}style="text-align: left;" data-val="{$keywords}"{/if}>
@@ -128,7 +128,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 </div>
 
-<div class="store-add-cart a4w">
+<div class="ecjia-mod store-add-cart a4w">
 	<div class="a52"></div>
 	<a href="javascript:void 0;" class="a4x {if $real_count.goods_number}light{else}disabled{/if} outcartcontent show show_cart" show="false">
 		{if $real_count.goods_number}

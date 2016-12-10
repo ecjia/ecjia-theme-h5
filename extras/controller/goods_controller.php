@@ -536,7 +536,6 @@ class goods_controller {
     	
     	if ($type == 'ajax_get') {
     		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $say_list, 'is_last' => $data['is_last']));
-    		return false;
     	}
     	ecjia_front::$controller->display('store_list.dwt');
     }
@@ -722,7 +721,6 @@ class goods_controller {
     		'info' => '<i class="iconfont icon-location"></i>'
     	);
     	ecjia_front::$controller->assign('header_right', $header_right);
-    	
     	ecjia_front::$controller->display('store_goods.dwt');
     }
     
