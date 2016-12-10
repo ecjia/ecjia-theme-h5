@@ -75,7 +75,7 @@ class touch_controller {
         ecjia_front::$controller->assign('searchs', user_function::insert_search());
         ecjia_front::$controller->assign('shop_pc_url', ecjia::config('shop_pc_url'));
         ecjia_front::$controller->assign('copyright', ecjia::config('wap_copyright'));
-        ecjia_front::$controller->assign('active', 1);
+        ecjia_front::$controller->assign('active', 'index');
         ecjia_front::$controller->assign('address', 'address');
         ecjia_front::$controller->assign_title();
         ecjia_front::$controller->assign_lang();

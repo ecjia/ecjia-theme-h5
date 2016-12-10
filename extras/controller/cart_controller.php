@@ -61,7 +61,7 @@ class cart_controller {
     	ecjia_front::$controller->assign('cart_list', $cart_list['cart_list']);
     	
         ecjia_front::$controller->assign_lang();
-    	ecjia_front::$controller->assign('active', 3);
+    	ecjia_front::$controller->assign('active', 'cartList');
         ecjia_front::$controller->display('cart_list.dwt');
     }
     /**
