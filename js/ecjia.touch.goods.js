@@ -471,7 +471,9 @@
             				};
             				ecjia.touch.category.hide_cart(true);
             				$.post(url, info, function(data) {
-			            		ecjia.pjax(window.location.href);
+            					var href = window.location.href;
+            					location.href = href;
+			            		return false;
             				});
 			            }	
 			          },
