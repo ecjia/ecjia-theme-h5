@@ -14,7 +14,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 <div class="ecjia-spread-pb">
-    <div class="ecjia-spread ecjia-margin-b">
+    <div class="ecjia-spread ecjia-margin-b ecjia-spread-padding0">
         <ul class="ecjia-list list-short">
             <li>
                 <div class="reward-title">获得的积分奖励</div>
@@ -55,6 +55,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </ul>
     </div>
 </div>
+
 <div class="ecjia-spread">
     <div class="ecjia-bottom-bar-pannel">
         <ul class="tab5">
