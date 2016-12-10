@@ -34,18 +34,9 @@ a.ecjia-color-green {
 .ecjia-nav li {
     padding: 0;
 }
-.ecjia-menu {
-    background-image: url("../dist/images/menu.green.png");
-}
-.ecjia-menu a {
-    color: #fff;
-}
 .ecjia-menu .iconfont{
 	line-height: 0;
 	top: 0;
-}
-.la-ball-atom {
-    color: #47AA4D;
 }
 .modal-overlay.modal-overlay-visible {
 	position: fixed;
