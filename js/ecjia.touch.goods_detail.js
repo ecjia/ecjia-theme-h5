@@ -23,6 +23,7 @@
 					$('#goods-info-two').show();
 					$('#goods-info-one').hide();
 				}
+				$(window).scrollTop(0); 
 			});
 			$('.goods-desc-li-info').on('click', function (e) {
 				var type = $(this).attr('data-id');			

@@ -4328,9 +4328,10 @@ footer{
     text-align: center;
 }
 .ecjia-spread .swiper-slide img {
-	position:relative;
-	height: 120px;
-	width: 120px;
+    position: absolute;
+    height: 108px;
+    width: 108px;
+    margin: -100px 0 0 -55px;
 }
 .ecjia-spread .qrcode_image img {
 	position:relative;
@@ -4470,9 +4471,11 @@ footer{
 }
 .ecjia-spread .reward-detail {
 	width: 100%;
+	height: 150px;
 	background-color: #FFF;
 	position: fixed;
 	margin-top: 0;
+	top: 0;
 	z-index: 10;
 	border-bottom: 1px solid #ddd;
 }
@@ -4484,12 +4487,20 @@ footer{
     text-align:center;
     display:block;
     margin: 20px;
-    font-size:21px;
+    font-size:17px;
+	color: #FFF;
+	position: relative;
+	z-index: 20;
 }
 .ecjia-spread .reward-detail .swiper-container {
     width: 100%;
     height: 120px;
     margin: 35px 0;
+	top: -30px;
+}
+.ecjia-spread .reward-detail .swiper-container .swiper-wrapper {
+    top: 20%;
+	position: relative;
 }
 
 
