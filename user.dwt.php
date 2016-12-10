@@ -70,7 +70,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </ul>
 </div>
 
-<div class="ecjia-user ecjia-user-head">
+<div class="ecjia-user ecjia-margin-b">
     <ul class="ecjia-list list-short">
        <li>
         	<a href="{url path='user/user_address/address_list'}">
@@ -122,7 +122,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
     </ul>
-    <ul class="ecjia-list list-short ecjia-margin-b">
+    <ul class="ecjia-list list-short">
         <!-- {foreach from=$shop item=value} 网店信息 -->
             <li>
             	<a href="{RC_uri::url('user/index/shop_detail')}&article_id={$value.id}">

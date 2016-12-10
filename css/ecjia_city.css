@@ -2002,6 +2002,7 @@ footer{
 	padding-right: 0;
 	padding-top: 0;
 	padding-bottom: 0;
+	margin-top: 0;
 }
 .ecjia-user.ecjia-form .form-group .input input {
 	padding: .5em 1em;
@@ -2012,13 +2013,14 @@ footer{
 	height: 4em!important;
 }
 .ecjia-user.ecjia-list{
-	margin-top: 0;
+	margin-top: 0em;
+
 }
 .ecjia-user-phono {
 	font-size: 1.5em;
 }
 .ecjia-user .ecjia-list{
-	padding-top: 1em;
+	margin-top: 1em;
 }
 .ecjia-user-border-b {
 	border-bottom: 1px solid #eee;
@@ -2113,8 +2115,11 @@ footer{
 	border-bottom: 1px solid #eee;
 	background-color: #fff;
 }
+.ecjia-user-head {
+	padding-top: 1em;
+}
 .ecjia-user-head .ecjia-list.list-short li  {
-	padding: .5em 1em;
+	padding: .5em 1em;	
 }
 .ecjia-user-passwd {
 	padding:0!important;
@@ -2227,7 +2232,7 @@ footer{
 .ecjia-user .ecjia-list.list-short .user_img{
     margin-top: 10em!important	;
 }
-.ecjia-user .ecjia-margin-b {
+.ecjia-user.ecjia-margin-b {
 	padding-bottom: 10%;
 }
 .ecjia-user .margin-no-l {
@@ -2273,7 +2278,8 @@ footer{
     height: 4em;
 }
 .ecjia-user-marg-t {
-	padding-top: 0!important;
+	margin-top: 0!important;
+	padding-top: 0;
 }
 .ecjia-user.user-new-info .user-rank-name,
 .ecjia-user.user-new-info .user-rank-name a{
@@ -2439,7 +2445,7 @@ footer{
 	display: block;
 }
 .ecjia-account .account-top {
-	padding-top: 3em;
+	padding-top: 2em;
 }
 .ecjia-account .account-top2 {
 	margin-top: 2em;
@@ -2869,7 +2875,7 @@ footer{
 	margin-top: 0.2em;
 }
 .ecjia-login-padding-top {
-	padding-top:3em !important;
+	padding-top:2em !important;
 }
 .ecjia-login-margin-top {
 	margin-top:3em !important;
@@ -2877,9 +2883,14 @@ footer{
 .ecjia-login .bf{
 	clear: both
 }
+.ecjia-login-pa-left {
+	padding-left: 0!important;
+}
 .ecjia-login-margin-lr {
 	margin-left: 0!important;
 	margin-right: 0!important;
+	border-bottom: 1px solid #eee!important;
+	border-top: 1px solid #eee!important;
 }
 .ecjia-login .around{
 	margin : 1em 7% 1em 7%;
