@@ -106,6 +106,7 @@ class user_privilege_controller {
     
     /*注册用户验证码接受*/
     public static function validate_code() {
+        $verification = !empty($_POST['$verification']) ? trim($_POST['$verification']) : '';
         $code = !empty($_POST['code']) ? trim($_POST['code']) : '';
         $mobile = !empty($_POST['mobile']) ? htmlspecialchars($_POST['mobile']) : '';
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code))->send()->getBody();

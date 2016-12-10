@@ -139,12 +139,14 @@
 				e.preventDefault();
 				var url = $(this).attr('data-url'),
 					mobile = $("input[name='mobile']").val().trim(),
+					verification = $("input[name='verification']").val().trim(),
 					code = $("input[name='code']").val().trim();
 				if (code == '') {
 					return false;
 				}
 				var info = {
 					'mobile': mobile,
+					'verification': verification,
 					'code': code
 				};
 				$.post(url, info, function(data){

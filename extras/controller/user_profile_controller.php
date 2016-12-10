@@ -12,6 +12,9 @@ class user_profile_controller {
         $user_img_login = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         $user_img_logout = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-out2x.png';
         if (!empty($user)) {
+            if (!empty($user['avatar_img'])) {
+                $user_img_login = $user['avatar_img'];
+            }
             ecjia_front::$controller->assign('user_img', $user_img_login);
         } else {
             ecjia_front::$controller->assign('user_img', $user_img_logout);

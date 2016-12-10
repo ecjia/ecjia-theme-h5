@@ -2526,7 +2526,7 @@ footer{
 .ecjia-account .apply {
 	float: left;
     font-size: 1.5em;
-    margin-right: 2em;
+    margin-right: 1em;
     width: 3em;
     line-height: 2em;
 }
@@ -2648,6 +2648,9 @@ footer{
 	height: 2.3em;
 	font-size: 1.3em;
 }
+.ecjia-account .ecjia-fl {
+	float: left!important;
+}
 .ecjia-account.ecjia-nav li.active {
 	/*background: #FFF;*/
 }
@@ -2748,7 +2751,8 @@ footer{
 	margin-bottom: .5em;
 	border-color: #FFF;
 	font-weight: bold;
-	padding-left: .5em;
+	padding-left: 1em;
+	padding-right: 1em;
 	width: 100%;
 }
 /*========================  红包 ===========================*/
