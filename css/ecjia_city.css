@@ -3074,13 +3074,9 @@ footer{
 
 /*========================  商品详情 ===========================*/
 .ecjia-goods-detail-header-title {
-    bottom: 0;
-    font-size: 1.4em;
- 	background:#47aa4d none repeat scroll 0 0;
  	height:2.5em;
  	line-height:2.65em;
- 	position:fixed;
- 	text-align:center;
+	font-size: 1.4em;
 }
 .ecjia-goods-detail-header-title ul{
 	position: absolute;
@@ -3095,8 +3091,8 @@ footer{
 }
 .ecjia-goods-detail-header-title li a {
 	color:#fff;
-	border-bottom:0.2em solid #fff;
-	padding-bottom:0.4em;
+	border-bottom: 4px solid #fff;
+	padding-bottom: .4em;
 }
 .p1 {
 	margin-top:-20px;

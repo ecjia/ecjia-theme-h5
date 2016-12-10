@@ -13,12 +13,12 @@
 			$('.goods-tab').on('click', function (e) {
 				var id = $(this).attr('data-type');
 				if (id == 1) {
-					$(".tab1").css("border-bottom","0.2em solid #fff")
+					$(".tab1").css("border-bottom","4px solid #fff")
 					$('.tab2').css("border-bottom", "none");
 					$('#goods-info-one').show();
 					$('#goods-info-two').hide();
 				} else {
-					$('.tab2').css("border-bottom", "0.2em solid #fff");
+					$('.tab2').css("border-bottom", "4px solid #fff");
 					$('.tab1').css('border-bottom', "none");
 					$('#goods-info-two').show();
 					$('#goods-info-one').hide();
