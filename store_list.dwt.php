@@ -118,7 +118,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 			{/if}
 		</div>
-		<a class="a51 {if !$count.goods_number}disabled{/if}" href="javascript:void 0;">去结算</a>
+		<a class="a51 {if !$count.check_one}disabled{/if} check_cart" href="{RC_Uri::url('cart/flow/checkout')}" data-store="{$store_id}" data-address="{$address_id}" data-rec="{$rec_id}">去结算</a>
 		<div class="minicart-content" style="transform: translateY(0px); display: block;">
 			<a href="javascript:void 0;" class="a4x {if $count.goods_number}light{else}disabled{/if} incartcontent show_cart" show="false">
 				{if $real_count.goods_number}
@@ -147,13 +147,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					{/if}
 					<ul class="minicart-goods-list single"> 
 						<!-- {foreach from=$cart_list item=cart} -->
-						<li class="a5n single">
-							<span class="a69 a5o {if $cart.is_checked}checked{/if} checkbox" data-toggle="toggle_checkbox" rec_id="{$cart.rec_id}"></span>
+						<li class="a5n single {if $cart.is_disabled eq 1}disabled{/if}">
+							<span class="a69 a5o {if $cart.is_checked}checked{/if} checkbox {if $cart.is_disabled eq 1}disabled{/if}" data-toggle="toggle_checkbox" rec_id="{$cart.rec_id}"></span>
 							<table class="a5s">
 								<tbody>
 									<tr>
 										<td style="width:75px; height:75px">
 											<img class="a7g" src="{$cart.img.small}">
+											{if $cart.is_disabled eq 1}
+											<div class="product_empty">无货</div>
+											{/if}
 										</td>
 										<td>
 											<div class="a7j">{$cart.goods_name}</div> 
@@ -163,9 +166,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 								</tbody>
 							</table>
 							<div class="box" id="goods_cart_{$cart.goods_id}">
-								<span class="a5u reduce" data-toggle="remove-to-cart" rec_id="{$cart.rec_id}"></span>
+								<span class="a5u reduce {if $cart.is_disabled eq 1}disabled{/if}" data-toggle="remove-to-cart" rec_id="{$cart.rec_id}"></span>
 								<lable class="a5x">{$cart.goods_number}</lable>
-								<span class="a5v " data-toggle="add-to-cart" rec_id="{$cart.rec_id}" goods_id="{$cart.goods_id}"></span>
+								<span class="a5v {if $cart.is_disabled eq 1}disabled{/if}" data-toggle="add-to-cart" rec_id="{$cart.rec_id}" goods_id="{$cart.goods_id}"></span>
 							</div>
 						</li>
 						<input type="hidden" name="rec_id" value="{$cart.rec_id}" />
