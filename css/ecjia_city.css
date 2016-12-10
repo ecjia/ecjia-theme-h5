@@ -4223,6 +4223,9 @@ footer{
     height:auto;
     padding-top: 1em;
 }
+.ecjia-spread-padding0{
+	padding-top: 0!important
+}
 .ecjia-spread .bg-img{
 	background-image: url(../images/spread-bg.png);
 	background-repeat: no-repeat;
@@ -4429,7 +4432,7 @@ footer{
 .ecjia-spread .ecjia-bottom-bar-pannel .tab5 li a span {
 	position: relative;
     top: 15px;
-    left: -8%;
+    left: 1%;
 }
 .ecjia-spread .ecjia-list li {
 	background: #FFF;
