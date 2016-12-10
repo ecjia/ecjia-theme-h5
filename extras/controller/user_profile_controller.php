@@ -36,7 +36,7 @@ class user_profile_controller {
     public static function modify_username_account() {
         $name = !empty($_POST['username']) ? $_POST['username'] :'';
         if (strlen($name) > 20 || strlen($name) < 4) {
-              return ecjia_front::$controller->showmessage(__('用户名格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_profile/modify_username')) );
+              return ecjia_front::$controller->showmessage(__('请输入4-20个字符'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_profile/modify_username')) );
         }
         if (!empty($name)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_UPDATE)->data(array('user_name' => $name))->send()->getBody();
