@@ -2133,7 +2133,7 @@ footer{
     border-bottom: 1px solid #eee;
 }
 .ecjia-user .ecjia-list.list-short li a{
-	line-height: 2em;
+	line-height: 2.3em;
 }
 .ecjia-user .ecjia-list.list-short li a>.icon-jiantou-right {
 	right: 1%;
@@ -2212,7 +2212,8 @@ footer{
 }
 .ecjia-user .ecjia-list.list-short li i {
 	font-size: 1.5em;
-	line-height: 1.8em;
+	display:box; 
+	line-height: 2.3em;
 }
 .ecjia-user .ecjia-list.list-short li span{
 	display: inline;
@@ -2517,7 +2518,7 @@ footer{
     bottom: 0px;
     margin-bottom: 1.2em;
     width: 130%!important;
-    margin-left: 2.5em!important;
+    margin-left: 1.2em!important;
 }
 .ecjia-account .btn-c {
 	background: #A2A09F!important;
@@ -2536,7 +2537,7 @@ footer{
     float: left;
     width: 2em;
     height: 2em;
-    margin-left: .5em;
+    margin-left: 1.6em;
     margin-right: .5em;
     margin-top: .5em;
 }
