@@ -28,7 +28,7 @@ class goods_controller {
         ecjia_front::$controller->assign('title', RC_Lang::lang('catalog'));
         ecjia_front::$controller->assign('page_title', RC_Lang::lang('catalog'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('catalog'));
-        ecjia_front::$controller->assign('active', 2);
+        ecjia_front::$controller->assign('active', 'category');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('category_top_all.dwt');
     }
