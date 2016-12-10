@@ -202,14 +202,10 @@
         		var bool = $('.store-add-cart').find('.a4x').attr('show');
         		if (bool) {
         			ecjia.touch.category.show_cart();
-        			//禁用滚动条
-        			$("body").css({overflow:"hidden"});    							
-        			$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});    	
+        			$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});//禁用滚动条
         		} else {
         			ecjia.touch.category.hide_cart();
-        			//启用用滚动条
-        			$("body").css({overflow:"auto"});    
-        			$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});    	
+        			$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条	
         		}
         	});
         	
@@ -322,6 +318,11 @@
         		$('.store-add-cart').children('.a4x').addClass('light').removeClass('disabled');
         		$('.store-add-cart').children('.a51').removeClass('disabled');
         	} else {
+            	//禁用滚动条
+            	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){
+            		event.preventDefault;
+            	}, false);
+            	
             	$('.store-add-cart').children('.a4x').removeClass('show');
             	$('.minicart-content').children('.a4x').addClass('show').addClass('light').removeClass('disabled');
             	$('.store-add-cart').children('.minicart-content').css('transform', 'translateY(-100%)');
@@ -333,6 +334,9 @@
         
         //隐藏购物车
         hide_cart : function(bool) {
+        	//启用滚动条
+        	$('body').css('overflow-y', 'auto').off("touchmove");
+        	
 			$('.store-add-cart').find('.a4z').css('transform', 'translateX(0px)');
     		$('.store-add-cart').find('.a53').css('display', 'none');
     		$('.store-add-cart').find('.minicart-content').css('transform', 'translateY(0px)');
@@ -351,7 +355,6 @@
     			$('.minicart-goods-list').html('');
         	}
         	//启用用滚动条
-			$("body").css({overflow:"auto"});    
 			$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});    	
         },
         
@@ -441,16 +444,21 @@
         	$('[data-toggle="deleteall"]').off('click').on('click', function(e){
         		e.preventDefault();
         		var url = $(this).attr('data-url');
-        		var myApp = new Framework7();
-        		myApp.modal({
+    			var myApp = new Framework7();
+    			myApp.modal({
         			title: '清空购物车中所有商品？',
         			buttons: [
 			          {
 			            text: '取消',
+			            onClick: function() {
+			            	$('.modal').remove();
+			            	return false;
+			            }
 			          },
 			          {
 			            text: '确定',
 			            onClick: function() {
+			            	$('.modal').remove();
             				var rec_id = [];
             				var store_id = $('input[name="store_id"]').val();
 
@@ -461,11 +469,12 @@
             					'store_id' : store_id,
             					'rec_id' : rec_id,
             				};
+            				ecjia.touch.category.hide_cart(true);
             				$.post(url, info, function(data) {
-            					ecjia.pjax(window.location.href);
+			            		ecjia.pjax(window.location.href);
             				});
-			          	},
-			          }
+			            }	
+			          },
 			        ]
         		});
         	});
@@ -538,6 +547,7 @@
         			          {
         			            text: '确定',
         			            onClick: function() {
+            			            $('.modal').remove();
         			            	ecjia.pjax(window.location.href);
         			          	},
         			          }
@@ -569,7 +579,7 @@
 		    } 
         },
         
-        //店铺首页 去结算
+        //店铺首页 去结算 购物车列表列表编辑
         check_cart : function() {
         	$('.check_cart').off('click').on('click', function(e) {
         		e.preventDefault();
@@ -585,10 +595,15 @@
             			buttons: [
     			          {
     			            text: '取消',
+    			            onClick: function() {
+    			            	$('.modal').remove();
+    			            	return false;
+    			            }
     			          },
     			          {
     			            text: '确定',
     			            onClick: function() {
+    			            	$('.modal').remove();
     			            	$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
     			            	ecjia.touch.category.update_cart(rec_id, 0, 0, '', store_id);
     		        			var li = $this.parents('.cart-single');
