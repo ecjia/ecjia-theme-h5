@@ -39,7 +39,6 @@ class user_address_controller {
 		$token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
     	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token['access_token']))->run();
 	    ecjia_front::$controller->assign('address_list', $address_list);
-        ecjia_front::$controller->assign('hideinfo', 1);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_address_list.dwt');
     }
@@ -92,13 +91,14 @@ class user_address_controller {
         // ecjia_front::$controller->assign('city_list', $city_list);
         // ecjia_front::$controller->assign('district_list', $district_list);
         // ecjia_front::$controller->assign_title(RC_Lang::lang('add_address'));
-        $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-        $add_address = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_ADD)->data(array('token' => $token['access_token']))->run();
+//         $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+//         $add_address = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_ADD)->data(array('token' => $token['access_token']))->run();
 
-    	ecjia_front::$controller->assign('add_address', $add_address);
+//     	ecjia_front::$controller->assign('add_address', $add_address);
+    	ecjia_front::$controller->assign('form_action', RC_Uri::url('user/user_address/insert_address'));
         ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('user_add_address.dwt');
+        ecjia_front::$controller->display('user_address_edit.dwt');
     }
 
     /**
@@ -148,12 +148,14 @@ class user_address_controller {
 //         ecjia_front::$controller->assign('city_list', $city_list);
 //         ecjia_front::$controller->assign('district_list', $district_list);
 //         ecjia_front::$controller->assign_title(RC_Lang::lang('edit_address'));
-        $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-        $edit_address = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data(array('token' => $token['access_token'], 'address_id' => $id))->run();
-        ecjia_front::$controller->assign('edit_address', $edit_address);
+
+        $params = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $id);
+        $info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params)->run();
+        ecjia_front::$controller->assign('info', $info);
+        ecjia_front::$controller->assign('form_action', RC_Uri::url('user/user_address/update_address'));
         ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('user_edit_address.dwt');
+        ecjia_front::$controller->display('user_address_edit.dwt');
     }
 
     /**
@@ -179,6 +181,32 @@ class user_address_controller {
 //         } else {
 //             ecjia_front::$controller->showmessage(RC_Lang::lang('edit_address_error'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 //         }
+
+//         _dump($_POST,1);
+        $params = array(
+            'token' => ecjia_touch_user::singleton()->getToken(),
+            'address_id' => $_POST['address_id'],
+            'address' => array(
+                'city'      => intval($_POST['city']),
+                'address'   => htmlspecialchars($_POST['address_location']),
+                'address_info'   => htmlspecialchars($_POST['address']),
+                'consignee' => htmlspecialchars($_POST['consignee']),
+                'mobile'    => htmlspecialchars($_POST['mobile']),
+            )
+             
+        );
+        _dump($params);
+        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_UPDATE)->data($params)
+        //         ->run();
+        ->send()->getBody();
+        $rs = json_decode($rs,true);
+        //         _dump($rs,1);
+        if (! $rs['status']['succeed']) {
+            return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => ''));
+        }
+        
+        $url_address_list = RC_Uri::url('user/user_address/address_list');
+        ecjia_front::$controller->showmessage(RC_Lang::lang('edit_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url_address_list));
     }
 
     /**
