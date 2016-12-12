@@ -45,14 +45,14 @@
 }
 .ecjia-article .list-one li .form-group-text span {
 	margin-left: 0;
-	font-size: 17px;
+	font-size: 1.1em;
 	font-family: '黑体';
 	font-weight: normal;
 }
 .ecjia-article .list-one li .form-group-text i.icon-jiantou-right {
-	padding-top: 0.8em;
-	font-size: 20px;
-	right: 2%;
+	font-size: 1.5em;
+	right: 1%;
+	line-height: 2.3em
 }
 /*============== 地址列表  ================*/
 .ecjia-address-list {

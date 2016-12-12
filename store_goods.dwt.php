@@ -39,7 +39,7 @@ ecjia.touch.category.init();
 		<a href="{RC_Uri::url('goods/category/store_detail')}&store_id={$store_info.id}">
 			<div class="basic-info">
 				<div class="store-left">
-					<img src="{$store_info.seller_logo}">
+					<img src="{if $store_info.seller_logo}{$store_info.seller_logo}{else}{$theme_url}images/store_default.png{/if}">
 				</div>
 				<div class="store-right">
 					<div class="store-name">
