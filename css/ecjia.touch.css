@@ -958,8 +958,8 @@ select, input, textarea {
 /*==================== 悬浮导航栏CSS ====================*/
 .ecjia-menu {
 	background-image: url("../images/menu.png");
-	background-position: -45px -234px;
-	background-size: 85px 325px;
+	background-position: -45px -230px;
+	background-size: 85px 323px;
 	bottom: 5em;
 	position: fixed;
 	right: 1em;
@@ -981,17 +981,12 @@ select, input, textarea {
 .ecjia-menu .main a {
 	display: block;
 	font-size: 24px;
-	height: 41px;
-	line-height: 42px;
+	height: 45px;
+	line-height: 45px;
 	text-align: center;
 }
 .ecjia-menu.active {
 	background-position: 0 0;
-	background-size: 85px 325px;
-}
-.ecjia-menu.active .main a {
-	height: 45px;
-	line-height: 50px;
 }
 .ecjia-menu.active ul {
 	display: block;
