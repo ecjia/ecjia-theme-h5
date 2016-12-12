@@ -104,27 +104,31 @@ class user_address_controller {
     /**
      * 插入收货地址
      */
-    public static function inster_address() {
-//         $user_id = $_SESSION['user_id'];
-//         $address = array(
-//             'user_id'   => $user_id,
-//             'country'   => htmlspecialchars($_POST['country']),
-//             'province'  => htmlspecialchars($_POST['province']),
-//             'city'      => htmlspecialchars($_POST['city']),
-//             'district'  => htmlspecialchars($_POST['district']),
-//             'address'   => htmlspecialchars($_POST['address']),
-//             'consignee' => htmlspecialchars($_POST['consignee']),
-//             'mobile'    => htmlspecialchars($_POST['mobile']),
-// //             'zipcode'   => htmlspecialchars($_POST['zipcode']),
-//         );
-// 	    if (empty($address['district'])) {
-// 		    ecjia_front::$controller->showmessage('收货人信息填写不完整', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-// 	    }
-//         if (insert_address($address)) {
-//             ecjia_front::$controller->showmessage(RC_Lang::lang('add_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl'=>RC_Uri::url('address_list'),'is_show' => false));
-//         } else {
-//             ecjia_front::$controller->showmessage(RC_Lang::lang('add_address_error'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-//         }
+    public static function insert_address() {
+        $params = array(
+            'token' => ecjia_touch_user::singleton()->getToken(),
+            'address' => array(
+                'city'      => intval($_POST['city']),
+                'address'   => htmlspecialchars($_POST['address_location']),
+                'address_info'   => htmlspecialchars($_POST['address']),
+                'consignee' => htmlspecialchars($_POST['consignee']),
+                'mobile'    => htmlspecialchars($_POST['mobile']),
+            )
+           
+        );
+        _dump($params);
+        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_ADD)->data($params)
+//         ->run();
+        ->send()->getBody();
+        $rs = json_decode($rs,true);
+//         _dump($rs,1);
+        if (! $rs['status']['succeed']) {
+            return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => ''));
+        }
+        
+        $url_address_list = RC_Uri::url('user/user_address/address_list');
+        ecjia_front::$controller->showmessage(RC_Lang::lang('add_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url_address_list));
+        
     }
 
     /**
@@ -224,10 +228,11 @@ class user_address_controller {
      * 定位当前位置
      */
     public static function near_location() {
+        
+        
     	ecjia_front::$controller->assign('hideinfo', '1');
-        ecjia_front::$controller->assign('title', '您当前地址列表');
         ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->assign_title('当前位置');
+        ecjia_front::$controller->assign_title('选择位置');
         ecjia_front::$controller->display('user_near_location.dwt');
     }
 
@@ -246,9 +251,18 @@ class user_address_controller {
      * 选择城市
      */
     public static function city() {
+        
+        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)
+        ->send()->getBody();
+        $rs = json_decode($rs,true);
+//         _dump($rs,1);
+        if (! $rs['status']['succeed']) {
+            return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => ''));
+        }
+        ecjia_front::$controller->assign('citylist', $rs['data']['recommend_city']);
+        
     	ecjia_front::$controller->assign('hideinfo', '1');
-    	ecjia_front::$controller->assign('title', '上海');
-    	ecjia_front::$controller->assign_title('定位');
+    	ecjia_front::$controller->assign_title('选择城市');
     	ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->display('user_address_city.dwt');
     }

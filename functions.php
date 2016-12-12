@@ -144,7 +144,7 @@ RC_Loader::load_theme('extras/controller/user_address_controller.php');
 RC_Hook::add_action('user/user_address/address_list', array('user_address_controller', 'address_list'));
 RC_Hook::add_action('user/user_address/async_address_list', array('user_address_controller', 'async_address_list'));
 RC_Hook::add_action('user/user_address/add_address', array('user_address_controller', 'add_address'));
-RC_Hook::add_action('user/user_address/inster_addres', array('user_address_controller', 'inster_addres'));
+RC_Hook::add_action('user/user_address/insert_address', array('user_address_controller', 'insert_address'));
 RC_Hook::add_action('user/user_address/edit_address', array('user_address_controller', 'edit_address'));
 RC_Hook::add_action('user/user_address/update_address', array('user_address_controller', 'update_address'));
 RC_Hook::add_action('user/user_address/del_address_list', array('user_address_controller', 'del_address_list'));

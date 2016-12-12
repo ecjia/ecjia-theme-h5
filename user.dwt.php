@@ -34,8 +34,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 
 
-
-
 <div class="ecjia-user-head ecjia-user ecjia-color-green ecjia-user-marg-t">
      <ul class="ecjia-user-marg-t ecjia-list list-short ecjia-user-no-border-t">
        <li>
@@ -75,7 +73,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
        <li>
         	<a href="{url path='user/user_address/address_list'}">
         		<div class="icon-address-list"></div>
-        		<span class="icon-name">地址管理</span>
+        		<span class="icon-name">收货地址</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>

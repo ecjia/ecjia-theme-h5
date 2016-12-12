@@ -17,6 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	}
 	var map = new BMap.Map("l-map");
     var city = $('.city_name').children('span').html();
+    var city_id = $('input[name="city_id"]').val();
 	map.centerAndZoom(city,12);                   // 初始化地图,设置城市和地图级别。
 	var ac = new BMap.Autocomplete(//建立一个自动完成的对象
 		{
@@ -51,7 +52,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		setPlace();
 		
 		var url = $("#select-city").attr('data-url');
-	    url += '&address=' + myValue + '&city=' + city;
+	    url += '&address=' + myValue + '&city=' + city + '&city_id=' + city_id;
 	    ecjia.pjax(url);
 	});
 
@@ -83,6 +84,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<i class="img-search"></i>
 		<div id="r-result" style="width:100%;"><input type="text" id="suggestId"  name="keywords" type="search" value="" placeholder="小区、写字楼、学校"></div>
 	</div>
+	<input type="hidden" name="city_id" value="{$smarty.get.city_id}">
 		
 	<div id="l-map" style="height:600px;width:100%;display:none;"></div>
 	<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>	
