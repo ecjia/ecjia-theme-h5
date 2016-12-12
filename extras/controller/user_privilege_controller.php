@@ -106,24 +106,28 @@ class user_privilege_controller {
     
     /*注册用户验证码接受*/
     public static function validate_code() {
-        $verification = !empty($_POST['$verification']) ? trim($_POST['$verification']) : '';
+        $verification = !empty($_POST['verification']) ? trim($_POST['verification']) : '';
+        if (strlen($verification) > 6) {
+            return ecjia_front::$controller->showmessage(__('邀请码格式不正确'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
         $code = !empty($_POST['code']) ? trim($_POST['code']) : '';
         $mobile = !empty($_POST['mobile']) ? htmlspecialchars($_POST['mobile']) : '';
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code))->send()->getBody();
         $data = json_decode($data,true);
         if ($data['status']['succeed'] == 1) {
-            return ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/set_password')));
+            return ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/set_password&verification='.$verification)));
         } else {
             return ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
     }
     
     public static function set_password() {
+        $verification = !empty($_GET['verification']) ? $_GET['verification'] : ''; 
         $mobile = !empty($_SESSION['mobile']) ? $_SESSION['mobile'] : '';
         $username = !empty($_POST['username']) ? $_POST['username'] : '';
         $password = is_numeric($_POST['password']) ? $_POST['password'] : '';
         if (!empty($username) && !empty($password)) {
-            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => $password))->send()->getBody();
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => $password, 'invite_code' => $verification))->send()->getBody();
             $data = json_decode($data,true);
             if ($data['status']['succeed'] == 1) {
                 return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('login')));
