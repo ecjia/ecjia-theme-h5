@@ -37,8 +37,8 @@
 			        	$(".detail-list").html(' ');
 			        	$(".detail-list").attr('data-url', '');
 						$(".detail-list").attr('data-toggle', '');
-			        	
-			        	var index = swiper.clickedIndex;
+						
+						var index = swiper.clickedIndex;
 			        	var date = $('.swiper-wrapper').children('.swiper-slide').eq(index).children('span').attr('data-date');
 			        	var url = $('input[name="reward_url"]').val();
 			        	var info = {
@@ -60,7 +60,32 @@
 						});
 			        }
 				});
-				
+			
+			var windowWidth = $(window).width(); //屏幕的宽度
+			var divWidth = 0; //每个div宽度
+			var resPlaceX = 0; //最终的位置X
+			var moveDistance = 0; //移动的距离
+			var startTranform = 0; //当前的transform值
+			var startTranformStr = '' //transform字符串
+			$('.swiper-slide').on('click', function(e) {
+			    var ev = e || event;
+			    var disX = ev.clientX - ev.offsetX; //当前div距离屏幕左边距离
+			    divWidth = $(this).width();
+			    resPlaceX = (windowWidth - divWidth) / 2;
+			    moveDistance = disX - resPlaceX;
+			    startTranformStr = $('.swiper-wrapper').get(0).style.transform;
+			    startTranform = startTranformStr.slice(startTranformStr.indexOf('(') + 1, startTranformStr.indexOf('px'));
+			    if (startTranform == '') {
+			        startTranform = 0
+			    };
+			    $('.swiper-slide').removeClass('font-red');
+			    $(this).addClass('font-red');
+			    $('.swiper-wrapper').css({
+			        'transform': 'translate3d(' + (parseInt(startTranform) + -moveDistance) + 'px,0,0)',
+			        'transition-duration': '0.5s'
+			    });
+			});
+
 			$$('.alert-text1').on('click', function () {
 			    myApp.alert('邀请成功即可获得积分奖励' + '<br>' + '积分可在购买商品时使用');
 			});

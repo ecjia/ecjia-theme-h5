@@ -26,7 +26,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 	</div>
 	<div class="invite-template">
-		<div class="invite-template-style">{$invite_user.invite_template}</div>
+		<textarea class="invite-template-style" name="invite_template">{$invite_user.invite_template}</textarea>
 	</div>
 	<div class="go-to-spread">
 		<a class="" href="javascript:;"><div class="would-spread">我要推广</div></a>
