@@ -4482,6 +4482,7 @@ footer{
 .ecjia-spread .reward-detail {
 	width: 100%;
 	height: 150px;
+	max-width: 640px;
 	background-color: #FFF;
 	position: fixed;
 	margin-top: 0;
