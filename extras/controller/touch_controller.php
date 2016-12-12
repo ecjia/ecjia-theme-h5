@@ -148,7 +148,12 @@ class touch_controller {
     	}
         setcookie($ecjia_search, '', 1);
         
-        return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('touch/index/search')));
+        $pjaxurl = '';
+        if ($store_id <= 0) {
+        	$pjaxurl = RC_Uri::url('touch/index/search');
+        }
+        
+        return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $pjaxurl));
     }
 
     public static function download() {

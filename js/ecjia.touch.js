@@ -399,7 +399,12 @@
 			            text: '确定',
 			            onClick: function() {
 			            	$.get(url, function(data){
-								ecjia.pjax(data.pjaxurl);
+			            		if (data.pjaxurl != '') {
+			            			refresh_url = data.pjaxurl;
+			            		} else {
+			            			refresh_url = window.location.href;
+			            		}
+								ecjia.pjax(refresh_url);
 							}, 'json');
 			          	},
 			          }

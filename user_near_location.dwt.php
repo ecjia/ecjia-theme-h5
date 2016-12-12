@@ -86,6 +86,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		
 	<div id="l-map" style="height:600px;width:100%;display:none;"></div>
 	<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>	
+	
 </div>
 	
 	

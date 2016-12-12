@@ -22,7 +22,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</a>
 	</div>
 	<div class="nav-header ecjia-margin-t ecjia-margin-b">
-		<a href="{url path='user/user_address/my_location'}" type="bottom">
+		<a href="https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl={url path='touch/index/init'}&key=4PLBZ-WSUW2-OXBUZ-CFNSS-MRUAV-3SFEO&referer=nothingkey">
 			<div class="position"></div>&nbsp;&nbsp;&nbsp;&nbsp;{t}定位到当前位置{/t}
 			<span class="ecjiaf-fr"><i class="iconfont icon-jiantou-right"></i></span>
 		</a>

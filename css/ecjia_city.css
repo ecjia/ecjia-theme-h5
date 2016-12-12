@@ -330,6 +330,9 @@ a.ecjia-color-green {
 .ecjia-mod {
     background: #fff;
 }
+.ecjia-mod.focus .hd{
+	border-top: 0;
+}
 .ecjia-mod .ecjia-adsense-model{
 	height: auto;
 	padding-top: 1em;
