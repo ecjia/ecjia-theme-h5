@@ -3474,6 +3474,7 @@ footer{
     font-size: 1.5em;
     margin-right: .5em;
 }
+.ecjia-order-list .ecjia-order-item .two-btn {padding:0}
 .ecjia-order-list .order-ft span {
     display: inline-block;
     width: 50%;
