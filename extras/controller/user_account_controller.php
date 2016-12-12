@@ -163,6 +163,11 @@ class user_account_controller {
             }
         }
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
+        if (!empty($user['avatar_img'])) {
+            $user_img = $user['avatar_img'];
+        }
+        ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->assign('sur_amount', $data['data'][$account_key]);
         $_SESSION['status'] = !empty($_GET['status']) ? $_GET['status'] : '';

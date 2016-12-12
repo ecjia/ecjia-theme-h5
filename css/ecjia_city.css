@@ -2510,6 +2510,7 @@ footer{
     position: relative;
 }
 .ecjia-account .user-img img{
+	float: left;
 	width: 4em;
 	height: 4em;
     border-radius: 100%;
@@ -2517,7 +2518,7 @@ footer{
     margin-right: 1em;
 }
 .ecjia-account .user-name {
-	float: right;
+	float: left;
     line-height: 3.5em;
     font-size: 1.2em;
     position: relative;
