@@ -20,11 +20,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <div class="swiper-wrapper">
             <!--{foreach from=$month item=date}-->
                 <div class="swiper-slide">
-                    <span>{$date.label_invite_data}</span>
+                    <span data-date="{$date.invite_data}">{$date.label_invite_data}</span>
                     <img src="./images/wallet/240x240.png">
                 </div>
             <!--{/foreach}-->
             </div>
+            <input type="hidden" value="{RC_Uri::url('user/user_bonus/reward_detail')}&type=async" name="reward_url"/>
         </div>
     </div>
 </div>  
@@ -42,7 +43,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     {else}
         <div class="ecjia-nolist">
 			<div class="img-noreward"></div>
-			<p>{t}您还没有红包{/t}</p>
+			<p>{t}暂无奖励{/t}</p>
 		</div>
     
     {/if}
