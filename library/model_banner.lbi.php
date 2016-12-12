@@ -6,7 +6,7 @@ Description: 这是首页的轮播图banner模块
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {if $cycleimage}banner滚动图片 -->
-<div class="focus" id="focus">
+<div class="ecjia-mod focus" id="focus">
 	<div class="hd">
 		<ul></ul>
 	</div>

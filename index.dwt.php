@@ -16,7 +16,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 
-<!-- TemplateBeginEditable name="页面内容" -->
+<!-- TemplateBeginEditable name="页面内容" desc="首页侧边栏" -->
 <!-- #BeginLibraryItem "/library/index_header.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_banner.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_nav.lbi" --><!-- #EndLibraryItem -->
@@ -26,6 +26,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/model_newgoods.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_hotgoods.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+
+<!-- TemplateBeginEditable name="页面内容二" desc="页面内容二" -->
 <!-- TemplateEndEditable -->
 
 <!-- {/block} -->

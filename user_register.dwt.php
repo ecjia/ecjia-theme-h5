@@ -26,38 +26,40 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</ul>
     <!-- {/if} -->
     <div class="tab-pane{if $enabled_sms_signin neq 1} active{/if}" id="two">
-		<form class="ecjia-form ecjia-login ecjia-login-margin-top" name="form" action="{url path='user/privilege/set_password'}" method="post">
-			<input type="hidden" name="flag" id="flag" value="register" />
-			<div class="form-group margin-right-left">
-				<label class="input">
-					<div class="img-register-mobile"></div>
-					<input name="mobile" type="text" id=""mobile"" name="mobile" placeholder="请输入手机号" />
-				</label>
-			</div>
-			 <li class="remark-size">{$lang.message_authentication_code}</li>
-			<div class="form-group small-text">
-				<label class="input-1">
-					<input name="code" type="code" id="code" placeholder="{$lang.input_verification}" />
-				</label>
-			</div>
-			<div class="small-submit">
-                    <input type="hidden" name="referer" value="{$smarty.get.referer}" />
-                    <input type="button" class="btn btn-info login-btn" value="{$lang.return_verification}" data-url="{url path='user/privilege/signup'}" id="get_code" />
-        	</div>
-    		<li class="remark-size">{$lang.invitation_code}</li>
-			<div class="form-group bf margin-right-left">
-				<label class="input">
-					<div class="img-register-invitationcode"></div>
-					<input name="text" id="text" type="text">
-				</label>
-			</div>
-			<div class="ecjia-login-b">
-				<input name="act" type="hidden" value="act_register" />
-				<input name="enabled_sms" type="hidden" value="0" />
-				<input type="hidden" name="back_act" value="{$back_act}" />
-				<div class="around margin-top">
-				<button class="btn btn-info next-btn" type="button" data-url="{RC_Uri::url('user/privilege/validate_code')}">{$lang.next}</button>
-				</div>
+		<form class=" ecjia-login ecjia-login-margin-top" name="form" action="{url path='user/privilege/validate_code'}" method="post">
+			<div class="ecjia-form">
+    			<input type="hidden" name="flag" id="flag" value="register" />
+    			<div class="form-group margin-right-left">
+    				<label class="input">
+    					<div class="img-register-mobile"></div>
+    					<input name="mobile" type="text" id="mobile" placeholder="请输入手机号" />
+    				</label>
+    			</div>
+    			 <li class="remark-size">{$lang.message_authentication_code}</li>
+    			<div class="form-group small-text">
+    				<label class="input-1">
+    					<input name="code" type="code" id="code" placeholder="{$lang.input_verification}" />
+    				</label>
+    			</div>
+    			<div class="small-submit">
+                        <input type="hidden" name="referer" value="{$smarty.get.referer}" />
+                        <input type="button" class="btn btn-info login-btn" value="{$lang.return_verification}" data-url="{url path='user/privilege/signup'}" id="get_code" />
+            	</div>
+        		<li class="remark-size">{$lang.invitation_code}</li>
+    			<div class="form-group bf margin-right-left">
+    				<label class="input">
+    					<div class="img-register-invitationcode"></div>
+    					<input name="verification" id="verification" type="text" placeholder="邀请码6位数字或字母">
+    				</label>
+    			</div>
+    			<div class="ecjia-login-b">
+    				<input name="act" type="hidden" value="act_register" />
+    				<input name="enabled_sms" type="hidden" value="0" />
+    				<input type="hidden" name="back_act" value="{$back_act}" />
+    				<div class="around margin-top">
+    				<button class="btn btn-info next-btn" type="button" data-url="{RC_Uri::url('user/privilege/validate_code')}">{$lang.next}</button>
+    				</div>
+    			</div>
 			</div>
 		</form>
 	</div>

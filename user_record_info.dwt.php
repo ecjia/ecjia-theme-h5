@@ -28,6 +28,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <p class="record-key">{if $sur_amount.type eq 'raply'}申请时间{else}充值时间{/if}</p>
     </div>
     {if $sur_amount.pay_status eq '已完成'}
+    {elseif $sur_amount.pay_status eq ''}
     {else}
         <form name="formPassword" action="{url path='user/user_account/record_cancel'}" method="post" >
         {if $sur_amount.type eq 'deposit'}
@@ -35,16 +36,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <input name="record_type" type="hidden" value={$sur_amount.type} />
                 <input name="account_id" type="hidden" value={$sur_amount.account_id}>
                 <input name="payment_id" type="hidden" value={$sur_amount.payment_id} />
-        		<input class="btn ecjiaf-fl btn-c" id="record_cancel" name="submit" type="submit" value="{t}取消{/t}" />
-        		<input class="btn ecjiaf-fr" name="submit" type="submit" value="{t}充值{/t}" />
+        		<input class="btn ecjia-fl btn-c" id="record_cancel" name="submit" type="submit" value="{t}取消{/t}" />
+        		<input class="btn ecjiaf-fr ecjia-fl" name="submit" type="submit" value="{t}充值{/t}" />
         	</div>
-        {else if}
+        {else}
             <div class="two-btn btn-bottom">
                 <p class="apply-img"></p>
                 <p class="apply">已申请</p>
                 <input name="record_type" type="hidden" value={$sur_amount.type} />
                 <input name="account_id" type="hidden" value={$sur_amount.account_id}>
-                <input class="btn ecjiaf-fr btn-c" id="record_cancel" name="submit" type="submit" value="{t}取消{/t}" />
+                <input class="btn ecjiaf-fr btn-c ecjia-fl" id="record_cancel" name="submit" type="submit" value="{t}取消{/t}" />
         	</div>	
         {/if}	
         </form>

@@ -86,7 +86,7 @@ class user_account_controller {
             return ecjia_front::$controller->showmessage(__('余额不足，请确定提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_account/withdraw')));
         }
         if (strlen($note) > '300') {
-            return ecjia_front::$controller->showmessage(__('输入的文字超过规定字数'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_account/withdraw')));
+            return ecjia_front::$controller->showmessage(__('输入的文字超过规定字数'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         if (empty($amount)) {
             return ecjia_front::$controller->showmessage(__('请输入提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -126,7 +126,14 @@ class user_account_controller {
     	        $arr[$time][$key]['add_time'] = substr($val['add_time'],5,11);
     	    }
     	}
+    	foreach ($arr as $key => $val) {
+            ecjia_front::$controller->assign('key'.$key, $key);    	    
+    	}
     	$user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
+    	$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+    	if (!empty($user['avatar_img'])) {
+    	    $user_img = $user['avatar_img'];
+    	}
     	ecjia_front::$controller->assign('user_img', $user_img);
     	ecjia_front::$controller->assign('type', $type);
     	ecjia_front::$controller->assign('now_mon', $now_mon);
@@ -138,7 +145,6 @@ class user_account_controller {
     	    $more = 1;
     	}
     	return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $more));
-
     }
 
     /**

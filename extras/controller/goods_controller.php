@@ -536,8 +536,8 @@ class goods_controller {
     	
     	if ($type == 'ajax_get') {
     		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $say_list, 'is_last' => $data['is_last']));
-    		return false;
     	}
+    	
     	ecjia_front::$controller->display('store_list.dwt');
     }
     
@@ -722,7 +722,6 @@ class goods_controller {
     		'info' => '<i class="iconfont icon-location"></i>'
     	);
     	ecjia_front::$controller->assign('header_right', $header_right);
-    	
     	ecjia_front::$controller->display('store_goods.dwt');
     }
     
@@ -952,6 +951,34 @@ class goods_controller {
     	}
 
     	return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('say_list' => $sayList, 'list' => $cart_goods_list, 'count' => $cart_count, 'data_rec' => $data_rec));
+    }
+    
+    public static function seller_list() {
+    	$cid = intval($_GET['cid']);
+    	
+    	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+    	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+    	 
+    	$type = isset($_GET['type']) ? $_GET['type'] : '';//判断是否是下滑加载
+    	 
+    	$arr = array(
+    		'pagination'	=> array('count' => $limit, 'page' => $page),
+    		'location' 		=> array('longitude' => '121.416359', 'latitude' => '31.235371')
+    	);
+    	$arr['category_id'] = $cid;
+    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($arr)->send()->getBody();
+    	$data = json_decode($data, true);
+
+    	if ($type == 'ajax_get') {
+    		ecjia_front::$controller->assign('data', $data['data']);
+    		$say_list = ecjia_front::$controller->fetch('seller_list.dwt');
+    		
+    		if ($data['paginated']['more'] == 0) $data['is_last'] = 1;
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $say_list, 'is_last' => $data['is_last']));
+    	}
+    	
+    	ecjia_front::$controller->assign('cid', $cid);
+    	ecjia_front::$controller->display('seller_list.dwt');
     }
 }
 

@@ -61,9 +61,27 @@ class user_bonus_controller {
      * 奖励明细
      */
     public static function reward_detail() {
+        $type = !empty($_GET['type']) ? $_GET['type'] : '';
+        
 		$token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
     	$invite_reward = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_REWARD)->data(array('token' => $token['access_token']))->run();
-    	ecjia_front::$controller->assign('reward_detail', $reward_detail);
+    	ecjia_front::$controller->assign('month', $invite_reward['invite_record']);
+    	
+    	$arr = array('token' => $token['access_token']);
+    	$max_key = array_keys($invite_reward['invite_record'], max($invite_reward['invite_record']));
+    	$month = $invite_reward['invite_record'][$max_key[0]]['invite_data'];
+    	$arr['date'] = $month;
+    	
+    	if (isset($_POST['date'])) {
+    	    $arr['date'] = $_POST['date'];
+    	} else {
+    	    $arr['date'] = $month;
+    	}
+    	
+    	$invite_record = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_RECORD)->data($arr)->send()->getBody();
+    	$invite_record = json_decode($invite_record, true);
+    	
+    	ecjia_front::$controller->assign('invite_record', $invite_record['data']);
         ecjia_front::$controller->display('user_reward_detail.dwt');
     }
     

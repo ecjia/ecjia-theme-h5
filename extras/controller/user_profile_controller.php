@@ -12,6 +12,9 @@ class user_profile_controller {
         $user_img_login = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         $user_img_logout = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-out2x.png';
         if (!empty($user)) {
+            if (!empty($user['avatar_img'])) {
+                $user_img_login = $user['avatar_img'];
+            }
             ecjia_front::$controller->assign('user_img', $user_img_login);
         } else {
             ecjia_front::$controller->assign('user_img', $user_img_logout);
@@ -33,7 +36,7 @@ class user_profile_controller {
     public static function modify_username_account() {
         $name = !empty($_POST['username']) ? $_POST['username'] :'';
         if (strlen($name) > 20 || strlen($name) < 4) {
-              return ecjia_front::$controller->showmessage(__('用户名格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_profile/modify_username')) );
+              return ecjia_front::$controller->showmessage(__('请输入4-20个字符'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_profile/modify_username')) );
         }
         if (!empty($name)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_UPDATE)->data(array('user_name' => $name))->send()->getBody();
