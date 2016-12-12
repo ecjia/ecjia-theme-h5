@@ -10,8 +10,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">
-var bonus_sn_error = '{$lang.bonus_sn_error}';
-var bonus_sn_empty = '{$lang.bonus_sn_empty}';
+	ecjia.touch.record.init();
 </script>
 <!-- {/block} -->
 
@@ -26,15 +25,14 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
     </div>
 </div>
 <div>
-	<ul class="ecjia-list ecjia-account-record" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_account/ajax_record' args="type={$type}"}" data-size="10">
+	<ul class="ecjia-list ecjia-account-record" id="J_ItemList" data-toggle="asynclist1" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_account/ajax_record' args="type={$type}"}" data-size="10">
 	</ul>
 </div>
 <!-- {/block} -->
 <!-- {block name="ajaxinfo"} -->
     {foreach from=$sur_amount key=key item=group}
-	<ul class="account-record-list">
-		<p class="record-time">{if $key eq $now_mon}{'本月'}{else}{$key}{'月'}{/if}</p>
-		<li class="ecjia-margin-b record-list">
+		<p class="record-time ecjia-margin-b ecjia-margin-l ecjia-margin-t record-time-{$key}">{if $key eq $now_mon}{'本月'}{else}{$key}{'月'}{/if}</p>
+		<li class="record-list account-record-list" >
 			<ul>
 			{foreach from=$group item=item}
 				<li class="record-single">
@@ -44,12 +42,12 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 					</div>
 					<div class="record-r">
 						<div class="record-r-l">
-							<p class="account-record-big">{$item.type_lable}</p>
-							<p class="record-time account-record-sm">{$item.add_time}</p>
+							<span class="account-record-big">{$item.type_lable}</span>
+							<span class="record-time account-record-sm">{$item.add_time}</span>
 						</div>
 						<div class="record-r-r">
-							<p class="account-record-big">{$item.amount}</p>
-							<p class="account-record-sm">{$item.pay_status}</p>
+							<span class="account-record-big">{$item.amount}</span>
+							<span class="account-record-sm">{$item.pay_status}</span>
 						</div>
 					</a>
 				</form>
@@ -57,11 +55,10 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 			{/foreach}
 			</ul>
 		</li>
-	</ul>
     {foreachelse}
 	<div class="ecjia-nolist">
 		<div class="no-record"></div>
-		<p>{t}暂无明细记录{/t}</p>
+		<span>{t}暂无明细记录{/t}</span>
 	</div>
 <!--{/foreach}-->
 <!-- {/block} -->

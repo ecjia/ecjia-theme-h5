@@ -2677,7 +2677,7 @@ footer{
 .ecjia-account-list-f {
 	background: #FFF;
 	border-bottom: 1px solid #eee;
-	margin-bottom: 1em;
+	/*margin-bottom: 1em;*/
 }
 .ecjia-account-list-f .ecjia-account-list {
 	width: 93%;
@@ -2687,14 +2687,21 @@ footer{
 	margin-top: 0;
 }
 .ecjia-account-record li {
-	border: none;
-	padding: 0 .5em 0 .5em;
-	margin-top: 1em;
+/*	border-top: 1px solid #eee;*/
+	padding: 0;
+	/*padding: 0 .5em 0 .5em;*/
+	/*margin-top: 1em;*/
 }
-.ecjia-account-record p {
+.ecjia-account-border-bottom {
+	border-bottom: 1px solid #eee;
+}
+.ecjia-account-record span {
 	display: block;
 	width: 96%;
-	margin: 0 auto;
+	/*margin: 1em auto 1em;*/
+}
+.ecjia-account-record p {
+	display: none;
 }
 .ecjia-list.ecjia-account-record>.ecjia-nolist>p {
 	margin: 40% 0 0 2%;
@@ -2705,32 +2712,40 @@ footer{
 	left: 50%;
 	position: absolute;
 }
-.ecjia-account-record .account-record-list li.record-list{
-	border-top: 1px solid #eee;
+/*.ecjia-account-record  li:last-child {
+	border:none!important;
+}*/
+/*.ecjia-account-record  li.record-list{
 	border-bottom: 1px solid #eee;
+}*/
+.ecjia-account-record  li.record-list{
+	/*border-top: 1px solid #eee;*/
+	/*border-bottom: 1px solid #eee;*/
+	padding-right: : 0!important;
 }
-.ecjia-account-record .account-record-list li.record-list{
-	border-bottom: 1px solid #eee;
-}
-.ecjia-account-record .account-record-list .record-l{
+.ecjia-account-record  .record-l{
 	float: left;
 	width: 20%;
+	padding-top: 2em;
+	padding-left: 1em;
 }
 .ecjia-account .ecjia-green {
 	background-color: #47AA4D;
 	color: #FFF!important;
 }
-.ecjia-account-record .account-record-list span.user-photo img{
+.ecjia-account-record  span.user-photo img{
 	width: 4em;
 	height: 4em;
 }
-.ecjia-account-record .account-record-list .record-r{
+.ecjia-account-record  .record-r{
 	float: left;
 	width: 80%;
 	text-align: right;
-	padding-bottom: 1em;
-	padding-top: .7em;
-	border-bottom: 1px solid #eee;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-bottom: 2em;
+	padding-top: 2em;
+	/*border-bottom: 1px solid #eee;*/
 }
 .account-record-big{
 	font-size: 1.2em!important;
@@ -2739,18 +2754,19 @@ footer{
 .account-record-sm{
 	font-size: .9em!important;
 }
-.ecjia-account-record .account-record-list li.record-single:last-child .record-r{
-	border: none;
+.ecjia-account-record  li:last-child{
+	border-color: red;
+	border: 0;
 }
-.ecjia-account-record .account-record-list .record-r p{
+.ecjia-account-record  .record-r p{
 	color: #333;
 	font-weight: 400;
 	font-size: 1.1em;
 }
-.ecjia-account-record .account-record-list .record-r p.record-time{
+.ecjia-account-record  .record-r p.record-time{
 	color: #bbb;
 }
-.ecjia-account-record .account-record-list .record-r .record-r-l{
+.ecjia-account-record  .record-r .record-r-l{
 	float: left;
 	width: 60%;
 	text-align: left;
