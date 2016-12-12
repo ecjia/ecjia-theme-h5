@@ -179,9 +179,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 			<!-- {/if} -->
 		</div>
-		<div class="goods-describe goods-describe-new ecjia-margin-b" id="two-info" style="padding:0 0 0 17px;">
+		<div class="goods-describe goods-describe-new ecjia-margin-b" id="two-info" >
 		<!-- {if $goods_info.properties} -->
-			<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#dddddd">
+			<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#dddddd" style="margin:0 0 0 5px;">
 				<!-- {foreach from=$goods_info.properties item=property_group} -->
 				<tr>
 					<td bgcolor="#FFFFFF" align="left" width="30%" class="f1">{$property_group.name|escape:html}</td>
