@@ -15,10 +15,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 <div class="ecjia-order-detail">
 	<ul class="ecjia-list ecjia-list-two ecjia-nav ecjia-margin-t-n">
-		<li class="active"><a class="nopjax" href="#one" role="tab" data-toggle="tab">订单状态</a></li>
-		<li class=""><a class="nopjax" href="#two" role="tab" data-toggle="tab"	>订单详情</a></li>
+		<li class="{if $smarty.get.type neq 'detail'} active{/if}"><a class="nopjax" href="#one" role="tab" data-toggle="tab">订单状态</a></li>
+		<li class="{if $smarty.get.type eq 'detail'} active{/if}"><a class="nopjax" href="#two" role="tab" data-toggle="tab"	>订单详情</a></li>
 	</ul>
-	<div class="goods-describe active order-log-list" id="one">
+	<div class="goods-describe order-log-list {if $smarty.get.type neq 'detail'} active{/if}" id="one">
 		<!-- {foreach from=$order.order_status_log item=info} -->
 		<div class="order-log-item">
 			<div class="order-log">
@@ -28,12 +28,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 		<!-- {/foreach} -->
 	</div>
-	<div class="ecjia-checkout goods-describe ecjia-margin-b" id="two">
+	<div class="ecjia-checkout goods-describe ecjia-margin-b {if $smarty.get.type eq 'detail'} active{/if} " id="two">
 		<div class="flow-goods-list">
 			<ul class="goods-item">
 				<!-- {foreach from=$order.goods_list item=goods} -->
 				<li>
-				    <a href='{url path="goods/index/init" args="id={$goods.goods_id}"}'>
+				    <a href='{url path="goods/index/show" args="goods_id={$goods.goods_id}"}'>
 					<div class="ecjiaf-fl goods-img">
 						<img src="{$goods.img.thumb}" alt="{$goods.name}" title="{$goods.name}" />
 					</div>
