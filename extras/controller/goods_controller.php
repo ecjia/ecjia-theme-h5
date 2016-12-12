@@ -586,6 +586,12 @@ class goods_controller {
     }
     
     public static function update_cart() {
+    	if (!ecjia_touch_user::singleton()->isSignin()) {
+    		$url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
+    		$referer = RC_Uri::url('user/privilege/login', array('referer' => urlencode($url)));
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('referer' => $referer));
+    	}
+    	
     	$rec_id 	= is_array(($_POST['rec_id'])) ? $_POST['rec_id'] : $_POST['rec_id'];
     	$new_number = intval($_POST['val']);
     	$store_id 	= intval($_POST['store_id']);
