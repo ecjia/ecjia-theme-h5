@@ -42,6 +42,10 @@ class goods_controller {
 	    );
 	    /*商品基本信息*/
 	    $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($par)->run();
+	    if ($goods_info === false) {
+	    	ecjia_front::$controller->assign('no_goods_info', 1);
+	    	//ecjia_front::$controller->showmessage('不存在的信息', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
 	    if (!empty($goods_info['promote_end_date'])) {
 	    	$goods_info['promote_end_time'] = RC_Time::local_strtotime($goods_info['promote_end_date']);
 	    }
@@ -586,6 +590,12 @@ class goods_controller {
     }
     
     public static function update_cart() {
+    	if (!ecjia_touch_user::singleton()->isSignin()) {
+    		$url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
+    		$referer = RC_Uri::url('user/privilege/login', array('referer' => urlencode($url)));
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('referer' => $referer));
+    	}
+    	
     	$rec_id 	= is_array(($_POST['rec_id'])) ? $_POST['rec_id'] : $_POST['rec_id'];
     	$new_number = intval($_POST['val']);
     	$store_id 	= intval($_POST['store_id']);

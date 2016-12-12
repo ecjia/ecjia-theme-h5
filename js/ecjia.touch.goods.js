@@ -234,7 +234,15 @@
         	
         	//更新购物车中商品
             $.post(url, info, function(data){
+            	$('.la-ball-atom').remove();
+            	$('[data-toggle="toggle_checkbox"]').removeClass('limit_click');//店铺首页 允许其他单选框点击
+            	$('.box').children('span').removeClass('limit_click');//店铺首页 允许其他加减按钮点击
+            	$('.goods-add-cart').removeClass('disabled');
             	if (data.state == 'error') {
+            		if (data.referer) {
+                    	ecjia.pjax(data.referer);
+            			return false;
+            		}
             		alert(data.message);
             		$('.la-ball-atom').remove();
             		ecjia.pjax(window.location.href);
@@ -309,10 +317,6 @@
     				ecjia.touch.category.toggle_checkbox();
             	}
             	ecjia.touch.category.check_all();
-            	$('.la-ball-atom').remove();
-            	$('[data-toggle="toggle_checkbox"]').removeClass('limit_click');//店铺首页 允许其他单选框点击
-            	$('.box').children('span').removeClass('limit_click');//店铺首页 允许其他加减按钮点击
-            	$('.goods-add-cart').removeClass('disabled');
             });
         },
         
