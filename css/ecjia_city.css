@@ -3459,12 +3459,15 @@ footer{
 .goods-describe .ecjia-nolist{
 	font-size:1em;
 	background-color:#fff;
-	padding-top:13em;
-	padding-bottom:21em;
+	padding-top:7.5em;
+	padding-bottom:15em;
 }
 .goods-describe .ecjia-nolist img{
-	width:30%;
-	height:30%;
+	width:40%;
+	height:40%;
+}
+.goods-describe .ecjia-nolist .tags_list_font{
+	color:#999;
 }
 .goods-detail-title-border{
 	border:0.5px solid #eee;
@@ -3479,6 +3482,7 @@ footer{
 .goods-desc-info .goods-describe table tr td, .goods-desc-info .goods-describe table tr:last-child{
 	border-bottom:none;
 }
+
 /*========================  订单列表 ===========================*/
 .ecjia-order-list {
 	padding-bottom:4em;
