@@ -4274,7 +4274,7 @@ footer{
     overflow: hidden;
 }
 /*======================== 推广 ===========================*/
-.ecjia-my-reward{
+.ecjia-spread .ecjia-my-reward{
 	float:right;
 	position:relative;
 	font-size:16px;
@@ -4431,11 +4431,10 @@ footer{
 	padding-bottom:1.5em;
 }
 .ecjia-spread .invite-template .invite-template-style{
-	border:1px solid #eee;
-	border-radius: 7px;
+	width:100%;
 	padding-left:.5em;
 	padding-right:.5em;
-	height:4em;
+	height:6em;
 }
 .ecjia-spread .go-to-spread{
 	width:100%;
@@ -4444,10 +4443,10 @@ footer{
 	padding-bottom:1.5em;
 }
 .ecjia-spread .go-to-spread .would-spread{
-	font-size:21px;
+	font-size:18px;
 	border-radius: 7px;
-	height:45px;
-	line-height:45px;
+	height:42px;
+	line-height:42px;
 	color:#fff;
 	text-align:center;
 	background: #47aa4d none repeat scroll 0 0;
@@ -4463,6 +4462,7 @@ footer{
 }
 .ecjia-spread .invite_explain .invite_explain-content{
 	padding-left:1em;
+	color:#999;
 }
 .ecjia-spread .share-buttons .cancel-butoons{
 	height:45px;
