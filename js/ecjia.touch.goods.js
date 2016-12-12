@@ -235,6 +235,10 @@
         	//更新购物车中商品
             $.post(url, info, function(data){
             	if (data.state == 'error') {
+            		if (data.referer) {
+            			ecjia.pjax(data.referer);
+            			return false;
+            		}
             		alert(data.message);
             		$('.la-ball-atom').remove();
             		ecjia.pjax(window.location.href);

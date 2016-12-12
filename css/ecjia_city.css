@@ -2706,15 +2706,14 @@ footer{
 	/*padding: 0 .5em 0 .5em;*/
 	/*margin-top: 1em;*/
 }
-.ecjia-account-border-bottom {
-	border-bottom: 1px solid #eee;
-}
 .ecjia-account-record span {
 	display: block;
 	width: 96%;
 	/*margin: 1em auto 1em;*/
 }
 .ecjia-account-record p {
+	border-bottom: 1px solid #eee;
+	padding: 1em 1em;
 	display: none;
 }
 .ecjia-list.ecjia-account-record>.ecjia-nolist>p {
