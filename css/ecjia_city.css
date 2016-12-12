@@ -3483,7 +3483,14 @@ footer{
 .goods-desc-info .goods-describe table tr td, .goods-desc-info .goods-describe table tr:last-child{
 	border-bottom:none;
 }
-
+.ecjia-no-goods-info{
+	position:relative;
+	left:38%;
+	width:26%;
+	padding-top:19em;
+	text-align:center;
+	color:#999;
+}
 /*========================  订单列表 ===========================*/
 .ecjia-order-list {
 	padding-bottom:4em;
