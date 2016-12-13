@@ -2577,6 +2577,19 @@ footer{
 	background: #fff;
 	padding:1em;
 }
+.ecjia-account.ecjia-flow-done {
+
+}
+.ecjia-account.ecjia-pay {
+
+}
+.ecjia-account.ecjia-flow-done .list-font-size{
+	padding: .7em 1em!important;
+	font-size: 1.1em;
+}
+.ecjia-account.ecjia-flow-done .payment-list .one-select{
+	top: .4em;
+}
 .ecjia-account .account-phone {
 	line-height: 3em;
 }
@@ -2606,6 +2619,9 @@ footer{
 }
 .ecjia-account .account-bonus span {
 	color: #999;
+}
+.ecjia-account .border-top-im {
+	border-top: 0!important;
 }
 .ecjia-account .cash_list {
 	text-align: center;

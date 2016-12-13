@@ -33,7 +33,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	{/if}
 </div>
 
-{if $user.formated_user_money}
+{if $user.id}
 <div class="ecjia-user-head ecjia-user ecjia-color-green ecjia-user-marg-t">
     <ul class="ecjia-user-marg-t ecjia-list list-short ecjia-user-no-border-t">
        <li>
