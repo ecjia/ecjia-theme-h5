@@ -36,8 +36,7 @@ class user_address_controller {
 //         ecjia_front::$controller->assign('page', $consignee_list['page']);
 //         ecjia_front::$controller->assign('title', RC_Lang::lang('consignee_info'));
 //         ecjia_front::$controller->assign_title(RC_Lang::lang('consignee_info'));
-		$token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token['access_token']))->run();
+    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
 	    ecjia_front::$controller->assign('address_list', $address_list);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_address_list.dwt');
@@ -71,7 +70,7 @@ class user_address_controller {
 //                 $address_list[] = $v;
 //             }
 //         }
-//     	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => 'cac36e13e26a1084b4d9731d7b653b8b64a2c17d'))->run();
+    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
 		ecjia_front::$controller->assign('address_list', $address_list);
         $sayList = ecjia_front::$controller->fetch('user_address_list.dwt');
         return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' , 'is_last' => $consignee_list['is_last']));
