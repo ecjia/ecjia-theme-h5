@@ -81,7 +81,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="flow-no-pro ecjia-margin-t ecjia-margin-b {if $cart_list}hide{/if}" style="margin-bottom: 48px;">
 	<div class="ecjia-nolist">
 		您还没有添加商品
+		{if $not_login}
+		<a class="btn btn-small" type="button" href="{url path='user/user_privilege/login'}">{t}点击登录{/t}</a>
+		{else}
 		<a class="btn btn-small" type="button" href="{url path='touch/index/init'}">{t}去逛逛{/t}</a>
+		{/if}
 	</div>
 </div>
 <!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->

@@ -87,11 +87,22 @@
 						type		: $this.attr('data-type'),
 					};
 				ecjia.touch.more(options);
-				var loaderimgurl = $this.attr('data-loadimg') || false;
-				if (loaderimgurl) {
-					$loader = $('<a class="load-list" href="javascript:;"><img src="'+loaderimgurl+'" /></a>');
+//				var loaderimgurl = $this.attr('data-loadimg') || false;
+//				if (loaderimgurl) {
+//					$loader = $('<a class="load-list" href="javascript:;"><img src="'+loaderimgurl+'" /></a>');
+					$loader = $('<a class="load-list" href="javascript:;">' + 
+									'<div class="loaders">' +
+										'<div class="loader">' + 
+											'<div class="loader-inner ball-pulse">' + 
+												'<div></div>' + 
+												'<div></div>' + 
+												'<div></div>' + 
+											'</div>' +
+										'</div>' +
+									'</div>' +
+								'</a>');
 					$this.after($loader);
-				}
+//				}
 			}
 		},
 

@@ -14,13 +14,17 @@ class user_privilege_controller {
             ecjia_front::$controller->assign('rand', mt_rand());
         }
         $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
+        
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('step', isset($_GET['step']) ? htmlspecialchars($_GET['step']) : '');
         ecjia_front::$controller->assign('anonymous_buy', ecjia::config('anonymous_buy'));
+        ecjia_front::$controller->assign('header_right', array('info' => '注册', 'href' => RC_Uri::url('user/privilege/register')));
+        
+        
+        ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign('title', RC_Lang::lang('login'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('login'));
-        ecjia_front::$controller->assign('header_right' , array('info' => '注册', 'href' => RC_Uri::url('user/privilege/register')));
-        ecjia_front::$controller->assign_lang();
+        
         ecjia_front::$controller->display('user_login.dwt');
     }
     
@@ -48,6 +52,10 @@ class user_privilege_controller {
             $message = $data->get_error_message();
             return ecjia_front::$controller->showmessage(__($message), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/privilege/login')));
         } else {
+        	$referer = !empty($_GET['referer']) ? urldecode($_GET['referer']) : '';
+        	if (!empty($referer)) {
+        		return ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer));
+        	}
             return ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/index/init')));
         }
     }

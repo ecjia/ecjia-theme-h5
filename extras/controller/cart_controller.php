@@ -7,8 +7,6 @@ class cart_controller {
      * 购物车列表
      */
     public static function init() {
-    	new user_front();
-    	
     	$token = ecjia_touch_user::singleton()->getToken();
     	//所有地址
     	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
@@ -31,6 +29,7 @@ class cart_controller {
     		foreach ($cart_list['cart_list'] as $k => $v) {
     			$cart_list['cart_list'][$k]['total']['check_all'] = true;
     			$cart_list['cart_list'][$k]['total']['check_one'] = false;
+    			
     			if (!empty($v['goods_list'])) {
     				foreach ($v['goods_list'] as $key => $val) {
     					if ($val['is_checked'] == 0) {
@@ -54,6 +53,11 @@ class cart_controller {
 
     	ecjia_front::$controller->assign('default_address', $default_address);
     	ecjia_front::$controller->assign('cart_list', $cart_list['cart_list']);
+    	
+    	if (!ecjia_touch_user::singleton()->isSignin()) {
+    		ecjia_front::$controller->assign('referer', urlencode(RC_Uri::url('cart/index/init')));
+    		ecjia_front::$controller->assign('not_login', true);
+    	}
     	
         ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->assign('active', 'cartList');
