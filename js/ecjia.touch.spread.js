@@ -15,21 +15,38 @@
         },  
         
 		article: function() {
-			//获取要定位元素距离浏览器顶部的距离
-			var navH = $(".pf").offset().top;
+				//滚动条事件
+				$(window).scroll(function(){
+					//获取滚动条的滑动距离
+					var scroH = $(this).scrollTop();
+					
+					$("ul .pf").each(function(i){
+						
+//						滚动时候pf离顶部的距离
+						var pfTop = $(this).offset().top;
+//						console.log('div' + pfTop);
+//						console.log(scroH);
 
-			//滚动条事件
-			$(window).scroll(function(){
-			//获取滚动条的滑动距离
-			var scroH = $(this).scrollTop();
-			//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
-			if(scroH>=navH){
-			$(".pf").css({"position":"fixed","top":0});
-			}else if(scroH < navH){
-			$(".pf").css({"position":"static"});
-			}
-			})
-//			$('ul li:first-child').css('color', 'red');
+						//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+						if (i>=1 && scroH >= pfTop-38) {
+							$(this).css({"position":"fixed","top":0, "z-index":9999});
+						}else if(i==0 && scroH >= pfTop){
+							$(this).css({"position":"fixed","top":0, "z-index":9999});
+						}else{
+							$(this).css({"position":"relative"});
+						}
+//						alert(pfTop);
+//						if(scroH>=pfTop){
+//							alert(pfTop);
+//							$(this).css("background","pink");
+//							$(".pf").css({"position":"fixed","top":0});
+//						}else if(scroH<pfTop){
+//							$(".pf").css({"position":"static"});
+//						}
+				    });
+				})
+		  
+			
 		},
 		
 		hint: function() {
