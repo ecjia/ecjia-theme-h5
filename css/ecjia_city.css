@@ -1661,8 +1661,8 @@ footer{
 .ecjia-flow-cart .item-goods .cart-product-photo .product_empty{
 	position: absolute;
     background-color: rgba(0,0,0,0.4);
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     top: 0;
     left: 0;
     line-height: 70px;
