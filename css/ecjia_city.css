@@ -3491,6 +3491,9 @@ footer{
 	text-align:center;
 	color:#999;
 }
+.goods-describe img{
+	width: 100%;
+}
 /*========================  订单列表 ===========================*/
 .ecjia-order-list {
 	padding-bottom:4em;
