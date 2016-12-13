@@ -23,6 +23,9 @@ class user_bonus_controller {
         $status = empty($_SESSION['bonus_type'])? 'allow_use' : $_SESSION['bonus_type'];
         $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'bonus_type' => $status))->send()->getBody();
         $bonus = json_decode($bonus,true);
+        $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+        $mybonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('token' => $token['access_token']))->run();
+//     _dump($mybonus, 1);
         ecjia_front::$controller->assign('bonus', $bonus['data']);
         $sayList = ecjia_front::$controller->fetch('user_bonus.dwt');
         $more = 0;
