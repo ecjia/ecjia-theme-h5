@@ -17,13 +17,13 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 
 <!-- {block name="main-content"} -->
 
-<ul class="ecjia-list ecjia-list-three ecjia-bonus ecjia-nav ecjia-bonus-border-right">
+<ul class="ecjia-list ecjia-list-three ecjia-bonus ecjia-bonus-top-head ecjia-nav ecjia-bonus-border-right">
 	<li {if $smarty.get.status eq 'allow_use'} class="red-bottom"{elseif $smarty.get.status eq ''}class="red-bottom"{else}class=''{/if}><a {if $smarty.get.status eq 'allow_use'} class="red-font"{elseif $smarty.get.status eq ''}class="red-font"{else}class=""{/if} href="{url path='user/user_bonus/bonus' args='status=allow_use'}">{t}可使用{/t}</a></li>
-	<li {if $smarty.get.status eq 'expired'} class="red-bottom"{else}class=""{/if}><a {if $smarty.get.status eq 'expired'} class="red-font"{else}class=""{/if} href="{url path='user/user_bonus/bonus' args='status=expired'}">{t}已使用{/t}</a></li>
-	<li {if $smarty.get.status eq 'is_used'} class="red-bottom"{else}class=""{/if}><a {if $smarty.get.status eq 'is_used'} class="red-font right-border"{else}class="right-border"{/if} href="{url path='user/user_bonus/bonus' args='status=is_used'}">{t}已过期{/t}</a></li>
+	<li {if $smarty.get.status eq 'is_used'} class="red-bottom"{else}class=""{/if}><a {if $smarty.get.status eq 'is_used'} class="red-font"{else}class=""{/if} href="{url path='user/user_bonus/bonus' args='status=is_used'}">{t}已使用{/t}</a></li>
+	<li {if $smarty.get.status eq 'expired'} class="red-bottom"{else}class=""{/if}><a {if $smarty.get.status eq 'expired'} class="red-font right-border"{else}class="right-border"{/if} href="{url path='user/user_bonus/bonus' args='status=expired'}">{t}已过期{/t}</a></li>
 </ul>
 <div>
-	<ul class="ecjia-list  ecjia-margin-t ecjia-bonus ecjia-list-two" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_bonus_list' args="status={$status}"}" data-size="10">
+	<ul class="ecjia-list  ecjia-bonus-top-list ecjia-margin-t ecjia-bonus ecjia-list-two" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_bonus_list' args="status={$status}"}" data-size="10">
 	</ul>
 </div>
 <!-- {/block} -->
