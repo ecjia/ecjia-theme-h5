@@ -24,11 +24,12 @@
 	font-size: 1.1em;
 	font-weight: bold;
 	color: #232323;
-	margin-left: 3%;
+	padding-left: 3%;
 	line-height: 2.5em;
 	background-color: #EFEFEF;
 	font-family: '黑体';
 	position: relative;
+	width: 100%;
 }
 .ecjia-article .list-one li {
 	height: 3.6em;

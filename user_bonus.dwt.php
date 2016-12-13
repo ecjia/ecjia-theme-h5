@@ -31,11 +31,14 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 	<!--{foreach from=$bonus item=item}-->
 		<li class="ecjia-margin-b list-l-size">
 			<div class="user-bonus-info {if $item.label_status eq '未使用'}user-bonus-head{else}user-bonus-head-expired{/if}">
-				<div {if $item.status eq 'allow_use'} class="type-l"{else}class="type-l color-3a"{/if}">{$item.formatted_bonus_amount}</div>
+				<div {if $item.status eq 'allow_use'} class="type-l"{else}class="type-l color-3a"{/if}">
+				    {$item.formatted_bonus_amount}<br>
+				             指定{$item.seller_name}店铺使用
+				</div>
 				<div  {if $item.status eq 'allow_use'} class="type-r"{else}class="type-r color-3a"{/if}>
 				    <div {if $item.status eq 'expired'}class="img-is-used"{elseif $item.status eq 'is_used'}class="img-expired"{else}class=""{/if}></div>
 					<p class="type-name">{$item.bonus_name}</p>
-					<p class="min_goods_amount">{$item.seller_name}</p>
+					<p class="min_goods_amount">满{$item.formatted_request_amount}使用</p>
 					<p class="type-date">{$item.formatted_start_date}{'-'}{$item.formatted_end_date}</p>
 				</div>
 			</div>
