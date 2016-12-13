@@ -38,7 +38,6 @@ class user_front {
 	        'user/privilege/register',
 	        
 	        'user/get_password/get_password_phone',
-	        'user/get_password/get_password_email',
 	        'user/get_password/pwd_question_name',
 	        'user/get_password/send_pwd_email',
 	        'user/get_password/update_password',

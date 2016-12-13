@@ -10,7 +10,6 @@
 			ecjia.touch.user.loginout_click();
 			ecjia.touch.user.clear_history();
 			ecjia.touch.user.get_code();
-			ecjia.touch.user.click_code();
 			ecjia.touch.user.fast_reset_pwd();
 			ecjia.touch.user.register_password();
 			ecjia.touch.user.mobile_register();
@@ -107,32 +106,6 @@
 		    };
 		},
 		
-		click_code : function (){
-			$(document).ready(function (data){
-				var count = 120; 
-				curCount = count;
-				$("#mobile1").attr("readonly", "true");
-			    $('input[name="get_code1"]').attr("disabled", "true");
-			    $('input[name="get_code1"]').val("重新发送" + curCount + "(s)");
-			    $('input[name="get_code1"]').attr("class", "btn btn-org login-btn");
-			    InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-				ecjia.touch.showmessage(data);
-				function SetRemainTime() {
-			       if (curCount == 0) {     
-			           window.clearInterval(InterValObj);		//停止计时器
-			           $("#mobile1").removeAttr("readonly");	//启用按钮
-			           $('input[name="get_code1"]').removeAttr("disabled");	//启用按钮
-			           $('input[name="get_code1"]').val("重新发送验证码");
-			           $('input[name="get_code1"]').attr("class", "btn btn-info login-btn");
-			       } else {
-			           curCount--;
-			           $('input[name="get_code1"]').attr("disabled", "true");
-			           $('input[name="get_code1"]').val("重新发送" + curCount + "(s)");
-			       }
-			    };
-			});
-		},
-		
 		/* 注册提交表单 */
 		fast_reset_pwd : function (){
 			$(".next-btn").on('click', function(e){
@@ -175,8 +148,10 @@
 			$("input[name='mobile_register']").on('click', function(e){
 				e.preventDefault();
 				var url = $(this).attr('data-url'),
+					mobile = $("input[name='mobile']").val().trim(),
 					code = $("input[name='code']").val().trim();
 				var info = {
+					'mobile': mobile,
 					'code': code
 				};
 				$.post(url, info, function(data){

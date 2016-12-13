@@ -3123,8 +3123,9 @@ footer{
 	margin-top: 3em;
 }
 .ecjia-login .text-st {
+	margin-top: 1em;
 	margin-left: 7%;
-	margin-bottom: .8em;
+	margin-bottom: 1em;
 }
 .ecjia-login .margin-top4 {
 	margin-top: 4em !important;
@@ -3224,6 +3225,9 @@ footer{
 	overflow: hidden;
 	margin: 0;
 	padding-top: .1em;
+}
+.ecjia-login .form-group .input-1 input{
+	padding-left: 0!important;
 }
 .ecjia-login .form-group .input .padding-left05 {
 	padding-left: 0.5em;

@@ -122,7 +122,6 @@ RC_Hook::add_action('user/privilege/logout', array('user_privilege_controller', 
 
 //找回密码
 RC_Loader::load_theme('extras/controller/user_get_password_controller.php');
-RC_Hook::add_action('user/get_password/get_password_email', array('user_get_password_controller', 'get_password_email'));
 RC_Hook::add_action('user/get_password/mobile_register', array('user_get_password_controller', 'mobile_register'));
 RC_Hook::add_action('user/get_password/mobile_register_account', array('user_get_password_controller', 'mobile_register_account'));
 RC_Hook::add_action('user/get_password/reset_password', array('user_get_password_controller', 'reset_password'));

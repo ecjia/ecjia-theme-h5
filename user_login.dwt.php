@@ -40,7 +40,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<!--{/if}-->
 	<div class="ecjia-login-login-foot ecjia-margin-b">
-		<a class="ecjiaf-fr ecjia-margin-t" href="{url path='user/get_password/get_password_email'}">{$lang.forgot_password}?</a>
+		<a class="ecjiaf-fr ecjia-margin-t" href="{url path='user/get_password/mobile_register'}">{$lang.forgot_password}?</a>
 		<!-- {if $anonymous_buy eq 1 && $step eq 'flow'} 是否允许未登录用户购物 -->
 		<a class="ecjiaf-fr" href="{url path='cart/flow/consignee' args="direct_shopping=1"}">{$lang.direct_shopping}</a>
 		<!-- {/if} -->
