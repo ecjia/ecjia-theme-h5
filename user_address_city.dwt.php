@@ -31,7 +31,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<h2 class="select-city"><span>选择城市</span></h2>
 	<ul class="city citylist" >
 	<!-- {foreach from=$citylist item=list} -->
-		<li data-id="{$list.id}">{$list.name}</li>
+		<li data-id="{$list.id}"{if $list.id eq $smarty.get.city_id} class="active"{/if}>{$list.name}</li>
 	<!-- {foreachelse} -->
 		<li>暂无</li>
 	<!-- {/foreach} -->
