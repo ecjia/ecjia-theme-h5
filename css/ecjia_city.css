@@ -2964,13 +2964,20 @@ footer{
 	padding: .5em 0;
 }
 .ecjia-bonus.ecjia-list-two .user-bonus-info .type-l{
-	font-size: 1.5em;
+	margin-top: .7em;
     float: left;
     width: 32%;
 	overflow: hidden;
 	color: #FF1919;
 	font-weight: normal;
 	border-right: 1px solid #eee;
+}
+.ecjia-bonus.ecjia-list-two .user-bonus-info .type-l .bonus-amount{
+	font-size: 1.3em;
+	font-weight: bolder;
+}
+.ecjia-bonus.ecjia-list-two .user-bonus-info .type-l .bonus-store{
+	font-size: 1em;
 }
 .ecjia-bonus.ecjia-list-two .user-bonus-info .type-r{
 	width: 68%;
