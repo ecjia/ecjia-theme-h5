@@ -1,4 +1,5 @@
 <?php
+use Gearman\Component\Gearman\Response;
 /**
  * 地址模块控制器代码
  */
@@ -228,7 +229,20 @@ class user_address_controller {
         ecjia_front::$controller->assign('title', '您当前地址列表');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign_title('当前位置');
+        $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
         ecjia_front::$controller->display('user_near_location.dwt');
+    }
+    
+    
+    public static function near_address() {
+    	$region   = $_GET['region'];
+    	$keywords = $_GET['keywords'];
+    	$key 	  = "HVNBZ-HHR3P-HVBDP-LID55-D2YM3-2AF2W";
+    	$url 	  = "http://apis.map.qq.com/ws/place/v1/suggestion/?region=".$region."&keyword=".$keywords."&key=".$key;
+    	$response = RC_Http::remote_get($url);
+    	$content  = json_decode($response['body']);
+    	ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('content' => $content));
+    	
     }
 
     /**
