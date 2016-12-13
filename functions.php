@@ -19,6 +19,7 @@ RC_Hook::add_action('goods/category/asynclist', array('goods_controller', 'async
 RC_Hook::add_action('goods/category/store_list', array('goods_controller', 'store_list'));//店铺分类列表
 RC_Hook::add_action('goods/category/store_detail', array('goods_controller', 'store_detail'));//店铺详情
 RC_Hook::add_action('goods/category/seller_list', array('goods_controller', 'seller_list'));//店铺分类列表
+RC_Hook::add_action('goods/category/store_position', array('goods_controller', 'store_position'));//店铺位置
 
 RC_Hook::add_action('goods/category/store_goods', array('goods_controller', 'store_goods'));//店铺商品
 RC_Hook::add_action('goods/category/ajax_category_goods', array('goods_controller', 'ajax_category_goods'));//获取分类商品

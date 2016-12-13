@@ -730,7 +730,10 @@ class goods_controller {
     public static function store_position() {
     	$longitude = $_GET['longitude'];
     	$latitude = $_GET['latitude'];
-		    	
+    	
+    	ecjia_front::$controller->assign('longitude', $longitude);
+    	ecjia_front::$controller->assign('latitude', $latitude);
+    	
     	ecjia_front::$controller->display('store_position.dwt');
     }
 }
