@@ -20,7 +20,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
 
-<form class="ecjia-login ecjia-login-margin-top" name="getPassword" action="{url path='user/index/question_get_password'}" method="post">
+<form class="ecjia-login" name="getPassword" action="{url path='user/index/question_get_password'}" method="post">
     <div class="user-img"><img src="{$user_img}"></div>
     <div class="margin-right-left">
         <p class="p-top3 text-size"><span class="text-color">亲爱的QQ用户：</span><span><big>我的音乐</big></span></p>
