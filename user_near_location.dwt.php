@@ -77,7 +77,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	{if $smarty.get.type eq 'index'}
 	<div class="address-backgroundw" id="select-city" data-url="{url path='touch/index/init'}">
 	{else}
-	<div class="address-backgroundw" id="select-city" data-url="{url path='user/user_address/add_address'}">
+	<div class="address-backgroundw" id="select-city" data-url="{$action_url}">
 	{/if}
 		<a href="{url path='user/user_address/city' args="city=selectcity"}"><span class="city_name"><input type="text" id="tresult"/><span>{if $smarty.get.city}{$smarty.get.city}{/if}</span></span></a>
 		<i class="iconfont icon-jiantou-bottom"></i>

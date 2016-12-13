@@ -257,6 +257,11 @@ class user_address_controller {
      */
     public static function near_location() {
         
+        if(!empty($_GET['address_id'])) {
+            ecjia_front::$controller->assign('action_url', RC_Uri::url('user/user_address/edit_address', array('id' => intval($_GET['address_id']))));
+        } else {
+            ecjia_front::$controller->assign('action_url', RC_Uri::url('user/user_address/add_address'));
+        }
         
     	ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
