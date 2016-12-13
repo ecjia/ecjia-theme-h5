@@ -74,7 +74,7 @@ class user_address_controller {
 //     	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => 'cac36e13e26a1084b4d9731d7b653b8b64a2c17d'))->run();
 		ecjia_front::$controller->assign('address_list', $address_list);
         $sayList = ecjia_front::$controller->fetch('user_address_list.dwt');
-        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' , 'is_last' => $consignee_list['is_last']));
+        return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' , 'is_last' => $consignee_list['is_last']));
     }
 
     /**
@@ -127,7 +127,7 @@ class user_address_controller {
         }
         
         $url_address_list = RC_Uri::url('user/user_address/address_list');
-        ecjia_front::$controller->showmessage(RC_Lang::lang('add_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url_address_list));
+        return ecjia_front::$controller->showmessage(RC_Lang::lang('add_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url_address_list));
         
     }
 
@@ -206,38 +206,34 @@ class user_address_controller {
         }
         
         $url_address_list = RC_Uri::url('user/user_address/address_list');
-        ecjia_front::$controller->showmessage(RC_Lang::lang('edit_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url_address_list));
+        return ecjia_front::$controller->showmessage(RC_Lang::lang('edit_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url_address_list));
     }
 
     /**
      * 删除收货地址
      */
-    public static function del_address_list() {
-        $id = intval($_GET['id']);
-//         $db_users = RC_Loader::load_app_model ( "users_model" );
-//         RC_Loader::load_theme('extras/model/user/touch_users_model.class.php');
-//         $db_users       = new touch_users_model();
-//         $count = $db_users->where(array('user_id' => $_SESSION['user_id'], 'address_id' => $id))->count();
-//         if (empty($count)) {
-//             drop_consignee($id);
-//             ecjia_front::$controller->showmessage(RC_Lang::lang('del_address_true'),ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list') ,'is_show' => false));
-//         } else {
-//             ecjia_front::$controller->showmessage('该地址为默认的收货地址，不能删除', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
-//         }
-		$token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-        $address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data(array('token' => $token['access_token'], 'address_id' => $id))->run();
-        ecjia_front::$controller->assign('address_info', $address_info);
-
-        if ($address_info['default_address'] == 0) {
-    	    ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_DELETE)->data(array('token' => $token['access_token'], 'address_id' => $id))->run();
-    	    ecjia_front::$controller->showmessage('删除成功', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
-        } else {
-            ecjia_front::$controller->showmessage('该地址为默认的收货地址，不能删除', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
+    public static function del_address() {
+        $id = empty($_GET['id']) ? 0 : intval($_GET['id']);
+        if (!$id) {
+            return ecjia_front::$controller->showmessage('参数错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
         }
 
+        $params = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $id);
+        $address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params)->run();
 
-//     	$del_address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_DELETE)->data(array('token' => $token['access_token'], 'address_id' => $id))->run();
-//     	ecjia_front::$controller->assign('del_address_list', $del_address_list);
+//         _dump($address_info,1);
+        if ($address_info['default_address'] == 0) {
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_DELETE)->data($params)->send()->getBody();
+            $data = json_decode($data,true);
+            if ($data['status']['succeed']) {
+                 return ecjia_front::$controller->showmessage('删除成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
+            } else {
+                return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
+            }
+    	    
+        } else {
+            return ecjia_front::$controller->showmessage('该地址为默认的收货地址，不能删除', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
+        }
     }
 
     /**
@@ -335,7 +331,7 @@ class user_address_controller {
         ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->assign('addres_list', $address_list);
     	$sayList = ecjia_front::$controller->fetch('user_location.dwt');
-    	ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' ,'is_last' => $consignee_list['is_last']));
+    	return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' ,'is_last' => $consignee_list['is_last']));
     }
     /**
      * 我的位置
@@ -369,16 +365,16 @@ class user_address_controller {
         $shop_district      = !empty($_REQUEST['district'])    ? intval($_REQUEST['district'])           : 0;
         $shop_address       = !empty($_REQUEST['address'])     ? htmlspecialchars($_REQUEST['address'])  : 0;
         if(empty($shop_province)){
-            $this->showmessage('请选择省份', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'province'));
+            return $this->showmessage('请选择省份', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'province'));
         }
         if(empty($shop_city)){
-            $this->showmessage('请选择城市', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'city'));
+            return $this->showmessage('请选择城市', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'city'));
         }
         if(empty($shop_district)){
-            $this->showmessage('请选择地区', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'district'));
+            return $this->showmessage('请选择地区', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'district'));
         }
         if(empty($shop_address)){
-            $this->showmessage('请填写详细地址', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'address'));
+            return $this->showmessage('请填写详细地址', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'address'));
         }
         $city_name = RC_DB::table('region')->where('region_id', $shop_city)->pluck('region_name');
         $city_district = RC_DB::table('region')->where('region_id', $shop_district)->pluck('region_name');
