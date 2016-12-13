@@ -15,13 +15,7 @@ class touch_controller {
         $arr = array(
         	'location' => array('longitude' => '121.416359', 'latitude' => '31.235371')
         );
-        $cache_key = 'home_data';
-        $data = RC_Cache::app_cache_get($cache_key, 'index');
-        if (!$data) {
-        	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DATA)->data($arr)->run();
-        	RC_Cache::app_cache_set($cache_key, $data, 'index', 60*24);//24小时缓存
-        }
-       	
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DATA)->data($arr)->run();
         //处理ecjiaopen url
         if (!empty($data)) {
         	foreach ($data as $k => $v) {
@@ -101,12 +95,7 @@ class touch_controller {
 			'location' 		=> array('longitude' => '121.416359', 'latitude' => '31.235371')
         );
         
-        $cache_key = 'goods_list_'.$type.'_'.$limit.'_'.$page;
-        $arr = RC_Cache::app_cache_get($cache_key, 'goods');
-        if (!$arr) {
-        	$arr = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($paramater)->send()->getBody();
-        	RC_Cache::app_cache_set($cache_key, $arr, 'goods', 60*24);//24小时缓存
-        }
+        $arr = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($paramater)->send()->getBody();
         $list = json_decode($arr, true);
 
         $data = !empty($list['data']) ? $list['data'] : array();
@@ -148,22 +137,11 @@ class touch_controller {
     	}
         setcookie($ecjia_search, '', 1);
         
-        return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('touch/index/search')));
-    }
-
-    public static function download() {
-        // ecjia_front::$controller->assign('page_title', ecjia::config('shop_name') . ' - 手机APP下载');
-        // ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
-        //
-        // ecjia_front::$controller->assign('shop_url', RC_Uri::url('touch/index/init'));
-        // ecjia_front::$controller->assign('shop_app_icon', ecjia::config('shop_app_icon') ? get_image_path('', ecjia::config('shop_app_icon')) : RC_Uri::admin_url('statics/images/nopic.png'));
-        // ecjia_front::$controller->assign('shop_app_description', ecjia::config('shop_app_description') ? ecjia::config('shop_app_description') : '暂无手机应用描述');
-        // ecjia_front::$controller->assign('shop_android_download', ecjia::config('shop_android_download'));
-        // ecjia_front::$controller->assign('shop_iphone_download', ecjia::config('shop_iphone_download'));
-        // ecjia_front::$controller->assign('shop_ipad_download', ecjia::config('shop_ipad_download'));
-        // ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('download.dwt');
-
+        $pjaxurl = '';
+        if ($store_id <= 0) {
+        	$pjaxurl = RC_Uri::url('touch/index/search');
+        }
+        return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $pjaxurl));
     }
 }
 

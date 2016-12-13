@@ -11,12 +11,19 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="footer"} -->
 <script type="text/javascript">
 	$(document).ready(function(){  
-         var Uarry=$("#tcontent li");
-         $("#tcontent li").click(function(){             
-              var count=$(this).index();  
-              var Tresult=Uarry.eq(count).text();  
+         $(".citylist li").click(function(){             
+              var city_id=$(this).attr('data-id');
+              var address_id = $('input[name="address_id"]').val(); 
+              var city_name=$(this).text();
               var url = $("#cityall").attr('data-url');
-              url += '&city=' + Tresult;
+              url += '&city=' + city_name;
+              if (city_id) {
+            	  url += '&city_id=' + city_id;
+              }
+              if (address_id) {
+            	  url += '&id=' + address_id;
+              }
+                  
               ecjia.pjax(url);
          }) 
   	})  
@@ -26,26 +33,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 {if $smarty.get.city eq 'addcity'}
 	<div class="cityall" id="cityall" data-url="{url path='user/user_address/add_address'}">
-{else}
-	<div class="cityall" id="cityall" data-url="{url path='user/user_address/near_location'}">
+{else if $smarty.get.city eq 'editcity'}
+	<div class="cityall" id="cityall" data-url="{url path='user/user_address/edit_address'}">
 {/if}
+<input type="hidden" name="address_id" value="{$smarty.get.address_id}">
 	<h2 class="select-city"><span>选择城市</span></h2>
-	<ul class="city" id="tcontent">
-		<li cityid="1">北京市</li>
-		<li cityid="1601">广州市</li>
-		<li cityid="1607">深圳市</li>
-		
-		<li cityid="1381">武汉市</li>
-		<li cityid="904">南京市</li>
-		<li cityid="2376">西安市</li>
-		
-		<li cityid="2">上海市</li>
-		<li cityid="1930">成都市</li>
-		<li cityid="3">天津市</li>
-	
-		<li cityid="1213">杭州市</li>
-		<li cityid="4">重庆市</li>
-		<li cityid="1116">合肥市</li>
+	<ul class="city citylist" >
+	<!-- {foreach from=$citylist item=list} -->
+		<li data-id="{$list.id}"{if $list.id eq $smarty.get.city_id} class="active"{/if}>{$list.name}</li>
+	<!-- {foreachelse} -->
+		<li>暂无</li>
+	<!-- {/foreach} -->
 	</ul>
 </div>
 <!-- {/block} -->

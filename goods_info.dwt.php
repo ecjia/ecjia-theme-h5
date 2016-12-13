@@ -22,8 +22,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<li><a class="goods-tab tab2" href="javascript:;" data-type="2">详情</a></li>
 	</ul>
 </div>
-
+{if $no_goods_info eq 1}
+<div class="ecjia-no-goods-info">不存在的信息</div>
+{/if}
 <!-- 切换商品页面start -->
+{if $no_goods_info neq 1}
 <div class="ecjia-goods-basic-info"  id="goods-info-one">
 <!--商品图片相册start-->
 	<div class="focus" id="focus">
@@ -154,10 +157,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	    </div>
 	</form>
 </div>
+{/if}
 <!-- 切换商品页面end -->
 
 
 <!-- 切换详情页面start -->
+{if $no_goods_info neq 1}
 <div class="goods-desc-info active" id="goods-info-two" style="margin-top:3.5em;">
 	<!--商品描述-->
 	<!-- Nav tabs -->
@@ -179,9 +184,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 			<!-- {/if} -->
 		</div>
-		<div class="goods-describe goods-describe-new ecjia-margin-b" id="two-info" style="padding:0 0 0 17px;">
+		<div class="goods-describe goods-describe-new ecjia-margin-b" id="two-info" >
 		<!-- {if $goods_info.properties} -->
-			<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#dddddd">
+			<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#dddddd" style="margin:0 0 0 5px;">
 				<!-- {foreach from=$goods_info.properties item=property_group} -->
 				<tr>
 					<td bgcolor="#FFFFFF" align="left" width="30%" class="f1">{$property_group.name|escape:html}</td>
@@ -198,6 +203,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 	</div>
 </div>
+{/if}
 <!-- 切换详情页面end -->
 <div class="store-add-cart a4w">
     <div class="a52"></div>

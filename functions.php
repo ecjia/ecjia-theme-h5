@@ -144,10 +144,10 @@ RC_Loader::load_theme('extras/controller/user_address_controller.php');
 RC_Hook::add_action('user/user_address/address_list', array('user_address_controller', 'address_list'));
 RC_Hook::add_action('user/user_address/async_address_list', array('user_address_controller', 'async_address_list'));
 RC_Hook::add_action('user/user_address/add_address', array('user_address_controller', 'add_address'));
-RC_Hook::add_action('user/user_address/inster_addres', array('user_address_controller', 'inster_addres'));
+RC_Hook::add_action('user/user_address/insert_address', array('user_address_controller', 'insert_address'));
 RC_Hook::add_action('user/user_address/edit_address', array('user_address_controller', 'edit_address'));
 RC_Hook::add_action('user/user_address/update_address', array('user_address_controller', 'update_address'));
-RC_Hook::add_action('user/user_address/del_address_list', array('user_address_controller', 'del_address_list'));
+RC_Hook::add_action('user/user_address/del_address', array('user_address_controller', 'del_address'));
 RC_Hook::add_action('user/user_address/region', array('user_address_controller', 'region'));
 RC_Hook::add_action('user/user_address/location', array('user_address_controller', 'location'));
 RC_Hook::add_action('user/user_address/near_location', array('user_address_controller', 'near_location'));
@@ -163,6 +163,7 @@ RC_Hook::add_action('user/user_bonus/async_bonus_list', array('user_bonus_contro
 RC_Hook::add_action('user/user_bonus/my_reward', array('user_bonus_controller', 'my_reward'));
 RC_Hook::add_action('user/user_bonus/reward_detail', array('user_bonus_controller', 'reward_detail'));
 RC_Hook::add_action('user/user_bonus/get_integral', array('user_bonus_controller', 'get_integral'));
+RC_Hook::add_action('user/user_bonus/async_reward_detail', array('user_bonus_controller', 'async_reward_detail'));
 
 RC_Loader::load_theme('extras/controller/user_collection_controller.php');
 RC_Hook::add_action('user/user_collection/collection_list', array('user_collection_controller', 'collection_list'));

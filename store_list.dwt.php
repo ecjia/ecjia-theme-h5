@@ -28,7 +28,7 @@ ecjia.touch.category.init();
 					<a href="{RC_Uri::url('goods/category/store_goods')}&store_id={$val.id}">
 					<div class="basic-info">
 						<div class="store-left">
-							<img src="{$val.seller_logo}">
+							<img src="{if $val.seller_logo}{$val.seller_logo}{else}{$theme_url}images/store_default.png{/if}">
 						</div>
 						<div class="store-right">
 							<div class="store-name">{$val.seller_name}{if $val.manage_mode eq 'self'}<span>自营</span>{/if}</div>
@@ -108,7 +108,11 @@ ecjia.touch.category.init();
 		{else}
 		<p><img src="{$theme_url}images/no_goods.png"></p>
 		{/if}
+		{if $keywords}
 		暂无搜索结果
+		{else}
+		暂时没有商家
+		{/if}
 	</div>
 </div>
 <!-- {/if} -->

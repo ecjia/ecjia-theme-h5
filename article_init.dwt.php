@@ -9,14 +9,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-<script type="text/javascript">ecjia.touch.region_change();</script>
+<script type="text/javascript">ecjia.touch.spread.article();</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
 <form class="ecjia-article ecjia-article0" action="" method="post" id="searchForm" name="searchForm">
 	<ul class="list-one user-address-list ecjia-list list-short">
 		<!-- {foreach from=$data item=value} 帮助中心 -->
-			<span>{$value.name}</span>
+			<span class="pf">{$value.name}</span>
 			<!-- {foreach from=$value.article item=val} -->
 				<li>
 					<div class="form-group form-group-text">

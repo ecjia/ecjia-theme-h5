@@ -8,15 +8,8 @@ class cart_controller {
      */
     public static function init() {
     	$token = ecjia_touch_user::singleton()->getToken();
-//     	$token = 'dc95ed438539e788df0890ece1fd301ef30a7fe19ab98eb9a0436baf09c06e96';
-
     	//所有地址
-    	$cache_key = 'address_list_'.$token;
-    	$address_list = RC_Cache::app_cache_get($cache_key, 'user_address');
-    	if (!$address_list) {
-    		$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
-    		RC_Cache::app_cache_set($cache_key, $address_list, 'user_address', 60*24);//24小时缓存
-    	}
+    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
 
     	$default_address = array();
     	if (!empty($address_list)) {
@@ -36,6 +29,7 @@ class cart_controller {
     		foreach ($cart_list['cart_list'] as $k => $v) {
     			$cart_list['cart_list'][$k]['total']['check_all'] = true;
     			$cart_list['cart_list'][$k]['total']['check_one'] = false;
+    			
     			if (!empty($v['goods_list'])) {
     				foreach ($v['goods_list'] as $key => $val) {
     					if ($val['is_checked'] == 0) {
@@ -59,6 +53,11 @@ class cart_controller {
 
     	ecjia_front::$controller->assign('default_address', $default_address);
     	ecjia_front::$controller->assign('cart_list', $cart_list['cart_list']);
+    	
+    	if (!ecjia_touch_user::singleton()->isSignin()) {
+    		ecjia_front::$controller->assign('referer', urlencode(RC_Uri::url('cart/index/init')));
+    		ecjia_front::$controller->assign('not_login', true);
+    	}
     	
         ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->assign('active', 'cartList');

@@ -2,49 +2,19 @@
  * 后台综合js文件
  */
 ;(function(ecjia, $) {
-	ecjia.touch = {
+	ecjia.touch.record = {
 		init : function() {
-			ecjia.touch.setpjax();
-			ecjia.touch.asynclist();
-			ecjia.touch.ecjia_menu();
-			ecjia.touch.region_change();
-			ecjia.touch.address_list();
-			ecjia.touch.selectbox();
-			ecjia.touch.valid();
-			ecjia.touch.toggle_collapse();
-			ecjia.touch.close_banner();
-			ecjia.touch.close_app_download();
-			ecjia.touch.search_header();
-			ecjia.touch.del_history();
-		},
-		
-		address_list : function() {
-			$('#list').bind('input', function () {
-				var url = $(this).attr('data-url');
-				var region   = $(".zu").html();
-				var keywords = $("input[name='address']").val();
-				url += '&region=' + region +'&keywords=' + keywords;
-	             $.ajax({
-            	    url:url,
-            	    type:"GET",
-            	    dataType:"json",
-            	    success:function(data){
-            	    	ecjia.touch.address_value(data.content.data);
-            	    },
-            	  });
-		    })
-		},
-
-		address_value: function (data) {
-		    $('.nav-list-ready').html('');
-		    if(data) {
-		    	if (data.length > 0) {
-			        for (var i = 0; i < data.length; i++) {
-			            var opt = '<li><p class="list_wrapper a1"><span class="ecjia-list_title">'+data[i].title+'</span><span class="ecjia-list_title">'+data[i].address+'</span></p></li>'
-			            $('.nav-list-ready').append(opt);
-			        };
-			    }
-		    }
+			ecjia.touch.record.setpjax();
+			ecjia.touch.record.asynclist();
+			ecjia.touch.record.ecjia_menu();
+			ecjia.touch.record.region_change();
+			ecjia.touch.record.selectbox();
+			ecjia.touch.record.valid();
+			ecjia.touch.record.toggle_collapse();
+			ecjia.touch.record.close_banner();
+			ecjia.touch.record.close_app_download();
+			ecjia.touch.record.search_header();
+			ecjia.touch.record.del_history();
 		},
 		
 		/**
@@ -107,32 +77,21 @@
 		 * 加载列表的触发器方法
 		 */
 		asynclist : function() {
-			if ($('[data-toggle="asynclist"]').length) {
-				var $this = $('[data-toggle="asynclist"]');
+			if ($('[data-toggle="asynclist1"]').length) {
+				var $this = $('[data-toggle="asynclist1"]');
 					options = {
-						areaSelect	: '[data-toggle="asynclist"]',
+						areaSelect	: '[data-toggle="asynclist1"]',
 						url			: $this.attr('data-url'),
 						size		: $this.attr('data-size'),
 						page		: $this.attr('data-page'),
 						type		: $this.attr('data-type'),
 					};
-				ecjia.touch.more(options);
-//				var loaderimgurl = $this.attr('data-loadimg') || false;
-//				if (loaderimgurl) {
-//					$loader = $('<a class="load-list" href="javascript:;"><img src="'+loaderimgurl+'" /></a>');
-					$loader = $('<a class="load-list" href="javascript:;">' + 
-									'<div class="loaders">' +
-										'<div class="loader">' + 
-											'<div class="loader-inner ball-pulse">' + 
-												'<div></div>' + 
-												'<div></div>' + 
-												'<div></div>' + 
-											'</div>' +
-										'</div>' +
-									'</div>' +
-								'</a>');
+				ecjia.touch.record.more(options);
+				var loaderimgurl = $this.attr('data-loadimg') || false;
+				if (loaderimgurl) {
+					$loader = $('<a class="load-list" href="javascript:;"><img src="'+loaderimgurl+'" /></a>');
 					$this.after($loader);
-//				}
+				}
 			}
 		},
 
@@ -156,7 +115,7 @@
 			scroll_list = function(){
 				if (!options.lock && ($(window).scrollTop() > $(document).height() - $(window).height() - options.offset)) {
 					options.lock = true;
-					ecjia.touch.load_list(options);
+					ecjia.touch.record.load_list(options);
 					options.page++;
 				}
 			};
@@ -197,10 +156,22 @@
 				if(data.is_last == 1){
 					$("#load_more_btn").remove();
 				}
-				ecjia.touch.more_callback();
+				ecjia.touch.record.more_callback();
                 ecjia.touch.update_hot_time();
                 ecjia.touch.category.add_tocart();
 				ecjia.touch.category.remove_tocart();
+				$('.record-time-12:first').show();
+				$('.record-time-11:first').show();
+				$('.record-time-10:first').show();
+				$('.record-time-09:first').show();
+				$('.record-time-08:first').show();
+				$('.record-time-07:first').show();
+				$('.record-time-06:first').show();
+				$('.record-time-05:first').show();
+				$('.record-time-04:first').show();
+				$('.record-time-03:first').show();
+				$('.record-time-02:first').show();
+				$('.record-time-01:first').show();
 			});
 		},
 
@@ -475,11 +446,11 @@
 	//PJAX跳转执行
 	$(document).on('pjax:complete', function() {
         window.onscroll = null;
-		ecjia.touch.asynclist();
-		ecjia.touch.selectbox();
-		ecjia.touch.valid();
+		ecjia.touch.record.asynclist();
+		ecjia.touch.record.selectbox();
+		ecjia.touch.record.valid();
 
-		ecjia.touch.more_callback = function() {ecjia.touch.delete_list_click();};
+		ecjia.touch.record.more_callback = function() {ecjia.touch.delete_list_click();};
 	});
 
 	//PJAX开始
@@ -501,10 +472,10 @@
 		if ($('.ecjia-menu').hasClass('active')) {
 			$('.ecjia-menu').removeClass('active');
 		}
-		ecjia.touch.search_header();
+		ecjia.touch.record.search_header();
 		ecjia.touch.category.init();
 		ecjia.touch.index.swiper_promotion();
-		ecjia.touch.ecjia_menu();
+		ecjia.touch.record.ecjia_menu();
 	});
 
 })(ecjia, jQuery);

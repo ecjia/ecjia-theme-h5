@@ -44,14 +44,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				
 				<a class="edit-address" href="{RC_uri::url('user/user_address/edit_address')}&id={$value.id}"><div class="icon-edit-address"></div>{t}编辑{/t}</a>
 				
-			    <a class="delete-address nopjax" href="javascript:;" data-toggle="del_list" data-url="{url path='user/user_address/del_address_list'}" data-id="{$value.id}" data-msg="{t}你确定要删除此收货地址吗？{/t}"><div class="icon-delete-address"></div>{t}删除{/t}</a>
+			    <a class="delete-address nopjax" href="javascript:;" data-toggle="del_list" data-url="{url path='user/user_address/del_address'}" data-id="{$value.id}" data-msg="{t}你确定要删除此收货地址吗？{/t}"><div class="icon-delete-address"></div>{t}删除{/t}</a>
 		
 			</li>
 			<!-- {/foreach} -->
 			<!-- 配送地址end-->
 		</ul>
-		<!-- {$page} -->
-		<!-- {else} -->
+	    <!-- {$page} -->
+	<!-- {else} -->
 		<div class="ecjia-nolist">
 			<img src="{$theme_url}images/address.png">
 			<p class="address_list_font">{t}暂无收货地址，请添加{/t}</p>

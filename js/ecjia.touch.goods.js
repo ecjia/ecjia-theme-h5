@@ -48,11 +48,8 @@
                 	//商品详情中添加商品到购物车逻辑
                 	if ($this.hasClass('goods-add-cart')) {
                 		$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
-                		$this.addClass('hide');
                 		var show = $this.parent().children('.ecjia-goods-plus-box');
                 		var val = parseInt(show.children('label').html()) + 1;
-                		show.removeClass('hide').children('label').html(val);
-                		show.children().removeClass('hide');
                 	} else {
                     	if ($this.hasClass('a5v')) {
                     		$('.minicart-content').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
@@ -67,8 +64,8 @@
                     			var val = 1;
                     		}
         	            	if (val > 0) {
-        	            		show.html(val).addClass('show').removeClass('hide');
-        	            		$this.parent('.box').children('.reduce').addClass('show').removeClass('hide');
+//        	            		show.html(val).addClass('show').removeClass('hide');
+//        	            		$this.parent('.box').children('.reduce').addClass('show').removeClass('hide');
         	            	}
         	            	var img = $this.parent().parent().find('img').attr('src');
         	            	if (img != undefined) {
@@ -237,9 +234,42 @@
         	
         	//更新购物车中商品
             $.post(url, info, function(data){
+            	$('.la-ball-atom').remove();
+            	$('[data-toggle="toggle_checkbox"]').removeClass('limit_click');//店铺首页 允许其他单选框点击
+            	$('.box').children('span').removeClass('limit_click');//店铺首页 允许其他加减按钮点击
+            	$('.goods-add-cart').removeClass('disabled');
+            	
             	if (data.state == 'error') {
-            		alert(data.message);
             		$('.la-ball-atom').remove();
+            		if (data.referer) {
+            			$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});//禁用滚动条
+            			var myApp = new Framework7();
+            			myApp.modal({
+                			title: '温馨提示',
+                			text: '您还没有登录',
+                			buttons: [
+        			          {
+        			            text: '取消',
+        			            onClick: function() {
+        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条
+        			            	$('.modal').remove();
+        			            	return false;
+        			            }
+        			          },
+        			          {
+        			            text: '去登陆',
+        			            onClick: function() {
+        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条
+        			            	$('.modal').remove();
+        			            	ecjia.pjax(data.referer);
+        	            			return false;
+        			            }	
+        			          },
+        			        ]
+                		});
+            			return false;
+            		}
+            		alert(data.message);
             		ecjia.pjax(window.location.href);
             		return false;
             	}
@@ -262,11 +292,13 @@
             	} else {
             		ecjia.touch.category.show_cart(true);
             		var goods_number = data.count.goods_number;
+            		
             		for (i = 0; i < data.list.length; i++) {
             			if (data.say_list) {
 	            			if (data.list[i].goods_id == goods_id) {
-	            				$('#goods_'+goods_id).children('.reduce').attr('rec_id', data.list[i].rec_id);
-	            				$('#goods_'+goods_id).children('.add').attr('rec_id', data.list[i].rec_id);
+	            				$('#goods_'+goods_id).children('.reduce').removeClass('hide').attr('rec_id', data.list[i].rec_id);
+	            				$('#goods_'+goods_id).children('label').removeClass('hide').html(data.list[i].goods_number);
+	            				$('#goods_'+goods_id).children('.add').removeClass('hide').attr('rec_id', data.list[i].rec_id);
 	            			}
             			}
             			if (data.list[i].is_checked != 1) {
@@ -285,6 +317,11 @@
             			$('.a51').addClass('disabled');
             		} else {
             			$('.a51').removeClass('disabled');
+            			if ($('.goods-add-cart').attr('goods_id') == goods_id) {
+            				$('.goods-add-cart').addClass('hide');
+            				$('.ecjia-goods-plus-box').removeClass('hide').children('label').html(val);
+            				$('.ecjia-goods-plus-box').children().removeClass('hide');
+            			}
             		}
             		var discount_html = '';
             		if (data.count.discount != 0) {
@@ -305,10 +342,6 @@
     				ecjia.touch.category.toggle_checkbox();
             	}
             	ecjia.touch.category.check_all();
-            	$('.la-ball-atom').remove();
-            	$('[data-toggle="toggle_checkbox"]').removeClass('limit_click');//店铺首页 允许其他单选框点击
-            	$('.box').children('span').removeClass('limit_click');//店铺首页 允许其他加减按钮点击
-            	$('.goods-add-cart').removeClass('disabled');
             });
         },
         

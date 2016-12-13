@@ -9,7 +9,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-<script type="text/javascript" xmlns="http://www.w3.org/1999/html">ecjia.touch.user.init();</script>
+<script type="text/javascript">ecjia.touch.user.init();</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -32,8 +32,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	   <a href="{url path='user/privilege/login'}"><div class="no-login">登陆 / 注册</div></a>
 	{/if}
 </div>
-
-
 
 
 <div class="ecjia-user-head ecjia-user ecjia-color-green ecjia-user-marg-t">
@@ -75,7 +73,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
        <li>
         	<a href="{url path='user/user_address/address_list'}">
         		<div class="icon-address-list"></div>
-        		<span class="icon-name">地址管理</span>
+        		<span class="icon-name">收货地址</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
@@ -98,7 +96,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
         <li>
-        	<a href="https://ecjia.com/">
+        	<a href="https://ecjia.com" target="_blank">
         		<div class="icon-offical-website"></div>
         		<span class="icon-name">官网网站</span>
         		<span class="icon-price">{'www.ecjia.com'}</span>
