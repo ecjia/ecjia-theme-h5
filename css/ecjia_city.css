@@ -455,7 +455,8 @@ a.ecjia-color-green {
     font-size: .8em;
     text-align: center;
     color: #fff;
-    line-height: 1.9em;
+	line-height: 2em;
+    height: 2em;
 }
 .ecjia-promotion-model .swiper-slide .list-page-goods-img .goods-img {
     display: block;
@@ -573,7 +574,8 @@ a.ecjia-color-green {
     margin-top: .3em;
 }
 .ecjia-new-goods .merchants-name{
-    line-height: 1.8em;
+	height: 2em;
+    line-height: 2em;
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -582,7 +584,6 @@ a.ecjia-color-green {
 	color: #47aa4d;
 	background-color: #F0F0F0;
 	width: 95%;
-	height: 1.8em;
 	margin: 0 auto;
 	font-weight: normal;
 }
@@ -790,7 +791,9 @@ footer{
 	border:1px solid #FF1919;
 	border-radius:4px;
 	margin-left:.4em;
-	font-size: .9em;
+	font-size: .7em;
+	display: inline-block;
+    line-height: 1.5em;
 }
 .ecjia-store-brief .store-name i{
 	position: absolute;
@@ -3799,7 +3802,9 @@ footer{
 	border:1px solid #FF1919;
 	border-radius:4px;
 	margin-left:.4em;
-	font-size: .9em;
+	font-size: .7em;
+	display: inline-block;
+    line-height: 1.5em;
 }
 .ecjia-store-list .store-range i{
 	top:0;
@@ -4166,7 +4171,9 @@ footer{
 	border:1px solid #FF1919;
 	border-radius:4px;
 	margin-left:.4em;
-	font-size: .9em;
+	font-size: .7em;
+	display: inline-block;
+    line-height: 1.5em;
 }
 .ecjia-store-detail .store-range i{
 	top:0;
