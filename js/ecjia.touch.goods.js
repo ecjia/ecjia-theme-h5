@@ -238,13 +238,38 @@
             	$('[data-toggle="toggle_checkbox"]').removeClass('limit_click');//店铺首页 允许其他单选框点击
             	$('.box').children('span').removeClass('limit_click');//店铺首页 允许其他加减按钮点击
             	$('.goods-add-cart').removeClass('disabled');
+            	
             	if (data.state == 'error') {
+            		$('.la-ball-atom').remove();
             		if (data.referer) {
-                    	ecjia.pjax(data.referer);
+            			$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});//禁用滚动条
+            			var myApp = new Framework7();
+            			myApp.modal({
+                			title: '温馨提示',
+                			text: '您还没有登录',
+                			buttons: [
+        			          {
+        			            text: '取消',
+        			            onClick: function() {
+        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条
+        			            	$('.modal').remove();
+        			            	return false;
+        			            }
+        			          },
+        			          {
+        			            text: '去登陆',
+        			            onClick: function() {
+        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条
+        			            	$('.modal').remove();
+        			            	ecjia.pjax(data.referer);
+        	            			return false;
+        			            }	
+        			          },
+        			        ]
+                		});
             			return false;
             		}
             		alert(data.message);
-            		$('.la-ball-atom').remove();
             		ecjia.pjax(window.location.href);
             		return false;
             	}
