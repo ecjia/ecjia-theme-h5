@@ -279,7 +279,6 @@ class user_address_controller {
      * 选择城市
      */
     public static function city() {
-        
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)
         ->send()->getBody();
         $rs = json_decode($rs,true);

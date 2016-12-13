@@ -3138,7 +3138,7 @@ footer{
     height:5em;
     padding: 3em 2em;
 	background: url(../images/user_center/160x160qq.png) no-repeat bottom #F7F7F7;
-	background-size: 90%;
+	background-size: 80%;
 	margin-left: 25%;
 	float: left;
 }
@@ -3150,7 +3150,7 @@ footer{
     height:5em;
     padding: 3.2em 2em;
 	background: url(../images/user_center/160x160weixin.png) no-repeat bottom #F7F7F7;
-	background-size: 100%;
+	background-size: 80%;
 	margin-right: 25%;
 	float: right;
 }
