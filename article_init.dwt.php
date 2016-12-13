@@ -16,7 +16,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <form class="ecjia-article ecjia-article0" action="" method="post" id="searchForm" name="searchForm">
 	<ul class="list-one user-address-list ecjia-list list-short">
 		<!-- {foreach from=$data item=value} 帮助中心 -->
-			<span class="pf">{$value.name}</span>
+			<div class="pf"><span>{$value.name}</span></div>
 			<!-- {foreach from=$value.article item=val} -->
 				<li>
 					<div class="form-group form-group-text">
