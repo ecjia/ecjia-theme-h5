@@ -171,7 +171,23 @@
                 ecjia.touch.update_hot_time();
                 ecjia.touch.category.add_tocart();
 				ecjia.touch.category.remove_tocart();
+				ecjia.touch.record_time();
 			});
+		},
+		
+		record_time : function() {
+			$('.record-time-12:first').show();
+			$('.record-time-11:first').show();
+			$('.record-time-10:first').show();
+			$('.record-time-09:first').show();
+			$('.record-time-08:first').show();
+			$('.record-time-07:first').show();
+			$('.record-time-06:first').show();
+			$('.record-time-05:first').show();
+			$('.record-time-04:first').show();
+			$('.record-time-03:first').show();
+			$('.record-time-02:first').show();
+			$('.record-time-01:first').show();
 		},
 
 		delete_list_click: function(){
