@@ -2871,7 +2871,7 @@ footer{
 .ecjia-account-record  .record-l{
 	float: left;
 	width: 20%;
-	padding-top: 2em;
+	padding-top: 1.5em;
 	padding-left: 1em;
 }
 .ecjia-account .ecjia-green {
@@ -2879,6 +2879,7 @@ footer{
 	color: #FFF!important;
 }
 .ecjia-account-record  span.user-photo img{
+	border-radius: 100%;
 	width: 4em;
 	height: 4em;
 }
