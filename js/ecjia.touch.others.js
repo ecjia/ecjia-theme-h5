@@ -17,7 +17,8 @@
 				str = str.length>13?str.substring(0,13)+'...':str;
 				var str = $(".address-text").html(str);
 			}
-		
+			
+			
 			var map = new BMap.Map("allmap");
 			var point = new BMap.Point(116.331398,39.897445);
 			map.centerAndZoom(point,12);

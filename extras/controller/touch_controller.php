@@ -12,6 +12,9 @@ class touch_controller {
         ecjia_front::$controller->assign('more_news', RC_Uri::url('goods/index/new'));
         ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
         
+        $addr = $_GET['addr'];
+        setcookie("index_address", $addr);
+        
         $arr = array(
         	'location' => array('longitude' => '121.416359', 'latitude' => '31.235371')
         );

@@ -301,7 +301,6 @@ class user_address_controller {
      * 选择城市
      */
     public static function city() {
-        
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)
         ->send()->getBody();
         $rs = json_decode($rs,true);
@@ -364,7 +363,18 @@ class user_address_controller {
         ecjia_front::$controller->assign_title('当前位置');
         ecjia_front::$controller->display('user_my_location.dwt');
     }
-
+    
+    public static function near_address() {
+    	$region   = $_GET['region'];
+    	$keywords = $_GET['keywords'];
+    	$key       = "HVNBZ-HHR3P-HVBDP-LID55-D2YM3-2AF2W";
+    	$url       = "http://apis.map.qq.com/ws/place/v1/suggestion/?region=".$region."&keyword=".$keywords."&key=".$key;
+    	$response = RC_Http::remote_get($url);
+    	$content  = json_decode($response['body']);
+    	ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('content' => $content));
+    
+    }
+    
     /**
      * 获取指定地区的子级地区
      */

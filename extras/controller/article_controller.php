@@ -10,6 +10,7 @@ class article_controller {
         // $cat_id = intval($_GET['id']);
         // ecjia_front::$controller->assign('article_categories', article_categories_tree($cat_id)); //文章分类树
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_HELP)->run();
+    	
     	ecjia_front::$controller->assign('data', $data);
     	ecjia_front::$controller->assign('title', '帮助中心');
     	ecjia_front::$controller->assign('hideinfo', '1');
@@ -61,7 +62,7 @@ class article_controller {
         
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_HELP_DETAIL)->data(array('article_id' => $article_id))->run();
     	ecjia_front::$controller->assign('data', $data);
-_dump($data, 1);
+//         _dump($data, 1);
     	ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->display('article_info.dwt');
     }

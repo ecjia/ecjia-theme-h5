@@ -14,14 +14,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 	
+{if !$not_login}	
 <div class="flow-address ecjia-margin-b flow-cart">
-	<span class="ecjiaf-fl">{t}送至：{/t}</span>
-	<div class="ecjiaf-fl address-info">
-		<span>{$default_address.consignee}</span>
-		<span>{$default_address.mobile}</span>
-		<p class="ecjia-truncate2 address-desc">{$default_address.address}{$default_address.address_info}</p>
-	</div>
+	<a href="{RC_Uri::url('user/user_address/location')}">
+		<span class="ecjiaf-fl">{t}送至：{/t}</span>
+		<div class="ecjiaf-fl address-info">
+			<span>{$default_address.consignee}</span>
+			<span>{$default_address.mobile}</span>
+			<p class="ecjia-truncate2 address-desc">{$default_address.address}{$default_address.address_info}</p>
+		</div>
+	</a>
 </div>
+{/if}
 
 <div class="ecjia-flow-cart">
 	<ul>
