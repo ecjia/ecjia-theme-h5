@@ -2933,6 +2933,17 @@ footer{
 .ecjia-bonus{
 	height: auto;
 }
+.ecjia-bonus-top-head{
+    border-bottom: 1px solid#eee;
+	height: auto;
+	position: fixed;
+    z-index: 300;
+    width: 100%;
+    top: 0;
+}
+.ecjia-bonus-top-list{
+	padding-top:3.5em;;
+}
 .ecjia-bonus li,
 .ecjia-bonus-border-right1 li {
 	padding: 0;
@@ -2980,13 +2991,20 @@ footer{
 	padding: .5em 0;
 }
 .ecjia-bonus.ecjia-list-two .user-bonus-info .type-l{
-	font-size: 1.5em;
+	margin-top: .7em;
     float: left;
     width: 32%;
 	overflow: hidden;
 	color: #FF1919;
 	font-weight: normal;
 	border-right: 1px solid #eee;
+}
+.ecjia-bonus.ecjia-list-two .user-bonus-info .type-l .bonus-amount{
+	font-size: 1.3em;
+	font-weight: bolder;
+}
+.ecjia-bonus.ecjia-list-two .user-bonus-info .type-l .bonus-store{
+	font-size: 1em;
 }
 .ecjia-bonus.ecjia-list-two .user-bonus-info .type-r{
 	width: 68%;
@@ -3009,7 +3027,7 @@ footer{
 	height: 80px;
     right: 12%;
 	position: absolute;
-    background: url('../images/wallet/icon-used3x.png') no-repeat;
+    background: url('../images/wallet/icon-overdue3x.png') no-repeat;
     background-size: 100%;
 	z-index: 99;
 	float: right;
@@ -3019,7 +3037,7 @@ footer{
 	height: 80px;
     right: 12%;
 	position: absolute;
-    background: url('../images/wallet/icon-overdue3x.png') no-repeat;
+    background: url('../images/wallet/icon-used3x.png') no-repeat;
     background-size: 100%;
 	z-index: 99;
 	float: right;

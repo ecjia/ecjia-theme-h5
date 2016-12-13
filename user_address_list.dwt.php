@@ -12,6 +12,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <script type="text/javascript">ecjia.touch.more();</script>
 <script type="text/javascript">ecjia.touch.delete_list_click();</script>
 <script type="text/javascript">ecjia.touch.asynclist();</script>
+<script type="text/javascript">
+$('.setdefault').click(function(){
+	var data_id = $(this).attr('data-id');
+    var url = $("input[name='setdefault_url']").val();
+    $.get(url, {
+		id: data_id
+	}, function(data) {
+		ecjia.touch.showmessage(data);
+	}, 'json');
+});
+</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -24,6 +35,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</a>
 	</div>
 	<section>
+	<input type="hidden" name="setdefault_url" value="{RC_uri::url('user/user_address/set_default')}">
 	<!-- {if $address_list} -->
 		<ul class="ecjia-list list-one" id="J_ItemList">
 			<!-- 配送地址 start-->
@@ -39,7 +51,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<!-- {if $value.default_address eq 1} -->
 				<p><i class="icon-is-default"></i>&nbsp;&nbsp;{t}设为默认{/t}</p>
 				<!-- {else} -->
-				<p><i class="icon-not-default"></i>&nbsp;&nbsp;{t}设为默认{/t}</p>
+				<p class="setdefault ecjiaf-csp" data-id="{$value.id}"><i class="icon-not-default"></i>&nbsp;&nbsp;{t}设为默认{/t}</p>
 				<!-- {/if} -->
 				
 				<a class="edit-address" href="{RC_uri::url('user/user_address/edit_address')}&id={$value.id}"><div class="icon-edit-address"></div>{t}编辑{/t}</a>

@@ -155,6 +155,7 @@ RC_Hook::add_action('user/user_address/async_location', array('user_address_cont
 RC_Hook::add_action('user/user_address/my_location', array('user_address_controller', 'my_location'));
 RC_Hook::add_action('user/user_address/city', array('user_address_controller', 'city'));
 RC_Hook::add_action('user/user_address/near_address', array('user_address_controller', 'near_address'));
+RC_Hook::add_action('user/user_address/set_default', array('user_address_controller', 'set_default'));
 
 RC_Loader::load_theme('extras/controller/user_bonus_controller.php');
 RC_Hook::add_action('user/user_bonus/bonus', array('user_bonus_controller', 'bonus'));
