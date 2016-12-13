@@ -8,6 +8,7 @@
 			ecjia.touch.asynclist();
 			ecjia.touch.ecjia_menu();
 			ecjia.touch.region_change();
+			ecjia.touch.address_list();
 			ecjia.touch.selectbox();
 			ecjia.touch.valid();
 			ecjia.touch.toggle_collapse();
@@ -15,6 +16,35 @@
 			ecjia.touch.close_app_download();
 			ecjia.touch.search_header();
 			ecjia.touch.del_history();
+		},
+		
+		address_list : function() {
+			$('#list').bind('input', function () {
+				var url = $(this).attr('data-url');
+				var region   = $(".zu").html();
+				var keywords = $("input[name='address']").val();
+				url += '&region=' + region +'&keywords=' + keywords;
+	             $.ajax({
+            	    url:url,
+            	    type:"GET",
+            	    dataType:"json",
+            	    success:function(data){
+            	    	ecjia.touch.address_value(data.content.data);
+            	    },
+            	  });
+		    })
+		},
+
+		address_value: function (data) {
+		    $('.nav-list-ready').html('');
+		    if(data) {
+		    	if (data.length > 0) {
+			        for (var i = 0; i < data.length; i++) {
+			            var opt = '<li><p class="list_wrapper a1"><span class="ecjia-list_title">'+data[i].title+'</span><span class="ecjia-list_title">'+data[i].address+'</span></p></li>'
+			            $('.nav-list-ready').append(opt);
+			        };
+			    }
+		    }
 		},
 		
 		/**
