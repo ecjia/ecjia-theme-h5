@@ -15,7 +15,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-<form class="ecjia-form  ecjia-login ecjia-login-margin-top" name="reset_password" action="{url path='user/get_password/reset_password'}" method="post">
+<form class="ecjia-form  ecjia-login" name="reset_password" action="{url path='user/get_password/reset_password'}" method="post">
 	<div class="form-group margin-right-left">
 		<label class="input">
 			<i class="iconfont icon-attention ecjia-login-margin-l" id="password1"></i>

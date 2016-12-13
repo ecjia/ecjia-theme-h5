@@ -36,8 +36,7 @@ class user_address_controller {
 //         ecjia_front::$controller->assign('page', $consignee_list['page']);
 //         ecjia_front::$controller->assign('title', RC_Lang::lang('consignee_info'));
 //         ecjia_front::$controller->assign_title(RC_Lang::lang('consignee_info'));
-		$token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token['access_token']))->run();
+    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
 	    ecjia_front::$controller->assign('address_list', $address_list);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_address_list.dwt');
@@ -71,7 +70,7 @@ class user_address_controller {
 //                 $address_list[] = $v;
 //             }
 //         }
-//     	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => 'cac36e13e26a1084b4d9731d7b653b8b64a2c17d'))->run();
+    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
 		ecjia_front::$controller->assign('address_list', $address_list);
         $sayList = ecjia_front::$controller->fetch('user_address_list.dwt');
         return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' , 'is_last' => $consignee_list['is_last']));
@@ -280,7 +279,6 @@ class user_address_controller {
      * 选择城市
      */
     public static function city() {
-        
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)
         ->send()->getBody();
         $rs = json_decode($rs,true);
@@ -343,7 +341,18 @@ class user_address_controller {
         ecjia_front::$controller->assign_title('当前位置');
         ecjia_front::$controller->display('user_my_location.dwt');
     }
-
+    
+    public static function near_address() {
+    	$region   = $_GET['region'];
+    	$keywords = $_GET['keywords'];
+    	$key       = "HVNBZ-HHR3P-HVBDP-LID55-D2YM3-2AF2W";
+    	$url       = "http://apis.map.qq.com/ws/place/v1/suggestion/?region=".$region."&keyword=".$keywords."&key=".$key;
+    	$response = RC_Http::remote_get($url);
+    	$content  = json_decode($response['body']);
+    	ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('content' => $content));
+    
+    }
+    
     /**
      * 获取指定地区的子级地区
      */

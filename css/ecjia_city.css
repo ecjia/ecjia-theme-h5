@@ -2971,7 +2971,6 @@ footer{
 	color: #FF1919;
 	font-weight: normal;
 	border-right: 1px solid #eee;
-	line-height: 4em;
 }
 .ecjia-bonus.ecjia-list-two .user-bonus-info .type-r{
 	width: 68%;
@@ -3131,9 +3130,9 @@ footer{
 .ecjia-login .thirdparty-qq {
     height:5em;
     padding: 3em 2em;
-	background: url(../images/qq.png) no-repeat bottom #F7F7F7;
-	background-size: 90%;
-	margin-left: 20%;
+	background: url(../images/user_center/160x160qq.png) no-repeat bottom #F7F7F7;
+	background-size: 80%;
+	margin-left: 25%;
 	float: left;
 }
 .ecjia-login .maijia {
@@ -3143,9 +3142,9 @@ footer{
 .ecjia-login .thirdparty-weixin {
     height:5em;
     padding: 3.2em 2em;
-	background: url(../images/weixin.png) no-repeat bottom #F7F7F7;
-	background-size: 100%;
-	margin-right: 20%;
+	background: url(../images/user_center/160x160weixin.png) no-repeat bottom #F7F7F7;
+	background-size: 80%;
+	margin-right: 25%;
 	float: right;
 }
 .ecjia-login .margin-right-left label .img-register-mobile {

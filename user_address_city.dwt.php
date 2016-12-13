@@ -23,7 +23,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
               if (address_id) {
             	  url += '&id=' + address_id;
               }
-                  
               ecjia.pjax(url);
          }) 
   	})  
@@ -34,9 +33,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 {if $smarty.get.city eq 'addcity'}
 	<div class="cityall" id="cityall" data-url="{url path='user/user_address/add_address'}">
 {else if $smarty.get.city eq 'editcity'}
-	<div class="cityall" id="cityall" data-url="{url path='user/user_address/edit_address'}">
+<div class="cityall" id="cityall" data-url="{url path='user/user_address/edit_address'}">
+{else if $smarty.get.city eq 'selectcity'}
+	<div class="cityall" id="cityall" data-url="{url path='user/user_address/near_location'}">
+	
 {/if}
-<input type="hidden" name="address_id" value="{$smarty.get.address_id}">
+	<input type="hidden" name="address_id" value="{$smarty.get.address_id}">
 	<h2 class="select-city"><span>选择城市</span></h2>
 	<ul class="city citylist" >
 	<!-- {foreach from=$citylist item=list} -->

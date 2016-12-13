@@ -26,7 +26,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</ul>
     <!-- {/if} -->
     <div class="tab-pane{if $enabled_sms_signin neq 1} active{/if}" id="two">
-		<form class=" ecjia-login ecjia-login-margin-top" name="form" action="{url path='user/privilege/validate_code'}" method="post">
+		<form class=" ecjia-login" name="form" action="{url path='user/privilege/validate_code'}" method="post">
 			<div class="ecjia-form">
     			<input type="hidden" name="flag" id="flag" value="register" />
     			<div class="form-group margin-right-left">
