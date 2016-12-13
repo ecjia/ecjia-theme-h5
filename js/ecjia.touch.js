@@ -21,7 +21,7 @@
 		address_list : function() {
 			$('#list').bind('input', function () {
 				var url = $(this).attr('data-url');
-				var region   = $(".zu").html();
+				var region   = $(".ecjia-zu").html();
 				var keywords = $("input[name='address']").val();
 				url += '&region=' + region +'&keywords=' + keywords;
 	             $.ajax({
@@ -45,7 +45,6 @@
 			        };
 			    }
 		    }
-		    
 		    ecjia.touch.add_link();
 		},
 		
