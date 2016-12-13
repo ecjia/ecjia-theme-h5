@@ -6,12 +6,22 @@
 		init : function(){
 			ecjia.touch.spread.spread();
 			ecjia.touch.spread.hint();
+			ecjia.touch.spread.article();
 		},
 		spread: function() {
 			$('.would-spread').on('click', function (e) {
 				//$('.bottom-elastic-layer').animate({height:'toggle'});
 			});
         },  
+		article: function() {
+//			if ($(document).scrollTop() == 0) { 
+//				$(".pf").addClass('float'); 
+//			} else { 
+//				$(".pf").removeClass('float'); 
+//				alert(111);
+//			} 
+//			$('ul li:first-child').css('color', 'red');
+		},
 		hint: function() {
 			var myApp = new Framework7({
 				modalButtonOk: '确定',

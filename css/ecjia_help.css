@@ -21,7 +21,7 @@
 	background-color: #EFEFEF;	
 }
 .ecjia-article ul>span {
-	font-size: 18px;
+	font-size: 1.1em;
 	font-weight: bold;
 	color: #232323;
 	margin-left: 3%;
@@ -54,6 +54,7 @@
 	right: 1%;
 	line-height: 2.3em
 }
+.ecjia-article .float{ position:fixed; z-index:999999; top:0px;} 
 /*============== 地址列表  ================*/
 .ecjia-address-list {
 	margin-top: 1em;
