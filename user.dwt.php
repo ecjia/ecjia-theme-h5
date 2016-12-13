@@ -96,7 +96,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
         <li>
-        	<a href="https://ecjia.com/">
+        	<a href="https://ecjia.com" target="_blank">
         		<div class="icon-offical-website"></div>
         		<span class="icon-name">官网网站</span>
         		<span class="icon-price">{'www.ecjia.com'}</span>
