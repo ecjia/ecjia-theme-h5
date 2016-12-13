@@ -33,9 +33,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	{/if}
 </div>
 
-
+{if $user.id}
 <div class="ecjia-user-head ecjia-user ecjia-color-green ecjia-user-marg-t">
-     <ul class="ecjia-user-marg-t ecjia-list list-short ecjia-user-no-border-t">
+    <ul class="ecjia-user-marg-t ecjia-list list-short ecjia-user-no-border-t">
        <li>
         	<a href="{url path='user/user_account/account_detail'}">
         		<div class="icon-wallet"></div>
@@ -49,24 +49,59 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-user ecjia-list bonus ecjia-nav-child-f ecjia-list-three ecjia-login-nav-bottom">
     	<li>
     		<a href="{url path='user/user_account/account_list'}">
-    		    <p>{if $user.formated_user_money}{$user.formated_user_money}{else}{'- -'}{/if}</p>
+    		    <p>{$user.formated_user_money}</p>
     			<p>余额</p>
     		</a>
     	</li>
     	<li>
     		<a href="{url path='user/user_bonus/bonus'}">
-    		    <p>{if $user.user_bonus_count}{$user.user_bonus_count}{else}{if $user.user_bonus_count eq '0'}{0}{else}{'- -'}{/if}{/if}</p>
+    		    <p>{if $user.user_bonus_count eq '0'}{0}{else}{$user.user_bonus_count}{/if}</p>
     			<p>红包</p>
     		</a>
     	</li>
     	<li>
     	    <a href="{url path='user/user_account/account_detail'}">
-        		<p>{if $user.user_points}{$user.user_points}{else}{'- -'}{/if}</p>
+        		<p>{$user.user_points}</p>
         		<p>积分</p>
     		</a>
     	</li>
     </ul>
 </div>
+{else}
+<div class="ecjia-user-head ecjia-user ecjia-color-green ecjia-user-marg-t">
+    <ul class="ecjia-user-marg-t ecjia-list list-short ecjia-user-no-border-t">
+       <li>
+        	<a href="{url path='user/privilege/login'}">
+        		<div class="icon-wallet"></div>
+        		<span class="icon-name">{t}我的钱包{/t}</span>
+        		<i class="iconfont  icon-jiantou-right"></i>
+        	</a>
+        </li>
+    </ul>
+</div>
+<div class="ecjia-user-border-b">
+    <ul class="ecjia-user ecjia-list bonus ecjia-nav-child-f ecjia-list-three ecjia-login-nav-bottom">
+    	<li>
+    		<a href="{url path='user/privilege/login'}">
+    		    <p>{'- -'}</p>
+    			<p>余额</p>
+    		</a>
+    	</li>
+    	<li>
+    		<a href="{url path='user/privilege/login'}">
+    		    <p>{'- -'}</p>
+    			<p>红包</p>
+    		</a>
+    	</li>
+    	<li>
+    	    <a href="{url path='user/privilege/login'}">
+        		<p>{'- -'}</p>
+        		<p>积分</p>
+    		</a>
+    	</li>
+    </ul>
+</div>
+{/if}
 
 <div class="ecjia-user ecjia-margin-b">
     <ul class="ecjia-list list-short">

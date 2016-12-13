@@ -10,15 +10,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">ecjia.touch.address_list();</script>
-
-
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
 {if $smarty.get.type eq 'index'}
-<div data-url="{url path='touch/index/init'}">
+<div id="address" data-url="{url path='touch/index/init'}">
 {else}
-<div data-url="{url path='user/user_address/add_address'}">
+<div id="address" data-url="{url path='user/user_address/add_address'}">
 {/if}
     <div class="ecjia-zs">
       <div class="ecjia-zt al">

@@ -7,15 +7,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {block name="footer"} -->
 <script type="text/javascript">ecjia.touch.searchbox_foucs();</script>
+
 <!-- {/block} -->
 {if $address}
 <div id="allmap" style="display: none;"></div>
 <div class="ecjia-mod ecjia-header ecjia-header-index" style="height:5.5em">
 	<div class="ecjia-web">
 		<div class="ecjia-address">
-			<a href="{url path='user/user_address/location' class="data-pjax" args="city={if $smarty.get.city}{$smarty.get.city}{else}上海{/if}"}" >
+			<a href="{url path='user/user_address/location' args="city={if $smarty.get.city}{$smarty.get.city}{else}上海{/if}"}" >
 			    <span><img src="{$theme_url}images/address_list/50x50_2l.png"></span>
-				<span class="address-text">{if $smarty.get.addr}{$smarty.get.addr}{/if}</span>
+				<span class="address-text">{$smarty.cookies.index_address} </span>
 				<span><img src="{$theme_url}images/address_list/down.png"></span>
 			</a>
 		</div>

@@ -2577,6 +2577,19 @@ footer{
 	background: #fff;
 	padding:1em;
 }
+.ecjia-account.ecjia-flow-done {
+
+}
+.ecjia-account.ecjia-pay {
+
+}
+.ecjia-account.ecjia-flow-done .list-font-size{
+	padding: .7em 1em!important;
+	font-size: 1.1em;
+}
+.ecjia-account.ecjia-flow-done .payment-list .one-select{
+	top: .4em;
+}
 .ecjia-account .account-phone {
 	line-height: 3em;
 }
@@ -2606,6 +2619,9 @@ footer{
 }
 .ecjia-account .account-bonus span {
 	color: #999;
+}
+.ecjia-account .border-top-im {
+	border-top: 0!important;
 }
 .ecjia-account .cash_list {
 	text-align: center;
@@ -2855,7 +2871,7 @@ footer{
 .ecjia-account-record  .record-l{
 	float: left;
 	width: 20%;
-	padding-top: 2em;
+	padding-top: 1.5em;
 	padding-left: 1em;
 }
 .ecjia-account .ecjia-green {
@@ -2863,6 +2879,7 @@ footer{
 	color: #FFF!important;
 }
 .ecjia-account-record  span.user-photo img{
+	border-radius: 100%;
 	width: 4em;
 	height: 4em;
 }
@@ -2917,6 +2934,17 @@ footer{
 .ecjia-bonus{
 	height: auto;
 }
+.ecjia-bonus-top-head{
+    border-bottom: 1px solid#eee;
+	height: auto;
+	position: fixed;
+    z-index: 300;
+    width: 100%;
+    top: 0;
+}
+.ecjia-bonus-top-list{
+	padding-top:3.5em;;
+}
 .ecjia-bonus li,
 .ecjia-bonus-border-right1 li {
 	padding: 0;
@@ -2964,13 +2992,20 @@ footer{
 	padding: .5em 0;
 }
 .ecjia-bonus.ecjia-list-two .user-bonus-info .type-l{
-	font-size: 1.5em;
+	margin-top: .7em;
     float: left;
     width: 32%;
 	overflow: hidden;
 	color: #FF1919;
 	font-weight: normal;
 	border-right: 1px solid #eee;
+}
+.ecjia-bonus.ecjia-list-two .user-bonus-info .type-l .bonus-amount{
+	font-size: 1.3em;
+	font-weight: bolder;
+}
+.ecjia-bonus.ecjia-list-two .user-bonus-info .type-l .bonus-store{
+	font-size: 1em;
 }
 .ecjia-bonus.ecjia-list-two .user-bonus-info .type-r{
 	width: 68%;
@@ -2993,7 +3028,7 @@ footer{
 	height: 80px;
     right: 12%;
 	position: absolute;
-    background: url('../images/wallet/icon-used3x.png') no-repeat;
+    background: url('../images/wallet/icon-overdue3x.png') no-repeat;
     background-size: 100%;
 	z-index: 99;
 	float: right;
@@ -3003,7 +3038,7 @@ footer{
 	height: 80px;
     right: 12%;
 	position: absolute;
-    background: url('../images/wallet/icon-overdue3x.png') no-repeat;
+    background: url('../images/wallet/icon-used3x.png') no-repeat;
     background-size: 100%;
 	z-index: 99;
 	float: right;
