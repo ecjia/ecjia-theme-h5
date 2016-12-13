@@ -234,6 +234,28 @@ class user_address_controller {
             return ecjia_front::$controller->showmessage('该地址为默认的收货地址，不能删除', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
         }
     }
+    
+
+    /**
+     * 设置默认地址
+     */
+    public static function set_default() {
+        $id = empty($_GET['id']) ? 0 : intval($_GET['id']);
+        if (!$id) {
+            return ecjia_front::$controller->showmessage('参数错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
+        }
+    
+        $params = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $id);
+    
+        //         _dump($address_info,1);
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_SETDEFAULT)->data($params)->send()->getBody();
+        $data = json_decode($data,true);
+        if ($data['status']['succeed']) {
+            return ecjia_front::$controller->showmessage('设置成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
+        } else {
+            return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('address_list')));
+        }
+    }
 
     /**
      * 地区筛选
