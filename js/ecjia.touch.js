@@ -45,7 +45,20 @@
 			        };
 			    }
 		    }
+		    
+		    ecjia.touch.add_link();
 		},
+		
+        add_link: function () {      	
+        	var Uarry = $(".nav-list-ready li");
+            $('.nav-list-ready li').on('click', function () {
+            	  var count=$(this).index();  
+                  var Tresult=Uarry.eq(count).text();  
+                  $.cookie('index_address', Tresult); 
+                  var url = $("#address").attr('data-url');
+                  ecjia.pjax(url);
+            });
+        },
 		
 		/**
 		 * 设置PJAX
