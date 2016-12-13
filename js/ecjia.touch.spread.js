@@ -13,15 +13,26 @@
 				//$('.bottom-elastic-layer').animate({height:'toggle'});
 			});
         },  
+        
 		article: function() {
-//			if ($(document).scrollTop() == 0) { 
-//				$(".pf").addClass('float'); 
-//			} else { 
-//				$(".pf").removeClass('float'); 
-//				alert(111);
-//			} 
+			//获取要定位元素距离浏览器顶部的距离
+			var navH = $(".pf").offset().top;
+//			alert(navH);
+
+			//滚动条事件
+			$(window).scroll(function(){
+			//获取滚动条的滑动距离
+			var scroH = $(this).scrollTop();
+			//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+			if(scroH>=navH){
+//			$(".pf").css({"position":"fixed","top":0});
+			}else if(scroH < navH){
+			$(".pf").css({"position":"static"});
+			}
+			})
 //			$('ul li:first-child').css('color', 'red');
 		},
+		
 		hint: function() {
 			var myApp = new Framework7({
 				modalButtonOk: '确定',
