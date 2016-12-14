@@ -4624,8 +4624,7 @@ footer{
 }
 .ecjia-spread .invite-template .invite-template-style{
 	width:100%;
-	padding-left:.5em;
-	padding-right:.5em;
+	padding:.5em;
 	height:6em;
 }
 .ecjia-spread .go-to-spread{
