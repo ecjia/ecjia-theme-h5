@@ -4695,28 +4695,34 @@ footer{
 .ecjia-spread.ecjia-spread-get_integral {
 	background-color: #F7F7F7!important;
 }
-.ecjia-spread .ecjia-bottom-bar-pannel {
+.ecjia-spread .spread-bottom-bar-pannel {
     position: fixed;
     height: 50px;
-	width: 100%;
     z-index: 1;
     bottom: 0;
     left: 0;
+    right: 0;
+    max-width: 640px;
+    margin: 0 auto;
+    background: #fff;
+    border-top: 1px solid #eee;
+    font-weight: normal;
+    font-style: normal;
 }
-.ecjia-spread .ecjia-bottom-bar-pannel .tab5 {
+.ecjia-spread .spread-bottom-bar-pannel .tab5 {
     height: 100%;
     position: relative;
     background-color: #fff;    
     overflow-x: hidden;
     box-shadow: 0 0 10px 0 rgba(155,143,143,0.6);
 }
-.ecjia-spread .ecjia-bottom-bar-pannel .tab5 li {
+.ecjia-spread .spread-bottom-bar-pannel .tab5 li {
     width: 50%;
     height: 100%;
 	border-right: 1px solid #ddd;
 	float: left;
 }
-.ecjia-spread .ecjia-bottom-bar-pannel .tab5 li a span {
+.ecjia-spread .spread-bottom-bar-pannel .tab5 li a span {
 	position: relative;
     top: 15px;
     left: 1%;
