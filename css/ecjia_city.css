@@ -2332,6 +2332,11 @@ footer{
 	border: 0.3em solid #fff;
 	padding: 2.7px;
 }
+.ecjia-user .modify_username-info {
+	padding-left: 1em;
+	font-size: .8em;
+	color: #42a74b;
+}
 .ecjia-user-new-info .user-rank-name,
 .ecjia-user-new-info .user-rank-name a{
 	color: #fff;
