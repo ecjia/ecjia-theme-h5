@@ -23,7 +23,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
               <a href="{url path='user/user_address/city' args="city=selectcity{if $smarty.get.city_id}&city_id={$smarty.get.city_id}{/if}"}"><h2 class="ecjia-zu">{if $smarty.get.city}{$smarty.get.city}{/if}</h2></a>
               <input id="list" data-toggle="search-address" data-url="{url path='user/user_address/near_address'}"  class="ecjia-zv" name="address" type="text" placeholder="小区、写字楼、学校" maxlength="50" >
       </div>
-      <div class="ecjia-aaddres_list">
+      <div class="ecjia-address_list">
            <ul class="nav-list-ready"></ul>    
       </div>
 </div>
