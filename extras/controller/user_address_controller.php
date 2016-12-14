@@ -298,25 +298,6 @@ class user_address_controller {
     }
     
     /**
-     * 选择城市
-     */
-    public static function city() {
-        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)
-        ->send()->getBody();
-        $rs = json_decode($rs,true);
-//         _dump($rs,1);
-        if (! $rs['status']['succeed']) {
-            return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => ''));
-        }
-        ecjia_front::$controller->assign('citylist', $rs['data']['recommend_city']);
-        
-    	ecjia_front::$controller->assign('hideinfo', '1');
-    	ecjia_front::$controller->assign_title('选择城市');
-    	ecjia_front::$controller->assign_lang();
-    	ecjia_front::$controller->display('user_address_city.dwt');
-    }
-    
-    /**
      * 异步地址列表
      */
     public static function async_location() {
