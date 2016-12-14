@@ -25,6 +25,7 @@
 			$('.category_left li').on('click', function(){
 				 $(window).scrollTop(0); 
 			});
+			$('.body').off('click');
 		},
 
 		//加入购物车
@@ -637,14 +638,18 @@
         //店铺首页 去结算 购物车列表列表编辑
         check_cart : function() {
         	$('.check_cart').off('click').on('click', function(e) {
-        		e.preventDefault();
+        		e.stopPropagation();
         		var $this = $(this),
-        			url = $this.attr('href'),
+        			url = $this.attr('data-href'),
         			store_id = $this.attr('data-store'),
         			address_id = $this.attr('data-address'),
         			rec_id = $this.attr('data-rec');
+        		
+        		var myApp = new Framework7();
         		if ($this.hasClass('edit_button')) {
-        			var myApp = new Framework7();
+        			//禁用滚动条
+                	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
+                	
         			myApp.modal({
             			title: '确定删除该店铺下全部商品？',
             			buttons: [
@@ -653,6 +658,7 @@
     			            onClick: function() {
     			            	$('.modal').remove();
     			            	$('.modal-overlay').remove();
+    			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
     			            	return false;
     			            }
     			          },
@@ -661,6 +667,8 @@
     			            onClick: function() {
     			            	$('.modal').remove();
     			            	$('.modal-overlay').remove();
+    			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
+    			            	
     			            	$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
     			            	ecjia.touch.category.update_cart(rec_id, 0, 0, '', store_id);
     		        			var li = $this.parents('.cart-single');
@@ -681,14 +689,34 @@
         		if (store_id != undefined) {
         			url += '&store_id=' + store_id;
         		}
-        		if (address_id != undefined) {
+        		
+        		if (address_id != undefined && address_id != '') {
         			url += '&address_id=' + address_id;
+        		} else {
+        			//禁用滚动条
+                	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
+                	
+        			$('.ecjia-modal').show();
+        			$('.modal-overlay').show();
+        			myApp.openModal('.ecjia-modal');
+        			$('body').on('click', function(){
+        				$('.ecjia-modal').hide();
+        				$('.modal-overlay').hide();
+        				$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
+        			});
+        			return false;
         		}
         		if (rec_id != undefined) {
         			url += '&rec_id=' + rec_id;
         		}
         		ecjia.pjax(url);
         	});
+        	$('.modal-inner').click(function(e) {
+                e.stopPropagation(); //阻止事件向上冒泡
+            });
+        	$('.modal-buttons').click(function(e) {
+                e.stopPropagation(); //阻止事件向上冒泡
+            });
         },
         
         //购物车列表 单选多选切换
@@ -703,6 +731,9 @@
         		if ($this.hasClass('edit')) {
         			//全部删除
         			if ($this.hasClass('check_all')) {
+        				//禁用滚动条
+                    	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
+                    	
             			rec_id = $('.check_cart_' + store_id).attr('data-rec');
             			var myApp = new Framework7();
                 		myApp.modal({
@@ -713,12 +744,14 @@
         			            onClick: function() {
         			            	$('.modal').remove();
         			            	$('.modal-overlay').remove();
+        			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
         			            	return false;
         			            }
         			          },
         			          {
         			            text: '确定',
         			            onClick: function() {
+        			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
         			            	ecjia.touch.category.update_cart(rec_id, 0, 0, '', store_id);
         	            			var li = $this.parents('.cart-single');
         	            			li.remove();
