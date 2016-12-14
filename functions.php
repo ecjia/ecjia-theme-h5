@@ -58,6 +58,7 @@ RC_Hook::add_action('cart/flow/note', array('cart_controller', 'note'));
 RC_Hook::add_action('cart/flow/bonus', array('cart_controller', 'bonus'));
 RC_Hook::add_action('cart/flow/integral', array('cart_controller', 'integral'));
 RC_Hook::add_action('cart/flow/select_shipping', array('cart_controller', 'select_shipping'));
+RC_Hook::add_action('cart/flow/shipping_date', array('cart_controller', 'shipping_date'));
 RC_Hook::add_action('cart/flow/select_payment', array('cart_controller', 'select_payment'));
 RC_Hook::add_action('cart/flow/done', array('cart_controller', 'done'));
 RC_Hook::add_action('cart/flow/change_surplus', array('cart_controller', 'change_surplus'));

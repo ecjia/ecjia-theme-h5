@@ -409,6 +409,12 @@ class cart_controller {
         if ($rs['data']['bonus']) {
             $rs['data']['bonus'] = touch_function::change_array_key($rs['data']['bonus'], 'bonus_id');
         }
+        if ($rs['data']['payment_list']) {
+            $rs['data']['payment_list'] = touch_function::change_array_key($rs['data']['payment_list'], 'pay_id');
+        }
+        if ($rs['data']['shipping_list']) {
+            $rs['data']['shipping_list'] = touch_function::change_array_key($rs['data']['shipping_list'], 'shipping_id');
+        }
         $cart_key = md5($address_id.$rec_id);
         $_SESSION['cart'][$cart_key]['data'] = $rs['data'];
         
@@ -422,9 +428,7 @@ class cart_controller {
             }
         }
         if ($payment_id) {
-            $payment_list = touch_function::change_array_key($rs['data']['payment_list'], 'pay_id');
-            $selected_payment = $payment_list[$payment_id];
-            
+            $selected_payment = $_SESSION['cart'][$cart_key]['data']['payment_list'][$payment_id];
         } else {
             $selected_payment = $rs['data']['payment_list'][0];
         }
@@ -439,11 +443,25 @@ class cart_controller {
             }
         }
         if ($shipping_id) {
-            $shipping_list = touch_function::change_array_key($rs['data']['shipping_list'], 'shipping_id');
-            $selected_shipping = $shipping_list[$shipping_id];
+            $selected_shipping = $_SESSION['cart'][$cart_key]['data']['shipping_list'][$shipping_id];
         } else {
             $selected_shipping = $rs['data']['shipping_list'][0];
         }
+        if (isset($selected_shipping['shipping_date'])) {
+            $selected_shipping['shipping_date_enable'] = 1;
+        }
+//         _dump($selected_shipping,1);
+        //配送时间
+        if ($_POST['shipping_date_update']) {
+            $_SESSION['cart'][$cart_key]['temp']['shipping_date'] = empty($_POST['shipping_date']) ? '' : trim($_POST['shipping_date']);
+            $_SESSION['cart'][$cart_key]['temp']['shipping_time'] = empty($_POST['shipping_time']) ? '' : trim($_POST['shipping_time']);
+        } else {
+//             if (isset($_SESSION['cart'][$cart_key]['temp']['shipping_id'])) {
+//                 $shipping_id = $_SESSION['cart'][$cart_key]['temp']['shipping_id'];
+//             }
+//             $selected_shipping
+        }
+        
         //发票
         if ($_POST['inv_update']) {
             $_SESSION['cart'][$cart_key]['temp']['inv_payee'] = empty($_POST['inv_payee']) ? '' : trim($_POST['inv_payee']);
@@ -673,6 +691,8 @@ class cart_controller {
             $rec_id = empty($_POST['rec_id']) ? 0 : trim($_POST['rec_id']);
             $pay_id = empty($_POST['pay_id']) ? 0 : intval($_POST['pay_id']);
             $shipping_id = empty($_POST['shipping_id']) ? 0 : intval($_POST['shipping_id']);
+            $shipping_date = empty($_POST['shipping_date']) ? '' : trim($_POST['shipping_date']);
+            $shipping_time = empty($_POST['shipping_time']) ? '' : trim($_POST['shipping_time']);
             $inv_payee = empty($_POST['inv_payee']) ? '' : trim($_POST['inv_payee']);
             $inv_content = empty($_POST['inv_content']) ? '' : trim($_POST['inv_content']);
             $inv_type = empty($_POST['inv_type']) ? '' : trim($_POST['inv_type']);
@@ -693,6 +713,7 @@ class cart_controller {
                 'address_id' => $address_id,
                 'rec_id' => $rec_id,
                 'shipping_id' => $shipping_id,
+                'expect_shipping_time' => $shipping_date .' '. $shipping_time,
                 'pay_id' => $pay_id,
                 'inv_payee'		=> $inv_payee,
                 'inv_type'		=> $inv_type,
@@ -705,6 +726,7 @@ class cart_controller {
                     'latitude' => '31.235476867103'
                 ),
             );
+//             _dump($params,1);
             RC_Logger::getlogger('debug')->info($params);
             $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::FLOW_DONE)->data($params)
             ->send()->getBody();
@@ -1249,6 +1271,38 @@ class cart_controller {
         ecjia_front::$controller->assign('title', RC_Lang::lang('shipping_method'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('shipping_method'));
         ecjia_front::$controller->display('flow_shipping.dwt');
+    }
+    
+    public static function shipping_date() {
+        $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
+        $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
+        
+        if(empty($rec_id)) {
+            ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
+        }
+        if (empty($address_id)) {
+            ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
+        }
+        
+        $cart_key = md5($address_id.$rec_id);
+        $data = $_SESSION['cart'][$cart_key]['data'];
+//         _dump($_SESSION['cart'],2);
+        _dump($data['shipping_list'][$_SESSION['cart'][$cart_key]['temp']['shipping_id']],2);
+
+        $shipping = $data['shipping_list'][$_SESSION['cart'][$cart_key]['temp']['shipping_id']];
+        if ($shipping['shipping_date']) {
+            $shipping['shipping_date'] = touch_function::change_array_key($shipping['shipping_date'], 'date');
+        }
+//         _dump($shipping,1);
+        ecjia_front::$controller->assign('shipping', $shipping);
+        ecjia_front::$controller->assign('address_id', $address_id);
+        ecjia_front::$controller->assign('rec_id', $rec_id);
+        ecjia_front::$controller->assign('temp', $_SESSION['cart'][$cart_key]['temp']);
+        
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign('title', '配送时间');
+        ecjia_front::$controller->assign_title('配送时间');
+        ecjia_front::$controller->display('flow_shipping_date.dwt');
     }
 
     /**

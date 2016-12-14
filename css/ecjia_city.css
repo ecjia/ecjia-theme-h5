@@ -111,7 +111,7 @@ a.ecjia-color-green {
 /*end*/
 .select-title {
     font-size: 1em;
-    line-height: 2em;
+    line-height: 3em;
 }
 .select-title-big {
     font-size: 1.2em;
@@ -2039,6 +2039,7 @@ footer{
     position: fixed;
     bottom: 0;
     width: 100%;}
+.ecjia-shipping-date .data-shipping {display:none;}
 /*======================== 发票信息 ecjia-invoice ===========================*/
 
 
