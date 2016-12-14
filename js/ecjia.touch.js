@@ -18,6 +18,7 @@
 			ecjia.touch.del_history();
 		},
 		
+		//搜索关键词定位开始
 		address_list : function() {
 			$('#list').bind('input', function () {
 				var url = $(this).attr('data-url');
@@ -54,10 +55,11 @@
             	  var count=$(this).index();  
                   var Tresult=Uarry.eq(count).text();  
                   $.cookie('index_address', Tresult); 
-                  var url = $("#address").attr('data-url');
+                  var url = $("#ecjia-zs").attr('data-url');
                   ecjia.pjax(url);
             });
         },
+      //搜索关键词定位结束
 		
 		/**
 		 * 设置PJAX
