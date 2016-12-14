@@ -29,8 +29,14 @@ class user_controller {
      * 网店信息内容
      */
     public static function shop_detail() {
+//         _dump($_REQUEST, 1);
+        $title = trim($_GET['title']);
         $article_id = intval($_GET['article_id']);
         $shop_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO_DETAIL)->data(array('article_id' => $article_id))->run();
+        $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
+        
+       
+        ecjia_front::$controller->assign('title', $title);
         ecjia_front::$controller->assign('data', $shop_detail);
         ecjia_front::$controller->assign('hideinfo', 1);
         ecjia_front::$controller->assign_lang();

@@ -240,10 +240,16 @@
             	$('.goods-add-cart').removeClass('disabled');
             	
             	if (data.state == 'error') {
+            		var myApp = new Framework7();
+            		
             		$('.la-ball-atom').remove();
             		if (data.referer) {
             			$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});//禁用滚动条
-            			var myApp = new Framework7();
+                    	//禁用滚动条
+                    	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){
+                    		event.preventDefault;
+                    	}, false);
+                    	
             			myApp.modal({
                 			title: '温馨提示',
                 			text: '您还没有登录',
@@ -251,27 +257,38 @@
         			          {
         			            text: '取消',
         			            onClick: function() {
-        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条
         			            	$('.modal').remove();
+        			            	$('.modal-overlay').remove();
+        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条
+        			            	$('body').css('overflow-y', 'auto').off("touchmove");//启用滚动条
         			            	return false;
         			            }
         			          },
         			          {
         			            text: '去登陆',
         			            onClick: function() {
-        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条
         			            	$('.modal').remove();
-        			            	ecjia.pjax(data.referer);
+        			            	$('.modal-overlay').remove();
+        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});	//启用滚动条
+        			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
+        			            	location.href = data.referer;
         	            			return false;
         			            }	
         			          },
         			        ]
                 		});
             			return false;
+            		} else {
+            			myApp.modal({
+                			text: '<div class="ecjia-alert-message">'+ data.message +'</div>',
+                		});
+        			    setTimeout(function() {
+        			    	$('.modal').remove();
+        			    	$('.modal-overlay').remove();
+        			    }, 1000);
+//                		ecjia.pjax(window.location.href);
+                		return false;
             		}
-            		alert(data.message);
-            		ecjia.pjax(window.location.href);
-            		return false;
             	}
             	if (data.response == true) {
             		$('.la-ball-atom').remove();
@@ -485,6 +502,7 @@
 			            text: '取消',
 			            onClick: function() {
 			            	$('.modal').remove();
+			            	$('.modal-overlay').remove();
 			            	return false;
 			            }
 			          },
@@ -492,6 +510,7 @@
 			            text: '确定',
 			            onClick: function() {
 			            	$('.modal').remove();
+			            	$('.modal-overlay').remove();
             				var rec_id = [];
             				var store_id = $('input[name="store_id"]').val();
 
@@ -583,6 +602,7 @@
         			            text: '确定',
         			            onClick: function() {
             			            $('.modal').remove();
+            			            $('.modal-overlay').remove();
         			            	ecjia.pjax(window.location.href);
         			          	},
         			          }
@@ -632,6 +652,7 @@
     			            text: '取消',
     			            onClick: function() {
     			            	$('.modal').remove();
+    			            	$('.modal-overlay').remove();
     			            	return false;
     			            }
     			          },
@@ -639,6 +660,7 @@
     			            text: '确定',
     			            onClick: function() {
     			            	$('.modal').remove();
+    			            	$('.modal-overlay').remove();
     			            	$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
     			            	ecjia.touch.category.update_cart(rec_id, 0, 0, '', store_id);
     		        			var li = $this.parents('.cart-single');
@@ -690,6 +712,7 @@
         			            text: '取消',
         			            onClick: function() {
         			            	$('.modal').remove();
+        			            	$('.modal-overlay').remove();
         			            	return false;
         			            }
         			          },

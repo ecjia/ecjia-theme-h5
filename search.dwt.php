@@ -26,7 +26,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {if $searchs} -->
 <div class="ecjia-search-history">
 	<p class="title">
-		搜索 （{$searchs_count}条记录） {if $searchs}<a class="ecjiaf-csp" data-toggle="del_history" data-href="{url path='touch/index/del_search'}{if $store_id}&store_id={$store_id}{/if}"><i class="iconfont icon-delete"></i>{t}清除{/t}</a>{/if}
+		搜索 （{$searchs_count}条记录） {if $searchs}<a class="ecjiaf-csp" data-toggle="del_history" data-href="{url path='touch/index/del_search'}{if $store_id}&store_id={$store_id}{/if}"><span class="delete-icon"></span>{t}清除{/t}</a>{/if}
 	</p>
 	<div>
 		<ul>
