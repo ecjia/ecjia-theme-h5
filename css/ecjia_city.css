@@ -4666,8 +4666,14 @@ footer{
 
 .ecjia-spread .ecjia-margin-b>a img {
     position: relative;
-    width: 25.3125em;	
-    height: 9.375em;
+    /*width: 25.3125em;	*/
+    width: 100%;
+    padding: 0 1em;
+    /*height: 9.375em;*/
+    height: 37%;
+}
+.ecjia-spread.ecjia-spread-get_integral {
+	background-color: #F7F7F7!important;
 }
 .ecjia-spread .ecjia-bottom-bar-pannel {
     position: fixed;
