@@ -4205,7 +4205,7 @@ footer{
 	font-weight: normal;
     font-style: normal;
 }
-.o a.index, .o a.category, .o a.cartList, .o a.orderList, .o a.mine{
+.ecjia-bottom-bar-pannel a{
     display: inline-block;
     vertical-align: top;
     width: 19%;
@@ -4213,7 +4213,7 @@ footer{
     line-height: 17px;
     text-align: center;
     padding-top: 30px;
-    height: 20px;
+    height: 50px;
     background-image: url(../images/bar/bar.png);
     background-repeat: no-repeat;
     background-size: 24px 600px;
