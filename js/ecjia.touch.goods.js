@@ -647,6 +647,9 @@
         		
         		var myApp = new Framework7();
         		if ($this.hasClass('edit_button')) {
+        			//禁用滚动条
+                	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
+                	
         			myApp.modal({
             			title: '确定删除该店铺下全部商品？',
             			buttons: [
@@ -655,6 +658,7 @@
     			            onClick: function() {
     			            	$('.modal').remove();
     			            	$('.modal-overlay').remove();
+    			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
     			            	return false;
     			            }
     			          },
@@ -663,6 +667,8 @@
     			            onClick: function() {
     			            	$('.modal').remove();
     			            	$('.modal-overlay').remove();
+    			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
+    			            	
     			            	$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
     			            	ecjia.touch.category.update_cart(rec_id, 0, 0, '', store_id);
     		        			var li = $this.parents('.cart-single');
@@ -687,10 +693,11 @@
         		if (address_id != undefined && address_id != '') {
         			url += '&address_id=' + address_id;
         		} else {
-        			$('.ecjia-modal').show();
-        			$('.modal-overlay').show();
         			//禁用滚动条
                 	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
+                	
+        			$('.ecjia-modal').show();
+        			$('.modal-overlay').show();
         			myApp.openModal('.ecjia-modal');
         			$('body').on('click', function(){
         				$('.ecjia-modal').hide();
@@ -724,6 +731,9 @@
         		if ($this.hasClass('edit')) {
         			//全部删除
         			if ($this.hasClass('check_all')) {
+        				//禁用滚动条
+                    	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
+                    	
             			rec_id = $('.check_cart_' + store_id).attr('data-rec');
             			var myApp = new Framework7();
                 		myApp.modal({
@@ -734,12 +744,14 @@
         			            onClick: function() {
         			            	$('.modal').remove();
         			            	$('.modal-overlay').remove();
+        			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
         			            	return false;
         			            }
         			          },
         			          {
         			            text: '确定',
         			            onClick: function() {
+        			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
         			            	ecjia.touch.category.update_cart(rec_id, 0, 0, '', store_id);
         	            			var li = $this.parents('.cart-single');
         	            			li.remove();
