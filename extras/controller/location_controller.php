@@ -15,8 +15,19 @@ class location_controller {
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('select_location.dwt');
     }
-   
-    public static function near_address() {
+    
+    //根据关键词搜索周边位置定位
+    public static function search_location() {
+    	ecjia_front::$controller->assign('hideinfo', '1');
+    	ecjia_front::$controller->assign('title', '上海');
+    	ecjia_front::$controller->assign_title('定位');
+    
+    	ecjia_front::$controller->assign_lang();
+    	ecjia_front::$controller->display('search_location.dwt');
+    }
+    
+    //请求接口返回数据
+    public static function search_list() {
     	$region   = $_GET['region'];
     	$keywords = $_GET['keywords'];
     	$key       = "HVNBZ-HHR3P-HVBDP-LID55-D2YM3-2AF2W";
@@ -24,7 +35,6 @@ class location_controller {
     	$response = RC_Http::remote_get($url);
     	$content  = json_decode($response['body']);
     	ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('content' => $content));
-    
     }
 }
 

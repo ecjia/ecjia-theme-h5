@@ -308,6 +308,92 @@ a.ecjia-color-green {
 }
 
 
+/*== 搜索提示  ==*/
+
+
+.a1::before {
+    border-bottom: 1px solid #e8e8e8;
+    bottom: -1px;
+    content: "";
+    height: 1px;
+    position: absolute;
+    right: 0;
+    transform: scaleY(0.5);
+    width: 100%;
+    z-index: 10;
+}
+.ecjia-zu {
+    background: rgba(0, 0, 0, 0) url(../images/address_list/down_eee.png) no-repeat scroll right center / 9px auto;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 32px;
+    margin-right: 10px;
+    padding-right: 15px;
+}
+.ecjia-zu.none {
+    display: none;
+}
+.ecjia-zv.defaultWidth {
+    left: 15px;
+    width: 87%;
+}
+.ecjia-zv input {
+    background: #ebebeb none repeat scroll 0 0;
+    border: medium none;
+    color: #666666;
+    font-size: 16px;
+    height: 30px;
+    outline: medium none;
+    width: 100%;
+}
+.ecjia-zs .ecjia-address_list {
+    width: 100%;
+}
+.ecjia-zs .ecjia-address_list ul{
+    background: #ffffff none repeat scroll 0 0;
+}
+.ecjia-address_list ul li{
+    background: rgba(0, 0, 0, 0) url(../images/address_list/location60x60_2.png) no-repeat scroll 12px 15px / 20px auto;
+    line-height: 20px;
+    padding: 15px 15px 0 35px;
+}
+.ecjia-address_list ul li.a1::before{
+    border-bottom: 1px solid #d8d8d8;
+}
+.ecjia-address_list ul li .ecjia-list_title{
+    color: #666666;
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+}
+.ecjia-list_title i {
+    background: #39ac69 none repeat scroll 0 0;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 10px;
+    margin-left: 10px;
+    padding: 0 2px;
+}
+.ecjia-address_list ul li .ecjia-list_address{
+    color: #333333;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.ecjia-address_list .list_wrapper {
+    padding-bottom: 10px;
+}
+.a1 {
+    position: relative;
+}
+ul, li, ol, dl, dt, dd {
+    list-style: outside none none;
+}
+
+
+
+
+
 /*搜索*/
 .focus {
 	margin-top: 5.4em;
@@ -4077,7 +4163,7 @@ footer{
 }
 .ecjia-store-list .store-range{
 	line-height:2em;
-	color: #555;
+	color: #aaa;
 }
 .ecjia-store-list .store-distance{
 	float:right;
@@ -4447,7 +4533,7 @@ footer{
 }
 .ecjia-store-detail .store-range{
 	line-height: 2em;
-	color: #555;
+	color: #aaa;
 }
 
 .ecjia-store-detail .store-goods{
@@ -4476,11 +4562,11 @@ footer{
 }
 .ecjia-store-detail .store-goods li.goods-info .store-goods-count{
    	padding: 1em 0.7em;
-	color: #333;
+	color: #555;
 }
 .ecjia-store-detail .store-goods li.goods-info .store-goods-desc{
    	padding: 0 0.7em;
-	color: #bbb;
+	color: #aaa;
 }
 .ecjia-store-detail .comments{
 	border-bottom:1px solid #eee;
@@ -4491,7 +4577,7 @@ footer{
 }
 .ecjia-store-detail .comments li {
 	padding: .4em;
-	color: #333;
+	color: #555;
 }
 .ecjia-store-detail .store-hr{
 	height: .8em;
@@ -4512,7 +4598,7 @@ footer{
 	height: 30%;
 	overflow: hidden;
 	clear:both;
-	color: #333;
+	color: #555;
 	font-weight: normal;
 }
 .ecjia-store-detail .tel-name{
@@ -4522,7 +4608,7 @@ footer{
 	position: relative;
     margin-left: 8em;
     font-size: 1em;
-   	color: #333;
+   	color: #555;
 	font-weight: normal;
     overflow: hidden;
 }
@@ -4538,14 +4624,14 @@ footer{
 }
 .ecjia-store-detail .store-other-info .other-info-name{
 	float:left;
-	color: #333;
+	color: #555;
 	font-weight: normal;
 }
 .ecjia-store-detail .store-other-info p.other-info-result{
 	position: relative;
     margin-left: 8em;
     font-size: 1em;
-   	color: #333;
+   	color: #555;
 	font-weight: normal;
     overflow: hidden;
 }
