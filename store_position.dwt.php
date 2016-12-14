@@ -45,6 +45,11 @@ qq.maps.convertor.translate(new qq.maps.LatLng(lat,lng), 3, function(res){
                 map:map,
                 position: result.detail.location
             });
+            info.open();
+            info.setContent('<div style="width:auto;height:20px;">'+
+                result.detail.address+'</div>');
+            info.setPosition(result.detail.location);
+            
             //添加监听事件 当标记被点击了  设置图层
             qq.maps.event.addListener(marker, 'click', function() {
                 info.open();
