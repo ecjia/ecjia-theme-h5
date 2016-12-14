@@ -122,8 +122,8 @@ class goods_controller {
 	    ecjia_front::$controller->assign('real_count', $cart_goods_list['total']);
 	    ecjia_front::$controller->assign('data_rec', $data_rec);
 	    
-		$address_id = user_function::default_address_id($token);
-	    ecjia_front::$controller->assign('address_id', $address_id);
+// 		$address_id = user_function::default_address_id($token);
+// 	    ecjia_front::$controller->assign('address_id', $address_id);
 	    
         ecjia_front::$controller->display('goods_info.dwt');
     }
@@ -262,8 +262,8 @@ class goods_controller {
     			ecjia_front::$controller->assign('real_count', $cart_list['total']);
     			ecjia_front::$controller->assign('rec_id', $rec_id);
     			
-    			$address_id = user_function::default_address_id($token);
-    			ecjia_front::$controller->assign('address_id', $address_id);
+//     			$address_id = user_function::default_address_id($token);
+//     			ecjia_front::$controller->assign('address_id', $address_id);
     			
     			if ($type == 'ajax_get') {
     				ecjia_front::$controller->assign('goods_list', $arr_list);
@@ -464,8 +464,8 @@ class goods_controller {
     	ecjia_front::$controller->assign('rec_id', $rec_id);
     	
 
-    	$address_id = user_function::default_address_id($token);
-    	ecjia_front::$controller->assign('address_id', $address_id);
+//     	$address_id = user_function::default_address_id($token);
+//     	ecjia_front::$controller->assign('address_id', $address_id);
     	
     	ecjia_front::$controller->assign('title', $store_info['seller_name']);
     	ecjia_front::$controller->assign('header_left', ' ');

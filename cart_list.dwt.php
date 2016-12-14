@@ -13,20 +13,23 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-	
-{if !$not_login}	
-<div class="flow-address ecjia-margin-b flow-cart">
-	<a href="{RC_Uri::url('user/user_address/location')}">
+<a href="{RC_Uri::url('user/user_address/location')}">
+	<div class="flow-address flow-cart">
 		<span class="ecjiaf-fl">{t}送至：{/t}</span>
-		<div class="ecjiaf-fl address-info">
-			<span>{$default_address.consignee}</span>
-			<span>{$default_address.mobile}</span>
-			<p class="ecjia-truncate2 address-desc">{$default_address.address}{$default_address.address_info}</p>
+		<div class="ecjiaf-fl address-info default">
+			<span>中山北路3553号伸大厦18层1801号</span>
+<!-- 			{if $not_login} -->
+<!-- 			<span>{$smarty.cookies.index_address}</span> -->
+<!-- 			{else} -->
+<!-- 			<span>{$default_address.consignee}</span> -->
+<!-- 			<span>{$default_address.mobile}</span> -->
+<!-- 			<p class="ecjia-truncate2 address-desc">{$default_address.address}{$default_address.address_info}</p> -->
+<!-- 			{/if} -->
 		</div>
-	</a>
-</div>
-{/if}
+	</div>
+</a>
 
+<!-- {if $cart_list} -->
 <div class="ecjia-flow-cart">
 	<ul>
 		<!-- {foreach from=$cart_list item=val} -->
@@ -74,7 +77,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="item-count">
 				<span class="count">合计：</span>
 				<span class="price price_{$val.seller_id}">{$val.total.goods_price}</span>
-				<a class="check_cart check_cart_{$val.seller_id} {if !$val.total.check_one}disabled{/if}" href="{RC_Uri::url('cart/flow/checkout')}" data-store="{$val.seller_id}" data-address="{$default_address.id}" data-rec="{$val.total.data_rec}">去结算</a>
+				<a class="check_cart check_cart_{$val.seller_id} {if !$val.total.check_one}disabled{/if}" data-href="{RC_Uri::url('cart/flow/checkout')}" data-store="{$val.seller_id}" data-address="{$default_address.id}" data-rec="{$val.total.data_rec}" href="javascript:;">去结算</a>
 			</div>
 		</li>
 		<input type="hidden" name="update_cart_url" value="{RC_Uri::url('goods/category/update_cart')}">
@@ -82,7 +85,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</ul>
 	<div class="flow-nomore-msg"></div>
 </div>
-<div class="flow-no-pro ecjia-margin-t ecjia-margin-b {if $cart_list}hide{/if}" style="margin-bottom: 48px;">
+<!-- {/if} -->
+
+<div class="flow-no-pro {if $cart_list}hide{/if}">
 	<div class="ecjia-nolist">
 		您还没有添加商品
 		{if $not_login}
@@ -92,5 +97,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		{/if}
 	</div>
 </div>
+<!-- #BeginLibraryItem "/library/choose_address_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
 <!-- {/block} -->

@@ -29,7 +29,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                         <label for="shipping_{$list.shipping_code}"></label>
                     </span>
                     <span class="ecjiaf-fr">{$list.format_shipping_fee}</span>
-                    
                 </li>
             </label>
             <!-- {/foreach} -->
