@@ -3293,6 +3293,9 @@ footer{
 	margin-left:6px;
 	display:none;
 }
+.ecjia-goods-basic-info{
+	padding-bottom: 3.5em;
+}
 .ecjia-goods-basic-info .focus{
 	margin-top:0px;
 }
@@ -3598,17 +3601,12 @@ footer{
 	float:right;
 }
 .seller-name-icon{
-	background: url(../images/icon/seller-name-icon.png);
-	background-size:100% 100%;
-	background-repeat:no-repeat;
-	background-origin:content-box;
-	display:inline-block;
-	white-space:nowrap;
-	text-overflow:ellipsis;
-	overflow:hidden;
-	height:22px;
-	width:22px;
-	margin-bottom:-4px;
+	top: 0;
+    font-size: 1.1em;
+}
+.seller-name-icon i{
+	font-size: 1.2em;
+	padding-right: .5em;
 }
 .goods-describe .ecjia-nolist{
 	font-size:1em;

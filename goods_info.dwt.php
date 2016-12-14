@@ -116,8 +116,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		        <div class="bd goods-type ecjia-margin-t store-name">
 		            <div class="goods-option-con goods-num goods-option-con-new">
 		                <div class="ecjia-merchants-name" >
-		                	<span class="seller-name-icon"></span>
-		                		<span class="style-store-name">{$goods_info.seller_name}</span>
+		                	<span class="seller-name-icon">
+		                		<i class="iconfont icon-shop"></i>{$goods_info.seller_name}
+		                	</span>
 		                	<i class="iconfont icon-jiantou-right"></i>
 		                </div>
 		            </div>

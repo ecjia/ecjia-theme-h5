@@ -472,7 +472,7 @@ class goods_controller {
     	
     	$header_right = array(
     		'href' => RC_Uri::url('goods/category/store_position', array('longitude' => $store_info['location']['longitude'], 'latitude' => $store_info['location']['latitude'])),
-    		'info' => '<i class="iconfont icon-location"></i>'
+    		'info' => '<i class="iconfont icon-location"></i>',
     	);
     	ecjia_front::$controller->assign('header_right', $header_right);
     	ecjia_front::$controller->display('store_goods.dwt');
@@ -591,7 +591,7 @@ class goods_controller {
     
     public static function update_cart() {
     	if (!ecjia_touch_user::singleton()->isSignin()) {
-    		$url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
+    		$url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
     		$referer = RC_Uri::url('user/privilege/login', array('referer' => urlencode($url)));
     		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('referer' => $referer));
     	}

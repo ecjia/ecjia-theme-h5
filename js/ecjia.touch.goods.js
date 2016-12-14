@@ -243,6 +243,11 @@
             		$('.la-ball-atom').remove();
             		if (data.referer) {
             			$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});//禁用滚动条
+                    	//禁用滚动条
+                    	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){
+                    		event.preventDefault;
+                    	}, false);
+                    	
             			var myApp = new Framework7();
             			myApp.modal({
                 			title: '温馨提示',
@@ -251,16 +256,18 @@
         			          {
         			            text: '取消',
         			            onClick: function() {
-        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条
         			            	$('.modal').remove();
+        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条
+        			            	$('body').css('overflow-y', 'auto').off("touchmove");//启用滚动条
         			            	return false;
         			            }
         			          },
         			          {
         			            text: '去登陆',
         			            onClick: function() {
-        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条
         			            	$('.modal').remove();
+        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});	//启用滚动条
+        			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
         			            	ecjia.pjax(data.referer);
         	            			return false;
         			            }	
@@ -268,10 +275,11 @@
         			        ]
                 		});
             			return false;
+            		} else {
+            			alert(data.message);
+                		ecjia.pjax(window.location.href);
+                		return false;
             		}
-            		alert(data.message);
-            		ecjia.pjax(window.location.href);
-            		return false;
             	}
             	if (data.response == true) {
             		$('.la-ball-atom').remove();

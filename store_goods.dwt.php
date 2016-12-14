@@ -9,8 +9,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
-<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&libraries=convertor"></script>
 <script type="text/javascript">
 ecjia.touch.category.init();
 </script>
@@ -27,7 +25,7 @@ ecjia.touch.category.init();
 		<img src="{$store_info.seller_banner}">
 	</div>
 	<div class="ecjia-header-right">
-		<a href="{$header_right.href}">
+		<a href="{$header_right.href}" class="nopjax">
 			<!-- {if $header_right.icon neq ''} -->
 			<i class="{$header_left.icon}"></i>
 			<!-- {elseif $header_right.info neq ''} -->
