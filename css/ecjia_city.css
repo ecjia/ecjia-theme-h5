@@ -3330,6 +3330,7 @@ footer{
 .goods-info .ecjia-price-time .time-left{
 	width:63%;
 	float:left;
+	padding-bottom:.5em;
 }
 .goods-info .ecjia-price-time .cart-plus-right{
 	float:right;
@@ -3347,7 +3348,7 @@ footer{
 	border:none;
 	font-size:14px;
 	font-weight:bold;
-	margin-top: .5em;
+	margin-top: 1.4em;
 }
 .add-cart-a span {
 	color:#fff;
@@ -3357,7 +3358,7 @@ footer{
     right: 0;
     bottom: 0em;
 	float: right;
-	top: .3em;
+	top: .8em;
 }
 .goods-price-new .ecjia-goods-plus-box span {
     float: left;
@@ -3436,7 +3437,7 @@ footer{
 	margin-right:.4em;
 }
 .goods-info .goods-info-property .goods-price-new{
-	padding:0.1em 0.5em .5em 0.5em;
+	padding:0.1em 0.5em .8em 0.5em;
 	color:#ff1919;
 }
 .goods-info .goods-price-new .ecjia-promote_price-span{
@@ -3446,7 +3447,7 @@ footer{
 }
 .goods-info .ecjia-left-time{
 	border:1px solid #FF1919;
-	width:80%;
+	width:78%;
 	height:.9em;
 	line-height:.9em;
 	margin-top:9px;
@@ -3478,7 +3479,7 @@ footer{
 	font-size:.55em;
 	display:inline-block;
 	float:right;
-	width:86%;	
+	width:85.5%;	
 }
 .goods-info .ecjia-left-time .iconfont{
 	background: #FF1919;
@@ -3492,19 +3493,32 @@ footer{
 	
 }
 .goods-type .goods-option-con-new{
-	padding:.6em;
-	color:#000;
-	height:50px;
-	line-height:34px;
-	font-size:17px;
+	padding:0;
+	height:3em;
+	line-height:3em;
+	font-size:1.1em;
 }
-.ecjia-merchants-name{
-	
+.ecjia-merchants-name .shop-title-name{
+	max-width: 300px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+	padding-left:.6em;
+	color:#555;
+}
+.ecjia-merchants-name .shop-title-name i {
+	top: 0;
+	padding-right: .5em;
+	font-size: 1.2em;
+	color:#555;
 }
 .ecjia-merchants-name .icon-jiantou-right{
 	float:right;
 	clear:both;
-	margin-top:5px;
+	color:#999;
+	font-size:1.5em;
+	height:2em;
+	line-height:1.8em;
 }
 .ecjia-favourable-goods-list{
 }
@@ -3522,7 +3536,7 @@ footer{
 }
 .ecjia-favourable-goods-list .store-promotion li{
 	padding: 0;
-	margin: 1em 0 .5em .7em;
+	margin: .5em 0 .5em .7em;
 	font-weight: normal;
 	font-size: 1em;
 }
@@ -3537,18 +3551,19 @@ footer{
 }
 .ecjia-favourable-goods-list .store-promotion .promotion-name{
 	padding-left: .2em;
-    color: #333;
+    color: #555;
     background: #fff;
     padding-top: .1em;
     display: block;
     float: right;
 }
 .may-like-literal{
-	height:50px;
-	line-height:50px;
+	height:3.4em;
+	line-height:3.4em;
 	padding-left:0.6em;
 	border-bottom:1px solid #eee;
 	background: #fff;
+	margin-bottom:.2em;
 }
 .goods-info .address-warehouse-new{
 	padding:0;
@@ -3559,7 +3574,7 @@ footer{
 }
 .ecjia-form .may-like{
 	color:#FF1919;
-	font-size:17px;
+	font-size:1.1em;
 }
 .ecjia-like-goods-list{
 	padding-bottom:1em;
@@ -3596,19 +3611,6 @@ footer{
 	height:22px;
 	width:22px;
 	float:right;
-}
-.seller-name-icon{
-	background: url(../images/icon/seller-name-icon.png);
-	background-size:100% 100%;
-	background-repeat:no-repeat;
-	background-origin:content-box;
-	display:inline-block;
-	white-space:nowrap;
-	text-overflow:ellipsis;
-	overflow:hidden;
-	height:22px;
-	width:22px;
-	margin-bottom:-4px;
 }
 .goods-describe .ecjia-nolist{
 	font-size:1em;
