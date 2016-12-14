@@ -36,6 +36,24 @@ class location_controller {
     	$content  = json_decode($response['body']);
     	ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('content' => $content));
     }
+    
+    //选择城市
+    public static function select_city() {
+        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)
+        ->send()->getBody();
+        $rs = json_decode($rs,true);
+        if (! $rs['status']['succeed']) {
+            return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => ''));
+        }
+        ecjia_front::$controller->assign('citylist', $rs['data']['recommend_city']);
+        
+    	ecjia_front::$controller->assign('hideinfo', '1');
+    	ecjia_front::$controller->assign_title('选择城市');
+    	ecjia_front::$controller->assign_lang();
+    	ecjia_front::$controller->display('select_location_city.dwt');
+    }
+    
+    
 }
 
 // end
