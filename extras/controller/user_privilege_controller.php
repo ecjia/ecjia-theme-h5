@@ -50,13 +50,13 @@ class user_privilege_controller {
         $user = ecjia_touch_user::singleton()->getUserinfo();
         if (is_ecjia_error($data)) {
             $message = $data->get_error_message();
-            return ecjia_front::$controller->showmessage(__($message), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/privilege/login')));
+            return ecjia_front::$controller->showmessage(__($message), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         } else {
         	$referer = !empty($_GET['referer']) ? urldecode($_GET['referer']) : '';
         	if (!empty($referer)) {
         		return ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer));
         	}
-            return ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/index/init')));
+            return ecjia_front::$controller->showmessage(__(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/index/init')));
         }
     }
     
@@ -80,7 +80,11 @@ class user_privilege_controller {
             $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile))->send()->getBody();
             $data = json_decode($data,true);
-            return ecjia_front::$controller->showmessage(__('短信已发送到手机'.$mobile.'，请注意查看'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+            if ($data['data']['registered'] == 1) {
+                return ecjia_front::$controller->showmessage(__('该手机号已被注册，请更换其他手机号'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/privilege/register')));
+            } else {
+                return ecjia_front::$controller->showmessage(__('短信已发送到手机'.$mobile.'，请注意查看'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+            }
         } else {
             return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
