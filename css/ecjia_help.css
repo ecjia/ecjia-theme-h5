@@ -188,6 +188,7 @@
 	width: 100%;
 	overflow: hidden;
 	margin: 0;
+	font-weight: normal;
 }
 .ecjia-address-list .form-group .input i {
 	position: absolute;
@@ -224,8 +225,8 @@
 	overflow: hidden;
 }
 .ecjia-address-list .form-group-text .input input {
-	padding-left: 8em;
-    padding-right: 3em;
+	padding-left: 7em;
+    padding-right: 3.5em;
 	height: 3em;
 }
 
@@ -325,7 +326,7 @@
 .ecjia-address-list .form-group .input a .position {
 	width: 28px;
 	height: 28px;
-    margin-right: 0.3em;
+    margin-right: 0.8em;
     margin-top: -2.5em;
     background: url('../images/address_list/50x50_1.png') no-repeat;
     background-size: 100%;
