@@ -15,6 +15,7 @@ RC_Loader::load_theme('extras/controller/location_controller.php');
 RC_Hook::add_action('location/index/select_location', array('location_controller', 'select_location'));
 RC_Hook::add_action('location/index/search_location', array('location_controller', 'search_location'));
 RC_Hook::add_action('location/index/search_list', 	  array('location_controller', 'search_list'));
+RC_Hook::add_action('location/index/select_city', 	  array('location_controller', 'select_city'));
 
 
 //商品
