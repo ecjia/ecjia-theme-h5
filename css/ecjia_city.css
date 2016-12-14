@@ -4077,7 +4077,7 @@ footer{
 }
 .ecjia-store-list .store-range{
 	line-height:2em;
-	color: #555;
+	color: #aaa;
 }
 .ecjia-store-list .store-distance{
 	float:right;
@@ -4447,7 +4447,7 @@ footer{
 }
 .ecjia-store-detail .store-range{
 	line-height: 2em;
-	color: #555;
+	color: #aaa;
 }
 
 .ecjia-store-detail .store-goods{
@@ -4476,11 +4476,11 @@ footer{
 }
 .ecjia-store-detail .store-goods li.goods-info .store-goods-count{
    	padding: 1em 0.7em;
-	color: #333;
+	color: #555;
 }
 .ecjia-store-detail .store-goods li.goods-info .store-goods-desc{
    	padding: 0 0.7em;
-	color: #bbb;
+	color: #aaa;
 }
 .ecjia-store-detail .comments{
 	border-bottom:1px solid #eee;
@@ -4491,7 +4491,7 @@ footer{
 }
 .ecjia-store-detail .comments li {
 	padding: .4em;
-	color: #333;
+	color: #555;
 }
 .ecjia-store-detail .store-hr{
 	height: .8em;
@@ -4512,7 +4512,7 @@ footer{
 	height: 30%;
 	overflow: hidden;
 	clear:both;
-	color: #333;
+	color: #555;
 	font-weight: normal;
 }
 .ecjia-store-detail .tel-name{
@@ -4522,7 +4522,7 @@ footer{
 	position: relative;
     margin-left: 8em;
     font-size: 1em;
-   	color: #333;
+   	color: #555;
 	font-weight: normal;
     overflow: hidden;
 }
@@ -4538,14 +4538,14 @@ footer{
 }
 .ecjia-store-detail .store-other-info .other-info-name{
 	float:left;
-	color: #333;
+	color: #555;
 	font-weight: normal;
 }
 .ecjia-store-detail .store-other-info p.other-info-result{
 	position: relative;
     margin-left: 8em;
     font-size: 1em;
-   	color: #333;
+   	color: #555;
 	font-weight: normal;
     overflow: hidden;
 }
