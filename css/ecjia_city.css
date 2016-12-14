@@ -403,6 +403,11 @@ ul, li, ol, dl, dt, dd {
 	border-bottom: 1px solid #eee;
 	background: #fff;
 }
+.ecjia-search-history .delete-icon{
+    padding: 0 0 0 18px;
+    background: url(../images/icon/delete.png) 0 center no-repeat;
+    background-size: 13px 12px;
+}
 .ecjia-no-record{
    	position: absolute;
     top: 0;
@@ -466,7 +471,7 @@ ul, li, ol, dl, dt, dd {
 }
 .ecjia-mod .ecjia-adsense-model .adsense-item .adsense-title h2{
 	font-weight: normal;
-	color: #333;
+	color: #555;
 	font-size: 1.2em;
 	padding: 1em 0 .5em 0;
 }
@@ -510,7 +515,7 @@ ul, li, ol, dl, dt, dd {
 .ecjia-mod.ecjia-promotion-model .ecjia-sales-hd h2{
 	height: 2.3em;
 	border-bottom: 1px solid #eee;
-	color: #333;
+	color: #555;
 	font-size: 1.2em;
 	font-weight: normal;
 	line-height: 1.5em;
@@ -713,7 +718,7 @@ ul, li, ol, dl, dt, dd {
 	height: 3em;
 	white-space: pre-line;
 	font-weight: normal;
-	color: #333;
+	color: #555;
 	font-size: 1em;
 }
 .ecjia-new-goods .list-page-goods-price span{
@@ -742,7 +747,7 @@ ul, li, ol, dl, dt, dd {
     height: 2.5em;
 }
 .ecjia-mod.ecjia-new-goods h2{
-    font-size: .9em;
+    font-size: 1em;
     color: #bbb;
 }
 .ecjia-mod.ecjia-new-goods.goods-index-list.ecjia-mod .line{
@@ -1019,13 +1024,13 @@ footer{
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #f4f4f4;
-	border-right: 1px solid #e8e8e8;
+	border-right: 1px solid #eee;
 	-webkit-overflow-scrolling: touch;
 }
 .ecjia-store-goods .a1p {
     color: #333;
     font-size: .9em;
-	border-bottom: 1px solid #e8e8e8;
+	border-bottom: 1px solid #eee;
 }
 .ecjia-store-goods .a1p.a1t {
     color: #47b34f;
@@ -4224,7 +4229,7 @@ footer{
 	margin: 0 auto;
     height: 50px;
     background: #fff;
-    border-top: 1px solid #d9d9d9;
+    border-top: 1px solid #eee;
 	font-weight: normal;
     font-style: normal;
 }
@@ -4796,6 +4801,7 @@ footer{
 	width: 95%;
     max-width: 640px;
     margin: 0 auto;
+	margin-bottom: 3.5em;
 }
 .load-list .loaders {
 	width: 100%;
