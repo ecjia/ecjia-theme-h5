@@ -2273,7 +2273,7 @@ footer{
 	padding-top: 1em;
 }
 .ecjia-user-head .ecjia-list.list-short li  {
-	padding: .5em 1em;	
+	padding: .7em 1em;	
 }
 .ecjia-user-passwd {
 	padding:0!important;
@@ -2287,7 +2287,7 @@ footer{
     border-bottom: 1px solid #eee;
 }
 .ecjia-user .ecjia-list.list-short li a{
-	line-height: 2.3em;
+	line-height: 2.5em;
 }
 .ecjia-user .ecjia-list.list-short li a>.icon-jiantou-right {
 	right: 1%;
@@ -2481,10 +2481,16 @@ footer{
     border-radius: 2em;
     text-align: center;
 }
+.ecjia-user.ecjia-user-info .user-img{
+	padding: 0;
+	border:2px solid #008f30;
+	background: #47AA4d;
+}
 .ecjia-user.ecjia-user-info .user-img img {
 	width: 100%;
 	height: 100%;
     border-radius: 100%;
+    background: 0;
 }
 .ecjia-user.ecjia-user-info dl {
 	text-align: center;
@@ -2597,7 +2603,7 @@ footer{
 
 }
 .ecjia-account.ecjia-flow-done .list-font-size{
-	padding: .7em 1em!important;
+	padding: .9em 1em!important;
 	font-size: 1.1em;
 }
 .ecjia-account.ecjia-flow-done .payment-list .one-select{
@@ -2735,8 +2741,11 @@ footer{
 	font-size: 1.2em;
 	border-radius: 5px;
 }
+.ecjia-account-padding-input {
+	padding: .8em 1em!important;
+}
 .ecjia-account .ecjia-list li {
-	padding: .5em 1em;
+	padding: .7em 1em;
 }
 .ecjia-account .account-bonus i.icon-redpacket {
 	padding:.2em;
@@ -2756,10 +2765,12 @@ footer{
     margin-right: .5em;
 }
 .ecjia-account.ecjia-form .form-group-text {
+	padding: .7em 1em;
 	border: 1px solid #eee;
 }
 .ecjia-account.ecjia-form .form-group-text .input input {
-	padding-left: 3em;
+	line-height: 1.5em;
+	padding:0 3em;
 	font-size: 1.1em;
 	height: 2em;
 }
@@ -2804,7 +2815,7 @@ footer{
 	border-right: 0!important;
 }
 .ecjia-account.ecjia-form .form-group-text .input span{
-	font-size: 1em;
+	font-size: 1.1em;
 	line-height: 2em;
 }
 .ecjia-account .ecjia-nolist {
@@ -3266,6 +3277,9 @@ footer{
 }
 .ecjia-login-edit-password-form input {
 	padding-left: 0em !important;
+}
+.ecjia-login-user-profile-form .ecjia-form .form-group{
+	padding: .7em 1em;
 }
 .ecjia-login-user-profile-form .border-top {
 	border-top: 0.1em solid #eee;
