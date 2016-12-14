@@ -61,6 +61,12 @@
 	line-height: 2.3em
 }
 .ecjia-article .float{ position:fixed; z-index:999999; top:0px;} 
+.ecjia-article.article-info h2{
+	text-align: center;
+	font-color: #000;
+	font-weight: bolder;
+}
+
 /*============== 地址列表  ================*/
 .ecjia-address-list {
 	margin-top: 1em;
