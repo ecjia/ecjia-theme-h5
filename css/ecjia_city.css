@@ -309,8 +309,6 @@ a.ecjia-color-green {
 
 
 /*== 搜索提示  ==*/
-
-
 .a1::before {
     border-bottom: 1px solid #e8e8e8;
     bottom: -1px;
@@ -332,11 +330,7 @@ a.ecjia-color-green {
 }
 .ecjia-zu.none {
     display: none;
-}
-.ecjia-zv.defaultWidth {
-    left: 15px;
-    width: 87%;
-}
+
 .ecjia-zv input {
     background: #ebebeb none repeat scroll 0 0;
     border: medium none;
