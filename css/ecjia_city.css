@@ -2867,6 +2867,9 @@ footer{
 	border-radius: 0 .4em .4em 0;
 }
 .ecjia-account-list-f {
+	z-index: 200;
+	position: fixed;
+	width: 100%;
 	background: #FFF;
 	border-bottom: 1px solid #eee;
 	/*margin-bottom: 1em;*/
@@ -2891,7 +2894,7 @@ footer{
 }
 .ecjia-account-record p {
 	border-bottom: 1px solid #eee;
-	padding: 1em 1em;
+	padding: 5.5em 1em 1em 1em;
 	display: none;
 }
 .ecjia-list.ecjia-account-record>.ecjia-nolist>p {
@@ -3233,6 +3236,7 @@ footer{
 	float: right;
 }
 .ecjia-login .ecjia-form .form-group .input input {
+	line-height: 2em;
 	font-size: 1.1em;
 }
 .ecjia-login .margin-right-left label .img-register-invitationcode {
