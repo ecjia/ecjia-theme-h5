@@ -430,9 +430,13 @@ class cart_controller {
         if ($payment_id) {
             $selected_payment = $_SESSION['cart'][$cart_key]['data']['payment_list'][$payment_id];
         } else {
-            $selected_payment = $rs['data']['payment_list'][0];
+            $selected_payment = array();
+            if ($rs['data']['payment_list']) {
+                foreach ($rs['data']['payment_list'] as $payment) {
+                    $selected_payment = $payment;break;
+                }
+            }
         }
-        
         //配送方式
         $shipping_id = 0;
         if ($_POST['shipping_update']) {
@@ -445,7 +449,12 @@ class cart_controller {
         if ($shipping_id) {
             $selected_shipping = $_SESSION['cart'][$cart_key]['data']['shipping_list'][$shipping_id];
         } else {
-            $selected_shipping = $rs['data']['shipping_list'][0];
+            $selected_shipping = array();
+            if ($rs['data']['shipping_list']) {
+                foreach ($rs['data']['shipping_list'] as $tem_shipping) {
+                    $selected_shipping = $tem_shipping;break;
+                }
+            }
         }
         if (isset($selected_shipping['shipping_date'])) {
             $selected_shipping['shipping_date_enable'] = 1;
@@ -456,10 +465,10 @@ class cart_controller {
             $_SESSION['cart'][$cart_key]['temp']['shipping_date'] = empty($_POST['shipping_date']) ? '' : trim($_POST['shipping_date']);
             $_SESSION['cart'][$cart_key]['temp']['shipping_time'] = empty($_POST['shipping_time']) ? '' : trim($_POST['shipping_time']);
         } else {
-//             if (isset($_SESSION['cart'][$cart_key]['temp']['shipping_id'])) {
-//                 $shipping_id = $_SESSION['cart'][$cart_key]['temp']['shipping_id'];
-//             }
-//             $selected_shipping
+            if ($selected_shipping['shipping_date_enable']) {
+                $_SESSION['cart'][$cart_key]['temp']['shipping_date'] = $selected_shipping['shipping_date'][0]['date'];
+                $_SESSION['cart'][$cart_key]['temp']['shipping_time'] = $selected_shipping['shipping_date'][0]['time'][0]['start_time'] . '-' . $selected_shipping['shipping_date'][0]['time'][0]['end_time'];
+            }
         }
         
         //发票
