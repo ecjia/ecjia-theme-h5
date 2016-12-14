@@ -3270,6 +3270,10 @@ footer{
 	float: right;
 }
 .ecjia-login .small-submit input.btn-org {
+	position: relative;
+	height: 100%;
+	font-size: 1em;
+	padding: .7em 1em .7em 1em;
     color: #FFF;
     background-color: #e78e20;
     border-color: #e78e20;
