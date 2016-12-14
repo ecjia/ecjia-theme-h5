@@ -12,7 +12,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <div class="ecjia-user ecjia-account">
     <div class="ecjia-user ecjia-user-head ecjia-account">
-        <ul class="ecjia-list list-short">
+        <ul class="ecjia-list list-short nmargin-t">
             <li class="account-phone">
             	<span class="icon-name margin-no-l">头像 </span>
         		<div class="user-img-text"><img src="{$user_img}"></div>
