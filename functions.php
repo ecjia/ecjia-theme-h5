@@ -9,6 +9,13 @@ RC_Hook::add_action('touch/index/ajax_goods', array('touch_controller', 'ajax_go
 RC_Hook::add_action('touch/index/search', array('touch_controller', 'search'));
 RC_Hook::add_action('touch/index/del_search', array('touch_controller', 'del_search'));
 
+
+
+//定位
+RC_Loader::load_theme('extras/controller/location_controller.php');
+RC_Hook::add_action('location/index/select_location', array('location_controller', 'select_location'));
+
+
 //商品
 RC_Loader::load_theme('extras/controller/goods_controller.php');
 RC_Hook::add_action('goods/category/top_all', array('goods_controller', 'top_all'));
@@ -58,6 +65,7 @@ RC_Hook::add_action('cart/flow/note', array('cart_controller', 'note'));
 RC_Hook::add_action('cart/flow/bonus', array('cart_controller', 'bonus'));
 RC_Hook::add_action('cart/flow/integral', array('cart_controller', 'integral'));
 RC_Hook::add_action('cart/flow/select_shipping', array('cart_controller', 'select_shipping'));
+RC_Hook::add_action('cart/flow/shipping_date', array('cart_controller', 'shipping_date'));
 RC_Hook::add_action('cart/flow/select_payment', array('cart_controller', 'select_payment'));
 RC_Hook::add_action('cart/flow/done', array('cart_controller', 'done'));
 RC_Hook::add_action('cart/flow/change_surplus', array('cart_controller', 'change_surplus'));

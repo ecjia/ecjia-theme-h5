@@ -59,6 +59,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			    <li><span class="ecjiaf-fl width-25-p">发货时间：</span><span class="ecjiaf-fr width-75-p">{if $order.shipping_time}{$order.shipping_time}{else}暂未发货{/if}</span></li>
 				<li><span class="ecjiaf-fl width-25-p">收货人：</span><span class="ecjiaf-fr width-75-p">{$order.consignee} {$order.mobile}</span></li>
 				<li><span class="ecjiaf-fl width-25-p">收货地址：</span><span class="ecjiaf-fr width-75-p">{$order.province} {$order.city} {$order.district}{$order.address}</span></li>
+				<li><span class="ecjiaf-fl width-25-p">配送时间：</span><span class="ecjiaf-fr width-75-p">{if $order.expect_shipping_time}{$order.expect_shipping_time}{else}不限{/if}</span></li>
 				<li><span class="ecjiaf-fl width-25-p">配送方式：</span><span class="ecjiaf-fr width-75-p">{$order.shipping_name}</span></li>
 			</ul>
 			<ul class="ecjia-list ecjia-margin-t">
