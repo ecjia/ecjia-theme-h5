@@ -27,6 +27,9 @@ a.ecjia-color-green {
 .ecjia .ecjia-margin-t-n {
 	margin-top: 0;
 }
+.ecjia-margin-l {
+	margin-left:1em;
+}
 .ecjia-list.list-short li+li::before ,.ecjia-list li {border-color: #eee;}
 .ecjia-list li {
     padding: .7em 1em;
@@ -47,6 +50,9 @@ a.ecjia-color-green {
 }
 .ecjia-padding-b {
 	padding-bottom:1em
+}
+.ecjia-of-h {
+	overflow:hidden;
 }
 /* 选择样式 */
 .ecjia-check {
@@ -105,7 +111,7 @@ a.ecjia-color-green {
 /*end*/
 .select-title {
     font-size: 1em;
-    line-height: 2em;
+    line-height: 3em;
 }
 .select-title-big {
     font-size: 1.2em;
@@ -231,48 +237,26 @@ a.ecjia-color-green {
 }
 
 
-/*== 搜索提示  ==*/
+/*== 选择定位  ==*/
 .ecjia-zs {
     background: #f4f4f4 none repeat scroll 0 0;
     height: 100%;
     margin-bottom: 45px;
     width: 100%;
 }
-
-.ecjia-zt.a1::before {
-    border-bottom: 1px solid #d9d9d9;
-}
-.a1::before {
-    border-bottom: 1px solid #e8e8e8;
-    bottom: -1px;
-    content: "";
-    height: 1px;
-    position: absolute;
-    right: 0;
-    transform: scaleY(0.5);
-    width: 100%;
-    z-index: 10;
-}
-.ecjia-zt {
+.ecjia-zs .ecjia-zt {
     background-color: white;
+    height: 55px;
     padding: 10px 15px;
     position: relative;
 	border-bottom: 1px solid #eee;
 }
-.ecjia-zu {
-    background: rgba(0, 0, 0, 0) url(../images/address_list/down_eee.png) no-repeat scroll right center / 9px auto;
-    display: inline-block;
-    font-size: 16px;
-    line-height: 32px;
-    margin-right: 10px;
-    padding-right: 15px;
-}
-.ecjia-zu.none {
-    display: none;
+.ecjia-zs .ecjia-zt.a1::before {
+    border-bottom: 1px solid #eee;
 }
 .ecjia-zs .ecjia-zt .ecjia-zv {
-    background: #ffffff url(../images/address_list/search300x300.png) no-repeat scroll 0px center / 21px auto;
-    border: 1px solid #eaeaea;
+    background: #ffffff url(../images/address_list/search200x200.png) no-repeat scroll 0px center / 20px auto;
+    border: 1px solid #eee;
     border-radius: 5px;
     color: #666666;
     font-size: 13px;
@@ -285,62 +269,44 @@ a.ecjia-color-green {
     top: 10px;
     width: 60%;
 }
-.ecjia-zv.defaultWidth {
+.ecjia-zs .ecjia-zt .ecjia-zv.defaultWidth {
     left: 15px;
-    width: 87%;
+    width: 92%;
 }
-.ecjia-zv input {
-    background: #ebebeb none repeat scroll 0 0;
-    border: medium none;
-    color: #666666;
-    font-size: 16px;
-    height: 30px;
-    outline: medium none;
+.ecjia-zs .ecjia-zw {
+    margin-top: 10px;
     width: 100%;
 }
-.ecjia-zs .ecjia-address_list {
-    width: 100%;
-}
-.ecjia-zs .ecjia-address_list ul{
+.ecjia-zs .ecjia-zw .ecjia-zx {
     background: #ffffff none repeat scroll 0 0;
-}
-.ecjia-address_list ul li{
-    background: rgba(0, 0, 0, 0) url(../images/address_list/location60x60_2.png) no-repeat scroll 12px 15px / 20px auto;
-    line-height: 20px;
-    padding: 15px 15px 0 35px;
-}
-.ecjia-address_list ul li.a1::before{
-    border-bottom: 1px solid #d8d8d8;
-}
-.ecjia-address_list ul li .ecjia-list_title{
-    color: #666666;
-    display: block;
-    font-size: 14px;
-    line-height: 20px;
-}
-.ecjia-list_title i {
-    background: #39ac69 none repeat scroll 0 0;
-    border-radius: 3px;
-    color: #ffffff;
-    font-size: 10px;
-    margin-left: 10px;
-    padding: 0 2px;
-}
-.ecjia-address_list ul li .ecjia-list_address{
-    color: #333333;
-    font-size: 14px;
-    line-height: 20px;
-}
-
-.ecjia-address_list .list_wrapper {
-    padding-bottom: 10px;
-}
-.a1 {
+    height: 50px;
+    padding: 0 15px;
     position: relative;
 }
-ul, li, ol, dl, dt, dd {
-    list-style: outside none none;
+.ecjia-zs .ecjia-zw .ecjia-zx i {
+    background: rgba(0, 0, 0, 0) url(../images/address_list/50x50_1.png) no-repeat scroll 0 center / 25px 25px;
+    display: inline-block;
+    height: 50px;
+    margin-right: 10px;
+    vertical-align: top;
+    width: 25px;
 }
+.ecjia-zs .ecjia-zw .ecjia-zx p::after {
+    background: rgba(0, 0, 0, 0) url(../images/address_list/right_eee.png) no-repeat scroll center center / 15px 15px;
+    content: "";
+    height: 50px;
+    position: absolute;
+    right: 0;
+    width: 40px;
+}
+
+.ecjia-zs .ecjia-zw .ecjia-zx p {
+    color: #555;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 50px;
+}
+
 
 /*搜索*/
 .focus {
@@ -2046,6 +2012,7 @@ footer{
     position: fixed;
     bottom: 0;
     width: 100%;}
+.ecjia-shipping-date .data-shipping {display:none;}
 /*======================== 发票信息 ecjia-invoice ===========================*/
 
 
