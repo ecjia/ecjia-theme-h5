@@ -25,6 +25,7 @@
 			$('.category_left li').on('click', function(){
 				 $(window).scrollTop(0); 
 			});
+			$('.body').off('click');
 		},
 
 		//加入购物车
@@ -637,14 +638,15 @@
         //店铺首页 去结算 购物车列表列表编辑
         check_cart : function() {
         	$('.check_cart').off('click').on('click', function(e) {
-        		e.preventDefault();
+        		e.stopPropagation();
         		var $this = $(this),
-        			url = $this.attr('href'),
+        			url = $this.attr('data-href'),
         			store_id = $this.attr('data-store'),
         			address_id = $this.attr('data-address'),
         			rec_id = $this.attr('data-rec');
+        		
+        		var myApp = new Framework7();
         		if ($this.hasClass('edit_button')) {
-        			var myApp = new Framework7();
         			myApp.modal({
             			title: '确定删除该店铺下全部商品？',
             			buttons: [
@@ -681,14 +683,33 @@
         		if (store_id != undefined) {
         			url += '&store_id=' + store_id;
         		}
-        		if (address_id != undefined) {
+        		
+        		if (address_id != undefined && address_id != '') {
         			url += '&address_id=' + address_id;
+        		} else {
+        			$('.ecjia-modal').show();
+        			$('.modal-overlay').show();
+        			//禁用滚动条
+                	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
+        			myApp.openModal('.ecjia-modal');
+        			$('body').on('click', function(){
+        				$('.ecjia-modal').hide();
+        				$('.modal-overlay').hide();
+        				$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
+        			});
+        			return false;
         		}
         		if (rec_id != undefined) {
         			url += '&rec_id=' + rec_id;
         		}
         		ecjia.pjax(url);
         	});
+        	$('.modal-inner').click(function(e) {
+                e.stopPropagation(); //阻止事件向上冒泡
+            });
+        	$('.modal-buttons').click(function(e) {
+                e.stopPropagation(); //阻止事件向上冒泡
+            });
         },
         
         //购物车列表 单选多选切换

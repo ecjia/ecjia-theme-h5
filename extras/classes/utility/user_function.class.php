@@ -46,12 +46,8 @@ class user_function
 	 */
 	public static function default_address_id($token) {
 		//所有地址
-		$cache_key = 'address_list_'.$token;
-		$address_list = RC_Cache::app_cache_get($cache_key, 'user_address');
-		if (!$address_list) {
-			$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
-			RC_Cache::app_cache_set($cache_key, $address_list, 'user_address', 60*24);//24小时缓存
-		}
+		$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
+		
 		$address_id = '';
 		if (!empty($address_list)) {
 			foreach ($address_list as $k => $v) {

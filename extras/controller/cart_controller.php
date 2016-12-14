@@ -51,7 +51,7 @@ class cart_controller {
     		}
     	}
 
-    	ecjia_front::$controller->assign('default_address', $default_address);
+//     	ecjia_front::$controller->assign('default_address', $default_address);
     	ecjia_front::$controller->assign('cart_list', $cart_list['cart_list']);
     	
     	if (!ecjia_touch_user::singleton()->isSignin()) {

@@ -530,7 +530,7 @@
 			$('.ecjia-menu').removeClass('active');
 		}
 		ecjia.touch.search_header();
-//		ecjia.touch.category.init();
+		ecjia.touch.category.init();
 		ecjia.touch.index.swiper_promotion();
 		ecjia.touch.ecjia_menu();
 	});
