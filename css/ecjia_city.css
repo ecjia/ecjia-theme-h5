@@ -2116,6 +2116,9 @@ footer{
     color: #FFF;
     border-radius: 30px;
 }
+.ecjia-user .nmargin-t {
+	margin-top: 0!important;
+}
 .ecjia-user.ecjia-form .form-group {
 	padding-left: 0;
 	margin-left: 0;
@@ -3082,7 +3085,7 @@ footer{
 	margin-top: 0.2em;
 }
 .ecjia-login-padding-top {
-	padding-top:2em !important;
+	padding-top:1em !important;
 }
 .ecjia-login-margin-top {
 	margin-top:3em !important;

@@ -54,9 +54,9 @@ class user_privilege_controller {
         } else {
         	$referer = !empty($_GET['referer']) ? urldecode($_GET['referer']) : '';
         	if (!empty($referer)) {
-        		return ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer));
+        		return ecjia_front::$controller->showmessage(__(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer));
         	}
-            return ecjia_front::$controller->showmessage(__(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/index/init')));
+            return ecjia_front::$controller->showmessage(__('登陆成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/index/init')));
         }
     }
     
