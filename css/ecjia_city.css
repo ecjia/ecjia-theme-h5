@@ -27,6 +27,9 @@ a.ecjia-color-green {
 .ecjia .ecjia-margin-t-n {
 	margin-top: 0;
 }
+.ecjia-margin-l {
+	margin-left:1em;
+}
 .ecjia-list.list-short li+li::before ,.ecjia-list li {border-color: #eee;}
 .ecjia-list li {
     padding: .7em 1em;
@@ -47,6 +50,9 @@ a.ecjia-color-green {
 }
 .ecjia-padding-b {
 	padding-bottom:1em
+}
+.ecjia-of-h {
+	overflow:hidden;
 }
 /* 选择样式 */
 .ecjia-check {

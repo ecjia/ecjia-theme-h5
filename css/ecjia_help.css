@@ -66,6 +66,7 @@
 	margin-top: 1em;
 }
 .ecjia-address-list li {
+	border-top:1px solid #eee;
 	position: relative;
 	overflow: hidden;
 }
@@ -165,15 +166,19 @@
 	position: relative;
 	border-bottom:1px solid #ddd;	
 }
-.ecjia-address-list .ecjia-margin-l {
-	margin-left: 7em;
+.ecjia-address-mobile {
+	margin-left:3em;
 }
-
 .ecjia-address-list .form-group {
 	overflow: hidden;
 	border-bottom: 1px solid #ddd;
 	width: 100%;
 }
+.ecjia-address-list hr {    
+	margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 1px dashed #eee;}
 .ecjia-address-list .margin-bottom0 {
 	margin-bottom: 0;
 }
@@ -271,17 +276,6 @@
     background: url('../images/address_list/50x50_6.png') no-repeat;
     background-size: 100%;
     float: left;
-}
-.ecjia-address-list .ecjia-list li a.edit-address {
-	position: absolute;	
-	right: 25%;
-	top: 76%;
-}
-.ecjia-address-list .ecjia-list li a.delete-address {
-	position: absolute;
-    float: right;
-    top: 76%;
-    right: 2%;
 }
 .ecjia-address-list .nav-header .img-search {
 	position: absolute;
