@@ -22,6 +22,7 @@ class user_controller {
         ecjia_front::$controller->assign('active', 'mine');
         ecjia_front::$controller->assign('hideinfo', 1);
         
+        ecjia_front::$controller->assign_title('个人中心');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user.dwt');
     }
@@ -39,6 +40,7 @@ class user_controller {
         ecjia_front::$controller->assign('title', $title);
         ecjia_front::$controller->assign('data', $shop_detail);
         ecjia_front::$controller->assign('hideinfo', 1);
+        ecjia_front::$controller->assign_title($title);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_shop_detail.dwt');
     }
@@ -61,6 +63,7 @@ class user_controller {
 				}
 			}
 		}
+		ecjia_front::$controller->assign_title('我的推广');
     	ecjia_front::$controller->assign('invite_user', $invite_user_detail);
     	ecjia_front::$controller->display('spread.dwt');
     }

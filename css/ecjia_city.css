@@ -785,6 +785,7 @@ ul, li, ol, dl, dt, dd {
     padding: 0 0 0.4em 0;
     margin: 0 1% 0.3em 1.5%;
 	border-radius: 4px;
+	height: auto;
 }
 .ecjia-new-goods .ecjia-list-two li:nth-of-type(2n) {
 	margin-left: 0;
@@ -2359,7 +2360,7 @@ footer{
 }
 .ecjia-user .img-wallet {
     position: relative;
-    margin: 0.5em auto;
+    margin: 0.25em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/1.png) no-repeat;
@@ -2368,7 +2369,7 @@ footer{
 }
 .ecjia-user .img-bonus {
     position: relative;
-    margin: 0.5em auto;
+    margin: 0.25em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/2.png) no-repeat;
@@ -2377,7 +2378,7 @@ footer{
 }
 .ecjia-user .img-integral {
     position: relative;
-    margin: 0.5em auto;
+    margin: 0.25em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/4.png) no-repeat;
@@ -2386,7 +2387,7 @@ footer{
 }
 .ecjia-user .img-getintegral {
     position: relative;
-    margin: 0.5em auto;
+    margin: 0.25em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/5.png) no-repeat;
@@ -4371,7 +4372,7 @@ footer{
 .ecjia-store-list li a.linksGoods {
     display: block;
     overflow: hidden;
-    padding: .3em .5em .5em 0;
+    padding: .5em .5em 0 0;
 }
 .ecjia-store-list li .input-number{
     position: absolute;
@@ -4424,7 +4425,6 @@ footer{
     padding-top: 1em;
 }
 .ecjia-store-list li.search-goods-list dl dd {
-    padding-top: 1em;
 	padding-left: .5em;
 }
 .ecjia-store-list .box {
@@ -4923,7 +4923,7 @@ footer{
 	width: 100%;
 	padding-left: 1em;
 	padding-right: 1em;
-	padding-bottom: .5em;
+	padding-bottom: 1em;
 }
 .ecjia-spread .go-to-spread .would-spread{
 	font-size:18px;
