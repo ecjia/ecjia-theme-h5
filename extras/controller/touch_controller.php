@@ -129,6 +129,7 @@ class touch_controller {
         ecjia_front::$controller->assign('searchs_count', count(user_function::get_search($store_id)));
 
         ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign_title('搜索');
         ecjia_front::$controller->display('search.dwt');
     }
 

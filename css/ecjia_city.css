@@ -33,6 +33,10 @@ a.ecjia-color-green {
 .ecjia-list.list-short li+li::before ,.ecjia-list li {border-color: #eee;}
 .ecjia-list li {
     padding: .7em 1em;
+	height:3.2em;
+}
+.ecjia-list-normal li {
+	height:3em;
 }
 .ecjia-nav li {
     padding: 0;
@@ -2520,7 +2524,7 @@ footer{
     border-bottom: 1px solid #eee;
 }
 .ecjia-user .ecjia-list.list-short li a{
-	line-height: 2.5em;
+	line-height: 2.3em;
 }
 .ecjia-user .ecjia-list.list-short li a>.icon-jiantou-right {
 	right: 1%;
@@ -3867,6 +3871,7 @@ footer{
 	width:33.33%;
 	border-bottom:0;
 	padding:0.3em 0.5em;
+	height:auto;
 }
 .ecjia-like-goods-list li .link-goods-price{
 	color:#ff3434;
