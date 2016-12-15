@@ -76,8 +76,7 @@ class user_address_controller {
         return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' , 'is_last' => $consignee_list['is_last']));
     }
     
-    public static function save_temp_data () {
-        $options = array();
+    public static function save_temp_data ($is_return = 0, $data_key, $is_clear, $options = array()) {
         if (isset($_GET['city'])) {
             $options['tem_city_name'] = $_GET['city'];
         }
@@ -101,6 +100,9 @@ class user_address_controller {
         }
         
         $temp_data = user_address_controller::update_temp_data('add', $_GET['clear'], $options);
+        if ($is_return) {
+            return $temp_data;
+        }
     }
     
     //临时数据
@@ -152,38 +154,14 @@ class user_address_controller {
      * 增加收货地址
      */
     public static function add_address() {
-//         _dump("aa",1);
         
-        $options = array();
-        if (isset($_GET['city'])) {
-            $options['tem_city_name'] = $_GET['city'];
-        }
-        if (isset($_GET['city_id'])) {
-            $options['tem_city'] = $_GET['city_id'];
-        }
-        if (isset($_GET['address'])) {
-            $options['tem_address'] = $_GET['address'];
-        }
-        if (isset($_GET['addr'])) {
-            $options['tem_address'] = $_GET['addr'];
-        }
-        if (isset($_GET['address_info'])) {
-            $options['tem_address_info'] = $_GET['address_info'];
-        }
-        if (isset($_GET['consignee'])) {
-            $options['tem_consignee'] = $_GET['consignee'];
-        }
-        if (isset($_GET['mobile'])) {
-            $options['tem_mobile'] = $_GET['mobile'];
-        }
-        
-        
-        $temp_data = user_address_controller::update_temp_data('add', $_GET['clear'], $options);
+        $temp_data = user_address_controller::save_temp_data(1, 'add', $_GET['clear'], $_GET);
         _dump($temp_data,2);
         ecjia_front::$controller->assign('temp', $temp_data);
         ecjia_front::$controller->assign('location_backurl', urlencode(RC_Uri::url('user/user_address/add_address')));
     	ecjia_front::$controller->assign('form_action', RC_Uri::url('user/user_address/insert_address'));
         ecjia_front::$controller->assign('hideinfo', '1');
+        ecjia_front::$controller->assign('temp_key', 'add');
         ecjia_front::$controller->assign_title('添加收货地址');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_address_edit.dwt');
@@ -224,11 +202,18 @@ class user_address_controller {
      * 编辑收货地址的处理
      */
     public static function edit_address() {
-        $id             = isset($_GET['id']) ? intval($_GET['id']) : '';
-
+        $id             = isset($_GET['id']) ? intval($_GET['id']) : 0;
+        if (empty($id)) {
+            return ecjia_front::$controller->showmessage('参数错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
+        }
+        $temp_key = 'edit_' . $id;
+        $temp_data = user_address_controller::save_temp_data(1, $temp_key, $_GET['clear'], $_GET);
+        _dump($temp_data,2);
         $params = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $id);
         $info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params)->run();
         ecjia_front::$controller->assign('info', $info);
+        ecjia_front::$controller->assign('temp', $temp_data);
+        ecjia_front::$controller->assign('temp_key', $temp_key);
         ecjia_front::$controller->assign('form_action', RC_Uri::url('user/user_address/update_address'));
         ecjia_front::$controller->assign('location_backurl', RC_Uri::url('user/user_address/edit_address', array('id' => $id)));
         ecjia_front::$controller->assign('hideinfo', '1');
@@ -262,6 +247,10 @@ class user_address_controller {
 //         }
 
 //         _dump($_POST,1);
+
+        if (empty($_POST['address_id'])) {
+            return ecjia_front::$controller->showmessage('参数错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
+        }
         $params = array(
             'token' => ecjia_touch_user::singleton()->getToken(),
             'address_id' => $_POST['address_id'],

@@ -30,6 +30,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </label>
             <!-- {/foreach} -->
         </ul>
+        <!-- <ul>
+        <li><label class="ecjia-check"></label>
+                        <input type="radio" name="test" >111111111</li>
+        <li><label class="ecjia-check ecjia-check-checked"></label>
+                        <input type="radio" name="test" >222</li>
+        <li><label class="ecjia-check ecjia-check-edit"></label>
+                        <input type="radio" name="test" >333</li>
+        </ul> -->
         
         <div class="ecjia-margin-t ecjia-margin-b">
             <input type="hidden" name="address_id" value="{$address_id}">

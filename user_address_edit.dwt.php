@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<label class="input">
 			<span class="ecjiaf-fl">收货地址： </span>
 			<a href='{url path="user/user_address/near_location" args="{if $temp.tem_city_name}city={$temp.tem_city_name}{/if}{if $temp.tem_city}&city_id={$temp.tem_city}{/if}{if $info.id}&address_id={$info.id}{/if}"}'>
-				<input name="address" placeholder="{t}写字楼，小区，学校，街道{/t}" type="text" datatype="*" value="{if $temp.tem_address}{$temp.tem_address}{$temp.tem_address_info}{else}{$info.address}{/if}" readonly="readonly" />
+				<input name="address" placeholder="{t}写字楼，小区，学校，街道{/t}" type="text" datatype="*" value="{if $temp.tem_address}{$temp.tem_address}{else}{$info.address}{/if}" readonly="readonly" />
 			</a>
 			
 			<a href="https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl={$location_backurl}&key=4PLBZ-WSUW2-OXBUZ-CFNSS-MRUAV-3SFEO&referer=nothingkey">
@@ -53,6 +53,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</label>
 	</div>
 	<div class="ecjia-margin-t ecjia-margin-b">
+	    <input name="temp_key" type="hidden" value="{$temp_key}" />
 		<input class="btn btn-info nopjax" name="submit" type="submit" value="{t}保存{/t}"/>
 		<input name="address_id" type="hidden" value="{$info.id}" />
 	</div>
