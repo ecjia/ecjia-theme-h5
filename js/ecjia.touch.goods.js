@@ -697,7 +697,8 @@
         			//禁用滚动条
                 	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
                 	
-        			$('.ecjia-modal').show();
+                	var height = ($('body').scrollTop() + 170) + 'px';
+        			$('.ecjia-modal').show().css('top', height);
         			$('.ecjia-modal-overlay').show();
         			myApp.openModal('.ecjia-modal');
         			$('.modal-overlay').remove();
