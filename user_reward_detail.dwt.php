@@ -38,8 +38,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	    </li>
         <!-- {foreachelse} -->
         <div class="ecjia-nolist">
-			<div class="img-noreward"></div>
-			<p>{t}暂无奖励{/t}</p>
+	        <div class="img-noreward"></div>
+			<span>{t}暂无奖励{/t}</span>
 		</div>
         <!-- {/foreach} -->
 	</ul>

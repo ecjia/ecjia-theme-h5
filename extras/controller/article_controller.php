@@ -12,6 +12,7 @@ class article_controller {
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_HELP)->run();
     	
     	ecjia_front::$controller->assign('data', $data);
+    	ecjia_front::$controller->assign_title('帮助中心');
     	ecjia_front::$controller->assign('title', '帮助中心');
     	ecjia_front::$controller->assign('hideinfo', '1');
     	ecjia_front::$controller->assign_lang();

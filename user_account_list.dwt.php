@@ -11,7 +11,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 
 <ul class="ecjia-list ecjia-account">
-	<div class="ecjia-nolist">
+	<a href="{url path='user/user_account/record'}"><p class="cash_list">交易记录</p></a>
+	<div class="ecjia-nolist ecjia-margin-t5">
 		<i class="glyphicon glyphicon-piggy-bank"></i>
 		{if $user}
 		<span class="nolist-size">可用余额：<span>{$user.formated_user_money}</span></span>
@@ -23,6 +24,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<a href="{url path='user/user_account/recharge'}" class="btn">{t}充值{/t}</a>
 		<a href="{url path='user/user_account/withdraw'}" class="btn ecjia-btn-e5">{t}提现{/t}</a>
 	</div>
-	<a href="{url path='user/user_account/record'}"><p class="cash_list">交易记录</p></a>
 </ul>
 <!-- {/block} -->
