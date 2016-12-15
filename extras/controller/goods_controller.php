@@ -739,6 +739,7 @@ class goods_controller {
     	
     	ecjia_front::$controller->assign('longitude', $longitude);
     	ecjia_front::$controller->assign('latitude', $latitude);
+    	ecjia_front::$controller->assign_title('店铺位置');
     	
     	ecjia_front::$controller->display('store_position.dwt');
     }
