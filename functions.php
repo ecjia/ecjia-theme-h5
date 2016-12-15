@@ -163,7 +163,6 @@ RC_Hook::add_action('user/user_address/region', array('user_address_controller',
 RC_Hook::add_action('user/user_address/location', array('user_address_controller', 'location'));
 RC_Hook::add_action('user/user_address/near_location', array('user_address_controller', 'near_location'));
 RC_Hook::add_action('user/user_address/async_location', array('user_address_controller', 'async_location'));
-RC_Hook::add_action('user/user_address/my_location', array('user_address_controller', 'my_location'));
 RC_Hook::add_action('user/user_address/city', array('user_address_controller', 'city'));
 RC_Hook::add_action('user/user_address/near_address', array('user_address_controller', 'near_address'));
 RC_Hook::add_action('user/user_address/set_default', array('user_address_controller', 'set_default'));

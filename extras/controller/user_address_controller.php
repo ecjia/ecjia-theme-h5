@@ -414,16 +414,6 @@ class user_address_controller {
     	$sayList = ecjia_front::$controller->fetch('user_location.dwt');
     	return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' ,'is_last' => $consignee_list['is_last']));
     }
-    /**
-     * 我的位置
-     */
-//     public static function my_location() {
-//     	ecjia_front::$controller->assign('hideinfo', '1');
-//         ecjia_front::$controller->assign('title', '您当前地址列表');
-//         ecjia_front::$controller->assign_lang();
-//         ecjia_front::$controller->assign_title('当前位置');
-//         ecjia_front::$controller->display('user_my_location.dwt');
-//     }
     
     public static function near_address() {
     	$region   = $_GET['region'];
