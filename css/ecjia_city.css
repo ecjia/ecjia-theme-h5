@@ -2524,7 +2524,7 @@ footer{
     border-bottom: 1px solid #eee;
 }
 .ecjia-user .ecjia-list.list-short li a{
-	line-height: 2.3em;
+	line-height: 2em;
 }
 .ecjia-user .ecjia-list.list-short li a>.icon-jiantou-right {
 	right: 1%;
@@ -2604,7 +2604,7 @@ footer{
 .ecjia-user .ecjia-list.list-short li i {
 	font-size: 1.5em;
 	display:box; 
-	line-height: 2.3em;
+	line-height: 2em;
 }
 .ecjia-user .ecjia-list.list-short li span{
 	display: inline;
@@ -2771,6 +2771,7 @@ footer{
 .ecjia-nav-child-f li {
 	padding:1em .5em .5em;
 	line-height: 2em;
+	height: 5.5em;
 }
 /*========================  城市选择 ===========================*/
 .cityall {
