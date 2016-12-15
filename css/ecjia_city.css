@@ -1239,7 +1239,7 @@ footer{
 .ecjia-store-goods .r2 .box {
     position: absolute;
     right: 0;
-    bottom: 0em;
+    bottom: .2em;
 }
 .ecjia-store-goods .box span {
     background-color: #fffaeb;
@@ -1258,7 +1258,7 @@ footer{
     -webkit-background-size: 400% 100%;
     background-size: 400% 100%;
     width: 2.8em;
-    height: 2.2em;
+    height: 2.1em;
     vertical-align: top;
     border: 0 none;
     background-origin: content-box;
@@ -1270,20 +1270,19 @@ footer{
 }
 .ecjia-store-goods .r2 .box label {
     float: left;
-    color: #333333;
-    font-size: 1em;
+    color: #555;
+    font-size: 1.2em;
     padding: 0;
     width: 2em;
-    height: 2.4em;
+    height: 1.7em;
     overflow: hidden;
     display: inline-block;
     text-align: center;
-    line-height: 1.5em;
+    line-height: 1.7em;
     vertical-align: top;
     -webkit-background-origin: content-box;
     background-origin: content-box;
     background-color: transparent;
-    margin-top: .3em;
 	margin-bottom: 0;
 }
 .ecjia-store-goods .r2 li label {
@@ -4143,6 +4142,7 @@ footer{
 .ecjia-store-list li.single_item{
     background: #FFFFFF;
     border-bottom: 1px solid #eee;
+	border-top: 1px solid #eee;
     margin-bottom: 1em;
 	height: auto;
 	min-height: 5em;
