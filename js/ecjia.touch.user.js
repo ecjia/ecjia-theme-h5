@@ -15,6 +15,7 @@
 			ecjia.touch.user.mobile_register();
 			ecjia.touch.user.reset_password();
 			ecjia.touch.user.show_password();
+			ecjia.touch.user.modify_username();
 			$(function(){
 				$(".del").click(function(){
 					if(!confirm('您确定要删除吗？')){
@@ -43,6 +44,18 @@
 				});
 			})
 		},
+
+		//点击搜索结果事件
+        location_list_click: function () {      	
+            $('.ecjia-location-list-wrap li').on('click', function () {
+            	  var title=$(this).find(".ecjia-location-list-title").text();
+                  var address=$(this).find(".ecjia-location-list-address").text();
+                  var url = $("#ecjia-zs").attr('data-url');
+                  url += '&address=' + address;
+                  url += '&address_info=' + title;
+                  ecjia.pjax(url);
+            });
+        },
 
 		loginout_click : function (){
 			$('.loginout').on('click',function(e){
@@ -192,6 +205,24 @@
 		        else {
 		            $("#password-2").attr("type", "password")
 		        }
+			});
+		},
+		/*修改用户名*/
+		modify_username : function (){
+			$("input[name='modify_username']").on('click', function(e){
+				e.preventDefault();
+				var username = $('#username-modify').val();
+				var url = $(this).attr('data-url');
+				options = {
+						'username' : username
+				}
+				$.post(url,options, function(data){
+					if (data.state == 'error'){
+						$("#modify-username-info").text(data.msg);
+					} else {
+						window.location.href = data.msg;
+					}
+				});
 			});
 		},
 		// add_attention_click : function(){
