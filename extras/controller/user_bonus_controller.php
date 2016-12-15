@@ -10,6 +10,7 @@ class user_bonus_controller {
     public static function bonus() {
         $status = $_GET['status'];
         $_SESSION['bonus_type'] = $status;
+        ecjia_front::$controller->assign_title('我的红包');
         ecjia_front::$controller->display('user_bonus.dwt');
     }
 
@@ -54,6 +55,8 @@ class user_bonus_controller {
 		$token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
     	$invite_reward = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_REWARD)->data(array('token' => $token['access_token']))->run();
         $intive_total = $invite_reward[invite_total];
+        
+        ecjia_front::$controller->assign_title('我的奖励');
         ecjia_front::$controller->assign('intive_total', $intive_total);
         ecjia_front::$controller->display('user_my_reward.dwt');
     }
@@ -82,7 +85,7 @@ class user_bonus_controller {
     	ecjia_front::$controller->assign('data', $data['data']);
     	ecjia_front::$controller->assign('is_last', $data['paginated']['more']);
     	ecjia_front::$controller->assign('max_month', $max_month);
-    	
+    	ecjia_front::$controller->assign_title('奖励明细');
         ecjia_front::$controller->display('user_reward_detail.dwt');
     }
     /**
@@ -118,6 +121,7 @@ class user_bonus_controller {
      * 赚积分
      */
     public static function get_integral() {
+        ecjia_front::$controller->assign_title('赚积分');
         ecjia_front::$controller->display('user_get_integral.dwt');
     }
 }
