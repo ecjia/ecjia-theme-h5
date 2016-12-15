@@ -17,35 +17,23 @@
 				str = str.length>13?str.substring(0,13)+'...':str;
 				var str = $(".address-text").html(str);
 			}
-			
-			
-			var map = new BMap.Map("allmap");
-			var point = new BMap.Point(116.331398,39.897445);
-			map.centerAndZoom(point,12);
-
-			var geolocation = new BMap.Geolocation();
-			geolocation.getCurrentPosition(function(r){
-				if(this.getStatus() == BMAP_STATUS_SUCCESS){
-					var mk = new BMap.Marker(r.point);
-					map.addOverlay(mk);
-					map.panTo(r.point);
-					
-					var point = new BMap.Point(r.point.lng,r.point.lat);
-					var gc = new BMap.Geocoder();
-					gc.getLocation(point, function(rs){
-					   var addComp = rs.addressComponents;
-					   var str = $(".address-text").html(addComp.city + addComp.district + addComp.street + addComp.streetNumber);
-					});
-				}
-				else {
-					alert('failed'+this.getStatus());
-				}        
-			},{
-				enableHighAccuracy: true
-			})	
-			
+			 
+			var what = $.cookie('what');
+			if(what == undefined){
+			   $.cookie('what','first');
+//			   if (navigator.geolocation) {  
+//				    navigator.geolocation.getCurrentPosition(function(pos) {
+//				        alert(pos.coords.latitude + '  '+pos.coords.longitude);
+//				    }, function(err) {
+//				    }, {  
+//				        enableHighAccuracy: true, // 是否获取高精度结果  
+//				        timeout: 5000, //超时,毫秒  
+//				        maximumAge: 0 //可以接受多少毫秒的缓存位置  
+//				    });  
+//				}
+			}
         },
-        
+
         init_swiper : function() {
 			var swiper = new Swiper('.swiper-touchIndex', {
 				pagination: '.swiper-pagination',

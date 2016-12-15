@@ -8,17 +8,6 @@ class cart_controller {
      */
     public static function init() {
     	$token = ecjia_touch_user::singleton()->getToken();
-    	//所有地址
-    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
-
-    	$default_address = array();
-    	if (!empty($address_list)) {
-    		foreach ($address_list as $k => $v) {
-    			if ($v['default_address'] == 1) {
-    				$default_address = $v;
-    			}
-    		}
-    	}
     	$arr = array(
     		'token' 	=> $token,
     		'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371')
@@ -51,14 +40,19 @@ class cart_controller {
     		}
     	}
 
-//     	ecjia_front::$controller->assign('default_address', $default_address);
     	ecjia_front::$controller->assign('cart_list', $cart_list['cart_list']);
+    	ecjia_front::$controller->assign('referer_url', urlencode(RC_Uri::url('cart/index/init')));
     	
     	if (!ecjia_touch_user::singleton()->isSignin()) {
-    		ecjia_front::$controller->assign('referer', urlencode(RC_Uri::url('cart/index/init')));
     		ecjia_front::$controller->assign('not_login', true);
     	}
     	
+    	if (isset($_COOKIE['address_id'])) {
+    		ecjia_front::$controller->assign('address_id', $_COOKIE['address_id']);
+    		$address_info = user_function::address_info(ecjia_touch_user::singleton()->getToken(), $_COOKIE['address_id']);
+    		ecjia_front::$controller->assign('address_info', $address_info);
+    	}
+    	ecjia_front::$controller->assign('address_id', $_COOKIE['address_id']);
         ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->assign('active', 'cartList');
         ecjia_front::$controller->display('cart_list.dwt');

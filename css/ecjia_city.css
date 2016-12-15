@@ -1239,7 +1239,7 @@ footer{
 .ecjia-store-goods .r2 .box {
     position: absolute;
     right: 0;
-    bottom: 0em;
+    bottom: .2em;
 }
 .ecjia-store-goods .box span {
     background-color: #fffaeb;
@@ -1258,7 +1258,7 @@ footer{
     -webkit-background-size: 400% 100%;
     background-size: 400% 100%;
     width: 2.8em;
-    height: 2.2em;
+    height: 2.1em;
     vertical-align: top;
     border: 0 none;
     background-origin: content-box;
@@ -1270,20 +1270,19 @@ footer{
 }
 .ecjia-store-goods .r2 .box label {
     float: left;
-    color: #333333;
-    font-size: 1em;
+    color: #555;
+    font-size: 1.2em;
     padding: 0;
     width: 2em;
-    height: 2.4em;
+    height: 1.7em;
     overflow: hidden;
     display: inline-block;
     text-align: center;
-    line-height: 1.5em;
+    line-height: 1.7em;
     vertical-align: top;
     -webkit-background-origin: content-box;
     background-origin: content-box;
     background-color: transparent;
-    margin-top: .3em;
 	margin-bottom: 0;
 }
 .ecjia-store-goods .r2 li label {
@@ -1955,9 +1954,34 @@ footer{
 .flow-nomore-msg{
 	height: 48px;
 }
-.ecjia-modal{
-	display: none;
-	margin-top: 10em;
+.ecjia-modal {
+  width: 270px;
+  position: absolute;
+  z-index: 11000;
+  left: 50%;
+  margin-left: -135px;
+  margin-top: -10em;
+  top: 50%;
+  text-align: center;
+  border-radius: 7px;
+  opacity: 0;
+  color: #000;
+  display: none;
+}
+.ecjia-modal.modal-in {
+  opacity: 1;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+  -webkit-transform: translate3d(0,0,0) scale(1);
+  transform: translate3d(0,0,0) scale(1);
+}
+.ecjia-modal.modal-out {
+  opacity: 0;
+  z-index: 10999;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+  -webkit-transform: translate3d(0,0,0) scale(0.815);
+  transform: translate3d(0,0,0) scale(0.815);
 }
 .ecjia-modal .modal-title{
 	padding-left: 2.5em;
@@ -2014,7 +2038,7 @@ footer{
 }
 .ecjia-modal .modal-text{
 	text-align: center;
-    padding: 2em 1em;
+    padding: 3em 1em;
 	font-size: 1em;
 	font-weight: normal;
 	color: #555;
@@ -2022,8 +2046,26 @@ footer{
 .ecjia-modal .modal-inner:after{
 	background-color: #eee;
 }
-.ecjia-modal .modal-buttons-vertical .modal-button:after{
+.ecjia-modal .modal-buttons-vertical .modal-button:after {
 	background-color: #fff;
+}
+.ecjia-modal-overlay{
+	position: absolute;
+  	left: 0;
+  	top: 0;
+  	width: 100%;
+  	height: 100%;
+  	background: rgba(0,0,0,0.4);
+  	z-index: 10600;
+  	visibility: hidden;
+  	opacity: 0;
+  	-webkit-transition-duration: 400ms;
+  	transition-duration: 400ms;
+	display: none;
+}
+.ecjia-modal-overlay.ecjia-modal-overlay-visible {
+  visibility: visible;
+  opacity: 1;
 }
 /*========================  结算 ecjia-checkout =========================== */
 /*定位地址、选择的收货地址 */
@@ -2139,6 +2181,10 @@ footer{
 }
 .ecjia-checkout .ecjia-list li {
 	border-bottom:none;
+}
+.ecjia-address-list .address-list-center .iconfont.icon-roundadd{
+	color: #47AA4D;
+	font-size: 1.5em;
 }
 /*======================== 选择支付方式、选择配送方式、选择红包 ecjia-select  ===========================*/
 .ecjia .ecjia-select li{
@@ -4096,6 +4142,7 @@ footer{
 .ecjia-store-list li.single_item{
     background: #FFFFFF;
     border-bottom: 1px solid #eee;
+	border-top: 1px solid #eee;
     margin-bottom: 1em;
 	height: auto;
 	min-height: 5em;
@@ -4651,12 +4698,20 @@ footer{
 }
 /*======================== 推广 ===========================*/
 .ecjia-spread .ecjia-my-reward{
-	float:right;
-	position:relative;
-	font-size:16px;
-	border-bottom:2px solid #47aa4d;
-	margin-top:-14px;
-	right:1.5em;
+	width: 100%;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-bottom: .5em;
+}
+.ecjia-spread .ecjia-my-reward .my_reward{
+	font-size: 18px;
+    border-radius: 7px;
+    height: 42px;
+    line-height: 42px;
+    color: #47aa4d;
+    text-align: center;
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #47aa4d;
 }
 .ecjia-spread{
 	background: #fff;
@@ -4812,10 +4867,10 @@ footer{
 	height:6em;
 }
 .ecjia-spread .go-to-spread{
-	width:100%;
-	padding-left:1em;
-	padding-right:1em;
-	padding-bottom:1.5em;
+	width: 100%;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-bottom: .5em;
 }
 .ecjia-spread .go-to-spread .would-spread{
 	font-size:18px;
