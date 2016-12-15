@@ -158,6 +158,7 @@ RC_Hook::add_action('user/user_address/insert_address', array('user_address_cont
 RC_Hook::add_action('user/user_address/edit_address', array('user_address_controller', 'edit_address'));
 RC_Hook::add_action('user/user_address/update_address', array('user_address_controller', 'update_address'));
 RC_Hook::add_action('user/user_address/del_address', array('user_address_controller', 'del_address'));
+RC_Hook::add_action('user/user_address/save_temp_data', array('user_address_controller', 'save_temp_data'));
 RC_Hook::add_action('user/user_address/region', array('user_address_controller', 'region'));
 RC_Hook::add_action('user/user_address/location', array('user_address_controller', 'location'));
 RC_Hook::add_action('user/user_address/near_location', array('user_address_controller', 'near_location'));

@@ -15,7 +15,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<div id="ecjia-zs" data-url="{url path='touch/index/init'}">
+<div id="ecjia-zs" data-type="index" data-url="{url path='touch/index/init'}">
     <div class="ecjia-zs">
       <div class="ecjia-zt al">
            <a href="{url path='location/index/select_city' args="type=search{if $smarty.get.city_id}&city_id={$smarty.get.city_id}{else}&city_id=52{/if}"}">
