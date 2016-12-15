@@ -8,7 +8,6 @@
 			ecjia.touch.asynclist();
 			ecjia.touch.ecjia_menu();
 			ecjia.touch.region_change();
-			ecjia.touch.address_list();
 			ecjia.touch.selectbox();
 			ecjia.touch.valid();
 			ecjia.touch.toggle_collapse();
@@ -23,7 +22,7 @@
 			$('#list').bind('input', function () {
 				var url = $(this).attr('data-url');
 				var region   = $(".ecjia-zu").html();
-				var keywords = $("input[name='address']").val();
+				var keywords = region + $("input[name='address']").val();
 				url += '&region=' + region +'&keywords=' + keywords;
 	             $.ajax({
             	    url:url,
@@ -54,7 +53,7 @@
             $('.nav-list-ready li').on('click', function () {
             	  var count=$(this).index();  
                   var Tresult=Uarry.eq(count).text();  
-                  $.cookie('index_address', Tresult); 
+                  $.cookie('location_address', Tresult); 
                   var url = $("#ecjia-zs").attr('data-url');
                   ecjia.pjax(url);
             });
