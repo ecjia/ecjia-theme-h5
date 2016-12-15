@@ -4698,12 +4698,20 @@ footer{
 }
 /*======================== 推广 ===========================*/
 .ecjia-spread .ecjia-my-reward{
-	float:right;
-	position:relative;
-	font-size:16px;
-	border-bottom:2px solid #47aa4d;
-	margin-top:-14px;
-	right:1.5em;
+	width: 100%;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-bottom: .5em;
+}
+.ecjia-spread .ecjia-my-reward .my_reward{
+	font-size: 18px;
+    border-radius: 7px;
+    height: 42px;
+    line-height: 42px;
+    color: #47aa4d;
+    text-align: center;
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #47aa4d;
 }
 .ecjia-spread{
 	background: #fff;
@@ -4859,10 +4867,10 @@ footer{
 	height:6em;
 }
 .ecjia-spread .go-to-spread{
-	width:100%;
-	padding-left:1em;
-	padding-right:1em;
-	padding-bottom:1.5em;
+	width: 100%;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-bottom: .5em;
 }
 .ecjia-spread .go-to-spread .would-spread{
 	font-size:18px;
