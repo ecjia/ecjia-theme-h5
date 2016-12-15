@@ -3871,6 +3871,7 @@ footer{
 	width:33.33%;
 	border-bottom:0;
 	padding:0.3em 0.5em;
+	height:auto;
 }
 .ecjia-like-goods-list li .link-goods-price{
 	color:#ff3434;
