@@ -13,8 +13,10 @@ class touch_controller {
         ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
         
         $addr = $_GET['addr'];
+        $name = $_GET['name'];
         if(!empty($addr)){
         	setcookie("location_address", $addr);
+        	setcookie("location_name", $name);
         	ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
         }
         
@@ -127,6 +129,7 @@ class touch_controller {
         ecjia_front::$controller->assign('searchs_count', count(user_function::get_search($store_id)));
 
         ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign_title('搜索');
         ecjia_front::$controller->display('search.dwt');
     }
 

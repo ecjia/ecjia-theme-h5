@@ -47,14 +47,16 @@ class cart_controller {
     		ecjia_front::$controller->assign('not_login', true);
     	}
     	
-    	if (isset($_COOKIE['address_id'])) {
-    		ecjia_front::$controller->assign('address_id', $_COOKIE['address_id']);
-    		$address_info = user_function::address_info(ecjia_touch_user::singleton()->getToken(), $_COOKIE['address_id']);
+    	if (isset($_COOKIE['location_address_id'])) {
+    		ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
+    		$address_info = user_function::address_info(ecjia_touch_user::singleton()->getToken(), $_COOKIE['location_address_id']);
     		ecjia_front::$controller->assign('address_info', $address_info);
     	}
-    	ecjia_front::$controller->assign('address_id', $_COOKIE['address_id']);
+    	ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
         ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->assign('active', 'cartList');
+    	
+    	ecjia_front::$controller->assign_title('购物车列表');
         ecjia_front::$controller->display('cart_list.dwt');
     }
     /**

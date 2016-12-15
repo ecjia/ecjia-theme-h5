@@ -29,11 +29,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<textarea class="invite-template-style" name="invite_template">{$invite_user.invite_template}</textarea>
 	</div>
 	<div class="go-to-spread">
-		<a class="" href="javascript:;"><div class="would-spread">我要推广</div></a>
+		<a class="show_spread_share"><div class="would-spread">我要推广</div></a>
 	</div>
 	
 	<div class="ecjia-my-reward">
-		<a href="{url path='user/user_bonus/my_reward'}"><div class="my_reward">我的奖励</div></a>
+		<a href="{url path='user/user_bonus/my_reward'}"><div class="my_reward">查看我的奖励</div></a>
 	</div>
 	
 	<div class="invite_explain"> 
@@ -50,18 +50,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			{/if}
 		</div>
 	</div>
-	<!--底部弹层start-->
-		<div class="bottom-elastic-layer" style="margin-top:-20em;">
-			<div class="share-buttons">
-				<p>111111111</p>
-				<p>111111111</p>
-				<p>111111111</p>
-			</div>
-			<div class="cancel-butoons">取消</div>
-		</div>
-	<!--底部弹层end-->
+	<div class="ecjia-spread-share hide"><img src="{$theme_url}images/spread.png"></div>
 </div>
-
-
-
 <!-- {/block} -->
