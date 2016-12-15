@@ -2359,7 +2359,7 @@ footer{
 }
 .ecjia-user .img-wallet {
     position: relative;
-    margin: 0.5em auto;
+    margin: 0.25em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/1.png) no-repeat;
@@ -2368,7 +2368,7 @@ footer{
 }
 .ecjia-user .img-bonus {
     position: relative;
-    margin: 0.5em auto;
+    margin: 0.25em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/2.png) no-repeat;
@@ -2377,7 +2377,7 @@ footer{
 }
 .ecjia-user .img-integral {
     position: relative;
-    margin: 0.5em auto;
+    margin: 0.25em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/4.png) no-repeat;
@@ -2386,7 +2386,7 @@ footer{
 }
 .ecjia-user .img-getintegral {
     position: relative;
-    margin: 0.5em auto;
+    margin: 0.25em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/5.png) no-repeat;
