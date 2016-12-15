@@ -122,8 +122,8 @@ class goods_controller {
 	    ecjia_front::$controller->assign('real_count', $cart_goods_list['total']);
 	    ecjia_front::$controller->assign('data_rec', $data_rec);
 	    
-	    if (isset($_COOKIE['address_id'])) {
-	    	ecjia_front::$controller->assign('address_id', $_COOKIE['address_id']);
+	    if (isset($_COOKIE['location_address_id'])) {
+	    	ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
 	    }
 	    
 	    ecjia_front::$controller->assign_title('商品详情');
@@ -264,8 +264,8 @@ class goods_controller {
     			ecjia_front::$controller->assign('real_count', $cart_list['total']);
     			ecjia_front::$controller->assign('rec_id', $rec_id);
     			
-    			if (isset($_COOKIE['address_id'])) {
-    				ecjia_front::$controller->assign('address_id', $_COOKIE['address_id']);
+    			if (isset($_COOKIE['location_address_id'])) {
+    				ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
     			}
     			if ($type == 'ajax_get') {
     				ecjia_front::$controller->assign('goods_list', $arr_list);
@@ -466,8 +466,8 @@ class goods_controller {
     	ecjia_front::$controller->assign('category_id', $category_id);
     	ecjia_front::$controller->assign('rec_id', $rec_id);
 
-    	if (isset($_COOKIE['address_id'])) {
-    		ecjia_front::$controller->assign('address_id', $_COOKIE['address_id']);
+    	if (isset($_COOKIE['location_address_id'])) {
+    		ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
     	}
     	    	
     	ecjia_front::$controller->assign('title', $store_info['seller_name']);
