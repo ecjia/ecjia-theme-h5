@@ -2553,7 +2553,7 @@ footer{
     right:2%;
 }
 .ecjia-user .text-color {
-	color: black!important;
+	color: #555!important;
 }
 .ecjia-user .user-img-text img {
 	/*background: #47aa4d none repeat scroll 0 0;*/
@@ -2798,10 +2798,12 @@ footer{
 	border-top: 0!important;
 }
 .ecjia-account .cash_list {
-	text-align: center;
-	margin-top: 2em;
+	/*text-align: center;*/
+	float: right;
+	margin-right: 2em;
+	margin-top: 1em;
 	font-size: 1.2em;
-	width: 19%;
+	/*width: 17%;*/
 	margin-left: 40%;
 	border-bottom: 1px solid #47AA4D;
 	color: #47AA4D;
@@ -2821,6 +2823,10 @@ footer{
     border-radius: 100%;
     background: #47aa4d;
     margin-right: 1em;
+}
+.ecjia-account .ecjia-margin-t5 {
+	margin-top: 5em;
+	padding-top: 0!important;
 }
 .ecjia-account .user-name {
 	float: left;
