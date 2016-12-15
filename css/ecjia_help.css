@@ -85,6 +85,7 @@
 	border-top:1px solid #eee;
 	position: relative;
 	overflow: hidden;
+	height:auto;
 }
 .ecjia-address-list .form-group .input label {
 	position: absolute;
@@ -236,15 +237,15 @@
 	position: absolute;
 	left: 1em;
 	top: 0;
-	height: 2.4em;
+	height: 3.2em;
 	width: 6em;
-	line-height: 3em;
+	line-height: 3.2em;
 	overflow: hidden;
 }
 .ecjia-address-list .form-group-text .input input {
 	padding-left: 7em;
     padding-right: 3.5em;
-	height: 3em;
+	height: 3.2em;
 }
 
 /*
