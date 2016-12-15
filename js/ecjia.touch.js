@@ -129,6 +129,14 @@
 			options.message && options.is_show && alert(options.message);
 			options.pjaxurl && ecjia.pjax(options.pjaxurl);
 		},
+		
+		alert : function(text) {
+			var app = new Framework7({
+		 	       modalButtonOk: "确定",
+		 	       modalTitle: ''
+		         });
+			app.alert(text);
+		},
 
 		/**
 		 * 加载列表的触发器方法
@@ -566,4 +574,6 @@
 $(function(){
 	/* 页面载入后自动执行 */
 	ecjia.touch.init();
+	
+	window.alert = ecjia.touch.alert;
 });
