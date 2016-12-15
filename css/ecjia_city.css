@@ -33,6 +33,10 @@ a.ecjia-color-green {
 .ecjia-list.list-short li+li::before ,.ecjia-list li {border-color: #eee;}
 .ecjia-list li {
     padding: .7em 1em;
+	height:3.2em;
+}
+.ecjia-list-normal li {
+	height:3em;
 }
 .ecjia-nav li {
     padding: 0;
