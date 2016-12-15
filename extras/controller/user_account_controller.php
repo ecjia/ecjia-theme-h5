@@ -176,6 +176,7 @@ class user_account_controller {
         }
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('user', $user);
+        ecjia_front::$controller->assign_title('交易明细');
         ecjia_front::$controller->assign('sur_amount', $data['data'][$account_key]);
         $_SESSION['status'] = !empty($_GET['status']) ? $_GET['status'] : '';
         ecjia_front::$controller->display('user_record_info.dwt');
