@@ -44,6 +44,18 @@
 			})
 		},
 
+		//点击搜索结果事件
+        location_list_click: function () {      	
+            $('.ecjia-location-list-wrap li').on('click', function () {
+            	  var title=$(this).find(".ecjia-location-list-title").text();
+                  var address=$(this).find(".ecjia-location-list-address").text();
+                  var url = $("#ecjia-zs").attr('data-url');
+                  url += '&address=' + address;
+                  url += '&address_info=' + title;
+                  ecjia.pjax(url);
+            });
+        },
+
 		loginout_click : function (){
 			$('.loginout').on('click',function(e){
 				e.preventDefault();
