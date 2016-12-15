@@ -42,20 +42,11 @@ class user_function
 	}
 	
 	/**
-	 * 获取用户默认address_id
+	 * 获取单条地址信息
 	 */
-	public static function default_address_id($token) {
-		//所有地址
-		$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
-		
-		$address_id = '';
-		if (!empty($address_list)) {
-			foreach ($address_list as $k => $v) {
-				if ($v['default_address'] == 1) {
-					$address_id = $v['id'];
-				}
-			}
-		}
-		return $address_id;
+	public static function address_info($token, $address_id) {
+		$address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data(array('token' => $token, 'address_id' => $address_id))->run();
+
+		return $address_info;
 	}
 }

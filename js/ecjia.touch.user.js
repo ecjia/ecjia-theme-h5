@@ -4,7 +4,7 @@
 ;(function(ecjia, $) {
 
 	ecjia.touch.user = {
-		init : function(from){
+		init : function(){
 			ecjia.touch.user.show_goods_list_click();
 			ecjia.touch.user.show_share_click();
 			ecjia.touch.user.loginout_click();
