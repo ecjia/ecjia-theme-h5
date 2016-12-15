@@ -266,7 +266,7 @@
         			            }
         			          },
         			          {
-        			            text: '去登陆',
+        			            text: '去登录',
         			            onClick: function() {
         			            	$('.modal').remove();
         			            	$('.modal-overlay').remove();

@@ -13,18 +13,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<a href="{RC_Uri::url('user/user_address/location')}">
-	<div class="flow-address flow-cart">
+<a href="{RC_Uri::url('user/user_address/location')}{if $referer_url}&referer_url={$referer_url}{/if}">
+	<div class="flow-address flow-cart {if $address_id gt 0}default{/if}">
 		<span class="ecjiaf-fl">{t}送至：{/t}</span>
-		<div class="ecjiaf-fl address-info default">
-			<span>中山北路3553号伸大厦18层1801号</span>
-<!-- 			{if $not_login} -->
-<!-- 			<span>{$smarty.cookies.index_address}</span> -->
-<!-- 			{else} -->
-<!-- 			<span>{$default_address.consignee}</span> -->
-<!-- 			<span>{$default_address.mobile}</span> -->
-<!-- 			<p class="ecjia-truncate2 address-desc">{$default_address.address}{$default_address.address_info}</p> -->
-<!-- 			{/if} -->
+		<div class="ecjiaf-fl address-info">
+			{if $address_id gt 0}
+				<span>{$address_info.consignee}</span>
+				<span>{$address_info.mobile}</span>
+				<p class="ecjia-truncate2 address-desc">{$address_info.address}{$address_info.address_info}</p>
+			{else}
+				<span>{$smarty.cookies.index_address}</span>
+			{/if}
 		</div>
 	</div>
 </a>
@@ -77,7 +76,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="item-count">
 				<span class="count">合计：</span>
 				<span class="price price_{$val.seller_id}">{$val.total.goods_price}</span>
-				<a class="check_cart check_cart_{$val.seller_id} {if !$val.total.check_one}disabled{/if}" data-href="{RC_Uri::url('cart/flow/checkout')}" data-store="{$val.seller_id}" data-address="{$default_address.id}" data-rec="{$val.total.data_rec}" href="javascript:;">去结算</a>
+				<a class="check_cart check_cart_{$val.seller_id} {if !$val.total.check_one}disabled{/if}" data-href="{RC_Uri::url('cart/flow/checkout')}" data-store="{$val.seller_id}" data-address="{$address_id}" data-rec="{$val.total.data_rec}" href="javascript:;">去结算</a>
 			</div>
 		</li>
 		<input type="hidden" name="update_cart_url" value="{RC_Uri::url('goods/category/update_cart')}">

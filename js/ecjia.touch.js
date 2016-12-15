@@ -332,6 +332,15 @@
  					}
 
  			});
+			
+			$('[data-toggle="choose_address"]').off('click').on('click', function(e){
+				e.preventDefault();
+				var $this = $(this),
+					url = $this.attr('href');
+				$.get(url, function(data) {
+					ecjia.pjax(data.pjaxurl);
+				});
+			})
 		},
 
 		ecjia_menu : function() {

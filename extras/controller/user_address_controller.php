@@ -37,7 +37,7 @@ class user_address_controller {
 //         ecjia_front::$controller->assign('title', RC_Lang::lang('consignee_info'));
 //         ecjia_front::$controller->assign_title(RC_Lang::lang('consignee_info'));
     	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
-	    ecjia_front::$controller->assign('address_list', $address_list);
+    	ecjia_front::$controller->assign('address_list', $address_list);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_address_list.dwt');
     }
@@ -94,6 +94,10 @@ class user_address_controller {
 //         $add_address = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_ADD)->data(array('token' => $token['access_token']))->run();
 
 //     	ecjia_front::$controller->assign('add_address', $add_address);
+		$referer_url = !empty($_GET['referer_url']) ? urldecode($_GET['referer_url']) : '';
+		if (!empty($referer_url)) {
+			ecjia_front::$controller->assign('referer_url', $referer_url);
+		}
     	ecjia_front::$controller->assign('form_action', RC_Uri::url('user/user_address/insert_address'));
         ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
@@ -115,18 +119,25 @@ class user_address_controller {
             )
            
         );
-        _dump($params);
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_ADD)->data($params)
 //         ->run();
         ->send()->getBody();
         $rs = json_decode($rs,true);
-//         _dump($rs,1);
+        
         if (! $rs['status']['succeed']) {
             return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => ''));
+        } else {
+        	$address_id = $rs['data']['address_id'];
+        	setcookie('address_id', $address_id);
+        	setcookie('index_address', htmlspecialchars($_POST['address_location']));
         }
         
-        $url_address_list = RC_Uri::url('user/user_address/address_list');
-        return ecjia_front::$controller->showmessage(RC_Lang::lang('add_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url_address_list));
+        if (!empty($_POST['referer_url'])) {
+        	$pjax_url = $_POST['referer_url'];
+        } else {
+        	$pjax_url = RC_Uri::url('user/user_address/address_list');
+        }
+        return ecjia_front::$controller->showmessage(RC_Lang::lang('add_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $pjax_url));
         
     }
 
@@ -294,6 +305,15 @@ class user_address_controller {
     	ecjia_front::$controller->assign('title', '上海');
         ecjia_front::$controller->assign_title('定位');
         ecjia_front::$controller->assign_lang();
+        
+        $referer_url = !empty($_GET['referer_url']) ? urldecode($_GET['referer_url']) : '';
+        if (!empty($referer_url)) {
+        	ecjia_front::$controller->assign('referer_url', urlencode($referer_url));
+        }
+        
+        $address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token['access_token']))->run();
+        ecjia_front::$controller->assign('addres_list', $address_list);
+        
         ecjia_front::$controller->display('user_location.dwt');
     }
     
@@ -396,6 +416,17 @@ class user_address_controller {
         $shop_point['result'] = (array)$shop_point['result'];
         $location = (array)$shop_point['result']['location'];
         echo json_encode($location);
+    }
+    
+    public static function choose_address() {
+    	$referer_url = !empty($_GET['referer_url']) ? urldecode($_GET['referer_url']) : '';
+    	$address_id = !empty($_GET['address_id']) ? intval($_GET['address_id']) : 0;
+    	if (!empty($address_id)) {
+    		$address_info = user_function::address_info(ecjia_touch_user::singleton()->getToken(), $address_id);
+    		setcookie('address_id', $address_id);
+    		setcookie('index_address', $address_info['address']);
+    	}
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $referer_url));
     }
 }
 
