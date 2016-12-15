@@ -262,6 +262,7 @@ class user_address_controller {
         if (! $rs['status']['succeed']) {
             return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => ''));
         }
+        $temp_data = user_address_controller::save_temp_data(0, 'edit_'.$_POST['address_id'], 1);
         
         $url_address_list = RC_Uri::url('user/user_address/address_list');
         return ecjia_front::$controller->showmessage(RC_Lang::lang('edit_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url_address_list));
