@@ -30,9 +30,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-{if $smarty.get.city eq 'addcity'}
+{if $smarty.get.type eq 'addcity'}
 <div class="cityall" id="cityall" data-url="{url path='user/user_address/add_address'}">
-{else if $smarty.get.city eq 'editcity'}
+{else if $smarty.get.type eq 'editcity'}
 <div class="cityall" id="cityall" data-url="{url path='user/user_address/edit_address'}">
 {else if $smarty.get.type eq 'search'}
 <div class="cityall" id="cityall" data-url="{url path='location/index/search_location'}">
