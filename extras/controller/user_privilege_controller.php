@@ -64,6 +64,7 @@ class user_privilege_controller {
     public static function register() {
         ecjia_front::$controller->assign('title', '手机快速注册');
         ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign_title('注册');
         ecjia_front::$controller->display('user_register.dwt');
     }
     

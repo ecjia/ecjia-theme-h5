@@ -1959,33 +1959,33 @@ footer{
 	height: 48px;
 }
 .ecjia-modal {
-  width: 270px;
-  position: absolute;
-  z-index: 11000;
-  left: 50%;
-  margin-left: -135px;
-  margin-top: -10em;
-  top: 50%;
-  text-align: center;
-  border-radius: 7px;
-  opacity: 0;
-  color: #000;
-  display: none;
+  	width: 270px;
+  	position: absolute;
+  	z-index: 11000;
+  	left: 50%;
+  	margin-left: -135px;
+  	margin-top: 0;
+  	top: 10em;
+  	text-align: center;
+  	border-radius: 7px;
+  	opacity: 0;
+  	color: #000;
+  	display: none;
 }
 .ecjia-modal.modal-in {
-  opacity: 1;
-  -webkit-transition-duration: 400ms;
-  transition-duration: 400ms;
-  -webkit-transform: translate3d(0,0,0) scale(1);
-  transform: translate3d(0,0,0) scale(1);
+  	opacity: 1;
+  	-webkit-transition-duration: 400ms;
+  	transition-duration: 400ms;
+  	-webkit-transform: translate3d(0,0,0) scale(1);
+  	transform: translate3d(0,0,0) scale(1);
 }
 .ecjia-modal.modal-out {
-  opacity: 0;
-  z-index: 10999;
-  -webkit-transition-duration: 400ms;
-  transition-duration: 400ms;
-  -webkit-transform: translate3d(0,0,0) scale(0.815);
-  transform: translate3d(0,0,0) scale(0.815);
+  	opacity: 0;
+  	z-index: 10999;
+  	-webkit-transition-duration: 400ms;
+  	transition-duration: 400ms;
+  	-webkit-transform: translate3d(0,0,0) scale(0.815);
+  	transform: translate3d(0,0,0) scale(0.815);
 }
 .ecjia-modal .modal-title{
 	padding-left: 2.5em;
@@ -2054,7 +2054,7 @@ footer{
 	background-color: #fff;
 }
 .ecjia-modal-overlay{
-	position: absolute;
+	position: fixed;
   	left: 0;
   	top: 0;
   	width: 100%;
@@ -2068,8 +2068,8 @@ footer{
 	display: none;
 }
 .ecjia-modal-overlay.ecjia-modal-overlay-visible {
-  visibility: visible;
-  opacity: 1;
+  	visibility: visible;
+  	opacity: 1;
 }
 /*========================  结算 ecjia-checkout =========================== */
 /*定位地址、选择的收货地址 */
@@ -2524,7 +2524,7 @@ footer{
     border-bottom: 1px solid #eee;
 }
 .ecjia-user .ecjia-list.list-short li a{
-	line-height: 2.3em;
+	line-height: 2em;
 }
 .ecjia-user .ecjia-list.list-short li a>.icon-jiantou-right {
 	right: 1%;
@@ -2604,7 +2604,7 @@ footer{
 .ecjia-user .ecjia-list.list-short li i {
 	font-size: 1.5em;
 	display:box; 
-	line-height: 2.3em;
+	line-height: 2em;
 }
 .ecjia-user .ecjia-list.list-short li span{
 	display: inline;
@@ -2771,6 +2771,7 @@ footer{
 .ecjia-nav-child-f li {
 	padding:1em .5em .5em;
 	line-height: 2em;
+	height: 5.5em;
 }
 /*========================  城市选择 ===========================*/
 .cityall {
@@ -4356,7 +4357,7 @@ footer{
 .ecjia-store-list li a.linksGoods {
     display: block;
     overflow: hidden;
-    padding: .3em .5em .5em 0;
+    padding: .5em .5em 0 0;
 }
 .ecjia-store-list li .input-number{
     position: absolute;
@@ -4409,7 +4410,6 @@ footer{
     padding-top: 1em;
 }
 .ecjia-store-list li.search-goods-list dl dd {
-    padding-top: 1em;
 	padding-left: .5em;
 }
 .ecjia-store-list .box {
