@@ -49,15 +49,28 @@
 		},
 		//点击搜索结果事件
         add_link: function () {
-			var Uarry = $(".ecjia-location-list-wrap li");
-            $('.ecjia-location-list-wrap li').bind('click', function () {
-            	  var count=$(this).index();  
-                  var Tresult=Uarry.eq(count).text();  
-                  $.cookie('location_address', Tresult); 
-                  $.cookie('location_address_id', 0); 
-                  var url = $("#ecjia-zs").attr('data-url');
-                  ecjia.pjax(url);
-            });	
+        	var type = $("#ecjia-zs").attr('data-type');
+        	if (type == 'index') {
+        		var Uarry = $(".ecjia-location-list-wrap li");
+                $('.ecjia-location-list-wrap li').bind('click', function () {
+                	  var count=$(this).index();  
+                      var Tresult=Uarry.eq(count).text();  
+                      $.cookie('location_address', Tresult); 
+                      $.cookie('location_address_id', 0); 
+                      var url = $("#ecjia-zs").attr('data-url');
+                      ecjia.pjax(url);
+                });	
+        	}
+        	else if (type == 'address') {
+        		$('.ecjia-location-list-wrap li').bind('click', function () {
+        			var title=$(this).find(".ecjia-location-list-title").text();
+                    var address=$(this).find(".ecjia-location-list-address").text();
+                    var url = $("#ecjia-zs").attr('data-url');
+                    url += '&address=' + address + title;
+//                    url += '&address_info=' + title;
+                    ecjia.pjax(url);
+              });
+        	}
         },
       //搜索关键词定位结束
 		

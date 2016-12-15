@@ -92,6 +92,24 @@
                   url += '&address=' + address;
                   url += '&address_info=' + title;
                   ecjia.pjax(url);
+                  
+		//编辑收货地址 失去焦点保存数据
+        address_save: function () {
+            $('input').on('blur', function () {
+            	var form_url = $("form[name='theForm']").attr('data-save-url');
+            	$("form[name='theForm']").ajaxSubmit({
+            		type: 'get',
+            		url: form_url,
+	 				dataType:"json",
+	 				success:function(data) {
+	 				}
+	 			});
+//            	  var title=$(this).find(".ecjia-location-list-title").text();
+//                  var address=$(this).find(".ecjia-location-list-address").text();
+//                  var url = $("#ecjia-zs").attr('data-url');
+//                  url += '&address=' + address;
+//                  url += '&address_info=' + title;
+//                  ecjia.pjax(url);
             });
         },
 
