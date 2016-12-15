@@ -92,6 +92,8 @@
                   url += '&address=' + address;
                   url += '&address_info=' + title;
                   ecjia.pjax(url);
+            	});
+            },
                   
 		//编辑收货地址 失去焦点保存数据
         address_save: function () {
