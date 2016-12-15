@@ -21,16 +21,16 @@
 			var what = $.cookie('what');
 			if(what == undefined){
 			   $.cookie('what','first');
-			   if (navigator.geolocation) {  
-				    navigator.geolocation.getCurrentPosition(function(pos) {
-				        alert(pos.coords.latitude + '  '+pos.coords.longitude);
-				    }, function(err) {
-				    }, {  
-				        enableHighAccuracy: true, // 是否获取高精度结果  
-				        timeout: 5000, //超时,毫秒  
-				        maximumAge: 0 //可以接受多少毫秒的缓存位置  
-				    });  
-				}
+//			   if (navigator.geolocation) {  
+//				    navigator.geolocation.getCurrentPosition(function(pos) {
+//				        alert(pos.coords.latitude + '  '+pos.coords.longitude);
+//				    }, function(err) {
+//				    }, {  
+//				        enableHighAccuracy: true, // 是否获取高精度结果  
+//				        timeout: 5000, //超时,毫秒  
+//				        maximumAge: 0 //可以接受多少毫秒的缓存位置  
+//				    });  
+//				}
 			}
         },
 
