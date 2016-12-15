@@ -18,8 +18,8 @@ class goods_controller {
     	ecjia_front::$controller->assign('cat_id', $cat_id);
     	ecjia_front::$controller->assign('data', $data);
         
-        ecjia_front::$controller->assign('title', RC_Lang::lang('catalog'));
-        ecjia_front::$controller->assign('page_title', RC_Lang::lang('catalog'));
+//         ecjia_front::$controller->assign('title', RC_Lang::lang('catalog'));
+//         ecjia_front::$controller->assign('page_title', RC_Lang::lang('catalog'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('catalog'));
         ecjia_front::$controller->assign('active', 'category');
         ecjia_front::$controller->assign_lang();
@@ -134,7 +134,7 @@ class goods_controller {
      * 促销商品
      */
     public static function goods_promotion() {
-		ecjia_front::$controller->assign('title', '促销商品');
+		ecjia_front::$controller->assign_title('促销商品');
     	ecjia_front::$controller->display('goods_promotion.dwt');
     }
 
@@ -177,7 +177,7 @@ class goods_controller {
      * 新品推荐
      */
     public static function goods_new() {
-    	ecjia_front::$controller->assign('title', '新品推荐');
+    	ecjia_front::$controller->assign_title('新品推荐');
     	ecjia_front::$controller->display('goods_new.dwt');
     }
 
@@ -319,6 +319,7 @@ class goods_controller {
     		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $say_list, 'is_last' => $data['is_last']));
     	}
     	
+    	ecjia_front::$controller->assign_title('店铺列表');
     	ecjia_front::$controller->display('store_list.dwt');
     }
     
@@ -352,6 +353,7 @@ class goods_controller {
     	//店铺信息
     	$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data(array('seller_id' => $store_id, 'location' => array('longitude' => '121.416359', 'latitude' => '31.235371')))->run();
     	ecjia_front::$controller->assign('store_info', $store_info);
+    	ecjia_front::$controller->assign_title($store_info['seller_name']);
 
     	$type_name = '';
     	$action_type = !empty($_GET['type']) ? trim($_GET['type']) : '';
@@ -723,6 +725,7 @@ class goods_controller {
     		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $say_list, 'is_last' => $data['is_last']));
     	}
     	
+    	ecjia_front::$controller->assign_title('店铺列表');
     	ecjia_front::$controller->assign('cid', $cid);
     	ecjia_front::$controller->display('seller_list.dwt');
     }
