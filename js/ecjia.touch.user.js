@@ -15,6 +15,7 @@
 			ecjia.touch.user.mobile_register();
 			ecjia.touch.user.reset_password();
 			ecjia.touch.user.show_password();
+			ecjia.touch.user.modify_username();
 			$(function(){
 				$(".del").click(function(){
 					if(!confirm('您确定要删除吗？')){
@@ -192,6 +193,24 @@
 		        else {
 		            $("#password-2").attr("type", "password")
 		        }
+			});
+		},
+		/*修改用户名*/
+		modify_username : function (){
+			$("input[name='modify_username']").on('click', function(e){
+				e.preventDefault();
+				var username = $('#username-modify').val();
+				var url = $(this).attr('data-url');
+				options = {
+						'username' : username
+				}
+				$.post(url,options, function(data){
+					if (data.state == 'error'){
+						$("#modify-username-info").text(data.msg);
+					} else {
+						window.location.href = data.msg;
+					}
+				});
 			});
 		},
 		// add_attention_click : function(){
