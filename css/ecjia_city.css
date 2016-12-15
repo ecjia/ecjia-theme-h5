@@ -2355,10 +2355,42 @@ footer{
 }
 .ecjia-user.ecjia-list{
 	margin-top: 0em;
-
 }
-.ecjia-user-phono {
-	font-size: 1.5em;
+.ecjia-user .img-wallet {
+    position: relative;
+    margin: 0.5em auto;
+    width: 1.5em;
+    height: 1.5em;
+    background: url(../images/wallet/1.png) no-repeat;
+    background-size: 100%;
+	float: left;
+}
+.ecjia-user .img-bonus {
+    position: relative;
+    margin: 0.5em auto;
+    width: 1.5em;
+    height: 1.5em;
+    background: url(../images/wallet/2.png) no-repeat;
+    background-size: 100%;
+	float: left;
+}
+.ecjia-user .img-integral {
+    position: relative;
+    margin: 0.5em auto;
+    width: 1.5em;
+    height: 1.5em;
+    background: url(../images/wallet/4.png) no-repeat;
+    background-size: 100%;
+	float: left;
+}
+.ecjia-user .img-getintegral {
+    position: relative;
+    margin: 0.5em auto;
+    width: 1.5em;
+    height: 1.5em;
+    background: url(../images/wallet/5.png) no-repeat;
+    background-size: 100%;
+	float: left;
 }
 .ecjia-user .ecjia-list{
 	margin-top: 1em;
@@ -4720,6 +4752,7 @@ footer{
 .ecjia-spread{
 	background: #fff;
     height:auto;
+	position: relative;
 }
 .ecjia-spread-padding0{
 	padding-top: 0!important
@@ -4903,10 +4936,23 @@ footer{
 	line-height:45px;
 	border-radius:7px;
 }
-.ecjia-spread .bottom-elastic-layer{
-	display:none;
+.ecjia-spread .ecjia-spread-share{
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999;
 }
-
+.ecjia-spread .ecjia-spread-share img{
+	position: relative;
+    left: 0;
+    top: 5px;
+    width: 100%;
+    height: 50%;
+    z-index: 998;
+}
 .ecjia-spread .ecjia-margin-b>a img {
     position: relative;
     /*width: 25.3125em;	*/

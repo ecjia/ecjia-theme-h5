@@ -33,11 +33,9 @@ class user_privilege_controller {
      */
     public static function logout() {
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNOUT)->run();
-        //     	$user = integrate::init_users();
+        $data = json_decode($data,true);
         $back_act = RC_Uri::url('user/privilege/login');
-        //         $user->logout();
-        //         $ucdata = empty($user->ucdata) ? "" : $user->ucdata;
-        return ecjia_front::$controller->showmessage(RC_Lang::lang('logout') . $ucdata,ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $back_act));
+        return ecjia_front::$controller->showmessage('',ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $back_act));
     }
     
     /**
@@ -50,13 +48,13 @@ class user_privilege_controller {
         $user = ecjia_touch_user::singleton()->getUserinfo();
         if (is_ecjia_error($data)) {
             $message = $data->get_error_message();
-            return ecjia_front::$controller->showmessage(__($message), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('info' => $message));
         } else {
         	$referer = !empty($_GET['referer']) ? urldecode($_GET['referer']) : '';
         	if (!empty($referer)) {
-        		return ecjia_front::$controller->showmessage(__(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer));
+        		return ecjia_front::$controller->showmessage(__(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $referer));
         	}
-            return ecjia_front::$controller->showmessage(__('登陆成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/index/init')));
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('user/index/init')));
         }
     }
     

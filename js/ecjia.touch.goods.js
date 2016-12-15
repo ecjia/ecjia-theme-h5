@@ -25,7 +25,8 @@
 			$('.category_left li').on('click', function(){
 				 $(window).scrollTop(0); 
 			});
-			$('.body').off('click');
+			$('body').css('overflow-y', 'auto').off("touchmove").off('click');//启用滚动条
+			$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条	
 		},
 
 		//加入购物车
@@ -370,9 +371,7 @@
         		$('.store-add-cart').children('.a51').removeClass('disabled');
         	} else {
             	//禁用滚动条
-            	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){
-            		event.preventDefault;
-            	}, false);
+            	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
             	
             	$('.store-add-cart').children('.a4x').removeClass('show');
             	$('.minicart-content').children('.a4x').addClass('show').addClass('light').removeClass('disabled');

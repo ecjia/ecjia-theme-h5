@@ -13,8 +13,10 @@ class touch_controller {
         ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
         
         $addr = $_GET['addr'];
+        $name = $_GET['name'];
         if(!empty($addr)){
         	setcookie("location_address", $addr);
+        	setcookie("location_name", $name);
         	ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
         }
         

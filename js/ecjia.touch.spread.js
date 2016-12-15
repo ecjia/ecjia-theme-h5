@@ -9,9 +9,16 @@
 			ecjia.touch.spread.article();
 		},
 		spread: function() {
-			$('.would-spread').on('click', function (e) {
-				//$('.bottom-elastic-layer').animate({height:'toggle'});
-			});
+			$(document).off('click', '.would-spread');
+			$(document).on('click', '.would-spread', function() {
+        		$('.ecjia-spread-share').removeClass('hide').css('top', $('body').scrollTop() + 'px');
+            	//禁用滚动条
+            	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
+            	$('.ecjia-spread-share').on('click', function(){
+            		$('.ecjia-spread-share').addClass('hide');
+            		$('body').css('overflow-y', 'auto').off("touchmove");//启用滚动条
+            	})
+        	});
         },  
         
 		article: function() {
