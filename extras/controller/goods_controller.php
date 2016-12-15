@@ -124,7 +124,7 @@ class goods_controller {
 	    
 // 		$address_id = user_function::default_address_id($token);
 // 	    ecjia_front::$controller->assign('address_id', $address_id);
-	    
+	    ecjia_front::$controller->assign_title('商品详情');
         ecjia_front::$controller->display('goods_info.dwt');
     }
 
@@ -333,6 +333,7 @@ class goods_controller {
     	$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data($arr)->run();
     	
     	ecjia_front::$controller->assign('data', $store_info);
+    	ecjia_front::$controller->assign_title('店铺详情');
     	ecjia_front::$controller->display('store_detail.dwt');
     }
     
