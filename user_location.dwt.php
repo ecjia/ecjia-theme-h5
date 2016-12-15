@@ -27,11 +27,22 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<span class="ecjiaf-fr"><i class="iconfont icon-jiantou-right"></i></span>
 		</a>
 	</div>
-	<ul class="list-one" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_address/async_location'}" data-size="10">
+	<ul class="list-one">
 		<div class="address-backgroundw"><span>我的收货地址</span></div>			
-		<!-- 配送地址 start--> 
-		
-		<!-- 配送地址end--> 
+		<!-- {foreach from=$addres_list item=value} 循环地址列表 -->
+		<li>
+			<a data-toggle="choose_address" href="{RC_Uri::url('user/user_address/choose_address')}&address_id={$value.id}{if $referer_url}&referer_url={$referer_url}{/if}">
+				<div class="circle"></div>
+				<div class="list">
+					<div>
+						<p class="ecjiaf-fl">{$value.consignee}</p>
+						<p class="ecjiaf-fl ecjia-margin-l ecjia-address-mobile">{$value.mobile}</p>
+					</div><br />
+					<div class="ecjia-margin-top address ecjiaf-wwb">{$value.address}</div>	
+				</div>
+			</a>
+		</li>
+		<!-- {/foreach} -->
 	</ul>
 	<div class="address-list-center">
 		<a type="botton" href="{url path='user/user_address/address_list'}">
@@ -39,20 +50,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</a>
 	</div>
 </form>
-<!-- {/block} -->
-<!-- {block name="ajaxinfo"} -->
-	<!-- 配送地址 start--> 
-	<!-- {foreach from=$addres_list item=value} 循环地址列表 -->
-		<li>
-			<div class="circle"></div>
-			<div class="list">
-				<div>
-					<p class="ecjiaf-fl">{$value.consignee}</p>
-					<p class="ecjiaf-fl ecjia-margin-l ecjia-address-mobile">{$value.mobile}</p>
-				</div><br />
-				<div class="ecjia-margin-top address ecjiaf-wwb">{$value.address}</div>	
-			</div>
-		</li>
-	<!-- {/foreach} -->
-	<!-- 配送地址end--> 
 <!-- {/block} -->

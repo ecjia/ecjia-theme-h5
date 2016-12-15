@@ -19,7 +19,7 @@
 		
 		//搜索关键词定位开始
 		address_list : function() {
-			$('#list').bind('input', function () {
+			$('#search_location_list').bind('input', function () {
 				var url = $(this).attr('data-url');
 				var region   = $(".ecjia-zu").html();
 				var keywords = region + $("input[name='address']").val();
@@ -36,27 +36,28 @@
 		},
 
 		address_value: function (data) {
-		    $('.nav-list-ready').html('');
+		    $('.ecjia-location-list-wrap').html('');
 		    if(data) {
 		    	if (data.length > 0) {
 			        for (var i = 0; i < data.length; i++) {
-			            var opt = '<li><p class="list_wrapper a1"><span class="ecjia-list_title">'+data[i].title+'</span><span class="ecjia-list_title">'+data[i].address+'</span></p></li>'
-			            $('.nav-list-ready').append(opt);
+			            var opt = '<li><p class="list_wrapper a1"><span class="ecjia-list_title ecjia-location-list-title">'+data[i].title+'</span><span class="ecjia-list_title ecjia-location-list-address">'+data[i].address+'</span></p></li>'
+			            $('.ecjia-location-list-wrap').append(opt);
 			        };
 			    }
 		    }
 		    ecjia.touch.add_link();
 		},
-		
-        add_link: function () {      	
-        	var Uarry = $(".nav-list-ready li");
-            $('.nav-list-ready li').on('click', function () {
+		//点击搜索结果事件
+        add_link: function () {
+			var Uarry = $(".ecjia-location-list-wrap li");
+            $('.ecjia-location-list-wrap li').bind('click', function () {
             	  var count=$(this).index();  
                   var Tresult=Uarry.eq(count).text();  
                   $.cookie('location_address', Tresult); 
+                  $.cookie('location_address_id', 0); 
                   var url = $("#ecjia-zs").attr('data-url');
                   ecjia.pjax(url);
-            });
+            });	
         },
       //搜索关键词定位结束
 		
@@ -124,6 +125,7 @@
 				var $this = $('[data-toggle="asynclist"]');
 					options = {
 						areaSelect	: '[data-toggle="asynclist"]',
+						areaClass	: $this.attr('class'),
 						url			: $this.attr('data-url'),
 						size		: $this.attr('data-size'),
 						page		: $this.attr('data-page'),
@@ -159,6 +161,7 @@
 				page		: 1,						//page			分页
 				size		: 10,						//size			分页数量
 				areaSelect	: '#J_ItemList',			//areaSelect	模块select
+				areaClass	: '',						//areaClass		模块class
 				scroll		: true,						//scroll		滑动加载
 				offset		: 100,						//offset		滑动预留
 				trigger		: '.load-list',				//trigger		点击的触发器
@@ -204,7 +207,7 @@
 				size : options.size,
 				action_type : options.type
 			}, function(data){
-				$(options.areaSelect).append(data.list);
+				if($(options.areaSelect).hasClass(options.areaClass)) $(options.areaSelect).append(data.list);
 				options.lock = data.is_last;
 				$(options.trigger).hide();
 				if(data.is_last == 1){
@@ -329,6 +332,15 @@
  					}
 
  			});
+			
+			$('[data-toggle="choose_address"]').off('click').on('click', function(e){
+				e.preventDefault();
+				var $this = $(this),
+					url = $this.attr('href');
+				$.get(url, function(data) {
+					ecjia.pjax(data.pjaxurl);
+				});
+			})
 		},
 
 		ecjia_menu : function() {

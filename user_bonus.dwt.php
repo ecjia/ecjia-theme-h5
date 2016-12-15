@@ -45,8 +45,10 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 		</li>
 	<!-- {foreachelse} -->
 		<div class="ecjia-nolist">
-			<div class="img-nobonus"></div>
-			<p>{t}您还没有红包{/t}</p>
+			<div class="img-nolist">
+	            <img src="./images/wallet/nobonus_180.png">
+			</div>
+			<span>{t}您还没有红包{/t}</span>
 		</div>
 	<!--{/foreach}-->
 <!-- {/block} -->

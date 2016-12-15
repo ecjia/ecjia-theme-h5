@@ -55,6 +55,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="ecjia-margin-t ecjia-margin-b">
 		<input class="btn btn-info nopjax" name="submit" type="submit" value="{t}保存{/t}"/>
 		<input name="address_id" type="hidden" value="{$info.id}" />
+		<input name="referer_url" type="hidden" value="{$referer_url}" />
 	</div>
 </form>
 

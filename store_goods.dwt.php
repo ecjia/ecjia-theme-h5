@@ -118,7 +118,7 @@ ecjia.touch.category.init();
 
 			<div class="a1x wd">
 				<div class="a1z r2 a0h">
-					<ul data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='goods/category/ajax_category_goods'}&store_id={$store_id}" data-type="{$action_type}">
+					<ul class="store_goods_{$action_type}" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='goods/category/ajax_category_goods'}&store_id={$store_id}" data-type="{$action_type}">
 					</ul>
 				</div>
 			</div>
