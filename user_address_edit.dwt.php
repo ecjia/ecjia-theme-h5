@@ -13,7 +13,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 <form class="ecjia-address-list" name="theForm" action="{$form_action}" data-save-url="{url path='user/user_address/save_temp_data'}" method="post">
-	<div class="form-group form-group-text">
+	<div class="form-group form-group-text ecjia-border-t">
 		<a id="district" href="{url path='location/index/select_city' args="{if $info.id}type=editcity&address_id={$info.id}{else}type=addcity{/if}{if $temp.tem_city}&city_id={$temp.tem_city}{else}{if $info.city}&city_id={$info.city}{/if}{/if}"}">
 		<label class="input">
 			<span>所在地区： </span>
@@ -23,7 +23,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</label>
 		</a>
 	</div>
-	<div class="form-group form-group-text margin-bottom0">
+	<div class="form-group form-group-text margin-bottom0 ecjia-border-t">
 		<label class="input">
 			<span class="ecjiaf-fl">收货地址： </span>
 			<a href='{url path="user/user_address/near_location" args="{if $temp.tem_city_name}city={$temp.tem_city_name}{/if}{if $temp.tem_city}&city_id={$temp.tem_city}{/if}{if $info.id}&address_id={$info.id}{/if}"}'>
@@ -40,7 +40,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<input name="address_info" placeholder="{t}楼层，门牌{/t}" type="text" datatype="*" value="{if $temp.tem_address_info}{$temp.tem_address_info}{else}{$info.address_info|escape}{/if}" />
 		</label>
 	</div>
-	<div class="form-group form-group-text margin-bottom0">
+	<div class="form-group form-group-text margin-bottom0 ecjia-border-t">
 		<label class="input">
 			<span class="ecjiaf-fl">收货姓名： </span>
 			<input name="consignee" placeholder="{t}请输入真实姓名，限6个字{/t}" type="text" value="{if $temp.tem_consignee}{$temp.tem_consignee}{else}{$info.consignee|escape}{/if}" datatype="*1-15" errormsg="请输入正确格式联系人" />

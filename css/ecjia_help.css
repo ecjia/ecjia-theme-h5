@@ -2,6 +2,9 @@
 /*==============  Add By Xwb   ================*/
 
 /*============== 帮助中心  ================*/
+.ecjia-border-t {
+	border-top:1px solid #eee;
+}
 .ecjia-article {
 	padding-top: 1em;
 }
@@ -125,6 +128,7 @@
 .ecjia-address-list .nav-header {
 	height: 3em;
 	padding-top: 0.6em;
+	border-top:1px solid #eee;
 }
 .ecjia-address-list .address-backgroundw i.icon-jiantou-bottom {
 	position: relative;
@@ -137,7 +141,7 @@
 	width: 60%;
 	border-radius: 5px;
 	padding-left: 2em;
-	border: 1px solid #F0F0F0;
+	border: 1px solid #eee;
 }
 .ecjia-address-list .address-background-mylocation input {
 	position: relative;
@@ -145,7 +149,7 @@
 	width: 95%;
 	border-radius: 5px;
 	z-index: 5;
-	border: 1px solid #F0F0F0;
+	border: 1px solid #eee;
 	text-align: center;
 	background-color: #F0F0F0;
 }
@@ -157,7 +161,7 @@
 	border-radius: 5px;
 	padding-left: 1.6em;
 	left: 2.5%;
-	border: 1px solid #F0F0F0;
+	border: 1px solid #eee;
 }
 .ecjia-address-list .address-icons {
     position: relative;
