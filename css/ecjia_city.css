@@ -2211,8 +2211,9 @@ footer{
 .ecjia .ecjia-select .input input{
     width: 100%;
     border: 1px solid #eee;
-    line-height: 1.2em;
-    height: 3em;
+    height: 100%;
+    /*line-height: 1.2em;*/
+    /*height: 3em;*/
 }
 .ecjia .ecjia-select .input textarea{
     min-height: 7em;
@@ -2406,15 +2407,19 @@ footer{
 	padding-bottom: .3em;
 	padding-top: .3em;
 }
-.ecjia-user.ecjia-form .form-group .input, .ecjia-form .form-group .form-label, .ecjia-form .form-group .textarea {
+.ecjia-user .ecjia-form .form-group .input, .ecjia-form .form-group .form-label, .ecjia-form .form-group .textarea {
+	height: 2em;
 	line-height: 0;
 }
 .ecjia-user .not_modify {
 	position: absolute;
     margin-left: 82%;
-    line-height: 2.8em;
+    line-height: 2em;
     font-size: .9em;
     color: #ff3434;
+}
+.ecjia-user .ecjia-form .form-group input, .ecjia-form select{
+	height: 2em!important;
 }
 .ecjia-user .not_submit {
 	background: #eee!important;
@@ -2848,6 +2853,7 @@ footer{
 	top: .4em;
 }
 .ecjia-account .account-phone {
+	height: 4em;
 	line-height: 3em;
 }
 .ecjia-account .account-phone img {
@@ -2857,6 +2863,7 @@ footer{
 	display: block;
 }
 .ecjia-account .account-top {
+	padding-bottom: .em;
 	padding-top: 2em;
 }
 .ecjia-account .account-top2 {
@@ -2872,7 +2879,11 @@ footer{
 }
 .ecjia-account-passwd-on {
 	padding: 0!important;
-    height: 2em!important;
+    height: 1.8em!important;
+    line-height: 2em;
+}
+.ecjia-account .ecjia-withdraw {
+	height: 10em!important;
 }
 .ecjia-account .account-bonus span {
 	color: #999;
@@ -3009,14 +3020,15 @@ footer{
     margin-right: .5em;
 }
 .ecjia-account.ecjia-form .form-group-text {
+	height: 3.5em;
 	padding: .7em 1em;
 	border: 1px solid #eee;
 }
 .ecjia-account.ecjia-form .form-group-text .input input {
-	line-height: 1.5em;
+	line-height: 2em;
 	padding:0 3em;
 	font-size: 1.1em;
-	height: 2em;
+	height: 1.8em;
 }
 /*========================  交易记录 ===========================*/
 .ecjia-account-record {
@@ -3043,6 +3055,7 @@ footer{
 	border-right: 0!important;
 }
 .ecjia-account.ecjia-form .form-group-text .input span{
+	height: 1.8em;
 	font-size: 1.1em;
 	line-height: 2em;
 }
@@ -3513,6 +3526,7 @@ footer{
 	padding-left: 0em !important;
 }
 .ecjia-login-user-profile-form .ecjia-form .form-group{
+	height: 3.3em;
 	padding: .7em 1em;
 }
 .ecjia-login-user-profile-form .border-top {
