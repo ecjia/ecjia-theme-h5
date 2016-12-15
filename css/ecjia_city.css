@@ -2351,10 +2351,42 @@ footer{
 }
 .ecjia-user.ecjia-list{
 	margin-top: 0em;
-
 }
-.ecjia-user-phono {
-	font-size: 1.5em;
+.ecjia-user .img-wallet {
+    position: relative;
+    margin: 0.5em auto;
+    width: 1.5em;
+    height: 1.5em;
+    background: url(../images/wallet/1.png) no-repeat;
+    background-size: 100%;
+	float: left;
+}
+.ecjia-user .img-bonus {
+    position: relative;
+    margin: 0.5em auto;
+    width: 1.5em;
+    height: 1.5em;
+    background: url(../images/wallet/2.png) no-repeat;
+    background-size: 100%;
+	float: left;
+}
+.ecjia-user .img-integral {
+    position: relative;
+    margin: 0.5em auto;
+    width: 1.5em;
+    height: 1.5em;
+    background: url(../images/wallet/4.png) no-repeat;
+    background-size: 100%;
+	float: left;
+}
+.ecjia-user .img-getintegral {
+    position: relative;
+    margin: 0.5em auto;
+    width: 1.5em;
+    height: 1.5em;
+    background: url(../images/wallet/5.png) no-repeat;
+    background-size: 100%;
+	float: left;
 }
 .ecjia-user .ecjia-list{
 	margin-top: 1em;

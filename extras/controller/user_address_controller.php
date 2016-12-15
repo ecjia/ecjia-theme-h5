@@ -75,31 +75,97 @@ class user_address_controller {
         $sayList = ecjia_front::$controller->fetch('user_address_list.dwt');
         return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' , 'is_last' => $consignee_list['is_last']));
     }
+    
+    public static function save_temp_data ($is_return = 0, $data_key, $is_clear, $options = array()) {
+        if (isset($_GET['city'])) {
+            $options['tem_city_name'] = $_GET['city'];
+        }
+        if (isset($_GET['city_id'])) {
+            $options['tem_city'] = $_GET['city_id'];
+        }
+        if (isset($_GET['address'])) {
+            $options['tem_address'] = $_GET['address'];
+        }
+        if (isset($_GET['addr'])) {
+            $options['tem_address'] = $_GET['addr'];
+        }
+        if (isset($_GET['address_info'])) {
+            $options['tem_address_info'] = $_GET['address_info'];
+        }
+        if (isset($_GET['consignee'])) {
+            $options['tem_consignee'] = $_GET['consignee'];
+        }
+        if (isset($_GET['mobile'])) {
+            $options['tem_mobile'] = $_GET['mobile'];
+        }
+        
+        $temp_data = user_address_controller::update_temp_data('add', $_GET['clear'], $options);
+        if ($is_return) {
+            return $temp_data;
+        }
+    }
+    
+    //临时数据
+    private static function update_temp_data($data_key, $is_clear, $options = array()) {
+        if($is_clear) {
+            return $temp_data = $_SESSION['address'][$data_key] = array();
+        } 
+        if ($options) {
+            $keys_array = array(
+                'id','consignee','address','address_info',
+                'country','province','city','district',
+                'country_name','province_name','city_name','district_name',
+                'tel','mobile','email',
+                'default_address',
+                'best_time','zipcode',
+                'location' => array(
+                    'longitude',
+                    'latitude'
+                ),
+                //tem
+                'tem_city',
+                'tem_city_name',
+                'tem_address',
+                'tem_address_info',
+                'tem_mobile',
+                'tem_consignee'
+            );
+            
+            foreach ($keys_array as $key) {
+                if (is_array($key)) {
+                    foreach ($key as $child) {
+                        if (isset($options[$key][$child])) {
+                            $_SESSION['address'][$data_key][$key][$child] = $options[$key][$child];
+                        }
+                    }
+                } else {
+                    if (isset($options[$key])) {
+                        $_SESSION['address'][$data_key][$key] = $options[$key];
+                    }
+                }
+            }
+        }
+        
+        return $temp_data = $_SESSION['address'][$data_key];
+        
+    }
 
     /**
      * 增加收货地址
      */
     public static function add_address() {
-        // $province_list = get_regions(1, 1);
-        // $city_list = get_regions(2);
-        // $district_list = get_regions(3);
-        // ecjia_front::$controller->assign('title', RC_Lang::lang('add_address'));
-        // ecjia_front::$controller->assign('country_list', get_regions());
-        // ecjia_front::$controller->assign('shop_province_list', get_regions(1, ecjia::config('shop_country')));
-        // ecjia_front::$controller->assign('province_list', $province_list);
-        // ecjia_front::$controller->assign('city_list', $city_list);
-        // ecjia_front::$controller->assign('district_list', $district_list);
-        // ecjia_front::$controller->assign_title(RC_Lang::lang('add_address'));
-//         $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-//         $add_address = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_ADD)->data(array('token' => $token['access_token']))->run();
-
-//     	ecjia_front::$controller->assign('add_address', $add_address);
+        
+        $temp_data = user_address_controller::save_temp_data(1, 'add', $_GET['clear'], $_GET);
+        ecjia_front::$controller->assign('temp', $temp_data);
+        ecjia_front::$controller->assign('location_backurl', urlencode(RC_Uri::url('user/user_address/add_address')));
 		$referer_url = !empty($_GET['referer_url']) ? urldecode($_GET['referer_url']) : '';
 		if (!empty($referer_url)) {
 			ecjia_front::$controller->assign('referer_url', $referer_url);
 		}
     	ecjia_front::$controller->assign('form_action', RC_Uri::url('user/user_address/insert_address'));
         ecjia_front::$controller->assign('hideinfo', '1');
+        ecjia_front::$controller->assign('temp_key', 'add');
+        ecjia_front::$controller->assign_title('添加收货地址');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_address_edit.dwt');
     }
@@ -111,9 +177,9 @@ class user_address_controller {
         $params = array(
             'token' => ecjia_touch_user::singleton()->getToken(),
             'address' => array(
-                'city'      => intval($_POST['city']),
-                'address'   => htmlspecialchars($_POST['address_location']),
-                'address_info'   => htmlspecialchars($_POST['address']),
+                'city'      => intval($_POST['city_id']),
+                'address'   => htmlspecialchars($_POST['address']),
+                'address_info'   => htmlspecialchars($_POST['address_info']),
                 'consignee' => htmlspecialchars($_POST['consignee']),
                 'mobile'    => htmlspecialchars($_POST['mobile']),
             )
@@ -132,6 +198,8 @@ class user_address_controller {
         	setcookie('index_address', htmlspecialchars($_POST['address_location']));
         }
         
+        $url_address_list = RC_Uri::url('user/user_address/address_list');
+        user_address_controller::update_temp_data('add',1);
         if (!empty($_POST['referer_url'])) {
         	$pjax_url = $_POST['referer_url'];
         } else {
@@ -145,25 +213,22 @@ class user_address_controller {
      * 编辑收货地址的处理
      */
     public static function edit_address() {
-        $id             = isset($_GET['id']) ? intval($_GET['id']) : '';
-//         $consignee      = get_consignee_list($_SESSION['user_id'], $id); /*获得用户对应收货人信息*/
-//         $province_list  = get_regions(1, 1);
-//         $city_list      = get_regions(2, $consignee['province']);
-//         $district_list  = get_regions(3, $consignee['city']);
-//         ecjia_front::$controller->assign('title', RC_Lang::lang('edit_address'));
-//         ecjia_front::$controller->assign('consignee', $consignee);
-//         ecjia_front::$controller->assign('country_list', get_regions());
-//         ecjia_front::$controller->assign('shop_province_list', get_regions(1, ecjia::config('shop_country')));
-//         ecjia_front::$controller->assign('province_list', $province_list);
-//         ecjia_front::$controller->assign('city_list', $city_list);
-//         ecjia_front::$controller->assign('district_list', $district_list);
-//         ecjia_front::$controller->assign_title(RC_Lang::lang('edit_address'));
-
+        $id             = isset($_GET['id']) ? intval($_GET['id']) : 0;
+        if (empty($id)) {
+            return ecjia_front::$controller->showmessage('参数错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
+        }
+        $temp_key = 'edit_' . $id;
+        $temp_data = user_address_controller::save_temp_data(1, $temp_key, $_GET['clear'], $_GET);
+        _dump($temp_data,2);
         $params = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $id);
         $info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params)->run();
         ecjia_front::$controller->assign('info', $info);
+        ecjia_front::$controller->assign('temp', $temp_data);
+        ecjia_front::$controller->assign('temp_key', $temp_key);
         ecjia_front::$controller->assign('form_action', RC_Uri::url('user/user_address/update_address'));
+        ecjia_front::$controller->assign('location_backurl', urlencode(RC_Uri::url('user/user_address/edit_address', array('id' => $id))));
         ecjia_front::$controller->assign('hideinfo', '1');
+        ecjia_front::$controller->assign_title('编辑收货地址');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_address_edit.dwt');
     }
@@ -172,34 +237,17 @@ class user_address_controller {
      * 更新地址信息
      */
     public static function update_address() {
-//         $user_id = $_SESSION['user_id'];
-//         $address = array(
-//             'user_id'       => $user_id,
-//             'address_id'    => intval($_POST['address_id']),
-//             'country'       => intval($_POST['country']),
-//             'province'      => intval($_POST['province']),
-//             'city'          => intval($_POST['city']),
-//             'district'      => intval($_POST['district']),
-//             'address'       => htmlspecialchars($_POST['address']),
-//             'consignee'     => htmlspecialchars($_POST['consignee']),
-//             'mobile'        => htmlspecialchars($_POST['mobile']),
-// //             'zipcode'       => htmlspecialchars($_POST['zipcode']),
-//             'default'       =>intval($_POST['default'])
-//         );
-//         if (update_address($address)) {
-//             ecjia_front::$controller->showmessage(RC_Lang::lang('edit_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl'=>RC_Uri::url('address_list') ,'is_show' => false));
-//         } else {
-//             ecjia_front::$controller->showmessage(RC_Lang::lang('edit_address_error'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-//         }
 
-//         _dump($_POST,1);
+        if (empty($_POST['address_id'])) {
+            return ecjia_front::$controller->showmessage('参数错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
+        }
         $params = array(
             'token' => ecjia_touch_user::singleton()->getToken(),
             'address_id' => $_POST['address_id'],
             'address' => array(
-                'city'      => intval($_POST['city']),
-                'address'   => htmlspecialchars($_POST['address_location']),
-                'address_info'   => htmlspecialchars($_POST['address']),
+                'city'      => intval($_POST['city_id']),
+                'address'   => htmlspecialchars($_POST['address']),
+                'address_info'   => htmlspecialchars($_POST['address_info']),
                 'consignee' => htmlspecialchars($_POST['consignee']),
                 'mobile'    => htmlspecialchars($_POST['mobile']),
             )
@@ -214,6 +262,7 @@ class user_address_controller {
         if (! $rs['status']['succeed']) {
             return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => ''));
         }
+        $temp_data = user_address_controller::save_temp_data(0, 'edit_'.$_POST['address_id'], 1);
         
         $url_address_list = RC_Uri::url('user/user_address/address_list');
         return ecjia_front::$controller->showmessage(RC_Lang::lang('edit_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url_address_list));
@@ -353,16 +402,6 @@ class user_address_controller {
     	ecjia_front::$controller->assign('addres_list', $address_list);
     	$sayList = ecjia_front::$controller->fetch('user_location.dwt');
     	return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' ,'is_last' => $consignee_list['is_last']));
-    }
-    /**
-     * 我的位置
-     */
-    public static function my_location() {
-    	ecjia_front::$controller->assign('hideinfo', '1');
-        ecjia_front::$controller->assign('title', '您当前地址列表');
-        ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->assign_title('当前位置');
-        ecjia_front::$controller->display('user_my_location.dwt');
     }
     
     public static function near_address() {

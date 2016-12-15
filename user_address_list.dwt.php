@@ -29,7 +29,7 @@ $('.setdefault').click(function(){
 
 <div class="ecjia-address-list">
 	<div class="nav-header ecjia-margin-t ecjia-margin-b">
-		<a href="{url path='user/user_address/add_address'}">
+		<a href="{url path='user/user_address/add_address' args='clear=1'}">
 			<i class="icon-add-address"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t}新建收货地址{/t}
 			<span class="ecjiaf-fr"><i class="iconfont icon-jiantou-right"></i></span>
 		</a>
@@ -54,7 +54,7 @@ $('.setdefault').click(function(){
 				<!-- {/if} -->
 				
 				<a class="delete-address nopjax ecjiaf-fr ecjia-margin-l" href="javascript:;" data-toggle="del_list" data-url="{url path='user/user_address/del_address'}" data-id="{$value.id}" data-msg="{t}你确定要删除此收货地址吗？{/t}"><div class="icon-delete-address"></div>{t}删除{/t}</a>
-				<a class="edit-address ecjiaf-fr" href="{RC_uri::url('user/user_address/edit_address')}&id={$value.id}"><div class="icon-edit-address"></div>{t}编辑{/t}</a>
+				<a class="edit-address ecjiaf-fr" href="{RC_uri::url('user/user_address/edit_address')}&id={$value.id}&clear=1"><div class="icon-edit-address"></div>{t}编辑{/t}</a>
 		
 			</li>
 			<!-- {/foreach} -->
