@@ -451,6 +451,8 @@
             		}
         		}
         		var type = $this.attr('data-type') == undefined ? category_id : $this.attr('data-type');
+        		$('[data-toggle="asynclist"]').attr('class', 'store_goods_' + type);
+        		
         		var info = {'action_type' : type};
         		$('.wd').find('[data-toggle="asynclist"]').attr('data-type', type);
         		
@@ -656,8 +658,8 @@
     			          {
     			            text: '取消',
     			            onClick: function() {
-    			            	$('.modal').remove();
-    			            	$('.modal-overlay').remove();
+                                $('.modal').remove();
+                                $('.modal-overlay').remove();
     			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
     			            	return false;
     			            }
@@ -666,10 +668,10 @@
     			            text: '确定',
     			            onClick: function() {
     			            	$('.modal').remove();
-    			            	$('.modal-overlay').remove();
+                                $('.modal-overlay').remove();
     			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
-    			            	
     			            	$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+    			            	
     			            	ecjia.touch.category.update_cart(rec_id, 0, 0, '', store_id);
     		        			var li = $this.parents('.cart-single');
     		        			li.remove();
@@ -697,11 +699,13 @@
                 	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
                 	
         			$('.ecjia-modal').show();
-        			$('.modal-overlay').show();
+        			$('.ecjia-modal-overlay').show();
         			myApp.openModal('.ecjia-modal');
+        			$('.modal-overlay').remove();
+        			
         			$('body').on('click', function(){
         				$('.ecjia-modal').hide();
-        				$('.modal-overlay').hide();
+        				$('.ecjia-modal-overlay').hide();
         				$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
         			});
         			return false;
@@ -742,8 +746,9 @@
         			          {
         			            text: '取消',
         			            onClick: function() {
-        			            	$('.modal').remove();
-        			            	$('.modal-overlay').remove();
+                                    $('.modal').remove();
+                                    $('.modal-overlay').remove();
+
         			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
         			            	return false;
         			            }

@@ -125,6 +125,7 @@
 				var $this = $('[data-toggle="asynclist"]');
 					options = {
 						areaSelect	: '[data-toggle="asynclist"]',
+						areaClass	: $this.attr('class'),
 						url			: $this.attr('data-url'),
 						size		: $this.attr('data-size'),
 						page		: $this.attr('data-page'),
@@ -160,6 +161,7 @@
 				page		: 1,						//page			分页
 				size		: 10,						//size			分页数量
 				areaSelect	: '#J_ItemList',			//areaSelect	模块select
+				areaClass	: '',						//areaClass		模块class
 				scroll		: true,						//scroll		滑动加载
 				offset		: 100,						//offset		滑动预留
 				trigger		: '.load-list',				//trigger		点击的触发器
@@ -205,7 +207,7 @@
 				size : options.size,
 				action_type : options.type
 			}, function(data){
-				$(options.areaSelect).append(data.list);
+				if($(options.areaSelect).hasClass(options.areaClass)) $(options.areaSelect).append(data.list);
 				options.lock = data.is_last;
 				$(options.trigger).hide();
 				if(data.is_last == 1){
