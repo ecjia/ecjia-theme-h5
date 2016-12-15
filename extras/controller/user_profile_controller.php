@@ -21,6 +21,7 @@ class user_profile_controller {
         }
         ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign_title('个人资料');
         ecjia_front::$controller->display('user_profile.dwt');
     }
     
@@ -37,6 +38,7 @@ class user_profile_controller {
         ecjia_front::$controller->assign('update_username_time', $update_username_time);
         ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign_title('修改用户名');
         ecjia_front::$controller->display('user_modify_username.dwt');
     }
 
@@ -81,6 +83,7 @@ class user_profile_controller {
                     return ecjia_front::$controller->showmessage(__('两次输入的密码不同，请重新输入'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_profile/edit_password')));
                 }
             }
+            ecjia_front::$controller->assign_title('修改密码');
             ecjia_front::$controller->assign_lang();
             ecjia_front::$controller->display('user_edit_password.dwt');
         // } else {

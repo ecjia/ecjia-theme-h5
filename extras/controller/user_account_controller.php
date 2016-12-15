@@ -11,7 +11,7 @@ class user_account_controller {
     public static function account_detail() {
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
         ecjia_front::$controller->assign('user', $user);
-        
+        ecjia_front::$controller->assign_title('我的钱包');
         ecjia_front::$controller->display('user_account_detail.dwt');
     }
     /**
@@ -19,6 +19,8 @@ class user_account_controller {
      */
     public static function account_list(){
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        
+        ecjia_front::$controller->assign_title('我的余额');
         ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->display('user_account_list.dwt');
     }
@@ -35,6 +37,7 @@ class user_account_controller {
         }
         ecjia_front::$controller->assign('payment', $payment);
         ecjia_front::$controller->assign('user', $user);
+        ecjia_front::$controller->assign_title('充值');
         ecjia_front::$controller->display('user_account_recharge.dwt');
     }
 
@@ -64,6 +67,8 @@ class user_account_controller {
     public static function withdraw() {
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
         ecjia_front::$controller->assign('user', $user);
+        
+        ecjia_front::$controller->assign_title('提现');
         ecjia_front::$controller->display('user_account_withdraw.dwt');
     }
 
@@ -101,6 +106,8 @@ class user_account_controller {
      */
     public static function record() {
         $_SESSION['status'] = !empty($_GET['status']) ? $_GET['status'] : '';
+        
+        ecjia_front::$controller->assign_title('交易记录');
     	ecjia_front::$controller->display('user_record.dwt');
     }
     

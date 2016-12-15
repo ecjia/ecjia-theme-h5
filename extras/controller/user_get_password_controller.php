@@ -20,6 +20,7 @@ class user_get_password_controller {
         }
         ecjia_front::$controller->assign('title', '找回密码');
         ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign_title('找回密码');
         ecjia_front::$controller->display('user_mobile_register.dwt');
     }
 
@@ -54,6 +55,7 @@ class user_get_password_controller {
         }
         ecjia_front::$controller->assign('title', '设置新密码');
         ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign_title('设置新密码');
         ecjia_front::$controller->display('user_reset_password.dwt');
     }
     
