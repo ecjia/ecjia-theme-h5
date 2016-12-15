@@ -125,6 +125,7 @@ class goods_controller {
 	    if (isset($_COOKIE['location_address_id'])) {
 	    	ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
 	    }
+	    ecjia_front::$controller->assign('referer_url', urlencode(RC_Uri::url('goods/index/show', array('goods_id' => $goods_id))));
 	    
 	    ecjia_front::$controller->assign_title('商品详情');
         ecjia_front::$controller->display('goods_info.dwt');
@@ -319,6 +320,7 @@ class goods_controller {
     		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $say_list, 'is_last' => $data['is_last']));
     	}
     	
+    	ecjia_front::$controller->assign('referer_url', urlencode(RC_Uri::url('goods/category/store_list', array('store_id' => $store_id, 'keywords' => $keywords))));
     	ecjia_front::$controller->assign_title('店铺列表');
     	ecjia_front::$controller->display('store_list.dwt');
     }
@@ -480,6 +482,8 @@ class goods_controller {
     		'info' => '<i class="iconfont icon-location"></i>',
     	);
     	ecjia_front::$controller->assign('header_right', $header_right);
+    	ecjia_front::$controller->assign('referer_url', urlencode(RC_Uri::url('goods/category/store_goods', array('store_id' => $store_id))));
+    	
     	ecjia_front::$controller->display('store_goods.dwt');
     }
     
