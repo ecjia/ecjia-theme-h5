@@ -5,6 +5,8 @@
 
 	ecjia.touch.user = {
 		init : function(from){
+			ecjia.touch.user.ecjia_login();
+			ecjia.touch.user.ecjia_logout();
 			ecjia.touch.user.show_goods_list_click();
 			ecjia.touch.user.show_share_click();
 			ecjia.touch.user.loginout_click();
@@ -45,6 +47,42 @@
 			})
 		},
 
+		//用户登录
+        ecjia_login: function () {     
+        	$('input[name="ecjia-login"]').on('click', function(e){
+        		e.preventDefault();
+        		var url = $(this).attr('data-url');
+        		var username = $('input[name="username"]').val();
+        		var password = $('input[name="password"]').val();
+        		var info = {
+    					'username': username,
+    					'password': password
+    				};
+				$.post(url, info, function(data){
+					if (data.state == 'error') {
+						var myApp = new Framework7({
+							modalButtonOk : '确定',
+							modalTitle : ''
+					    });
+					    myApp.alert(data.info);
+					} else {
+						window.location.href = data.url;
+					}
+				});
+        	});
+        },
+        
+      //用户登录
+        ecjia_logout: function () {  
+        	$('input[name="logout"]').on('click', function(e){
+        		e.preventDefault();
+        		var url = $(this).attr('data-url');
+				$.post(url, function(data){
+					window.location.href = data.pjaxurl;
+				});
+        	});
+        },
+        
 		//点击搜索结果事件
         location_list_click: function () {      	
             $('.ecjia-location-list-wrap li').on('click', function () {

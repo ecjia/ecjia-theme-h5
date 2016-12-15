@@ -8,6 +8,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
+<!-- {block name="footer"} -->
+<script type="text/javascript">ecjia.touch.user.init();</script>
+<!-- {/block} -->
+
 <!-- {block name="main-content"} -->
 
 <div class="ecjia-user ecjia-account">
@@ -42,7 +46,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
    </div>
 </div>
 <div class="ecjia-login-padding-top">
-	<a class="btn btn-info nopjax" href="{url path='user/privilege/logout'}">{t}退出登录{/t}</a>
+	<input class="btn btn-info nopjax" name="logout" type="submit" data-url="{url path='user/privilege/logout'}" value="退出登录">
 </div>
 
 <!-- {/block} -->
