@@ -56,7 +56,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</li>
     {foreachelse}
 	<div class="ecjia-nolist">
-		<div class="no-record"></div>
+		<div class="img-nolist">
+		     <img src="./images/wallet/norecord_180.png">
+		</div>
 		<span>{t}暂无明细记录{/t}</span>
 	</div>
 <!--{/foreach}-->
