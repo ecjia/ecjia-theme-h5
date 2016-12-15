@@ -215,7 +215,7 @@ class user_address_controller {
         ecjia_front::$controller->assign('temp', $temp_data);
         ecjia_front::$controller->assign('temp_key', $temp_key);
         ecjia_front::$controller->assign('form_action', RC_Uri::url('user/user_address/update_address'));
-        ecjia_front::$controller->assign('location_backurl', RC_Uri::url('user/user_address/edit_address', array('id' => $id)));
+        ecjia_front::$controller->assign('location_backurl', urlencode(RC_Uri::url('user/user_address/edit_address', array('id' => $id))));
         ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_title('编辑收货地址');
         ecjia_front::$controller->assign_lang();
@@ -226,27 +226,6 @@ class user_address_controller {
      * 更新地址信息
      */
     public static function update_address() {
-//         $user_id = $_SESSION['user_id'];
-//         $address = array(
-//             'user_id'       => $user_id,
-//             'address_id'    => intval($_POST['address_id']),
-//             'country'       => intval($_POST['country']),
-//             'province'      => intval($_POST['province']),
-//             'city'          => intval($_POST['city']),
-//             'district'      => intval($_POST['district']),
-//             'address'       => htmlspecialchars($_POST['address']),
-//             'consignee'     => htmlspecialchars($_POST['consignee']),
-//             'mobile'        => htmlspecialchars($_POST['mobile']),
-// //             'zipcode'       => htmlspecialchars($_POST['zipcode']),
-//             'default'       =>intval($_POST['default'])
-//         );
-//         if (update_address($address)) {
-//             ecjia_front::$controller->showmessage(RC_Lang::lang('edit_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl'=>RC_Uri::url('address_list') ,'is_show' => false));
-//         } else {
-//             ecjia_front::$controller->showmessage(RC_Lang::lang('edit_address_error'), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-//         }
-
-//         _dump($_POST,1);
 
         if (empty($_POST['address_id'])) {
             return ecjia_front::$controller->showmessage('参数错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
