@@ -86,7 +86,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<img class="pic" src="{$val.img.small}">
 				<dl>
 					<dt>{$val.name}</dt>
-					<dd></dd>
 					<dd><label>{$val.shop_price}</label></dd>
 				</dl>
 			</a>
