@@ -4356,7 +4356,7 @@ footer{
 .ecjia-store-list li a.linksGoods {
     display: block;
     overflow: hidden;
-    padding: .3em .5em .5em 0;
+    padding: .5em .5em 0 0;
 }
 .ecjia-store-list li .input-number{
     position: absolute;
@@ -4409,7 +4409,6 @@ footer{
     padding-top: 1em;
 }
 .ecjia-store-list li.search-goods-list dl dd {
-    padding-top: 1em;
 	padding-left: .5em;
 }
 .ecjia-store-list .box {
