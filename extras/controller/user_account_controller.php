@@ -55,7 +55,8 @@ class user_account_controller {
             $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $data_account_id, 'payment_id' => $data_payment_id))->send()->getBody();
             $pay = json_decode($pay,true);
             $pay_online = $pay['data']['payment']['pay_online'];
-            ecjia_front::$controller->redirect($pay_online); 
+//             ecjia_front::$controller->redirect($pay_online); 
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pay_online));
         } else {
             return ecjia_front::$controller->showmessage(__('金额不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
