@@ -103,7 +103,7 @@ class touch_controller {
     	$old_locations = $_GET['lat'].','.$_GET['lng'];
     	$key = "HVNBZ-HHR3P-HVBDP-LID55-D2YM3-2AF2W";
 //     	http://apis.map.qq.com/ws/coord/v1/translate?locations=39.12,116.83;30.21,115.43&type=3&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77
-    	$change_location = "http://apis.map.qq.com/ws/coord/v1/translate?locations=".$old_locations."&type=1"."&key=".$key;
+    	$change_location = "https://apis.map.qq.com/ws/coord/v1/translate?locations=".$old_locations."&type=1"."&key=".$key;
     	$response_location  = RC_Http::remote_get($change_location);
     	$content = json_decode($response_location['body'],true);
     	$tencent_locations =$content['locations'][0]['lat'].','.$content['locations'][0]['lng'];

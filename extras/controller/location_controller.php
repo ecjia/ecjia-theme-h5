@@ -39,7 +39,7 @@ class location_controller {
     	$region   = $_GET['region'];
     	$keywords = $_GET['keywords'];
     	$key       = "HVNBZ-HHR3P-HVBDP-LID55-D2YM3-2AF2W";
-    	$url       = "http://apis.map.qq.com/ws/place/v1/suggestion/?region=".$region."&keyword=".$keywords."&key=".$key;
+    	$url       = "https://apis.map.qq.com/ws/place/v1/suggestion/?region=".$region."&keyword=".$keywords."&key=".$key;
     	$response = RC_Http::remote_get($url);
     	$content  = json_decode($response['body']);
     	ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('content' => $content));
