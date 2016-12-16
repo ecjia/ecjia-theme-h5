@@ -13,7 +13,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<a href="{RC_Uri::url('user/user_address/location')}{if $referer_url}&referer_url={$referer_url}{/if}">
+<a href="{RC_Uri::url('location/index/select_location')}{if $referer_url}&referer_url={$referer_url}{/if}">
 	<div class="flow-address flow-cart {if $address_id gt 0}default{/if}">
 		<span class="ecjiaf-fl">{t}送至：{/t}</span>
 		<div class="ecjiaf-fl address-info">

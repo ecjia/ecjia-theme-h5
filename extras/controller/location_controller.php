@@ -12,6 +12,14 @@ class location_controller {
     	ecjia_front::$controller->assign('title', '上海');
         ecjia_front::$controller->assign_title('定位');
         
+        $address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
+        ecjia_front::$controller->assign('address_list', $address_list);
+        
+        $referer_url = !empty($_GET['referer_url']) ? urldecode($_GET['referer_url']) : '';
+        if (!empty($referer_url)) {
+        	ecjia_front::$controller->assign('referer_url', urlencode($referer_url));
+        }
+        
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('select_location.dwt');
     }
