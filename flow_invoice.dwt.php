@@ -16,13 +16,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #EndLibraryItem -->
 <form id="theForm" name="theForm" action='{url path="cart/flow/checkout" args="address_id={$address_id}&rec_id={$rec_id}"}' method="post">
-    <div class="ecjia-select ecjia-margin-t ecjia-flow-invoice">
+    <div class="ecjia-select ecjia-flow-invoice">
         <p class="select-title ecjia-margin-l">发票抬头</p>
-        <div class="input">
+        <div class="input input100">
             <input type="text" name="inv_payee" value="{$temp.inv_payee}" placeholder="请输入发票抬头，如:个人">
         </div>
-        <p class="select-title ecjia-margin-l">发票内容</p>
-        <ul class="ecjia-list">
+        <p class="select-title ecjia-margin-l ">发票内容</p>
+        <ul class="ecjia-list ecjia-border-t">
             <!-- {foreach from=$inv_content_list item=list} -->
             <label class="select-item" for="content-{$list.id}">
                 <li>
@@ -38,7 +38,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <!-- {/foreach} -->
         </ul>
         <p class="select-title ecjia-margin-l">发票类型</p>
-        <ul class="ecjia-list">
+        <ul class="ecjia-list ecjia-border-t">
             <!-- {foreach from=$inv_type_list item=list} -->
             <label class="select-item" for="type-{$list.id}">
                 <li>

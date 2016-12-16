@@ -471,6 +471,9 @@ class cart_controller {
         
         //发票
         if ($_POST['inv_update']) {
+            if ((!empty($_POST['inv_content']) || !empty($_POST['inv_type'])) && empty($_POST['inv_payee'])) {
+                return ecjia_front::$controller->showmessage('发票抬头不能为空', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
+            }
             $_SESSION['cart'][$cart_key]['temp']['inv_payee'] = empty($_POST['inv_payee']) ? '' : trim($_POST['inv_payee']);
             $_SESSION['cart'][$cart_key]['temp']['inv_content'] = empty($_POST['inv_content']) ? '' : trim($_POST['inv_content']);
             $_SESSION['cart'][$cart_key]['temp']['inv_type'] = empty($_POST['inv_type']) ? '' : trim($_POST['inv_type']);

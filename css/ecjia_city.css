@@ -6,6 +6,14 @@ html, body {
 [type="radio"] + label:before, [type="radio"] + label:after{
 	margin: 0 4px; 
 }
+body .ecjia .ecjia-select .input100 {
+	padding:0;
+	width:100%;
+}
+.input100 input {
+	border-radius:0;
+	padding: 0 1em;
+}
 .ecjia-row-nav {
     border-bottom-color: #e3e3e3;
     background: #FFF;
@@ -2237,8 +2245,7 @@ footer{
     
 }
 .ecjia .ecjia-select .input input {
-	line-height: 1.2em;
-    height: 3em;
+    height: 3.2em;
 }
 .ecjia .ecjia-select .input textarea{
     min-height: 7em;
