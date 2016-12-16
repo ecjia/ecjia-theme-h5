@@ -2,7 +2,7 @@
 /*
 Name: 店铺列表模版
 Description: 这是店铺列表
-Libraries: store_goods
+Libraries: store_list
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <li class="single_item">
     <ul class="single_store">
         <li class="store-info">
-            <a href="{RC_Uri::url('goods/category/store_goods')}&store_id={$val.id}">
+            <a href="{RC_Uri::url('merchant/index/init')}&store_id={$val.id}">
             <div class="basic-info">
                 <div class="store-left">
                     <img src="{$val.seller_logo}">

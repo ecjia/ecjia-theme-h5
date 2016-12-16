@@ -25,7 +25,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<li class="single_item">
 			<ul class="single_store">
 				<li class="store-info">
-					<a href="{RC_Uri::url('goods/category/store_goods')}&store_id={$val.id}">
+					<a href="{RC_Uri::url('merchant/index/init')}&store_id={$val.id}">
 					<div class="basic-info">
 						<div class="store-left">
 							<img src="{if $val.seller_logo}{$val.seller_logo}{else}{$theme_url}images/store_default.png{/if}">

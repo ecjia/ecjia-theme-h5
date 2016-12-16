@@ -21,19 +21,20 @@ RC_Hook::add_action('location/index/select_city', 	  array('location_controller'
 
 //商品
 RC_Loader::load_theme('extras/controller/goods_controller.php');
-RC_Hook::add_action('goods/category/top_all', array('goods_controller', 'top_all'));
+RC_Hook::add_action('goods/category/init', array('goods_controller', 'init'));
 RC_Hook::add_action('goods/category/all', array('goods_controller', 'all'));
 RC_Hook::add_action('goods/category/goods_list', array('goods_controller', 'goods_list'));
 RC_Hook::add_action('goods/category/asynclist', array('goods_controller', 'asynclist'));
-
 RC_Hook::add_action('goods/category/store_list', array('goods_controller', 'store_list'));//店铺分类列表
-RC_Hook::add_action('goods/category/store_detail', array('goods_controller', 'store_detail'));//店铺详情
 RC_Hook::add_action('goods/category/seller_list', array('goods_controller', 'seller_list'));//店铺分类列表
-RC_Hook::add_action('goods/category/store_position', array('goods_controller', 'store_position'));//店铺位置
-
-RC_Hook::add_action('goods/category/store_goods', array('goods_controller', 'store_goods'));//店铺商品
-RC_Hook::add_action('goods/category/ajax_category_goods', array('goods_controller', 'ajax_category_goods'));//获取分类商品
 RC_Hook::add_action('goods/category/update_cart', array('goods_controller', 'update_cart'));//更新购物车中商品
+
+//店铺
+RC_Loader::load_theme('extras/controller/merchant_controller.php');
+RC_Hook::add_action('merchant/index/init', array('merchant_controller', 'init'));//店铺首页
+RC_Hook::add_action('merchant/index/ajax_goods', array('merchant_controller', 'ajax_goods'));//获取店铺商品
+RC_Hook::add_action('merchant/detail/init', array('merchant_controller', 'detail'));//店铺详情
+RC_Hook::add_action('merchant/index/position', array('merchant_controller', 'position'));//店铺位置
 
 RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));//商品详情页
 RC_Hook::add_action('goods/index/promotion', array('goods_controller', 'goods_promotion'));
@@ -49,7 +50,8 @@ RC_Loader::load_theme('extras/controller/article_controller.php');
 RC_Hook::add_action('article/help/init', array('article_controller', 'init'));
 RC_Hook::add_action('article/index/art_list', array('article_controller', 'art_list'));
 RC_Hook::add_action('article/index/asynclist', array('article_controller', 'asynclist'));
-RC_Hook::add_action('article/index/info', array('article_controller', 'info'));
+RC_Hook::add_action('article/help/detail', array('article_controller', 'detail'));
+RC_Hook::add_action('article/shop/detail', array('article_controller', 'shop_detail'));
 
 //购物车
 RC_Loader::load_theme('extras/controller/cart_controller.php');
@@ -106,7 +108,6 @@ RC_Hook::add_action('favourable/index/goods_list', array('favourable_controller'
 //会员
 RC_Loader::load_theme('extras/controller/user_controller.php');
 RC_Hook::add_action('user/index/init', array('user_controller', 'init'));
-RC_Hook::add_action('user/index/shop_detail', array('user_controller', 'shop_detail'));
 RC_Hook::add_action('user/index/spread', array('user_controller', 'spread'));
 // RC_Hook::add_action('user/index/validate_email', array('user_controller', 'validate_email'));
 // RC_Hook::add_action('user/index/get_password_question', array('user_controller', 'get_password_question'));
