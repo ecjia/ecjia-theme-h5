@@ -18,6 +18,7 @@
 			ecjia.touch.user.reset_password();
 			ecjia.touch.user.show_password();
 			ecjia.touch.user.modify_username();
+			ecjia.touch.user.record_cancel();
 			$(function(){
 				$(".del").click(function(){
 					if(!confirm('您确定要删除吗？')){
@@ -281,6 +282,49 @@
 						window.location.href = data.msg;
 					}
 				});
+			});
+		},
+		/*取消充值*/
+		record_cancel : function (){
+			$("input[name='record_cancel']").on('click', function(e){
+				e.preventDefault();
+				var record_type = $("input[name='record_type']").val();
+				var account_id = $("input[name='account_id']").val();
+				var payment_id = $("input[name='payment_id']").val();
+				var url = $("form[name='record_cancel_from']").attr('action');
+				options = {
+						'record_type' : record_type,
+						'account_id'  : account_id,
+						'payment_id'  : payment_id,
+						'submit'	  : '取消'
+				}
+				var myApp = new Framework7({
+					modalButtonCancel : '取消',
+					modalButtonOk : '确定',
+					modalTitle : ''
+			    });
+				myApp.confirm('你确定要取消吗？', function () {
+		        	$.post(url,options, function(data){
+						window.location.href = data.url;
+			        })
+			    });
+			});
+			
+			$("input[name='record_sure']").on('click', function(e){	
+				e.preventDefault();
+				var record_type = $("input[name='record_type']").val();
+				var account_id = $("input[name='account_id']").val();
+				var payment_id = $("input[name='payment_id']").val();
+				var url = $("form[name='record_cancel_from']").attr('action');
+				options = {
+						'record_type' : record_type,
+						'account_id'  : account_id,
+						'payment_id'  : payment_id,
+						'submit'	  : '充值'
+				}
+				$.post(url,options, function(data){
+					window.location.href = data.pay_online;
+		        })
 			});
 		},
 		// add_attention_click : function(){
