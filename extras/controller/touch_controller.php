@@ -82,6 +82,20 @@ class touch_controller {
         ecjia_front::$controller->assign('searchs', user_function::get_search($store_id));
         ecjia_front::$controller->assign('searchs_count', count(user_function::get_search($store_id)));
         
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'iPhone')||strpos($_SERVER['HTTP_USER_AGENT'], 'iPad')) {
+        	ecjia_front::$controller->assign('down_url', ecjia::config('mobile_iphone_download'));
+        } else if (strpos($_SERVER['HTTP_USER_AGENT'], 'Android')) {
+        	ecjia_front::$controller->assign('down_url', ecjia::config('mobile_android_download'));
+        }
+        
+        if (!isset($_COOKIE['visit'])) {
+        	setcookie('visit', true, RC_Time::gmtime() + 3600 * 24 * 30);
+        	if (!isset($_COOKIE['show_download'])) {
+        		setcookie('show_download', true, RC_Time::gmtime() + 3600 * 24 * 30);
+        	}
+        }
+        ecjia_front::$controller->assign('show_download', $_COOKIE['show_download']);
+        
         ecjia_front::$controller->assign_title();
         ecjia_front::$controller->assign_lang();
 
