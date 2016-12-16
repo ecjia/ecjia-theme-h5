@@ -412,9 +412,6 @@ class cart_controller {
         if ($rs['data']['shipping_list']) {
             $rs['data']['shipping_list'] = touch_function::change_array_key($rs['data']['shipping_list'], 'shipping_id');
         }
-        if ($rs['data']['inv_type_list']) {
-            $rs['data']['inv_type_list'] = touch_function::change_array_key($rs['data']['inv_type_list'], 'id');
-        }
         $cart_key = md5($address_id.$rec_id);
         $_SESSION['cart'][$cart_key]['data'] = $rs['data'];
         
@@ -437,6 +434,7 @@ class cart_controller {
                 }
             }
         }
+        
         //配送方式
         $shipping_id = 0;
         if ($_POST['shipping_update']) {
@@ -1232,7 +1230,20 @@ class cart_controller {
         $cart_key = md5($address_id.$rec_id);
         $data = $_SESSION['cart'][$cart_key]['data'];
         _dump($_SESSION['cart'],2);
-        ecjia_front::$controller->assign('payment_list', $data['payment_list']);
+        //分离线上支付线下支付
+        $format_payment_list['online'] = array();
+        $format_payment_list['offline'] = array();
+        if ($data['payment_list']) {
+            foreach ($data['payment_list'] as $tem_payment) {
+                if ($tem_payment['is_online'] == 1) {
+                    $format_payment_list['online'][$tem_payment['pay_id']] = $tem_payment;
+                } else {
+                    $format_payment_list['offline'][$tem_payment['pay_id']] = $tem_payment;
+                }
+            }
+        }
+        
+        ecjia_front::$controller->assign('payment_list', $format_payment_list);
         ecjia_front::$controller->assign('address_id', $address_id);
         ecjia_front::$controller->assign('rec_id', $rec_id);
         ecjia_front::$controller->assign_lang();
