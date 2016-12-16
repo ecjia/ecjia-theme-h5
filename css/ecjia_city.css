@@ -3673,7 +3673,7 @@ footer{
 	border:none;
 	font-size:14px;
 	font-weight:bold;
-	margin-top: 1.4em;
+	margin-top: 1.2em;
 }
 .add-cart-a span {
 	color:#fff;
@@ -3684,6 +3684,7 @@ footer{
     bottom: 0em;
 	float: right;
 	top: .8em;
+	font-size: 1.3em;
 }
 .goods-price-new .ecjia-goods-plus-box span {
     float: left;
@@ -3729,10 +3730,11 @@ footer{
 	font-weight: normal;
 }
 .market-goods-add-cart{
-	margin-top:-1px;
+	margin-top:-5px;
 }
 .ecjia-market-plus-box{
 	top:0px;
+	font-size: 1.3em;
 }
 .goods-info.goods-info-property-new{
 	width:100%;
@@ -3764,7 +3766,7 @@ footer{
 .goods-info .goods-info-property .goods-price-new{
 	padding:0.1em 0.5em .8em 0.5em;
 	color:#ff3434;
-	font-size: 1em;
+	font-size: 1.3em;
 }
 .goods-info .goods-price-new .ecjia-promote_price-span{
 	background:#fff;
