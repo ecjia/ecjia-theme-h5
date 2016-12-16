@@ -12,24 +12,30 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <script type="text/javascript">
     ecjia.touch.index.init();
     
-	if (navigator.geolocation) {
-  	    navigator.geolocation.getCurrentPosition(showPosition);
-  	}
-  	  
-  	function showPosition(position) {
-	  	var lat=position.coords.latitude; 
-	  	var lng=position.coords.longitude;
-    	var url = $("#location").attr('data-url');
-	  	url += '&lat=' + lat + '&lng=' + lng;
-  	     $.ajax({
-  		    url:url,
-  		    type:"GET",
-  		    dataType:"json",
-  		    success:function(data){
-  		    	 ecjia.pjax(data.url);
-      	    },
-  		 });
-  	 }
+  	var what = $.cookie('what');
+	if(what == undefined){
+		if (navigator.geolocation) {
+	  	    navigator.geolocation.getCurrentPosition(showPosition);
+	  	}
+	  	
+	  	function showPosition(position) {
+		  	var lat=position.coords.latitude; 
+		  	var lng=position.coords.longitude;
+	    	var url = $("#location").attr('data-url');
+		  	url += '&lat=' + lat + '&lng=' + lng;
+	  	     $.ajax({
+	  		    url:url,
+	  		    type:"GET",
+	  		    dataType:"json",
+	  		    success:function(data){
+	  		    	 ecjia.pjax(data.url);
+	      	    },
+	  		 });
+	  	 }
+		$.cookie('what','first');
+	}
+
+	 
 </script>
 <!-- {/block} -->
 
