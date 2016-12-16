@@ -3050,7 +3050,7 @@ footer{
 .ecjia-account.user-account-withdraw .form-group{
 	border: 1px solid #eee;
 }
-.ecjia-account.user-account-withdraw .form-group .textarea-style {
+.ecjia-account .form-group .textarea-style {
 	position: relative;
 	height: 100%;
 }

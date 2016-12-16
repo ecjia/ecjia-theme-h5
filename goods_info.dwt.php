@@ -134,7 +134,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 								<!-- {if $smarty.foreach.goods.index < 6 } -->
 								<li>
 									<a href='{url path="goods/index/show" args="goods_id={$goods.goods_id}"}'>
-										<img src="{$goods.img.url}"/>
+										<img src="{$goods.img.url}" alt="{$goods.name}" title="{$goods.name}"/>
 									</a>
 									<p class="link-goods-name ecjia-goods-name-new">{$goods.name}</p>
 									<div class="link-goods-price">

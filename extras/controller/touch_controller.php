@@ -93,7 +93,7 @@ class touch_controller {
     public static function my_location() {
     	$location  = $_GET['location'];
     	$key       = "HVNBZ-HHR3P-HVBDP-LID55-D2YM3-2AF2W";
-    	$url       = "http://apis.map.qq.com/ws/geocoder/v1/?location=".$location."&key=".$key."&get_poi=1";
+    	$url       = "https://apis.map.qq.com/ws/geocoder/v1/?location=".$location."&key=".$key."&get_poi=1";
     	$response  = RC_Http::remote_get($url);
     	$content   = json_decode($response['body'],true);
     	
@@ -102,6 +102,7 @@ class touch_controller {
     	$location_address = $location_content['address'];
     	setcookie("location_address", $location_address);
     	setcookie("location_name", $location_name);
+    	ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
     }
    
     /**
