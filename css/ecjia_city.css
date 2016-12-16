@@ -4109,6 +4109,16 @@ footer{
 	border-top: 1px solid #eee;
     overflow: hidden;
 }
+.ecjia-order-detail .ecjia-list li.remark{
+	height:auto;
+	max-height:9em;
+}
+.ecjia-order-detail .ecjia-list li.remark span:nth-child(2){
+	height:auto;
+	max-height:7.2em;
+	text-overflow:ellipsis;
+	overflow:hidden;
+}
 .order-log-item {
     position: relative;
     background: #ffffff;
