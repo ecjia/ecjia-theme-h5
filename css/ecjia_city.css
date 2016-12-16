@@ -2809,6 +2809,10 @@ footer{
 .ecjia-account.ecjia-pay {
 
 }
+.ecjia-account.record-info {
+	background: #FFF;
+	padding-bottom: 1em;
+}
 .ecjia-account.ecjia-flow-done .list-font-size{
 	padding: .9em 1em!important;
 	font-size: 1.1em;
@@ -2868,7 +2872,7 @@ footer{
 }
 .ecjia-account .user-img{
 	margin: 0 auto 5% auto;
-    background: #F7F7F7;
+    /*background: #F7F7F7;*/
     border: none;
     overflow: hidden;
     padding: 2em 0 0 35%;
@@ -3112,12 +3116,12 @@ footer{
 }
 .ecjia-account-record ul li {
     padding: .7em 1em;
-    height: 7em;
+    height: 6em;
 }
 .ecjia-account-record.ecjia-list.list-short li+li::before{
 	color: #eee;
 	width: 80%;
-	left: 30%;
+	left: 26%;
 }
 
 .ecjia-account-record p {
@@ -3152,7 +3156,7 @@ footer{
 .ecjia-account-record  .record-l{
 	float: left;
 	width: 20%;
-	padding-top: 1.5em;
+	padding-top: .5em;
 	padding-left: 1em;
 }
 .ecjia-account .ecjia-green {
@@ -3168,10 +3172,9 @@ footer{
 	float: left;
 	width: 80%;
 	text-align: right;
-	padding-left: 1em;
 	padding-right: 1em;
 	padding-bottom: 2em;
-	padding-top: 2em;
+	padding-top: .8em;
 }
 .account-record-big{
 	font-size: 1.2em!important;
