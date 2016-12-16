@@ -91,18 +91,27 @@ class touch_controller {
     
     //请求接口返回数据
     public static function my_location() {
-    	$location  = $_GET['location'];
-    	$key       = "HVNBZ-HHR3P-HVBDP-LID55-D2YM3-2AF2W";
-    	$url       = "https://apis.map.qq.com/ws/geocoder/v1/?location=".$location."&key=".$key."&get_poi=1";
-    	$response  = RC_Http::remote_get($url);
-    	$content   = json_decode($response['body'],true);
-    	
+    	$old_locations = $_GET['lat'].','.$_GET['lng'];
+    	$key = "HVNBZ-HHR3P-HVBDP-LID55-D2YM3-2AF2W";
+//     	http://apis.map.qq.com/ws/coord/v1/translate?locations=39.12,116.83;30.21,115.43&type=3&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77
+    	$change_location = "http://apis.map.qq.com/ws/coord/v1/translate?locations=".$old_locations."&type=1"."&key=".$key;
+    	$response_location  = RC_Http::remote_get($change_location);
+    	$content = json_decode($response_location['body'],true);
+    	$tencent_locations =$content['locations'][0]['lat'].','.$content['locations'][0]['lng'];
+    
+//     	http://apis.map.qq.com/ws/geocoder/v1/?location=39.984154,116.307490&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&get_poi=1
+    	$url       = "https://apis.map.qq.com/ws/geocoder/v1/?location=".$tencent_locations."&key=".$key."&get_poi=1";
+    	$response_address= RC_Http::remote_get($url);
+    	$content   = json_decode($response_address['body'],true);
     	$location_content = $content['result']['pois'][0];
     	$location_name    = $location_content['title'];
     	$location_address = $location_content['address'];
+    	
     	setcookie("location_address", $location_address);
     	setcookie("location_name", $location_name);
-    	ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
+    	
+    	$url = RC_Uri::url('touch/index/init');
+    	ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('url' => $url));
     }
    
     /**

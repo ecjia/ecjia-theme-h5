@@ -7,7 +7,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 
 {if $address}
-<div id="allmap" style="display: none;"></div>
 <div class="ecjia-mod ecjia-header ecjia-header-index" style="height:5.5em" id="location" data-url="{url path='touch/index/my_location'}">
 	<div class="ecjia-web">
 		<div class="ecjia-address">
