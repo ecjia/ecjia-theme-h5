@@ -3028,7 +3028,7 @@ footer{
 .ecjia-account.ecjia-form .form-group-text .input input {
 	line-height: 1.5em;
 	padding:0 3em;
-	font-size: 1.1em;
+	font-size: 1em;
 	height: 1.5em;
 }
 .ecjia-account.user-account-withdraw .form-group{
@@ -3065,7 +3065,8 @@ footer{
 }
 .ecjia-account.ecjia-form .form-group-text .input span{
 	height: 1.5em;
-	font-size: 1.1em;
+	font-size: 1em;
+	color: #555;
 	line-height: 1.5em;
 }
 .ecjia-account .ecjia-nolist {
