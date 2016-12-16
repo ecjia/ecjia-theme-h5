@@ -2213,8 +2213,11 @@ footer{
     width: 100%;
     border: 1px solid #eee;
     height: 100%;
-    /*line-height: 1.2em;*/
-    /*height: 3em;*/
+    
+}
+.ecjia .ecjia-select .input input {
+	line-height: 1.2em;
+    height: 3em;
 }
 .ecjia .ecjia-select .input textarea{
     min-height: 7em;
