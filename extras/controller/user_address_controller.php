@@ -342,10 +342,13 @@ class user_address_controller {
         
         if(!empty($_GET['address_id'])) {
             ecjia_front::$controller->assign('action_url', RC_Uri::url('user/user_address/edit_address', array('id' => intval($_GET['address_id']))));
+            $temp_data = user_address_controller::save_temp_data(1, 'edit_'.$_GET['address_id'], $_GET['clear'], $_GET);
         } else {
             ecjia_front::$controller->assign('action_url', RC_Uri::url('user/user_address/add_address'));
+            $temp_data = user_address_controller::save_temp_data(1, 'add', $_GET['clear'], $_GET);
         }
         
+        ecjia_front::$controller->assign('temp', $temp_data);
     	ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign_title('选择位置');

@@ -19,7 +19,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <div class="ecjia-select">
         {if $payment_list.online}
         <p class="select-title ecjia-margin-l">线上支付</p>
-        <ul class="ecjia-list">
+        <ul class="ecjia-list ecjia-border-t">
             <!-- {foreach from=$payment_list.online item=rs} -->
             <label class="select-item" for="{$rs.pay_code}">
                 <li>
