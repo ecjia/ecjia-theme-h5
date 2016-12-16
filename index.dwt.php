@@ -13,7 +13,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     ecjia.touch.index.init();
     
   	var what = $.cookie('what');
-	if(what == undefined){
+	if(what === undefined){
 		if (navigator.geolocation) {
 	  	    navigator.geolocation.getCurrentPosition(showPosition);
 	  	}
@@ -34,10 +34,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	  	}
 		$.cookie('what','first');
 	}
-
-// 	if($.cookie('location_name') == null){
-// 		$.cookie('what', '', { expires: -1 });
-// 	}
+	if($.cookie('location_name') === undefined){
+		$.cookie('what', '', { expires: -1 });
+	}
 
 	 
 </script>
