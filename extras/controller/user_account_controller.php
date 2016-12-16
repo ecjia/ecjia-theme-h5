@@ -192,12 +192,13 @@ class user_account_controller {
         $payment_id = !empty($_POST['payment_id']) ? $_POST['payment_id'] : '';
         if ($submit == '取消') {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_CANCEL)->data(array('account_id' => $account_id))->send()->getBody();
-            return ecjia_front::$controller->showmessage(__('取消该交易记录'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/user_account/record')));
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('user/user_account/record'), 'msg' => '取消该交易记录'));
         } elseif ($submit == '充值') {
             $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $account_id, 'payment_id' => $payment_id))->send()->getBody();
             $pay = json_decode($pay,true);
             $pay_online = $pay['data']['payment']['pay_online'];
-            ecjia_front::$controller->redirect($pay_online); 
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pay_online' => $pay_online));
+//             ecjia_front::$controller->redirect($pay_online); 
         }
     }
     

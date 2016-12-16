@@ -198,7 +198,7 @@ class user_address_controller {
         } else {
         	$address_id = $rs['data']['address_id'];
         	setcookie('location_address_id', $address_id);
-        	setcookie('location_address', htmlspecialchars($_POST['address_location']));
+        	setcookie('location_name', htmlspecialchars($_POST['address_location']));
         }
         
         $url_address_list = RC_Uri::url('user/user_address/address_list');
@@ -469,7 +469,7 @@ class user_address_controller {
     	if (!empty($address_id)) {
     		$address_info = user_function::address_info(ecjia_touch_user::singleton()->getToken(), $address_id);
     		setcookie('location_address_id', $address_id);
-    		setcookie('location_address', $address_info['address']);
+    		setcookie('location_name', $address_info['address']);
     	}
     	return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $referer_url));
     }
