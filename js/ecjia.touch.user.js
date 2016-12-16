@@ -9,7 +9,7 @@
 			ecjia.touch.user.ecjia_logout();
 			ecjia.touch.user.show_goods_list_click();
 			ecjia.touch.user.show_share_click();
-			ecjia.touch.user.loginout_click();
+//			ecjia.touch.user.loginout_click();
 			ecjia.touch.user.clear_history();
 			ecjia.touch.user.get_code();
 			ecjia.touch.user.fast_reset_pwd();
@@ -75,14 +75,27 @@
         	});
         },
         
-      //用户登录
+      //用户登出
         ecjia_logout: function () {  
         	$('input[name="logout"]').on('click', function(e){
         		e.preventDefault();
         		var url = $(this).attr('data-url');
-				$.post(url, function(data){
-					window.location.href = data.pjaxurl;
-				});
+        		options = {
+						'status' : 'logout',
+				}
+        		var myApp = new Framework7({
+					modalButtonCancel : '取消',
+					modalButtonOk : '确定',
+					modalTitle : ''
+			    });
+				myApp.confirm('是否确认退出？', function () {
+					$.post(url, options,function(data){
+						if (data.log != '') {
+							window.location.href = data.logout_url;
+						}
+					});
+			    });
+				
         	});
         },
         
@@ -118,17 +131,17 @@
             });
         },
 
-		loginout_click : function (){
-			$('.loginout').on('click',function(e){
-				e.preventDefault();
-				var url = $(this).attr('href');
-				if(confirm('你确定要退出登录吗？')){
-					$.get(url, '', function(data){
-						ecjia.touch.showmessage(data);
-					})
-				}
-			});
-		},
+//		loginout_click : function (){
+//			$('.loginout').on('click',function(e){
+//				e.preventDefault();
+//				var url = $(this).attr('href');
+//				if(confirm('你确定要退出登录吗？')){
+//					$.get(url, '', function(data){
+//						ecjia.touch.showmessage(data);
+//					})
+//				}
+//			});
+//		},
 		clear_history : function (){
 			$('.clear_history').on('click',function(e){
 				e.preventDefault();
