@@ -7,9 +7,10 @@ Libraries: page_menu,page_header
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {extends file="ecjia-touch.dwt.php"} -->
+
 <!-- {block name="main-content"} -->
 
-<form action="{url path='user/user_account/recharge_account'}" method="post">
+<form class="ecjia-account ecjia-form user-profile-form" action="{url path='user/user_account/recharge_account'}" method="post">
     <div class="ecjia-form ecjia-account ecjia-flow-done ecjia-pay">
     	<p class="account-top text-ty ">{t}账户充值：{$user.name}{/t}</p>
     	<div class="form-group form-group-text account-lr-fom no-border">
