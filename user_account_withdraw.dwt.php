@@ -21,9 +21,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 		<div class="account-top2">
 		    <p1 class="text-ty">备注：（最长100个字）</p1>
-    		<div class="form-group form-group-text ">
+    		<div class="form-group form-group-text ecjia-withdraw">
     			<label class="textarea">
-    				<textarea  datatype="*" name="user_note"></textarea>
+    				<textarea  class="textarea-style" datatype="*" name="user_note"></textarea>
     			</label>
     		</div>
     		<input name="act" type="hidden" value="profile" />
