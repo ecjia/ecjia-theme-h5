@@ -2321,8 +2321,8 @@ footer{
 .payment-list li span{
 	background: #fff url(../images/icon/wallet-icon.png) no-repeat 0 center;background-size: 28px;
     padding-left: 40px;
-    height: 2em;
-    line-height: 2em;}
+    height: 1.8em;
+    line-height: 1.8em;}
 .ecjia-flow-done .ecjia-list.list-short li+li::before {width: 100%;left: 8%;}
 .ecjia-flow-done .ecjia-list.list-short li span { width: 95%;margin-left:5%;}
 	
@@ -2845,7 +2845,7 @@ footer{
 	font-size: 1.1em;
 }
 .ecjia-account.ecjia-flow-done .payment-list .one-select{
-	top: .4em;
+	top: .2em;
 }
 .ecjia-account .account-phone {
 	height: 4em;
