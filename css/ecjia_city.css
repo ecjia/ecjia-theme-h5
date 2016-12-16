@@ -2360,7 +2360,7 @@ footer{
 }
 .ecjia-user .img-wallet {
     position: relative;
-    margin: 0.25em auto;
+    margin: 0.5em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/1.png) no-repeat;
@@ -2369,7 +2369,7 @@ footer{
 }
 .ecjia-user .img-bonus {
     position: relative;
-    margin: 0.25em auto;
+    margin: 0.5em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/2.png) no-repeat;
@@ -2378,7 +2378,7 @@ footer{
 }
 .ecjia-user .img-integral {
     position: relative;
-    margin: 0.25em auto;
+    margin: 0.5em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/4.png) no-repeat;
@@ -2387,7 +2387,7 @@ footer{
 }
 .ecjia-user .img-getintegral {
     position: relative;
-    margin: 0.25em auto;
+    margin: 0.5em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/5.png) no-repeat;
@@ -2864,7 +2864,7 @@ footer{
 	display: block;
 }
 .ecjia-account .account-top {
-	padding-bottom: .em;
+	padding-bottom: .5em;
 	padding-top: 2em;
 }
 .ecjia-account .account-top2 {
@@ -2885,6 +2885,10 @@ footer{
 }
 .ecjia-account .ecjia-withdraw {
 	height: 10em!important;
+}
+.ecjia-account .textarea-style {
+	position: fixed;
+	width: 85%!important;
 }
 .ecjia-account .account-bonus span {
 	color: #999;
@@ -4923,7 +4927,7 @@ footer{
 	width: 100%;
 	padding-left: 1em;
 	padding-right: 1em;
-	padding-bottom: 1em;
+	padding-bottom: .5em;
 }
 .ecjia-spread .go-to-spread .would-spread{
 	font-size:18px;
