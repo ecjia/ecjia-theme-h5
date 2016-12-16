@@ -9,7 +9,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-<script type="text/javascript"></script>
+<script type="text/javascript">ecjia.touch.region_change();</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -26,6 +26,30 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<p>点击定位当前地点</p>
 			</div>
 		</a>
+	</div>
+	<div class="ecjia-list ecjia-address-list">
+		<ul class="list-one">
+			<div class="address-backgroundw"><span>我的收货地址</span></div>			
+			<!-- {foreach from=$address_list item=value} 循环地址列表 -->
+			<li>
+				<a data-toggle="choose_address" href="{RC_Uri::url('user/user_address/choose_address')}&address_id={$value.id}{if $referer_url}&referer_url={$referer_url}{/if}">
+					<div class="circle"></div>
+					<div class="list">
+						<div>
+							<p class="ecjiaf-fl">{$value.consignee}</p>
+							<p class="ecjiaf-fl ecjia-margin-l ecjia-address-mobile">{$value.mobile}</p>
+						</div><br />
+						<div class="ecjia-margin-top address ecjiaf-wwb">{$value.address}</div>	
+					</div>
+				</a>
+			</li>
+			<!-- {/foreach} -->
+		</ul>
+		<div class="address-list-center">
+			<a type="botton" href="{url path='user/user_address/address_list'}">
+				<i class="iconfont icon-roundadd"></i> {t}管理收货地址{/t}
+			</a>
+		</div>
 	</div>
 </div>
 

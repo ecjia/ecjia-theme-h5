@@ -29,7 +29,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<ul class="list-one">
 		<div class="address-backgroundw"><span>我的收货地址</span></div>			
-		<!-- {foreach from=$addres_list item=value} 循环地址列表 -->
+		<!-- {foreach from=$address_list item=value} 循环地址列表 -->
 		<li>
 			<a data-toggle="choose_address" href="{RC_Uri::url('user/user_address/choose_address')}&address_id={$value.id}{if $referer_url}&referer_url={$referer_url}{/if}">
 				<div class="circle"></div>

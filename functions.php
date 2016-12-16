@@ -4,6 +4,7 @@ RC_Loader::load_app_class('touch', 'touch', false);
 
 RC_Loader::load_theme('extras/controller/touch_controller.php');
 RC_Hook::add_action('touch/index/init', array('touch_controller', 'init'));
+RC_Hook::add_action('touch/index/my_location', array('touch_controller', 'my_location'));
 RC_Hook::add_action('touch/index/download', array('touch_controller', 'download'));
 RC_Hook::add_action('touch/index/ajax_goods', array('touch_controller', 'ajax_goods'));
 RC_Hook::add_action('touch/index/search', array('touch_controller', 'search'));
@@ -20,19 +21,20 @@ RC_Hook::add_action('location/index/select_city', 	  array('location_controller'
 
 //商品
 RC_Loader::load_theme('extras/controller/goods_controller.php');
-RC_Hook::add_action('goods/category/top_all', array('goods_controller', 'top_all'));
+RC_Hook::add_action('goods/category/init', array('goods_controller', 'init'));
 RC_Hook::add_action('goods/category/all', array('goods_controller', 'all'));
 RC_Hook::add_action('goods/category/goods_list', array('goods_controller', 'goods_list'));
 RC_Hook::add_action('goods/category/asynclist', array('goods_controller', 'asynclist'));
-
 RC_Hook::add_action('goods/category/store_list', array('goods_controller', 'store_list'));//店铺分类列表
-RC_Hook::add_action('goods/category/store_detail', array('goods_controller', 'store_detail'));//店铺详情
 RC_Hook::add_action('goods/category/seller_list', array('goods_controller', 'seller_list'));//店铺分类列表
-RC_Hook::add_action('goods/category/store_position', array('goods_controller', 'store_position'));//店铺位置
-
-RC_Hook::add_action('goods/category/store_goods', array('goods_controller', 'store_goods'));//店铺商品
-RC_Hook::add_action('goods/category/ajax_category_goods', array('goods_controller', 'ajax_category_goods'));//获取分类商品
 RC_Hook::add_action('goods/category/update_cart', array('goods_controller', 'update_cart'));//更新购物车中商品
+
+//店铺
+RC_Loader::load_theme('extras/controller/merchant_controller.php');
+RC_Hook::add_action('merchant/index/init', array('merchant_controller', 'init'));//店铺首页
+RC_Hook::add_action('merchant/index/ajax_goods', array('merchant_controller', 'ajax_goods'));//获取店铺商品
+RC_Hook::add_action('merchant/detail/init', array('merchant_controller', 'detail'));//店铺详情
+RC_Hook::add_action('merchant/index/position', array('merchant_controller', 'position'));//店铺位置
 
 RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));//商品详情页
 RC_Hook::add_action('goods/index/promotion', array('goods_controller', 'goods_promotion'));
