@@ -3120,6 +3120,9 @@ footer{
 	border-bottom: 1px solid #eee;
 	/*margin-bottom: 1em;*/
 }
+.ecjia-account-list-f .ecjia-list li{
+	height: 4.5em;
+}
 .ecjia-account-list-f .ecjia-account-list {
 	width: 93%;
 	margin-left: 3.5%;
@@ -3132,6 +3135,7 @@ footer{
 	padding: 0;
 	/*padding: 0 .5em 0 .5em;*/
 	/*margin-top: 1em;*/
+	height: 7em;
 }
 .ecjia-account-record p {
 	border-bottom: 1px solid #eee;
