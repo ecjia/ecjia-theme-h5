@@ -21,21 +21,21 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             	<span class="icon-name margin-no-l">头像 </span>
         		<div class="user-img-text"><img src="{$user_img}"></div>
             </li>
-            <li>
+            <li class="height-3">
                <a href="{url path='user/user_profile/modify_username'}">
             		<span class="icon-name margin-no-l">用户名 </span>
             		<span class="icon-price text-color">{$user.name}</span>
             		<i class="iconfont icon-jiantou-right  margin-r-icon"></i>
         	   </a>
             </li>
-            <li class="ecjia-user-border-b">
+            <li class="ecjia-user-border-b height-3">
                 <a>
             	<span class="icon-name margin-no-l">用户等级</span>
         		<span class="icon-price text-color">{$user.rank_name}</span></a>
             </li>
         </ul>
     </div>
-    <div class="ecjia-list list-short">
+    <div class="ecjia-list list-short height-3">
        <li>
             <a href="{url path='user/user_profile/edit_password'}">
     		<span class="icon-name margin-no-l">修改密码</span>
