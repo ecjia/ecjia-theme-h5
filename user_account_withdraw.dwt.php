@@ -10,25 +10,23 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 
-<div class="ecjia-account user-account-withdraw">
-	<form class="ecjia-form" data-valid="novalid" name="ecjia-form user-profile-form" action="{url path='user/user_account/withdraw_account'}" method="post">
-		<p class="account-top text-ty">{t}账户余额：{$user.formated_user_money}{/t}</p>
-		<div class="form-group form-group-text account-lr-fom no-border">
-			<label class="input">
-				<span>{t}金额{/t}</span>
-				<input type="number" placeholder="{t}建议提现100元以上的金额{/t}" name="amount" value="" datatype="n"/>
-			</label>
+<form class="ecjia-account ecjia-form user-profile-form" action="{url path='user/user_account/withdraw_account'}" method="post">
+	<p class="account-top text-ty">{t}账户余额：{$user.formated_user_money}{/t}</p>
+	<div class="form-group form-group-text account-lr-fom no-border">
+		<label class="input">
+			<span>{t}金额{/t}</span>
+			<input placeholder="{t}建议提现100元以上的金额{/t}" name="amount" value="" />
+		</label>
+	</div>
+	<div class="account-top2">
+	    <p1 class="text-ty">备注：（最长100个字）</p1>
+		<div class="form-group form-group-text ecjia-withdraw">
+		<textarea  class="textarea-style" name="user_note"></textarea>
 		</div>
-		<div class="account-top2">
-		    <p1 class="text-ty">备注：（最长100个字）</p1>
-    		<div class="form-group form-group-text ecjia-withdraw">
-			<textarea  class="textarea-style" datatype="*" name="user_note"></textarea>
-    		</div>
-    		<input name="act" type="hidden" value="profile" />
-    		<div class="text-center account-top2">
-    			<input class="btn btn-info" name="submit" type="submit" value="{t}提现申请{/t}" />
-    		</div>
-    	</div>	
-	</form>
-</div>
+		<input name="act" type="hidden" value="profile" />
+		<div class="text-center account-top2">
+			<input class="btn btn-info" name="submit" type="submit" value="{t}提现申请{/t}" />
+		</div>
+	</div>	
+</form>
 <!-- {/block} -->
