@@ -3146,11 +3146,6 @@ footer{
     padding: .7em 1em;
     height: 6em;
 }
-.ecjia-account-record.ecjia-list.list-short li+li::before{
-	color: #eee;
-	width: 80%;
-	left: 26%;
-}
 
 .ecjia-account-record p {
 	border-bottom: 1px solid #eee;
@@ -3214,6 +3209,7 @@ footer{
 .ecjia-account-record  li:last-child{
 	border-color: red;
 	border: 0;
+	border-bottom: 1px solid #eee;
 }
 .ecjia-account-record  .record-r p{
 	color: #333;
