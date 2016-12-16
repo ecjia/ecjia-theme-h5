@@ -247,6 +247,7 @@
 	padding-left: 7em;
     padding-right: 3.5em;
 	height: 3.2em;
+    text-overflow: ellipsis
 }
 
 /*
