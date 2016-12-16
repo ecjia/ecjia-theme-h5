@@ -58,7 +58,12 @@ class pay_controller {
             }
         } else {
             //其他支付方式
-            $need_other_payment = 1;
+            $not_need_otherpayment_arr = array('pay_cod');
+            if (in_array($order ['pay_code'], $not_need_otherpayment_arr)) {
+                $need_other_payment = 0;
+            } else {
+                $need_other_payment = 1;
+            }
         }
         
         if ($need_other_payment && $order['order_pay_status'] == 0) {

@@ -45,7 +45,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
     {/if}
     
-    {if $data.pay_status eq 'success'}
+    {if $data.pay_code eq 'pay_cod'}
+    <ul class="ecjia-list">
+       <li>下单成功，请货到后付款</li>
+    </ul>
+    {/if}
+    
+    {if $data.pay_status eq 'success' || $data.pay_code eq 'pay_cod'}
     <div class="ecjia-margin-t ecjia-margin-b two-btn">
         <a class="btn" href='{url path="touch/index/init"}'>去购物</a>
         <a class="btn" href='{url path="user/user_order/order_detail" args="order_id={$data.order_id}"}'>查看订单</a>
