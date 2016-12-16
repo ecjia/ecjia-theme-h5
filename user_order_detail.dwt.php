@@ -20,7 +20,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</ul>
 	<div class="goods-describe order-log-list {if $smarty.get.type neq 'detail'} active{/if}" id="one">
 		<!-- {foreach from=$order.order_status_log item=info} -->
-		<div class="order-log-item">
+		<div class='order-log-item {$info.status} {if count($order.order_status_log) lt 2} item-only{/if}'>
 			<div class="order-log">
 				<span>{$info.order_status}</span><span class="ecjiaf-fr order-time">{$info.time}</span>
 				<p>{$info.message}</p>
@@ -63,7 +63,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<p class="select-title ecjiaf-fwb ecjia-margin-l">配送信息</p>
 			<ul class="ecjia-list">
 			    <!-- <li><span class="ecjiaf-fl width-25-p">发货时间：</span><span class="ecjiaf-fr width-75-p">{if $order.shipping_time}{$order.shipping_time}{else}暂未发货{/if}</span></li> -->
-				<li><span class="ecjiaf-fl width-25-p">送达时间：</span><span class="ecjiaf-fr width-75-p">{if $order.expect_shipping_time}{$order.expect_shipping_time}{else}暂无{/if}</span></li>
+				{if $order.expect_shipping_time}<li><span class="ecjiaf-fl width-25-p">送达时间：</span><span class="ecjiaf-fr width-75-p">{$order.expect_shipping_time}</span></li>{/if}
 				<li style="height: auto;"><span class="ecjiaf-fl width-25-p">收货地址：</span>
 				<span class="ecjiaf-fr width-75-p">{$order.consignee} {$order.mobile}</span>
 				<span class="ecjiaf-fr width-75-p">{$order.province} {$order.city} {$order.district}{$order.address}</span></li>
