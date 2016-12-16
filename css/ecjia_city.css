@@ -3764,6 +3764,7 @@ footer{
 .goods-info .goods-info-property .goods-price-new{
 	padding:0.1em 0.5em .8em 0.5em;
 	color:#ff3434;
+	font-size: 1em;
 }
 .goods-info .goods-price-new .ecjia-promote_price-span{
 	background:#fff;
@@ -5307,7 +5308,7 @@ footer{
     line-height: 18px;
     color: #fff;
     font-size: 13px;
-    background: rgba(0,0,0,0.8) url(../images/download.png) center no-repeat;
+    background: rgba(0,0,0,0.5) url(../images/download.png) center no-repeat;
     background-size: 100% 100%;
     position: fixed;
     bottom: 50px;
