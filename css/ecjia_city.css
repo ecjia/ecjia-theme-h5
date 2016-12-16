@@ -3250,6 +3250,9 @@ footer{
 .ecjia-bonus-top-list{
 	padding-top:3.5em;;
 }
+.ecjia-bonus-top-list li{
+	background-color: #fff;
+}
 .ecjia-bonus li,
 .ecjia-bonus-border-right1 li {
 	padding: 0;
@@ -5090,6 +5093,10 @@ footer{
 .ecjia-spread-detail .ecjia-list.list-short {
     border-top: 0;
 	border-bottom: 0;
+}
+.ecjia-spread-detail .ecjia-list li{
+    padding: .7em 1em;
+    height: 4em;
 }
 .ecjia-spread-detail .ecjia-list.list-short li span {
 	display: block;
