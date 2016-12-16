@@ -132,7 +132,7 @@ class merchant_controller {
 		ecjia_front::$controller->assign('category_id', $category_id);
 		ecjia_front::$controller->assign('rec_id', $rec_id);
 	
-		if (isset($_COOKIE['location_address_id'])) {
+		if (isset($_COOKIE['location_address_id']) && $_COOKIE['location_address_id'] > 0) {
 			ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
 		}
 	

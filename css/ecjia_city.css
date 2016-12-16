@@ -61,6 +61,9 @@ a.ecjia-color-green {
 .ecjia-of-h {
 	overflow:hidden;
 }
+.ecjia-nav li.active a {
+	color:#47AA4D;
+}
 /* 选择样式 */
 .ecjia-check {
     width: 20px;
@@ -3673,7 +3676,7 @@ footer{
 	border:none;
 	font-size:14px;
 	font-weight:bold;
-	margin-top: 1.4em;
+	margin-top: 1.2em;
 }
 .add-cart-a span {
 	color:#fff;
@@ -3684,6 +3687,7 @@ footer{
     bottom: 0em;
 	float: right;
 	top: .8em;
+	font-size: 1.3em;
 }
 .goods-price-new .ecjia-goods-plus-box span {
     float: left;
@@ -3729,10 +3733,11 @@ footer{
 	font-weight: normal;
 }
 .market-goods-add-cart{
-	margin-top:-1px;
+	margin-top:-5px;
 }
 .ecjia-market-plus-box{
 	top:0px;
+	font-size: 1.3em;
 }
 .goods-info.goods-info-property-new{
 	width:100%;
@@ -3764,6 +3769,10 @@ footer{
 .goods-info .goods-info-property .goods-price-new{
 	padding:0.1em 0.5em .8em 0.5em;
 	color:#ff3434;
+	font-size: 1.3em;
+}
+.goods-info .goods-info-property .goods-price-new del{
+	font-size: .8em;
 }
 .goods-info .goods-price-new .ecjia-promote_price-span{
 	background:#fff;
@@ -4141,6 +4150,9 @@ footer{
 .order-log-item .order-log{
     position: relative;
 }
+.order-log-item .order-log .order-time{
+    color: #999;
+}
 .order-log-item .order-log::before{
     content: '';
     position: absolute;
@@ -4155,7 +4167,7 @@ footer{
     border-bottom: 10px solid transparent;
     border-right: 10px solid #fff;
 }
-.order-log-item:first-child .order-log::after{
+/* .order-log-item:first-child .order-log::after{
     content: '';
     position: absolute;
     top: 50%;
@@ -4170,6 +4182,25 @@ footer{
     border-radius: 100%;
     left: -3em;
     z-index: 99;
+} */
+.order-log-item::before{
+    content: '';
+    width: 1px;
+    position: absolute;
+    top: 0;
+    left: -2em;
+    height: calc(100% + 1em);
+    background: #ddd;
+}
+.order-log-item:first-child::before{
+    height: calc(50% + 1em);
+    top: 50%;
+}
+.order-log-item:last-child::before{
+    height: 50%;
+}
+.order-log-item.item-only::before {
+	height:0;
 }
 .order-log-item:first-child{
     background: #c9f7db;
@@ -4178,13 +4209,71 @@ footer{
     border-right-color: #c9f7db;
 }
 .order-log-item:first-child::after{
+   /*  width: 1.5em;
+    height: 1.5em;
+    left: -2.75em; */
+}
+.order-log-item:first-child::after{
+	background: url(../images/icon/user_h_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+} 
+.order-log-item::after{
+    content:'';
+    position: absolute;
+    left: -3.5em;
+    display: block;
+    width: 3em;
+    height: 3em;
+    top: 20%;
+	padding:.5em;
+	background: url(../images/icon/user_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+}
+.order-log-item.place_order:first-child::after{
+	background: url(../images/icon/user_h_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+} 
+.order-log-item.place_order::after{
+	background: url(../images/icon/user_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+}
+.order-log-item.unpay:first-child::after,.order-log-item.payed:first-child::after{
+	background: url(../images/icon/money_h_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+} 
+.order-log-item.unpay::after,.order-log-item.payed::after{
+	background: url(../images/icon/money_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+}
+.order-log-item.shipping:first-child::after{
+	background: url(../images/icon/bike_h_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+} 
+.order-log-item.shipping::after{
+	background: url(../images/icon/bike_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+}
+.order-log-item.shipped:first-child::after{
+	background: url(../images/icon/bag_h_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+} 
+.order-log-item.shipped::after{
+	background: url(../images/icon/bag_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+}
+.order-log-item.finished:first-child::after{
+	background: url(../images/icon/list_h_circle_50.png) no-repeat center;
+	background-size:60%;
+} 
+.order-log-item.finished::after{
+	background: url(../images/icon/list_circle_50.png) no-repeat center;
+	background-size:60%;
+} 
+/* .order-log-item:first-child::after{
     width: 1.5em;
     height: 1.5em;
     left: -2.75em;
 	border-color:#47AA4D;
-}
-.order-log-item .order-log .order-time{
-    color: #999;
 }
 .order-log-item::after{
     content:'';
@@ -4202,23 +4291,8 @@ footer{
     -o-transform:translateY(-50%);
     background: #fff;
     border-radius: 100%;
-}
-.order-log-item::before{
-    content: '';
-    width: 1px;
-    position: absolute;
-    top: 0;
-    left: -2em;
-    height: calc(100% + 1em);
-    background: #ddd;
-}
-.order-log-item:first-child::before{
-    height: calc(50% + 1em);
-    top: 50%;
-}
-.order-log-item:last-child::before{
-    height: 50%;
-}
+} */
+
 /* 订单商品列表单独页面*/
 .ecjia-flow-goodslist.ecjia-order-detail .ecjia-checkout {
 	border:none;
@@ -5303,11 +5377,11 @@ footer{
 }
 /*======================下载========================*/
 .ecjia-download {
-	height: 50px;
+	height: 55px;
     line-height: 18px;
     color: #fff;
     font-size: 13px;
-    background: rgba(0,0,0,0.8) url(../images/download.png) center no-repeat;
+    background: rgba(0,0,0,0.5) url(../images/download.png) center no-repeat;
     background-size: 100% 100%;
     position: fixed;
     bottom: 50px;
@@ -5333,7 +5407,7 @@ footer{
 }
 .ecjia-download .close_tip {
     background-size: 19px 19px;
-    width: 10px;
+    width: 30px;
     height: 50px;
     position: absolute;
     right: 0;

@@ -960,7 +960,7 @@ select, input, textarea {
 	background-image: url("../images/menu.png");
 	background-position: -45px -230px;
 	background-size: 85px 323px;
-	bottom: 5em;
+	bottom: 8em;
 	position: fixed;
 	right: 1em;
 	width: 40px;

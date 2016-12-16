@@ -16,6 +16,7 @@ class touch_controller {
         if(!empty($addr)){
         	setcookie("location_address", $addr);
         	setcookie("location_name", $name);
+        	setcookie("location_address_id", 0);
         	ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
         }
         
@@ -82,12 +83,20 @@ class touch_controller {
         ecjia_front::$controller->assign('searchs', user_function::get_search($store_id));
         ecjia_front::$controller->assign('searchs_count', count(user_function::get_search($store_id)));
         
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'iPhone')||strpos($_SERVER['HTTP_USER_AGENT'], 'iPad')) {
+        	ecjia_front::$controller->assign('down_url', ecjia::config('mobile_iphone_download'));
+        } else if (strpos($_SERVER['HTTP_USER_AGENT'], 'Android')) {
+        	ecjia_front::$controller->assign('down_url', ecjia::config('mobile_android_download'));
+        }
+        
+        if (isset($_COOKIE['close_download'])) {
+        	ecjia_front::$controller->assign('close_download', $_COOKIE['close_download']);
+        }
         ecjia_front::$controller->assign_title();
         ecjia_front::$controller->assign_lang();
 
         ecjia_front::$controller->display('index.dwt');
     }
-    
     
     //请求接口返回数据
     public static function my_location() {
@@ -109,6 +118,7 @@ class touch_controller {
     	
     	setcookie("location_address", $location_address);
     	setcookie("location_name", $location_name);
+    	setcookie("location_address_id", 0);
     	
     	$url = RC_Uri::url('touch/index/init');
     	ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('url' => $url));
