@@ -1708,14 +1708,15 @@ footer{
 /*定位地址、选择的收货地址  - 购物车，结算 通用*/
 .flow-address {
     min-height:5em;
-    padding: 1em 1em .5em;
+    padding: .5em 1em .5em;
 	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
 	background-size: 100% 120%;;
 	overflow: hidden;
-	line-height: 3em;
+	line-height: 2.5em;
 }
 .flow-address.location_address{
 	padding: 1em;
+	line-height: 3em;
 }
 .flow-address label{
 	width: 15%;
@@ -1733,7 +1734,6 @@ footer{
     margin-left: 2em;
 }
 .flow-address .address-info span + p.address-desc{
-    margin-top: .5em;
     line-height: normal;
 }
 /*定位地址 ====结束 === */
