@@ -2360,7 +2360,7 @@ footer{
 }
 .ecjia-user .img-wallet {
     position: relative;
-    margin: 0.5em auto;
+    margin: 0.2em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/1.png) no-repeat;
@@ -2369,7 +2369,7 @@ footer{
 }
 .ecjia-user .img-bonus {
     position: relative;
-    margin: 0.5em auto;
+    margin: 0.2em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/2.png) no-repeat;
@@ -2378,7 +2378,7 @@ footer{
 }
 .ecjia-user .img-integral {
     position: relative;
-    margin: 0.5em auto;
+    margin: 0.2em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/4.png) no-repeat;
@@ -2387,7 +2387,7 @@ footer{
 }
 .ecjia-user .img-getintegral {
     position: relative;
-    margin: 0.5em auto;
+    margin: 0.2em auto;
     width: 1.5em;
     height: 1.5em;
     background: url(../images/wallet/5.png) no-repeat;
@@ -2880,8 +2880,8 @@ footer{
 }
 .ecjia-account-passwd-on {
 	padding: 0!important;
-    height: 1.8em!important;
-    line-height: 2em;
+    height: 1.7em!important;
+    line-height: 1.5em;
 }
 .ecjia-account .ecjia-withdraw {
 	height: 10em!important;
@@ -2932,6 +2932,15 @@ footer{
     line-height: 3.5em;
     font-size: 1.2em;
     position: relative;
+}
+.ecjia-account .height-3 {
+	height: 3em!important;
+}
+.ecjia-account .height-3 a{
+	line-height: 1.7em!important;
+}
+.ecjia-account .height-3 i{
+	line-height: 1.7em!important;
 }
 .ecjia-account .record-money {
 	font-size: 2em;
@@ -3025,15 +3034,15 @@ footer{
     margin-right: .5em;
 }
 .ecjia-account.ecjia-form .form-group-text {
-	height: 3.5em;
+	height: 3em;
 	padding: .7em 1em;
 	border: 1px solid #eee;
 }
 .ecjia-account.ecjia-form .form-group-text .input input {
-	line-height: 2em;
+	line-height: 1.7em;
 	padding:0 3em;
 	font-size: 1.1em;
-	height: 1.8em;
+	height: 1.7em;
 }
 /*========================  交易记录 ===========================*/
 .ecjia-account-record {
@@ -3062,7 +3071,7 @@ footer{
 .ecjia-account.ecjia-form .form-group-text .input span{
 	height: 1.8em;
 	font-size: 1.1em;
-	line-height: 2em;
+	line-height: 1.7em;
 }
 .ecjia-account .ecjia-nolist {
 	position: relative;
@@ -4050,7 +4059,7 @@ footer{
 
 .ecjia-order-detail .flow-goods-list .ecjia-list li {
 	border-bottom:none;
-	padding:.7em 1em;
+	padding: .7em 1em;
 }
 .ecjia .ecjia-order-detail .ecjia-checkout .flow-goods-list .goods-item li {
 	height: 5em;
