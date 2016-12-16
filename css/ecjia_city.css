@@ -2013,10 +2013,10 @@ footer{
     height: 2.5em;
     display: block;
     line-height: 2.5em;
-    margin-top: 1em;
     border-radius: 4px;
 	font-size: 1em;
 	color: #fff;
+	margin: .5em .3em;
 }
 .ecjia-modal .modal-button .create_address a{
 	color: #fff;
@@ -2026,10 +2026,9 @@ footer{
     height: 2.5em;
     display: block;
     line-height: 2.5em;
-    margin-top: 1em;
     border-radius: 4px;
-	margin-bottom: 1em;
 	border: 1px solid #eee;
+	margin: 0 .3em .5em .3em;
 }
 .ecjia-modal .modal-button.active-state{
 	background: #fff;
