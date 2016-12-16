@@ -152,7 +152,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <!-- {foreach from=$shop item=value} 网店信息 -->
             <li>
             	<a href="{RC_uri::url('article/shop/detail')}&title={$value.title}&article_id={$value.id}">
-            		<div class="icon-shop-info"></div>
+            		<div class="icon-shop-info"><img src="{$value.image}"></div>
             		<span class="icon-name">{$value.title}</span>
             		<i class="iconfont  icon-jiantou-right"></i>
             	</a>
