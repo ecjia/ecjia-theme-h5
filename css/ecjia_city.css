@@ -3150,11 +3150,19 @@ footer{
 .ecjia-account-list-f .ecjia-account-list .ecjia-list{
 	margin-top: 0;
 }
-.ecjia-account-record li {
-	background-color: #FFF;
+.ecjia-account-record ul li {
+    padding: .7em 1em;
+    height: 7em;
 }
+.ecjia-account-record.ecjia-list.list-short li+li::before{
+	color: #eee;
+	width: 80%;
+	left: 30%;
+}
+
 .ecjia-account-record p {
 	border-bottom: 1px solid #eee;
+	border-top: 1px solid #eee;
 	padding: 1em;
 	display: none;
 }
@@ -3204,7 +3212,6 @@ footer{
 	padding-right: 1em;
 	padding-bottom: 2em;
 	padding-top: 2em;
-	border-bottom: 1px solid #eee;
 }
 .account-record-big{
 	font-size: 1.2em!important;
