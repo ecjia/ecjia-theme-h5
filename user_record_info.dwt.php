@@ -12,7 +12,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<div class="ecjia-account" method="post">
+<div class="ecjia-account record-info" method="post">
     <div class="user-img"><img src="{$user_img}">
         <p class="user-name">{$user.name}</p>
     </div>
