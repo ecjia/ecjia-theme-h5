@@ -31,10 +31,13 @@ class user_privilege_controller {
      * 退出
      */
     public static function logout() {
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNOUT)->run();
-        $data = json_decode($data,true);
-        $back_act = RC_Uri::url('user/privilege/login');
-        return ecjia_front::$controller->showmessage('',ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $back_act));
+        $status = !empty($_POST['status']) ? $_POST['status'] : '';
+        if ($status == 'logout') {
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNOUT)->run();
+            $data = json_decode($data,true);
+            $back_act = RC_Uri::url('user/privilege/login');
+            return ecjia_front::$controller->showmessage('',ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('logout_url' => $back_act));
+        }
     }
     
     /**
