@@ -34,6 +34,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	  	}
 		$.cookie('what','first');
 	}
+
+	if($.cookie('location_name') == null){
+		$.cookie('what', '', { expires: -1 });
+	}
+
+	 
 </script>
 <!-- {/block} -->
 
