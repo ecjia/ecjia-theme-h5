@@ -31,11 +31,15 @@ class user_account_controller {
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
         $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->run();
         foreach ($pay['payment'] as $key => $val) {
-            if ($val['pay_name'] != '余额支付' && $val['pay_name'] != '货到付款') {
-                $payment[$key] = $val;
+            if ($val['pay_code'] == 'pay_alipay') {
+                $pay_alipay = $val;
+            } elseif ($val['pay_code'] == 'pay_wxpay') {
+                $pay_wxpay = $val;
             }
         }
-        ecjia_front::$controller->assign('payment', $payment);
+        ecjia_front::$controller->assign('pay_alipay', $pay_alipay);
+        ecjia_front::$controller->assign('pay_wxpay', $pay_wxpay);
+//         ecjia_front::$controller->assign('payment', $payment);
         ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->assign_title('充值');
         ecjia_front::$controller->display('user_account_recharge.dwt');
