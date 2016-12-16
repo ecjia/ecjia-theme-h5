@@ -22,7 +22,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<span>{$address_info.mobile}</span>
 				<p class="ecjia-truncate2 address-desc">{$address_info.address}{$address_info.address_info}</p>
 			{else}
-				<span>{$smarty.cookies.location_address}</span>
+				<span>{$smarty.cookies.location_name}</span>
 			{/if}
 		</div>
 	</div>
