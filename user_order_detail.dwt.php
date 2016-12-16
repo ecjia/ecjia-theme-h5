@@ -30,6 +30,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<div class="ecjia-checkout goods-describe ecjia-margin-b {if $smarty.get.type eq 'detail'} active{/if} " id="two">
 		<div class="flow-goods-list">
+			<div class="order-hd">
+				<a class="ecjiaf-fl" href='{url path="merchant/index/init" args="store_id={$order.store_id}"}'>
+					<i class="iconfont icon-shop"></i>{$order.seller_name}
+				</a>
+			</div>
 			<ul class="goods-item">
 				<!-- {foreach from=$order.goods_list item=goods} -->
 				<li>
@@ -46,14 +51,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</li>
 				<!-- {/foreach} -->
 			</ul>
-			<ul class="ecjia-list ecjia-margin-t">
+			<ul class="ecjia-list">
 				<li>商品金额：<span class="ecjiaf-fr ">{$order.formated_goods_amount}</span></li>
 				<li>税费金额：<span class="ecjiaf-fr ">{$order.formated_tax}</span></li>
 				<li>积分抵扣：<span class="ecjiaf-fr ecjia-color-red ">{$order.formated_integral_money}</span></li>
 				<li>红包抵扣：<span class="ecjiaf-fr ecjia-color-red ">{$order.formated_bonus}</span></li>
 				<li>优惠：<span class="ecjiaf-fr ecjia-color-red ">{$order.formated_discount}</span></li>
 				<li>运费：<span class="ecjiaf-fr ">{if $order.shipping_fee > 0}{$order.formated_shipping_fee}{else}免运费{/if}</span></li>
-				<li>共计：<span class="ecjiaf-fr ">{$order.formated_surplus}</span></li>
+				<li>共计：<span class="ecjiaf-fr ">{$order.formated_total_fee}</span></li>
 			</ul>
 			<p class="select-title ecjiaf-fwb ecjia-margin-l">配送信息</p>
 			<ul class="ecjia-list">

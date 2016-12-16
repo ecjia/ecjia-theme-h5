@@ -475,12 +475,14 @@ class cart_controller {
             $_SESSION['cart'][$cart_key]['temp']['inv_payee'] = empty($_POST['inv_payee']) ? '' : trim($_POST['inv_payee']);
             $_SESSION['cart'][$cart_key]['temp']['inv_content'] = empty($_POST['inv_content']) ? '' : trim($_POST['inv_content']);
             $_SESSION['cart'][$cart_key]['temp']['inv_type'] = empty($_POST['inv_type']) ? '' : trim($_POST['inv_type']);
+            $_SESSION['cart'][$cart_key]['temp']['need_inv'] = 1;
         }
         //发票清空
         if ($_POST['inv_clear']) {
             $_SESSION['cart'][$cart_key]['temp']['inv_payee'] = '';
             $_SESSION['cart'][$cart_key]['temp']['inv_content'] = '';
             $_SESSION['cart'][$cart_key]['temp']['inv_type'] = '';
+            $_SESSION['cart'][$cart_key]['temp']['need_inv'] = 0;
         }
         
         //留言
@@ -532,8 +534,15 @@ class cart_controller {
         $total['pay_fee_formated'] = price_format($total['pay_fee']);
         $total['amount'] = $total['goods_price'] + $total['shipping_fee'] + $total['pay_fee'] - $total['discount']; 
         //发票税费
+        $total['tax_fee'] = 0;
         if ($_SESSION['cart'][$cart_key]['temp']['inv_type']) {
-            $total['tax_fee'] = $_SESSION['cart'][$cart_key]['data']['inv_type_list'][$_SESSION['cart'][$cart_key]['temp']['inv_type']]['rate']/100 * $total['amount'];
+            foreach ($_SESSION['cart'][$cart_key]['data']['inv_type_list'] as $type) {
+                if ($type['label_value'] == $_SESSION['cart'][$cart_key]['temp']['inv_type']) {
+                    $rate = floatval($type['rate']) / 100;
+                    $total['tax_fee'] = $rate * $total['amount'];
+                    break;
+                }
+            }
         }
         $total['tax_fee_formated'] = price_format($total['tax_fee']);
         $total['amount'] += $total['tax_fee'];
@@ -710,6 +719,7 @@ class cart_controller {
             $inv_payee = empty($_POST['inv_payee']) ? '' : trim($_POST['inv_payee']);
             $inv_content = empty($_POST['inv_content']) ? '' : trim($_POST['inv_content']);
             $inv_type = empty($_POST['inv_type']) ? '' : trim($_POST['inv_type']);
+            $need_inv = empty($_POST['need_inv']) ? '' : trim($_POST['need_inv']);
             $postscript = empty($_POST['note']) ? '' : trim($_POST['note']);
             $integral = empty($_POST['integral']) ? 0 : intval($_POST['integral']);
             $bonus = empty($_POST['bonus']) ? 0 : intval($_POST['bonus']);
@@ -732,6 +742,7 @@ class cart_controller {
                 'inv_payee'		=> $inv_payee,
                 'inv_type'		=> $inv_type,
     			'inv_content'	=> $inv_content,
+                'need_inv'      => $need_inv,
                 'postscript' => $postscript,
                 'integral' => $integral,
                 'bonus' => $bonus,

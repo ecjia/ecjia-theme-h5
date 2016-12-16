@@ -25,6 +25,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
       <!-- {if $total.tax_fee gt 0} 税 -->
       <li>{$lang.tax}:<span class="cart-order">{$total.tax_fee_formated}</span></li>
+      <input type="hidden" name="inv_type" value="{$temp.inv_type}" />
+      <input type="hidden" name="need_inv" value="{$temp.need_inv}" />
+      <input type="hidden" name="inv_payee" value="{$temp.inv_payee}" />
+      <input type="hidden" name="inv_content" value="{$temp.inv_content}" />
       <!-- {/if} -->
 
       <!--  配送费用 -->

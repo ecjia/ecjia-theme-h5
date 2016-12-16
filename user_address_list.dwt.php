@@ -28,7 +28,7 @@ $('.setdefault').click(function(){
 <!-- {block name="main-content"} -->
 
 <div class="ecjia-address-list">
-	<div class="nav-header ecjia-margin-t ecjia-margin-b">
+	<div class="nav-header ecjia-margin-t">
 		<a href="{url path='user/user_address/add_address' args='clear=1'}">
 			<i class="icon-add-address"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t}新建收货地址{/t}
 			<span class="ecjiaf-fr"><i class="iconfont icon-jiantou-right"></i></span>

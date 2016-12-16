@@ -1705,7 +1705,7 @@ footer{
 .small-btn{
 	margin-top: 50px;
 }
-/*定位地址、选择的收货地址 */
+/*定位地址、选择的收货地址  - 购物车，结算 通用*/
 .flow-address {
     min-height:5em;
     padding: 1em 1em .5em;
@@ -1736,7 +1736,7 @@ footer{
     margin-top: .5em;
     line-height: normal;
 }
-/*====结束 === */
+/*定位地址 ====结束 === */
 
 .flow-no-pro{
 	margin-top: 5em;
@@ -4020,12 +4020,13 @@ footer{
     border-bottom: 1px solid #eee;
 }
 .ecjia-order-list .ecjia-order-item .order-hd,
+.ecjia-order-detail .order-hd,
 .ecjia-order-list .ecjia-order-item .order-ft{
     height: 3em;
     line-height: 3em;
     padding: 0 1em;
 }
-.ecjia-order-list .ecjia-order-item .order-hd i{
+ .order-hd i{
     font-size: 1.5em;
     margin-right: .5em;
 }
@@ -4075,6 +4076,13 @@ footer{
 .goods-list .goods-img-more i {font-size:1.8em;top: 0.1em;}
 .goods-list .goods-img-more .icon-right {font-size:1.2em;top: 0;}
 /*========================  订单详情 ===========================*/
+.ecjia-order-detail .order-hd {
+	background-color:#fff;
+}
+.ecjia-order-detail .goods-item {
+	border-top:1px solid #eee;
+	border-bottom:1px solid #eee;
+}
 .ecjia-order-detail .ecjia-checkout{
     border-top: 1px solid #eee;
 	border-bottom: none;
