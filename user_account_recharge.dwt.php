@@ -26,14 +26,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </li>
         </ul>
         <ul class="ecjia-list list-short payment-list">
-        <!-- {foreach from=$payment item=list} -->
             <li class="ecjia-account-padding-input">
-                <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}">
-                <input type="radio" id="{$list.pay_code}" name="payment" value="{$list.pay_id}" checked="true">
-                <label for="{$list.pay_code}" class="ecjiaf-fr one-select"></label>
-                {$list.pay_name}</a></span>
+                <span class="icon-name {$pay_alipay.pay_code}" data-code="{$pay_alipay.pay_code}">
+                <input type="radio" id="{$pay_alipay.pay_code}" name="payment" value="{$pay_alipay.pay_id}" checked="true">
+                <label for="{$pay_alipay.pay_code}" class="ecjiaf-fr one-select" value="10"></label>
+                {$pay_alipay.pay_name}</a></span>
             </li>
-        <!-- {/foreach} -->
+            <li class="ecjia-account-padding-input">
+                <span class="icon-name {$pay_wxpay.pay_code}" data-code="{$pay_wxpay.pay_code}">
+                <input type="radio" id="{$pay_wxpay.pay_code}" name="payment" value="{$pay_wxpay.pay_id}">
+                <label for="{$pay_wxpay.pay_code}" class="ecjiaf-fr one-select" value="10"></label>
+                {$pay_wxpay.pay_name}</a></span>
+            </li>
         </ul>
     	<input name="act" type="hidden" value="profile" />
     	<div class=" text-center account-top">
