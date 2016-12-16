@@ -34,9 +34,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </li>
         <!-- {/foreach} -->
         </ul>
-    	
-    	
-    	
     	<input name="act" type="hidden" value="profile" />
     	<div class=" text-center account-top">
     		<input class="btn btn-recharge" name="submit" type="submit" value="{t}立即充值{/t}" />
