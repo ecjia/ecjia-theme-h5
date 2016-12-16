@@ -96,8 +96,8 @@
 							
 							if (data.list == null && parseInt($('.detail-list').children('li').length) == 0) {
 								var empty = '<div class="ecjia-nolist">' + 
-								'<div class="img-nolist">'+ '<div class="img-noreward">'+'</div>'+'</div>' + 
-								'<p>暂无奖励</p></div>';
+								'<div class="img-nolist">'+ '<div class="img-noreward">暂无奖励</div>'+'</div>' + 
+								'</div>';
 								$(".detail-list").html(empty);
 							}
 							ecjia.touch.asynclist();
