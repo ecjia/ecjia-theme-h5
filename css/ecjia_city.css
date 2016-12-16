@@ -2886,10 +2886,6 @@ footer{
 .ecjia-account .ecjia-withdraw {
 	height: 10em!important;
 }
-.ecjia-account .textarea-style {
-	position: fixed;
-	width: 85%!important;
-}
 .ecjia-account .account-bonus span {
 	color: #999;
 }
@@ -2940,7 +2936,7 @@ footer{
 	line-height: 1.7em!important;
 }
 .ecjia-account .height-3 i{
-	line-height: 1.7em!important;
+	/*line-height: 1.7em!important;*/
 }
 .ecjia-account .record-money {
 	font-size: 2em;
@@ -3034,6 +3030,7 @@ footer{
     margin-right: .5em;
 }
 .ecjia-account.ecjia-form .form-group-text {
+	position: relative;
 	height: 3em;
 	padding: .7em 1em;
 	border: 1px solid #eee;
@@ -3043,6 +3040,10 @@ footer{
 	padding:0 3em;
 	font-size: 1.1em;
 	height: 1.7em;
+}
+.ecjia-account.user-account-withdraw .form-group .textarea-style {
+	position: relative;
+	height: 100%;
 }
 /*========================  交易记录 ===========================*/
 .ecjia-account-record {
