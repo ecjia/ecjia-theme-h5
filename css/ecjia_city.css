@@ -1711,14 +1711,15 @@ footer{
 /*定位地址、选择的收货地址  - 购物车，结算 通用*/
 .flow-address {
     min-height:5em;
-    padding: 1em 1em .5em;
+    padding: .5em 1em .5em;
 	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
 	background-size: 100% 120%;;
 	overflow: hidden;
+	line-height: 2.5em;
 }
-.flow-address.default{
-	line-height: 1.5em;
+.flow-address.location_address{
 	padding: 1em;
+	line-height: 3em;
 }
 .flow-address label{
 	width: 15%;
@@ -1736,7 +1737,6 @@ footer{
     margin-left: 2em;
 }
 .flow-address .address-info span + p.address-desc{
-    margin-top: .5em;
     line-height: normal;
 }
 /*定位地址 ====结束 === */
@@ -2187,6 +2187,28 @@ footer{
 	color: #47AA4D;
 	font-size: 1.5em;
 }
+.ecjia-address-list.ecjia-select-address li{
+	border: none;
+	padding: .5em 0 .3em 1em;
+}
+.ecjia-address-list.ecjia-select-address .address-backgroundw{
+	border-bottom: 1px solid #eee;
+}
+.ecjia-address-list.ecjia-select-address .address-backgroundw span{
+	color : #c1c1c1;
+}
+.ecjia-address-list.ecjia-select-address li a{
+	border-bottom: 1px solid #eee;
+}
+.ecjia-address-list.ecjia-select-address li:last-child a{
+	border-bottom: none;
+}
+.ecjia-address-list.ecjia-select-address .list-one{
+	border-bottom: 1px solid #eee;
+}
+.ecjia-address-list.ecjia-select-address .list .ecjia-margin-top{
+	margin-bottom: .5em;
+}
 /*======================== 选择支付方式、选择配送方式、选择红包 ecjia-select  ===========================*/
 .ecjia .ecjia-select li{
 	padding: 1em;
@@ -2540,60 +2562,6 @@ footer{
 .ecjia-user .ecjia-list.list-short li a>.icon-jiantou-right {
 	right: 1%;
 }
-.ecjia-user-head .ecjia-list.list-short li .icon-wallet  {
-	width: 25px;
-	height: 25px;
-	margin-left: -1%;
-	margin-top: 1%;	
-    background: url('../images/user_center/50x50_1.png') no-repeat;
-    background-size: 100%;
-    float: left;
-}
-.ecjia-user .ecjia-list.list-short li .icon-help-center  {
-	width: 25px;
-	height: 25px;
-	margin-left: -1%;
-	margin-top: 1%;	
-    background: url('../images/user_center/help_center.png') no-repeat;
-    background-size: 100%;
-    float: left;
-}
-.ecjia-user .ecjia-list.list-short li .icon-address-list  {
-	width: 25px;
-	height: 25px;
-	margin-left: -1%;
-	margin-top: 1%;	
-    background: url('../images/user_center/50x50_3.png') no-repeat;
-    background-size: 100%;
-    float: left;
-}
-.ecjia-user .ecjia-list.list-short li .icon-expand  {
-	width: 25px;
-	height: 25px;
-	margin-left: -1%;
-	margin-top: 1%;	
-    background: url('../images/user_center/expand.png') no-repeat;
-    background-size: 100%;
-    float: left;
-}
-.ecjia-user .ecjia-list.list-short li .icon-website-service  {
-	width: 25px;
-	height: 25px;
-	margin-left: -1%;
-	margin-top: 1%;	
-    background: url('../images/user_center/50x50_5.png') no-repeat;
-    background-size: 100%;
-    float: left;
-}
-.ecjia-user .ecjia-list.list-short li .icon-offical-website  {
-	width: 25px;
-	height: 25px;
-	margin-left: -1%;
-	margin-top: 1%;	
-    background: url('../images/user_center/50x50_6.png') no-repeat;
-    background-size: 100%;
-    float: left;
-}
 .ecjia-user .ecjia-list.list-short li .icon-message-center {
 	width: 25px;
 	height: 25px;
@@ -2603,13 +2571,24 @@ footer{
     background-size: 100%;
     float: left;
 }
-.ecjia-user .ecjia-list.list-short li .icon-shop-info  {
+.ecjia-user .ecjia-list.list-short li .icon-shop-info,
+.ecjia-user .ecjia-list.list-short li .icon-help-center,
+.ecjia-user .ecjia-list.list-short li .icon-offical-website,
+.ecjia-user .ecjia-list.list-short li .icon-website-service,
+.ecjia-user .ecjia-list.list-short li .icon-wallet,
+.ecjia-user .ecjia-list.list-short li .icon-address-list,
+.ecjia-user .ecjia-list.list-short li .icon-expand  {
     height: auto;
     width: 100%;
     vertical-align: middle;
-	left: -0.2%;
 }
-.ecjia-user .ecjia-list.list-short li .icon-shop-info img{
+.ecjia-user .ecjia-list.list-short li .icon-shop-info img,
+.ecjia-user .ecjia-list.list-short li .icon-help-center img,
+.ecjia-user .ecjia-list.list-short li .icon-offical-website img,
+.ecjia-user .ecjia-list.list-short li .icon-website-service img,
+.ecjia-user .ecjia-list.list-short li .icon-wallet img,
+.ecjia-user .ecjia-list.list-short li .icon-address-list img,
+.ecjia-user .ecjia-list.list-short li .icon-expand img{
     position: relative;
     height: 25px;
     width: 25px;

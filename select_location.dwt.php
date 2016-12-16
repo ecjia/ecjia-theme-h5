@@ -27,9 +27,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 		</a>
 	</div>
-	<div class="ecjia-list ecjia-address-list">
+	{if $address_list}
+	<div class="ecjia-list ecjia-address-list ecjia-select-address">
+		<div class="address-backgroundw"><span>我的收货地址</span></div>
 		<ul class="list-one">
-			<div class="address-backgroundw"><span>我的收货地址</span></div>			
 			<!-- {foreach from=$address_list item=value} 循环地址列表 -->
 			<li>
 				<a data-toggle="choose_address" href="{RC_Uri::url('user/user_address/choose_address')}&address_id={$value.id}{if $referer_url}&referer_url={$referer_url}{/if}">
@@ -51,6 +52,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</a>
 		</div>
 	</div>
+	{/if}
 </div>
 
 <!-- {/block} -->
