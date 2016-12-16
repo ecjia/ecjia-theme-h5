@@ -5034,7 +5034,7 @@ footer{
     position: relative;
     /*width: 25.3125em;	*/
     width: 100%;
-    padding: 0 1em;
+    padding: 0 .8em;
     /*height: 9.375em;*/
     height: 37%;
 }
@@ -5146,7 +5146,7 @@ footer{
 }
 .ecjia-spread-detail .ecjia-nolist .img-noreward {
     position: absolute;
-    top: 0;
+    top: 3em;
     right: 0;
     bottom: 0;
     left: 0;
