@@ -23,7 +23,12 @@
 				var url = $(this).attr('data-url');
 				var region   = $(".ecjia-zu").html();
 				var keywords = region + $("input[name='address']").val();
-				url += '&region=' + region +'&keywords=' + keywords;
+				if (region != 'undefined') {
+					url += '&region=' + region
+				}
+				if (keywords != 'undefined') {
+					url += '&keywords=' + keywords;
+				}
 	             $.ajax({
             	    url:url,
             	    type:"GET",
