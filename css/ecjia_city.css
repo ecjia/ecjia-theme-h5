@@ -2321,6 +2321,9 @@ footer{
 .ecjia-user-no-border-t {
 	border-top:0!important;
 }
+.ecjia-user-no-border-b {
+	border-bottom:0!important;
+}
 .ecjia-user .no-login {
 	border: 1px solid #00F;
     width: 35%;
@@ -2908,7 +2911,7 @@ footer{
     background: #F7F7F7;
     border: none;
     overflow: hidden;
-    padding: 2em 31% 0 35%;
+    padding: 2em 0 0 35%;
     position: relative;
 }
 .ecjia-account .user-img img{
@@ -3036,10 +3039,10 @@ footer{
 	border: 1px solid #eee;
 }
 .ecjia-account.ecjia-form .form-group-text .input input {
-	line-height: 1.7em;
+	line-height: 1.5em;
 	padding:0 3em;
 	font-size: 1.1em;
-	height: 1.7em;
+	height: 1.5em;
 }
 .ecjia-account.user-account-withdraw .form-group .textarea-style {
 	position: relative;
@@ -3070,9 +3073,9 @@ footer{
 	border-right: 0!important;
 }
 .ecjia-account.ecjia-form .form-group-text .input span{
-	height: 1.8em;
+	height: 1.5em;
 	font-size: 1.1em;
-	line-height: 1.7em;
+	line-height: 1.5em;
 }
 .ecjia-account .ecjia-nolist {
 	position: relative;
