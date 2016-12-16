@@ -11,6 +11,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0, minimal-ui">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>{$page_title}</title>
 	<link rel="shortcut icon" href="favicon.ico" />
 
@@ -32,7 +33,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <link rel="stylesheet" href="{$theme_url}lib/winderCheck/css/winderCheck.min.css">
 	<!-- skin -->
 	<link rel="stylesheet" href="{$theme_url}{$curr_style}">
-
+	<script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp&libraries=convertor"></script>
 	<script type="text/javascript" src="{$theme_url}lib/jquery/jquery.min.js" ></script>
 	<script type="text/javascript" src="{$theme_url}lib/multi-select/js/jquery.quicksearch.js" ></script>
 	<script type="text/javascript" src="{$theme_url}lib/jquery/jquery.pjax.js" ></script>
@@ -40,9 +41,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<script type="text/javascript" src="{$theme_url}lib/iscroll/js/iscroll.js" ></script>
 	<script type="text/javascript" src="{$theme_url}lib/bootstrap3/js/bootstrap.min.js" ></script>
 	<script type="text/javascript" src="{$theme_url}lib/ecjiaUI/ecjia.js" ></script>
-	<script type="text/javascript" src="{$theme_url}lib/jquery-form/jquery.form.min.js" ></script>
-	<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=P4C6rokKFWHjXELjOnogw3zbxC0VYubo"></script>
-	
+	<script type="text/javascript" src="{$theme_url}lib/jquery-form/jquery.form.min.js" ></script>	
 
 	<!-- {block name="meta"} --><!-- {/block} -->
 

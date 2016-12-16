@@ -281,13 +281,14 @@
                 		});
             			return false;
             		} else {
-            			myApp.modal({
-                			text: '<div class="ecjia-alert-message">'+ data.message +'</div>',
-                		});
-        			    setTimeout(function() {
-        			    	$('.modal').remove();
-        			    	$('.modal-overlay').remove();
-        			    }, 1000);
+            			alert(data.message);
+//            			myApp.modal({
+//                			text: '<div class="ecjia-alert-message">'+ data.message +'</div>',
+//                		});
+//        			    setTimeout(function() {
+//        			    	$('.modal').remove();
+//        			    	$('.modal-overlay').remove();
+//        			    }, 1000);
 //                		ecjia.pjax(window.location.href);
                 		return false;
             		}

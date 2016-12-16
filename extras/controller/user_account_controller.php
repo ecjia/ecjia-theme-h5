@@ -88,7 +88,7 @@ class user_account_controller {
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
         $user_money = ltrim($user['formated_user_money'], '￥');
         if ($amount > $user_money) {
-            return ecjia_front::$controller->showmessage(__('余额不足，请确定提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_account/withdraw')));
+            return ecjia_front::$controller->showmessage(__('余额不足，请确定提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         if (strlen($note) > '300') {
             return ecjia_front::$controller->showmessage(__('输入的文字超过规定字数'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
