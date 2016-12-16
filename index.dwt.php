@@ -14,10 +14,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     
   	var what = $.cookie('what');
 	if(what === undefined){
+		alert("xunwen");
 		if (navigator.geolocation) {
 	  	    navigator.geolocation.getCurrentPosition(showPosition);
 	  	}
-	  	
 	  	function showPosition(position) {
 		  	var lat=position.coords.latitude; 
 		  	var lng=position.coords.longitude;
@@ -33,11 +33,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	  		 });
 	  	}
 		$.cookie('what','first');
-	}
-	if($.cookie('location_name') === undefined){
+	}else if($.cookie('location_name') === undefined){
 		$.cookie('what', '', { expires: -1 });
 	}
-
 	 
 </script>
 <!-- {/block} -->
