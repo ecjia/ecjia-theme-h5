@@ -120,7 +120,7 @@
         },
         close_download : function(){
         	$('.close_tip').on('click', function(){
-        		 $.cookie('show_download', false);
+        		 $.cookie('close_download', true);
         		 $('.ecjia-download').remove();
         	})
         },
