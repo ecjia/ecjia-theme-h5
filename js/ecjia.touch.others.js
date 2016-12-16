@@ -4,36 +4,47 @@
 ;(function(ecjia, $) {
 	ecjia.touch.index = {
 		init : function(){
+            this.location();
+            this.substr();
             this.init_swiper();
             this.change_index();
             this.swiper_promotion();
             this.promote_time();
-            this.substr();
+
 		},
-		
-		substr : function() {
+	
+		substr : function(){
 			var str = $(".address-text").html();
 			if(str){
 				str = str.length>13?str.substring(0,13)+'...':str;
 				var str = $(".address-text").html(str);
 			}
-			 
+		},
+		
+		location : function(){
 			var what = $.cookie('what');
 			if(what == undefined){
-			   $.cookie('what','first');
-//			   if (navigator.geolocation) {  
-//				    navigator.geolocation.getCurrentPosition(function(pos) {
-//				        alert(pos.coords.latitude + '  '+pos.coords.longitude);
-//				    }, function(err) {
-//				    }, {  
-//				        enableHighAccuracy: true, // 是否获取高精度结果  
-//				        timeout: 5000, //超时,毫秒  
-//				        maximumAge: 0 //可以接受多少毫秒的缓存位置  
-//				    });  
-//				}
+				if (navigator.geolocation) {  
+					navigator.geolocation.getCurrentPosition(function(pos) {
+						var location = pos.coords.latitude + ','+pos.coords.longitude;
+						var url = $("#location").attr('data-url');
+						url += '&location=' + location;
+					     $.ajax({
+						    url:url,
+						    type:"GET",
+						    dataType:"json",
+						 });
+					}, function(err) {
+					}, {  
+					    enableHighAccuracy: true, // 是否获取高精度结果  
+					    timeout: 5000, //超时,毫秒  
+					    maximumAge: 0 //可以接受多少毫秒的缓存位置  
+					});  
+				} 
+				$.cookie('what','first');
 			}
-        },
-
+		},
+		
         init_swiper : function() {
 			var swiper = new Swiper('.swiper-touchIndex', {
 				pagination: '.swiper-pagination',
