@@ -8,10 +8,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
-<!-- {block name="footer"} -->
-<script type="text/javascript">
-</script>
-<!-- {/block} -->
 
 <!-- {block name="main-content"} -->
 <div class="ecjia-account-list-f">
@@ -56,10 +52,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
     {foreachelse}
 	<div class="ecjia-nolist">
-		<div class="img-nolist">
-		     <img src="./images/wallet/norecord_180.png">
-		</div>
-		<span>{t}暂无明细记录{/t}</span>
+		<div class="img-norecord">暂无明细记录</div>
+		
 	</div>
 <!--{/foreach}-->
 <!-- {/block} -->

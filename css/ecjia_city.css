@@ -1761,7 +1761,7 @@ footer{
 .flow-no-pro .ecjia-nolist a.btn.btn-small{
 	background: #47aa4d;
 	width: 35%;
-	font-size: .8em;
+	font-size: 1em;
 	margin: 0 30%;
 	margin-top: 1em;
 }
@@ -2032,10 +2032,10 @@ footer{
     height: 2.5em;
     display: block;
     line-height: 2.5em;
-    margin-top: 1em;
     border-radius: 4px;
 	font-size: 1em;
 	color: #fff;
+	margin: .5em .3em;
 }
 .ecjia-modal .modal-button .create_address a{
 	color: #fff;
@@ -2045,10 +2045,9 @@ footer{
     height: 2.5em;
     display: block;
     line-height: 2.5em;
-    margin-top: 1em;
     border-radius: 4px;
-	margin-bottom: 1em;
 	border: 1px solid #eee;
+	margin: 0 .3em .5em .3em;
 }
 .ecjia-modal .modal-button.active-state{
 	background: #fff;
@@ -2319,6 +2318,9 @@ footer{
 .ecjia-user-no-border-t {
 	border-top:0!important;
 }
+.ecjia-user-no-border-b {
+	border-bottom:0!important;
+}
 .ecjia-user .no-login {
 	border: 1px solid #00F;
     width: 35%;
@@ -2394,6 +2396,9 @@ footer{
 }
 .ecjia-user .ecjia-list{
 	margin-top: 1em;
+}
+.ecjia-user.border-t {
+	border-top: 1px solid #eee;
 }
 .ecjia-user-border-b {
 	border-bottom: 1px solid #eee;
@@ -2906,7 +2911,7 @@ footer{
     background: #F7F7F7;
     border: none;
     overflow: hidden;
-    padding: 2em 31% 0 35%;
+    padding: 2em 0 0 35%;
     position: relative;
 }
 .ecjia-account .user-img img{
@@ -2995,6 +3000,9 @@ footer{
 .ecjia-account .account-bonus span i {
 	font-size: 1.5em;
 }
+.ecjia-account .ecjia-list.list-short{
+	border-bottom: 1px solid #eee;
+}
 .ecjia-account .ecjia-list.list-short li+li::before {
 	width: 97%;
     left: 3%;
@@ -3034,10 +3042,13 @@ footer{
 	border: 1px solid #eee;
 }
 .ecjia-account.ecjia-form .form-group-text .input input {
-	line-height: 1.7em;
+	line-height: 1.5em;
 	padding:0 3em;
 	font-size: 1.1em;
-	height: 1.7em;
+	height: 1.5em;
+}
+.ecjia-account.user-account-withdraw .form-group{
+	border: 1px solid #eee;
 }
 .ecjia-account.user-account-withdraw .form-group .textarea-style {
 	position: relative;
@@ -3046,6 +3057,7 @@ footer{
 /*========================  交易记录 ===========================*/
 .ecjia-account-record {
 	height: auto;
+	padding-top: 4.5em;
 }
 .ecjia-account-padding {
 	padding: 0 !important;
@@ -3068,9 +3080,9 @@ footer{
 	border-right: 0!important;
 }
 .ecjia-account.ecjia-form .form-group-text .input span{
-	height: 1.8em;
+	height: 1.5em;
 	font-size: 1.1em;
-	line-height: 1.7em;
+	line-height: 1.5em;
 }
 .ecjia-account .ecjia-nolist {
 	position: relative;
@@ -3139,15 +3151,11 @@ footer{
 	margin-top: 0;
 }
 .ecjia-account-record li {
-/*	border-top: 1px solid #eee;*/
-	padding: 0;
-	/*padding: 0 .5em 0 .5em;*/
-	/*margin-top: 1em;*/
-	height: 6em;
+	background-color: #FFF;
 }
 .ecjia-account-record p {
 	border-bottom: 1px solid #eee;
-	padding: 5.5em 1em 1em 1em;
+	padding: 1em;
 	display: none;
 }
 .ecjia-list.ecjia-account-record>.ecjia-nolist>p {
@@ -3160,6 +3168,7 @@ footer{
 	position: relative;
 	text-align: center;
 	size: 16px;
+	color: #aaa;
 }
 /*.ecjia-account-record  li:last-child {
 	border:none!important;
@@ -3195,7 +3204,7 @@ footer{
 	padding-right: 1em;
 	padding-bottom: 2em;
 	padding-top: 2em;
-	/*border-bottom: 1px solid #eee;*/
+	border-bottom: 1px solid #eee;
 }
 .account-record-big{
 	font-size: 1.2em!important;
@@ -5109,12 +5118,52 @@ footer{
     margin: 0 0 0 2%;
 }
 .ecjia-spread-detail .ecjia-nolist .img-noreward {
-	position: relative;
-	margin: auto;
-	width: 10em;
-	height: 10em;
-	background: url('../images/wallet/noreward_180.png') no-repeat;
-	background-size: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding-top: 330px;
+    font-size: 16px;
+    color: #aaa;
+    line-height: 26px;
+    text-align: center;
+    background: url(../images/wallet/noreward_180.png) center 170px no-repeat;
+    margin: 0 auto;
+    max-width: 640px;
+    background-size: 10em;
+}
+.ecjia-bonus .ecjia-nolist .img-nobonus {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding-top: 330px;
+    font-size: 16px;
+    color: #aaa;
+    line-height: 26px;
+    text-align: center;
+    background: url(../images/wallet/nobonus_180.png) center 170px no-repeat;
+    margin: 0 auto;
+    max-width: 640px;
+    background-size: 10em;
+}
+.ecjia-account-record .ecjia-nolist .img-norecord {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding-top: 330px;
+    font-size: 16px;
+    color: #aaa;
+    line-height: 26px;
+    text-align: center;
+    background: url(../images/wallet/norecord_180.png) center 170px no-repeat;
+    margin: 0 auto;
+    max-width: 640px;
+    background-size: 10em;
 }
 .ecjia-spread-detail .ecjia-list.list-short li .record-label {
 	color: #555;

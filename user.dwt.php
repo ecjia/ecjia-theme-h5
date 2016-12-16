@@ -29,7 +29,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     		{/if}
     	</a>
 	{else}
-	   <a href="{url path='user/privilege/login'}"><div class="no-login">登陆 / 注册</div></a>
+	   <a href="{url path='user/privilege/login'}"><div class="no-login">登录 / 注册</div></a>
 	{/if}
 </div>
 
@@ -151,7 +151,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-list list-short">
         <!-- {foreach from=$shop item=value} 网店信息 -->
             <li>
-            	<a href="{RC_uri::url('user/index/shop_detail')}&title={$value.title}&article_id={$value.id}">
+            	<a href="{RC_uri::url('article/shop/detail')}&title={$value.title}&article_id={$value.id}">
             		<div class="icon-shop-info"></div>
             		<span class="icon-name">{$value.title}</span>
             		<i class="iconfont  icon-jiantou-right"></i>

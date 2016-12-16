@@ -112,7 +112,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	            <input type="hidden" value="{RC_Uri::url('goods/category/update_cart')}" name="update_cart_url" />
 				<input type="hidden" value="{$goods_info.seller_id}" name="store_id" />
 	        </div>
-	        <a href='{url path="goods/category/store_goods" args="store_id={$goods_info.seller_id}"}'>
+	        <a href='{url path="merchant/index/init" args="store_id={$goods_info.seller_id}"}'>
 		        <div class="bd goods-type ecjia-margin-t store-name">
 		            <div class="goods-option-con goods-num goods-option-con-new">
 		                <div class="ecjia-merchants-name" >
