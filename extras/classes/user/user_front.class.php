@@ -23,7 +23,9 @@ class user_front {
 		if (!$this->check_login()) {
 		    /*未登录处理*/
             $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
-//             _dump($url,1);
+            if (isset($_GET['referer_url'])) {
+            	$url = urldecode($_GET['referer_url']);
+            }
             ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login', array('referer' => urlencode($url))));
 		}
 		

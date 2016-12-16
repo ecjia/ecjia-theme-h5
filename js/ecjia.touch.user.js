@@ -54,11 +54,11 @@
         		var url = $(this).attr('data-url');
         		var username = $('input[name="username"]').val();
         		var password = $('input[name="password"]').val();
-        		var referer = $('input[name="referer"]').val();
+        		var referer_url = $('input[name="referer_url"]').val();
         		var info = {
 					'username': username,
 					'password': password,
-					'referer' : referer
+					'referer_url' : referer_url
 				};
 				$.post(url, info, function(data){
 					if (data.state == 'error') {

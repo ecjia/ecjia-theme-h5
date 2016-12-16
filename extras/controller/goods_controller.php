@@ -325,8 +325,8 @@ class goods_controller {
     public static function update_cart() {
     	if (!ecjia_touch_user::singleton()->isSignin()) {
     		$url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
-    		$referer = RC_Uri::url('user/privilege/login', array('referer' => urlencode($url)));
-    		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('referer' => $referer));
+    		$referer_url = RC_Uri::url('user/privilege/login', array('referer_url' => urlencode($url)));
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('referer_url' => $referer_url));
     	}
     	
     	$rec_id 	= is_array(($_POST['rec_id'])) ? $_POST['rec_id'] : $_POST['rec_id'];

@@ -1712,9 +1712,9 @@ footer{
 	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
 	background-size: 100% 120%;;
 	overflow: hidden;
+	line-height: 3em;
 }
-.flow-address.default{
-	line-height: 1.5em;
+.flow-address.location_address{
 	padding: 1em;
 }
 .flow-address label{

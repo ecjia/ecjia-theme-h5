@@ -14,7 +14,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 <a href="{RC_Uri::url('location/index/select_location')}{if $referer_url}&referer_url={$referer_url}{/if}">
-	<div class="flow-address flow-cart {if $address_id gt 0}default{/if}">
+	<div class="flow-address flow-cart {if $address_id eq 0 || !$address_id}location_address{/if}">
 		<span class="ecjiaf-fl">{t}送至：{/t}</span>
 		<div class="ecjiaf-fl address-info">
 			{if $address_id gt 0}
@@ -90,7 +90,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="ecjia-nolist">
 		您还没有添加商品
 		{if $not_login}
-		<a class="btn btn-small" type="button" href="{url path='user/user_privilege/login'}">{t}点击登录{/t}</a>
+		<a class="btn btn-small" type="button" href="{url path='user/user_privilege/login'}{if $referer_url}&referer_url={$referer_url}{/if}">{t}点击登录{/t}</a>
 		{else}
 		<a class="btn btn-small" type="button" href="{url path='touch/index/init'}">{t}去逛逛{/t}</a>
 		{/if}
