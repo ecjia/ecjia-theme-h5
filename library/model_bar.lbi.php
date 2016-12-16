@@ -11,5 +11,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<a class="category" href="{RC_Uri::url('goods/category/init')}">分类</a>
 	<a class="cartList" href="{RC_Uri::url('cart/index/init')}">购物车</a>
 	<a class="orderList" href="{RC_Uri::url('user/user_order/order_list')}">订单</a>
-	<a class="mine" href="{RC_Uri::url('user/index/init')}">我的</a>
+	<a class="mine" href="{RC_Uri::url('touch/my/init')}">我的</a>
 </div>
