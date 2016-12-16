@@ -245,7 +245,7 @@
             		var myApp = new Framework7();
             		
             		$('.la-ball-atom').remove();
-            		if (data.referer) {
+            		if (data.referer_url) {
             			$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});//禁用滚动条
                     	//禁用滚动条
                     	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){
@@ -273,7 +273,7 @@
         			            	$('.modal-overlay').remove();
         			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});	//启用滚动条
         			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
-        			            	location.href = data.referer;
+        			            	location.href = data.referer_url;
         	            			return false;
         			            }	
         			          },

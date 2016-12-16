@@ -53,6 +53,7 @@ class cart_controller {
     		ecjia_front::$controller->assign('address_info', $address_info);
     	}
     	ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
+    	
         ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->assign('active', 'cartList');
     	

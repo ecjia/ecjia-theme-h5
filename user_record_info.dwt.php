@@ -8,8 +8,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 <!-- {block name="footer"} -->
-<script type="text/javascript">
-</script>
+<script type="text/javascript">ecjia.touch.user.init();</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -30,14 +29,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     {if $sur_amount.pay_status eq '已完成'}
     {elseif $sur_amount.pay_status eq ''}
     {else}
-        <form name="formPassword" action="{url path='user/user_account/record_cancel'}" method="post" >
+        <form name="record_cancel_from" action="{url path='user/user_account/record_cancel'}" method="post" >
         {if $sur_amount.type eq 'deposit'}
             <div class="two-btn btn-bottom">
                 <input name="record_type" type="hidden" value={$sur_amount.type} />
                 <input name="account_id" type="hidden" value={$sur_amount.account_id}>
                 <input name="payment_id" type="hidden" value={$sur_amount.payment_id} />
-        		<input class="btn ecjia-fl btn-c" id="record_cancel" name="submit" type="submit" value="{t}取消{/t}" />
-        		<input class="btn ecjiaf-fr ecjia-fl" name="submit" type="submit" value="{t}充值{/t}" />
+        		<input class="btn ecjia-fl btn-c" id="record_cancel" name="record_cancel" type="submit" value="{t}取消{/t}" />
+        		<input class="btn ecjiaf-fr ecjia-fl" name="record_sure" type="submit" value="{t}充值{/t}" />
         	</div>
         {else}
             <div class="two-btn btn-bottom">
@@ -45,7 +44,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <p class="apply">已申请</p>
                 <input name="record_type" type="hidden" value={$sur_amount.type} />
                 <input name="account_id" type="hidden" value={$sur_amount.account_id}>
-                <input class="btn ecjiaf-fr btn-c ecjia-fl" id="record_cancel" name="submit" type="submit" value="{t}取消{/t}" />
+                <input class="btn ecjiaf-fr btn-c ecjia-fl" id="record_cancel" name="record_cancel" type="submit" value="{t}取消{/t}" />
         	</div>	
         {/if}	
         </form>

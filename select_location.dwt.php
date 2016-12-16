@@ -27,6 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 		</a>
 	</div>
+	{if $address_list}
 	<div class="ecjia-list ecjia-address-list">
 		<ul class="list-one">
 			<div class="address-backgroundw"><span>我的收货地址</span></div>			
@@ -51,6 +52,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</a>
 		</div>
 	</div>
+	{/if}
 </div>
 
 <!-- {/block} -->

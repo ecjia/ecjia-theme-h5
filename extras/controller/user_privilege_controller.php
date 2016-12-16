@@ -49,11 +49,12 @@ class user_privilege_controller {
             $message = $data->get_error_message();
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('info' => $message));
         } else {
-        	$referer = !empty($_POST['referer']) ? urldecode($_POST['referer']) : '';
-        	if (!empty($referer)) {
-        		return ecjia_front::$controller->showmessage(__(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $referer));
+        	$url = RC_Uri::url('touch/my/init');
+        	$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : '';
+        	if (!empty($referer_url)) {
+        		$url = $referer_url;
         	}
-            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('touch/my/init')));
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
         }
     }
     
