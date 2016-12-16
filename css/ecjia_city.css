@@ -3768,6 +3768,9 @@ footer{
 	color:#ff3434;
 	font-size: 1.3em;
 }
+.goods-info .goods-info-property .goods-price-new del{
+	font-size: .8em;
+}
 .goods-info .goods-price-new .ecjia-promote_price-span{
 	background:#fff;
 	color:#ff3434;
