@@ -371,8 +371,9 @@
         		$('.store-add-cart').children('.a51').removeClass('disabled');
         	} else {
             	//禁用滚动条
-            	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
-            	
+//            	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
+        		$('body').css('overflow-y', 'hidden');
+        		
             	$('.store-add-cart').children('.a4x').removeClass('show');
             	$('.minicart-content').children('.a4x').addClass('show').addClass('light').removeClass('disabled');
             	$('.store-add-cart').children('.minicart-content').css('transform', 'translateY(-100%)');
@@ -390,7 +391,7 @@
 			$('.store-add-cart').find('.a4z').css('transform', 'translateX(0px)');
     		$('.store-add-cart').find('.a53').css('display', 'none');
     		$('.store-add-cart').find('.minicart-content').css('transform', 'translateY(0px)');
-    		
+
     		$('.minicart-content').children('.a4x').removeClass('show').attr('show', false);
     		$('.store-add-cart').children('.a4x').addClass('show').attr('show', false);
     		

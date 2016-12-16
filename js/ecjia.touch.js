@@ -552,6 +552,7 @@
 		//增加动画
 		$('body').removeClass('blurry');
 		ecjia.touch.pjaxloadding();
+		$('.load-list').remove();
 	});
 
 	//PJAX前进、返回执行
@@ -577,6 +578,6 @@
 $(function(){
 	/* 页面载入后自动执行 */
 	ecjia.touch.init();
-	
+
 	window.alert = ecjia.touch.alert;
 });

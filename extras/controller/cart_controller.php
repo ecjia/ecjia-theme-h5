@@ -411,6 +411,9 @@ class cart_controller {
         if ($rs['data']['shipping_list']) {
             $rs['data']['shipping_list'] = touch_function::change_array_key($rs['data']['shipping_list'], 'shipping_id');
         }
+        if ($rs['data']['inv_type_list']) {
+            $rs['data']['inv_type_list'] = touch_function::change_array_key($rs['data']['inv_type_list'], 'id');
+        }
         $cart_key = md5($address_id.$rec_id);
         $_SESSION['cart'][$cart_key]['data'] = $rs['data'];
         
@@ -528,9 +531,15 @@ class cart_controller {
         $total['pay_fee'] = $selected_payment['pay_fee']; 
         $total['pay_fee_formated'] = price_format($total['pay_fee']);
         $total['amount'] = $total['goods_price'] + $total['shipping_fee'] + $total['pay_fee'] - $total['discount']; 
+        //发票税费
+        if ($_SESSION['cart'][$cart_key]['temp']['inv_type']) {
+            $total['tax_fee'] = $_SESSION['cart'][$cart_key]['data']['inv_type_list'][$_SESSION['cart'][$cart_key]['temp']['inv_type']]['rate']/100 * $total['amount'];
+        }
+        $total['tax_fee_formated'] = price_format($total['tax_fee']);
+        $total['amount'] += $total['tax_fee'];
         $total['amount_formated'] = price_format($total['amount']);
-                _dump($total,2);
-        _dump($rs,2);
+//         _dump($total,2);
+//         _dump($rs,2);
         ecjia_front::$controller->assign('data', $rs['data']);
         ecjia_front::$controller->assign('total_goods_number', $total['goods_number']);
         ecjia_front::$controller->assign('selected_payment', $selected_payment);
