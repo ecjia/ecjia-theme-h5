@@ -88,7 +88,7 @@
 .ecjia-row-nav {
 	margin-top: 0;
 	padding-bottom: 1em;
-	border-bottom: 1px #e3e3e3 solid;
+	border-bottom: 1px #eee solid;
 }
 .ecjia-row-nav li {
 	border: 0;
@@ -148,10 +148,10 @@
 
 .ecjia-mod .hd {
 	padding: 0.7em 0;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid #eee;
 }
 .ecjia-mod.ecjia-mod-brand .hd {
-	border-top: 1px solid #333;
+	border-top: 1px solid #eee;
 }
 .ecjia-mod .ecjia-icon-i { display: block;
 	float: left;
@@ -162,7 +162,7 @@
 
 .ecjia-mod .bd {
 	overflow: hidden;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid #eee;
 }
 
 /*精选大牌*/
@@ -191,7 +191,7 @@ footer .footer-copy {
 }
 footer .footer-icon {
 	padding: 1em 5em;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #eee;
 }
 footer .footer-icon .ecjia-list li {
 	background: none;
@@ -204,11 +204,11 @@ footer .footer-icon .ecjia-list li i {
 	text-align: center;
 	border-radius: 1em;
 	overflow: hidden;
-	border: 1px solid #999;
+	border: 1px solid #eee;
 	background: none;
 }
 footer .footer-icon .ecjia-list li a.active i {
-	border: 1px solid #666;
+	border: 1px solid #eee;
 }
 .goods-index-list.ecjia-mod .hd h2 {
 	padding-left: 0;
@@ -221,7 +221,7 @@ footer .footer-icon .ecjia-list li a.active i {
 	display: block;
 	padding-top: .5em;
 	margin:0 auto;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #eee;
 }
 .goods-index-list.ecjia-mod {
 	background-color: #EFEFF4;
@@ -277,7 +277,7 @@ footer .footer-icon .ecjia-list li a.active i {
 	border: 0;
 	border-radius: 0 4px 4px 0;
 	line-height: 100%;
-	border-left: 1px solid #ccc;
+	border-left: 1px solid #eee;
 }
 .ecjia-search-header button i {
 	font-size: 1.4em;
@@ -285,7 +285,7 @@ footer .footer-icon .ecjia-list li a.active i {
 .hot-search {
 	width: 100%;
 	padding: 1em ;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #eee;
 }
 .hot-search .title a {
 	float: right;
@@ -310,11 +310,11 @@ footer .footer-icon .ecjia-list li a.active i {
 }
 .search-history {
 	border-bottom: 0;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid #eee;
 }
 .search-history .ecjia-list li {
 	padding: 0.6em 0;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #eee;
 }
 .search-history .ecjia-list li a {
 	display: block;
@@ -332,7 +332,7 @@ footer .footer-icon .ecjia-list li a.active i {
 .user-new-info .user-img {
 	border-radius: 100%;
 	line-height: 0em;
-	border: 0.3em solid #fff;
+	border: 0.3em solid #eee;
 	padding: 2.7px;
 }
 .user-new-info .user-rank-name,
@@ -374,7 +374,7 @@ footer .footer-icon .ecjia-list li a.active i {
 	background: #fff;
 	color: #333;
 	position: relative;
-	border-bottom:1px solid #ddd;
+	border-bottom:1px solid #eee;
 }
 .nav-header a .icon-name {
 	font-size: 1.3em;
