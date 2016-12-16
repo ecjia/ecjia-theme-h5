@@ -31,7 +31,7 @@
             	    success:function(data){
             	    	ecjia.touch.address_value(data.content.data);
             	    },
-            	  });
+            	 });
 		    })
 		},
 
@@ -54,8 +54,11 @@
         		var Uarry = $(".ecjia-location-list-wrap li");
                 $('.ecjia-location-list-wrap li').bind('click', function () {
                 	  var count=$(this).index();  
-                      var Tresult=Uarry.eq(count).text();  
-                      $.cookie('location_address', Tresult); 
+                      var Tresult=Uarry.eq(count).text();
+                      var title = $(this).children().children("span[class*='ecjia-location-list-title']").html();
+                      var address = $(this).children().children("span[class*='ecjia-location-list-address']").html();
+                      $.cookie('location_address', address); 
+                      $.cookie("location_name", title);
                       $.cookie('location_address_id', 0); 
                       var url = $("#ecjia-zs").attr('data-url');
                       ecjia.pjax(url);
