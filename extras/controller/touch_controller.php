@@ -102,6 +102,7 @@ class touch_controller {
     	$location_address = $location_content['address'];
     	setcookie("location_address", $location_address);
     	setcookie("location_name", $location_name);
+    	ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
     }
    
     /**
