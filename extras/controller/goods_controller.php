@@ -95,9 +95,6 @@ class goods_controller {
 	   	
 	   	if (!empty($goods_info['related_goods'])){
 	   		foreach ($goods_info['related_goods'] as $k => $v) {
-	   			if (mb_strlen(trim($v['name'])) > 14) {
-	   				$goods_info['related_goods'][$k]['name'] = mb_substr(trim($v['name']), 0, 14, 'UTF-8').'...';
-	   			}
 	   			if (array_key_exists($v['goods_id'], $cart_arr)) {
 	   				$goods_info['related_goods'][$k]['num'] = $cart_arr[$v['goods_id']]['num'];
 	   				$goods_info['related_goods'][$k]['rec_id'] = $cart_arr[$v['goods_id']]['rec_id'];

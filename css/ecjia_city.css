@@ -1627,6 +1627,8 @@ footer{
 .store-add-cart.a4w .a53 {
     display: none;
     position: fixed;
+	width: 100%;
+	height: 100%;
     z-index: 10;
     left: 0;
     right: 0;
@@ -2889,10 +2891,6 @@ footer{
 .ecjia-account .ecjia-withdraw {
 	height: 10em!important;
 }
-.ecjia-account .textarea-style {
-	position: fixed;
-	width: 85%!important;
-}
 .ecjia-account .account-bonus span {
 	color: #999;
 }
@@ -2943,7 +2941,7 @@ footer{
 	line-height: 1.7em!important;
 }
 .ecjia-account .height-3 i{
-	line-height: 1.7em!important;
+	/*line-height: 1.7em!important;*/
 }
 .ecjia-account .record-money {
 	font-size: 2em;
@@ -3037,6 +3035,7 @@ footer{
     margin-right: .5em;
 }
 .ecjia-account.ecjia-form .form-group-text {
+	position: relative;
 	height: 3em;
 	padding: .7em 1em;
 	border: 1px solid #eee;
@@ -3046,6 +3045,10 @@ footer{
 	padding:0 3em;
 	font-size: 1.1em;
 	height: 1.7em;
+}
+.ecjia-account.user-account-withdraw .form-group .textarea-style {
+	position: relative;
+	height: 100%;
 }
 /*========================  交易记录 ===========================*/
 .ecjia-account-record {
@@ -3922,8 +3925,14 @@ footer{
 	width:100%;
 }
 .ecjia-goods-name-new{
-	height:3em;
-	margin-top:9px;
+	height:1.8em;
+	line-height:1.1em;
+	margin-top:.7em;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	color:#555;
+	
 }
 .goods-price-plus{
 	background: url(../images/icon/goods-plus.png);
