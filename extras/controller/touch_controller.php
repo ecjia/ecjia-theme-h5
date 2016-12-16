@@ -82,12 +82,20 @@ class touch_controller {
         ecjia_front::$controller->assign('searchs', user_function::get_search($store_id));
         ecjia_front::$controller->assign('searchs_count', count(user_function::get_search($store_id)));
         
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'iPhone')||strpos($_SERVER['HTTP_USER_AGENT'], 'iPad')) {
+        	ecjia_front::$controller->assign('down_url', ecjia::config('mobile_iphone_download'));
+        } else if (strpos($_SERVER['HTTP_USER_AGENT'], 'Android')) {
+        	ecjia_front::$controller->assign('down_url', ecjia::config('mobile_android_download'));
+        }
+        
+        if (isset($_COOKIE['close_download'])) {
+        	ecjia_front::$controller->assign('close_download', $_COOKIE['close_download']);
+        }
         ecjia_front::$controller->assign_title();
         ecjia_front::$controller->assign_lang();
 
         ecjia_front::$controller->display('index.dwt');
     }
-    
     
     //请求接口返回数据
     public static function my_location() {

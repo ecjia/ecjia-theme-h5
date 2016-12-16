@@ -25,11 +25,10 @@ class user_front {
             $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
             if (isset($_GET['referer_url'])) {
             	$url = urldecode($_GET['referer_url']);
+            	return ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login', array('referer_url' => urlencode($url))));
             }
-            ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login', array('referer' => urlencode($url))));
+            return ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login', array('referer' => urlencode($url))));
 		}
-		
-		
 	}
 	
 	protected function makePublicRoute() {

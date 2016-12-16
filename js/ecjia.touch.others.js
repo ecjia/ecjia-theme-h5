@@ -9,6 +9,7 @@
             this.change_index();
             this.swiper_promotion();
             this.promote_time();
+            this.close_download();
 		},
 		
 		substr : function(){
@@ -117,7 +118,12 @@
                 }
             })
         },
-    	
+        close_download : function(){
+        	$('.close_tip').on('click', function(){
+        		 $.cookie('close_download', true);
+        		 $('.ecjia-download').remove();
+        	})
+        },
 	};
 	
 	function checkTime(i) {    
