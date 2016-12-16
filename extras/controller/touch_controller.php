@@ -109,6 +109,7 @@ class touch_controller {
     	
     	setcookie("location_address", $location_address);
     	setcookie("location_name", $location_name);
+    	setcookie("location_address_id", 0);
     	
     	$url = RC_Uri::url('touch/index/init');
     	ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('url' => $url));
