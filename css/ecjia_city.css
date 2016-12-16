@@ -1705,20 +1705,39 @@ footer{
 .small-btn{
 	margin-top: 50px;
 }
-.flow-address.flow-cart{
+/*定位地址、选择的收货地址 */
+.flow-address {
+    min-height:5em;
+    padding: 1em 1em .5em;
 	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
 	background-size: 100% 120%;;
 	overflow: hidden;
-	height: 5em;
-	padding: 0;
-    padding-left: 1em;
-    line-height: 5em;
-	color: #555;
 }
-.flow-address.flow-cart.default{
+.flow-address.default{
 	line-height: 1.5em;
 	padding: 1em;
 }
+.flow-address label{
+	width: 15%;
+	font-weight:normal;
+}
+.flow-address .address-info {
+	width: 100%;
+	margin-left: -15%;
+	padding-left: 15%;
+}
+.flow-address .address-info span{
+    line-height: normal;
+}
+.flow-address .address-info span+span {
+    margin-left: 2em;
+}
+.flow-address .address-info span + p.address-desc{
+    margin-top: .5em;
+    line-height: normal;
+}
+/*====结束 === */
+
 .flow-no-pro{
 	margin-top: 5em;
 	position: relative;
@@ -2075,34 +2094,7 @@ footer{
   	opacity: 1;
 }
 /*========================  结算 ecjia-checkout =========================== */
-/*定位地址、选择的收货地址 */
-.flow-address {
-    min-height:5em;
-    padding: 1em 1em .5em;
-	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
-	background-size: 70%;
-	overflow: hidden;
-}
-.flow-address label{
-	width: 15%;
-	font-weight:normal;
-}
-.flow-address .address-info {
-	width: 100%;
-	margin-left: -15%;
-	padding-left: 15%;
-}
-.flow-address .address-info span{
-    line-height: normal;
-}
-.flow-address .address-info span+span {
-    margin-left: 2em;
-}
-.flow-address .address-info span + p.address-desc{
-    margin-top: .5em;
-    line-height: normal;
-}
-/*====结束 === */
+
 .ecjia .ecjia-checkout .checklist{
 	overflow: hidden;
 	background-color: #ffffff;
@@ -2326,6 +2318,9 @@ footer{
 .ecjia-user-no-border-t {
 	border-top:0!important;
 }
+.ecjia-user-no-border-b {
+	border-bottom:0!important;
+}
 .ecjia-user .no-login {
 	border: 1px solid #00F;
     width: 35%;
@@ -2401,6 +2396,9 @@ footer{
 }
 .ecjia-user .ecjia-list{
 	margin-top: 1em;
+}
+.ecjia-user.border-t {
+	border-top: 1px solid #eee;
 }
 .ecjia-user-border-b {
 	border-bottom: 1px solid #eee;
@@ -2913,7 +2911,7 @@ footer{
     background: #F7F7F7;
     border: none;
     overflow: hidden;
-    padding: 2em 31% 0 35%;
+    padding: 2em 0 0 35%;
     position: relative;
 }
 .ecjia-account .user-img img{
@@ -3002,6 +3000,9 @@ footer{
 .ecjia-account .account-bonus span i {
 	font-size: 1.5em;
 }
+.ecjia-account .ecjia-list.list-short{
+	border-bottom: 1px solid #eee;
+}
 .ecjia-account .ecjia-list.list-short li+li::before {
 	width: 97%;
     left: 3%;
@@ -3041,10 +3042,13 @@ footer{
 	border: 1px solid #eee;
 }
 .ecjia-account.ecjia-form .form-group-text .input input {
-	line-height: 1.7em;
+	line-height: 1.5em;
 	padding:0 3em;
 	font-size: 1.1em;
-	height: 1.7em;
+	height: 1.5em;
+}
+.ecjia-account.user-account-withdraw .form-group{
+	border: 1px solid #eee;
 }
 .ecjia-account.user-account-withdraw .form-group .textarea-style {
 	position: relative;
@@ -3075,9 +3079,9 @@ footer{
 	border-right: 0!important;
 }
 .ecjia-account.ecjia-form .form-group-text .input span{
-	height: 1.8em;
+	height: 1.5em;
 	font-size: 1.1em;
-	line-height: 1.7em;
+	line-height: 1.5em;
 }
 .ecjia-account .ecjia-nolist {
 	position: relative;
