@@ -2406,6 +2406,9 @@ footer{
 .ecjia-user .ecjia-list{
 	margin-top: 1em;
 }
+.ecjia-user.border-t {
+	border-top: 1px solid #eee;
+}
 .ecjia-user-border-b {
 	border-bottom: 1px solid #eee;
 }
@@ -3006,6 +3009,9 @@ footer{
 .ecjia-account .account-bonus span i {
 	font-size: 1.5em;
 }
+.ecjia-account .ecjia-list.list-short{
+	border-bottom: 1px solid #eee;
+}
 .ecjia-account .ecjia-list.list-short li+li::before {
 	width: 97%;
     left: 3%;
@@ -3049,6 +3055,9 @@ footer{
 	padding:0 3em;
 	font-size: 1.1em;
 	height: 1.5em;
+}
+.ecjia-account.user-account-withdraw .form-group{
+	border: 1px solid #eee;
 }
 .ecjia-account.user-account-withdraw .form-group .textarea-style {
 	position: relative;
