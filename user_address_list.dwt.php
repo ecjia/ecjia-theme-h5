@@ -63,8 +63,7 @@ $('.setdefault').click(function(){
 	    <!-- {$page} -->
 	<!-- {else} -->
 		<div class="ecjia-nolist">
-			<img src="{$theme_url}images/address.png">
-			<p class="address_list_font">{t}暂无收货地址，请添加{/t}</p>
+			<p>{t}暂无收货地址，请添加{/t}</p>
 		</div>
 	<!-- {/if} -->
 	</section>

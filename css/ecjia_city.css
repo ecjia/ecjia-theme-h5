@@ -72,6 +72,15 @@ a.ecjia-color-green {
 .ecjia-nav li.active a {
 	color:#47AA4D;
 }
+.ecjia-nolist {
+	color:#aaa;
+	font-size: 1.2em;
+    text-align: center;
+	padding-top: 165px;
+}
+.ecjia-nolist p {
+	color:#aaa;
+}
 /* 选择样式 */
 .ecjia-check {
     width: 20px;
@@ -4004,6 +4013,15 @@ footer{
 /*========================  订单列表 ===========================*/
 .ecjia-order-list {
 	padding-bottom:4em;
+}
+.ecjia-order-list .ecjia-nolist{
+	margin-top:10%;
+	height:180px;
+    background: url(../images/no_order.png) center no-repeat;
+    background-size: 180px;
+}
+.ecjia-order-list .ecjia-nolist p{
+	margin-top:60px;
 }
 .ecjia-order-list .ecjia-order-item {
     background: #ffffff;

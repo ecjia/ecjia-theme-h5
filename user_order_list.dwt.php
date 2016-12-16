@@ -137,7 +137,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</li>
 		<!-- {foreachelse} -->
     	<div class="ecjia-nolist">
-        	<i class="iconfont icon-icon04"></i>
         	<p>{t}暂无相关订单{/t}</p>
         </div>
 		<!-- {/foreach} -->
