@@ -16,7 +16,6 @@ class user_controller {
             $user_img = $user['avatar_img'];
         }
         ecjia_front::$controller->assign('user', $user);
-   
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('shop', $shop);
         ecjia_front::$controller->assign('active', 'mine');

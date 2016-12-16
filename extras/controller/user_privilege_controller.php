@@ -20,7 +20,6 @@ class user_privilege_controller {
         ecjia_front::$controller->assign('anonymous_buy', ecjia::config('anonymous_buy'));
         ecjia_front::$controller->assign('header_right', array('info' => '注册', 'href' => RC_Uri::url('user/privilege/register')));
         
-        
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign('title', RC_Lang::lang('login'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('login'));
@@ -50,7 +49,7 @@ class user_privilege_controller {
             $message = $data->get_error_message();
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('info' => $message));
         } else {
-        	$referer = !empty($_GET['referer']) ? urldecode($_GET['referer']) : '';
+        	$referer = !empty($_POST['referer']) ? urldecode($_POST['referer']) : '';
         	if (!empty($referer)) {
         		return ecjia_front::$controller->showmessage(__(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $referer));
         	}

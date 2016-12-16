@@ -55,10 +55,12 @@
         		var url = $(this).attr('data-url');
         		var username = $('input[name="username"]').val();
         		var password = $('input[name="password"]').val();
+        		var referer = $('input[name="referer"]').val();
         		var info = {
-    					'username': username,
-    					'password': password
-    				};
+					'username': username,
+					'password': password,
+					'referer' : referer
+				};
 				$.post(url, info, function(data){
 					if (data.state == 'error') {
 						var myApp = new Framework7({
