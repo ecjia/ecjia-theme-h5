@@ -44,7 +44,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <li>
                     <span class="slect-title">{$list.value}</span>
                     <span class="ecjiaf-fr">
-                        <input type="radio" name="inv_type" id="type-{$list.id}" value="{$list.id}" {if $temp.inv_type eq $list.label_value}checked="true"{/if}>
+                        <input type="radio" name="inv_type" id="type-{$list.id}" value="{$list.label_value}" {if $temp.inv_type eq $list.label_value}checked="true"{/if}>
                         <label for="type-{$list.id}"></label>
                     </span>
                 </li>
