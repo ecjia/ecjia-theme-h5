@@ -174,6 +174,9 @@ class user_address_controller {
      * 插入收货地址
      */
     public static function insert_address() {
+        if (empty($_POST['city_id']) || empty($_POST['address']) || empty($_POST['consignee']) || empty($_POST['mobile'])) {
+            return ecjia_front::$controller->showmessage('请完整填写相关信息', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
+        }
         $params = array(
             'token' => ecjia_touch_user::singleton()->getToken(),
             'address' => array(
@@ -240,6 +243,9 @@ class user_address_controller {
 
         if (empty($_POST['address_id'])) {
             return ecjia_front::$controller->showmessage('参数错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
+        }
+        if (empty($_POST['city_id']) || empty($_POST['address']) || empty($_POST['consignee']) || empty($_POST['mobile'])) {
+            return ecjia_front::$controller->showmessage('请完整填写相关信息', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
         }
         $params = array(
             'token' => ecjia_touch_user::singleton()->getToken(),
