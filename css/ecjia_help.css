@@ -35,8 +35,8 @@
 	width: 100%;
 }
 .ecjia-article .list-one li {
-	height: 3.6em;
-	padding: .7em 1em;
+	height: 3em;
+	padding: .4em 1em;
 	line-height: 3em;
 }
 .ecjia-article .ecjia-list.list-short li a {
@@ -62,6 +62,7 @@
 	font-size: 1.5em;
 	right: 1%;
 	line-height: 2.3em
+	top: -0.2em;
 }
 .ecjia-article .float{ position:fixed; z-index:999999; top:0px;} 
 .ecjia-article.article-info h2{
