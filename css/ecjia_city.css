@@ -2482,7 +2482,7 @@ footer{
 }
 .ecjia-user .modify-username-info {
 	padding-left: 1em;
-	font-size: .8em;
+	font-size: .85em;
 	color: #42a74b;
 }
 .ecjia-user-new-info .user-rank-name,
@@ -3159,11 +3159,21 @@ footer{
 .ecjia-account-list-f .ecjia-account-list .ecjia-list{
 	margin-top: 0;
 }
-.ecjia-account-record ul li {
+.ecjia-account-record ul .record-single {
     padding: .7em 1em;
     height: 6em;
+	border-bottom: 1px solid #eee;
 }
-
+.ecjia-account-record.ecjia-list.list-short li+li::before{
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    border-bottom: 1px solid #fff;
+}
+.ecjia-account-record.ecjia-user-no-border-b{
+	    border-top: 0;
+}
 .ecjia-account-record p {
 	border-bottom: 1px solid #eee;
 	padding: 1em;

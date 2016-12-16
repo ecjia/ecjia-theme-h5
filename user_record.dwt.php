@@ -20,7 +20,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
 </div>
 <div>
-	<ul class="ecjia-account-record ecjia-list ecjia-user-no-border-b" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_account/ajax_record' args="type={$type}"}" data-size="10">
+	<ul class="ecjia-account-record ecjia-list list-short ecjia-user-no-border-b" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_account/ajax_record' args="type={$type}"}" data-size="10">
 	</ul>
 </div>
 <!-- {/block} -->
