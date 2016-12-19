@@ -249,7 +249,6 @@ a.ecjia-color-green {
     width: 100%;
 }
 .ecjia-web .ecjia-address{
-	max-width: 66%;
     position: relative;
     display: inline-block;
 	z-index:2;
@@ -1762,12 +1761,11 @@ footer{
 /*定位地址 ====结束 === */
 
 .flow-no-pro{
-	margin-top: 5em;
 	position: relative;
 }
 .flow-no-pro .ecjia-nolist{
 	position: absolute;
-    top: 0;
+    top: 5em;
     right: 0;
     bottom: 0;
     left: 0;
@@ -4025,15 +4023,19 @@ footer{
 	padding-bottom:4em;
 }
 .ecjia-order-list .ecjia-nolist{
-    position: absolute;
-	padding:0;
-    height: 85%;
-    width: 100%;
-    background: url(../images/no_order.png) center no-repeat;
-    background-size: 180px;
-}
-.ecjia-order-list .ecjia-nolist p{
-	margin-top:92%;
+	position: absolute;
+    top: 10em;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding-top: 165px;
+    font-size: 16px;
+    color: #aaa;
+    line-height: 26px;
+    text-align: center;
+    background: url(../images/no_order.png) center 0 no-repeat;
+    margin: 0 auto;
+    background-size: 10em;
 }
 .ecjia-order-list .ecjia-order-item {
     background: #ffffff;
