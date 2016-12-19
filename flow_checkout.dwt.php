@@ -42,6 +42,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					
 					<div class="ecjiaf-fl">
 					<img class="ecjiaf-fl" src="{$goods.img.thumb}" alt="{$goods.goods_name}" title="{$goods.goods_name}" />
+					{if $goods.goods_number gt 1}<span class="ecjia-icon-num top">{$goods.goods_number}</span>{/if}
 					</div>
 					<div class="ecjiaf-fl goods-info">
 						<p class="ecjia-truncate2">{$goods.goods_name}</p>

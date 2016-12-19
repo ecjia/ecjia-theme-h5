@@ -158,7 +158,8 @@ class user_address_controller {
         $temp_data = user_address_controller::save_temp_data(1, 'add', $_GET['clear'], $_GET);
         ecjia_front::$controller->assign('temp', $temp_data);
         ecjia_front::$controller->assign('location_backurl', urlencode(RC_Uri::url('user/user_address/add_address')));
-		$referer_url = !empty($_GET['referer_url']) ? urldecode($_GET['referer_url']) : '';
+		$referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : '';
+		
 		if (!empty($referer_url)) {
 			ecjia_front::$controller->assign('referer_url', $referer_url);
 		}
@@ -204,11 +205,11 @@ class user_address_controller {
         $url_address_list = RC_Uri::url('user/user_address/address_list');
         user_address_controller::update_temp_data('add',1);
         if (!empty($_POST['referer_url'])) {
-        	$pjax_url = $_POST['referer_url'];
+        	$pjax_url = urldecode($_POST['referer_url']);
         } else {
         	$pjax_url = RC_Uri::url('user/user_address/address_list');
         }
-        return ecjia_front::$controller->showmessage(RC_Lang::lang('add_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $pjax_url));
+        return ecjia_front::$controller->showmessage(RC_Lang::lang('add_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $pjax_url));
         
     }
 

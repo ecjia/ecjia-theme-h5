@@ -14,7 +14,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <form class="ecjia-address-list" name="theForm" action="{$form_action}" data-save-url="{url path='user/user_address/save_temp_data'}" method="post">
 	<div class="form-group form-group-text ecjia-border-t">
-		<a id="district" href="{url path='location/index/select_city' args="{if $info.id}type=editcity&address_id={$info.id}{else}type=addcity{/if}{if $temp.tem_city}&city_id={$temp.tem_city}{else}{if $info.city}&city_id={$info.city}{/if}{/if}"}">
+		<a id="district" href='{url path="location/index/select_city" args="{if $info.id}type=editcity&address_id={$info.id}{else}type=addcity{/if}{if $temp.tem_city}&city_id={$temp.tem_city}{else}{if $info.city}&city_id={$info.city}{/if}{/if}{if $referer_url}&referer_url={$referer_url}{/if}"}'>
 		<label class="input">
 			<span>所在地区： </span>
 			<input name="city_name" placeholder="{t}请选择城市{/t}" type="text" datatype="*" value="{if $temp.tem_city_name}{$temp.tem_city_name}{else}{$info.city_name}{/if}" readonly="readonly" />

@@ -15,7 +15,7 @@ class location_controller {
         $address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
         ecjia_front::$controller->assign('address_list', $address_list);
         
-        $referer_url = !empty($_GET['referer_url']) ? urldecode($_GET['referer_url']) : '';
+        $referer_url = !empty($_GET['referer_url']) ? $_GET['referer_url'] : '';
         if (!empty($referer_url)) {
         	ecjia_front::$controller->assign('referer_url', urlencode($referer_url));
         }
@@ -54,6 +54,11 @@ class location_controller {
             return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => ''));
         }
         ecjia_front::$controller->assign('citylist', $rs['data']['recommend_city']);
+        
+        $referer_url = !empty($_GET['referer_url']) ? $_GET['referer_url'] : '';
+        if (!empty($referer_url)) {
+        	ecjia_front::$controller->assign('referer_url', urlencode($referer_url));
+        }
         
     	ecjia_front::$controller->assign('hideinfo', '1');
     	ecjia_front::$controller->assign_title('选择城市');
