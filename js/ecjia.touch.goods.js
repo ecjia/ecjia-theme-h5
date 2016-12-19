@@ -372,9 +372,10 @@
         		$('.store-add-cart').children('.a51').removeClass('disabled');
         	} else {
             	//禁用滚动条
-//            	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
-        		$('body').css('overflow-y', 'hidden');
-        		
+            	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
+        		$('.minicart-content').on('touchmove', function(e) {
+        			e.stopPropagation();
+        		});
             	$('.store-add-cart').children('.a4x').removeClass('show');
             	$('.minicart-content').children('.a4x').addClass('show').addClass('light').removeClass('disabled');
             	$('.store-add-cart').children('.minicart-content').css('transform', 'translateY(-100%)');
