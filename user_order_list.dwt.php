@@ -19,9 +19,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #EndLibraryItem -->
 <div class="ecjia-order-list ">
+    {if $order_list}
 	<ul class="ecjia-margin-b" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user_order/async_order_list'}" data-size="10" data-page="1">
 		<!-- 订单异步加载 -->
 	</ul>
+	{else}
+    <div class="ecjia-nolist">
+    	<p>{t}暂无相关订单{/t}</p>
+    </div>
+	{/if}
 </div>
 
 <!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
@@ -136,9 +142,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 		</li>
 		<!-- {foreachelse} -->
-    	<div class="ecjia-nolist">
-        	<p>{t}暂无相关订单{/t}</p>
-        </div>
+    	
 		<!-- {/foreach} -->
 		
 <!-- {/block} -->
