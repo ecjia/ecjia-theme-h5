@@ -580,114 +580,78 @@
 	// 	}
 	// },
 
-	// ecjia.touch.address_from = {
-	// 	init : function () {
-	// 		$("form[name='theForm']")
-	// 		.formValidation({
-	// 			message: '您的输入有误，请重新输入！',
-	// 			fields: {
-	// 				consignee: {
-	// 					message: '请输入收货人姓名！',
-	// 					validators: {
-	// 						notEmpty: {
-	// 							message: '收货人姓名不能为空！'
-	// 						},
-	// 						stringLength: {
-	// 							min: 1,
-	// 							max: 15,
-	// 							message: '请输入1-15位长度的收货人姓名！'
-	// 						}
-	// 					}
-	// 				},
-	// 				mobile: {
-	// 					message: '请输入手机号！',
-	// 					validators: {
-	// 						notEmpty: {
-	// 							message: '手机号不能为空！'
-	// 						},
-	// 						stringLength: {
-	// 							min: 7,
-	// 							max: 14,
-	// 							message: '请输入正确格式的联系方式！'
-	// 						}
-	// 					}
-	// 				},
-	// 				address: {
-	// 					message: '请输入详细地址！',
-	// 					validators: {
-	// 						notEmpty: {
-	// 							message: '详细地址不能为空！'
-	// 						}
-	// 					}
-	// 				},
-	// 			}
-	// 		})
-	// 		.on('success.form.fv', function(e) {
-	// 			e.preventDefault();
-	// 			$("form[name='theForm']").ajaxSubmit({
-	// 				dataType:"json",
-	// 				success:function(data) {
-	// 					$('button[type="submit"]').removeClass('disabled').attr('disabled',false);
-	// 					ecjia.touch.showmessage(data);
-	// 				}
-	// 			});
-	// 		});
-	// 	}
-	// },
+	 ecjia.touch.address_from = {
+	 	init : function () {
+ 			$("form[name='theForm']").on('submit',function(e){e.preventDefault();return false;}).Validform({
+				tiptype:function(msg,o,cssctl){
+					//msg：提示信息;
+					//o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+					//cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+					if (o.type == 3){
+						alert(msg);
+					}
+				},
+				ajaxPost: true,
+				callback:function(data){
+					ecjia.touch.showmessage(data);
+				}
+			});
+	 	}
+	 }
 
-	// ecjia.touch.edit_address = {
-	// 	init : function () {
-	// 		$("form[name='theForm']")
-	// 		.formValidation({
-	// 			message: '您的输入有误，请重新输入！',
-	// 			fields: {
-	// 				consignee: {
-	// 					message: '请输入收货人姓名！',
-	// 					validators: {
-	// 						notEmpty: {
-	// 							message: '收货人姓名不能为空！'
-	// 						},
-	// 						stringLength: {
-	// 							min: 1,
-	// 							max: 15,
-	// 							message: '请输入1-15位长度的收货人姓名！'
-	// 						}
-	// 					}
-	// 				},
-	// 				mobile: {
-	// 					message: '请输入手机号！',
-	// 					validators: {
-	// 						notEmpty: {
-	// 							message: '手机号不能为空！'
-	// 						},
-	// 						stringLength: {
-	// 							min: 7,
-	// 							max: 14,
-	// 							message: '请输入正确格式的联系方式！'
-	// 						}
-	// 					}
-	// 				},
-	// 				address: {
-	// 					message: '请输入详细地址！',
-	// 					validators: {
-	// 						notEmpty: {
-	// 							message: '详细地址不能为空！'
-	// 						}
-	// 					}
-	// 				},
-	// 			}
-	// 		})
-	// 		.on('success.form.fv', function(e) {
-	// 			e.preventDefault();
-	// 			$("form[name='theForm']").ajaxSubmit({
-	// 				dataType:"json",
-	// 				success:function(data) {
-	// 					ecjia.touch.showmessage(data);
-	// 				}
-	// 			});
-	// 		});
-	// 	}
-	// },
+	/* ecjia.touch.edit_address = {
+	 	init : function () {
+	 		$("form[name='theForm']")
+	 		.formValidation({
+	 			message: '您的输入有误，请重新输入！',
+	 			fields: {
+	 				consignee: {
+	 					message: '请输入收货人姓名！',
+	 					validators: {
+	 						notEmpty: {
+	 							message: '收货人姓名不能为空！'
+	 						},
+	 						stringLength: {
+	 							min: 1,
+	 							max: 15,
+	 							message: '请输入1-15位长度的收货人姓名！'
+	 						}
+	 					}
+	 				},
+	 				mobile: {
+	 					message: '请输入手机号！',
+	 					validators: {
+	 						notEmpty: {
+	 							message: '手机号不能为空！'
+	 						},
+	 						stringLength: {
+	 							min: 7,
+	 							max: 14,
+	 							message: '请输入正确格式的联系方式！'
+	 						}
+	 					}
+	 				},
+	 				address: {
+	 					message: '请输入详细地址！',
+	 					validators: {
+	 						notEmpty: {
+	 							message: '详细地址不能为空！'
+	 						}
+	 					}
+	 				},
+	 			}
+	 		})
+	 		.on('success.form.fv', function(e) {
+	 			e.preventDefault();
+	 			$("form[name='theForm']").ajaxSubmit({
+	 				dataType:"json",
+	 				success:function(data) {
+	 					ecjia.touch.showmessage(data);
+	 				}
+	 			});
+	 		});
+	 	}
+	 }*/
 
 	// ecjia.touch.edit_password = {
 	// 	init : function () {

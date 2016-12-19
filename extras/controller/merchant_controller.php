@@ -140,7 +140,7 @@ class merchant_controller {
 		ecjia_front::$controller->assign('header_left', ' ');
 		 
 		$header_right = array(
-			'href' => RC_Uri::url('merchant/index/position', array('longitude' => $store_info['location']['longitude'], 'latitude' => $store_info['location']['latitude'])),
+			'href' => RC_Uri::url('merchant/index/position', array('shop_address' => $store_info['shop_address'])),
 			'info' => '<i class="iconfont icon-location"></i>',
 		);
 		ecjia_front::$controller->assign('header_right', $header_right);
@@ -285,11 +285,8 @@ class merchant_controller {
 	 * 店铺位置
 	 */
 	public static function position() {
-		$longitude = $_GET['longitude'];
-		$latitude = $_GET['latitude'];
-		 
-		ecjia_front::$controller->assign('longitude', $longitude);
-		ecjia_front::$controller->assign('latitude', $latitude);
+		$shop_address = $_GET['shop_address'];
+		ecjia_front::$controller->assign('shop_address', $shop_address);
 		ecjia_front::$controller->assign_title('店铺位置');
 		 
 		ecjia_front::$controller->display('merchant_position.dwt');

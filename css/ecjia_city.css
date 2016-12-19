@@ -249,7 +249,6 @@ a.ecjia-color-green {
     width: 100%;
 }
 .ecjia-web .ecjia-address{
-	max-width: 66%;
     position: relative;
     display: inline-block;
 	z-index:2;
@@ -1762,12 +1761,11 @@ footer{
 /*定位地址 ====结束 === */
 
 .flow-no-pro{
-	margin-top: 5em;
 	position: relative;
 }
 .flow-no-pro .ecjia-nolist{
 	position: absolute;
-    top: 0;
+    top: 5em;
     right: 0;
     bottom: 0;
     left: 0;
@@ -1955,14 +1953,14 @@ footer{
 	color: #aaa;
 }
 .ecjia-flow-cart .ecjia-input-number .ecjia-number-contro {
-    width: 3em;
+    width: 2.8em;
 	color: #333;
-	font-size: 1.2em;
+	font-size: 1.1em;
 	line-height: 30.5px;
    	height: 30px;
 }
 .ecjia-flow-cart .ecjia-input-number .ecjia-number-group-addon {
-	width: 1em;
+	width: 1.2em;
     line-height: 30px;
     height: 30px;
     font-size: 1.3em;
@@ -3498,25 +3496,24 @@ footer{
 	margin-right: 7%;
 	margin-left : 7%;
 }
+.ecjia-login ul{text-align:center;}
+.ecjia-login ul li {
+	height:3em;
+    width:3em;
+	display:inline-block;
+	margin:3em 3em 0;
+}
 .ecjia-login .thirdparty-qq {
-    height:5em;
-    padding: 3em 2em;
-	background: url(../images/user_center/160x160qq.png) no-repeat bottom #F7F7F7;
-	background-size: 80%;
-	margin-left: 25%;
-	float: left;
+	background: url(../images/user_center/160x160qq.png) no-repeat center #F7F7F7;
+	background-size: 100%;
 }
 .ecjia-login .maijia {
     margin-top: 30%;
     text-align:center;
 }
 .ecjia-login .thirdparty-weixin {
-    height:5em;
-    padding: 3.2em 2em;
-	background: url(../images/user_center/160x160weixin.png) no-repeat bottom #F7F7F7;
-	background-size: 80%;
-	margin-right: 25%;
-	float: right;
+	background: url(../images/user_center/160x160weixin.png) no-repeat center #F7F7F7;
+	background-size: 100%;
 }
 .ecjia-login .margin-right-left label .img-register-mobile {
 	position: absolute;
@@ -4027,15 +4024,19 @@ footer{
 	padding-bottom:4em;
 }
 .ecjia-order-list .ecjia-nolist{
-    position: absolute;
-	padding:0;
-    height: 85%;
-    width: 100%;
-    background: url(../images/no_order.png) center no-repeat;
-    background-size: 180px;
-}
-.ecjia-order-list .ecjia-nolist p{
-	margin-top:92%;
+	position: absolute;
+    top: 10em;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding-top: 165px;
+    font-size: 16px;
+    color: #aaa;
+    line-height: 26px;
+    text-align: center;
+    background: url(../images/no_order.png) center 0 no-repeat;
+    margin: 0 auto;
+    background-size: 10em;
 }
 .ecjia-order-list .ecjia-order-item {
     background: #ffffff;

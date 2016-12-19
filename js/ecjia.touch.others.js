@@ -15,7 +15,7 @@
 		substr : function(){
 			var str = $(".address-text").html();
 			if(str){
-				str = str.length>13?str.substring(0,13)+'...':str;
+				str = str.length>20?str.substring(0,20)+'...':str;
 				var str = $(".address-text").html(str);
 			}
 		},
