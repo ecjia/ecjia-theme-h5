@@ -31,7 +31,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 {if $smarty.get.type eq 'addcity'}
-<div class="cityall" id="cityall" data-url='{url path="user/user_address/add_address" args="{if $referer_url}&referer_url={$referer_url}{/if}"}'>
+<div class="cityall" id="cityall" data-url='{url path="user/user_address/add_address" args="{if $referer_url}&referer_url={$referer_url|escape:"url"}{/if}"}'>
 {else if $smarty.get.type eq 'editcity'}
 <div class="cityall" id="cityall" data-url="{url path='user/user_address/edit_address'}">
 {else if $smarty.get.type eq 'search'}
