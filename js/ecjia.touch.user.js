@@ -12,6 +12,7 @@
 //			ecjia.touch.user.loginout_click();
 			ecjia.touch.user.clear_history();
 			ecjia.touch.user.get_code();
+			ecjia.touch.user.mobile_verification();
 			ecjia.touch.user.fast_reset_pwd();
 			ecjia.touch.user.register_password();
 			ecjia.touch.user.mobile_register();
@@ -129,6 +130,22 @@
 //                  url += '&address_info=' + title;
 //                  ecjia.pjax(url);
             });
+        },
+        
+        /*注册自动获取邀请码*/
+        mobile_verification : function(){
+        	$("#mobile").bind('input propertychange', function(e){
+        		e.preventDefault();
+        		var mobile = $('#mobile').val();
+        		var url = $('input[name="mobile_verification"]').attr('data-url');
+        		if (mobile.length == 11) {
+        			$.post(url, {'mobile': mobile}, function(data){
+        				if (data.state == 'success') {
+        					$('input[name="verification"]').val(data.verification);
+        				} 
+					})
+        		}
+        	});
         },
 
 //		loginout_click : function (){
