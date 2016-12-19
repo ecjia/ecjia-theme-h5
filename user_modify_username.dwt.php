@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     	<div class="form-group ecjia-login-margin-lr ecjiaf-bt right-angle">
     		<label class="input">
     		    {if $limit_time}<p class="not_modify">禁止修改</p>{/if}
-    			<input class="ecjia-login-pa-left" id="username-modify" {if $limit_time}readonly="true"{/if}name="username" type="text" placeholder="请输入用户名"  value="{$user.name}">
+    			<input class="ecjia-login-pa-left" id="username-modify" {if $limit_time}disabled="true"{/if}name="username" type="text" placeholder="请输入用户名"  value="{$user.name}">
     		</label>
     	</div>
     	<p class="ecjia-margin-l ecjia-margin-t">4-20个字符，可由中英文、数字、"——"、"-"组成</p>
