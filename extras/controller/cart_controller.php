@@ -7,6 +7,15 @@ class cart_controller {
      * 购物车列表
      */
     public static function init() {
+    	$addr = $_GET['addr'];
+    	$name = $_GET['name'];
+    	if(!empty($addr)){
+    		setcookie("location_address", $addr);
+    		setcookie("location_name", $name);
+    		setcookie("location_address_id", 0);
+    		ecjia_front::$controller->redirect(RC_Uri::url('cart/index/init'));
+    	}
+    	
     	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
     		'token' 	=> $token,
