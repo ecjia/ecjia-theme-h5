@@ -23,12 +23,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </div>
         <p class="select-title ecjia-margin-l ">发票内容</p>
         <ul class="ecjia-list ecjia-border-t">
-            <!-- {foreach from=$inv_content_list item=list} -->
+            <!-- {foreach from=$inv_content_list item=list key=index} -->
             <label class="select-item" for="content-{$list.id}">
                 <li>
                     <span class="slect-title">{$list.value}</span>
                     <span class="ecjiaf-fr">
-                        <input type="radio" name="inv_content" id="content-{$list.id}" value="{$list.value}" {if $temp.inv_content eq $list.value}checked="true"{/if}>
+                        <input type="radio" name="inv_content" id="content-{$list.id}" value="{$list.value}" {if $temp.inv_content eq '' && $index eq 0}checked="true"{/if}{if $temp.inv_content eq $list.value}checked="true"{/if}>
                         <label for="content-{$list.id}"></label>
                     </span>
                 </li>
@@ -39,12 +39,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </ul>
         <p class="select-title ecjia-margin-l">发票类型</p>
         <ul class="ecjia-list ecjia-border-t">
-            <!-- {foreach from=$inv_type_list item=list} -->
+            <!-- {foreach from=$inv_type_list item=list key=index} -->
             <label class="select-item" for="type-{$list.id}">
                 <li>
                     <span class="slect-title">{$list.value}</span>
                     <span class="ecjiaf-fr">
-                        <input type="radio" name="inv_type" id="type-{$list.id}" value="{$list.label_value}" {if $temp.inv_type eq $list.label_value}checked="true"{/if}>
+                        <input type="radio" name="inv_type" id="type-{$list.id}" value="{$list.label_value}" {if $temp.inv_type eq '' && $index eq 0}checked="true"{/if}{if $temp.inv_type eq $list.label_value}checked="true"{/if}>
                         <label for="type-{$list.id}"></label>
                     </span>
                 </li>
