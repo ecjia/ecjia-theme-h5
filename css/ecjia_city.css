@@ -3044,7 +3044,7 @@ footer{
 .ecjia-account.ecjia-form .form-group-text {
 	position: relative;
 	height: 3em;
-	padding: .7em 1em;
+	padding: .7em .5em;
 	border: 1px solid #eee;
 }
 .ecjia-account.ecjia-form .form-group-text .input input {
