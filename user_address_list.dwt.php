@@ -37,7 +37,7 @@ $('.setdefault').click(function(){
 	<section>
 	<input type="hidden" name="setdefault_url" value="{RC_uri::url('user/user_address/set_default')}">
 	<!-- {if $address_list} -->
-		<ul class="ecjia-list list-one" id="J_ItemList">
+		<ul class="ecjia-list list-one ecjia-margin-b" id="J_ItemList">
 			<!-- 配送地址 start-->
 			<!-- {foreach from=$address_list item=value}-->
 			<li class="ecjia-margin-t">
