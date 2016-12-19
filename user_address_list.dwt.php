@@ -53,7 +53,7 @@ $('.setdefault').click(function(){
 				<p class="setdefault ecjiaf-csp ecjiaf-fl" data-id="{$value.id}"><i class="icon-not-default"></i>&nbsp;&nbsp;{t}设为默认{/t}</p>
 				<!-- {/if} -->
 				
-				<a class="delete-address nopjax ecjiaf-fr ecjia-margin-l" href="javascript:;" data-toggle="del_list" data-url="{url path='user/user_address/del_address'}" data-id="{$value.id}" data-msg="{t}你确定要删除此收货地址吗？{/t}"><div class="icon-delete-address"></div>{t}删除{/t}</a>
+				<a class="delete-address nopjax ecjiaf-fr ecjia-margin-l" href="javascript:;" data-toggle="del_list" data-url="{url path='user/user_address/del_address'}" data-id="{$value.id}" data-msg="{t}您确定要删除此收货地址吗？{/t}"><div class="icon-delete-address"></div>{t}删除{/t}</a>
 				<a class="edit-address ecjiaf-fr" href="{RC_uri::url('user/user_address/edit_address')}&id={$value.id}&clear=1"><div class="icon-edit-address"></div>{t}编辑{/t}</a>
 		
 			</li>
