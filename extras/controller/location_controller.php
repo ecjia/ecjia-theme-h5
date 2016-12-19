@@ -12,6 +12,10 @@ class location_controller {
     	ecjia_front::$controller->assign('title', '上海');
         ecjia_front::$controller->assign_title('定位');
         
+        
+        if (ecjia_touch_user::singleton()->isSignin()) {
+        	ecjia_front::$controller->assign('login', 1);
+        }
         $address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
         ecjia_front::$controller->assign('address_list', $address_list);
         
