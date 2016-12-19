@@ -159,7 +159,6 @@ class user_address_controller {
         ecjia_front::$controller->assign('temp', $temp_data);
         ecjia_front::$controller->assign('location_backurl', urlencode(RC_Uri::url('user/user_address/add_address')));
 		$referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : '';
-		
 		if (!empty($referer_url)) {
 			ecjia_front::$controller->assign('referer_url', $referer_url);
 		}
@@ -340,7 +339,11 @@ class user_address_controller {
      * 定位当前位置
      */
     public static function near_location() {
-        
+    	$referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : '';
+    	if (!empty($referer_url)) {
+    		ecjia_front::$controller->assign('referer_url', $referer_url);
+    	}
+    	
         if(!empty($_GET['address_id'])) {
             ecjia_front::$controller->assign('action_url', RC_Uri::url('user/user_address/edit_address', array('id' => intval($_GET['address_id']))));
             $temp_data = user_address_controller::save_temp_data(1, 'edit_'.$_GET['address_id'], $_GET['clear'], $_GET);
