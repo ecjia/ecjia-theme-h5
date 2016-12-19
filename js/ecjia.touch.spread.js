@@ -132,12 +132,24 @@
 
 			$$('.alert-text1').on('click', function () {
 			    myApp.alert('邀请成功即可获得积分奖励' + '<br>' + '积分可在购买商品时使用');
+			    $(".modal-overlay").css('transition-duration', "0ms");
+			    $(".modal-in").css("position", "absolute");
+			    $(".modal-inner").css("background-color", "#FFF");
+			    $(".modal-button-bold").css("background-color", "#FFF");
 			});
 			$$('.alert-text2').on('click', function () {
 			    myApp.alert('邀请成功即可获得红包奖励' + '<br>' + '红包可在购买商品时使用');
+			    $(".modal-overlay").css('transition-duration', "0ms");
+			    $(".modal-in").css("position", "absolute");
+			    $(".modal-inner").css("background-color", "#FFF");
+			    $(".modal-button-bold").css("background-color", "#FFF");
 			});
 			$$('.alert-text3').on('click', function () {
 			    myApp.alert('邀请成功即可获得现金奖励' + '<br>' + '现金可在购买商品时使用');
+			    $(".modal-overlay").css('transition-duration', "0ms");
+			    $(".modal-in").css("position", "absolute");
+			    $(".modal-inner").css("background-color", "#FFF");
+			    $(".modal-button-bold").css("background-color", "#FFF");
 			});
         },     
 	};
