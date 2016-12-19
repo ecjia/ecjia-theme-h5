@@ -4921,7 +4921,7 @@ footer{
 	width: 100%;
 	padding-left: 1em;
 	padding-right: 1em;
-	padding-bottom: .5em;
+	padding-bottom: 1em;
 }
 .ecjia-spread .ecjia-my-reward .my_reward{
 	font-size: 18px;
@@ -5091,7 +5091,7 @@ footer{
 	width: 100%;
 	padding-left: 1em;
 	padding-right: 1em;
-	padding-bottom: .5em;
+	padding-bottom: 1em;
 }
 .ecjia-spread .go-to-spread .would-spread{
 	font-size:18px;
@@ -5425,7 +5425,7 @@ footer{
 	margin: 0 auto;
 }
 .ecjia-download .btn_install {
-    height: 50px;
+    height: 55px;
     width: 100%;
     display: block;
 }
