@@ -32,11 +32,13 @@
 					$('#two-info').hide();
 					$('.one-li').addClass('active');
 					$('.two-li').removeClass('active');
+					$('html,body').css('background', '#f7f7f7 none repeat scroll 0 0');
 				} else {
 					$('#two-info').show();
 					$('#one-info').hide();
 					$('.two-li').addClass('active');
 					$('.one-li').removeClass('active');
+					$('html,body').css('background', '#fff none repeat scroll 0 0');
 				}
 			});
         },

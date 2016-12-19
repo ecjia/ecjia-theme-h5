@@ -3803,14 +3803,14 @@ footer{
 }
 .goods-info .ecjia-left-time{
 	border:1px solid #ff3434;
-	width:76%;
-	height:1em;
-	line-height:1em;
+	width:82%;
+	height:1.1em;
+	line-height:1.1em;
 	margin-top:9px;
 }
 .goods-info .ecjia-left-time .detail-clock-icon {
-	width: .99em;
-    height: .9em;
+	width: 1.1em;
+    height: 1.03em;
     background: url(../images/icon/goods-detail-colok.png);
 	position: absolute;
 	background-origin:content-box;
@@ -3831,11 +3831,13 @@ footer{
 	float:right;
 }
 .goods-info .ecjia-left-time .promote-time{
-	height:.9em;
-	font-size:.65em;
+	height:1.1em;
+	line-height:1.5em;
+	font-size:.7em;
 	display:inline-block;
 	float:right;
-	width:86%;	
+	width:89.5%;	
+	text-align:center;
 }
 .goods-info .ecjia-left-time .iconfont{
 	background: #ff3434;
