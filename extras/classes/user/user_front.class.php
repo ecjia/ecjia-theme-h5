@@ -36,7 +36,10 @@ class user_front {
 	        'user/privilege/login',
 	        'user/privilege/signin',
 	        'user/privilege/register',
-	        'user/privilege/register',
+	        
+	        'user/privilege/bind_signin',
+	        'user/privilege/bind_signup',
+	        'user/privilege/bind_login',
 	        
 	        'user/get_password/get_password_phone',
 	        'user/get_password/pwd_question_name',

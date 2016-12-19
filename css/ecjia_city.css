@@ -3496,25 +3496,24 @@ footer{
 	margin-right: 7%;
 	margin-left : 7%;
 }
+.ecjia-login ul{text-align:center;}
+.ecjia-login ul li {
+	height:3em;
+    width:3em;
+	display:inline-block;
+	margin:3em 3em 0;
+}
 .ecjia-login .thirdparty-qq {
-    height:5em;
-    padding: 3em 2em;
-	background: url(../images/user_center/160x160qq.png) no-repeat bottom #F7F7F7;
-	background-size: 80%;
-	margin-left: 25%;
-	float: left;
+	background: url(../images/user_center/160x160qq.png) no-repeat center #F7F7F7;
+	background-size: 100%;
 }
 .ecjia-login .maijia {
     margin-top: 30%;
     text-align:center;
 }
 .ecjia-login .thirdparty-weixin {
-    height:5em;
-    padding: 3.2em 2em;
-	background: url(../images/user_center/160x160weixin.png) no-repeat bottom #F7F7F7;
-	background-size: 80%;
-	margin-right: 25%;
-	float: right;
+	background: url(../images/user_center/160x160weixin.png) no-repeat center #F7F7F7;
+	background-size: 100%;
 }
 .ecjia-login .margin-right-left label .img-register-mobile {
 	position: absolute;

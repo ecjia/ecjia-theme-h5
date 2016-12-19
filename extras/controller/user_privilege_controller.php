@@ -111,6 +111,8 @@ class user_privilege_controller {
     
     /* 第三方登陆快速注册 */
     public static function bind_signup() {
+        ecjia_front::$controller->assign('title', "注册绑定");
+        ecjia_front::$controller->assign_title("注册绑定");
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_bind_signup.dwt');
     }
@@ -119,8 +121,8 @@ class user_privilege_controller {
     public static function bind_login() {
         // $user = integrate::init_users();
         //
-        // ecjia_front::$controller->assign('title', "登录绑定");
-        // ecjia_front::$controller->assign_title("登录绑定");
+        ecjia_front::$controller->assign('title', "登录绑定");
+        ecjia_front::$controller->assign_title("登录绑定");
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_bind_login.dwt');
     }
@@ -155,7 +157,6 @@ class user_privilege_controller {
             } else {
                 return ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
-    
         } else {
             ecjia_front::$controller->assign('title', '设置密码');
             ecjia_front::$controller->assign_lang();
