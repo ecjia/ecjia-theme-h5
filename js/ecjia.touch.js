@@ -265,7 +265,7 @@
 			$('.record-time-01:first').show();
 		},
 
-		delete_list_click: function(){
+		/*delete_list_click: function(){
 			$(document).off('click', '[data-toggle="del_list"]');
 			$(document).on('click', '[data-toggle="del_list"]', function(e){
                 e.preventDefault();
@@ -275,6 +275,27 @@
 					url 	= $this.attr('data-url');
 				if(id && url){
 					if(confirm(msg)) ecjia.touch.delete_list({id : id, url : url});
+				}
+			});
+		},*/
+		delete_list_click: function(){
+			$(document).off('click', '[data-toggle="del_list"]');
+			$(document).on('click', '[data-toggle="del_list"]', function(e){
+                e.preventDefault();
+				var $this 	= $(this),
+					id 		= $this.attr('data-id'),
+					msg 	= $this.attr('data-msg') ? $this.attr('data-msg') : '您确定要删除此条信息吗？',
+					url 	= $this.attr('data-url');
+				if(id && url){
+//					if(confirm(msg)) ecjia.touch.delete_list({id : id, url : url});
+					var myApp = new Framework7({
+						modalButtonCancel : '取消',
+						modalButtonOk : '确定',
+						modalTitle : ''
+				    });
+					myApp.confirm(msg, function () {
+						ecjia.touch.delete_list({id : id, url : url});
+				    });
 				}
 			});
 		},
