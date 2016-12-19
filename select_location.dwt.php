@@ -27,9 +27,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 		</a>
 	</div>
-	{if $address_list}
+	{if $login}
 	<div class="ecjia-list ecjia-address-list ecjia-select-address">
 		<div class="address-backgroundw"><span>我的收货地址</span></div>
+		{if $address_list}
 		<ul class="list-one">
 			<!-- {foreach from=$address_list item=value} 循环地址列表 -->
 			<li>
@@ -46,6 +47,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</li>
 			<!-- {/foreach} -->
 		</ul>
+		{/if}
 		<div class="address-list-center">
 			<a type="botton" href="{url path='user/user_address/address_list'}">
 				<i class="iconfont icon-roundadd"></i> {t}管理收货地址{/t}
@@ -54,6 +56,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	{/if}
 </div>
-
 <!-- {/block} -->
-
