@@ -65,6 +65,13 @@ class user_privilege_controller {
      * 显示注册页面
      */
     public static function register() {
+        $mobile = !empty($_POST['mobile']) ? $_POST['mobile'] : '';
+        if(!empty($mobile)) {
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_VALIDATE)->data(array('mobile' => $mobile))->send()->getBody();
+            $data = json_decode($data,true);
+            $verification = $data['data']['invite_code'];
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS,array('verification' => $verification));
+        }
         ecjia_front::$controller->assign('title', '手机快速注册');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign_title('注册');

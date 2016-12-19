@@ -32,6 +32,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     			<div class="form-group margin-right-left">
     				<label class="input">
     					<div class="img-register-mobile"></div>
+    					<input name="mobile_verification" type="hidden" data-url="{RC_Uri::url('user/privilege/register')}" />
     					<input name="mobile" type="text" id="mobile" placeholder="请输入手机号" />
     				</label>
     			</div>
