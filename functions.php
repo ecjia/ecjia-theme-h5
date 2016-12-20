@@ -256,6 +256,105 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
     ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
 });
 
+
+//第三方登录回调提示模板
+RC_Hook::add_filter('connect_callback_template', function($data) {
+    RC_Loader::load_theme('extras/controller/connect_controller.php');
+    return connect_controller::callback_template($data);
+}, 10, 1);
+    
+//第三方登录用户注册
+RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username, $password, $email) {
+    RC_Loader::load_theme('extras/functions/front_user.func.php');
+    $result = register_mbt($username, $password, $email,'',1);
+
+    if (!is_ecjia_error($result)) {
+        return $result;
+    } else {
+        return $userid;
+    }
+}, 10, 4);
+    
+//第三方登录用户登录
+RC_Hook::add_action('connect_callback_user_signin', function( $userid){
+    RC_Loader::load_app_class('integrate','user', false);
+    $user = integrate::init_users();
+    RC_Loader::load_theme('extras/functions/front_user.func.php');
+    $userinfo = $user->get_profile_by_id($userid);
+    $user->set_session($userinfo['user_name']);
+    $user->set_cookie($userinfo['user_name']);
+    
+    
+    $data = array(
+        'profile'		=> serialize($profile)
+    );
+    RC_Model::model('connect/connect_user_model')->where(array('connect_code' => $connect_user->connect_code, 'open_id' => $connect_user->open_id, 'user_id' => $_SESSION['user_id']))->update($data);
+    	
+    /* 获取远程用户头像信息*/
+    RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $profile['avatar_img']));
+    
+    RC_Loader::load_app_func('user', 'user');
+    $user_info = EM_user_info($_SESSION['user_id']);
+    
+    update_user_info(); // 更新用户信息
+    RC_Loader::load_app_func('cart','cart');
+    recalculate_price(); // 重新计算购物车中的商品价格
+    
+    //结合cookie判断返回来源url
+    if(RC_Cookie::get('referer')) {
+        $back_url = RC_Cookie::get('referer');
+    } else {
+        $back_url = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
+    }
+    $back_url = empty($back_url) ? RC_Uri::url('user/index/init') : $back_url;
+    ecjia_front::$controller->redirect($back_url);
+});
+    
+//授权登录用户绑定已有账号
+RC_Hook::add_filter('connect_callback_signin_template', function($get) {
+    RC_Loader::load_theme('extras/controller/connect_controller.php');
+    $connect_controller = new connect_controller();
+    return $connect_controller->user_bind($get);
+}, 10, 1);
+    
+//授权登录用户绑定已有账号-验证用户名密码
+RC_Hook::add_filter('connect_callback_bind_signin', function($uid, $username, $password) {
+    RC_Loader::load_app_class('integrate','user', false);
+    $user = integrate::init_users();
+    RC_Loader::load_theme('extras/functions/front_user.func.php');
+    if ($user->login($username, $password)) {
+//         update_user_info_mbt();
+        return $_SESSION['user_id'];
+    } else {
+        return false;
+    }
+
+}, 10, 3);
+
+//查找用户userid
+/* RC_Hook::add_filter('connect_openid_exist_userid', function ($uid, $connect_code, $open_id) {
+    $db_user = RC_Loader::load_app_model('users_model','user');
+    RC_Loader::load_theme('extras/model/wechat_user_member_model.class.php');
+    if ($connect_code == 'sns_wechat') {
+        $db_wechat_user = new wechat_user_member_model();
+        $rs = $db_wechat_user->field('ect_uid AS user_id')->where("unionid = '".$open_id."'")->find();
+    } else {
+        if ($connect_code == 'sns_qq') {
+            $rs = $db_user->field('user_id')->where("qq_id = '".$open_id."'")->find();
+        } elseif ($connect_code == 'sns_weibo') {
+            $rs = $db_user->field('user_id')->where("sinna_weibo_id = '".$open_id."'")->find();
+        } elseif ($connect_code == 'sns_alipay') {
+            $rs = $db_user->field('user_id')->where("alipay_id = '".$open_id."'")->find();
+        }
+    }
+
+    if ($rs) {
+        return $rs['user_id'];
+    } else {
+        return $uid;
+    }
+}, 10, 3); */
+
 /* ecjiaopen协议 */
 ecjia_open::macro('goods_seller_list', function($querys) {
     return RC_Uri::url('goods/category/store_list', array('cid' => $querys['category_id']));
