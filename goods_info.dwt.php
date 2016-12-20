@@ -109,7 +109,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						</ul>
 					</div>
 				<!-- {/if} -->
-	            <input type="hidden" value="{RC_Uri::url('goods/category/update_cart')}" name="update_cart_url" />
+	            <input type="hidden" value="{RC_Uri::url('cart/index/update_cart')}" name="update_cart_url" />
 				<input type="hidden" value="{$goods_info.seller_id}" name="store_id" />
 	        </div>
 	        <a href='{url path="merchant/index/init" args="store_id={$goods_info.seller_id}"}'>
@@ -235,7 +235,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <div class="a58 ">
             <span class="a69 a6a {if $count.check_all}checked{/if}" data-toggle="toggle_checkbox" data-children=".checkbox" id="checkall">全选</span>
             <p class="a6c">(已选{$count.goods_number}件)</p>
-            <a href="javascript:void 0;" class="a59" data-toggle="deleteall" data-url="{RC_Uri::url('goods/category/update_cart')}">清空购物车</a>
+            <a href="javascript:void 0;" class="a59" data-toggle="deleteall" data-url="{RC_Uri::url('cart/index/update_cart')}">清空购物车</a>
         </div>
         
         <div class="a5b" style="max-height: 21em;">

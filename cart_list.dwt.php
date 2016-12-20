@@ -79,7 +79,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<a class="check_cart check_cart_{$val.seller_id} {if !$val.total.check_one}disabled{/if}" data-href="{RC_Uri::url('cart/flow/checkout')}" data-store="{$val.seller_id}" data-address="{$address_id}" data-rec="{$val.total.data_rec}" href="javascript:;">去结算</a>
 			</div>
 		</li>
-		<input type="hidden" name="update_cart_url" value="{RC_Uri::url('goods/category/update_cart')}">
+		<input type="hidden" name="update_cart_url" value="{RC_Uri::url('cart/index/update_cart')}">
 		<!-- {/foreach} -->
 	</ul>
 	<div class="flow-nomore-msg"></div>
