@@ -2969,6 +2969,7 @@ footer{
     bottom: 0px;
     margin-bottom: 1.2em;
     width: 130%!important;
+	max-width: 640px;
     margin-left: 1.2em!important;
 }
 .ecjia-account .btn-c {
@@ -3143,6 +3144,7 @@ footer{
 	z-index: 200;
 	position: fixed;
 	width: 100%;
+	max-width:640px;
 	background: #FFF;
 	border-bottom: 1px solid #eee;
 	/*margin-bottom: 1em;*/
@@ -3271,6 +3273,7 @@ footer{
 	position: fixed;
     z-index: 300;
     width: 100%;
+	max-width: 640px;
     top: 0;
 }
 .ecjia-bonus-top-list{
