@@ -149,6 +149,8 @@ RC_Hook::add_action('user/user_account/detail', array('user_account_controller',
 RC_Hook::add_action('user/user_account/account_list', array('user_account_controller', 'account_list'));
 RC_Hook::add_action('user/user_account/record', array('user_account_controller', 'record'));
 RC_Hook::add_action('user/user_account/ajax_record', array('user_account_controller', 'ajax_record'));
+RC_Hook::add_action('user/user_account/ajax_record_raply', array('user_account_controller', 'ajax_record_raply'));
+RC_Hook::add_action('user/user_account/ajax_record_deposit', array('user_account_controller', 'ajax_record_deposit'));
 RC_Hook::add_action('user/user_account/record_info', array('user_account_controller', 'record_info'));
 RC_Hook::add_action('user/user_account/record_cancel', array('user_account_controller', 'record_cancel'));
 

@@ -23,13 +23,13 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 	<li {if $smarty.get.status eq 'expired'} class="red-bottom"{else}class=""{/if}><a {if $smarty.get.status eq 'expired'} class="red-font right-border"{else}class="right-border"{/if} href="{url path='user/user_bonus/bonus' args='status=expired'}">{t}已过期{/t}</a></li>
 </ul>
 {if $smarty.get.status eq 'allow_use'}
-<div><ul class="ecjia-bonus-top-list ecjia-margin-t ecjia-bonus ecjia-list-two" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_allow_use'}" data-size="10"></ul></div>
+<div><ul class="ecjia-bonus-top-list ecjia-margin-t ecjia-bonus ecjia-list-two" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_bonus/async_allow_use'}" data-size="10"></ul></div>
 {elseif $smarty.get.status eq 'is_used'}
-<div><ul class="ecjia-bonus-top-list ecjia-margin-t ecjia-bonus ecjia-list-two" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_is_used'}" data-size="10"></ul></div>
+<div><ul class="ecjia-bonus-top-list ecjia-margin-t ecjia-bonus ecjia-list-two" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_bonus/async_is_used'}" data-size="10"></ul></div>
 {elseif $smarty.get.status eq 'expired'}
-<div><ul class="ecjia-bonus-top-list ecjia-margin-t ecjia-bonus ecjia-list-two" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_expired'}" data-size="10"></ul></div>
+<div><ul class="ecjia-bonus-top-list ecjia-margin-t ecjia-bonus ecjia-list-two" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_bonus/async_expired'}" data-size="10"></ul></div>
 {elseif $smarty.get.status eq ''}
-<div><ul class="ecjia-bonus-top-list ecjia-margin-t ecjia-bonus ecjia-list-two" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_allow_use'}" data-size="10"></ul></div>
+<div><ul class="ecjia-bonus-top-list ecjia-margin-t ecjia-bonus ecjia-list-two" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_bonus/async_allow_use'}" data-size="10"></ul></div>
 {/if}
 <!-- {/block} -->
 <!-- {block name="ajaxinfo"} -->
