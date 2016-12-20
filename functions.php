@@ -27,7 +27,6 @@ RC_Hook::add_action('goods/category/goods_list', array('goods_controller', 'good
 RC_Hook::add_action('goods/category/asynclist', array('goods_controller', 'asynclist'));
 RC_Hook::add_action('goods/category/store_list', array('goods_controller', 'store_list'));//店铺分类列表
 RC_Hook::add_action('goods/category/seller_list', array('goods_controller', 'seller_list'));//店铺分类列表
-RC_Hook::add_action('goods/category/update_cart', array('goods_controller', 'update_cart'));//更新购物车中商品
 
 //店铺
 RC_Loader::load_theme('extras/controller/merchant_controller.php');
@@ -56,6 +55,7 @@ RC_Hook::add_action('article/shop/detail', array('article_controller', 'shop_det
 //购物车
 RC_Loader::load_theme('extras/controller/cart_controller.php');
 RC_Hook::add_action('cart/index/init', array('cart_controller', 'init'));
+RC_Hook::add_action('cart/index/update_cart', array('cart_controller', 'update_cart'));//更新购物车中商品
 RC_Hook::add_action('cart/index/add_to_cart', array('cart_controller', 'add_to_cart'));
 RC_Hook::add_action('cart/index/ajax_update_cart', array('cart_controller', 'ajax_update_cart'));
 RC_Hook::add_action('cart/index/goods_fittings', array('cart_controller', 'goods_fittings'));
