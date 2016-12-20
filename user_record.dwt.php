@@ -19,10 +19,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </ul>
     </div>
 </div>
-<div>
-	<ul class="ecjia-account-record ecjia-list list-short ecjia-user-no-border-b" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_account/ajax_record' args="type={$type}"}" data-size="10">
-	</ul>
-</div>
+{if $smarty.get.status eq ''}
+<div><ul class="ecjia-account-record ecjia-list list-short ecjia-user-no-border-b" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_account/ajax_record'}" data-size="10"></ul></div>
+{elseif $smarty.get.status eq 'raply'}
+<div><ul class="ecjia-account-record ecjia-list list-short ecjia-user-no-border-b" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_account/ajax_record_raply'}" data-size="10"></ul></div>
+{elseif $smarty.get.status eq 'deposit'}
+<div><ul class="ecjia-account-record ecjia-list list-short ecjia-user-no-border-b" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_account/ajax_record_deposit'}" data-size="10"></ul></div>
+{/if}
 <!-- {/block} -->
 <!-- {block name="ajaxinfo"} -->
     {foreach from=$sur_amount key=key item=group}

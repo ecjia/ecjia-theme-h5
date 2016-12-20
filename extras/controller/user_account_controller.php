@@ -110,14 +110,14 @@ class user_account_controller {
      * 充值提现列表
      */
     public static function record() {
-        $_SESSION['status'] = !empty($_GET['status']) ? $_GET['status'] : '';
-        
+//         $_SESSION['status'] = !empty($_GET['status']) ? $_GET['status'] : '';
         ecjia_front::$controller->assign_title('交易记录');
     	ecjia_front::$controller->display('user_record.dwt');
     }
     
     public static function ajax_record() {
-    	$type = htmlspecialchars($_SESSION['status']);
+//     	$type = htmlspecialchars($_SESSION['status']);
+        $type = '';
     	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
     	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'type' => $type))->send()->getBody();
@@ -159,6 +159,93 @@ class user_account_controller {
     	return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $more));
     }
 
+    /*提现列表*/
+    public static function ajax_record_raply() {
+        $type = 'raply';
+        $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+        $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'type' => $type))->send()->getBody();
+        $data = json_decode($data,true);
+        $now_mon =  substr(date('Y-m-d H:i:s',time()),5,2);
+        $now_day =  substr(date('Y-m-d H:i:s',time()),0,10);
+        $time = '';
+        foreach ($data['data'] as $key => $val) {
+            if ($time != substr($val['add_time'],5,2)) {
+                $time = substr($val['add_time'],5,2);
+                $day = substr($val['add_time'],8,2);
+            }
+            $arr[$time][$key] = $data['data'][$key];
+            $day = substr($val['add_time'],0,10);
+            if ($day == $now_day) {
+                $arr[$time][$key]['add_time'] = '今天'.substr($val['add_time'],11,5);
+            } else {
+                $arr[$time][$key]['add_time'] = substr($val['add_time'],5,11);
+            }
+        }
+        foreach ($arr as $key => $val) {
+            ecjia_front::$controller->assign('key'.$key, $key);
+        }
+        $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        if (!empty($user['avatar_img'])) {
+            $user_img = $user['avatar_img'];
+        }
+        ecjia_front::$controller->assign('user_img', $user_img);
+        ecjia_front::$controller->assign('type', $type);
+        ecjia_front::$controller->assign('now_mon', $now_mon);
+        ecjia_front::$controller->assign('now_day', $now_day);
+        ecjia_front::$controller->assign('sur_amount', $arr);
+        ecjia_front::$controller->assign_lang();
+        $sayList = ecjia_front::$controller->fetch('user_record.dwt');
+        if ($data['paginated']['more'] == 0) {
+            $more = 1;
+        }
+        return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $more));
+    }
+    
+    /*充值列表*/
+    public static function ajax_record_deposit() {
+        $type = 'deposit';
+        $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+        $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'type' => $type))->send()->getBody();
+        $data = json_decode($data,true);
+        $now_mon =  substr(date('Y-m-d H:i:s',time()),5,2);
+        $now_day =  substr(date('Y-m-d H:i:s',time()),0,10);
+        $time = '';
+        foreach ($data['data'] as $key => $val) {
+            if ($time != substr($val['add_time'],5,2)) {
+                $time = substr($val['add_time'],5,2);
+                $day = substr($val['add_time'],8,2);
+            }
+            $arr[$time][$key] = $data['data'][$key];
+            $day = substr($val['add_time'],0,10);
+            if ($day == $now_day) {
+                $arr[$time][$key]['add_time'] = '今天'.substr($val['add_time'],11,5);
+            } else {
+                $arr[$time][$key]['add_time'] = substr($val['add_time'],5,11);
+            }
+        }
+        foreach ($arr as $key => $val) {
+            ecjia_front::$controller->assign('key'.$key, $key);
+        }
+        $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        if (!empty($user['avatar_img'])) {
+            $user_img = $user['avatar_img'];
+        }
+        ecjia_front::$controller->assign('user_img', $user_img);
+        ecjia_front::$controller->assign('type', $type);
+        ecjia_front::$controller->assign('now_mon', $now_mon);
+        ecjia_front::$controller->assign('now_day', $now_day);
+        ecjia_front::$controller->assign('sur_amount', $arr);
+        ecjia_front::$controller->assign_lang();
+        $sayList = ecjia_front::$controller->fetch('user_record.dwt');
+        if ($data['paginated']['more'] == 0) {
+            $more = 1;
+        }
+        return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $more));
+    }
     /**
      * 充值提现详情
      */
