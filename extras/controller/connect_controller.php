@@ -10,7 +10,7 @@ class connect_controller {
      * 回调显示
      * @param unknown $data
      */
-    public function callback_template($data) {
+    public static function callback_template($data) {
 //         parent::__construct();
         _dump($data,2);
 
@@ -41,13 +41,13 @@ class connect_controller {
      * 授权用户绑定已有账号
      * 
      */
-    public function user_bind($get) {
-        ecjia_front::$controller->assign('page_title', "授权登录账号绑定-".ecjia::config('shop_name'));
-        ecjia_front::$controller->assign('get', $get);
-        ecjia_front::$controller->assign('shop_address', "上海市普陀区中山北路3553号伸大厦3层");
-        //copyright
-        return file_get_contents (RC_Theme::get_template_directory().'/user_bind.dwt.php');
-    }
+//     public static function user_bind($get) {
+//         ecjia_front::$controller->assign('page_title', "授权登录账号绑定-".ecjia::config('shop_name'));
+//         ecjia_front::$controller->assign('get', $get);
+//         ecjia_front::$controller->assign('shop_address', "上海市普陀区中山北路3553号伸大厦3层");
+//         //copyright
+//         return file_get_contents (RC_Theme::get_template_directory().'/user_bind.dwt.php');
+//     }
 
 }
 
