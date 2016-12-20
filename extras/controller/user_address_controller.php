@@ -86,8 +86,8 @@ class user_address_controller {
         if (isset($_GET['address'])) {
             $options['tem_address'] = $_GET['address'];
         }
-        if (isset($_GET['addr'])) {
-            $options['tem_address'] = $_GET['addr'];
+        if (isset($_GET['name'])) {
+            $options['tem_address'] = $_GET['name'];
         }
         if (isset($_GET['address_info'])) {
             $options['tem_address_info'] = $_GET['address_info'];
