@@ -3499,8 +3499,8 @@ footer{
 	margin-right: 7%;
 	margin-left : 7%;
 }
-.ecjia-login ul{text-align:center;}
-.ecjia-login ul li {
+.ecjia-login .thirdparty-wrap{text-align:center;}
+.ecjia-login .thirdparty-wrap li {
 	height:3em;
     width:3em;
 	display:inline-block;

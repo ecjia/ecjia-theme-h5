@@ -38,7 +38,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <input type="submit" class="btn btn-info login-btn" name="ecjia-login" value="{$lang.login}" data-url="{url path='user/privilege/signin'}"/>
     </div>
     <p class="ecjiaf-tac">其他帐号登录</p>
-	<ul>
+	<ul class="thirdparty-wrap">
     	<a href="{url path='connect/index/init' args='connect_code=sns_qq'}"><li class="thirdparty-qq"></li></a>
     	<li class="thirdparty-weixin"></li>
 	</ul>
