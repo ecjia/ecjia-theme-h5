@@ -8,8 +8,8 @@ class user_bonus_controller {
      * 我的红包
      */
     public static function bonus() {
-        $status = $_GET['status'];
-        $_SESSION['bonus_type'] = $status;
+//         $status = $_GET['status'];
+//         $_SESSION['bonus_type'] = $status;
         ecjia_front::$controller->assign_title('我的红包');
         ecjia_front::$controller->display('user_bonus.dwt');
     }
@@ -17,11 +17,29 @@ class user_bonus_controller {
     /**
      * 异步加载红包列表
      */
-    public static function async_bonus_list() {
+//     public static function async_bonus_list() {
+//         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+//         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+//         $cur_date = RC_Time::gmtime();
+//         $status = empty($_SESSION['bonus_type'])? 'allow_use' : $_SESSION['bonus_type'];
+//         $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'bonus_type' => $status))->send()->getBody();
+//         $bonus = json_decode($bonus,true);
+//         $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+//         ecjia_front::$controller->assign('bonus', $bonus['data']);
+//         $sayList = ecjia_front::$controller->fetch('user_bonus.dwt');
+//         $more = 0;
+//         if ($bonus['paginated']['more'] == 0) {
+//             $more = 1;
+//         }
+//         ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page', 'is_last' => $more));
+//     }
+
+    public static function async_allow_use() {
         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $cur_date = RC_Time::gmtime();
-        $status = empty($_SESSION['bonus_type'])? 'allow_use' : $_SESSION['bonus_type'];
+//         $status = empty($_SESSION['bonus_type'])? 'allow_use' : $_SESSION['bonus_type'];
+        $status = 'allow_use';
         $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'bonus_type' => $status))->send()->getBody();
         $bonus = json_decode($bonus,true);
         $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
@@ -32,7 +50,42 @@ class user_bonus_controller {
             $more = 1;
         }
         ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page', 'is_last' => $more));
-        
+    }
+    
+    public static function async_is_used() {
+        $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+        $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+        $cur_date = RC_Time::gmtime();
+//         $status = empty($_SESSION['bonus_type'])? 'allow_use' : $_SESSION['bonus_type'];
+        $status = 'is_used';
+        $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'bonus_type' => $status))->send()->getBody();
+        $bonus = json_decode($bonus,true);
+        $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+        ecjia_front::$controller->assign('bonus', $bonus['data']);
+        $sayList = ecjia_front::$controller->fetch('user_bonus.dwt');
+        $more = 0;
+        if ($bonus['paginated']['more'] == 0) {
+            $more = 1;
+        }
+        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page', 'is_last' => $more));
+    }
+    
+    public static function async_expired() {
+        $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+        $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+        $cur_date = RC_Time::gmtime();
+//         $status = empty($_SESSION['bonus_type'])? 'allow_use' : $_SESSION['bonus_type'];
+        $status = 'expired';
+        $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'bonus_type' => $status))->send()->getBody();
+        $bonus = json_decode($bonus,true);
+        $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+        ecjia_front::$controller->assign('bonus', $bonus['data']);
+        $sayList = ecjia_front::$controller->fetch('user_bonus.dwt');
+        $more = 0;
+        if ($bonus['paginated']['more'] == 0) {
+            $more = 1;
+        }
+        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page', 'is_last' => $more));
     }
 
     /**

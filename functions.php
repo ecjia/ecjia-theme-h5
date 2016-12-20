@@ -173,7 +173,10 @@ RC_Hook::add_action('user/user_address/choose_address', array('user_address_cont
 RC_Loader::load_theme('extras/controller/user_bonus_controller.php');
 RC_Hook::add_action('user/user_bonus/bonus', array('user_bonus_controller', 'bonus'));
 RC_Hook::add_action('user/user_bonus/add_bonus', array('user_bonus_controller', 'add_bonus'));
-RC_Hook::add_action('user/user_bonus/async_bonus_list', array('user_bonus_controller', 'async_bonus_list'));
+// RC_Hook::add_action('user/user_bonus/async_bonus_list', array('user_bonus_controller', 'async_bonus_list'));
+RC_Hook::add_action('user/user_bonus/async_allow_use', array('user_bonus_controller', 'async_allow_use'));
+RC_Hook::add_action('user/user_bonus/async_is_used', array('user_bonus_controller', 'async_is_used'));
+RC_Hook::add_action('user/user_bonus/async_expired', array('user_bonus_controller', 'async_expired'));
 RC_Hook::add_action('user/user_bonus/my_reward', array('user_bonus_controller', 'my_reward'));
 RC_Hook::add_action('user/user_bonus/reward_detail', array('user_bonus_controller', 'reward_detail'));
 RC_Hook::add_action('user/user_bonus/get_integral', array('user_bonus_controller', 'get_integral'));
