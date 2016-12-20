@@ -127,7 +127,9 @@ RC_Hook::add_action('user/privilege/signin', array('user_privilege_controller', 
 RC_Hook::add_action('user/privilege/signup', array('user_privilege_controller', 'signup'));
 RC_Hook::add_action('user/privilege/register', array('user_privilege_controller', 'register'));
 RC_Hook::add_action('user/privilege/bind_signup', array('user_privilege_controller', 'bind_signup'));
+RC_Hook::add_action('user/privilege/bind_signup_do', array('user_privilege_controller', 'bind_signup_do'));
 RC_Hook::add_action('user/privilege/bind_signin', array('user_privilege_controller', 'bind_signin'));
+RC_Hook::add_action('user/privilege/bind_signin_do', array('user_privilege_controller', 'bind_signin_do'));
 RC_Hook::add_action('user/privilege/bind_login', array('user_privilege_controller', 'bind_login'));
 RC_Hook::add_action('user/privilege/validate_code', array('user_privilege_controller', 'validate_code'));
 RC_Hook::add_action('user/privilege/set_password', array('user_privilege_controller', 'set_password'));

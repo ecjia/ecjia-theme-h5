@@ -20,7 +20,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 <div class="user-register">
     <div class="tab-pane{if $enabled_sms_signin neq 1} active{/if}" id="two">
-		<form class="ecjia-form ecjia-login" name="theForm" action="{url path='user/index/signup'}" method="post">
+		<form class="ecjia-form ecjia-login" name="theForm" action="{url path='user/privilege/bind_signup_do'}" method="post">
 			<input type="hidden" name="flag" id="flag" value="register" />
 			<div class="form-group ecjia-margin-t margin-right-left">
 				<label class="input">
@@ -61,7 +61,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<input name="open_id" type="hidden" value="{$open_id}" />
 				<input type="hidden" name="back_act" value="{$back_act}" />
 				<div class="around margin-top">
-				<button class="btn btn-info login-btn" type="submit">{t}注册{/t}</button>
+				<button class="btn btn-info login-btn" type="submit">{t}注册并关联{/t}</button>
 				</div>
 			</div>
 		</form>
