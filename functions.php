@@ -266,7 +266,7 @@ RC_Hook::add_filter('connect_callback_template', function($data) {
 //第三方登录用户注册
 RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username, $password, $email) {
     RC_Loader::load_theme('extras/functions/front_user.func.php');
-    $result = register_mbt($username, $password, $email,'',1);
+//     $result = register_mbt($username, $password, $email,'',1);
 
     if (!is_ecjia_error($result)) {
         return $result;

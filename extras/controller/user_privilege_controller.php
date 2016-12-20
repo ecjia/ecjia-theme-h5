@@ -82,7 +82,7 @@ class user_privilege_controller {
      * 验证注册
      */
     public static function signup() {
-        $chars = "/^13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$/";
+        $chars = "/^13[0-9]{1}[0-9]{8}$|14[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|17[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$/";
         $mobile = !empty($_GET['mobile']) ? htmlspecialchars($_GET['mobile']) : '';
         if (preg_match($chars, $mobile)) {
             $_SESSION['mobile'] = $mobile;
@@ -90,7 +90,7 @@ class user_privilege_controller {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile))->send()->getBody();
             $data = json_decode($data,true);
             if ($data['data']['registered'] == 1) {
-                return ecjia_front::$controller->showmessage(__('该手机号已被注册，请更换其他手机号'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/privilege/register')));
+                return ecjia_front::$controller->showmessage(__('该手机号已被注册，请更换其他手机号'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             } else {
                 return ecjia_front::$controller->showmessage(__('短信已发送到手机'.$mobile.'，请注意查看'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
             }
@@ -102,29 +102,95 @@ class user_privilege_controller {
     }
     
     /* 第三方登陆 */
-    public static function bind_signin() {
+    public static function bind_login() {
 //         $user_img = get_user_img();
 //         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('user_bind_signin.dwt');
+        ecjia_front::$controller->display('user_bind_login.dwt');
     }
     
     /* 第三方登陆快速注册 */
     public static function bind_signup() {
+        
+        $connect_code = !empty($_GET['connect_code']) ? trim($_GET['connect_code']) : '';
+        $open_id = !empty($_GET['open_id']) ? trim($_GET['open_id']) : '';
+        if (empty($connect_code) || empty($open_id)) {
+            return ecjia_front::$controller->showmessage('授权信息异常，请重新授权', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+        }
+        ecjia_front::$controller->assign('connect_code', $connect_code);
+        ecjia_front::$controller->assign('open_id', $open_id);
+        
         ecjia_front::$controller->assign('title', "注册绑定");
         ecjia_front::$controller->assign_title("注册绑定");
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_bind_signup.dwt');
     }
     
+    public static function bind_signup_update() {
+        //验证邀请码验证码
+        $verification = !empty($_POST['verification']) ? trim($_POST['verification']) : '';
+        $mobile = !empty($_POST['mobile']) ? trim($_POST['mobile']) : '';
+        $username = !empty($_POST['username']) ? trim($_POST['username']) : '';
+        $password = !empty($_POST['password']) ? trim($_POST['password']) : '';
+        $code = !empty($_POST['code']) ? trim($_POST['code']) : '';
+        
+        $connect_code = !empty($_POST['connect_code']) ? trim($_POST['connect_code']) : '';
+        $open_id = !empty($_POST['open_id']) ? trim($_POST['open_id']) : '';
+        
+        if (empty($mobile) || empty($username) || empty($password) || empty($code)) {
+            return ecjia_front::$controller->showmessage('请填写完整信息', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+        if (empty($connect_code) || empty($open_id)) {
+            return ecjia_front::$controller->showmessage('授权信息异常，请重新授权', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+        
+        if (strlen($verification) > 6) {
+            return ecjia_front::$controller->showmessage('邀请码格式不正确', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+        
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code))->send()->getBody();
+        $data = json_decode($data, true);
+        if ($data['status']['succeed'] != 1) {
+            return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+        if ($data['data']['registered'] == 1) {
+            return ecjia_front::$controller->showmessage(__('该手机号已被注册，请更换其他手机号'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+        
+        //注册
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => $password, 'invite_code' => $verification))->send()->getBody();
+        $data = json_decode($data,true);
+        if ($data['status']['succeed'] != 1) {
+            return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+        
+        //绑定第三方
+        $user_id = $data['data']['user']['id'];
+        
+        RC_Loader::load_app_class('connect_user', 'connect', false);
+        $connect_user = new connect_user($connect_code, $open_id);
+        if ($user_id) {
+            $result = $connect_user->bind_user($user_id, 0);
+        }
+        if ($result) {
+            //登录
+            return ecjia_front::$controller->showmessage('恭喜您，注册成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/index/init')));
+        } else {
+            return ecjia_front::$controller->showmessage('授权用户信息绑定失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+        
+        
+        // return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('login')));
+    }
+    
     /* 第三方登陆绑定 */
-    public static function bind_login() {
+    public static function bind_signin() {
         // $user = integrate::init_users();
         //
         ecjia_front::$controller->assign('title', "登录绑定");
         ecjia_front::$controller->assign_title("登录绑定");
         ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('user_bind_login.dwt');
+        ecjia_front::$controller->display('user_bind_signin.dwt');
     }
     
     /*注册用户验证码接受*/

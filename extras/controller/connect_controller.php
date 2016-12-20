@@ -12,7 +12,7 @@ class connect_controller {
      */
     public function callback_template($data) {
 //         parent::__construct();
-//         _dump($data,2);
+        _dump($data,2);
 
         if (is_ecjia_error($data)) {
             //错误
@@ -27,10 +27,14 @@ class connect_controller {
 //         $login = array( 'url' => $data['login_url'], 'info' => '直接登录');
         
         ecjia_front::$controller->assign('connect_code',$data['connect_code']);
+        //$data['open_id']
+        $url['bind_signup'] = str_replace('/notify/', '/', RC_Uri::url('user/privilege/bind_signup', array('connect_code' => $data['connect_code'], 'open_id' => $data['open_id'])));
+        $url['bind_signin'] = str_replace('/notify/', '/', RC_Uri::url('user/privilege/bind_signin', array('connect_code' => $data['connect_code'], 'open_id' => $data['open_id'])));
+        ecjia_front::$controller->assign('url',$url);
 //         ecjia_front::$controller->assign('login',$login);
 //         show_message($msg, array('绑定已有账号'), array($data['bind_url']), 'info', false);
-
-        return file_get_contents (RC_Theme::get_template_directory().'/user_bind_signin.dwt.php');
+//         return file_get_contents (RC_Theme::get_template_directory().'/user_bind_signin.dwt.php');
+        return ecjia_front::$controller->fetch ('user_bind_login.dwt.php');
     }
     
     /**
