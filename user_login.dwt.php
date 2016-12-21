@@ -15,7 +15,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-<form class="ecjia-form  ecjia-login" name="formLogin" action= method="post">
+<div class="ecjia-form  ecjia-login">
 	<div class="user-img"><img src="{$user_img}"></div>
 	<div class="form-group margin-right-left">
 		<label class="input">
@@ -42,5 +42,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     	<a href="{url path='connect/index/init' args='connect_code=sns_qq'}"><li class="thirdparty-qq"></li></a>
     	<li class="thirdparty-weixin"></li>
 	</ul>
-</form>
+</div>
 <!-- {/block} -->
