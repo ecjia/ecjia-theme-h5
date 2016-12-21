@@ -46,6 +46,8 @@ ecjia.touch.user.submitForm();
 	</div>
 	<div class="ecjia-login-b">
 	    <div class="around">
+	        <input type="hidden" name="connect_code" value="{$connect_code}">
+	        <input type="hidden" name="open_id" value="{$open_id}">
             <input type="hidden" name="referer" value="{$smarty.get.referer}" />
             <input type="submit" class="btn btn-info login-btn" value="{$lang.login}" />
 	    </div>	
