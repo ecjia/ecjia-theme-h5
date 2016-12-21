@@ -34,8 +34,16 @@ class connect_controller {
         
         RC_Logger::getlogger('debug')->info($user_info);
         
+        if ($data['connect_code']) {
+            $user_img = $user_info['profile']['nickname'];
+            $user_name = $user_info['profile']['figureurl_qq_2'];
+        }
+        
         ecjia_front::$controller->assign('connect_code',$data['connect_code']);
         ecjia_front::$controller->assign('user_info', $user_info);
+        ecjia_front::$controller->assign('user_img', $user_img);
+        ecjia_front::$controller->assign('user_name', $user_name);
+        
         //$data['open_id']
         $url['bind_signup'] = str_replace('/notify/', '/', RC_Uri::url('user/privilege/bind_signup', array('connect_code' => $data['connect_code'], 'open_id' => $data['open_id'])));
         $url['bind_signin'] = str_replace('/notify/', '/', RC_Uri::url('user/privilege/bind_signin', array('connect_code' => $data['connect_code'], 'open_id' => $data['open_id'])));

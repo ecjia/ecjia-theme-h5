@@ -16,8 +16,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <div class="ecjia-login">
     <div class="user-img"><img src="{$user_img}"></div>
-    <div class="margin-right-left">
-        <p class="p-top3 text-size"><span class="text-color">亲爱的{if $connect_code eq 'sns_qq'}QQ{else if $connect_code eq 'sns_wechat'}微信{/if}用户：</span><span><big>{$user_info.profile.nickname}</big></span></p>
+    <div class="ecjia-margin-l">
+        <p class="p-top3 text-size"><span class="text-color">亲爱的{if $connect_code eq 'sns_qq'}QQ{else if $connect_code eq 'sns_wechat'}微信{/if}用户：</span><span><big>{$user_name}</big></span></p>
         <p class="text-size">为了给您更多的福利，请关联一个账号{$data.bind_url}{$data.login_url}</p>
     </div>
 	<div class="ecjia-login-b ecjia-margin-b ecjia-margin-t">
