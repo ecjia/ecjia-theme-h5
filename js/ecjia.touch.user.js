@@ -87,7 +87,7 @@
 					    });
 					    myApp.alert(data.info);
 					} else {
-						window.location.href = data.url;
+						ecjia.pjax(data.url);
 					}
 				});
         	});
@@ -109,7 +109,7 @@
 				myApp.confirm('是否确认退出？', function () {
 					$.post(url, options,function(data){
 						if (data.log != '') {
-							window.location.href = data.logout_url;
+							ecjia.pjax(data.logout_url);
 						}
 					});
 			    });
@@ -330,7 +330,8 @@
 					if (data.state == 'error'){
 						$("#modify-username-info").text(data.msg);
 					} else {
-						window.location.href = data.msg;
+						ecjia.pjax(data.msg);
+//						window.location.href = data.msg;
 					}
 				});
 			});
@@ -356,7 +357,8 @@
 			    });
 				myApp.confirm('你确定要取消吗？', function () {
 		        	$.post(url,options, function(data){
-						window.location.href = data.url;
+		        		ecjia.pjax(data.url);
+//						window.location.href = data.url;
 			        })
 			    });
 			});
@@ -374,7 +376,8 @@
 						'submit'	  : '充值'
 				}
 				$.post(url,options, function(data){
-					window.location.href = data.pay_online;
+					ecjia.pjax(data.pay_online);
+//					window.location.href = data.pay_online;
 		        })
 			});
 		},
