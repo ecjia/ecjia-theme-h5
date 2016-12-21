@@ -35,8 +35,8 @@ class connect_controller {
         RC_Logger::getlogger('debug')->info($user_info);
         
         if ($data['connect_code']) {
-            $user_img = $user_info['profile']['nickname'];
-            $user_name = $user_info['profile']['figureurl_qq_2'];
+            $user_img = $user_info['profile']['figureurl_qq_2'];
+            $user_name = $user_info['profile']['nickname'];
         }
         
         ecjia_front::$controller->assign('connect_code',$data['connect_code']);
