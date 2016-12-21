@@ -11,13 +11,12 @@ class connect_controller {
      * @param unknown $data
      */
     public static function callback_template($data) {
-//         parent::__construct();
-        _dump($data,2);
+        RC_Logger::getlogger('debug')->info($data);
 
         if (is_ecjia_error($data)) {
             //错误
             $msg = '登录授权失败，请使用其他方式登录';
-            ecjia_front::$controller->showmessage($msg, ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+            return ecjia_front::$controller->showmessage($msg, ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         
         ecjia_front::$controller->assign('authorize_login', true);
@@ -26,7 +25,17 @@ class connect_controller {
 //         $msg = '授权登录成功！';
 //         $login = array( 'url' => $data['login_url'], 'info' => '直接登录');
         
+        if (empty($data['connect_code']) || empty($data['open_id'])) {
+            return ecjia_front::$controller->showmessage('授权信息异常，请重新授权', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+        RC_Loader::load_app_class('connect_user', 'connect', false);
+        $connect_user = new connect_user($data['connect_code'], $data['open_id']);
+        $user_info = $connect_user->get_openid();
+        
+        RC_Logger::getlogger('debug')->info($user_info);
+        
         ecjia_front::$controller->assign('connect_code',$data['connect_code']);
+        ecjia_front::$controller->assign('user_info', $user_info);
         //$data['open_id']
         $url['bind_signup'] = str_replace('/notify/', '/', RC_Uri::url('user/privilege/bind_signup', array('connect_code' => $data['connect_code'], 'open_id' => $data['open_id'])));
         $url['bind_signin'] = str_replace('/notify/', '/', RC_Uri::url('user/privilege/bind_signin', array('connect_code' => $data['connect_code'], 'open_id' => $data['open_id'])));
