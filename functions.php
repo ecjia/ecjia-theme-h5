@@ -282,7 +282,7 @@ RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username,
 //第三方登录用户登录
 RC_Hook::add_action('connect_callback_user_signin', function($userid){
     RC_Loader::load_app_func('user', 'user');
-    $user_info = EM_user_info($_SESSION['user_id']);
+    $user_info = EM_user_info($userid);
 //     $user_info = RC_Api::api('user', 'user_info', array('user_id' => $userid));
     
     RC_Loader::load_app_class('integrate', 'user', false);
