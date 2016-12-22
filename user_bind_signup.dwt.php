@@ -30,7 +30,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 			<div class="form-group small-text ecjia-margin-t">
 				<label class="input-1">
-					<input name="code" type="text" datatype="n6" errormsg="请输入正确格式的验证码" placeholder="{$lang.input_verification}" />
+					<input name="code" type="text" datatype="n6-6" errormsg="请输入正确格式的验证码" placeholder="{$lang.input_verification}" />
 				</label>
 			</div>
 			<div class="small-submit ecjia-margin-t">
@@ -40,13 +40,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="form-group bf margin-right-left five-margin-top">
 				<label class="input">
 					<i class="iconfont icon-yanzhengma"></i>
-					<input name="verification" id="verification" type="text" datatype="*6-16" placeholder="邀请码6位数字或字母" errormsg="邀请码6位数字或字母">
+					<input name="verification" id="verification" type="text" datatype="*6-10" placeholder="邀请码6位数字或字母" errormsg="邀请码6位数字或字母">
 				</label>
 			</div>
 			<div class="form-group ecjia-margin-t margin-right-left">
 				<label class="input">
 					<i class="iconfont icon-dengluyonghuming"></i>
-					<input name="username" id="username" type="text" datatype="*6-16" placeholder="请输入用户名" errormsg="用户名不正确">
+					<input name="username" id="username" type="text" datatype="*3-16" placeholder="请输入用户名" errormsg="用户名不正确">
 				</label>
 			</div>
 			<div class="form-group ecjia-margin-t margin-right-left">

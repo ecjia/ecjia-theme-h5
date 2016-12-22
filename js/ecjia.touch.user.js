@@ -219,7 +219,7 @@
 		            window.clearInterval(InterValObj);		//停止计时器
 		            $("#mobile").removeAttr("readonly");	//启用按钮
 		            $("#get_code").removeAttr("disabled");	//启用按钮
-		            $("#get_code").val("重新发送验证码");
+		            $("#get_code").val("重新发送");
 		            $("#get_code").attr("class", "btn btn-info login-btn");
 		        } else {
 		            curCount--;
