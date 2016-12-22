@@ -4108,6 +4108,9 @@ footer{
     line-height: 5em;}
 .goods-list .goods-img-more i {font-size:1.8em;top: 0.1em;}
 .goods-list .goods-img-more .icon-right {font-size:1.2em;top: 0;}
+.ecjia-order-list .two-btn .btn{
+	line-height: 1.2em;
+}
 /*========================  订单详情 ===========================*/
 .ecjia-order-detail .order-hd {
 	background-color:#fff;
@@ -4122,7 +4125,7 @@ footer{
 }
 .ecjia-order-detail .ecjia-checkout .flow-goods-list{
     background: none;
-	padding-bottom:4em;
+	padding-bottom:4.4em;
 }
 
 .ecjia-order-detail .flow-goods-list .ecjia-list li {
@@ -4144,8 +4147,8 @@ footer{
     position: fixed;
     width: 100%;
     max-width: 640px;
-    height: 3.2em;
-	line-height:3.2em;
+    height: 3.6em;
+	line-height:3.6em;
 	border-top:1px solid #eee;
     background-color: #fff;
 }
