@@ -20,7 +20,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
     {/if}
     <ul class="ecjia-list ecjia-margin-t">
-        <li>应付金额：<span class="ecjiaf-fr">{if $data.formated_order_amount}{$data.formated_order_amount}{else}{$data.order_amount}{/if}</span></li>
+        <li>订单金额：<span class="ecjiaf-fr">{$detail.formated_total_fee}</span></li>
         <li>支付方式：<span class="ecjiaf-fr flow-msg">{$data.pay_name}</span></li>
     </ul>
     <div class="ecjia-margin-t ecjia-margin-b flow-msg">{if $data.pay_status eq 'success'}支付成功！{else}{$pay_error}{/if}</div>

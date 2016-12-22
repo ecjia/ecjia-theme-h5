@@ -138,7 +138,7 @@ class user_order_controller {
         if ($data['status']['succeed']) {
             ecjia_front::$controller->showmessage('取消订单成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url,'is_show' => false));
         } else {
-            ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url));
+            ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR,array('pjaxurl' => $url));
         }
         
     }
@@ -176,7 +176,7 @@ class user_order_controller {
                         $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
                     }
                     $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
-                    ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url));
+                    ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR,array('pjaxurl' => $url));
                 }
             }
             $url = RC_Uri::url('cart/index/init');
@@ -274,7 +274,7 @@ class user_order_controller {
         if ($data['status']['succeed']) {
             ecjia_front::$controller->showmessage('操作成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url,'is_show' => false));
         } else {
-            ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url));
+            ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
         }
     }
 
