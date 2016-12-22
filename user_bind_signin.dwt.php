@@ -49,7 +49,7 @@ ecjia.touch.user.submitForm();
 	        <input type="hidden" name="connect_code" value="{$connect_code}">
 	        <input type="hidden" name="open_id" value="{$open_id}">
             <input type="hidden" name="referer" value="{$smarty.get.referer}" />
-            <input type="submit" class="btn btn-info login-btn" value="{$lang.login}" />
+            <input type="submit" class="btn btn-info login-btn" value="验证" />
 	    </div>	
 	</div>
 </form>

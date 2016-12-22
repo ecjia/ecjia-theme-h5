@@ -220,7 +220,7 @@ class user_privilege_controller {
             return ecjia_front::$controller->showmessage($message, ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('info' => $message));
         } else {
 //             $url = RC_Uri::url('touch/my/init');
-//             $referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : '';
+            $referer_url = !empty($_POST['referer']) ? urlencode($_POST['referer']) : RC_Uri::url('touch/my/init');
 //             if (!empty($referer_url)) {
 //                 $url = $referer_url;
 //             }
@@ -230,9 +230,11 @@ class user_privilege_controller {
             if ($user['id']) {
                 $result = $connect_user->bind_user($user['id'], 0);
             }
+//             _dump($result,1);
             if ($result) {
-                return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init')));
+                return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer_url));
             } else {
+                RC_Logger::getlogger('error')->error($result);
                 return ecjia_front::$controller->showmessage('授权用户信息关联失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
             
