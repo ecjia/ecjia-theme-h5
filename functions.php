@@ -281,21 +281,41 @@ RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username,
     
 //第三方登录用户登录
 RC_Hook::add_action('connect_callback_user_signin', function( $userid){
-    RC_Loader::load_app_class('integrate','user', false);
+    /* RC_Loader::load_app_class('integrate','user', false);
     $user = integrate::init_users();
     RC_Loader::load_theme('extras/functions/front_user.func.php');
     $userinfo = $user->get_profile_by_id($userid);
     $user->set_session($userinfo['user_name']);
     $user->set_cookie($userinfo['user_name']);
+    update_user_info_mbt();
+    //结合cookie判断返回来源url
+    if(RC_Cookie::get('referer')) {
+        $back_url = RC_Cookie::get('referer');
+    } else {
+        $back_url = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
+    }
+    $back_url = empty($back_url) ? RC_Uri::url('user/index/init') : $back_url;
+    ecjia_front::$controller->redirect($back_url); */
     
+    //是否绑定过
+    $user_info = RC_Api::api('user', 'user_info', array('user_id' => $userid));
+    RC_Loader::load_app_class('integrate', 'user', false);
+    $user = integrate::init_users();
+    $user->set_session($user_info['user_name']);
+    $user->set_cookie($user_info['user_name']);
+     
+//     $profile = array(
+//         'profile'		=> serialize($user_info['profile'])
+//     );
+//     RC_Model::model('connect/connect_user_model')->where(array('connect_code' => $connect_user->connect_code, 'open_id' => $connect_user->open_id, 'user_id' => $_SESSION['user_id']))->update($profile);
+     
+//     /* 获取远程用户头像信息*/
+//     if ($data['connect_code'] == 'sns_qq') {
+//         RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $profile['figureurl_qq_2']));
+//     }
     
-    $data = array(
-        'profile'		=> serialize($profile)
-    );
-    RC_Model::model('connect/connect_user_model')->where(array('connect_code' => $connect_user->connect_code, 'open_id' => $connect_user->open_id, 'user_id' => $_SESSION['user_id']))->update($data);
-    	
-    /* 获取远程用户头像信息*/
-    RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $profile['avatar_img']));
+    // 1、同步会员信息
+    // 2、修正咨询信息
     
     RC_Loader::load_app_func('user', 'user');
     $user_info = EM_user_info($_SESSION['user_id']);
@@ -310,8 +330,10 @@ RC_Hook::add_action('connect_callback_user_signin', function( $userid){
     } else {
         $back_url = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
     }
-    $back_url = empty($back_url) ? RC_Uri::url('user/index/init') : $back_url;
-    ecjia_front::$controller->redirect($back_url);
+    $back_url = empty($back_url) ? RC_Uri::url('touch/my/init') : $back_url;
+    $back_url = str_replace('/notify/', '/', $back_url);
+    
+    return ecjia_front::$controller->redirect($back_url);
 });
     
 //授权登录用户绑定已有账号
