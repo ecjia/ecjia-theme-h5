@@ -53,7 +53,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <li>暂无</li>
             <!-- {/foreach} -->
         </ul>
-        <div class="ecjia-margin-t ecjia-margin-b two-btn">
+        <div class="ecjia-margin-t2 ecjia-margin-b two-btn">
             <input type="hidden" name="address_id" value="{$address_id}">
             <input type="hidden" name="rec_id" value="{$rec_id}" />
             <input class="btn btn-hollow-danger" name="inv_clear" type="submit" value="清空"/>
