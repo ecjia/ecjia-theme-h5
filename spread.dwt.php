@@ -34,10 +34,13 @@ function initPage() {
 			jsApiList: [
 				'checkJsApi',
 				'onMenuShareTimeline',
+				'onMenuShareAppMessage',
+				'onMenuShareAppMessage',
 				'hideOptionMenu',
 			]
 		});
 		wx.ready(function () {
+			//分享到朋友圈
 			wx.onMenuShareTimeline({
 		        title: "{$share_title}", // 分享标题【必填】
 		        link: "{$invite_user.invite_url}", // 分享链接【必填】
@@ -49,7 +52,8 @@ function initPage() {
 		            // 用户取消分享后执行的回调函数
 		        }
 		    });
-	
+
+			//分享给朋友
 		    wx.onMenuShareAppMessage({
 		        title: "{$share_title}", // 分享标题【必填】
 		        desc: "{$invite_user.invite_template}", // 分享描述【必填】
@@ -59,11 +63,25 @@ function initPage() {
 		        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 		        success: function () { 
 		            // 用户确认分享后执行的回调函数
-					alert('已分享');
+// 					alert('已分享');
 		        },
 		        cancel: function () { 
 		            // 用户取消分享后执行的回调函数
-					alert('已取消');
+// 					alert('已取消');
+		        }
+		    });
+
+		    //分享到QQ
+		    wx.onMenuShareQQ({
+		        title: "{$share_title}", // 分享标题
+		        desc: "{$invite_user.invite_template}", // 分享描述
+		        link: "{$invite_user.invite_url}", // 分享链接
+		        imgUrl: data.image, // 分享图标
+		        success: function () { 
+		           // 用户确认分享后执行的回调函数
+		        },
+		        cancel: function () { 
+		           // 用户取消分享后执行的回调函数
 		        }
 		    });
 		});	
