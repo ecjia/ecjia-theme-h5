@@ -357,7 +357,7 @@ class user_address_controller {
             ecjia_front::$controller->assign('action_url', RC_Uri::url('user/user_address/add_address'));
             $temp_data = user_address_controller::save_temp_data(1, 'add', $_GET['clear'], $_GET);
             if (empty($temp_data['tem_city'])) {
-                return ecjia_front::$controller->showmessage('先选择城市', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => ''));
+                return ecjia_front::$controller->showmessage('请先选择城市', ecjia::MSGTYPE_ALERT| ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => ''));
             }
         }
         ecjia_front::$controller->assign('temp', $temp_data);
