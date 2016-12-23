@@ -15,6 +15,7 @@
 			ecjia.touch.close_app_download();
 			ecjia.touch.search_header();
 			ecjia.touch.del_history();
+			$("body").greenCheck();
 		},
 		
 		//搜索关键词定位开始

@@ -10,7 +10,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-
+<script type="text/javascript" >
+ecjia.touch.init();
+</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -25,8 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <li>
                     <span class="slect-title">{$rs.pay_name}</span>
                     <span class="ecjiaf-fr">
-                        <input type="radio" id="{$rs.pay_code}" name="payment" value="{$rs.pay_id}" {if $smarty.get.pay_id eq $rs.pay_id}checked="true"{/if}>
-                        <label for="{$rs.pay_code}"></label>
+                        <label class="ecjia-check"><input type="radio" id="{$rs.pay_code}" name="payment" value="{$rs.pay_id}" {if $smarty.get.pay_id eq $rs.pay_id}checked="true"{/if}></label>
                     </span>
                 </li>
             </label>
@@ -41,22 +42,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <li>
                     <span class="slect-title">{$rs.pay_name}</span>
                     <span class="ecjiaf-fr">
-                        <input type="radio" id="{$rs.pay_code}" name="payment" value="{$rs.pay_id}" {if $smarty.get.pay_id eq $rs.pay_id}checked="true"{/if}>
-                        <label for="{$rs.pay_code}"></label>
+                        <label class="ecjia-check"><input type="radio" id="{$rs.pay_code}" name="payment" value="{$rs.pay_id}" {if $smarty.get.pay_id eq $rs.pay_id}checked="true"{/if}></label>
                     </span>
                 </li>
             </label>
             <!-- {/foreach} -->
         </ul>
         {/if}
-        <!-- <ul>
-        <li><label class="ecjia-check"></label>
-                        <input type="radio" name="test" >111111111</li>
-        <li><label class="ecjia-check ecjia-check-checked"></label>
-                        <input type="radio" name="test" >222</li>
-        <li><label class="ecjia-check ecjia-check-edit"></label>
-                        <input type="radio" name="test" >333</li>
-        </ul> -->
         
         <div class="ecjia-margin-t ecjia-margin-b">
             <input type="hidden" name="address_id" value="{$address_id}">

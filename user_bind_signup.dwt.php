@@ -46,7 +46,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="form-group ecjia-margin-t margin-right-left">
 				<label class="input">
 					<i class="iconfont icon-dengluyonghuming"></i>
-					<input name="username" id="username" type="text" datatype="*3-16" placeholder="请输入用户名" errormsg="用户名不正确">
+					<input name="username" id="username" type="text" value="" datatype="*3-16|zh2-7" placeholder="请输入用户名" errormsg="用户名不正确">
 				</label>
 			</div>
 			<div class="form-group ecjia-margin-t margin-right-left">

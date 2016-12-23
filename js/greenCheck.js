@@ -8,39 +8,29 @@
 			},
 
 			//初始化复选框
-			init_checkbox : function() {
-				var obj_input = $('label>input[data-trigger="checkbox"]');
-					obj_input.css('display','none').parent('label').find('i.checkbox').remove();
-				obj_input.on('change', function() {
-					var tmpobj_i = $(this).parent('label').find('i.checkbox');
-					tmpobj_i.removeClass('checked');
-					$(this).prop('checked') && tmpobj_i.addClass('checked');
-				});
-				for (var i = obj_input.length - 1; i >= 0; i--) {
-					var tmpobj_i = obj_input.eq(i).prop('checked') ? $('<i class="checkbox checked"></i>') :  $('<i class="checkbox"></i>');
-					obj_input.eq(i).after(tmpobj_i);
-				};
-			},
+			init_checkbox : function() {},
 
 			//初始化单选框
 			init_radio : function() {
-				var obj_input = $('label>input[data-trigger="radio"]');
-					obj_input.css('display','none').parent('label').find('i.radio').remove();
+				var obj_input = $('label>input[type="radio"]');
+				//todo 无选中时默认第一个
+					
 				obj_input.on('change', function() {
 					var obj_iname = $(this).attr('name'),
-						objall_i = $('input[name="'+obj_iname+'"]').parent('label').find('i.radio'),
-						tmpobj_i = $(this).parent('label').find('i.radio');
-					objall_i.removeClass('checked');
-					tmpobj_i.addClass('checked');
+						objall_i = $('input[name="'+obj_iname+'"]').parent('label'),
+						tmpobj_i = $(this).parent('label');
+					objall_i.removeClass('ecjia-check-checked');
+					tmpobj_i.addClass('ecjia-check-checked');
 				});
 				for (var i = obj_input.length - 1; i >= 0; i--) {
-					var tmpobj_i = obj_input.eq(i).prop('checked') ? $('<i class="radio checked"></i>') :  $('<i class="radio"></i>');
-					obj_input.eq(i).after(tmpobj_i);
+					if (obj_input.eq(i).prop('checked')) {
+						obj_input.eq(i).parent().addClass('ecjia-check-checked');
+					}
 				};
 			}
 		}
 		check.init();
 	}
 	
-	$.fn.winderCheck = greenCheck;
+	$.fn.greenCheck = greenCheck;
 })(jQuery)

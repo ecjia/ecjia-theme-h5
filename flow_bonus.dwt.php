@@ -10,7 +10,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-
+<script type="text/javascript" >
+ecjia.touch.init();
+</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -21,9 +23,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <!-- {foreach from=$data.bonus item=list} -->
             <label class="select-item" for="{$list.bonus_id}">
                 <li>
-                    <span class="ecjiaf-fr">
-                        <input type="radio" id="{$list.bonus_id}" name="bonus" value="{$list.bonus_id}"  {if $temp.bonus eq $list.bonus_id}checked="true"{/if}>
-                        <label for="{$list.bonus_id}"></label>
+                    <span class="ecjiaf-fr ecjia-margin-l">
+                        <label class="ecjia-check"><input type="radio" id="{$list.bonus_id}" name="bonus" value="{$list.bonus_id}"  {if $temp.bonus eq $list.bonus_id}checked="true"{/if}>
+                        </label>
                     </span>
                     <span class="">{$list.bonus_name}</span>
                     <span class="ecjiaf-fr">{$list.formatted_bonus_amount}</span>

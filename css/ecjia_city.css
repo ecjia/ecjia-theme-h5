@@ -93,10 +93,10 @@ a.ecjia-color-green {
     background: url(../images/icon/ck.png)  0 0 no-repeat;
     background-size: 20px 220px;
 }
-.ecjia-check-checked {
+.ecjia-check-checked /* 选中  */{
 	background-position: 0px -200px;
 }
-.ecjia-check-edit {
+.ecjia-check-edit /* x样式 */{
 	background-position: 0px -100px;
 }
 /* 选择样式end */
@@ -2263,7 +2263,7 @@ footer{
 }
 .ecjia-checkout-bonus {padding-bottom:5em}
 .ecjia-checkout-bonus ul {border-top:1px solid #eee}
-.ecjia-checkout-bonus li label{ margin-top: 3px;margin-right:5px; font-size:1.1em;}
+.ecjia-checkout-bonus li label{margin-right:5px; font-size:1.1em;}
 .ecjia-checkout-bonus li label:before,.ecjia-checkout-bonus li label:after{margin-right:3px; font-size:1.2em;}
 .ecjia-checkout-bonus .two-btn {
 	padding: 1em;

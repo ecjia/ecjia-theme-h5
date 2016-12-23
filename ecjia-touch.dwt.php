@@ -66,6 +66,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<script type="text/javascript" src="{$theme_url}lib/swiper/js/swiper.min.js"></script>
     <script type="text/javascript" src="{$theme_url}lib/datePicker/js/datePicker.min.js"></script>
     <script type="text/javascript" src="{$theme_url}lib/winderCheck/js/winderCheck.min.js"></script>
+    <script type="text/javascript" src="{$theme_url}js/greenCheck.js"></script>
 </head>
 <body>
 	<div class="ecjia">

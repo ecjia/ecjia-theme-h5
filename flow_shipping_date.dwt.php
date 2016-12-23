@@ -10,6 +10,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
+<script type="text/javascript" >
+ecjia.touch.init();
+</script>
 <script type="text/javascript">
 $(function(){
 	showShippingTime();
@@ -37,9 +40,9 @@ $(function(){
                 <li>
                     <span>{$list.date}</span>
                     <span class="ecjiaf-fr">
-                        <input type="radio" id="shipping_{$list.date}" name="shipping_date" value="{$list.date}"
+                        <label class="ecjia-check"><input type="radio" id="shipping_{$list.date}" name="shipping_date" value="{$list.date}"
                         {if $temp.shipping_date eq $list.date} checked="true"{/if}>
-                        <label for="shipping_{$list.date}"></label>
+                        </label>
                     </span>
                 </li>
             </label>
@@ -53,9 +56,9 @@ $(function(){
                 <li>{assign var="shipping_time" value="{$list.start_time}-{$list.end_time}"}
                     <span>{$shipping_time}</span>
                     <span class="ecjiaf-fr">
-                        <input type="radio" id="shipping_{$index}{$list.start_time}-{$list.end_time}" name="shipping_time" value="{$shipping_time}"
+                        <label class="ecjia-check"><input type="radio" id="shipping_{$index}{$list.start_time}-{$list.end_time}" name="shipping_time" value="{$shipping_time}"
                         {if $temp.shipping_time eq $shipping_time && $temp.shipping_date eq $index} checked="true"{/if}>
-                        <label for="shipping_{$index}{$list.start_time}-{$list.end_time}"></label>
+                        </label>
                     </span>
                 </li>
             </label>
