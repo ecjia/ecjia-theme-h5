@@ -30,8 +30,10 @@ class user_controller {
      * 推广页面
      */
     public static function spread() {
+    	$name = $_GET['name'];
     	$token = ecjia_touch_user::singleton()->getToken();
     	$invite_user_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_USER)->data(array('token' => $token))->run();
+		
 		if (!empty($invite_user_detail['invite_explain'])) {
 			if (strpos($invite_user_detail['invite_explain'], '；')) {
 				$invite_user_detail['invite_explain_new'] = explode('；', $invite_user_detail['invite_explain']);
@@ -44,11 +46,26 @@ class user_controller {
 				}
 			}
 		}
+		ecjia_front::$controller->assign('share_title', $name.'推荐这个使用的App给你~');
 		ecjia_front::$controller->assign_title('我的推广');
     	ecjia_front::$controller->assign('invite_user', $invite_user_detail);
+    	ecjia_front::$controller->assign('url', RC_Uri::url('user/index/wxconfig'));
     	ecjia_front::$controller->display('spread.dwt');
     }
-
+	
+    public static function wxconfig() {
+    	$url = $_POST['url'];
+    	RC_Loader::load_app_class('platform_account', 'platform', false);
+    	RC_Loader::load_app_class('wechat_method', 'wechat', false);
+    	 
+    	$uuid = platform_account::getCurrentUUID('wechat');
+    	$wechat = wechat_method::wechat_instance($uuid);
+    	
+    	$config = $wechat->wxconfig($url);
+    	$config['image'] = ecjia::config('wap_logo') != '' ? RC_Upload::upload_url(ecjia::config('wap_logo')) : '';
+    	
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('data' => $config));
+    }
     /**
      * 邮件验证
      */
