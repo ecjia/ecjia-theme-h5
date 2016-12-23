@@ -74,7 +74,7 @@
         			var title=$(this).find(".ecjia-location-list-title").text();
                     var address=$(this).find(".ecjia-location-list-address").text();
                     var url = $("#ecjia-zs").attr('data-url');
-                    url += '&address=' + address + title;
+                    url += '&addr=' + address + '&name=' + title;
 //                    url += '&address_info=' + title;
                     ecjia.pjax(url);
               });

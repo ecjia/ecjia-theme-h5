@@ -40,7 +40,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="form-group bf margin-right-left five-margin-top">
 				<label class="input">
 					<i class="iconfont icon-yanzhengma"></i>
-					<input name="verification" id="verification" type="text" datatype="*6-10" placeholder="邀请码6位数字或字母" errormsg="邀请码6位数字或字母">
+					<input name="verification" id="verification" type="text" datatype="*6-10" placeholder="邀请码6位数字或字母" errormsg="邀请码6位数字或字母" ignore="ignore">
 				</label>
 			</div>
 			<div class="form-group ecjia-margin-t margin-right-left">

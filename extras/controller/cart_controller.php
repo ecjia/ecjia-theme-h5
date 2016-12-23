@@ -626,7 +626,7 @@ class cart_controller {
         
         $cart_key = md5($address_id.$rec_id);
         $data = $_SESSION['cart'][$cart_key]['data'];
-        _dump($_SESSION['cart'],2);
+//         _dump($_SESSION['cart'],2);
         //分离线上支付线下支付
         $format_payment_list['online'] = array();
         $format_payment_list['offline'] = array();
