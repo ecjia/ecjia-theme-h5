@@ -7,7 +7,6 @@
 			ecjia.touch.spread.spread();
 			ecjia.touch.spread.hint();
 			ecjia.touch.spread.article();
-			ecjia.touch.spread.share();
 		},
 		spread: function() {
 			$(document).off('click', '.would-spread');
