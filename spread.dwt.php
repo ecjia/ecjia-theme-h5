@@ -23,7 +23,7 @@ function initPage() {
 		'url' : window.location.href,
 	};
 		
-	$.post(url, info, function(response, status){
+	$.post(url, info, function(response){
 		var data = response.data;
 		wx.config({
 			debug: true,
