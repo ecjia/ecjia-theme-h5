@@ -8,10 +8,17 @@ class user_controller {
      * 会员中心欢迎页
      */
     public static function init() {
+        
+//         _dump(ecjia_touch_user::singleton()->isSignin(),1);
         //网店信息
         $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
-        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        $token = ecjia_touch_user::singleton()->getToken();
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+        RC_Logger::getlogger('debug')->info('init-user');
+        RC_Logger::getlogger('debug')->info($user);
+//         _dump($user);
+//         _dump($_SESSION,1);
         if (!empty($user['avatar_img'])) {
             $user_img = $user['avatar_img'];
         }

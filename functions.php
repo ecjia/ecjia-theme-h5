@@ -301,6 +301,7 @@ RC_Hook::add_action('connect_callback_user_signin', function($userid){
     
         'user' => $user_info
     );
+//     _dump($res,1);
     RC_Logger::getlogger('debug')->info($res);
     ecjia_touch_user::singleton()->setUserinfo($res);
      
