@@ -11,17 +11,26 @@ class touch_controller {
         ecjia_front::$controller->assign('more_sales', RC_Uri::url('goods/index/promotion'));
         ecjia_front::$controller->assign('more_news', RC_Uri::url('goods/index/new'));
         ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
+        
+        //手动选择定位信息返回处理
         $addr = $_GET['addr'];
         $name = $_GET['name'];
+        $latng = explode(",", $_GET['latng']) ;
+        $longitude = $latng[1];
+        $latitude  = $latng[0];
+        
         if(!empty($addr)){
         	setcookie("location_address", $addr);
         	setcookie("location_name", $name);
+        	setcookie("longitude", $longitude);
+        	setcookie("latitude", $latitude);
         	setcookie("location_address_id", 0);
+        	
         	ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
         }
         
         $arr = array(
-        	'location' => array('longitude' => '121.416359', 'latitude' => '31.235371')
+        	'location' => array('longitude' => $longitude, 'latitude' => $latitude)
         );
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DATA)->data($arr)->run();
         //处理ecjiaopen url
@@ -91,32 +100,6 @@ class touch_controller {
         ecjia_front::$controller->assign_lang();
 
         ecjia_front::$controller->display('index.dwt');
-    }
-    
-    //请求接口返回数据
-    public static function my_location() {
-    	$old_locations = $_GET['lat'].','.$_GET['lng'];
-    	$key = "HVNBZ-HHR3P-HVBDP-LID55-D2YM3-2AF2W";
-//     	http://apis.map.qq.com/ws/coord/v1/translate?locations=39.12,116.83;30.21,115.43&type=3&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77
-    	$change_location = "https://apis.map.qq.com/ws/coord/v1/translate?locations=".$old_locations."&type=1"."&key=".$key;
-    	$response_location  = RC_Http::remote_get($change_location);
-    	$content = json_decode($response_location['body'],true);
-    	$tencent_locations =$content['locations'][0]['lat'].','.$content['locations'][0]['lng'];
-    
-//     	http://apis.map.qq.com/ws/geocoder/v1/?location=39.984154,116.307490&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&get_poi=1
-    	$url       = "https://apis.map.qq.com/ws/geocoder/v1/?location=".$tencent_locations."&key=".$key."&get_poi=1";
-    	$response_address= RC_Http::remote_get($url);
-    	$content   = json_decode($response_address['body'],true);
-    	$location_content = $content['result']['pois'][0];
-    	$location_name    = $location_content['title'];
-    	$location_address = $location_content['address'];
-    	
-    	setcookie("location_address", $location_address);
-    	setcookie("location_name", $location_name);
-    	setcookie("location_address_id", 0);
-    	
-    	$url = RC_Uri::url('touch/index/init');
-    	ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('url' => $url));
     }
    
     /**

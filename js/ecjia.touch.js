@@ -4,6 +4,34 @@
 ;(function(ecjia, $) {
 	ecjia.touch = {
 		init : function() {
+			
+			var what = $.cookie('what');
+			if(what === undefined){
+				
+				if (navigator.geolocation) {
+			  	    navigator.geolocation.getCurrentPosition(showPosition);
+			  	}
+			  	function showPosition(position) {
+				  	var lat=position.coords.latitude; 
+				  	var lng=position.coords.longitude;
+//				  	var href_url = window.location.href;
+			    	var url = $("#get_location").attr('data-url');
+				  	url += '&lat=' + lat + '&lng=' + lng;
+			  	     $.ajax({
+			  		    url:url,
+			  		    type:"GET",
+			  		    dataType:"json",
+			  		    success:function(data){
+			  		    	 ecjia.pjax(data.url);
+			      	    },
+			  		 });
+			  	}
+				$.cookie('what','first');
+			}else if($.cookie('location_name') === undefined){
+				$.cookie('what', '', { expires: -1 });
+			}
+
+			
 			ecjia.touch.setpjax();
 			ecjia.touch.asynclist();
 			ecjia.touch.ecjia_menu();
@@ -45,7 +73,7 @@
 		    if(data) {
 		    	if (data.length > 0) {
 			        for (var i = 0; i < data.length; i++) {
-			            var opt = '<li><p class="list_wrapper a1"><span class="ecjia-list_title ecjia-location-list-title">'+data[i].title+'</span><span class="ecjia-list_title ecjia-location-list-address">'+data[i].address+'</span></p></li>'
+			            var opt = '<li data-lng="'+data[i].location.lng+'" data-lat="'+data[i].location.lat+'"><p class="list_wrapper a1"><span class="ecjia-list_title ecjia-location-list-title">'+data[i].title+'</span><span class="ecjia-list_title ecjia-location-list-address">'+data[i].address+'</span></p></li>'
 			            $('.ecjia-location-list-wrap').append(opt);
 			        };
 			    }
@@ -58,12 +86,16 @@
         	if (type == 'index') {
         		var Uarry = $(".ecjia-location-list-wrap li");
                 $('.ecjia-location-list-wrap li').bind('click', function () {
+                	  var lng = $(this).attr("data-lng");
+                	  var lat = $(this).attr("data-lat");
                 	  var count=$(this).index();  
                       var Tresult=Uarry.eq(count).text();
                       var title = $(this).children().children("span[class*='ecjia-location-list-title']").html();
                       var address = $(this).children().children("span[class*='ecjia-location-list-address']").html();
                       $.cookie('location_address', address); 
-                      $.cookie("location_name", title);
+                      $.cookie('location_name', title);
+                      $.cookie('longitude', lng);
+                      $.cookie('latitude', lat);
                       $.cookie('location_address_id', 0); 
                       var url = $("#ecjia-zs").attr('data-url');
                       ecjia.pjax(url);
