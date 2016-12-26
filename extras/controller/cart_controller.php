@@ -234,7 +234,7 @@ class cart_controller {
         
         $pjax_url = RC_Uri::url('cart/flow/checkout', array('address_id' => $address_id, 'rec_id' => $rec_id));
         if(empty($rec_id)) {
-            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         if (empty($address_id)) {
             return ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
@@ -527,7 +527,7 @@ class cart_controller {
                 ),
             );
 //             _dump($params,1);
-            RC_Logger::getlogger('debug')->info($params);
+//             RC_Logger::getlogger('debug')->info($params);
             $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::FLOW_DONE)->data($params)
             ->send()->getBody();
             $rs = json_decode($rs,true);
@@ -626,7 +626,7 @@ class cart_controller {
         
         $cart_key = md5($address_id.$rec_id);
         $data = $_SESSION['cart'][$cart_key]['data'];
-        _dump($_SESSION['cart'],2);
+//         _dump($_SESSION['cart'],2);
         //分离线上支付线下支付
         $format_payment_list['online'] = array();
         $format_payment_list['offline'] = array();

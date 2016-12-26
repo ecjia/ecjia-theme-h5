@@ -43,6 +43,7 @@
 			ecjia.touch.close_app_download();
 			ecjia.touch.search_header();
 			ecjia.touch.del_history();
+			$("body").greenCheck();
 		},
 		
 		//搜索关键词定位开始
@@ -106,7 +107,7 @@
         			var title=$(this).find(".ecjia-location-list-title").text();
                     var address=$(this).find(".ecjia-location-list-address").text();
                     var url = $("#ecjia-zs").attr('data-url');
-                    url += '&address=' + address + title;
+                    url += '&addr=' + address + '&name=' + title;
 //                    url += '&address_info=' + title;
                     ecjia.pjax(url);
               });
@@ -216,7 +217,7 @@
 		 * 加载列表方法
 		 */
 		more : function(options) {
-			$(window).scrollTop(0);
+//			$(window).scrollTop(0);
 			var defaults = {
 				url			: false,					//url 			请求地址
 				page		: 1,						//page			分页

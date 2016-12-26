@@ -10,7 +10,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-
+<script type="text/javascript" >
+ecjia.touch.init();
+</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -28,8 +30,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <li>
                     <span class="slect-title">{$list.value}</span>
                     <span class="ecjiaf-fr">
-                        <input type="radio" name="inv_content" id="content-{$list.id}" value="{$list.value}" {if $temp.inv_content eq '' && $index eq 0}checked="true"{/if}{if $temp.inv_content eq $list.value}checked="true"{/if}>
-                        <label for="content-{$list.id}"></label>
+                        <label class="ecjia-check"><input type="radio" name="inv_content" id="content-{$list.id}" value="{$list.value}" {if $temp.inv_content eq '' && $index eq 0}checked="true"{/if}{if $temp.inv_content eq $list.value}checked="true"{/if}>
+                        </label>
                     </span>
                 </li>
             </label>
@@ -44,8 +46,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <li>
                     <span class="slect-title">{$list.value}</span>
                     <span class="ecjiaf-fr">
-                        <input type="radio" name="inv_type" id="type-{$list.id}" value="{$list.label_value}" {if $temp.inv_type eq '' && $index eq 0}checked="true"{/if}{if $temp.inv_type eq $list.label_value}checked="true"{/if}>
-                        <label for="type-{$list.id}"></label>
+                        <label class="ecjia-check"><input type="radio" name="inv_type" id="type-{$list.id}" value="{$list.label_value}" {if $temp.inv_type eq '' && $index eq 0}checked="true"{/if}{if $temp.inv_type eq $list.label_value}checked="true"{/if}>
+                        </label>
                     </span>
                 </li>
             </label>

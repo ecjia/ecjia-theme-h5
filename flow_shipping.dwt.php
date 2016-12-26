@@ -10,7 +10,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-
+<script type="text/javascript" >
+ecjia.touch.init();
+</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -23,10 +25,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <label class="select-item" for="shipping_{$list.shipping_code}">
                 <li>
                     <span class="slect-title">{$list.shipping_name}</span>
-                    <span class="ecjiaf-fr">
-                        <input type="radio" id="shipping_{$list.shipping_code}" name="shipping" value="{$list.shipping_id}"
+                    <span class="ecjiaf-fr ecjia-margin-l">
+                        <label class="ecjia-check"><input type="radio" id="shipping_{$list.shipping_code}" name="shipping" value="{$list.shipping_id}"
                         {if $smarty.get.shipping_id eq $list.shipping_id} checked="true"{/if}>
-                        <label for="shipping_{$list.shipping_code}"></label>
+                        </label>
                     </span>
                     <span class="ecjiaf-fr">{$list.format_shipping_fee}</span>
                 </li>
