@@ -154,6 +154,7 @@
         },
         
         share : function() {
+        	var url = $('input[name="spread_url"]').val();
         	if (url == undefined) {
         		return false;
         	}

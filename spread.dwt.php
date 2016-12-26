@@ -11,7 +11,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="footer"} -->
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"> </script>
 <script type="text/javascript">
-var url = '{$url}';
 var info = {
 	'url' : window.location.href
 };
@@ -45,6 +44,7 @@ ecjia.touch.spread.init();
 	<div class="ecjia-my-reward">
 		<a href="{url path='user/user_bonus/my_reward'}"><div class="my_reward">查看我的奖励</div></a>
 	</div>
+	<input type="hidden" name="spread_url" value="{$url}" />
 	
 	<div class="invite_explain"> 
 		<p class="invite_explain-literal">邀请说明：</p>
