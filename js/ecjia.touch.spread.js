@@ -7,6 +7,7 @@
 			ecjia.touch.spread.spread();
 			ecjia.touch.spread.hint();
 			ecjia.touch.spread.article();
+			ecjia.touch.spread.share();
 		},
 		spread: function() {
 			$(document).off('click', '.would-spread');
@@ -153,10 +154,13 @@
         },
         
         share : function() {
+        	if (url == undefined) {
+        		return false;
+        	}
         	$.post(url, info, function(response){
         		var data = response.data;
         		wx.config({
-        			debug: true,
+        			debug: false,
         			appId: data.appId,
         			timestamp: data.timestamp,
         			nonceStr: data.nonceStr,
