@@ -25,7 +25,6 @@ class touch_controller {
         	setcookie("longitude", $longitude);
         	setcookie("latitude", $latitude);
         	setcookie("location_address_id", 0);
-        	
         	ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
         }
         
@@ -33,6 +32,7 @@ class touch_controller {
         	'location' => array('longitude' => $longitude, 'latitude' => $latitude)
         );
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DATA)->data($arr)->run();
+
         //处理ecjiaopen url
         if (!empty($data)) {
         	foreach ($data as $k => $v) {
@@ -113,7 +113,7 @@ class touch_controller {
         $paramater = array(
         	'action_type' 	=> $type,	
  			'pagination' 	=> array('count' => $limit, 'page' => $page),
-			'location' 		=> array('longitude' => '121.416359', 'latitude' => '31.235371')
+			'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
         );
         
         $arr = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($paramater)->send()->getBody();

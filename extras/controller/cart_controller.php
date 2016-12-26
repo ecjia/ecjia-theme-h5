@@ -9,17 +9,23 @@ class cart_controller {
     public static function init() {
     	$addr = $_GET['addr'];
     	$name = $_GET['name'];
+    	$latng = explode(",", $_GET['latng']) ;
+    	$longitude = $latng[1];
+    	$latitude  = $latng[0];
+    	
     	if(!empty($addr)){
     		setcookie("location_address", $addr);
-    		setcookie("location_name", $name);
-    		setcookie("location_address_id", 0);
+        	setcookie("location_name", $name);
+        	setcookie("longitude", $longitude);
+        	setcookie("latitude", $latitude);
+        	setcookie("location_address_id", 0);
     		ecjia_front::$controller->redirect(RC_Uri::url('cart/index/init'));
     	}
     	
     	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
     		'token' 	=> $token,
-    		'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371')
+    		'location' 	=> array('longitude' => $longitude, 'latitude' => $latitude)
     	);
     	//店铺购物车商品
     	$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
@@ -87,7 +93,7 @@ class cart_controller {
     	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
     		'token' 	=> $token,
-    		'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371'),
+    		'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
     	);
     	if (!empty($store_id)) {
     		$arr['seller_id'] = $store_id;
@@ -141,7 +147,7 @@ class cart_controller {
     	$paramater = array(
     		'token' 	=> $token,
     		'seller_id' => $store_id,
-    		'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371')
+    		'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
     	);
     	 
     	//店铺购物车商品
@@ -245,8 +251,8 @@ class cart_controller {
             'address_id' => $address_id,
             'rec_id' => $rec_id,
             'location' => array(
-                'longitude' => '121.41709899974',
-                'latitude' => '31.235476867103'
+                'longitude' => $_COOKIE['longitude'],
+                'latitude' => $_COOKIE['latitude']
             ),
         );
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::FLOW_CHECKORDER)->data($params_cart)
@@ -443,8 +449,8 @@ class cart_controller {
             'address_id' => $address_id,
             'rec_id' => $rec_id,
             'location' => array(
-                'longitude' => '121.41709899974',
-                'latitude' => '31.235476867103'
+                'longitude' => $_COOKIE['longitude'],
+                'latitude' => $_COOKIE['latitude']
             ),
         );
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::FLOW_CHECKORDER)->data($params_cart)
@@ -522,8 +528,8 @@ class cart_controller {
                 'integral' => $integral,
                 'bonus' => $bonus,
                 'location' => array(
-                    'longitude' => '121.41709899974',
-                    'latitude' => '31.235476867103'
+                    'longitude' => $_COOKIE['longitude'],
+                    'latitude' => $_COOKIE['latitude']
                 ),
             );
 //             _dump($params,1);

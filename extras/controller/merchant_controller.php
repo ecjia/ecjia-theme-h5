@@ -15,7 +15,7 @@ class merchant_controller {
 		$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
 		 
 		//店铺信息
-		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data(array('seller_id' => $store_id, 'location' => array('longitude' => '121.416359', 'latitude' => '31.235371')))->run();
+		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data(array('seller_id' => $store_id, 'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])))->run();
 		ecjia_front::$controller->assign('store_info', $store_info);
 		ecjia_front::$controller->assign_title($store_info['seller_name']);
 	
@@ -76,7 +76,7 @@ class merchant_controller {
 		$arr = array(
 			'token' 	=> $token,
 			'seller_id' => $store_id,
-			'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371')
+			'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
 		);
 		 
 		//店铺购物车商品
@@ -242,7 +242,7 @@ class merchant_controller {
 		$arr = array(
 			'token' 	=> $token,
 			'seller_id' => $store_id,
-			'location' 	=> array('longitude' => '121.416359', 'latitude' => '31.235371')
+			'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
 		);
 		 
 		//店铺购物车商品
