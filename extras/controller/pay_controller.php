@@ -67,6 +67,9 @@ class pay_controller {
             }
         }
         
+        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
+        $detail = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
+        
         if ($need_other_payment && $order['order_pay_status'] == 0) {
             $params = array(
                 'token' => ecjia_touch_user::singleton()->getToken(),
@@ -79,9 +82,12 @@ class pay_controller {
                 ecjia_front::$controller->showmessage($rs_payment['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
             }
             $payment_list = touch_function::change_array_key($rs_payment['data']['payment'], 'pay_code');
-            unset($payment_list[$order['pay_code']]);
             //过滤当前支付方式
-            //             foreach
+            unset($payment_list[$order['pay_code']]);
+            //非自营过滤货到付款
+            if($detail['manage_mode'] != 'self') {
+                unset($payment_list['pay_cod']);
+            }
             ecjia_front::$controller->assign('payment_list', $payment_list);
         }
 //         _dump($rs_pay);
@@ -91,8 +97,7 @@ class pay_controller {
         }
         
         $order['order_id'] = $order_id;
-        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
-        $detail = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
+        
         ecjia_front::$controller->assign('detail', $detail);
         ecjia_front::$controller->assign('data', $order);
         ecjia_front::$controller->assign('pay_online', $order['pay_online']);
