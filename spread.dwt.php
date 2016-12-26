@@ -18,7 +18,7 @@ var info = {
 var title = '{$share_title}',
 	link = '{$invite_user.invite_url}',
 	desc = '{$invite_user.invite_template}';
-ecjia.touch.spread.share();
+ecjia.touch.spread.init();
 </script>
 <!-- {/block} -->
 
