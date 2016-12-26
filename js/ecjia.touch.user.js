@@ -88,7 +88,8 @@
 					    });
 					    myApp.alert(data.info);
 					} else {
-						ecjia.pjax(data.url);
+//						ecjia.pjax(data.url);
+						location.href = data.url;
 					}
 				});
         	});
