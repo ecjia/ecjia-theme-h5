@@ -7,6 +7,7 @@
 			ecjia.touch.spread.spread();
 			ecjia.touch.spread.hint();
 			ecjia.touch.spread.article();
+			ecjia.touch.spread.share();
 		},
 		spread: function() {
 			$(document).off('click', '.would-spread');
@@ -25,38 +26,34 @@
         },  
         
 		article: function() {
-				//滚动条事件
-				$(window).scroll(function(){
-					//获取滚动条的滑动距离
-					var scroH = $(this).scrollTop();
-					
-					$("ul .pf").each(function(i){
-						
+			//滚动条事件
+			$(window).scroll(function(){
+				//获取滚动条的滑动距离
+				var scroH = $(this).scrollTop();
+				$("ul .pf").each(function(i){
 //						滚动时候pf离顶部的距离
-						var pfTop = $(this).offset().top;
+					var pfTop = $(this).offset().top;
 //						console.log('div' + pfTop);
 //						console.log(scroH);
 
-						//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
-//						if (i>=1 && scroH >= pfTop-38) {
-//							$(this).css({"position":"fixed","top":0, "z-index":9});
-//						}else if(i==0 && scroH >= pfTop){
-//							$(this).css({"position":"fixed","top":0, "z-index":9});
-//						}else{
-//							$(this).css({"position":"relative"});
-//						}
+					//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+//					if (i>=1 && scroH >= pfTop-38) {
+//						$(this).css({"position":"fixed","top":0, "z-index":9});
+//					}else if(i==0 && scroH >= pfTop){
+//						$(this).css({"position":"fixed","top":0, "z-index":9});
+//					}else{
+//						$(this).css({"position":"relative"});
+//					}
+//					alert(pfTop);
+//					if(scroH>=pfTop){
 //						alert(pfTop);
-//						if(scroH>=pfTop){
-//							alert(pfTop);
-//							$(this).css("background","pink");
-//							$(".pf").css({"position":"fixed","top":0});
-//						}else if(scroH<pfTop){
-//							$(".pf").css({"position":"static"});
-//						}
-				    });
-				})
-		  
-			
+//						$(this).css("background","pink");
+//						$(".pf").css({"position":"fixed","top":0});
+//					}else if(scroH<pfTop){
+//						$(".pf").css({"position":"static"});
+//					}
+			    });
+			})
 		},
 		
 		hint: function() {
@@ -154,6 +151,72 @@
 			    $(".modal-inner").css("background-color", "#FFF");
 			    $(".modal-button-bold").css("background-color", "#FFF");
 			});
-        },     
+        },
+        
+        share : function() {
+        	$.post(url, info, function(response){
+        		var data = response.data;
+        		wx.config({
+        			debug: true,
+        			appId: data.appId,
+        			timestamp: data.timestamp,
+        			nonceStr: data.nonceStr,
+        			signature: data.signature,
+        			jsApiList: [
+        				'checkJsApi',
+        				'onMenuShareTimeline',
+        				'onMenuShareAppMessage',
+        				'onMenuShareAppMessage',
+        				'hideOptionMenu',
+        			]
+        		});
+        		wx.ready(function () {
+        			//分享到朋友圈
+        			wx.onMenuShareTimeline({
+        		        title: title, // 分享标题【必填】
+        		        link: link, // 分享链接【必填】
+        		        imgUrl: data.image, // 分享图标【必填】
+        		        success: function () { 
+        		            // 用户确认分享后执行的回调函数
+        		        },
+        		        cancel: function () { 
+        		            // 用户取消分享后执行的回调函数
+        		        }
+        		    });
+
+        			//分享给朋友
+        		    wx.onMenuShareAppMessage({
+        		        title: title, // 分享标题【必填】
+        		        desc: desc, // 分享描述【必填】
+        		        link: link, // 分享链接【必填】
+        		        imgUrl: data.image, // 分享图标【必填】
+        		        type: 'link', // 分享类型,music、video或link，不填默认为link【必填】
+        		        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        		        success: function () { 
+        		            // 用户确认分享后执行的回调函数
+//         					alert('已分享');
+        		        },
+        		        cancel: function () { 
+        		            // 用户取消分享后执行的回调函数
+//         					alert('已取消');
+        		        }
+        		    });
+
+        		    //分享到QQ
+        		    wx.onMenuShareQQ({
+        		        title: title, // 分享标题
+        		        desc: desc, // 分享描述
+        		        link: link, // 分享链接
+        		        imgUrl: data.image, // 分享图标
+        		        success: function () { 
+        		           // 用户确认分享后执行的回调函数
+        		        },
+        		        cancel: function () { 
+        		           // 用户取消分享后执行的回调函数
+        		        }
+        		    });
+        		});	
+        	});
+        },
 	};
 })(ecjia, jQuery);

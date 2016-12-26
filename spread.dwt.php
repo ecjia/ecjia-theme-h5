@@ -11,82 +11,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="footer"} -->
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"> </script>
 <script type="text/javascript">
-ecjia.touch.spread.init();
-
-/***用户打开页面的时候就加载**/
-$(document).ready(function(){
-	initPage();
-});
-function initPage() {
-	var url = "{$url}";
-	var info = {
-		'url' : window.location.href,
-	};
-		
-	$.post(url, info, function(response){
-		var data = response.data;
-		wx.config({
-			debug: true,
-			appId: data.appId,
-			timestamp: data.timestamp,
-			nonceStr: data.nonceStr,
-			signature: data.signature,
-			jsApiList: [
-				'checkJsApi',
-				'onMenuShareTimeline',
-				'onMenuShareAppMessage',
-				'onMenuShareAppMessage',
-				'hideOptionMenu',
-			]
-		});
-		wx.ready(function () {
-			//分享到朋友圈
-			wx.onMenuShareTimeline({
-		        title: "{$share_title}", // 分享标题【必填】
-		        link: "{$invite_user.invite_url}", // 分享链接【必填】
-		        imgUrl: data.image, // 分享图标【必填】
-		        success: function () { 
-		            // 用户确认分享后执行的回调函数
-		        },
-		        cancel: function () { 
-		            // 用户取消分享后执行的回调函数
-		        }
-		    });
-
-			//分享给朋友
-		    wx.onMenuShareAppMessage({
-		        title: "{$share_title}", // 分享标题【必填】
-		        desc: "{$invite_user.invite_template}", // 分享描述【必填】
-		        link: "{$invite_user.invite_url}", // 分享链接【必填】
-		        imgUrl: data.image, // 分享图标【必填】
-		        type: 'link', // 分享类型,music、video或link，不填默认为link【必填】
-		        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-		        success: function () { 
-		            // 用户确认分享后执行的回调函数
-// 					alert('已分享');
-		        },
-		        cancel: function () { 
-		            // 用户取消分享后执行的回调函数
-// 					alert('已取消');
-		        }
-		    });
-
-		    //分享到QQ
-		    wx.onMenuShareQQ({
-		        title: "{$share_title}", // 分享标题
-		        desc: "{$invite_user.invite_template}", // 分享描述
-		        link: "{$invite_user.invite_url}", // 分享链接
-		        imgUrl: data.image, // 分享图标
-		        success: function () { 
-		           // 用户确认分享后执行的回调函数
-		        },
-		        cancel: function () { 
-		           // 用户取消分享后执行的回调函数
-		        }
-		    });
-		});	
-	});
+var url = '{$url}';
+var info = {
+	'url' : window.location.href
 };
+var title = '{$share_title}',
+	link = '{$invite_user.invite_url}',
+	desc = '{$invite_user.invite_template}';
+ecjia.touch.spread.init();
 </script>
 <!-- {/block} -->
 
