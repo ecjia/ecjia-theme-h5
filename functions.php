@@ -269,19 +269,21 @@ RC_Hook::add_filter('connect_callback_template', function($data) {
 }, 10, 1);
     
 //第三方登录用户注册
-RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username, $password, $email) {
-    RC_Loader::load_theme('extras/functions/front_user.func.php');
-//     $result = register_mbt($username, $password, $email,'',1);
+// RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username, $password, $email) {
+//     RC_Loader::load_theme('extras/functions/front_user.func.php');
+// //     $result = register_mbt($username, $password, $email,'',1);
 
-    if (!is_ecjia_error($result)) {
-        return $result;
-    } else {
-        return $userid;
-    }
-}, 10, 4);
+//     if (!is_ecjia_error($result)) {
+//         return $result;
+//     } else {
+//         return $userid;
+//     }
+// }, 10, 4);
 
 //第三方登录用户登录
 RC_Hook::add_action('connect_callback_user_signin', function($userid){
+    RC_Logger::getlogger('debug')->info('关联登录，connect_callback_user_signin');
+    RC_Logger::getlogger('debug')->info($userid);
     RC_Loader::load_app_func('user', 'user');
     $user_info = EM_user_info($userid);
 //     $user_info = RC_Api::api('user', 'user_info', array('user_id' => $userid));
@@ -299,6 +301,7 @@ RC_Hook::add_action('connect_callback_user_signin', function($userid){
     
         'user' => $user_info
     );
+    RC_Logger::getlogger('debug')->info($res);
     ecjia_touch_user::singleton()->setUserinfo($res);
      
 //     $profile = array(
@@ -331,25 +334,25 @@ RC_Hook::add_action('connect_callback_user_signin', function($userid){
 });
     
 //授权登录用户绑定已有账号
-RC_Hook::add_filter('connect_callback_signin_template', function($get) {
-    RC_Loader::load_theme('extras/controller/connect_controller.php');
-    $connect_controller = new connect_controller();
-    return $connect_controller->user_bind($get);
-}, 10, 1);
+// RC_Hook::add_filter('connect_callback_signin_template', function($get) {
+//     RC_Loader::load_theme('extras/controller/connect_controller.php');
+//     $connect_controller = new connect_controller();
+//     return $connect_controller->user_bind($get);
+// }, 10, 1);
     
 //授权登录用户绑定已有账号-验证用户名密码
-RC_Hook::add_filter('connect_callback_bind_signin', function($uid, $username, $password) {
-    RC_Loader::load_app_class('integrate','user', false);
-    $user = integrate::init_users();
-    RC_Loader::load_theme('extras/functions/front_user.func.php');
-    if ($user->login($username, $password)) {
-//         update_user_info_mbt();
-        return $_SESSION['user_id'];
-    } else {
-        return false;
-    }
+// RC_Hook::add_filter('connect_callback_bind_signin', function($uid, $username, $password) {
+//     RC_Loader::load_app_class('integrate','user', false);
+//     $user = integrate::init_users();
+//     RC_Loader::load_theme('extras/functions/front_user.func.php');
+//     if ($user->login($username, $password)) {
+// //         update_user_info_mbt();
+//         return $_SESSION['user_id'];
+//     } else {
+//         return false;
+//     }
 
-}, 10, 3);
+// }, 10, 3);
 
 //查找用户userid
 /* RC_Hook::add_filter('connect_openid_exist_userid', function ($uid, $connect_code, $open_id) {

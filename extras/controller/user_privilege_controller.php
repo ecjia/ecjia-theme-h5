@@ -214,7 +214,7 @@ class user_privilege_controller {
         }
         
         $data = ecjia_touch_user::singleton()->signin($username, $password);
-        $user = ecjia_touch_user::singleton()->getUserinfo();
+        
         if (is_ecjia_error($data)) {
             $message = $data->get_error_message();
             return ecjia_front::$controller->showmessage($message, ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('info' => $message));
@@ -225,10 +225,16 @@ class user_privilege_controller {
 //                 $url = $referer_url;
 //             }
 //             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
+            $user = ecjia_touch_user::singleton()->getUserinfo();
+            
             RC_Loader::load_app_class('connect_user', 'connect', false);
             $connect_user = new connect_user($connect_code, $open_id);
             if ($user['id']) {
                 $result = $connect_user->bind_user($user['id'], 0);
+            } else {
+                RC_Logger::getlogger('debug')->info('关联账号错误');
+                RC_Logger::getlogger('debug')->info($user);
+                return ecjia_front::$controller->showmessage('用户验证成功，获取用户信息失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
 //             _dump($result,1);
             if ($result) {

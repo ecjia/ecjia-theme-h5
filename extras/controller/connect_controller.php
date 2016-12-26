@@ -11,6 +11,7 @@ class connect_controller {
      * @param unknown $data
      */
     public static function callback_template($data) {
+        RC_Logger::getlogger('debug')->info('callback_template');
         RC_Logger::getlogger('debug')->info($data);
 
         if (is_ecjia_error($data)) {

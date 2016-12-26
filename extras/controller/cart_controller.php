@@ -527,7 +527,7 @@ class cart_controller {
                 ),
             );
 //             _dump($params,1);
-            RC_Logger::getlogger('debug')->info($params);
+//             RC_Logger::getlogger('debug')->info($params);
             $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::FLOW_DONE)->data($params)
             ->send()->getBody();
             $rs = json_decode($rs,true);
