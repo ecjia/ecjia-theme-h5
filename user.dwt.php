@@ -11,7 +11,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="footer"} -->
 <script type="text/javascript">
 	ecjia.touch.user.init();
-	ecjia.touch.spread.init();
 </script>
 <!-- {/block} -->
 
@@ -116,7 +115,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
        <li>
-        	<a href="{url path='user/index/spread'}&name={$user.name}">
+        	<a class="nopjax" href="{url path='user/index/spread'}&name={$user.name}">
         		<div class="icon-expand"><img src="./images/user_center/expand.png"></div>
         		<span class="icon-name">我的推广</span>
         		<i class="iconfont  icon-jiantou-right"></i>
