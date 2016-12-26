@@ -17,6 +17,7 @@ RC_Hook::add_action('location/index/select_location', array('location_controller
 RC_Hook::add_action('location/index/search_location', array('location_controller', 'search_location'));
 RC_Hook::add_action('location/index/search_list', 	  array('location_controller', 'search_list'));
 RC_Hook::add_action('location/index/select_city', 	  array('location_controller', 'select_city'));
+RC_Hook::add_action('location/index/get_location_msg',array('location_controller', 'get_location_msg'));
 
 
 //商品

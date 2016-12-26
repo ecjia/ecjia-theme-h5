@@ -162,8 +162,8 @@ class user_order_controller {
                     'goods_id' => $goods['goods_id'],
                     'number' => $goods['goods_number'],
                     'location' => array(
-                        'longitude' => '121.41709899974',
-                        'latitude' => '31.235476867103'
+                        'longitude' => $_COOKIE['longitude'],
+                        'latitude' => $_COOKIE['latitude']
                     ),
                 );
                 $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CREATE)->data($params_cart)

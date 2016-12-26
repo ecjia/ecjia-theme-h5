@@ -7,7 +7,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 
 {if $address}
-<div class="ecjia-mod ecjia-header ecjia-header-index" style="height:5.5em" id="location" data-url="{url path='touch/index/my_location'}">
+<div class="ecjia-mod ecjia-header ecjia-header-index" style="height:5.5em" id="location">
 	<div class="ecjia-web">
 		<div class="ecjia-address">
 			<a href="{url path='location/index/select_location' args="city={if $smarty.get.city}{$smarty.get.city}{else}北京{/if}"}" >

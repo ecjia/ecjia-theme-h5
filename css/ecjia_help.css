@@ -33,6 +33,21 @@
 	font-family: '黑体';
 	position: relative;
 	width: 100%;
+	max-width: 640px;	
+}
+.ecjia-article ul>.df {
+	font-size: 1.1em;
+	font-weight: bold;
+	color: #232323;
+	padding-left: 3%;
+	line-height: 2.5em;
+	background-color: #EFEFEF;
+	font-family: '黑体';
+	position: fixed;
+	width: 100%;
+	max-width: 640px;
+	top:0;
+	z-index: 9;
 }
 .ecjia-article .list-one li {
 	height: 3em;

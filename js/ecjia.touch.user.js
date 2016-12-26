@@ -88,7 +88,8 @@
 					    });
 					    myApp.alert(data.info);
 					} else {
-						ecjia.pjax(data.url);
+//						ecjia.pjax(data.url);
+						location.href = data.url;
 					}
 				});
         	});
@@ -304,17 +305,21 @@
 			$("#password1").on('click', function(e){
 				if ($("#password-1").attr("type") == "password") {
 		            $("#password-1").attr("type", "text")
+		            $('#password1').css('color', '#47aa4d');
 		        }
 		        else {
 		            $("#password-1").attr("type", "password")
+		            $('#password1').css('color', '#ddd');
 		        }
 			});
 			$("#password2").on('click', function(e){
 				if ($("#password-2").attr("type") == "password") {
 		            $("#password-2").attr("type", "text")
+		            $('#password2').css('color', '#47aa4d');
 		        }
 		        else {
 		            $("#password-2").attr("type", "password")
+		            $('#password2').css('color', '#ddd');
 		        }
 			});
 		},
