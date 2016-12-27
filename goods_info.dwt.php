@@ -72,7 +72,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			                	<del> 原价：{$goods_info.shop_price}</del></br>
 			                	<div class="ecjia-left-time">
 			                		<span class="detail-clock-icon"></span>
-									<span class="promote-time" data-type="1" value="{$goods_info.promote_end_time}"></span>
+									<span class="goods-detail-promote" data-type="1" value="{$goods_info.promote_end_time}"></span>
 			                	</div>
 			                </div>
 			                <div class="cart-plus-right">
