@@ -656,7 +656,7 @@
 	$(document).on('pjax:popstate', function() {
 
 	});
-
+	
 	//PJAX历史和跳转都会执行的方法
 	$(document).on('pjax:end', function() {
         $('.la-ball-atom').remove();
@@ -668,8 +668,19 @@
 		ecjia.touch.category.init();
 		ecjia.touch.index.swiper_promotion();
 		ecjia.touch.ecjia_menu();
-	});
 
+
+		var title = $(document).attr('title');
+		var $body = $('body');
+//		console.log(title);
+		document.title = title;
+		var $iframe = $("<iframe style='display:none;' src='/favicon.ico'></iframe>");
+		$iframe.on('pjax:end',function() {
+		    setTimeout(function() {
+		      $iframe.off('pjax:end').remove();
+		    }, 0);
+		  }).appendTo($body);
+	});
 })(ecjia, jQuery);
 
 $(function(){
