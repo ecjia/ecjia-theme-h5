@@ -449,6 +449,10 @@
         	if (url == undefined) {
         		return false;
         	}
+        	var info = {
+    			'url' : window.location.href
+    		};
+        	console.log(info);
         	$.post(url, info, function(response){
         		var data = response.data;
         		wx.config({
