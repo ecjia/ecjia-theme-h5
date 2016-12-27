@@ -14,8 +14,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 var title = '{$share_title}',
 	link = '{$invite_user.invite_url}',
 	desc = '{$invite_user.invite_template}';
-ecjia.touch.user.init();
 ecjia.touch.spread.init();
+ecjia.touch.init();
 </script>
 <!-- {/block} -->
 

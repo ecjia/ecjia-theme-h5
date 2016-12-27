@@ -20,8 +20,7 @@
 			ecjia.touch.user.show_password();
 			ecjia.touch.user.modify_username();
 			ecjia.touch.user.record_cancel();
-			ecjia.touch.user.share_spread();
-			
+
 			$(function(){
 				$(".del").click(function(){
 					if(!confirm('您确定要删除吗？')){
@@ -443,78 +442,6 @@
 				}
 			})
 		},
-		
-		share_spread : function() {
-			var url = $('input[name="spread_url"]').val();
-        	if (url == undefined) {
-        		return false;
-        	}
-        	var info = {
-    			'url' : window.location.href
-    		};
-        	console.log(info);
-        	$.post(url, info, function(response){
-        		var data = response.data;
-        		wx.config({
-        			debug: true,
-        			appId: data.appId,
-        			timestamp: data.timestamp,
-        			nonceStr: data.nonceStr,
-        			signature: data.signature,
-        			jsApiList: [
-        				'checkJsApi',
-        				'onMenuShareTimeline',
-        				'onMenuShareAppMessage',
-        				'onMenuShareAppMessage',
-        				'hideOptionMenu',
-        			]
-        		});
-        		wx.ready(function () {
-        			//分享到朋友圈
-        			wx.onMenuShareTimeline({
-        		        title: title, 					// 分享标题【必填】
-        		        link: link, 					// 分享链接【必填】
-        		        imgUrl: data.image, 			// 分享图标【必填】
-        		        success: function () { 
-        		            // 用户确认分享后执行的回调函数
-        		        },
-        		        cancel: function () { 
-        		            // 用户取消分享后执行的回调函数
-        		        }
-        		    });
-
-        			//分享给朋友
-        		    wx.onMenuShareAppMessage({
-        		        title: title, 					// 分享标题【必填】
-        		        desc: desc,	 					// 分享描述【必填】
-        		        link: link, 					// 分享链接【必填】
-        		        imgUrl: data.image, 			// 分享图标【必填】
-        		        type: 'link', 					// 分享类型,music、video或link，不填默认为link【必填】
-        		        dataUrl: '', 					// 如果type是music或video，则要提供数据链接，默认为空
-        		        success: function () { 
-        		            // 用户确认分享后执行的回调函数
-        		        },
-        		        cancel: function () { 
-        		            // 用户取消分享后执行的回调函数
-        		        }
-        		    });
-
-        		    //分享到QQ
-        		    wx.onMenuShareQQ({
-        		        title: title, 					// 分享标题
-        		        desc: desc, 					// 分享描述
-        		        link: link, 					// 分享链接
-        		        imgUrl: data.image, 			// 分享图标
-        		        success: function () { 
-        		           // 用户确认分享后执行的回调函数
-        		        },
-        		        cancel: function () { 
-        		           // 用户取消分享后执行的回调函数
-        		        }
-        		    });
-        		});	
-        	});
-		}
 	};
 
 	// ecjia.touch.getpwd = {
