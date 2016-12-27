@@ -200,7 +200,7 @@
 		 * 加载列表方法
 		 */
 		more : function(options) {
-//			$(window).scrollTop(0);
+			$(window).scrollTop(0);
 			var defaults = {
 				url			: false,					//url 			请求地址
 				page		: 1,						//page			分页

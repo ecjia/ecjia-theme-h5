@@ -105,6 +105,13 @@ class goods_controller {
 
 		/*商品描述*/
 	    $goods_desc = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DESC)->data(array('goods_id' => $goods_id))->run();
+	    
+	    if (!empty($goods_desc)) {
+	    	$res = array();
+	    	preg_match('/<body>([\s\S]*?)<\/body>/', $goods_desc, $res);
+	    	$bodystr = trim($res[0]);
+	    	ecjia_front::$controller->assign('goods_desc', $bodystr);
+	    }
 	    if (!empty($rec_id)) {
 	    	ecjia_front::$controller->assign('rec_id', $rec_id);
 	    }
@@ -112,7 +119,7 @@ class goods_controller {
 	    ecjia_front::$controller->assign('num', $num);
 	    ecjia_front::$controller->assign('total_num', $total_num);
 	    ecjia_front::$controller->assign('goods_info', $goods_info);
-	    ecjia_front::$controller->assign('goods_desc', $goods_desc);
+	    
 	    
 	    ecjia_front::$controller->assign('cart_list', $cart_goods_list['cart_list'][0]['goods_list']);
 	    ecjia_front::$controller->assign('count', $cart_goods_list['cart_list'][0]['total']);

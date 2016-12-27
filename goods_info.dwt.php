@@ -159,7 +159,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 {/if}
 <!-- 切换商品页面end -->
 
-
 <!-- 切换详情页面start -->
 {if $no_goods_info neq 1}
 <div class="goods-desc-info active" id="goods-info-two" style="margin-top:3.5em;">
