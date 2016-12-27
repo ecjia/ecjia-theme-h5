@@ -482,11 +482,6 @@
             var k = $('#keywordBox').val();
             $('#keywordBox').val('').focus().val(k);
 
-            
-//			$('.ecjia-mod').show();
-//			$('.ecjia-search-panel').hide();
-//			$('#keywordBox').val('');
-			
 			$('.btn-search').off('click').on('click', function(e) {
 				var val = $('input[name="keywords"]').val().trim(),
 					url = $('.ecjia-form').attr('action'),
@@ -500,10 +495,6 @@
 				}
 			});
 			$('.search-goods').off('click').on('click', function(){
-//				$('.ecjia-mod').hide();
-//				$('.ecjia-search-panel').show();
-//				$('#keywordBox').val('').focus();
-//				return false;
                 var $this = $(this),
                 url = $this.attr('data-url'),
                 keywords = $this.attr('data-val');
@@ -512,13 +503,6 @@
                 };
                 ecjia.pjax(url);
 			});
-			
-//			$('.search-cancel').off('click').on('click', function(){
-//				$('.ecjia-mod').show();
-//				$('.ecjia-search-panel').hide();
-//				$('#keywordBox').val('');
-//				return false;
-//			});
         },
         
         enter_search : function() {
@@ -575,7 +559,6 @@
 			var info = {
     			'url' : window.location.href
     		};
-        	console.log(info);
 			var url = $('input[name="spread_url"]').val();
         	if (url == undefined) {
         		return false;
@@ -583,7 +566,7 @@
         	$.post(url, info, function(response){
         		var data = response.data;
         		wx.config({
-        			debug: true,
+        			debug: false,
         			appId: data.appId,
         			timestamp: data.timestamp,
         			nonceStr: data.nonceStr,
