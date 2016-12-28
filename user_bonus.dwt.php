@@ -38,7 +38,11 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 			<div class="user-bonus-info {if $item.label_status eq '未使用'}user-bonus-head{else}user-bonus-head-expired{/if}">
 				<div {if $item.status eq 'allow_use'} class="type-l"{else}class="type-l color-3a"{/if}">
 				    <span class="bonus-amount">{$item.formatted_bonus_amount}</span><br>
+				    {if $item.seller_name == ''}
+				    <span class="bonus-store">全场通用</span>
+				    {else}
 				    <span class="bonus-store">指定{$item.seller_name}店铺使用</span>
+				    {/if}
 				</div>
 				<div  {if $item.status eq 'allow_use'} class="type-r"{else}class="type-r color-3a"{/if}>
 				    <div {if $item.status eq 'expired'}class="img-is-used"{elseif $item.status eq 'is_used'}class="img-expired"{else}class=""{/if}></div>

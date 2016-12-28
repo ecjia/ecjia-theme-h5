@@ -115,7 +115,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
        <li>
-        	<a href="{url path='user/index/spread'}&name={$user.name}">
+        	<a class="nopjax" href="{url path='user/index/spread'}&name={$user.name}">
         		<div class="icon-expand"><img src="./images/user_center/expand.png"></div>
         		<span class="icon-name">我的推广</span>
         		<i class="iconfont  icon-jiantou-right"></i>
@@ -125,7 +125,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
     <ul class="ecjia-list list-short">
         <li>
-        	<a href="tel:4001021758">
+        	<a class="nopjax" href="tel:4001021758">
         		<div class="icon-website-service"><img src="./images/user_center/75x75_5.png"></div>
         		<span class="icon-name">官网客服</span>
         		<span class="icon-price">{'4001-021-758'}</span>
@@ -133,7 +133,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
         <li>
-        	<a href="https://ecjia.com" target="_blank">
+        	<a class="nopjax" href="https://ecjia.com" target="_blank">
         		<div class="icon-offical-website"><img src="./images/user_center/75x75_6.png"></div>
         		<span class="icon-name">官网网站</span>
         		<span class="icon-price">{'www.ecjia.com'}</span>

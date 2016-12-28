@@ -10,8 +10,8 @@ class cart_controller {
     	$addr = $_GET['addr'];
     	$name = $_GET['name'];
     	$latng = explode(",", $_GET['latng']) ;
-    	$longitude = $latng[1];
-    	$latitude  = $latng[0];
+    	$longitude = !empty($latng[1]) ? $latng[1] : $_COOKIE['longitude'];
+    	$latitude  = !empty($latng[0]) ? $latng[0] : $_COOKIE['latitude'];
     	
     	if(!empty($addr)){
     		setcookie("location_address", $addr);

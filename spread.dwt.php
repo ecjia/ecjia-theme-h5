@@ -11,14 +11,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="footer"} -->
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"> </script>
 <script type="text/javascript">
-var info = {
-	'url' : window.location.href
-};
 var title = '{$share_title}',
 	link = '{$invite_user.invite_url}',
 	desc = '{$invite_user.invite_template}';
 ecjia.touch.spread.init();
-ecjia.touch.user.init();
+ecjia.touch.init();
 </script>
 <!-- {/block} -->
 

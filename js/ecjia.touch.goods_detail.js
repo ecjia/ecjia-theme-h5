@@ -50,7 +50,7 @@
         	clearInterval(InterValObj);
         	
         	InterValObj = setInterval(function(){ 
-        		$(".promote-time").each(function(){ 
+        		$(".goods-detail-promote").each(function(){ 
         			var obj = $(this); 
         			var endTime = new Date((parseInt(obj.attr('value')) + 8*3600) * 1000);
         			var nowTime = new Date(); 

@@ -644,7 +644,7 @@ ul, li, ol, dl, dt, dd {
     width: 100%;
     background: rgba(0,0,0,.4);
     bottom: 1.7em;
-    font-size: .8em;
+    font-size: .9em;
     text-align: center;
     color: #fff;
 	line-height: 2em;
@@ -3332,6 +3332,7 @@ footer{
 	padding: .5em 0;
 }
 .ecjia-bonus.ecjia-list-two .user-bonus-info .type-l{
+    height: 5em;
 	margin-top: .7em;
     float: left;
     width: 32%;
@@ -3830,7 +3831,7 @@ footer{
 	width:22px;
 	float:right;
 }
-.goods-info .ecjia-left-time .promote-time{
+.goods-info .ecjia-left-time .goods-detail-promote{
 	height:1.1em;
 	line-height:1.5em;
 	font-size:.7em;

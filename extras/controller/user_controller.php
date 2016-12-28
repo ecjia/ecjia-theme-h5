@@ -26,7 +26,6 @@ class user_controller {
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('shop', $shop);
         ecjia_front::$controller->assign('active', 'mine');
-        ecjia_front::$controller->assign('hideinfo', 1);
         
         ecjia_front::$controller->assign_title('个人中心');
         ecjia_front::$controller->assign_lang();

@@ -36,6 +36,7 @@ class user_privilege_controller {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNOUT)->run();
             $data = json_decode($data,true);
             $back_act = RC_Uri::url('user/privilege/login');
+            ecjia_touch_user::singleton()->signout();
             return ecjia_front::$controller->showmessage('',ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('logout_url' => $back_act));
         }
     }
@@ -253,19 +254,20 @@ class user_privilege_controller {
         if (strlen($verification) > 6) {
             return ecjia_front::$controller->showmessage(__('邀请码格式不正确'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
+        $_SESSION['verification'] = $verification;
         $code = !empty($_POST['code']) ? trim($_POST['code']) : '';
         $mobile = !empty($_POST['mobile']) ? htmlspecialchars($_POST['mobile']) : '';
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code))->send()->getBody();
         $data = json_decode($data,true);
         if ($data['status']['succeed'] == 1) {
-            return ecjia_front::$controller->showmessage(__(''), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/set_password&verification='.$verification)));
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/set_password')));
         } else {
             return ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
     }
     
     public static function set_password() {
-        $verification = !empty($_GET['verification']) ? $_GET['verification'] : ''; 
+        $verification = !empty($_SESSION['verification']) ? $_SESSION['verification'] : ''; 
         $mobile = !empty($_SESSION['mobile']) ? $_SESSION['mobile'] : '';
         $username = !empty($_POST['username']) ? $_POST['username'] : '';
         $password = is_numeric($_POST['password']) ? $_POST['password'] : '';
@@ -273,6 +275,7 @@ class user_privilege_controller {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => $password, 'invite_code' => $verification))->send()->getBody();
             $data = json_decode($data,true);
             if ($data['status']['succeed'] == 1) {
+                unset($_SESSION['verification']);
                 return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('login')));
             } else {
                 return ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);

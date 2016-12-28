@@ -4,10 +4,8 @@
 ;(function(ecjia, $) {
 	ecjia.touch = {
 		init : function() {
-			
 			var what = $.cookie('what');
 			if(what === undefined){
-				
 				if (navigator.geolocation) {
 			  	    navigator.geolocation.getCurrentPosition(showPosition);
 			  	}
@@ -30,8 +28,6 @@
 			}else if($.cookie('location_name') === undefined){
 				$.cookie('what', '', { expires: -1 });
 			}
-
-			
 			ecjia.touch.setpjax();
 			ecjia.touch.asynclist();
 			ecjia.touch.ecjia_menu();
@@ -43,6 +39,7 @@
 			ecjia.touch.close_app_download();
 			ecjia.touch.search_header();
 			ecjia.touch.del_history();
+			ecjia.touch.share_spread();
 			$("body").greenCheck();
 		},
 		
@@ -194,22 +191,8 @@
 						type		: $this.attr('data-type'),
 					};
 				ecjia.touch.more(options);
-//				var loaderimgurl = $this.attr('data-loadimg') || false;
-//				if (loaderimgurl) {
-//					$loader = $('<a class="load-list" href="javascript:;"><img src="'+loaderimgurl+'" /></a>');
-					$loader = $('<a class="load-list" href="javascript:;">' + 
-									'<div class="loaders">' +
-										'<div class="loader">' + 
-											'<div class="loader-inner ball-pulse">' + 
-												'<div></div>' + 
-												'<div></div>' + 
-												'<div></div>' + 
-											'</div>' +
-										'</div>' +
-									'</div>' +
-								'</a>');
-					$this.after($loader);
-//				}
+				$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
+				$this.after($loader);
 			}
 		},
 
@@ -217,7 +200,7 @@
 		 * 加载列表方法
 		 */
 		more : function(options) {
-//			$(window).scrollTop(0);
+			$(window).scrollTop(0);
 			var defaults = {
 				url			: false,					//url 			请求地址
 				page		: 1,						//page			分页
@@ -499,11 +482,6 @@
             var k = $('#keywordBox').val();
             $('#keywordBox').val('').focus().val(k);
 
-            
-//			$('.ecjia-mod').show();
-//			$('.ecjia-search-panel').hide();
-//			$('#keywordBox').val('');
-			
 			$('.btn-search').off('click').on('click', function(e) {
 				var val = $('input[name="keywords"]').val().trim(),
 					url = $('.ecjia-form').attr('action'),
@@ -517,10 +495,6 @@
 				}
 			});
 			$('.search-goods').off('click').on('click', function(){
-//				$('.ecjia-mod').hide();
-//				$('.ecjia-search-panel').show();
-//				$('#keywordBox').val('').focus();
-//				return false;
                 var $this = $(this),
                 url = $this.attr('data-url'),
                 keywords = $this.attr('data-val');
@@ -529,13 +503,6 @@
                 };
                 ecjia.pjax(url);
 			});
-			
-//			$('.search-cancel').off('click').on('click', function(){
-//				$('.ecjia-mod').show();
-//				$('.ecjia-search-panel').hide();
-//				$('#keywordBox').val('');
-//				return false;
-//			});
         },
         
         enter_search : function() {
@@ -586,7 +553,78 @@
                 time = hour + ':' + minute;
             var html = '<i class="icon-goods-hot"></i>' + time + ' 热门推荐已更新';
             $('.ecjia-new-goods').find('.goods-index-title').html(html);
-		}
+		},
+		
+		share_spread : function() {
+			var info = {
+    			'url' : window.location.href
+    		};
+			var url = $('input[name="spread_url"]').val();
+        	if (url == undefined) {
+        		return false;
+        	}
+        	$.post(url, info, function(response){
+        		var data = response.data;
+        		wx.config({
+        			debug: false,
+        			appId: data.appId,
+        			timestamp: data.timestamp,
+        			nonceStr: data.nonceStr,
+        			signature: data.signature,
+        			jsApiList: [
+        				'checkJsApi',
+        				'onMenuShareTimeline',
+        				'onMenuShareAppMessage',
+        				'onMenuShareAppMessage',
+        				'hideOptionMenu',
+        			]
+        		});
+        		wx.ready(function () {
+        			//分享到朋友圈
+        			wx.onMenuShareTimeline({
+        		        title: title, 					// 分享标题【必填】
+        		        link: link, 					// 分享链接【必填】
+        		        imgUrl: data.image, 			// 分享图标【必填】
+        		        success: function () { 
+        		            // 用户确认分享后执行的回调函数
+        		        },
+        		        cancel: function () { 
+        		            // 用户取消分享后执行的回调函数
+        		        }
+        		    });
+
+        			//分享给朋友
+        		    wx.onMenuShareAppMessage({
+        		        title: title, 					// 分享标题【必填】
+        		        desc: desc,	 					// 分享描述【必填】
+        		        link: link, 					// 分享链接【必填】
+        		        imgUrl: data.image, 			// 分享图标【必填】
+        		        type: 'link', 					// 分享类型,music、video或link，不填默认为link【必填】
+        		        dataUrl: '', 					// 如果type是music或video，则要提供数据链接，默认为空
+        		        success: function () { 
+        		            // 用户确认分享后执行的回调函数
+        		        },
+        		        cancel: function () { 
+        		            // 用户取消分享后执行的回调函数
+        		        }
+        		    });
+
+        		    //分享到QQ
+        		    wx.onMenuShareQQ({
+        		        title: title, 					// 分享标题
+        		        desc: desc, 					// 分享描述
+        		        link: link, 					// 分享链接
+        		        imgUrl: data.image, 			// 分享图标
+        		        success: function () { 
+        		           // 用户确认分享后执行的回调函数
+        		        },
+        		        cancel: function () { 
+        		           // 用户取消分享后执行的回调函数
+        		        }
+        		    });
+        		});	
+        	});
+		},
 	};
 
     function checkTime(i) {
@@ -618,7 +656,7 @@
 	$(document).on('pjax:popstate', function() {
 
 	});
-
+	
 	//PJAX历史和跳转都会执行的方法
 	$(document).on('pjax:end', function() {
         $('.la-ball-atom').remove();
@@ -630,8 +668,21 @@
 		ecjia.touch.category.init();
 		ecjia.touch.index.swiper_promotion();
 		ecjia.touch.ecjia_menu();
-	});
 
+	    var ua = navigator.userAgent.toLowerCase();
+	    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+	    	var title = $(document).attr('title');
+			var $body = $('body');
+			document.title = title;
+			var $iframe = $("<iframe style='display:none;' src='/favicon.ico'></iframe>");
+			$iframe.on('pjax:end',function() {
+			    setTimeout(function() {
+			      $iframe.off('pjax:end').remove();
+			    }, 0);
+			  }).appendTo($body);
+	    }
+		    
+	});
 })(ecjia, jQuery);
 
 $(function(){
