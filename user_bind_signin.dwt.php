@@ -42,7 +42,7 @@ ecjia.touch.user.submitForm();
 	</div>
 	<!--{/if}-->
 	<div class="ecjia-login-b ecjia-login-login-foot margin-right-left">
-		<a class="ecjiaf-fr ecjia-margin-r ecjia-margin-t" href="{url path='user/index/mobile_register'}">{$lang.forgot_password}?</a>
+		<a class="ecjiaf-fr ecjia-margin-r ecjia-margin-t" href="{url path='user/get_password/mobile_register'}">{$lang.forgot_password}?</a>
 	</div>
 	<div class="ecjia-login-b">
 	    <div class="around">
