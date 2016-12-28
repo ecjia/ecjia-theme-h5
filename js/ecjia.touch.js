@@ -669,17 +669,19 @@
 		ecjia.touch.index.swiper_promotion();
 		ecjia.touch.ecjia_menu();
 
-
-		var title = $(document).attr('title');
-		var $body = $('body');
-//		console.log(title);
-		document.title = title;
-		var $iframe = $("<iframe style='display:none;' src='/favicon.ico'></iframe>");
-		$iframe.on('pjax:end',function() {
-		    setTimeout(function() {
-		      $iframe.off('pjax:end').remove();
-		    }, 0);
-		  }).appendTo($body);
+	    var ua = navigator.userAgent.toLowerCase();
+	    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+	    	var title = $(document).attr('title');
+			var $body = $('body');
+			document.title = title;
+			var $iframe = $("<iframe style='display:none;' src='/favicon.ico'></iframe>");
+			$iframe.on('pjax:end',function() {
+			    setTimeout(function() {
+			      $iframe.off('pjax:end').remove();
+			    }, 0);
+			  }).appendTo($body);
+	    }
+		    
 	});
 })(ecjia, jQuery);
 
