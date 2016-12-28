@@ -28,8 +28,8 @@ ecjia.touch.user.submitForm();
 	<div class="form-group ecjia-margin-t margin-right-left">
 		<label class="input">
 			<i class="iconfont icon-lock "></i>
-			<i class="iconfont icon-attention ecjia-login-margin-l"></i>
-			<input placeholder="{$lang.input_passwd}" name="password" type="password" datatype="*6-16" errormsg="密码错误请重新输入！" nullmsg="请输入密码" />
+			<i class="iconfont icon-attention ecjia-login-margin-l"  id="password1"></i>
+			<input placeholder="{$lang.input_passwd}" name="password" type="password" id="password-1" datatype="*6-16" errormsg="密码错误请重新输入！" nullmsg="请输入密码" />
 		</label>
 	</div>
 	<!-- 判断是否启用验证码{if $enabled_captcha} -->
