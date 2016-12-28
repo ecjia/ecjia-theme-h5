@@ -3332,6 +3332,7 @@ footer{
 	padding: .5em 0;
 }
 .ecjia-bonus.ecjia-list-two .user-bonus-info .type-l{
+    height: 5em;
 	margin-top: .7em;
     float: left;
     width: 32%;
