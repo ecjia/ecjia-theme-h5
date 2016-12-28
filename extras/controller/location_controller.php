@@ -3,15 +3,12 @@
  * 定位模块控制器代码
  */
 class location_controller {
-	
-	
 	//首页定位触发进入页面
 	//1、获取当前位置2、搜索位置  最终返回首页顶部定位更换信息
     public static function select_location() {
     	ecjia_front::$controller->assign('hideinfo', '1');
     	ecjia_front::$controller->assign('title', '上海');
         ecjia_front::$controller->assign_title('定位');
-        
         
         if (ecjia_touch_user::singleton()->isSignin()) {
         	ecjia_front::$controller->assign('login', 1);

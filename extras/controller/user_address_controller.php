@@ -483,8 +483,11 @@ class user_address_controller {
     	$address_id = !empty($_GET['address_id']) ? intval($_GET['address_id']) : 0;
     	if (!empty($address_id)) {
     		$address_info = user_function::address_info(ecjia_touch_user::singleton()->getToken(), $address_id);
+
     		setcookie('location_address_id', $address_id);
     		setcookie('location_name', $address_info['address']);
+    		setcookie('longitude', $address_info['location']['longitude']);
+    		setcookie('latitude', $address_info['location']['latitude']);
     	}
     	return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $referer_url));
     }
