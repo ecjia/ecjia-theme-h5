@@ -87,7 +87,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<!-- {/if} -->
 <!-- {/if} -->
-<div class="flow-no-pro {if $cart_list && $no_login}hide{/if}">
+<div class="flow-no-pro {if $cart_list}hide{elseif $no_login}show{/if}">
 	<div class="ecjia-nolist">
 		您还没有添加商品
 		{if $not_login}
