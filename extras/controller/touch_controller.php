@@ -25,7 +25,7 @@ class touch_controller {
         	setcookie("longitude", $longitude);
         	setcookie("latitude", $latitude);
         	setcookie("location_address_id", 0);
-        	ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
+        	return ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
         }
         
         $arr = array(

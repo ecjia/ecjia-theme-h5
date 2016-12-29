@@ -43,7 +43,7 @@ class wechart {
         if (empty($code)) {
             $call_url = urlencode(RC_Uri::current_url());
             $url = $jsApiPub->createOauthUrlForCode($call_url);
-            ecjia_front::$controller->redirect($url);
+            return ecjia_front::$controller->redirect($url);
             header("Location: ".$url);die;
         }
 

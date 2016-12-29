@@ -19,7 +19,7 @@ class cart_controller {
         	setcookie("longitude", $longitude);
         	setcookie("latitude", $latitude);
         	setcookie("location_address_id", 0);
-    		ecjia_front::$controller->redirect(RC_Uri::url('cart/index/init'));
+    		return ecjia_front::$controller->redirect(RC_Uri::url('cart/index/init'));
     	}
     	
     	$token = ecjia_touch_user::singleton()->getToken();
@@ -545,7 +545,7 @@ class cart_controller {
 //             RC_Logger::getlogger('debug')->info($rs);
 //             $_SESSION['cart']['order_info'][$rs['data']['order_id']] = $rs['data'];
             $order_id = $rs['data']['order_id'];
-            ecjia_front::$controller->redirect(RC_Uri::url('pay/index/init', array('order_id' => $order_id, 'tips_show' => 1)));
+           return  ecjia_front::$controller->redirect(RC_Uri::url('pay/index/init', array('order_id' => $order_id, 'tips_show' => 1)));
     }
 
     /**
