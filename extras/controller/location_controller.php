@@ -43,7 +43,7 @@ class location_controller {
     	$url       = "https://apis.map.qq.com/ws/place/v1/suggestion/?region=".$region."&keyword=".$keywords."&key=".$key;
     	$response = RC_Http::remote_get($url);
     	$content  = json_decode($response['body']);
-    	ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('content' => $content));
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('content' => $content));
     }
     
     //选择城市
@@ -96,7 +96,7 @@ class location_controller {
     	setcookie("location_address_id", 0);
     	
     	$url = RC_Uri::url('touch/index/init');
-    	ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('url' => $url));
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('url' => $url));
     } 
     
     public static function get_location_info() {

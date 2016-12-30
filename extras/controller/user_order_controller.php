@@ -106,7 +106,7 @@ class user_order_controller {
     
         $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         if (empty($order_id)) {
-            ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         }
     
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
@@ -125,7 +125,7 @@ class user_order_controller {
     public static function order_cancel() {
         $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         if (empty($order_id)) {
-            ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         }
         
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
@@ -136,9 +136,9 @@ class user_order_controller {
 //         _dump($data,1);
         $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
         if ($data['status']['succeed']) {
-            ecjia_front::$controller->showmessage('取消订单成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url,'is_show' => false));
+            return ecjia_front::$controller->showmessage('取消订单成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url,'is_show' => false));
         } else {
-            ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR,array('pjaxurl' => $url));
+            return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR,array('pjaxurl' => $url));
         }
         
     }
@@ -147,13 +147,13 @@ class user_order_controller {
     public static function buy_again() {
         $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         if (empty($order_id)) {
-            ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         }
         
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
         if (!$data) {
-            ecjia_front::$controller->showmessage('error', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+            return ecjia_front::$controller->showmessage('error', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         }
         if (isset($data['goods_list'])) {
             foreach ($data['goods_list'] as $goods) {
@@ -176,7 +176,7 @@ class user_order_controller {
                         $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
                     }
                     $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
-                    ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR,array('pjaxurl' => $url));
+                    return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR,array('pjaxurl' => $url));
                 }
             }
             $url = RC_Uri::url('cart/index/init');
@@ -238,7 +238,7 @@ class user_order_controller {
         ecjia_front::$controller->assign('order_list', $data['data']);
         ecjia_front::$controller->assign_lang();
         $sayList = ecjia_front::$controller->fetch('user_order_list.dwt');
-        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $data['paginated']['more'] ? 0 : 1));
+        return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $data['paginated']['more'] ? 0 : 1));
     }
 
     /**
@@ -259,7 +259,7 @@ class user_order_controller {
         // }
         $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         if (empty($order_id)) {
-            ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         }
         
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
@@ -272,9 +272,9 @@ class user_order_controller {
             $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
         }
         if ($data['status']['succeed']) {
-            ecjia_front::$controller->showmessage('操作成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url,'is_show' => false));
+            return ecjia_front::$controller->showmessage('操作成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url,'is_show' => false));
         } else {
-            ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
+            return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
         }
     }
 

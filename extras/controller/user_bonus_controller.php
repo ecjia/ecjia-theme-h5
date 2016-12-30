@@ -49,7 +49,7 @@ class user_bonus_controller {
         if ($bonus['paginated']['more'] == 0) {
             $more = 1;
         }
-        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page', 'is_last' => $more));
+        return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page', 'is_last' => $more));
     }
     
     public static function async_is_used() {
@@ -67,7 +67,7 @@ class user_bonus_controller {
         if ($bonus['paginated']['more'] == 0) {
             $more = 1;
         }
-        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page', 'is_last' => $more));
+        return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page', 'is_last' => $more));
     }
     
     public static function async_expired() {
@@ -85,7 +85,7 @@ class user_bonus_controller {
         if ($bonus['paginated']['more'] == 0) {
             $more = 1;
         }
-        ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page', 'is_last' => $more));
+        return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page', 'is_last' => $more));
     }
 
     /**
@@ -96,9 +96,9 @@ class user_bonus_controller {
         $bonus_sn = htmlspecialchars($_POST['bonus_sn']);
         $bonus = add_bonus($user_id, $bonus_sn);
         if (!empty($bonus['error'])) {
-            ecjia_front::$controller->showmessage($bonus['message'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+            return ecjia_front::$controller->showmessage($bonus['message'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         } else {
-            ecjia_front::$controller->showmessage(RC_Lang::lang('add_bonus_sucess'),ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON,array('is_show' => false));
+            return ecjia_front::$controller->showmessage(RC_Lang::lang('add_bonus_sucess'),ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON,array('is_show' => false));
         }
     }
     /**
