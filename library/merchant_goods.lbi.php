@@ -13,11 +13,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="ajaxinfo"} -->
-{if $page eq 1}
-<div class="a20">
-	{$type_name}({$goods_num})
-</div>
-{/if}
 <!-- {foreach from=$goods_list item=goods} -->
 <li>
 	<a class="linksGoods w" href="{RC_Uri::url('goods/index/show')}&goods_id={$goods.id}">

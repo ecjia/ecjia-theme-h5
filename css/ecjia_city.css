@@ -1187,6 +1187,10 @@ footer{
     overflow: hidden;
     z-index: 11;
     text-overflow: ellipsis;
+	position: absolute;
+	left: 6em;
+	right: 0;
+	height: 2em;
 }
 .ecjia-store-goods .a1n .a1x {
 	position: absolute;
@@ -1206,6 +1210,9 @@ footer{
     background: #fff;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+}
+.ecjia-store-goods .a1z ul{
+	padding-top: 30px;
 }
 .ecjia-store-goods .a1n .a1x li {
     position: relative;

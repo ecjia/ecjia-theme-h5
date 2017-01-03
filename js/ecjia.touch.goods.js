@@ -462,6 +462,10 @@
         			$('.wd').find('[data-toggle="asynclist"]').html('');
             		$('.load-list').remove();
             		ecjia.touch.asynclist();
+            		$.get(url, info, function(data) {
+            			var info = data.name + '(' + data.num + ')';
+            			$('.a20').html(info);
+            		});
         		}
         	});
         },
