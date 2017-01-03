@@ -44,11 +44,18 @@ class pay_controller {
         );
         if ($pay_code == 'pay_wxpay') {
         	$params['is_mobile'] = false;
+        	RC_Loader::load_plugin_class('WxPay_Api', 'pay_wxpay', false);
+        	RC_Loader::load_plugin_class('WxPay_JsApiPay', 'pay_wxpay', false);
+        	//①、获取用户openid
+        	$tools = new WxPay_JsApiPay();
+        	$openId = $tools->GetOpenid();
+        	RC_Logger::getLogger('pay')->info('openid:'.$openId);
         }
+        
         $rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($params)
         ->send()->getBody();
         $rs_pay = json_decode($rs_pay,true);
-//         _dump($rs_pay,2);
+        
         if (! $rs_pay['status']['succeed']) {
 			return ecjia_front::$controller->showmessage($rs_pay['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         }
