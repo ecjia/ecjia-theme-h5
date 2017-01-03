@@ -285,7 +285,7 @@ RC_Hook::add_filter('connect_callback_template', function($data) {
 RC_Hook::add_action('connect_callback_user_signin', function($userid){
     RC_Logger::getlogger('debug')->info('关联登录，connect_callback_user_signin');
     RC_Logger::getlogger('debug')->info($userid);
-    RC_Loader::load_app_func('user', 'user');
+    RC_Loader::load_app_func('admin_user', 'user');
     $user_info = EM_user_info($userid);
 //     $user_info = RC_Api::api('user', 'user_info', array('user_id' => $userid));
     
