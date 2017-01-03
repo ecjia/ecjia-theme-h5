@@ -234,6 +234,9 @@ RC_Loader::load_theme('extras/controller/user_tag_controller.php');
 RC_Hook::add_action('user/user_tag/tag_list', array('user_tag_controller', 'tag_list'));
 RC_Hook::add_action('user/user_tag/del_tag', array('user_tag_controller', 'del_tag'));
 
+RC_Loader::load_theme('extras/controller/connect_controller.php');
+RC_Hook::add_action('connect/index/dump_user_info', array('connect_controller', 'dump_user_info'));
+
 
 
 /**
@@ -254,6 +257,32 @@ RC_Hook::add_action('class_user_front',      function () {RC_Loader::load_theme(
  * 这个方法在前台控制器加载后执行，这个时候环境初始化完毕，这里开始正式进入主题框架的流程
  */
 RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
+    
+    //判断并微信登录
+    $user_agent = $_SERVER['HTTP_USER_AGENT'];
+    if (strpos($user_agent, 'MicroMessenger') !== false && $_GET['tt'] == 1) {
+        //微信浏览器
+//         RC_Loader::load_app_class('platform_account', 'platform', false);
+//         RC_Loader::load_app_class('wechat_method', 'wechat', false);
+//         $uuid = platform_account::getCurrentUUID('wechat');
+//         $wechat = wechat_method::wechat_instance($uuid);
+//         _dump($wechat,1);
+        
+//         $rs = $wechat->getWebUserInfo($openid, $token);
+
+        $appid = 'wx7daa4b18c79dcd49';
+        $arr = array();
+        $arr['referer'] = $_GET['referer'];
+        if(!empty($_GET['id'])){
+            $arr['id'] = intval($_GET['id']);
+        }
+        $url = RC_Uri::url('connect/index/dump_user_info', $arr);
+        $url = urlencode($url);
+        $scope = 'snsapi_userinfo';
+        
+        header("location: https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$appid."&redirect_uri=".$url."&response_type=code&scope=".$scope."&state=123#wechat_redirect");
+        
+    } 
 
     if (ROUTE_M == 'user') {
         new user_front();
