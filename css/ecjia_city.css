@@ -4295,19 +4295,19 @@ footer{
 	background-size:60%;
 }
 .order-log-item.shipping:first-child::after{
-	background: url(../images/icon/bike_h_circle_50.png) #F7F7F7 no-repeat center;
+	background: url(../images/icon/shop_h_circle_50.png) #F7F7F7 no-repeat center;
 	background-size:60%;
 } 
 .order-log-item.shipping::after{
-	background: url(../images/icon/bike_circle_50.png) #F7F7F7 no-repeat center;
+	background: url(../images/icon/shop_circle_50.png) #F7F7F7 no-repeat center;
 	background-size:60%;
 }
 .order-log-item.shipped:first-child::after{
-	background: url(../images/icon/bag_h_circle_50.png) #F7F7F7 no-repeat center;
+	background: url(../images/icon/bike_h_circle_50.png) #F7F7F7 no-repeat center;
 	background-size:60%;
 } 
 .order-log-item.shipped::after{
-	background: url(../images/icon/bag_circle_50.png) #F7F7F7 no-repeat center;
+	background: url(../images/icon/bike_circle_50.png) #F7F7F7 no-repeat center;
 	background-size:60%;
 }
 .order-log-item.finished:first-child::after{
@@ -4316,6 +4316,14 @@ footer{
 } 
 .order-log-item.finished::after{
 	background: url(../images/icon/list_circle_50.png) no-repeat center;
+	background-size:60%;
+}
+.order-log-item.confirm_receipt:first-child::after{
+	background: url(../images/icon/bag_h_circle_50.png) no-repeat center;
+	background-size:60%;
+} 
+.order-log-item.confirm_receipt::after{
+	background: url(../images/icon/bag_circle_50.png) no-repeat center;
 	background-size:60%;
 } 
 /* .order-log-item:first-child::after{
