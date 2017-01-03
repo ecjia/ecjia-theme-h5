@@ -115,7 +115,9 @@ ecjia.touch.category.init();
 					<!-- {/foreach} -->
 				<!-- {/if} -->
 			</ul>
-
+			<div class="a20">
+				{$type_name}({$goods_num})
+			</div>
 			<div class="a1x wd">
 				<div class="a1z r2 a0h">
 					<ul class="store_goods_{$action_type}" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='merchant/index/ajax_goods'}&store_id={$store_id}" data-type="{$action_type}">

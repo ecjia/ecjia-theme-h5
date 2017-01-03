@@ -1187,6 +1187,10 @@ footer{
     overflow: hidden;
     z-index: 11;
     text-overflow: ellipsis;
+	position: absolute;
+	left: 6em;
+	right: 0;
+	height: 2em;
 }
 .ecjia-store-goods .a1n .a1x {
 	position: absolute;
@@ -1206,6 +1210,9 @@ footer{
     background: #fff;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+}
+.ecjia-store-goods .a1z ul{
+	padding-top: 30px;
 }
 .ecjia-store-goods .a1n .a1x li {
     position: relative;
@@ -3926,7 +3933,6 @@ footer{
 }
 .goods-info .address-warehouse-new{
 	padding:0;
-	padding-bottom: 48px;
 }
 .goods-info .goods-info-property {
     background: #fff;
@@ -3936,7 +3942,7 @@ footer{
 	font-size:1.1em;
 }
 .ecjia-like-goods-list{
-	padding-bottom:1em;
+	padding-bottom:.5em;
 	margin-top: 0;
 }
 .ecjia-like-goods-list li{

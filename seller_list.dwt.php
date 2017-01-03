@@ -50,5 +50,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</li>
 		</ul>
 	</li>
+	<!-- {foreachelse} -->
+	<div class="search-no-pro">
+		<div class="ecjia-nolist">
+			<p><img src="{$theme_url}images/no_store.png"></p>
+			暂时没有商家
+		</div>
+	</div>
 	<!-- {/foreach} -->
 <!-- {/block} -->
