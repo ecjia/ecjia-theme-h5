@@ -68,7 +68,7 @@ class user_controller {
     	$wechat = wechat_method::wechat_instance($uuid);
     	
     	$config = $wechat->wxconfig($url);
-    	$config['image'] = ecjia::config('wap_logo') != '' ? RC_Upload::upload_url(ecjia::config('wap_logo')) : '';
+    	$config['image'] = ecjia::config('mobile_app_icon') != '' ? RC_Upload::upload_url(ecjia::config('mobile_app_icon')) : '';
     	
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('data' => $config));
     }
