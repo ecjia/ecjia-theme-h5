@@ -4315,7 +4315,7 @@ footer{
 	background-size:60%;
 } 
 .order-log-item.finished::after{
-	background: url(../images/icon/list_circle_50.png) no-repeat center;
+	background: url(../images/icon/list_h_circle_50.png) no-repeat center;
 	background-size:60%;
 }
 .order-log-item.confirm_receipt:first-child::after{
