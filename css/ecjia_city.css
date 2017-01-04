@@ -4294,27 +4294,35 @@ footer{
 	background: url(../images/icon/money_circle_50.png) #F7F7F7 no-repeat center;
 	background-size:60%;
 }
-.order-log-item.shipping:first-child::after{
+.order-log-item.payed:first-child::after,.order-log-item.payed:first-child::after{
+	background: url(../images/icon/money_h_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+} 
+.order-log-item.payed::after,.order-log-item.payed::after{
+	background: url(../images/icon/money_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+}
+.order-log-item.shipping:first-child::after, .order-log-item.shipped:first-child::after, .order-log-item.merchant_process:first-child::after{
 	background: url(../images/icon/shop_h_circle_50.png) #F7F7F7 no-repeat center;
 	background-size:60%;
 } 
-.order-log-item.shipping::after{
+.order-log-item.shipping::after, .order-log-item.shipped::after, .order-log-item.merchant_process::after{
 	background: url(../images/icon/shop_circle_50.png) #F7F7F7 no-repeat center;
 	background-size:60%;
 }
-.order-log-item.shipped:first-child::after{
+.order-log-item.express_user_pickup:first-child::after{
 	background: url(../images/icon/bike_h_circle_50.png) #F7F7F7 no-repeat center;
 	background-size:60%;
 } 
-.order-log-item.shipped::after{
+.order-log-item.express_user_pickup::after{
 	background: url(../images/icon/bike_circle_50.png) #F7F7F7 no-repeat center;
 	background-size:60%;
 }
-.order-log-item.finished:first-child::after{
+.order-log-item.finished:first-child::after, .order-log-item.cancel:first-child::after{
 	background: url(../images/icon/list_h_circle_50.png) no-repeat center;
 	background-size:60%;
 } 
-.order-log-item.finished::after{
+.order-log-item.finished::after, .order-log-item.cancel::after{
 	background: url(../images/icon/list_h_circle_50.png) no-repeat center;
 	background-size:60%;
 }
