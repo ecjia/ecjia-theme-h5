@@ -272,9 +272,10 @@ class user_order_controller {
             $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
         }
         if ($data['status']['succeed']) {
-            return ecjia_front::$controller->showmessage('操作成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url,'is_show' => false));
+//             return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url,'is_show' => false));
+            return ecjia_front::$controller->redirect($url);
         } else {
-            return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
+            return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url));
         }
     }
 
