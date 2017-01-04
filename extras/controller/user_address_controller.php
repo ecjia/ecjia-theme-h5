@@ -429,7 +429,8 @@ class user_address_controller {
     public static function near_address() {
     	$region   = $_GET['region'];
     	$keywords = $_GET['keywords'];
-    	$key       = ecjia::config('map_qq_key');
+    	$key       = "HVNBZ-HHR3P-HVBDP-LID55-D2YM3-2AF2W";
+//     	$key       = ecjia::config('map_qq_key');
     	$url       = "http://apis.map.qq.com/ws/place/v1/suggestion/?region=".$region."&keyword=".$keywords."&key=".$key;
     	$response = RC_Http::remote_get($url);
     	$content  = json_decode($response['body']);
