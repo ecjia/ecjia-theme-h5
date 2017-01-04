@@ -15,7 +15,7 @@ class pay_controller {
     	
         $order_id = !empty($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         $pay_id = !empty($_GET['pay_id']) ? intval($_GET['pay_id']) : 0;
-        $pay_code = !empty($_GET['pay_code']) ? trim($_GET['pay_code']) : 0;
+        $pay_code = !empty($_GET['pay_code']) ? trim($_GET['pay_code']) : '';
         $tips_show = !empty($_GET['tips_show']) ? trim($_GET['tips_show']) : 0;
         
         if (empty($order_id)) {
