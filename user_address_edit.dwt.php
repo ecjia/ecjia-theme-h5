@@ -27,11 +27,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group form-group-text margin-bottom0 ecjia-border-t">
 		<label class="input">
 			<span class="ecjiaf-fl">收货地址： </span>
-			<a href='{url path="user/user_address/near_location" args="{if $temp.tem_city_name}city={$temp.tem_city_name}{/if}{if $temp.tem_city}&city_id={$temp.tem_city}{/if}{if $info.id}&address_id={$info.id}{/if}{if $referer_url}&referer_url={$referer_url|escape:"url"}{/if}"}'>
+			<a class="external" href='{url path="user/user_address/near_location" args="{if $temp.tem_city_name}city={$temp.tem_city_name}{/if}{if $temp.tem_city}&city_id={$temp.tem_city}{/if}{if $info.id}&address_id={$info.id}{/if}{if $referer_url}&referer_url={$referer_url|escape:"url"}{/if}"}'>
 				<input name="address" placeholder="{t}写字楼，小区，学校，街道{/t}" type="text" datatype="*" value="{if $temp.tem_address}{$temp.tem_address}{else}{$info.address}{/if}" nullmsg="请选择收货地址" readonly="readonly" />
 			</a>
 			
-			<a href="https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl={$location_backurl}&key=4PLBZ-WSUW2-OXBUZ-CFNSS-MRUAV-3SFEO&referer=nothingkey">
+			<a class="external" href="https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl={$location_backurl}&key=4PLBZ-WSUW2-OXBUZ-CFNSS-MRUAV-3SFEO&referer=nothingkey">
 				<div class="position"></div>
 			</a>
 		</label>
