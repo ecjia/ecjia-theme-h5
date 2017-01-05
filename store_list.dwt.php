@@ -16,7 +16,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/index_header.lbi" --><!-- #EndLibraryItem -->
-
 <!-- {if $data} -->
 <div class="ecjia-mod ecjia-store-goods-list" {if $store_id && $count_search > 6}style="padding-bottom:7em;"{/if}>
 	<ul class="ecjia-store-list" {if $is_last neq 1}data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='goods/category/store_list'}&type=ajax_get{if $store_id}{/if}&store_id={$store_id}&keywords={$keywords}" data-page="2"{/if}>

@@ -104,8 +104,6 @@ class user_privilege_controller {
     
     /* 第三方登陆 */
     public static function bind_login() {
-//         $user_img = get_user_img();
-//         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_bind_login.dwt');
     }
@@ -180,9 +178,6 @@ class user_privilege_controller {
         } else {
             return ecjia_front::$controller->showmessage('授权用户信息关联失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
-        
-        
-        // return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('login')));
     }
     
     /* 第三方登陆绑定 */
@@ -237,7 +232,6 @@ class user_privilege_controller {
                 RC_Logger::getlogger('debug')->info($user);
                 return ecjia_front::$controller->showmessage('用户验证成功，获取用户信息失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
-//             _dump($result,1);
             if ($result) {
                 return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer_url));
             } else {
@@ -286,7 +280,6 @@ class user_privilege_controller {
             ecjia_front::$controller->display('user_set_password.dwt');
         }
     }
-    
 }
 
 // end

@@ -4,7 +4,6 @@
 ;(function(ecjia, $) {
 	ecjia.touch.merchant = {
 		init : function(){
-
             $('.datePicker').scroller('destroy').scroller(
                 $.extend({
                     preset: 'date',
@@ -22,12 +21,6 @@
 
             $('form[name="theForm"]').on('submit', function(e) {
                 e.preventDefault();
-                //$(this).ajaxSubmit({
-                //    dataType : "json",
-                //    success : function(data) {
-                //        ecjia.touch.showmessage(data);
-                //    }
-                //});
             });
 
             //有'.reimg'的file元素修改触发事件
@@ -173,7 +166,7 @@
                 e.preventDefault();
                 var obj_this	= $(this),
                     url			= obj_this.attr('data-url');
-                if(confirm('你确定要切换此地址吗？')){
+                if (confirm('你确定要切换此地址吗？')) {
                     $.get(url, '', function(data) {
                         ecjia.touch.showmessage(data);
                     });
@@ -184,18 +177,18 @@
         search_change : function(){
             $('[data-toggle="search_key"]').on('change', function () {
                 var val = $.trim($(this).val());
-                if(val.length > 0){
+                if (val.length > 0) {
                     $('[data-trigger="change_area"]').each(function(){
                         var area = $(this).text();
-                        if(area.indexOf(val) == -1){
+                        if (area.indexOf(val) == -1) {
                             $(this).removeClass('active');
-                        }else {
-                            if(!$(this).hasClass('active')){
+                        } else {
+                            if (!$(this).hasClass('active')) {
                                 $(this).addClass('active');
                             }
                         }
                     });
-                }else{
+                } else {
                     $('[data-trigger="change_area"]').each(function(){
                         $(this).attr('class','active');
                     });
@@ -208,3 +201,5 @@
 	$(document).on('pjax:popstate', function() {
 	})
 })(ecjia, jQuery);
+
+//end

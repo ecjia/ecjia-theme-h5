@@ -11,17 +11,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="footer"} -->
 <script type="text/javascript">ecjia.touch.goods.init(); ecjia.touch.user.init();</script>
 <script>
-	window._bd_share_config = {
-		common : {
-			bdText : '{$shopdesc}',
-			bdUrl : '{$shopurl}',
-			bdPic : "{url path='user/user_share/create_qrcode' args="value={$base64_shopurl}"}"
-		},
-		share : [{
-			"bdSize" : 32
-		}]
-	}
-	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+window._bd_share_config = {
+	common : {
+		bdText : '{$shopdesc}',
+		bdUrl : '{$shopurl}',
+		bdPic : "{url path='user/user_share/create_qrcode' args="value={$base64_shopurl}"}"
+	},
+	share : [{
+		"bdSize" : 32
+	}]
+}
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 <!-- {/block} -->
 
@@ -87,5 +87,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<!-- {/foreach} -->
 	</ul>
 </div>
-
 <!-- {/block} -->

@@ -51,5 +51,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </form>
 <!-- {/foreach} 循环赠品活动结束 -->
 <!-- {/if} -->
-
 <!-- {/block} -->

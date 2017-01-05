@@ -7,11 +7,12 @@ Libraries: page_menu,page_header
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {extends file="ecjia-touch.dwt.php"} -->
+
 <!-- {block name="footer"} -->
 <script type="text/javascript">ecjia.touch.user.init();</script>
 <!-- {/block} -->
-<!-- {block name="main-content"} -->
 
+<!-- {block name="main-content"} -->
 <form class="ecjia-user ecjia-login-user-profile-form ecjia-login-padding-top" name="user_profile">
 	<div class="ecjia-form">
     	<div class="form-group ecjia-login-margin-lr ecjiaf-bt right-angle">

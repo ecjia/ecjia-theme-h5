@@ -18,12 +18,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <div class="tag_list">
 	<ul class="ecjia-list goods-tag">
-			<div class="ecjia-margin-t">商品标签：</div>
-			<!-- {foreach from=$tags item=val } -->
-			<li class="ecjia-margin-t">{$val.tag_words} {if $val.num gt 1}[{$val.num}]{/if} </li>
-			<!-- {foreachelse} -->
-			<p>该商品还没有标签，赶快添加吧！</p>
-			<!-- {/foreach} -->
+		<div class="ecjia-margin-t">商品标签：</div>
+		<!-- {foreach from=$tags item=val } -->
+		<li class="ecjia-margin-t">{$val.tag_words} {if $val.num gt 1}[{$val.num}]{/if} </li>
+		<!-- {foreachelse} -->
+		<p>该商品还没有标签，赶快添加吧！</p>
+		<!-- {/foreach} -->
 	</ul>
 </div>
 

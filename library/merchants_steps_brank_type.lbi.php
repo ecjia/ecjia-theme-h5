@@ -1,6 +1,5 @@
 <?php defined('IN_ECJIA') or exit('No permission resources.');?>
 
-
 <div class="form-group form-group-text">
     <a class="btn select_brand_info">查看已有品牌</a>
     <label class="help-block">{$title.titles_annotation}</label>

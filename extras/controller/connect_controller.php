@@ -109,7 +109,6 @@ class connect_controller {
         ecjia_front::$controller->redirect($url);
     
     }
-
 }
 
 // end

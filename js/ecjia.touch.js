@@ -5,7 +5,7 @@
 	ecjia.touch = {
 		init : function() {
 			var what = $.cookie('what');
-			if(what === undefined){
+			if (what === undefined) {
 				if (navigator.geolocation) {
 			  	    navigator.geolocation.getCurrentPosition(showPosition);
 			  	}
@@ -25,7 +25,7 @@
 			  		 });
 			  	}
 				$.cookie('what','first');
-			}else if($.cookie('location_name') === undefined){
+			} else if ($.cookie('location_name') === undefined) {
 				$.cookie('what', '', { expires: -1 });
 			}
 			ecjia.touch.setpjax();
@@ -68,7 +68,7 @@
 
 		address_value: function (data) {
 		    $('.ecjia-location-list-wrap').html('');
-		    if(data) {
+		    if (data) {
 		    	if (data.length > 0) {
 			        for (var i = 0; i < data.length; i++) {
 			            var opt = '<li data-lng="'+data[i].location.lng+'" data-lat="'+data[i].location.lat+'"><p class="list_wrapper a1"><span class="ecjia-list_title ecjia-location-list-title">'+data[i].title+'</span><span class="ecjia-list_title ecjia-location-list-address">'+data[i].address+'</span></p></li>'
@@ -245,17 +245,17 @@
 		 * 数据操作方法
 		 */
 		load_list : function(options) {
-			if(!options.url)return console.log('批量操作缺少参数！');
+			if (!options.url) return console.log('批量操作缺少参数！');
 			$(options.trigger).show();
 			$.get(options.url, {
 				page : options.page,
 				size : options.size,
 				action_type : options.type
 			}, function(data){
-				if($(options.areaSelect).hasClass(options.areaClass)) $(options.areaSelect).append(data.list);
+				if ($(options.areaSelect).hasClass(options.areaClass)) $(options.areaSelect).append(data.list);
 				options.lock = data.is_last;
 				$(options.trigger).hide();
-				if(data.is_last == 1){
+				if (data.is_last == 1) {
 					$("#load_more_btn").remove();
 				}
 				ecjia.touch.more_callback();
@@ -281,19 +281,6 @@
 			$('.record-time-01:first').show();
 		},
 
-		/*delete_list_click: function(){
-			$(document).off('click', '[data-toggle="del_list"]');
-			$(document).on('click', '[data-toggle="del_list"]', function(e){
-                e.preventDefault();
-				var $this 	= $(this),
-					id 		= $this.attr('data-id'),
-					msg 	= $this.attr('data-msg') ? $this.attr('data-msg') : '您确定要删除此条信息吗？',
-					url 	= $this.attr('data-url');
-				if(id && url){
-					if(confirm(msg)) ecjia.touch.delete_list({id : id, url : url});
-				}
-			});
-		},*/
 		delete_list_click: function(){
 			$(document).off('click', '[data-toggle="del_list"]');
 			$(document).on('click', '[data-toggle="del_list"]', function(e){
@@ -302,8 +289,7 @@
 					id 		= $this.attr('data-id'),
 					msg 	= $this.attr('data-msg') ? $this.attr('data-msg') : '您确定要删除此条信息吗？',
 					url 	= $this.attr('data-url');
-				if(id && url){
-//					if(confirm(msg)) ecjia.touch.delete_list({id : id, url : url});
+				if (id && url) {
 					var myApp = new Framework7({
 						modalButtonCancel : '取消',
 						modalButtonOk : '确定',
@@ -323,15 +309,6 @@
 				ecjia.touch.showmessage(data);
 			}, 'json');
 		},
-
-		// load_goods : function() {
-		// 	var $list = $('#J_ItemList'),
-		// 		url = $list.attr('data-url');
-		// 	!$list.length && console.log('未设置显示区域');
-		// 	!url && console.log('未设置data-url');
-		// 	!($list.length && url) && console.log('不执行more方法');
-		// 	$list.length && url && $list.more({'address': url, 'spinner_code': '<div style="text-align:center; margin:10px;"><img src="./loadimg.gif" /></div>'});
-		// },
 
 		/* 下方相关商品滑动块的JS */
 		touch_slide : function() {
@@ -353,22 +330,22 @@
  					type    	= $this.attr("data-type"),
  					target 		= $this.attr("data-target"),
  					parent 		= $this.val();
- 					if($("#selCountries"+index).val()== 0 ){
+ 					if ($("#selCountries"+index).val()== 0) {
  						$("#selProvinces"+index).children("option:gt(0)").remove();
  						$("#selCities"+index).children("option:gt(0)").remove();
  						$("#selDistricts"+index).children("option:gt(0)").remove();
  						//$("#selDistricts"+index).hide();
- 					}else{
- 						if( id == "selCountries"+index){
+ 					} else {
+ 						if ( id == "selCountries"+index) {
 	 						//$("#selDistricts"+index).hide();
-	 					}else if( id == "selProvinces"){
+	 					} else if ( id == "selProvinces") {
 	 						//$("#selDistricts"+index).hide();
-	 						if($("#selProvinces"+index).val()== 0 ){
+	 						if ($("#selProvinces"+index).val()== 0) {
  								$("#selCities"+index).children("option:gt(0)").remove();
 	 						}
-	 					}else if( id == "selCities"){
+	 					} else if ( id == "selCities") {
 	 						//$("#selDistricts"+index).show();
-	 						if($("#selCities"+index).val()== 0 ){
+	 						if ($("#selCities"+index).val()== 0) {
  								$("#selDistricts"+index).children("option:gt(0)").remove();
 	 						}
 	 					}
@@ -380,13 +357,13 @@
 				 					for (var i= 0 ; i<data.regions.length; i ++){
 			 							opt +=	'<option value="'+data.regions[i].region_id+'">'+data.regions[i].region_name+'</option>';
 				 					}
-				 					if( id == "selCountries"+index){
+				 					if ( id == "selCountries"+index) {
 				 						$("#selProvinces"+index).children("option:gt(0)").remove();
 				 						$("#selProvinces"+index).children("option").after(opt);
-				 					}else if( id == "selProvinces"+index){
+				 					} else if ( id == "selProvinces"+index) {
 				 						$("#selCities"+index).children("option:gt(0)").remove();
 				 						$("#selCities"+index).children("option").after(opt);
-				 					}else if( id == "selCities"+index){
+				 					} else if ( id == "selCities"+index) {
 				 						$("#selDistricts"+index).children("option:gt(0)").remove();
 										$('#selDistricts').show();
 				 						$("#selDistricts"+index).children("option").after(opt);
@@ -671,7 +648,7 @@
 		ecjia.touch.region_change();
 
 	    var ua = navigator.userAgent.toLowerCase();
-	    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+	    if (ua.match(/MicroMessenger/i)=="micromessenger") {
 	    	var title = $(document).attr('title');
 			var $body = $('body');
 			document.title = title;
@@ -689,6 +666,7 @@
 $(function(){
 	/* 页面载入后自动执行 */
 	ecjia.touch.init();
-
 	window.alert = ecjia.touch.alert;
 });
+
+//end

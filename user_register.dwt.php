@@ -50,7 +50,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     			<div class="form-group bf margin-right-left">
     				<label class="input">
     					<div class="img-register-invitationcode"></div>
-    					<input name="verification" id="verification" type="text" placeholder="邀请码6位数字或字母">
+    					<input name="verification" id="verification" type="text" placeholder="邀请码6位数字或字母" />
     				</label>
     			</div>
     			<div class="ecjia-login-b">
@@ -65,5 +65,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</form>
 	</div>
 </div>
-
 <!-- {/block} -->

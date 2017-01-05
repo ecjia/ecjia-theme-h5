@@ -15,7 +15,6 @@ ecjia.touch.category.init();
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-
 <div class="ecjia-mod page_hearer_hide ecjia-fixed">
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 </div>

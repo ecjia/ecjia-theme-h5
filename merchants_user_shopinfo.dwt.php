@@ -11,6 +11,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="footer"} -->
 <script>ecjia.touch.merchant.init()</script>
 <!-- {/block} -->
+
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
@@ -48,7 +49,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </p>
             <!--{else}-->
                 <p class="ordertitle">
-                    感谢您在本店申请商家入驻！
+                  	感谢您在本店申请商家入驻！
                     <!--{if $shop_info.merchants_audit eq 1}-->
                     <br/>您的商家入驻管理中心登陆账号：
                     <span>{$shop_info.hopeLoginName}</span>

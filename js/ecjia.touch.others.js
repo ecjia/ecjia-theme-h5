@@ -14,8 +14,8 @@
 		
 		substr : function(){
 			var str = $(".address-text").html();
-			if(str){
-				str = str.length>20?str.substring(0,20)+'...':str;
+			if (str) {
+				str = str.length>20 ? str.substring(0,20)+'...' : str;
 				var str = $(".address-text").html(str);
 			}
 		},
@@ -71,7 +71,7 @@
         			var mm = checkTime(myM);
         			var ss = checkTime(myS);
     	    
-        			if(myD>= 0){ 
+        			if (myD>= 0) { 
         				if (type == 1) {
         					msg = '距离活动结束还有';
         					var str = msg + myD + '天 &nbsp;&nbsp;<span class="end-time">'+ hh +'</span> : <span class="end-time">' + mm + '</span> : <span class="end-time">' + ss + '</span>';
@@ -79,7 +79,7 @@
         					msg = '剩余';
         					var str = msg + myD+"天&nbsp;"+hh+":"+mm+":"+ss; 
         				}
-        			}else{ 
+        			} else { 
         				var str = "已结束！";  
         			} 
         			obj.html(str); 
@@ -98,9 +98,9 @@
 			$('.search_fixed_mask').toggleClass('active');
 			$("#keywordBox").val('').focus().click();
 			$('.search-history').toggleClass('active');
-			if($('.ecjia-app-download').length > 0){
+			if ($('.ecjia-app-download').length > 0) {
 				$('.ecjia-app-download').css('margin-top','3.5em');
-			}else{
+			} else {
 				$('.focus').css('margin-top','3.5em');
 			}
 		},
@@ -111,9 +111,9 @@
                 $('.search-header.index-header').removeClass('active');
                 $('.search_fixed_mask').toggleClass('active');
                 $('.search-history').toggleClass('active');
-                if($('.ecjia-app-download').length > 0){
+                if ($('.ecjia-app-download').length > 0) {
                     $('.ecjia-app-download').css('margin-top','');
-                }else{
+                } else {
                     $('.focus').css('margin-top','');
                 }
             })
@@ -132,5 +132,6 @@
 		}    
 		return i;    
     }
-
 })(ecjia, jQuery);
+
+//end

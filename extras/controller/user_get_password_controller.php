@@ -63,7 +63,6 @@ class user_get_password_controller {
         ecjia_front::$controller->assign_title('设置新密码');
         ecjia_front::$controller->display('user_reset_password.dwt');
     }
-    
-
 }
+
 // end

@@ -179,5 +179,4 @@ li {
 		<a style="display:block;color:#F44122; padding:10px; border:3px solid rgb(122, 28, 186);" href="">点击更多精品女装</a>
 	</div>
 </div>
-
 <!-- {/block} -->

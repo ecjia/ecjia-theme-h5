@@ -18,8 +18,6 @@ class goods_controller {
     	ecjia_front::$controller->assign('cat_id', $cat_id);
     	ecjia_front::$controller->assign('data', $data);
         
-//         ecjia_front::$controller->assign('title', RC_Lang::lang('catalog'));
-//         ecjia_front::$controller->assign('page_title', RC_Lang::lang('catalog'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('catalog'));
         ecjia_front::$controller->assign('active', 'category');
         ecjia_front::$controller->assign_lang();
@@ -45,7 +43,6 @@ class goods_controller {
 
 	    if ($goods_info === false) {
 	    	ecjia_front::$controller->assign('no_goods_info', 1);
-	    	//ecjia_front::$controller->showmessage('不存在的信息', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 	    }
 	    if (!empty($goods_info['promote_end_date'])) {
 	    	$goods_info['promote_end_time'] = RC_Time::local_strtotime($goods_info['promote_end_date']);

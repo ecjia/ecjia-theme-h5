@@ -25,5 +25,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </header>
 <!-- #BeginLibraryItem "/library/goods_list_brand.lbi" -->
 <!-- #EndLibraryItem -->
-
 <!-- {/block} -->

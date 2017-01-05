@@ -55,12 +55,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<!--{/if}-->
 		</h4>
 		<span class="pull-right text-center <!--{if $sc eq 1}-->ect-colory<!--{/if}-->ect-padding-lr" id='ECS_COLLECT' onClick="collect({$goods.goods_id})"> 
-				<i class="fa <!--{if $sc eq 1}-->fa-heart<!--{else}-->fa-heart-o<!--{/if}-->"></i>
+			<i class="fa <!--{if $sc eq 1}-->fa-heart<!--{else}-->fa-heart-o<!--{/if}-->"></i>
 			<br>{$lang.btn_collect}
 		</span>
 	</section>
 	<section>
-
 		<p>
 			<span>
 				{$lang.exchange_integral}: <strong >{$goods.exchange_integral}</strong>

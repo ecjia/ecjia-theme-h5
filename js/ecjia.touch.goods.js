@@ -565,7 +565,7 @@
         		if ($this.attr('data-children')) {
         			var children	= $this.attr('data-children');
         			var options		= {thisobj : $this, children : children};
-        			if(!options.children) options.children = $('.checkbox');
+        			if (!options.children) options.children = $('.checkbox');
         			options.allobj = $(options.children);
         			if (!options.thisobj.hasClass("checked")) {
         				options.allobj.removeClass("checked");
@@ -904,9 +904,9 @@
 				e.preventDefault();
 				var click_id = $(this).parent("li").parent("ul").prev(".title").attr("id");
 				var str=$(this).attr("value");
-				if(click_id == 'filter_brand'){
+				if (click_id == 'filter_brand') {
 					$(".brandname").val(str);
-				}else{
+				} else {
 					var res;
 					res=str.split("|");
 					$("input[name='price_min']").val(res[0]);
@@ -932,7 +932,7 @@
 				$("input[name='brand']").val('');
 				$(".touchweb-com_listType .range").text("全部");
 				$(".touchweb-com_listType input").each(function() {
-					if($(this).attr('class') != 'cat'){
+					if ($(this).attr('class') != 'cat') {
 						$(this).val("");
 					}
 				});
@@ -1008,22 +1008,22 @@
 					target 		= $this.attr("data-target"),
 					check 		= $this.attr("data-city"),
 					parent 		= $this.val();
-					if($("#selCountries").val()== 0 ){
+					if ($("#selCountries").val()== 0) {
 						$("#selProvinces").children("option:gt(0)").remove();
 						$("#selCities").children("option:gt(0)").remove();
 						$("#selDistricts").children("option:gt(0)").remove();
 						$("#selDistricts").hide();
-					}else{
-						if( id == "selCountries"){
+					} else {
+						if (id == "selCountries") {
 							$("#selDistricts").hide();
-						}else if( id == "selProvinces"){
+						} else if ( id == "selProvinces") {
 							$("#selDistricts").hide();
-							if($("#selProvinces").val()== 0 ){
+							if ($("#selProvinces").val()== 0) {
 								$("#selCities").children("option:gt(0)").remove();
 							}
-						}else if( id == "selCities"){
+						} else if ( id == "selCities") {
 							$("#selDistricts").show();
-							if($("#selCities").val()== 0 ){
+							if ($("#selCities").val()== 0) {
 								$("#selDistricts").children("option:gt(0)").remove();
 							}
 						}
@@ -1032,30 +1032,30 @@
 						function(data){
 							if (data.state == 'success') {
 			 					var opt  =	'';
-			 					if(data.regions){
+			 					if (data.regions) {
 			 						for (var i= 0 ; i<data.regions.length; i ++){
-										if(data.check){
-											if (data.regions[i].region_id == data.check ){
+										if (data.check) {
+											if (data.regions[i].region_id == data.check) {
 												opt +=	'<option value="'+data.regions[i].region_id+'" selected="selected">'+data.regions[i].region_name+'</option>';
-											}else{
+											} else {
 												opt +=	'<option value="'+data.regions[i].region_id+'">'+data.regions[i].region_name+'</option>';
 											}
-										}else{
-											if (i == 0){
+										} else {
+											if (i == 0) {
 												opt +=	'<option value="'+data.regions[i].region_id+'" selected="selected">'+data.regions[i].region_name+'</option>';
-											}else{
+											} else {
 												opt +=	'<option value="'+data.regions[i].region_id+'">'+data.regions[i].region_name+'</option>';
 											}
 										}
 				 					}
-				 					if( id == "selCountries"){
+				 					if (id == "selCountries") {
 				 						$("#selProvinces").children("option:gt(0)").remove();
 				 						$("#selProvinces").children("option").after(opt);
-				 					}else if( id == "selProvinces"){
+				 					} else if ( id == "selProvinces") {
 				 						$("#selCities").children("option:gt(0)").remove();
 				 						$("#selCities").children("option").after(opt);
 				 						$('[data-target="selDistricts"][id="selCities"]').change();
-				 					}else if( id == "selCities"){
+				 					} else if ( id == "selCities") {
 				 						$("#selDistricts").children("option:gt(0)").remove();
 				 						$("#selDistricts").children("option").after(opt);
 				 					}
@@ -1086,25 +1086,23 @@
 				house 		= $('select[name="region_id"]').val(),
 				province 	= $('select[id="selProvinces"]').val();
 				if (!url || !id) { alert('缺少必要参数');return;}
- 				$.get(url,
-					{'id':id ,'house':house,'region_id':province},
-					function(data){
-						if (data.state == 'success') {
-							$('#ECS_GOODS_AMOUNT').html(data.goods.goods_price);
-							$('.goods-promote-price').html(data.goods.goods_price);
+ 				$.get(url, {'id':id ,'house':house,'region_id':province}, function(data){
+					if (data.state == 'success') {
+						$('#ECS_GOODS_AMOUNT').html(data.goods.goods_price);
+						$('.goods-promote-price').html(data.goods.goods_price);
 
-							$('#shop_goods_number').html(data.goods.goods_number);
-							if(data.goods.goods_number > 0){
-								$('.goods_show').hide();
-								$('.goodsnumber-show-btn').show();
-								$('.goodsnumber-none-btn').hide();
-							}else{
-								$('.goods_show').show();
-								$('.goodsnumber-none-btn').show();
-								$('.goodsnumber-show-btn').hide();
-							}
+						$('#shop_goods_number').html(data.goods.goods_number);
+						if (data.goods.goods_number > 0) {
+							$('.goods_show').hide();
+							$('.goodsnumber-show-btn').show();
+							$('.goodsnumber-none-btn').hide();
+						} else {
+							$('.goods_show').show();
+							$('.goodsnumber-none-btn').show();
+							$('.goodsnumber-show-btn').hide();
 						}
-					},'json');
+					}
+				},'json');
  			});
  		},
 
@@ -1127,9 +1125,9 @@
                     options.thisobj.toggleClass('active');
                     var num = $('.goods-like span').text();
                     num = parseInt(num);
-                    if(options.act){
+                    if (options.act) {
                     	num = parseInt(num) - 1;
-                    }else{
+                    } else {
                     	num = parseInt(num) + 1;
                     }
                     $('.goods-like span').text(num+"个");
@@ -1164,7 +1162,7 @@
 	 		$('[data-toggle="booking"]').on('click', function(e){
 	 			e.preventDefault();
 	 			var pjaxurl = $(this).attr('data-pjaxurl');
-				if(window.confirm("商品库存不足\n是否添加缺货登记？", "标题")) {
+				if (window.confirm("商品库存不足\n是否添加缺货登记？", "标题")) {
 					ecjia.pjax(pjaxurl);
 				}
 	 		});
@@ -1212,12 +1210,12 @@
  							spec_arr[j] = $this.val();
  							j++;
  						}
- 					} else if( (type == 'radio' && $this.is(':checked')) || $this.is('select')) {
+ 					} else if ((type == 'radio' && $this.is(':checked')) || $this.is('select')) {
  						spec_arr[j] = $this.val();
 						j++;
  					}
  				});
-				if($('[name="number"]').length) number = $('[name="number"]').val();
+				if ($('[name="number"]').length) number = $('[name="number"]').val();
  				quick = 1;
  			}
 
@@ -1232,17 +1230,17 @@
  				goods: goods
  			}, function(data) {
  				//TODO:加入购物车的错误处理未完成
- 				if(data.state == 'success') {
- 					if(alt){
- 						if(window.confirm("商品已成功加入购物车\n是否去购物车查看？", "标题")) {
+ 				if (data.state == 'success') {
+ 					if (alt) {
+ 						if (window.confirm("商品已成功加入购物车\n是否去购物车查看？", "标题")) {
  							ecjia.pjax(pjaxurl);
-	 					}else{
+	 					} else {
 	 						ecjia.pjax(data.link);
 	 					}
- 					}else{
+ 					} else {
  						ecjia.pjax(data.pjaxurl);
  					}
- 				}else{
+ 				} else {
  					alert(data.message);
  				}
  			}, 'json');
@@ -1257,15 +1255,15 @@
  						id 	: $this.attr('data-id'),
  						url : $this.attr('data-url')
  					};
-				if(option =='del'){
-					if(number == 1){
+				if (option =='del') {
+					if (number == 1) {
 						number = 1;
 						$('#goods_number').val(number);
-					}else{
+					} else {
 						number = parseInt(number) - 1;
 						$('#goods_number').val(number);
 					}
-				}else{
+				} else {
 					number = parseInt(number) + 1;
 					$('#goods_number').val(number);
 				}
@@ -1287,8 +1285,8 @@
  						id 	: $this.attr('data-id'),
  						url : $this.attr('data-url')
  					};
-				if(number<=0){
-	 				number 	= 1;
+				if (number <= 0) {
+	 				number = 1;
 	 				$('#goods_number').val(1);
 	 			}
 				ecjia.touch.goods._change_price(options,number);
@@ -1310,23 +1308,21 @@
 				url 	= $this.attr('data-url'),
 				options = $this.attr('data-option'),
 				number 	= $('#goods_number').val();
-			if(options =='del'){
-				if(number == 1){
+			if (options =='del') {
+				if (number == 1) {
 					number = 1;
 					$('#goods_number').val(number);
-				}else{
+				} else {
 					number = parseInt(number) - 1;
 					$('#goods_number').val(number);
 				}
-			}else{
+			} else {
 				number = parseInt(number) + 1;
 				$('#goods_number').val(number);
 			}
-			 $.get(url,
-			 	{'id':id ,'attr':'','number':number },
-			 	function(data){
+            $.get(url, {'id':id ,'attr':'','number':number }, function(data){
 		   		$('#ECS_GOODS_AMOUNT').html(data.message);
-			 }, 'json');
+            }, 'json');
  		},
 
  		_change_price : function(options,number){
@@ -1335,16 +1331,14 @@
 					val += $('[data-toggle="changeprice_change"]').eq(i).val()+',';
 				}
 			for(var i=0 ;i<$('[data-toggle="changeprice_parts"]').length;i++){
-					if($('[data-toggle="changeprice_parts"]').eq(i).is(":checked")){
+					if ($('[data-toggle="changeprice_parts"]').eq(i).is(":checked")) {
 						val = val+","+$('[data-toggle="changeprice_parts"]').eq(i).val();
-					}else{
+					} else {
 						val = val;
 					}
 				}
-			$.get(options.url,
-				{'id':options.id ,'attr':val,'number':number },
-				function(data){
-					$('#ECS_GOODS_AMOUNT').html(data.message);
+			$.get(options.url, {'id':options.id ,'attr':val,'number':number }, function(data){
+                $('#ECS_GOODS_AMOUNT').html(data.message);
 			}, 'json');
 
  		},
@@ -1435,7 +1429,7 @@
 				ecjia.touch.goods.tmp_good_info.parentid = $this.attr('data-parent') || 0;
 	 			$.post(url, {goods : {goods_id: id, parent: parent, number: 1, spec: {}}}, function(data) {
 	 				//TODO:加入购物车的错误处理未完成
-	 				if(data.state == 'error' && data.error == 6) {
+	 				if (data.state == 'error' && data.error == 6) {
 	 					ecjia.touch.goods.openSpeDiv(data.message, data.goods_id, data.parent);
 	 				} else {
 						ecjia.touch.showmessage(data);
@@ -1527,3 +1521,5 @@
 		}
  	};
 })(ecjia, jQuery);
+
+//end

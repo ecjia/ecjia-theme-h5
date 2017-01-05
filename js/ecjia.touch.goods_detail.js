@@ -65,7 +65,7 @@
         			var mm = checkTime(myM);
         			var ss = checkTime(myS);
     	    
-        			if(myD>= 0){ 
+        			if (myD >= 0) { 
         				if (type == 1) {
         					msg = '距结束';
         					var str = msg + myD + '天 &nbsp;&nbsp;<span class="end-time">'+ hh +'</span> : <span class="end-time">' + mm + '</span> : <span class="end-time">' + ss + '</span>';
@@ -73,7 +73,7 @@
         					msg = '剩余';
         					var str = msg + myD+"天&nbsp;"+hh+":"+mm+":"+ss; 
         				}
-        			}else{ 
+        			} else { 
         				var str = "已结束！";  
         			} 
         			obj.html(str); 
@@ -105,5 +105,6 @@
 		}    
 		return i;    
     }
-
 })(ecjia, jQuery);
+
+//end

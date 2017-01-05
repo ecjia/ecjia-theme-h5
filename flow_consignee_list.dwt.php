@@ -19,15 +19,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="flow-consignee-list">
 	<section>
 		<ul class="ecjia-list user-address-list" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='async_addres_list'}" data-size="10">
-				<!-- 配送地址 start-->
-				<!-- 配送地址 end-->
+			<!-- 配送地址 start-->
+			<!-- 配送地址 end-->
 		</ul>
 	</section>
 </div>
 <div class="ecjia-margin-t ecjia-margin-b">
 	<a class="btn btn-info flow-consignee-add" href="{url path='flow/consignee'}" type="botton">{$lang.add_address}</a>
 </div>
-
 <!-- {/block} -->
 
 <!-- {block name="ajaxinfo"} -->
