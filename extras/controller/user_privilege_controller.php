@@ -176,6 +176,16 @@ class user_privilege_controller {
         if ($result) {
             //登录
             ecjia_touch_user::singleton()->signin($username, $password);
+            /* 获取远程用户头像信息*/
+            $user_info = $connect_user->get_openid();
+            if ($connect_code == 'sns_qq') {
+                $head_img = $user_info['profile']['figureurl_qq_2'];
+            } else if ($connect_code == 'sns_wechat') {
+                $head_img = $user_info['profile']['headimgurl'];
+            }
+            if ($head_img) {
+                RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
+            }
             return ecjia_front::$controller->showmessage('恭喜您，注册成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init')));
         } else {
             return ecjia_front::$controller->showmessage('授权用户信息关联失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -239,6 +249,16 @@ class user_privilege_controller {
             }
 //             _dump($result,1);
             if ($result) {
+                /* 获取远程用户头像信息*/
+                $user_info = $connect_user->get_openid();
+                if ($connect_code == 'sns_qq') {
+                    $head_img = $user_info['profile']['figureurl_qq_2'];
+                } else if ($connect_code == 'sns_wechat') {
+                    $head_img = $user_info['profile']['headimgurl'];
+                }
+                if ($head_img) {
+                    RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
+                }
                 return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer_url));
             } else {
                 RC_Logger::getlogger('error')->error($result);
