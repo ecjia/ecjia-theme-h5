@@ -98,7 +98,7 @@
         		e.preventDefault();
         		var url = $(this).attr('data-url');
         		options = {
-						'status' : 'logout',
+					'status' : 'logout',
 				}
         		var myApp = new Framework7({
 					modalButtonCancel : '取消',
