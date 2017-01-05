@@ -122,7 +122,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
     <ul class="ecjia-list list-short">
         <li>
-        	<a class="nopjax" href="tel:4001021758">
+        	<a class="external" href="tel:4001021758">
         		<div class="icon-website-service"><img src="./images/user_center/75x75_5.png"></div>
         		<span class="icon-name">官网客服</span>
         		<span class="icon-price">{'4001-021-758'}</span>
@@ -130,7 +130,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
         <li>
-        	<a class="nopjax" href="https://ecjia.com" target="_blank">
+        	<a class="external" href="https://ecjia.com" target="_blank">
         		<div class="icon-offical-website"><img src="./images/user_center/75x75_6.png"></div>
         		<span class="icon-name">官网网站</span>
         		<span class="icon-price">{'www.ecjia.com'}</span>
