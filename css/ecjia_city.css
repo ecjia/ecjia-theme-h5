@@ -1221,7 +1221,7 @@ footer{
 .ecjia-store-goods .a1n .a1x li a.linksGoods {
     display: block;
     overflow: hidden;
-    padding: 1em .5em 0 0;
+    padding: .7em .5em 0 0;
 }
 .ecjia-store-goods .a1n .a1x li .input-number{
     position: absolute;
@@ -1267,16 +1267,17 @@ footer{
 	font-weight: normal;
 }
 .ecjia-store-goods .r2 li label {
-    font-size: 1em;
+	font-size: 1em;
     color: #ff3434;
-	padding-top: 1em;
+    padding-top: .5em;
     padding-left: .5em;
     white-space: nowrap;
+    padding-bottom: .3em;
 }
 .ecjia-store-goods .r2 .box {
     position: absolute;
     right: 0;
-    bottom: .2em;
+    bottom: .5em;
 }
 .ecjia-store-goods .box span {
     background-color: #fffaeb;
