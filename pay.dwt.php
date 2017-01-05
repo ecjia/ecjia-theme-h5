@@ -45,6 +45,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
     {/if}
     
+    {if $pay_button}
+    	{$pay_button}
+    {/if}
+    
     {if $data.pay_code eq 'pay_cod'}
     <ul class="ecjia-list">
        <li>下单成功，请货到后付款</li>
