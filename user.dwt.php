@@ -15,9 +15,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- TemplateBeginEditable name="标题区域" -->
-<!-- TemplateEndEditable -->
-
 <div class="ecjia-user-info user-new-info ecjia-user">
     {if $user.id}
     	<a href="{url path='user/user_profile/edit_profile'}"><div class="user-img ecjiaf-fl"><img src="{$user_img}" alt=""></a></div>
@@ -31,7 +28,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     		{/if}
     	</a>
 	{else}
-	   <a href="{url path='user/privilege/login'}"><div class="no-login">登录 / 注册</div></a>
+	   	<a href="{url path='user/privilege/login'}"><div class="no-login">登录 / 注册</div></a>
 	{/if}
 </div>
 
@@ -107,14 +104,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <div class="ecjia-user ecjia-margin-b">
     <ul class="ecjia-list list-short">
-       <li>
-        	<a href="{url path='user/user_address/address_list'}">
+		<li>
+			<a href="{url path='user/user_address/address_list'}">
         		<div class="icon-address-list"><img src="./images/user_center/75x75_3.png"></div>
         		<span class="icon-name">收货地址</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
-        </li>
-       <li>
+		</li>
+       	<li>
         	<a class="nopjax" href="{url path='user/index/spread'}&name={$user.name}">
         		<div class="icon-expand"><img src="./images/user_center/expand.png"></div>
         		<span class="icon-name">我的推广</span>
@@ -125,7 +122,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
     <ul class="ecjia-list list-short">
         <li>
-        	<a class="nopjax" href="tel:4001021758">
+        	<a class="external" href="tel:4001021758">
         		<div class="icon-website-service"><img src="./images/user_center/75x75_5.png"></div>
         		<span class="icon-name">官网客服</span>
         		<span class="icon-price">{'4001-021-758'}</span>
@@ -133,7 +130,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
         <li>
-        	<a class="nopjax" href="https://ecjia.com" target="_blank">
+        	<a class="external" href="https://ecjia.com" target="_blank">
         		<div class="icon-offical-website"><img src="./images/user_center/75x75_6.png"></div>
         		<span class="icon-name">官网网站</span>
         		<span class="icon-price">{'www.ecjia.com'}</span>
@@ -163,5 +160,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </ul>
 </div>
 <!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
-
 <!-- {/block} -->

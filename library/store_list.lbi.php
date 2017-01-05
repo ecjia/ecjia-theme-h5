@@ -64,10 +64,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     {if $val.goods_count > 3}
     <ul>
         <li class="goods-info view-more">
-            查看更多（{$val.goods_count-3}）<i class="iconfont icon-jiantou-bottom"></i>
+			查看更多（{$val.goods_count-3}）<i class="iconfont icon-jiantou-bottom"></i>
         </li>
         <li class="goods-info view-more retract hide">
-            收起<i class="iconfont icon-jiantou-top"></i>
+			收起<i class="iconfont icon-jiantou-top"></i>
         </li>
     </ul>
     {/if}

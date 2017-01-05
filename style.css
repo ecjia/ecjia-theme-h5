@@ -10,9 +10,8 @@ Template Type: typepink_0
 Color: green
 */
 
-
-/*
-	全局 CSS
+/**
+ * 全局 CSS
  */
 html,body{
 	background: #f7f7f7;

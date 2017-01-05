@@ -15,7 +15,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	{/foreach}
 </script>
 <!-- {/block} -->
-
 <!-- {block name="main-content"} -->
 <!-- #EndLibraryItem -->
 <div class="ecjia-order-list ">
@@ -29,20 +28,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
 	{/if}
 </div>
-
 <!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
-<!-- <div class="page-content">
-    <ul class="ecjia-list">
-      <li class="alert-text">Alert With Text</li>
-      <li class="alert-text-title">Alert With Text and Title</li>
-      <li class="alert-text-title-callback">Alert With Text and Title and Callback</li>
-      <li class="alert-text-callback">Alert With Text and Callback</li>
-      <li class="confirm-ok">Confirm with text and Ok callback</li>
-      <li class="confirm-ok-cancel">Confirm with text, Ok and Cancel callbacks</li>
-      <li class="confirm-title-ok">Confirm with text, title and Ok callback</li>
-      <li class="confirm-title-ok-cancel">Confirm with text, title, Ok</li>
-    </ul>
-</div> -->
 <!-- {/block} -->
 
 <!-- {block name="ajaxinfo"} -->

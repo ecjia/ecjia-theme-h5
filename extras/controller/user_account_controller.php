@@ -39,7 +39,6 @@ class user_account_controller {
         }
         ecjia_front::$controller->assign('pay_alipay', $pay_alipay);
         ecjia_front::$controller->assign('pay_wxpay', $pay_wxpay);
-//         ecjia_front::$controller->assign('payment', $payment);
         ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->assign_title('充值');
         ecjia_front::$controller->display('user_account_recharge.dwt');
@@ -59,7 +58,6 @@ class user_account_controller {
             $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $data_account_id, 'payment_id' => $data_payment_id))->send()->getBody();
             $pay = json_decode($pay,true);
             $pay_online = $pay['data']['payment']['pay_online'];
-//             ecjia_front::$controller->redirect($pay_online); 
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pay_online));
         } else {
             return ecjia_front::$controller->showmessage(__('金额不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -110,13 +108,11 @@ class user_account_controller {
      * 充值提现列表
      */
     public static function record() {
-//         $_SESSION['status'] = !empty($_GET['status']) ? $_GET['status'] : '';
         ecjia_front::$controller->assign_title('交易记录');
     	ecjia_front::$controller->display('user_record.dwt');
     }
     
     public static function ajax_record() {
-//     	$type = htmlspecialchars($_SESSION['status']);
         $type = '';
     	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
     	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
@@ -290,11 +286,8 @@ class user_account_controller {
             $pay = json_decode($pay,true);
             $pay_online = $pay['data']['payment']['pay_online'];
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pay_online' => $pay_online));
-//             ecjia_front::$controller->redirect($pay_online); 
         }
     }
-    
-    
 }
 
 // end

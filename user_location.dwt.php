@@ -13,10 +13,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-
 <form class="ecjia-list ecjia-address-list" action="" method="post" id="searchForm" name="searchForm">
 	<div class="nav-header">
-		<a href="{url path='user/user_address/near_location' args="city={$smarty.get.city}&type=index"}" >
+		<a href="{url path='user/user_address/near_location' args="city={$smarty.get.city}&type=index"}">
 		<div class="img-search"></div>
 		<input id="keywordBox" name="keywords" type="search" placeholder="小区、写字楼、学校">
 		</a>

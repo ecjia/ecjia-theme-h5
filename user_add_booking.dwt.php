@@ -19,7 +19,6 @@ var {$key} = "{$item}";
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-
 <form class="ecjia-form add-booking-form form-group" name="formPassword" action="{url path='user_booking/insert_booking'}" method="post" onsubmit="return addBooking();">
 	<div class="form-group">
 		<label class="input" > 

@@ -43,7 +43,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</ul>
 </section>
 
-
 <div class="alert-goods-attribute">
 	<div class="alert-goods-attribute-shade"></div>
 	<div class="hd">
@@ -55,6 +54,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 	</form>
 </div>
-
-
-  <!-- {/block} -->
+<!-- {/block} -->

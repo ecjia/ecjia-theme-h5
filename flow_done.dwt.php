@@ -49,6 +49,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <a class="btn" href='{url path="user/user_order/order_detail" args="order_id={$data.order_id}"}'>查看订单</a>
     </div>
 </div>
-
-
 <!-- {/block} -->

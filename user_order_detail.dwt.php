@@ -16,7 +16,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-order-detail">
 	<ul class="ecjia-list ecjia-list-two ecjia-nav ecjia-margin-t-n">
 		<li class="{if $smarty.get.type neq 'detail'} active{/if}"><a class="nopjax" href="#one" role="tab" data-toggle="tab">订单状态</a></li>
-		<li class="{if $smarty.get.type eq 'detail'} active{/if}"><a class="nopjax" href="#two" role="tab" data-toggle="tab"	>订单详情</a></li>
+		<li class="{if $smarty.get.type eq 'detail'} active{/if}"><a class="nopjax" href="#two" role="tab" data-toggle="tab">订单详情</a></li>
 	</ul>
 	<div class="goods-describe order-log-list {if $smarty.get.type neq 'detail'} active{/if}" id="one">
 		<!-- {foreach from=$order.order_status_log item=info} -->

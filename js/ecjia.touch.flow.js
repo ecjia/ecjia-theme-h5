@@ -69,14 +69,14 @@
 						status 	: $this.attr('data-status')
 					};
 				var goods_number =$('#goods_number'+options.rec_id).val();
-				if(options.status =='del'){
-					if(goods_number == 1){
+				if (options.status =='del') {
+					if (goods_number == 1) {
 						goods_number =1;
-					}else{
+					} else {
 						goods_number = parseInt(goods_number) - 1;
 						$('#goods_number'+options.rec_id).val(goods_number);
 					}
-				}else{
+				} else {
  					goods_number = parseInt(goods_number) + 1;
  					$('#goods_number'+options.rec_id).val(goods_number);
  				}
@@ -91,7 +91,7 @@
 						status 	: $this.attr('data-status')
 					};
 				var goods_number =$('#goods_number'+options.rec_id).val();
-				if(goods_number <= 0){
+				if (goods_number <= 0) {
 					goods_number = 1;
 					$('#goods_number'+options.rec_id).val(1);
 				}
@@ -104,11 +104,11 @@
 				options.url, 
 				{'rec_id':options.rec_id ,'goods_number': goods_number }, 
 				function(data){
-					if(data.state == "success"){
+					if (data.state == "success") {
 						$('#total_number').html(data.total_number);
 						$('#goods_subtotal').html(data.total_desc);
-					}else{
-						if(data.error == "1"){
+					} else {
+						if (data.error == "1") {
 							alert(data.message);
 							$('#goods_number'+options.rec_id).val(data.err_max_number);
 						}
@@ -128,10 +128,10 @@
  				},
  				url = $this.attr('data-url');
  				$.get(url, options, function(data){
- 					if(data.state == "success"){
+ 					if (data.state == "success") {
  						$('#total_number').html(data.content);
- 					}else{
- 						if(data.error == "1"){
+ 					} else {
+ 						if (data.error == "1") {
  							alert(data.message);
  						}
  					}
@@ -150,11 +150,11 @@
  				},
  				url = $this.attr('data-url');
  				$.get(url, options, function(data){
- 					if(data.state == "success"){
+ 					if (data.state == "success") {
                         $('#total_number').html(data.content);
  						//$('#goods_subtotal').html(data.total_desc);
- 					}else{
- 						if(data.error == "1"){
+ 					} else {
+ 						if (data.error == "1") {
  							alert(data.message);
  							$('#goods_number'+options.rec_id).val(data.err_max_number);
  						}
@@ -180,11 +180,11 @@
  				},
  				url = $this.attr('data-url');
  				$.get(url, options, function(data){
- 					if(data.state == "success"){
+ 					if (data.state == "success") {
  						$('#total_number').html(data.total_number);
  						$('#goods_subtotal').html(data.total_desc);
- 					}else{
- 						if(data.error == "1"){
+ 					} else {
+ 						if (data.error == "1") {
  							alert(data.message);
  							$('#goods_number'+options.rec_id).val(data.err_max_number);
  						}
@@ -200,11 +200,11 @@
  				},
  				url = $this.attr('data-url');
  				$.get(url, options, function(data){
- 					if(data.state == "success"){
+ 					if (data.state == "success") {
  						$('#total_number').html(data.total_number);
  						$('#goods_subtotal').html(data.total_desc);
- 					}else{
- 						if(data.error == "1"){
+ 					} else {
+ 						if (data.error == "1") {
  							alert(data.message);
  							$('#goods_number'+options.rec_id).val(data.err_max_number);
  						}
@@ -218,11 +218,11 @@
  				},
  				url = $this.attr('data-url');
  				$.get(url, options, function(data){
- 					if(data.state == "success"){
+ 					if (data.state == "success") {
  						$('#total_number').html(data.total_number);
  						$('#goods_subtotal').html(data.total_desc);
- 					}else{
- 						if(data.error == "1"){
+ 					} else {
+ 						if (data.error == "1") {
  							alert(data.message);
  							$('#goods_number'+options.rec_id).val(data.err_max_number);
  						}
@@ -241,10 +241,10 @@
  				},
  				url = $this.attr('data-url');
  				$.get(url, options, function(data){
- 					if(data.state == "success"){
+ 					if (data.state == "success") {
  						$('#total_number').html(data.content);
- 					}else{
- 						if(data.error == "1"){
+ 					} else {
+ 						if (data.error == "1") {
  							alert(data.message);
  							$('#goods_number'+options.rec_id).val(data.err_max_number);
  						}
@@ -263,10 +263,10 @@
  				},
  				url = $this.attr('data-url');
  				$.get(url, options, function(data){
- 					if(data.state == "success"){
+ 					if (data.state == "success") {
  						$('#total_number').html(data.content);
- 					}else{
- 						if(data.error == "1"){
+ 					} else {
+ 						if (data.error == "1") {
  							alert(data.message);
  							$('#goods_number'+options.rec_id).val(data.err_max_number);
  						}
@@ -285,9 +285,9 @@
  				},
  				url = $this.attr('data-url');
  				$.get(url, options, function(data){
-					if(data.message.message){
+					if (data.message.message) {
 						ecjia.touch.showmessage(data.message);
-					}else{
+					} else {
 						$('#total_number').html(data.message.content);
 					}
 				});
@@ -296,11 +296,11 @@
 
 		select_inv : function(){
 			$('[data-flag="need_inv_i"]').on('click',function(){
-				if($(this).hasClass("fl")){
+				if ($(this).hasClass("fl")) {
 					$(this).removeClass("fl").addClass("fr");
 					$(this).siblings("ins").text("是");
 					$(this).parent().parent("li").siblings().hide();
-				}else if($(this).hasClass("fr")){
+				} else if ($(this).hasClass("fr")) {
 					$(this).removeClass("fr").addClass("fl");
 					$(this).siblings("ins").text("否");
 					$(this).parent().parent("li").siblings().show();

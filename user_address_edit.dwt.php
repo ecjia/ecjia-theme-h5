@@ -7,6 +7,7 @@ Libraries: page_menu,page_header
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {extends file="ecjia-touch.dwt.php"} -->
+
 <!-- {block name="footer"} -->
 <script type="text/javascript">ecjia.touch.address_from.init();ecjia.touch.user.address_save();</script>
 <!-- {/block} -->
@@ -59,5 +60,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<input name="referer_url" type="hidden" value="{$referer_url}" />
 	</div>
 </form>
-
 <!-- {/block} -->

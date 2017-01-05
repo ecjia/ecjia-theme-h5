@@ -9,7 +9,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="main-content"} -->
-
 <form class="ecjia-account ecjia-form user-profile-form" action="{url path='user/user_account/recharge_account'}" method="post">
     <div class="ecjia-form ecjia-account ecjia-flow-done ecjia-pay">
     	<p class="account-top text-ty ">{t}账户充值：{$user.name}{/t}</p>
@@ -19,7 +18,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     			<input placeholder="{t}建议充入100元以上金额{/t}" name="amount"/>
     		</label>
     	</div>
-    	
     	<ul class="ecjia-list ecjia-margin-t">
             <li class="list-font-size">
                                     其它支付方式 <span class="ecjiaf-fr"><i class="iconfont icon-jiantou-bottom"></i></span>

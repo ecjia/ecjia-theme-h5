@@ -12,7 +12,7 @@
 			$(document).off('click', '.would-spread');
 			$(document).on('click', '.would-spread', function() {
 				var ua = navigator.userAgent.toLowerCase();
-				if(ua.match(/MicroMessenger/i)=="micromessenger") {
+				if (ua.match(/MicroMessenger/i)=="micromessenger") {
 	        		$('.ecjia-spread-share').removeClass('hide').css('top', $('body').scrollTop() + 'px');
 	            	//禁用滚动条
 	            	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
@@ -30,27 +30,8 @@
 				//获取滚动条的滑动距离
 				var scroH = $(this).scrollTop();
 				$("ul .pf").each(function(i){
-//						滚动时候pf离顶部的距离
+//					滚动时候pf离顶部的距离
 					var pfTop = $(this).offset().top;
-//						console.log('div' + pfTop);
-//						console.log(scroH);
-
-					//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
-//					if (i>=1 && scroH >= pfTop-38) {
-//						$(this).css({"position":"fixed","top":0, "z-index":9});
-//					}else if(i==0 && scroH >= pfTop){
-//						$(this).css({"position":"fixed","top":0, "z-index":9});
-//					}else{
-//						$(this).css({"position":"relative"});
-//					}
-//					alert(pfTop);
-//					if(scroH>=pfTop){
-//						alert(pfTop);
-//						$(this).css("background","pink");
-//						$(".pf").css({"position":"fixed","top":0});
-//					}else if(scroH<pfTop){
-//						$(".pf").css({"position":"static"});
-//					}
 			    });
 			})
 		},
@@ -153,3 +134,5 @@
         },
 	};
 })(ecjia, jQuery);
+
+//end

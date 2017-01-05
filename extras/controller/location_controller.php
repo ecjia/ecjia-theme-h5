@@ -74,22 +74,22 @@ class location_controller {
     	$old_locations = $_GET['lat'].','.$_GET['lng'];
     	$href_url = $_GET['href_url'];
     	
-//     	$key = ecjia::config('map_qq_key');
-    	$key       = "HVNBZ-HHR3P-HVBDP-LID55-D2YM3-2AF2W";
-    	$change_location = "https://apis.map.qq.com/ws/coord/v1/translate?locations=".$old_locations."&type=1"."&key=".$key;
+//     	$key 				= ecjia::config('map_qq_key');
+    	$key       			= "HVNBZ-HHR3P-HVBDP-LID55-D2YM3-2AF2W";
+    	$change_location 	= "https://apis.map.qq.com/ws/coord/v1/translate?locations=".$old_locations."&type=1"."&key=".$key;
     	$response_location  = RC_Http::remote_get($change_location);
-    	$content = json_decode($response_location['body'],true);
-//     	$tencent_locations = '31.229259,121.40934';
-    	$tencent_locations =$content['locations'][0]['lat'].','.$content['locations'][0]['lng'];
-    	$url       = "https://apis.map.qq.com/ws/geocoder/v1/?location=".$tencent_locations."&key=".$key."&get_poi=1";
-    	$response_address= RC_Http::remote_get($url);
-    	$content   = json_decode($response_address['body'],true);
-    	$location_content = $content['result']['pois'][0];
-    	$location_name    = $location_content['title'];
-    	$location_address = $location_content['address'];
-    	$latng = $location_content['location'];
-    	$longitude = $latng['lng'];
-    	$latitude  = $latng['lat'];
+    	$content 			= json_decode($response_location['body'],true);
+//     	$tencent_locations 	= '31.229259,121.40934';
+    	$tencent_locations 	= $content['locations'][0]['lat'].','.$content['locations'][0]['lng'];
+    	$url       			= "https://apis.map.qq.com/ws/geocoder/v1/?location=".$tencent_locations."&key=".$key."&get_poi=1";
+    	$response_address	= RC_Http::remote_get($url);
+    	$content   			= json_decode($response_address['body'],true);
+    	$location_content 	= $content['result']['pois'][0];
+    	$location_name    	= $location_content['title'];
+    	$location_address 	= $location_content['address'];
+    	$latng 				= $location_content['location'];
+    	$longitude 			= $latng['lng'];
+    	$latitude  			= $latng['lat'];
 
     	//写入cookie
     	setcookie("location_address", $location_address);

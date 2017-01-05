@@ -15,6 +15,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
+
 <form class="ecjia-form package-message-form" action="{url path='user/user_package/add_server'}" method="post" enctype="multipart/form-data" name="formMsg">
 	<div class="form-group">
 		<span class="ecjiaf-fl">{$lang.message_title}</span>

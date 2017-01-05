@@ -9,7 +9,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-
 <script type="text/javascript">ecjia.touch.goods.init();</script>
 <script type="text/javascript">
 jQuery(function($){
@@ -62,9 +61,7 @@ jQuery(function($){
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
-
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 <section class="user-order-tracking ect-padding-tb ect-padding-lr">
 	<ul id="queryResult"></ul>
 </section>

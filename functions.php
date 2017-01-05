@@ -425,5 +425,3 @@ ecjia_open::macro('seller', function($querys) {
 RC_Hook::add_filter('payment_respond_template', function($respond, $msg){
     return pay_controller::notify($msg);
 }, 10, 2);
-
-

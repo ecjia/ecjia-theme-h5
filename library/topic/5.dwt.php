@@ -154,4 +154,3 @@ ul,li{overflow: hidden;}
 		<div class="center pad-b"><a><img class="img" src="{$theme_url}/library/topic/images/more05.png" alt="###" class="title-wth-5"></a></div>
 	</div>
 <!-- {/block} -->
-	

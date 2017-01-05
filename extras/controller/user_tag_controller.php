@@ -13,7 +13,6 @@ class user_tag_controller {
      * 删除标签
      */
     public static function del_tag() {}
-
 }
 
 // end

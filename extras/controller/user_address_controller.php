@@ -8,34 +8,6 @@ class user_address_controller {
      * 收货地址列表界面
      */
     public static function address_list() {
-        /*赋值于模板*/
-//         $user_id = $_SESSION['user_id'];
-//         $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
-//         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-//         $consignee_list = get_consignee_list($user_id, 0, $size, $page);
-//         if (!empty($consignee_list['list'])) {
-//             foreach ($consignee_list['list'] as $k => $v) {
-//                 $address = '';
-//                 if ($v['province']) {
-//                     $address .= get_region_name($v['province']);
-//                 }
-//                 if ($v['city']) {
-//                     $address .= get_region_name($v['city']);
-//                 }
-//                 if ($v['district']) {
-//                     $address .= get_region_name($v['district']);
-//                 }
-//                 $v['address'] = $address . ' ' . $v['address'];
-//                 $v['url'] = RC_Uri::url('edit_address', array(
-//                     'id' => $v['address_id']
-//                 ));
-//                 $address_list[] = $v;
-//             }
-//         }
-//         ecjia_front::$controller->assign('addres_list', $address_list);
-//         ecjia_front::$controller->assign('page', $consignee_list['page']);
-//         ecjia_front::$controller->assign('title', RC_Lang::lang('consignee_info'));
-//         ecjia_front::$controller->assign_title(RC_Lang::lang('consignee_info'));
     	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
     	ecjia_front::$controller->assign('address_list', $address_list);
         ecjia_front::$controller->assign_lang();
@@ -49,30 +21,11 @@ class user_address_controller {
         $user_id = $_SESSION['user_id'];
         $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-//         $consignee_list = get_consignee_list($user_id, 0, $size, $page);
-//         $address_list = array();
-//         if ($consignee_list['list']) {
-//             foreach ($consignee_list['list'] as $k => $v) {
-//                 $address = '';
-//                 if ($v['province']) {
-//                     $address .= get_region_name($v['province']);
-//                 }
-//                 if ($v['city']) {
-//                     $address .= get_region_name($v['city']);
-//                 }
-//                 if ($v['district']) {
-//                     $address .= get_region_name($v['district']);
-//                 }
-//                 $v['address'] = $address . ' ' . $v['address'];
-//                 $v['url'] = RC_Uri::url('edit_address', array(
-//                     'id' => $v['address_id']
-//                 ));
-//                 $address_list[] = $v;
-//             }
-//         }
-    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
+    	
+        $address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
 		ecjia_front::$controller->assign('address_list', $address_list);
-        $sayList = ecjia_front::$controller->fetch('user_address_list.dwt');
+
+		$sayList = ecjia_front::$controller->fetch('user_address_list.dwt');
         return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' , 'is_last' => $consignee_list['is_last']));
     }
     
@@ -193,9 +146,7 @@ class user_address_controller {
             )
            
         );
-        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_ADD)->data($params)
-//         ->run();
-        ->send()->getBody();
+        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_ADD)->data($params)->send()->getBody();
         $rs = json_decode($rs,true);
         
         if (! $rs['status']['succeed']) {
@@ -221,7 +172,7 @@ class user_address_controller {
      * 编辑收货地址的处理
      */
     public static function edit_address() {
-        $id             = isset($_GET['id']) ? intval($_GET['id']) : 0;
+        $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
         if (empty($id)) {
             return ecjia_front::$controller->showmessage('参数错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
         }
@@ -266,13 +217,10 @@ class user_address_controller {
             )
              
         );
-        _dump($params);
-        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_UPDATE)->data($params)
-        //         ->run();
-        ->send()->getBody();
+        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_UPDATE)->data($params)->send()->getBody();
         $rs = json_decode($rs,true);
-        //         _dump($rs,1);
-        if (! $rs['status']['succeed']) {
+
+        if (!$rs['status']['succeed']) {
             return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON,array('pjaxurl' => ''));
         }
         $temp_data = user_address_controller::save_temp_data(0, 'edit_'.$_POST['address_id'], 1);
@@ -293,7 +241,6 @@ class user_address_controller {
         $params = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $id);
         $address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params)->run();
 
-//         _dump($address_info,1);
         if ($address_info['default_address'] == 0) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_DELETE)->data($params)->send()->getBody();
             $data = json_decode($data,true);
@@ -320,7 +267,6 @@ class user_address_controller {
     
         $params = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $id);
     
-        //         _dump($address_info,1);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_SETDEFAULT)->data($params)->send()->getBody();
         $data = json_decode($data,true);
         if ($data['status']['succeed']) {
@@ -333,14 +279,7 @@ class user_address_controller {
     /**
      * 地区筛选
      */
-    public static function region() {
-        // $type = intval($_GET['type']) ? intval($_GET['type']) : 0;
-        // $parent = intval($_GET['parent']) ? intval($_GET['parent']) : 0;
-        // $arr['regions'] = get_regions($type, $parent);
-        // $arr['type'] = $type;
-        // $arr['target'] = htmlspecialchars(trim(stripslashes($_GET['target'])));
-        // ecjia_front::$controller->showmessage('地区参数', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, $arr);
-    }
+    public static function region() {}
 
     /**
      * 定位当前位置
@@ -392,32 +331,6 @@ class user_address_controller {
      * 异步地址列表
      */
     public static function async_location() {
-//     	$user_id = $_SESSION['user_id'];
-//     	$size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
-//     	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-//     	$consignee_list = get_consignee_list($user_id, 0, $size, $page);
-//     	$address_list = array();
-//     	if ($consignee_list['list']) {
-//     		foreach ($consignee_list['list'] as $k => $v) {
-//     			$address = '';
-//     			if ($v['province']) {
-//     				$address .= get_region_name($v['province']);
-//     			}
-//     			if ($v['city']) {
-//     				$address .= get_region_name($v['city']);
-//     			}
-//     			if ($v['district']) {
-//     				$address .= get_region_name($v['district']);
-//     			}
-//     			$v['address'] = $address . ' ' . $v['address'];
-//     			$v['url'] = RC_Uri::url('edit_address', array(
-//     					'id' => $v['address_id']
-//     			));
-//     			$address_list[] = $v;
-//     		}
-//     	}
-
-//         $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
         $address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token['access_token']))->run();
         ecjia_front::$controller->assign('hideinfo', 1);
         ecjia_front::$controller->assign_lang();

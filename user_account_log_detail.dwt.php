@@ -9,8 +9,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="main-content"} -->
-<!-- #BeginLibraryItem "/library/page_header.lbi" -->
-<!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 <div class="ecjia-user-info ecjia_user-info-edit log_detail">
 	<div class="user-img"><img src="{$user_img}" /></div>
 	<p>{$smarty.session.user_name}</p>

@@ -22,17 +22,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	});
 </script>
 <script type="text/javascript">
-	var gmt_end_time = "{$auction.gmt_end_time|default:0}";
-	{foreach from=$lang.goods_js item=item key=key}
-		var {$key} = "{$item}";
-		var now_time = {$now_time};
-	{/foreach}
-	onload = function(){
-		try{
-			onload_leftTime(now_time);
-		}
-		catch (e){}
+var gmt_end_time = "{$auction.gmt_end_time|default:0}";
+{foreach from=$lang.goods_js item=item key=key}
+	var {$key} = "{$item}";
+	var now_time = {$now_time};
+{/foreach}
+onload = function(){
+	try{
+		onload_leftTime(now_time);
 	}
+	catch (e){}
+}
 </script>
 <!-- {/block} -->
 
@@ -141,5 +141,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </section>
 </div>
 <div class="goods-related ect-padding-lr ect-padding-tb">{$auction.act_desc|escape:html|nl2br}</div>
-
 <!-- {/block} -->

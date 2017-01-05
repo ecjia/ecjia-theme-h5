@@ -12,22 +12,22 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <script type="text/javascript">ecjia.touch.goods.init();</script>
 <script type="text/javascript" src="{$theme_url}js/lefttime.js"></script>
 <script type="text/javascript">
-	var gmt_end_time = {$snatch_goods.gmt_end_time|default:0};
-	var id = {$id};
-	{foreach from=$lang.snatch_js item=item key=key}
-		var {$key} = "{$item}";
-	{/foreach}
-	{foreach from=$lang.goods_js item=item key=key}
-		var {$key} = "{$item}";
-	{/foreach}
-	<!-- {literal} -->
+var gmt_end_time = {$snatch_goods.gmt_end_time|default:0};
+var id = {$id};
+{foreach from=$lang.snatch_js item=item key=key}
+	var {$key} = "{$item}";
+{/foreach}
+{foreach from=$lang.goods_js item=item key=key}
+	var {$key} = "{$item}";
+{/foreach}
+<!-- {literal} -->
 
-	onload = function(){
-		try{window.setInterval("newPrice(" + id + ")", 8000);
-			onload_leftTime();
-		}catch (e){}
-	}
-	<!-- {/literal} -->
+onload = function(){
+	try{window.setInterval("newPrice(" + id + ")", 8000);
+		onload_leftTime();
+	}catch (e){}
+}
+<!-- {/literal} -->
 </script>
 <!-- {/block} -->
 
@@ -215,7 +215,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 	</section>
 	<!--{/if}-->
-
 </div>
-
 <!-- {/block} -->

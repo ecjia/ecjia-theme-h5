@@ -8,7 +8,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
-
 <!-- {block name="main-content"} -->
 <div class="ecjia-account-list-f">
     <div class="ecjia-account-list">
@@ -27,36 +26,36 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div><ul class="ecjia-account-record ecjia-list list-short ecjia-user-no-border-b" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/user_account/ajax_record_deposit'}" data-size="10"></ul></div>
 {/if}
 <!-- {/block} -->
+
 <!-- {block name="ajaxinfo"} -->
-    {foreach from=$sur_amount key=key item=group}
-		<p class="record-time record-time-{$key}">{if $key eq $now_mon}{'本月'}{else}{$key}{'月'}{/if}</p>
-		<div class="record-list account-record-list" >
-			<ul>
-			{foreach from=$group item=item}
-				<li class="record-single">
-				<a href="{RC_Uri::url('user/user_account/record_info')}&account_id={$item.account_id}">
-					<div class="record-l">
-						<span class="user-photo"><img src="{$user_img}" alt=""></span>
+    <!-- {foreach from=$sur_amount key=key item=group} -->
+	<p class="record-time record-time-{$key}">{if $key eq $now_mon}{'本月'}{else}{$key}{'月'}{/if}</p>
+	<div class="record-list account-record-list" >
+		<ul>
+		{foreach from=$group item=item}
+			<li class="record-single">
+			<a href="{RC_Uri::url('user/user_account/record_info')}&account_id={$item.account_id}">
+				<div class="record-l">
+					<span class="user-photo"><img src="{$user_img}" alt=""></span>
+				</div>
+				<div class="record-r">
+					<div class="record-r-l">
+						<span class="account-record-big">{$item.type_lable}</span>
+						<span class="record-time account-record-sm">{$item.add_time}</span>
 					</div>
-					<div class="record-r">
-						<div class="record-r-l">
-							<span class="account-record-big">{$item.type_lable}</span>
-							<span class="record-time account-record-sm">{$item.add_time}</span>
-						</div>
-						<div class="record-r-r">
-							<span class="account-record-big">{$item.amount}</span>
-							<span class="account-record-sm">{$item.pay_status}</span>
-						</div>
-					</a>
-				</form>
-				</li>
-			{/foreach}
-			</ul>
-		</div>
-    {foreachelse}
+					<div class="record-r-r">
+						<span class="account-record-big">{$item.amount}</span>
+						<span class="account-record-sm">{$item.pay_status}</span>
+					</div>
+				</a>
+			</form>
+			</li>
+		<!-- {/foreach} -->
+		</ul>
+	</div>
+    <!-- {foreachelse} -->
 	<div class="ecjia-nolist">
 		<div class="img-norecord">暂无明细记录</div>
-		
 	</div>
-<!--{/foreach}-->
+	<!--{/foreach}-->
 <!-- {/block} -->

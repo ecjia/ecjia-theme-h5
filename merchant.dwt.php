@@ -15,7 +15,6 @@ ecjia.touch.category.init();
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-
 <div class="ecjia-mod page_hearer_hide ecjia-fixed">
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 </div>
@@ -25,7 +24,7 @@ ecjia.touch.category.init();
 		<img src="{$store_info.seller_banner}">
 	</div>
 	<div class="ecjia-header-right">
-		<a href="{$header_right.href}" class="nopjax">
+		<a href="{$header_right.href}" class="nopjax external">
 			<!-- {if $header_right.icon neq ''} -->
 			<i class="{$header_left.icon}"></i>
 			<!-- {elseif $header_right.info neq ''} -->

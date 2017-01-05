@@ -3,15 +3,10 @@
  * 支付控制器代码
  */
 class pay_controller {
-
     /**
      * 
      */
     public static function init() {
-
-// 		echo '<font color="#f00"><b>统一下单支付单信息</b></font><br/>';
-// 		printf_info($order);
-// 		$jsApiParameters = $tools->GetJsApiParameters($order);
     	
         $order_id = !empty($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         $pay_id = !empty($_GET['pay_id']) ? intval($_GET['pay_id']) : 0;

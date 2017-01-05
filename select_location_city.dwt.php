@@ -10,22 +10,22 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">
-	$(document).ready(function(){  
-         $(".citylist li").click(function(){             
-              var city_id=$(this).attr('data-id');
-              var address_id = $('input[name="address_id"]').val(); 
-              var city_name=$(this).text();
-              var url = $("#cityall").attr('data-url');
-              url += '&city=' + city_name;
-              if (city_id) {
-            	  url += '&city_id=' + city_id;
-              }
-              if (address_id) {
-            	  url += '&id=' + address_id;
-              }
-              ecjia.pjax(url);
-         }) 
-  	})  
+$(document).ready(function() {
+	$(".citylist li").click(function() {
+		var city_id = $(this).attr('data-id');
+		var address_id = $('input[name="address_id"]').val();
+		var city_name = $(this).text();
+		var url = $("#cityall").attr('data-url');
+		url += '&city=' + city_name;
+		if (city_id) {
+			url += '&city_id=' + city_id;
+		}
+		if (address_id) {
+			url += '&id=' + address_id;
+		}
+		ecjia.pjax(url);
+	})
+})	
 </script>
 <!-- {/block} -->
 

@@ -279,7 +279,6 @@ class merchant_controller {
 		if ($data['paginated']['more'] == 0) $data['is_last'] = 1;
 		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $say_list, 'goods_list' => $goods_list, 'name' => $type_name, 'num' => $goods_num, 'type' => $action_type, 'is_last' => $data['is_last']));
 	}
-	
 
 	/**
 	 * 店铺位置

@@ -9,7 +9,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-
 <script type="text/javascript">ecjia.touch.goods.init();</script>
 <script type="text/javascript">
 	get_asynclist("{url path='brand/asynclist' args="page={$page}&sort={$sort}&order={$order}"}" , '{$theme_url}images/loader.gif');

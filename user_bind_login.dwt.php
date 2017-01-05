@@ -29,5 +29,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <a href="{$url.bind_signin}" class="btn btn-hollow">立即关联</a>
 	</div>
 </div>
-
 <!-- {/block} -->

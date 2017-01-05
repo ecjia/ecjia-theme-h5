@@ -7,6 +7,7 @@ Libraries: page_menu,page_header
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {extends file="ecjia-touch.dwt.php"} -->
+
 <!-- {block name="footer"} -->
 <script type="text/javascript">ecjia.touch.user.init();</script>
 <!-- {/block} -->
@@ -26,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <p class="record-val">{$sur_amount.add_time}</p>
         <p class="record-key">{if $sur_amount.type eq 'raply'}申请时间{else}充值时间{/if}</p>
     </div>
-    {if $sur_amount.pay_status eq '已完成'}
+	{if $sur_amount.pay_status eq '已完成'}
     {elseif $sur_amount.pay_status eq ''}
     {else}
         <form name="record_cancel_from" action="{url path='user/user_account/record_cancel'}" method="post" >
@@ -50,6 +51,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </form>
 	{/if}
 </div>
-
-
 <!-- {/block} -->

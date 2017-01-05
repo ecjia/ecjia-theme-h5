@@ -9,15 +9,6 @@ class user_front {
     private $public_route;
 
 	public function __construct() {
-		/*验证登录*/
-// 		$this->check_login();
-		/*用户信息*/
-// 		$info = get_user_default($this->user_id);
-//         $info = ecjia_touch_user::singleton()->getUserinfo();
-// 		/*如果是显示页面，对页面进行相应赋值*/
-// 		$this->assign('action', $this->action);
-// 		$this->assign('info', $info);
-		
 	    $this->makePublicRoute();
 		
 		if (!$this->check_login()) {
@@ -110,7 +101,6 @@ class user_front {
 		
 		return false;
 	}
-
 }
 
 // end
