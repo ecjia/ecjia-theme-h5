@@ -181,6 +181,7 @@ class user_address_controller {
         if (empty($_POST['city_id']) || empty($_POST['address']) || empty($_POST['consignee']) || empty($_POST['mobile'])) {
             return ecjia_front::$controller->showmessage('请完整填写相关信息', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
         }
+
         $params = array(
             'token' => ecjia_touch_user::singleton()->getToken(),
             'address' => array(
@@ -345,7 +346,7 @@ class user_address_controller {
      * 定位当前位置
      */
     public static function near_location() {
-    	$referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : '';
+    	$referer_url = !empty($_GET['referer_url']) ? $_GET['referer_url'] : '';
     	if (!empty($referer_url)) {
     		ecjia_front::$controller->assign('referer_url', $referer_url);
     	}
@@ -429,6 +430,7 @@ class user_address_controller {
     	$region   = $_GET['region'];
     	$keywords = $_GET['keywords'];
     	$key       = "HVNBZ-HHR3P-HVBDP-LID55-D2YM3-2AF2W";
+//     	$key       = ecjia::config('map_qq_key');
     	$url       = "http://apis.map.qq.com/ws/place/v1/suggestion/?region=".$region."&keyword=".$keywords."&key=".$key;
     	$response = RC_Http::remote_get($url);
     	$content  = json_decode($response['body']);

@@ -26,84 +26,6 @@ class user_order_controller {
      * 订单详情
      */
     public static function order_detail() {
-        // $user_id = $_SESSION['user_id'];
-        // /*订单详情*/
-        // $order = get_order_detail($order_id, $user_id);
-        // if ( $order['pay_status'] == PS_UNPAYED && $order['pay_code'] != 'pay_cod' ) {
-        //     /* 取得支付信息，生成支付代码 */
-        //     if ($order ['order_amount'] > 0) {
-        //         RC_Loader::load_app_class('payment_abstract', 'payment', false);
-        //         $payment_method = RC_Loader::load_app_class('payment_method','payment');
-        //         $payment_info = $payment_method->payment_info_by_id($order ['pay_id']);
-        //         /*取得支付信息，生成支付代码*/
-        //         $payment_config = $payment_method->unserialize_config($payment_info['pay_config']);
-        //         $handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
-        //         $handler->set_orderinfo($order);
-        //         $handler->set_mobile(true);
-        //         /* 这是一个支付的抽象类 */
-        //         $pay_online = $handler->get_code(payment_abstract::PAYCODE_PARAM);
-        //     }
-        // 	/*未付款*/
-        //     $order['handler'] = '<a class="nopjax btn btn-info nopjax" href="' . $pay_online['pay_online'] . '">去' . $payment_info['pay_name'] . '支付</a>';
-        //
-        //     $order['handler_left'] = '<a class="nopjax cancel_order ecjiaf-fl btn" href="' . RC_Uri::url('user/user_order/cancel_order',array('order_id' => $order_id)). '">' . 取消订单 . '</a>';
-        //
-        // } else {
-        // 	/* 对配送状态的处理 */
-        //     if (($order['pay_status'] == PS_PAYED && ($order['shipping_status'] == SS_UNSHIPPED || $order['shipping_status'] == 3 || $order['shipping_status'] == 5)) || (($order['shipping_status'] == SS_UNSHIPPED || $order['shipping_status'] == 3 || $order['shipping_status'] == 5) && $order['pay_code'] == 'pay_cod') ) {
-        //         /*未发货*/
-        //         @$order['handler'] = "<a class=\"btn nopjax\">" .RC_Lang::lang('ss/' . $order['shipping_status'])."</a>";
-        //     } elseif( $order['shipping_status'] == SS_SHIPPED ) {
-        //         /*待收货*/
-        //         @$order['handler'] = "<a class=\"btn nopjax\" href=\"" . RC_Uri::url('user_order/affirm_received', array('order_id' => $order['order_id'])) . "\" onclick=\"if (!confirm('" . RC_Lang::lang('confirm_received') . "')) return false;\">" . RC_Lang::lang('received') . "</a>";
-        //     } elseif($order['pay_status'] == PS_PAYED && $order['shipping_status'] == SS_RECEIVED) {
-        //         $order['handler'] =  "<a class=\"btn nopjax\">" .RC_Lang::lang('ss_received')."</a>";
-        //     }
-        // }
-        // /*订单商品*/
-        // $goods_list = order_goods($order_id);
-        // foreach ($goods_list as $key => $value) {
-        //     $goods_list[$key]['market_price'] = price_format($value['market_price'], false);
-        //     $goods_list[$key]['goods_price'] = price_format($value['goods_price'], false);
-        //     $goods_list[$key]['subtotal'] = price_format($value['subtotal'], false);
-        //     $goods_list[$key]['tags'] = get_tags($value['goods_id']);
-        // }
-        // /*设置能否修改使用余额数*/
-        // if ($order['order_amount'] > 0) {
-        //     if ($order['order_status'] == OS_UNCONFIRMED || $order['order_status'] == OS_CONFIRMED) {
-        //         $user = user_info($order['user_id']);
-        //         if ($user['user_money'] + $user['credit_line'] > 0) {
-        //             ecjia_front::$controller->assign('allow_edit_surplus', 1);
-        //             ecjia_front::$controller->assign('max_surplus', sprintf(RC_Lang::lang('max_surplus'), $user['user_money']));
-        //         }
-        //     }
-        // }
-        // /*未发货，未付款时允许更换支付方式*/
-        // if ($order['order_amount'] > 0 && $order['pay_status'] == PS_UNPAYED && $order['shipping_status'] == SS_UNSHIPPED) {
-        //     $payment_method = RC_Loader::load_app_class('payment_method', 'payment');
-        //     $payment_list 	= empty($payment_method) ? array() : $payment_method->available_payment_list(1, $cod_fee);
-        //     // $payment_list = available_payment_list(false, 0, true);
-        //     /*过滤掉当前支付方式和余额支付方式*/
-        //     if (is_array($payment_list)) {
-        //         foreach ($payment_list as $key => $payment) {
-        //             if ($payment['pay_id'] == $order['pay_id'] || $payment['pay_code'] == 'balance') {
-        //                 unset($payment_list[$key]);
-        //             }
-        //         }
-        //     }
-        //     ecjia_front::$controller->assign('payment_list', $payment_list);
-        // }
-        // $order['pay_desc'] = html_out($order['pay_desc']);
-        // /*订单 支付 配送 状态语言项*/
-        // $order['order_status'] = RC_Lang::lang('os/' . $order['order_status']);
-        // $order['pay_status'] = RC_Lang::lang('ps/' . $order['pay_status']);
-        // $order['shipping_status'] = RC_Lang::lang('ss/' . $order['shipping_status']);
-        // ecjia_front::$controller->assign('title', RC_Lang::lang('order_detail'));
-        // ecjia_front::$controller->assign('order', $order);
-        // ecjia_front::$controller->assign('goods_list', $goods_list);
-    
-    
-    
         $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         if (empty($order_id)) {
             return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
@@ -111,7 +33,6 @@ class user_order_controller {
     
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
-//         _dump($data,2);
         ecjia_front::$controller->assign('order', $data);
         ecjia_front::$controller->assign('title', RC_Lang::lang('order_detail'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('order_detail'));
@@ -272,9 +193,10 @@ class user_order_controller {
             $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
         }
         if ($data['status']['succeed']) {
-            return ecjia_front::$controller->showmessage('操作成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url,'is_show' => false));
+//             return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url,'is_show' => false));
+            return ecjia_front::$controller->redirect($url);
         } else {
-            return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
+            return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url));
         }
     }
 

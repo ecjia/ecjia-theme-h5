@@ -3933,7 +3933,6 @@ footer{
 }
 .goods-info .address-warehouse-new{
 	padding:0;
-	padding-bottom: 48px;
 }
 .goods-info .goods-info-property {
     background: #fff;
@@ -3943,7 +3942,7 @@ footer{
 	font-size:1.1em;
 }
 .ecjia-like-goods-list{
-	padding-bottom:1em;
+	padding-bottom:.5em;
 	margin-top: 0;
 }
 .ecjia-like-goods-list li{
@@ -4295,28 +4294,44 @@ footer{
 	background: url(../images/icon/money_circle_50.png) #F7F7F7 no-repeat center;
 	background-size:60%;
 }
-.order-log-item.shipping:first-child::after{
+.order-log-item.payed:first-child::after,.order-log-item.payed:first-child::after{
+	background: url(../images/icon/money_h_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+} 
+.order-log-item.payed::after,.order-log-item.payed::after{
+	background: url(../images/icon/money_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+}
+.order-log-item.shipping:first-child::after, .order-log-item.shipped:first-child::after, .order-log-item.merchant_process:first-child::after{
+	background: url(../images/icon/shop_h_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+} 
+.order-log-item.shipping::after, .order-log-item.shipped::after, .order-log-item.merchant_process::after{
+	background: url(../images/icon/shop_circle_50.png) #F7F7F7 no-repeat center;
+	background-size:60%;
+}
+.order-log-item.express_user_pickup:first-child::after{
 	background: url(../images/icon/bike_h_circle_50.png) #F7F7F7 no-repeat center;
 	background-size:60%;
 } 
-.order-log-item.shipping::after{
+.order-log-item.express_user_pickup::after{
 	background: url(../images/icon/bike_circle_50.png) #F7F7F7 no-repeat center;
 	background-size:60%;
 }
-.order-log-item.shipped:first-child::after{
-	background: url(../images/icon/bag_h_circle_50.png) #F7F7F7 no-repeat center;
-	background-size:60%;
-} 
-.order-log-item.shipped::after{
-	background: url(../images/icon/bag_circle_50.png) #F7F7F7 no-repeat center;
-	background-size:60%;
-}
-.order-log-item.finished:first-child::after{
+.order-log-item.finished:first-child::after, .order-log-item.cancel:first-child::after{
 	background: url(../images/icon/list_h_circle_50.png) no-repeat center;
 	background-size:60%;
 } 
-.order-log-item.finished::after{
-	background: url(../images/icon/list_circle_50.png) no-repeat center;
+.order-log-item.finished::after, .order-log-item.cancel::after{
+	background: url(../images/icon/list_h_circle_50.png) no-repeat center;
+	background-size:60%;
+}
+.order-log-item.confirm_receipt:first-child::after{
+	background: url(../images/icon/bag_h_circle_50.png) no-repeat center;
+	background-size:60%;
+} 
+.order-log-item.confirm_receipt::after{
+	background: url(../images/icon/bag_circle_50.png) no-repeat center;
 	background-size:60%;
 } 
 /* .order-log-item:first-child::after{
