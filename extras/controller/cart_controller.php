@@ -711,6 +711,7 @@ class cart_controller {
         
         ecjia_front::$controller->assign('title', RC_Lang::lang('invoice'));
         ecjia_front::$controller->assign_title(RC_Lang::lang('invoice'));
+        ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->display('flow_invoice.dwt');
     }
 

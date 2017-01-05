@@ -35,7 +35,7 @@ class connect_controller {
         
         RC_Logger::getlogger('debug')->info($user_info);
         
-        if ($data['connect_code']) {
+        if ($data['connect_code'] && $data['connect_code'] == 'sns_qq') {
             $user_img = $user_info['profile']['figureurl_qq_2'];
             $user_name = $user_info['profile']['nickname'];
         }

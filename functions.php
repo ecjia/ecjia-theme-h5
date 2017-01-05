@@ -331,7 +331,6 @@ RC_Hook::add_action('connect_callback_user_signin', function($userid){
     
         'user' => $user_info
     );
-//     _dump($res,1);
     RC_Logger::getlogger('debug')->info($res);
     ecjia_touch_user::singleton()->setUserinfo($res);
      
@@ -340,10 +339,10 @@ RC_Hook::add_action('connect_callback_user_signin', function($userid){
 //     );
 //     RC_Model::model('connect/connect_user_model')->where(array('connect_code' => $connect_user->connect_code, 'open_id' => $connect_user->open_id, 'user_id' => $_SESSION['user_id']))->update($profile);
      
-//     /* 获取远程用户头像信息*/
-//     if ($data['connect_code'] == 'sns_qq') {
-//         RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $profile['figureurl_qq_2']));
-//     }
+    /* 获取远程用户头像信息*/
+    if ($data['connect_code'] == 'sns_qq') {
+        RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $profile['figureurl_qq_2']));
+    }
     
     // 1、同步会员信息
     // 2、修正咨询信息
