@@ -445,8 +445,13 @@ ul, li, ol, dl, dt, dd {
     height: 10em;
 }
 .ecjia-search-history {
-	margin-top: 3.5em;
 	background: #f4f4f4;
+    position: absolute;
+    top: 3.5em;
+    left: 0;
+    right: 0;
+    max-width: 640px;
+    margin: 0 auto;
 }
 .ecjia-search-history p.title{
 	padding: 1em 1em .5em 1em;
