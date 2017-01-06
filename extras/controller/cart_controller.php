@@ -13,7 +13,7 @@ class cart_controller {
     	$longitude = !empty($latng[1]) ? $latng[1] : $_COOKIE['longitude'];
     	$latitude  = !empty($latng[0]) ? $latng[0] : $_COOKIE['latitude'];
     	
-    	if(!empty($addr)){
+    	if (!empty($addr)) {
     		setcookie("location_address", $addr);
         	setcookie("location_name", $name);
         	setcookie("longitude", $longitude);
@@ -63,7 +63,6 @@ class cart_controller {
     	}
     	
     	if (isset($_COOKIE['location_address_id']) && $_COOKIE['location_address_id'] > 0) {
-    		ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
     		$address_info = user_function::address_info(ecjia_touch_user::singleton()->getToken(), $_COOKIE['location_address_id']);
     		ecjia_front::$controller->assign('address_info', $address_info);
             ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
