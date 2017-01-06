@@ -43,7 +43,7 @@
         swiper_promotion : function() {
 			var swiper = new Swiper('.swiper-promotion', {
 		        slidesPerView: 2.5,
-		        spaceBetween: 30,
+		        spaceBetween: 10,
                 freeMode : true,
                 freeModeMomentumVelocityRatio : 5,
 			});

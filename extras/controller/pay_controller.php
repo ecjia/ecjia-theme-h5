@@ -37,6 +37,7 @@ class pay_controller {
         //支付方式信息
         $payment_method = RC_Loader::load_app_class('payment_method', 'payment');
         $payment_info = $payment_method->payment_info_by_id($detail['pay_id']);
+        
         /* 调起微信支付*/
         if ( $pay_code == 'pay_wxpay' || $payment_info['pay_code'] == 'pay_wxpay') {
         	// 取得支付信息，生成支付代码
@@ -119,8 +120,8 @@ class pay_controller {
         ecjia_front::$controller->display('pay.dwt');
     }
     
-    public static function notify($mag) {
-       
+    public static function notify() {
+    	$mag = '支付成功';
         ecjia_front::$controller->assign('mag', $mag);
         ecjia_front::$controller->assign('theme_url', str_replace('notify/', '', RC_Theme::get_template_directory_uri() . '/'));
         

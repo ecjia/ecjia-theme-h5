@@ -94,7 +94,7 @@ RC_Hook::add_action('cart/flow/goods_list', array('cart_controller', 'goods_list
 //支付
 RC_Loader::load_theme('extras/controller/pay_controller.php');
 RC_Hook::add_action('pay/index/init', array('pay_controller', 'init'));
-
+RC_Hook::add_action('pay/index/notify', array('pay_controller', 'notify'));
 //评论
 RC_Loader::load_theme('extras/controller/comment_controller.php');
 RC_Hook::add_action('comment/index/init', array('comment_controller', 'init'));
