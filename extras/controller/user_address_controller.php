@@ -8,6 +8,8 @@ class user_address_controller {
      * 收货地址列表界面
      */
     public static function address_list() {
+    	unset($_SESSION['referer_url']);
+    	
     	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
     	ecjia_front::$controller->assign('address_list', $address_list);
         ecjia_front::$controller->assign_lang();
@@ -102,7 +104,6 @@ class user_address_controller {
                 }
             }
         }
-        
         return $temp_data = $_SESSION['address'][$data_key];
         
     }
@@ -111,16 +112,16 @@ class user_address_controller {
      * 增加收货地址
      */
     public static function add_address() {
-        
         $temp_data = user_address_controller::save_temp_data(1, 'add', $_GET['clear'], $_GET);
         ecjia_front::$controller->assign('temp', $temp_data);
         ecjia_front::$controller->assign('location_backurl', urlencode(RC_Uri::url('user/user_address/add_address')));
-		$referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : '';
+        
+		$referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : (!empty($_SESSION['referer_url']) ? $_SESSION['referer_url'] : '');
 		if (!empty($referer_url)) {
+			$_SESSION['referer_url'] = $referer_url;
 			ecjia_front::$controller->assign('referer_url', $referer_url);
 		}
     	ecjia_front::$controller->assign('form_action', RC_Uri::url('user/user_address/insert_address'));
-//         ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign('temp_key', 'add');
         ecjia_front::$controller->assign_title('添加收货地址');
         ecjia_front::$controller->assign_lang();
@@ -159,11 +160,12 @@ class user_address_controller {
         
         $url_address_list = RC_Uri::url('user/user_address/address_list');
         user_address_controller::update_temp_data('add',1);
-        if (!empty($_POST['referer_url'])) {
-        	$pjax_url = urldecode($_POST['referer_url']);
+        if (!empty($_SESSION['referer_url'])) {
+        	$pjax_url = urldecode($_SESSION['referer_url']);
         } else {
         	$pjax_url = RC_Uri::url('user/user_address/address_list');
         }
+        unset($_SESSION['referer_url']);
         return ecjia_front::$controller->showmessage(RC_Lang::lang('add_address_success'), ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $pjax_url));
         
     }
