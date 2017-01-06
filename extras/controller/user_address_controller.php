@@ -139,29 +139,29 @@ class user_address_controller {
         $params = array(
             'token' => ecjia_touch_user::singleton()->getToken(),
             'address' => array(
-                'city'      => intval($_POST['city_id']),
-                'address'   => htmlspecialchars($_POST['address']),
-                'address_info'   => htmlspecialchars($_POST['address_info']),
-                'consignee' => htmlspecialchars($_POST['consignee']),
-                'mobile'    => htmlspecialchars($_POST['mobile']),
+                'city'      	=> intval($_POST['city_id']),
+                'address'   	=> htmlspecialchars($_POST['address']),
+                'address_info'	=> htmlspecialchars($_POST['address_info']),
+                'consignee' 	=> htmlspecialchars($_POST['consignee']),
+                'mobile'    	=> htmlspecialchars($_POST['mobile']),
             )
            
         );
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_ADD)->data($params)->send()->getBody();
         $rs = json_decode($rs,true);
         
-        if (! $rs['status']['succeed']) {
+        if (!$rs['status']['succeed']) {
             return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON,array('pjaxurl' => ''));
         } else {
         	$address_id = $rs['data']['address_id'];
-        	setcookie('location_address_id', $address_id);
-        	setcookie('location_name', htmlspecialchars($_POST['address_location']));
         }
-        
         $url_address_list = RC_Uri::url('user/user_address/address_list');
-        user_address_controller::update_temp_data('add',1);
+        user_address_controller::update_temp_data('add', 1);
+        
         if (!empty($_SESSION['referer_url'])) {
         	$pjax_url = urldecode($_SESSION['referer_url']);
+        	setcookie('location_address_id', $address_id);
+        	setcookie('location_name', htmlspecialchars($_POST['address_location']));
         } else {
         	$pjax_url = RC_Uri::url('user/user_address/address_list');
         }
