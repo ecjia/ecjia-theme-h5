@@ -16,9 +16,6 @@ class user_controller {
         $token = ecjia_touch_user::singleton()->getToken();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
         
-        RC_Logger::getlogger('debug')->info('init-user');
-        RC_Logger::getlogger('debug')->info($user);
-
         if (!empty($user['avatar_img'])) {
             $user_img = $user['avatar_img'];
         }
