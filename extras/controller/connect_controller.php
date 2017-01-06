@@ -38,6 +38,9 @@ class connect_controller {
         if ($data['connect_code'] && $data['connect_code'] == 'sns_qq') {
             $user_img = $user_info['profile']['figureurl_qq_2'];
             $user_name = $user_info['profile']['nickname'];
+        } else if ($data['connect_code'] && ( $data['connect_code'] == 'sns_wechat' || $data['connect_code'] == 'sns_wechat_platform')) {
+            $user_img = $user_info['profile']['headimgurl'];
+            $user_name = $user_info['profile']['nickname'];
         }
         
         ecjia_front::$controller->assign('connect_code',$data['connect_code']);

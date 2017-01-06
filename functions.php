@@ -270,7 +270,10 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
         
 //         $rs = $wechat->getWebUserInfo($openid, $token);
 
-        $appid = 'wx7daa4b18c79dcd49';
+        
+//         https://cityo2o.ecjia.com/sites/m/index.php?m=connect&c=index&a=init&connect_code=sns_qq
+        
+        /* $appid = 'wx7daa4b18c79dcd49';
         $arr = array();
         $arr['referer'] = $_GET['referer'];
         if(!empty($_GET['id'])){
@@ -281,8 +284,12 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
         $scope = 'snsapi_userinfo';
         
         header("location: https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$appid."&redirect_uri=".$url."&response_type=code&scope=".$scope."&state=123#wechat_redirect");
+         */
         
-    } 
+        $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat_platform'));
+        $url = urlencode($url);
+        return header("location: ".$url);
+    }
 
     if (ROUTE_M == 'user') {
         new user_front();
@@ -339,11 +346,6 @@ RC_Hook::add_action('connect_callback_user_signin', function($userid){
 //     );
 //     RC_Model::model('connect/connect_user_model')->where(array('connect_code' => $connect_user->connect_code, 'open_id' => $connect_user->open_id, 'user_id' => $_SESSION['user_id']))->update($profile);
      
-    /* 获取远程用户头像信息*/
-    if ($data['connect_code'] == 'sns_qq') {
-        RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $profile['figureurl_qq_2']));
-    }
-    
     // 1、同步会员信息
     // 2、修正咨询信息
 
@@ -425,3 +427,5 @@ ecjia_open::macro('seller', function($querys) {
 RC_Hook::add_filter('payment_respond_template', function($respond, $msg){
     return pay_controller::notify($msg);
 }, 10, 2);
+
+
