@@ -288,7 +288,7 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
         
         $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat_platform'));
         $url = urlencode($url);
-        return header("location: ".$url);
+        header("location: ".$url);
     }
 
     if (ROUTE_M == 'user') {
@@ -306,16 +306,16 @@ RC_Hook::add_filter('connect_callback_template', function($data) {
 }, 10, 1);
     
 //第三方登录用户注册
-// RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username, $password, $email) {
-//     RC_Loader::load_theme('extras/functions/front_user.func.php');
-// //     $result = register_mbt($username, $password, $email,'',1);
+RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username, $password, $email) {
+    
+    $result = user_privilege_controller::bind_signup(array('name' => $username, 'password' => $password, 'email' => $email));
 
-//     if (!is_ecjia_error($result)) {
-//         return $result;
-//     } else {
-//         return $userid;
-//     }
-// }, 10, 4);
+    if (!is_ecjia_error($result)) {
+        return $result;
+    } else {
+        return $result;
+    }
+}, 10, 4);
 
 //第三方登录用户登录
 RC_Hook::add_action('connect_callback_user_signin', function($userid){

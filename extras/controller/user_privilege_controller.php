@@ -109,20 +109,30 @@ class user_privilege_controller {
     }
     
     /* 第三方登陆快速注册 */
-    public static function bind_signup() {
+    public static function bind_signup($params) {
         
-        $connect_code = !empty($_GET['connect_code']) ? trim($_GET['connect_code']) : '';
-        $open_id = !empty($_GET['open_id']) ? trim($_GET['open_id']) : '';
-        if (empty($connect_code) || empty($open_id)) {
-            return ecjia_front::$controller->showmessage('授权信息异常，请重新授权', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+        if (!$params) {
+            $connect_code = !empty($_GET['connect_code']) ? trim($_GET['connect_code']) : '';
+            $open_id = !empty($_GET['open_id']) ? trim($_GET['open_id']) : '';
+            if (empty($connect_code) || empty($open_id)) {
+                return ecjia_front::$controller->showmessage('授权信息异常，请重新授权', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+            }
+            ecjia_front::$controller->assign('connect_code', $connect_code);
+            ecjia_front::$controller->assign('open_id', $open_id);
+            
+            ecjia_front::$controller->assign('title', "注册绑定");
+            ecjia_front::$controller->assign_title("注册绑定");
+            ecjia_front::$controller->assign_lang();
+            ecjia_front::$controller->display('user_bind_signup.dwt');
+        } else {
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $params['name'], 'password' => $params['password'], 'email' => $params['email']))->send()->getBody();
+            $data = json_decode($data, true);
+            if ($data['status']['succeed'] != 1) {
+                return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+            return $data['session']['uid'];
         }
-        ecjia_front::$controller->assign('connect_code', $connect_code);
-        ecjia_front::$controller->assign('open_id', $open_id);
         
-        ecjia_front::$controller->assign('title', "注册绑定");
-        ecjia_front::$controller->assign_title("注册绑定");
-        ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('user_bind_signup.dwt');
     }
     
     public static function bind_signup_do() {

@@ -49,7 +49,9 @@ class connect_controller {
         ecjia_front::$controller->assign('user_name', $user_name);
         
         //$data['open_id']
-        $url['bind_signup'] = str_replace('/notify/', '/', RC_Uri::url('user/privilege/bind_signup', array('connect_code' => $data['connect_code'], 'open_id' => $data['open_id'])));
+        //快速注册修改
+//         $url['bind_signup'] = str_replace('/notify/', '/', RC_Uri::url('user/privilege/bind_signup', array('connect_code' => $data['connect_code'], 'open_id' => $data['open_id'])));
+        $url['bind_signup'] = str_replace('/notify/', '/', $data['login_url']);
         $url['bind_signin'] = str_replace('/notify/', '/', RC_Uri::url('user/privilege/bind_signin', array('connect_code' => $data['connect_code'], 'open_id' => $data['open_id'])));
         ecjia_front::$controller->assign('url',$url);
         //         ecjia_front::$controller->assign('login',$login);
