@@ -130,9 +130,9 @@ class user_privilege_controller {
             RC_Logger::getlogger('debug')->info($data);
             $data = json_decode($data, true);
             if ($data['status']['succeed'] != 1) {
-                return new ecjia_error('error_register', $data['status']['error_desc']);
+                return new ecjia_error($data['status']['error_code'], $data['status']['error_desc']);
             }
-            return $data['session']['uid'];
+            return $data['data']['session']['uid'];
         }
         
     }
