@@ -125,10 +125,12 @@ class user_privilege_controller {
             ecjia_front::$controller->assign_lang();
             ecjia_front::$controller->display('user_bind_signup.dwt');
         } else {
+            RC_Logger::getlogger('debug')->info('user_privilege-bind_signup');
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $params['name'], 'password' => $params['password'], 'email' => $params['email']))->send()->getBody();
+            RC_Logger::getlogger('debug')->info($data);
             $data = json_decode($data, true);
             if ($data['status']['succeed'] != 1) {
-                return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+                return new ecjia_error('error_register', $data['status']['error_desc']);
             }
             return $data['session']['uid'];
         }
