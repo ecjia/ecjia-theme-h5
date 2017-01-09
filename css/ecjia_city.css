@@ -1679,7 +1679,7 @@ footer{
 .store-add-cart.a4w .a5v, .a5u {
     position: absolute;
     z-index: 3;
-    top: 30px;
+    top: 35px;
     width: 49px;
     height: 40px;
     background-image: url(//static-o2o.360buyimg.com/daojia/new/images/minicart/op.png);
@@ -1688,7 +1688,7 @@ footer{
 }
 .store-add-cart.a4w .a5x {
     position: absolute;
-    top: 30px;
+    top: 35px;
     right: 35px;
     width: 39px;
     line-height: 55px;
