@@ -369,14 +369,13 @@
 	z-index: 99;
 }
 .ecjia-address-list .form-group .input a .position {
-	width: 28px;
-	height: 28px;
-    margin-right: 0.8em;
-    margin-top: -2.5em;
-    background: url('../images/address_list/50x50_1.png') no-repeat;
-    background-size: 100%;
-	z-index: 99;
-	float: right;
+	width: 50px;
+    height: 50px;
+    padding: 0 1em;
+    margin-top: -3em;
+    background: url(../images/address_list/50x50_1.png) no-repeat center;
+    background-size: 32px;
+    float: right;
 }
 .ecjia-address-list .address-background-mylocation .icon-search {
 	position: absolute;
