@@ -265,6 +265,7 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
         $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat_platform'));
         $url = urlencode($url);
 //         header("location: ".$url);
+        RC_Logger::getlogger('wechat-url')->info($url);
         return ecjia_front::$controller->redirect($url);
     }
 
