@@ -647,13 +647,13 @@ ul, li, ol, dl, dt, dd {
     position: relative;
     display: block;
     width: 100%;
-    background: rgba(0,0,0,.4);
     bottom: 1.7em;
     font-size: .9em;
     text-align: center;
-    color: #fff;
+    color: #e73938;
 	line-height: 2em;
     height: 2em;
+	background-color: #fce8e7;
 }
 .ecjia-promotion-model .swiper-slide .list-page-goods-img .goods-img {
     display: block;
@@ -730,13 +730,13 @@ ul, li, ol, dl, dt, dd {
     position: relative;
     display: block;
     width: 100%;
-    background: rgba(0,0,0,.4);
     bottom: 2.8em;
     font-size: 1em;
     text-align: center;
-    color: #fff;
+    color: #e73938;
     height: 2.8em;
     line-height: 2.8em;
+	background-color: #fce8e7;
 }
 .ecjia-promotion-list .list-page-goods-img .self-label{
 	color: #ff3434;
@@ -753,7 +753,7 @@ ul, li, ol, dl, dt, dd {
 	border-top-right-radius: .3em;
 }
 .ecjia-promotion-list .promote-time .end-time{
-    color: #555;
+    color: #ff3434;
     border-radius: 4px;
     font-weight: normal;
     font-size: 1.2em;
@@ -1200,7 +1200,7 @@ footer{
 .ecjia-store-goods .a1n .a1x {
 	position: absolute;
     top: 0;
-    bottom: 5em;
+    bottom: 2em;
     left: 6em;
     right: 0;
     padding-top: 0;
@@ -1665,8 +1665,6 @@ footer{
 .store-add-cart.a4w .a53 {
     display: none;
     position: fixed;
-	width: 100%;
-	height: 100%;
     z-index: 10;
     left: 0;
     right: 0;
