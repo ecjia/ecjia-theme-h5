@@ -876,7 +876,7 @@
 	            _y_start=e.touches[0].pageY;
 	            left_start = $("#ecjia-menu").css("left");
 	            bottom_start = $("#ecjia-menu").css("bottom");
-	            top_start = $("#ecjia-menu").offset().top;
+	            top_start = $("#ecjia-menu").offset().top - $("body").scrollTop();
 	            //阻止浏览器下拉事件
 		        $('body').on('touchmove', function (event) {event.preventDefault();});
 	        })
