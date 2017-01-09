@@ -300,7 +300,8 @@ class user_privilege_controller {
             $data = json_decode($data,true);
             if ($data['status']['succeed'] == 1) {
                 unset($_SESSION['verification']);
-                return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('login')));
+                ecjia_touch_user::singleton()->signin($username, $password);
+                return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init')));
             } else {
                 return ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
