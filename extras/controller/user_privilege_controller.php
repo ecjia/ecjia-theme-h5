@@ -200,7 +200,7 @@ class user_privilege_controller {
         }
     }
     
-    /* 第三方登陆绑定 */
+    /* 第三方登陆绑定关联 */
     public static function bind_signin() {
         $connect_code = !empty($_GET['connect_code']) ? trim($_GET['connect_code']) : '';
         $open_id = !empty($_GET['open_id']) ? trim($_GET['open_id']) : '';
