@@ -458,7 +458,7 @@
         		
         		var info = {'action_type' : type};
         		$('.wd').find('[data-toggle="asynclist"]').attr('data-type', type);
-//        		console.log(bool);
+
         		if (bool == true) {
         			$('.wd').find('[data-toggle="asynclist"]').html('');
             		$('.load-list').remove();
