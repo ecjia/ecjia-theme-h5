@@ -78,7 +78,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<li><span class="ecjiaf-fl width-25-p">支付方式：</span><span class="ecjiaf-fr width-75-p">{$order.pay_name}</span></li>
 			</ul>
 			<div class="order-ft-link">
-				<a class="btn btn-small btn-hollow" href="tel://{$order.service_phone}">联系卖家</a>
+				<a class="btn btn-small btn-hollow external" href="tel://{$order.service_phone}">联系卖家</a>
 				{if $order.pay_status eq 0 && $order.order_status lt 2}<a class="btn btn-small btn-hollow" href='{url path="user/user_order/order_cancel" args="order_id={$order.order_id}"}'>取消订单</a> <a class="btn btn-small btn-hollow" href='{url path="pay/index/init" args="order_id={$order.order_id}"}'>去支付</a>{/if}
 				{if $order.shipping_status eq '1'} <a class="btn btn-small btn-hollow" href='{url path="user/user_order/affirm_received" args="order_id={$order.order_id}"}'>确认收货</a>{/if}
 				{if $order.order_status gt 1 || ($order.shipping_status eq 0 && $order.pay_status neq 0)} <a class="btn btn-small btn-hollow" href='{url path="user/user_order/buy_again" args="order_id={$order.order_id}"}'>再次购买</a>{/if}
