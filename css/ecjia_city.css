@@ -2700,8 +2700,8 @@ footer{
 	/*border: 0.3em solid #fff;*/
 	padding: 2.7px;
 	position: absolute;
-	left: 43%;
-	right: 43%;
+	/*left: 43%;*/
+	right: 42%;
     top: 3em;
     margin: 0;
     width: 4em;

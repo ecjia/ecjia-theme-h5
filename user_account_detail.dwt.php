@@ -28,11 +28,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
         <li>
-            <a>
         		<div class="img-integral"></div>
         		<span class="icon-name">积分</span>
         		<span class="icon-price icon-price-red">{$user.user_points}</span>
-        	</a>
         </li>
         <li>
             <a href="{url path='user/user_bonus/get_integral'}">
