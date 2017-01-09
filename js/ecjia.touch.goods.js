@@ -449,17 +449,16 @@
             			} else {
             				bool = false;
             			}
-            		} else {
-            			//点击无子类的分类，去除其他有子类分类的子类选中效果
-            			li.siblings('li').children('strong.a1v').children('span').removeClass('active');
             		}
+            		//点击无子类的分类，去除其他有子类分类的子类选中效果
+        			li.siblings('li').children('strong.a1v').children('span').removeClass('active');
         		}
         		var type = $this.attr('data-type') == undefined ? category_id : $this.attr('data-type');
         		$('[data-toggle="asynclist"]').attr('class', 'store_goods_' + type);
         		
         		var info = {'action_type' : type};
         		$('.wd').find('[data-toggle="asynclist"]').attr('data-type', type);
-        		
+//        		console.log(bool);
         		if (bool == true) {
         			$('.wd').find('[data-toggle="asynclist"]').html('');
             		$('.load-list').remove();
