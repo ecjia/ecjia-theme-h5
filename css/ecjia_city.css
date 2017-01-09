@@ -84,6 +84,17 @@ a.ecjia-color-green {
 .ecjia-nolist p {
 	color:#aaa;
 }
+.ecjia-merchant-goods.ecjia-nolist {
+	color:#999;
+	padding: 0;
+	padding-top: 30px;
+	font-size: 1em;
+}
+.ecjia-merchant-goods.ecjia-nolist img {
+	width: 8em;
+	height: 8em;
+}
+
 /* 选择样式 */
 .ecjia-check {
     width: 20px;
@@ -1148,7 +1159,6 @@ footer{
 .ecjia-store-goods .a1u {
     display: -webkit-box;
     display: -moz-box;
-    height: 46px;
 	padding: 1.2em 1em;
     line-height: 20px;
     overflow: hidden;

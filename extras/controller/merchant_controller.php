@@ -273,6 +273,10 @@ class merchant_controller {
 			ecjia_front::$controller->assign('type_name', $type_name);
 			ecjia_front::$controller->assign('goods_num', $goods_num);
 		}
+		
+		if (isset($goods_list['pager']['total']) && $goods_list['pager']['total'] == 0) {
+			$goods_list = array();
+		}
 		ecjia_front::$controller->assign('goods_list', $goods_list);
 		$say_list = ecjia_front::$controller->fetch('library/merchant_goods.lbi');
 	

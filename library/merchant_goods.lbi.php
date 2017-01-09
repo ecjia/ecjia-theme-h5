@@ -13,6 +13,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="ajaxinfo"} -->
+
 <!-- {foreach from=$goods_list item=goods} -->
 <li>
 	<a class="linksGoods w" href="{RC_Uri::url('goods/index/show')}&goods_id={$goods.id}">
@@ -28,5 +29,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<span class="add" data-toggle="add-to-cart" rec_id="{$goods.rec_id}" goods_id="{$goods.id}">加</span>
 	</div>
 </li>
+<!-- {foreachelse} -->	
+<div class="ecjia-merchant-goods ecjia-nolist">
+	<p><img src="{$theme_url}images/no_goods.png"></p>
+	暂无相关商品数据
+</div>
 <!-- {/foreach} -->	
 <!-- {/block} -->
