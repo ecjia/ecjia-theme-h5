@@ -1106,7 +1106,6 @@ footer{
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #f4f4f4;
-	border-right: 1px solid #eee;
 	-webkit-overflow-scrolling: touch;
 }
 .ecjia-store-goods .a1p {
@@ -1116,6 +1115,9 @@ footer{
 }
 .ecjia-store-goods .a1p.a1t {
     color: #47b34f;
+}
+.ecjia-store-goods .a1p.a1r{
+	border-right: none;
 }
 .ecjia-store-goods .a1r .a1s, .a1n .active {
     background: #fff;
@@ -1135,11 +1137,13 @@ footer{
     color: #666;
     background-color: #FFF;
 	font-weight: normal;
+	border-right: 1px solid #eee;
 }
 .ecjia-store-goods .a1u.active {
     background: #fff;
     color: #47b34f;
     border-left: 2px solid #47b34f;
+	border-right: none;
 }
 .ecjia-store-goods .a1u {
     display: -webkit-box;
