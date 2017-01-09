@@ -260,32 +260,8 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
     
     //判断并微信登录
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
-    if (strpos($user_agent, 'MicroMessenger') !== false && $_GET['tt'] == 1) {
+    if (strpos($user_agent, 'MicroMessenger') !== false) {
         //微信浏览器
-//         RC_Loader::load_app_class('platform_account', 'platform', false);
-//         RC_Loader::load_app_class('wechat_method', 'wechat', false);
-//         $uuid = platform_account::getCurrentUUID('wechat');
-//         $wechat = wechat_method::wechat_instance($uuid);
-//         _dump($wechat,1);
-        
-//         $rs = $wechat->getWebUserInfo($openid, $token);
-
-        
-//         https://cityo2o.ecjia.com/sites/m/index.php?m=connect&c=index&a=init&connect_code=sns_qq
-        
-        /* $appid = 'wx7daa4b18c79dcd49';
-        $arr = array();
-        $arr['referer'] = $_GET['referer'];
-        if(!empty($_GET['id'])){
-            $arr['id'] = intval($_GET['id']);
-        }
-        $url = RC_Uri::url('connect/index/dump_user_info', $arr);
-        $url = urlencode($url);
-        $scope = 'snsapi_userinfo';
-        
-        header("location: https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$appid."&redirect_uri=".$url."&response_type=code&scope=".$scope."&state=123#wechat_redirect");
-         */
-        
         $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat_platform'));
         $url = urlencode($url);
         header("location: ".$url);
