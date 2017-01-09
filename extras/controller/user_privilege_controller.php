@@ -125,9 +125,7 @@ class user_privilege_controller {
             ecjia_front::$controller->assign_lang();
             ecjia_front::$controller->display('user_bind_signup.dwt');
         } else {
-            RC_Logger::getlogger('debug')->info('user_privilege-bind_signup');
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $params['name'], 'password' => $params['password'], 'email' => $params['email']))->send()->getBody();
-            RC_Logger::getlogger('debug')->info($data);
             $data = json_decode($data, true);
             if ($data['status']['succeed'] != 1) {
                 return new ecjia_error($data['status']['error_code'], $data['status']['error_desc']);
