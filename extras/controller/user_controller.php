@@ -8,7 +8,6 @@ class user_controller {
      * 会员中心欢迎页
      */
     public static function init() {
-        
         //网店信息
         $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
@@ -19,7 +18,9 @@ class user_controller {
         if (!empty($user['avatar_img'])) {
             $user_img = $user['avatar_img'];
         }
-        ecjia_front::$controller->assign('user', $user);
+        if (ecjia_touch_user::singleton()->isSignin()) {
+        	ecjia_front::$controller->assign('user', $user);
+        }
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('shop', $shop);
         ecjia_front::$controller->assign('active', 'mine');
