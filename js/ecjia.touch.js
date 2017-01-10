@@ -540,6 +540,7 @@
         	if (url == undefined) {
         		return false;
         	}
+        	var desc = $('textarea[name="invite_template"]').val();
         	$.post(url, info, function(response){
         		var data = response.data;
         		wx.config({
