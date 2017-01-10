@@ -613,6 +613,23 @@ class cart_controller {
             }
         }
         
+        /*根据浏览器过滤支付方式，微信自带浏览器过滤掉支付宝支付，其他浏览器过滤掉微信支付*/
+        if (!empty($format_payment_list)) {
+        	if (cart_function::is_weixin() == true) {
+        		foreach ($format_payment_list['online'] as $key => $val) {
+        			if ($val['pay_code'] == 'pay_alipay') {
+        				unset($format_payment_list['online'][$key]);
+        			}
+        		}
+        	} else {
+        		foreach ($format_payment_list['online'] as $key => $val) {
+        			if ($val['pay_code'] == 'pay_wxpay') {
+        				unset($format_payment_list['online'][$key]);
+        			}
+        		}
+        	}
+        }
+        
         ecjia_front::$controller->assign('payment_list', $format_payment_list);
         ecjia_front::$controller->assign('address_id', $address_id);
         ecjia_front::$controller->assign('rec_id', $rec_id);

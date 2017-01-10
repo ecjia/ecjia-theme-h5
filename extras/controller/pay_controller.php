@@ -96,6 +96,24 @@ class pay_controller {
         			return ecjia_front::$controller->showmessage($rs_payment['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         		}
         		$payment_list = touch_function::change_array_key($rs_payment['data']['payment'], 'pay_code');
+				
+        		/*根据浏览器过滤支付方式，微信自带浏览器过滤掉支付宝支付，其他浏览器过滤掉微信支付*/
+        		if (!empty($payment_list)) {
+        			if (cart_function::is_weixin() == true) {
+        				foreach ($payment_list as $key => $val) {
+        					if ($val['pay_code'] == 'pay_alipay') {
+        						unset($payment_list[$key]);
+        					}
+        				}
+        			} else {
+        				foreach ($payment_list as $key => $val) {
+        					if ($val['pay_code'] == 'pay_wxpay') {
+        						unset($payment_list[$key]);
+        					}
+        				}
+        			}
+        		}
+        		
         		//过滤当前支付方式
         		unset($payment_list[$pay_code]);
         		//非自营过滤货到付款
