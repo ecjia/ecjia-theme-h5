@@ -369,10 +369,10 @@
 	z-index: 99;
 }
 .ecjia-address-list .form-group .input a .position {
-	width: 50px;
-    height: 50px;
+    width: 4em;
+    height: 3.2em;
     padding: 0 1em;
-    margin-top: -3em;
+    margin-top: -3.2em;
     background: url(../images/address_list/50x50_1.png) no-repeat center;
     background-size: 32px;
     float: right;

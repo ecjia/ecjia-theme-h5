@@ -375,15 +375,14 @@
         	} else {
             	//禁用滚动条
             	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
-//        		$('.minicart-content').on('touchmove', function(e) {
-//        			e.stopPropagation();
-//        		});
-            	$('.store-add-cart').children('.a4x').removeClass('show');
-            	$('.minicart-content').children('.a4x').addClass('show').addClass('light').removeClass('disabled');
+        		$('.minicart-content').on('touchmove', function(e) {
+        			e.stopPropagation();
+        		});
+        		$('.a53').css('display', 'block');
+            	$('.store-add-cart').children('.a4x').removeClass('show').removeAttr('show');
             	$('.store-add-cart').children('.minicart-content').css('transform', 'translateY(-100%)');
             	$('.store-add-cart').children('.a4z').css('transform', 'translateX(-60px)');
-            	$('.store-add-cart').find('.a53').css('display', 'block');
-            	$('.a4x').removeAttr('show');
+            	$('.minicart-content').children('.a4x').addClass('show').addClass('light').removeClass('disabled');
         	}
         },
         
@@ -393,7 +392,7 @@
         	$('body').css('overflow-y', 'auto').off("touchmove");
         	
 			$('.store-add-cart').find('.a4z').css('transform', 'translateX(0px)');
-    		$('.store-add-cart').find('.a53').css('display', 'none');
+    		$('.a53').css('display', 'none');
     		$('.store-add-cart').find('.minicart-content').css('transform', 'translateY(0px)');
 
     		$('.minicart-content').children('.a4x').removeClass('show').attr('show', false);
@@ -456,16 +455,25 @@
         		var type = $this.attr('data-type') == undefined ? category_id : $this.attr('data-type');
         		$('[data-toggle="asynclist"]').attr('class', 'store_goods_' + type);
         		
+        		var store_id = $('input[name="store_id"]').val();
         		var info = {'action_type' : type};
         		$('.wd').find('[data-toggle="asynclist"]').attr('data-type', type);
 
         		if (bool == true) {
         			$('.wd').find('[data-toggle="asynclist"]').html('');
             		$('.load-list').remove();
-            		ecjia.touch.asynclist();
+            		$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
+            		$('.store_goods_' + type).after($loader);
+    				
             		$.get(url, info, function(data) {
+            			$loader.remove();
+            			$('.store_goods_' + type).append(data.list);
             			var info = data.name + '(' + data.num + ')';
             			$('.a20').html(info);
+            			if (data.is_last == null) {
+            				$('.store_goods_' + type).attr('data-page', 2);
+            				ecjia.touch.asynclist();
+            			}
             		});
         		}
         	});

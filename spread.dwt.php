@@ -13,9 +13,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <script type="text/javascript">
 var title = '{$share_title}',
 	link = '{$invite_user.invite_url}',
-	desc = '{$invite_user.invite_template}';
+	img = '{$img}';
 ecjia.touch.spread.init();
-ecjia.touch.init();
 </script>
 <!-- {/block} -->
 
@@ -25,7 +24,7 @@ ecjia.touch.init();
 	<div class="ecjia-bg-qr-code">
 		<div class="bg-img"></div>
 		<div class="qrcode_image">
-			<img  src="{$invite_user.invite_qrcode_image}" />
+			<img src="{$invite_user.invite_qrcode_image}" />
 		</div>
 		<div class="my-invite-code">
 			<p>我的邀请码</p>

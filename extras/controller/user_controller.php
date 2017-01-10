@@ -8,7 +8,6 @@ class user_controller {
      * 会员中心欢迎页
      */
     public static function init() {
-        
         //网店信息
         $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
@@ -19,7 +18,9 @@ class user_controller {
         if (!empty($user['avatar_img'])) {
             $user_img = $user['avatar_img'];
         }
-        ecjia_front::$controller->assign('user', $user);
+        if (ecjia_touch_user::singleton()->isSignin()) {
+        	ecjia_front::$controller->assign('user', $user);
+        }
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('shop', $shop);
         ecjia_front::$controller->assign('active', 'mine');
@@ -53,6 +54,10 @@ class user_controller {
 		ecjia_front::$controller->assign_title('我的推广');
     	ecjia_front::$controller->assign('invite_user', $invite_user_detail);
     	ecjia_front::$controller->assign('url', RC_Uri::url('user/index/wxconfig'));
+    	
+    	$image = ecjia::config('mobile_app_icon') != '' ? RC_Upload::upload_url(ecjia::config('mobile_app_icon')) : '';
+    	ecjia_front::$controller->assign('image', $image);
+    	
     	ecjia_front::$controller->display('spread.dwt');
     }
 	
@@ -65,8 +70,6 @@ class user_controller {
     	$wechat = wechat_method::wechat_instance($uuid);
     	
     	$config = $wechat->wxconfig($url);
-    	$config['image'] = ecjia::config('mobile_app_icon') != '' ? RC_Upload::upload_url(ecjia::config('mobile_app_icon')) : '';
-    	
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('data' => $config));
     }
 }
