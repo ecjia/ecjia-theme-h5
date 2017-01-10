@@ -119,10 +119,12 @@ class merchant_controller {
 				}
 			}
 		}
-		 
-		ecjia_front::$controller->assign('cart_list', $cart_list['cart_list'][0]['goods_list']);
-		ecjia_front::$controller->assign('count', $cart_list['cart_list'][0]['total']);
-		ecjia_front::$controller->assign('real_count', $cart_list['total']);
+		
+		if (ecjia_touch_user::singleton()->isSignin()) {
+			ecjia_front::$controller->assign('cart_list', $cart_list['cart_list'][0]['goods_list']);
+			ecjia_front::$controller->assign('count', $cart_list['cart_list'][0]['total']);
+			ecjia_front::$controller->assign('real_count', $cart_list['total']);
+		}
 		ecjia_front::$controller->assign('goods_list', $goods_list);
 		 
 		ecjia_front::$controller->assign('type_name', $type_name);

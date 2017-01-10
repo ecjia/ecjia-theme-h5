@@ -575,6 +575,7 @@
 		ecjia.touch.index.swiper_promotion();
 		ecjia.touch.ecjia_menu();
 		ecjia.touch.region_change();
+		ecjia.touch.goods_detail.change();
 
 	    var ua = navigator.userAgent.toLowerCase();
 	    if (ua.match(/MicroMessenger/i)=="micromessenger") {
