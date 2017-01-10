@@ -3675,22 +3675,27 @@ footer{
 }
 #goods-info-two{
 	display:none;
+	background-color: #FFFFFF;
 }
 #goods-info-two .ecjia-nav-new li.active{
 	border-bottom:none !important;
 }
 #goods-info-two .ecjia-nav-new li.active a{
 	border-bottom:2px solid #ff3434;
-	width:39%;
+	width:32%;
 	font-size:1em;
 	height:3em;
-	margin-left:30%;
+	margin-left:34%;
 }
 #goods-info-two .ecjia-list-new{
 	margin-top:0;
+	margin-bottom: .5em;
 }
 .goods-desc-info .goods-desc-nav-new {
 	border-bottom:0;
+}
+.goods-desc-info .goods-desc-nav-new li {
+	background-color: #FFFFFF;
 }
 .goods-desc-info .goods-desc-nav-new li.active{
 	border-bottom-color:#ff3434;
@@ -4013,9 +4018,8 @@ footer{
 }
 .goods-describe .ecjia-nolist{
 	font-size:1em;
-	background-color:#fff;
+	background-color:#FFFFFF;
 	padding-top:6em;
-	padding-bottom:15em;
 }
 .goods-describe .ecjia-nolist img{
 	width:44%;
