@@ -310,8 +310,8 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
         //微信浏览器
         $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat_platform'));
         RC_Logger::getlogger('debug')->info('wechat-url'.$url);
-        $url = urlencode($url);
-        RC_Logger::getlogger('debug')->info('wechat-url'.$url);
+//         $url = urlencode($url);
+//         RC_Logger::getlogger('debug')->info('wechat-url'.$url);
         header("location: ".$url);exit();
 //         return ecjia_front::$controller->redirect($url);
     }
