@@ -172,33 +172,32 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<li class="goods-desc-li-info two-li" style="border-left:none;" data-id="2"><a class="a2" href="javascript:;">规格参数</a></li>
 	</ul>
 	<!-- Tab panes -->
-	<div class="bd">
-		<div class="goods-describe ecjia-margin-b active" id="one-info">
-			<!-- {if $goods_desc} -->
-			{$goods_desc}
-			<!-- {else} -->
-			<div class="ecjia-nolist">
-				<p class="tags_list_font">{t}此商品暂时没有详情{/t}</p>
-			</div>
-			<!-- {/if} -->
+	<div class="goods-describe ecjia-margin-b active" id="one-info">
+		<!-- {if $goods_desc && $goods_desc neq ''} -->
+		{$goods_desc}
+		<!-- {else} -->
+		<div class="ecjia-nolist">
+			<img  src="{$theme_url}images/no_goods.png">
+			<p class="tags_list_font">{t}暂无任何商品详情{/t}</p>
 		</div>
-		<div class="goods-describe goods-describe-new ecjia-margin-b" id="two-info" >
-		<!-- {if $goods_info.properties} -->
-			<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#dddddd" style="margin:0 0 0 5px;">
-				<!-- {foreach from=$goods_info.properties item=property_group} -->
-				<tr>
-					<td bgcolor="#FFFFFF" align="left" width="30%" class="f1">{$property_group.name|escape:html}</td>
-					<td bgcolor="#FFFFFF" align="left" width="70%">{$property_group.value}</td>
-				</tr>
-				<!-- {/foreach}-->
-			</table>
-			<!-- {else} -->
-			<div class="ecjia-nolist">
-				<img  src="{$theme_url}images/property.png">
-				<p class="tags_list_font">{t}暂无任何规格参数{/t}</p>
-			</div>
-			<!-- {/if} -->
+		<!-- {/if} -->
+	</div>
+	<div class="goods-describe goods-describe-new ecjia-margin-b" id="two-info" >
+	<!-- {if $goods_info.properties} -->
+		<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#dddddd" style="margin:0 0 0 5px;">
+			<!-- {foreach from=$goods_info.properties item=property_group} -->
+			<tr>
+				<td bgcolor="#FFFFFF" align="left" width="30%" class="f1">{$property_group.name|escape:html}</td>
+				<td bgcolor="#FFFFFF" align="left" width="70%">{$property_group.value}</td>
+			</tr>
+			<!-- {/foreach}-->
+		</table>
+		<!-- {else} -->
+		<div class="ecjia-nolist">
+			<img  src="{$theme_url}images/property.png">
+			<p class="tags_list_font">{t}暂无任何规格参数{/t}</p>
 		</div>
+		<!-- {/if} -->
 	</div>
 </div>
 {/if}
