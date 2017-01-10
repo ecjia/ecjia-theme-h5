@@ -3329,7 +3329,7 @@ footer{
     border-bottom: 1px solid #ff3434;
 }
 .ecjia-bonus li a.red-font,
-.ecjia-user.ecjia-user-head .ecjia-list li>a .icon-price-red,
+.ecjia-user.ecjia-user-head .ecjia-list li .icon-price-red,
 .ecjia-spread-detail .ecjia-list.list-short li .icon-price-red {
 	color: #ff3434;
 }
@@ -5362,7 +5362,7 @@ footer{
 }
 .ecjia-spread-detail .ecjia-list.list-short li .icon-price-red {
 	position: absolute;
-	right: -68%;
+	text-align: right;
 	top: 30%;
 	font-size: 16px;
 	font-family: '黑体';
