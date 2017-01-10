@@ -306,14 +306,11 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
     
     //判断并微信登录
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
-    if (strpos($user_agent, 'MicroMessenger') !== false && $_GET['tt'] == 1) {
+    if (strpos($user_agent, 'MicroMessenger') !== false) {
         //微信浏览器
         $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat_platform'));
         RC_Logger::getlogger('debug')->info('wechat-url'.$url);
-//         $url = urlencode($url);
-//         RC_Logger::getlogger('debug')->info('wechat-url'.$url);
         header("location: ".$url);exit();
-//         return ecjia_front::$controller->redirect($url);
     }
 
     if (ROUTE_M == 'user') {
