@@ -212,9 +212,9 @@ ecjia.touch.category.init();
 		</div>
 		<div style="height:50px;"></div>
 	</div>
-	<!-- 遮罩层 -->
-	<div class="a53" style="display: none;"></div>
 </div>
+<!-- 遮罩层 -->
+<div class="a53" style="display: none;"></div>
 <!-- #BeginLibraryItem "/library/choose_address_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- {/block} -->
 
