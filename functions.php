@@ -308,9 +308,13 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
     if (strpos($user_agent, 'MicroMessenger') !== false) {
         //微信浏览器
-        $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat_platform'));
-        RC_Logger::getlogger('debug')->info('wechat-url'.$url);
-        header("location: ".$url);exit();
+        if (ROUTE_M != 'connect') {
+            if (!ecjia_touch_user::singleton()->isSignin()) {
+                $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat_platform'));
+                RC_Logger::getlogger('debug')->info('wechat-url'.$url);
+                header("location: ".$url);exit();
+            }
+        }
     }
 
     if (ROUTE_M == 'user') {

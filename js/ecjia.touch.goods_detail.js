@@ -10,7 +10,7 @@
 		},
 		change: function() {
 			$('.tab2').css("border-bottom", "none");
-			$('.goods-tab').on('click', function (e) {
+			$('.goods-tab').off('click').on('click', function (e) {
 				var id = $(this).attr('data-type');
 				if (id == 1) {
 					$(".tab1").css("border-bottom","4px solid #fff")
@@ -25,7 +25,7 @@
 				}
 				$(window).scrollTop(0); 
 			});
-			$('.goods-desc-li-info').on('click', function (e) {
+			$('.goods-desc-li-info').off('click').on('click', function (e) {
 				var type = $(this).attr('data-id');			
 				if (type == 1) {
 					$('#one-info').show();

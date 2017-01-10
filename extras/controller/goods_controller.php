@@ -164,11 +164,12 @@ class goods_controller {
 	    ecjia_front::$controller->assign('total_num', $total_num);
 	    ecjia_front::$controller->assign('goods_info', $goods_info);
 	    
-	    
-	    ecjia_front::$controller->assign('cart_list', $cart_goods_list['cart_list'][0]['goods_list']);
-	    ecjia_front::$controller->assign('count', $cart_goods_list['cart_list'][0]['total']);
-	    ecjia_front::$controller->assign('real_count', $cart_goods_list['total']);
-	    ecjia_front::$controller->assign('data_rec', $data_rec);
+	    if (ecjia_touch_user::singleton()->isSignin()) {
+	    	ecjia_front::$controller->assign('cart_list', $cart_goods_list['cart_list'][0]['goods_list']);
+	    	ecjia_front::$controller->assign('count', $cart_goods_list['cart_list'][0]['total']);
+	    	ecjia_front::$controller->assign('real_count', $cart_goods_list['total']);
+	    	ecjia_front::$controller->assign('data_rec', $data_rec);
+	    }
 	    
 	    if (isset($_COOKIE['location_address_id']) && $_COOKIE['location_address_id'] > 0) {
 	    	ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
