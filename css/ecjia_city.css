@@ -2701,9 +2701,11 @@ footer{
 	padding: 2.7px;
 	position: absolute;
 	/*left: 43%;*/
-	right: 42%;
+	/*right: 42%;*/
+    left: 0;
+    right: 0;
     top: 3em;
-    margin: 0;
+    /*margin: 0;*/
     width: 4em;
     height: 4em;
 }
@@ -3327,7 +3329,7 @@ footer{
     border-bottom: 1px solid #ff3434;
 }
 .ecjia-bonus li a.red-font,
-.ecjia-user.ecjia-user-head .ecjia-list li>a .icon-price-red,
+.ecjia-user.ecjia-user-head .ecjia-list li .icon-price-red,
 .ecjia-spread-detail .ecjia-list.list-short li .icon-price-red {
 	color: #ff3434;
 }
@@ -5364,7 +5366,7 @@ footer{
 }
 .ecjia-spread-detail .ecjia-list.list-short li .icon-price-red {
 	position: absolute;
-	right: -68%;
+	text-align: right;
 	top: 30%;
 	font-size: 16px;
 	font-family: '黑体';
