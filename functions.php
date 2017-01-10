@@ -312,8 +312,8 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
         RC_Logger::getlogger('debug')->info('wechat-url'.$url);
         $url = urlencode($url);
         RC_Logger::getlogger('debug')->info('wechat-url'.$url);
-        //         header("location: ".$url);
-        return ecjia_front::$controller->redirect($url);
+        header("location: ".$url);exit();
+//         return ecjia_front::$controller->redirect($url);
     }
 
     if (ROUTE_M == 'user') {
