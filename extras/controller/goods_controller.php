@@ -107,7 +107,9 @@ class goods_controller {
 	    	$res = array();
 	    	preg_match('/<body>([\s\S]*?)<\/body>/', $goods_desc, $res);
 	    	$bodystr = trim($res[0]);
-	    	ecjia_front::$controller->assign('goods_desc', $bodystr);
+	    	if ($bodystr != '<body></body>') {
+	    		ecjia_front::$controller->assign('goods_desc', $bodystr);
+	    	}
 	    }
 	    if (!empty($rec_id)) {
 	    	ecjia_front::$controller->assign('rec_id', $rec_id);
