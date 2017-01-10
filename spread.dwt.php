@@ -32,7 +32,7 @@ ecjia.touch.init();
 		</div>
 	</div>
 	<div class="invite-template">
-		<textarea class="invite-template-style" name="invite_template">{$invite_user.invite_template}</textarea>
+		<textarea class="invite-template-style" name="invite_template" readonly>{$invite_user.invite_template}</textarea>
 	</div>
 	<div class="go-to-spread">
 		<a class="show_spread_share"><div class="would-spread">我要推广</div></a>
