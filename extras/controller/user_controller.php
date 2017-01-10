@@ -54,6 +54,10 @@ class user_controller {
 		ecjia_front::$controller->assign_title('我的推广');
     	ecjia_front::$controller->assign('invite_user', $invite_user_detail);
     	ecjia_front::$controller->assign('url', RC_Uri::url('user/index/wxconfig'));
+    	
+    	$image = ecjia::config('mobile_app_icon') != '' ? RC_Upload::upload_url(ecjia::config('mobile_app_icon')) : '';
+    	ecjia_front::$controller->assign('image', $image);
+    	
     	ecjia_front::$controller->display('spread.dwt');
     }
 	
@@ -66,8 +70,6 @@ class user_controller {
     	$wechat = wechat_method::wechat_instance($uuid);
     	
     	$config = $wechat->wxconfig($url);
-    	$config['image'] = ecjia::config('mobile_app_icon') != '' ? RC_Upload::upload_url(ecjia::config('mobile_app_icon')) : '';
-    	
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('data' => $config));
     }
 }
