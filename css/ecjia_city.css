@@ -2701,9 +2701,11 @@ footer{
 	padding: 2.7px;
 	position: absolute;
 	/*left: 43%;*/
-	right: 42%;
+	/*right: 42%;*/
+    left: 0;
+    right: 0;
     top: 3em;
-    margin: 0;
+    /*margin: 0;*/
     width: 4em;
     height: 4em;
 }
