@@ -964,7 +964,7 @@ select, input, textarea {
 	position: fixed;
 	right: 1em;
 	width: 40px;
-	z-index: 99;
+	z-index: 10;
 }
 .ecjia-menu ul {
 	display: none;
