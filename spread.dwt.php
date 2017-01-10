@@ -12,9 +12,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"> </script>
 <script type="text/javascript">
 var title = '{$share_title}',
-	link = '{$invite_user.invite_url}';
+	link = '{$invite_user.invite_url}',
+	img = '{$img}';
 ecjia.touch.spread.init();
-ecjia.touch.init();
 </script>
 <!-- {/block} -->
 
@@ -24,7 +24,7 @@ ecjia.touch.init();
 	<div class="ecjia-bg-qr-code">
 		<div class="bg-img"></div>
 		<div class="qrcode_image">
-			<img  src="{$invite_user.invite_qrcode_image}" />
+			<img src="{$invite_user.invite_qrcode_image}" />
 		</div>
 		<div class="my-invite-code">
 			<p>我的邀请码</p>
@@ -32,7 +32,7 @@ ecjia.touch.init();
 		</div>
 	</div>
 	<div class="invite-template">
-		<textarea class="invite-template-style" name="invite_template" readonly>{$invite_user.invite_template}</textarea>
+		<textarea class="invite-template-style" name="invite_template">{$invite_user.invite_template}</textarea>
 	</div>
 	<div class="go-to-spread">
 		<a class="show_spread_share"><div class="would-spread">我要推广</div></a>
