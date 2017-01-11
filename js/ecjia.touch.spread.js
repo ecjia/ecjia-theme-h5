@@ -144,11 +144,11 @@
         		return false;
         	}
         	var desc = $('textarea[name="invite_template"]').val();
-        	wechat_spread(url, info, title, link, img, desc);
+        	wechat_spread(url, info, title, link, image, desc);
 		},
 	};
 	
-	function wechat_spread(url, info, title, link, img, desc) {
+	function wechat_spread(url, info, title, link, image, desc) {
     	$.post(url, info, function(response){
     		var data = response.data;
     		wx.config({
@@ -170,7 +170,7 @@
     			wx.onMenuShareTimeline({
     		        title: title, 					// 分享标题【必填】
     		        link: link, 					// 分享链接【必填】
-    		        imgUrl: img, 					// 分享图标【必填】
+    		        imgUrl: image, 					// 分享图标【必填】
     		        success: function () { 
     		            // 用户确认分享后执行的回调函数
     		        },
@@ -184,7 +184,7 @@
     		        title: title, 					// 分享标题【必填】
     		        desc: desc,	 					// 分享描述【必填】
     		        link: link, 					// 分享链接【必填】
-    		        imgUrl: img, 					// 分享图标【必填】
+    		        imgUrl: image, 					// 分享图标【必填】
     		        type: 'link', 					// 分享类型,music、video或link，不填默认为link【必填】
     		        dataUrl: '', 					// 如果type是music或video，则要提供数据链接，默认为空
     		        success: function () { 
@@ -200,7 +200,7 @@
     		        title: title, 					// 分享标题
     		        desc: desc, 					// 分享描述
     		        link: link, 					// 分享链接
-    		        imgUrl: img, 					// 分享图标
+    		        imgUrl: image, 					// 分享图标
     		        success: function () { 
     		           // 用户确认分享后执行的回调函数
     		        },
