@@ -18,7 +18,7 @@ ecjia.touch.user.submitForm();
 <!-- {block name="main-content"} -->
 <!-- #BeginLibraryItem "/library/page_header.lbi" -->
 <!-- #EndLibraryItem -->
-<form class="ecjia-form ecjia-login" name="theForm" action="{url path='user/privilege/bind_signin_do'}" method="post">
+<form class="ecjia-form ecjia-login" name="theForm" action="{url path='connect/index/bind_signin_do'}" method="post">
 	<div class="form-group margin-right-left">
 		<label class="input">
 			<i class="iconfont icon-dengluyonghuming"></i>

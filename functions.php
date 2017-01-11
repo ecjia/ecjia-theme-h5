@@ -174,11 +174,6 @@ RC_Hook::add_action('user/privilege/login', array('user_privilege_controller', '
 RC_Hook::add_action('user/privilege/signin', array('user_privilege_controller', 'signin'));
 RC_Hook::add_action('user/privilege/signup', array('user_privilege_controller', 'signup'));
 RC_Hook::add_action('user/privilege/register', array('user_privilege_controller', 'register'));
-RC_Hook::add_action('user/privilege/bind_signup', array('user_privilege_controller', 'bind_signup'));
-RC_Hook::add_action('user/privilege/bind_signup_do', array('user_privilege_controller', 'bind_signup_do'));
-RC_Hook::add_action('user/privilege/bind_signin', array('user_privilege_controller', 'bind_signin'));
-RC_Hook::add_action('user/privilege/bind_signin_do', array('user_privilege_controller', 'bind_signin_do'));
-RC_Hook::add_action('user/privilege/bind_login', array('user_privilege_controller', 'bind_login'));
 RC_Hook::add_action('user/privilege/validate_code', array('user_privilege_controller', 'validate_code'));
 RC_Hook::add_action('user/privilege/set_password', array('user_privilege_controller', 'set_password'));
 RC_Hook::add_action('user/privilege/logout', array('user_privilege_controller', 'logout'));
@@ -282,6 +277,11 @@ RC_Hook::add_action('user/user_tag/del_tag', array('user_tag_controller', 'del_t
 
 RC_Loader::load_theme('extras/controller/connect_controller.php');
 RC_Hook::add_action('connect/index/dump_user_info', array('connect_controller', 'dump_user_info'));
+RC_Hook::add_action('connect/index/bind_signup', array('connect_controller', 'bind_signup'));
+RC_Hook::add_action('connect/index/bind_signup_do', array('connect_controller', 'bind_signup_do'));
+RC_Hook::add_action('connect/index/bind_signin', array('connect_controller', 'bind_signin'));
+RC_Hook::add_action('connect/index/bind_signin_do', array('connect_controller', 'bind_signin_do'));
+RC_Hook::add_action('connect/index/bind_login', array('connect_controller', 'bind_login'));
 
 
 
@@ -334,9 +334,10 @@ RC_Hook::add_filter('connect_callback_template', function($data) {
 RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username, $password, $email) {
     $result = user_privilege_controller::bind_signup(array('name' => $username, 'password' => $password, 'email' => $email));
     RC_Logger::getlogger('debug')->info('一键注册');
-    RC_Logger::getlogger('debug')->info($result);
     if (!is_ecjia_error($result)) {
-        return $result;
+        RC_Logger::getlogger('debug')->info('error');
+        return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+//         return $result;
     } else {
         return $result;
     }
