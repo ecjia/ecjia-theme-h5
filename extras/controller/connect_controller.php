@@ -327,7 +327,7 @@ class connect_controller {
             } else {
                 RC_Logger::getlogger('debug')->info('关联账号错误');
                 RC_Logger::getlogger('debug')->info($user);
-                return ecjia_front::$controller->showmessage('用户验证成功，获取用户信息失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+                return ecjia_front::$controller->showmessage('用户验证成功，获取用户信息失败，请重试！', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
             if ($result) {
                 /* 获取远程用户头像信息*/
