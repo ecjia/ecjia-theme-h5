@@ -68,8 +68,8 @@ class user_privilege_controller {
         ecjia_front::$controller->assign('header_right', array('info' => '注册', 'href' => RC_Uri::url('user/privilege/register')));
         
         ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->assign('title', RC_Lang::lang('login'));
-        ecjia_front::$controller->assign_title(RC_Lang::lang('login'));
+        ecjia_front::$controller->assign('title', '登录');
+        ecjia_front::$controller->assign_title('登录');
         
         ecjia_front::$controller->display('user_login.dwt');
     }

@@ -682,8 +682,8 @@ class cart_controller {
         ecjia_front::$controller->assign('rec_id', $rec_id);
         ecjia_front::$controller->assign_lang();
         
-        ecjia_front::$controller->assign('title', RC_Lang::lang('payment_method'));
-        ecjia_front::$controller->assign_title(RC_Lang::lang('payment_method'));
+        ecjia_front::$controller->assign('title', '支付方式');
+        ecjia_front::$controller->assign_title('支付方式');
         ecjia_front::$controller->display('flow_pay.dwt');
     }
 
@@ -711,8 +711,8 @@ class cart_controller {
         ecjia_front::$controller->assign('rec_id', $rec_id);
         
         ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->assign('title', RC_Lang::lang('shipping_method'));
-        ecjia_front::$controller->assign_title(RC_Lang::lang('shipping_method'));
+        ecjia_front::$controller->assign('title', '配送方式');
+        ecjia_front::$controller->assign_title('配送方式');
         ecjia_front::$controller->display('flow_shipping.dwt');
     }
     
@@ -772,8 +772,8 @@ class cart_controller {
         ecjia_front::$controller->assign('address_id', $address_id);
         ecjia_front::$controller->assign('rec_id', $rec_id);
         
-        ecjia_front::$controller->assign('title', RC_Lang::lang('invoice'));
-        ecjia_front::$controller->assign_title(RC_Lang::lang('invoice'));
+        ecjia_front::$controller->assign('title', '开发票');
+        ecjia_front::$controller->assign_title('开发票');
         // ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->display('flow_invoice.dwt');
     }
@@ -830,8 +830,8 @@ class cart_controller {
         ecjia_front::$controller->assign('address_id', $address_id);
         ecjia_front::$controller->assign('rec_id', $rec_id);
         
-        ecjia_front::$controller->assign('title', RC_Lang::lang('use_bonus'));
-        ecjia_front::$controller->assign_title(RC_Lang::lang('use_bonus'));
+        ecjia_front::$controller->assign('title', '使用红包');
+        ecjia_front::$controller->assign_title('使用红包');
         ecjia_front::$controller->display('flow_bonus.dwt');
     }
 
@@ -860,7 +860,7 @@ class cart_controller {
         ecjia_front::$controller->assign('address_id', $address_id);
         ecjia_front::$controller->assign('rec_id', $rec_id);
         
-        ecjia_front::$controller->assign_title(RC_Lang::lang('use_integral'));
+        ecjia_front::$controller->assign_title('使用积分');
         ecjia_front::$controller->display('flow_integral.dwt');
     }
 }

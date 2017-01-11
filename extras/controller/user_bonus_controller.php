@@ -127,7 +127,7 @@ class user_bonus_controller {
         if (!empty($bonus['error'])) {
             return ecjia_front::$controller->showmessage($bonus['message'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
         } else {
-            return ecjia_front::$controller->showmessage(RC_Lang::lang('add_bonus_sucess'),ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON,array('is_show' => false));
+            return ecjia_front::$controller->showmessage('添加红包成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON,array('is_show' => false));
         }
     }
     /**
