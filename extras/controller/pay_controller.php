@@ -44,13 +44,12 @@
 //
 //  ---------------------------------------------------------------------------------
 //
+defined('IN_ECJIA') or exit('No permission resources.');
+
 /**
  * 支付控制器代码
  */
 class pay_controller {
-    /**
-     * 
-     */
     public static function init() {
     	
         $order_id = !empty($_GET['order_id']) ? intval($_GET['order_id']) : 0;

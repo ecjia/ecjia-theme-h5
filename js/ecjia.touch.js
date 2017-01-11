@@ -12,7 +12,6 @@
 			  	function showPosition(position) {
 				  	var lat=position.coords.latitude; 
 				  	var lng=position.coords.longitude;
-//				  	var href_url = window.location.href;
 			    	var url = $("#get_location").attr('data-url');
 				  	url += '&lat=' + lat + '&lng=' + lng;
 			  	     $.ajax({
@@ -55,14 +54,14 @@
 				if (keywords != 'undefined') {
 					url += '&keywords=' + keywords;
 				}
-	             $.ajax({
+				$.ajax({
             	    url:url,
             	    type:"GET",
             	    dataType:"json",
             	    success:function(data){
             	    	ecjia.touch.address_value(data.content.data);
             	    },
-            	 });
+				});
 		    })
 		},
 
@@ -78,6 +77,7 @@
 		    }
 		    ecjia.touch.add_link();
 		},
+		
 		//点击搜索结果事件
         add_link: function () {
         	var type = $("#ecjia-zs").attr('data-type');
@@ -105,12 +105,11 @@
                     var address=$(this).find(".ecjia-location-list-address").text();
                     var url = $("#ecjia-zs").attr('data-url');
                     url += '&addr=' + address + '&name=' + title;
-//                    url += '&address_info=' + title;
                     ecjia.pjax(url);
               });
         	}
         },
-      //搜索关键词定位结束
+        //搜索关键词定位结束
 		
 		/**
 		 * 设置PJAX
@@ -395,6 +394,30 @@
 					$('.ecjia-menu').addClass('active');
 				}
 			});
+			var _x_start, _y_start, _x_move, _y_move, _x_end, _y_end, left_start, bottom_start, top_start;
+	        document.getElementById("ecjia-menu").addEventListener('touchstart', function(e) {
+	            _x_start=e.touches[0].pageX;
+	            _y_start=e.touches[0].pageY;
+	            left_start = $("#ecjia-menu").css("left");
+	            bottom_start = $("#ecjia-menu").css("bottom");
+	            top_start = $("#ecjia-menu").offset().top - $("body").scrollTop();
+	            //阻止浏览器下拉事件
+		        $('body').on('touchmove', function (event) {event.preventDefault();});
+	        });
+	        document.getElementById("ecjia-menu").addEventListener('touchmove', function(e) {
+	            _x_move=e.touches[0].pageX;
+	            _y_move=e.touches[0].pageY;
+	            $("#ecjia-menu").css("left", parseFloat(_x_move)-parseFloat(_x_start)+parseFloat(left_start)+"px");
+	            var bottom = parseFloat(_y_start)-parseFloat(_y_move)+parseFloat(bottom_start);
+	            var top = parseFloat(_y_move)-parseFloat(_y_start)+parseFloat(top_start);
+	            if (bottom < 100 || top < 250) {return false;}
+	            $("#ecjia-menu").css("bottom", bottom + 'px');
+	        });
+	        document.getElementById("ecjia-menu").addEventListener('touchend', function(e) {
+	            var _x_end=e.changedTouches[0].pageX;
+	            var _y_end=e.changedTouches[0].pageY;
+	            $('body').off('touchmove');
+	        });
 		},
 
 		toggle_collapse : function() {
