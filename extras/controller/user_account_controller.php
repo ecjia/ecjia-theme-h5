@@ -45,6 +45,8 @@
 //  ---------------------------------------------------------------------------------
 //
 use Guzzle\Http\Message\Header;
+defined('IN_ECJIA') or exit('No permission resources.');
+
 /**
  * 资金模块控制器代码
  */

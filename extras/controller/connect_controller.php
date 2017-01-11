@@ -44,6 +44,8 @@
 //
 //  ---------------------------------------------------------------------------------
 //
+defined('IN_ECJIA') or exit('No permission resources.');
+
 /**
  * 第三方登录callback处理
  * @author huangyuyuan@ecmoban.com
