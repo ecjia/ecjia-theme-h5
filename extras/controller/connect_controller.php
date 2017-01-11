@@ -289,6 +289,7 @@ class connect_controller {
     
         ecjia_front::$controller->assign('title', "验证并关联");
         ecjia_front::$controller->assign_title("验证并关联");
+        ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_bind_signin.dwt');
     }
