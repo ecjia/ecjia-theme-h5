@@ -65,7 +65,7 @@ class goods_controller {
     	ecjia_front::$controller->assign('cat_id', $cat_id);
     	ecjia_front::$controller->assign('data', $data);
         
-        ecjia_front::$controller->assign_title(RC_Lang::lang('catalog'));
+        ecjia_front::$controller->assign_title('所有分类');
         ecjia_front::$controller->assign('active', 'category');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('category_list.dwt');

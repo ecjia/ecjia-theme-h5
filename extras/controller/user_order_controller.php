@@ -60,8 +60,8 @@ class user_order_controller {
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
         
         ecjia_front::$controller->assign('order_list', $data);
-        ecjia_front::$controller->assign_title(RC_Lang::lang('order_list_lnk'));
-        ecjia_front::$controller->assign('title', RC_Lang::lang('order_list_lnk'));
+        ecjia_front::$controller->assign_title('全部订单');
+        ecjia_front::$controller->assign('title', '全部订单');
         ecjia_front::$controller->assign('active', 'orderList');
     	
         ecjia_front::$controller->assign_lang();
@@ -79,9 +79,10 @@ class user_order_controller {
     
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
+        
         ecjia_front::$controller->assign('order', $data);
-        ecjia_front::$controller->assign('title', RC_Lang::lang('order_detail'));
-        ecjia_front::$controller->assign_title(RC_Lang::lang('order_detail'));
+        ecjia_front::$controller->assign('title', '订单详情');
+        ecjia_front::$controller->assign_title('订单详情');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_order_detail.dwt');
     }
