@@ -198,7 +198,7 @@ class connect_controller {
             $user_info = $connect_user->get_openid();
             if ($connect_code == 'sns_qq') {
                 $head_img = $user_info['profile']['figureurl_qq_2'];
-            } else if ($connect_code == 'sns_wechat') {
+            } else if ($connect_code == 'sns_wechat_platform') {
                 $head_img = $user_info['profile']['headimgurl'];
             }
             RC_Logger::getlogger('debug')->info('关联');
@@ -265,7 +265,7 @@ class connect_controller {
             $user_info = $connect_user->get_openid();
             if ($connect_code == 'sns_qq') {
                 $head_img = $user_info['profile']['figureurl_qq_2'];
-            } else if ($connect_code == 'sns_wechat') {
+            } else if ($connect_code == 'sns_wechat_platform') {
                 $head_img = $user_info['profile']['headimgurl'];
             }
             if ($head_img) {
@@ -334,7 +334,7 @@ class connect_controller {
                 $user_info = $connect_user->get_openid();
                 if ($connect_code == 'sns_qq') {
                     $head_img = $user_info['profile']['figureurl_qq_2'];
-                } else if ($connect_code == 'sns_wechat') {
+                } else if ($connect_code == 'sns_wechat_platform') {
                     $head_img = $user_info['profile']['headimgurl'];
                 }
                 RC_Logger::getlogger('debug')->info('关联');
