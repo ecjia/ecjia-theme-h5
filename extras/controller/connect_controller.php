@@ -100,7 +100,7 @@ class connect_controller {
 //         $url['bind_signup'] = str_replace('/notify/', '/', RC_Uri::url('user/privilege/bind_signup', array('connect_code' => $data['connect_code'], 'open_id' => $data['open_id'])));
         $url['bind_signup'] = str_replace('/notify/', '/', $data['login_url']);
         $url['bind_signin'] = str_replace('/notify/', '/', RC_Uri::url('connect/index/bind_signin', array('connect_code' => $data['connect_code'], 'open_id' => $data['open_id'])));
-        ecjia_front::$controller->assign('url',$url);
+        ecjia_front::$controller->assign('url', $url);
         //         ecjia_front::$controller->assign('login',$login);
         //         show_message($msg, array('绑定已有账号'), array($data['bind_url']), 'info', false);
         //         return file_get_contents (RC_Theme::get_template_directory().'/user_bind_signin.dwt.php');
@@ -205,7 +205,7 @@ class connect_controller {
             RC_Logger::getlogger('debug')->info($user_info);
             RC_Logger::getlogger('debug')->info($head_img);
             if ($head_img) {
-                RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
+//                 RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
             }
             return $data['data']['session']['uid'];
         }
@@ -269,7 +269,7 @@ class connect_controller {
                 $head_img = $user_info['profile']['headimgurl'];
             }
             if ($head_img) {
-                RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
+//                 RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
             }
             return ecjia_front::$controller->showmessage('恭喜您，注册成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init')));
         } else {
@@ -341,7 +341,7 @@ class connect_controller {
                 RC_Logger::getlogger('debug')->info($user_info);
                 RC_Logger::getlogger('debug')->info($head_img);
                 if ($head_img) {
-                    RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
+//                     RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
                 }
                 return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer_url));
             } else {
