@@ -31,7 +31,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<input name="address" placeholder="{t}写字楼，小区，学校，街道{/t}" type="text" datatype="*" value="{if $temp.tem_address_detail}{$temp.tem_address_detail}{else}{$info.address}{/if}" nullmsg="请选择收货地址" readonly="readonly" />
 			</a>
 			
-			<a class="external" href="https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl={$location_backurl}&key=4PLBZ-WSUW2-OXBUZ-CFNSS-MRUAV-3SFEO&referer=nothingkey">
+			<a class="external" href="{$my_location}">
 				<div class="position"></div>
 			</a>
 		</label>

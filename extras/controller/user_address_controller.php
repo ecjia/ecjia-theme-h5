@@ -161,13 +161,19 @@ class user_address_controller {
     public static function add_address() {
         $temp_data = user_address_controller::save_temp_data(1, 'add', $_GET['clear'], $_GET);
         ecjia_front::$controller->assign('temp', $temp_data);
-        ecjia_front::$controller->assign('location_backurl', urlencode(RC_Uri::url('user/user_address/add_address')));
+        $location_backurl = urlencode(RC_Uri::url('user/user_address/add_address'));
+        ecjia_front::$controller->assign('location_backurl', $location_backurl);
         
 		$referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : (!empty($_SESSION['referer_url']) ? $_SESSION['referer_url'] : '');
 		if (!empty($referer_url)) {
 			$_SESSION['referer_url'] = $referer_url;
 			ecjia_front::$controller->assign('referer_url', $referer_url);
 		}
+		$key       = ecjia::config('map_qq_key');
+		$referer   = ecjia::config('map_qq_referer');
+		$my_location = "https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl=".$location_backurl."&key=".$key."&referer=".$referer;
+		ecjia_front::$controller->assign('my_location', $my_location);
+		
     	ecjia_front::$controller->assign('form_action', RC_Uri::url('user/user_address/insert_address'));
         ecjia_front::$controller->assign('temp_key', 'add');
         ecjia_front::$controller->assign_title('添加收货地址');
