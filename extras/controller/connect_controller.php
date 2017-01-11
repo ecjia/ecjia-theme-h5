@@ -203,7 +203,7 @@ class connect_controller {
             }
             RC_Logger::getlogger('debug')->info('关联');
             RC_Logger::getlogger('debug')->info($user_info);
-            RC_Logger::getlogger('debug')->info($head_img);
+            RC_Logger::getlogger('debug')->info('head'.$head_img);
             if ($head_img) {
                 RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
             }
@@ -339,7 +339,7 @@ class connect_controller {
                 }
                 RC_Logger::getlogger('debug')->info('关联');
                 RC_Logger::getlogger('debug')->info($user_info);
-                RC_Logger::getlogger('debug')->info($head_img);
+                RC_Logger::getlogger('debug')->info('head'.$head_img);
                 if ($head_img) {
                     RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
                 }
