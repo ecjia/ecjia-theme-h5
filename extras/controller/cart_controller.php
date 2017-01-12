@@ -534,12 +534,16 @@ class cart_controller {
         if (empty($address_id)) {
  			return ecjia_front::$controller->showmessage('请选择收货地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
    		}
+   		$expect_shipping_time = '';
+   		if (!empty($shipping_date) || !empty($shipping_time)) {
+   		    $expect_shipping_time = $shipping_date .' '. $shipping_time;
+   		}
    		$params = array(
    			'token' 				=> ecjia_touch_user::singleton()->getToken(),
    			'address_id' 			=> $address_id,
    			'rec_id' 				=> $rec_id,
    			'shipping_id' 			=> $shipping_id,
-   			'expect_shipping_time' 	=> $shipping_date .' '. $shipping_time,
+   			'expect_shipping_time' 	=> $expect_shipping_time,
    			'pay_id' 				=> $pay_id,
    			'inv_payee'				=> $inv_payee,
    			'inv_type'				=> $inv_type,
