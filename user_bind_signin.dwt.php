@@ -22,7 +22,7 @@ ecjia.touch.user.submitForm();
 	<div class="form-group margin-right-left">
 		<label class="input">
 			<i class="iconfont icon-dengluyonghuming"></i>
-			<input placeholder="{$lang.name_or_mobile}" name="username" datatype="s3-15|m|e" errormsg="用户名错误请重新输入！" nullmsg="请输入用户名户或手机号" />
+			<input placeholder="{$lang.name_or_mobile}" name="username" datatype="*3-16|zh2-7" errormsg="用户名错误请重新输入！" nullmsg="请输入用户名户或手机号" />
 		</label>
 	</div>
 	<div class="form-group ecjia-margin-t margin-right-left">
