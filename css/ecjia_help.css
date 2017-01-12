@@ -17,6 +17,10 @@
 	padding-right: 1em;
 	background-color: #FFF;
 }
+.ecjia-article.article-info img{
+	width: 100%;
+	max-width: 100%;
+}
 .ecjia-article .ecjia-list {
 	margin-top: 0;
 }
@@ -27,7 +31,7 @@
 	font-size: 1.1em;
 	font-weight: bold;
 	color: #232323;
-	padding-left: 3%;
+	padding-left: 1em;
 	line-height: 2.5em;
 	background-color: #EFEFEF;
 	font-family: '黑体';

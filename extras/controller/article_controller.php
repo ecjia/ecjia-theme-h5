@@ -86,8 +86,16 @@ class article_controller {
         ecjia_front::$controller->assign('title', $title);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_HELP_DETAIL)->data(array('article_id' => $article_id))->run();
     	
+    	if (!empty($data)) {
+    		$res = array();
+    		preg_match('/<body>([\s\S]*?)<\/body>/', $data, $res);
+    		$bodystr = trim($res[0]);
+    		if ($bodystr != '<body></body>') {
+    			ecjia_front::$controller->assign('data', $bodystr);
+    		}
+    	}
+    	
     	ecjia_front::$controller->assign_title($title);
-    	ecjia_front::$controller->assign('data', $data);
     	ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->display('article_detail.dwt');
     }
@@ -100,9 +108,16 @@ class article_controller {
         $shop_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO_DETAIL)->data(array('article_id' => $article_id))->run();
         $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
         
-       
+        if (!empty($shop_detail)) {
+        	$res = array();
+        	preg_match('/<body>([\s\S]*?)<\/body>/', $shop_detail, $res);
+        	$bodystr = trim($res[0]);
+        	if ($bodystr != '<body></body>') {
+        		ecjia_front::$controller->assign('data', $bodystr);
+        	}
+        }
+
         ecjia_front::$controller->assign('title', $title);
-        ecjia_front::$controller->assign('data', $shop_detail);
         ecjia_front::$controller->assign('hideinfo', 1);
         ecjia_front::$controller->assign_title($title);
         ecjia_front::$controller->assign_lang();

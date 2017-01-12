@@ -32,17 +32,10 @@
 				//获取滚动条的滑动距离
 				var scroH = $(this).scrollTop();
 				$("ul .pf").each(function(i){
-//					滚动时候pf离顶部的距离s
+					//滚动时候pf离顶部的距离
 					var pfTop = $(this).offset().top;
-//					console.log(pfTop - scroH,i);
-//					console.log($(this).height());
 					console.log(pfTop - scroH);
                     //滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
-//					if (i>=1 && pfTop - 38 - scroH > 0) {
-//			            $(this).css({"position":"fixed","top":0, "z-index":9});
-//				    }else{
-//					      $(this).css({"position":"relative"});
-//				    }
 					div_height = $(this).height();
 					$("ul").each(function(){
 				        //取出ul下的第一个li
@@ -51,7 +44,7 @@
 				    });
 					if (pfTop - scroH < div_height) {
 						$(this).css({"position":"fixed","top":0, "z-index":9});
-						$(this).siblings().css({"position":"relative"}); 
+						$(this).siblings('.pf').css({"position":"relative"}); 
 					}
 			    });
 			})
