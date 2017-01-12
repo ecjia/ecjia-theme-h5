@@ -21,7 +21,7 @@ ecjia.touch.category.init();
 
 <div class="ecjia-mod ecjia-header ecjia-store-banner">
 	<div class="ecjia-header-left">
-		<img src="{$store_info.seller_banner}">
+		<img src="{if $store_info.seller_banner}{$store_info.seller_banner}{else}{$theme_url}images/default_store_banner.png{/if}">
 	</div>
 	<div class="ecjia-header-right">
 		<a href="{$header_right.href}" class="nopjax external">
