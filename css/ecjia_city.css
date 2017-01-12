@@ -2178,6 +2178,7 @@ footer{
 	width:50%;
 	text-align: right;
 }
+.flow-done-text {    font-size: 0.9em;}
 
 /* 订单商品列表 */
 .ecjia .ecjia-checkout .flow-goods-list {

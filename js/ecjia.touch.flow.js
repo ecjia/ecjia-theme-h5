@@ -16,6 +16,7 @@
 			ecjia.touch.flow.select_attr();
 			ecjia.touch.flow.fold_area();
 			ecjia.touch.flow.check_goods();
+			ecjia.touch.flow.form_submit();
 			$('[data-toggle="selectShipping"]:checked').trigger('click');
 			$('[data-toggle="selectPayment"]:checked').trigger('click');
 			$('[data-toggle="change_bonus"]:checked').trigger('click');
@@ -27,38 +28,14 @@
 			}
 
             $(document).winderCheck();
-			// function change_goods_number(type, id){
-			// 	var goods_number = document.getElementById('goods_number'+id).value;
-			// 	if(type != 2){ back_goods_number(id) }
-			// 		if(type == 1){ goods_number--; }
-			// 	if(type == 3){ goods_number++; }
-			// 	if(goods_number <=0 ){ goods_number=1; }
-			// 	if(!/^[0-9]*$/.test(goods_number)){ goods_number = document.getElementById('back_number'+id).value; }
-			// 	document.getElementById('goods_number'+id).value = goods_number;
-			// 	$.post('{url path="flow/ajax_update_cart"}', {
-			// 		rec_id : id,goods_number : goods_number
-			// 	}, function(data) {
-			// 		change_goods_number_response(data,id);
-			// 	}, 'json');
-			// } 
-			// // 处理返回信息并显示
-			// function change_goods_number_response(result,id){
-			// 	if (result.error == 0){
-			// 		var rec_id = result.rec_id;
-			// 		$("#goods_number_"+rec_id).val(result.goods_number);
-			// 		document.getElementById('total_number').innerHTML = result.total_number;//更新数量
-			// 		document.getElementById('goods_subtotal').innerHTML = result.total_desc;//更新小计
-			// 		if (document.getElementById('ECS_CARTINFO')){
-			// 			//更新购物车数量
-			// 			document.getElementById('ECS_CARTINFO').innerHTML = result.cart_info;
-			// 		}
-			// 	}else if (result.message != ''){
-			// 		alert(result.message);
-			// 		var goods_number = document.getElementById('back_number'+id).value;
-			// 		document.getElementById('goods_number'+id).value = goods_number;
-			// 	}
-			// }
 		},
+		
+		form_submit: function () {
+            $('.flow-done-sub').on('click', function () {
+            	ecjia.touch.pjaxloadding();
+            	$("input[type='submit']").click();
+            });
+        },
 
 		change_number_click : function (){
 			$('[data-toggle="change_goods_number"]').on('click', function(){

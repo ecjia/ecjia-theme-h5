@@ -66,7 +66,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	      <!-- {/if} 使用余额或积分或红包 -->
 	
 	      <!-- 总金额 -->
-	      <li>{$lang.total_fee}: <span class="cart-order">{$total.amount_formated}</span></li>
+	      <!-- <li>{$lang.total_fee}: <span class="cart-order">{$total.amount_formated}</span></li> -->
 	
 	      <!-- {if $is_group_buy} -->
 	      <li>{$lang.notice_gb_order_amount}</li>
