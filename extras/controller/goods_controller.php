@@ -110,9 +110,11 @@ class goods_controller {
 		
 	   	$cart_goods_id = $cart_arr = array();
 	   	$rec_id = $data_rec = $num = '';
+	   	
 	   	if (!empty($cart_goods_list['cart_list'][0]['goods_list'])) {
 	   		$cart_goods_list['cart_list'][0]['total']['check_all'] = true;
 	   		$cart_goods_list['cart_list'][0]['total']['check_one'] = false;
+	   		
 	   		foreach ($cart_goods_list['cart_list'][0]['goods_list'] as $key => $val) {
 	   			if ($goods_id == $val['goods_id']) {
 	   				$rec_id = $val['rec_id'];
@@ -122,7 +124,7 @@ class goods_controller {
 	   			
 	   			if ($val['is_checked'] == 1 && $val['is_disabled'] == 0) {
 	   				$cart_goods_list['cart_list'][0]['total']['check_one'] = true;	//至少选择了一个
-	   				if ($k == 0) {
+	   				if ($key == 0) {
 	   					$data_rec = $val['rec_id'];
 	   				} else {
 	   					$data_rec .= ','.$val['rec_id'];
