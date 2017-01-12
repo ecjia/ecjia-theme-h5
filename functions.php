@@ -332,7 +332,7 @@ RC_Hook::add_filter('connect_callback_template', function($data) {
     
 //第三方登录用户注册
 RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username, $password, $email) {
-    RC_Logger::getlogger('debug')->info('一键注册');
+    RC_Logger::getlogger('debug')->info('functions 一键注册');
     RC_Logger::getlogger('debug')->info(array('name' => $username, 'password' => $password, 'email' => $email));
     $result = connect_controller::bind_signup(array('name' => $username, 'password' => $password, 'email' => $email));
     if (is_ecjia_error($result)) {

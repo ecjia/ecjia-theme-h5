@@ -93,6 +93,7 @@ class connect_controller {
         ecjia_front::$controller->assign('connect_code',$data['connect_code']);
         ecjia_front::$controller->assign('user_info', $user_info);
         ecjia_front::$controller->assign('user_img', $user_img);
+        ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign('user_name', $user_name);
         
         //$data['open_id']
@@ -205,7 +206,7 @@ class connect_controller {
             RC_Logger::getlogger('debug')->info($user_info);
             RC_Logger::getlogger('debug')->info('head'.$head_img);
             if ($head_img) {
-                RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
+//                 RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
             }
             return $data['data']['session']['uid'];
         }
@@ -269,7 +270,7 @@ class connect_controller {
                 $head_img = $user_info['profile']['headimgurl'];
             }
             if ($head_img) {
-                RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
+//                 RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
             }
             return ecjia_front::$controller->showmessage('恭喜您，注册成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init')));
         } else {
@@ -342,7 +343,7 @@ class connect_controller {
                 RC_Logger::getlogger('debug')->info($user_info);
                 RC_Logger::getlogger('debug')->info('head'.$head_img);
                 if ($head_img) {
-                    RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
+//                     RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
                 }
                 return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer_url));
             } else {
