@@ -161,6 +161,7 @@ class pay_controller {
     		
     		//过滤当前支付方式
     		unset($payment_list[$pay_code]);
+    		unset($payment_list[$payment_info['pay_code']]);
     		//非自营过滤货到付款
     		if($detail['manage_mode'] != 'self') {
     			unset($payment_list['pay_cod']);
