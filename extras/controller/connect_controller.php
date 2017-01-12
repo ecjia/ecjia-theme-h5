@@ -192,6 +192,9 @@ class connect_controller {
             if ($data['status']['succeed'] != 1) {
                 return new ecjia_error($data['status']['error_code'], $data['status']['error_desc']);
             }
+            
+            //登录
+            ecjia_touch_user::singleton()->signin($params['name'], $params['password']);
     
             RC_Loader::load_app_class('connect_user', 'connect', false);
             $connect_user = new connect_user($connect_code, $open_id);
