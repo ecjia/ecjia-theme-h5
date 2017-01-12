@@ -143,12 +143,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				{else}
 				<a href='{url path="cart/flow/integral" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				    <span>{$lang.use_integral}</span>
-    				{if $temp.integral lte 0}<span class="ecjia-tag">{$data.your_integral}积分可用</span>{/if}
-    				<i class="iconfont icon-jiantou-right"></i>
     				{if $temp.integral gt 0}
     				<span class="ecjiaf-fr select_nav ecjia-truncate">{$temp.integral}积分</span>
     				<input type="hidden" name="integral" value="{$temp.integral}" />
+    				{else}
+    				<span class="ecjia-tag">{if $data.your_integral lt $data.order_max_integral }{$data.your_integral}{else}{$data.order_max_integral}{/if}积分可用</span>
     				{/if}
+    				<i class="iconfont icon-jiantou-right"></i>
 				</a>
 			{/if}				
 		</section>
