@@ -432,7 +432,7 @@ class cart_controller {
             foreach ($_SESSION['cart'][$cart_key]['data']['inv_type_list'] as $type) {
                 if ($type['label_value'] == $_SESSION['cart'][$cart_key]['temp']['inv_type']) {
                     $rate = floatval($type['rate']) / 100;
-                    $total['tax_fee'] = $rate * $total['amount'];
+                    $total['tax_fee'] = $rate * $total['goods_price'];
                     $total['tax_fee'] = round($total['tax_fee'], 2);
                     break;
                 }
