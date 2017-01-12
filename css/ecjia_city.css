@@ -2881,13 +2881,13 @@ footer{
 .ecjia-account.ecjia-pay {
 
 }
-.ecjia-account.ecjia-pay.ecjia-flow-done .ecjia-list.list-short li+li::before {width: 100%;left: 8%;}
+.ecjia-account.ecjia-pay.ecjia-flow-done .ecjia-list.list-short li+li::before {width: 100%;left: 3%;}
 .ecjia-account.record-info {
 	background: #FFF;
 	padding-bottom: 1em;
 }
 .ecjia-account.ecjia-flow-done .list-font-size{
-	padding: .9em 1em!important;
+	padding: 1em 1em!important;
 	font-size: 1.1em;
 }
 .ecjia-account.ecjia-flow-done .payment-list .one-select{
@@ -3053,6 +3053,22 @@ footer{
 .ecjia-account-padding-input {
 	padding: .8em 1em!important;
 }
+.ecjia-account-padding-input .fmtmargin {
+    margin:0!important;
+}
+.ecjia-account-padding-input .ecjia-check {
+    width: 20px;
+    height: 20px;
+    margin:2px;
+    padding:0;
+    background-size: 20px 220px;
+}
+.ecjia-account-padding-input .ecjia-check-checked /* 选中  */{
+    background-position: 0px -200px;
+}
+.ecjia-account-padding-input .ecjia-check-edit /* x样式 */{
+    background-position: 0px -100px;
+}
 .ecjia-account .ecjia-list li {
 	padding: .7em 1em;
 }
@@ -3076,7 +3092,7 @@ footer{
 .ecjia-account.ecjia-form .form-group-text {
 	position: relative;
 	height: 3em;
-	padding: .7em .5em;
+	padding: .7em 1em;
 	border: 1px solid #eee;
 }
 .ecjia-account.ecjia-form .form-group-text .input input {
