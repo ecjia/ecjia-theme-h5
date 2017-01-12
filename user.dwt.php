@@ -140,7 +140,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </ul>
     <ul class="ecjia-list list-short">
         <li>
-        	<a class="nopjax external" href="{url path='article/help/init'}">
+        	<a class="external" href="{url path='article/help/init'}">
         		<div class="icon-help-center"><img src="./images/user_center/help75_3.png"></div>
         		<span class="icon-name">帮助中心</span>
         		<i class="iconfont  icon-jiantou-right"></i>
@@ -150,7 +150,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-list list-short">
         <!-- {foreach from=$shop item=value} 网店信息 -->
             <li>
-            	<a class="nopjax external" href="{RC_uri::url('article/shop/detail')}&title={$value.title}&article_id={$value.id}">
+            	<a class="external" href="{RC_uri::url('article/shop/detail')}&title={$value.title}&article_id={$value.id}">
             		<div class="icon-shop-info"><img src="{$value.image}"></div>
             		<span class="icon-name">{$value.title}</span>
             		<i class="iconfont  icon-jiantou-right"></i>
