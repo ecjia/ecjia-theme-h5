@@ -114,7 +114,6 @@ class location_controller {
         	ecjia_front::$controller->assign('referer_url', urlencode($referer_url));
         }
         
-    	// ecjia_front::$controller->assign('hideinfo', '1');
     	ecjia_front::$controller->assign_title('选择城市');
     	ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->display('select_location_city.dwt');

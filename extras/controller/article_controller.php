@@ -59,7 +59,6 @@ class article_controller {
     	ecjia_front::$controller->assign('data', $data);
     	ecjia_front::$controller->assign_title('帮助中心');
     	ecjia_front::$controller->assign('title', '帮助中心');
-    	ecjia_front::$controller->assign('hideinfo', '1');
     	ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('article_init.dwt');
     }
@@ -96,7 +95,6 @@ class article_controller {
     	}
     	
     	ecjia_front::$controller->assign_title($title);
-    	ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->display('article_detail.dwt');
     }
     /**
@@ -118,7 +116,6 @@ class article_controller {
         }
 
         ecjia_front::$controller->assign('title', $title);
-        ecjia_front::$controller->assign('hideinfo', 1);
         ecjia_front::$controller->assign_title($title);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('article_shop_detail.dwt');

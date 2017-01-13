@@ -10,12 +10,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript" >
+ecjia.touch.user_account.init();
 ecjia.touch.init();
 </script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<form class="ecjia-account ecjia-form user-profile-form" action="{url path='user/user_account/recharge_account'}" method="post">
+<form class="ecjia-account ecjia-form user-profile-form" name="useraccountForm" action="{url path='user/user_account/recharge_account'}" method="post">
     <div class="ecjia-form ecjia-account ecjia-flow-done ecjia-pay">
     	<p class="account-top text-ty ">{t}账户充值：{$user.name}{/t}</p>
     	<div class="form-group form-group-text account-lr-fom no-border">
@@ -24,27 +25,26 @@ ecjia.touch.init();
     			<input placeholder="{t}建议充入100元以上金额{/t}" name="amount"/>
     		</label>
     	</div>
-    	<ul class="ecjia-list ecjia-margin-t">
-            <li class="list-font-size">
-                                    其它支付方式
-            </li>
-        </ul>
-        <ul class="ecjia-list list-short payment-list">
-            <li class="ecjia-account-padding-input">
-                <span class="icon-name {$pay_alipay.pay_code} fmtmargin" data-code="{$pay_alipay.pay_code}">
-                <label for="{$pay_alipay.pay_code}" class="ecjiaf-fr ecjia-check" value="10"> 
-                <input type="radio" id="{$pay_alipay.pay_code}" name="payment" value="{$pay_alipay.pay_id}" checked="true"></label>
-                {$pay_alipay.pay_name}</a></span>
-            </li>
-            <li class="ecjia-account-padding-input">
-                <span class="icon-name {$pay_wxpay.pay_code} fmtmargin" data-code="{$pay_wxpay.pay_code}">
-                <label for="{$pay_wxpay.pay_code}" class="ecjiaf-fr ecjia-check" value="10">      
-                <input type="radio" id="{$pay_wxpay.pay_code}" name="payment" value="{$pay_wxpay.pay_id}"></label>
-                {$pay_wxpay.pay_name}</a></span>
-            </li>
-        </ul>
+    	 {if $payment_list}
+		    <ul class="ecjia-list ecjia-margin-t">
+		        <li>
+		                        其它支付方式 <span class="ecjiaf-fr"><i class="iconfont icon-jiantou-bottom"></i></span>
+		        </li>
+		    </ul>
+		    <ul class="ecjia-list list-short payment-list">
+		    <!-- {foreach from=$payment_list item=list} -->
+		        <li class="ecjia-account-padding-input user_pay_way">
+		            <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}">
+		            	<input type="radio" id="{$list.pay_code}" name="payment" value="{$list.pay_id}" checked="true">
+                		<label for="{$list.pay_code}" class="ecjiaf-fr one-select" value="10"></label>
+		            	{$list.pay_name}
+		            </span>
+		        </li>
+		    <!-- {/foreach} -->
+		    </ul>
+	    {/if}
     	<input name="act" type="hidden" value="profile" />
-    	<div class=" text-center account-top">
+    	<div class=" text-center account-top btn-submit">
     		<input class="btn btn-recharge" name="submit" type="submit" value="{t}立即充值{/t}" />
     	</div>
     </div>	

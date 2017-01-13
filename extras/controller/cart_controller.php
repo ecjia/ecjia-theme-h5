@@ -696,7 +696,6 @@ class cart_controller {
         
         ecjia_front::$controller->assign('title', '开发票');
         ecjia_front::$controller->assign_title('开发票');
-        // ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->display('flow_invoice.dwt');
     }
 

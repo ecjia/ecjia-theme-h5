@@ -77,40 +77,79 @@ class user_account_controller {
     public static function recharge() {
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
         $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->run();
-        foreach ($pay['payment'] as $key => $val) {
-            if ($val['pay_code'] == 'pay_alipay') {
-                $pay_alipay = $val;
-            } elseif ($val['pay_code'] == 'pay_wxpay') {
-                $pay_wxpay = $val;
-            }
+        if (!empty($pay['payment'])) {
+        	foreach ($pay['payment'] as $key => $val) {
+        		if ($val['is_online'] == '0' || $val['pay_code'] == 'pay_balance') {
+        			unset($pay['payment'][$key]);
+        		}
+        		
+        	}
         }
-        ecjia_front::$controller->assign('pay_alipay', $pay_alipay);
-        ecjia_front::$controller->assign('pay_wxpay', $pay_wxpay);
+        /*根据浏览器过滤支付方式，微信自带浏览器过滤掉支付宝支付，其他浏览器过滤掉微信支付*/
+        if (!empty($pay['payment'])) {
+        	if (cart_function::is_weixin() == true) {
+        		foreach ($pay['payment'] as $key => $val) {
+        			if ($val['pay_code'] == 'pay_alipay') {
+        				unset($pay['payment'][$key]);
+        			}
+        		}
+        	} else {
+        		foreach ($pay['payment'] as $key => $val) {
+        			if ($val['pay_code'] == 'pay_wxpay') {
+        				unset($pay['payment'][$key]);
+        			}
+        		}
+        	}
+        }
+        ecjia_front::$controller->assign('payment_list', $pay['payment']);
         ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->assign_title('充值');
         ecjia_front::$controller->display('user_account_recharge.dwt');
     }
 
+
     /**
      *  对会员余额申请的处理
      */
     public static function recharge_account() {
-        $amount = is_numeric($_POST['amount']) ? trim($_POST['amount']) : '';
-        $payment_id = !empty($_POST['payment']) ? trim($_POST['payment']) : '';
-        if (!empty($amount)) {
-            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('amount' => $amount, 'payment_id' => $payment_id))->send()->getBody();
-            $data = json_decode($data,true);
-            $data_payment_id = $data['data']['payment']['payment_id'];
-            $data_account_id = $data['data']['payment']['account_id'];
-            $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $data_account_id, 'payment_id' => $data_payment_id))->send()->getBody();
-            $pay = json_decode($pay,true);
-            $pay_online = $pay['data']['payment']['pay_online'];
-            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pay_online));
-        } else {
-            return ecjia_front::$controller->showmessage(__('金额不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-        }
+    	$amount = is_numeric($_POST['amount']) ? trim($_POST['amount']) : '';
+    	$payment_id = !empty($_POST['payment']) ? trim($_POST['payment']) : '';
+    	if (!empty($amount)) {
+    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('amount' => $amount, 'payment_id' => $payment_id))->send()->getBody();
+    		$data = json_decode($data,true);
+    		
+    		$data_payment_id = $data['data']['payment']['payment_id'];
+    		$data_account_id = $data['data']['payment']['account_id'];
+    		
+    		$pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $data_account_id, 'payment_id' => $data_payment_id))->send()->getBody();
+    		$pay = json_decode($pay,true);
+    		$pay_online = $pay['data']['payment']['pay_online'];
+    		
+    		$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
+    		$payment_info = $payment_method->payment_info_by_id($data_payment_id);
+    		if ($payment_info['pay_code'] == 'pay_wxpay') {
+    			// 取得支付信息，生成支付代码
+    			$payment_config = $payment_method->unserialize_config($payment_info['pay_config']);
+    			$handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
+    			RC_Logger::getLogger('debug')->info($handler);
+    			
+    			$handler->set_orderinfo($data);
+    			$handler->set_mobile(false);
+    			$rs_pay = $handler->get_code(payment_abstract::PAYCODE_PARAM);
+    			$order = $rs_pay;
+    			
+    			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $rs_pay['pay_online']));
+    		} else {
+    			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pay_online));
+    		}
+    		
+    		
+    	} else {
+    		return ecjia_front::$controller->showmessage(__('金额不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
     }
-
+    
+    
     /**
     * 提现
     */
