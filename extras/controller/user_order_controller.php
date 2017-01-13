@@ -50,12 +50,10 @@ defined('IN_ECJIA') or exit('No permission resources.');
  * 订单模块控制器代码
  */
 class user_order_controller {
-
     /**
      * 获取全部订单
      */
     public static function order_list() {
-        
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
         
@@ -192,22 +190,6 @@ class user_order_controller {
             return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url));
         }
     }
-
-    /**
-    * 更改支付方式的处理
-    */
-    public static function edit_payment() {}
-
-    /**
-    * 编辑使用余额支付的处理
-    */
-    public static function edit_surplus() {}
-
-    /**
-    * 订单跟踪
-    */
-    public static function order_tracking() {}
-
 }
 
 // end

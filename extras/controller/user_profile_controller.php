@@ -106,7 +106,6 @@ class user_profile_controller {
         }
     }
     
-    
     /**
      * 修改密码页面
      */
@@ -134,7 +133,6 @@ class user_profile_controller {
     	ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->display('user_edit_password.dwt');            
     }
-
 }
 
 // end

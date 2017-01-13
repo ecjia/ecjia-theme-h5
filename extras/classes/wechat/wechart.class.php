@@ -106,10 +106,7 @@ class wechart {
 
         $openid = $_SESSION['openid'];
         // 查询公众平台账号信息
-        // $db = new db();
         $res = array();
-        // $res = $db->find();
-
         if (!empty($res)) {
             return $res;
         } else {

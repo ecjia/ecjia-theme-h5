@@ -116,13 +116,9 @@ class user_address_controller {
             return $temp_data = $_SESSION['address'][$data_key] = array();
         } 
         if ($options) {
-            $keys_array = array(
-                'id','consignee','address','address_info',
-                'country','province','city','district',
-                'country_name','province_name','city_name','district_name',
-                'tel','mobile','email',
-                'default_address',
-                'best_time','zipcode',
+            $keys_array = array('id', 'consignee', 'address', 'address_info', 'country', 'province', 'city', 'district', 
+            	'country_name', 'province_name', 'city_name', 'district_name', 
+            	'tel', 'mobile', 'email', 'default_address', 'best_time', 'zipcode',
                 'location' => array(
                     'longitude',
                     'latitude'
@@ -268,14 +264,14 @@ class user_address_controller {
             return ecjia_front::$controller->showmessage('请完整填写相关信息', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
         }
         $params = array(
-            'token' => ecjia_touch_user::singleton()->getToken(),
-            'address_id' => $_POST['address_id'],
-            'address' => array(
-                'city'      => intval($_POST['city_id']),
-                'address'   => htmlspecialchars($_POST['address']),
-                'address_info'   => htmlspecialchars($_POST['address_info']),
-                'consignee' => htmlspecialchars($_POST['consignee']),
-                'mobile'    => htmlspecialchars($_POST['mobile']),
+            'token' 		=> ecjia_touch_user::singleton()->getToken(),
+            'address_id' 	=> $_POST['address_id'],
+            'address' 		=> array(
+                'city'      	=> intval($_POST['city_id']),
+                'address'   	=> htmlspecialchars($_POST['address']),
+                'address_info'	=> htmlspecialchars($_POST['address_info']),
+                'consignee' 	=> htmlspecialchars($_POST['consignee']),
+                'mobile'    	=> htmlspecialchars($_POST['mobile']),
             )
              
         );

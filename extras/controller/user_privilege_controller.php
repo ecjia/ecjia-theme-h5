@@ -145,8 +145,6 @@ class user_privilege_controller {
         } else {
             return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
-        
-        
     }
     
     /*注册用户验证码接受*/
