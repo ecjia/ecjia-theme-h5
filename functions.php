@@ -295,6 +295,7 @@ RC_Hook::add_action('class_cart_function',      function () {RC_Loader::load_the
 RC_Hook::add_action('class_goods_function',     function () {RC_Loader::load_theme('extras/classes/utility/goods_function.class.php');});
 RC_Hook::add_action('class_orders_function',    function () {RC_Loader::load_theme('extras/classes/utility/orders_function.class.php');});
 RC_Hook::add_action('class_user_function',      function () {RC_Loader::load_theme('extras/classes/utility/user_function.class.php');});
+RC_Hook::add_action('class_merchant_function', 	function () {RC_Loader::load_theme('extras/classes/utility/merchant_function.class.php');});
 
 RC_Hook::add_action('class_user_front',      function () {RC_Loader::load_theme('extras/classes/user/user_front.class.php');});
 

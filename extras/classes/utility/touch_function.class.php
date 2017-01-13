@@ -46,8 +46,7 @@
 //
 defined('IN_ECJIA') or exit('No permission resources.');
 
-class touch_function
-{
+class touch_function {
     
     //获取token
     public static function get_token($return_all = 0) {
@@ -57,7 +56,6 @@ class touch_function
         } else {
             return $rs_token['access_token'];
         }
-    
     }
     
     public static function change_array_key($array, $new_key) {
@@ -69,5 +67,6 @@ class touch_function
         }
         return $new_array;
     }
-
 }
+
+//end

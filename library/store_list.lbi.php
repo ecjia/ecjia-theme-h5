@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                     <div class="store-range">
                         <i class="iconfont icon-remind"></i>{$val.label_trade_time}
                         {if $val.distance}
-                        <span class="store-distance">{$val.distance}m</span>
+                        <span class="store-distance">{$val.distance}</span>
                         {/if}
                     </div>
                 </div>
