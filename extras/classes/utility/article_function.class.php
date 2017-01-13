@@ -46,7 +46,8 @@
 //
 defined('IN_ECJIA') or exit('No permission resources.');
 
-class article_function
-{
+class article_function {
     
 }
+
+//end

@@ -43,7 +43,7 @@ ecjia.touch.category.init();
 				<div class="store-right">
 					<div class="store-name">
 						{$store_info.seller_name}
-						{if $store_info.distance} {$store_info.distance}m{/if}
+						{if $store_info.distance} {$store_info.distance}{/if}
 						{if $store_info.manage_mode eq 'self'}<span>自营</span>{/if}
 						<label class="store-distance"><i class="iconfont icon-jiantou-right"></i></label>
 					</div>

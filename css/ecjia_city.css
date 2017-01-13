@@ -4443,6 +4443,9 @@ footer{
     height: auto;
 	margin-top: 3.5em;
 }
+.ecjia-store-list.m_t0{
+	margin-top: 0;
+}
 .ecjia-store-list li.single_item{
     background: #FFFFFF;
     border-bottom: 1px solid #eee;

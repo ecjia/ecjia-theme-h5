@@ -63,6 +63,8 @@ class merchant_controller {
 		 
 		//店铺信息
 		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data(array('seller_id' => $store_id, 'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])))->run();
+		$store_info = merchant_function::format_info_distance($store_info);
+		
 		ecjia_front::$controller->assign('store_info', $store_info);
 		ecjia_front::$controller->assign_title($store_info['seller_name']);
 	
@@ -205,11 +207,15 @@ class merchant_controller {
 		$store_id = intval($_GET['store_id']);
 		$arr = array(
 			'seller_id' => $store_id,
+			'location' => array(
+				'longitude' => $_COOKIE['longitude'], 
+				'latitude' => $_COOKIE['latitude']
+			)
 		);
-		 
 		//店铺信息
 		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data($arr)->run();
-		 
+		$store_info = merchant_function::format_info_distance($store_info);
+		
 		ecjia_front::$controller->assign('data', $store_info);
 		ecjia_front::$controller->assign_title('店铺详情');
 		ecjia_front::$controller->display('merchant_detail.dwt');

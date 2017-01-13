@@ -24,7 +24,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<div class="store-right">
 						<div class="store-name">
 							{$data.seller_name}
-							{if $data.location.distance}{$data.location.distance}m{/if}
+							{if $data.distance}{$data.distance}{/if}
 							{if $data.manage_mode eq 'self'}<span>自营</span>{/if}</div>
 						<div class="store-range">
 							<i class="iconfont icon-remind"></i>{$data.label_trade_time}

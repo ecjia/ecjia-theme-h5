@@ -10,7 +10,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 <div class="ecjia-store-goods-list">
-	<ul class="ecjia-store-list" {if $is_last neq 1}data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='goods/category/seller_list'}&type=ajax_get&cid={$cid}"{/if} style="margin-top:0;">
+	<ul class="ecjia-store-list m_t0" {if $is_last neq 1}data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='goods/category/seller_list'}&type=ajax_get&cid={$cid}"{/if}>
 	</ul>
 </div>
 <!-- {/block} -->
@@ -30,7 +30,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<div class="store-range">
 							<i class="iconfont icon-remind"></i>{$val.label_trade_time}
 							{if $val.distance}
-							<span class="store-distance">{$val.distance}m</span>
+							<span class="store-distance">{$val.distance}</span>
 							{/if}
 						</div>
 					</div>

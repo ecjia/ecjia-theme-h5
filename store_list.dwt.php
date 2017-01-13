@@ -18,7 +18,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/index_header.lbi" --><!-- #EndLibraryItem -->
 <!-- {if $data} -->
 <div class="ecjia-mod ecjia-store-goods-list" {if $store_id && $count_search > 6}style="padding-bottom:7em;"{/if}>
-	<ul class="ecjia-store-list" {if $is_last neq 1}data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='goods/category/store_list'}&type=ajax_get{if $store_id}{/if}&store_id={$store_id}&keywords={$keywords}" data-page="2"{/if}>
+	<ul class="ecjia-store-list" {if $is_last neq 1}data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='goods/category/store_list'}&type=ajax_get{if $store_id}&store_id={$store_id}{/if}&keywords={$keywords}{if $cid}&cid={$cid}{/if}" data-page="2"{/if}>
 		<!-- {foreach from=$data item=val} -->
 		<!-- {if !$store_id} -->
 		<li class="single_item">
@@ -34,7 +34,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							<div class="store-range">
 								<i class="iconfont icon-remind"></i>{$val.label_trade_time}
 								{if $val.distance}
-								<span class="store-distance">{$val.distance}m</span>
+								<span class="store-distance">{$val.distance}</span>
 								{/if}
 							</div>
 						</div>

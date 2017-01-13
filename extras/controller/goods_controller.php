@@ -249,7 +249,6 @@ class goods_controller {
     	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
     	
     	$type = isset($_GET['type']) ? $_GET['type'] : '';//判断是否是下滑加载
-    	
     	$arr = array(
     		'pagination'	=> array('count' => $limit, 'page' => $page),
     		'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
@@ -340,6 +339,7 @@ class goods_controller {
     			$arr_list = $data['data'];
     			
     			if ($type == 'ajax_get') {
+    				$arr_list = merchant_function::format_distance($arr_list);
     				ecjia_front::$controller->assign('data', $arr_list);
     				$say_list = ecjia_front::$controller->fetch('library/store_list.lbi');
     			} else {
@@ -355,21 +355,23 @@ class goods_controller {
     		$arr_list = $data['data'];
     		
     		if ($type == 'ajax_get') {
+    			$arr_list = merchant_function::format_distance($arr_list);
     			ecjia_front::$controller->assign('data', $arr_list);
     			$say_list = ecjia_front::$controller->fetch('library/store_list.lbi');
     		}
     	}
 		
-    	$data['is_last'] = 0;
     	if ($data['paginated']['more'] == 0) $data['is_last'] = 1;
-    	
     	ecjia_front::$controller->assign('is_last', $data['is_last']);
     	
     	if (array_key_exists('data', $arr_list) && $arr_list['pager']['total'] == 0) {
     		$arr_list = array();
     	}
+    	
+    	$arr_list = merchant_function::format_distance($arr_list);
     	ecjia_front::$controller->assign('data', $arr_list);
     	ecjia_front::$controller->assign('count_search', count($arr_list));
+    	ecjia_front::$controller->assign('cid', $cid);
     	
     	if ($type == 'ajax_get') {
     		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $say_list, 'is_last' => $data['is_last']));
@@ -382,21 +384,24 @@ class goods_controller {
     
     public static function seller_list() {
     	$cid = intval($_GET['cid']);
-    	
     	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
     	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
     	$type = isset($_GET['type']) ? $_GET['type'] : '';//判断是否是下滑加载
-    	    	
-    	$arr = array(
-    		'pagination'	=> array('count' => $limit, 'page' => $page),
-    		'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
-    	);
-    	$arr['category_id'] = $cid;
-    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($arr)->send()->getBody();
-    	$data = json_decode($data, true);
 
     	if ($type == 'ajax_get') {
-    		ecjia_front::$controller->assign('data', $data['data']);
+    		$arr = array(
+    			'pagination'	=> array('count' => $limit, 'page' => $page),
+    			'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
+    		);
+    		$arr['category_id'] = $cid;
+    		
+    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($arr)->send()->getBody();
+    		$data = json_decode($data, true);
+    		 
+    		$arr_list = array();
+			$arr_list = merchant_function::format_distance($data['data']);
+    		
+    		ecjia_front::$controller->assign('data', $arr_list);
     		$say_list = ecjia_front::$controller->fetch('seller_list.dwt');
     		
     		if ($data['paginated']['more'] == 0) $data['is_last'] = 1;
@@ -407,7 +412,6 @@ class goods_controller {
     	ecjia_front::$controller->assign('cid', $cid);
     	ecjia_front::$controller->display('seller_list.dwt');
     }
-
 }
 
 // end
