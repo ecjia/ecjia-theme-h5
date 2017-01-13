@@ -5050,10 +5050,10 @@ footer{
 }
 .ecjia-spread .ecjia-list .reward-label{
     position: relative;
-	margin: 0 auto;
     height: 6em;
     width: auto;
-    margin-top: 5.5em;
+    margin-top: 6em;
+	text-align: center;
 }
 .ecjia-spread .ecjia-list .reward-g {
 	color: #04b62a;
@@ -5065,21 +5065,18 @@ footer{
 	color: #ff5d20;
 }
 .ecjia-spread .ecjia-list .reward-num {
-    position: absolute;
-    text-align: center;
-	margin: auto;
-	left: 0;
-	right: 0;
-	font-size: 5em;
-	line-height: 1em;
+	position: relative;
+    font-size: 3em;
+    line-height: 1em;
+    display: inline;
+    padding: .1em .3em;
 }
 .ecjia-spread .ecjia-list .reward-shadow {
     position: absolute;
     text-align: center;
     left: 0;
     right: 0;	
-    top: 13em;
-    margin: auto;
+    top: 12em;
 }
 .ecjia-spread .ecjia-list .reward-shadow img {
 	position: relative;
@@ -5089,13 +5086,14 @@ footer{
 
 .ecjia-spread .ecjia-list .reward-hint {
 	position: absolute;
-	top: -1.5em;
+	top: 0;
 	right: 0;
+	margin: 0;
 }
 .ecjia-spread .ecjia-list .reward-hint img {
-    position: relative;
-	width: 30px;
-	height: 30px;
+    position: absolute;
+	width: .5em;
+	height: .5em;
 }
 .ecjia-spread .qrcode_image,
 .ecjia-spread .qrcode_image2,
@@ -5272,7 +5270,7 @@ footer{
 }
 .ecjia-spread .ecjia-list li {
 	background: #FFF;
-	height: 15em;
+	height: 14em;
 }
 .ecjia-spread .ecjia-list.list-short li+li::before {
     content: '';

@@ -19,11 +19,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <li>
                 <div class="reward-title">获得的积分奖励</div>
                 <div class="reward-label">
-                    <div class="reward-num reward-g">{$intive_total.invite_integral_reward}</div>
-                    <div class="reward-hint">
-                        <a href="#" class="alert-text1">
-                            <img src="./images/wallet/60x60_3g.png">
-                        </a>
+                    <div class="reward-num reward-g">
+                    	{$intive_total.invite_integral_reward}
+	                   	<div class="reward-hint">
+	                        <a href="#" class="alert-text1">
+	                            <img src="./images/wallet/60x60_3g.png">
+	                        </a>
+	                    </div>	
                     </div>
                 </div>
                 <div class="reward-shadow">
@@ -33,11 +35,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <li>
                 <div class="reward-title">获得的红包奖励</div>
                 <div class="reward-label">
-                    <div class="reward-num reward-b">{$intive_total.invite_bouns_reward}</div>
-                    <div class="reward-hint">
-                        <a href="#" class="alert-text2">
-                            <img src="./images/wallet/60x60_3b.png">
-                        </a>
+                    <div class="reward-num reward-b">
+                    	{$intive_total.invite_bouns_reward}
+                    	<div class="reward-hint">
+	                        <a href="#" class="alert-text2">
+	                            <img src="./images/wallet/60x60_3b.png">
+	                        </a>
+                    	</div>
                     </div>
                 </div>
                 <div class="reward-shadow">
@@ -47,11 +51,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <li>
                 <div class="reward-title">获得的现金奖励</div>
                 <div class="reward-label">
-                    <div class="reward-num reward-o">{$intive_total.invite_balance_reward}</div>
-                    <div class="reward-hint">
-                        <a href="#" class="alert-text3">
-                            <img src="./images/wallet/60x60_4o.png">
-                        </a>
+                    <div class="reward-num reward-o">
+                    	{$intive_total.invite_balance_reward}
+                    	<div class="reward-hint">
+	                        <a href="#" class="alert-text3">
+	                            <img src="./images/wallet/60x60_4o.png">
+	                        </a>
+	                    </div>
                     </div>
                 </div>
                 <div class="reward-shadow">
