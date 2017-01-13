@@ -228,36 +228,7 @@ class cart_controller {
     
     	return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('say_list' => $sayList, 'list' => $cart_goods_list, 'count' => $cart_count, 'data_rec' => $data_rec));
     }
-    
-    /**
-     * 立即购买
-     */
-    public static function add_to_cart() {}
-    /**
-     * 点击刷新购物车
-     */
-    public static function ajax_update_cart() {}
 
-    /**
-     * 优惠活动（赠品）
-     */
-    public static function label_favourable() {
-        ecjia_front::$controller->display('cart_label_favourable.dwt');
-    }
-    /**
-     *  把优惠活动赠品加入购物车
-     */
-    public static function add_favourable() {}
-
-    /**
-     * 删除购物车中的商品
-     */
-    public static function drop_goods() {}
-
-    /**
-     * 获取购物车内的相关配件
-     */
-    public static function goods_fittings() {}
 
     /**
      * 订单确认
@@ -464,6 +435,9 @@ class cart_controller {
 
     //商品清单
     public static function goods_list() {
+        if (!ecjia_touch_user::singleton()->isSignin()) {
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
         $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
         
@@ -504,16 +478,6 @@ class cart_controller {
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('flow_goodslist.dwt');
     }
-
-    /**
-     * 改变配送方式
-     */
-    public static function select_shipping() {}
-
-    /**
-     * 改变支付方式
-     */
-    public static function select_payment() {}
 
     /**
      *  提交订单
@@ -574,73 +538,6 @@ class cart_controller {
    		$order_id = $rs['data']['order_id'];
    		return ecjia_front::$controller->redirect(RC_Uri::url('pay/index/init', array('order_id' => $order_id, 'tips_show' => 1)));            
     }
-
-    /**
-     * 获取配送地址列表
-     */
-    public static function consignee_list() {}
-
-	/**
-	 * 异步加载收货地址
-	 */
-	public static function async_addres_list(){}
-    /**
-     * 收货信息
-     */
-    public static function consignee() {}
-
-    /**
-     * 修改收货信息的方法
-     */
-    public static function update_consignee() {}
-
-    /**
-     *
-     * 删除收货人信息
-     *
-     */
-    public static function drop_consignee() {}
-
-    /**
-     * 改变余额
-     */
-    public static function change_surplus() {}
-
-    /**
-     * 改变积分
-     */
-    public static function change_integral() {}
-
-    /**
-     * 改变红包
-     */
-    public static function change_bonus() {}
-
-    /**
-     * 改变发票的设置
-     */
-    public static function change_needinv() {}
-
-    /**
-     * 检查用户输入的余额
-     */
-    public static function check_surplus() {}
-
-    /**
-     * 检查用户输入的余额
-     */
-    public static function check_integral() {}
-
-
-    /**
-     *  验证红包序列号
-     */
-    public static function validate_bonus() {}
-
-    /**
-     * 改变配送地址
-     */
-    public static function select_address() {}
 
     /**
      * 改变支付方式
