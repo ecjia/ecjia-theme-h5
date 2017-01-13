@@ -263,6 +263,11 @@ class cart_controller {
      * 订单确认
      */
     public static function checkout() {
+        
+        if (!ecjia_touch_user::singleton()->isSignin()) {
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
+        
         $address_id = empty($_REQUEST['address_id']) ? 0 : intval($_REQUEST['address_id']);
         $rec_id = empty($_REQUEST['rec_id']) ? 0 : trim($_REQUEST['rec_id']);
         
@@ -514,6 +519,9 @@ class cart_controller {
      *  提交订单
      */
     public static function done() {
+        if (!ecjia_touch_user::singleton()->isSignin()) {
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
 		$address_id = empty($_POST['address_id']) ? 0 : intval($_POST['address_id']);
 		$rec_id = empty($_POST['rec_id']) ? 0 : trim($_POST['rec_id']);
         $pay_id = empty($_POST['pay_id']) ? 0 : intval($_POST['pay_id']);
@@ -638,6 +646,9 @@ class cart_controller {
      * 改变支付方式
      */
     public static function pay() {
+        if (!ecjia_touch_user::singleton()->isSignin()) {
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
         $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
         
@@ -696,6 +707,9 @@ class cart_controller {
      * 改变配送方式
      */
     public static function shipping() {
+        if (!ecjia_touch_user::singleton()->isSignin()) {
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
         
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
         $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
@@ -722,6 +736,9 @@ class cart_controller {
     }
     
     public static function shipping_date() {
+        if (!ecjia_touch_user::singleton()->isSignin()) {
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
         $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
         
@@ -754,6 +771,9 @@ class cart_controller {
      * 开发票
      */
     public static function invoice() {
+        if (!ecjia_touch_user::singleton()->isSignin()) {
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
 
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
         $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
@@ -787,6 +807,9 @@ class cart_controller {
      * 增加订单留言
      */
     public static function note() {
+        if (!ecjia_touch_user::singleton()->isSignin()) {
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
         
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
         $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
@@ -814,6 +837,9 @@ class cart_controller {
      * 选择使用红包
      */
     public static function bonus() {
+        if (!ecjia_touch_user::singleton()->isSignin()) {
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
         $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
         
@@ -844,6 +870,9 @@ class cart_controller {
      * 使用积分
      */
     public static function integral() {
+        if (!ecjia_touch_user::singleton()->isSignin()) {
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+        }
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
         $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
         
