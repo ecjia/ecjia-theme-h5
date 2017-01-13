@@ -4,19 +4,7 @@
 ;(function(ecjia, $) {
 	ecjia.touch.user_account = {
 		init : function(){
-			ecjia.touch.user_account.pay_user_account();
 			ecjia.touch.user_account.wxpay_user_account();
-		},
-		pay_user_account : function (){
-			$('.user_pay_way').on('click',function(e){
-				e.preventDefault();
-				var code = $('.icon-name').attr('data-code');
-				if ( code == 'pay_wxpay') {
-					 $(".btn-recharge").addClass(".wxpay-btn");
-				} else {
-					$(".btn-recharge").removeClass(".wxpay-btn");
-				}
-			});
 		},
 		wxpay_user_account: function () {
             $('.wxpay-btn').on('click', function (e) {
@@ -27,9 +15,12 @@
             		url: url,
 	 				dataType:"json",
 	 				success:function(data) {
-//	 					if (data.weixin_data != '') {
-//	 						$('.btn-submit').html(data.weixin_data);
-//	 					}
+	 					if (data.weixin_data) {
+	 						$('.wei-xin-pay').hide();
+	 						$('.wei-xin-pay').html("");
+	 						$('.wei-xin-pay').html(data.weixin_data);
+	 						callpay();
+	 					}
 	 				}
 	 			});
             });

@@ -93,6 +93,7 @@ class user_account_controller {
         				unset($pay['payment'][$key]);
         			}
         		}
+        		ecjia_front::$controller->assign('brownser', 1);
         	} else {
         		foreach ($pay['payment'] as $key => $val) {
         			if ($val['pay_code'] == 'pay_wxpay') {
@@ -127,12 +128,11 @@ class user_account_controller {
     		
     		$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
     		$payment_info = $payment_method->payment_info_by_id($data_payment_id);
+    		
     		if ($payment_info['pay_code'] == 'pay_wxpay') {
     			// 取得支付信息，生成支付代码
     			$payment_config = $payment_method->unserialize_config($payment_info['pay_config']);
     			$handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
-    			RC_Logger::getLogger('debug')->info($handler);
-    			
     			$handler->set_orderinfo($data);
     			$handler->set_mobile(false);
     			$rs_pay = $handler->get_code(payment_abstract::PAYCODE_PARAM);
@@ -142,8 +142,6 @@ class user_account_controller {
     		} else {
     			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pay_online));
     		}
-    		
-    		
     	} else {
     		return ecjia_front::$controller->showmessage(__('金额不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
