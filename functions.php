@@ -103,39 +103,16 @@ RC_Hook::add_action('article/shop/detail', array('article_controller', 'shop_det
 RC_Loader::load_theme('extras/controller/cart_controller.php');
 RC_Hook::add_action('cart/index/init', array('cart_controller', 'init'));
 RC_Hook::add_action('cart/index/update_cart', array('cart_controller', 'update_cart'));//更新购物车中商品
-RC_Hook::add_action('cart/index/add_to_cart', array('cart_controller', 'add_to_cart'));
-RC_Hook::add_action('cart/index/ajax_update_cart', array('cart_controller', 'ajax_update_cart'));
-RC_Hook::add_action('cart/index/goods_fittings', array('cart_controller', 'goods_fittings'));
-RC_Hook::add_action('cart/index/drop_goods', array('cart_controller', 'drop_goods'));
-RC_Hook::add_action('cart/index/add_favourable', array('cart_controller', 'add_favourable'));
-RC_Hook::add_action('cart/index/label_favourable', array('cart_controller', 'label_favourable'));
 RC_Hook::add_action('cart/flow/checkout', array('cart_controller', 'checkout'));
 RC_Hook::add_action('cart/flow/pay', array('cart_controller', 'pay'));
 RC_Hook::add_action('cart/flow/shipping', array('cart_controller', 'shipping'));
+RC_Hook::add_action('cart/flow/shipping_date', array('cart_controller', 'shipping_date'));
 RC_Hook::add_action('cart/flow/invoice', array('cart_controller', 'invoice'));
-RC_Hook::add_action('cart/flow/note', array('cart_controller', 'note'));
 RC_Hook::add_action('cart/flow/bonus', array('cart_controller', 'bonus'));
 RC_Hook::add_action('cart/flow/integral', array('cart_controller', 'integral'));
-RC_Hook::add_action('cart/flow/select_shipping', array('cart_controller', 'select_shipping'));
-RC_Hook::add_action('cart/flow/shipping_date', array('cart_controller', 'shipping_date'));
-RC_Hook::add_action('cart/flow/select_payment', array('cart_controller', 'select_payment'));
-RC_Hook::add_action('cart/flow/done', array('cart_controller', 'done'));
-RC_Hook::add_action('cart/flow/change_surplus', array('cart_controller', 'change_surplus'));
-RC_Hook::add_action('cart/flow/change_integral', array('cart_controller', 'change_integral'));
-RC_Hook::add_action('cart/flow/change_bonus', array('cart_controller', 'change_bonus'));
-RC_Hook::add_action('cart/flow/change_needinv', array('cart_controller', 'change_needinv'));
-RC_Hook::add_action('cart/flow/get_total', array('cart_controller', 'get_total'));
-RC_Hook::add_action('cart/flow/check_surplus', array('cart_controller', 'check_surplus'));
-RC_Hook::add_action('cart/flow/check_integral', array('cart_controller', 'check_integral'));
-RC_Hook::add_action('cart/flow/validate_bonus', array('cart_controller', 'validate_bonus'));
-RC_Hook::add_action('cart/flow/select_address', array('cart_controller', 'select_address'));
-RC_Hook::add_action('cart/flow/change_payment', array('cart_controller', 'change_payment'));
-RC_Hook::add_action('cart/flow/consignee_list', array('cart_controller', 'consignee_list'));
-RC_Hook::add_action('cart/flow/consignee', array('cart_controller', 'consignee'));
-RC_Hook::add_action('cart/flow/update_consignee', array('cart_controller', 'update_consignee'));
-RC_Hook::add_action('cart/flow/async_addres_list', array('cart_controller', 'async_addres_list'));
-RC_Hook::add_action('cart/flow/drop_consignee', array('cart_controller', 'drop_consignee'));
+RC_Hook::add_action('cart/flow/note', array('cart_controller', 'note'));
 RC_Hook::add_action('cart/flow/goods_list', array('cart_controller', 'goods_list'));
+RC_Hook::add_action('cart/flow/done', array('cart_controller', 'done'));
 
 //支付
 RC_Loader::load_theme('extras/controller/pay_controller.php');
