@@ -4443,6 +4443,9 @@ footer{
     height: auto;
 	margin-top: 3.5em;
 }
+.ecjia-store-list.m_t0{
+	margin-top: 0;
+}
 .ecjia-store-list li.single_item{
     background: #FFFFFF;
     border-bottom: 1px solid #eee;
@@ -5035,45 +5038,45 @@ footer{
 	background-origin: content-box;
 }
 .ecjia-spread .ecjia-list .reward-title {
-    position: relative;
+    position: absolute;
     vertical-align: middle;
     text-align: center;
-	top: 12%;
+	margin: auto;
+	top: 2em;
+	left: 0;
+	right: 0;
 	color: #787878;
 	font-size: 16px;
 }
-.ecjia-spread .ecjia-list .reward-num1 {
+.ecjia-spread .ecjia-list .reward-label{
     position: relative;
-    text-align: center;
-	top: 20%;
+    height: 6em;
+    width: auto;
+    margin-top: 6em;
+	text-align: center;
+}
+.ecjia-spread .ecjia-list .reward-g {
 	color: #04b62a;
-	font-size: 5em;
-	height: .5em;
 }
-.ecjia-spread .ecjia-list .reward-num2 {
-    position: relative;
-    vertical-align: middle;
-    text-align: center;
-	top: 20%;
+.ecjia-spread .ecjia-list .reward-b {
 	color: #00aaf2;
-	font-size: 5em;
-	height: .3em;
 }
-.ecjia-spread .ecjia-list .reward-num3 {
-    position: relative;
-    vertical-align: middle;
-    text-align: center;
-	top: 20%;
+.ecjia-spread .ecjia-list .reward-o {
 	color: #ff5d20;
-	font-size: 5em;
-	height: .3em;
+}
+.ecjia-spread .ecjia-list .reward-num {
+	position: relative;
+    font-size: 3em;
+    line-height: 1em;
+    display: inline;
+    padding: .1em .3em;
 }
 .ecjia-spread .ecjia-list .reward-shadow {
-	position: relative;
-    vertical-align: middle;
+    position: absolute;
     text-align: center;
-    left: 1%;
-	top: 4%;
+    left: 0;
+    right: 0;	
+    top: 12em;
 }
 .ecjia-spread .ecjia-list .reward-shadow img {
 	position: relative;
@@ -5082,14 +5085,15 @@ footer{
 }
 
 .ecjia-spread .ecjia-list .reward-hint {
-    position: relative;
-    height: 60%;
-    left: 70%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
 }
 .ecjia-spread .ecjia-list .reward-hint img {
-    position: relative;
-	width: 30px;
-	height: 30px;
+    position: absolute;
+	width: .5em;
+	height: .5em;
 }
 .ecjia-spread .qrcode_image,
 .ecjia-spread .qrcode_image2,
@@ -5266,8 +5270,7 @@ footer{
 }
 .ecjia-spread .ecjia-list li {
 	background: #FFF;
-	width: 100%;
-	height: 15em;
+	height: 14em;
 }
 .ecjia-spread .ecjia-list.list-short li+li::before {
     content: '';
@@ -5282,6 +5285,7 @@ footer{
 	padding-bottom: 10%;
 }
 .ecjia-spread-pb .ecjia-spread .ecjia-list.list-short{
+	position: relative;
 	border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
 }

@@ -81,7 +81,6 @@ class location_controller {
     
     //根据关键词搜索周边位置定位
     public static function search_location() {
-    	// ecjia_front::$controller->assign('hideinfo', '1');
     	ecjia_front::$controller->assign('title', '上海');
     	ecjia_front::$controller->assign_title('定位');
     
@@ -115,7 +114,6 @@ class location_controller {
         	ecjia_front::$controller->assign('referer_url', urlencode($referer_url));
         }
         
-    	// ecjia_front::$controller->assign('hideinfo', '1');
     	ecjia_front::$controller->assign_title('选择城市');
     	ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->display('select_location_city.dwt');

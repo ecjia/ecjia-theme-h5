@@ -251,7 +251,6 @@ class user_address_controller {
         ecjia_front::$controller->assign('temp_key', $temp_key);
         ecjia_front::$controller->assign('form_action', RC_Uri::url('user/user_address/update_address'));
         ecjia_front::$controller->assign('location_backurl', urlencode(RC_Uri::url('user/user_address/edit_address', array('id' => $id))));
-        // ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_title('编辑收货地址');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_address_edit.dwt');
@@ -366,7 +365,6 @@ class user_address_controller {
             }
         }
         ecjia_front::$controller->assign('temp', $temp_data);
-    	// ecjia_front::$controller->assign('hideinfo', '1');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign_title('选择位置');
         ecjia_front::$controller->display('user_near_location.dwt');
@@ -376,7 +374,6 @@ class user_address_controller {
      * 定位列表
      */
     public static function location() {
-    	// ecjia_front::$controller->assign('hideinfo', '1');
     	ecjia_front::$controller->assign('title', '上海');
         ecjia_front::$controller->assign_title('定位');
         ecjia_front::$controller->assign_lang();
@@ -397,7 +394,6 @@ class user_address_controller {
      */
     public static function async_location() {
         $address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token['access_token']))->run();
-        // ecjia_front::$controller->assign('hideinfo', 1);
         ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->assign('addres_list', $address_list);
     	$sayList = ecjia_front::$controller->fetch('user_location.dwt');

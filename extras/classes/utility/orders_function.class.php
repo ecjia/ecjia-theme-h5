@@ -46,7 +46,8 @@
 //
 defined('IN_ECJIA') or exit('No permission resources.');
 
-class orders_function
-{
+class orders_function {
 
 }
+
+//end

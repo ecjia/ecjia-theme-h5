@@ -46,8 +46,7 @@
 //
 defined('IN_ECJIA') or exit('No permission resources.');
 
-class user_function
-{
+class user_function {
 	/**
 	 * 记录搜索历史
 	 */
@@ -96,3 +95,5 @@ class user_function
 		return $address_info;
 	}
 }
+
+//end

@@ -37,7 +37,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-user-marg-t ecjia-list list-short ecjia-user-no-border-t">
        <li>
         	<a href="{url path='user/user_account/account_detail'}">
-        		<div class="icon-wallet"><img src="./images/user_center/75x75_1.png"></div>
+        		<div class="icon-wallet"><img src="{$theme_url}/images/user_center/75x75_1.png"></div>
         		<span class="icon-name">{t}我的钱包{/t}</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
@@ -71,7 +71,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-user-marg-t ecjia-list list-short ecjia-user-no-border-t">
        <li>
         	<a href="{url path='user/privilege/login'}">
-        		<div class="icon-wallet"><img src="./images/user_center/75x75_1.png"></div>
+        		<div class="icon-wallet"><img src="{$theme_url}/images/user_center/75x75_1.png"></div>
         		<span class="icon-name">{t}我的钱包{/t}</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
@@ -106,14 +106,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-list list-short">
 		<li>
 			<a href="{url path='user/user_address/address_list'}">
-        		<div class="icon-address-list"><img src="./images/user_center/75x75_3.png"></div>
+        		<div class="icon-address-list"><img src="{$theme_url}/images/user_center/75x75_3.png"></div>
         		<span class="icon-name">收货地址</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
 		</li>
        	<li>
         	<a class="nopjax external" href="{url path='user/index/spread'}&name={$user.name}">
-        		<div class="icon-expand"><img src="./images/user_center/expand.png"></div>
+        		<div class="icon-expand"><img src="{$theme_url}/images/user_center/expand.png"></div>
         		<span class="icon-name">我的推广</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
@@ -123,7 +123,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-list list-short">
         <li>
         	<a class="external" href="tel:4001021758">
-        		<div class="icon-website-service"><img src="./images/user_center/75x75_5.png"></div>
+        		<div class="icon-website-service"><img src="{$theme_url}/images/user_center/75x75_5.png"></div>
         		<span class="icon-name">官网客服</span>
         		<span class="icon-price">{'4001-021-758'}</span>
         		<i class="iconfont  icon-jiantou-right"></i>
@@ -131,7 +131,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </li>
         <li>
         	<a class="external" href="https://ecjia.com" target="_blank">
-        		<div class="icon-offical-website"><img src="./images/user_center/75x75_6.png"></div>
+        		<div class="icon-offical-website"><img src="{$theme_url}/images/user_center/75x75_6.png"></div>
         		<span class="icon-name">官网网站</span>
         		<span class="icon-price">{'www.ecjia.com'}</span>
         		<i class="iconfont  icon-jiantou-right"></i>
@@ -141,7 +141,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-list list-short">
         <li>
         	<a class="external" href="{url path='article/help/init'}">
-        		<div class="icon-help-center"><img src="./images/user_center/help75_3.png"></div>
+        		<div class="icon-help-center"><img src="{$theme_url}/images/user_center/help75_3.png"></div>
         		<span class="icon-name">帮助中心</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>

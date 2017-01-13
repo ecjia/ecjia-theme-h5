@@ -46,8 +46,7 @@
 //
 defined('IN_ECJIA') or exit('No permission resources.');
 
-class cart_function
-{
+class cart_function {
 	/**
 	 * 判断浏览器是否是微信自带浏览器
 	 * @return boolean
@@ -59,3 +58,5 @@ class cart_function
 		return false;
 	}
 }
+
+//end

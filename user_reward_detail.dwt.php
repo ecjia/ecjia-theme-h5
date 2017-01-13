@@ -20,7 +20,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <!--{foreach from=$month item=date name=d}-->
                 <div class="swiper-slide">
                     <span data-date="{$date.invite_data}">{$date.label_invite_data}</span>
-                    <img src="./images/wallet/240x240.png">
+                    <img src="{$theme_url}/images/wallet/240x240.png">
                 </div>
             <!--{/foreach}-->
             </div>
