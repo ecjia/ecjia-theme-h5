@@ -81,7 +81,6 @@ class location_controller {
     
     //根据关键词搜索周边位置定位
     public static function search_location() {
-    	// ecjia_front::$controller->assign('hideinfo', '1');
     	ecjia_front::$controller->assign('title', '上海');
     	ecjia_front::$controller->assign_title('定位');
     

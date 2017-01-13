@@ -122,13 +122,6 @@ class user_account_controller {
         ecjia_front::$controller->display('user_account_withdraw.dwt');
     }
 
-    /*
-     * 账单详情
-     */
-    public static function detail(){
-        ecjia_front::$controller->display('user_account_log_detail.dwt');
-    }
-
     /**
      *  对会员余额申请的处理
      */

@@ -50,7 +50,6 @@ defined('IN_ECJIA') or exit('No permission resources.');
  * 红包模块控制器代码
  */
 class user_bonus_controller {
-
     /**
      * 我的红包
      */

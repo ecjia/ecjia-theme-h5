@@ -56,6 +56,7 @@ class user_get_password_controller {
         $code = !empty($_POST['code']) ? $_POST['code'] : '';
         $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
         $_SESSION['mobile'] = $mobile;
+        
         if (!empty($code)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_FORGET_PASSWORD)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile, 'code' => $code))->send()->getBody();
             $data = json_decode($data,true);
@@ -74,6 +75,7 @@ class user_get_password_controller {
     public static function mobile_register_account() {
         $mobile = !empty($_GET['mobile']) ? $_GET['mobile'] : '';
         $chars = "/^13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$/";
+        
         if (preg_match($chars, $mobile)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_FORGET_PASSWORD)->data(array('token' => $token['access_token'], 'type' => 'mobile', 'value' => $mobile))->send()->getBody();
             $data = json_decode($data,true);
@@ -92,6 +94,7 @@ class user_get_password_controller {
         $passwordf = !empty($_POST['passwordf']) ? $_POST['passwordf'] : '';
         $passwords = !empty($_POST['passwords']) ? $_POST['passwords'] : '';
         $mobile    = !empty($_SESSION['mobile']) ? $_SESSION['mobile'] : '';
+        
         if ($passwordf != $passwords) {
             return ecjia_front::$controller->showmessage(__('两次密码输入不一致'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
