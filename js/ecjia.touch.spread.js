@@ -47,7 +47,7 @@
 						$(this).siblings('.pf').css({"position":"relative"}); 
 					}
 			    });
-			})
+			});
 		},
 		
 		hint: function() {
