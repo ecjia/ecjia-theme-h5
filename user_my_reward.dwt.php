@@ -29,7 +29,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                     </div>
                 </div>
                 <div class="reward-shadow">
-                    <img src="./images/wallet/220x30.png">
+                    <img src="{$theme_url}/images/wallet/220x30.png">
                 </div>
             </li>
             <li>
@@ -45,7 +45,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                     </div>
                 </div>
                 <div class="reward-shadow">
-                    <img src="./images/wallet/220x30.png">
+                    <img src="{$theme_url}/images/wallet/220x30.png">
                 </div>
             </li>
             <li>
