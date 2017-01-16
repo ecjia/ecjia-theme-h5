@@ -209,7 +209,7 @@ class connect_controller {
             RC_Logger::getlogger('debug')->info($user_info);
             RC_Logger::getlogger('debug')->info('head'.$head_img);
             if ($head_img) {
-//                 RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
+                RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
             }
             return $data['data']['session']['uid'];
         }
@@ -346,7 +346,7 @@ class connect_controller {
                 RC_Logger::getlogger('debug')->info($user_info);
                 RC_Logger::getlogger('debug')->info('head'.$head_img);
                 if ($head_img) {
-//                     RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
+                    RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
                 }
                 return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer_url));
             } else {
