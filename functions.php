@@ -320,24 +320,6 @@ RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username,
         RC_Logger::getlogger('debug')->info('functions-'.__LINE__);
         RC_Logger::getlogger('debug')->info($result);
         
-        $connect_code = !empty($_GET['connect_code']) ? trim($_GET['connect_code']) : '';
-        $open_id = !empty($_GET['open_id']) ? trim($_GET['open_id']) : '';
-        RC_Loader::load_app_class('connect_user', 'connect', false);
-        $connect_user = new connect_user($connect_code, $open_id);
-        /* 获取远程用户头像信息*/
-        $user_info = $connect_user->get_openid();
-        if ($connect_code == 'sns_qq') {
-            $head_img = $user_info['profile']['figureurl_qq_2'];
-        } else if ($connect_code == 'sns_wechat_platform') {
-            $head_img = $user_info['profile']['headimgurl'];
-        }
-        RC_Logger::getlogger('debug')->info('注册后关联');
-        RC_Logger::getlogger('debug')->info($user_info);
-        RC_Logger::getlogger('debug')->info('head'.$head_img);
-        if ($head_img) {
-            RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
-        }
-        
         return $result;
     }
 }, 10, 4);

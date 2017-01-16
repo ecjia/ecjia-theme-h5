@@ -55,6 +55,30 @@ class user_controller {
      * 会员中心欢迎页
      */
     public static function init() {
+        
+        //判断是否第三方登录，同步头像
+        
+        /* 获取远程用户头像信息*/
+        $connect_code = !empty($_GET['connect_code']) ? trim($_GET['connect_code']) : '';
+        $open_id = !empty($_GET['open_id']) ? trim($_GET['open_id']) : '';
+        if (!empty($connect_code) && !empty($open_id)) {
+            RC_Loader::load_app_class('connect_user', 'connect', false);
+            $connect_user = new connect_user($connect_code, $open_id);
+            $user_info = $connect_user->get_openid();
+            
+            if ($connect_code == 'sns_qq') {
+                $head_img = $user_info['profile']['figureurl_qq_2'];
+            } else if ($connect_code == 'sns_wechat_platform') {
+                $head_img = $user_info['profile']['headimgurl'];
+            }
+            RC_Logger::getlogger('debug')->info('注册后关联');
+            RC_Logger::getlogger('debug')->info($user_info);
+            RC_Logger::getlogger('debug')->info('head'.$head_img);
+            if ($head_img) {
+                RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
+            }
+        }
+        
         //网店信息
         $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();

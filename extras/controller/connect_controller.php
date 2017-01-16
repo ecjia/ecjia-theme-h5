@@ -321,19 +321,19 @@ class connect_controller {
             }
             if ($result) {
                 /* 获取远程用户头像信息*/
-                $user_info = $connect_user->get_openid();
-                if ($connect_code == 'sns_qq') {
-                    $head_img = $user_info['profile']['figureurl_qq_2'];
-                } else if ($connect_code == 'sns_wechat_platform') {
-                    $head_img = $user_info['profile']['headimgurl'];
-                }
-                RC_Logger::getlogger('debug')->info('关联');
-                RC_Logger::getlogger('debug')->info($user_info);
-                RC_Logger::getlogger('debug')->info('head'.$head_img);
-                if ($head_img) {
-                    RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
-                }
-                return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer_url));
+//                 $user_info = $connect_user->get_openid();
+//                 if ($connect_code == 'sns_qq') {
+//                     $head_img = $user_info['profile']['figureurl_qq_2'];
+//                 } else if ($connect_code == 'sns_wechat_platform') {
+//                     $head_img = $user_info['profile']['headimgurl'];
+//                 }
+//                 RC_Logger::getlogger('debug')->info('关联');
+//                 RC_Logger::getlogger('debug')->info($user_info);
+//                 RC_Logger::getlogger('debug')->info('head'.$head_img);
+//                 if ($head_img) {
+//                     RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
+//                 }
+                return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init', array('connect_code' => $connect_code, 'open_id' => $open_id))));
             } else {
                 RC_Logger::getlogger('error')->error($result);
                 return ecjia_front::$controller->showmessage('授权用户信息关联失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
