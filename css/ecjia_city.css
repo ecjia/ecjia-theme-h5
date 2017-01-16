@@ -5390,17 +5390,23 @@ footer{
 .ecjia-spread-detail .ecjia-list.list-short li .record-label {
 	color: #555;
 	font-size: 1.1em;
+    width: auto;
+    display: inline-block;
 }
 .ecjia-spread-detail .ecjia-list.list-short li .record-time {
 	color: #7b7b7b;
-	font-size: 13px;	
+	font-size: 13px;
+	width: auto;
+    position: absolute;	
 }
 .ecjia-spread-detail .ecjia-list.list-short li .icon-price-red {
-	position: absolute;
-	text-align: right;
-	top: 30%;
-	font-size: 16px;
-	font-family: '黑体';
+    position: absolute;
+    top: 30%;
+    font-size: 16px;
+    font-family: '黑体';
+    right: 2%;
+    display: inline-block;
+    width: auto;
 }
 .ecjia-spread-detail .ecjia-list.list-short li+li::before {
     content: '';
