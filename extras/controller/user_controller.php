@@ -70,9 +70,9 @@ class user_controller {
         
         //判断是否第三方登录，同步头像
         /* 获取远程用户头像信息*/
-        RC_Logger::getlogger('debug')->info($_SESSION['user_id']);
-        RC_Logger::getlogger('debug')->info($user['avatar_img']);
-        if (!$_SESSION['user_id'] && empty($user['avatar_img'])) {
+        RC_Logger::getlogger('debug')->info('user_init-user_id-'.$_SESSION['user_id']);
+        RC_Logger::getlogger('debug')->info('user_init-user_img-'.$user['avatar_img']);
+        if ($_SESSION['user_id'] && empty($user['avatar_img'])) {
             
             $connect_user = RC_Api::api('connect', 'connect_user_info', array('user_id' => $_SESSION['user_id']));
         
