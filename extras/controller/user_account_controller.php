@@ -138,6 +138,8 @@ class user_account_controller {
     			$rs_pay = $handler->get_code(payment_abstract::PAYCODE_PARAM);
     			$order = $rs_pay;
     			
+    			RC_Logger::getLogger('debug_wx')->info($payment_config);
+    			RC_Logger::getLogger('debug_wx')->info($handler);
     			RC_Logger::getLogger('debug_wx')->info($rs_pay);
     			RC_Logger::getLogger('debug_wx')->info($order);
     			
