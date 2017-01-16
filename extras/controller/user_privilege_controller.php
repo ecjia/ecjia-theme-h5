@@ -163,6 +163,7 @@ class user_privilege_controller {
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code))->send()->getBody();
         $data = json_decode($data,true);
         if ($data['status']['succeed'] == 1) {
+            $_SESSION['register_status'] = 'succeed';
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/set_password')));
         } else {
             return ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -170,16 +171,21 @@ class user_privilege_controller {
     }
     
     public static function set_password() {
+        if ($_SESSION['register_status'] != 'succeed') {
+            ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/register'));
+        }
         $verification = !empty($_SESSION['verification']) ? $_SESSION['verification'] : ''; 
         $mobile = !empty($_SESSION['mobile']) ? $_SESSION['mobile'] : '';
         $username = !empty($_POST['username']) ? $_POST['username'] : '';
         $password = is_numeric($_POST['password']) ? $_POST['password'] : '';
+        
         if (!empty($username) && !empty($password)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => $password, 'invite_code' => $verification))->send()->getBody();
             $data = json_decode($data,true);
             if ($data['status']['succeed'] == 1) {
                 unset($_SESSION['verification']);
                 ecjia_touch_user::singleton()->signin($username, $password);
+                unset($_SESSION['register_status']);
                 return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init')));
             } else {
                 return ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
