@@ -16,10 +16,10 @@
 	 				dataType:"json",
 	 				success:function(data) {
 	 					if (data.weixin_data) {
-	 						$('.wei-xin-pay').hide();
+	 						$('.wxpay-btn').hide();
 	 						$('.wei-xin-pay').html("");
 	 						$('.wei-xin-pay').html(data.weixin_data);
-	 						callpay();
+//	 						callpay();
 	 					}
 	 				}
 	 			});
