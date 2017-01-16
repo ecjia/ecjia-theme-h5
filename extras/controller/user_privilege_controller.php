@@ -55,6 +55,10 @@ class user_privilege_controller {
      * 登录
      */
     public static function login() {
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+        if ($user) {
+            ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
+        }
         $captcha = intval(ecjia::config('captcha'));
         if (($captcha & CAPTCHA_LOGIN) && (!($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2))) {
             ecjia_front::$controller->assign('enabled_captcha', 1);
