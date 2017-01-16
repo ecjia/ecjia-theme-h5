@@ -238,6 +238,18 @@ class user_address_controller {
         $temp_data = user_address_controller::save_temp_data(1, $temp_key, $_GET['clear'], $_GET);
         $params = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $id);
         $info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params)->run();
+        
+        $location_backurl = urlencode(RC_Uri::url('user/user_address/edit_address', array('id' => $id)));
+        ecjia_front::$controller->assign('location_backurl', $location_backurl);
+        $referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : (!empty($_SESSION['referer_url']) ? $_SESSION['referer_url'] : '');
+        if (!empty($referer_url)) {
+            $_SESSION['referer_url'] = $referer_url;
+            ecjia_front::$controller->assign('referer_url', $referer_url);
+        }
+        $key       = ecjia::config('map_qq_key');
+        $referer   = ecjia::config('map_qq_referer');
+        $my_location = "https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl=".$location_backurl."&key=".$key."&referer=".$referer;
+        ecjia_front::$controller->assign('my_location', $my_location);
 
         if (empty($temp_data['tem_city_name'])) {
             $temp_data['tem_city_name'] = $info['city_name'];
