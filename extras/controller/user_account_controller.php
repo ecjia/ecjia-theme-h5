@@ -137,7 +137,10 @@ class user_account_controller {
     			$handler->set_mobile(false);
     			$rs_pay = $handler->get_code(payment_abstract::PAYCODE_PARAM);
     			$order = $rs_pay;
+    			
+    			RC_Logger::getLogger('debug_wx')->info($rs_pay);
     			RC_Logger::getLogger('debug_wx')->info($order);
+    			
     			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $rs_pay['pay_online']));
     		} else {
     			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pay_online));
