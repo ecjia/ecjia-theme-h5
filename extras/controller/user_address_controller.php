@@ -367,25 +367,6 @@ class user_address_controller {
     }
 
     /**
-     * 定位列表
-     */
-    public static function location() {
-    	ecjia_front::$controller->assign('title', '上海');
-        ecjia_front::$controller->assign_title('定位');
-        ecjia_front::$controller->assign_lang();
-        
-        $referer_url = !empty($_GET['referer_url']) ? urldecode($_GET['referer_url']) : '';
-        if (!empty($referer_url)) {
-        	ecjia_front::$controller->assign('referer_url', urlencode($referer_url));
-        }
-        
-        $address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token['access_token']))->run();
-        ecjia_front::$controller->assign('addres_list', $address_list);
-        
-        ecjia_front::$controller->display('user_location.dwt');
-    }
-    
-    /**
      * 异步地址列表
      */
     public static function async_location() {
