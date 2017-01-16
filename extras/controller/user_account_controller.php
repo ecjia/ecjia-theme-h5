@@ -128,7 +128,7 @@ class user_account_controller {
     		
     		$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
     		$payment_info = $payment_method->payment_info_by_id($data_payment_id);
-    		
+    		RC_Logger::getLogger('debug_wx')->info($payment_info);
     		if ($payment_info['pay_code'] == 'pay_wxpay') {
     			// 取得支付信息，生成支付代码
     			$payment_config = $payment_method->unserialize_config($payment_info['pay_config']);
@@ -137,7 +137,7 @@ class user_account_controller {
     			$handler->set_mobile(false);
     			$rs_pay = $handler->get_code(payment_abstract::PAYCODE_PARAM);
     			$order = $rs_pay;
-    			
+    			RC_Logger::getLogger('debug_wx')->info($order);
     			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $rs_pay['pay_online']));
     		} else {
     			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pay_online));
