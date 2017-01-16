@@ -65,9 +65,14 @@ class user_controller {
         if (!empty($user['avatar_img'])) {
             $user_img = $user['avatar_img'];
         }
+        $signin = ecjia_touch_user::singleton()->isSignin();
+        if ($signin) {
+            ecjia_front::$controller->assign('signin', $signin);
+        }
         if (ecjia_touch_user::singleton()->isSignin()) {
         	ecjia_front::$controller->assign('user', $user);
         }
+        
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('shop', $shop);
         ecjia_front::$controller->assign('active', 'mine');
