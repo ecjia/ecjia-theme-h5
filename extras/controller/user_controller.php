@@ -61,11 +61,12 @@ class user_controller {
         
         $token = ecjia_touch_user::singleton()->getToken();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
-        
+        if ($user) {
+            ecjia_front::$controller->assign('user', $user);
+        }
         if (!empty($user['avatar_img'])) {
             $user_img = $user['avatar_img'];
         }
-        $signin = ecjia_touch_user::singleton()->isSignin();
         
         //判断是否第三方登录，同步头像
         /* 获取远程用户头像信息*/
@@ -90,9 +91,6 @@ class user_controller {
             }
         }
         
-        if ($signin) {
-            ecjia_front::$controller->assign('signin', $signin);
-        }
         if (ecjia_touch_user::singleton()->isSignin()) {
         	ecjia_front::$controller->assign('user', $user);
         }
