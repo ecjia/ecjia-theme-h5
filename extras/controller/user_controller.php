@@ -87,6 +87,7 @@ class user_controller {
                 RC_Logger::getlogger('debug')->info('head'.$head_img);
                 if ($head_img) {
                     RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
+                    $user_img = $head_img;
                 }
             }
         }
