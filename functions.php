@@ -309,25 +309,18 @@ RC_Hook::add_filter('connect_callback_template', function($data) {
     
 //第三方登录用户注册
 RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username, $password, $email) {
-    RC_Logger::getlogger('debug')->info('functions 一键注册');
-    RC_Logger::getlogger('debug')->info(array('name' => $username, 'password' => $password, 'email' => $email));
     $result = connect_controller::bind_signup(array('name' => $username, 'password' => $password, 'email' => $email));
     if (is_ecjia_error($result)) {
-        RC_Logger::getlogger('debug')->info('error');
+        RC_Logger::getlogger('error')->info('connect_callback_bind_signup-error');
         return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
 //         return $result;
     } else {
-        RC_Logger::getlogger('debug')->info('functions-'.__LINE__);
-        RC_Logger::getlogger('debug')->info($result);
-        
         return $result;
     }
 }, 10, 4);
 
 //第三方登录用户登录
 RC_Hook::add_action('connect_callback_user_signin', function($userid) {
-    RC_Logger::getlogger('debug')->info('关联登录，connect_callback_user_signin');
-    RC_Logger::getlogger('debug')->info($userid);
     RC_Loader::load_app_func('admin_user', 'user');
     $user_info = EM_user_info($userid);
 //     $user_info = RC_Api::api('user', 'user_info', array('user_id' => $userid));
@@ -336,8 +329,6 @@ RC_Hook::add_action('connect_callback_user_signin', function($userid) {
     $user = integrate::init_users();
     $user->set_session($user_info['name']);
     $user->set_cookie($user_info['name']);
-    RC_Logger::getlogger('debug')->info($userid);
-    RC_Logger::getlogger('debug')->info($user_info);
     $res = array(
         'session' => array(
             'sid' => RC_Session::session_id(),
@@ -346,7 +337,6 @@ RC_Hook::add_action('connect_callback_user_signin', function($userid) {
     
         'user' => $user_info
     );
-    RC_Logger::getlogger('debug')->info($res);
     ecjia_touch_user::singleton()->setUserinfo($res);
      
 //     $profile = array(

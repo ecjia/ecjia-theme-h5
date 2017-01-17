@@ -58,9 +58,6 @@ class connect_controller {
      * @param unknown $data
      */
     public static function callback_template($data) {
-        RC_Logger::getlogger('debug')->info('callback_template');
-        RC_Logger::getlogger('debug')->info($data);
-
         if (is_ecjia_error($data)) {
             //错误
             $msg = '登录授权失败，请使用其他方式登录';
@@ -79,8 +76,6 @@ class connect_controller {
         RC_Loader::load_app_class('connect_user', 'connect', false);
         $connect_user = new connect_user($data['connect_code'], $data['open_id']);
         $user_info = $connect_user->get_openid();
-        
-        RC_Logger::getlogger('debug')->info($user_info);
         
         if ($data['connect_code'] && $data['connect_code'] == 'sns_qq') {
             $user_img = $user_info['profile']['figureurl_qq_2'];
@@ -315,27 +310,13 @@ class connect_controller {
             if ($user['id']) {
                 $result = $connect_user->bind_user($user['id'], 0);
             } else {
-                RC_Logger::getlogger('debug')->info('关联账号错误');
-                RC_Logger::getlogger('debug')->info($user);
+                RC_Logger::getlogger('error')->info('关联账号错误');
+                RC_Logger::getlogger('error')->info($user);
                 return ecjia_front::$controller->showmessage('用户验证成功，获取用户信息失败，请重试！', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
             if ($result) {
-                /* 获取远程用户头像信息*/
-//                 $user_info = $connect_user->get_openid();
-//                 if ($connect_code == 'sns_qq') {
-//                     $head_img = $user_info['profile']['figureurl_qq_2'];
-//                 } else if ($connect_code == 'sns_wechat_platform') {
-//                     $head_img = $user_info['profile']['headimgurl'];
-//                 }
-//                 RC_Logger::getlogger('debug')->info('关联');
-//                 RC_Logger::getlogger('debug')->info($user_info);
-//                 RC_Logger::getlogger('debug')->info('head'.$head_img);
-//                 if ($head_img) {
-//                     RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
-//                 }
                 return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init', array('connect_code' => $connect_code, 'open_id' => $open_id))));
             } else {
-                RC_Logger::getlogger('error')->error($result);
                 return ecjia_front::$controller->showmessage('授权用户信息关联失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
     

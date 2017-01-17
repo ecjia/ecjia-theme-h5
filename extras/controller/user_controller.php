@@ -70,8 +70,6 @@ class user_controller {
         
         //判断是否第三方登录，同步头像
         /* 获取远程用户头像信息*/
-        RC_Logger::getlogger('debug')->info('user_init-user_id-'.$_SESSION['user_id']);
-        RC_Logger::getlogger('debug')->info('user_init-user_img-'.$user['avatar_img']);
         if ($_SESSION['user_id'] && empty($user['avatar_img'])) {
             
             $connect_user = RC_Api::api('connect', 'connect_user_info', array('user_id' => $_SESSION['user_id']));
@@ -82,9 +80,6 @@ class user_controller {
                 } else if ($connect_user['connect_code'] == 'sns_wechat_platform') {
                     $head_img = $connect_user['profile']['headimgurl'];
                 }
-                RC_Logger::getlogger('debug')->info('更新头像');
-                RC_Logger::getlogger('debug')->info($connect_user);
-                RC_Logger::getlogger('debug')->info('head'.$head_img);
                 if ($head_img) {
                     RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
                     $user_img = $head_img;
