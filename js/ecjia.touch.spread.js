@@ -101,6 +101,7 @@
 				$(".detail-list").attr('data-url', data.data.url);
 				$(".detail-list").attr('data-toggle', data.data.data_toggle);
 				$(".detail-list").html('').html(data.list);
+				$('.load-list').remove();
 				
 				if (data.list == null && parseInt($('.detail-list').children('li').length) == 0) {
 					var empty = '<div class="ecjia-nolist">' + 
