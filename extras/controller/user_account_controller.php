@@ -117,13 +117,15 @@ class user_account_controller {
     	$payment_id = !empty($_POST['payment']) ? trim($_POST['payment']) : '';
     	if (!empty($amount)) {
     		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('amount' => $amount, 'payment_id' => $payment_id))->send()->getBody();
-    		$data = json_decode($data,true);
+    		$data = json_decode($data, true);
     		
     		$data_payment_id = $data['data']['payment']['payment_id'];
     		$data_account_id = $data['data']['payment']['account_id'];
     		
     		$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
     		$payment_info = $payment_method->payment_info_by_id($data_payment_id);
+    		RC_Logger::getLogger('pay')->info('$payment_info');
+    		RC_Logger::getLogger('pay')->info($payment_info);
     		if ($payment_info['pay_code'] == 'pay_wxpay') {
     			// 取得支付信息，生成支付代码
     			$payment_config = $payment_method->unserialize_config($payment_info['pay_config']);
@@ -138,11 +140,14 @@ class user_account_controller {
     			$payment_info['pay_fee'] = pay_fee($payment_id, $order['surplus_amount'], 0);
     			//计算此次预付款需要支付的总金额
     			$order['order_amount']   = strval($order['surplus_amount'] + $payment_info['pay_fee']);
-    			
+    			RC_Logger::getLogger('pay')->info('$order');
+    			RC_Logger::getLogger('pay')->info($order);
     			$handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
     			$handler->set_orderinfo($order);
     			$handler->set_mobile(false);
     			$rs_pay = $handler->get_code(payment_abstract::PAYCODE_PARAM);
+    			RC_Logger::getLogger('pay')->info('$rs_pay');
+    			RC_Logger::getLogger('pay')->info($rs_pay);
     			
     			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $rs_pay['pay_online']));
     		} else {
