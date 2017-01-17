@@ -111,19 +111,11 @@ class pay_controller {
         	// 取得支付信息，生成支付代码
         	$payment_config = $payment_method->unserialize_config($payment_info['pay_config']);
         	
-        	RC_Logger::getLogger('debug_wxpay')->info($payment_config);
-        	
         	$handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
-        	
-        	RC_Logger::getLogger('debug_wxpay')->info($handler);
-        	
         	$handler->set_orderinfo($detail);
         	$handler->set_mobile(false);
         	$rs_pay = $handler->get_code(payment_abstract::PAYCODE_PARAM);
         	$order = $rs_pay;
-        	
-        	RC_Logger::getLogger('debug_wxpay')->info($rs_pay);
-        	
         	ecjia_front::$controller->assign('pay_button', $rs_pay['pay_online']);
         	unset($order['pay_online']);
         	$need_other_payment = 1;
