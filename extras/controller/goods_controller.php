@@ -167,7 +167,7 @@ class goods_controller {
 	    ecjia_front::$controller->assign('num', $num);
 	    ecjia_front::$controller->assign('total_num', $total_num);
 	    ecjia_front::$controller->assign('goods_info', $goods_info);
-	    
+
 	    if (ecjia_touch_user::singleton()->isSignin()) {
 	    	ecjia_front::$controller->assign('cart_list', $cart_goods_list['cart_list'][0]['goods_list']);
 	    	ecjia_front::$controller->assign('count', $cart_goods_list['cart_list'][0]['total']);
