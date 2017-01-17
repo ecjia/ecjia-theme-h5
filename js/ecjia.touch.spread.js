@@ -10,10 +10,9 @@
 			ecjia.touch.spread.share_spread();
 		},
 		spread: function() {
-			$(document).off('click', '.would-spread');
-			$(document).on('click', '.would-spread', function() {
+			$('.would-spread').off('click').on('click', function() {
 				var ua = navigator.userAgent.toLowerCase();
-				if (ua.match(/MicroMessenger/i)=="micromessenger") {
+				if (ua.match(/MicroMessenger/i) == "micromessenger") {
 	        		$('.ecjia-spread-share').removeClass('hide').css('top', $('body').scrollTop() + 'px');
 	            	//禁用滚动条
 	            	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
