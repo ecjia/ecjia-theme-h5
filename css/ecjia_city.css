@@ -5096,8 +5096,7 @@ footer{
 	height: .5em;
 }
 .ecjia-spread .qrcode_image,
-.ecjia-spread .qrcode_image2,
- .ecjia-spread .swiper-slide {
+.ecjia-spread .qrcode_image2 {
 	height:auto;
 	width:100%;
     position: relative;
@@ -5301,21 +5300,19 @@ footer{
 	border-bottom: 1px solid #eee;
 }
 .ecjia-spread .reward-detail .swiper-slide {
-	position: relative;
+    position: relative;
+    float: left;
+    border-bottom: none;
     background: #fff;
-    box-sizing: border-box;
-	min-width: 130px;
 }
 .ecjia-spread .reward-detail .swiper-slide div {
     background: url(../images/wallet/240x240.png) center no-repeat;
+	background-size: 108px 108px;
     width: 108px;
     height: 108px;
     border-radius: 50%;
-	display: block;
-    position: absolute;
-    left: 12%;
-    top: 15%;
-	color: #fff;
+    color: #fff;
+    margin: 1em auto;
 }
 .ecjia-spread .reward-detail .swiper-slide div p {
 	text-align: center;

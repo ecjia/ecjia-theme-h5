@@ -51,30 +51,21 @@
 		},
 		
 		hint: function() {
-			var length = parseInt($('.swiper-wrapper').children('div').length) - 1;
-			var mySwiper3 = new Swiper('.swiper-3', {
-				pagination:'.swiper-3 .swiper-pagination',
-				spaceBetween: 10,
-				effect : 'coverflow',
-				slidesPerView: 3,
-				centeredSlides: true,
-				initialSlide : length,
-				coverflow: {
-					rotate: 0,
-					stretch: 3,
-					depth: 5,
-					modifier: 1,
-					slideShadows : false
-				},
+			var div = $('.swiper-wrapper').children('.swiper-slide');
+			var mySwiper3 = new Swiper('.swiper-reward', {
+		        slidesPerView: 3,
+		        centeredSlides: true,
+		        paginationClickable: true,
+		        initialSlide: 12,
+		        slideToClickedSlide:true,
 		        onClick : function(swiper){
 		        	$(".detail-list").html(' ');
 		        	$(".detail-list").attr('data-url', '');
 					$(".detail-list").attr('data-toggle', '');
 					
 					var index = swiper.clickedIndex;
-					var div_index = $('.swiper-wrapper').children('.swiper-slide').eq(index);
 					$('.swiper-wrapper').css('margin-left', '10px');
-		        	var date = div_index.children('div').attr('data-date');
+		        	var date = div.eq(index).children('div').attr('data-date');
 		        	var url = $('input[name="reward_url"]').val();
 		        	var info = {
 		        		'date' : date
@@ -96,30 +87,30 @@
 		        }
 			});
 			
-			var windowWidth = $(window).width(); //屏幕的宽度
-			var divWidth = 0; //每个div宽度
-			var resPlaceX = 0; //最终的位置X
-			var moveDistance = 0; //移动的距离
-			var startTranform = 0; //当前的transform值
-			var startTranformStr = '' //transform字符串
-			$('.swiper-slide').on('click', function(e) {
-			    var ev = e || event;
-			    var disX = ev.clientX - ev.offsetX; //当前div距离屏幕左边距离
-			    divWidth = $(this).width();
-			    resPlaceX = (windowWidth - divWidth) / 2;
-			    moveDistance = disX - resPlaceX;
-			    startTranformStr = $('.swiper-wrapper').get(0).style.transform;
-			    startTranform = startTranformStr.slice(startTranformStr.indexOf('(') + 1, startTranformStr.indexOf('px'));
-			    if (startTranform == '') {
-			        startTranform = 0
-			    };
-			    $('.swiper-slide').removeClass('font-red');
-			    $(this).addClass('font-red');
-			    $('.swiper-wrapper').css({
-			        'transform': 'translate3d(' + (parseInt(startTranform) + -moveDistance) + 'px,0,0)',
-			        'transition-duration': '0.5s'
-			    });
-			});
+//			var windowWidth = $(window).width(); //屏幕的宽度
+//			var divWidth = 0; //每个div宽度
+//			var resPlaceX = 0; //最终的位置X
+//			var moveDistance = 0; //移动的距离
+//			var startTranform = 0; //当前的transform值
+//			var startTranformStr = '' //transform字符串
+//			$('.swiper-slide').on('click', function(e) {
+//			    var ev = e || event;
+//			    var disX = ev.clientX - ev.offsetX; //当前div距离屏幕左边距离
+//			    divWidth = $(this).width();
+//			    resPlaceX = (windowWidth - divWidth) / 2;
+//			    moveDistance = disX - resPlaceX;
+//			    startTranformStr = $('.swiper-wrapper').get(0).style.transform;
+//			    startTranform = startTranformStr.slice(startTranformStr.indexOf('(') + 1, startTranformStr.indexOf('px'));
+//			    if (startTranform == '') {
+//			        startTranform = 0
+//			    };
+//			    $('.swiper-slide').removeClass('font-red');
+//			    $(this).addClass('font-red');
+//			    $('.swiper-wrapper').css({
+//			        'transform': 'translate3d(' + (parseInt(startTranform) + -moveDistance) + 'px,0,0)',
+//			        'transition-duration': '0.5s'
+//			    });
+//			});
 
 			$('.alert-text1').on('click', function () {
 			    alert('邀请成功即可获得积分奖励' + '<br>' + '积分可在购买商品时使用');
