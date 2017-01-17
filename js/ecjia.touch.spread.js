@@ -34,7 +34,6 @@
 				$("ul .pf").each(function(i){
 					//滚动时候pf离顶部的距离
 					var pfTop = $(this).offset().top;
-					console.log(pfTop - scroH);
                     //滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
 					div_height = $(this).height();
 					$("ul").each(function(){
@@ -51,67 +50,21 @@
 		},
 		
 		hint: function() {
-			var div = $('.swiper-wrapper').children('.swiper-slide');
 			var mySwiper3 = new Swiper('.swiper-reward', {
 		        slidesPerView: 3,
 		        centeredSlides: true,
 		        paginationClickable: true,
 		        initialSlide: 12,
 		        slideToClickedSlide:true,
-		        onClick : function(swiper){
-		        	$(".detail-list").html(' ');
-		        	$(".detail-list").attr('data-url', '');
-					$(".detail-list").attr('data-toggle', '');
-					
-					var index = swiper.clickedIndex;
-					$('.swiper-wrapper').css('margin-left', '10px');
-		        	var date = div.eq(index).children('div').attr('data-date');
-		        	var url = $('input[name="reward_url"]').val();
-		        	var info = {
-		        		'date' : date
-		        	};
-					$.get(url, info, function(data){
-						$(".detail-list").attr('data-url', data.data.url);
-						$(".detail-list").attr('data-toggle', data.data.data_toggle);
-						$(".detail-list").html(' ').html(data.list);
-						$('.load-list').remove();
-						
-						if (data.list == null && parseInt($('.detail-list').children('li').length) == 0) {
-							var empty = '<div class="ecjia-nolist">' + 
-							'<div class="img-nolist">'+ '<div class="img-noreward">暂无奖励</div>'+'</div>' + 
-							'</div>';
-							$(".detail-list").html(empty);
-						}
-						ecjia.touch.asynclist();
-					});
-		        }
+		        onSlideChangeEnd: function(swiper){
+		        	var index = swiper.activeIndex;
+		        	if (index == undefined) {
+		        		index = 12;
+		        	}
+		        	ecjia.touch.spread.reward_detail(index);
+		     	},
 			});
 			
-//			var windowWidth = $(window).width(); //屏幕的宽度
-//			var divWidth = 0; //每个div宽度
-//			var resPlaceX = 0; //最终的位置X
-//			var moveDistance = 0; //移动的距离
-//			var startTranform = 0; //当前的transform值
-//			var startTranformStr = '' //transform字符串
-//			$('.swiper-slide').on('click', function(e) {
-//			    var ev = e || event;
-//			    var disX = ev.clientX - ev.offsetX; //当前div距离屏幕左边距离
-//			    divWidth = $(this).width();
-//			    resPlaceX = (windowWidth - divWidth) / 2;
-//			    moveDistance = disX - resPlaceX;
-//			    startTranformStr = $('.swiper-wrapper').get(0).style.transform;
-//			    startTranform = startTranformStr.slice(startTranformStr.indexOf('(') + 1, startTranformStr.indexOf('px'));
-//			    if (startTranform == '') {
-//			        startTranform = 0
-//			    };
-//			    $('.swiper-slide').removeClass('font-red');
-//			    $(this).addClass('font-red');
-//			    $('.swiper-wrapper').css({
-//			        'transform': 'translate3d(' + (parseInt(startTranform) + -moveDistance) + 'px,0,0)',
-//			        'transition-duration': '0.5s'
-//			    });
-//			});
-
 			$('.alert-text1').on('click', function () {
 			    alert('邀请成功即可获得积分奖励' + '<br>' + '积分可在购买商品时使用');
 			    $(".modal-overlay").css('transition-duration', "0ms");
@@ -132,6 +85,30 @@
 			    $(".modal-in").css("position", "absolute");
 			    $(".modal-inner").css("background-color", "#FFF");
 			    $(".modal-button-bold").css("background-color", "#FFF");
+			});
+        },
+        
+        reward_detail : function(index) {
+        	var div = $('.swiper-wrapper').children('.swiper-slide');
+        	$(".detail-list").attr('data-url', '');
+			$(".detail-list").attr('data-toggle', '');
+			
+        	var date = div.eq(index).children('div').attr('data-date');
+        	var url = $('input[name="reward_url"]').val();
+        	var info = {'date' : date};
+        	
+			$.get(url, info, function(data){
+				$(".detail-list").attr('data-url', data.data.url);
+				$(".detail-list").attr('data-toggle', data.data.data_toggle);
+				$(".detail-list").html('').html(data.list);
+				
+				if (data.list == null && parseInt($('.detail-list').children('li').length) == 0) {
+					var empty = '<div class="ecjia-nolist">' + 
+					'<div class="img-nolist">'+ '<div class="img-noreward">暂无奖励</div>'+'</div>' + 
+					'</div>';
+					$(".detail-list").html(empty);
+				}
+				ecjia.touch.asynclist();
 			});
         },
 		
