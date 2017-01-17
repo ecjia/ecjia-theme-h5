@@ -117,34 +117,43 @@ class user_account_controller {
     	$payment_id = !empty($_POST['payment']) ? trim($_POST['payment']) : '';
     	if (!empty($amount)) {
     		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('amount' => $amount, 'payment_id' => $payment_id))->send()->getBody();
-    		$data = json_decode($data,true);
+    		$data = json_decode($data, true);
     		
     		$data_payment_id = $data['data']['payment']['payment_id'];
     		$data_account_id = $data['data']['payment']['account_id'];
     		
-    		$pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $data_account_id, 'payment_id' => $data_payment_id))->send()->getBody();
-    		$pay = json_decode($pay,true);
-    		$pay_online = $pay['data']['payment']['pay_online'];
-    		
     		$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
     		$payment_info = $payment_method->payment_info_by_id($data_payment_id);
-    		RC_Logger::getLogger('debug_wx')->info($payment_info);
+    		RC_Logger::getLogger('pay')->info('$payment_info');
+    		RC_Logger::getLogger('pay')->info($payment_info);
     		if ($payment_info['pay_code'] == 'pay_wxpay') {
     			// 取得支付信息，生成支付代码
     			$payment_config = $payment_method->unserialize_config($payment_info['pay_config']);
+    			
+    			RC_Loader::load_app_func('admin_order', 'orders');
+    			//获取需要支付的log_id
+    			$order['order_sn']	 = get_order_sn();
+    			$order['log_id']	 = $payment_method->get_paylog_id($data_account_id, $pay_type = PAY_SURPLUS);
+    			$order['surplus_amount'] = $amount;
+    			
+    			//计算支付手续费用
+    			$payment_info['pay_fee'] = pay_fee($payment_id, $order['surplus_amount'], 0);
+    			//计算此次预付款需要支付的总金额
+    			$order['order_amount']   = strval($order['surplus_amount'] + $payment_info['pay_fee']);
+    			RC_Logger::getLogger('pay')->info('$order');
+    			RC_Logger::getLogger('pay')->info($order);
     			$handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
-    			$handler->set_orderinfo($data);
+    			$handler->set_orderinfo($order);
     			$handler->set_mobile(false);
     			$rs_pay = $handler->get_code(payment_abstract::PAYCODE_PARAM);
-    			$order = $rs_pay;
-    			
-    			RC_Logger::getLogger('debug_wx')->info($payment_config);
-    			RC_Logger::getLogger('debug_wx')->info($handler);
-    			RC_Logger::getLogger('debug_wx')->info($rs_pay);
-    			RC_Logger::getLogger('debug_wx')->info($order);
+    			RC_Logger::getLogger('pay')->info('$rs_pay');
+    			RC_Logger::getLogger('pay')->info($rs_pay);
     			
     			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $rs_pay['pay_online']));
     		} else {
+    			$pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $data_account_id, 'payment_id' => $data_payment_id))->send()->getBody();
+    			$pay = json_decode($pay,true);
+    			$pay_online = $pay['data']['payment']['pay_online'];
     			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pay_online));
     		}
     	} else {

@@ -466,6 +466,10 @@
             		$.get(url, info, function(data) {
             			$loader.remove();
             			$('.store_goods_' + type).append(data.list);
+            			
+            			ecjia.touch.category.add_tocart();
+         				ecjia.touch.category.remove_tocart();
+         				
             			var info = data.name + '(' + data.num + ')';
             			$('.a20').html(info);
             			if (data.is_last == null) {
@@ -478,17 +482,27 @@
         },
         
         scroll : function() {
-            var $wd = $('.wd'),
-            	beforeScrollTop = $wd.scrollTop();
-            $wd.scroll(function() {
-	            var afterScrollTop = $wd.scrollTop(),
-	                delta = afterScrollTop - beforeScrollTop;
-	            if (delta > 0) {
-	            	ecjia.touch.category.scroll_show_hide(true);
-	            } else {
-	            	ecjia.touch.category.scroll_show_hide(false);
-	            }
-	        });
+        	var mybody = document.getElementById('wd_list');
+        	if (mybody != null) {
+                //滑动处理
+                var startX, startY, moveEndX, moveEndY, X, Y;   
+                mybody.addEventListener('touchstart', function(e) {
+                    startX = e.touches[0].pageX;
+                    startY = e.touches[0].pageY;
+                });
+                mybody.addEventListener('touchmove', function(e) {
+                	var top = $('.wd').find('ul li:first').position().top;
+                	moveEndX = e.changedTouches[0].pageX;
+                    moveEndY = e.changedTouches[0].pageY;
+                    X = moveEndX - startX;
+                    Y = moveEndY - startY;
+                    if (Y > 0 && top >= 30) {
+                    	ecjia.touch.category.scroll_show_hide(false);
+                    } else if (Y < 0) {
+                    	ecjia.touch.category.scroll_show_hide(true); 
+                    }
+                });
+        	}
         },
         
         scroll_show_hide : function(e, h) {

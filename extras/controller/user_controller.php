@@ -120,7 +120,7 @@ class user_controller {
 				}
 			}
 		}
-		ecjia_front::$controller->assign('share_title', $name.'推荐这个使用的App给你~');
+		ecjia_front::$controller->assign('share_title', $name.'推荐这个实用的App给你~');
 		ecjia_front::$controller->assign_title('我的推广');
     	ecjia_front::$controller->assign('invite_user', $invite_user_detail);
     	ecjia_front::$controller->assign('url', RC_Uri::url('user/index/wxconfig'));

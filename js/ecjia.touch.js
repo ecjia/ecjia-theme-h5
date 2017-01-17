@@ -601,7 +601,7 @@
 		ecjia.touch.goods_detail.change();
 
 	    var ua = navigator.userAgent.toLowerCase();
-	    if (ua.match(/MicroMessenger/i)=="micromessenger") {
+	    if (ua.match(/MicroMessenger/i)=="micromessenger" || ua.match(/ECJiaBrowse/i)=="ecjiabrowse") {
 	    	var title = $(document).attr('title');
 			var $body = $('body');
 			document.title = title;

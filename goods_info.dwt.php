@@ -65,7 +65,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	            </div>
 	            <div class="goods-price goods-price-new">
 	                <!-- $goods.is_promote and $goods.gmt_end_time -->
-	                <!--{if ($goods_info.promote_price gt 0) AND ($goods_info.promote_start_date lt $goods_info.promote_end_date) } 促销-->
+	                <!--{if ($goods_info.promote_price gt 0) AND ($goods_info.promote_start_date lt $goods_info.promote_end_date) AND ($goods_info.promote_price gt $goods_info.shop_price)} 促销-->
 		                <div class="ecjia-price-time">
 		                	<div class="time-left">
 			                	<span class="ecjia-promote_price-span">{$goods_info.formated_promote_price}</span>

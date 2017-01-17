@@ -44,11 +44,11 @@ ecjia.touch.init();
 		    </ul>
 	    {/if}
     	<input name="act" type="hidden" value="profile" />
-    	{if $brownser eq 1}
+    	{if $brownser}
     	<div class=" text-center account-top wxpay-btn">
     		<input class="btn btn-recharge" name="submit" type="submit" value="{t}立即充值{/t}" />
     	</div>
-    	<div class="wei-xin-pay"></div>
+    	<div class="wei-xin-pay hide"></div>
     	{else}
     	<div class=" text-center account-top">
     		<input class="btn btn-recharge" name="submit" type="submit" value="{t}立即充值{/t}" />

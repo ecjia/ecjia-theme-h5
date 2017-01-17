@@ -15,15 +15,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <div class="ecjia-spread">
     <div class="reward-detail">
-        <div class="swiper-container swiper-3">
+        <div class="swiper-container swiper-reward">
             <div class="swiper-wrapper">
-            <!--{foreach from=$month item=date name=d}-->
+            	<!--{foreach from=$month item=date name=d}-->
                 <div class="swiper-slide">
                     <div data-date="{$date.invite_data}">
                     	<p>{$date.label_invite_data}</p>
                     </div>
                 </div>
-            <!--{/foreach}-->
+            	<!--{/foreach}-->
             </div>
             <input type="hidden" value="{RC_Uri::url('user/user_bonus/async_reward_detail')}" name="reward_url"/>
         </div>
