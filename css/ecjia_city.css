@@ -36,10 +36,13 @@ a.ecjia-color-green {
 	margin-top: 0;
 }
 .ecjia-margin-l {
-	margin-left:1em;
+	margin-left: 1em;
 }
 .ecjia-margin-t2 {
-	margin-top:2em;
+	margin-top: 2em;
+}
+.ecjia-h48 {
+	height: 48px;
 }
 .ecjia-list.list-short li+li::before ,.ecjia-list li {border-color: #eee;}
 .ecjia-list li {
@@ -4561,7 +4564,6 @@ footer{
 	height: auto;
 	overflow: hidden;
 }
-
 .ecjia-store-list .store-goods li.goods-info{
 	height:auto;
 	padding:.5em 0;
@@ -4614,14 +4616,10 @@ footer{
 .ecjia-store-list .store-goods .goods-hide-list{
 	display:none;
 }
-
 .ecjia-store-list li.search-goods-list {
     position: relative;
     padding-left: .5em;
 	background: #FFFFFF;
-}
-.ecjia-store-list li.search-goods-list:first-child{
-	padding-top: .5em;
 }
 .ecjia-store-list li a.linksGoods {
     display: block;

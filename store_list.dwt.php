@@ -96,6 +96,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</li>
 		<!-- {/if} -->
 		<!-- {/foreach} -->
+		{if $store_id}
+		<div class="ecjia-h48"></div>
+		{/if}
 	</ul>
 </div>
 <!-- {else} -->
