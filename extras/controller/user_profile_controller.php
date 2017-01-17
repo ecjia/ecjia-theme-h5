@@ -77,10 +77,11 @@ class user_profile_controller {
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
         $time = RC_Time::gmtime();
         $last_time = $user['update_username_time'];
-        $limit_time = mktime($last_time) + 2592000;
-        if (!empty($last_time) || $limit_time  > $time) {
+        $limit_time = strtotime($last_time) + 2592000;
+        if ($limit_time  > $time) {
             ecjia_front::$controller->assign('limit_time', $limit_time);
         }
+    
         $update_username_time = substr($user['update_username_time'],0,10);
         ecjia_front::$controller->assign('update_username_time', $update_username_time);
         ecjia_front::$controller->assign('user', $user);

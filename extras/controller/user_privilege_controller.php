@@ -55,6 +55,7 @@ class user_privilege_controller {
      * 登录
      */
     public static function login() {
+        $token = ecjia_touch_user::singleton()->getToken();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
         if ($user) {
             ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));

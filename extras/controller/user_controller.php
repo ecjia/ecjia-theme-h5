@@ -61,13 +61,36 @@ class user_controller {
         
         $token = ecjia_touch_user::singleton()->getToken();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
-        
+        if ($user) {
+            ecjia_front::$controller->assign('user', $user);
+        }
         if (!empty($user['avatar_img'])) {
             $user_img = $user['avatar_img'];
         }
+        
+        //判断是否第三方登录，同步头像
+        /* 获取远程用户头像信息*/
+        if ($_SESSION['user_id'] && empty($user['avatar_img'])) {
+            
+            $connect_user = RC_Api::api('connect', 'connect_user_info', array('user_id' => $_SESSION['user_id']));
+        
+            if($connect_user) {
+                if ($connect_user['connect_code'] == 'sns_qq') {
+                    $head_img = $connect_user['profile']['figureurl_qq_2'];
+                } else if ($connect_user['connect_code'] == 'sns_wechat_platform') {
+                    $head_img = $connect_user['profile']['headimgurl'];
+                }
+                if ($head_img) {
+                    RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $head_img));
+                    $user_img = $head_img;
+                }
+            }
+        }
+        
         if (ecjia_touch_user::singleton()->isSignin()) {
         	ecjia_front::$controller->assign('user', $user);
         }
+        
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('shop', $shop);
         ecjia_front::$controller->assign('active', 'mine');
