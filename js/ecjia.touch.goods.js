@@ -466,6 +466,10 @@
             		$.get(url, info, function(data) {
             			$loader.remove();
             			$('.store_goods_' + type).append(data.list);
+            			
+            			ecjia.touch.category.add_tocart();
+         				ecjia.touch.category.remove_tocart();
+         				
             			var info = data.name + '(' + data.num + ')';
             			$('.a20').html(info);
             			if (data.is_last == null) {
