@@ -121,6 +121,9 @@ class pay_controller {
         	$handler->set_mobile(false);
         	$rs_pay = $handler->get_code(payment_abstract::PAYCODE_PARAM);
         	$order = $rs_pay;
+        	
+        	RC_Logger::getLogger('debug_wxpay')->info($rs_pay);
+        	
         	ecjia_front::$controller->assign('pay_button', $rs_pay['pay_online']);
         	unset($order['pay_online']);
         	$need_other_payment = 1;
