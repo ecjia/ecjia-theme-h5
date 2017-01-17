@@ -80,7 +80,7 @@ class connect_controller {
         if ($data['connect_code'] && $data['connect_code'] == 'sns_qq') {
             $user_img = $user_info['profile']['figureurl_qq_2'];
             $user_name = $user_info['profile']['nickname'];
-        } else if ($data['connect_code'] && ( $data['connect_code'] == 'sns_wechat' || $data['connect_code'] == 'sns_wechat_platform')) {
+        } else if ($data['connect_code'] && $data['connect_code'] == 'sns_wechat') {
             $user_img = $user_info['profile']['headimgurl'];
             $user_name = $user_info['profile']['nickname'];
         }
@@ -249,7 +249,7 @@ class connect_controller {
             $user_info = $connect_user->get_openid();
             if ($connect_code == 'sns_qq') {
                 $head_img = $user_info['profile']['figureurl_qq_2'];
-            } else if ($connect_code == 'sns_wechat_platform') {
+            } else if ($connect_code == 'sns_wechat') {
                 $head_img = $user_info['profile']['headimgurl'];
             }
             if ($head_img) {
