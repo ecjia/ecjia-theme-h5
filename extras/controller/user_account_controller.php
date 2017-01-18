@@ -85,12 +85,24 @@ class user_account_controller {
         		
         	}
         }
+        
         /*根据浏览器过滤支付方式，微信自带浏览器过滤掉支付宝支付，其他浏览器过滤掉微信支付*/
         if (!empty($pay['payment'])) {
         	if (cart_function::is_weixin() == true) {
         		foreach ($pay['payment'] as $key => $val) {
         			if ($val['pay_code'] == 'pay_alipay') {
         				unset($pay['payment'][$key]);
+        			}
+        			if ($val['pay_code'] == 'pay_wxpay') {
+        				$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
+        				$payment_info = $payment_method->payment_info_by_id($val['pay_id']);
+        				// 取得支付信息，生成支付代码
+        				$payment_config = $payment_method->unserialize_config($val['pay_config']);
+        				
+        				$handler = $payment_method->get_payment_instance($val['pay_code'], $payment_config);
+        				$open_id = $handler->get_open_id();
+        				$_SESSION['wxpay_open_id'] = $open_id;
+        				RC_Logger::getLogger('pay')->info('openida:'.$open_id);
         			}
         		}
         		ecjia_front::$controller->assign('brownser', 1);
@@ -135,7 +147,7 @@ class user_account_controller {
     			$order['order_sn']	 = get_order_sn();
     			$order['log_id']	 = $payment_method->get_paylog_id($data_account_id, $pay_type = PAY_SURPLUS);
     			$order['surplus_amount'] = $amount;
-    			
+    			$order['open_id']	 = $_SESSION['wxpay_open_id'];
     			//计算支付手续费用
     			$payment_info['pay_fee'] = pay_fee($payment_id, $order['surplus_amount'], 0);
     			//计算此次预付款需要支付的总金额
