@@ -661,7 +661,6 @@ ul, li, ol, dl, dt, dd {
     position: relative;
     display: block;
     width: 100%;
-    bottom: 1.7em;
     font-size: .9em;
     text-align: center;
     color: #e73938;
@@ -671,8 +670,7 @@ ul, li, ol, dl, dt, dd {
 }
 .ecjia-promotion-model .swiper-slide .list-page-goods-img .goods-img {
     display: block;
-    height: 0;
-    padding-bottom: 100%;
+    height: 100%;
     overflow: hidden;
     margin: 0 auto;
 }
@@ -2879,12 +2877,6 @@ footer{
 	background: #fff;
 	padding:1em;
 }
-.ecjia-account.ecjia-flow-done {
-
-}
-.ecjia-account.ecjia-pay {
-
-}
 .ecjia-account.ecjia-pay.ecjia-flow-done .ecjia-list.list-short li+li::before {width: 100%;left: 3.8em;}
 .ecjia-account.record-info {
 	background: #FFF;
@@ -2919,7 +2911,7 @@ footer{
 	margin-left: 0 !important;
 }
 .ecjia-account .text-ty {
-	margin-left: 5%;
+	margin-left: 1em;
 	color: #A4A4A4;
 }
 .ecjia-account-passwd-on {

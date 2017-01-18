@@ -36,8 +36,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <input name="record_type" type="hidden" value={$sur_amount.type} />
                 <input name="account_id" type="hidden" value={$sur_amount.account_id}>
                 <input name="payment_id" type="hidden" value={$sur_amount.payment_id} />
+                <input name="amount" type="hidden" value={$sur_amount.amount} />
         		<input class="btn ecjia-fl btn-c" id="record_cancel" name="record_cancel" type="submit" value="{t}取消{/t}" />
-        		<input class="btn ecjiaf-fr ecjia-fl" name="record_sure" type="submit" value="{t}充值{/t}" />
+        		<input class="btn ecjiaf-fr ecjia-fl" name="record_sure" data-url="{url path='user/user_account/recharge_account'}" type="submit" value="{t}充值{/t}" />
+        		<div class="wei-xin-pay hide"></div>
         	</div>
         {else}
             <div class="two-btn btn-bottom">
