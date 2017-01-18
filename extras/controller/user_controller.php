@@ -61,7 +61,8 @@ class user_controller {
         
         $token = ecjia_touch_user::singleton()->getToken();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
-        if ($user) {
+        $signin = ecjia_touch_user::singleton()->isSignin();
+        if ($user && $signin) {
             ecjia_front::$controller->assign('user', $user);
         }
         if (!empty($user['avatar_img'])) {
