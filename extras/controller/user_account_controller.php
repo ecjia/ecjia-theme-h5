@@ -136,8 +136,6 @@ class user_account_controller {
     		
     		$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
     		$payment_info = $payment_method->payment_info_by_id($data_payment_id);
-    		RC_Logger::getLogger('pay')->info('$payment_info');
-    		RC_Logger::getLogger('pay')->info($payment_info);
     		if ($payment_info['pay_code'] == 'pay_wxpay') {
     			// 取得支付信息，生成支付代码
     			$payment_config = $payment_method->unserialize_config($payment_info['pay_config']);
@@ -162,9 +160,9 @@ class user_account_controller {
     					$pay_db->where(array('log_id' => $order['log_id']))->update(array('order_amount' => $order['order_amount']));
     				}
     			} else {
-    				$order['log_id'] = $payment_method->insert_pay_log(0, $order['order_amount'], PAY_SURPLUS, 0);
+    				$order['log_id'] = $payment_method->insert_pay_log($data_account_id, $order['order_amount'], PAY_SURPLUS, 0);
     			}
-    			
+    			$order['order_type'] = 'user_account';
     			$handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
     			$handler->set_orderinfo($order);
     			$handler->set_mobile(false);

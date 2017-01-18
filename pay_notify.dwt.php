@@ -22,7 +22,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     
     <div class="ecjia-margin-t ecjia-margin-b two-btn">
         <a class="btn" href='{url path="touch/index/init"}'>返回首页</a>
+        {if !$order_type}
         <a class="btn btn-hollow" href='{url path="user/user_order/order_list"}'>查看订单</a>
+        {/if}
     </div>
 </div>
 <!-- {/block} -->

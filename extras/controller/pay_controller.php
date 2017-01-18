@@ -186,8 +186,8 @@ class pay_controller {
     public static function notify() {
     	$mag = '支付成功';
         ecjia_front::$controller->assign('mag', $mag);
-        ecjia_front::$controller->assign('theme_url', str_replace('notify/', '', RC_Theme::get_template_directory_uri() . '/'));
-        
+        $order_type = isset($_GET['order_type']) ? trim($_GET['order_type']) : '';
+        ecjia_front::$controller->assign('order_type', $order_type);
         ecjia_front::$controller->display('pay_notify.dwt');
     }
     
