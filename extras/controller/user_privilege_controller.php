@@ -57,8 +57,13 @@ class user_privilege_controller {
     public static function login() {
         $token = ecjia_touch_user::singleton()->getToken();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
-        if ($user) {
-            ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
+        $signin = ecjia_touch_user::singleton()->isSignin();
+        if ($signin) {
+            if ($user) {
+               ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
+            } else {
+                ecjia_touch_user::singleton()->signout();
+            }
         }
         $captcha = intval(ecjia::config('captcha'));
         if (($captcha & CAPTCHA_LOGIN) && (!($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2))) {
@@ -86,7 +91,6 @@ class user_privilege_controller {
         $status = !empty($_POST['status']) ? $_POST['status'] : '';
         if ($status == 'logout') {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNOUT)->run();
-            $data = json_decode($data,true);
             $back_act = RC_Uri::url('user/privilege/login');
             ecjia_touch_user::singleton()->signout();
             return ecjia_front::$controller->showmessage('',ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('logout_url' => $back_act));

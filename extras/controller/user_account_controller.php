@@ -349,17 +349,17 @@ class user_account_controller {
      * 充值提现详情
      */
     public static function record_info() {
-        $account_id = !empty($_GET['account_id']) ? $_GET['account_id'] : '';
+        $data['account_id'] = !empty($_GET['account_id']) ? $_GET['account_id'] : '';
+        $data['format_amount'] = !empty($_GET['format_amount']) ? $_GET['format_amount'] : '';
+        $data['pay_status'] = !empty($_GET['pay_status']) ? $_GET['pay_status'] : '';
+        $data['type'] = !empty($_GET['type']) ? $_GET['type'] : '';
+        $data['type_lable'] = !empty($_GET['type_lable']) ? $_GET['type_lable'] : '';
+        $data['add_time'] = !empty($_GET['add_time']) ? $_GET['add_time'] : '';
+        $data['payment_id'] = !empty($_GET['payment_id']) ? $_GET['payment_id'] : '';
+        $data['payment_name'] = !empty($_GET['payment_id']) ? $_GET['payment_name'] : '';
         $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         ecjia_front::$controller->assign('user_img', $user_img);
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('page' => $page, 'count' => $limit,'type' => $type))->send()->getBody();
-        $data = json_decode($data,true);
-        $account_key = '';
-        foreach ($data['data'] as $key => $val) {
-            if ($data['data'][$key]['account_id'] == $account_id) {
-                $account_key = $key;
-            }
-        }
+
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
         $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         if (!empty($user['avatar_img'])) {
@@ -368,7 +368,7 @@ class user_account_controller {
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('user', $user);
         ecjia_front::$controller->assign_title('交易明细');
-        ecjia_front::$controller->assign('sur_amount', $data['data'][$account_key]);
+        ecjia_front::$controller->assign('sur_amount', $data);
         $_SESSION['status'] = !empty($_GET['status']) ? $_GET['status'] : '';
         ecjia_front::$controller->display('user_record_info.dwt');
     }
