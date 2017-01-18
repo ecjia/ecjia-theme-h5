@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     {if $payment_list}
     <ul class="ecjia-list ecjia-margin-t">
         <li>
-                        其它支付方式 <span class="ecjiaf-fr"><i class="iconfont icon-jiantou-bottom"></i></span>
+                        其它支付方式 <span class="ecjiaf-fr"></span>
         </li>
     </ul>
     <ul class="ecjia-list list-short payment-list">
