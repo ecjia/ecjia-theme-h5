@@ -287,7 +287,7 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
         //微信浏览器
         if (ROUTE_M != 'connect') {
             if (!ecjia_touch_user::singleton()->isSignin()) {
-                $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat'));
+                $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat', 'login_type' => 'platform_userinfo'));
                 header("location: ".$url);exit();
             }
         }
