@@ -2879,12 +2879,6 @@ footer{
 	background: #fff;
 	padding:1em;
 }
-.ecjia-account.ecjia-flow-done {
-
-}
-.ecjia-account.ecjia-pay {
-
-}
 .ecjia-account.ecjia-pay.ecjia-flow-done .ecjia-list.list-short li+li::before {width: 100%;left: 3.8em;}
 .ecjia-account.record-info {
 	background: #FFF;
