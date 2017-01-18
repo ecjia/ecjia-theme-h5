@@ -59,6 +59,7 @@ class user_address_controller {
     	
     	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
     	ecjia_front::$controller->assign('address_list', $address_list);
+    	ecjia_front::$controller->assign_title('收货地址管理');
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_address_list.dwt');
     }
