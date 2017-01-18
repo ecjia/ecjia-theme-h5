@@ -161,7 +161,7 @@ class user_account_controller {
     			} else {
     				$order['log_id'] = $payment_method->insert_pay_log($data_account_id, $order['order_amount'], PAY_SURPLUS, 0);
     			}
-    			
+    			$order['order_type'] = 'user_account';
     			$handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
     			$handler->set_orderinfo($order);
     			$handler->set_mobile(false);
