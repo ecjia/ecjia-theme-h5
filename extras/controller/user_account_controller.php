@@ -125,9 +125,10 @@ class user_account_controller {
      */
     public static function recharge_account() {
     	$amount = is_numeric($_POST['amount']) ? trim($_POST['amount']) : '';
-    	$payment_id = !empty($_POST['payment']) ? trim($_POST['payment']) : '';
+    	$payment_id = !empty($_POST['payment']) ? intval($_POST['payment']) : '';
+    	$account_id = !empty($_POST['account_id']) ? intval($_POST['account_id']) : '';
     	if (!empty($amount)) {
-    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('amount' => $amount, 'payment_id' => $payment_id))->send()->getBody();
+    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('amount' => $amount, 'payment_id' => $payment_id, 'account_id' => $account_id))->send()->getBody();
     		$data = json_decode($data, true);
     		
     		$data_payment_id = $data['data']['payment']['payment_id'];

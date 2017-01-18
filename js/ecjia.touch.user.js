@@ -350,19 +350,23 @@
 			
 			$("input[name='record_sure']").on('click', function(e){	
 				e.preventDefault();
-				var record_type = $("input[name='record_type']").val();
+				var amount = $("input[name='amount']").val();
 				var account_id = $("input[name='account_id']").val();
 				var payment_id = $("input[name='payment_id']").val();
-				var url = $("form[name='record_cancel_from']").attr('action');
+				var url = $(this).attr('data-url');
 				options = {
-						'record_type' : record_type,
+						'amount' 	  : amount,
 						'account_id'  : account_id,
-						'payment_id'  : payment_id,
+						'payment'     : payment_id,
 						'submit'	  : '充值'
 				}
 				$.post(url,options, function(data){
-					ecjia.pjax(data.pay_online);
-//					window.location.href = data.pay_online;
+					//ecjia.pjax(data.pay_online);
+					if (data.weixin_data) {
+ 						$('.wei-xin-pay').html("");
+ 						$('.wei-xin-pay').html(data.weixin_data);
+ 						callpay();
+ 					}
 		        })
 			});
 		},
