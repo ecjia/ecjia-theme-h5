@@ -78,7 +78,7 @@ class user_controller {
             if($connect_user) {
                 if ($connect_user['connect_code'] == 'sns_qq') {
                     $head_img = $connect_user['profile']['figureurl_qq_2'];
-                } else if ($connect_user['connect_code'] == 'sns_wechat_platform') {
+                } else if ($connect_user['connect_code'] == 'sns_wechat') {
                     $head_img = $connect_user['profile']['headimgurl'];
                 }
                 if ($head_img) {
