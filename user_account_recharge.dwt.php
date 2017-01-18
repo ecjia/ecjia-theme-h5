@@ -34,9 +34,10 @@ ecjia.touch.init();
 		    <ul class="ecjia-list list-short payment-list">
 		    <!-- {foreach from=$payment_list item=list} -->
 		        <li class="ecjia-account-padding-input user_pay_way">
-		            <span class="icon-name {$list.pay_code} account-lr-fom" data-code="{$list.pay_code}">
-		            	<input type="radio" id="{$list.pay_code}" name="payment" value="{$list.pay_id}" checked="true">
-                		<label for="{$list.pay_code}" class="ecjiaf-fr one-select" value="10"></label>
+		            <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}">
+                		<label for="{$list.pay_code}" class="ecjiaf-fr ecjia-check" value="10">
+                		<input type="radio" id="{$list.pay_code}" name="payment" value="{$list.pay_id}" checked="true">
+                		</label>
 		            	{$list.pay_name}
 		            </span>
 		        </li>

@@ -125,9 +125,10 @@ class user_account_controller {
      */
     public static function recharge_account() {
     	$amount = is_numeric($_POST['amount']) ? trim($_POST['amount']) : '';
-    	$payment_id = !empty($_POST['payment']) ? trim($_POST['payment']) : '';
+    	$payment_id = !empty($_POST['payment']) ? intval($_POST['payment']) : '';
+    	$account_id = !empty($_POST['account_id']) ? intval($_POST['account_id']) : '';
     	if (!empty($amount)) {
-    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('amount' => $amount, 'payment_id' => $payment_id))->send()->getBody();
+    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('amount' => $amount, 'payment_id' => $payment_id, 'account_id' => $account_id))->send()->getBody();
     		$data = json_decode($data, true);
     		
     		$data_payment_id = $data['data']['payment']['payment_id'];
@@ -161,7 +162,7 @@ class user_account_controller {
     			} else {
     				$order['log_id'] = $payment_method->insert_pay_log($data_account_id, $order['order_amount'], PAY_SURPLUS, 0);
     			}
-    			
+    			$order['order_type'] = 'user_account';
     			$handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
     			$handler->set_orderinfo($order);
     			$handler->set_mobile(false);
