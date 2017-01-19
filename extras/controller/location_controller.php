@@ -66,9 +66,9 @@ class location_controller {
         $referer_url = !empty($_GET['referer_url']) ? $_GET['referer_url'] : '';
         if (!empty($referer_url)) {
         	ecjia_front::$controller->assign('referer_url', urlencode($referer_url));
-        	$backurl = $referer_url;
+        	$backurl = urlencode($referer_url);
         } else{
-        	$backurl = RC_Uri::url('touch/index/init');
+        	$backurl = urlencode(RC_Uri::url('touch/index/init'));
         }
         $key       = ecjia::config('map_qq_key');
         $referer   = ecjia::config('map_qq_referer');

@@ -82,7 +82,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<div class="store-hr"></div>
 				<div class="store-tel">
 					<span class="tel-name">商家电话</span>
-					<p class="tel-result"><a href="tel:{$data.telephone}">{$data.telephone}</a></p>
+					<p class="tel-result"><a href="tel:{$data.telephone}">{if $data.telephone}{$data.telephone}{else}暂无{/if}</a></p>
 				</div>
 				<div class="store-hr"></div>
 				<ul class="store-other-info">
