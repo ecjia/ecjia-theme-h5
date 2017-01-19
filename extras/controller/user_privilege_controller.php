@@ -183,9 +183,8 @@ class user_privilege_controller {
         }
         $verification = !empty($_SESSION['verification']) ? $_SESSION['verification'] : ''; 
         $mobile = !empty($_SESSION['mobile']) ? $_SESSION['mobile'] : '';
-        $username = !empty($_POST['username']) ? $_POST['username'] : '';
-        $password = is_numeric($_POST['password']) ? $_POST['password'] : '';
-        
+        $username = !empty($_POST['username']) ? trim($_POST['username']) : '';
+        $password = !empty($_POST['password']) ? trim($_POST['password']) : '';
         if (!empty($username) && !empty($password)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => $password, 'invite_code' => $verification))->send()->getBody();
             $data = json_decode($data,true);
