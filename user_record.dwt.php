@@ -34,7 +34,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<ul>
 		{foreach from=$group item=item}
 			<li class="record-single">
-			<a href="{RC_Uri::url('user/user_account/record_info')}&account_id={$item.account_id}&format_amount={$item.format_amount}&pay_status={$item.pay_status}&type={$item.type}&type_lable={$item.type_lable}&add_time={$item.add_time}&payment_id={$item.payment_id}&payment_name={$item.payment_name}">
+			<a href="{RC_Uri::url('user/user_account/record_info')}&account_id={$item.account_id}&format_amount={$item.format_amount}&pay_status={$item.pay_status}&type={$item.type}&type_lable={$item.type_lable}&add_time={$item.add_time}&payment_id={$item.payment_id}&payment_name={$item.payment_name}&amount={$item.amount}">
 				<div class="record-l">
 					<span class="user-photo"><img src="{$user_img}" alt=""></span>
 				</div>

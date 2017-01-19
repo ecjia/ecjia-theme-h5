@@ -124,13 +124,12 @@ class user_account_controller {
      *  对会员余额申请的处理
      */
     public static function recharge_account() {
-    	$amount = is_numeric($_POST['amount']) ? trim($_POST['amount']) : '';
-    	$payment_id = !empty($_POST['payment']) ? intval($_POST['payment']) : '';
+    	$amount = is_numeric($_POST['amount']) ? ($_POST['amount']) : '';
+    	$payment_id = !empty($_POST['payment_id']) ? intval($_POST['payment_id']) : '';
     	$account_id = !empty($_POST['account_id']) ? intval($_POST['account_id']) : '';
     	if (!empty($amount)) {
     		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('amount' => $amount, 'payment_id' => $payment_id, 'account_id' => $account_id))->send()->getBody();
     		$data = json_decode($data, true);
-    		
     		$data_payment_id = $data['data']['payment']['payment_id'];
     		$data_account_id = $data['data']['payment']['account_id'];
     		
@@ -357,13 +356,27 @@ class user_account_controller {
      */
     public static function record_info() {
         $data['account_id'] = !empty($_GET['account_id']) ? $_GET['account_id'] : '';
+        $data['amount'] = !empty($_GET['amount']) ? $_GET['amount'] : '';
         $data['format_amount'] = !empty($_GET['format_amount']) ? $_GET['format_amount'] : '';
         $data['pay_status'] = !empty($_GET['pay_status']) ? $_GET['pay_status'] : '';
         $data['type'] = !empty($_GET['type']) ? $_GET['type'] : '';
         $data['type_lable'] = !empty($_GET['type_lable']) ? $_GET['type_lable'] : '';
         $data['add_time'] = !empty($_GET['add_time']) ? $_GET['add_time'] : '';
         $data['payment_id'] = !empty($_GET['payment_id']) ? $_GET['payment_id'] : '';
-        $data['payment_name'] = !empty($_GET['payment_id']) ? $_GET['payment_name'] : '';
+        $data['payment_name'] = !empty($_GET['payment_id']) ? trim($_GET['payment_name']) : '';
+        
+        /*微信充值相关处理*/
+        $payment_method = RC_Loader::load_app_class('payment_method', 'payment');
+        $payment_info = $payment_method->payment_info_by_id($data['payment_id']);
+        
+        if ($payment_info['pay_code'] == 'pay_wxpay') {
+        	// 取得支付信息，生成支付代码
+        	$payment_config = $payment_method->unserialize_config($payment_info['pay_config']);
+        	$handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
+        	$open_id = $handler->get_open_id();
+        	$_SESSION['wxpay_open_id'] = $open_id;
+        }
+        
         $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         ecjia_front::$controller->assign('user_img', $user_img);
 
