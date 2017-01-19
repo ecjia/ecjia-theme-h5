@@ -4378,7 +4378,18 @@ footer{
 .order-log-item.confirm_receipt::after{
 	background: url(../images/icon/bag_circle_50.png) no-repeat center;
 	background-size:60%;
-} 
+}
+.order-log-item.express_user_pickup .order-log p{
+	width:85%;
+	float:left;
+}
+.order-log-item.express_user_pickup .order-log .tel {
+	width:15%;
+	height:2em;
+	float:right;
+	background: url(../images/icon/tel_circle_50.png) no-repeat center;
+	background-size:60%;
+}
 /* .order-log-item:first-child::after{
     width: 1.5em;
     height: 1.5em;
