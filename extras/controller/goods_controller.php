@@ -174,12 +174,11 @@ class goods_controller {
 	    	ecjia_front::$controller->assign('real_count', $cart_goods_list['total']);
 	    	ecjia_front::$controller->assign('data_rec', $data_rec);
 	    }
-	    
 	    if (isset($_COOKIE['location_address_id']) && $_COOKIE['location_address_id'] > 0) {
 	    	ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
 	    }
 	    ecjia_front::$controller->assign('referer_url', urlencode(RC_Uri::url('goods/index/show', array('goods_id' => $goods_id))));
-	    
+
 	    ecjia_front::$controller->assign_title('商品详情');
         ecjia_front::$controller->display('goods_info.dwt');
     }

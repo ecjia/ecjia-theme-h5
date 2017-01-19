@@ -2150,10 +2150,17 @@ footer{
 .ecjia .ecjia-checkout .checklist{
 	overflow: hidden;
 	background-color: #ffffff;
-	position: relative;
-	border-bottom: 1px solid #eee;
 	padding: 0 1em;
 	line-height: 3em;
+	position:relative;
+}
+.ecjia .ecjia-checkout .checklist+.checklist::before{
+	content: '';
+	position:absolute;
+	top: 0;
+	left:1em;
+	width:100%;
+	border-bottom:1px solid #eee;
 }
 .ecjia .ecjia-checkout .checklist.error{
 	border: 1px solid #ef3030;

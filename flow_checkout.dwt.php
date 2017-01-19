@@ -106,7 +106,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</a>
 		</section>
 		{/if}
-		<section class="checklist ecjia-margin-b">
+		<section class="checklist">
 			<a href='{url path="cart/flow/note" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>备注留言</span>
 				<i class="iconfont icon-jiantou-right"></i>
@@ -114,6 +114,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<input type="hidden" name="note" value="{$temp.note}" />
 			</a>
 		</section>
+		
+		<div class="ecjia-margin-b"></div>
 		
 		{if $data.allow_use_bonus}
 		<section class="checklist">
