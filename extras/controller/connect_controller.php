@@ -280,6 +280,8 @@ class connect_controller {
     public static function bind_signin_do() {
         $username = htmlspecialchars($_POST['username']);
         $password = htmlspecialchars($_POST['password']);
+        $username = trim($username);
+        $password = trim($password);
     
         $connect_code = !empty($_POST['connect_code']) ? trim($_POST['connect_code']) : '';
         $open_id = !empty($_POST['open_id']) ? trim($_POST['open_id']) : '';
