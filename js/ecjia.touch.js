@@ -191,7 +191,9 @@
 					};
 				ecjia.touch.more(options);
 				$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
-				$this.after($loader);
+				if ($this.parent().find('.load-list').length == 0) {
+					$this.after($loader);
+				}
 			}
 		},
 
@@ -237,7 +239,6 @@
 				});
 			}
 		},
-
 		more_callback : function() {ecjia.touch.delete_list_click();},
 
 		/**
@@ -246,6 +247,9 @@
 		load_list : function(options) {
 			if (!options.url) return console.log('缺少参数！');
 			$(options.trigger).show();
+			if ($('[data-toggle="asynclist"]').attr('class') == options.areaClass) {
+				$('[data-toggle="asynclist"]').attr('data-page', parseInt(options.page) + 1);
+			}
 			$.get(options.url, {
 				page : options.page,
 				size : options.size,
@@ -255,6 +259,7 @@
 				options.lock = data.is_last;
 				$(options.trigger).hide();
 				if (data.is_last == 1) {
+					$(options.trigger).addClass('is-last');
 					$("#load_more_btn").remove();
 				}
 				ecjia.touch.more_callback();
@@ -565,11 +570,9 @@
     
 	//PJAX跳转执行
 	$(document).on('pjax:complete', function() {
-        window.onscroll = null;
-		ecjia.touch.asynclist();
+		window.onscroll = null;
 		ecjia.touch.selectbox();
 		ecjia.touch.valid();
-
 		ecjia.touch.more_callback = function() {ecjia.touch.delete_list_click();};
 	});
 
@@ -578,17 +581,20 @@
 		//增加动画
 		$('body').removeClass('blurry');
 		ecjia.touch.pjaxloadding();
-		$('.load-list').remove();
+//		$('.load-list').remove();
 	});
 
 	//PJAX前进、返回执行
 	$(document).on('pjax:popstate', function() {
-
 	});
 	
 	//PJAX历史和跳转都会执行的方法
 	$(document).on('pjax:end', function() {
+		if ($.find('.is-last').length == 0) {
+			ecjia.touch.asynclist();
+		}
         $('.la-ball-atom').remove();
+        
 		//关闭menu
 		if ($('.ecjia-menu').hasClass('active')) {
 			$('.ecjia-menu').removeClass('active');
