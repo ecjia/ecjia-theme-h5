@@ -118,10 +118,10 @@
 			/* PJAX基础配置项 */
 			ecjia.pjaxoption = {
 				timeout: 10000,
-				container: '.ecjia', /* 内容替换的容器 */
-				cache: false,  /* 是否使用缓存 */
-				storage: false,  /* 是否使用本地存储 */
-				titleSuffix: '.pjax' /* 标题后缀 */
+				container: '.ecjia', 	/* 内容替换的容器 */
+				cache: false,  			/* 是否使用缓存 */
+				storage: false,  		/* 是否使用本地存储 */
+				titleSuffix: '.pjax' 	/* 标题后缀 */
 			};
 
 			/* ecjia.pjax */
@@ -169,9 +169,9 @@
 		
 		alert : function(text) {
 			var app = new Framework7({
-		 	       modalButtonOk: "确定",
-		 	       modalTitle: ''
-		         });
+				modalButtonOk: "确定",
+	 	       	modalTitle: ''
+			});
 			app.alert(text);
 		},
 
@@ -180,7 +180,7 @@
 		 */
 		asynclist : function() {
 			if ($('[data-toggle="asynclist"]').length) {
-				var $this = $('[data-toggle="asynclist"]');
+				var $this = $('[data-toggle="asynclist"]'),
 					options = {
 						areaSelect	: '[data-toggle="asynclist"]',
 						areaClass	: $this.attr('class'),
@@ -212,7 +212,7 @@
 				lock		: false,					//lock			锁
 				type		: '',						//type			商品类型
 			},
-			options		= $.extend({}, defaults, options),
+			options = $.extend({}, defaults, options),
 			scroll_list = function(){
 				if (!options.lock && ($(window).scrollTop() > $(document).height() - $(window).height() - options.offset)) {
 					options.lock = true;
@@ -244,7 +244,7 @@
 		 * 数据操作方法
 		 */
 		load_list : function(options) {
-			if (!options.url) return console.log('批量操作缺少参数！');
+			if (!options.url) return console.log('缺少参数！');
 			$(options.trigger).show();
 			$.get(options.url, {
 				page : options.page,
