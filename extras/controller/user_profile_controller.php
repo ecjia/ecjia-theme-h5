@@ -111,9 +111,9 @@ class user_profile_controller {
      * 修改密码页面
      */
     public static function edit_password() {
-    	$old_password = !empty($_POST['old_password']) ? $_POST['old_password'] : '';
-    	$new_password = !empty($_POST['new_password']) ? $_POST['new_password'] : '';
-    	$comfirm_password = !empty($_POST['comfirm_password']) ? $_POST['comfirm_password'] : '';
+    	$old_password = !empty($_POST['old_password']) ? trim($_POST['old_password']) : '';
+    	$new_password = !empty($_POST['new_password']) ? trim($_POST['new_password']) : '';
+    	$comfirm_password = !empty($_POST['comfirm_password']) ? trim($_POST['comfirm_password']) : '';
     	
     	if (!empty($old_password)) {
     		if ($new_password == $comfirm_password) {

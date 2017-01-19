@@ -52,8 +52,8 @@ defined('IN_ECJIA') or exit('No permission resources.');
 class user_get_password_controller {
     public static function mobile_register() {
         /*验证码相关设置*/
-        $mobile = !empty($_POST['mobile']) ? $_POST['mobile'] : '';
-        $code = !empty($_POST['code']) ? $_POST['code'] : '';
+        $mobile = !empty($_POST['mobile']) ? trim($_POST['mobile']) : '';
+        $code = !empty($_POST['code']) ? trim($_POST['code']) : '';
         $token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
         
         if (!empty($code)) {
@@ -74,7 +74,7 @@ class user_get_password_controller {
     }
 
     public static function mobile_register_account() {
-        $mobile = !empty($_GET['mobile']) ? $_GET['mobile'] : '';
+        $mobile = !empty($_GET['mobile']) ? trim($_GET['mobile']) : '';
         $chars = "/^13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$/";
         
         if (preg_match($chars, $mobile)) {
@@ -92,9 +92,9 @@ class user_get_password_controller {
     
     public static function reset_password() {
         /*验证码相关设置*/
-        $passwordf = !empty($_POST['passwordf']) ? $_POST['passwordf'] : '';
-        $passwords = !empty($_POST['passwords']) ? $_POST['passwords'] : '';
-        $mobile    = !empty($_SESSION['mobile']) ? $_SESSION['mobile'] : '';
+        $passwordf = !empty($_POST['passwordf']) ? trim($_POST['passwordf']) : '';
+        $passwords = !empty($_POST['passwords']) ? trim($_POST['passwords']) : '';
+        $mobile    = !empty($_SESSION['mobile']) ? trim($_SESSION['mobile']) : '';
         if ($_SESSION['code_status'] != 'succeed') {
             ecjia_front::$controller->redirect(RC_Uri::url('user/get_password/mobile_register'));
         }

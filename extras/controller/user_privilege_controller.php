@@ -124,7 +124,7 @@ class user_privilege_controller {
      * 显示注册页面
      */
     public static function register() {
-        $mobile = !empty($_POST['mobile']) ? $_POST['mobile'] : '';
+        $mobile = !empty($_POST['mobile']) ? trim($_POST['mobile']) : '';
         if(!empty($mobile)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_VALIDATE)->data(array('mobile' => $mobile))->send()->getBody();
             $data = json_decode($data,true);
