@@ -2166,6 +2166,21 @@ footer{
 	width:100%;
 	border-bottom:1px solid #eee;
 }
+.ecjia .ecjia-select .ecjia-list .select-item+.select-item::before {
+    content: '';
+    position:absolute;
+    border:0;
+    left:1em;
+    width:100%;
+    border-bottom:1px solid #eee;
+}
+.ecjia .ecjia-select .ecjia-list .select-item li{
+    border: 0;
+}
+.ecjia .ecjia-select .ecjia-list {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
 .ecjia .ecjia-checkout .checklist.error{
 	border: 1px solid #ef3030;
 	box-shadow: 0 0 6px #d59392;

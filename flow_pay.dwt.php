@@ -20,7 +20,7 @@ ecjia.touch.init();
     <div class="ecjia-select">
         {if $payment_list.online}
         <p class="select-title ecjia-margin-l">线上支付</p>
-        <ul class="ecjia-list ecjia-border-t">
+        <ul class="ecjia-list">
             <!-- {foreach from=$payment_list.online item=rs} -->
             <label class="select-item" for="{$rs.pay_code}">
                 <li>
