@@ -298,8 +298,10 @@
             		if (data.count != null) {
             			if (data.count.discount != 0) {
                 			discount_html = '<label class="discount">(已减'+ data.count.discount +')<label>';
+                			$('.price_' + store_id).html(data.count.goods_price + discount_html);
+                		} else {
+                			$('.price_' + store_id).html(data.count.goods_price);
                 		}
-                		$('.price_' + store_id).html(data.count.goods_price + discount_html);
             			if (data.data_rec) {
             				$('.check_cart_' + store_id).attr('data-rec', data.data_rec);
             				$('.check_cart_' + store_id).removeClass('disabled');
