@@ -124,13 +124,12 @@ class user_account_controller {
      *  对会员余额申请的处理
      */
     public static function recharge_account() {
-    	$amount = is_numeric($_POST['amount']) ? trim($_POST['amount']) : '';
-    	$payment_id = !empty($_POST['payment']) ? intval($_POST['payment']) : '';
+    	$amount = is_numeric($_POST['amount']) ? ($_POST['amount']) : '';
+    	$payment_id = !empty($_POST['payment_id']) ? intval($_POST['payment_id']) : '';
     	$account_id = !empty($_POST['account_id']) ? intval($_POST['account_id']) : '';
     	if (!empty($amount)) {
     		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('amount' => $amount, 'payment_id' => $payment_id, 'account_id' => $account_id))->send()->getBody();
     		$data = json_decode($data, true);
-    		
     		$data_payment_id = $data['data']['payment']['payment_id'];
     		$data_account_id = $data['data']['payment']['account_id'];
     		
@@ -357,6 +356,7 @@ class user_account_controller {
      */
     public static function record_info() {
         $data['account_id'] = !empty($_GET['account_id']) ? $_GET['account_id'] : '';
+        $data['amount'] = !empty($_GET['amount']) ? $_GET['amount'] : '';
         $data['format_amount'] = !empty($_GET['format_amount']) ? $_GET['format_amount'] : '';
         $data['pay_status'] = !empty($_GET['pay_status']) ? $_GET['pay_status'] : '';
         $data['type'] = !empty($_GET['type']) ? $_GET['type'] : '';

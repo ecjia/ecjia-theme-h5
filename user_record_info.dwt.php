@@ -9,7 +9,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-<script type="text/javascript">ecjia.touch.user.init();</script>
+<script type="text/javascript">
+	ecjia.touch.init();
+	ecjia.touch.user.init();
+</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -30,16 +33,20 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	{if $sur_amount.pay_status eq '已完成'}
     {elseif $sur_amount.pay_status eq ''}
     {else}
-        <form name="record_cancel_from" action="{url path='user/user_account/record_cancel'}" method="post" >
+        <form  action="{url path='user/user_account/recharge_account'}" method="post" >
         {if $sur_amount.type eq 'deposit'}
             <div class="two-btn btn-bottom">
                 <input name="record_type" type="hidden" value={$sur_amount.type} />
                 <input name="account_id" type="hidden" value={$sur_amount.account_id}>
                 <input name="payment_id" type="hidden" value={$sur_amount.payment_id} />
                 <input name="amount" type="hidden" value={$sur_amount.amount} />
-        		<input class="btn ecjia-fl btn-c" id="record_cancel" name="record_cancel" type="submit" value="{t}取消{/t}" />
-        		<input class="btn ecjiaf-fr ecjia-fl" name="record_sure" data-url="{url path='user/user_account/recharge_account'}" type="submit" value="{t}充值{/t}" />
-        		<div class="wei-xin-pay hide"></div>
+        		<input class="btn ecjia-fl btn-c" id="record_cancel" name="record_cancel" data-url="{url path='user/user_account/record_cancel'}" type="submit" value="{t}取消{/t}" />
+        		{if $sur_amount.payment_name eq '微信支付'}
+        			<input class="btn ecjiaf-fr ecjia-fl" name="record_sure" data-url="{url path='user/user_account/recharge_account'}" type="submit" value="{t}充值{/t}" />
+        			<div class="wei-xin-pay hide"></div>
+        		{else}
+        			<input class="btn btn-recharge ecjiaf-fr ecjia-fl" type="submit" value="{t}充值{/t}" />
+        		{/if}
         	</div>
         {else}
             <div class="two-btn btn-bottom">
@@ -47,7 +54,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <p class="apply">已申请</p>
                 <input name="record_type" type="hidden" value={$sur_amount.type} />
                 <input name="account_id" type="hidden" value={$sur_amount.account_id}>
-                <input class="btn ecjiaf-fr btn-c ecjia-fl" id="record_cancel" name="record_cancel" type="submit" value="{t}取消{/t}" />
+                <input class="btn ecjiaf-fr btn-c ecjia-fl" id="record_cancel" name="record_cancel" data-url="{url path='user/user_account/record_cancel'}" type="submit" value="{t}取消{/t}" />
         	</div>	
         {/if}	
         </form>

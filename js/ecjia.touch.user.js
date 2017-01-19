@@ -328,7 +328,7 @@
 				var record_type = $("input[name='record_type']").val();
 				var account_id = $("input[name='account_id']").val();
 				var payment_id = $("input[name='payment_id']").val();
-				var url = $("form[name='record_cancel_from']").attr('action');
+				var url = $(this).attr('data-url');
 				options = {
 					'record_type' : record_type,
 					'account_id'  : account_id,
@@ -357,7 +357,7 @@
 				options = {
 						'amount' 	  : amount,
 						'account_id'  : account_id,
-						'payment'     : payment_id,
+						'payment_id'  : payment_id,
 						'submit'	  : '充值'
 				}
 				$.post(url,options, function(data){
