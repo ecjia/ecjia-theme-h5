@@ -130,9 +130,9 @@ class user_account_controller {
     	$brownser_wx = $_POST['brownser_wx'];
     	$brownser_other = $_POST['brownser_other'];
     	
-    	if ($brownser_wx) {
+    	if ($brownser_wx == 1) {
     		return ecjia_front::$controller->showmessage(__('请使用其他浏览器打开进行支付'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_account/record')));
-    	} elseif ($brownser_other) {
+    	} elseif ($brownser_other == 1) {
     		return ecjia_front::$controller->showmessage(__('请使用微信浏览器打开进行支付'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_account/record')));
     	}
     	
@@ -377,7 +377,7 @@ class user_account_controller {
         /*微信充值相关处理*/
         $payment_method = RC_Loader::load_app_class('payment_method', 'payment');
         $payment_info = $payment_method->payment_info_by_id($data['payment_id']);
-        
+
         /*依据当前浏览器和所选支付方式给出支付提示*/
         if (cart_function::is_weixin() == true && $payment_info['pay_code'] == 'pay_alipay') {
         	ecjia_front::$controller->assign('brownser_wx', 1);
