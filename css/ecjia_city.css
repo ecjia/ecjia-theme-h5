@@ -5137,7 +5137,8 @@ footer{
 	height:auto;
 	width:100%;
     position: relative;
-    left: 2%;
+    vertical-align: middle;
+    text-align: center;
 }
 .ecjia-spread .qrcode_image2
  {

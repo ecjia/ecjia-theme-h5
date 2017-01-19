@@ -40,6 +40,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <input name="account_id" type="hidden" value={$sur_amount.account_id}>
                 <input name="payment_id" type="hidden" value={$sur_amount.payment_id} />
                 <input name="amount" type="hidden" value={$sur_amount.amount} />
+                <input name="brownser_wx" type="hidden" value={$brownser_wx} />
+                <input name="brownser_other" type="hidden" value={$brownser_other} />
         		<input class="btn ecjia-fl btn-c" id="record_cancel" name="record_cancel" data-url="{url path='user/user_account/record_cancel'}" type="submit" value="{t}取消{/t}" />
         		{if $sur_amount.payment_name eq '微信支付'}
         			<input class="btn ecjiaf-fr ecjia-fl" name="record_sure" data-url="{url path='user/user_account/recharge_account'}" type="submit" value="{t}充值{/t}" />
