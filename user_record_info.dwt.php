@@ -33,7 +33,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	{if $sur_amount.pay_status eq '已完成'}
     {elseif $sur_amount.pay_status eq ''}
     {else}
-        <form  action="{url path='user/user_account/recharge_account'}" method="post" >
+        <form  class="ecjia-form" action="{url path='user/user_account/recharge_account'}" method="post" >
         {if $sur_amount.type eq 'deposit'}
             <div class="two-btn btn-bottom">
                 <input name="record_type" type="hidden" value={$sur_amount.type} />
