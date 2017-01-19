@@ -464,7 +464,7 @@
 
         		if (bool == true) {
         			$('.wd').find('[data-toggle="asynclist"]').html('');
-            		$('.load-list').remove();
+//            		$('.load-list').remove();
             		$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
             		$('.store_goods_' + type).after($loader);
     				
