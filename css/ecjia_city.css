@@ -166,6 +166,7 @@ a.ecjia-color-green {
 /*========================  首页 ===========================*/
 .goods-index-list.ecjia-mod {
 	background-color: #F7F7F7;
+	padding-bottom: 3.5em;
 }
 .goods-index-list.ecjia-mod .goods-index-title {
 	background-color: #F7F7F7;
@@ -883,10 +884,7 @@ footer{
 }
 .category .category_left{
 	position: fixed;
-	margin-top: 0;
-	padding-top: 0;
 	float: none;
-	overflow: auto;
 	text-align: center;
 	width: 6.5em;
 	color: #333;
@@ -894,6 +892,11 @@ footer{
 	font-size: .9em;
 	background: #F6F6F6;
 	border-right: none;
+	top: 3.5em;
+	bottom: 3.5em;
+	overflow: auto;
+	height: auto;
+	-webkit-overflow-scrolling: touch;
 }
 .category .category_left li{
 	line-height: 4em;
