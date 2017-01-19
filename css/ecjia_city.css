@@ -2150,10 +2150,17 @@ footer{
 .ecjia .ecjia-checkout .checklist{
 	overflow: hidden;
 	background-color: #ffffff;
-	position: relative;
-	border-bottom: 1px solid #eee;
 	padding: 0 1em;
 	line-height: 3em;
+	position:relative;
+}
+.ecjia .ecjia-checkout .checklist+.checklist::before{
+	content: '';
+	position:absolute;
+	top: 0;
+	left:1em;
+	width:100%;
+	border-bottom:1px solid #eee;
 }
 .ecjia .ecjia-checkout .checklist.error{
 	border: 1px solid #ef3030;
@@ -2303,7 +2310,26 @@ footer{
     width: 100%;}
 .ecjia-shipping-date .data-shipping {display:none;}
 /*======================== 发票信息 ecjia-invoice ===========================*/
+.ecjia-flow-invoice .ecjia-list li {
+	border-bottom:none;
+	position: relative;
+}
+.ecjia-flow-invoice .ecjia-list {
+	border-bottom: 1px solid #eee;
+}
 
+.ecjia-flow-invoice .ecjia-list li::before {
+	content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    top: 0;
+    left: 1em;
+    border-bottom: 1px solid #eee;
+}
+.ecjia-flow-invoice .ecjia-list label:first-child li::before {
+    border-bottom: none;
+}
 
 /*======================== 使用积分、订单留言 ecjia-text ===========================*/
 
@@ -4381,7 +4407,18 @@ footer{
 .order-log-item.confirm_receipt::after{
 	background: url(../images/icon/bag_circle_50.png) no-repeat center;
 	background-size:60%;
-} 
+}
+.order-log-item.express_user_pickup .order-log p{
+	width:85%;
+	float:left;
+}
+.order-log-item.express_user_pickup .order-log .tel {
+	width:15%;
+	height:2em;
+	float:right;
+	background: url(../images/icon/tel_circle_50.png) no-repeat center;
+	background-size:60%;
+}
 /* .order-log-item:first-child::after{
     width: 1.5em;
     height: 1.5em;
@@ -5100,7 +5137,8 @@ footer{
 	height:auto;
 	width:100%;
     position: relative;
-    left: 2%;
+    vertical-align: middle;
+    text-align: center;
 }
 .ecjia-spread .qrcode_image2
  {

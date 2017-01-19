@@ -57,7 +57,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <input type="hidden" name="rec_id" value="{$rec_id}" />
             <input class="btn btn-info" name="inv_update" type="submit" value="确定"/>
         </div>
-        <div class="ecjia-margin-t2 ecjia-margin-b">
+        <div class="ecjia-margin-t ecjia-padding-b">
             <input class="btn btn-hollow-danger" name="inv_clear" type="submit" value="不开发票"/>
         </div>
     </div>

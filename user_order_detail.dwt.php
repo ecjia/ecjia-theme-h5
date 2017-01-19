@@ -23,7 +23,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class='order-log-item {$info.status} {if count($order.order_status_log) lt 2} item-only{/if}'>
 			<div class="order-log">
 				<span>{$info.order_status}</span><span class="ecjiaf-fr order-time">{$info.time}</span>
-				<p>{$info.message}</p>
+				<p>{$info.message}</p>{if $info.status eq 'express_user_pickup' && $order.express_mobile}<a class="tel" href="tel://{$order.express_mobile}"></a>{/if}
 			</div>
 		</div>
 		<!-- {/foreach} -->
@@ -58,7 +58,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<li>红包抵扣：<span class="ecjiaf-fr ecjia-color-red ">{$order.formated_bonus}</span></li>
 				<li>优惠：<span class="ecjiaf-fr ecjia-color-red ">-{$order.formated_discount}</span></li>
 				<li>运费：<span class="ecjiaf-fr ">{$order.formated_shipping_fee}</span></li>
-				<li>共计：<span class="ecjiaf-fr ">{if $order.order_amount gt 0}{$order.formated_order_amount}{else}{$order.formated_surplus}{/if}</span></li>
+				<li>共计：<span class="ecjiaf-fr ">{$order.formated_total_fee}</span></li>
 			</ul>
 			<p class="select-title ecjiaf-fwb ecjia-margin-l">配送信息</p>
 			<ul class="ecjia-list">
