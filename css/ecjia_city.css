@@ -2004,6 +2004,10 @@ footer{
 .item-count span{
 	line-height: 48px;
 }
+.item-count span .discount{
+    color: #aaa;
+    font-weight: 100;
+}
 .item-count .count{
 	margin-left: 10px;
 }

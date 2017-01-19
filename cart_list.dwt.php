@@ -76,7 +76,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</ul>
 				<div class="item-count">
 					<span class="count">合计：</span>
-					<span class="price price_{$val.seller_id}">{$val.total.goods_price}</span>
+					<span class="price price_{$val.seller_id}">{$val.total.goods_price}{if $val.total.discount neq 0}<lable class="discount">(已减{$val.total.discount})</lable>{/if}</span>
 					<a class="check_cart check_cart_{$val.seller_id} {if !$val.total.check_one}disabled{/if}" data-href="{RC_Uri::url('cart/flow/checkout')}" data-store="{$val.seller_id}" data-address="{$address_id}" data-rec="{$val.total.data_rec}" href="javascript:;">去结算</a>
 				</div>
 			</li>
