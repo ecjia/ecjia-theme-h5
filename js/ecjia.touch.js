@@ -423,6 +423,10 @@
 	            var _y_end=e.changedTouches[0].pageY;
 	            $('body').off('touchmove');
 	        });
+	        $(".ecjia-menu .icon-top").click(function(){
+                $('body,html').animate({scrollTop:0},300);
+                $('.ecjia-menu .main').click();
+            });
 		},
 
 		toggle_collapse : function() {
