@@ -159,7 +159,7 @@ class cart_controller {
     			$arr['rec_id'] = implode(',', $rec_id);
     			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_DELETE)->data($arr)->run();
     
-    			return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON);
+    			return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('empty' => true, 'store_id' => $store_id));
     		} else {
     			if (!empty($new_number)) {
     				$arr['new_number'] = $new_number;

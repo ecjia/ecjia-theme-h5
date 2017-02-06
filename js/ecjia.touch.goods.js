@@ -293,6 +293,15 @@
                 		return false;
             		}
             	}
+            	if (data.empty == true) {
+            		var li = $('.check_cart_' + data.store_id).parents('.cart-single');
+        			li.remove();
+    				if ($('li.cart-single').length == 0) {
+    					$('.ecjia-flow-cart').remove();
+    					$('.flow-no-pro').removeClass('hide');
+    				}
+    				return false;
+            	}
             	if (data.response == true) {
             		$('.la-ball-atom').remove();
             		if (data.count != null) {
@@ -704,13 +713,12 @@
     			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
     			            	$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
     			            	
+    			            	var rec_id = [];
+                				$('.cart-checkbox.checkbox_' + store_id).each(function(){
+                					rec_id.push($(this).attr('rec_id'));
+                				});
+                				
     			            	ecjia.touch.category.update_cart(rec_id, 0, 0, '', store_id);
-    		        			var li = $this.parents('.cart-single');
-    		        			li.remove();
-    		    				if ($('li.cart-single').length == 0) {
-    		    					$('.ecjia-flow-cart').remove();
-    		    					$('.flow-no-pro').removeClass('hide');
-    		    				}
     		        			return false;
     			          	},
     			          }
