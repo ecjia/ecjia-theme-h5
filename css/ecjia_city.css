@@ -1663,22 +1663,6 @@ footer{
     color: #ff3434;
     font-size: 16px;
 }
-.store-add-cart.a4w .a6d {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 50px;
-    line-height: 24px;
-    height: 24px;
-    overflow: hidden;
-    font-size: 11px;
-    color: #ee7a12;
-    box-shadow: 0 -1px 8px rgba(189,173,162,.45);
-    padding-left: 29px;
-    background: #fff7e8 url(//static-o2o.360buyimg.com/daojia/new/images/minicart/tip.png) 10px center no-repeat;
-    background-size: 14px 14px;
-	display: block;
-}
 .a53 {
     display: none;
     position: fixed;
@@ -1696,16 +1680,16 @@ footer{
 .store-add-cart.a4w .a5v, .a5u {
     position: absolute;
     z-index: 3;
-    top: 35px;
+    top: 40px;
     width: 49px;
     height: 40px;
-    background-image: url(//static-o2o.360buyimg.com/daojia/new/images/minicart/op.png);
+	background-image: url(../images/icon/op.png);
     background-repeat: no-repeat;
     background-size: 27px 108px;
 }
 .store-add-cart.a4w .a5x {
     position: absolute;
-    top: 35px;
+    top: 39px;
     right: 35px;
     width: 39px;
     line-height: 55px;
@@ -1749,7 +1733,7 @@ footer{
 .store-add-cart.a4w .a7c {
     position: absolute;
     left: 0;
-    top: 48px;
+    top: 55px;
     line-height: 20px;
     color: #ff3434;
     font-size: 1.1em;
@@ -3823,12 +3807,12 @@ footer{
     padding-bottom: .1em;
 }
 .ecjia-goods-plus-box span.reduce {
-    background-position: -2em 0;
-	padding-left: .8em;
+    background-position: -1.8em 0;
+	width: 1.2em;
 }
 .ecjia-goods-plus-box span.add {
-    background-position: .2em 0;
-    padding-right: .8em;
+    background-position: 0 0;
+    width: 1.2em;
 }
 .ecjia-goods-plus-box label {
     float: left;
@@ -3838,15 +3822,14 @@ footer{
     overflow: hidden;
     display: inline-block;
     text-align: center;
-    line-height: 1.2em;
+    line-height: 1.5em;
     vertical-align: top;
     -webkit-background-origin: content-box;
     background-origin: content-box;
     background-color: transparent;
-    margin-top: 2px;
 	margin-bottom: 0;
-	padding-left:.3em;
-	padding-right:.3em;
+	padding-left: .7em;
+	padding-right: .7em;
 	font-weight: normal;
 }
 .market-goods-add-cart{
@@ -4762,7 +4745,7 @@ footer{
 .ecjia-store-list .box span.add {
     background-position: 0 0;
     padding-right: .8em;
-	margin-bottom: .8em;
+	margin-bottom: .5em;
 }
 .ecjia-store-list .box label {
     float: left;
