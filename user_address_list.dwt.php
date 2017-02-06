@@ -41,7 +41,7 @@ $('.setdefault').click(function(){
 			<!-- {foreach from=$address_list item=value}-->
 			<li class="ecjia-margin-t">
 				<div class="ecjia-of-h">
-					<p class="ecjiaf-fl">{$value.consignee}</p>
+					<p class="ecjiaf-fl ecjia-mw6">{$value.consignee}</p>
 					<p class="ecjiaf-fl ecjia-margin-l ecjia-address-mobile">{$value.mobile}</p>
 				</div>
 				<div class="address ecjiaf-wwb">{$value.province_name} {$value.city_name} {$value.address} {$value.address_info}</div>

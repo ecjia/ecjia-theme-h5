@@ -44,6 +44,9 @@ a.ecjia-color-green {
 .ecjia-h48 {
 	height: 48px;
 }
+.ecjia-mw6 {
+	min-width: 6em;
+}
 .ecjia-list.list-short li+li::before ,.ecjia-list li {border-color: #eee;}
 .ecjia-list li {
     padding: .7em 1em;

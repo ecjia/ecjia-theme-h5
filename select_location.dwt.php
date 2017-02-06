@@ -35,7 +35,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<div class="circle"></div>
 					<div class="list">
 						<div>
-							<p class="ecjiaf-fl">{$value.consignee}</p>
+							<p class="ecjiaf-fl ecjia-mw6">{$value.consignee}</p>
 							<p class="ecjiaf-fl ecjia-margin-l ecjia-address-mobile">{$value.mobile}</p>
 						</div><br />
 						<div class="ecjia-margin-top address ecjiaf-wwb">{$value.address}{$value.address_info}</div>	
