@@ -3138,6 +3138,7 @@ footer{
 .ecjia-account .form-group .textarea-style {
 	position: relative;
 	height: 100%;
+    padding: 0;
 }
 /*========================  交易记录 ===========================*/
 .ecjia-account-record {
