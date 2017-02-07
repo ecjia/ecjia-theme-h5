@@ -10,20 +10,20 @@
 			  	    navigator.geolocation.getCurrentPosition(showPosition);
 			  	}
 			  	function showPosition(position) {
-				  	var lat=position.coords.latitude; 
-				  	var lng=position.coords.longitude;
+			  		var lat = position.coords.latitude; 
+				  	var lng = position.coords.longitude;
 			    	var url = $("#get_location").attr('data-url');
 				  	url += '&lat=' + lat + '&lng=' + lng;
-			  	     $.ajax({
-			  		    url:url,
-			  		    type:"GET",
-			  		    dataType:"json",
+		  	     	$.ajax({
+			  		    url: url,
+			  		    type: "GET",
+			  		    dataType: "json",
 			  		    success:function(data){
 			  		    	 ecjia.pjax(data.url);
 			      	    },
-			  		 });
+		  	     	});
 			  	}
-				$.cookie('what','first');
+				$.cookie('what', 'first');
 			} else if ($.cookie('location_name') === undefined) {
 				$.cookie('what', '', { expires: -1 });
 			}

@@ -147,8 +147,7 @@ class location_controller {
     	setcookie("latitude", $latitude);
     	setcookie("location_address_id", 0);
     	
-    	$url = RC_Uri::url('touch/index/init');
-    	return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('url' => $url));
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('url' => $href_url));
     } 
     
     public static function get_location_info() {
