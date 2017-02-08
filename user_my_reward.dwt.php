@@ -72,7 +72,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <div class="spread-bottom-bar-pannel">
         <ul class="tab5">
             <li>
-                <a href="{url path='user/user_bonus/reward_detail'}">
+                <a href="{url path='user/bonus/reward_detail'}">
                     <div class="qrcode_image2">
                         <img src="{$theme_url}/images/wallet/60x60_1.png">
                     </div>
@@ -80,7 +80,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 </a>
             </li>
             <li>
-      			<a href="{url path='user/user_bonus/get_integral'}">
+      			<a href="{url path='user/bonus/get_integral'}">
                     <div class="qrcode_image3">
                         <img src="{$theme_url}/images/wallet/60x60_2.png">
                     </div>

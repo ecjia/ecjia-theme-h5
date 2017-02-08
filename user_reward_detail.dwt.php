@@ -25,7 +25,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 </div>
             	<!--{/foreach}-->
             </div>
-            <input type="hidden" value="{RC_Uri::url('user/user_bonus/async_reward_detail')}" name="reward_url"/>
+            <input type="hidden" value="{RC_Uri::url('user/bonus/async_reward_detail')}" name="reward_url"/>
         </div>
     </div>
 </div>  

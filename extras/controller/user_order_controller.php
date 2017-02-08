@@ -98,7 +98,7 @@ class user_order_controller {
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_CANCEL)->data($params_order)->send()->getBody();
         $data = json_decode($data,true);
 
-        $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
+        $url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
         if ($data['status']['succeed']) {
             return ecjia_front::$controller->showmessage('取消订单成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_ALERT,array('pjaxurl' => $url,'is_show' => false));
         } else {
@@ -135,11 +135,11 @@ class user_order_controller {
                 $rs = json_decode($rs,true);
                 if (! $rs['status']['succeed']) {
                     if ($_GET['from'] == 'list') {
-                        $url = RC_Uri::url('user/user_order/order_list');
+                        $url = RC_Uri::url('user/order/order_list');
                     } else {
-                        $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
+                        $url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
                     }
-                    $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
+                    $url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
                     return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR,array('pjaxurl' => $url));
                 }
             }
@@ -180,9 +180,9 @@ class user_order_controller {
         ->send()->getBody();
         $data = json_decode($data,true);
         if (isset($_GET['from']) && $_GET['from'] == 'list') {
-            $url = RC_Uri::url('user/user_order/order_list');
+            $url = RC_Uri::url('user/order/order_list');
         } else {
-            $url = RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id));
+            $url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
         }
         if ($data['status']['succeed']) {
             return ecjia_front::$controller->redirect($url);

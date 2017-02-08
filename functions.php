@@ -76,7 +76,7 @@ RC_Hook::add_action('goods/index/new', array('goods_controller', 'goods_new'));
 RC_Loader::load_theme('extras/controller/merchant_controller.php');
 RC_Hook::add_action('merchant/index/init', array('merchant_controller', 'init'));//店铺首页
 RC_Hook::add_action('merchant/index/ajax_goods', array('merchant_controller', 'ajax_goods'));//获取店铺商品
-RC_Hook::add_action('merchant/detail/init', array('merchant_controller', 'detail'));//店铺详情
+RC_Hook::add_action('merchant/index/detail', array('merchant_controller', 'detail'));//店铺详情
 RC_Hook::add_action('merchant/index/position', array('merchant_controller', 'position'));//店铺位置
 
 //文章
@@ -128,59 +128,59 @@ RC_Hook::add_action('user/get_password/mobile_register_account', array('user_get
 RC_Hook::add_action('user/get_password/reset_password', array('user_get_password_controller', 'reset_password'));
 
 RC_Loader::load_theme('extras/controller/user_account_controller.php');
-RC_Hook::add_action('user/user_account/account_detail', array('user_account_controller', 'account_detail'));
-RC_Hook::add_action('user/user_account/recharge', array('user_account_controller', 'recharge'));
-RC_Hook::add_action('user/user_account/recharge_account', array('user_account_controller', 'recharge_account'));
-RC_Hook::add_action('user/user_account/withdraw', array('user_account_controller', 'withdraw'));
-RC_Hook::add_action('user/user_account/withdraw_account', array('user_account_controller', 'withdraw_account'));
-RC_Hook::add_action('user/user_account/account_list', array('user_account_controller', 'account_list'));
-RC_Hook::add_action('user/user_account/record', array('user_account_controller', 'record'));
-RC_Hook::add_action('user/user_account/ajax_record', array('user_account_controller', 'ajax_record'));
-RC_Hook::add_action('user/user_account/ajax_record_raply', array('user_account_controller', 'ajax_record_raply'));
-RC_Hook::add_action('user/user_account/ajax_record_deposit', array('user_account_controller', 'ajax_record_deposit'));
-RC_Hook::add_action('user/user_account/record_info', array('user_account_controller', 'record_info'));
-RC_Hook::add_action('user/user_account/record_cancel', array('user_account_controller', 'record_cancel'));
+RC_Hook::add_action('user/account/init', array('user_account_controller', 'init'));//我的钱包
+RC_Hook::add_action('user/account/recharge', array('user_account_controller', 'recharge'));
+RC_Hook::add_action('user/account/recharge_account', array('user_account_controller', 'recharge_account'));
+RC_Hook::add_action('user/account/withdraw', array('user_account_controller', 'withdraw'));
+RC_Hook::add_action('user/account/withdraw_account', array('user_account_controller', 'withdraw_account'));
+RC_Hook::add_action('user/account/balance', array('user_account_controller', 'balance'));//余额
+RC_Hook::add_action('user/account/record', array('user_account_controller', 'record'));
+RC_Hook::add_action('user/account/ajax_record', array('user_account_controller', 'ajax_record'));
+RC_Hook::add_action('user/account/ajax_record_raply', array('user_account_controller', 'ajax_record_raply'));
+RC_Hook::add_action('user/account/ajax_record_deposit', array('user_account_controller', 'ajax_record_deposit'));
+RC_Hook::add_action('user/account/record_info', array('user_account_controller', 'record_info'));
+RC_Hook::add_action('user/account/record_cancel', array('user_account_controller', 'record_cancel'));
 
 //用户收货地址
 RC_Loader::load_theme('extras/controller/user_address_controller.php');
-RC_Hook::add_action('user/user_address/address_list', array('user_address_controller', 'address_list'));
-RC_Hook::add_action('user/user_address/async_address_list', array('user_address_controller', 'async_address_list'));
-RC_Hook::add_action('user/user_address/add_address', array('user_address_controller', 'add_address'));
-RC_Hook::add_action('user/user_address/insert_address', array('user_address_controller', 'insert_address'));
-RC_Hook::add_action('user/user_address/edit_address', array('user_address_controller', 'edit_address'));
-RC_Hook::add_action('user/user_address/update_address', array('user_address_controller', 'update_address'));
-RC_Hook::add_action('user/user_address/del_address', array('user_address_controller', 'del_address'));
-RC_Hook::add_action('user/user_address/save_temp_data', array('user_address_controller', 'save_temp_data'));
-RC_Hook::add_action('user/user_address/near_location', array('user_address_controller', 'near_location'));
-RC_Hook::add_action('user/user_address/set_default', array('user_address_controller', 'set_default'));
-RC_Hook::add_action('user/user_address/choose_address', array('user_address_controller', 'choose_address'));
+RC_Hook::add_action('user/address/address_list', array('user_address_controller', 'address_list'));
+RC_Hook::add_action('user/address/async_address_list', array('user_address_controller', 'async_address_list'));
+RC_Hook::add_action('user/address/add_address', array('user_address_controller', 'add_address'));
+RC_Hook::add_action('user/address/insert_address', array('user_address_controller', 'insert_address'));
+RC_Hook::add_action('user/address/edit_address', array('user_address_controller', 'edit_address'));
+RC_Hook::add_action('user/address/update_address', array('user_address_controller', 'update_address'));
+RC_Hook::add_action('user/address/del_address', array('user_address_controller', 'del_address'));
+RC_Hook::add_action('user/address/save_temp_data', array('user_address_controller', 'save_temp_data'));
+RC_Hook::add_action('user/address/near_location', array('user_address_controller', 'near_location'));
+RC_Hook::add_action('user/address/set_default', array('user_address_controller', 'set_default'));
+RC_Hook::add_action('user/address/choose_address', array('user_address_controller', 'choose_address'));
 
 //用户红包
 RC_Loader::load_theme('extras/controller/user_bonus_controller.php');
-RC_Hook::add_action('user/user_bonus/bonus', array('user_bonus_controller', 'bonus'));
-RC_Hook::add_action('user/user_bonus/async_allow_use', array('user_bonus_controller', 'async_allow_use'));
-RC_Hook::add_action('user/user_bonus/async_is_used', array('user_bonus_controller', 'async_is_used'));
-RC_Hook::add_action('user/user_bonus/async_expired', array('user_bonus_controller', 'async_expired'));
-RC_Hook::add_action('user/user_bonus/my_reward', array('user_bonus_controller', 'my_reward'));
-RC_Hook::add_action('user/user_bonus/reward_detail', array('user_bonus_controller', 'reward_detail'));
-RC_Hook::add_action('user/user_bonus/get_integral', array('user_bonus_controller', 'get_integral'));
-RC_Hook::add_action('user/user_bonus/async_reward_detail', array('user_bonus_controller', 'async_reward_detail'));
+RC_Hook::add_action('user/bonus/init', array('user_bonus_controller', 'init'));
+RC_Hook::add_action('user/bonus/async_allow_use', array('user_bonus_controller', 'async_allow_use'));
+RC_Hook::add_action('user/bonus/async_is_used', array('user_bonus_controller', 'async_is_used'));
+RC_Hook::add_action('user/bonus/async_expired', array('user_bonus_controller', 'async_expired'));
+RC_Hook::add_action('user/bonus/my_reward', array('user_bonus_controller', 'my_reward'));
+RC_Hook::add_action('user/bonus/reward_detail', array('user_bonus_controller', 'reward_detail'));
+RC_Hook::add_action('user/bonus/get_integral', array('user_bonus_controller', 'get_integral'));
+RC_Hook::add_action('user/bonus/async_reward_detail', array('user_bonus_controller', 'async_reward_detail'));
 
 //订单
 RC_Loader::load_theme('extras/controller/user_order_controller.php');
-RC_Hook::add_action('user/user_order/order_list', array('user_order_controller', 'order_list'));
-RC_Hook::add_action('user/user_order/order_cancel', array('user_order_controller', 'order_cancel'));
-RC_Hook::add_action('user/user_order/async_order_list', array('user_order_controller', 'async_order_list'));
-RC_Hook::add_action('user/user_order/order_detail', array('user_order_controller', 'order_detail'));
-RC_Hook::add_action('user/user_order/affirm_received', array('user_order_controller', 'affirm_received'));
-RC_Hook::add_action('user/user_order/buy_again', array('user_order_controller', 'buy_again'));
+RC_Hook::add_action('user/order/order_list', array('user_order_controller', 'order_list'));
+RC_Hook::add_action('user/order/order_cancel', array('user_order_controller', 'order_cancel'));
+RC_Hook::add_action('user/order/async_order_list', array('user_order_controller', 'async_order_list'));
+RC_Hook::add_action('user/order/order_detail', array('user_order_controller', 'order_detail'));
+RC_Hook::add_action('user/order/affirm_received', array('user_order_controller', 'affirm_received'));
+RC_Hook::add_action('user/order/buy_again', array('user_order_controller', 'buy_again'));
 
 //用户资料
 RC_Loader::load_theme('extras/controller/user_profile_controller.php');
-RC_Hook::add_action('user/user_profile/edit_profile', array('user_profile_controller', 'edit_profile'));
-RC_Hook::add_action('user/user_profile/modify_username', array('user_profile_controller', 'modify_username'));
-RC_Hook::add_action('user/user_profile/modify_username_account', array('user_profile_controller', 'modify_username_account'));
-RC_Hook::add_action('user/user_profile/edit_password', array('user_profile_controller', 'edit_password'));
+RC_Hook::add_action('user/profile/init', array('user_profile_controller', 'init'));
+RC_Hook::add_action('user/profile/modify_username', array('user_profile_controller', 'modify_username'));
+RC_Hook::add_action('user/profile/modify_username_account', array('user_profile_controller', 'modify_username_account'));
+RC_Hook::add_action('user/profile/edit_password', array('user_profile_controller', 'edit_password'));
 
 //授权登录
 RC_Loader::load_theme('extras/controller/connect_controller.php');

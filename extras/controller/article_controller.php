@@ -64,13 +64,11 @@ class article_controller {
     }
     /**
      * 文章详情
-     *
      */
     public static function detail() {
-        // /* 文章详情 */
+        $title = trim($_GET['title']);
         $article_id = intval($_GET['aid']);
         
-        $title = trim($_GET['title']);
         ecjia_front::$controller->assign('title', $title);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_HELP_DETAIL)->data(array('article_id' => $article_id))->run();
     	

@@ -35,7 +35,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 <div class="ecjia-mod ecjia-store-brief">
 	<li class="store-info">
-		<a href="{RC_Uri::url('merchant/detail/init')}&store_id={$store_info.id}">
+		<a href="{RC_Uri::url('merchant/index/detail')}&store_id={$store_info.id}">
 			<div class="basic-info">
 				<div class="store-left">
 					<img src="{if $store_info.seller_logo}{$store_info.seller_logo}{else}{$theme_url}images/store_default.png{/if}">

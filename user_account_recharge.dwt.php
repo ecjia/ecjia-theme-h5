@@ -16,7 +16,7 @@ ecjia.touch.init();
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<form class="ecjia-account ecjia-form user-profile-form" name="useraccountForm" action="{url path='user/user_account/recharge_account'}" method="post">
+<form class="ecjia-account ecjia-form user-profile-form" name="useraccountForm" action="{url path='user/account/recharge_account'}" method="post">
     <div class="ecjia-form ecjia-account ecjia-flow-done ecjia-pay">
     	<p class="account-top text-ty ">{t}账户充值：{$user.name}{/t}</p>
     	<div class="form-group form-group-text account-lr-fom no-border">

@@ -53,7 +53,7 @@ class user_bonus_controller {
     /**
      * 我的红包
      */
-    public static function bonus() {
+    public static function init() {
         ecjia_front::$controller->assign_title('我的红包');
         ecjia_front::$controller->display('user_bonus.dwt');
     }
@@ -180,7 +180,7 @@ class user_bonus_controller {
             $res['is_last'] = 1;
         } else {
             $res['data_toggle'] = 'asynclist';
-            $res['url'] = RC_Uri::url('user/user_bonus/async_reward_detail', array('date' => $arr['date']));
+            $res['url'] = RC_Uri::url('user/bonus/async_reward_detail', array('date' => $arr['date']));
         }
         return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'is_last' => $res['is_last'], 'data' => $res));
     }

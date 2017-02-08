@@ -31,7 +31,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<ul class="list-one">
 			<!-- {foreach from=$address_list item=value} 循环地址列表 -->
 			<li>
-				<a data-toggle="choose_address" href="{RC_Uri::url('user/user_address/choose_address')}&address_id={$value.id}{if $referer_url}&referer_url={$referer_url}{/if}">
+				<a data-toggle="choose_address" href="{RC_Uri::url('user/address/choose_address')}&address_id={$value.id}{if $referer_url}&referer_url={$referer_url}{/if}">
 					<div class="circle"></div>
 					<div class="list">
 						<div>
@@ -46,7 +46,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</ul>
 		{/if}
 		<div class="address-list-center">
-			<a type="botton" href="{url path='user/user_address/address_list'}">
+			<a type="botton" href="{url path='user/address/address_list'}">
 				<i class="iconfont icon-roundadd"></i> {t}管理收货地址{/t}
 			</a>
 		</div>

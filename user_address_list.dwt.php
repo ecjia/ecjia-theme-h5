@@ -28,13 +28,13 @@ $('.setdefault').click(function(){
 <!-- {block name="main-content"} -->
 <div class="ecjia-address-list">
 	<div class="nav-header ecjia-margin-t">
-		<a href="{url path='user/user_address/add_address' args='clear=1'}">
+		<a href="{url path='user/address/add_address' args='clear=1'}">
 			<i class="icon-add-address"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t}新建收货地址{/t}
 			<span class="ecjiaf-fr"><i class="iconfont icon-jiantou-right"></i></span>
 		</a>
 	</div>
 	<section>
-		<input type="hidden" name="setdefault_url" value="{RC_uri::url('user/user_address/set_default')}">
+		<input type="hidden" name="setdefault_url" value="{RC_uri::url('user/address/set_default')}">
 		<!-- {if $address_list} -->
 		<ul class="ecjia-list list-one ecjia-margin-b" id="J_ItemList">
 			<!-- 配送地址 start-->
@@ -51,8 +51,8 @@ $('.setdefault').click(function(){
 				<!-- {else} -->
 				<p class="setdefault ecjiaf-csp ecjiaf-fl" data-id="{$value.id}"><i class="icon-not-default"></i>&nbsp;&nbsp;{t}设为默认{/t}</p>
 				<!-- {/if} -->
-				<a class="delete-address nopjax ecjiaf-fr ecjia-margin-l" href="javascript:;" data-toggle="del_list" data-url="{url path='user/user_address/del_address'}" data-id="{$value.id}" data-msg="{t}您确定要删除此收货地址吗？{/t}"><div class="icon-delete-address"></div>{t}删除{/t}</a>
-				<a class="edit-address ecjiaf-fr" href="{RC_uri::url('user/user_address/edit_address')}&id={$value.id}&clear=1"><div class="icon-edit-address"></div>{t}编辑{/t}</a>
+				<a class="delete-address nopjax ecjiaf-fr ecjia-margin-l" href="javascript:;" data-toggle="del_list" data-url="{url path='user/address/del_address'}" data-id="{$value.id}" data-msg="{t}您确定要删除此收货地址吗？{/t}"><div class="icon-delete-address"></div>{t}删除{/t}</a>
+				<a class="edit-address ecjiaf-fr" href="{RC_uri::url('user/address/edit_address')}&id={$value.id}&clear=1"><div class="icon-edit-address"></div>{t}编辑{/t}</a>
 			</li>
 			<!-- {/foreach} -->
 			<!-- 配送地址end-->

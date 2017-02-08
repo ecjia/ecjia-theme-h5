@@ -182,7 +182,7 @@ class pay_controller {
         
         //生成返回url cookie
         RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
-        RC_Cookie::set('pay_response_order', RC_Uri::url('user/user_order/order_detail', array('order_id' => $order_id, 'type' => 'detail')));
+        RC_Cookie::set('pay_response_order', RC_Uri::url('user/order/order_detail', array('order_id' => $order_id, 'type' => 'detail')));
         
         ecjia_front::$controller->display('pay.dwt');
     }

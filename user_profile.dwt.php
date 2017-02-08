@@ -21,7 +21,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		<div class="user-img-text"><img src="{$user_img}"></div>
             </li>
             <li class="height-3">
-               <a href="{url path='user/user_profile/modify_username'}">
+               <a href="{url path='user/profile/modify_username'}">
             		<span class="icon-name margin-no-l">用户名 </span>
             		<span class="icon-price text-color">{$user.name}</span>
             		<i class="iconfont icon-jiantou-right  margin-r-icon"></i>
@@ -36,7 +36,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
     <div class="ecjia-list list-short height-3">
        <li>
-            <a href="{url path='user/user_profile/edit_password'}">
+            <a href="{url path='user/profile/edit_password'}">
     		<span class="icon-name margin-no-l">修改密码</span>
     		<span class="icon-price"></span>
     		<i class="iconfont  icon-jiantou-right  margin-r-icon"></i>

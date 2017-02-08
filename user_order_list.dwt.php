@@ -38,10 +38,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<a class="ecjiaf-fl" href='{url path="merchant/index/init" args="store_id={$list.seller_id}"}'>
 			<i class="iconfont icon-shop"></i>{$list.seller_name} <i class="iconfont icon-jiantou-right"></i>
 		</a>
-		<a class="ecjiaf-fr" href='{url path="user/user_order/order_detail" args="order_id={$list.order_id}"}'><span class="ecjia-color-green">{$list.label_order_status}</span></a>
+		<a class="ecjiaf-fr" href='{url path="user/order/order_detail" args="order_id={$list.order_id}"}'><span class="ecjia-color-green">{$list.label_order_status}</span></a>
 	</div>
 	<div class="flow-goods-list">
-		<a class="ecjiaf-db" href='{url path="user/user_order/order_detail" args="order_id={$list.order_id}&type=detail"}'>
+		<a class="ecjiaf-db" href='{url path="user/order/order_detail" args="order_id={$list.order_id}&type=detail"}'>
 			<ul class="{if count($list.goods_list) > 1}goods-list{else}goods-item{/if}"><!-- goods-list 多个商品隐藏商品名称,goods-item -->
 				<!-- {foreach from=$list.goods_list item=goods name=goods} -->
 				<!-- {if $smarty.foreach.goods.iteration gt 3} -->
@@ -62,13 +62,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</a>
 	</div>
 	<div class="order-ft">
-		<span><a href='{url path="user/user_order/order_detail" args="order_id={$list.order_id}&type=detail"}'>订单金额：<span>{$list.formated_total_fee}</span></a></span>
+		<span><a href='{url path="user/order/order_detail" args="order_id={$list.order_id}&type=detail"}'>订单金额：<span>{$list.formated_total_fee}</span></a></span>
 		<span class="two-btn ecjiaf-fr">
 		{if $list.order_status_code eq 'await_pay'} <a class="btn btn-hollow" href='{url path="pay/index/init" args="order_id={$list.order_id}&from=list"}'>去支付</a>
 		<!-- if $list.order_status_code eq 'finished' || $list.order_status_code eq 'canceled' -->
-		{else} <a class="btn btn-hollow" href='{url path="user/user_order/buy_again" args="order_id={$list.order_id}&from=list"}'>再次购买</a>
+		{else} <a class="btn btn-hollow" href='{url path="user/order/buy_again" args="order_id={$list.order_id}&from=list"}'>再次购买</a>
 		{/if}
-		{if $list.shipping_status eq '1'} <a class="btn btn-hollow" href='{url path="user/user_order/affirm_received" args="order_id={$list.order_id}&from=list"}'>确认收货</a>{/if}
+		{if $list.shipping_status eq '1'} <a class="btn btn-hollow" href='{url path="user/order/affirm_received" args="order_id={$list.order_id}&from=list"}'>确认收货</a>{/if}
 		</span>
 	</div>
 </li>

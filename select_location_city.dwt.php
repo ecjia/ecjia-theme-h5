@@ -31,9 +31,9 @@ $(document).ready(function() {
 
 <!-- {block name="main-content"} -->
 {if $smarty.get.type eq 'addcity'}
-<div class="cityall" id="cityall" data-url='{url path="user/user_address/add_address" args="{if $referer_url}&referer_url={$referer_url|escape:"url"}{/if}"}'>
+<div class="cityall" id="cityall" data-url='{url path="user/address/add_address" args="{if $referer_url}&referer_url={$referer_url|escape:"url"}{/if}"}'>
 {else if $smarty.get.type eq 'editcity'}
-<div class="cityall" id="cityall" data-url="{url path='user/user_address/edit_address'}">
+<div class="cityall" id="cityall" data-url="{url path='user/address/edit_address'}">
 {else if $smarty.get.type eq 'search'}
 <div class="cityall" id="cityall" data-url="{url path='location/index/search_location'}">
 {/if}

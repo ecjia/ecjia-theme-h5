@@ -54,7 +54,7 @@ class user_profile_controller {
     /**
      * 会员中心：编辑个人资料
      */
-    public static function edit_profile() {
+    public static function init() {
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
         $user_img_login = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         $user_img_logout = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-out2x.png';
@@ -100,7 +100,7 @@ class user_profile_controller {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_UPDATE)->data(array('user_name' => $name))->send()->getBody();
             $data = json_decode($data,true);
             if ($data['status']['succeed'] == 1) {
-                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('msg' => RC_Uri::url('user/user_profile/edit_profile')));
+                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('msg' => RC_Uri::url('user/profile/init')));
             } else {
                 return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('msg' => $data['status']['error_desc']));
             }
@@ -123,11 +123,11 @@ class user_profile_controller {
     			if ($data['status']['succeed'] == 1) {
     				return ecjia_front::$controller->showmessage(__('修改密码成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/login')));
     			} else {
-    				return ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_profile/edit_password')));
+    				return ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/profile/edit_password')));
     			}
     	
     		} else {
-    			return ecjia_front::$controller->showmessage(__('两次输入的密码不同，请重新输入'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/user_profile/edit_password')));
+    			return ecjia_front::$controller->showmessage(__('两次输入的密码不同，请重新输入'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/profile/edit_password')));
     		}
     	}
     	ecjia_front::$controller->assign_title('修改密码');

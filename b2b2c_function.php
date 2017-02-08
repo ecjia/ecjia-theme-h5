@@ -42,18 +42,18 @@ RC_Hook::add_action('touch/index/shop_init', 			array('b2b2c_merchant_controller
 // 订单
 RC_Loader::load_theme('extras/b2b2c/controller/b2b2c_user_order_controller.php');
 
-RC_Hook::remove_action	('user/user_order/order_list', array('user_order_controller', 'order_list'));
-RC_Hook::remove_action	('user/user_order/order_detail', array('user_order_controller', 'order_detail'));
-RC_Hook::add_action		('user/user_order/order_detail', array('b2b2c_user_order_controller', 'order_detail'));
-RC_Hook::add_action		('user/user_order/order_list', array('b2b2c_user_order_controller', 'order_list'));
+RC_Hook::remove_action	('user/order/order_list', array('user_order_controller', 'order_list'));
+RC_Hook::remove_action	('user/order/order_detail', array('user_order_controller', 'order_detail'));
+RC_Hook::add_action		('user/order/order_detail', array('b2b2c_user_order_controller', 'order_detail'));
+RC_Hook::add_action		('user/order/order_list', array('b2b2c_user_order_controller', 'order_list'));
 
 // 红包
 RC_Loader::load_theme('extras/b2b2c/controller/b2b2c_user_bonus_controller.php');
 
-RC_Hook::remove_action	('user/user_bonus/bonus', 				array('user_bonus_controller', 'bonus'));
-RC_Hook::remove_action	('user/user_bonus/async_bonus_list', 	array('user_bonus_controller', 'async_bonus_list'));
-RC_Hook::add_action		('user/user_bonus/bonus', 				array('b2b2c_user_bonus_controller', 'bonus'));
-RC_Hook::add_action		('user/user_bonus/async_bonus_list', 	array('b2b2c_user_bonus_controller', 'async_bonus_list'));
+RC_Hook::remove_action	('user/bonus/init', 				array('user_bonus_controller', 'bonus'));
+RC_Hook::remove_action	('user/bonus/async_bonus_list', 	array('user_bonus_controller', 'async_bonus_list'));
+RC_Hook::add_action		('user/bonus/init', 				array('b2b2c_user_bonus_controller', 'bonus'));
+RC_Hook::add_action		('user/bonus/async_bonus_list', 	array('b2b2c_user_bonus_controller', 'async_bonus_list'));
 
 // 关注店铺
 RC_Loader::load_theme('extras/b2b2c/controller/b2b2c_user_collection_controller.php');
