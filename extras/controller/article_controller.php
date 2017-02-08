@@ -63,17 +63,6 @@ class article_controller {
         ecjia_front::$controller->display('article_init.dwt');
     }
     /**
-     * 文章列表
-     */
-    public static function art_list() {
-        ecjia_front::$controller->display('article_list.dwt');
-    }
-    /**
-     * 文章列表异步加载
-     */
-    public static function asynclist() {
-    }
-    /**
      * 文章详情
      *
      */

@@ -349,10 +349,6 @@ class user_address_controller {
         }
     }
 
-    /**
-     * 地区筛选
-     */
-    public static function region() {}
 
     /**
      * 定位当前位置
@@ -379,28 +375,6 @@ class user_address_controller {
         ecjia_front::$controller->display('user_near_location.dwt');
     }
 
-    /**
-     * 异步地址列表
-     */
-    public static function async_location() {
-        $address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token['access_token']))->run();
-        ecjia_front::$controller->assign_lang();
-    	ecjia_front::$controller->assign('addres_list', $address_list);
-    	$sayList = ecjia_front::$controller->fetch('user_location.dwt');
-    	return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page' ,'is_last' => $consignee_list['is_last']));
-    }
-    
-    public static function near_address() {
-    	$region   = $_GET['region'];
-    	$keywords = $_GET['keywords'];
-    	$key       = ecjia::config('map_qq_key');
-    	$url       = "http://apis.map.qq.com/ws/place/v1/suggestion/?region=".$region."&keyword=".$keywords."&key=".$key;
-    	$response = RC_Http::remote_get($url);
-    	$content  = json_decode($response['body']);
-    	return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('content' => $content));
-    
-    }
-    
     /**
      * 获取指定地区的子级地区
      */

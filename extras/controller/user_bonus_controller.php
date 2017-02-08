@@ -117,19 +117,6 @@ class user_bonus_controller {
     }
 
     /**
-     * 增加红包
-     */
-    public static function add_bonus() {
-        $user_id = $_SESSION['user_id'];
-        $bonus_sn = htmlspecialchars($_POST['bonus_sn']);
-        $bonus = add_bonus($user_id, $bonus_sn);
-        if (!empty($bonus['error'])) {
-            return ecjia_front::$controller->showmessage($bonus['message'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-        } else {
-            return ecjia_front::$controller->showmessage('添加红包成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON,array('is_show' => false));
-        }
-    }
-    /**
      * 我的奖励
      */
     public static function my_reward() {

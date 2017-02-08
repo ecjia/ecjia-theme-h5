@@ -50,8 +50,6 @@ RC_Loader::load_app_class('touch', 'touch', false);
 
 RC_Loader::load_theme('extras/controller/touch_controller.php');
 RC_Hook::add_action('touch/index/init', array('touch_controller', 'init'));
-RC_Hook::add_action('touch/index/my_location', array('touch_controller', 'my_location'));
-RC_Hook::add_action('touch/index/download', array('touch_controller', 'download'));
 RC_Hook::add_action('touch/index/ajax_goods', array('touch_controller', 'ajax_goods'));
 RC_Hook::add_action('touch/index/search', array('touch_controller', 'search'));
 RC_Hook::add_action('touch/index/del_search', array('touch_controller', 'del_search'));
@@ -67,19 +65,12 @@ RC_Hook::add_action('location/index/get_location_msg',array('location_controller
 //商品
 RC_Loader::load_theme('extras/controller/goods_controller.php');
 RC_Hook::add_action('goods/category/init', array('goods_controller', 'init'));
-RC_Hook::add_action('goods/category/all', array('goods_controller', 'all'));
-RC_Hook::add_action('goods/category/goods_list', array('goods_controller', 'goods_list'));
-RC_Hook::add_action('goods/category/asynclist', array('goods_controller', 'asynclist'));
 RC_Hook::add_action('goods/category/store_list', array('goods_controller', 'store_list'));//店铺分类列表
 RC_Hook::add_action('goods/category/seller_list', array('goods_controller', 'seller_list'));//店铺分类列表
 RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));//商品详情页
 RC_Hook::add_action('goods/index/promotion', array('goods_controller', 'goods_promotion'));
 RC_Hook::add_action('goods/index/ajax_goods', array('goods_controller', 'ajax_goods'));
 RC_Hook::add_action('goods/index/new', array('goods_controller', 'goods_new'));
-RC_Hook::add_action('goods/index/price', array('goods_controller', 'goods_price'));
-RC_Hook::add_action('goods/index/add_tags', array('goods_controller', 'add_tags'));
-RC_Hook::add_action('goods/index/tag', array('goods_controller', 'tags_list'));
-RC_Hook::add_action('goods/index/comment', array('goods_controller', 'comment'));
 
 //店铺
 RC_Loader::load_theme('extras/controller/merchant_controller.php');
@@ -91,8 +82,6 @@ RC_Hook::add_action('merchant/index/position', array('merchant_controller', 'pos
 //文章
 RC_Loader::load_theme('extras/controller/article_controller.php');
 RC_Hook::add_action('article/help/init', array('article_controller', 'init'));
-RC_Hook::add_action('article/index/art_list', array('article_controller', 'art_list'));
-RC_Hook::add_action('article/index/asynclist', array('article_controller', 'asynclist'));
 RC_Hook::add_action('article/help/detail', array('article_controller', 'detail'));
 RC_Hook::add_action('article/shop/detail', array('article_controller', 'shop_detail'));
 
@@ -121,15 +110,6 @@ RC_Loader::load_theme('extras/controller/user_controller.php');
 RC_Hook::add_action('touch/my/init', array('user_controller', 'init'));
 RC_Hook::add_action('user/index/spread', array('user_controller', 'spread'));
 RC_Hook::add_action('user/index/wxconfig', array('user_controller', 'wxconfig'));
-// RC_Hook::add_action('user/index/validate_email', array('user_controller', 'validate_email'));
-// RC_Hook::add_action('user/index/get_password_question', array('user_controller', 'get_password_question'));
-// RC_Hook::add_action('user/index/question_get_password', array('user_controller', 'question_get_password'));
-// RC_Hook::add_action('user/index/send_pwd_email', array('user_controller', 'send_pwd_email'));
-// RC_Hook::add_action('user/index/update_password', array('user_controller', 'update_password'));
-// RC_Hook::add_action('user/index/history', array('user_controller', 'history'));
-// RC_Hook::add_action('user/index/clear_history', array('user_controller', 'clear_history'));
-// RC_Hook::add_action('user/index/send_captcha', array('user_controller', 'send_captcha'));
-// RC_Hook::add_action('user/index/act_register', array('user_controller', 'phone_register'));
 
 //登陆注册
 RC_Loader::load_theme('extras/controller/user_privilege_controller.php');
@@ -153,7 +133,6 @@ RC_Hook::add_action('user/user_account/recharge', array('user_account_controller
 RC_Hook::add_action('user/user_account/recharge_account', array('user_account_controller', 'recharge_account'));
 RC_Hook::add_action('user/user_account/withdraw', array('user_account_controller', 'withdraw'));
 RC_Hook::add_action('user/user_account/withdraw_account', array('user_account_controller', 'withdraw_account'));
-RC_Hook::add_action('user/user_account/detail', array('user_account_controller', 'detail'));
 RC_Hook::add_action('user/user_account/account_list', array('user_account_controller', 'account_list'));
 RC_Hook::add_action('user/user_account/record', array('user_account_controller', 'record'));
 RC_Hook::add_action('user/user_account/ajax_record', array('user_account_controller', 'ajax_record'));
@@ -172,19 +151,13 @@ RC_Hook::add_action('user/user_address/edit_address', array('user_address_contro
 RC_Hook::add_action('user/user_address/update_address', array('user_address_controller', 'update_address'));
 RC_Hook::add_action('user/user_address/del_address', array('user_address_controller', 'del_address'));
 RC_Hook::add_action('user/user_address/save_temp_data', array('user_address_controller', 'save_temp_data'));
-RC_Hook::add_action('user/user_address/region', array('user_address_controller', 'region'));
 RC_Hook::add_action('user/user_address/near_location', array('user_address_controller', 'near_location'));
-RC_Hook::add_action('user/user_address/async_location', array('user_address_controller', 'async_location'));
-RC_Hook::add_action('user/user_address/city', array('user_address_controller', 'city'));
-RC_Hook::add_action('user/user_address/near_address', array('user_address_controller', 'near_address'));
 RC_Hook::add_action('user/user_address/set_default', array('user_address_controller', 'set_default'));
 RC_Hook::add_action('user/user_address/choose_address', array('user_address_controller', 'choose_address'));
 
 //用户红包
 RC_Loader::load_theme('extras/controller/user_bonus_controller.php');
 RC_Hook::add_action('user/user_bonus/bonus', array('user_bonus_controller', 'bonus'));
-RC_Hook::add_action('user/user_bonus/add_bonus', array('user_bonus_controller', 'add_bonus'));
-// RC_Hook::add_action('user/user_bonus/async_bonus_list', array('user_bonus_controller', 'async_bonus_list'));
 RC_Hook::add_action('user/user_bonus/async_allow_use', array('user_bonus_controller', 'async_allow_use'));
 RC_Hook::add_action('user/user_bonus/async_is_used', array('user_bonus_controller', 'async_is_used'));
 RC_Hook::add_action('user/user_bonus/async_expired', array('user_bonus_controller', 'async_expired'));
@@ -198,11 +171,8 @@ RC_Loader::load_theme('extras/controller/user_order_controller.php');
 RC_Hook::add_action('user/user_order/order_list', array('user_order_controller', 'order_list'));
 RC_Hook::add_action('user/user_order/order_cancel', array('user_order_controller', 'order_cancel'));
 RC_Hook::add_action('user/user_order/async_order_list', array('user_order_controller', 'async_order_list'));
-RC_Hook::add_action('user/user_order/order_tracking', array('user_order_controller', 'order_tracking'));
 RC_Hook::add_action('user/user_order/order_detail', array('user_order_controller', 'order_detail'));
 RC_Hook::add_action('user/user_order/affirm_received', array('user_order_controller', 'affirm_received'));
-RC_Hook::add_action('user/user_order/edit_payment', array('user_order_controller', 'edit_payment'));
-RC_Hook::add_action('user/user_order/edit_surplus', array('user_order_controller', 'edit_surplus'));
 RC_Hook::add_action('user/user_order/buy_again', array('user_order_controller', 'buy_again'));
 
 //用户资料
@@ -210,7 +180,6 @@ RC_Loader::load_theme('extras/controller/user_profile_controller.php');
 RC_Hook::add_action('user/user_profile/edit_profile', array('user_profile_controller', 'edit_profile'));
 RC_Hook::add_action('user/user_profile/modify_username', array('user_profile_controller', 'modify_username'));
 RC_Hook::add_action('user/user_profile/modify_username_account', array('user_profile_controller', 'modify_username_account'));
-RC_Hook::add_action('user/user_profile/update_profile', array('user_profile_controller', 'update_profile'));
 RC_Hook::add_action('user/user_profile/edit_password', array('user_profile_controller', 'edit_password'));
 
 //授权登录
