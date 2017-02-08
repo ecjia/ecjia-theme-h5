@@ -609,6 +609,7 @@
 		ecjia.touch.ecjia_menu();
 		ecjia.touch.region_change();
 		ecjia.touch.goods_detail.change();
+		ecjia.touch.index.init_swiper();
 
 	    var ua = navigator.userAgent.toLowerCase();
 	    if (ua.match(/MicroMessenger/i)=="micromessenger" || ua.match(/ECJiaBrowse/i)=="ecjiabrowse") {

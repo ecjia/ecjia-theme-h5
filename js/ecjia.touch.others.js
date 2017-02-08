@@ -23,6 +23,7 @@
         init_swiper : function() {
 			var swiper = new Swiper('.swiper-touchIndex', {
 				pagination: '.swiper-pagination',
+				speed: 800,
 				grabCursor: true,
 				centeredSlides: true,
 				coverflow: {
