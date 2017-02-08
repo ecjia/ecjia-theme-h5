@@ -74,7 +74,7 @@ class goods_controller {
     /**
      * 商品详情
      */
-    public static function goods_info() {
+    public static function show() {
     	$goods_id = isset($_GET['goods_id']) ? $_GET['goods_id'] : 0;
 	    $rec_type = isset($_GET['rec_type']) ? $_GET['rec_type'] : 0;
 	    $object_id= isset($_GET['object_id']) ? $_GET['object_id'] : 0;
@@ -180,13 +180,13 @@ class goods_controller {
 	    ecjia_front::$controller->assign('referer_url', urlencode(RC_Uri::url('goods/index/show', array('goods_id' => $goods_id))));
 
 	    ecjia_front::$controller->assign_title('商品详情');
-        ecjia_front::$controller->display('goods_info.dwt');
+        ecjia_front::$controller->display('goods_show.dwt');
     }
 
     /**
      * 促销商品
      */
-    public static function goods_promotion() {
+    public static function promotion() {
 		ecjia_front::$controller->assign_title('促销商品');
     	ecjia_front::$controller->display('goods_promotion.dwt');
     }

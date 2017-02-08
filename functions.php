@@ -67,8 +67,8 @@ RC_Loader::load_theme('extras/controller/goods_controller.php');
 RC_Hook::add_action('goods/category/init', array('goods_controller', 'init'));
 RC_Hook::add_action('goods/category/store_list', array('goods_controller', 'store_list'));//店铺分类列表
 RC_Hook::add_action('goods/category/seller_list', array('goods_controller', 'seller_list'));//店铺分类列表
-RC_Hook::add_action('goods/index/show', array('goods_controller', 'goods_info'));//商品详情页
-RC_Hook::add_action('goods/index/promotion', array('goods_controller', 'goods_promotion'));
+RC_Hook::add_action('goods/index/show', array('goods_controller', 'show'));//商品详情页
+RC_Hook::add_action('goods/index/promotion', array('goods_controller', 'promotion'));
 RC_Hook::add_action('goods/index/ajax_goods', array('goods_controller', 'ajax_goods'));
 RC_Hook::add_action('goods/index/new', array('goods_controller', 'goods_new'));
 
