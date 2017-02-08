@@ -661,7 +661,7 @@ ul, li, ol, dl, dt, dd {
     display: block;
 }
 .ecjia-promotion-model .swiper-slide .promote-time{
-    position: relative;
+    position: absolute;
     display: block;
     width: 100%;
     font-size: .9em;
@@ -670,12 +670,17 @@ ul, li, ol, dl, dt, dd {
 	line-height: 2em;
     height: 2em;
 	background-color: #fce8e7;
+	bottom: 0;
 }
 .ecjia-promotion-model .swiper-slide .list-page-goods-img .goods-img {
     display: block;
-    height: 100%;
+    height: auto;
     overflow: hidden;
     margin: 0 auto;
+	position: relative;
+}
+.ecjia-promotion-model .swiper-slide .list-page-goods-img .goods-img img {
+	height: 11em;
 }
 .ecjia-promotion-model a.list-page-goods-img .goods-name {
     height: 1.6em;
@@ -736,22 +741,22 @@ ul, li, ol, dl, dt, dd {
 }
 .ecjia-promotion-list .list-page-goods-img .goods-img{
 	display: block;
-    height: 0;
-    padding-bottom: 100%;
+    height: auto;
     overflow: hidden;
     margin: 0 auto;
+	position: relative;
 }
 .ecjia-promotion-list .promote-time{
-    position: relative;
+    position: absolute;
     display: block;
     width: 100%;
-    bottom: 2.8em;
     font-size: 1em;
     text-align: center;
     color: #e73938;
     height: 2.8em;
     line-height: 2.8em;
 	background-color: #fce8e7;
+	bottom: 0;
 }
 .ecjia-promotion-list .list-page-goods-img .self-label{
 	color: #ff3434;
