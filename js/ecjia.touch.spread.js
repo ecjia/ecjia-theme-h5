@@ -37,7 +37,7 @@
 					div_height = $(this).height();
 					$("ul").each(function(){
 				        //取出ul下的第一个li
-				        var li= $(this).children("li").first();
+				        var li= $(this).children(".article-init").first();
 				        li.css("margin-top", div_height);
 				    });
 					if (pfTop - scroH < div_height) {
