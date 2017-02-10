@@ -309,7 +309,7 @@ ecjia_open::macro('seller', function($querys) {
 /**
  * 支付响应提示模板
  */
-RC_Hook::add_filter('payment_respond_template', function($respond, $msg){
+RC_Hook::apply_filters('payment_respond_template', function($respond, $msg){
     return pay_controller::notify($msg);
 }, 10, 2);
 
