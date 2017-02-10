@@ -233,13 +233,17 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
 });
 
 
-//第三方登录回调提示模板
+/**
+ * 第三方登录回调提示模板
+ */
 RC_Hook::add_filter('connect_callback_template', function($data) {
     RC_Loader::load_theme('extras/controller/connect_controller.php');
     return connect_controller::callback_template($data);
 }, 10, 1);
     
-//第三方登录用户注册
+/**
+ * 第三方登录用户注册
+ */
 RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username, $password, $email) {
     $result = connect_controller::bind_signup(array('name' => $username, 'password' => $password, 'email' => $email));
     if (is_ecjia_error($result)) {
@@ -250,7 +254,9 @@ RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username,
     }
 }, 10, 4);
 
-//第三方登录用户登录
+/**
+ * 第三方登录用户登录
+ */
 RC_Hook::add_action('connect_callback_user_signin', function($userid) {
     RC_Loader::load_app_func('admin_user', 'user');
     $user_info = EM_user_info($userid);
@@ -284,10 +290,10 @@ RC_Hook::add_action('connect_callback_user_signin', function($userid) {
 
     return ecjia_front::$controller->redirect($back_url);
 });
-    
 
-
-/* ecjiaopen协议 */
+/**
+ * ecjiaopen协议 
+ **/
 ecjia_open::macro('goods_seller_list', function($querys) {
     return RC_Uri::url('goods/category/store_list', array('cid' => $querys['category_id']));
 });
@@ -300,7 +306,19 @@ ecjia_open::macro('seller', function($querys) {
 	return RC_Uri::url('goods/category/seller_list', array('cid' => $querys['category_id']));
 });
 
-//支付响应提示模板
+/**
+ * 支付响应提示模板
+ */
 RC_Hook::add_filter('payment_respond_template', function($respond, $msg){
     return pay_controller::notify($msg);
 }, 10, 2);
+
+/**
+ * 自定义站点API地址
+ * @param string $url
+ * @return string
+ */
+function custom_site_api_url($url) {
+    return RC_Config::get('site.site_api', $url);
+}
+RC_Hook::add_filter('custom_site_api_url', 'custom_site_api_url');
