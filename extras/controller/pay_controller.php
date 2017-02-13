@@ -191,6 +191,7 @@ class pay_controller {
     	$mag = '支付成功';
         ecjia_front::$controller->assign('mag', $mag);
         $order_type = isset($_GET['order_type']) ? trim($_GET['order_type']) : '';
+        
         ecjia_front::$controller->assign('order_type', $order_type);
         ecjia_front::$controller->display('pay_notify.dwt');
     }
