@@ -21,6 +21,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="ajaxinfo"} -->
 	<!-- 异步促销商品列表 start-->
+	<!-- {if $goods_list} -->
 	<!-- {foreach from=$goods_list item=val} -->
 		<li class="ecjia-margin-t">
 			<a class="list-page-goods-img" href="{RC_Uri::url('goods/index/show')}&goods_id={$val.id}">
@@ -50,5 +51,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<img class="sales-icon" src="{$theme_url}images/icon-promote@2x.png">
 		</li>
 	<!-- {/foreach} -->
+	<!-- {else} -->
+	<div class="ecjia-mod search-no-pro ecjia-margin-t ecjia-margin-b">
+		<div class="ecjia-nolist">
+			<p><img src="{$theme_url}images/no_goods.png"></p>
+			暂无商品
+		</div>
+	</div>
+	<!-- {/if} -->
 	<!-- 异步商品列表end -->
 <!-- {/block} -->
