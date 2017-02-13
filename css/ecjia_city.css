@@ -3726,6 +3726,9 @@ footer{
 .ecjia-goods-basic-info{
 	padding-bottom: 3.5em;
 }
+.ecjia-goods-basic-info .swiper-goods-img{
+	max-height: 640px;
+}
 .ecjia-goods-basic-info .focus{
 	margin-top:0px;
 }
