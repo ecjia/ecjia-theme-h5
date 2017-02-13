@@ -426,13 +426,16 @@
         
         //店铺首页切换分类
         toggle_category: function() {
-        	$('[data-toggle="toggle-category"]').off('click').on('click', function(e){
+        	$('[data-toggle="toggle-category"]').off('click').on('click', function(e) {
         		var $this = $(this),
         			url = $this.attr('data-href'),
         			name = $this.html().trim(),
         			category_id = $this.attr('data-category') == undefined ? 0 : $this.attr('data-category'),
         			li = $this.parent('li');
 
+        		if ($this.hasClass('disabled') || $this.parent().hasClass('a1r') || ($this.hasClass('a1u') && $this.hasClass('active'))) {
+        			return false;
+        		}
         		var bool = true;
         		//同一父类下子类切换点击
         		if ($this.hasClass('a1u')) {
@@ -472,13 +475,20 @@
         		$('.wd').find('[data-toggle="asynclist"]').attr('data-type', type);
 
         		if (bool == true) {
-        			$('.wd').find('[data-toggle="asynclist"]').html('');
-//            		$('.load-list').remove();
+        			$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');//加载动画
+        			$('[data-toggle="toggle-category"]').addClass('disabled');//禁止切换
+        			
             		$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
-            		$('.store_goods_' + type).after($loader);
-    				
+            		var load_list = $('.store_goods_' + type).parent().find('.load-list');
+            		
+            		if (load_list.length == 0 ) {
+            			$('.store_goods_' + type).after($loader);
+            		}
             		$.get(url, info, function(data) {
-            			$loader.remove();
+            			$('.wd').find('[data-toggle="asynclist"]').html('');//清空
+            			
+            			$('.la-ball-atom').remove();//移出加载动画
+            			$('[data-toggle="toggle-category"]').removeClass('disabled');//允许切换
             			$('.store_goods_' + type).append(data.list);
             			
             			ecjia.touch.category.add_tocart();
@@ -489,6 +499,8 @@
             			if (data.is_last == null) {
             				$('.store_goods_' + type).attr('data-page', 2);
             				ecjia.touch.asynclist();
+            			} else {
+            				load_list.addClass('is-last').css('display', 'none');
             			}
             		});
         		}

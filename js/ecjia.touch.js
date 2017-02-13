@@ -201,6 +201,7 @@
 		 * 加载列表方法
 		 */
 		more : function(options) {
+			$('.is-last').remove();
 			$(window).scrollTop(0);
 			var defaults = {
 				url			: false,					//url 			请求地址
@@ -585,7 +586,6 @@
 		//增加动画
 		$('body').removeClass('blurry');
 		ecjia.touch.pjaxloadding();
-//		$('.load-list').remove();
 	});
 
 	//PJAX前进、返回执行
