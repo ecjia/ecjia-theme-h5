@@ -77,7 +77,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<!-- {block name="main-content"} --><!-- {/block} -->
 	</div>
 	<!-- {block name="ready_footer"} --><!-- {/block} -->
-
+	
+	<!-- #BeginLibraryItem "/library/page_menu.lbi" --><!-- #EndLibraryItem -->
+	
 	<!-- {block name="footer"} --><!-- {/block} -->
 	<script type="text/javascript">
     	window.onunload = unload;
@@ -103,8 +105,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <title>{block name="title"}{$page_title}{/block}</title>
 <!-- {block name="meta"} --><!-- {/block} -->
 <!-- {block name="main-content"} --><!-- {/block} -->
-<!-- #BeginLibraryItem "/library/page_menu.lbi" -->
-<!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_menu.lbi" --><!-- #EndLibraryItem -->
 <!-- {block name="footer"} --><!-- {/block} -->
 <!-- {/if} -->
 {/nocache}

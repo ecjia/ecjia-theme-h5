@@ -587,7 +587,6 @@
 		ecjia.touch.selectbox();
 		ecjia.touch.valid();
 		ecjia.touch.more_callback = function() {ecjia.touch.delete_list_click();};
-		$('#ecjia-menu').removeClass('hide').addClass('show');
 	});
 
 	//PJAX开始
