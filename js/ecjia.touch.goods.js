@@ -65,10 +65,6 @@
                     		} else {
                     			var val = 1;
                     		}
-        	            	if (val > 0) {
-//        	            		show.html(val).addClass('show').removeClass('hide');
-//        	            		$this.parent('.box').children('.reduce').addClass('show').removeClass('hide');
-        	            	}
         	            	var img = $this.parent().parent().find('img').attr('src');
         	            	if (img != undefined) {
             	                var offset = $('.store-add-cart .a4x').offset(),
