@@ -402,9 +402,12 @@
 				}
 			});
 			var _x_start, _y_start, _x_move, _y_move, _x_end, _y_end, left_start, bottom_start, top_start;
-			var length = $('#ecjia-menu').length;
+			var length = $('.ecjia-menu').length;
 			
 			if (length > 0) {
+				if (length == 2) {
+					$('.ecjia').siblings('.ecjia-menu').remove();
+				}
 		        document.getElementById("ecjia-menu").addEventListener('touchstart', function(e) {
 		            _x_start=e.touches[0].pageX;
 		            _y_start=e.touches[0].pageY;
