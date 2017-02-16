@@ -75,10 +75,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <body>
 	<div class="ecjia" id="get_location" data-url="{url path='location/index/get_location_msg'}">
 		<!-- {block name="main-content"} --><!-- {/block} -->
+		<!-- #BeginLibraryItem "/library/page_menu.lbi" --><!-- #EndLibraryItem -->
 	</div>
 	<!-- {block name="ready_footer"} --><!-- {/block} -->
-	
-	<!-- #BeginLibraryItem "/library/page_menu.lbi" --><!-- #EndLibraryItem -->
 	
 	<!-- {block name="footer"} --><!-- {/block} -->
 	<script type="text/javascript">
