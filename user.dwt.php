@@ -133,7 +133,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	<a class="external" href="https://ecjia.com" target="_blank">
         		<div class="icon-offical-website"><img src="{$theme_url}/images/user_center/75x75_6.png"></div>
         		<span class="icon-name">官网网站</span>
-        		<span class="icon-price">{'www.ecjia.com'}</span>
+        		<span class="icon-url">{'www.ecjia.com'}</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
