@@ -119,6 +119,17 @@
 			    ]
 			});
 		},
+		
+		
+		location :function(){
+			$("#button").on('click', function(e) {
+				e.preventDefault();
+				var longitude = $("input[name='longitude']").val();
+				var latitude = $("input[name='latitude']").val();
+				var url = $(this).attr("data-url")+ '&longitude=' +longitude+ '&latitude=' +latitude;
+				location.href = url;
+			})
+		}
 	}
 })(ecjia, jQuery);
 

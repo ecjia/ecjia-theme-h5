@@ -99,7 +99,7 @@ class franchisee_controller {
 		
 	}
 	
-	
+
 	public static function get_location() {
 		$city = '上海';
 		$address = '普陀区伸大厦';
@@ -114,16 +114,9 @@ class franchisee_controller {
 		ecjia_front::$controller->assign('longitude', $longitude);
 		ecjia_front::$controller->assign('latitude', $latitude);
 		
-		ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/location_finish'));
 		ecjia_front::$controller->assign_lang();
 		ecjia_front::$controller->display('franchisee_get_location.dwt');
 	}
-	
-	public static function location_finish() {
-		
-	}
-	 
-   
 }
 
 // end
