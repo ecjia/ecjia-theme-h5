@@ -280,6 +280,16 @@ a.ecjia-color-green {
 }
 
 /*== 商家入驻开始 ==*/
+.ecjia-address-list .form-group .settled-message {
+    position: absolute;
+    padding: 0!important;
+    right: 4%;
+    margin: 0;
+    top: .2em;
+    height: 2.2em!important;
+    width: 7em!important;
+    line-height: 2.4em;
+}
 
 
 /*== 商家入驻结束 ==*/
