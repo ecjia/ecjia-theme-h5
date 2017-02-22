@@ -120,6 +120,7 @@ RC_Hook::add_action('franchisee/index/store', array('franchisee_controller', 'st
 RC_Hook::add_action('franchisee/index/finish', array('franchisee_controller', 'finish'));//处理入驻申请
 
 RC_Hook::add_action('franchisee/index/location', array('franchisee_controller', 'get_location'));//获取店铺精确位置
+RC_Hook::add_action('franchisee/index/location_finish', array('franchisee_controller', 'location_finish'));//提交店铺精确位置
 
 
 

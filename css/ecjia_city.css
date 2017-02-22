@@ -299,6 +299,11 @@ a.ecjia-color-green {
     float: right;
     position: relative;
 }
+.ecjia-f-location{
+	text-align:center;
+	margin-top:30px;
+	margin-bottom:30px;
+}
 
 /*== 商家入驻结束 ==*/
 
