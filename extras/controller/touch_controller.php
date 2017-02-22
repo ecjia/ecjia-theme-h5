@@ -120,14 +120,6 @@ class touch_controller {
         //新品推荐
         ecjia_front::$controller->assign('new_goods', $data['new_goods']);
         
-        //热门推荐
-        ecjia_front::$controller->assign('best_goods', $base['list']);
-        
-        ecjia_front::$controller->assign('hot_goods', $hot['list']);
-        ecjia_front::$controller->assign('cat_best', $cat_rec[1]);
-        ecjia_front::$controller->assign('cat_new', $cat_rec[2]);
-        ecjia_front::$controller->assign('cat_hot', $cat_rec[3]);
-        
         ecjia_front::$controller->assign('cycleimage', $data['player']);
         ecjia_front::$controller->assign('page_header', 'index');
         ecjia_front::$controller->assign('searchs', user_function::insert_search());
@@ -143,6 +135,14 @@ class touch_controller {
         if (isset($_COOKIE['close_download'])) {
         	ecjia_front::$controller->assign('close_download', $_COOKIE['close_download']);
         }
+        
+        //下载推广是否开启
+        $config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->send();_dump($config,1);
+        if ($config['wap_app_download_show'] && $config['wap_app_download_img']) {
+            ecjia_front::$controller->assign('download_app_switch', 1);
+            ecjia_front::$controller->assign('app_download_img', $config['wap_app_download_img']);
+        }
+        
         ecjia_front::$controller->assign_title();
         ecjia_front::$controller->assign_lang();
 
