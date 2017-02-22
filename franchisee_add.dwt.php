@@ -9,7 +9,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-<script type="text/javascript">ecjia.touch.address_from.init();</script>
+<script type="text/javascript">ecjia.touch.franchisee.buttom();</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -19,7 +19,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_name.png" width="30" height="30"></span>
 			<input style="padding-left: 3.5em;" name="f_name" placeholder="{t}请输入真实姓名{/t}" type="text"  value=""  />
 		</label>
-		
 	</div>
 	
 	<div class="form-group form-group-text">
@@ -40,6 +39,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<label class="input">
 			<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_code.png" width="30" height="30"></span>
 			<input style="padding-left: 3.5em;" name="f_code" placeholder="{t}请输入验证码{/t}" type="text" value=""   />
+			<input type="button" class="btn btn-info settled-message" value="{$lang.return_verification}" data-url="{url path='franchisee/index/validate'}" id="get_code" />
 		</label>
 	</div>
 	
