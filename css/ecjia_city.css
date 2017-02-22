@@ -300,6 +300,22 @@ a.ecjia-color-green {
     position: relative;
 }
 
+.ecjia-address-list .franchisee label input {
+    padding-left: 3.5em!important;
+}
+
+.ecjia-address-list .franchisee label i {
+    color : #999!important;
+}
+.ecjia-address-list .franchisee{
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee!important;
+}
+.ecjia-address-list .franchisee label+label:before {
+    border-bottom: 1px solid black!important;
+    background-color: #eee;
+    /*width: 5em;*/
+}
 /*== 商家入驻结束 ==*/
 
 
