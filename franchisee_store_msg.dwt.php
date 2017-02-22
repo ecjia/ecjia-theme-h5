@@ -11,6 +11,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="footer"} -->
 <script type="text/javascript">ecjia.touch.address_from.init();</script>
 <script type="text/javascript">ecjia.touch.franchisee.coordinate();</script>
+<script type="text/javascript">ecjia.touch.franchisee.choices();</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
