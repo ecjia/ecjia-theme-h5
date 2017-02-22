@@ -111,6 +111,13 @@ RC_Hook::add_action('touch/my/init', array('user_controller', 'init'));
 RC_Hook::add_action('user/index/spread', array('user_controller', 'spread'));
 RC_Hook::add_action('user/index/wxconfig', array('user_controller', 'wxconfig'));
 
+//商家入驻申请
+RC_Loader::load_theme('extras/controller/franchisee_controller.php');
+RC_Hook::add_action('franchisee/index/add', array('franchisee_controller', 'add'));//入驻申请加载页面
+RC_Hook::add_action('franchisee/index/insert', array('franchisee_controller', 'insert'));//处理入驻申请
+RC_Hook::add_action('franchisee/index/store', array('franchisee_controller', 'store_msg'));//处理入驻申请
+RC_Hook::add_action('franchisee/index/finish', array('franchisee_controller', 'finish'));//处理入驻申请
+
 //登陆注册
 RC_Loader::load_theme('extras/controller/user_privilege_controller.php');
 RC_Hook::add_action('user/privilege/login', array('user_privilege_controller', 'login'));

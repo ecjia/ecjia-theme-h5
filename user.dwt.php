@@ -138,15 +138,24 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
     </ul>
+    
     <ul class="ecjia-list list-short">
         <li>
-        	<a class="external" href="{url path='article/help/init'}">
-        		<div class="icon-help-center"><img src="{$theme_url}/images/user_center/help75_3.png"></div>
-        		<span class="icon-name">帮助中心</span>
+        	<a class="external" href="{url path='franchisee/index/add'}">
+        		<div class="icon-help-center"><img src="{$theme_url}/images/user_center/75x75_10.png"></div>
+        		<span class="icon-name">店铺入驻申请</span>
+        		<i class="iconfont  icon-jiantou-right"></i>
+        	</a>
+        </li>
+        <li>
+        	<a class="external" href="{url path=''}">
+        		<div class="icon-help-center"><img src="{$theme_url}/images/user_center/75x75_9.png"></div>
+        		<span class="icon-name">店铺入驻查询</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
     </ul>
+   
     <ul class="ecjia-list list-short">
         <!-- {foreach from=$shop item=value} 网店信息 -->
             <li>
