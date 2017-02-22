@@ -299,6 +299,11 @@ a.ecjia-color-green {
     float: right;
     position: relative;
 }
+.ecjia-f-location{
+	text-align:center;
+	margin-top:30px;
+	margin-bottom:30px;
+}
 
 .ecjia-address-list .franchisee label input {
     padding-left: 3.5em!important;

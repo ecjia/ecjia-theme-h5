@@ -101,21 +101,28 @@ class franchisee_controller {
 	
 	
 	public static function get_location() {
-// 		$city = $_GET['city'];
-// 		$address = $_GET['address'];
-// 		$shop_address = $city.'市'.$address;
-// 		$shop_point = file_get_contents("https://api.map.baidu.com/geocoder/v2/?address='".$shop_address."&output=json&ak=E70324b6f5f4222eb1798c8db58a017b");
-// 		$shop_point = (array)json_decode($shop_point);
-// 		$shop_point['result'] = (array)$shop_point['result'];
-// 		$location = (array)$shop_point['result']['location'];
-// 		echo json_encode($location);
+		$city = '上海';
+		$address = '普陀区伸大厦';
+		$shop_address = $city.'市'.$address;
+		$shop_point = file_get_contents("https://api.map.baidu.com/geocoder/v2/?address='".$shop_address."&output=json&ak=E70324b6f5f4222eb1798c8db58a017b");
+		$shop_point = (array)json_decode($shop_point);
+		$shop_point['result'] = (array)$shop_point['result'];
+		$location = (array)$shop_point['result']['location'];
+
+		$longitude = $location['lng'];
+		$latitude = $location['lat'];
+		ecjia_front::$controller->assign('longitude', $longitude);
+		ecjia_front::$controller->assign('latitude', $latitude);
 		
-		
-		
-		
+		ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/location_finish'));
 		ecjia_front::$controller->assign_lang();
 		ecjia_front::$controller->display('franchisee_get_location.dwt');
 	}
+	
+	public static function location_finish() {
+		
+	}
+	 
    
 }
 
