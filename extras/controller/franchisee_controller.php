@@ -77,7 +77,8 @@ class franchisee_controller {
 	public static function store_msg() {
 	
 		ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/finish'));
-
+		
+		ecjia_front::$controller->assign_title('店铺入驻');
 		ecjia_front::$controller->assign_lang();
 		ecjia_front::$controller->display('franchisee_store_msg.dwt');
 	}
