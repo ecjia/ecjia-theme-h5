@@ -4,7 +4,8 @@
 ;(function(ecjia, $) {
 	ecjia.touch.franchisee = {
 		init : function(){
-			ecjia.touch.franchisee.buttom();
+			ecjia.touch.franchisee.validate_code();
+			ecjia.touch.franchisee.coordinate();
 			
 			$("form[name='theForm']").on('submit',function(e){e.preventDefault();return false;}).Validform({
 				tiptype:function(msg,o,cssctl){
@@ -22,9 +23,79 @@
 			});
 		},
 		
-		buttom : function () {
-			}
+		//商家入驻流程获取验证码
+		validate_code : function () {
+			var InterValObj; 	//timer变量，控制时间
+    		var count = 120; 	//间隔函数，1秒执行
+    		var curCount;		//当前剩余秒数
+    		
+			$(".settled-message").on('click', function (e) {
+				e.preventDefault();
+				var url = $(this).attr('data-url');
+				console.log(url);
+				var mobile = $("input[name='f_mobile']").val();
+				if (mobile.length == 11) {
+					url += '&mobile=' + mobile;
+					console.log(url);
+				} else {
+					alert('请输入正确的手机号');
+				}
+				
+				$.get(url, function(data){
+				    if (data.state == 'success') {
+					  　    curCount = count;
+					     $("#mobile").attr("readonly", "true");
+					     $("#get_code").attr("disabled", "true");
+					     $("#get_code").css("width", "7em");
+					     $("#get_code").css("right", "4%");
+					     $("#get_code").css("position", "absolute");
+					     $("#get_code").css("padding", "0");
+					     $("#get_code").css("margin", "0");
+					     $("#get_code").css("top", ".2em");
+					     $("#get_code").css("height", "2.2em");
+					     $("#get_code").css("line-height", "2.4em");
+					     $("#get_code").val("重新发送" + curCount + "(s)");
+					     $("#get_code").attr("class", "btn btn-org login-btn");
+					     InterValObj = window.setInterval(SetRemainTime, 10); //启动计时器，1秒执行一次
+				    }
+				    ecjia.touch.showmessage(data);
+			    });
+				//timer处理函数
+			    function SetRemainTime() {
+			        if (curCount == 0) {     
+			            window.clearInterval(InterValObj);		//停止计时器
+			            $("#mobile").removeAttr("readonly");	//启用按钮
+			            $("#get_code").removeAttr("disabled");	//启用按钮
+			            $("#get_code").val("重新发送");
+			            $("#get_code").attr("class", "btn btn-info login-btn");
+			        } else {
+			            curCount--;
+			            $("#get_code").attr("disabled", "true");
+			            $("#get_code").val("重新发送" + curCount + "(s)");
+			        }
+			    };
+			});
+		},
+		
+		//获取精准坐标
+		coordinate : function () {
+			$(".coordinate").on('click', function(e) {
+				e.preventDefault();
+				var f_city = $("input[name='f_city']").val();
+				var f_address = $("input[name='f_address']").val();
+				var url = $(this).attr("data-url");
+				
+				if (f_city != '') {
+					var url = url + '&city=' +f_city;
+				} ;
+				if (f_address != '') {
+					var url = url + '&address=' +f_address;
+				} ;
+				
+				location.href = url;
+			})
 		}
+	}
 })(ecjia, jQuery);
 
 //end

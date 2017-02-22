@@ -280,15 +280,24 @@ a.ecjia-color-green {
 }
 
 /*== 商家入驻开始 ==*/
-.ecjia-f-location{
-	text-align: center;
-	margin-top: 30px;
-	margin-bottom: 30px;
+.ecjia-address-list .form-group .settled-message {
+    position: absolute;
+    padding: 0!important;
+    right: 4%;
+    margin: 0;
+    top: .2em;
+    height: 2.2em!important;
+    width: 7em!important;
+    line-height: 2.4em;
 }
-.ecjia-f-location span{
-	font-size: 20px;
-	color: #666666;
-	
+
+.ecjia-address-list .coordinate {
+    color: #47AA4D;
+    border-bottom: 1px solid #47AA4D;
+    margin-right: 4%;
+    margin-bottom: 1.5em;
+    float: right;
+    position: relative;
 }
 
 /*== 商家入驻结束 ==*/

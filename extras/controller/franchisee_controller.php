@@ -52,9 +52,7 @@ defined('IN_ECJIA') or exit('No permission resources.');
 class franchisee_controller {
 
 	public static function add() {
-	
 		ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/insert'));
-
 		ecjia_front::$controller->assign_lang();
 		ecjia_front::$controller->display('franchisee_add.dwt');
 	}
@@ -70,14 +68,29 @@ class franchisee_controller {
 			return ecjia_front::$controller->showmessage('验证码不能为空', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 		}else{
 			return ecjia_front::$controller->showmessage('aaaa', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-			ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_VALIDATE)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
 		}
 	}
 
+	public static function validate_msg() {
+	    $mobile = !empty($_GET['mobile']) ? $_GET['mobile'] : '';
+	    if (!empty($mobile)) {
+	        $token = ecjia_touch_user::singleton()->getToken();
+	        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_VALIDATE)->data(array('token' => $token, 'type' => 'mobile', 'value' => $mobile))->send()->getBody();
+			$data = json_decode($data,true);
+			if ($data['status']['succeed'] == 1) {
+			    return ecjia_front::$controller->showmessage(__("短信已发送到手机".$mobile."，请注意查看"), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+			} else {
+			    return ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+			}
+	    }
+	    
+	}
+	
 	public static function store_msg() {
 	
 		ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/finish'));
-
+		
+		ecjia_front::$controller->assign_title('店铺入驻');
 		ecjia_front::$controller->assign_lang();
 		ecjia_front::$controller->display('franchisee_store_msg.dwt');
 	}
