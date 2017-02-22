@@ -25,14 +25,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group form-group-text">
 		<label class="input">
 			<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_category.png" width="30" height="30"></span>
-			<input class="picker-device" style="padding-left: 3.5em;" name="f_email" placeholder="{t}请选择店铺分类{/t}" type="email"  value=""  />
+			<input class="ecjia-franchisee-category" style="padding-left: 3.5em;" name="f_email" placeholder="{t}请选择店铺分类{/t}" type="email"  value=""  />
 		</label>
 	</div>
 	
 	<div class="form-group form-group-text">
 		<label class="input">
 			<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_type.png" width="30" height="30"></span>
-			<input style="padding-left: 3.5em;" name="f_mobile" placeholder="{t}请选择入驻类型 {/t}" type="tel" value=""  />
+			<input class="ecjia-franchisee-type" style="padding-left: 3.5em;" name="f_mobile" placeholder="{t}请选择入驻类型 {/t}" type="tel" value=""  />
 		</label>
 	</div>
 	

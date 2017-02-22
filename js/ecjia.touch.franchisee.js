@@ -94,7 +94,31 @@
 				
 				location.href = url;
 			})
-		}
+		},
+		
+		choices : function() {
+			var myApp = new Framework7();
+			var pickerDevice = myApp.picker({
+			    input: '.ecjia-franchisee-category',
+			    toolbarCloseText: '完成',
+			    cols: [
+			        {
+			        	textAlign: 'center',
+			            values: ['水果蔬菜', '肉禽蛋类', '酒水饮料', '休闲食品', '鲜花蛋糕']
+			        }
+			    ]
+			});
+			var pickerDevice = myApp.picker({
+			    input: '.ecjia-franchisee-type',
+			    toolbarCloseText: '完成',
+			    cols: [
+			        {
+			        	textAlign: 'center',
+			            values: ['个人入驻', '企业入驻']
+			        }
+			    ]
+			});
+		},
 	}
 })(ecjia, jQuery);
 
