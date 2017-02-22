@@ -28,7 +28,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.b2b2c.css">
 	<link rel="stylesheet" href="{$theme_url}css/ecjia_city.css">
 	<link rel="stylesheet" href="{$theme_url}css/ecjia_help.css">
-	<link rel="stylesheet" href="{$theme_url}css/ecjia_franchisee.css">
     <!-- 弹窗 -->
 	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.models.css">
 	<link rel="stylesheet" href="{$theme_url}dist/other/swiper.min.css">
