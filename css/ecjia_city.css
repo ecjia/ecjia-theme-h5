@@ -2699,9 +2699,9 @@ footer{
    	text-align: right;
    	padding-right: 1em;
 }
-.ecjia-user .ecjia-list.list-short li span.icon-url{
+.ecjia-user .ecjia-list.list-short li span.icon-long{
     float: right;
-    width: 50%;
+    width: 60%;
    	text-align: right;
    	margin-right: 1em;
 	overflow: hidden;
