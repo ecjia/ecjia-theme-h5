@@ -137,7 +137,7 @@ class touch_controller {
         }
         
         //下载推广是否开启
-        $config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->send();_dump($config,1);
+        $config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
         if ($config['wap_app_download_show'] && $config['wap_app_download_img']) {
             ecjia_front::$controller->assign('download_app_switch', 1);
             ecjia_front::$controller->assign('app_download_img', $config['wap_app_download_img']);
