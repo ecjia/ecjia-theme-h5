@@ -10,7 +10,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">ecjia.touch.address_from.init();</script>
-<script type="text/javascript">ecjia.touch.franchisee.choices();</script>
+<script type="text/javascript">ecjia.touch.franchisee.coordinate();</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -39,9 +39,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group form-group-text">
 		<label class="input">
 			<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_location.png" width="30" height="30"></span>
-			<input style="padding-left: 3.5em;" name="f_code" placeholder="{t}选择店铺所在地{/t}" type="text" value=""   />
+			<i class="iconfont  icon-jiantou-right"></i>
+			<input style="padding-left: 3.5em;" name="f_city" placeholder="{t}选择店铺所在地{/t}" type="text" value=""   />
+			<input style="padding-left: 3.5em;" name="f_address" placeholder="{t}输入详细地址{/t}" type="text" value=""   />
 		</label>
 	</div>
+	
+	<p class="coordinate" data-url="{url path='franchisee/index/get_loaction'}">获取精准坐标</p>
 	
 	<div class="ecjia-margin-t ecjia-margin-b">
 	    <input name="temp_key" type="hidden" value="{$temp_key}" />

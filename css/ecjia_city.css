@@ -291,6 +291,14 @@ a.ecjia-color-green {
     line-height: 2.4em;
 }
 
+.ecjia-address-list .coordinate {
+    color: #47AA4D;
+    border-bottom: 1px solid #47AA4D;
+    margin-right: 4%;
+    margin-bottom: 1.5em;
+    float: right;
+    position: relative;
+}
 
 /*== 商家入驻结束 ==*/
 

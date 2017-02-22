@@ -5,6 +5,7 @@
 	ecjia.touch.franchisee = {
 		init : function(){
 			ecjia.touch.franchisee.validate_code();
+			ecjia.touch.franchisee.coordinate();
 			
 			$("form[name='theForm']").on('submit',function(e){e.preventDefault();return false;}).Validform({
 				tiptype:function(msg,o,cssctl){
@@ -74,8 +75,27 @@
 			        }
 			    };
 			});
-			}
+		},
+		
+		//获取精准坐标
+		coordinate : function () {
+			$(".coordinate").on('click', function(e) {
+				e.preventDefault();
+				var f_city = $("input[name='f_city']").val();
+				var f_address = $("input[name='f_address']").val();
+				var url = $(this).attr("data-url");
+				
+				if (f_city != '') {
+					var url = url + '&city=' +f_city;
+				} ;
+				if (f_address != '') {
+					var url = url + '&address=' +f_address;
+				} ;
+				
+				location.href = url;
+			})
 		}
+	}
 })(ecjia, jQuery);
 
 //end
