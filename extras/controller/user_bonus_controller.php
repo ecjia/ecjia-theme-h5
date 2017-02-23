@@ -67,7 +67,7 @@ class user_bonus_controller {
         
         $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'bonus_type' => $status))->run();
         $bonus = is_ecjia_error($bonus) ? array() : $bonus;
-        ecjia_front::$controller->assign('bonus', $bonus['data']);
+        ecjia_front::$controller->assign('bonus', $bonus);
         
         $sayList = ecjia_front::$controller->fetch('user_bonus.dwt');
         $more = 0;
@@ -85,7 +85,7 @@ class user_bonus_controller {
         $status = 'is_used';
         $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'bonus_type' => $status))->run();
         $bonus = is_ecjia_error($bonus) ? array() : $bonus;
-        ecjia_front::$controller->assign('bonus', $bonus['data']);
+        ecjia_front::$controller->assign('bonus', $bonus);
 
         $sayList = ecjia_front::$controller->fetch('user_bonus.dwt');
         $more = 0;
@@ -103,7 +103,7 @@ class user_bonus_controller {
         $status = 'expired';
         $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'bonus_type' => $status))->run();
         $bonus = is_ecjia_error($bonus) ? array() : $bonus;
-        ecjia_front::$controller->assign('bonus', $bonus['data']);
+        ecjia_front::$controller->assign('bonus', $bonus);
         
         $sayList = ecjia_front::$controller->fetch('user_bonus.dwt');
         $more = 0;
@@ -148,7 +148,7 @@ class user_bonus_controller {
     	$invite_record = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_RECORD)->data($arr)->run();
     	$data = is_ecjia_error($invite_record) ? array() : $invite_record;
     	
-    	ecjia_front::$controller->assign('data', $data['data']);
+    	ecjia_front::$controller->assign('data', $data);
     	ecjia_front::$controller->assign('is_last', $data['paginated']['more']);
     	ecjia_front::$controller->assign('max_month', $max_month);
     	ecjia_front::$controller->assign_title('奖励明细');
@@ -168,8 +168,8 @@ class user_bonus_controller {
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_RECORD)->data($arr)->run();
         $data = is_ecjia_error($data) ? array() : $data;
         
-        if (!empty($data['data'])) {
-            ecjia_front::$controller->assign('data', $data['data']);
+        if (!empty($data)) {
+            ecjia_front::$controller->assign('data', $data);
             $sayList = ecjia_front::$controller->fetch('user_reward_detail.dwt');
         }
         $res = array();

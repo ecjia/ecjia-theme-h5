@@ -201,9 +201,9 @@ class user_address_controller {
         );
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_ADD)->data($params)->run();
         if (is_ecjia_error($rs)) {
-            return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON,array('pjaxurl' => ''));
+            return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
         } else {
-        	$address_id = $rs['data']['address_id'];
+        	$address_id = $rs['address_id'];
         }
         $url_address_list = RC_Uri::url('user/address/address_list');
         user_address_controller::update_temp_data('add', 1);

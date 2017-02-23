@@ -126,7 +126,7 @@ class user_privilege_controller {
         if(!empty($mobile)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_VALIDATE)->data(array('mobile' => $mobile))->run();
             $data = is_ecjia_error($data) ? array() : $data;
-            $verification = $data['data']['invite_code'];
+            $verification = $data['invite_code'];
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS,array('verification' => $verification));
         }
         ecjia_front::$controller->assign('title', '手机快速注册');
@@ -148,7 +148,7 @@ class user_privilege_controller {
             if (is_ecjia_error($data)) {
                 return false;
             }
-            if ($data['data']['registered'] == 1) {
+            if ($data['registered'] == 1) {
                 return ecjia_front::$controller->showmessage(__('该手机号已被注册，请更换其他手机号'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             } else {
                 return ecjia_front::$controller->showmessage(__('短信已发送到手机'.$mobile.'，请注意查看'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);

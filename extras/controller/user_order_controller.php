@@ -160,7 +160,7 @@ class user_order_controller {
             return false;
         }
         
-        ecjia_front::$controller->assign('order_list', $data['data']);
+        ecjia_front::$controller->assign('order_list', $data);
         ecjia_front::$controller->assign_lang();
         $sayList = ecjia_front::$controller->fetch('user_order_list.dwt');
         return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $data['paginated']['more'] ? 0 : 1));
