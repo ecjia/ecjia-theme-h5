@@ -316,11 +316,26 @@ a.ecjia-color-green {
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee!important;
 }
-.ecjia-address-list .franchisee label+label:before {
-    border-bottom: 1px solid black!important;
-    background-color: #eee;
-    /*width: 5em;*/
+.ecjia-address-list .franchisee label.input:before {
+    border-bottom: 1px solid #eee;
 }
+.ecjia-address-list .franchisee label.input:nth-child(2):before {
+    border-bottom: 0;
+}
+
+.ecjia-address-list .franchisee .input::before {
+    height: 1px;
+    content: '';
+    width: 90%;
+    border-bottom: 1px solid #eee;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: scaleY(0.5);
+    -webkit-transform: scaleY(0.5);
+    z-index: 10;
+}
+
 /*== 商家入驻结束 ==*/
 
 
