@@ -61,8 +61,9 @@ class location_controller {
         	ecjia_front::$controller->assign('login', 1);
         }
         $address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
-        ecjia_front::$controller->assign('address_list', $address_list);
-        
+        if (!is_ecjia_error($address_list)) {
+        	ecjia_front::$controller->assign('address_list', $address_list);
+        }
         $referer_url = !empty($_GET['referer_url']) ? $_GET['referer_url'] : '';
         if (!empty($referer_url)) {
         	ecjia_front::$controller->assign('referer_url', urlencode($referer_url));
@@ -101,14 +102,15 @@ class location_controller {
     
     //选择城市
     public static function select_city() {
-        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)
-        ->send()->getBody();
-        $rs = json_decode($rs,true);
-        if (! $rs['status']['succeed']) {
-            return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT,array('pjaxurl' => ''));
+        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->send()->getBody();
+        if (!is_ecjia_error($rs)) {
+        	$rs = json_decode($rs, true);
+        	if (!$rs['status']['succeed']) {
+        		return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
+        	}
+        	ecjia_front::$controller->assign('citylist', $rs['data']['recommend_city']);
         }
-        ecjia_front::$controller->assign('citylist', $rs['data']['recommend_city']);
-        
+
         $referer_url = !empty($_GET['referer_url']) ? $_GET['referer_url'] : '';
         if (!empty($referer_url)) {
         	ecjia_front::$controller->assign('referer_url', urlencode($referer_url));

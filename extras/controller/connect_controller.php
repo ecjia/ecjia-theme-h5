@@ -129,17 +129,16 @@ class connect_controller {
             ecjia_front::$controller->display('user_bind_signup.dwt');
         } else {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $params['name'], 'password' => $params['password'], 'email' => $params['email']))->send()->getBody();
-            $data = json_decode($data, true);
-            if ($data['status']['succeed'] != 1) {
-                return new ecjia_error($data['status']['error_code'], $data['status']['error_desc']);
+            if (!is_ecjia_error) {
+            	$data = json_decode($data, true);
+            	if ($data['status']['succeed'] != 1) {
+            		return new ecjia_error($data['status']['error_code'], $data['status']['error_desc']);
+            	}
+            	//登录
+            	ecjia_touch_user::singleton()->signin($params['name'], $params['password']);
+            	return $data['data']['session']['uid'];
             }
-            
-            //登录
-            ecjia_touch_user::singleton()->signin($params['name'], $params['password']);
-    
-            return $data['data']['session']['uid'];
         }
-    
     }
     
     public static function bind_signup_do() {
@@ -165,23 +164,27 @@ class connect_controller {
         }
     
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code))->send()->getBody();
-        $data = json_decode($data, true);
-        if ($data['status']['succeed'] != 1) {
-            return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        if (!is_ecjia_error($data)) {
+        	$data = json_decode($data, true);
+        	if ($data['status']['succeed'] != 1) {
+        		return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        	}
+        	if ($data['data']['registered'] == 1) {
+        		return ecjia_front::$controller->showmessage(__('该手机号已被注册，请更换其他手机号'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        	}
         }
-        if ($data['data']['registered'] == 1) {
-            return ecjia_front::$controller->showmessage(__('该手机号已被注册，请更换其他手机号'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-        }
+
     
         //注册
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => $password, 'invite_code' => $verification))->send()->getBody();
-        $data = json_decode($data,true);
-        if ($data['status']['succeed'] != 1) {
-            return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        if (!is_ecjia_error($data)) {
+        	$data = json_decode($data,true);
+        	if ($data['status']['succeed'] != 1) {
+        		return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        	}
+        	//绑定第三方
+        	$user_id = $data['data']['user']['id'];
         }
-    
-        //绑定第三方
-        $user_id = $data['data']['user']['id'];
     
         RC_Loader::load_app_class('connect_user', 'connect', false);
         $connect_user = new connect_user($connect_code, $open_id);
