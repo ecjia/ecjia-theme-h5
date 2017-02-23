@@ -101,12 +101,10 @@ class user_privilege_controller {
      * 验证登录
      */
     public static function signin() {
-//         $username = htmlspecialchars($_POST['username']);
-//         $password = htmlspecialchars($_POST['password']);
         $username = $_POST['username'] ? trim($_POST['username']) : '';
         $password = $_POST['password'] ? trim($_POST['password']) : '';
         $data = ecjia_touch_user::singleton()->signin($username, $password);
-        $user = ecjia_touch_user::singleton()->getUserinfo();
+//         $user = ecjia_touch_user::singleton()->getUserinfo();
         if (is_ecjia_error($data)) {
             $message = $data->get_error_message();
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('info' => $message));

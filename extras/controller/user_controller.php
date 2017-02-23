@@ -58,10 +58,13 @@ class user_controller {
         //网店信息
         $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
+        $shop = is_ecjia_error($shop) ? array() : $shop;
         $shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
+        $shop_config = is_ecjia_error($shop_config) ? array() : $shop_config;
         
         $token = ecjia_touch_user::singleton()->getToken();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+        $user = is_ecjia_error($user) ? array() : $user;
         $signin = ecjia_touch_user::singleton()->isSignin();
         if ($signin) {
             if ($user) {
@@ -114,6 +117,7 @@ class user_controller {
     	$name = $_GET['name'];
     	$token = ecjia_touch_user::singleton()->getToken();
     	$invite_user_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_USER)->data(array('token' => $token))->run();
+    	$invite_user_detail = is_ecjia_error($invite_user_detail) ? array() : $invite_user_detail;
 		
 		if (!empty($invite_user_detail['invite_explain'])) {
 			if (strpos($invite_user_detail['invite_explain'], '；')) {
