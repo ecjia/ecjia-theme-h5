@@ -8,6 +8,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 <!-- {block name="footer"} -->
+<script type="text/javascript">ecjia.touch.franchisee.location();</script>
 <style type="text/css">
 .ecjia{
 	height: 85%;
@@ -43,7 +44,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 <!-- {block name="main-content"} -->
 <div id="container"></div>
-<form name="theForm" action="{$form_action}" method="post">
 	<div class="ecjia-f-location">
 		<span>经度：</span>
 		<input name="longitude"  type="text"  readonly="readonly" />
@@ -53,7 +53,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	
  	<div class="ecjia-margin-t ecjia-margin-b">
-		<input class="btn btn-info nopjax" name="submit" type="submit" value="{t}保存{/t}"/>
+		<input class="btn btn-info nopjax" name="button" id="button" type="button" data-url="{url path='franchisee/index/store'}" value="{t}保存{/t}"/>
 	</div>
-</form>
 <!-- {/block} -->
