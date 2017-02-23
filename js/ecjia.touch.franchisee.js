@@ -6,6 +6,8 @@
 		init : function(){
 			ecjia.touch.franchisee.validate_code();
 			ecjia.touch.franchisee.coordinate();
+			ecjia.touch.franchisee.choices();
+			ecjia.touch.franchisee.carVendors_city();
 			
 			$("form[name='theForm']").on('submit',function(e){e.preventDefault();return false;}).Validform({
 				tiptype:function(msg,o,cssctl){
@@ -32,11 +34,9 @@
 			$(".settled-message").on('click', function (e) {
 				e.preventDefault();
 				var url = $(this).attr('data-url');
-				console.log(url);
 				var mobile = $("input[name='f_mobile']").val();
 				if (mobile.length == 11) {
 					url += '&mobile=' + mobile;
-					console.log(url);
 				} else {
 					alert('请输入正确的手机号');
 				}
@@ -95,14 +95,14 @@
 			})
 		},
 		
+		//店铺入驻选择分类、入驻类型、店铺所在地
 		choices : function() {
 			var category_list = [];
 			var category = eval('(' + $("input[name='category']").val() + ')')['data'];
 			
 			for (i=0;i < category.length; i++){
 				category_list.push(category[i]['name']);
-			}
-			
+			};
 			var myApp = new Framework7();
 			var pickerDevice = myApp.picker({
 			    input: '.ecjia-franchisee-category',
@@ -124,11 +124,22 @@
 			        }
 			    ]
 			});
+			
+			var province_list = [];
+			var province_array = [];
+			var province_id = [];
+			
+			var province = eval('(' + $("input[name='province']").val() + ')')['data']['regions'];
+			
+			for (i=0;i < province.length; i++){
+				var name = province[i]['name'];
+				var id = province[i]['id'];
+				province_list.push(name);
+				province_array.push({name:name, id:id});
+			};
 			var carVendors = {
-					shanghai : ['上海'],
-				    jiangsu : ['南京', '苏州', '常州', '徐州', '淮安'],
-				    zhejiang : ['杭州', '宁波', '温州', '绍兴']
-				};
+        			北京 : ['北京']
+        	};
 			var pickerDependent = myApp.picker({
 			    input: '.ecjia-franchisee-location',
 			    toolbarCloseText: '完成',
@@ -138,21 +149,47 @@
 			    cols: [
 			        {
 			            textAlign: 'left',
-			            values: ['shanghai', 'jiangsu', 'zhejiang'],
+			            values: province_list,
 			            onChange: function (picker, city) {
+			            	var city_list = ecjia.touch.franchisee.carVendors_city(city,  province_array);
+			            	console.log(city_list);
+			            	var carVendors = {
+			            			北京 : ['北京'],
+			            			安徽 : ecjia.touch.franchisee.carVendors_city(city,  province_array)
+			            	};
 			                if(picker.cols[1].replaceValues){
 			                    picker.cols[1].replaceValues(carVendors[city]);
 			                }
 			            }
 			        },
 			        {
-			            values: carVendors.jiangsu,
+			            values: carVendors.北京,
 			            width: 160,
 			        },
 			    ]
 			}); 
 		},
 		
+		carVendors_city : function(city, province_array) {
+			var city_list = [];
+			for (i = 0; i < province_array.length; i++){
+				if (province_array[i]['name'] == city) {
+					var url = $("input[name='city']").attr('data-url');
+					var info = {
+							'parent_id': province_array[i]['id']
+						};
+					$.post(url, info, function(data){
+						var city_name = eval('(' + data['message'] + ')')['data']['regions'];
+						for (j = 0; j < city_name.length; j++){
+							var name = city_name[j]['name'];
+							city_list.push(name);
+						};
+						return city_list;
+					});
+					break;
+				}
+			}
+		},
 		
 		location :function(){
 			$("#button").on('click', function(e) {
