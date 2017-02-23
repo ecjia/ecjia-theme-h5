@@ -96,11 +96,32 @@ class franchisee_controller {
 		ecjia_front::$controller->assign_lang();
 		ecjia_front::$controller->display('franchisee_store_msg.dwt');
 	}
-	
+
 	public static function finish() {
-		
+	    
 	}
 	
+	public static function progress() {
+	    $token = ecjia_touch_user::singleton()->getToken();
+	    $progress = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)
+	       ->data(array('token' => $token, 'mobile' => '15021298193', 'validate_code' => '868421'))->send()->getBody();
+	    $data = json_decode($progress,true);
+// 	    _dump($data, 1);
+	    $check_status = $data['data']['check_status'];
+	    ecjia_front::$controller->assign('check_status', $check_status);
+	    
+	    $info = $data['data']['merchant_info'];
+	    ecjia_front::$controller->assign('info', $info);
+		ecjia_front::$controller->assign_lang();
+		ecjia_front::$controller->display('franchisee_progress.dwt');
+		
+	}
+
+	public static function search() {
+	    ecjia_front::$controller->assign_lang();
+	    ecjia_front::$controller->display('franchisee_search.dwt');
+	
+	}
 
 	public static function get_location() {
 		$city = '上海';

@@ -148,7 +148,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
         <li>
-        	<a class="external" href="{url path=''}">
+        	<a class="external" href="{url path='franchisee/index/search'}">
         		<div class="icon-help-center"><img src="{$theme_url}/images/user_center/75x75_9.png"></div>
         		<span class="icon-name">店铺入驻查询</span>
         		<i class="iconfont  icon-jiantou-right"></i>
