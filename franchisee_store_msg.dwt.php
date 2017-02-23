@@ -40,7 +40,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<label class="input">
     		<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_location.png" width="30" height="30"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input name="f_city" placeholder="{t}选择店铺所在地{/t}" type="text" value=""   />
+    		<input class="ecjia-franchisee-location" name="f_city" placeholder="{t}选择店铺所在地{/t}" type="text" value=""   />
 		</label>
 		<label class="input">
     	   <input name="f_address" placeholder="{t}输入详细地址{/t}" type="text" value=""   />

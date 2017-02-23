@@ -118,6 +118,33 @@
 			        }
 			    ]
 			});
+			var carVendors = {
+					shanghai : ['上海'],
+				    jiangsu : ['南京', '苏州', '常州', '徐州', '淮安'],
+				    zhejiang : ['杭州', '宁波', '温州', '绍兴']
+				};
+			var pickerDependent = myApp.picker({
+			    input: '.ecjia-franchisee-location',
+			    toolbarCloseText: '完成',
+			    formatValue: function (picker, values) {
+			        return values[1];
+			    },
+			    cols: [
+			        {
+			            textAlign: 'left',
+			            values: ['shanghai', 'jiangsu', 'zhejiang'],
+			            onChange: function (picker, city) {
+			                if(picker.cols[1].replaceValues){
+			                    picker.cols[1].replaceValues(carVendors[city]);
+			                }
+			            }
+			        },
+			        {
+			            values: carVendors.jiangsu,
+			            width: 160,
+			        },
+			    ]
+			}); 
 		},
 		
 		
