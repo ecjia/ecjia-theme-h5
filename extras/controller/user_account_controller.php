@@ -142,11 +142,10 @@ class user_account_controller {
     	}
     	
     	if (!empty($amount)) {
-    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('amount' => $amount, 'payment_id' => $payment_id, 'account_id' => $account_id))->send()->getBody();
+    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('amount' => $amount, 'payment_id' => $payment_id, 'account_id' => $account_id))->run();
     		if (! is_ecjia_error($data)) {
-    		    $data = json_decode($data, true);
-    		    $data_payment_id = $data['data']['payment']['payment_id'];
-    		    $data_account_id = $data['data']['payment']['account_id'];
+    		    $data_payment_id = $data['payment']['payment_id'];
+    		    $data_account_id = $data['payment']['account_id'];
     		    
     		    $payment_method = RC_Loader::load_app_class('payment_method', 'payment');
     		    $payment_info = $payment_method->payment_info_by_id($data_payment_id);
@@ -167,14 +166,14 @@ class user_account_controller {
     		        $order['order_amount']   = $order['surplus_amount'] + $payment_info['pay_fee'];
     		         
     		        if (!empty($order['log_id'])) {
-    		        				//如果支付费用改变了，也要相应的更改pay_log表的order_amount
-    		        				$pay_db = RC_Model::model('orders/pay_log_model');
-    		        				$order_amount = $pay_db-> where(array('log_id' => $order['log_id']))->get_field('order_amount');
-    		        				if ($order_amount <> $order['order_amount']) {
-    		        				    $pay_db->where(array('log_id' => $order['log_id']))->update(array('order_amount' => $order['order_amount']));
-    		        				}
+        				//如果支付费用改变了，也要相应的更改pay_log表的order_amount
+        				$pay_db = RC_Model::model('orders/pay_log_model');
+        				$order_amount = $pay_db-> where(array('log_id' => $order['log_id']))->get_field('order_amount');
+        				if ($order_amount <> $order['order_amount']) {
+        				    $pay_db->where(array('log_id' => $order['log_id']))->update(array('order_amount' => $order['order_amount']));
+        				}
     		        } else {
-    		        				$order['log_id'] = $payment_method->insert_pay_log($data_account_id, $order['order_amount'], PAY_SURPLUS, 0);
+        				$order['log_id'] = $payment_method->insert_pay_log($data_account_id, $order['order_amount'], PAY_SURPLUS, 0);
     		        }
     		        $order['order_type'] = 'user_account';
     		        $handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
@@ -184,11 +183,12 @@ class user_account_controller {
     		         
     		        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $rs_pay['pay_online']));
     		    } else {
-    		        $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $data_account_id, 'payment_id' => $data_payment_id))->send()->getBody();
+    		        $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $data_account_id, 'payment_id' => $data_payment_id))->run();
     		        if (! is_ecjia_error($pay)) {
-    		            $pay = json_decode($pay,true);
-    		            $pay_online = $pay['data']['payment']['pay_online'];
+    		            $pay_online = $pay['payment']['pay_online'];
     		            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pay_online));
+    		        } else {
+    		            return ecjia_front::$controller->showmessage($pay->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		        }
     		    }
     		}
@@ -249,20 +249,19 @@ class user_account_controller {
         $type = '';
     	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
     	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'type' => $type))->send()->getBody();
+    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'type' => $type))->run();
     	if (is_ecjia_error($data)) {
     	    return false;
     	}
-    	$data = json_decode($data,true);
     	$now_mon =  substr(date('Y-m-d H:i:s',time()),5,2);
     	$now_day =  substr(date('Y-m-d H:i:s',time()),0,10);
     	$time = '';
-    	foreach ($data['data'] as $key => $val) {
+    	foreach ($data as $key => $val) {
     	    if ($time != substr($val['add_time'],5,2)) {
     	        $time = substr($val['add_time'],5,2);
     	        $day = substr($val['add_time'],8,2);
     	    }
-    	    $arr[$time][$key] = $data['data'][$key];
+    	    $arr[$time][$key] = $data[$key];
     	    $day = substr($val['add_time'],0,10);
     	    if ($day == $now_day) {
     	        $arr[$time][$key]['add_time'] = '今天'.substr($val['add_time'],11,5);
@@ -296,20 +295,19 @@ class user_account_controller {
         $type = 'raply';
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'type' => $type))->send()->getBody();
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'type' => $type))->run();
         if (is_ecjia_error($data)) {
             return false;
         }
-        $data = json_decode($data,true);
         $now_mon =  substr(date('Y-m-d H:i:s',time()),5,2);
         $now_day =  substr(date('Y-m-d H:i:s',time()),0,10);
         $time = '';
-        foreach ($data['data'] as $key => $val) {
+        foreach ($data as $key => $val) {
             if ($time != substr($val['add_time'],5,2)) {
                 $time = substr($val['add_time'],5,2);
                 $day = substr($val['add_time'],8,2);
             }
-            $arr[$time][$key] = $data['data'][$key];
+            $arr[$time][$key] = $data[$key];
             $day = substr($val['add_time'],0,10);
             if ($day == $now_day) {
                 $arr[$time][$key]['add_time'] = '今天'.substr($val['add_time'],11,5);
@@ -343,20 +341,19 @@ class user_account_controller {
         $type = 'deposit';
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'type' => $type))->send()->getBody();
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'type' => $type))->run();
         if (is_ecjia_error($data)) {
             return false;
         }
-        $data = json_decode($data,true);
         $now_mon =  substr(date('Y-m-d H:i:s',time()),5,2);
         $now_day =  substr(date('Y-m-d H:i:s',time()),0,10);
         $time = '';
-        foreach ($data['data'] as $key => $val) {
+        foreach ($data as $key => $val) {
             if ($time != substr($val['add_time'],5,2)) {
                 $time = substr($val['add_time'],5,2);
                 $day = substr($val['add_time'],8,2);
             }
-            $arr[$time][$key] = $data['data'][$key];
+            $arr[$time][$key] = $data[$key];
             $day = substr($val['add_time'],0,10);
             if ($day == $now_day) {
                 $arr[$time][$key]['add_time'] = '今天'.substr($val['add_time'],11,5);
@@ -443,15 +440,14 @@ class user_account_controller {
         $submit = !empty($_POST['submit']) ? $_POST['submit'] : '';
         $payment_id = !empty($_POST['payment_id']) ? $_POST['payment_id'] : '';
         if ($submit == '取消') {
-            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_CANCEL)->data(array('account_id' => $account_id))->send()->getBody();
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_CANCEL)->data(array('account_id' => $account_id))->run();
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('user/account/record'), 'msg' => '取消该交易记录'));
         } elseif ($submit == '充值') {
-            $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $account_id, 'payment_id' => $payment_id))->send()->getBody();
+            $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $account_id, 'payment_id' => $payment_id))->run();
             if (is_ecjia_error($pay)) {
                 return false;
             }
-            $pay = json_decode($pay,true);
-            $pay_online = $pay['data']['payment']['pay_online'];
+            $pay_online = $pay['payment']['pay_online'];
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pay_online' => $pay_online));
         }
     }
