@@ -28,6 +28,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_category.png" width="30" height="30"></span>
 			<i class="iconfont  icon-jiantou-right"></i>
 			<input class="ecjia-franchisee-category" style="padding-left: 3.5em;" name="f_email" placeholder="{t}请选择店铺分类{/t}" type="email"  value=""  />
+		    <input name="category" type="hidden" value={$category} />
 		</label>
 		<label class="input">
 			<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_type.png" width="30" height="30"></span>
@@ -51,7 +52,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	
 	<div class="ecjia-margin-t ecjia-margin-b">
 	    <input name="temp_key" type="hidden" value="{$temp_key}" />
-		<input class="btn btn-info nopjax" name="submit" type="submit" value="{t}下一步{/t}"/>
+		<input class="btn btn-info nopjax" name="submit" type="submit" value="{t}提交{/t}"/>
 	</div>
 	
 </form>

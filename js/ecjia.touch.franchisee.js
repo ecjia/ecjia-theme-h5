@@ -77,7 +77,7 @@
 			});
 		},
 		
-		//获取精准坐标
+		//传参到获取精准坐标页
 		coordinate : function () {
 			$(".coordinate").on('click', function(e) {
 				e.preventDefault();
@@ -91,12 +91,18 @@
 				if (f_address != '') {
 					var url = url + '&address=' +f_address;
 				} ;
-				
 				location.href = url;
 			})
 		},
 		
 		choices : function() {
+			var category_list = [];
+			var category = eval('(' + $("input[name='category']").val() + ')')['data'];
+			
+			for (i=0;i < category.length; i++){
+				category_list.push(category[i]['name']);
+			}
+			
 			var myApp = new Framework7();
 			var pickerDevice = myApp.picker({
 			    input: '.ecjia-franchisee-category',
@@ -104,7 +110,7 @@
 			    cols: [
 			        {
 			        	textAlign: 'center',
-			            values: ['水果蔬菜', '肉禽蛋类', '酒水饮料', '休闲食品', '鲜花蛋糕']
+			            values: category_list
 			        }
 			    ]
 			});

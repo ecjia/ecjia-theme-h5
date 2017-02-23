@@ -67,7 +67,7 @@ class franchisee_controller {
 		}else if (empty($_POST['f_code'])) {
 			return ecjia_front::$controller->showmessage('验证码不能为空', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 		}else{
-			return ecjia_front::$controller->showmessage('aaaa', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+// 			return ecjia_front::$controller->showmessage('aaaa', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 		}
 	}
 
@@ -87,9 +87,11 @@ class franchisee_controller {
 	}
 	
 	public static function store_msg() {
-	
-		ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/finish'));
+	    $token = ecjia_touch_user::singleton()->getToken();
+	    $category = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_CATEGORY)->data(array('token' => $token))->send()->getBody();
 		
+	    ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/finish'));
+		ecjia_front::$controller->assign('category', $category);
 		ecjia_front::$controller->assign_title('店铺入驻');
 		ecjia_front::$controller->assign_lang();
 		ecjia_front::$controller->display('franchisee_store_msg.dwt');
