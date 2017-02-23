@@ -166,8 +166,9 @@ class touch_controller {
 			'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
         );
 
-        $arr = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($paramater)->send()->getBody();
-        if (!is_ecjia_error($arr)) {
+        $response = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($paramater)->send();
+        if (!is_ecjia_error($response)) {
+        	$arr = $response->getBody();
         	$list = json_decode($arr, true);
         	
         	$data = !empty($list['data']) ? $list['data'] : array();

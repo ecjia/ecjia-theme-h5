@@ -104,8 +104,9 @@ class merchant_controller {
 				'pagination' 	=> array('count' => $limit, 'page' => $page),
 				'seller_id'		=> $store_id
 			);
-			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_SUGGESTLIST)->data($parameter)->send()->getBody();
-			if (!is_ecjia_error($data)) {
+			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_SUGGESTLIST)->data($parameter)->send();
+			if (!is_ecjia_error($response)) {
+				$data = $response->getBody();
 				$data = json_decode($data, true);
 				$goods_num = $data['paginated']['count'];
 				$goods_list = $data['data'];
@@ -118,8 +119,9 @@ class merchant_controller {
 				'seller_id'		=> $store_id
 			);
 			 
-			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_LIST)->data($arr)->send()->getBody();
-			if (!is_ecjia_error($data)) {
+			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_LIST)->data($arr)->send();
+			if (!is_ecjia_error($response)) {
+				$data = $response->getBody();
 				$data = json_decode($data, true);
 				$goods_num = $data['paginated']['count'];
 				$goods_list = $data['data'];
@@ -271,8 +273,9 @@ class merchant_controller {
 				'pagination' 	=> array('count' => $limit, 'page' => $page),
 				'seller_id'		=> $store_id
 			);
-			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_SUGGESTLIST)->data($parameter)->send()->getBody();
-			if (!is_ecjia_error($data)) {
+			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_SUGGESTLIST)->data($parameter)->send();
+			if (!is_ecjia_error($response)) {
+				$data = $response->getBody();
 				$data = json_decode($data, true);
 				$goods_num = $data['paginated']['count'];
 				$goods_list = $data['data'];
@@ -284,8 +287,9 @@ class merchant_controller {
 				'pagination' 	=> array('count' => $limit, 'page' => $page),
 				'seller_id'		=> $store_id
 			);
-			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_LIST)->data($arr)->send()->getBody();
-			if (!is_ecjia_error($data)) {
+			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_LIST)->data($arr)->send();
+			if (!is_ecjia_error($response)) {
+				$data = $response->getBody();
 				$data = json_decode($data, true);
 				$goods_num = $data['paginated']['count'];
 				$goods_list = $data['data'];

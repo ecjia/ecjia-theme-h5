@@ -102,14 +102,13 @@ class location_controller {
     
     //选择城市
     public static function select_city() {
-        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->send()->getBody();
-        if (!is_ecjia_error($rs)) {
-        	$rs = json_decode($rs, true);
-        	if (!$rs['status']['succeed']) {
-        		return ecjia_front::$controller->showmessage($rs['status']['error_desc'], ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
-        	}
-        	ecjia_front::$controller->assign('citylist', $rs['data']['recommend_city']);
+        $response = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->send();
+        if (is_ecjia_error($response)) {
+        	return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
         }
+        $rs = $response->getBody();
+        $rs = json_decode($rs, true);
+        ecjia_front::$controller->assign('citylist', $rs['data']['recommend_city']);
 
         $referer_url = !empty($_GET['referer_url']) ? $_GET['referer_url'] : '';
         if (!empty($referer_url)) {
