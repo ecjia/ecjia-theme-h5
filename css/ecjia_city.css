@@ -516,6 +516,16 @@ a.ecjia-color-green {
 	margin-bottom:30px;
 }
 
+.ecjia-f-location span{
+    margin-left: 1.9em;
+    float: left;
+}
+
+.ecjia-f-location input{
+    float: left;
+    width: 9em;
+}
+
 .ecjia-address-list .franchisee label input {
     padding-left: 3.5em!important;
 }
