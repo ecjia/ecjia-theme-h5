@@ -556,7 +556,52 @@ a.ecjia-color-green {
     -webkit-transform: scaleY(0.5);
     z-index: 10;
 }
-
+.ecjia-address-list .franchisee-process-hint {
+	position: relative;
+	text-align: center;
+    height: 13em;
+}
+.ecjia-address-list .franchisee-process-hint img {
+	margin: 1em 0;
+}
+.ecjia-address-list .franchisee-process-hint p {
+	font-size: 22px;
+	font-family: '黑体'
+}
+.ecjia-address-list .franchisee-progress {
+	text-align: center;
+	background: #FFF;
+	height: 12em;
+}
+.ecjia-address-list .franchisee-progress p{
+	padding: .5em 0 0 0;
+	color: #45a46c;
+	font-size: 20px;
+	font-family: '黑体';
+}
+.ecjia-address-list .franchisee-progress hr {
+	width: 90%;
+    border-top: 1px solid #eee;
+}
+.ecjia-address-list .franchisee-prompt {
+	padding: 1em;
+	height: 6em;
+}
+.ecjia-address-list .franchisee-prompt .warm-prompt {
+	font-size: 18px;
+	height: 2em;
+	width: 2em;
+}
+.ecjia-address-list .franchisee-info {
+	background: #FFF;
+}
+.ecjia-address-list .franchisee-info ul p {
+	height: 3em;
+	padding: 1em;
+}
+.ecjia-address-list .franchisee-info .fran-info-color {
+	color: #9F9F9F;
+}
 /*== 商家入驻结束 ==*/
 
 
