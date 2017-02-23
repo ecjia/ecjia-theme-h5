@@ -182,7 +182,7 @@ class merchant_controller {
 			}
 		}
 		
-		if (ecjia_touch_user::singleton()->isSignin()) {
+		if (ecjia_touch_user::singleton()->isSignin() && !is_ecjia_error($cart_list)) {
 			ecjia_front::$controller->assign('cart_list', $cart_list['cart_list'][0]['goods_list']);
 			ecjia_front::$controller->assign('count', $cart_list['cart_list'][0]['total']);
 			ecjia_front::$controller->assign('real_count', $cart_list['total']);
