@@ -602,6 +602,11 @@ a.ecjia-color-green {
 .ecjia-address-list .franchisee-info .fran-info-color {
 	color: #9F9F9F;
 }
+.ecjia-address-list .franchisee-prompt .prompt-info {
+    display: block;
+    margin-left: 90px;
+    margin-top: -6%;
+}
 /*== 商家入驻结束 ==*/
 
 

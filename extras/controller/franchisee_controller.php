@@ -109,27 +109,36 @@ class franchisee_controller {
 	public static function finish() {
 	    
 	}
+
+	public static function search() {
+	    ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/progress'));
+	    ecjia_front::$controller->assign_lang();
+	    ecjia_front::$controller->display('franchisee_search.dwt');
+	}
 	
 	public static function progress() {
-	    $token = ecjia_touch_user::singleton()->getToken();
-	    $progress = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)
-	       ->data(array('token' => $token, 'mobile' => '15021298193', 'validate_code' => '868421'))->send()->getBody();
-	    $data = json_decode($progress,true);
-// 	    _dump($data, 1);
-	    $check_status = $data['data']['check_status'];
-	    ecjia_front::$controller->assign('check_status', $check_status);
+	    if(empty($_POST['f_mobile'])) {
+	        return ecjia_front::$controller->showmessage('请输入手机号码', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }else if (empty($_POST['f_code'])) {
+	        return ecjia_front::$controller->showmessage('验证码不能为空', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }else{
+	        // 			return ecjia_front::$controller->showmessage('aaaa', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
 	    
-	    $info = $data['data']['merchant_info'];
+	    $mobile        = !empty($_POST['f_mobile']) ? $_POST['f_mobile'] : '';
+	    $code          = !empty($_POST['f_code']) ? trim($_POST['f_code']) : '';
+	    $token         = ecjia_touch_user::singleton()->getToken();
+	    $progress      = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data(array('token' => $token, 'mobile' => $mobile, 'validate_code' => $code))->send()->getBody();
+	    $data          = json_decode($progress,true);
+	    
+	    $check_status  = $data['data']['check_status'];
+	    $info          = $data['data']['merchant_info'];
+	    
+	    ecjia_front::$controller->assign('check_status', $check_status);
 	    ecjia_front::$controller->assign('info', $info);
 		ecjia_front::$controller->assign_lang();
 		ecjia_front::$controller->display('franchisee_progress.dwt');
 		
-	}
-
-	public static function search() {
-	    ecjia_front::$controller->assign_lang();
-	    ecjia_front::$controller->display('franchisee_search.dwt');
-	
 	}
 
 	public static function get_location() {

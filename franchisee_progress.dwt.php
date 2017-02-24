@@ -31,7 +31,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
     <div class="franchisee-prompt">
         <span class="warm-prompt">温馨提示：</span>
-        <span>
+        <span class="prompt-info">
             {if $check_status=0}
                                                     您的申请已提交成功，我们将尽快为您处理，感谢您对我们的支持！
             {elseif $check_status=2}
