@@ -149,9 +149,10 @@ class user_controller {
     	 
     	$uuid = platform_account::getCurrentUUID('wechat');
     	$wechat = wechat_method::wechat_instance($uuid);
-    	
-    	$config = $wechat->wxconfig($url);
-    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('data' => $config));
+		if (!empty($wechat)) {
+			$config = $wechat->wxconfig($url);
+			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('data' => $config));
+		}
     }
 }
 
