@@ -114,7 +114,7 @@ class user_controller {
      * 推广页面
      */
     public static function spread() {
-    	$name = $_GET['name'];
+    	$name = trim($_GET['name']);
     	$token = ecjia_touch_user::singleton()->getToken();
     	$invite_user_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_USER)->data(array('token' => $token))->run();
     	$invite_user_detail = is_ecjia_error($invite_user_detail) ? array() : $invite_user_detail;
