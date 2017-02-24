@@ -296,11 +296,12 @@ RC_Hook::add_action('connect_callback_user_signin', function($userid) {
 ecjia_open::macro('goods_seller_list', function($querys) {
     return RC_Uri::url('goods/category/store_list', array('cid' => $querys['category_id']));
 });
-
+ecjia_open::macro('goods_list', function($querys) {
+    return RC_Uri::url('goods/category/init', array('cid' => $querys['category_id']));
+});
 ecjia_open::macro('goods_detail', function($querys) {
 	return RC_Uri::url('goods/index/show', array('goods_id' => $querys['goods_id']));
 });
-	
 ecjia_open::macro('seller', function($querys) {
 	return RC_Uri::url('goods/category/seller_list', array('cid' => $querys['category_id']));
 });
