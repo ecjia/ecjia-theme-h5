@@ -241,7 +241,7 @@
             		var myApp = new Framework7();
             		
             		$('.la-ball-atom').remove();
-            		if (data.referer_url) {
+            		if (data.referer_url || data.message == 'Invalid session') {
             			$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});//禁用滚动条
                     	//禁用滚动条
                     	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){

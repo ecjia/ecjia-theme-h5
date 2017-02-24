@@ -59,7 +59,7 @@ class user_privilege_controller {
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
         $signin = ecjia_touch_user::singleton()->isSignin();
         if ($signin) {
-            if (! is_ecjia_error($data)) {
+            if (!is_ecjia_error($data)) {
                ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
             } else {
                 ecjia_touch_user::singleton()->signout();
@@ -93,7 +93,7 @@ class user_privilege_controller {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNOUT)->run();
             $back_act = RC_Uri::url('user/privilege/login');
             ecjia_touch_user::singleton()->signout();
-            return ecjia_front::$controller->showmessage('',ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('logout_url' => $back_act));
+            return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('logout_url' => $back_act));
         }
     }
     

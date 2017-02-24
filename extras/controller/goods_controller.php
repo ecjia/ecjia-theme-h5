@@ -87,7 +87,7 @@ class goods_controller {
 	    );
 	    /*商品基本信息*/
 	    $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($par)->run();
-
+	    
 	    if (is_ecjia_error($goods_info)) {
 	    	ecjia_front::$controller->assign('no_goods_info', 1);
 	    } else {
@@ -209,9 +209,9 @@ class goods_controller {
 			'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
         );
         
-        $arr = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($paramater)->send()->getBody();
-        
-        if (!is_ecjia_error($arr)) {
+        $response = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($paramater)->send();
+        if (!is_ecjia_error($response)) {
+        	$arr = $response->getBody();
         	$list = json_decode($arr, true);
         	
         	$goods_list = !empty($list['data']) ? $list['data'] : array();
@@ -264,8 +264,9 @@ class goods_controller {
     			$arr['filter']['keywords'] = $keywords;
     			$arr['seller_id'] = $store_id;
     			
-    			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_LIST)->data($arr)->send()->getBody();
-    			if (!is_ecjia_error($data)) {
+    			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_LIST)->data($arr)->send();
+    			if (!is_ecjia_error($response)) {
+    				$data = $response->getBody();
     				$data = json_decode($data, true);
     				if ($data['status']['succeed'] == 1) {
     					$arr_list = $data['data'];
@@ -345,8 +346,9 @@ class goods_controller {
     		} else {
     			$arr['keywords'] = $keywords;
     				
-    			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($arr)->send()->getBody();
-    			if (!is_ecjia_error($data)) {
+    			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($arr)->send();
+    			if (!is_ecjia_error($response)) {
+    				$data = $response->getBody();
     				$data = json_decode($data, true);
     				$arr_list = $data['data'];
     				if ($type == 'ajax_get') {
@@ -362,8 +364,9 @@ class goods_controller {
     		ecjia_front::$controller->assign('keywords', $keywords);
     	} else {
     		$arr['category_id'] = $cid;
-    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SELLER_LIST)->data($arr)->send()->getBody();
-    		if (!is_ecjia_error($data)) {
+    		$response = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SELLER_LIST)->data($arr)->send();
+    		if (!is_ecjia_error($response)) {
+    			$data = $response->getBody();
     			$data = json_decode($data, true);
     			$arr_list = $data['data'];
     			
@@ -409,8 +412,9 @@ class goods_controller {
     		);
     		$arr['category_id'] = $cid;
     		
-    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($arr)->send()->getBody();
-    		if (!is_ecjia_error($data)) {
+    		$response = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($arr)->send();
+    		if (!is_ecjia_error($response)) {
+    			$data = $response->getBody();
     			$data = json_decode($data, true);
     			 
     			$arr_list = array();

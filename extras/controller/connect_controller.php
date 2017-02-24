@@ -128,8 +128,9 @@ class connect_controller {
             ecjia_front::$controller->assign_lang();
             ecjia_front::$controller->display('user_bind_signup.dwt');
         } else {
-            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $params['name'], 'password' => $params['password'], 'email' => $params['email']))->send()->getBody();
-            if (!is_ecjia_error) {
+            $response = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $params['name'], 'password' => $params['password'], 'email' => $params['email']))->send();
+            if (!is_ecjia_error($response)) {
+            	$data = $response->getBody();
             	$data = json_decode($data, true);
             	if ($data['status']['succeed'] != 1) {
             		return new ecjia_error($data['status']['error_code'], $data['status']['error_desc']);
@@ -163,8 +164,9 @@ class connect_controller {
             return ecjia_front::$controller->showmessage('邀请码格式不正确', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
     
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code))->send()->getBody();
-        if (!is_ecjia_error($data)) {
+        $response = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code))->send();
+        if (!is_ecjia_error($response)) {
+        	$data = $response->getBody();
         	$data = json_decode($data, true);
         	if ($data['status']['succeed'] != 1) {
         		return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -176,8 +178,9 @@ class connect_controller {
 
     
         //注册
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => $password, 'invite_code' => $verification))->send()->getBody();
-        if (!is_ecjia_error($data)) {
+        $response = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => $password, 'invite_code' => $verification))->send();
+        if (!is_ecjia_error($response)) {
+        	$data = $response->getBody();
         	$data = json_decode($data,true);
         	if ($data['status']['succeed'] != 1) {
         		return ecjia_front::$controller->showmessage($data['status']['error_desc'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
