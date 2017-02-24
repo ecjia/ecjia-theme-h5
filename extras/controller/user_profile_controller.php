@@ -58,15 +58,16 @@ class user_profile_controller {
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
         $user_img_login = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         $user_img_logout = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-out2x.png';
-        if (!empty($user) && ! is_ecjia_error($user)) {
+        if (!empty($user) && !is_ecjia_error($user)) {
             if (!empty($user['avatar_img'])) {
                 $user_img_login = $user['avatar_img'];
             }
+            ecjia_front::$controller->assign('user', $user);
             ecjia_front::$controller->assign('user_img', $user_img_login);
         } else {
             ecjia_front::$controller->assign('user_img', $user_img_logout);
         }
-        ecjia_front::$controller->assign('user', $user);
+        
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign_title('个人资料');
         ecjia_front::$controller->display('user_profile.dwt');
