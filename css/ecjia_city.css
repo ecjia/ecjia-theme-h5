@@ -2286,6 +2286,7 @@ footer{
 	display: table;
 	font-weight: normal;
 	line-height: normal;
+    position: relative;
 }
 
 .ecjia .ecjia-select .input{
