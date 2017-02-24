@@ -226,6 +226,7 @@ class user_address_controller {
         	$pjax_url = RC_Uri::url('user/address/address_list');
         }
         unset($_SESSION['referer_url']);
+        unset($_SESSION['address']);
         return ecjia_front::$controller->showmessage('添加地址成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => $pjax_url));
         
     }
@@ -300,6 +301,7 @@ class user_address_controller {
         $temp_data = user_address_controller::save_temp_data(0, 'edit_'.$_POST['address_id'], 1);
         
         $url_address_list = RC_Uri::url('user/address/address_list');
+        unset($_SESSION['address']);
         return ecjia_front::$controller->showmessage('编辑地址成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON,array('pjaxurl' => $url_address_list));
     }
 
