@@ -114,12 +114,6 @@ class user_controller {
      * 推广页面
      */
     public static function spread() {
-        
-        //判断开关
-        $shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
-        if (!is_ecjia_error($shop_config) && $shop_config['affiliate_closed'] == 0) {
-            return ecjia_front::$controller->showmessage('推广功能暂时关闭', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
-        }
     	$name = trim($_GET['name']);
     	$token = ecjia_touch_user::singleton()->getToken();
     	$invite_user_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_USER)->data(array('token' => $token))->run();
