@@ -111,6 +111,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
 		</li>
+		{if $shop_config.affiliate_closed}
        	<li>
         	<a class="nopjax external" href="{url path='user/index/spread'}&name={$user.name}">
         		<div class="icon-expand"><img src="{$theme_url}/images/user_center/expand.png"></div>
@@ -118,6 +119,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
+        {/if}
     </ul>
 
     <ul class="ecjia-list list-short">
