@@ -54,6 +54,7 @@ class franchisee_controller {
 	public static function add() {
 		ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/insert'));
 		ecjia_front::$controller->assign_lang();
+		ecjia_front::$controller->assign_title('店铺入驻');
 		ecjia_front::$controller->display('franchisee_add.dwt');
 	}
 
@@ -113,6 +114,7 @@ class franchisee_controller {
 	public static function search() {
 	    ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/progress'));
 	    ecjia_front::$controller->assign_lang();
+	    ecjia_front::$controller->assign_title('进度查询');
 	    ecjia_front::$controller->display('franchisee_search.dwt');
 	}
 	
@@ -130,13 +132,14 @@ class franchisee_controller {
 	    $token         = ecjia_touch_user::singleton()->getToken();
 	    $progress      = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data(array('token' => $token, 'mobile' => $mobile, 'validate_code' => $code))->send()->getBody();
 	    $data          = json_decode($progress,true);
-	    
+
 	    $check_status  = $data['data']['check_status'];
 	    $info          = $data['data']['merchant_info'];
 	    
 	    ecjia_front::$controller->assign('check_status', $check_status);
 	    ecjia_front::$controller->assign('info', $info);
 		ecjia_front::$controller->assign_lang();
+		ecjia_front::$controller->assign_title('申请进度');
 		ecjia_front::$controller->display('franchisee_progress.dwt');
 		
 	}
@@ -156,6 +159,7 @@ class franchisee_controller {
 		ecjia_front::$controller->assign('latitude', $latitude);
 		
 		ecjia_front::$controller->assign_lang();
+		ecjia_front::$controller->assign_title('店铺精确位置');
 		ecjia_front::$controller->display('franchisee_get_location.dwt');
 	}
 }

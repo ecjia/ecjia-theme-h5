@@ -18,6 +18,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <p>
         {if $check_status=0}
                                     亲~您的申请已提交成功！
+        {elseif $check_status=1}
+                                    您的申请正在审核！
         {elseif $check_status=2}
                                     您的申请审核已通过！
         {elseif $check_status=3}
@@ -26,16 +28,33 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </p>
     </div>
     <div class="franchisee-progress">
-        <p>申请进度</p>
-        <hr />
+        <p class="pro-b">申请进度</p>
+        <hr /><br />
+        <div class="progress-img">
+        {if $check_status=0}
+            <img src="{$theme_url}/images/user_center/f_progress0.png"> 
+            <p><span class="ecjiaf-fl left10">审核已提交</span><span class="gfont">审核中</span><span class="ecjiaf-fr right10 gfont">审核完成</span></p>
+        {elseif $check_status=1}
+            <img src="{$theme_url}/images/user_center/f_progress1.png">
+            <p><span class="ecjiaf-fl left10">审核已提交</span><span>审核中</span><span class="ecjiaf-fr right10 gfont">审核完成</span></p>
+        {elseif $check_status=2}
+            <img src="{$theme_url}/images/user_center/f_progress2.png">
+            <p><span class="ecjiaf-fl left10">审核已提交</span><span>审核中</span><span class="ecjiaf-fr right10">审核完成</span></p>
+        {/if}
+            
+        </div>
     </div>
     <div class="franchisee-prompt">
         <span class="warm-prompt">温馨提示：</span>
         <span class="prompt-info">
             {if $check_status=0}
                                                     您的申请已提交成功，我们将尽快为您处理，感谢您对我们的支持！
+            {elseif $check_status=1}
+                                                    您的申请已提交成功，我们将尽快为您处理，感谢您对我们的支持！
             {elseif $check_status=2}
                                                     您的申请已审核通过，现在您可以登录自己的商家平台管理店铺，赶快去登录吧！
+            {elseif $check_status=3}
+                                                    您的申请未通过，感谢您对我们的支持！
             {/if}
         </span>
     </div>
