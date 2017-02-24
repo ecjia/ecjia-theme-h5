@@ -243,7 +243,6 @@
         	
         	//更新购物车中商品
             $.post(url, info, function(data){
-            	console.log(data);
             	$('.la-ball-atom').remove();
             	$('[data-toggle="toggle_checkbox"]').removeClass('limit_click');//店铺首页 允许其他单选框点击
             	$('.box').children('span').removeClass('limit_click');//店铺首页 允许其他加减按钮点击
