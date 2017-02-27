@@ -184,15 +184,14 @@
 			            	var citylist = [];
 			            	for (i = 0; i < province_array.length; i++) {
 			            		if (province_array[i]['name'] == city) {
-			            			var city_id = province_array[i]['id']
-			            			$("input[name='province']").val(city_id);
-			            			break
+			            			var province_id = province_array[i]['id'];
+			            			$("input[name='province_id']").val(province_id);
 			            		}
 			            	}
 			            	
 			            	for (i = 0; i < city_list.length; i++) {
-			            		if (city_list[i]['parent_id'] == city_id) {
-			            			citylist.push(city_list[i]['name'])
+			            		if (city_list[i]['parent_id'] == province_id) {
+			            			citylist.push(city_list[i]['name']);
 			            		}
 			            	}
 			         
