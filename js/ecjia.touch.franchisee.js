@@ -79,6 +79,13 @@
 		
 		//传参到获取精准坐标页
 		coordinate : function () {
+			var longitude = $("input[name='longitude']").val();
+			var latitude = $("input[name='latitude']").val();
+			
+			if (longitude != '' && latitude != '') {
+				$(".coordinate").html("精度：" + longitude + "；  " + "纬度：" + latitude);
+			}
+			
 			$(".coordinate").on('click', function(e) {
 				e.preventDefault();
 				var f_city = $("input[name='f_city']").val();
@@ -138,7 +145,7 @@
 				province_array.push({name:name, id:id});
 			};
 			var carVendors = {
-        			北京 : ['北京']
+        		北京 : ['北京']
         	};
 			var pickerDependent = myApp.picker({
 			    input: '.ecjia-franchisee-location',
@@ -151,12 +158,16 @@
 			            textAlign: 'left',
 			            values: province_list,
 			            onChange: function (picker, city) {
-			            	var city_list = ecjia.touch.franchisee.carVendors_city(city,  province_array);
-			            	console.log(city_list);
+			            	var city_list = carVendors_city(city,  province_array);
+			            	
+			            	
 			            	var carVendors = {
-			            			北京 : ['北京'],
-			            			安徽 : ecjia.touch.franchisee.carVendors_city(city,  province_array)
+		            			'北京' : ['北京'],
+		            			'福建' : city_list
 			            	};
+			            	
+			            	console.log(carVendors);
+//			            	return false;
 			                if(picker.cols[1].replaceValues){
 			                    picker.cols[1].replaceValues(carVendors[city]);
 			                }
@@ -170,26 +181,26 @@
 			}); 
 		},
 		
-		carVendors_city : function(city, province_array) {
-			var city_list = [];
-			for (i = 0; i < province_array.length; i++){
-				if (province_array[i]['name'] == city) {
-					var url = $("input[name='city']").attr('data-url');
-					var info = {
-							'parent_id': province_array[i]['id']
-						};
-					$.post(url, info, function(data){
-						var city_name = eval('(' + data['message'] + ')')['data']['regions'];
-						for (j = 0; j < city_name.length; j++){
-							var name = city_name[j]['name'];
-							city_list.push(name);
-						};
-						return city_list;
-					});
-					break;
-				}
-			}
-		},
+//		carVendors_city : function(city, province_array) {
+//			var city_list = [];
+//			for (i = 0; i < province_array.length; i++){
+//				if (province_array[i]['name'] == city) {
+//					var url = $("input[name='city']").attr('data-url');
+//					var info = {
+//							'parent_id': province_array[i]['id']
+//						};
+//					$.post(url, info, function(data){
+//						var city_name = eval('(' + data['message'] + ')')['data']['regions'];
+//						for (j = 0; j < city_name.length; j++){
+//							var name = city_name[j]['name'];
+//							city_list.push(name);
+//						};
+////						checkTime
+//					});
+//					break;
+//				}
+//			}
+//		},
 		
 		location :function(){
 			$("#button").on('click', function(e) {
@@ -200,7 +211,30 @@
 				location.href = url;
 			})
 		}
-	}
+	};
+	
+	function carVendors_city(city, province_array) {    
+		var city_list = [];
+		for (i = 0; i < province_array.length; i++) {
+			if (province_array[i]['name'] == city) {
+				var url = $("input[name='city']").attr('data-url');
+				var info = {
+					'parent_id': province_array[i]['id']
+				};
+				$.post(url, info, function(data){
+					var city_name = eval('(' + data['message'] + ')')['data']['regions'];
+					for (j = 0; j < city_name.length; j++){
+						var name = city_name[j]['name'];
+						city_list.push(name);
+					};
+				});
+				break;
+			}
+		}
+		console.log(city_list[-1]);
+//		for (i = 0; )
+		return city_list;
+    }
 })(ecjia, jQuery);
 
 //end

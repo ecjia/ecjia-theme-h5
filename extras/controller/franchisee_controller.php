@@ -91,11 +91,19 @@ class franchisee_controller {
 	    $token = ecjia_touch_user::singleton()->getToken();
 	    $category = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_CATEGORY)->data(array('token' => $token))->send()->getBody();
 	    
+	    $longitude = !empty($_GET['longitude']) ? $_GET['longitude'] : '';
+	    $latitude = !empty($_GET['latitude']) ? $_GET['latitude'] : '';
+	    
 	    $province = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'parent_id' => 1))->send()->getBody();
 	    if (!empty($_POST['parent_id'])) {
 	        $parent_id = $_POST['parent_id'];
 	        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'parent_id' => $parent_id))->send()->getBody();
 	        return ecjia_front::$controller->showmessage($data, ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+	    }
+	    
+	    if (!empty($longitude) && !empty($latitude)) {
+	        ecjia_front::$controller->assign('longitude', $longitude);
+	        ecjia_front::$controller->assign('latitude', $latitude);
 	    }
 	    
 	    ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/finish'));

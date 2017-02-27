@@ -51,6 +51,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	
 	<p class="coordinate" data-url="{url path='franchisee/index/location'}">获取精准坐标</p>
+	<input name="longitude" type="hidden" value="{$longitude}" />
+	<input name="latitude" type="hidden" value="{$latitude}" />
 	
 	<div class="ecjia-margin-t ecjia-margin-b">
 	    <input name="temp_key" type="hidden" value="{$temp_key}" />
