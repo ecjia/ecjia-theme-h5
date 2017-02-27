@@ -153,20 +153,6 @@
 				province_array.push({name:name, id:id});
 			};
 			
-//			var carVendors = {};
-//			for (i = 0; i < province_array.length; i++) {
-//				var province_id = province_array[i]['id'];
-//				var province_name = province_array[i]['name'];
-//				
-//				citylist = [];
-//				for (i = 0; i < city_list.length; i++) {
-//					if (city_list[i]['parent_id'] == province_id) {
-//						citylist.push(city_list[i]['name']);
-//					};
-//				}
-//				carVendors[province_name] = citylist;
-//        	};
-//        	console.log(carVendors);
 			var carVendors = {
         		北京 : ['北京']
         	};
@@ -188,14 +174,15 @@
 			            			$("input[name='province_id']").val(province_id);
 			            		}
 			            	}
-			            	
 			            	for (i = 0; i < city_list.length; i++) {
 			            		if (city_list[i]['parent_id'] == province_id) {
 			            			citylist.push(city_list[i]['name']);
 			            		}
 			            	}
-			         
+			  
 			            	var carVendors = {};
+			            	$("input[name='city_id']").val(citylist[1]);
+			            	
 			            	carVendors[city] = citylist;
 			                if(picker.cols[1].replaceValues){
 			                    picker.cols[1].replaceValues(carVendors[city]);
