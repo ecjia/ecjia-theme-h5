@@ -135,7 +135,7 @@ class franchisee_controller {
 
 	    $check_status  = $data['data']['check_status'];
 	    $info          = $data['data']['merchant_info'];
-	    
+
 	    ecjia_front::$controller->assign('check_status', $check_status);
 	    ecjia_front::$controller->assign('info', $info);
 		ecjia_front::$controller->assign_lang();
