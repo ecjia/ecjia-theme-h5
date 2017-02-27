@@ -123,7 +123,7 @@ class user_privilege_controller {
      */
     public static function register() {
         $mobile = !empty($_POST['mobile']) ? trim($_POST['mobile']) : '';
-        if(!empty($mobile)) {
+        if (!empty($mobile)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_VALIDATE)->data(array('mobile' => $mobile))->run();
             $data = is_ecjia_error($data) ? array() : $data;
             $verification = $data['invite_code'];
@@ -146,7 +146,7 @@ class user_privilege_controller {
             $token = ecjia_touch_user::singleton()->getToken();
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data(array('token' => $token, 'type' => 'mobile', 'value' => $mobile))->run();
             if (is_ecjia_error($data)) {
-                return false;
+                return ecjia_front::$controller->showmessage('短信发送失败，请联系客服', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
             if ($data['registered'] == 1) {
                 return ecjia_front::$controller->showmessage(__('该手机号已被注册，请更换其他手机号'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -169,7 +169,7 @@ class user_privilege_controller {
         $mobile = !empty($_POST['mobile']) ? htmlspecialchars($_POST['mobile']) : '';
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code))->run();
         
-        if (! is_ecjia_error($data)) {
+        if (!is_ecjia_error($data)) {
             $_SESSION['register_status'] = 'succeed';
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/set_password')));
         } else {
@@ -187,7 +187,7 @@ class user_privilege_controller {
         $password = !empty($_POST['password']) ? trim($_POST['password']) : '';
         if (!empty($username) && !empty($password)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => $password, 'invite_code' => $verification))->run();
-            if (! is_ecjia_error($data)) {
+            if (!is_ecjia_error($data)) {
                 unset($_SESSION['verification']);
                 ecjia_touch_user::singleton()->signin($username, $password);
                 unset($_SESSION['register_status']);
