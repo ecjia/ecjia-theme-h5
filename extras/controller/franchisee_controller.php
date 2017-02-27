@@ -68,7 +68,7 @@ class franchisee_controller {
 		}else if (empty($_POST['f_code'])) {
 			return ecjia_front::$controller->showmessage('验证码不能为空', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 		}else{
-// 			return ecjia_front::$controller->showmessage('aaaa', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+		    return ecjia_front::$controller->redirect(RC_Uri::url('franchisee/index/store', array('responsible_person' => $_POST['f_name'], 'email' => $_POST['f_email'], 'mobile' => $_POST['f_mobile'], 'validate_code' => $_POST['f_code'])));
 		}
 	}
 
@@ -119,7 +119,24 @@ class franchisee_controller {
 	}
 
 	public static function finish() {
+	    $token = ecjia_touch_user::singleton()->getToken();
+	    $responsible_person = !empty($_GET['responsible_person']) ? $_GET['responsible_person'] : '';
+	    $email = !empty($_GET['email']) ? $_GET['email'] : '';
+	    $mobile = !empty($_GET['mobile']) ? $_GET['mobile'] : '';
+	    $seller_name = !empty($_GET['seller_name']) ? $_GET['seller_name'] : '';
+	    $seller_category = !empty($_GET['seller_category']) ? $_GET['seller_category'] : '';
+	    $validate_type = !empty($_GET['validate_type']) ? $_GET['validate_type'] : '';
+	    $province = !empty($_GET['province']) ? $_GET['province'] : '';
+	    $city = !empty($_GET['city']) ? $_GET['city'] : '';
+	    $address = !empty($_GET['address']) ? $_GET['address'] : '';
+	    $location = !empty($_GET['location']) ? $_GET['location'] : '';
+	    $longitude = !empty($_GET['longitude']) ? $_GET['longitude'] : '';
+	    $latitude = !empty($_GET['latitude']) ? $_GET['latitude'] : '';
+	    $validate_code = !empty($_GET['validate_code']) ? $_GET['validate_code'] : '';
 	    
+	    $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_SIGNUP)->data(array('token' => $token))->send()->getBody();
+	    
+	    _dump($data,1);
 	}
 
 	public static function search() {

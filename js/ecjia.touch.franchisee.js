@@ -7,6 +7,7 @@
 			ecjia.touch.franchisee.validate_code();
 			ecjia.touch.franchisee.coordinate();
 			ecjia.touch.franchisee.choices();
+//			ecjia.touch.franchisee.finish();
 			
 			$("form[name='theForm']").on('submit',function(e){e.preventDefault();return false;}).Validform({
 				tiptype:function(msg,o,cssctl){
@@ -55,7 +56,7 @@
 					     $("#get_code").css("line-height", "2.4em");
 					     $("#get_code").val("重新发送" + curCount + "(s)");
 					     $("#get_code").attr("class", "btn btn-org login-btn");
-					     InterValObj = window.setInterval(SetRemainTime, 10); //启动计时器，1秒执行一次
+					     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 				    }
 				    ecjia.touch.showmessage(data);
 			    });
@@ -187,6 +188,22 @@
 			    ]
 			}); 
 		},
+		
+//		finish : function() {
+//			$("input[name='franchisee_submit']").on('click', function(e) {
+//				var f_name = $("input[name='f_name']").val();
+//				var f_category = $("input[name='f_category']").val();
+//				var franchisee_type = $("input[name='franchisee-type']").val();
+//				var f_city = $("input[name='f_city']").val();
+//				var f_address = $("input[name='f_address']").val();
+//				console.log(f_name);
+//				console.log(f_category);
+//				console.log(franchisee_type);
+//				console.log(f_city);
+//				console.log(f_address);
+//				
+//			});
+//		},
 		
 		location :function(){
 			$("#button").on('click', function(e) {
