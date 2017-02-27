@@ -7,7 +7,6 @@
 			ecjia.touch.franchisee.validate_code();
 			ecjia.touch.franchisee.coordinate();
 			ecjia.touch.franchisee.choices();
-			ecjia.touch.franchisee.carVendors_city();
 			
 			$("form[name='theForm']").on('submit',function(e){e.preventDefault();return false;}).Validform({
 				tiptype:function(msg,o,cssctl){
@@ -137,6 +136,7 @@
 			var province_id = [];
 			
 			var province = eval('(' + $("input[name='province']").val() + ')')['data']['regions'];
+			var city_list = eval('(' + $("input[name='city']").val() + ')')['data']['regions'];
 			
 			for (i=0;i < province.length; i++){
 				var name = province[i]['name'];
@@ -144,6 +144,7 @@
 				province_list.push(name);
 				province_array.push({name:name, id:id});
 			};
+			
 			var carVendors = {
         		北京 : ['北京']
         	};
@@ -158,16 +159,22 @@
 			            textAlign: 'left',
 			            values: province_list,
 			            onChange: function (picker, city) {
-			            	var city_list = carVendors_city(city,  province_array);
+			            	var citylist = [];
+			            	for (i = 0; i < province_array.length; i++) {
+			            		if (province_array[i]['name'] == city) {
+			            			var city_id = province_array[i]['id']
+			            			break
+			            		}
+			            	}
+			             
+			            	for (i = 0; i < city_list.length; i++) {
+			            		if (city_list[i]['parent_id'] == city_id) {
+			            			citylist.push(city_list[i]['name'])
+			            		}
+			            	}
+			            	var carVendors = {};
+			            	carVendors[city] = citylist;
 			            	
-			            	
-			            	var carVendors = {
-		            			'北京' : ['北京'],
-		            			'福建' : city_list
-			            	};
-			            	
-			            	console.log(carVendors);
-//			            	return false;
 			                if(picker.cols[1].replaceValues){
 			                    picker.cols[1].replaceValues(carVendors[city]);
 			                }
@@ -181,27 +188,6 @@
 			}); 
 		},
 		
-//		carVendors_city : function(city, province_array) {
-//			var city_list = [];
-//			for (i = 0; i < province_array.length; i++){
-//				if (province_array[i]['name'] == city) {
-//					var url = $("input[name='city']").attr('data-url');
-//					var info = {
-//							'parent_id': province_array[i]['id']
-//						};
-//					$.post(url, info, function(data){
-//						var city_name = eval('(' + data['message'] + ')')['data']['regions'];
-//						for (j = 0; j < city_name.length; j++){
-//							var name = city_name[j]['name'];
-//							city_list.push(name);
-//						};
-////						checkTime
-//					});
-//					break;
-//				}
-//			}
-//		},
-		
 		location :function(){
 			$("#button").on('click', function(e) {
 				e.preventDefault();
@@ -213,28 +199,6 @@
 		}
 	};
 	
-	function carVendors_city(city, province_array) {    
-		var city_list = [];
-		for (i = 0; i < province_array.length; i++) {
-			if (province_array[i]['name'] == city) {
-				var url = $("input[name='city']").attr('data-url');
-				var info = {
-					'parent_id': province_array[i]['id']
-				};
-				$.post(url, info, function(data){
-					var city_name = eval('(' + data['message'] + ')')['data']['regions'];
-					for (j = 0; j < city_name.length; j++){
-						var name = city_name[j]['name'];
-						city_list.push(name);
-					};
-				});
-				break;
-			}
-		}
-		console.log(city_list[-1]);
-//		for (i = 0; )
-		return city_list;
-    }
 })(ecjia, jQuery);
 
 //end
