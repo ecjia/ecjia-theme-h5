@@ -93,22 +93,14 @@ class franchisee_controller {
 	    
 	    $longitude = !empty($_GET['longitude']) ? $_GET['longitude'] : '';
 	    $latitude = !empty($_GET['latitude']) ? $_GET['latitude'] : '';
-	    $f_city = !empty($_GET['city']) ? $_GET['city'] : '';
-	    $f_address = !empty($_GET['address']) ? $_GET['address'] : '';
-	    
-	    if (!empty($f_city) && !empty($f_address)) {
-	        ecjia_front::$controller->assign('f_city', $f_city);
-	        ecjia_front::$controller->assign('f_address', $f_address);
+	    if (!empty($longitude) && !empty($latitude)) {
+	    	ecjia_front::$controller->assign('longitude', $longitude);
+	    	ecjia_front::$controller->assign('latitude', $latitude);
 	    }
 	    
 	    $province = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 1))->send()->getBody();
 	    $city_list = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 2))->send()->getBody();
-	    
-	    if (!empty($longitude) && !empty($latitude)) {
-	        ecjia_front::$controller->assign('longitude', $longitude);
-	        ecjia_front::$controller->assign('latitude', $latitude);
-	    }
-	    
+
 	    ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/finish'));
 		ecjia_front::$controller->assign('province', $province);
 		ecjia_front::$controller->assign('city', $city_list);
@@ -158,7 +150,7 @@ class franchisee_controller {
 	public static function get_location() {
 		$city = !empty($_GET['city']) ? $_GET['city'] : '';
 		$address = !empty($_GET['address']) ? $_GET['address'] : '';
-		$shop_address = $city.'市'.$address;
+		$shop_address = $city.$address;
 		$shop_point = file_get_contents("https://api.map.baidu.com/geocoder/v2/?address='".$shop_address."&output=json&ak=E70324b6f5f4222eb1798c8db58a017b");
 		$shop_point = (array)json_decode($shop_point);
 		$shop_point['result'] = (array)$shop_point['result'];
