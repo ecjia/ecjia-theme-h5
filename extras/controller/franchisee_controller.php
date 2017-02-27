@@ -89,7 +89,7 @@ class franchisee_controller {
 	public static function store_msg() {
 	    $token = ecjia_touch_user::singleton()->getToken();
 	    $category = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_CATEGORY)->data(array('token' => $token))->send()->getBody();
-	  
+
 	    $longitude = !empty($_GET['longitude']) ? $_GET['longitude'] : '';
 	    $latitude = !empty($_GET['latitude']) ? $_GET['latitude'] : '';
 	    if (!empty($longitude) && !empty($latitude)) {
@@ -137,7 +137,7 @@ class franchisee_controller {
 	    $latitude = !empty($_POST['latitude']) ? $_POST['latitude'] : '';
 	    $validate_code = !empty($_POST['validate_code']) ? $_POST['validate_code'] : '';
 	    
-	    _dump($validate_type,1);
+	    _dump($_POST,1);
 // 	    $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_SIGNUP)->data(array('token' => $token))->send()->getBody();
 	    
 	}
