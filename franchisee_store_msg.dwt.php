@@ -38,7 +38,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group form-group-text franchisee">
 		<label class="input">
 			<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_store.png" width="30" height="30"></span>
-			<input name="f_name" placeholder="{t}请输入店铺名称10字以内{/t}" type="text"  value=""  />
+			<input name="seller_name" placeholder="{t}请输入店铺名称10字以内{/t}" type="text"  value=""  />
 		</label>
 	</div>
 	
@@ -46,13 +46,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<label class="input">
 			<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_category.png" width="30" height="30"></span>
 			<i class="iconfont  icon-jiantou-right"></i>
-			<input class="ecjia-franchisee-category" style="padding-left: 3.5em;" name="f_category" placeholder="{t}请选择店铺分类{/t}" type="category"  value=""  />
+			<input class="ecjia-franchisee-category" style="padding-left: 3.5em;" name="seller_category" placeholder="{t}请选择店铺分类{/t}" type="category"  value=""  />
 		    <input name="category" type="hidden" value={$category} />
 		</label>
 		<label class="input">
 			<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_type.png" width="30" height="30"></span>
 			<i class="iconfont  icon-jiantou-right"></i>
-			<input class="ecjia-franchisee-type" style="padding-left: 3.5em;" name="franchisee-type" placeholder="{t}请选择入驻类型 {/t}" type="franchisee-type" value=""  />
+			<input class="ecjia-franchisee-type" style="padding-left: 3.5em;" name="validate_type" placeholder="{t}请选择入驻类型 {/t}" type="franchisee-type" value=""  />
 		</label>
 	</div>
 	
@@ -75,6 +75,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	
 	<div class="ecjia-margin-t ecjia-margin-b">
 	    <input name="temp_key" type="hidden" value="11" />
+	    <input name="responsible_person" type="hidden" value="{$responsible_person}" />
+	    <input name="email" type="hidden" value="{$email}" />
+	    <input name="mobile" type="hidden" value="{$mobile}" />
+	    <input name="validate_code" type="hidden" value="{$validate_code}" />
 		<input class="btn btn-info nopjax" name="franchisee_submit" type="submit" value="{t}提交{/t}"/>
 	</div>
 	

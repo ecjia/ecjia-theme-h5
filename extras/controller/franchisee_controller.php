@@ -84,13 +84,12 @@ class franchisee_controller {
 			    return ecjia_front::$controller->showmessage(__($data['status']['error_desc']), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 			}
 	    }
-	    
 	}
 	
 	public static function store_msg() {
 	    $token = ecjia_touch_user::singleton()->getToken();
 	    $category = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_CATEGORY)->data(array('token' => $token))->send()->getBody();
-	    
+	  
 	    $longitude = !empty($_GET['longitude']) ? $_GET['longitude'] : '';
 	    $latitude = !empty($_GET['latitude']) ? $_GET['latitude'] : '';
 	    if (!empty($longitude) && !empty($latitude)) {
@@ -98,6 +97,18 @@ class franchisee_controller {
 	    	ecjia_front::$controller->assign('latitude', $latitude);
 	    }
 	    
+	    if (!empty($_GET['responsible_person'])) {
+	        ecjia_front::$controller->assign('responsible_person', $_GET['responsible_person']);
+	    }
+	    if (!empty($_GET['email'])) {
+	        ecjia_front::$controller->assign('email', $_GET['email']);
+	    }
+	    if (!empty($_GET['mobile'])) {
+	        ecjia_front::$controller->assign('mobile', $_GET['mobile']);
+	    }
+	    if (!empty($_GET['validate_code'])) {
+	        ecjia_front::$controller->assign('validate_code', $_GET['validate_code']);
+	    }
 	    $province = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 1))->send()->getBody();
 	    $city_list = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 2))->send()->getBody();
 
@@ -112,23 +123,23 @@ class franchisee_controller {
 
 	public static function finish() {
 	    $token = ecjia_touch_user::singleton()->getToken();
-	    $responsible_person = !empty($_GET['responsible_person']) ? $_GET['responsible_person'] : '';
-	    $email = !empty($_GET['email']) ? $_GET['email'] : '';
-	    $mobile = !empty($_GET['mobile']) ? $_GET['mobile'] : '';
-	    $seller_name = !empty($_GET['seller_name']) ? $_GET['seller_name'] : '';
-	    $seller_category = !empty($_GET['seller_category']) ? $_GET['seller_category'] : '';
-	    $validate_type = !empty($_GET['validate_type']) ? $_GET['validate_type'] : '';
-	    $province = !empty($_GET['province']) ? $_GET['province'] : '';
-	    $city = !empty($_GET['city']) ? $_GET['city'] : '';
-	    $address = !empty($_GET['address']) ? $_GET['address'] : '';
-	    $location = !empty($_GET['location']) ? $_GET['location'] : '';
-	    $longitude = !empty($_GET['longitude']) ? $_GET['longitude'] : '';
-	    $latitude = !empty($_GET['latitude']) ? $_GET['latitude'] : '';
-	    $validate_code = !empty($_GET['validate_code']) ? $_GET['validate_code'] : '';
+	    $responsible_person = !empty($_POST['responsible_person']) ? $_POST['responsible_person'] : '';
+	    $email = !empty($_POST['email']) ? $_POST['email'] : '';
+	    $mobile = !empty($_POST['mobile']) ? $_POST['mobile'] : '';
+	    $seller_name = !empty($_POST['seller_name']) ? $_POST['seller_name'] : '';
+	    $seller_category = !empty($_POST['seller_category']) ? $_POST['seller_category'] : '';
+	    $validate_type = !empty($_POST['validate_type']) == '个人入驻'? '1' : '2';
+	    $province = !empty($_POST['province']) ? $_POST['province'] : '';
+	    $city = !empty($_POST['city']) ? $_POST['city'] : '';
+	    $address = !empty($_POST['address']) ? $_POST['address'] : '';
+	    $location = !empty($_POST['location']) ? $_POST['location'] : '';
+	    $longitude = !empty($_POST['longitude']) ? $_POST['longitude'] : '';
+	    $latitude = !empty($_POST['latitude']) ? $_POST['latitude'] : '';
+	    $validate_code = !empty($_POST['validate_code']) ? $_POST['validate_code'] : '';
 	    
-	    $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_SIGNUP)->data(array('token' => $token))->send()->getBody();
+	    _dump($validate_type,1);
+// 	    $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_SIGNUP)->data(array('token' => $token))->send()->getBody();
 	    
-	    _dump($data,1);
 	}
 
 	public static function search() {
