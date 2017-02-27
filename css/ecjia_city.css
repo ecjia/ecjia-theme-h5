@@ -509,11 +509,10 @@ a.ecjia-color-green {
     transform-origin: 50% 100%;
 }
 
-
 .ecjia-f-location{
 	text-align:center;
-	margin-top:30px;
-	margin-bottom:30px;
+	margin-top:40px;
+
 }
 
 .ecjia-f-location span{
@@ -526,7 +525,6 @@ a.ecjia-color-green {
     float: left;
     width: 12em;
 	height:2em;
-	border:1px solid #00F;
 }
 
 .ecjia-address-list .franchisee label input {
