@@ -76,7 +76,7 @@ class franchisee_controller {
 		}
 	}
 
-	public static function validate_msg() {
+	public static function validate() {
 	    $mobile = !empty($_GET['mobile']) ? $_GET['mobile'] : '';
 	    if (!empty($mobile)) {
 			$params = array(
@@ -91,6 +91,8 @@ class franchisee_controller {
 			} else {
 				return ecjia_front::$controller->showmessage("短信已发送到手机".$mobile."，请注意查看", ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
 			}
+	    } else {
+	        return ecjia_front::$controller->showmessage('请输入正确的手机号1', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
 	    }
 	}
 

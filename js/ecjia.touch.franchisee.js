@@ -36,7 +36,7 @@
 				if (mobile.length == 11) {
 					url += '&mobile=' + mobile;
 				} else {
-					alert('请输入正确的手机号');
+					alert('请输入正确的手机号');return false;
 				}
 				
 				$.get(url, function(data){
