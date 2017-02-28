@@ -105,6 +105,7 @@ class franchisee_controller {
 	    }
 	}
 
+	//入驻发送验证码
 	public static function validate() {
 	    $mobile = !empty($_GET['mobile']) ? $_GET['mobile'] : '';
 	    if (!empty($mobile)) {
@@ -156,6 +157,7 @@ class franchisee_controller {
 	    	}
 	    }
 	}
+	//入驻第二步
 	public static function store_msg() {
 	    //验证第一步是否通过
 	    if(empty($_SESSION['franchisee_add']) || $_SESSION['franchisee_add']['access_time'] + 1800 < RC_Time::gmtime()) {
@@ -172,15 +174,15 @@ class franchisee_controller {
 	    	ecjia_front::$controller->assign('latitude', $latitude);
 	    }
 	    
-	    if (!empty($_COOKIE['validate_type'])) {
-	        ecjia_front::$controller->assign('validate_type', $_COOKIE['validate_type']);
-	    }
-	    if (!empty($_COOKIE['seller'])) {
-	        ecjia_front::$controller->assign('seller', $_COOKIE['seller']);
-	    }
-	    if (!empty($_COOKIE['seller_name'])) {
-	        ecjia_front::$controller->assign('seller_name', $_COOKIE['seller_name']);
-	    }
+// 	    if (!empty($_COOKIE['validate_type'])) {
+// 	        ecjia_front::$controller->assign('validate_type', $_COOKIE['validate_type']);
+// 	    }
+// 	    if (!empty($_COOKIE['seller'])) {
+// 	        ecjia_front::$controller->assign('seller', $_COOKIE['seller']);
+// 	    }
+// 	    if (!empty($_COOKIE['seller_name'])) {
+// 	        ecjia_front::$controller->assign('seller_name', $_COOKIE['seller_name']);
+// 	    }
 	    
 	    $province = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 1))->send()->getBody();
 	    $city_list = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 2))->send()->getBody();
@@ -195,21 +197,23 @@ class franchisee_controller {
 		ecjia_front::$controller->display('franchisee_store_msg.dwt');
 	}
 
+	//入驻信息验证提交
 	public static function finish() {
+	    
 	    $token = ecjia_touch_user::singleton()->getToken();
 	    
-	    $responsible_person = !empty($_COOKIE['f_name']) ? $_COOKIE['f_name'] : '';
-	    $email 				= !empty($_COOKIE['f_email']) ? $_COOKIE['f_email'] : '';
-	    $mobile 			= !empty($_COOKIE['f_mobile']) ? $_COOKIE['f_mobile'] : '';
-	    $seller_name 		= !empty($_COOKIE['seller_name']) ? $_COOKIE['seller_name'] : '';
-	    $seller_category 	= !empty($_COOKIE['seller_category']) ? $_COOKIE['seller_category'] : '';
-	    $validate_type 		= !empty($_COOKIE['validate_type']) == '个人入驻'? '1' : '2';
-	    $province 			= !empty($_COOKIE['province_id']) ? $_COOKIE['province_id'] : '';
-	    $city 				= !empty($_COOKIE['city_id']) ? $_COOKIE['city_id'] : '';
-	    $address 			= !empty($_POST['f_address']) ? $_POST['f_address'] : '';
+	    $responsible_person = !empty($_SESSION['franchisee_add']['name']) ? $_SESSION['franchisee_add']['name'] : '';
+	    $email 				= !empty($_SESSION['franchisee_add']['email']) ? $_SESSION['franchisee_add']['email'] : '';
+	    $mobile 			= !empty($_SESSION['franchisee_add']['mobile']) ? $_SESSION['franchisee_add']['mobile'] : '';
+	    $seller_name        = !empty($_POST['seller_name']) ? $_POST['seller_name'] : '';
+	    $seller_category 	= !empty($_POST['seller_category']) ? $_POST['seller_category'] : '';
+	    $validate_type 		= !empty($_POST['validate_type']) ? $_POST['validate_type'] : '';
+	    $address 		    = !empty($_POST['address']) ? $_POST['address'] : '';
+	    $f_city 	        = !empty($_POST['f_city']) ? $_POST['f_city'] : '';
+	    $city 				= !empty($_POST['city_id']) ? $_POST['city_id'] : '';
 	    $longitude 			= !empty($_POST['longitude']) ? $_POST['longitude'] : '';
 	    $latitude 			= !empty($_POST['latitude']) ? $_POST['latitude'] : '';
-	    $validate_code 		= !empty($_COOKIE['f_code']) ? $_COOKIE['f_code'] : '';
+	    $validate_code 		= $_SESSION['franchisee_add']['code'];
 
 	    $parameter = array(
 	        'token'              => $token,
@@ -237,7 +241,7 @@ class franchisee_controller {
     	if (is_ecjia_error($data)) {
 			return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
 		} else {
-			return ecjia_front::$controller->showmessage("短信已发送到手机".$mobile."，请注意查看", ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+			return ecjia_front::$controller->showmessage("入驻信息已提交，请耐心等耐审核", ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
 		}
 	    
 	}
