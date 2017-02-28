@@ -4,20 +4,20 @@
 ;(function(ecjia, $) {
 	ecjia.touch.franchisee = {
 		init : function(){
-			$("form[name='theForm']").on('submit',function(e){e.preventDefault();return false;}).Validform({
+			/*$("form[name='theForm']").on('submit',function(e){e.preventDefault();return false;}).Validform({
 				tiptype:function(msg,o,cssctl){
 				//msg：提示信息;
 				//o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
 				//cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
 					if (o.type == 3){
-						alert(msg);
+						//alert(msg);
 					}
 				},
 				ajaxPost: true,
 				callback:function(data){
 					ecjia.touch.showmessage(data);
 				}
-			});
+			});*/
 			
 			ecjia.touch.franchisee.validate_code();
 			ecjia.touch.franchisee.next();
@@ -82,13 +82,11 @@
 				var f_email = $("input[name='f_email']").val();
 				var f_mobile = $("input[name='f_mobile']").val();
 				var f_code = $("input[name='f_code']").val();
-				var url = $(this).attr('data-url');
+				var url = $("form[name='theForm']").attr('action');
 				
 				if (f_name == '') {
 					alert('请输入真实姓名');
 					return false;
-				} else {
-					$.cookie('f_name', f_name); 
 				}
 				
 				if (f_email == '') {
@@ -100,23 +98,33 @@
 					    alert("请输入正确的邮箱格式 !");
 					    return false;
 					}
-					$.cookie('f_email', f_email); 
 				}
 				
 				if (f_mobile == '') {
 					alert('请输入手机号码');
 					return false;
-				} else {
-					$.cookie('f_mobile', f_mobile); 
 				}
 				
 				if (f_code == '') {
 					alert('验证码不能为空');
 					return false;
-				} else {
-					$.cookie('f_code', f_code); 
 				}
-				location.href = url;
+
+				var referer_url = $('input[name="referer_url"]').val();
+        		var info = {
+					'f_name': f_name,
+					'f_email': f_email,
+					'f_mobile' : f_mobile,
+					'f_code': f_code
+				};
+				$.post(url, info, function(data){
+					if (data.state == 'error') {
+						alert(data.message);
+					} else {
+//						ecjia.pjax(data.url);
+						location.href = data.url;
+					}
+				});
 			});
 		},
 		
