@@ -79,10 +79,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	
 	<div class="ecjia-margin-t ecjia-margin-b">
 	    <input name="temp_key" type="hidden" value="11" />
-	    <input name="responsible_person" type="hidden" value="{$responsible_person}" />
-	    <input name="email" type="hidden" value="{$email}" />
-	    <input name="mobile" type="hidden" value="{$mobile}" />
-	    <input name="validate_code" type="hidden" value="{$validate_code}" />
 		<input class="btn btn-info nopjax" name="franchisee_submit" type="submit" value="{t}提交{/t}"/>
 	</div>
 	

@@ -68,7 +68,11 @@ class franchisee_controller {
 		}else if (empty($_POST['f_code'])) {
 			return ecjia_front::$controller->showmessage('验证码不能为空', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 		}else{
-		    return ecjia_front::$controller->redirect(RC_Uri::url('franchisee/index/store', array('responsible_person' => $_POST['f_name'], 'email' => $_POST['f_email'], 'mobile' => $_POST['f_mobile'], 'validate_code' => $_POST['f_code'])));
+		    $_SESSION['f_name'] = $_POST['f_name'];
+		    $_SESSION['f_email'] = $_POST['f_email'];
+		    $_SESSION['f_mobile'] = $_POST['f_mobile'];
+		    $_SESSION['f_code'] = $_POST['f_code'];
+		    return ecjia_front::$controller->redirect(RC_Uri::url('franchisee/index/store'));
 		}
 	}
 
@@ -100,18 +104,6 @@ class franchisee_controller {
 	    	ecjia_front::$controller->assign('latitude', $latitude);
 	    }
 	    
-	    if (!empty($_GET['responsible_person'])) {
-	        ecjia_front::$controller->assign('responsible_person', $_GET['responsible_person']);
-	    }
-	    if (!empty($_GET['email'])) {
-	        ecjia_front::$controller->assign('email', $_GET['email']);
-	    }
-	    if (!empty($_GET['mobile'])) {
-	        ecjia_front::$controller->assign('mobile', $_GET['mobile']);
-	    }
-	    if (!empty($_GET['validate_code'])) {
-	        ecjia_front::$controller->assign('validate_code', $_GET['validate_code']);
-	    }
 	    $province = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 1))->send()->getBody();
 	    $city_list = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 2))->send()->getBody();
 
@@ -126,22 +118,42 @@ class franchisee_controller {
 
 	public static function finish() {
 	    $token = ecjia_touch_user::singleton()->getToken();
-	    $responsible_person = !empty($_POST['responsible_person']) ? $_POST['responsible_person'] : '';
-	    $email = !empty($_POST['email']) ? $_POST['email'] : '';
-	    $mobile = !empty($_POST['mobile']) ? $_POST['mobile'] : '';
+	    $responsible_person = !empty($_SESSION['f_name']) ? $_SESSION['f_name'] : '';
+	    $email = !empty($_SESSION['f_email']) ? $_SESSION['f_email'] : '';
+	    $mobile = !empty($_SESSION['f_mobile']) ? $_SESSION['f_mobile'] : '';
 	    $seller_name = !empty($_POST['seller_name']) ? $_POST['seller_name'] : '';
 	    $seller_category = !empty($_POST['seller_category']) ? $_POST['seller_category'] : '';
 	    $validate_type = !empty($_POST['validate_type']) == '个人入驻'? '1' : '2';
 	    $province = !empty($_POST['province']) ? $_POST['province'] : '';
 	    $city = !empty($_POST['city']) ? $_POST['city'] : '';
 	    $address = !empty($_POST['address']) ? $_POST['address'] : '';
-	    $location = !empty($_POST['location']) ? $_POST['location'] : '';
 	    $longitude = !empty($_POST['longitude']) ? $_POST['longitude'] : '';
 	    $latitude = !empty($_POST['latitude']) ? $_POST['latitude'] : '';
-	    $validate_code = !empty($_POST['validate_code']) ? $_POST['validate_code'] : '';
+	    $validate_code = !empty($_SESSION['f_code']) ? $_SESSION['f_code'] : '';
+	    $parameter = array(
+	        'token'              => $token,
+	        'responsible_person' => $responsible_person,
+	        'email'              => $email,
+	        'mobile'             => $mobile,
+	        'seller_name'        => $seller_name,
+	        'seller_category'    => $seller_category,
+	        'validate_type'      => $validate_type,
+	        'province'           => $province,
+	        'city'               => $city,
+	        'location' => array(
+	            'latitude'       => $latitude,
+	            'validate_code'  => $validate_code
+	        ),
+	        'parameter'          => $parameter
+	    );
 	    
-	    _dump($_POST,1);
-// 	    $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_SIGNUP)->data(array('token' => $token))->send()->getBody();
+	    $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_SIGNUP)->data($parameter)->run();
+	    
+    	if (is_ecjia_error($data)) {
+			return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
+		} else {
+			return ecjia_front::$controller->showmessage("短信已发送到手机".$mobile."，请注意查看", ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+		}
 	    
 	}
 
