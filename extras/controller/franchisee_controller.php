@@ -61,43 +61,48 @@ class franchisee_controller {
 	public static function add_check() {
 	    $name 	= empty($_POST['f_name']) ? '' : trim($_POST['f_name']);
 	    $email 	= empty($_POST['f_email']) ? '' : trim($_POST['f_email']);
-	    $mobile 	= empty($_POST['f_mobile']) ? '' : trim($_POST['f_mobile']);
+	    $mobile = empty($_POST['f_mobile']) ? '' : trim($_POST['f_mobile']);
 	    $code 	= empty($_POST['f_code']) ? '' : trim($_POST['f_code']);
 	    
-		if(empty($name)) {
+		if (empty($name)) {
 			return ecjia_front::$controller->showmessage('请输入真实姓名', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-		} else if (empty($email)) {
-			return ecjia_front::$controller->showmessage('请输入电子邮箱', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-		} else if (empty($mobile)) {
-			return ecjia_front::$controller->showmessage('请输入手机号码', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-		} else if (empty($code)) {
-			return ecjia_front::$controller->showmessage('验证码不能为空', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-		} else {
-// 		    _dump($_POST,1);
-		    
-		    //验证code
-		    $params = array(
-		        'token' => ecjia_touch_user::singleton()->getToken(),
-		        'type' 	=> 'mobile',
-		        'value' =>  $mobile,
-		        'validate_code' => $code,
-		        'validate_type' => 'signup'
-		    );
-		    $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_VALIDATE)->data($params)->run();
-		    if (is_ecjia_error($rs)) {
-		        return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
-		    } else {
-		        $_SESSION['franchisee_add'] = array(
-		            'name' => $name,
-		            'email' => $email,
-		            'mobile' => $mobile,
-		            'code'   => $code,
-		            'access_time' => RC_Time::gmtime()
-		        );
-		        
-		        return ecjia_front::$controller->showmessage( '', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('franchisee/index/store')));
-		    }
 		}
+		if (empty($email)) {
+			return ecjia_front::$controller->showmessage('请输入电子邮箱', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+		}
+		if (empty($mobile)) {
+			return ecjia_front::$controller->showmessage('请输入手机号码', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+		}
+		if (empty($code)) {
+			return ecjia_front::$controller->showmessage('验证码不能为空', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+		}
+		$chars = "/^13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$/";
+		if (!preg_match($chars, $mobile)) {
+			return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+		}
+		
+	    //验证code
+	    $params = array(
+	        'token' => ecjia_touch_user::singleton()->getToken(),
+	        'type' 	=> 'mobile',
+	        'value' =>  $mobile,
+	        'validate_code' => $code,
+	        'validate_type' => 'signup'
+	    );
+	    $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_VALIDATE)->data($params)->run();
+	    if (is_ecjia_error($rs)) {
+	        return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
+	    } else {
+	        $_SESSION['franchisee_add'] = array(
+	            'name' => $name,
+	            'email' => $email,
+	            'mobile' => $mobile,
+	            'code'   => $code,
+	            'access_time' => RC_Time::gmtime()
+	        );
+	        
+	        return ecjia_front::$controller->showmessage( '', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('franchisee/index/store')));
+	    }
 	}
 
 	public static function validate() {
@@ -116,7 +121,13 @@ class franchisee_controller {
 				return ecjia_front::$controller->showmessage("短信已发送到手机".$mobile."，请注意查看", ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
 			}
 	    } else {
-	        return ecjia_front::$controller->showmessage('请输入正确的手机号', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
+	    	if (empty($mobile)) {
+	    		return ecjia_front::$controller->showmessage('请输入手机号码', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    	}
+	    	$chars = "/^13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$/";
+	    	if (!preg_match($chars, $mobile)) {
+	    		return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    	}
 	    }
 	}
 	
@@ -135,6 +146,14 @@ class franchisee_controller {
 	        } else {
 	            return ecjia_front::$controller->showmessage("短信已发送到手机".$mobile."，请注意查看", ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
 	        }
+	    } else {
+	    	if (empty($mobile)) {
+	    		return ecjia_front::$controller->showmessage('请输入手机号码', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    	}
+	    	$chars = "/^13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$/";
+	    	if (!preg_match($chars, $mobile)) {
+	    		return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    	}
 	    }
 	}
 	public static function store_msg() {
@@ -232,15 +251,21 @@ class franchisee_controller {
 	
 
 	public static function progress_search() {
-	    if(empty($_POST['f_mobile'])) {
+		$mobile        = !empty($_POST['f_mobile'])    ? $_POST['f_mobile']        : '';
+		$code          = !empty($_POST['f_code'])      ? trim($_POST['f_code'])    : '';
+		
+	    if (empty($mobile)) {
 	        return ecjia_front::$controller->showmessage(__('请输入手机号码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 	    }
 	    
-	    if (empty($_POST['f_code'])) {
+	    if (empty($code)) {
 	        return ecjia_front::$controller->showmessage(__('验证码不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 	    }
-	    $mobile        = !empty($_POST['f_mobile'])    ? $_POST['f_mobile']        : '';
-	    $code          = !empty($_POST['f_code'])      ? trim($_POST['f_code'])    : '';
+	    
+	    $chars = "/^13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$/";
+	    if (!preg_match($chars, $mobile)) {
+	    	return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
 	    
 	    $params        = array(
 	        'token' 		=> ecjia_touch_user::singleton()->getToken(),
