@@ -57,22 +57,35 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</label>
 	</div>
 	
-	<div class="form-group form-group-text franchisee">
+	<div class="form-group form-group-text franchisee" id="get_location_region" data-url="{url path='franchisee/index/get_region'}">
+	
 		<label class="input">
     		<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_location.png" width="30" height="30"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location" name="f_city" placeholder="{t}选择店铺所在地{/t}" type="text" value={$f_city}>
+    		<input class="ecjia-franchisee-location_province" name="f_city" placeholder="{t}选择省{/t}" type="text" value={$f_city} >
 	        <input name="province" type="hidden" value={$province} />
-    		<input name="city" type="hidden" value={$city} />
-    		
     		<input name="province_id" type="hidden" value="" />
+    	</label>
+    	
+    	<label class="input">
+    		<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_location.png" width="30" height="30"></span>
+    		<i class="iconfont  icon-jiantou-right"></i>
+    		<input class="ecjia-franchisee-location_city" name="f_city" placeholder="{t}选择市{/t}" type="text" value={$f_city}>
     		<input name="city_id" type="hidden" value="" />
-    		</label>
+    	</label>
+    	
+    	<label class="input">
+    		<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_location.png" width="30" height="30"></span>
+    		<i class="iconfont  icon-jiantou-right"></i>
+    		<input class="ecjia-franchisee-location_district" name="f_city" placeholder="{t}选择区{/t}" type="text" value={$f_city}>
+    		<input name="district_id" type="hidden" value="" />
+    	</label>
+    	
 		<label class="input">
     	   <input name="f_address" placeholder="{t}输入详细地址{/t}" type="text" value={$f_address}>
 		</label>
 	</div>
-	
+
 	<p class="coordinate" data-url="{url path='franchisee/index/location'}">获取精准坐标</p>
 	<input name="longitude" type="hidden" value="{$longitude}" />
 	<input name="latitude" type="hidden" value="{$latitude}" />

@@ -205,8 +205,13 @@
 			var province_list = [];
 			var province_array = [];
 			
+			var city_list = [];
+			var city_array = [];
+			
+			var district_list = [];
+			var district_array = [];
+			
 			var province = eval('(' + $("input[name='province']").val() + ')')['data']['regions'];
-			var city_list = eval('(' + $("input[name='city']").val() + ')')['data']['regions'];
 			
 			for (i=0;i < province.length; i++){
 				var name = province[i]['name'];
@@ -215,57 +220,123 @@
 				province_array.push({name:name, id:id});
 			};
 			
-			var carVendors = {
-        		北京 : ['北京']
-        	};
-			var pickerDependent = myApp.picker({
-			    input: '.ecjia-franchisee-location',
+			var pickerProvince = myApp.picker({
+			    input: '.ecjia-franchisee-location_province',
 			    toolbarCloseText: '完成',
 			    formatValue: function (picker, values) {
 			        return values[1];
 			    },
 			    cols: [
 			        {
-			            textAlign: 'left',
+			            textAlign: 'center',
 			            values: province_list,
 			            onChange: function (picker, city) {
-			            	var citylist = [];
+			            	var province_id;
 			            	for (i = 0; i < province_array.length; i++) {
 			            		if (province_array[i]['name'] == city) {
-			            			var province_id = province_array[i]['id'];
-			            			console.log(province_id);
-			            			$.cookie('province_id', province_id); 
+			            			province_id = province_array[i]['id'];
+			            			$(".ecjia-franchisee-location_province").val(province_array[i]['name']);
+			            			break;
 			            		}
 			            	}
-			            	for (i = 0; i < city_list.length; i++) {
-			            		if (city_list[i]['parent_id'] == province_id) {
-			            			citylist.push(city_list[i]['name']);
-			            		}
-			            	}
-			  
-			            	var carVendors = {};
-			            	$.cookie('city_id', citylist[1]); 
-			            	carVendors[city] = citylist;
-			                if(picker.cols[1].replaceValues){
-			                    picker.cols[1].replaceValues(carVendors[city]);
-			                }
+			            	
+			            	$.cookie('province_id', province_id); 
+		            		var url = $('#get_location_region').attr('data-url');
+		            		$.ajax({
+		    					type: "POST",
+		    					url: url,
+		    					data: {
+		    						"parent_id" : province_id,
+		    					},
+		    					dataType: "json",
+		    					success: function (data) {
+		    						data = data.content;
+		    						city_list.length = 0;
+		    						city_array.length = 0;
+		    						for (i=0;i < data.length; i++){
+		    							var name = data[i]['name'];
+		    							var id = data[i]['id'];
+		    							city_list.push(name);
+		    							city_array.push({name:name, id:id});
+		    						};
+		    					}
+		            		});
 			            }
-			        },
-			        {
-			            values: carVendors.北京,
-			            width: 160,
-			            onChange: function (p, value) {
-			            	for (i = 0; i < city_list.length; i++) {
-			            		if (city_list[i]['name'] == value) {
-			            			console.log(city_list[i]['id']);
-			            			$.cookie('city_id', city_list[i]['id']); 
-			            		}
-			            	}
-			            },
 			        },
 			    ]
 			}); 
 			
+			var pickerCity = myApp.picker({
+			    input: '.ecjia-franchisee-location_city',
+			    toolbarCloseText: '完成',
+			    formatValue: function (picker, values) {
+			        return values[1];
+			    },
+			    cols: [
+			        {
+			            textAlign: 'center',
+			            values: city_list,
+			            onChange: function (picker, city) {
+			            	var city_id;
+			            	for (i = 0; i < city_array.length; i++) {
+			            		if (city_array[i]['name'] == city) {
+			            			city_id = city_array[i]['id'];
+			            			$(".ecjia-franchisee-location_city").val(city_array[i]['name']);
+			            			break;
+			            		}
+			            	}
+			            	
+			            	$.cookie('city_id', city_id); 
+		            		var url = $('#get_location_region').attr('data-url');
+		            		$.ajax({
+		    					type: "POST",
+		    					url: url,
+		    					data: {
+		    						"parent_id" : city_id,
+		    					},
+		    					dataType: "json",
+		    					success: function (data) {
+		    						data = data.content;
+		    						district_list.length = 0;
+		    						district_array.length = 0;
+		    						for (i=0;i < data.length; i++){
+		    							var name = data[i]['name'];
+		    							var id = data[i]['id'];
+		    							district_list.push(name);
+		    							district_array.push({name:name, id:id});
+		    						};
+		    					}
+		            		});
+			            }
+			        },
+			    ]
+			}); 
+			
+			var pickerDistrict = myApp.picker({
+			    input: '.ecjia-franchisee-location_district',
+			    toolbarCloseText: '完成',
+			    formatValue: function (picker, values) {
+			        return values[1];
+			    },
+			    cols: [
+			        {
+			            textAlign: 'center',
+			            values: district_list,
+			            onChange: function (picker, city) {
+			            	var district_id;
+			            	for (i = 0; i < district_array.length; i++) {
+			            		if (district_array[i]['name'] == city) {
+			            			district_id = district_array[i]['id'];
+			            			$(".ecjia-franchisee-location_district").val(district_array[i]['name']);
+			            			break;
+			            		}
+			            	}
+			            	
+			            	$.cookie('district_id', district_id); 
+			            }
+			        },
+			    ]
+			}); 
 		},
 		
 		location :function(){
