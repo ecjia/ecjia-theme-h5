@@ -13,7 +13,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<form class="ecjia-address-list" name="theForm" action="{$form_action}" method="post">
+<div class="ecjia-address-list">
 	<div class="form-group form-group-text">
 		<label class="input">
 			<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_mobile.png" width="30" height="30"></span>
@@ -31,8 +31,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	
 	<div class="ecjia-margin-t2 ecjia-margin-b">
 	    <input name="temp_key" type="hidden" value="{$temp_key}" />
-		<input class="btn btn-info nopjax" name="submit" type="submit" value="{t}查询{/t}"/>
+		<input class="btn btn-info progress_search" type="button" value="{t}查询{/t}" data-url="{$url}"/>
 	</div>
 	
-</form>
+</div>
 <!-- {/block} -->

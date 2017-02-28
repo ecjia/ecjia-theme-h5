@@ -21,6 +21,22 @@
 			
 			ecjia.touch.franchisee.validate_code();
 			ecjia.touch.franchisee.next();
+			
+			$('.progress_search').off('click').on('click', function() {
+				var url = $(this).attr('data-url'),
+					info = {
+						'f_mobile': $("input[name='f_mobile']").val(),
+						'f_code': $("input[name='f_code']").val()
+					};
+				
+				$.post(url, info, function(data){
+					if (data.state == 'error') {
+						alert(data.message);
+					} else {
+						location.href = data.pjaxurl;
+					}
+				});
+			});
 		},
 		
 		//商家入驻流程获取验证码
@@ -123,6 +139,54 @@
 					} else {
 //						ecjia.pjax(data.url);
 						location.href = data.url;
+					}
+				});
+			});
+		},
+		
+		//入驻页面下一步
+		two : function () {
+			$("input[name='franchisee_submit']").on('click', function(e) {
+				e.preventDefault();
+				var seller_name = $("input[name='seller_name']").val();
+				var seller_category = $("input[name='seller_category']").val();
+				var validate_type = $("input[name='validate_type']").val();
+				var address = $("input[name='address']").val();
+				var f_city = $("input[name='f_city']").val();
+				
+				var url = $("form[name='theForm']").attr('action');
+				if (seller_name == '') {
+					alert('请输入店铺名称');
+					return false;
+				}
+				
+				if (seller_category == '') {
+					alert('请选择店铺分类');		
+					return false;
+				}
+				
+				if (validate_type == '') {
+					alert('请选择入驻类型');
+					return false;
+				}
+				
+				if (address == '') {
+					alert('请先写店铺地址');
+					return false;
+				}
+
+        		var info = {
+					'seller_name': seller_name,
+					'seller_category': seller_category,
+					'validate_type' : validate_type,
+					'address': address,
+					'f_city': f_city
+				};
+				$.post(url, info, function(data){
+					if (data.state == 'error') {
+						alert(data.message);
+					} else {
+						//location.href = data.url;
 					}
 				});
 			});
