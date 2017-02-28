@@ -114,7 +114,8 @@ RC_Hook::add_action('user/index/wxconfig', array('user_controller', 'wxconfig'))
 //商家入驻申请
 RC_Loader::load_theme('extras/controller/franchisee_controller.php');
 RC_Hook::add_action('franchisee/index/add', array('franchisee_controller', 'add'));//入驻申请加载页面
-RC_Hook::add_action('franchisee/index/validate', array('franchisee_controller', 'validate_msg'));//处理入驻申请
+RC_Hook::add_action('franchisee/index/validate', array('franchisee_controller', 'validate_msg'));//处理入驻申请验证码
+RC_Hook::add_action('franchisee/index/validate_search_msg', array('franchisee_controller', 'validate_search_msg'));//处理查询进度验证码
 RC_Hook::add_action('franchisee/index/insert', array('franchisee_controller', 'insert'));//处理入驻申请
 RC_Hook::add_action('franchisee/index/store', array('franchisee_controller', 'store_msg'));//处理入驻申请
 RC_Hook::add_action('franchisee/index/finish', array('franchisee_controller', 'finish'));//处理入驻申请
