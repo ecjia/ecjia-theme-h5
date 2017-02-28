@@ -82,20 +82,23 @@
 			if (longitude != '' && latitude != '') {
 				$(".coordinate").html("精度：" + longitude + "；  " + "纬度：" + latitude);
 			}
-			
+
 			$(".coordinate").on('click', function(e) {
 				e.preventDefault();
-				var f_city = $("input[name='f_city']").val();
-				var f_address = $("input[name='f_address']").val();
-				var url = $(this).attr("data-url");
-				
-				if (f_city != '') {
-					var url = url + '&city=' +f_city;
-				} ;
-				if (f_address != '') {
-					var url = url + '&address=' +f_address;
-				} ;
-				location.href = url;
+				var f_city 		= $("input[name='f_city']").val();
+				var f_address   = $("input[name='f_address']").val();
+				if(f_city && f_address){
+					var url = $(this).attr("data-url");
+					if (f_city != '') {
+						var url = url + '&city=' +f_city;
+					} ;
+					if (f_address != '') {
+						var url = url + '&address=' +f_address;
+					} ;
+					location.href = url;
+				}else{
+					alert('请输入详细地址');
+				}
 			})
 		},
 		
