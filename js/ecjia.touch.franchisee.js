@@ -21,6 +21,22 @@
 			
 			ecjia.touch.franchisee.validate_code();
 			ecjia.touch.franchisee.next();
+			
+			$('.progress_search').off('click').on('click', function() {
+				var url = $(this).attr('data-url'),
+					info = {
+						'f_mobile': $("input[name='f_mobile']").val(),
+						'f_code': $("input[name='f_code']").val()
+					};
+				
+				$.post(url, info, function(data){
+					if (data.state == 'error') {
+						alert(data.message);
+					} else {
+						location.href = data.pjaxurl;
+					}
+				});
+			});
 		},
 		
 		//商家入驻流程获取验证码

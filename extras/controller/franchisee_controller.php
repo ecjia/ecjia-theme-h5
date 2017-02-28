@@ -243,7 +243,7 @@ class franchisee_controller {
 	}
 
 	public static function search() {
-	    ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/progress_search'));
+	    ecjia_front::$controller->assign('url', RC_Uri::url('franchisee/index/progress_search'));
 	    ecjia_front::$controller->assign_lang();
 	    ecjia_front::$controller->assign_title('进度查询');
 	    ecjia_front::$controller->display('franchisee_search.dwt');
@@ -257,7 +257,7 @@ class franchisee_controller {
 	    if (empty($mobile)) {
 	        return ecjia_front::$controller->showmessage(__('请输入手机号码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 	    }
-	    
+
 	    if (empty($code)) {
 	        return ecjia_front::$controller->showmessage(__('验证码不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 	    }
@@ -273,7 +273,7 @@ class franchisee_controller {
 	        'validate_code' => $code,
 	    );
 	    $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data($params)->run();
-	    
+
 	    if (is_ecjia_error($rs)) {
 	    	return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 	    } else {
