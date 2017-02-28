@@ -20,8 +20,6 @@
 			});
 			
 			ecjia.touch.franchisee.validate_code();
-			ecjia.touch.franchisee.coordinate();
-			ecjia.touch.franchisee.choices();
 		},
 		
 		//商家入驻流程获取验证码
