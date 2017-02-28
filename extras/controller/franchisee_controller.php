@@ -169,11 +169,11 @@ class franchisee_controller {
 	
 	public static function progress() {
 	    if(empty($_POST['f_mobile'])) {
-	        return ecjia_front::$controller->showmessage('请输入手机号码', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	        return ecjia_front::$controller->showmessage(__('请输入手机号码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 	    }
 	    
 	    if (empty($_POST['f_code'])) {
-	        return ecjia_front::$controller->showmessage('验证码不能为空', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	        return ecjia_front::$controller->showmessage(__('验证码不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 	    }
 	    
 	    $mobile        = !empty($_POST['f_mobile']) ? $_POST['f_mobile'] : '';

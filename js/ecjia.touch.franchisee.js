@@ -48,11 +48,10 @@
 					     $("#get_code").css("position", "absolute");
 					     $("#get_code").css("padding", "0");
 					     $("#get_code").css("margin", "0");
-					     $("#get_code").css("top", ".2em");
+					     $("#get_code").css("top", ".5em");
 					     $("#get_code").css("height", "2.2em");
-					     $("#get_code").css("line-height", "2.4em");
 					     $("#get_code").val("重新发送" + curCount + "(s)");
-					     $("#get_code").attr("class", "btn btn-org login-btn");
+					     $("#get_code").attr("class", "btn btn-org login-btn settled-message btn-small");
 					     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 				    }
 				    ecjia.touch.showmessage(data);
@@ -64,7 +63,7 @@
 			            $("#mobile").removeAttr("readonly");	//启用按钮
 			            $("#get_code").removeAttr("disabled");	//启用按钮
 			            $("#get_code").val("重新发送");
-			            $("#get_code").attr("class", "btn btn-info login-btn");
+			            $("#get_code").attr("class", "btn btn-info login-btn btn-small settled-message");
 			        } else {
 			            curCount--;
 			            $("#get_code").attr("disabled", "true");
