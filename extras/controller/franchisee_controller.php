@@ -91,7 +91,8 @@ class franchisee_controller {
 		            'name' => $name,
 		            'email' => $email,
 		            'mobile' => $mobile,
-		            'code'   => $code
+		            'code'   => $code,
+		            'access_time' => RC_Time::gmtime()
 		        );
 		        
 		        return ecjia_front::$controller->showmessage( '', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('franchisee/index/store')));
@@ -137,6 +138,11 @@ class franchisee_controller {
 	    }
 	}
 	public static function store_msg() {
+	    //验证第一步是否通过
+	    if(empty($_SESSION['franchisee_add']) || $_SESSION['franchisee_add']['access_time'] + 1800 < RC_Time::gmtime()) {
+	        return ecjia_front::$controller->showmessage('请先填写基本信息', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('franchisee/index/add')));
+	    }
+	    
 	    $token = ecjia_touch_user::singleton()->getToken();
 	    $category = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_CATEGORY)->data(array('token' => $token))->send()->getBody();
 	    
