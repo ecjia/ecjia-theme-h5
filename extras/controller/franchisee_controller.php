@@ -107,12 +107,7 @@ class franchisee_controller {
 	    $province = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 1))->send()->getBody();
 	    $city_list = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 2))->send()->getBody();
         
-	    if (empty($longitude) || empty($longitude)) {
-	        return ecjia_front::$controller->showmessage('请定位', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-	    } else {
-	        return ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/finish'));
-	        
-	    }
+	    ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/finish'));
 	    
 		ecjia_front::$controller->assign('province', $province);
 		ecjia_front::$controller->assign('city', $city_list);
