@@ -628,6 +628,11 @@ a.ecjia-color-green {
 .ecjia-address-list .franchisee-progress .progress-img .gfont {
 	color: #cbcbcb;
 }
+.ecjia-address-list .form-group .input .btn-org {
+    color: #FFF;
+    background-color: #e78e20;
+    border-color: #e78e20;	
+}
 /*== 商家入驻结束 ==*/
 
 
