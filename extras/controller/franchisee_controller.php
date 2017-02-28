@@ -128,7 +128,7 @@ class franchisee_controller {
 	    $validate_type 		= !empty($_POST['validate_type']) == '个人入驻'? '1' : '2';
 	    $province 			= !empty($_POST['province_id']) ? $_POST['province_id'] : '';
 	    $city 				= !empty($_POST['city_id']) ? $_POST['city_id'] : '';
-	    $address 			= !empty($_POST['address']) ? $_POST['address'] : '';
+	    $address 			= !empty($_POST['f_address']) ? $_POST['f_address'] : '';
 	    $longitude 			= !empty($_POST['longitude']) ? $_POST['longitude'] : '';
 	    $latitude 			= !empty($_POST['latitude']) ? $_POST['latitude'] : '';
 	    $validate_code 		= !empty($_SESSION['f_code']) ? $_SESSION['f_code'] : '';
