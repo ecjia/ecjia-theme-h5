@@ -20,6 +20,7 @@
 			});
 			
 			ecjia.touch.franchisee.validate_code();
+			ecjia.touch.franchisee.next();
 		},
 		
 		//商家入驻流程获取验证码
@@ -73,6 +74,52 @@
 			});
 		},
 		
+		//入驻页面下一步
+		next : function () {
+			$("input[name='next_button']").on('click', function(e) {
+				e.preventDefault();
+				var f_name = $("input[name='f_name']").val();
+				var f_email = $("input[name='f_email']").val();
+				var f_mobile = $("input[name='f_mobile']").val();
+				var f_code = $("input[name='f_code']").val();
+				var url = $(this).attr('data-url');
+				
+				if (f_name == '') {
+					alert('请输入真实姓名');
+					return false;
+				} else {
+					$.cookie('f_name', f_name); 
+				}
+				
+				if (f_email == '') {
+					alert('请输入电子邮箱');		
+					return false;
+				} else {
+					var search_str = /^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/;
+					if(!search_str.test(f_email)){       
+					    alert("请输入正确的邮箱格式 !");
+					    return false;
+					}
+					$.cookie('f_email', f_email); 
+				}
+				
+				if (f_mobile == '') {
+					alert('请输入手机号码');
+					return false;
+				} else {
+					$.cookie('f_mobile', f_mobile); 
+				}
+				
+				if (f_code == '') {
+					alert('验证码不能为空');
+					return false;
+				} else {
+					$.cookie('f_code', f_code); 
+				}
+				location.href = url;
+			});
+		},
+		
 		//传参到获取精准坐标页
 		coordinate : function () {
 			var longitude = $("input[name='longitude']").val();
@@ -84,6 +131,9 @@
 
 			$(".coordinate").on('click', function(e) {
 				e.preventDefault();
+				var seller_name 		= $("input[name='seller_name']").val();
+				$.cookie('seller_name', seller_name); 
+				
 				var f_city 		= $("input[name='f_city']").val();
 				var f_address   = $("input[name='f_address']").val();
 				if(f_city && f_address){
@@ -116,9 +166,10 @@
 			    cols: [
 			        {
 			        	onChange: function (p, value) {
+			        		$.cookie('seller', value); 
 			        		for (i = 0; i < category.length; i++) {
 			        			if (category[i]['name'] == value) {
-			        				$("input[name='seller_category']").val(category[i]['id']);
+			        				$.cookie('seller_category', category[i]['id']);
 			        			}
 			        		}
 			        	},
@@ -135,7 +186,10 @@
 			    cols: [
 			        {
 			        	textAlign: 'center',
-			            values: ['个人入驻', '企业入驻']
+			            values: ['个人入驻', '企业入驻'],
+			            onChange: function (p, value) {
+			            	$.cookie('validate_type', value); 
+			            }
 			        }
 			    ]
 			});
@@ -171,7 +225,8 @@
 			            	for (i = 0; i < province_array.length; i++) {
 			            		if (province_array[i]['name'] == city) {
 			            			var province_id = province_array[i]['id'];
-			            			$("input[name='province_id']").val(province_id);
+			            			console.log(province_id);
+			            			$.cookie('province_id', province_id); 
 			            		}
 			            	}
 			            	for (i = 0; i < city_list.length; i++) {
@@ -181,8 +236,7 @@
 			            	}
 			  
 			            	var carVendors = {};
-			            	$("input[name='city_id']").val(citylist[1]);
-			            	
+			            	$.cookie('city_id', citylist[1]); 
 			            	carVendors[city] = citylist;
 			                if(picker.cols[1].replaceValues){
 			                    picker.cols[1].replaceValues(carVendors[city]);
@@ -195,13 +249,15 @@
 			            onChange: function (p, value) {
 			            	for (i = 0; i < city_list.length; i++) {
 			            		if (city_list[i]['name'] == value) {
-			            			$("input[name='city_id']").val(city_list[i]['id']);
+			            			console.log(city_list[i]['id']);
+			            			$.cookie('city_id', city_list[i]['id']); 
 			            		}
 			            	}
 			            },
 			        },
 			    ]
 			}); 
+			
 		},
 		
 		location :function(){

@@ -96,12 +96,22 @@ class franchisee_controller {
 	public static function store_msg() {
 	    $token = ecjia_touch_user::singleton()->getToken();
 	    $category = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_CATEGORY)->data(array('token' => $token))->send()->getBody();
-
+	    
 	    $longitude = !empty($_GET['longitude']) ? $_GET['longitude'] : '';
 	    $latitude = !empty($_GET['latitude']) ? $_GET['latitude'] : '';
 	    if (!empty($longitude) && !empty($latitude)) {
 	    	ecjia_front::$controller->assign('longitude', $longitude);
 	    	ecjia_front::$controller->assign('latitude', $latitude);
+	    }
+	    
+	    if (!empty($_COOKIE['validate_type'])) {
+	        ecjia_front::$controller->assign('validate_type', $_COOKIE['validate_type']);
+	    }
+	    if (!empty($_COOKIE['seller'])) {
+	        ecjia_front::$controller->assign('seller', $_COOKIE['seller']);
+	    }
+	    if (!empty($_COOKIE['seller_name'])) {
+	        ecjia_front::$controller->assign('seller_name', $_COOKIE['seller_name']);
 	    }
 	    
 	    $province = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 1))->send()->getBody();
@@ -120,19 +130,19 @@ class franchisee_controller {
 	public static function finish() {
 	    $token = ecjia_touch_user::singleton()->getToken();
 	    
-	    $responsible_person = !empty($_SESSION['f_name']) ? $_SESSION['f_name'] : '';
-	    $email 				= !empty($_SESSION['f_email']) ? $_SESSION['f_email'] : '';
-	    $mobile 			= !empty($_SESSION['f_mobile']) ? $_SESSION['f_mobile'] : '';
-	    $seller_name 		= !empty($_POST['seller_name']) ? $_POST['seller_name'] : '';
-	    $seller_category 	= !empty($_POST['seller_category']) ? $_POST['seller_category'] : '';
-	    $validate_type 		= !empty($_POST['validate_type']) == '个人入驻'? '1' : '2';
-	    $province 			= !empty($_POST['province_id']) ? $_POST['province_id'] : '';
-	    $city 				= !empty($_POST['city_id']) ? $_POST['city_id'] : '';
-	    $address 			= !empty($_POST['address']) ? $_POST['address'] : '';
+	    $responsible_person = !empty($_COOKIE['f_name']) ? $_COOKIE['f_name'] : '';
+	    $email 				= !empty($_COOKIE['f_email']) ? $_COOKIE['f_email'] : '';
+	    $mobile 			= !empty($_COOKIE['f_mobile']) ? $_COOKIE['f_mobile'] : '';
+	    $seller_name 		= !empty($_COOKIE['seller_name']) ? $_COOKIE['seller_name'] : '';
+	    $seller_category 	= !empty($_COOKIE['seller_category']) ? $_COOKIE['seller_category'] : '';
+	    $validate_type 		= !empty($_COOKIE['validate_type']) == '个人入驻'? '1' : '2';
+	    $province 			= !empty($_COOKIE['province_id']) ? $_COOKIE['province_id'] : '';
+	    $city 				= !empty($_COOKIE['city_id']) ? $_COOKIE['city_id'] : '';
+	    $address 			= !empty($_POST['f_address']) ? $_POST['f_address'] : '';
 	    $longitude 			= !empty($_POST['longitude']) ? $_POST['longitude'] : '';
 	    $latitude 			= !empty($_POST['latitude']) ? $_POST['latitude'] : '';
-	    $validate_code 		= !empty($_SESSION['f_code']) ? $_SESSION['f_code'] : '';
-	    
+	    $validate_code 		= !empty($_COOKIE['f_code']) ? $_COOKIE['f_code'] : '';
+
 	    $parameter = array(
 	        'token'              => $token,
 	    	
