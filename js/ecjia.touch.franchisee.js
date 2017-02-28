@@ -4,10 +4,6 @@
 ;(function(ecjia, $) {
 	ecjia.touch.franchisee = {
 		init : function(){
-			ecjia.touch.franchisee.validate_code();
-			ecjia.touch.franchisee.coordinate();
-			ecjia.touch.franchisee.choices();
-			
 			$("form[name='theForm']").on('submit',function(e){e.preventDefault();return false;}).Validform({
 				tiptype:function(msg,o,cssctl){
 				//msg：提示信息;
@@ -22,6 +18,10 @@
 					ecjia.touch.showmessage(data);
 				}
 			});
+			
+			ecjia.touch.franchisee.validate_code();
+			ecjia.touch.franchisee.coordinate();
+			ecjia.touch.franchisee.choices();
 		},
 		
 		//商家入驻流程获取验证码
