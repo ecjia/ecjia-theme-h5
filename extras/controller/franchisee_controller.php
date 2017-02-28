@@ -210,11 +210,18 @@ class franchisee_controller {
 	    if (empty($_POST['f_code'])) {
 	        return ecjia_front::$controller->showmessage(__('验证码不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 	    }
-	    $mobile        = !empty($_POST['f_mobile']) ? $_POST['f_mobile'] : '';
-	    $code          = !empty($_POST['f_code']) ? trim($_POST['f_code']) : '';
+	    $mobile        = !empty($_POST['f_mobile'])    ? $_POST['f_mobile']        : '';
+	    $code          = !empty($_POST['f_code'])      ? trim($_POST['f_code'])    : '';
+	    
+	    $params        = array(
+	        'token' 		=> ecjia_touch_user::singleton()->getToken(),
+	        'mobile' 		=> $mobile,
+	        'validate_code' => $code,
+	    );
+	    $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data($params)->run();
 	    
 	    if (is_ecjia_error($rs)) {
-	    	return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
+	    	return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 	    } else {
     	    return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('franchisee/index/progress', array('mobile' => $mobile, 'code' => $code))));
 	    }
@@ -229,17 +236,18 @@ class franchisee_controller {
 	        'mobile' 		=> $mobile,
 	        'validate_code' => $code,
 	    );
-	    $rs            = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data($params)->run();
+	    $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data($params)->run();
 	    
-    	$check_status  = $rs['check_status'];
-   		$info      	   = $rs['merchant_info'];
-   		
-	    ecjia_front::$controller->assign('check_status', $check_status);
-	    ecjia_front::$controller->assign('info', $info);
-	    ecjia_front::$controller->assign_lang();
-	    ecjia_front::$controller->assign_title('申请进度');
-	    ecjia_front::$controller->display('franchisee_progress.dwt');
-	    
+	    if (!is_ecjia_error($rs)) {
+        	$check_status  = $rs['check_status'];
+       		$info      	   = $rs['merchant_info'];
+       		
+    	    ecjia_front::$controller->assign('check_status', $check_status);
+    	    ecjia_front::$controller->assign('info', $info);
+    	    ecjia_front::$controller->assign_lang();
+    	    ecjia_front::$controller->assign_title('申请进度');
+    	    ecjia_front::$controller->display('franchisee_progress.dwt');
+	    }
 	}
 
 	public static function get_location() {

@@ -591,8 +591,9 @@ a.ecjia-color-green {
 }
 .ecjia-address-list .franchisee-prompt .warm-prompt {
 	font-size: 18px;
-	height: 2em;
-	width: 2em;
+    height: 2em;
+    width: 5em;
+    float: left;
 }
 .ecjia-address-list .franchisee-info {
 	background: #FFF;
@@ -607,7 +608,6 @@ a.ecjia-color-green {
 .ecjia-address-list .franchisee-prompt .prompt-info {
     display: block;
     margin-left: 90px;
-    margin-top: -6%;
 }
 .ecjia-address-list .franchisee-progress .progress-img {
 	text-align: center;
