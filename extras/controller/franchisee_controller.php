@@ -160,12 +160,13 @@ class franchisee_controller {
 	//入驻第二步
 	public static function store_msg() {
 	    //验证第一步是否通过
-	    if(empty($_SESSION['franchisee_add']) || $_SESSION['franchisee_add']['access_time'] + 1800 < RC_Time::gmtime()) {
-	        return ecjia_front::$controller->showmessage('请先填写基本信息', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('franchisee/index/add')));
-	    }
+// 	    if(empty($_SESSION['franchisee_add']) || $_SESSION['franchisee_add']['access_time'] + 1800 < RC_Time::gmtime()) {
+// 	        return ecjia_front::$controller->showmessage('请先填写基本信息', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('franchisee/index/add')));
+// 	    }
 	    
 	    $token = ecjia_touch_user::singleton()->getToken();
 	    $category = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_CATEGORY)->data(array('token' => $token))->send()->getBody();
+	    $province = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 1))->send()->getBody();
 	    
 	    $longitude = !empty($_GET['longitude']) ? $_GET['longitude'] : '';
 	    $latitude = !empty($_GET['latitude']) ? $_GET['latitude'] : '';
@@ -183,18 +184,21 @@ class franchisee_controller {
 // 	    if (!empty($_COOKIE['seller_name'])) {
 // 	        ecjia_front::$controller->assign('seller_name', $_COOKIE['seller_name']);
 // 	    }
-	    
-	    $province = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 1))->send()->getBody();
-	    $city_list = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 2))->send()->getBody();
-        
+
 	    ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/finish'));
-	    
+	   
 		ecjia_front::$controller->assign('province', $province);
-		ecjia_front::$controller->assign('city', $city_list);
 		ecjia_front::$controller->assign('category', $category);
 		ecjia_front::$controller->assign_title('店铺入驻');
 		ecjia_front::$controller->assign_lang();
 		ecjia_front::$controller->display('franchisee_store_msg.dwt');
+	}
+	
+	
+	public static function get_region() {
+		$parent_id = $_POST['parent_id'];
+		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('parent_id' => $parent_id))->run();
+		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('content' => $data['regions']));
 	}
 
 	//入驻信息验证提交
