@@ -637,6 +637,8 @@ a.ecjia-color-green {
 	float: right; 
 	margin-right: 6%;
 }
+.franchisee-info ul {overflow:hidden;padding-bottom:20px;}
+.franchisee-info .address-span {width:80%}
 
 /*== 商家入驻结束 ==*/
 

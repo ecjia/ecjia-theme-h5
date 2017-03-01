@@ -86,7 +86,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </p>
             <p>
                 <span class="ecjiaf-fl fran-info-color">详细地址</span>
-                <span class="ecjiaf-fr">{$info.address}</span>
+                <span class="ecjiaf-fr address-span">{$info.address}</span>
             </p>
         </ul>
     </div>
