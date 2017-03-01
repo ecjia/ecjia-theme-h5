@@ -282,7 +282,7 @@ class franchisee_controller {
 	    	return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 	    }
 	    
-	    $params        = array(
+	    $params  = array(
 	        'token' 		=> ecjia_touch_user::singleton()->getToken(),
 	        'mobile' 		=> $mobile,
 	        'validate_code' => $code,
@@ -307,8 +307,8 @@ class franchisee_controller {
 	            'responsible_person' => $_SESSION['franchisee_add']['name'],
 	            'email' => $_SESSION['franchisee_add']['email'],
 	            'mobile' => $_SESSION['franchisee_add']['mobile'],
-	            'seller_name' => $_COOKIE['seller_name'],
-	            'seller_category' => $_COOKIE['seller_category'],
+	            'seller_name' 	=> $_COOKIE['seller_name'],
+	            'seller_category' => $_COOKIE['seller'],
 	            'address' => $_COOKIE['address'],
 	        );
 	    } else {

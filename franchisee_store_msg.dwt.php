@@ -31,6 +31,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	   $('input[name="f_city"]').val(city);
 	   $('input[name="f_district"]').val(district);
        $('input[name="f_address"]').val(address);
+      	$.cookie('address', address); 
 	});
 </script>
 
@@ -84,7 +85,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     	</label>
     	
 		<label class="input">
-    	   <input name="f_address" placeholder="{t}输入详细地址{/t}" type="text" value={$f_address}>
+    	   <input name="f_address" placeholder="{t}输入详细地址{/t}" type="text" value="">
 		</label>
 	</div>
 

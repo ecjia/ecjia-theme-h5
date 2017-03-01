@@ -404,7 +404,6 @@
 				e.preventDefault();
 				var seller_name = $("input[name='seller_name']").val();
 				$.cookie('seller_name', seller_name); 
-				
 				var f_province 	= $("input[name='f_province']").val();
 				var f_city 		= $("input[name='f_city']").val();
 				var f_district 	= $("input[name='f_district']").val();
