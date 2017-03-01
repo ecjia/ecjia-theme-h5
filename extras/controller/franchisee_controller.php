@@ -200,6 +200,39 @@ class franchisee_controller {
 	    $longitude 			= !empty($_POST['longitude']) ? $_POST['longitude'] : '';
 	    $latitude 			= !empty($_POST['latitude']) ? $_POST['latitude'] : '';
 	    $validate_code 		= $_SESSION['franchisee_add']['code'];
+	    if (empty($responsible_person)) {
+	        return ecjia_front::$controller->showmessage('请输入真实姓名', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
+	    if (empty($email)) {
+	        return ecjia_front::$controller->showmessage('请输入邮箱地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
+	    if (empty($mobile)) {
+	        return ecjia_front::$controller->showmessage('请输入手机号码', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
+	    if (empty($seller_name)) {
+	        return ecjia_front::$controller->showmessage('请输入商店名称', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
+	    if (empty($seller_category)) {
+	        return ecjia_front::$controller->showmessage('请选择店铺分类', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
+	    if (empty($validate_type)) {
+	        return ecjia_front::$controller->showmessage('请选择店铺类型', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
+	    if (empty($province)) {
+	        return ecjia_front::$controller->showmessage('请选择省', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
+	    if (empty($city)) {
+	        return ecjia_front::$controller->showmessage('请选择市', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
+	    if (empty($district)) {
+	        return ecjia_front::$controller->showmessage('请选择区', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
+	    if (empty($address)) {
+	        return ecjia_front::$controller->showmessage('请填写详细地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
+	    if (empty($longitude) || empty($latitude)) {
+	        return ecjia_front::$controller->showmessage('请填写详细地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
 
 	    $parameter = array(
 	        'token'              => $token,
@@ -222,7 +255,10 @@ class franchisee_controller {
 	    	'validate_code'  	 => $validate_code,
 	  
 	    );
+	    
 // 	    _dump($parameter,1);
+// 	    RC_Logger::getlogger('info')->info('h5 入驻');
+//         RC_Logger::getlogger('info')->info($parameter);
 	    $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_SIGNUP)->data($parameter)->run();
 	    
     	if (is_ecjia_error($data)) {

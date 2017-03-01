@@ -149,7 +149,7 @@
 			$("input[name='franchisee_submit']").on('click', function(e) {
 				e.preventDefault();
 				var seller_name 	= $("input[name='seller_name']").val();
-				var seller_category = $("input[name='seller_category']").val();
+				var seller_category = $("input[name='seller_category_id']").val();
 				var validate_type 	= $("input[name='validate_type']").val();
 				var province 		= $("input[name='province_id']").val();
 				var city 			= $("input[name='city_id']").val();
