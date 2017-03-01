@@ -101,7 +101,7 @@ class franchisee_controller {
 	            'access_time' => RC_Time::gmtime()
 	        );
 	        
-	        return ecjia_front::$controller->showmessage( '', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('franchisee/index/store')));
+	        return ecjia_front::$controller->showmessage( '', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('franchisee/index/second')));
 	    }
 	}
 
