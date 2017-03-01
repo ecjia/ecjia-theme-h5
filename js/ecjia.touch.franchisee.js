@@ -222,6 +222,7 @@
 			        {
 			        	onChange: function (p, value) {
 			        		$.cookie('seller', value); 
+			        		$("input[name='seller_category_id']").val(category[i]['id']);
 			        		for (i = 0; i < category.length; i++) {
 			        			if (category[i]['name'] == value) {
 			        				$.cookie('seller_category_id', category[i]['id']);
@@ -243,7 +244,7 @@
 			        	textAlign: 'center',
 			            values: ['个人入驻', '企业入驻'],
 			            onChange: function (p, value) {
-			            	$.cookie('validate_type', value); 
+			            	$.cookie('validate_type', value);
 			            }
 			        }
 			    ]

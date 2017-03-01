@@ -193,6 +193,11 @@ class franchisee_controller {
 	    $seller_name        = !empty($_POST['seller_name']) ? $_POST['seller_name'] : '';
 	    $seller_category 	= !empty($_POST['seller_category_id']) ? $_POST['seller_category_id'] : 0;
 	    $validate_type 		= !empty($_POST['validate_type']) ? $_POST['validate_type'] : 0;
+	    if ($validate_type == '企业入驻') {
+	        $validate_type = 2;
+	    } else {
+	        $validate_type = 1;
+	    }
 	    $province 	        = !empty($_POST['province']) ? $_POST['province'] : 0;
 	    $city 	            = !empty($_POST['city']) ? $_POST['city'] : 0;
 	    $district 	        = !empty($_POST['district']) ? $_POST['district'] : 0;

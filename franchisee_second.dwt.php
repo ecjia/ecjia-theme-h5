@@ -30,7 +30,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<i class="iconfont  icon-jiantou-right"></i>
 			<input class="ecjia-franchisee-category" style="padding-left: 3.5em;" name="seller_category" placeholder="{t}请选择店铺分类{/t}" type="text"  value="{$smarty.cookies.seller}"  />
 		    <input name="category" type="hidden" value={$category} />
-		    <input name="seller_category_id" type="hidden" value="{$smarty.cookies.seller_category}" />
+		    <input name="seller_category_id" type="hidden" value="{$smarty.cookies.seller_category_id}" />
 		</label>
 		<label class="input">
 			<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_type.png" width="30" height="30"></span>
