@@ -515,14 +515,13 @@ a.ecjia-color-green {
 }
 
 .ecjia-f-location span{
-    margin-left: 1.9em;
     margin-top:5px;
     float: left;
 }
 
 .ecjia-f-location input{
     float: left;
-    width: 12em;
+    width: 8em;
 	height:2em;
 }
 
@@ -539,9 +538,6 @@ a.ecjia-color-green {
 }
 .ecjia-address-list .franchisee label.input:before {
     border-bottom: 1px solid #eee;
-}
-.ecjia-address-list .franchisee label.input:nth-child(2):before {
-    border-bottom: 0;
 }
 
 .ecjia-address-list .franchisee .input::before {
@@ -633,6 +629,15 @@ a.ecjia-color-green {
     background-color: #e78e20;
     border-color: #e78e20;	
 }
+.ecjia-f-location .location-longitude {
+	float: left; 
+	margin-left: 6%;
+}
+.ecjia-f-location .location-latitude {
+	float: right; 
+	margin-right: 6%;
+}
+
 /*== 商家入驻结束 ==*/
 
 
