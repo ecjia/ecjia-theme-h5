@@ -45,11 +45,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <div id="container"></div>
 	<div class="ecjia-f-location">
-		<span>经度：</span>
-		<input name="longitude"  type="text"  readonly="readonly" />
-		
-		<span>纬度：</span>
-		<input name="latitude"  type="text"  readonly="readonly" />
+	    <div class="location-longitude">
+    		<span>经度：</span>
+    		<input name="longitude"  type="text"  readonly="readonly" />
+		</div>
+		<div class="location-latitude">
+    		<span>纬度：</span>
+    		<input name="latitude"  type="text"  readonly="readonly" />
+		</div>
 	</div>
 	
  	<div class="ecjia-margin-t ecjia-margin-b">
