@@ -136,7 +136,7 @@ class franchisee_controller {
 	//入驻第二步
 	public static function second() {
 	    //验证第一步是否通过
-	    if(empty($_SESSION['franchisee_add']) || $_SESSION['franchisee_add']['access_time'] + 1800 < RC_Time::gmtime()) {
+	    if (empty($_SESSION['franchisee_add']) || $_SESSION['franchisee_add']['access_time'] + 1800 < RC_Time::gmtime()) {
 	        return ecjia_front::$controller->showmessage('请先填写基本信息', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('franchisee/index/first')));
 	    }
 	    
@@ -316,15 +316,18 @@ class franchisee_controller {
 		$district = !empty($_GET['district']) ? $_GET['district'] 	: '';
 		$address  = !empty($_GET['address'])  ? $_GET['address'] 	: '';
 		$shop_address = $province.$city.$district.$address;
-		$shop_point = file_get_contents("https://api.map.baidu.com/geocoder/v2/?address='".$shop_address."&output=json&ak=E70324b6f5f4222eb1798c8db58a017b");
-		$shop_point = (array)json_decode($shop_point);
-		$shop_point['result'] = (array)$shop_point['result'];
-		$location = (array)$shop_point['result']['location'];
 
-		$longitude = $location['lng'];
-		$latitude = $location['lat'];
-		ecjia_front::$controller->assign('longitude', $longitude);
-		ecjia_front::$controller->assign('latitude', $latitude);
+// 		$shop_point = file_get_contents("https://api.map.baidu.com/geocoder/v2/?address='".$shop_address."&output=json&ak=E70324b6f5f4222eb1798c8db58a017b");
+// 		$shop_point = (array)json_decode($shop_point);
+// 		$shop_point['result'] = (array)$shop_point['result'];
+// 		$location = (array)$shop_point['result']['location'];
+
+// 		$longitude = $location['lng'];
+// 		$latitude = $location['lat'];
+// 		ecjia_front::$controller->assign('longitude', $longitude);
+// 		ecjia_front::$controller->assign('latitude', $latitude);
+
+		ecjia_front::$controller->assign('shop_address', $shop_address);
 		
 		ecjia_front::$controller->assign_lang();
 		ecjia_front::$controller->assign_title('店铺精确位置');

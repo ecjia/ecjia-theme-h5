@@ -58,7 +58,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     	<label class="input">
     		<span class="ecjiaf-fl"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_district" name="f_district" placeholder="{t}选择区{/t}" type="text" value="{$smarty.cookies.district_name">
+    		<input class="ecjia-franchisee-location_district" name="f_district" placeholder="{t}选择区{/t}" type="text" value="{$smarty.cookies.district_name}" />
     		<input name="district_id" type="hidden" value="{$smarty.cookies.district_id}" />
     	</label>
     	

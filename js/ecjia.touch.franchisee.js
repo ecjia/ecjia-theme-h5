@@ -339,7 +339,7 @@
 			            	}
 			            	
 			            	$.cookie('city_id', city_id);
-			            	$.cookie('city_id', city_name);
+			            	$.cookie('city_name', city_name);
 			            	$("input[name='city_id']").val(city_id);
 			            	
 		            		var url = $('#get_location_region').attr('data-url');
