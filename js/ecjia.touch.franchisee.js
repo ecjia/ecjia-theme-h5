@@ -282,12 +282,14 @@
 			            	for (i = 0; i < province_array.length; i++) {
 			            		if (province_array[i]['name'] == city) {
 			            			province_id = province_array[i]['id'];
+			            			province_name = province_array[i]['name'];
 			            			$(".ecjia-franchisee-location_province").val(province_array[i]['name']);
 			            			break;
 			            		}
 			            	}
 			            	
-                            $.cookie('province_id', province_id); 
+                            $.cookie('province_id', province_id);
+                            $.cookie('province_name', province_name);
 			            	$("input[name='province_id']").val(province_id);
 			            	
 		            		var url = $('#get_location_region').attr('data-url');
@@ -329,13 +331,15 @@
 			            	var city_id;
 			            	for (i = 0; i < city_array.length; i++) {
 			            		if (city_array[i]['name'] == city) {
-			            			city_id = city_array[i]['id'];
+			            			city_id   = city_array[i]['id'];
+			            			city_name = city_array[i]['name'];
 			            			$(".ecjia-franchisee-location_city").val(city_array[i]['name']);
 			            			break;
 			            		}
 			            	}
 			            	
-			            	$.cookie('city_id', city_id); 
+			            	$.cookie('city_id', city_id);
+			            	$.cookie('city_id', city_name);
 			            	$("input[name='city_id']").val(city_id);
 			            	
 		            		var url = $('#get_location_region').attr('data-url');
@@ -377,12 +381,14 @@
 			            	var district_id;
 			            	for (i = 0; i < district_array.length; i++) {
 			            		if (district_array[i]['name'] == city) {
-			            			district_id = district_array[i]['id'];
+			            			district_id   = district_array[i]['id'];
+			            			district_name = district_array[i]['name'];
 			            			$(".ecjia-franchisee-location_district").val(district_array[i]['name']);
 			            			break;
 			            		}
 			            	}
 			            	$.cookie('district_id', district_id); 
+			            	$.cookie('district_name', district_name); 
 			            	$("input[name='district_id']").val(district_id);
 			            }
 			        },

@@ -13,29 +13,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <script type="text/javascript">ecjia.touch.franchisee.second();</script>
 <script type="text/javascript">ecjia.touch.franchisee.coordinate();</script>
 <script type="text/javascript">ecjia.touch.franchisee.choices();</script>
-
-
-<script type="text/javascript" src="https://api.map.baidu.com/api?type=quick&ak=E70324b6f5f4222eb1798c8db58a017b&v=1.0"></script>
-<script type="text/javascript">   
-	var lng='{$longitude}';
-	var lat='{$latitude}';
-	var map = new BMap.Map("allmap");
-	var point = new BMap.Point(lng,lat);
-	var gc = new BMap.Geocoder();
-	gc.getLocation(point, function(rs){
-	   var addComp = rs.addressComponents;
-	   var province = addComp.province;
-	   var city 	= addComp.city;
-	   var district = addComp.district;
-	   var address 	= addComp.street + "" + addComp.streetNumber;
-	   $('input[name="f_province"]').val(province);
-	   $('input[name="f_city"]').val(city);
-	   $('input[name="f_district"]').val(district);
-       $('input[name="f_address"]').val(address);
-      	$.cookie('address', address); 
-	});
-</script>
-
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -66,7 +43,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<label class="input">
     		<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_location.png" width="30" height="30"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_province" name="f_province" placeholder="{t}选择省{/t}" type="text" value="">
+    		<input class="ecjia-franchisee-location_province" name="f_province" placeholder="{t}选择省{/t}" type="text" value="{$smarty.cookies.province_name}">
 	        <input name="province" type="hidden" value={$province} />
     		<input name="province_id" type="hidden" value="{$smarty.cookies.province_id}" />
     	</label>
@@ -74,14 +51,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     	<label class="input">
     		<span class="ecjiaf-fl"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_city" name="f_city" placeholder="{t}选择市{/t}" type="text" value="">
+    		<input class="ecjia-franchisee-location_city" name="f_city" placeholder="{t}选择市{/t}" type="text" value="{$smarty.cookies.city_name}">
     		<input name="city_id" type="hidden" value="{$smarty.cookies.city_id}" />
     	</label>
     	
     	<label class="input">
     		<span class="ecjiaf-fl"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_district" name="f_district" placeholder="{t}选择区{/t}" type="text" value="">
+    		<input class="ecjia-franchisee-location_district" name="f_district" placeholder="{t}选择区{/t}" type="text" value="{$smarty.cookies.district_name">
     		<input name="district_id" type="hidden" value="{$smarty.cookies.district_id}" />
     	</label>
     	
