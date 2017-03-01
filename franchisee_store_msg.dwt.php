@@ -24,9 +24,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	gc.getLocation(point, function(rs){
 	   var addComp = rs.addressComponents;
 	   var province = addComp.province;
-	   var city = addComp.city;
-	   var address = addComp.district + "" + addComp.street + "" + addComp.streetNumber;
+	   var city 	= addComp.city;
+	   var district = addComp.district;
+	   var address 	= addComp.street + "" + addComp.streetNumber;
+	   $('input[name="f_province"]').val(province);
 	   $('input[name="f_city"]').val(city);
+	   $('input[name="f_district"]').val(district);
        $('input[name="f_address"]').val(address);
 	});
 </script>
@@ -58,35 +61,35 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	
 	<div class="form-group form-group-text franchisee" id="get_location_region" data-url="{url path='franchisee/index/get_region'}">
-	
 		<label class="input">
     		<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_location.png" width="30" height="30"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_province" name="f_city" placeholder="{t}选择省{/t}" type="text" value={$f_city} >
+    		<input class="ecjia-franchisee-location_province" name="f_province" placeholder="{t}选择省{/t}" type="text" value="">
 	        <input name="province" type="hidden" value={$province} />
     		<input name="province_id" type="hidden" value="" />
     	</label>
     	
     	<label class="input">
-    		<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_location.png" width="30" height="30"></span>
+    		<span class="ecjiaf-fl"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_city" name="f_city" placeholder="{t}选择市{/t}" type="text" value={$f_city}>
+    		<input class="ecjia-franchisee-location_city" name="f_city" placeholder="{t}选择市{/t}" type="text" value="">
     		<input name="city_id" type="hidden" value="" />
     	</label>
     	
     	<label class="input">
-    		<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_location.png" width="30" height="30"></span>
+    		<span class="ecjiaf-fl"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_district" name="f_city" placeholder="{t}选择区{/t}" type="text" value={$f_city}>
+    		<input class="ecjia-franchisee-location_district" name="f_district" placeholder="{t}选择区{/t}" type="text" value="">
     		<input name="district_id" type="hidden" value="" />
     	</label>
     	
 		<label class="input">
-    	   <input name="address" placeholder="{t}输入详细地址{/t}" type="text" value={$f_address}>
+    	   <input name="f_address" placeholder="{t}输入详细地址{/t}" type="text" value={$f_address}>
 		</label>
 	</div>
 
 	<p class="coordinate" data-url="{url path='franchisee/index/location'}">获取精准坐标</p>
+	
 	<input name="longitude" type="hidden" value="{$longitude}" />
 	<input name="latitude" type="hidden" value="{$latitude}" />
 	

@@ -198,7 +198,12 @@ class franchisee_controller {
 	public static function get_region() {
 		$parent_id = $_POST['parent_id'];
 		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('parent_id' => $parent_id))->run();
-		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('content' => $data['regions']));
+		if (is_ecjia_error($data)) {
+			return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
+		} else {
+			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('content' => $data['regions']));
+		}
+		
 	}
 
 	//入驻信息验证提交
@@ -315,9 +320,11 @@ class franchisee_controller {
 	}
 
 	public static function get_location() {
-		$city = !empty($_GET['city']) ? $_GET['city'] : '';
-		$address = !empty($_GET['address']) ? $_GET['address'] : '';
-		$shop_address = $city.$address;
+		$province = !empty($_GET['province']) ? $_GET['province'] 	: '';
+		$city 	  = !empty($_GET['city']) 	  ? $_GET['city'] 		: '';
+		$district = !empty($_GET['district']) ? $_GET['district'] 	: '';
+		$address  = !empty($_GET['address'])  ? $_GET['address'] 	: '';
+		$shop_address = $province.$city.$district.$address;
 		$shop_point = file_get_contents("https://api.map.baidu.com/geocoder/v2/?address='".$shop_address."&output=json&ak=E70324b6f5f4222eb1798c8db58a017b");
 		$shop_point = (array)json_decode($shop_point);
 		$shop_point['result'] = (array)$shop_point['result'];
