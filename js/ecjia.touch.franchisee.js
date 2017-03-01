@@ -222,10 +222,10 @@
 			        {
 			        	onChange: function (p, value) {
 			        		$.cookie('seller', value); 
-			        		$("input[name='seller_category_id']").val(category[i]['id']);
 			        		for (i = 0; i < category.length; i++) {
 			        			if (category[i]['name'] == value) {
 			        				$.cookie('seller_category_id', category[i]['id']);
+			        				$("input[name='seller_category_id']").val(category[i]['id']);
 			        			}
 			        		}
 			        	},
