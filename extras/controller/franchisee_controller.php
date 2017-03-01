@@ -151,15 +151,15 @@ class franchisee_controller {
 	    	ecjia_front::$controller->assign('latitude', $latitude);
 	    }
 	    
-	    if (!empty($_COOKIE['validate_type'])) {
-	        ecjia_front::$controller->assign('validate_type', $_COOKIE['validate_type']);
-	    }
-	    if (!empty($_COOKIE['seller'])) {
-	        ecjia_front::$controller->assign('seller', $_COOKIE['seller']);
-	    }
-	    if (!empty($_COOKIE['seller_name'])) {
-	        ecjia_front::$controller->assign('seller_name', $_COOKIE['seller_name']);
-	    }
+// 	    if (!empty($_COOKIE['validate_type'])) {
+// 	        ecjia_front::$controller->assign('validate_type', $_COOKIE['validate_type']);
+// 	    }
+// 	    if (!empty($_COOKIE['seller'])) {
+// 	        ecjia_front::$controller->assign('seller', $_COOKIE['seller']);
+// 	    }
+// 	    if (!empty($_COOKIE['seller_name'])) {
+// 	        ecjia_front::$controller->assign('seller_name', $_COOKIE['seller_name']);
+// 	    }
 
 	    ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/finish'));
 	   
