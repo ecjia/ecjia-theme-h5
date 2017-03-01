@@ -159,25 +159,23 @@ class touch_controller {
         $type = htmlspecialchars($_GET['type']);
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-        
+
         $paramater = array(
         	'action_type' 	=> $type,	
  			'pagination' 	=> array('count' => $limit, 'page' => $page),
 			'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
         );
 
-        $response = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($paramater)->send();
+        $response = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($paramater)->hasPage()->run();
         if (!is_ecjia_error($response)) {
-        	$arr = $response->getBody();
-        	$list = json_decode($arr, true);
-        	
-        	$data = !empty($list['data']) ? $list['data'] : array();
+			list($data, $paginated) = $response;
+			
         	ecjia_front::$controller->assign('goods_list', $data);
         	ecjia_front::$controller->assign_lang();
         	$sayList = ecjia_front::$controller->fetch('index.dwt');
         	
-        	if ($list['paginated']['more'] == 0) $data['is_last'] = 1;
-        	return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'page', 'is_last' => $data['is_last']));
+        	if ($paginated['more'] == 0) $data['is_last'] = 1;
+        	return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'is_last' => $data['is_last']));
         }
     }
 

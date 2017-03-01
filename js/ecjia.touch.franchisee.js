@@ -148,15 +148,15 @@
 		second : function () {
 			$("input[name='franchisee_submit']").on('click', function(e) {
 				e.preventDefault();
-				var seller_name = $("input[name='seller_name']").val();
+				var seller_name 	= $("input[name='seller_name']").val();
 				var seller_category = $("input[name='seller_category']").val();
-				var validate_type = $("input[name='validate_type']").val();
-				var province = $("input[name='province_id']").val();
-				var city = $("input[name='city_id']").val();
-				var district = $("input[name='district_id']").val();
-				var address = $("input[name='f_address']").val();
-				var longitude = $("input[name='longitude']").val();
-				var latitude = $("input[name='latitude']").val();
+				var validate_type 	= $("input[name='validate_type']").val();
+				var province 		= $("input[name='province_id']").val();
+				var city 			= $("input[name='city_id']").val();
+				var district 		= $("input[name='district_id']").val();
+				var address 		= $("input[name='f_address']").val();
+				var longitude 		= $("input[name='longitude']").val();
+				var latitude 		= $("input[name='latitude']").val();
 				
 				var url = $("form[name='theForm']").attr('action');
 				if (seller_name == '') {
@@ -404,7 +404,6 @@
 				e.preventDefault();
 				var seller_name = $("input[name='seller_name']").val();
 				$.cookie('seller_name', seller_name); 
-				
 				var f_province 	= $("input[name='f_province']").val();
 				var f_city 		= $("input[name='f_city']").val();
 				var f_district 	= $("input[name='f_district']").val();
