@@ -59,7 +59,7 @@ class merchant_controller {
 		$category_id 	= intval($_GET['category_id']);
 		 
 		$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
-		$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+		$pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
 		 
 		$type_name = '';
 		$action_type = !empty($_GET['type']) ? trim($_GET['type']) : '';
@@ -101,30 +101,28 @@ class merchant_controller {
 		if (!empty($action_type) && $action_type != 'all') {
 			$parameter = array(
 				'action_type' 	=> $action_type,
-				'pagination' 	=> array('count' => $limit, 'page' => $page),
+				'pagination' 	=> array('count' => $limit, 'page' => $pages),
 				'seller_id'		=> $store_id
 			);
-			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_SUGGESTLIST)->data($parameter)->send();
+			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_SUGGESTLIST)->data($parameter)->hasPage()->run();
 			if (!is_ecjia_error($response)) {
-				$data = $response->getBody();
-				$data = json_decode($data, true);
-				$goods_num = $data['paginated']['count'];
-				$goods_list = $data['data'];
+				list($data, $page) = $response;
+				$goods_num = $page['count'];
+				$goods_list = $data;
 			}
 		} else {
 			//店铺分类商品
 			$arr = array(
 				'filter' 		=> array('category_id' => $category_id),
-				'pagination' 	=> array('count' => $limit, 'page' => $page),
+				'pagination' 	=> array('count' => $limit, 'page' => $pages),
 				'seller_id'		=> $store_id
 			);
 			 
-			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_LIST)->data($arr)->send();
+			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_LIST)->data($arr)->hasPage()->run();
 			if (!is_ecjia_error($response)) {
-				$data = $response->getBody();
-				$data = json_decode($data, true);
-				$goods_num = $data['paginated']['count'];
-				$goods_list = $data['data'];
+				list($data, $page) = $response;
+				$goods_num = $page['count'];
+				$goods_list = $data;
 			}
 			if (empty($category_id)) {
 				$type_name = '全部';
@@ -252,7 +250,7 @@ class merchant_controller {
 		 
 		$type_name = '';
 		$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
-		$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+		$pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
 		 
 		if ($action_type == 'best') {
 			$type_name = '精选';
@@ -270,29 +268,27 @@ class merchant_controller {
 		if (!empty($action_type) && $action_type != 'all') {
 			$parameter = array(
 				'action_type' 	=> $action_type,
-				'pagination' 	=> array('count' => $limit, 'page' => $page),
+				'pagination' 	=> array('count' => $limit, 'page' => $pages),
 				'seller_id'		=> $store_id
 			);
-			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_SUGGESTLIST)->data($parameter)->send();
+			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_SUGGESTLIST)->data($parameter)->hasPage()->run();
 			if (!is_ecjia_error($response)) {
-				$data = $response->getBody();
-				$data = json_decode($data, true);
-				$goods_num = $data['paginated']['count'];
-				$goods_list = $data['data'];
+				list($data, $page) = $response;
+				$goods_num = $page['count'];
+				$goods_list = $data;
 			}
 		} else {
 			//店铺分类商品
 			$arr = array(
 				'filter' 		=> array('category_id' => $category_id),
-				'pagination' 	=> array('count' => $limit, 'page' => $page),
+				'pagination' 	=> array('count' => $limit, 'page' => $pages),
 				'seller_id'		=> $store_id
 			);
-			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_LIST)->data($arr)->send();
+			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_LIST)->data($arr)->hasPage()->run();
 			if (!is_ecjia_error($response)) {
-				$data = $response->getBody();
-				$data = json_decode($data, true);
-				$goods_num = $data['paginated']['count'];
-				$goods_list = $data['data'];
+				list($data, $page) = $response;
+				$goods_num = $page['count'];
+				$goods_list = $data;
 			}
 	
 			if (empty($category_id)) {
@@ -347,19 +343,19 @@ class merchant_controller {
 			}
 		}
 		 
-		if ($page == 1) {
-			ecjia_front::$controller->assign('page', $page);
+		if ($pages == 1) {
+			ecjia_front::$controller->assign('page', $pages);
 			ecjia_front::$controller->assign('type_name', $type_name);
 			ecjia_front::$controller->assign('goods_num', $goods_num);
 		}
 		
-		if (isset($goods_list['pager']['total']) && $goods_list['pager']['total'] == 0) {
+		if (isset($page['total']) && $page['total'] == 0) {
 			$goods_list = array();
 		}
 		ecjia_front::$controller->assign('goods_list', $goods_list);
 		$say_list = ecjia_front::$controller->fetch('library/merchant_goods.lbi');
 	
-		if ($data['paginated']['more'] == 0) $data['is_last'] = 1;
+		if ($page['more'] == 0) $data['is_last'] = 1;
 		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $say_list, 'goods_list' => $goods_list, 'name' => $type_name, 'num' => $goods_num, 'type' => $action_type, 'is_last' => $data['is_last']));
 	}
 

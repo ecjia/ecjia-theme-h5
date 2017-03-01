@@ -68,12 +68,10 @@ class pay_controller {
                 'order_id' => $order_id,
                 'pay_id' => $pay_id,
             );
-            $response = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_UPDATE)->data($params)->send();
+            $response = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_UPDATE)->data($params)->run();
             if (is_ecjia_error($response)) {
             	return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
             }
-            $rs_update = $response->getBody();
-            $rs_update = json_decode($rs_update,true);
         }
         /*获取订单信息*/
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
@@ -87,22 +85,20 @@ class pay_controller {
     		'token' => ecjia_touch_user::singleton()->getToken(),
     		'order_id'	=> $order_id,
     	);
-    	$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($params)->send();
-    	if (is_ecjia_error($response)) {
+    	$rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($params)->run();
+    	if (is_ecjia_error($rs_pay)) {
     		return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     	}
-    	$rs_pay = $response->getBody();
-    	$rs_pay = json_decode($rs_pay,true);
 
-    	if (isset($rs_pay) && $rs_pay['data']['payment']['error_message']) {
-    		ecjia_front::$controller->assign('pay_error', $rs_pay['data']['payment']['error_message']);
+    	if (isset($rs_pay) && $rs_pay['payment']['error_message']) {
+    		ecjia_front::$controller->assign('pay_error', $rs_pay['payment']['error_message']);
     	}
     	
-    	$order = $rs_pay['data']['payment'];
+    	$order = $rs_pay['payment'];
     	
     	$need_other_payment = 0;
     	if ($order ['pay_code'] == 'pay_balance') {
-    		if ($rs_pay['data']['payment']['error_message']) {
+    		if ($rs_pay['payment']['error_message']) {
     			$need_other_payment = 1;
     		}
     	}
@@ -131,16 +127,13 @@ class pay_controller {
     	
     	if ($need_other_payment && $order['order_pay_status'] == 0) {
     		$params = array(
-    				'token' => ecjia_touch_user::singleton()->getToken(),
+    			'token' => ecjia_touch_user::singleton()->getToken(),
     		);
-    		$response = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->data($params)->send();
+    		$rs_payment = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->data($params)->run();
     		if (is_ecjia_error($response)) {
     			return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     		}
-    		$rs_payment = $response->getBody();
-    		$rs_payment = json_decode($rs_payment,true);
-    	
-    		$payment_list = touch_function::change_array_key($rs_payment['data']['payment'], 'pay_code');
+    		$payment_list = touch_function::change_array_key($rs_payment['payment'], 'pay_code');
 			
     		/*根据浏览器过滤支付方式，微信自带浏览器过滤掉支付宝支付，其他浏览器过滤掉微信支付*/
     		if (!empty($payment_list)) {
