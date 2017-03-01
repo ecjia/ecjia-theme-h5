@@ -224,7 +224,7 @@
 			        		$.cookie('seller', value); 
 			        		for (i = 0; i < category.length; i++) {
 			        			if (category[i]['name'] == value) {
-			        				$.cookie('seller_category', category[i]['id']);
+			        				$.cookie('seller_category_id', category[i]['id']);
 			        			}
 			        		}
 			        	},
