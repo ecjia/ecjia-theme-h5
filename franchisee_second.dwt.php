@@ -85,7 +85,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     	</label>
     	
 		<label class="input">
-    	   <input name="f_address" placeholder="{t}输入详细地址{/t}" type="text" value="">
+    	   <input name="f_address" placeholder="{t}输入详细地址{/t}" type="text" value="{$smarty.cookies.seller_category}">
 		</label>
 	</div>
 
