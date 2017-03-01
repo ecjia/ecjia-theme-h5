@@ -191,38 +191,7 @@
 				});
 			});
 		},
-		
-		//传参到获取精准坐标页
-		coordinate : function () {
-			var longitude = $("input[name='longitude']").val();
-			var latitude = $("input[name='latitude']").val();
-			
-			if (longitude != '' && latitude != '') {
-				$(".coordinate").html("精度：" + longitude + "；  " + "纬度：" + latitude);
-			}
 
-			$(".coordinate").on('click', function(e) {
-				e.preventDefault();
-				var seller_name 		= $("input[name='seller_name']").val();
-				$.cookie('seller_name', seller_name); 
-				
-				var f_city 		= $("input[name='f_city']").val();
-				var f_address   = $("input[name='f_address']").val();
-				if(f_city && f_address){
-					var url = $(this).attr("data-url");
-					if (f_city != '') {
-						var url = url + '&city=' +f_city;
-					} ;
-					if (f_address != '') {
-						var url = url + '&address=' +f_address;
-					} ;
-					location.href = url;
-				}else{
-					alert('请输入详细地址');
-				}
-			})
-		},
-		
 		//店铺入驻选择分类、入驻类型、店铺所在地
 		choices : function() {
 			var category_list = [];
@@ -304,7 +273,9 @@
 			            		}
 			            	}
 			            	
-			            	$.cookie('province_id', province_id); 
+                            $.cookie('province_id', province_id); 
+			            	$("input[name='province_id']").val(province_id);
+			            	
 		            		var url = $('#get_location_region').attr('data-url');
 		            		$.ajax({
 		    					type: "POST",
@@ -351,6 +322,8 @@
 			            	}
 			            	
 			            	$.cookie('city_id', city_id); 
+			            	$("input[name='city_id']").val(city_id);
+			            	
 		            		var url = $('#get_location_region').attr('data-url');
 		            		$.ajax({
 		    					type: "POST",
@@ -395,12 +368,42 @@
 			            			break;
 			            		}
 			            	}
-			            	
 			            	$.cookie('district_id', district_id); 
+			            	$("input[name='district_id']").val(district_id);
 			            }
 			        },
 			    ]
 			}); 
+		},
+		
+		
+		//传参到获取精准坐标页
+		coordinate : function () {
+			var longitude 	= $("input[name='longitude']").val();
+			var latitude 	= $("input[name='latitude']").val();
+			
+			if (longitude != '' && latitude != '') {
+				$(".coordinate").html("精度：" + longitude + "；  " + "纬度：" + latitude);
+			}
+
+			$(".coordinate").on('click', function(e) {
+				e.preventDefault();
+				var seller_name = $("input[name='seller_name']").val();
+				$.cookie('seller_name', seller_name); 
+				
+				var f_province 	= $("input[name='f_province']").val();
+				var f_city 		= $("input[name='f_city']").val();
+				var f_district 	= $("input[name='f_district']").val();
+				var f_address  	= $("input[name='f_address']").val();
+				
+				if(f_province && f_district && f_district && f_address){
+					var url = $(this).attr("data-url");
+					var url = url + '&province=' +f_province+ '&city=' +f_city+ '&district=' +f_district+ '&address=' +f_address;
+					location.href = url;
+				}else{
+					alert('请输入详细地址');
+				}
+			})
 		},
 		
 		location :function(){
