@@ -166,7 +166,8 @@
 .ecjia-address-list .nav-header {
 	height: 3.2em;
 	padding-top: 0.8em;
-	border-top:1px solid #eee;
+	border-top: 1px solid #eee;
+	z-index: 2;
 }
 .ecjia-address-list .address-backgroundw i.icon-jiantou-bottom {
 	position: relative;
