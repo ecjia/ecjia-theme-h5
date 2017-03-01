@@ -41,6 +41,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         {elseif $check_status eq '2'}
             <img src="{$theme_url}/images/user_center/f_progress2.png">
             <p><span class="ecjiaf-fl left10">审核已提交</span><span>审核中</span><span class="ecjiaf-fr right10">审核完成</span></p>
+        {elseif $check_status eq '3'}
+            <img src="{$theme_url}/images/user_center/f_progress2.png">
+            <p><span class="ecjiaf-fl left10">审核已提交</span><span>审核中</span><span class="ecjiaf-fr right10">审核完成</span></p>
         {/if}
             
         </div>
