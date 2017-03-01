@@ -151,41 +151,55 @@
 				var seller_name = $("input[name='seller_name']").val();
 				var seller_category = $("input[name='seller_category']").val();
 				var validate_type = $("input[name='validate_type']").val();
+				var province = $("input[name='province_id']").val();
+				var city = $("input[name='city_id']").val();
+				var district = $("input[name='district_id']").val();
 				var address = $("input[name='address']").val();
-				var f_city = $("input[name='f_city']").val();
+				var longitude = $("input[name='longitude']").val();
+				var latitude = $("input[name='latitude']").val();
 				
 				var url = $("form[name='theForm']").attr('action');
 				if (seller_name == '') {
-					alert('请输入店铺名称');
-					return false;
+					alert('请输入店铺名称');return false;
 				}
-				
 				if (seller_category == '') {
-					alert('请选择店铺分类');		
-					return false;
+					alert('请选择店铺分类');	return false;
 				}
-				
 				if (validate_type == '') {
-					alert('请选择入驻类型');
-					return false;
+					alert('请选择入驻类型');return false;
 				}
-				
+				if (province == '') {
+					alert('请选择店铺所在省');return false;
+				}
+				if (city == '') {
+					alert('请选择店铺所在市');return false;
+				}
+				if (district == '') {
+					alert('请选择店铺所在区');return false;
+				}
 				if (address == '') {
-					alert('请先写店铺地址');
-					return false;
+					alert('请填写店铺详细地址');return false;
+				}
+				if (longitude == '' || latitude == '') {
+					alert('请获取店铺坐标');return false;
 				}
 
         		var info = {
 					'seller_name': seller_name,
 					'seller_category': seller_category,
 					'validate_type' : validate_type,
+					'province': province,
+					'city': city,
+					'district': district,
 					'address': address,
-					'f_city': f_city
+					'longitude': longitude,
+					'latitude': latitude
 				};
 				$.post(url, info, function(data){
 					if (data.state == 'error') {
 						alert(data.message);
 					} else {
+						alert('ok');
 						//location.href = data.url;
 					}
 				});
