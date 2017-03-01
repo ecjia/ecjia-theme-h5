@@ -218,7 +218,7 @@ class franchisee_controller {
 	    $seller_category 	= !empty($_POST['seller_category']) ? $_POST['seller_category'] : 0;
 	    $validate_type 		= !empty($_POST['validate_type']) ? $_POST['validate_type'] : 0;
 	    $province 	        = !empty($_POST['province']) ? $_POST['province'] : 0;
-	    $city 	        = !empty($_POST['city']) ? $_POST['city'] : 0;
+	    $city 	            = !empty($_POST['city']) ? $_POST['city'] : 0;
 	    $district 	        = !empty($_POST['district']) ? $_POST['district'] : 0;
 	    $address 		    = !empty($_POST['address']) ? $_POST['address'] : '';
 	    $longitude 			= !empty($_POST['longitude']) ? $_POST['longitude'] : '';

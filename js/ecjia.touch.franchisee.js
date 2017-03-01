@@ -154,7 +154,7 @@
 				var province = $("input[name='province_id']").val();
 				var city = $("input[name='city_id']").val();
 				var district = $("input[name='district_id']").val();
-				var address = $("input[name='address']").val();
+				var address = $("input[name='f_address']").val();
 				var longitude = $("input[name='longitude']").val();
 				var latitude = $("input[name='latitude']").val();
 				
