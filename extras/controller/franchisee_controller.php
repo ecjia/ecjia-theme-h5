@@ -191,7 +191,7 @@ class franchisee_controller {
 	    $email 				= !empty($_SESSION['franchisee_add']['email']) ? $_SESSION['franchisee_add']['email'] : '';
 	    $mobile 			= !empty($_SESSION['franchisee_add']['mobile']) ? $_SESSION['franchisee_add']['mobile'] : '';
 	    $seller_name        = !empty($_POST['seller_name']) ? $_POST['seller_name'] : '';
-	    $seller_category 	= !empty($_POST['seller_category_id']) ? $_POST['seller_category_id'] : 0;
+	    $seller_category 	= !empty($_POST['seller_category']) ? $_POST['seller_category'] : 0;
 	    $validate_type 		= !empty($_POST['validate_type']) ? $_POST['validate_type'] : 0;
 	    if ($validate_type == '企业入驻') {
 	        $validate_type = 2;
