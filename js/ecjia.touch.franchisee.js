@@ -397,7 +397,7 @@
 			var latitude 	= $("input[name='latitude']").val();
 			
 			if (longitude != '' && latitude != '') {
-				$(".coordinate").html("精度：" + longitude + "；  " + "纬度：" + latitude);
+				$(".coordinate").html("经度：" + longitude + "；  " + "纬度：" + latitude);
 			}
 
 			$(".coordinate").on('click', function(e) {
