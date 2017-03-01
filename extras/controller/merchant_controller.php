@@ -88,6 +88,14 @@ class merchant_controller {
 					$type_name = '新品';
 				}
 			}
+			ecjia_front::$controller->assign('title', $store_info['seller_name']);
+			ecjia_front::$controller->assign('header_left', ' ');
+				
+			$header_right = array(
+				'href' => RC_Uri::url('merchant/index/position', array('shop_address' => $store_info['shop_address'])),
+				'info' => '<i class="iconfont icon-location"></i>',
+			);
+			ecjia_front::$controller->assign('header_right', $header_right);
 		}
 		ecjia_front::$controller->assign('action_type', $action_type);
 		 
@@ -197,15 +205,6 @@ class merchant_controller {
 		if (isset($_COOKIE['location_address_id']) && $_COOKIE['location_address_id'] > 0) {
 			ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
 		}
-	
-		ecjia_front::$controller->assign('title', $store_info['seller_name']);
-		ecjia_front::$controller->assign('header_left', ' ');
-		 
-		$header_right = array(
-			'href' => RC_Uri::url('merchant/index/position', array('shop_address' => $store_info['shop_address'])),
-			'info' => '<i class="iconfont icon-location"></i>',
-		);
-		ecjia_front::$controller->assign('header_right', $header_right);
 		ecjia_front::$controller->assign('referer_url', urlencode(RC_Uri::url('merchant/index/init', array('store_id' => $store_id))));
 		 
 		ecjia_front::$controller->display('merchant.dwt');
