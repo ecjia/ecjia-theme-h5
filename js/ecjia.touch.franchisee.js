@@ -208,6 +208,11 @@
 
 		//店铺入驻选择分类、入驻类型、店铺所在地
 		choices : function() {
+			//更新店铺名
+			$('input[name="seller_name"]').blur(function() {
+				$.cookie('seller_name', $('input[name="seller_name"]').val());
+			});
+			
 			var category_list = [];
 			var category = eval('(' + $("input[name='category']").val() + ')')['data'];
 			
