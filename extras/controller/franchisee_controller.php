@@ -175,15 +175,15 @@ class franchisee_controller {
 	    	ecjia_front::$controller->assign('latitude', $latitude);
 	    }
 	    
-// 	    if (!empty($_COOKIE['validate_type'])) {
-// 	        ecjia_front::$controller->assign('validate_type', $_COOKIE['validate_type']);
-// 	    }
-// 	    if (!empty($_COOKIE['seller'])) {
-// 	        ecjia_front::$controller->assign('seller', $_COOKIE['seller']);
-// 	    }
-// 	    if (!empty($_COOKIE['seller_name'])) {
-// 	        ecjia_front::$controller->assign('seller_name', $_COOKIE['seller_name']);
-// 	    }
+	    if (!empty($_COOKIE['validate_type'])) {
+	        ecjia_front::$controller->assign('validate_type', $_COOKIE['validate_type']);
+	    }
+	    if (!empty($_COOKIE['seller'])) {
+	        ecjia_front::$controller->assign('seller', $_COOKIE['seller']);
+	    }
+	    if (!empty($_COOKIE['seller_name'])) {
+	        ecjia_front::$controller->assign('seller_name', $_COOKIE['seller_name']);
+	    }
 
 	    ecjia_front::$controller->assign('form_action', RC_Uri::url('franchisee/index/finish'));
 	   
@@ -210,11 +210,12 @@ class franchisee_controller {
 	    $email 				= !empty($_SESSION['franchisee_add']['email']) ? $_SESSION['franchisee_add']['email'] : '';
 	    $mobile 			= !empty($_SESSION['franchisee_add']['mobile']) ? $_SESSION['franchisee_add']['mobile'] : '';
 	    $seller_name        = !empty($_POST['seller_name']) ? $_POST['seller_name'] : '';
-	    $seller_category 	= !empty($_POST['seller_category']) ? $_POST['seller_category'] : '';
-	    $validate_type 		= !empty($_POST['validate_type']) ? $_POST['validate_type'] : '';
+	    $seller_category 	= !empty($_POST['seller_category']) ? $_POST['seller_category'] : 0;
+	    $validate_type 		= !empty($_POST['validate_type']) ? $_POST['validate_type'] : 0;
+	    $province 	        = !empty($_POST['province']) ? $_POST['province'] : 0;
+	    $city 	        = !empty($_POST['city']) ? $_POST['city'] : 0;
+	    $district 	        = !empty($_POST['district']) ? $_POST['district'] : 0;
 	    $address 		    = !empty($_POST['address']) ? $_POST['address'] : '';
-	    $f_city 	        = !empty($_POST['f_city']) ? $_POST['f_city'] : '';
-	    $city 				= !empty($_POST['city_id']) ? $_POST['city_id'] : '';
 	    $longitude 			= !empty($_POST['longitude']) ? $_POST['longitude'] : '';
 	    $latitude 			= !empty($_POST['latitude']) ? $_POST['latitude'] : '';
 	    $validate_code 		= $_SESSION['franchisee_add']['code'];
@@ -230,8 +231,9 @@ class franchisee_controller {
 	        'validate_type'      => $validate_type,
 	        'province'           => $province,
 	        'city'               => $city,
+	        'district'           => $district,
 	    	'address'            => $address,
-	    		 
+	    	
 	        'location' => array(
 	        	'longitude'      => $longitude,
 	            'latitude'       => $latitude,
@@ -239,7 +241,7 @@ class franchisee_controller {
 	    	'validate_code'  	 => $validate_code,
 	  
 	    );
-	    
+// 	    _dump($parameter,1);
 	    $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_SIGNUP)->data($parameter)->run();
 	    
     	if (is_ecjia_error($data)) {
