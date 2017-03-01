@@ -50,7 +50,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<label class="input">
 			<span class="ecjiaf-fl"><img src="{$theme_url}/images/user_center/f_category.png" width="30" height="30"></span>
 			<i class="iconfont  icon-jiantou-right"></i>
-			<input class="ecjia-franchisee-category" style="padding-left: 3.5em;" name="seller_category" placeholder="{t}请选择店铺分类{/t}" type="text"  value="{$smarty.cookies.seller}"  />
+			<input class="ecjia-franchisee-category" style="padding-left: 3.5em;" placeholder="{t}请选择店铺分类{/t}" type="text"  value="{$smarty.cookies.seller}"  />
 		    <input name="category" type="hidden" value={$category} />
 		    <input name="seller_category" type="hidden" value="{$smarty.cookies.seller_category}" />
 		</label>
@@ -85,7 +85,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     	</label>
     	
 		<label class="input">
-    	   <input name="f_address" placeholder="{t}输入详细地址{/t}" type="text" value="{$smarty.cookies.seller_category}">
+    	   <input name="f_address" placeholder="{t}输入详细地址{/t}" type="text" value="{$smarty.cookies.address}">
 		</label>
 	</div>
 
