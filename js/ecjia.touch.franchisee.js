@@ -199,8 +199,8 @@
 					if (data.state == 'error') {
 						alert(data.message);
 					} else {
-						alert('ok');
-						//location.href = data.url;
+//						alert('ok');
+						location.href = data.url;
 					}
 				});
 			});
