@@ -150,7 +150,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     
     <ul class="ecjia-list list-short">
         <li>
-        	<a class="external" href="{url path='franchisee/index/add'}">
+        	<a class="external" href="{url path='franchisee/index/first'}">
         		<div class="icon-help-center"><img src="{$theme_url}/images/user_center/75x75_10.png"></div>
         		<span class="icon-name">店铺入驻申请</span>
         		<i class="iconfont  icon-jiantou-right"></i>

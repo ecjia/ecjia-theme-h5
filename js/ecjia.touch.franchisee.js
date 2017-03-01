@@ -22,7 +22,7 @@
 			ecjia.touch.franchisee.validate_code();
 			ecjia.touch.franchisee.next();
 			
-			$('.progress_search').off('click').on('click', function() {
+			$('.process_search').off('click').on('click', function() {
 				var url = $(this).attr('data-url'),
 					info = {
 						'f_mobile': $("input[name='f_mobile']").val(),
@@ -145,7 +145,7 @@
 		},
 		
 		//入驻页面下一步
-		two : function () {
+		second : function () {
 			$("input[name='franchisee_submit']").on('click', function(e) {
 				e.preventDefault();
 				var seller_name = $("input[name='seller_name']").val();

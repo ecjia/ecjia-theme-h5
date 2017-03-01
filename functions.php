@@ -113,17 +113,15 @@ RC_Hook::add_action('user/index/wxconfig', array('user_controller', 'wxconfig'))
 
 //商家入驻申请
 RC_Loader::load_theme('extras/controller/franchisee_controller.php');
-RC_Hook::add_action('franchisee/index/add', array('franchisee_controller', 'add'));//入驻申请加载页面
-RC_Hook::add_action('franchisee/index/add_check', array('franchisee_controller', 'add_check'));//入驻申请第一步验证
-RC_Hook::add_action('franchisee/index/validate', array('franchisee_controller', 'validate'));//处理入驻申请验证码
-RC_Hook::add_action('franchisee/index/validate_search_msg', array('franchisee_controller', 'validate_search_msg'));//处理查询进度验证码
-RC_Hook::add_action('franchisee/index/insert', array('franchisee_controller', 'insert'));//处理入驻申请
-RC_Hook::add_action('franchisee/index/store', array('franchisee_controller', 'store_msg'));//处理入驻申请
+RC_Hook::add_action('franchisee/index/first', array('franchisee_controller', 'first'));//入驻申请加载页面
+RC_Hook::add_action('franchisee/index/first_check', array('franchisee_controller', 'first_check'));//入驻申请第一步验证
+RC_Hook::add_action('franchisee/index/validate', array('franchisee_controller', 'validate'));//入驻验证码
+RC_Hook::add_action('franchisee/index/second', array('franchisee_controller', 'second'));//入驻申请第二步
 RC_Hook::add_action('franchisee/index/finish', array('franchisee_controller', 'finish'));//处理入驻申请
 
 RC_Hook::add_action('franchisee/index/search', array('franchisee_controller', 'search'));//处理入驻申请
-RC_Hook::add_action('franchisee/index/progress', array('franchisee_controller', 'progress'));//查询进度
-RC_Hook::add_action('franchisee/index/progress_search', array('franchisee_controller', 'progress_search'));//查询进度处理
+RC_Hook::add_action('franchisee/index/process', array('franchisee_controller', 'process'));//查询进度
+RC_Hook::add_action('franchisee/index/process_search', array('franchisee_controller', 'process_search'));//查询进度处理
 
 RC_Hook::add_action('franchisee/index/location', array('franchisee_controller', 'get_location'));//获取店铺精确位置
 RC_Hook::add_action('franchisee/index/location_finish', array('franchisee_controller', 'location_finish'));//提交店铺精确位置
