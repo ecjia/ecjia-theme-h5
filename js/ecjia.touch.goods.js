@@ -27,6 +27,21 @@
 			});
 			$('body').css('overflow-y', 'auto').off("touchmove").off('click');//启用滚动条
 			$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条	
+			
+			var doscroll = function(){
+			    var $parent = $('#promotion-scroll');
+			    var length = $parent.find('li.promotion').length;
+			    if (length > 1) {
+				    var $first = $parent.find('li.promotion:first');
+				    var height = $first.height();
+				    $first.animate({
+				    	marginTop: -height + 'px'
+				        }, 500, function() {
+				        $first.css('marginTop', 0).appendTo($parent);
+				    });
+			    }
+			};
+			setInterval(function(){doscroll()}, 2000);
 		},
 
 		//加入购物车

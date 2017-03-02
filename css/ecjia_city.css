@@ -78,6 +78,9 @@ a.ecjia-color-green {
 .ecjia-of-h {
 	overflow:hidden;
 }
+.m_r5 {
+	margin-right: .5em;
+}
 .ecjia-nav li.active a {
 	color:#47AA4D;
 }
@@ -1304,7 +1307,7 @@ footer{
 }
 .ecjia-header.ecjia-store-banner {
 	background: #fff;
-    height: 9em;
+    height: 10em;
     position: fixed;
     width: 100%;
     max-width: 640px;
@@ -1318,61 +1321,70 @@ footer{
 	left: 0;
 	top:0;
 	z-index: 1;
-	height: 9em;
+	height: 10em;
+}
+.ecjia-store-banner .ecjia-header-right {
+	margin-right: 1em;
+}
+.ecjia-store-banner .ecjia-header-right a{
+	display: inline;
 }
 .ecjia-store-brief {
-	height: auto;
+	height: 10em;
     position: fixed;
     width: 100%;
-	top: 9em;
+	top: 0;
 	max-width: 640px;
+	background-color: rgba(0,0,0,0.3);
+	z-index: 2;
 }
 .ecjia-store-brief .store-info{
-	width:100%;
-	margin:0 auto;
-	background:#FFFFFF;
-    border-bottom:1px solid #eee;
-	height:auto;
-	min-height:5em;
-	overflow:hidden;
+	width: 92%;
+	margin: 0 auto;
+    border-bottom:1px dashed #eee;
+	height: 8em;
+	min-height: 5em;
+	overflow: hidden;
 }
-.ecjia-store-brief .store-info .clear{
+.ecjia-store-brief .store-info .clear {
 	clear:both;
 }
-.ecjia-store-brief .store-info .basic-info{
-	height:auto;
-	padding:.5em;
+.ecjia-store-brief .store-info .basic-info {
 }
 .ecjia-store-brief .store-left{
 	float: left;
-	width: 20%;
+	width: 5em;
 }
-.ecjia-store-brief .store-left img{
-    width:5em;
-    height:5em;
-	border-radius:50%;
+.ecjia-store-brief .store-left img {
+    width: 5em;
+    height: 5em;
+	border-radius: 50%;
 	border:2px solid #47aa4d;
+    top: 2.5em;
+	position: relative;
 }
-.ecjia-store-brief .store-right{
-	float:left;
-	width:80%;
+.ecjia-store-brief .store-right {
+	float: left;
+	width: 70%;
+	margin-top: 2em;
+	text-align: left;
+	margin-left: 1em;
 }
-.ecjia-store-brief .store-right div{
-	padding-left:.5em;
-}
-.ecjia-store-brief .store-name{
-	color: #333;
+.ecjia-store-brief .store-name {
     font-size: 1.1em;
 	font-weight: normal;
 	position: relative;
 	line-height: 35px;
 	height: 35px;
 }
-.ecjia-store-brief .store-name span{
+.ecjia-store-brief .store-name .seller-name {
+	font-size: 1.2em;
+}
+.ecjia-store-brief .store-name .manage-mode {
 	color: #ff3434;
-	border:1px solid #ff3434;
-	border-radius:4px;
-	margin-left:.4em;
+	border: 1px solid #ff3434;
+	border-radius: 4px;
+	margin-left: .4em;
 	font-size: .7em;
 	display: inline-block;
     line-height: 1.5em;
@@ -1381,15 +1393,26 @@ footer{
 	position: absolute;
 	top: 1.2em;
 	right: 0em;
-	font-size:1.1em;
+	font-size: 1.1em;
 }
 .ecjia-store-brief .store-range{
-	line-height:2em;
-	color:#aaa;
+	line-height: 1.5em;
 }
 .ecjia-store-brief .store-range i{
 	font-size:1.1em;
 	padding-right:.3em;
+	top: 0;
+}
+.ecjia-store-brief .store-description {
+	line-height: 1.5em;
+	height: 1.5em;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.ecjia-store-brief .store-description i{
+	font-size: 1.1em;
+    padding-right: .3em;
 	top: 0;
 }
 .ecjia-store-brief .store-distance{
@@ -1415,16 +1438,160 @@ footer{
 	font-weight:500;
 	font-size: 1em;
 	padding-left:.5em;
-	color: #333;
 }
-.ecjia-store-goods {
+.ecjia-store-ul {
+	position: fixed;
+    top: 9em;
+    height: 2.2em;
+    max-width: 640px;
+    width: 100%;
+    background-color: #fff;
+    line-height: 2em;
+    font-size: 1.1em;
+	color: #666;
 }
+.ecjia-store-ul li {
+	float: left;
+    width: 33.3%;
+    border-bottom: 0;
+    text-align: center;
+}
+.ecjia-store-ul li span.active {
+	padding: 0 .2em .5em;
+	border-bottom: 2px solid #47b34f;
+	color: #47b34f;
+}
+.ecjia-store-seller {
+	position: absolute;
+	top: 13em;
+	bottom: 0;
+    width: 100%;
+    max-width: 640px;
+    z-index: 8;
+    padding-bottom: 45px;
+}
+.ecjia-store-seller .store-hr {
+	height: .8em;
+    background: #F7F7F7;
+}
+.ecjia-store-seller .store-tel{
+	border-top:1px solid #eee;
+	border-bottom:1px solid #eee;
+	padding: 1em;
+	overflow: hidden;
+	clear:both;
+	color: #555;
+	font-weight: normal;
+}
+.ecjia-store-seller .tel-name{
+	float:left;
+}
+.ecjia-store-seller i.iconfont{
+	font-size: 1.5em;
+	margin-right: .5em;
+	top: 0;
+}
+.ecjia-store-seller .store-tel p.tel-result {
+	position: relative;
+    margin-left: 8em;
+    font-size: 1em;
+   	color: #555;
+	font-weight: normal;
+    overflow: hidden;
+	margin-top: .3em;
+}
+.ecjia-store-seller .store-other-info{
+	overflow: hidden;
+	clear:both;
+}
+.ecjia-store-seller .store-other-info li{
+	border-top: 1px solid #eee;
+	padding: 1em;
+	overflow: auto;
+}
+.ecjia-store-seller .store-other-info li:last-child {
+	border-bottom: 1px solid #eee;
+}
+.ecjia-store-seller .store-other-info .other-info-name{
+	float:left;
+	color: #555;
+	font-weight: normal;
+}
+.ecjia-store-seller .store-other-info p.other-info-result{
+	position: relative;
+    margin-left: 8em;
+    font-size: 1em;
+   	color: #555;
+	font-weight: normal;
+    overflow: hidden;
+	margin-top: .3em;
+}
+.ecjia-store-brief .store-promotion {
+    padding: 0 .5em;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	position: relative;
+	height: 2em;
+}
+.ecjia-store-brief .store-promotion .favourable_notice {
+	position: absolute;
+    right: .5em;
+    top: .1em;
+	font-size: .8em;
+}
+.ecjia-store-brief .store-promotion i.iconfont {
+	top: 0;
+	font-size: 1.5em;
+}
+.ecjia-store-brief .store-promotion li {
+    padding: .3em;
+    margin-left: 10px;
+	text-align: left;
+	line-height: 1.5em;
+}
+.ecjia-store-brief .store-promotion .promotion-label {
+    color: #fff;
+    display: inline-block;
+    border: 1px solid #ff3434;
+    border-radius: 4px;
+    font-size: .8em;
+    background: #ff3434;
+    padding: .1em .2em;
+	line-height: 1.5em;
+}
+.ecjia-store-brief .store-promotion .promotion-name {
+    font-size: .8em;
+    padding-left: .5em;
+}
+.ecjia-store-seller .store-promotion {
+	padding: .5em;
+}
+.ecjia-store-seller .store-promotion li {
+	padding: .3em;
+	margin-left: 10px;
+}
+.ecjia-store-seller .store-promotion .promotion-label {
+    color: #fff;
+    display: inline-block;
+    border: 1px solid #ff3434;
+    border-radius: 4px;
+    font-size: .8em;
+    background: #ff3434;
+    padding: .1em .2em;
+}
+.ecjia-store-seller .store-promotion .promotion-name {
+    font-size: .9em;
+    padding-left: .5em;
+    color: #333;
+}
+
 .ecjia-store-goods .a2g {
     display: block;
 }
 .ecjia-store-goods .a1n {
     position: fixed;
-    top: 15em;
+    top: 10em;
     bottom: 0;
     width: 100%;
 	max-width: 640px;
@@ -1468,7 +1635,8 @@ footer{
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #FFF;
+    background-color: #fff;
+	border-top: 2px solid #eee;
 }
 .clearfix:after {
     clear: both;

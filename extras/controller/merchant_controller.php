@@ -68,7 +68,10 @@ class merchant_controller {
 		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data(array('seller_id' => $store_id, 'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])))->run();
 		if (!is_ecjia_error($store_info)) {
 			$store_info = merchant_function::format_info_distance($store_info);
-			
+
+			if (!empty($store_info['favourable_list'])) {
+				$store_info['favourable_count'] = count($store_info['favourable_list']);
+			}
 			ecjia_front::$controller->assign('store_info', $store_info);
 			ecjia_front::$controller->assign_title($store_info['seller_name']);
 			
@@ -88,12 +91,15 @@ class merchant_controller {
 					$type_name = '新品';
 				}
 			}
+
 			ecjia_front::$controller->assign('title', $store_info['seller_name']);
 			ecjia_front::$controller->assign('header_left', ' ');
 				
 			$header_right = array(
-				'href' => RC_Uri::url('merchant/index/position', array('shop_address' => $store_info['shop_address'])),
-				'info' => '<i class="iconfont icon-location"></i>',
+				'location' => '<i class="iconfont icon-location"></i>',
+				'location_url' => RC_Uri::url('merchant/index/position', array('shop_address' => $store_info['shop_address'])),
+				'search' => '<i class="iconfont icon-search"></i>',
+				'search_url' => RC_Uri::url('touch/index/search', array('store_id' => $store_id)),
 			);
 			ecjia_front::$controller->assign('header_right', $header_right);
 		}
