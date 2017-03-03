@@ -51,9 +51,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<span class="promotion-name">{$list.name}</span>
 			</li>
 			<!-- {/foreach} -->
-			<li class="favourable_notice">共{$store_info.favourable_count}个活动<i class="iconfont icon-jiantou-right"></i></li>
 		</ul>
 		{/if}
+		<li class="favourable_notice">共{if $store_info.favourable_count}{$store_info.favourable_count}{else}0{/if}个活动<i class="iconfont icon-jiantou-right"></i></li>
 	</div>
 	<div class="ecjia-header-right">
 		<!-- {if $header_right.icon neq ''} -->
@@ -135,6 +135,38 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 
 <div class="ecjia-mod ecjia-store-comment ecjia-store-toggle hide">
+	<div class="ecjia-seller-comment">
+		<div class="store-hr"></div>
+		<div class="store-score">
+			<ul class="overall-score">
+				<li class="score_item">5.0</li>
+				<li class="score_item">综合评分</li>
+				<li class="score_item">100%好评</li>
+				<span class="score-border"></span>
+			</ul>
+			<ul class="score_list">
+				<li class="goods_score">
+					商品评分
+					<span class="score_star">☆☆☆☆☆<span>
+					<span class="score_percent">100%<span>
+				</li>
+				<li class="service_score">
+					服务评分
+					<span class="score_star">☆☆☆☆☆<span>
+					<span class="score_percent">100%<span>
+				</li>
+				<li class="time_score">
+					时效评分
+					<span class="score_star">☆☆☆☆☆<span>
+					<span class="score_percent">100%<span>
+				</li>
+			</li>
+		</div>
+		<div class="store-hr"></div>
+		<div class="store-comment-container">
+		<!-- #BeginLibraryItem "/library/store_comment.lbi" --><!-- #EndLibraryItem -->
+		</div>
+	</div>
 </div>
 
 <div class="ecjia-store-seller ecjia-store-toggle hide">
@@ -278,6 +310,38 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- 遮罩层 -->
 <div class="a53" style="display: none;"></div>
 <!-- #BeginLibraryItem "/library/choose_address_modal.lbi" --><!-- #EndLibraryItem -->
+
+<div class="ecjia-store-modal">
+	<div class="modal-inners">
+		<span class="close-icon"><i class="iconfont icon-close"></i></span>
+		<div class="modal-title">{$store_info.seller_name}</div>
+		{if $store_info.favourable_list}
+		<div class="hd">
+			<h2>
+				<span class="line"></span>
+				<span class="goods-index-title">优惠信息</span>
+			</h2>
+		</div>
+		<ul class="store-promotion">
+			<!-- {foreach from=$store_info.favourable_list item=list} -->
+			<li class="promotion">
+				<span class="promotion-label">{$list.type_label}</span>
+				<div class="promotion-name">{$list.name}</div>
+			</li>
+			<!-- {/foreach} -->
+			<div class="clear_both"></div>
+		</ul>
+		{/if}
+		<div class="hd">
+			<h2>
+				<span class="line"></span>
+				<span class="goods-index-title">商城公告</span>
+			</h2>
+		</div>
+		<div class="store-notice">{$store_info.seller_notice}</div>
+	</div>
+</div>
+<div class="ecjia-store-modal-overlay ecjia-store-modal-overlay-visible"></div>
 <!-- {/block} -->
 
 <!-- {block name="ajaxinfo"} -->
