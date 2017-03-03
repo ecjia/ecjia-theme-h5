@@ -4843,6 +4843,44 @@ footer{
 .ecjia-flow-goodslist.ecjia-order-detail .goods-item {
 	border:none;
 }
+/*========================  评价晒单 ===========================*/
+.ecjia-comment-list {
+    border-bottom: 1px solid #eee;
+}
+.ecjia-comment-list .btn-comment{
+    width: 7em;
+    line-height: 7.5em;
+    height: 3em;
+}
+.ecjia-comment-list .cmt-goods-name{
+    margin-top: 1em;
+    position: absolute;
+    display: block;
+    width: 100%;
+    max-height: 3em;
+    line-height: 1.5em;
+    transform: translateY(-50%);
+    padding-left: 6em;
+}
+.ecjia-comment-list .cmt-goods-price{
+    top: 80%;
+    position: absolute;
+    display: block;
+    width: 100%;
+    max-height: 3em;
+    line-height: 1.5em;
+    transform: translateY(-50%);
+    padding-left: 6em;
+}
+.ecjia-comment-list .btn-comment .btn{
+    text-align: center;
+    height: 2em;
+    line-height: 1em;
+    border-color: red;
+    color: red;
+    font-size: 1em;
+}
+
 /*========================  文章 ===========================*/
 
 

@@ -191,6 +191,8 @@ RC_Hook::add_action('user/order/order_cancel', array('user_order_controller', 'o
 RC_Hook::add_action('user/order/async_order_list', array('user_order_controller', 'async_order_list'));
 RC_Hook::add_action('user/order/order_detail', array('user_order_controller', 'order_detail'));
 RC_Hook::add_action('user/order/affirm_received', array('user_order_controller', 'affirm_received'));
+RC_Hook::add_action('user/order/comment_list', array('user_order_controller', 'comment_list'));
+RC_Hook::add_action('user/order/goods_comment', array('user_order_controller', 'goods_comment'));
 RC_Hook::add_action('user/order/buy_again', array('user_order_controller', 'buy_again'));
 
 //用户资料

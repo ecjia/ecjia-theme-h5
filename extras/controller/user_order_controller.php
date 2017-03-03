@@ -79,7 +79,7 @@ class user_order_controller {
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
         $data = is_ecjia_error($data) ? array() : $data;
-        
+
         ecjia_front::$controller->assign('order', $data);
         ecjia_front::$controller->assign('title', '订单详情');
         ecjia_front::$controller->assign_title('订单详情');
@@ -188,6 +188,34 @@ class user_order_controller {
         } else {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => $url));
         }
+    }
+    
+    /**
+     * 评价晒单商品列表
+     */
+    public static function comment_list() {
+        $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
+        
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data(array('order_id' => $order_id))->run();
+        $data = is_ecjia_error($data) ? array() : $data;
+        ecjia_front::$controller->assign('goods_list', $data['goods_list']);
+        
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_comment_list.dwt');
+    }
+    
+    /**
+     * 商品评价
+     */
+    public static function goods_comment() {
+        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
+        $data = is_ecjia_error($data) ? array() : $data;
+    
+        ecjia_front::$controller->assign('order_list', $data);
+         
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_goods_comment.dwt');
     }
 }
 
