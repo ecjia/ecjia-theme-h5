@@ -20,6 +20,7 @@
 			
 			ecjia.touch.category.check_goods();	//购物车列表 单选多选切换
 			ecjia.touch.category.cart_edit();	//购物车列表编辑
+			ecjia.touch.category.store_info_show();
 			
 			//分类列表 点击分类切换 滚动到顶部
 			$('.category_left li').on('click', function(){
@@ -542,7 +543,7 @@
         	} else {
         		$('.ecjia-store-banner').show();
     			$('.ecjia-store-brief').show();
-    			$('.ecjia-store-goods').children('.a1n').css('top', '13.2em');
+    			$('.ecjia-store-goods').children('.a1n').css('top', '13.7em');
     			$('.page_hearer_hide').hide();
         	}
         },
@@ -752,7 +753,7 @@
         			//禁用滚动条
                 	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
                 	
-                	var height = ($('body').scrollTop() + 140) + 'px';
+                	var height = ($('body').scrollTop() + 160) + 'px';
         			$('.ecjia-modal').show().css('top', height);
         			$('.ecjia-modal-overlay').show();
         			myApp.openModal('.ecjia-modal');
@@ -1008,7 +1009,33 @@
 				$this.addClass('active').siblings('li').removeClass('active');
 				$('#category_' + cat_id).removeClass('hide').siblings('.ecjia-category-list').addClass('hide');
 			});
-		}
+		},
+		
+		store_info_show: function() {
+ 			$('li.favourable_notice').off('click').on('click', function() {
+ 				var $this = $(this);
+ 				
+ 				var myApp = new Framework7();
+    			//禁用滚动条
+            	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
+
+            	var height = ($('body').scrollTop() + 160) + 'px';
+    			$('.ecjia-store-modal').show().css('top', height);
+    			$('.ecjia-store-modal-overlay').show();
+    			myApp.openModal('.ecjia-store-modal');
+    			$('.modal-overlay').remove();
+    			
+    			$('.close-icon').on('click', function(){
+    				$('.ecjia-store-modal').hide();
+    				$('.ecjia-store-modal-overlay').hide();
+    				$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
+    			});
+    			return false;
+ 			});
+        	$('.modal-inners').click(function(e) {
+                e.stopPropagation(); //阻止事件向上冒泡
+            });
+		},
 	};
 	
 	ecjia.touch.store = {
