@@ -78,8 +78,8 @@ class merchant_function {
 			} else {
 				$data['distance'] = $data['distance'].'m';
 			}
-			return $data;
 		}
+		return $data;
 	}
 }
 

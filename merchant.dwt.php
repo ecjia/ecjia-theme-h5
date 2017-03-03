@@ -10,6 +10,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">
+	ecjia.touch.store.init();
 	ecjia.touch.category.init();
 </script>
 <!-- {/block} -->
@@ -49,14 +50,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<span class="promotion-label">{$list.type_label}</span>
 				<span class="promotion-name">{$list.name}</span>
 			</li>
-			<li class="promotion">
-				<span class="promotion-label">{$list.type_label}</span>
-				<span class="promotion-name">{$list.name}</span>
-			</li>
-			<li class="promotion">
-				<span class="promotion-label">{$list.type_label}</span>
-				<span class="promotion-name">{$list.name}</span>
-			</li>
 			<!-- {/foreach} -->
 			<li class="favourable_notice">共{$store_info.favourable_count}个活动<i class="iconfont icon-jiantou-right"></i></li>
 		</ul>
@@ -77,12 +70,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 <div class="ecjia-mode ecjia-store-ul">
 	<ul>
-		<li><span class="active">购物</span></li>
-		<li>评价</li>
-		<li>商家</li>
+		<li class="ecjia-store-li"><span class="active">购物</span></li>
+		<li class="ecjia-store-li"><span class="">评价</span></li>
+		<li class="ecjia-store-li"><span class="">商家</span></li>
 	</ul>
 </div>
-<div class="ecjia-mod ecjia-store-goods hide">
+<div class="ecjia-mod ecjia-store-goods ecjia-store-toggle">
 	<div class="a1n a2g">
 		<div class="a21 clearfix">
 			<ul class="a1o">
@@ -141,10 +134,32 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 </div>
 
-<div class="ecjia-mod ecjia-store-comment todo">
+<div class="ecjia-mod ecjia-store-comment ecjia-store-toggle hide">
 </div>
 
-<div class="ecjia-mod ecjia-store-seller">
+<div class="ecjia-store-seller ecjia-store-toggle hide">
+	<ul class="store-goods">
+		<li class="goods-info">
+			<span class="store-goods-count">{$store_info.goods_count.count}</span><br>
+			<span class="store-goods-desc">全部商品</span>
+			<span class="goods-border"></span>
+		</li>
+		<li class="goods-info">
+			<span class="store-goods-count">{$store_info.goods_count.new_goods}</span><br>
+			<span class="store-goods-desc">上新</span>
+			<span class="goods-border"></span>
+		</li>
+		<li class="goods-info">
+			<span class="store-goods-count">{$store_info.goods_count.best_goods}</span><br>
+			<span class="store-goods-desc">促销</span>
+			<span class="goods-border"></span>
+		</li>
+		<li class="goods-info">
+			<span class="store-goods-count">{$store_info.goods_count.hot_goods}</span><br>
+			<span class="store-goods-desc">店铺动态</span>
+		</li>
+	</ul>
+				
 	{if $store_info.favourable_list}
 	<ul class="store-promotion">
 		<!-- {foreach from=$store_info.favourable_list item=list} -->
@@ -158,7 +173,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="store-hr"></div>
 	<div class="store-tel">
 		<span class="tel-name"><i class="iconfont icon-phone"></i>商家电话</span>
-		<p class="tel-result"><a href="tel:{$store_info.telephone}">{if $store_info.telephone}{$store_info.telephone}{else}暂无{/if}</a></p>
+		<p class="tel-result">{if $store_info.telephone}{$store_info.telephone}<a href="tel:{$store_info.telephone}"><i class="iconfont icon-phone"></i></a>{else}暂无{/if}</p>
 	</div>
 	<div class="store-hr"></div>
 	<ul class="store-other-info">
