@@ -6478,13 +6478,12 @@ footer{
 	color: #fff;
 	background-color: #47b34f;
 }
-
-.assess-flat {
+.ecjia-seller-comment .assess-flat {
     position: relative;
     margin-top: 10px;
     border-bottom: 1px solid #e0e0e0;
 }
-.assess-flat:before {
+.ecjia-seller-comment .assess-flat:before {
     position: absolute;
     content: '';
     -webkit-transform: scaleY(0.5);
@@ -6494,17 +6493,17 @@ footer{
     width: 100%;
     height: 1px;
 }
-.assess-wrapper {
+.ecjia-seller-comment .assess-wrapper {
     display: block;
     padding-left: 15px;
     background-color: #fff;
 }
-.assess-top {
+.ecjia-seller-comment .assess-top {
     position: relative;
     padding: 0 10px 11px 0;
     background-color: #fff;
 }
-.assess-top:before {
+.ecjia-seller-comment .assess-top:before {
     position: absolute;
     content: '';
     -webkit-transform: scaleY(0.5);
@@ -6514,7 +6513,7 @@ footer{
     width: 100%;
     height: 1px;
 }
-.assess-top:after {
+.ecjia-seller-comment .assess-top:after {
     font-size: 0;
     display: block;
     visibility: hidden;
@@ -6522,18 +6521,18 @@ footer{
     height: 0;
     content: '';
 }
-.user-portrait img {
+.ecjia-seller-comment .user-portrait img {
     display: block;
     float: left;
     width: 45px;
     height: 45px;
     border-radius: 50px;
 }
-.assess-bottom {
+.ecjia-seller-comment .assess-bottom {
     padding-bottom: 12px;
     background-color: #fff;
 }
-.user-name {
+.ecjia-seller-comment .user-name {
     font-size: 13px;
     line-height: 27px;
     float: left;
@@ -6546,14 +6545,14 @@ footer{
     text-overflow: ellipsis;
     max-width: 100px;
 }
-.assess-date, .reply-floor {
+.ecjia-seller-comment .assess-date, .reply-floor {
     font-size: 13px;
     line-height: 27px;
     float: right;
     height: 27px;
     color: #848689;
 }
-.comment-item-star {
+.ecjia-seller-comment .comment-item-star {
 	display: inline-block;
     overflow: hidden;
     width: 75px;
@@ -6564,16 +6563,28 @@ footer{
     background: url(../images/comment-star.png) repeat-x 0 -11px;
     background-size: 15px 22px;
 }
-.comment-item-star .real-star {
+.ecjia-seller-comment .comment-item-star .real-star {
     display: inline-block;
     height: 22px;
     background: url(../images/comment-star.png) repeat-x 0 0;
     background-size: 15px 22px;
 }
-.comment-stars-width5 {
-    width: 100%;
+.ecjia-seller-comment .comment-stars-width1{
+	width:20%;
 }
-.assess-content {
+.ecjia-seller-comment .comment-stars-width2{
+	width:40%;
+}
+.ecjia-seller-comment .comment-stars-width3{
+	width:60%;
+}
+.ecjia-seller-comment .comment-stars-width4{
+	width:80%;
+}
+.ecjia-seller-comment .comment-stars-width5{
+	width:100%;
+}
+.ecjia-seller-comment .assess-content {
     font-size: 13px;
     line-height: 18px;
     margin-right: 10px;
@@ -6581,8 +6592,9 @@ footer{
     word-wrap: break-word;
     overflow: hidden;
     text-align: justify;
+	margin-bottom: 5px;
 }
-.assess-btns-box {
+.ecjia-seller-comment .assess-btns-box {
     position: relative;
     padding-top: 10px;
     width: 100%;
@@ -6591,10 +6603,10 @@ footer{
     padding-bottom: 10px;
     background-color: #fff;
 }
-.assess-bottom .img-list {
+.ecjia-seller-comment .assess-bottom .img-list {
 	padding: .2em 0;
 }
-.assess-bottom .img-list img{
+.ecjia-seller-comment .assess-bottom .img-list img{
 	padding-right: .5em;
 	width: 45px;
     height: 45px;
