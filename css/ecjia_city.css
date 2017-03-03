@@ -5088,7 +5088,6 @@ footer{
     top: 80%;
     position: absolute;
     display: block;
-    width: 100%;
     max-height: 3em;
     line-height: 1.5em;
     transform: translateY(-50%);
@@ -5101,6 +5100,77 @@ footer{
     border-color: red;
     color: red;
     font-size: 1em;
+}
+.ecjia-met-goods-info {
+    padding-bottom: 5em;
+}
+.ecjia-met-goods-info .star{
+    width: 100%!important;
+    height: 3em;
+    line-height: 3em;
+    border-bottom: 1px solid #eee;
+}
+.ecjia-met-goods-info .star img{
+    margin-left: 1em;
+}
+.ecjia-met-goods-info .star span{
+    font-size: 1em;
+    margin-left: 1em;
+    width: 100%;
+}
+.ecjia-met-goods-info .input {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 1em;
+    border-bottom-color: 1px solid #eee;
+}
+.ecjia-met-goods-info .input textarea{
+    max-width: 640px;
+    width: 100%;
+    height: 6em;
+    background-color: #eee;
+    padding: .5em;
+}
+.ecjia-push-comment {
+    bottom: 0px;
+    position: fixed;
+    max-width: 640px;
+    width: 100%;
+    height: 4em;
+    background-color: #FFF;
+}
+.ecjia-push-comment .push-comment-btn{
+    position: relative;
+}
+.ecjia-push-comment .push-comment-btn .btn{
+    height: 2.3em!important;
+    top: .5em;
+    position: absolute;
+    right: 0;
+    margin-right: 1em;
+    width: 7em;
+    line-height: 1.5em;
+}
+
+
+.ecjia-push-comment .ecjia-anonymity-check {
+    width: 20px;
+    height: 20px;
+    padding:0;
+    background: url(../images/icon/ck.png)  0 0 no-repeat;
+    background-size: 20px 220px;
+    top: 1em;
+    margin-top: .2em;
+    margin-left: 1.5em;
+    position: absolute;
+}
+.ecjia-push-comment .ecjia-anonymity-check p{
+    width: 60px;
+    margin-left: 2em;
+    line-height: 1.5em;
+}
+.ecjia-push-comment .anonymity-check-checked /* 选中  */{
+    background-position: 0px -200px;
 }
 
 /*========================  文章 ===========================*/
@@ -6626,5 +6696,3 @@ footer{
     height: 45px;
 	border-radius: 3px;
 }
-
-/*首页推荐店铺*/
