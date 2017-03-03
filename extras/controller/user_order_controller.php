@@ -196,10 +196,13 @@ class user_order_controller {
     public static function comment_list() {
         $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data(array('order_id' => $order_id))->run();
-        $data = is_ecjia_error($data) ? array() : $data;
-        ecjia_front::$controller->assign('goods_list', $data['goods_list']);
+        //获取订单内商品列表
+        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
+        $goods = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
+        $goods = is_ecjia_error($goods) ? array() : $goods;
+        $goods_list = $goods['goods_list'];
         
+        ecjia_front::$controller->assign('goods_list', $goods_list);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_comment_list.dwt');
     }
@@ -208,11 +211,14 @@ class user_order_controller {
      * 商品评价
      */
     public static function goods_comment() {
-        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
-        $data = is_ecjia_error($data) ? array() : $data;
-    
-        ecjia_front::$controller->assign('order_list', $data);
+        $goods_id = isset($_GET['goods_id']) ? intval($_GET['goods_id']) : 0;
+        
+        //获取商品信息
+        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'goods_id' => $goods_id);
+        $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($params_order)->run();
+        $goods_info = is_ecjia_error($goods_info) ? array() : $goods_info;
+//         _dump($goods_info,1);
+        ecjia_front::$controller->assign('goods', $goods_info);
          
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_goods_comment.dwt');
