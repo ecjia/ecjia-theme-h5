@@ -217,8 +217,8 @@
 			var category_list = [];
 			var category = eval('(' + $("input[name='category']").val() + ')')['data'];
 			if(category == null){
-				$("input[name='seller_category']").val('暂无分类');
-				$.cookie('seller_category_id', 0);
+				$("input[name='seller_category']").val('暂无店铺分类，未能入驻');
+				$.cookie('seller_category_id', '');
 			}else{
 				for (i=0;i < category.length; i++){
 					category_list.push(category[i]['name']);
