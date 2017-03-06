@@ -225,7 +225,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</dl>
 			</a>
 			<div class="box" id="goods_{$val.id}">
-				<!-- {if !$val.goods_attr} -->
+				<!-- {if $val.goods_attr} -->
 				<div class="goods_attr"><span class="choose_attr">选规格</span></div>
 				<!-- {else} -->
 				<span class="reduce {if $val.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$val.rec_id}">减11</span>
