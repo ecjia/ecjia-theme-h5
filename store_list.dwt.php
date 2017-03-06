@@ -89,9 +89,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</dl>
 			</a>
 			<div class="box" id="goods_{$val.id}">
+				<!-- {if $val.goods_attr} -->
+				<div class="goods_attr"><span class="choose_attr">选规格</span></div>
+				<!-- {else} -->
 				<span class="reduce {if $val.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$val.rec_id}">减</span>
 				<label class="{if $val.num}show{else}hide{/if}">{$val.num}</label>
 				<span class="add" data-toggle="add-to-cart" rec_id="{$val.rec_id}" goods_id="{$val.id}">加</span>
+				<!-- {/if} -->
 			</div>
 		</li>
 		<!-- {/if} -->
@@ -221,9 +225,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</dl>
 			</a>
 			<div class="box" id="goods_{$val.id}">
-				<span class="reduce {if $val.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$val.rec_id}">减</span>
+				<!-- {if !$val.goods_attr} -->
+				<div class="goods_attr"><span class="choose_attr">选规格</span></div>
+				<!-- {else} -->
+				<span class="reduce {if $val.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$val.rec_id}">减11</span>
 				<label class="{if $val.num}show{else}hide{/if}">{$val.num}</label>
-				<span class="add" data-toggle="add-to-cart" rec_id="{$val.rec_id}" goods_id="{$val.id}">加</span>
+				<span class="add" data-toggle="add-to-cart" rec_id="{$val.rec_id}" goods_id="{$val.id}">加11</span>
+				<!-- {/if} -->
 			</div>
 		</li>
 	<!-- {/foreach} -->
