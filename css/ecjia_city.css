@@ -1610,7 +1610,7 @@ footer{
 }
 .ecjia-store-seller .store-promotion li {
 	padding: .3em;
-	margin-left: 10px;
+	margin-left: .3em;
 }
 .ecjia-store-seller .store-promotion .promotion-label {
     color: #fff;
@@ -6450,7 +6450,7 @@ footer{
 .ecjia-store-modal .store-promotion li {
 	padding: .5em;
 	text-align: left;
-	font-size: .9em;
+	font-size: .8em;
 	color: #aaa;
 }
 .ecjia-store-modal .store-promotion .promotion-label {
