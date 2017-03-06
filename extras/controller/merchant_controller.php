@@ -68,6 +68,10 @@ class merchant_controller {
 		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data(array('seller_id' => $store_id, 'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])))->run();
 		if (!is_ecjia_error($store_info)) {
 			$store_info = merchant_function::format_info_distance($store_info);
+
+			$store_info['comment']['comment_goods_val'] = (float)$store_info['comment']['comment_goods']/100;
+			$store_info['comment']['comment_server_val'] = (float)$store_info['comment']['comment_server']/100;
+			$store_info['comment']['comment_delivery_val'] = (float)$store_info['comment']['comment_delivery']/100;
 			
 			if (!empty($store_info['favourable_list'])) {
 				$store_info['favourable_count'] = count($store_info['favourable_list']);

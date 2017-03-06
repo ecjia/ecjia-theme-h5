@@ -46,7 +46,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<script type="text/javascript" src="{$theme_url}lib/jquery-form/jquery.form.min.js" ></script>	
 
 	<!-- {block name="meta"} --><!-- {/block} -->
-
 	<script type="text/javascript" src="{$theme_url}js/ecjia.touch.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.history.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.others.js" ></script>
@@ -56,12 +55,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.merchant.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.b2b2c.js" ></script>
 
-    
+    <script type="text/javascript">var theme_url = "{$theme_url}";</script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.goods_detail.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.spread.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.user_account.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.franchisee.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.comment.js" ></script>
+    <script type="text/javascript" src="{$theme_url}js/ecjia.touch.raty.js" ></script>
     
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.fly.js" ></script>
     <!-- 弹窗 -->

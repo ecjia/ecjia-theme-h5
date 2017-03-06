@@ -146,19 +146,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</ul>
 			<ul class="score_list">
 				<li class="goods_score">
-					商品评分
-					<span class="score_star">☆☆☆☆☆<span>
-					<span class="score_percent">100%<span>
+					<span class="score_title">商品评分</span>
+					<span class="score_percent"><span class="score_star" data-val="{$store_info.comment.comment_goods_val}"></span>{$store_info.comment.comment_goods}</span>
 				</li>
 				<li class="service_score">
-					服务评分
-					<span class="score_star">☆☆☆☆☆<span>
-					<span class="score_percent">100%<span>
+					<span class="score_title">服务评分</span>
+					<span class="score_percent"><span class="score_star" data-val="{$store_info.comment.comment_server_val}"></span>{$store_info.comment.comment_server}</span>
 				</li>
 				<li class="time_score">
-					时效评分
-					<span class="score_star">☆☆☆☆☆<span>
-					<span class="score_percent">100%<span>
+					<span class="score_title">时效评分</span>
+					<span class="score_percent"><span class="score_star" data-val="{$store_info.comment.comment_delivery_val}"></span>{$store_info.comment.comment_delivery}</span>
 				</li>
 			</li>
 		</div>

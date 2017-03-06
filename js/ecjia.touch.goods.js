@@ -20,7 +20,7 @@
 			
 			ecjia.touch.category.check_goods();	//购物车列表 单选多选切换
 			ecjia.touch.category.cart_edit();	//购物车列表编辑
-			ecjia.touch.category.store_info_show();
+			ecjia.touch.category.store_toggle();
 			
 			//分类列表 点击分类切换 滚动到顶部
 			$('.category_left li').on('click', function(){
@@ -1011,7 +1011,7 @@
 			});
 		},
 		
-		store_info_show: function() {
+		store_toggle: function() {
  			$('li.favourable_notice').off('click').on('click', function() {
  				var $this = $(this);
  				
@@ -1035,6 +1035,34 @@
         	$('.modal-inners').click(function(e) {
                 e.stopPropagation(); //阻止事件向上冒泡
             });
+        	
+ 			$('.ecjia-store-li').off('click').on('click', function() {
+ 				var $this = $(this);
+ 				
+ 				$this.children('span').addClass('active');
+ 				$this.siblings('li').children('span').removeClass('active');
+ 				var index = $this.index();
+ 				if (index == 0) {
+ 					var show_div = $('.ecjia-store-goods');
+ 					$('.store-add-cart').show();
+ 				} else if (index == 1) {
+ 					var show_div = $('.ecjia-store-comment');
+ 					$('.store-add-cart').hide();
+ 				} else if (index == 2) {
+ 					var show_div = $('.ecjia-store-seller');
+ 					$('.store-add-cart').hide();
+ 				}
+ 				show_div.removeClass('hide').addClass('show');
+ 				show_div.siblings('.ecjia-store-toggle').removeClass('show').addClass('hide');
+ 			});
+ 			
+ 			$('.score_star').each(function() {
+ 				var $this = $(this);
+ 				$this.raty({
+ 					readOnly : true,
+ 	 				score : $this.attr('data-val') * 5
+ 				});
+ 			});
 		},
 	};
 	
@@ -1058,26 +1086,6 @@
 //				    });
 //			    }
 //			}, 2000);
-			
- 			$('.ecjia-store-li').off('click').on('click', function() {
- 				var $this = $(this);
- 				
- 				$this.children('span').addClass('active');
- 				$this.siblings('li').children('span').removeClass('active');
- 				var index = $this.index();
- 				if (index == 0) {
- 					var show_div = $('.ecjia-store-goods');
- 					$('.store-add-cart').show();
- 				} else if (index == 1) {
- 					var show_div = $('.ecjia-store-comment');
- 					$('.store-add-cart').hide();
- 				} else if (index == 2) {
- 					var show_div = $('.ecjia-store-seller');
- 					$('.store-add-cart').hide();
- 				}
- 				show_div.removeClass('hide').addClass('show');
- 				show_div.siblings('.ecjia-store-toggle').removeClass('show').addClass('hide');
- 			});
 		},
 	};
 	

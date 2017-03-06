@@ -1369,16 +1369,16 @@ footer{
 	margin-top: 2em;
 	text-align: left;
 	margin-left: 1em;
+	font-size: 1em;
 }
 .ecjia-store-brief .store-name {
-    font-size: 1.1em;
 	font-weight: normal;
 	position: relative;
 	line-height: 35px;
 	height: 35px;
 }
 .ecjia-store-brief .store-name .seller-name {
-	font-size: 1em;
+	font-size: 1.1em;
 }
 .ecjia-store-brief .store-name .manage-mode {
 	color: #ff3434;
@@ -1487,12 +1487,12 @@ footer{
 	background-color: #fff;
 }
 .ecjia-store-seller .tel-name{
-	float:left;
+	float: left;
+	line-height: 2em;
 }
 .ecjia-store-seller i.iconfont{
 	font-size: 1.5em;
 	margin-right: .5em;
-	top: 0;
 }
 .ecjia-store-seller .store-tel p.tel-result {
 	position: relative;
@@ -1501,7 +1501,7 @@ footer{
    	color: #555;
 	font-weight: normal;
     overflow: hidden;
-	margin-top: .1em;
+	line-height: 2em;
 }
 .ecjia-store-seller .store-tel p.tel-result a{
 	float: right;
@@ -1520,9 +1520,10 @@ footer{
 	border-bottom: 1px solid #eee;
 }
 .ecjia-store-seller .store-other-info .other-info-name{
-	float:left;
+	float: left;
 	color: #555;
 	font-weight: normal;
+	line-height: 2em;
 }
 .ecjia-store-seller .store-other-info p.other-info-result{
 	position: relative;
@@ -1531,7 +1532,7 @@ footer{
    	color: #555;
 	font-weight: normal;
     overflow: hidden;
-	margin-top: .2em;
+	line-height: 2em;
 }
 .ecjia-store-seller .store-goods{
 	border-top: 1px solid #eee;
@@ -6316,7 +6317,7 @@ footer{
 }
 .ecjia-store-modal .modal-title{
     text-align: center;
-	font-size: 1em;
+	font-size: 1.1em;
 	height: 3em;
 	line-height: 3em;
 	font-weight: normal;
@@ -6469,7 +6470,7 @@ footer{
 	padding: .2em 1em 1em 1em;
     text-align: left;
 	color: #666;
-	font-size: 1em;
+	font-size: .8em;
 }
 .clear_both {
 	clear: both;
@@ -6504,7 +6505,7 @@ footer{
 .ecjia-seller-comment .overall-score{
 	height: auto;
     float: left;
-    width: 35%;
+    width: 30%;
     text-align: center;
     position: relative;
 	padding: .5em;
@@ -6514,7 +6515,7 @@ footer{
     color: #DB4244;
 }
 .ecjia-seller-comment .overall-score .score-border {
-	height: 5em;
+	height: 5.5em;
     position: absolute;
     left: 100%;
     top: 1em;
@@ -6524,15 +6525,28 @@ footer{
 .ecjia-seller-comment .store-score .score_list {
 	height: auto;
     float: left;
-    width: 65%;
+    width: 70%;
     position: relative;
-	padding: 1.5em;
+	padding: .5em 1.5em;
+}
+.ecjia-seller-comment .store-score .score_list .goods_score,.service_score,.time_score {
+	position: relative;
+	line-height: 2em;
+	text-align: center;
+}
+.ecjia-seller-comment .store-score .score_list .score_title {
+	position: absolute;
+    top: 2px;
 }
 .ecjia-seller-comment .store-score .score_star{
-	margin-left: 1em;
+    margin-right: .5em;
+}
+.ecjia-seller-comment .store-score .score_star img{
+	width: 15px;
+	height: 15px;
 }
 .ecjia-seller-comment .store-score .score_percent{
-	margin-left: 1em;
+	margin-left: 4.5em;
 }
 .store-hr {
 	height: .8em;
