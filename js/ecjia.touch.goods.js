@@ -20,7 +20,7 @@
 			
 			ecjia.touch.category.check_goods();	//购物车列表 单选多选切换
 			ecjia.touch.category.cart_edit();	//购物车列表编辑
-			ecjia.touch.category.store_info_show();
+			ecjia.touch.category.store_toggle();
 			
 			//分类列表 点击分类切换 滚动到顶部
 			$('.category_left li').on('click', function(){
@@ -1011,7 +1011,7 @@
 			});
 		},
 		
-		store_info_show: function() {
+		store_toggle: function() {
  			$('li.favourable_notice').off('click').on('click', function() {
  				var $this = $(this);
  				
@@ -1035,30 +1035,7 @@
         	$('.modal-inners').click(function(e) {
                 e.stopPropagation(); //阻止事件向上冒泡
             });
-		},
-	};
-	
-	ecjia.touch.store = {
-		init : function(){
-			ecjia.touch.store.store_toggle();
-		},
-		store_toggle : function(){
-//			var doscroll;
-//        	clearInterval(doscroll);
-// 			doscroll = setInterval(function(){
-//			    var $parent = $('#promotion-scroll');
-//			    var length = $parent.find('li.promotion').length;
-//			    if (length > 1) {
-//				    var $first = $parent.find('li.promotion:first');
-//				    var height = $first.height();
-//				    $first.animate({
-//				    	marginTop: -height + 'px'
-//				        }, 500, function() {
-//				        $first.css('marginTop', 0).appendTo($parent);
-//				    });
-//			    }
-//			}, 2000);
-			
+        	
  			$('.ecjia-store-li').off('click').on('click', function() {
  				var $this = $(this);
  				
@@ -1078,6 +1055,36 @@
  				show_div.removeClass('hide').addClass('show');
  				show_div.siblings('.ecjia-store-toggle').removeClass('show').addClass('hide');
  			});
+ 			
+ 			$('.score_star').each(function() {
+ 				var $this = $(this);
+ 				$this.raty({
+ 					readOnly : true,
+ 	 				score : $this.attr('data-val') * 5
+ 				});
+ 			});
+		},
+	};
+	
+	ecjia.touch.store = {
+		init : function(){
+			ecjia.touch.store.store_toggle();
+		},
+		store_toggle : function(){
+			var doscroll;
+ 			doscroll = setInterval(function(){
+			    var $parent = $('#promotion-scroll');
+			    var length = $parent.find('li.promotion').length;
+			    if (length > 1) {
+				    var $first = $parent.find('li.promotion:first');
+				    var height = $first.height();
+				   	$first.animate({
+				       	marginTop: -height + 'px'
+				      	}, 600, function() {
+				      	$first.css('marginTop', 0).appendTo($parent);
+				   	});
+			    }
+			}, 3000);
 		},
 	};
 	
