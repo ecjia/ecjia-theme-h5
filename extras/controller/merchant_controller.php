@@ -70,9 +70,7 @@ class merchant_controller {
 			$store_info = merchant_function::format_info_distance($store_info);
 
 			$store_info['comment']['comment_goods_val'] = (float)$store_info['comment']['comment_goods']/100;
-			$store_info['comment']['comment_server_val'] = (float)$store_info['comment']['comment_server']/100;
-			$store_info['comment']['comment_delivery_val'] = (float)$store_info['comment']['comment_delivery']/100;
-			
+
 			if (!empty($store_info['favourable_list'])) {
 				$store_info['favourable_count'] = count($store_info['favourable_list']);
 			}

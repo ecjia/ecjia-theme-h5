@@ -7,11 +7,26 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 
 <div class="store-option">
-	<li class="active">全部(290)</li>
-	<li>晒图(55)</li>
-	<li>好评(13)</li>
-	<li>中评(22)</li>
-	<li>差评(4)</li>
+	<dl class="active">
+		<dt>全部</dt>
+		<dd>(290)</dd>
+	</dl>
+	<dl>
+		<dt>晒图</dt>
+		<dd>(55)</dd>
+	</dl>
+	<dl>
+		<dt>好评</dt>
+		<dd>(13)</dd>
+	</dl>
+	<dl>
+		<dt>中评</dt>
+		<dd>(22)</dd>
+	</dl>
+	<dl>
+		<dt>差评</dt>
+		<dd>(4)</dd>
+	</dl>
 </div>
 <div class="store-comment">
 	<!-- 测试数据 -->

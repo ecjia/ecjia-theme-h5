@@ -6512,52 +6512,13 @@ footer{
 	height: auto;
 	overflow: hidden;
 	border-bottom: 1px solid #eee;
+	padding: .5em 1em;
 }
-.ecjia-seller-comment .overall-score{
-	height: auto;
-    float: left;
-    width: 30%;
-    text-align: center;
-    position: relative;
-	padding: .5em;
+.ecjia-store-comment .store-score .score-name {
+	float: left;
 }
-.ecjia-seller-comment .overall-score li:first-child {
-	font-size: 2em;
-    color: #DB4244;
-}
-.ecjia-seller-comment .overall-score .score-border {
-	height: 5.5em;
-    position: absolute;
-    left: 100%;
-    top: 1em;
-    width: .1em;
-    background: #ddd;
-}
-.ecjia-seller-comment .store-score .score_list {
-	height: auto;
-    float: left;
-    width: 70%;
-    position: relative;
-	padding: .5em 1.5em;
-}
-.ecjia-seller-comment .store-score .score_list .goods_score,.service_score,.time_score {
-	position: relative;
-	line-height: 2em;
-	text-align: center;
-}
-.ecjia-seller-comment .store-score .score_list .score_title {
-	position: absolute;
-    top: 2px;
-}
-.ecjia-seller-comment .store-score .score_star{
-    margin-right: .5em;
-}
-.ecjia-seller-comment .store-score .score_star img{
-	width: 15px;
-	height: 15px;
-}
-.ecjia-seller-comment .store-score .score_percent{
-	margin-left: 4.5em;
+.ecjia-store-comment .store-score .score-val {
+	float: right;
 }
 .store-hr {
 	height: .8em;
@@ -6569,23 +6530,19 @@ footer{
     border-bottom: 1px solid #eee;
 	padding: .5em;
 }
-.ecjia-seller-comment .store-option li {
+.ecjia-seller-comment .store-option dl {
     float: left;
-    width: 22.5%;
-    margin-right: 2.4%;
-    display: inline-block;
-    text-align: center;
-    padding: 7px 0;
-    font-size: 13px;
-    -webkit-border-radius: 3px;
-    -ms-border-radius: 3px;
-    border-radius: 40px;
-    border: 1px solid #eee;
-    margin: .3em;
+    width: 20%;
+    box-sizing: border-box;
+	overflow: hidden;
+	text-align: center;
 }
-.ecjia-seller-comment .store-option li.active {
-	color: #fff;
-	background-color: #47b34f;
+.ecjia-seller-comment .store-option dl dt {
+	font-size: 1em;
+	line-height: 1.5em;
+}
+.ecjia-seller-comment .store-option dl.active {
+	color: #ff3434;
 }
 .ecjia-seller-comment .assess-flat {
     position: relative;
