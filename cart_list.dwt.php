@@ -97,6 +97,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		{/if}
 	</div>
 </div>
-<!-- #BeginLibraryItem "/library/choose_address_modal.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/address_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
 <!-- {/block} -->
