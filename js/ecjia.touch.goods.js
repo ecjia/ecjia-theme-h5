@@ -1083,11 +1083,12 @@
     			});
     			//禁用滚动条
             	$('body').css('overflow-y', 'hidden').on('touchmove', function(event){event.preventDefault;}, false);
-            	$('.modal-inners').on('touchmove', function(event){event.preventDefault;}, false);
+//            	$('.modal-inners').on('touchmove', function(event){event.preventDefault;}, false);
             	$(".ecjia-store-goods .a1n .a1x").css({overflow: "hidden"});	//禁用滚动条
 
             	$('.goods-attr-list').on('touchmove', function(e) {
         			e.stopPropagation();
+        			$('.ecjia-goodsAttr-modal').css({position: "fixed"});
         		});
  			});
 		},
