@@ -7,6 +7,7 @@
 			ecjia.touch.comment.goods_info();
 			ecjia.touch.comment.anonymity();
 			ecjia.touch.comment.photo();
+			ecjia.touch.comment.remove_goods_img();
 		},
 		goods_info : function () {
 			$('.star').raty({
@@ -39,7 +40,13 @@
 				fr.onload=function(){
 					var _img=new Image();
 					_img.src=this.result;
-					$(_img).appendTo(".push_photo_img");
+					var check_push_rm = "check_push_rm" + $(".push_photo_img img").length;
+					var img_span = "<span class='rm_span_img'></span>";
+					var url = "<div class='" + check_push_rm + "'></div>";
+					
+					$(url).appendTo(".push_photo_img");
+					$(_img).appendTo("." + check_push_rm);
+					$(img_span).appendTo("." + check_push_rm);
 				}
 				fr.readAsDataURL(f);
 				
@@ -50,6 +57,12 @@
 					$(".push_photo").remove();
 				}
 			}
+		})
+	},
+	
+	remove_goods_img : function () {
+		$(".push_photo_img div .rm_span_img").on('click', function (e) {
+			e.preventDefault();
 		})
 	},
 	
