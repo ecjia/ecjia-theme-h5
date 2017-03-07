@@ -217,7 +217,7 @@ class user_order_controller {
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'goods_id' => $goods_id);
         $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($params_order)->run();
         $goods_info = is_ecjia_error($goods_info) ? array() : $goods_info;
-//         _dump($goods_info,1);
+
         ecjia_front::$controller->assign('goods', $goods_info);
          
         ecjia_front::$controller->assign_lang();

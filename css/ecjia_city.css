@@ -5196,15 +5196,19 @@ footer{
 .ecjia-met-goods-info .push_img .push_photo_img div {
     position: relative;
 }
-.ecjia-met-goods-info .push_img .push_photo_img div span{
+.ecjia-met-goods-info .push_img .push_photo_img div i{
     position: absolute;
-    float: left;
-    width: 5%;
+    width: 20px;
     height: 20px;
     margin-left: -1.5em;
+    overflow: hidden;
+    background-color: #ff3434;
+    font-style: normal;
+    border-radius: 10px;
     padding: 0;
-    background: url(../images/icon/ck.png) 0 0 no-repeat;
-    background-size: 20px 220px;
+    text-align: center;
+    font-size: 1.1em;
+    vertical-align: middle;
 }
 .ecjia-met-goods-info .push_result_img {
     position: relative;

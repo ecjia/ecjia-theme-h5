@@ -10,7 +10,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">
-	ecjia.touch.star.init();
 	ecjia.touch.comment.init();
 </script>
 <!-- {/block} -->
@@ -34,7 +33,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </div>
             
             <div class="push_img">   
-                <div class="push_photo_img" id="result"></div>
+                <div class="push_photo_img" id="result">
+                </div>
             	<div class="push_photo" id="result">
             	   <div class="push_result_img">
             	       <img src="{$theme_url}images/photograph.png">
@@ -56,7 +56,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </li>
     </label>
     <span class="ecjiaf-fr push-comment-btn">
-    <input class="btn" name="push-comment-btn" type="submit" value="发表评价"/>
+        <input class="btn" name="push-comment-btn" type="submit" value="发表评价"/>
     </span>
 </div>
 <!-- {/block} -->
