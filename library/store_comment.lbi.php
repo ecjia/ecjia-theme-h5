@@ -31,11 +31,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="store-comment">
 	<!-- 测试数据 -->
 	<div class="assess-flat">    
-		<span class="assess-wrapper">        
+		<div class="assess-wrapper">        
 			<div class="assess-top">            
 				<span class="user-portrait">                
-				<img src="{$theme_url}images/default_user.png"></span>            
-				
+					<img src="{$theme_url}images/default_user.png">
+				</span>            
 				<span class="user-name">j***9</span>     
 				<span class="assess-date">2017-03-03</span>
 				<span class="comment-item-star">         
@@ -52,6 +52,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<img src="https://cityo2o.ecjia.com/content/uploads/images/201611/goods_img/1133_G_1478111902677.jpg" />
 				</div>
 			</div>    
-		</span>    
+		</div>    
 	</div>
 </div>

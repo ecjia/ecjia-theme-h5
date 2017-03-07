@@ -268,6 +268,7 @@
                 ecjia.touch.update_hot_time(list_length);
                 ecjia.touch.category.add_tocart();
 				ecjia.touch.category.remove_tocart();
+				ecjia.touch.category.store_toggle();
 				ecjia.touch.record_time();
 			});
 		},

@@ -1025,7 +1025,7 @@
     			myApp.openModal('.ecjia-store-modal');
     			$('.modal-overlay').remove();
     			
-    			$('.close-icon').on('click', function(){
+    			$('.ecjia-close-modal-icon').on('click', function(){
     				$('.ecjia-store-modal').hide();
     				$('.ecjia-store-modal-overlay').hide();
     				$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
@@ -1062,6 +1062,34 @@
  				    return $(this).attr('data-val') * 5;
  				},
 			});
+
+ 			$('.choose_attr').off('click').on('click', function() {
+ 				var $this = $(this);
+ 				
+ 				var myApp = new Framework7();
+            	
+            	var height = ($('body').scrollTop() + 160) + 'px';
+    			$('.ecjia-goodsAttr-modal').show().css('top', height);
+    			$('.ecjia-goodsAttr-overlay').show();
+
+    			myApp.openModal('.ecjia-goodsAttr-modal');
+    			$('.modal-overlay').remove();
+    			
+    			$('.ecjia-close-modal-icon').on('click', function(){
+    				$('.ecjia-goodsAttr-modal').hide();
+    				$('.ecjia-goodsAttr-overlay').hide();
+    				$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
+    				$(".ecjia-store-goods .a1n .a1x").css({overflow: "auto"});	//启用滚动条
+    			});
+    			//禁用滚动条
+            	$('body').css('overflow-y', 'hidden').on('touchmove', function(event){event.preventDefault;}, false);
+            	$('.modal-inners').on('touchmove', function(event){event.preventDefault;}, false);
+            	$(".ecjia-store-goods .a1n .a1x").css({overflow: "hidden"});	//禁用滚动条
+
+            	$('.goods-attr-list').on('touchmove', function(e) {
+        			e.stopPropagation();
+        		});
+ 			});
 		},
 	};
 	

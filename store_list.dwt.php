@@ -210,7 +210,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <input type="hidden" value="{RC_Uri::url('cart/index/update_cart')}" name="update_cart_url" />
 <input type="hidden" value="{$store_id}" name="store_id" />
 <!-- {/if} -->
-<!-- #BeginLibraryItem "/library/choose_address_modal.lbi" --><!-- #EndLibraryItem -->	
+<!-- #BeginLibraryItem "/library/address_modal.lbi" --><!-- #EndLibraryItem -->	
 <!-- {/block} -->
 
 <!-- {block name="ajaxinfo"} -->

@@ -6373,7 +6373,7 @@ footer{
     z-index: 7;
 }
 
-/*店铺页面弹出层*/
+/*店铺主页公告弹出层*/
 .ecjia-store-modal {
   	width: 270px;
   	position: absolute;
@@ -6565,7 +6565,7 @@ footer{
 .clear_both {
 	clear: both;
 }
-.ecjia-store-modal .close-icon{
+.ecjia-close-modal-icon{
 	position: absolute;
     right: .2em;
     top: 0;
@@ -6888,4 +6888,114 @@ footer{
     margin: .2em .3em;
 	border-radius: 4px;
     border: 1px solid #ddd;
+}
+
+/*选择商品规格弹出层*/
+.ecjia-goodsAttr-modal {
+  	width: 270px;
+  	position: absolute;
+  	z-index: 11000;
+  	left: 50%;
+  	margin-left: -135px;
+  	margin-top: 0;
+  	top: 10em;
+  	text-align: center;
+  	border-radius: 7px;
+  	opacity: 0;
+  	color: #000;
+  	display: none;
+    overflow: auto;
+    height: auto;
+}
+.ecjia-goodsAttr-modal.modal-in {
+  	opacity: 1;
+  	-webkit-transition-duration: 400ms;
+  	transition-duration: 400ms;
+  	-webkit-transform: translate3d(0,0,0) scale(1);
+  	transform: translate3d(0,0,0) scale(1);
+}
+.ecjia-goodsAttr-modal.modal-out {
+  	opacity: 0;
+  	z-index: 10999;
+  	-webkit-transition-duration: 400ms;
+  	transition-duration: 400ms;
+  	-webkit-transform: translate3d(0,0,0) scale(0.815);
+  	transform: translate3d(0,0,0) scale(0.815);
+}
+.ecjia-goodsAttr-modal .modal-title{
+    text-align: center;
+	font-size: 1.1em;
+    height: 2em;
+    line-height: 2.5em;
+	font-weight: normal;
+	color: #555;
+	width: 75%;
+    margin: 0 auto;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.ecjia-goodsAttr-modal .modal-inners{
+	padding: 0;
+	background: #fff;
+}
+.ecjia-goodsAttr-overlay{
+	position: fixed;
+  	left: 0;
+  	top: 0;
+  	width: 100%;
+  	height: 100%;
+  	background: rgba(0,0,0,0.4);
+  	z-index: 10600;
+  	visibility: hidden;
+  	opacity: 0;
+  	-webkit-transition-duration: 400ms;
+  	transition-duration: 400ms;
+	display: none;
+}
+.ecjia-goodsAttr-overlay.ecjia-goodsAttr-overlay-visible {
+  	visibility: visible;
+  	opacity: 1;
+}
+.ecjia-goodsAttr-modal .goods-attr {
+	height: auto;
+    overflow: hidden;
+}
+.ecjia-goodsAttr-modal .goods-attr .attr-name {
+	margin: .2em;
+}
+.ecjia-goodsAttr-modal .goods-attr-list {
+    width: 90%;
+    text-align: left;
+    margin: 0 auto;
+    overflow: scroll;
+    max-height: 14.5em;
+	margin-bottom: 40px;
+}
+.ecjia-goodsAttr-modal .goods-attr-list ul {
+	height: auto;
+    min-height: 2em;
+}
+.ecjia-goodsAttr-modal .goods-attr-list ul>li {
+    float: left;
+    border: 1px solid #aaa;
+    border-radius: 50px;
+    padding: .3em;
+    display: block;
+    margin: .2em;
+    background-color: #47aa4d;
+    color: #fff;
+    font-size: .9em;
+    width: 30%;
+    text-align: center;
+}
+.ecjia-goodsAttr-modal .modal-buttons.modal-buttons-vertical {
+	position: absolute;
+    z-index: 1001;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 40px;
+    background-color: #fff;
+    border-top: 1px solid #eee;
 }

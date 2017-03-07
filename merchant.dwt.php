@@ -287,39 +287,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 <!-- 遮罩层 -->
 <div class="a53" style="display: none;"></div>
-<!-- #BeginLibraryItem "/library/choose_address_modal.lbi" --><!-- #EndLibraryItem -->
-
-<div class="ecjia-store-modal">
-	<div class="modal-inners">
-		<span class="close-icon"><i class="iconfont icon-close"></i></span>
-		<div class="modal-title">{$store_info.seller_name}</div>
-		{if $store_info.favourable_list}
-		<div class="hd">
-			<h2>
-				<span class="line"></span>
-				<span class="goods-index-title">优惠信息</span>
-			</h2>
-		</div>
-		<ul class="store-promotion">
-			<!-- {foreach from=$store_info.favourable_list item=list} -->
-			<li class="promotion">
-				<span class="promotion-label">{$list.type_label}</span>
-				<div class="promotion-name">{$list.name}</div>
-			</li>
-			<!-- {/foreach} -->
-			<div class="clear_both"></div>
-		</ul>
-		{/if}
-		<div class="hd">
-			<h2>
-				<span class="line"></span>
-				<span class="goods-index-title">商城公告</span>
-			</h2>
-		</div>
-		<div class="store-notice">{$store_info.seller_notice}</div>
-	</div>
-</div>
-<div class="ecjia-store-modal-overlay ecjia-store-modal-overlay-visible"></div>
+<!-- #BeginLibraryItem "/library/address_modal.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/store_notice_modal.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/goods_attr_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- {/block} -->
 
 <!-- {block name="ajaxinfo"} -->

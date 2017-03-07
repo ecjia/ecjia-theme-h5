@@ -291,5 +291,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 <!-- 遮罩层 -->
 <div class="a53" style="display: none;"></div>
-<!-- #BeginLibraryItem "/library/choose_address_modal.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/address_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- {/block} -->
