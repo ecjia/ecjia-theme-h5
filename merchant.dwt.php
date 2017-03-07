@@ -138,28 +138,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="ecjia-seller-comment">
 		<div class="store-hr"></div>
 		<div class="store-score">
-			<ul class="overall-score">
-				<li class="score_item">5.0</li>
-				<li class="score_item">综合评分</li>
-				<li class="score_item">100%好评</li>
-				<span class="score-border"></span>
-			</ul>
-			<ul class="score_list">
-				<li class="goods_score">
-					<span class="score_title">商品评分</span>
-					<span class="score_percent"><span class="score_star" data-val="{$store_info.comment.comment_goods_val}"></span>{$store_info.comment.comment_goods}</span>
-				</li>
-				<li class="service_score">
-					<span class="score_title">服务评分</span>
-					<span class="score_percent"><span class="score_star" data-val="{$store_info.comment.comment_server_val}"></span>{$store_info.comment.comment_server}</span>
-				</li>
-				<li class="time_score">
-					<span class="score_title">时效评分</span>
-					<span class="score_percent"><span class="score_star" data-val="{$store_info.comment.comment_delivery_val}"></span>{$store_info.comment.comment_delivery}</span>
-				</li>
-			</li>
+			<div class="score-name">商品评分（{$store_info.comment.comment_goods}）</div>
+			<span class="score-val" data-val="{$store_info.comment.comment_goods_val}"></span>
 		</div>
-		<div class="store-hr"></div>
 		<div class="store-comment-container">
 		<!-- #BeginLibraryItem "/library/store_comment.lbi" --><!-- #EndLibraryItem -->
 		</div>

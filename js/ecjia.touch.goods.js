@@ -1056,13 +1056,12 @@
  				show_div.siblings('.ecjia-store-toggle').removeClass('show').addClass('hide');
  			});
  			
- 			$('.score_star').each(function() {
- 				var $this = $(this);
- 				$this.raty({
- 					readOnly : true,
- 	 				score : $this.attr('data-val') * 5
- 				});
- 			});
+ 			$('.score-val').raty({
+				readOnly : true,
+ 				score : function() {
+ 				    return $(this).attr('data-val') * 5;
+ 				},
+			});
 		},
 	};
 	
