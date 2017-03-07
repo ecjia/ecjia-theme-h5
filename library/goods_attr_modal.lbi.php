@@ -52,6 +52,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 		</div>
 	</div>
-	<div class="modal-buttons modal-buttons-2 modal-buttons-vertical">111111111111</div>
+	<div class="modal-buttons modal-buttons-2 modal-buttons-vertical"></div>
 </div>
 <div class="ecjia-goodsAttr-overlay ecjia-goodsAttr-overlay-visible"></div>

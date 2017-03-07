@@ -51,6 +51,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<img src="https://cityo2o.ecjia.com/content/uploads/images/201611/goods_img/1135_G_1478112362911.jpg" />
 					<img src="https://cityo2o.ecjia.com/content/uploads/images/201611/goods_img/1133_G_1478111902677.jpg" />
 				</div>
+				<p class="goods-attr">属性：275g/进口</p>
+				<div class="store-reply">商家回复：谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！</div>
 			</div>    
 		</div>    
 	</div>
