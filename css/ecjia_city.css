@@ -172,7 +172,7 @@ a.ecjia-color-green {
 /*========================  首页 ===========================*/
 .goods-index-list.ecjia-mod {
 	background-color: #F7F7F7;
-	padding-bottom: 3.5em;
+	padding-bottom: 50px;
 }
 .goods-index-list.ecjia-mod .goods-index-title {
 	background-color: #F7F7F7;
@@ -6605,6 +6605,7 @@ footer{
 .ecjia-seller-comment .store-option dl dt {
 	font-size: 1em;
 	line-height: 1.5em;
+	font-weight: normal;
 }
 .ecjia-seller-comment .store-option dl.active {
 	color: #ff3434;
@@ -6738,17 +6739,16 @@ footer{
 	padding: .2em 0;
 }
 .ecjia-seller-comment .assess-bottom .img-list img{
-	padding-right: .5em;
-	width: 45px;
-    height: 45px;
-	border-radius: 3px;
+	width: 50px;
+    height: 50px;
+	border-radius: 4px;
+	border: 1px solid #ddd;
 }
 /*首页热门推荐店铺*/
 .ecjia-suggest-store{
 	background: #fff;
     height: auto;
 	margin-top: 0;
-	padding-bottom: 3em;
 }
 .ecjia-suggest-store .store-info{
 	background: #fff;
@@ -6872,4 +6872,6 @@ footer{
     overflow: hidden;
     float: left;
     margin: .2em .3em;
+	border-radius: 4px;
+    border: 1px solid #ddd;
 }

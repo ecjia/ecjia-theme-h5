@@ -17,9 +17,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<li class="store-info">
 			<div class="basic-info">
 				<div class="store-left">
-					<img src="https://cityo2o.ecjia.com/content/uploads/merchant/65/data/shop_logo/1478541882615669409.png">
+					<a href="{RC_Uri::url('merchant/index/init')}&store_id=65">
+						<img src="https://cityo2o.ecjia.com/content/uploads/merchant/65/data/shop_logo/1478541882615669409.png">
+					</a>
 				</div>
 				<div class="store-right">
+					<a href="{RC_Uri::url('merchant/index/init')}&store_id=65">
 					<div class="store-name">
 						清谷田园专营店{if $val.manage_mode eq 'self'}<span class="manage_mode">自营</span>{/if}
 						<span class="store-distance">2.16km</span>
@@ -40,6 +43,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							<span class="promotion-name">金秋十月豪礼满100减20</span>
 						</li>
 					</ul>
+					</a>
 					<div class="suggest-goods-list">
 						<a href=""><img src="https://cityo2o.ecjia.com/content/uploads/images/201604/thumb_img/682_thumb_G_1459450760028.jpg"></a>
 						<a href=""><img src="https://cityo2o.ecjia.com/content/uploads/images/201604/thumb_img/682_thumb_G_1459450760028.jpg"></a>
