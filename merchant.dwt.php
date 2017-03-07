@@ -138,7 +138,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="ecjia-seller-comment">
 		<div class="store-hr"></div>
 		<div class="store-score">
-			<div class="score-name">商品评分（{$store_info.comment.comment_goods}）</div>
+			<div class="score-name">商品评分 ({$store_info.comment.comment_goods})</div>
 			<span class="score-val" data-val="{$store_info.comment.comment_goods_val}"></span>
 		</div>
 		<div class="store-comment-container">

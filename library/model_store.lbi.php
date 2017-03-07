@@ -24,7 +24,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<div class="store-right">
 					<a href="{RC_Uri::url('merchant/index/init')}&store_id=65">
 					<div class="store-name">
-						清谷田园专营店{if $val.manage_mode eq 'self'}<span class="manage_mode">自营</span>{/if}
+						清谷田园专营店<span class="manage_mode">自营</span>
 						<span class="store-distance">2.16km</span>
 					</div>
 					<div class="store-range">

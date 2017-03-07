@@ -6837,11 +6837,11 @@ footer{
 	padding-right: .3em;
 }
 .ecjia-suggest-store .store-range{
-	line-height: 1em;
+	line-height: 2em;
 	color: #aaa;
 }
 .ecjia-suggest-store .store-notice {
-    line-height: 2em;
+    line-height: 1em;
     color: #aaa;
     border-bottom: 1px dashed #eee;
     margin-bottom: .5em;
