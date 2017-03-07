@@ -6,8 +6,8 @@
 		init : function(){
 			ecjia.touch.comment.goods_info();
 			ecjia.touch.comment.anonymity();
+			ecjia.touch.comment.photo();
 		},
-		
 		goods_info : function () {
 			$('.star').raty({
 				  cancelOff: 'cancel-off-big.png',
@@ -29,6 +29,30 @@
 				
 			});
 		},
+		
+		//评价晒单上传图片，并且不能超过5张。
+		photo : function () {
+		$(".push_img_btn").on('change', function () {
+			var f=$(this)[0].files[0];
+			if (f) {
+				var fr=new FileReader();
+				fr.onload=function(){
+					var _img=new Image();
+					_img.src=this.result;
+					$(_img).appendTo(".push_photo_img");
+				}
+				fr.readAsDataURL(f);
+				
+				if ($(".push_photo_img img").length == 3) {
+					$(".push_img_fonz").remove();
+				}
+				if ($(".push_photo_img img").length == 4) {
+					$(".push_photo").remove();
+				}
+			}
+		})
+	},
+	
 	};
 	
 	ecjia.touch.star = {
