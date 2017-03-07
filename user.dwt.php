@@ -104,24 +104,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 
 <div class="ecjia-user ecjia-margin-b">
-    {if $user.id}
-    <ul class="ecjia-list list-short">
-		<li>
-			<a href="{url path='user/address/address_list'}">
-        		<div class="icon-address-list"><img src="{$theme_url}images/user_center/75x75_3.png"></div>
-        		<span class="icon-name">收货地址</span>
-        		<i class="iconfont  icon-jiantou-right"></i>
-        	</a>
-		</li>
-       	<li>
-        	<a class="nopjax external" href="{url path='user/index/spread'}&name={$user.name}">
-        		<div class="icon-expand"><img src="{$theme_url}images/user_center/expand.png"></div>
-        		<span class="icon-name">我的推广</span>
-        		<i class="iconfont  icon-jiantou-right"></i>
-        	</a>
-        </li>
-    </ul>
-    {else}
      <ul class="ecjia-list list-short">
 		<li>
 			<a href="{url path='user/address/address_list'}">
@@ -131,6 +113,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
 		</li>
     </ul>
+    
     <ul class="ecjia-list list-short">
         <li>
         	<a class="nopjax external" href="{url path='user/index/spread'}&name={$user.name}">
@@ -140,14 +123,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
          <li>
-        	<a class="nopjax external" href="{url path='article/help/init'}">
+        	<a class="nopjax external" href="{$user.signup_reward_url}">
         		<div class="icon-expand"><img src="{$theme_url}images/user_center/newbie_gift75_1.png"></div>
         		<span class="icon-name">新人有礼</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>
     </ul>
-    {/if}
 
     <ul class="ecjia-list list-short">
         <li>
