@@ -1380,6 +1380,9 @@ footer{
 .ecjia-store-brief .store-name .seller-name {
 	font-size: 1.1em;
 }
+.ecjia-store-brief .store-name .seller-distance {
+	font-size: 1em;
+}
 .ecjia-store-brief .store-name .manage-mode {
 	color: #ff3434;
 	border: 1px solid #ff3434;
