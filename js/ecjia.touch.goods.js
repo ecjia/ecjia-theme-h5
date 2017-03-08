@@ -1091,6 +1091,11 @@
         			$('.ecjia-goodsAttr-modal').css({position: "fixed"});
         		});
  			});
+ 			
+ 			$('.goods-attr li').off('click').on('click', function() {
+ 				var $this = $(this);
+ 				$this.addClass('active').siblings('li').removeClass('active');
+ 			});
 		},
 	};
 	
