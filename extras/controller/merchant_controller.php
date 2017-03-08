@@ -74,6 +74,7 @@ class merchant_controller {
 			if (!empty($store_info['favourable_list'])) {
 				$store_info['favourable_count'] = count($store_info['favourable_list']);
 			}
+			$store_info['shop_address'] = trim($store_info['shop_address']);
 			ecjia_front::$controller->assign('store_info', $store_info);
 			ecjia_front::$controller->assign_title($store_info['seller_name']);
 			
