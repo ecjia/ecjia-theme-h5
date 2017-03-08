@@ -28,8 +28,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 	</div>
 	<div class="modal-buttons modal-buttons-2 modal-buttons-vertical">
-		<span class="goods-attr-price">￥58.90</span>
-		<span class="goods-attr-name">(275g/进口)</span>
+		<div class="modal-left">
+			<span class="goods-attr-price">￥58.90</span>
+			<span class="goods-attr-name">(275g/进口)</span>
+		</div>
 		<a class="add-tocart">加入购物车</a>
 	</div>
 </div>

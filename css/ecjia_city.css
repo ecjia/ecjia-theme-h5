@@ -7034,21 +7034,29 @@ footer{
     line-height: 40px;
 }
 .ecjia-goodsAttr-modal .add-tocart {
-	position: absolute;
+    position: absolute;
     z-index: 14;
     right: 0;
-    width: 7em;
+    width: 30%;
     text-align: center;
     color: #fff;
     line-height: 40px;
     background-color: #47b34f;
-    font-size: .9em;
-	border-radius: 0 0 7px 0;
+    font-size: .8em;
+    border-radius: 0 0 7px 0;
 }
 .ecjia-goodsAttr-modal .modal-buttons .goods-attr-price {
     margin-left: .8em;
     color: #ff3434;
-    font-size: 1.2em;
+    font-size: 1.1em;
+}
+.ecjia-goodsAttr-modal .modal-buttons .modal-left {
+    width: 65%;
+    float: left;
+    overflow: hidden;
+    height: 40px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .ecjia-goodsAttr-modal .modal-buttons .goods-attr-name {
 	font-size: .8em;
