@@ -1848,6 +1848,19 @@ footer{
     border-radius: 40px;
 	cursor: pointer;
 }
+.ecjia-store-goods .attr-number {
+    position: absolute;
+    right: 0px;
+    bottom: 25px;
+    color: #fff;
+    border-radius: 10px;
+    background-color: #ff3434;
+    font-size: .9em;
+    height: 1.2em;
+    padding: .3em;
+    line-height: .6em;
+    font-style: normal;
+}
 .u-flyer{
     display: block;
     width: 5px;
@@ -4371,6 +4384,7 @@ footer{
 .goods-info .ecjia-price-time .cart-plus-right{
 	float:right;
 	height:2.8em;
+	position: relative;
 }
 .goods-add-cart{
     width: 85px;
@@ -4384,7 +4398,25 @@ footer{
 	border:none;
 	font-size:14px;
 	font-weight:bold;
-	margin-top: 1.2em;
+	margin-top: .5em;
+	position: relative;
+}
+.goods-info .attr-number {
+    position: absolute;
+	right: .5em;
+    bottom: 1.8em;
+    color: #fff;
+    border-radius: 10px;
+    background-color: #ff3434;
+    font-size: .8em;
+    height: 1.2em;
+    padding: .3em;
+    line-height: .6em;
+    font-style: normal;
+}
+.goods-info .cart-plus-right .attr-number {
+    right: -.2em;
+    bottom: 2.6em;
 }
 .add-cart-a span {
 	color:#fff;
@@ -4394,7 +4426,7 @@ footer{
     right: 0;
     bottom: 0em;
 	float: right;
-	top: .8em;
+	top: .3em;
 	font-size: 1.3em;
 }
 .goods-price-new .ecjia-goods-plus-box span {
@@ -4474,9 +4506,10 @@ footer{
 	margin-right:.4em;
 }
 .goods-info .goods-info-property .goods-price-new{
-	padding:0.1em 0.5em .8em 0.5em;
-	color:#ff3434;
+	padding: 0.1em 0.5em .8em 0.5em;
+	color: #ff3434;
 	font-size: 1.3em;
+	position: relative;
 }
 .goods-info .goods-info-property .goods-price-new del{
 	font-size: .8em;
@@ -5550,6 +5583,19 @@ footer{
     font-size: 13px;
     border-radius: 40px;
 	cursor: pointer;
+}
+.ecjia-store-list .attr-number {
+	position: absolute;
+    right: 5px;
+    bottom: 25px;
+    color: #fff;
+    border-radius: 10px;
+    background-color: #ff3434;
+    font-size: .9em;
+    height: 1.2em;
+	padding: .3em;
+    line-height: .6em;
+	font-style: normal;
 }
 .ecjia-store-list .box span.add {
     background-position: 0 0;
@@ -7045,7 +7091,7 @@ footer{
     color: #fff;
     line-height: 40px;
     background-color: #47b34f;
-    font-size: .8em;
+    font-size: 14px;
     border-radius: 0 0 7px 0;
 }
 .ecjia-goodsAttr-modal .modal-buttons .goods-attr-price {

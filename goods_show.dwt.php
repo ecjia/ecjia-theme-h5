@@ -78,6 +78,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			                <div class="cart-plus-right">
 			                	{if $goods_info.goods_attr}
 			                	<span class="goods-add-cart choose_attr" goods_id="{$goods_info.id}">选规格</span>
+			                	<i class="attr-number">1</i>
 			                	{else}
 			                	<span class="goods-add-cart add-cart-a {if $rec_id}hide{/if}" data-toggle="add-to-cart" goods_id="{$goods_info.id}">加入购物车</span>
                                 <div class="ecjia-goods-plus-box {if !$rec_id}hide{/if} box" id="goods_{$goods_info.id}">
@@ -91,12 +92,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	                <!--{else}-->
 	                {$goods_info.shop_price}
 	                <del>市场价：{$goods_info.market_price}</del>	
+                	{if $goods_info.goods_attr}
+		            <span class="goods-add-cart choose_attr" goods_id="{$goods_info.id}">选规格</span>
+		            <i class="attr-number">1</i>
+		            {else}
                 	<span class="goods-add-cart market-goods-add-cart add-cart-a {if $rec_id}hide{/if}" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加入购物车</span>
               		<div class="ecjia-goods-plus-box ecjia-market-plus-box {if !$rec_id}hide{/if} box" id="goods_{$goods_info.id}">
               			<span class="reduce show" data-toggle="remove-to-cart" rec_id="{$rec_id}">减</span>
                      	<label>{if !$rec_id}0{else}{$num}{/if}</label>
               			<span class="add storeSearchCart" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
                     </div>
+                    {/if}
 	                <!-- {/if} -->
 	            </div>
 	            <!-- {if $goods_info.favourable_list} -->
@@ -292,4 +298,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- 遮罩层 -->
 <div class="a53" style="display: none;"></div>
 <!-- #BeginLibraryItem "/library/address_modal.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/goods_attr_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- {/block} -->
