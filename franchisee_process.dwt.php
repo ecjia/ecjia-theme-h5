@@ -15,7 +15,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <div class="ecjia-address-list">
     <div class="franchisee-process-hint"> 
-        <img src="{$theme_url}/images/user_center/f_process.png" width="100" height="100">
+        {if $check_status eq '3'}
+            <img src="{$theme_url}/images/user_center/f_failed.png" width="100" height="100">
+        {else}
+            <img src="{$theme_url}/images/user_center/f_process.png" width="100" height="100">
+        {/if}
         <p>
         {if $check_status eq '0'}
                                     亲~您的申请已提交成功！
@@ -49,18 +53,28 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </div>
     </div>
     <div class="franchisee-prompt">
-        <span class="warm-prompt">温馨提示：</span>
-        <span class="prompt-info">
-            {if $check_status eq '0'}
-                                                    您的申请已提交成功，我们将尽快为您处理，感谢您对我们的支持！
-            {elseif $check_status eq '1'}
-                                                    您的申请已提交成功，我们将尽快为您处理，感谢您对我们的支持！
-            {elseif $check_status eq '2'}
-                                                    您的申请已审核通过，现在您可以登录自己的商家平台管理店铺，赶快去登录吧！
-            {elseif $check_status eq '3'}
-                                                    您的申请未通过，感谢您对我们的支持！
-            {/if}
-        </span>
+        {if $check_status eq '3'}
+            <span class="fran-info-color">审核状态：</span>
+            <span class="check-stat">很抱歉，审核未通过，您可以修改申请信息。</span>
+            <br/>
+            <span class="fran-info-color">拒绝原因：</span>
+            <span class="fran-info-color">{$info.remark}</span>
+            <div class="hand-objection">
+                <a class="btn">申请修改信息</a>
+                <a class="btn">撤销申请</a>
+            </div>
+        {else}
+            <span class="warm-prompt">温馨提示：</span>
+            <span class="prompt-info">
+                {if $check_status eq '0'}
+                                                        您的申请已提交成功，我们将尽快为您处理，感谢您对我们的支持！
+                {elseif $check_status eq '1'}
+                                                        您的申请已提交成功，我们将尽快为您处理，感谢您对我们的支持！
+                {elseif $check_status eq '2'}
+                                                        您的申请已审核通过，现在您可以登录自己的商家平台管理店铺，赶快去登录吧！
+                {/if}
+            </span>
+        {/if}
     </div>
     <div class="franchisee-info">
         <ul>

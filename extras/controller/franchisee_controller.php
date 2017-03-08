@@ -335,7 +335,7 @@ class franchisee_controller {
 	            'validate_code' => $code,
 	        );
 	        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data($params)->run();
-	         
+// 	         _dump($rs, 1);
 	        if (!is_ecjia_error($rs)) {
 	            $check_status  = $rs['check_status'];
 	            $info      	   = $rs['merchant_info'];
