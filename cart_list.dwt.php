@@ -59,6 +59,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							</a>
 							<div class="cart-product-info">
 								<div class="cart-product-name {if $v.is_disabled}disabled{/if}"><a href="{RC_Uri::url('goods/index/show')}&goods_id={$v.goods_id}">{$v.goods_name}</a></div>
+								<div class="cart-product-attr">{if $v.goods_attr}属性：{$v.goods_attr}{/if}</div>
 								<div class="cart-product-price {if $v.is_disabled}disabled{/if}">{if $v.goods_price eq 0}免费{else}{$v.formated_goods_price}{/if}</div>
 								<div class="ecjia-input-number input_number_{$val.seller_id} {if $v.is_disabled}disabled{/if}" data-store="{$val.seller_id}">
 			                        <span class="ecjia-number-group-addon" data-toggle="remove-to-cart" rec_id="{$v.rec_id}" goods_id="{$v.goods_id}">－</span>

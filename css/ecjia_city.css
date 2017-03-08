@@ -2541,11 +2541,11 @@ footer{
 .ecjia-flow-cart .item-goods .cart-product-name{
 	font-size: 1em;
 	line-height: 1.5em;
-	height: 3em;
+	height: 1.5em;
     color: #333;
     text-overflow: ellipsis;
     overflow: hidden;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     -ms-box-orient: vertical;
     -moz-box-orient: vertical;
@@ -2556,6 +2556,17 @@ footer{
 }
 .ecjia-flow-cart .item-goods .cart-product-name.disabled a{
 	color: #aaa;
+}
+.ecjia-flow-cart .item-goods .cart-product-attr {
+	color: #848689;
+	font-size: .8em;
+	line-height: 1.5em;
+	height: 1.5em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+	display: -webkit-box;
 }
 .ecjia-flow-cart .item-goods .cart-product-price{
 	color: #ff3434; 
@@ -6821,14 +6832,14 @@ footer{
 	border: 1px solid #ddd;
 }
 .ecjia-seller-comment .assess-bottom .goods-attr{
-	color: gray;
+	color: #848689;
     line-height: 2em;
     font-size: .9em;
 }
 .ecjia-seller-comment .assess-bottom .store-reply {
     padding: .3em;
     font-size: 1em;
-    color: gray;
+    color: #848689;
     max-height: 4.8em;
     text-overflow: ellipsis;
     overflow: hidden;
