@@ -40,6 +40,7 @@
             	var rec_id = $this.attr('rec_id');
             	var goods_id = $this.attr('goods_id');
             	
+            	//购物车列表商品数量加减
             	if ($this.hasClass('ecjia-number-group-addon')) {
             		$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
             		var val = parseInt($this.siblings('input').val()) + 1;
@@ -48,18 +49,20 @@
             		ecjia.touch.category.update_cart(rec_id, val, goods_id, '', store_id);
             	} else {
                 	$('.box').children('span').addClass('limit_click');
-                	//商品详情中添加商品到购物车逻辑
+                	//商品详情中点击加入购物车按钮
                 	if ($this.hasClass('goods-add-cart')) {
                 		$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
                 		var show = $this.parent().children('.ecjia-goods-plus-box');
                 		var val = parseInt(show.children('label').html()) + 1;
                 	} else {
+                		//商品详情页面购物车里加减
                     	if ($this.hasClass('a5v')) {
                     		$('.minicart-content').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
                     		var val = parseInt($this.prev().html()) + 1;
                     		$this.prev().html(val);
                     		$('#goods_'+goods_id).children('label').html(val);
                     	} else {
+                    		//商品详情中商品数量加减按钮、猜你喜欢点击加号
                     		var show = $this.parent('.box').children('label');
                     		if (show.html() != '') {
                     			var val = parseInt(show.html()) + 1;
@@ -94,6 +97,7 @@
                             });
                     	}
                 	}
+                	//商品详情点击加入购物车val为1，点击加号val递增，点击猜你喜欢val为NaN，点击店铺首页加号val递增，点击店铺搜索商品结果列表加号val递增
                 	if (isNaN(val)) {
                 		if ($this.attr('data-num') != 0){
                 			val = parseInt($this.attr('data-num')) + 1;
@@ -103,7 +107,7 @@
                 		$this.attr('data-num', val);
                 	} else {
                     	if ($.find('.may_like_'+goods_id)) {
-                		$('.may_like_'+goods_id).attr('data-num', val);
+                    		$('.may_like_'+goods_id).attr('data-num', val);
                     	}
                 	}
                 	ecjia.touch.category.update_cart(rec_id, val, goods_id, '', true);
