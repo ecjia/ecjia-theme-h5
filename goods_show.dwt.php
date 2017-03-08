@@ -77,7 +77,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			                	</div>
 			                </div>
 			                <div class="cart-plus-right">
-			                	{if !$goods_info.goods_attr}
+			                	{if $goods_info.goods_attr}
 			                	<span class="goods-add-cart choose_attr" goods_id="{$goods_info.id}">选规格</span>
 			                	<i class="attr-number">1</i>
 			                	{else}
@@ -93,7 +93,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	                <!--{else}-->
 	                {$goods_info.shop_price}
 	                <del>市场价：{$goods_info.market_price}</del>	
-                	{if !$goods_info.goods_attr}
+                	{if $goods_info.goods_attr}
 		            <span class="goods-add-cart choose_attr" goods_id="{$goods_info.id}">选规格</span>
 		            <i class="attr-number">1</i>
 		            {else}
@@ -137,7 +137,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		    <a class="goods-tab tab3" href="javascript:;" data-type="3">
 		    	<div class="bd goods-type ecjia-margin-t">
 		            <div class="goods-option-con goods-num goods-option-con-new">
-		                <div class="ecjia-merchants-name border_b_e">
+		                <div class="ecjia-merchants-name">
 		                	<span class="shop-title-name">商品评价</span>
 		                	<i class="iconfont icon-jiantou-right"></i>
 		                	<span class="comment_score">90%好评</span>
@@ -145,7 +145,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		            </div>
 		        </div>
 	       	</a>
-	       	<div class="ecjia-goods-comment ecjia-seller-comment">
+	       	<div class="ecjia-goods-comment ecjia-seller-comment border_t_e">
 	       	<!-- #BeginLibraryItem "/library/store_comment.lbi" --><!-- #EndLibraryItem -->
 	       	</div>
 	       	

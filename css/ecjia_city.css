@@ -4398,7 +4398,6 @@ footer{
 	border:none;
 	font-size:14px;
 	font-weight:bold;
-	margin-top: .5em;
 	position: relative;
 }
 .goods-info .attr-number {
@@ -4598,8 +4597,8 @@ footer{
 	height: 2em;
 	line-height: 1.8em;
 }
-.border_b_e{
-	border-bottom: 1px solid #eee;
+.border_t_e{
+	border-top: 1px solid #e0e0e0;
 }
 .ecjia-goods-comment .store-option{
 	display: none;
