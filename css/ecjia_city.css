@@ -4304,14 +4304,14 @@ footer{
 }
 .ecjia-goods-detail-header-title ul{
 	position: absolute;
-	text-align:center;
-	width:34%;
-	right:32%;
-	left:34%;
+    text-align: center;
+    width: 50%;
+    right: 25%;
+    left: 25%;
 }
 .ecjia-goods-detail-header-title li {
 	float:left;
-	width:50%;
+	width:33%;
 }
 .ecjia-goods-detail-header-title li a {
 	color:#fff;
@@ -4588,15 +4588,21 @@ footer{
 	font-size: 1.2em;
 	color:#555;
 }
-.ecjia-merchants-name .icon-jiantou-right{
-	float:right;
-	clear:both;
-	color:#999;
-	font-size:1.5em;
-	height:2em;
-	line-height:1.8em;
+.ecjia-merchants-name .comment_score {
+	float: right;
 }
-.ecjia-favourable-goods-list{
+.ecjia-merchants-name .icon-jiantou-right{
+	float: right;
+	color: #999;
+	font-size: 1.5em;
+	height: 2em;
+	line-height: 1.8em;
+}
+.border_b_e{
+	border-bottom: 1px solid #eee;
+}
+.ecjia-goods-comment .store-option{
+	display: none;
 }
 .goods-info.ecjia-merchants-name span .style-store-name{
 	margin-top:5px;

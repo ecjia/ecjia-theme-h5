@@ -20,6 +20,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<ul>
 		<li><a class="goods-tab tab1" href="javascript:;" data-type="1">商品</a></li>
 		<li><a class="goods-tab tab2" href="javascript:;" data-type="2">详情</a></li>
+		<li><a class="goods-tab tab3" href="javascript:;" data-type="3">评价</a></li>
 	</ul>
 </div>
 {if $no_goods_info eq 1}
@@ -27,7 +28,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 {/if}
 <!-- 切换商品页面start -->
 {if $no_goods_info neq 1}
-<div class="ecjia-goods-basic-info"  id="goods-info-one">
+<div class="ecjia-goods-basic-info" id="goods-info-one">
 <!--商品图片相册start-->
 	<div class="focus" id="focus">
 		<div class="hd">
@@ -76,7 +77,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			                	</div>
 			                </div>
 			                <div class="cart-plus-right">
-			                	{if $goods_info.goods_attr}
+			                	{if !$goods_info.goods_attr}
 			                	<span class="goods-add-cart choose_attr" goods_id="{$goods_info.id}">选规格</span>
 			                	<i class="attr-number">1</i>
 			                	{else}
@@ -92,7 +93,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	                <!--{else}-->
 	                {$goods_info.shop_price}
 	                <del>市场价：{$goods_info.market_price}</del>	
-                	{if $goods_info.goods_attr}
+                	{if !$goods_info.goods_attr}
 		            <span class="goods-add-cart choose_attr" goods_id="{$goods_info.id}">选规格</span>
 		            <i class="attr-number">1</i>
 		            {else}
@@ -132,6 +133,22 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		            </div>
 		        </div>
 		    </a>
+		    
+		    <a class="goods-tab tab3" href="javascript:;" data-type="3">
+		    	<div class="bd goods-type ecjia-margin-t">
+		            <div class="goods-option-con goods-num goods-option-con-new">
+		                <div class="ecjia-merchants-name border_b_e">
+		                	<span class="shop-title-name">商品评价</span>
+		                	<i class="iconfont icon-jiantou-right"></i>
+		                	<span class="comment_score">90%好评</span>
+		                </div>
+		            </div>
+		        </div>
+	       	</a>
+	       	<div class="ecjia-goods-comment ecjia-seller-comment">
+	       	<!-- #BeginLibraryItem "/library/store_comment.lbi" --><!-- #EndLibraryItem -->
+	       	</div>
+	       	
 	        <!-- {if $goods_info.related_goods} -->
 		        <div class="address-warehouse ecjia-margin-t address-warehouse-new">
 		            <div class="ecjia-form">
@@ -212,6 +229,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 {/if}
 <!-- 切换详情页面end -->
+
+{if $no_goods_info neq 1}
+<div class="goods-desc-info active ecjia-seller-comment" id="goods-info-three" style="margin-top:3.5em;">
+<!-- #BeginLibraryItem "/library/store_comment.lbi" --><!-- #EndLibraryItem -->
+</div>
+{/if}
 <div class="store-add-cart a4w">
     <div class="a52"></div>
     <a href="javascript:void 0;" class="a4x {if $real_count.goods_number}light{else}disabled{/if} outcartcontent show show_cart" show="false">
