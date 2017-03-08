@@ -55,13 +55,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <div class="franchisee-prompt">
         {if $check_status eq '3'}
             <span class="fran-info-color">审核状态：</span>
-            <span class="check-stat">很抱歉，审核未通过，您可以修改申请信息。</span>
+            <span class="check-stat">很抱歉，审核未通过，您可以申请修改信息。</span>
             <br/>
             <span class="fran-info-color">拒绝原因：</span>
             <span class="fran-info-color">{$info.remark}</span>
             <div class="hand-objection">
                 <a class="btn">申请修改信息</a>
-                <a class="btn">撤销申请</a>
+                <a class="btn" data-url="{url path='franchisee/index/validate' args='type=process'}" id="get_code" >撤销申请</a>
             </div>
         {else}
             <span class="warm-prompt">温馨提示：</span>

@@ -571,11 +571,14 @@ a.ecjia-color-green {
 	width: 100%;
 	max-width: 640px;
 }
-.ecjia-address-list .franchisee-progress .pro-b,
-.ecjia-address-list .franchisee-prompt .check-stat {
+.ecjia-address-list .franchisee-progress .pro-b {
 	padding: .5em 0 0 0;
 	color: #45a46c;
 	font-size: 20px;
+	font-family: '黑体';
+}
+.ecjia-address-list .franchisee-prompt .check-stat {
+	color: #45a46c;
 	font-family: '黑体';
 }
 .ecjia-address-list .franchisee-progress hr {
@@ -644,16 +647,17 @@ a.ecjia-color-green {
     text-align: center;
     width: 100%;
     max-width: 640px;
+	margin-top: 1em;
 }
 .ecjia-address-list .franchisee-prompt .hand-objection .btn {
-    width: 30%;
+    width: 36%;
     margin-right: .5em;
     margin-left: .5em;
     line-height: 1.5em;
     background-color: #47AA4D;
     color: #FFF;
-    height: 2.3em;
-    font-size: 1.3em;
+    font-size: 1em;
+	overflow: hidden;
 }
 
 
