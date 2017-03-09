@@ -456,7 +456,7 @@
         		var myApp = new Framework7({
 					modalButtonCancel : '取消',
 					modalButtonOk : '确定',
-					modalTitle : ''
+					modalTitle : '提示'
 			    });
 				myApp.confirm('您确定要撤销申请吗？', function () {
 					$.post(url, options,function(data){

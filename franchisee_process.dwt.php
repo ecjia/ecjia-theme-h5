@@ -61,7 +61,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <span class="fran-info-color">拒绝原因：</span>
             <span class="fran-info-color">{$info.remark}</span>
             <div class="hand-objection">
-                <input class="btn" value="申请修改信息"/>
+                <a href="{url path='franchisee/index/reapply'}"><input class="btn" value="申请修改信息"/></a>
                 <input class="btn" name="cancel" type="submit" data-url="{$url}" value="撤销申请" />
             </div>
         {else}

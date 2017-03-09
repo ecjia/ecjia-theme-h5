@@ -305,7 +305,6 @@ class franchisee_controller {
 	        'validate_code' => $code,
 	    );
 	    $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data($params)->run();
-
 	    if (is_ecjia_error($rs)) {
 	    	return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 	    } else {
@@ -317,7 +316,7 @@ class franchisee_controller {
 	    $mobile    = trim($_GET['mobile']);
 	    $code      = trim($_GET['code']);
 	    $show      = trim($_GET['show']);
-	    
+	    $token     = ecjia_touch_user::singleton()->getToken();
 	    if ($show) {
 	        $check_status = 0;
 	        $info = array(
@@ -330,18 +329,20 @@ class franchisee_controller {
 	        );
 	    } else {
 	        $params    = array(
-	            'token' 		=> ecjia_touch_user::singleton()->getToken(),
+	            'token' 		=> $token,
 	            'mobile' 		=> $mobile,
 	            'validate_code' => $code,
 	        );
 	        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data($params)->run();
-	        
+	        $reaudit = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PREAUDIT)->data(array('token' => $token, 'mobile' => $mobile, 'validate_code' => $code))->run();
 	        if (!is_ecjia_error($rs)) {
 	            $check_status  = $rs['check_status'];
 	            $info      	   = $rs['merchant_info'];
 	        } else {
 	            return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT);
 	        }
+	        
+	        //撤销申请
 	        $status        = !empty($_POST['status']) ? $_POST['status'] : '';
 	        if ($status == 'cancel') {
                 ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_CANCEL)->data($params)->run();
@@ -378,6 +379,12 @@ class franchisee_controller {
 		ecjia_front::$controller->assign_lang();
 		ecjia_front::$controller->assign_title('店铺精确位置');
 		ecjia_front::$controller->display('franchisee_get_location.dwt');
+	}
+	
+	public static function reapply() {
+	    ecjia_front::$controller->assign_lang();
+	    ecjia_front::$controller->assign_title('店铺入驻');
+	    ecjia_front::$controller->display('franchisee_reapply.dwt');
 	}
 }
 
