@@ -28,8 +28,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</dl>
 </div>
 <div class="store-comment">
-	<!-- 测试数据 -->
-	<div class="assess-flat">    
+	{if $comment_list}
+	<div class="assess-flat">
 		<div class="assess-wrapper">        
 			<div class="assess-top">            
 				<span class="user-portrait">                
@@ -55,4 +55,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>    
 		</div>    
 	</div>
+	{else}
+	<div class="ecjia-merchant-goods ecjia-nolist">
+	<p><img src="{$theme_url}images/no_comment.png"></p>
+	暂无商品评论
+</div>
+	{/if}
 </div>
