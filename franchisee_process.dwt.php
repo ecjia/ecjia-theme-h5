@@ -10,6 +10,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
+    <script type="text/javascript">ecjia.touch.franchisee.cancel_apply();</script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
@@ -60,8 +61,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <span class="fran-info-color">拒绝原因：</span>
             <span class="fran-info-color">{$info.remark}</span>
             <div class="hand-objection">
-                <a class="btn">申请修改信息</a>
-                <a class="btn" data-url="{url path='franchisee/index/validate' args='type=process'}" id="get_code" >撤销申请</a>
+                <input class="btn" value="申请修改信息"/>
+                <input class="btn" name="cancel" type="submit" data-url="{$url}" value="撤销申请" />
             </div>
         {else}
             <span class="warm-prompt">温馨提示：</span>

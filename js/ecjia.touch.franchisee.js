@@ -28,7 +28,6 @@
 						'f_mobile': $("input[name='f_mobile']").val(),
 						'f_code': $("input[name='f_code']").val()
 					};
-				
 				$.post(url, info, function(data){
 					if (data.state == 'error') {
 						alert(data.message);
@@ -444,7 +443,31 @@
 				var url = $(this).attr("data-url")+ '&longitude=' +longitude+ '&latitude=' +latitude;
 				location.href = url;
 			})
-		}
+		},
+		
+		//撤销申请
+		cancel_apply :function(){
+			$('input[name="cancel"]').on('click', function(e){
+        		e.preventDefault();
+        		var url = $(this).attr('data-url');
+        		options = {
+					'status' : 'cancel',
+				}
+        		var myApp = new Framework7({
+					modalButtonCancel : '取消',
+					modalButtonOk : '确定',
+					modalTitle : ''
+			    });
+				myApp.confirm('您确定要撤销申请吗？', function () {
+					$.post(url, options,function(data){
+						if (data.log != '') {
+							ecjia.pjax(data.cancel_url);
+						}
+					});
+			    });
+				
+        	});
+		},
 	};
 	
 })(ecjia, jQuery);

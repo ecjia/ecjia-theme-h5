@@ -335,15 +335,20 @@ class franchisee_controller {
 	            'validate_code' => $code,
 	        );
 	        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data($params)->run();
-// 	         _dump($rs, 1);
+	        
 	        if (!is_ecjia_error($rs)) {
 	            $check_status  = $rs['check_status'];
 	            $info      	   = $rs['merchant_info'];
 	        } else {
 	            return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT);
 	        }
+	        $status        = !empty($_POST['status']) ? $_POST['status'] : '';
+	        if ($status == 'cancel') {
+                ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_CANCEL)->data($params)->run();
+	            $back_act = RC_Uri::url('franchisee/index/first');
+	            return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('cancel_url' => $back_act));
+	        }
 	    }
-	    
 	    ecjia_front::$controller->assign('check_status', $check_status);
 	    ecjia_front::$controller->assign('info', $info);
 	    ecjia_front::$controller->assign_lang();
