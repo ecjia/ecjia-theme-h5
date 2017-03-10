@@ -9,6 +9,7 @@
 			ecjia.touch.comment.photo();
 			ecjia.touch.comment.remove_goods_img();
 			ecjia.touch.comment.publish_comment();
+			ecjia.touch.comment.back();
 		},
 		goods_info : function () {
 			$('.star').raty({
@@ -108,10 +109,42 @@
 						"goods_evaluate" : goods_evaluate,
 						"star"	:	star,
 						"anonymity"	: anonymity
-						
 				}
+				console.log(info);
 			})
+		},
+		
+		back : function () {
+//			var goods_evaluate = $("#goods_evaluate").val();
+//			console.log(goods_evaluate);
+//			if (goods_evaluate != '') {
+				ecjia.touch.comment.back_url();
+//			}
+		},
+		
+		back_url : function () {
+			if (window.history && window.history.pushState) {
+				$(window).on('popstate', function (e) {
+					e.preventDefault();
+					var myApp = new Framework7({
+						modalButtonCancel : '取消',
+						modalButtonOk : '确定',
+						modalTitle : ''
+				    });
+					myApp.confirm('评价信息还未提交，返回将会丢失', function () {
+						history.back();
+						},
+						function () {
+							window.history.pushState('forward', null, '#');
+							window.history.forward(1);
+						}
+					);
+				});
+				window.history.pushState('forward', null, './#forward');
+				window.history.forward(1);
+			}
 		}
+		
 	};
 	
 })(ecjia, jQuery);
