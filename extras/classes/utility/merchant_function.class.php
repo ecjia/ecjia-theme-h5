@@ -72,7 +72,7 @@ class merchant_function {
 	 * @return array
 	 */
 	public static function format_info_distance($data = array()) {
-		if (!empty($data['distance'])) {
+		if ($data['distance'] != null) {
 			if ($data['distance'] >= 1000) {
 				$data['distance'] = round($data['distance'] / 1000, 2).'km';
 			} else {

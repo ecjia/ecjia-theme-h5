@@ -5,32 +5,31 @@ Description: 这是店铺及商品评论页面
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
-
 <div class="store-option">
 	<dl class="active">
 		<dt>全部</dt>
 		<dd>(290)</dd>
 	</dl>
 	<dl>
-		<dt>晒图</dt>
+		<dt>好评</dt>
 		<dd>(55)</dd>
 	</dl>
 	<dl>
-		<dt>好评</dt>
+		<dt>中评</dt>
 		<dd>(13)</dd>
 	</dl>
 	<dl>
-		<dt>中评</dt>
+		<dt>差评</dt>
 		<dd>(22)</dd>
 	</dl>
 	<dl>
-		<dt>差评</dt>
+		<dt>晒图</dt>
 		<dd>(4)</dd>
 	</dl>
 </div>
 <div class="store-comment">
-	<!-- 测试数据 -->
-	<div class="assess-flat">    
+	{if $comment_list}
+	<div class="assess-flat">
 		<div class="assess-wrapper">        
 			<div class="assess-top">            
 				<span class="user-portrait">                
@@ -56,4 +55,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>    
 		</div>    
 	</div>
+	{else}
+	<div class="ecjia-merchant-goods ecjia-nolist">
+	<p><img src="{$theme_url}images/no_comment.png"></p>
+	暂无商品评论
+</div>
+	{/if}
 </div>

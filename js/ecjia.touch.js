@@ -412,12 +412,12 @@
 		            bottom_start = $("#ecjia-menu").css("bottom");
 		            top_start = $("#ecjia-menu").offset().top - $("body").scrollTop();
 		            //阻止浏览器下拉事件
-			        $('body').on('touchmove', function (event) {event.preventDefault();});
+			        $('body').css('overflow-y', 'hidden').on('touchmove', function(event){event.preventDefault;}, false);
 		        });
 		        document.getElementById("ecjia-menu").addEventListener('touchmove', function(e) {
 		            _x_move=e.touches[0].pageX;
 		            _y_move=e.touches[0].pageY;
-		            $("#ecjia-menu").css("left", parseFloat(_x_move)-parseFloat(_x_start)+parseFloat(left_start)+"px");
+//		            $("#ecjia-menu").css("left", parseFloat(_x_move)-parseFloat(_x_start)+parseFloat(left_start)+"px");
 		            var bottom = parseFloat(_y_start)-parseFloat(_y_move)+parseFloat(bottom_start);
 		            var top = parseFloat(_y_move)-parseFloat(_y_start)+parseFloat(top_start);
 		            if (bottom < 100 || top < 250) {return false;}
@@ -426,7 +426,7 @@
 		        document.getElementById("ecjia-menu").addEventListener('touchend', function(e) {
 		            var _x_end=e.changedTouches[0].pageX;
 		            var _y_end=e.changedTouches[0].pageY;
-		            $('body').off('touchmove');
+		            $('body').css('overflow-y', 'auto').off('touchmove');
 		        });
 		        $(".ecjia-menu .icon-top").click(function(){
 	                $('body,html').animate({scrollTop:0},300);
