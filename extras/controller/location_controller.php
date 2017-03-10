@@ -103,7 +103,7 @@ class location_controller {
     //选择城市
     public static function select_city() {
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
-        if (is_ecjia_error($response)) {
+        if (is_ecjia_error($rs)) {
         	return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_ALERT, array('pjaxurl' => ''));
         }
         ecjia_front::$controller->assign('citylist', $rs['recommend_city']);
