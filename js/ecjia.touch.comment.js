@@ -115,36 +115,42 @@
 		},
 		
 		back : function () {
-//			var goods_evaluate = $("#goods_evaluate").val();
-//			console.log(goods_evaluate);
-//			if (goods_evaluate != '') {
-				ecjia.touch.comment.back_url();
-//			}
+			ecjia.touch.comment.back_url();
 		},
 		
 		back_url : function () {
 			if (window.history && window.history.pushState) {
-				$(window).on('popstate', function (e) {
-					e.preventDefault();
-					var myApp = new Framework7({
-						modalButtonCancel : '取消',
-						modalButtonOk : '确定',
-						modalTitle : ''
-				    });
-					myApp.confirm('评价信息还未提交，返回将会丢失', function () {
-						history.back();
-						},
-						function () {
-							window.history.pushState('forward', null, '#');
-							window.history.forward(1);
+				$(window).on('popstate', function () {
+					var hashLocation = location.hash;
+					var hashSplit = hashLocation.split("#!/");
+					var hashName = hashSplit[1];
+					if (hashName !== '') {
+						var hash = window.location.hash;
+						if (hash === '') {
+							var goods_evaluate = $("#goods_evaluate").val();
+							if (goods_evaluate != '') {
+								console.log(11);
+								var myApp = new Framework7({
+									modalButtonCancel : '取消',
+									modalButtonOk : '确定',
+									modalTitle : ''
+								});
+								myApp.confirm('评价信息还未提交，返回将会丢失', function (e) {
+									if (e) {
+										history.back();
+									} else {
+										
+									}
+								});
+							} else {
+								history.back();
+							}
 						}
-					);
+					}
 				});
 				window.history.pushState('forward', null, './#forward');
-				window.history.forward(1);
 			}
 		}
-		
 	};
 	
 })(ecjia, jQuery);
