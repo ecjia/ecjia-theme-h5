@@ -4355,6 +4355,9 @@ footer{
 	display:none;
 	background-color: #FFFFFF;
 }
+.ecjia-seller-comment {
+	background: #F7F7F7;
+}
 #goods-info-two .ecjia-nav-new li.active{
 	border-bottom:none !important;
 }
@@ -4368,6 +4371,10 @@ footer{
 #goods-info-two .ecjia-list-new{
 	margin-top:0;
 	margin-bottom: .5em;
+}
+#goods-info-three{
+	display:none;
+	background-color: #FFFFFF;
 }
 .goods-desc-info .goods-desc-nav-new {
 	border-bottom:0;
@@ -4724,8 +4731,8 @@ footer{
 	padding-top:6em;
 }
 .goods-describe .ecjia-nolist img{
-	width:44%;
-	height:44%;
+	width: 8em;
+	height: 8em;
 }
 .goods-describe .ecjia-nolist .tags_list_font{
 	color:#999;
@@ -6680,6 +6687,7 @@ footer{
     overflow: hidden;
     border-bottom: 1px solid #eee;
 	padding: .5em;
+	background: #fff;
 }
 .ecjia-seller-comment .store-option dl {
     float: left;
