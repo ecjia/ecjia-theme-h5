@@ -4,8 +4,8 @@
 ;(function(ecjia, $) {
 	ecjia.touch = {
 		init : function() {
-			var what = $.cookie('what');
-			if (what === undefined) {
+
+			if($.cookie('index') === undefined){
 				var key= $("input[name='key']").val();
 				var referer = $("input[name='referer']").val();
 				var geolocation = new qq.maps.Geolocation(key, referer);
@@ -24,12 +24,10 @@
 			      	    },
 		  	     	});
 				};
-				$.cookie('what', 'first');
 				function showErr(err) {    
 				    console.log(err)
 				};
-			}else{
-				$.cookie('what', '', { expires: -1 });
+				$.cookie('index', 'first');
 			}
 
 			ecjia.touch.setpjax();
