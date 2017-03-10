@@ -25,7 +25,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     					<span class="ecjiaf-fl cmt-goods-name">{$goods.name}</span>
     					<span class="ecjiaf-fl cmt-goods-price">{$goods.formated_shop_price}</span>
     					<span class="ecjiaf-fr btn-comment">
-    		              <a class="nopjax btn btn-hollow" href='{url path="user/order/goods_comment" args="goods_id={$goods.goods_id}"}'>发表评价</a>
+    		              <a class="nopjax external btn btn-hollow" href='{url path="user/order/goods_comment" args="goods_id={$goods.goods_id}"}'>发表评价</a>
     		            </span>
     				</li>
     			</ul>

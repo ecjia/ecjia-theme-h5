@@ -115,42 +115,30 @@
 		},
 		
 		back : function () {
-			ecjia.touch.comment.back_url();
-		},
-		
-		back_url : function () {
 			if (window.history && window.history.pushState) {
 				$(window).on('popstate', function () {
-					var hashLocation = location.hash;
-					var hashSplit = hashLocation.split("#!/");
-					var hashName = hashSplit[1];
-					if (hashName !== '') {
-						var hash = window.location.hash;
-						if (hash === '') {
-							var goods_evaluate = $("#goods_evaluate").val();
-							if (goods_evaluate != '') {
-								var myApp = new Framework7();
-				    			myApp.modal({
-				        			title: '评价信息还未提交，返回将会丢失',
-				        			buttons: [
-							          {
-							            text: '取消',
-							            onClick: function() {
-							            	ecjia.touch.comment.back_url();
-							            }
-							          },
-							          {
-							            text: '确定',
-							            onClick: function() {
-							            	history.back();
-							            }	
-							          },
-							        ]
-				        		});
-							} else {
-								history.back();
-							}
-						}
+					var goods_evaluate = $("#goods_evaluate").val();
+					if (goods_evaluate != '') {
+						var myApp = new Framework7();
+		    			myApp.modal({
+		        			title: '评价信息还未提交，返回将会丢失',
+		        			buttons: [
+					          {
+					            text: '取消',
+					            onClick: function() {
+					            	ecjia.touch.comment.back();
+					            }
+					          },
+					          {
+					            text: '确定',
+					            onClick: function() {
+					            	history.back();
+					            }	
+					          },
+					        ]
+		        		});
+					} else {
+						history.back();
 					}
 				});
 				window.history.pushState('forward', null, '');
