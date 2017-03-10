@@ -35,7 +35,10 @@
 				<div class="suggest-goods-list">
 					<!-- {foreach from=$val.seller_goods item=goods key=key} -->
 					<!-- {if $key < 4} -->
-					<a href="{RC_Uri::url('goods/index/show')}&goods_id={$goods.goods_id}"><img src="{$goods.img.thumb}"></a>
+					<a href="{RC_Uri::url('goods/index/show')}&goods_id={$goods.goods_id}">
+						<img src="{$goods.img.thumb}">
+						<span class="goods_price">{if $goods.promote_price}{$goods.promote_price}{else}{$goods.shop_price}{/if}</span>
+					</a>
 					<!-- {/if} -->
 					<!-- {/foreach} -->
 				</div>
