@@ -146,7 +146,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		        </div>
 	       	</a>
 	       	<div class="ecjia-goods-comment ecjia-seller-comment border_t_e">
-	       	<!-- #BeginLibraryItem "/library/store_comment.lbi" --><!-- #EndLibraryItem -->
 	       	</div>
 	       	
 	        <!-- {if $goods_info.related_goods} -->
@@ -230,11 +229,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 {/if}
 <!-- 切换详情页面end -->
 
-{if $no_goods_info neq 1}
 <div class="goods-desc-info active ecjia-seller-comment" id="goods-info-three" style="margin-top:3.5em;">
 <!-- #BeginLibraryItem "/library/store_comment.lbi" --><!-- #EndLibraryItem -->
 </div>
-{/if}
+
 <div class="store-add-cart a4w">
     <div class="a52"></div>
     <a href="javascript:void 0;" class="a4x {if $real_count.goods_number}light{else}disabled{/if} outcartcontent show show_cart" show="false">

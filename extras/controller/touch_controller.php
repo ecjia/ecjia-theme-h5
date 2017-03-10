@@ -180,6 +180,32 @@ class touch_controller {
     }
 
     /**
+     * ajax获取推荐店铺
+     */
+    public static function ajax_suggest_store() {
+    	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+    	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+    	
+    	$paramater = array(
+    		'pagination' 	=> array('count' => $limit, 'page' => $page),
+    		'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
+    	);
+    	
+    	$response = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($paramater)->hasPage()->run();
+    	if (!is_ecjia_error($response)) {
+    		list($data, $paginated) = $response;
+    		$data = merchant_function::format_distance($data);
+    		
+    		ecjia_front::$controller->assign('data', $data);
+    		ecjia_front::$controller->assign_lang();
+    		$sayList = ecjia_front::$controller->fetch('library/suggest_store.lbi');
+    		 
+    		if ($paginated['more'] == 0) $data['is_last'] = 1;
+    		return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'is_last' => $data['is_last']));
+    	}
+    }
+    
+    /**
      * 搜索
      */
     public static function search() {

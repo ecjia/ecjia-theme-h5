@@ -4355,6 +4355,9 @@ footer{
 	display:none;
 	background-color: #FFFFFF;
 }
+.ecjia-seller-comment {
+	background: #F7F7F7;
+}
 #goods-info-two .ecjia-nav-new li.active{
 	border-bottom:none !important;
 }
@@ -4368,6 +4371,10 @@ footer{
 #goods-info-two .ecjia-list-new{
 	margin-top:0;
 	margin-bottom: .5em;
+}
+#goods-info-three{
+	display:none;
+	background-color: #f7f7f7;
 }
 .goods-desc-info .goods-desc-nav-new {
 	border-bottom:0;
@@ -4724,8 +4731,8 @@ footer{
 	padding-top:6em;
 }
 .goods-describe .ecjia-nolist img{
-	width:44%;
-	height:44%;
+	width: 8em;
+	height: 8em;
 }
 .goods-describe .ecjia-nolist .tags_list_font{
 	color:#999;
@@ -6680,6 +6687,7 @@ footer{
     overflow: hidden;
     border-bottom: 1px solid #eee;
 	padding: .5em;
+	background: #fff;
 }
 .ecjia-seller-comment .store-option dl {
     float: left;
@@ -6862,8 +6870,6 @@ footer{
 .ecjia-suggest-store .store-info{
 	background: #fff;
     border-bottom: 1px solid #eee;
-	border-top: 1px solid #eee;
-    margin-bottom: 1em;
 	height: auto;
 	min-height: 5em;
 	overflow: hidden;
@@ -6974,15 +6980,30 @@ footer{
 }
 .ecjia-suggest-store .store-right div.suggest-goods-list {
 	margin-left: .3em;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.ecjia-suggest-store .suggest-goods-list a {
+	display: block;
+    float: left;
+	width: 22%;
+    margin-right: 3%;
 }
 .ecjia-suggest-store .suggest-goods-list img {
-    width: 4em;
+    width: 100%;
     height: 4em;
     overflow: hidden;
     float: left;
-    margin: .2em .3em;
 	border-radius: 4px;
     border: 1px solid #ddd;
+	margin-bottom: .5em;
+}
+.ecjia-suggest-store .suggest-goods-list .goods_price {
+	text-align: center;
+    display: block;
+    color: #ff3434;
+    font-size: .9em;
 }
 
 /*选择商品规格弹出层*/
