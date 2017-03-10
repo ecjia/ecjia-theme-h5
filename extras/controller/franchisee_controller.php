@@ -315,6 +315,9 @@ class franchisee_controller {
 	public static function process() {
 	    $mobile    = trim($_GET['mobile']);
 	    $code      = trim($_GET['code']);
+	    ecjia_front::$controller->assign('mobile', $mobile);
+	    ecjia_front::$controller->assign('code', $code);
+	    
 	    $show      = trim($_GET['show']);
 	    $token     = ecjia_touch_user::singleton()->getToken();
 	    if ($show) {
@@ -334,7 +337,7 @@ class franchisee_controller {
 	            'validate_code' => $code,
 	        );
 	        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data($params)->run();
-	        $reaudit = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PREAUDIT)->data(array('token' => $token, 'mobile' => $mobile, 'validate_code' => $code))->run();
+	        
 	        if (!is_ecjia_error($rs)) {
 	            $check_status  = $rs['check_status'];
 	            $info      	   = $rs['merchant_info'];
@@ -382,7 +385,13 @@ class franchisee_controller {
 	}
 	
 	public static function reapply() {
-	    ecjia_front::$controller->assign_lang();
+        $mobile = !empty($_GET['mobile'])   ? $_GET['mobile']   : '';
+        $code   = !empty($_GET['code'])     ? $_GET['code']    : '';
+        $token  = ecjia_touch_user::singleton()->getToken();
+        $reaudit = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PREAUDIT)->data(array('token' => $token, 'mobile' => $mobile, 'validate_code' => $code))->run();
+//         _dump($reaudit, 1);
+        ecjia_front::$controller->assign('reaudit', $reaudit);
+        ecjia_front::$controller->assign_lang();
 	    ecjia_front::$controller->assign_title('店铺入驻');
 	    ecjia_front::$controller->display('franchisee_reapply.dwt');
 	}
