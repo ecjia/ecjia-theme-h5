@@ -85,6 +85,12 @@ class location_controller {
     	ecjia_front::$controller->assign('title', '上海');
     	ecjia_front::$controller->assign_title('定位');
     
+    	$shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
+    	$recommend_city_name = $shop_config['recommend_city'][0]['name'];
+    	$recommend_city_id   = $shop_config['recommend_city'][0]['id'];
+    	ecjia_front::$controller->assign('recommend_city_name', $recommend_city_name);
+    	ecjia_front::$controller->assign('recommend_city_id', $recommend_city_id);
+    	
     	ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->display('search_location.dwt');
     }
