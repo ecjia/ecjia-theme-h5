@@ -12,6 +12,9 @@
 		},
 		goods_info : function () {
 			$('.star').raty({
+				  click: function(score, evt) {
+					  $(this).attr("data-number", score)
+			      },
 				  cancelOff: 'cancel-off-big.png',
 				  cancelOn : 'cancel-on-big.png',
 				  size     : 24,
@@ -50,7 +53,6 @@
 						$(img_span).appendTo("." + check_push_rm);
 						ecjia.touch.comment.remove_goods_img();
 						
-						console.log($(".push_photo_img img").length);
 						if ($(".push_photo_img img").length > 0) {
 							$(".push_img_fonz").hide();
 						}
@@ -91,17 +93,23 @@
 			$("input[name='push-comment-btn']").on('click', function (e) {
 				e.preventDefault(e);
 				var goods_id = $("input[name='goods_id']").val();
-				
-				$('.star').raty({
-					cancelOff: 'cancel-off-big.png',
-					  cancelOn : 'cancel-on-big.png',
-					  size     : 24,
-					  starOff  : 'star-off-big.png',
-					  starOn   : 'star-on-big.png',
-				  	number: function() {
-				  		return $(this).attr('data-number');
-					 }
-				});
+				var star = $(".star").attr("data-number");
+				var goods_evaluate = $("#goods_evaluate").val();
+				if (goods_evaluate == '') {
+					goods_evaluate = "商品质量俱佳，强烈推荐！"
+				}
+
+				var anonymity = 0;
+				if ($("#option_box").hasClass('anonymity-check-checked')) {
+					var anonymity = 1;
+				}
+				info = {
+						"goods_id"	:	goods_id,
+						"goods_evaluate" : goods_evaluate,
+						"star"	:	star,
+						"anonymity"	: anonymity
+						
+				}
 			})
 		}
 	};
