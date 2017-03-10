@@ -8,6 +8,7 @@
 			ecjia.touch.comment.anonymity();
 			ecjia.touch.comment.photo();
 			ecjia.touch.comment.remove_goods_img();
+			ecjia.touch.comment.publish_comment();
 		},
 		goods_info : function () {
 			$('.star').raty({
@@ -49,13 +50,13 @@
 						$(img_span).appendTo("." + check_push_rm);
 						ecjia.touch.comment.remove_goods_img();
 						
-						if ($(".push_photo_img img").length == 5) {
-							$(".push_photo").hide();
-						}
-						if ($(".push_photo_img img").length == 4) {
+						console.log($(".push_photo_img img").length);
+						if ($(".push_photo_img img").length > 0) {
 							$(".push_img_fonz").hide();
 						}
-						console.log($(".push_photo").length);
+						if ($(".push_photo_img img").length > 4) {
+							$(".push_photo").hide();
+						}
 					}
 					fr.readAsDataURL(f);
 				}
@@ -65,17 +66,44 @@
 		remove_goods_img : function () {
 			$(".a4y").on('click', function (e) {
 				e.preventDefault();
-				$(this).parent().remove();
-				console.log($(".push_photo_img img").length);
-				if ($(".push_photo_img img").length == 4) {
-					$(".push_photo").show();
-				}
-				if ($(".push_photo_img img").length == 3) {
-					$(".push_img_fonz").show();
-				}
+				
+				var path = $(this).parent();
+        		var myApp = new Framework7({
+					modalButtonCancel : '取消',
+					modalButtonOk : '确定',
+					modalTitle : ''
+			    });
+				myApp.confirm('您确定要删除照片？', function () {
+					if ($(".push_photo_img img").length <= 5) {
+						$(".push_photo").show();
+					}
+					if ($(".push_photo_img img").length <= 1) {
+						$(".push_img_fonz").show();
+					}
+					path.remove();
+			    });
 			})
 			
 		},
+		
+		//发表评价
+		publish_comment : function () {
+			$("input[name='push-comment-btn']").on('click', function (e) {
+				e.preventDefault(e);
+				var goods_id = $("input[name='goods_id']").val();
+				
+				$('.star').raty({
+					cancelOff: 'cancel-off-big.png',
+					  cancelOn : 'cancel-on-big.png',
+					  size     : 24,
+					  starOff  : 'star-off-big.png',
+					  starOn   : 'star-on-big.png',
+				  	number: function() {
+				  		return $(this).attr('data-number');
+					 }
+				});
+			})
+		}
 	};
 	
 })(ecjia, jQuery);

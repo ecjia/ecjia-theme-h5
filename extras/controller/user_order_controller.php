@@ -105,7 +105,6 @@ class user_order_controller {
         } else {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR,array('pjaxurl' => $url));
         }
-        
     }
     
     // 再次购买 重新加入购物车

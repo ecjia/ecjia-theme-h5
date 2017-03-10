@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     				<span class="ecjiaf-fl cmt-goods-price">{$goods.shop_price}</span>
     			</li>
     		</ul>
-    		<div class="star"><span >评论<span></div>
+    		<div class="star" data-number="3"><span >评论<span></div>
     		<div class="input">
                 <textarea name="note" placeholder="商品质量俱佳，强烈推荐！" value="商品质量俱佳，强烈推荐！">{$note}</textarea>
             </div>
@@ -41,7 +41,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             	       <input type="file" class="push_img_btn" size="1"  id="filechooser">
             	   </div>
             	</div>
-                <p class="push_img_fonz" >上传图片</p>
+                <p class="push_img_fonz" >请上传图片 (最多5张)</p>
             </div>
     	</div>
     </li>
@@ -57,6 +57,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </label>
     <span class="ecjiaf-fr push-comment-btn">
         <input class="btn" name="push-comment-btn" type="submit" value="发表评价"/>
+        <input type="hidden" value="{$goods.id}" name="goods_id" />
     </span>
 </div>
 <!-- {/block} -->
