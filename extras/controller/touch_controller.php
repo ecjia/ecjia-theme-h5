@@ -55,6 +55,12 @@ class touch_controller {
      * 首页信息
      */
     public static function init() {
+    	$key = ecjia::config('map_qq_key');
+    	$referer = ecjia::config('map_qq_referer');
+    	ecjia_front::$controller->assign('key', $key);
+    	ecjia_front::$controller->assign('referer', $referer);
+
+    	
         ecjia_front::$controller->assign('more_sales', RC_Uri::url('goods/index/promotion'));
         ecjia_front::$controller->assign('more_news', RC_Uri::url('goods/index/new'));
         ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
