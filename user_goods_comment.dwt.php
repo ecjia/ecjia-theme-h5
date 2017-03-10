@@ -27,9 +27,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     				<span class="ecjiaf-fl cmt-goods-price">{$goods.shop_price}</span>
     			</li>
     		</ul>
-    		<div class="star" data-number="3"><span >评论<span></div>
+    		<div class="star" data-number="1"><span>评分<span></div>
     		<div class="input">
-                <textarea name="note" placeholder="商品质量俱佳，强烈推荐！" value="商品质量俱佳，强烈推荐！">{$note}</textarea>
+                <textarea id="goods_evaluate" name="note" placeholder="商品质量俱佳，强烈推荐！"></textarea>
             </div>
             
             <div class="push_img">   
@@ -51,7 +51,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <label class="select-item">
         <li>
             <span class="ecjiaf-fr">
-                <div class="ecjia-anonymity-check"><input type="radio" name="anonymity" value="" /><p>匿名评价</p></div>
+                <div class="ecjia-anonymity-check" id="option_box"><input type="radio" name="anonymity" value="" /><p>匿名评价</p></div>
             </span>
         </li>
     </label>
