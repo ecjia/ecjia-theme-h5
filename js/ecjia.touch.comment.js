@@ -129,26 +129,31 @@
 						if (hash === '') {
 							var goods_evaluate = $("#goods_evaluate").val();
 							if (goods_evaluate != '') {
-								console.log(11);
-								var myApp = new Framework7({
-									modalButtonCancel : '取消',
-									modalButtonOk : '确定',
-									modalTitle : ''
-								});
-								myApp.confirm('评价信息还未提交，返回将会丢失', function (e) {
-									if (e) {
-										history.back();
-									} else {
-										
-									}
-								});
+								var myApp = new Framework7();
+				    			myApp.modal({
+				        			title: '评价信息还未提交，返回将会丢失',
+				        			buttons: [
+							          {
+							            text: '取消',
+							            onClick: function() {
+							            	ecjia.touch.comment.back_url();
+							            }
+							          },
+							          {
+							            text: '确定',
+							            onClick: function() {
+							            	history.back();
+							            }	
+							          },
+							        ]
+				        		});
 							} else {
 								history.back();
 							}
 						}
 					}
 				});
-				window.history.pushState('forward', null, './#forward');
+				window.history.pushState('forward', null, '');
 			}
 		}
 	};

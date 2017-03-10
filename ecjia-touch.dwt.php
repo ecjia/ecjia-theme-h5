@@ -21,8 +21,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<link rel="stylesheet" href="{$theme_url}lib/bootstrap3/css/bootstrap.css">
 
 	<link rel="stylesheet" href="{$theme_url}dist/css/iconfont.min.css">
-
-
 	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.css">
 	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.develop.css">
 	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.b2b2c.css">
