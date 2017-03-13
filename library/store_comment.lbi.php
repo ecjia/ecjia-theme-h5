@@ -29,26 +29,22 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 <div class="store-comment">
 	{if $comment_list}
-	<div class="assess-flat">
+	<div class="assess-flat">    
 		<div class="assess-wrapper">        
 			<div class="assess-top">            
-				<span class="user-portrait">                
-					<img src="{$theme_url}images/default_user.png">
-				</span>            
+				<span class="user-portrait"><img src="{$theme_url}images/default_user.png"></span>            
 				<span class="user-name">j***9</span>     
 				<span class="assess-date">2017-03-03</span>
-				<span class="comment-item-star">         
-					<span class="real-star comment-stars-width5"></span>
-				</span> 
+				<span class="comment-item-star"><span class="real-star comment-stars-width5"></span></span> 
 			</div>        
 			<div class="assess-bottom">            
 				<p class="assess-content">商品不错，很好吃，很满意的一次购物。</p>
 				<div class="img-list">
-					<img src="https://cityo2o.ecjia.com/content/uploads/images/201611/goods_img/1144_G_1478114484490.jpg" />
-					<img src="https://cityo2o.ecjia.com/content/uploads/images/201611/goods_img/1138_G_1478113310946.jpg" />
-					<img src="https://cityo2o.ecjia.com/content/uploads/images/201611/goods_img/1136_G_1478112834279.jpg" />
-					<img src="https://cityo2o.ecjia.com/content/uploads/images/201611/goods_img/1135_G_1478112362911.jpg" />
-					<img src="https://cityo2o.ecjia.com/content/uploads/images/201611/goods_img/1133_G_1478111902677.jpg" />
+					<img src="{$theme_url}images/default-goods-pic.png" />
+					<img src="{$theme_url}images/default-goods-pic.png" />
+					<img src="{$theme_url}images/default-goods-pic.png" />
+					<img src="{$theme_url}images/default-goods-pic.png" />
+					<img src="{$theme_url}images/default-goods-pic.png" />
 				</div>
 				<p class="goods-attr">属性：275g/进口</p>
 				<div class="store-reply">商家回复：谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！</div>
@@ -57,8 +53,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	{else}
 	<div class="ecjia-merchant-goods ecjia-nolist">
-	<p><img src="{$theme_url}images/no_comment.png"></p>
-	暂无商品评论
-</div>
+		<p><img src="{$theme_url}images/no_comment.png"></p>
+		暂无商品评论
+	</div>
 	{/if}
 </div>

@@ -30,7 +30,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							<img src="{if $val.seller_logo}{$val.seller_logo}{else}{$theme_url}images/store_default.png{/if}">
 						</div>
 						<div class="store-right">
-							<div class="store-name">{$val.seller_name}{if $val.manage_mode eq 'self'}<span>自营</span>{/if}</div>
+							<div class="store-title">
+							<span class="store-name">{$val.seller_name}</span>
+							{if $val.manage_mode eq 'self'}<span class="manage_mode">自营</span>{/if}</div>
 							<div class="store-range">
 								<i class="iconfont icon-remind"></i>{$val.label_trade_time}
 								{if $val.distance}
