@@ -87,13 +87,23 @@ class goods_controller {
 	    );
 	    /*商品基本信息*/
 	    $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($par)->run();
-
+	   	
 	    if (is_ecjia_error($goods_info)) {
 	    	ecjia_front::$controller->assign('no_goods_info', 1);
 	    } else {
 	    	if (!empty($goods_info['promote_end_date'])) {
 	    		$goods_info['promote_end_time'] = RC_Time::local_strtotime($goods_info['promote_end_date']);
 	    	}
+	    	
+	    	//默认商品属性组合
+	    	$spec = array();
+	    	if (!empty($goods_info['specification'])) {
+	    		foreach ($goods_info['specification'] as $k => $v) {
+	    			$spec[] = $v['value'][0]['id'];
+	    		}
+	    	}
+	    	asort($spec);
+	    	
 	    	/*商品所属店铺购物车列表*/
 	    	$token = ecjia_touch_user::singleton()->getToken();
 	    	$options = array(
@@ -103,6 +113,7 @@ class goods_controller {
 	    	);
 	    	//店铺购物车商品
 	    	$cart_goods_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($options)->run();
+	    	
 	    	if (is_ecjia_error($cart_goods_list)) {
 	    		$cart_goods_list = array();
 	    	} else {
@@ -111,7 +122,8 @@ class goods_controller {
 	    		
 	    		$cart_goods_id = $cart_arr = array();
 	    		$rec_id = $data_rec = $num = '';
-	    		 
+	    		$goods_attr_num = 0;
+	    		
 	    		if (!empty($cart_goods_list['cart_list'][0]['goods_list'])) {
 	    			$cart_goods_list['cart_list'][0]['total']['check_all'] = true;
 	    			$cart_goods_list['cart_list'][0]['total']['check_one'] = false;
@@ -135,6 +147,15 @@ class goods_controller {
 	    					$cart_goods_list['cart_list'][0]['total']['goods_number'] -= $v['goods_number'];
 	    				}
 	    				$data_rec = trim($data_rec, ',');
+	    				
+	    				if ($goods_id == $val['goods_id']) {
+	    					$goods_attr_num += 1;
+	    				}
+	    				$goods_attr = explode(',', $val['goods_attr_id']);
+	    				asort($goods_attr);
+	    				if ($spec == $goods_attr) {
+	    					$cart_goods_list['current'] = $val;
+	    				}
 	    			}
 	    		} else {
 	    			$cart_goods_list['cart_list'][0]['total']['check_all'] = false;
@@ -149,11 +170,13 @@ class goods_controller {
 	    				}
 	    			}
 	    		}
+	    		
 	    		if (!empty($rec_id)) {
 	    			ecjia_front::$controller->assign('rec_id', $rec_id);
 	    		}
-	    		ecjia_front::$controller->assign('num', $num);
-	    		ecjia_front::$controller->assign('total_num', $total_num);
+	    		ecjia_front::$controller->assign('num', $num);							//该商品购物车数量
+	    		ecjia_front::$controller->assign('total_num', $total_num);				//购物车商品总数
+	    		ecjia_front::$controller->assign('goods_attr_num', $goods_attr_num);	//多规格商品数量
 	    	}
 	    	ecjia_front::$controller->assign('goods_info', $goods_info);
 	    }
@@ -175,7 +198,9 @@ class goods_controller {
 	    	ecjia_front::$controller->assign('count', $cart_goods_list['cart_list'][0]['total']);
 	    	ecjia_front::$controller->assign('real_count', $cart_goods_list['total']);
 	    	ecjia_front::$controller->assign('data_rec', $data_rec);
+	    	ecjia_front::$controller->assign('current', $cart_goods_list['current']);
 	    }
+	    
 	    if (isset($_COOKIE['location_address_id']) && $_COOKIE['location_address_id'] > 0) {
 	    	ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
 	    }
