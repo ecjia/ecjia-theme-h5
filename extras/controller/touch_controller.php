@@ -198,8 +198,11 @@ class touch_controller {
     		
     		ecjia_front::$controller->assign('data', $data);
     		ecjia_front::$controller->assign_lang();
-    		$sayList = ecjia_front::$controller->fetch('library/suggest_store.lbi');
-    		 
+    		
+    		$sayList = '';
+    		if (!empty($data)) {
+    			$sayList = ecjia_front::$controller->fetch('library/suggest_store.lbi');
+    		}
     		if ($paginated['more'] == 0) $data['is_last'] = 1;
     		return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'is_last' => $data['is_last']));
     	}
