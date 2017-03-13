@@ -84,7 +84,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			                	<span class="goods-add-cart add-cart-a {if $rec_id}hide{/if}" data-toggle="add-to-cart" goods_id="{$goods_info.id}">加入购物车</span>
                                 <div class="ecjia-goods-plus-box {if !$rec_id}hide{/if} box" id="goods_{$goods_info.id}">
                                     <span class="reduce" data-toggle="remove-to-cart" rec_id="{$rec_id}">减</span>
-                                    <label>{if !$rec_id}0{else}{$num}{/if}</label>
+                                    <label>{if !$rec_id}1{else}{$num}{/if}</label>
                                     <span class="add storeSearchCart" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
                                 </div>
                                 {/if}
@@ -100,7 +100,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 	<span class="goods-add-cart market-goods-add-cart add-cart-a {if $rec_id}hide{/if}" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加入购物车</span>
               		<div class="ecjia-goods-plus-box ecjia-market-plus-box {if !$rec_id}hide{/if} box" id="goods_{$goods_info.id}">
               			<span class="reduce show" data-toggle="remove-to-cart" rec_id="{$rec_id}">减</span>
-                     	<label>{if !$rec_id}0{else}{$num}{/if}</label>
+                     	<label>{if !$rec_id}1{else}{$num}{/if}</label>
               			<span class="add storeSearchCart" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
                     </div>
                     {/if}

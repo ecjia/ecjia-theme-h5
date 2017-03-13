@@ -53,7 +53,7 @@
                 	if ($this.hasClass('goods-add-cart')) {
                 		$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
                 		var show = $this.parent().children('.ecjia-goods-plus-box');
-                		var val = parseInt(show.children('label').html()) + 1;
+                		var val = parseInt(show.children('label').html());
                 	} else {
                 		//商品详情页面购物车里加减
                     	if ($this.hasClass('a5v')) {
@@ -115,7 +115,7 @@
             });
         },
         
-        //移除购物车
+        //购物车中移出商品
         remove_tocart : function() {
             $("[data-toggle='remove-to-cart']").off('click').on('click', function(ev){
             	var $this = $(this);
@@ -584,10 +584,24 @@
             					'store_id' : store_id,
             					'rec_id' : rec_id,
             				};
-            				ecjia.touch.category.hide_cart(true);
             				$.post(url, info, function(data) {
-            					var href = window.location.href;
-            					location.href = href;
+            					if (data.state == 'success') {
+            						ecjia.touch.category.hide_cart(true);
+            						if ($.find('.box').length != 0) {
+            							$('.box').children('.reduce').removeClass('show').addClass('hide');
+                    					$('.box').children('label').html('1').removeClass('show').addClass('hide');
+                    					$('.box').children('span').attr('rec_id', '');
+            						}
+            						if ($.find('.goods-add-cart').length != 0) {
+            							$('.box').addClass('hide');
+            							$('.goods-add-cart').removeClass('hide').attr('rec_id', '');
+            						}
+            						if ($.find('.goods-price-plus').length != 0) {
+            							$('.goods-price-plus').attr('rec_id', '').attr('data-num', '');
+            						}
+            					} else {
+            						ecjia.touch.showmessage(data);
+            					}
 			            		return false;
             				});
 			            }	

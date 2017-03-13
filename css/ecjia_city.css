@@ -1302,7 +1302,7 @@ footer{
 	display: none;
 }
 .ecjia-header .ecjia-header-right a i {
-    font-size: 1.5em;
+    font-size: 1.3em;
     line-height: 1.5;
 }
 .ecjia-header.ecjia-store-banner {
@@ -4316,9 +4316,9 @@ footer{
 .ecjia-goods-detail-header-title ul{
 	position: absolute;
     text-align: center;
-    width: 50%;
-    right: 25%;
-    left: 25%;
+    width: 54%;
+    right: 23%;
+    left: 23%;
 }
 .ecjia-goods-detail-header-title li {
 	float:left;
