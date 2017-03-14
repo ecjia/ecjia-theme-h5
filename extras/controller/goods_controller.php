@@ -115,7 +115,7 @@ class goods_controller {
 	    	);
 	    	//店铺购物车商品
 	    	$cart_goods_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($options)->run();
-	    	
+
 	    	if (is_ecjia_error($cart_goods_list)) {
 	    		$cart_goods_list = array();
 	    	} else {

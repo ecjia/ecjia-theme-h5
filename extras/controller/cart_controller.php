@@ -241,12 +241,10 @@ class cart_controller {
     }
 
     public static function check_spec() {
-    	return ecjia_front::$controller->showmessage('11', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	$spec = !empty($_POST['spec']) ? $_POST['spec'] : '';
+    	asort($spec);
     	
-    	$spec = !empty($_POST['spec']) ? $spec : '';
-    	$spec = asort($spec);
-    	
-    	$goods_id = !empty($_POST['goods_id']) ? intval($_PSOT['goods_id']) : 0;
+    	$goods_id = !empty($_POST['goods_id']) ? intval($_POST['goods_id']) : 0;
     	
     	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
@@ -258,19 +256,21 @@ class cart_controller {
     	if (is_ecjia_error($cart_list)) {
     		return ecjia_front::$controller->showmessage($cart_list->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
-    	if (!empty($cart_goods_list['cart_list'][0]['goods_list'])) {
-    		foreach ($cart_goods_list['cart_list'][0]['goods_list'] as $key => $val) {
+
+    	if (!empty($cart_list['cart_list'][0]['goods_list'])) {
+    		foreach ($cart_list['cart_list'][0]['goods_list'] as $key => $val) {
     			if ($goods_id == $val['goods_id']) {
     				$goods_attr = explode(',', $val['goods_attr_id']);
     				if (!empty($goods_attr)) {
-    					$goods_attr = asort($goods_attr);
+    					asort($goods_attr);
     					if ($spec == $goods_attr) {
-    						return ecjia_front::$controller->showmessage($cart_list->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    						return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('info' => $val));
     					}
     				}
     			}
     		}
     	}
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
     }
 
     /**

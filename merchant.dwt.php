@@ -262,7 +262,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 										{/if}
 									</td>
 									<td>
-										<div class="a7j">{$cart.goods_name}</div> 
+										<div class="a7j">{$cart.goods_name}</div>
+										{if $cart.attr}<div class="a7s">{$cart.attr}</div>{/if}
 										<span class="a7c">
 										{if $cart.goods_price eq 0}免费{else}{$cart.formated_goods_price}{/if}
 										</span>
@@ -302,13 +303,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<tr>
 					<td style="width:75px; height:75px">
 						<img class="a7g" src="{$val.img.small}">
-						
 						<div class="product_empty">
 						{if $val.is_disabled eq 1}库存不足{/if}
 						</div>
 					</td>
 					<td>
 						<div class="a7j">{$val.goods_name}</div> 
+						{if $val.attr}<div class="a7s">{$val.attr}</div>{/if}
 						<span class="a7c">
 						{if $val.goods_price eq 0}免费{else}{$val.formated_goods_price}{/if}
 						</span>
