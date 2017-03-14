@@ -21,11 +21,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     		<!-- {foreach from=$goods_list item=goods name=goods} -->
     			<ul class="goods-item ecjia-comment-list">
     				<li class="goods-img ecjiaf-fl ecjia-margin-r ecjia-icon">
-    					<img class="ecjiaf-fl" src="{$goods.img.thumb}" alt="{$goods.name}" title="{$goods.name}" />
-    					<span class="ecjiaf-fl cmt-goods-name">{$goods.name}</span>
-    					<span class="ecjiaf-fl cmt-goods-price">{$goods.formated_shop_price}</span>
+    					<img class="ecjiaf-fl" src="{$goods.img.thumb}" alt="{$goods.goods_name}" title="{$goods.name}" />
+    					<span class="ecjiaf-fl cmt-goods-name">{$goods.goods_name}</span>
+    					<span class="ecjiaf-fl cmt-goods-price">{$goods.goods_price}</span>
     					<span class="ecjiaf-fr btn-comment">
-    		              <a class="nopjax external btn btn-hollow" href='{url path="user/order/goods_comment" args="goods_id={$goods.goods_id}&order_id={$order_id}"}'>发表评价</a>
+    		              <a class="nopjax external btn btn-hollow" href='{url path="user/order/goods_comment" args="goods_id={$goods.goods_id}&rec_id={$goods.rec_id}&is_commented={$goods.is_commented}&is_showorder={$goods.is_showorder}"}'>{if $goods.is_commented eq 1}{if $goods.is_showorder eq 1}查看评价{else}追加晒图{/if}{else}发表评价{/if}</a>
     		            </span>
     				</li>
     			</ul>
