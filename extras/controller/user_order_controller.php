@@ -263,7 +263,11 @@ class user_order_controller {
         );
         
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::COMMENT_CREATE)->data($push_comment)->run();
-        $data = is_ecjia_error($data) ? $data->get_error_message() : $data;
+        if (is_ecjia_error($data)) {
+            return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+        } else {
+            return ecjia_front::$controller->showmessage("提交成功", ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url'=>RC_Uri::url('user/order/comment_list')));
+        }
     }
 }
 

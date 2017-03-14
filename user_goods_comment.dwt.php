@@ -79,6 +79,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </li>
 </div>
 
+{if $goods_info.is_showorder eq 0 && $goods_info.is_commented eq 0}
 <div class="ecjia-push-comment flow-goods-list">
     <label class="select-item">
         <li>
@@ -93,5 +94,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <input type="hidden" value="{$goods.rec_id}" name="rec_id" />
     </span>
 </div>
+{/if}
 </form>
 <!-- {/block} -->
