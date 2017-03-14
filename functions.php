@@ -90,6 +90,7 @@ RC_Hook::add_action('article/shop/detail', array('article_controller', 'shop_det
 RC_Loader::load_theme('extras/controller/cart_controller.php');
 RC_Hook::add_action('cart/index/init', array('cart_controller', 'init'));
 RC_Hook::add_action('cart/index/update_cart', array('cart_controller', 'update_cart'));//更新购物车中商品
+RC_Hook::add_action('cart/index/check_spec', array('cart_controller', 'check_spec'));//检查购物车中商品规格
 RC_Hook::add_action('cart/flow/checkout', array('cart_controller', 'checkout'));
 RC_Hook::add_action('cart/flow/pay', array('cart_controller', 'pay'));
 RC_Hook::add_action('cart/flow/shipping', array('cart_controller', 'shipping'));

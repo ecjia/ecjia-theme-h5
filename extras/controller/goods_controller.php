@@ -94,11 +94,13 @@ class goods_controller {
 	    	if (!empty($goods_info['promote_end_date'])) {
 	    		$goods_info['promote_end_time'] = RC_Time::local_strtotime($goods_info['promote_end_date']);
 	    	}
-	    	
+
 	    	//默认商品属性组合
 	    	$spec = array();
+	    	$goods_info['spec_price'] = !empty($goods_info['promote_price']) ? $goods_info['promote_price'] : $goods_info['shop_price'];
 	    	if (!empty($goods_info['specification'])) {
 	    		foreach ($goods_info['specification'] as $k => $v) {
+	    			$goods_info['spec_price'] += $v['value'][0]['price'];
 	    			$spec[] = $v['value'][0]['id'];
 	    		}
 	    	}
@@ -149,7 +151,7 @@ class goods_controller {
 	    				$data_rec = trim($data_rec, ',');
 	    				
 	    				if ($goods_id == $val['goods_id']) {
-	    					$goods_attr_num += 1;
+	    					$goods_attr_num += $val['goods_number'];
 	    				}
 	    				$goods_attr = explode(',', $val['goods_attr_id']);
 	    				asort($goods_attr);
@@ -183,7 +185,6 @@ class goods_controller {
 
 		/*商品描述*/
 	    $goods_desc = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DESC)->data(array('goods_id' => $goods_id))->run();
-	    
 	    if (!is_ecjia_error($goods_desc) && !empty($goods_desc)) {
 	    	$res = array();
 	    	preg_match('/<body>([\s\S]*?)<\/body>/', $goods_desc, $res);
@@ -251,7 +252,7 @@ class goods_controller {
         		$sayList = ecjia_front::$controller->fetch('goods_new.dwt');
         	}
         	if ($page['more'] == 0) $goods_list['is_last'] = 1;
-        	return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'is_last' => $goods_list['is_last']));
+        	return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList, 'is_last' => $goods_list['is_last']));
         }
     }
 
@@ -405,7 +406,7 @@ class goods_controller {
     	ecjia_front::$controller->assign('cid', $cid);
     	
     	if ($type == 'ajax_get') {
-    		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $say_list, 'is_last' => $data['is_last']));
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $data['is_last']));
     	}
     	
     	ecjia_front::$controller->assign('referer_url', urlencode(RC_Uri::url('goods/category/store_list', array('store_id' => $store_id, 'keywords' => $keywords))));
@@ -436,7 +437,7 @@ class goods_controller {
     			$say_list = ecjia_front::$controller->fetch('seller_list.dwt');
     			
     			if ($page['more'] == 0) $data['is_last'] = 1;
-    			return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $say_list, 'is_last' => $data['is_last']));
+    			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $data['is_last']));
     		}
     	}
     	

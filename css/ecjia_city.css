@@ -7142,21 +7142,21 @@ footer{
     position: absolute;
     z-index: 14;
     right: 0;
-    width: 30%;
+    width: 35%;
     text-align: center;
     color: #fff;
-    line-height: 40px;
+    line-height: 50px;
     background-color: #47b34f;
-    font-size: 14px;
+    font-size: 15px;
     border-radius: 0 0 7px 0;
 }
 .ecjia-goodsAttr-modal .modal-buttons .goods-attr-price {
-    margin-left: .8em;
+    margin-left: .3em;
     color: #ff3434;
     font-size: 1.1em;
 }
 .ecjia-goodsAttr-modal .modal-buttons .modal-left {
-    width: 65%;
+    width: 64%;
     float: left;
     overflow: hidden;
     height: 50px;
@@ -7175,18 +7175,6 @@ footer{
 	margin-right: 10px;
 }
 .ecjia-choose-attr-box span.reduce {
-    float: right;
-    border-radius: 12.5px;
-    width: 25px;
-    height: 25px;
-    background-position: 0;
-    background-image: url(../images/icon/addNumSprite.png);
-    background-size: 400% 100%;
-    display: inline-block;
-    text-align: right;
-	background-color: white;
-}
-.ecjia-choose-attr-box span.add {
     text-align: left;
     float: right;
     width: 25px;
@@ -7196,6 +7184,18 @@ footer{
     display: inline-block;
     border-radius: 12.5px;
     background-image: url(../images/icon/addNumSprite.png);
+	background-color: white;
+}
+.ecjia-choose-attr-box span.add {
+	float: right;
+    border-radius: 12.5px;
+    width: 25px;
+    height: 25px;
+    background-position: 0;
+    background-image: url(../images/icon/addNumSprite.png);
+    background-size: 400% 100%;
+    display: inline-block;
+    text-align: right;
 	background-color: white;
 }
 .ecjia-choose-attr-box label {

@@ -74,7 +74,7 @@ class user_bonus_controller {
         if ($bonus['paginated']['more'] == 0) {
             $more = 1;
         }
-        return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page', 'is_last' => $more));
+        return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList,'page', 'is_last' => $more));
     }
     
     public static function async_is_used() {
@@ -92,7 +92,7 @@ class user_bonus_controller {
         if ($bonus['paginated']['more'] == 0) {
             $more = 1;
         }
-        return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page', 'is_last' => $more));
+        return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList,'page', 'is_last' => $more));
     }
     
     public static function async_expired() {
@@ -110,7 +110,7 @@ class user_bonus_controller {
         if ($bonus['paginated']['more'] == 0) {
             $more = 1;
         }
-        return ecjia_front::$controller->showmessage('success', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList,'page', 'is_last' => $more));
+        return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList,'page', 'is_last' => $more));
     }
 
     /**
@@ -179,7 +179,7 @@ class user_bonus_controller {
             $res['data_toggle'] = 'asynclist';
             $res['url'] = RC_Uri::url('user/bonus/async_reward_detail', array('date' => $arr['date']));
         }
-        return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('list' => $sayList, 'is_last' => $res['is_last'], 'data' => $res));
+        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList, 'is_last' => $res['is_last'], 'data' => $res));
     }
     /**
      * 赚积分
