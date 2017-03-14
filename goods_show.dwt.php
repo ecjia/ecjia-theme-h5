@@ -140,35 +140,41 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		                <div class="ecjia-merchants-name">
 		                	<span class="shop-title-name">商品评价</span>
 		                	<i class="iconfont icon-jiantou-right"></i>
-		                	<span class="comment_score">90%好评</span>
+		                	<span class="comment_score">{$comment_list.comment_percent}好评</span>
 		                </div>
 		            </div>
 		        </div>
 	       	</a>
-	       	{if $goods_info.comment_list}
+	       	{if $comment_list}
 	       	<div class="ecjia-goods-comment ecjia-seller-comment border_t_e">
+	       		<!-- {foreach from=$comment_list.list item=comment} -->
 				<div class="assess-flat">    
 					<div class="assess-wrapper">        
 						<div class="assess-top">            
-							<span class="user-portrait"><img src="{$theme_url}images/default_user.png"></span>            
-							<span class="user-name">j***9</span>     
-							<span class="assess-date">2017-03-03</span>
-							<span class="comment-item-star"><span class="real-star comment-stars-width5"></span></span> 
+							<span class="user-portrait"><img src="{$theme_url}images/default_user.png"></span>
+							<div class="user-right">
+								<span class="user-name">{$comment.author}</span>     
+								<span class="assess-date">{$comment.add_time}</span>
+							</div>
+							<p class="comment-item-star score-goods" data-val="{$comment.rank}"></p> 
 						</div>        
 						<div class="assess-bottom">            
-							<p class="assess-content">商品不错，很好吃，很满意的一次购物。</p>
+							<p class="assess-content">{$comment.content}</p>
+							<!-- {if $comment.picture} -->
 							<div class="img-list">
-								<img src="{$theme_url}images/default-goods-pic.png" />
-								<img src="{$theme_url}images/default-goods-pic.png" />
-								<img src="{$theme_url}images/default-goods-pic.png" />
-								<img src="{$theme_url}images/default-goods-pic.png" />
-								<img src="{$theme_url}images/default-goods-pic.png" />
+								<!-- {foreach from=$comment.picture item=img} -->
+								<img src="{$img}" />
+								<!-- {/foreach} -->
 							</div>
-							<p class="goods-attr">属性：275g/进口</p>
-							<div class="store-reply">商家回复：谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！</div>
+							<!-- {/if} -->
+							<p class="goods-attr">{$comment.goods_attr}</p>
+							{if $comment.reply_content}
+							<div class="store-reply">商家回复：{$comment.reply_content}</div>
+							{/if}
 						</div>    
 					</div>    
 				</div>
+				<!-- {/foreach} -->
 	       	</div>
 	       	{/if}
 	       	

@@ -270,7 +270,6 @@
         		store_id = store;
         		response = true;//直接返回
         	}
-        	
         	var info = {
         		'val' 		: val,
         		'rec_id' 	: rec_id,
@@ -1104,7 +1103,7 @@
  				
  				var myApp = new Framework7();
     			//禁用滚动条
-            	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
+            	$('body').css('overflow-y', 'hidden').on('touchmove', function(event){event.preventDefault;}, false);
 
             	var height = ($('body').scrollTop() + 160) + 'px';
     			$('.ecjia-store-modal').show().css('top', height);
@@ -1143,12 +1142,23 @@
  				show_div.siblings('.ecjia-store-toggle').removeClass('show').addClass('hide');
  			});
  			
- 			$('.score-val').raty({
-				readOnly : true,
- 				score : function() {
- 				    return $(this).attr('data-val') * 5;
- 				},
-			});
+ 			//商品详情评分
+            $('.score-goods').each(function() {
+                $(this).raty({
+                    readOnly : true,
+                    score : function() {
+                        return $(this).attr('data-val');
+                    },
+                });
+            });
+            
+            //店铺首页商品评分
+            $('.score-val').raty({
+            	readOnly : true,
+            	score : function() {
+            		return $(this).attr('data-val') * 5;
+            	},
+            });
 
  			$('.choose_attr').off('click').on('click', function() {
  				var $this = $(this);
@@ -1207,7 +1217,11 @@
  				}
  				$.post(url, info, function(data) {
  					if (data.state == 'error') {
- 						ecjia.touch.showmessage(data);
+ 						if (data.message == 'Invalid session') {
+ 							return false;
+ 						} else {
+ 							ecjia.touch.showmessage(data);
+ 						}
  					} else {
  						if (data.info) {
  							$('.ecjia-choose-attr-box.box').removeClass('hide').addClass('show').children('label').html(data.info.goods_number);

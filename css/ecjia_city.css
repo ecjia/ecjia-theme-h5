@@ -1309,7 +1309,7 @@ footer{
 	display: none;
 }
 .ecjia-header .ecjia-header-right a i {
-    font-size: 1.3em;
+    font-size: 1.2em;
     line-height: 1.5;
 }
 .ecjia-header.ecjia-store-banner {
@@ -6738,7 +6738,6 @@ footer{
 }
 .ecjia-seller-comment .assess-flat {
     position: relative;
-    margin-top: 10px;
     border-bottom: 1px solid #e0e0e0;
 }
 .ecjia-seller-comment .assess-flat:before {
@@ -6753,12 +6752,12 @@ footer{
 }
 .ecjia-seller-comment .assess-wrapper {
     display: block;
-    padding-left: 15px;
+	padding: 10px 0 10px 15px;
     background-color: #fff;
 }
 .ecjia-seller-comment .assess-top {
     position: relative;
-    padding: 0 10px 11px 0;
+    padding: 0 10px 0 0;
     background-color: #fff;
 }
 .ecjia-seller-comment .assess-top:before {
@@ -6788,7 +6787,6 @@ footer{
 }
 .ecjia-seller-comment .assess-bottom {
     background-color: #fff;
-	margin-bottom: .5em;
 }
 .ecjia-seller-comment .user-name {
     font-size: 13px;
@@ -6810,45 +6808,21 @@ footer{
     height: 27px;
     color: #848689;
 }
+.ecjia-seller-comment .user-right {
+	overflow: hidden;
+}
 .ecjia-seller-comment .comment-item-star {
 	display: inline-block;
     overflow: hidden;
-    width: 75px;
-    height: 11px;
-    margin-top: 32px;
-    margin-bottom: -20px;
-    margin-left: -35px;
-    background: url(../images/comment-star.png) repeat-x 0 -11px;
-    background-size: 15px 22px;
-}
-.ecjia-seller-comment .comment-item-star .real-star {
-    display: inline-block;
-    height: 22px;
-    background: url(../images/comment-star.png) repeat-x 0 0;
-    background-size: 15px 22px;
-}
-.ecjia-seller-comment .comment-stars-width1{
-	width:20%;
-}
-.ecjia-seller-comment .comment-stars-width2{
-	width:40%;
-}
-.ecjia-seller-comment .comment-stars-width3{
-	width:60%;
-}
-.ecjia-seller-comment .comment-stars-width4{
-	width:80%;
-}
-.ecjia-seller-comment .comment-stars-width5{
-	width:100%;
+    width: 100px;
+    height: 20px;
+    margin-left: 10px;
 }
 .ecjia-seller-comment .assess-content {
     font-size: 1em;
     line-height: 18px;
     margin-right: 10px;
-    color: #252525;
     word-wrap: break-word;
-	margin-bottom: 5px;
 	max-height: 5em;
 	text-overflow: ellipsis;
     overflow: hidden;
@@ -6891,7 +6865,7 @@ footer{
     -webkit-box-orient: vertical;
     display: -webkit-box;
     background: #F4F5F4;
-	margin: 0 .5em .5em 0;
+	margin-right: .5em;
     border-radius: 4px;
 }
 /*首页热门推荐店铺*/

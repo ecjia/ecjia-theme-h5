@@ -206,7 +206,19 @@ class goods_controller {
 	    	ecjia_front::$controller->assign('address_id', $_COOKIE['location_address_id']);
 	    }
 	    ecjia_front::$controller->assign('referer_url', urlencode(RC_Uri::url('goods/index/show', array('goods_id' => $goods_id))));
-
+	    
+	    $info = array(
+	    	'goods_id' => $goods_id,
+	    	'comment_type' => 'all',
+	    	'pagination' => array('count' => 5, 'page' => 1)
+	    );
+	    $goods_comment = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_COMMENTS)->data($info)->run();
+	    if (!is_ecjia_error($goods_comment)) {
+	    	if (!empty($goods_comment)) {
+	    		ecjia_front::$controller->assign('comment_list', $goods_comment);
+	    	}
+	    }
+	    
 	    ecjia_front::$controller->assign_title('商品详情');
         ecjia_front::$controller->display('goods_show.dwt');
     }

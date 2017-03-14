@@ -190,7 +190,7 @@ class touch_controller {
     		'pagination' 	=> array('count' => $limit, 'page' => $page),
     		'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
     	);
-    	
+
     	$response = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($paramater)->hasPage()->run();
     	if (!is_ecjia_error($response)) {
     		list($data, $paginated) = $response;

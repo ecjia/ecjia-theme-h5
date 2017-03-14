@@ -279,6 +279,7 @@ class merchant_controller {
 				'seller_id'		=> $store_id
 			);
 			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_SUGGESTLIST)->data($parameter)->hasPage()->run();
+
 			if (!is_ecjia_error($response)) {
 				list($data, $page) = $response;
 				$goods_num = $page['count'];
@@ -327,7 +328,7 @@ class merchant_controller {
 		 
 		//店铺购物车商品
 		$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
-	
+		
 		$goods_cart_list = array();
 		if (!is_ecjia_error($cart_list)) {
 			if (!empty($cart_list['cart_list'][0]['goods_list'])) {

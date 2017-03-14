@@ -32,9 +32,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="assess-flat">    
 		<div class="assess-wrapper">        
 			<div class="assess-top">            
-				<span class="user-portrait"><img src="{$theme_url}images/default_user.png"></span>            
-				<span class="user-name">j***9</span>     
-				<span class="assess-date">2017-03-03</span>
+				<span class="user-portrait"><img src="{$theme_url}images/default_user.png"></span>
+				<div class="user-right">            
+					<span class="user-name">j***9</span>  
+					<span class="assess-date">2017-03-03</span>
+				</div>
 				<span class="comment-item-star"><span class="real-star comment-stars-width5"></span></span> 
 			</div>        
 			<div class="assess-bottom">            
