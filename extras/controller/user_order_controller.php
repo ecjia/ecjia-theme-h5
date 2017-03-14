@@ -201,6 +201,7 @@ class user_order_controller {
         $goods = is_ecjia_error($goods) ? array() : $goods;
         $goods_list = $goods['goods_list'];
         
+        ecjia_front::$controller->assign('order_id', $order_id);
         ecjia_front::$controller->assign('goods_list', $goods_list);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_comment_list.dwt');
@@ -211,16 +212,57 @@ class user_order_controller {
      */
     public static function goods_comment() {
         $goods_id = isset($_GET['goods_id']) ? intval($_GET['goods_id']) : 0;
+        $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         
         //获取商品信息
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'goods_id' => $goods_id);
         $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($params_order)->run();
         $goods_info = is_ecjia_error($goods_info) ? array() : $goods_info;
 
+        ecjia_front::$controller->assign('order_id', $order_id);
         ecjia_front::$controller->assign('goods', $goods_info);
          
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_goods_comment.dwt');
+    }
+    
+    public static function make_comment() {
+        $token = ecjia_touch_user::singleton()->getToken();
+        $rec_id = isset($_POST['rec_id']) ? intval($_POST['rec_id']) : '';
+        $content = !empty($_POST['note']) ? $_POST['note'] : '';
+        $rank = isset($_POST['score']) ? intval($_POST['score']) : 0;
+        if (!empty($_FILES['filechooser0']['name'])) {
+            $picture['filechooser0'] = $_FILES['filechooser0'];
+        }
+        if (!empty($_FILES['filechooser1']['name'])) {
+            $picture['filechooser1'] = $_FILES['filechooser1'];
+        }
+        if (!empty($_FILES['filechooser2']['name'])) {
+            $picture['filechooser2'] = $_FILES['filechooser2'];
+        }
+        if (!empty($_FILES['filechooser3']['name'])) {
+            $picture['filechooser3'] = $_FILES['filechooser3'];
+        }
+        if (!empty($_FILES['filechooser4']['name'])) {
+            $picture['filechooser4'] = $_FILES['filechooser4'];
+        }
+        
+        $is_anonymous = isset($_POST['anonymity_status']) ? intval($_POST['anonymity_status']) : '';
+        $params_order = array(
+            'token'         => $token,
+            "rec_id"        => $rec_id,
+            "content"       => $content,
+            "rank"          => $rank,
+            "picture"       => $picture,
+            "is_anonymous"  => $is_anonymous
+        );
+        
+        _dump($params_order,1);
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::COMMENT_CREATE)->data($params_order)->run();
+
+        $data = is_ecjia_error($data) ? $data->get_error_message() : $data;
+ 
+        _dump($data,1);
     }
 }
 

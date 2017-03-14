@@ -17,6 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #EndLibraryItem -->
 
+<form action="{url path='user/order/make_comment'}" enctype="multipart/form-data" method="post">
 <div class="ecjia-met-goods-info">
     <li class="ecjia-order-item ecjia-checkout">
     	<div class="flow-goods-list">
@@ -35,10 +36,34 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <div class="push_img">   
                 <div class="push_photo_img" id="result">
                 </div>
-            	<div class="push_photo" id="result">
+            	<div class="push_photo" id="result0">
             	   <div class="push_result_img">
             	       <img src="{$theme_url}images/photograph.png">
-            	       <input type="file" class="push_img_btn" size="1"  id="filechooser">
+            	       <input type="file" class="push_img_btn" id="filechooser0" name="filechooser0">
+            	   </div>
+            	</div>
+            	<div class="push_photo" id="result1">
+            	   <div class="push_result_img">
+            	       <img src="{$theme_url}images/photograph.png">
+            	       <input type="file" class="push_img_btn" id="filechooser1" name="filechooser1">
+            	   </div>
+            	</div>
+            	<div class="push_photo" id="result2">
+            	   <div class="push_result_img">
+            	       <img src="{$theme_url}images/photograph.png">
+            	       <input type="file" class="push_img_btn" id="filechooser2" name="filechooser2">
+            	   </div>
+            	</div>
+            	<div class="push_photo" id="result3">
+            	   <div class="push_result_img">
+            	       <img src="{$theme_url}images/photograph.png">
+            	       <input type="file" class="push_img_btn" id="filechooser3" name="filechooser3">
+            	   </div>
+            	</div>
+            	<div class="push_photo" id="result4">
+            	   <div class="push_result_img">
+            	       <img src="{$theme_url}images/photograph.png">
+            	       <input type="file" class="push_img_btn" id="filechooser4" name="filechooser4">
             	   </div>
             	</div>
                 <p class="push_img_fonz" >请上传图片 (最多5张)</p>
@@ -51,13 +76,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <label class="select-item">
         <li>
             <span class="ecjiaf-fr">
-                <div class="ecjia-anonymity-check" id="option_box"><input type="radio" name="anonymity" value="" /><p>匿名评价</p></div>
+                <div class="ecjia-anonymity-check" id="option_box"><input type="radio" name="anonymity" value="0" /><p>匿名评价</p></div>
+                <input type="hidden" name="anonymity_status" value="0" />
             </span>
         </li>
     </label>
     <span class="ecjiaf-fr push-comment-btn">
-        <input class="btn" name="push-comment-btn" type="submit" value="发表评价"/>
+        <input class="btn" name="push-comment-btn" type="submit" data-url="{RC_Uri::url('user/order/make_comment')}" value="发表评价"/>
         <input type="hidden" value="{$goods.id}" name="goods_id" />
+        <input type="hidden" value="{$order_id}" name="order_id" />
     </span>
 </div>
+</form>
 <!-- {/block} -->

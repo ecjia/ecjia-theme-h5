@@ -8,19 +8,19 @@
 			ecjia.touch.comment.anonymity();
 			ecjia.touch.comment.photo();
 			ecjia.touch.comment.remove_goods_img();
-			ecjia.touch.comment.publish_comment();
 			ecjia.touch.comment.back();
 		},
 		goods_info : function () {
 			$('.star').raty({
 				  click: function(score, evt) {
-					  $(this).attr("data-number", score)
+					  $(this).attr("data-number", score);
 			      },
 				  cancelOff: 'cancel-off-big.png',
 				  cancelOn : 'cancel-on-big.png',
 				  size     : 24,
 				  starOff  : 'star-off-big.png',
 				  starOn   : 'star-on-big.png',
+				  score	   : 5
 			});
 		},
 		
@@ -29,15 +29,18 @@
 				e.preventDefault();
 				if ($(this).hasClass('anonymity-check-checked')) {
 					$(this).removeClass("anonymity-check-checked");
+					$("input[name='anonymity_status']").val("0");
 				} else {
 					$(this).addClass("anonymity-check-checked");
+					$("input[name='anonymity_status']").val("1");
 				}
-				
 			});
 		},
 		
 		//评价晒单上传图片，并且不能超过5张。
 		photo : function () {
+			$('.push_photo').hide();
+			$('#result0').show();
 			$(".push_img_btn").on('change', function () {
 				var f=$(this)[0].files[0];
 				if (f) {
@@ -45,14 +48,43 @@
 					fr.onload=function(){
 						var _img=new Image();
 						_img.src=this.result;
-						var check_push_rm = "check_push_rm" + $(".push_photo_img img").length;
+						
+						var num = [];
+						$(".push_photo").each(function(){
+							if (!$(this).is(':hidden')) {
+								var id = $(this).attr('id');
+								var number = id.substr(id.length-1,1);
+								num.push(number);
+							}
+						});
+						
+						var num = parseInt(num[0]);
+	
+						var check_push_rm = "check_push_rm" + num;
 						var img_span = "<i class='a4y'>X</i>";
 						var url = "<div class='" + check_push_rm + "'></div>";
-						
+
 						$(url).appendTo(".push_photo_img");
 						$(_img).appendTo("." + check_push_rm);
 						$(img_span).appendTo("." + check_push_rm);
 						ecjia.touch.comment.remove_goods_img();
+
+						var result = [];
+						$(".push_photo").each(function(){
+							if ($(this).is(':hidden')) {
+								var id = $(this).attr('id');
+								var number = id.substr(id.length-1,1);
+								var check_push_rm = ".check_push_rm" + number;
+								
+								if ($(check_push_rm).length == 0) {
+									result.push(id);
+								}
+							}
+						});
+						
+						var result = "#" + result[0];
+						$('.push_photo').hide();
+						$(result).show();
 						
 						if ($(".push_photo_img img").length > 0) {
 							$(".push_img_fonz").hide();
@@ -84,33 +116,15 @@
 						$(".push_img_fonz").show();
 					}
 					path.remove();
+					var c_name = path[0].className;
+					var num = c_name.substr(c_name.length-1,1);
+					var result = "result" + num;
+					var filechooser = "filechooser" + num;
+					$('.push_photo').hide();
+					document.getElementById(result).outerHTML += '';
+					document.getElementById(result).value = "";
+					$("#" + result).show();
 			    });
-			})
-			
-		},
-		
-		//发表评价
-		publish_comment : function () {
-			$("input[name='push-comment-btn']").on('click', function (e) {
-				e.preventDefault(e);
-				var goods_id = $("input[name='goods_id']").val();
-				var star = $(".star").attr("data-number");
-				var goods_evaluate = $("#goods_evaluate").val();
-				if (goods_evaluate == '') {
-					goods_evaluate = "商品质量俱佳，强烈推荐！"
-				}
-
-				var anonymity = 0;
-				if ($("#option_box").hasClass('anonymity-check-checked')) {
-					var anonymity = 1;
-				}
-				info = {
-						"goods_id"	:	goods_id,
-						"goods_evaluate" : goods_evaluate,
-						"star"	:	star,
-						"anonymity"	: anonymity
-				}
-				console.log(info);
 			})
 		},
 		
