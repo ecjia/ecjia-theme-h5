@@ -318,6 +318,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                                     </td>
                                     <td>
                                         <div class="a7j">{$cart.goods_name}</div> 
+                                        {if $cart.attr}<div class="a7s">{$cart.attr}</div>{/if}
                                         <span class="a7c">
                                         {if $cart.goods_price eq 0}免费{else}{$cart.formated_goods_price}{/if}
                                         </span>

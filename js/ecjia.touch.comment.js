@@ -11,17 +11,29 @@
 			ecjia.touch.comment.back();
 		},
 		goods_info : function () {
-			$('.star').raty({
-				  click: function(score, evt) {
-					  $(this).attr("data-number", score);
-			      },
-				  cancelOff: 'cancel-off-big.png',
-				  cancelOn : 'cancel-on-big.png',
-				  size     : 24,
-				  starOff  : 'star-off-big.png',
-				  starOn   : 'star-on-big.png',
-				  score	   : 5
-			});
+			var comment_goods = $("input[name='comment_goods']").val();
+			if (comment_goods != '') {
+				$('.star').raty({
+					  cancelOff: 'cancel-off-big.png',
+					  cancelOn : 'cancel-on-big.png',
+					  starOff  : 'star-off-big.png',
+					  starOn   : 'star-on-big.png',
+					  score	   : comment_goods,
+					  readOnly : true
+				});
+			} else {
+				$('.star').raty({
+					  click: function(score, evt) {
+						  $(this).attr("data-number", score);
+				      },
+					  cancelOff: 'cancel-off-big.png',
+					  cancelOn : 'cancel-on-big.png',
+					  size     : 24,
+					  starOff  : 'star-off-big.png',
+					  starOn   : 'star-on-big.png',
+					  score	   : 5
+				});
+			}
 		},
 		
 		anonymity : function () {
@@ -129,10 +141,11 @@
 		},
 		
 		back : function () {
+			var comment_content = $("input[name='comment_content']").val();
 			if (window.history && window.history.pushState) {
 				$(window).on('popstate', function () {
 					var goods_evaluate = $("#goods_evaluate").val();
-					if (goods_evaluate != '') {
+					if (goods_evaluate != '' && comment_content == '') {
 						var myApp = new Framework7();
 		    			myApp.modal({
 		        			title: '评价信息还未提交，返回将会丢失',

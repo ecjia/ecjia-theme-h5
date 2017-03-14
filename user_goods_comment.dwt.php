@@ -28,9 +28,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     				<span class="ecjiaf-fl cmt-goods-price">{$goods.shop_price}</span>
     			</li>
     		</ul>
-    		<div class="star" data-number="1"><span>评分<span></div>
+    		
+    		<input type="hidden" value="{$rec_info.comment_goods}" name="comment_goods" />
+    		<div class="star"><span>评分<span></div>
     		<div class="input">
-                <textarea id="goods_evaluate" name="note" placeholder="商品质量俱佳，强烈推荐！"></textarea>
+    		    {if $rec_info.comment_content}
+                <textarea id="goods_evaluate" name="note" readonly="readonly">{$rec_info.comment_content}</textarea>
+                {else}
+                <textarea id="goods_evaluate" name="note" placeholder="商品质量俱佳，强烈推荐！" ></textarea>
+                {/if}
+                <input type="hidden" value="{$rec_info.comment_content}" name="comment_content" />
             </div>
             
             <div class="push_img">   
@@ -83,8 +90,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </label>
     <span class="ecjiaf-fr push-comment-btn">
         <input class="btn" name="push-comment-btn" type="submit" data-url="{RC_Uri::url('user/order/make_comment')}" value="发表评价"/>
-        <input type="hidden" value="{$goods.id}" name="goods_id" />
-        <input type="hidden" value="{$order_id}" name="order_id" />
+        <input type="hidden" value="{$goods.rec_id}" name="rec_id" />
     </span>
 </div>
 </form>

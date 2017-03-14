@@ -2332,11 +2332,11 @@ footer{
 .store-add-cart.a4w .a7j {
     font-size: 1em;
     line-height: 1.5em;
-    height: 3em;
+    height: 1.5em;
     color: #333;
     text-overflow: ellipsis;
     overflow: hidden;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     -ms-box-orient: vertical;
     -moz-box-orient: vertical;
@@ -2344,11 +2344,23 @@ footer{
     display: -ms-box;
     display: -moz-box;
     font-weight: normal;
-	padding: 0 .2em;
+    padding: 0 .5em 0 .2em;
+}
+.store-add-cart.a4w .a7s {
+	color: #848689;
+    font-size: .8em;
+    line-height: 1.5em;
+    height: 1.5em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    padding-left: .3em;
 }
 .store-add-cart.a4w .a7c {
     position: absolute;
-    left: 0;
+    left: .1em;
     top: 55px;
     line-height: 20px;
     color: #ff3434;
@@ -2475,9 +2487,11 @@ footer{
     border: 1px solid #ff3434;
     border-radius: 4px;
     margin-left: .4em;
-    font-size: .7em;
+    font-size: .9em;
     display: inline-block;
-    line-height: 1.5em;
+    line-height: 1em;
+    height: 1.3em;
+    padding: 2px;
 }
 .ecjia-flow-cart .shop-edit{
 	float: right;
@@ -7208,8 +7222,8 @@ footer{
 }
 .ecjia-choose-attr-box label {
 	font-size: 15px;
-    height: 27px;
-    line-height: 27px;
+    height: 25px;
+    line-height: 25px;
     min-width: 21px;
     text-align: center;
     float: right;
