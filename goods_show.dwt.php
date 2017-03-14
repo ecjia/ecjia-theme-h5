@@ -199,7 +199,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 									<!--{else}-->
 									<span>{$goods.shop_price}</span>
 									<!--{/if}-->
-									<span class="goods-price-plus may_like_{$goods.goods_id}" data-toggle="add-to-cart" rec_id="{$goods.rec_id}" goods_id="{$goods.goods_id}" data-num="{$goods.num}"></span>
+									{if $goods.specification}
+										<div class="goods_attr">
+											<span class="choose_attr" data-toggle="add-to-cart" rec_id="{$goods.rec_id}" goods_id="{$goods.goods_id}" data-num="{$goods.num}" data-url="{RC_Uri::url('goods/index/show')}&get_type=get_spec">选规格</span>
+											{if $goods.num}<i class="attr-number">{$goods.num}</i>{/if}
+										</div>
+									{else}
+										<span class="goods-price-plus may_like_{$goods.goods_id}" data-toggle="add-to-cart" rec_id="{$goods.rec_id}" goods_id="{$goods.goods_id}" data-num="{$goods.num}"></span>
+									{/if}
 								</div>
 							</li>
 							<!--{/if}-->

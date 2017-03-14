@@ -87,7 +87,7 @@ class goods_controller {
 	    );
 	    /*商品基本信息*/
 	    $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($par)->run();
-	   	
+
 	    if (is_ecjia_error($goods_info)) {
 	    	ecjia_front::$controller->assign('no_goods_info', 1);
 	    } else {

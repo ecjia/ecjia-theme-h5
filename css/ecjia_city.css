@@ -1852,7 +1852,6 @@ footer{
     color: #fff;
     line-height: 30px;
     background-color: #47aa4d;
-    border-radius: 4px;
     font-size: 13px;
     border-radius: 40px;
 	cursor: pointer;
@@ -4711,9 +4710,26 @@ footer{
 	height:auto;
 }
 .ecjia-like-goods-list li .link-goods-price{
-	color:#ff3434;
-	font-size:16px;
-	margin-bottom:2px;
+	color: #ff3434;
+	font-size: 16px;
+	margin-bottom: 2px;
+}
+.ecjia-like-goods-list li .link-goods-price .choose_attr {
+	position: absolute;
+    right: 5px;
+    bottom: 12px;
+    width: 60px;
+    text-align: center;
+    color: #fff;
+    line-height: 30px;
+    background-color: #47aa4d;
+    font-size: 13px;
+    border-radius: 40px;
+	cursor: pointer;
+}
+.ecjia-like-goods-list li .link-goods-price .attr-number {
+    right: .3em;
+    bottom: 2.5em;
 }
 .ecjia-like-goods-list li img{
 	border:0.5px solid #eee;
@@ -4727,7 +4743,6 @@ footer{
 	text-overflow:ellipsis;
 	white-space:nowrap;
 	color:#555;
-	
 }
 .goods-price-plus{
 	background: url(../images/icon/goods-plus.png);

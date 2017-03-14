@@ -66,7 +66,7 @@
             		var val = parseInt($this.siblings('input').val()) + 1;
             		$this.siblings('input').val(val);
             		var store_id = $this.parent().attr('data-store');
-            		ecjia.touch.category.update_cart(rec_id, val, goods_id, '', store_id);
+            		ecjia.touch.category.update_cart(rec_id, val, goods_id, '', store_id, '', 'add');
             	} else {
                 	//商品详情中点击加入购物车按钮
                 	if ($this.hasClass('goods-add-cart')) {
@@ -129,7 +129,7 @@
                     		$('.may_like_'+goods_id).attr('data-num', val);
                     	}
                 	}
-                	ecjia.touch.category.update_cart(rec_id, val, goods_id, '', true);
+                	ecjia.touch.category.update_cart(rec_id, val, goods_id, '', true, '', 'add');
             	}
             });
         },
@@ -166,7 +166,7 @@
             			var store_id = $this.parent().attr('data-store');
             			var li = $this.parents('.item-goods');
             			
-            			ecjia.touch.category.update_cart(rec_id, '', '' , '', store_id);
+            			ecjia.touch.category.update_cart(rec_id, '', '' , '', store_id, '', 'reduce');
             			if (li.siblings('li').length == 0) {
             				li.parents('.cart-single').remove();
             				if ($('li.cart-single').length == 0) {
@@ -178,7 +178,7 @@
             		} else {
             			$this.siblings('input').val(val);
             			var store_id = $this.parent().attr('data-store');
-            			ecjia.touch.category.update_cart(rec_id, val, '', '', store_id);
+            			ecjia.touch.category.update_cart(rec_id, val, '', '', store_id, '', 'reduce');
             		}
             	} else {
 		        	if ($this.hasClass('a5u')) {
@@ -232,7 +232,7 @@
 	            		}
 	            		$('.may_like_'+goods_id).attr('data-num', val);
 	            	}
-		        	ecjia.touch.category.update_cart(rec_id, val, 0, '', true);
+		        	ecjia.touch.category.update_cart(rec_id, val, 0, '', true, '', 'reduce');
             	}
             });
         },
@@ -359,13 +359,39 @@
             		}
             		return true;
             	}
+            	
+            	if (type == 'add') {
+					var n = parseInt($('.choose_attr').siblings('i').html()) + 1;
+					if (isNaN(n)) n = 1;
+    				if ($('.choose_attr').parent().find('.attr-number').length == 0) {
+    					$('.choose_attr').parent().append('<i class="attr-number">'+ n + '</i>');
+    				}
+				} else if (type == 'reduce') {
+					var n = parseInt($('.choose_attr').siblings('i').html()) - 1;
+					if (n == 0) {
+						$('.choose_attr').parent().find('.attr-number').remove();
+					}
+				}
+				$('.choose_attr').parent().find('.attr-number').html(n);
+				
+				if (val == 0) {
+					val = 1;
+            		$('.add-tocart.add_spec').addClass('show').removeClass('hide');
+            		$('.ecjia-choose-attr-box.box').removeClass('show').addClass('hide').children().attr('rec_id', '');
+				} else {
+            		$('.add-tocart.add_spec').removeClass('show').addClass('hide');
+            		$('.ecjia-choose-attr-box.box').addClass('show').removeClass('hide');
+            		$('.ecjia-choose-attr-box.box').children().addClass('show').removeClass('hide');
+				}
+        		$('#goods_'+goods_id).children('label').html(val);
+        		
             	if (data.count == null) {
             		ecjia.touch.category.hide_cart(true);
             	} else {
             		ecjia.touch.category.show_cart(true);
             		var goods_number = data.count.goods_number;
             		
-            		if (spec == undefined) {
+            		if (spec == '') {
                 		for (i = 0; i < data.list.length; i++) {
                 			if (data.say_list) {
     	            			if (data.list[i].goods_id == goods_id) {
@@ -394,38 +420,12 @@
             			$('.a51').addClass('disabled');
             		} else {
             			$('.a51').removeClass('disabled');
-            			//有规格的商品
-            			if (spec) {
-            				if (type == 'add') {
-            					var n = parseInt($('.choose_attr').siblings('i').html()) + 1;
-            					if (isNaN(n)) n = 1;
-                				if ($('.choose_attr').parent().find('.attr-number').length == 0) {
-                					$('.choose_attr').parent().append('<i class="attr-number">'+ n + '</i>');
-                				}
-            				} else if (type == 'reduce') {
-            					var n = parseInt($('.choose_attr').siblings('i').html()) - 1;
-            					if (n == 0) {
-            						$('.choose_attr').parent().find('.attr-number').remove();
-            					}
-            				}
-            				$('.choose_attr').parent().find('.attr-number').html(n);
-            				if (val == 0) {
-            					val = 1;
-                        		$('.add-tocart.add_spec').addClass('show').removeClass('hide');
-                        		$('.ecjia-choose-attr-box.box').removeClass('show').addClass('hide').children().attr('rec_id', '');
-            				} else {
-                        		$('.add-tocart.add_spec').removeClass('show').addClass('hide');
-                        		$('.ecjia-choose-attr-box.box').addClass('show').removeClass('hide');
-            				}
-                    		$('#goods_'+goods_id).children('label').html(val);
-            			} else {
-                			//隐藏加入购物车按钮 显示加减按钮
-            				if (val == 0) val = 1;
-                			if ($('.goods-add-cart').attr('goods_id') == goods_id) {
-                				$('.goods-add-cart').addClass('hide');
-                				$('.ecjia-goods-plus-box').removeClass('hide').children('label').html(val);
-                				$('.ecjia-goods-plus-box').children().removeClass('hide');
-                			}
+                		//隐藏加入购物车按钮 显示加减按钮
+        				if (val == 0) val = 1;
+            			if ($('.goods-add-cart').attr('goods_id') == goods_id) {
+            				$('.goods-add-cart').not('.choose_attr').addClass('hide');
+            				$('.ecjia-goods-plus-box').removeClass('hide').children('label').html(val);
+            				$('.ecjia-goods-plus-box').children().removeClass('hide');
             			}
             		}
             		var discount_html = '';
