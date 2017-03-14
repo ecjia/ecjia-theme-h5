@@ -184,6 +184,7 @@
 				var code 			= $("input[name='code']").val();
 				$.cookie('seller', $("input[name='seller_category']").val());
 				$.cookie('address', address);
+				$.cookie('seller_name', seller_name);
 				var url = $("form[name='theForm']").attr('action');
 				if (seller_name == '') {
 					alert('请输入店铺名称');return false;
