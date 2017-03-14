@@ -4536,13 +4536,16 @@ footer{
 	background-color:#fff;
 }
 .goods-info .goods-info-property .goods-style-name-new span{
-	color: #ff3434;
-	display:inline-block;
-	border:1px solid #ff3434;
-	border-radius:4px;
-	font-weight:500;
-	font-size: .8em;
-	margin-right:.4em;
+    color: #ff3434;
+    border: 1px solid #ff3434;
+    border-radius: 4px;
+    margin-left: .4em;
+    font-size: .9em;
+    display: inline-block;
+    line-height: 1em;
+    height: 1.3em;
+    padding: 2px;
+	margin-right: .2em;
 }
 .goods-info .goods-info-property .goods-price-new{
 	padding: 0.1em 0.5em .8em 0.5em;
