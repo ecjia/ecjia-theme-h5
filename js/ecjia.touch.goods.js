@@ -232,7 +232,7 @@
 	            		}
 	            		$('.may_like_'+goods_id).attr('data-num', val);
 	            	}
-		        	ecjia.touch.category.update_cart(rec_id, val, 0, '', true, '', 'reduce');
+		        	ecjia.touch.category.update_cart(rec_id, val, goods_id, '', true, '', 'reduce');
             	}
             });
         },
@@ -359,22 +359,26 @@
             		}
             		return true;
             	}
-            	
-            	if (type == 'add') {
-					var n = parseInt($('.choose_attr').siblings('i').html()) + 1;
-					if (isNaN(n)) n = 1;
-    				if ($('.choose_attr').parent().find('.attr-number').length == 0) {
-    					$('.choose_attr').parent().append('<i class="attr-number">'+ n + '</i>');
+
+            	console.log(goods_id);
+            	console.log($('.goods-add-cart.choose_attr').attr('goods_id'));
+            	if (goods_id == $('.goods-add-cart.choose_attr').attr('goods_id')) {
+                	if (type == 'add') {
+    					var n = parseInt($('.choose_attr').siblings('i').html()) + 1;
+    					if (isNaN(n)) n = 1;
+        				if ($('.choose_attr').parent().find('.attr-number').length == 0) {
+        					$('.choose_attr').parent().append('<i class="attr-number">'+ n + '</i>');
+        				}
+    				} else if (type == 'reduce') {
+    					var n = parseInt($('.choose_attr').siblings('i').html()) - 1;
+    					if (n == 0) {
+    						$('.choose_attr').parent().find('.attr-number').remove();
+    					}
     				}
-				} else if (type == 'reduce') {
-					var n = parseInt($('.choose_attr').siblings('i').html()) - 1;
-					if (n == 0) {
-						$('.choose_attr').parent().find('.attr-number').remove();
-					}
-				}
-				$('.choose_attr').parent().find('.attr-number').html(n);
-				
-				if (val == 0) {
+    				$('.choose_attr').parent().find('.attr-number').html(n);	
+            	}
+
+            	if (val == 0) {
 					val = 1;
             		$('.add-tocart.add_spec').addClass('show').removeClass('hide');
             		$('.ecjia-choose-attr-box.box').removeClass('show').addClass('hide').children().attr('rec_id', '');
