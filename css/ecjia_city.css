@@ -969,44 +969,52 @@ ul, li, ol, dl, dt, dd {
 .ecjia-mod.ecjia-promotion-model{
     overflow: hidden;
 }
-.ecjia-mod.ecjia-promotion-model .hd{
+.ecjia-mod .head-title{
     border-top: 0;
 	color: #FF5000;
 }
-.ecjia-mod.ecjia-promotion-model .ecjia-sales-hd h2{
-	height: 2.3em;
-	border-bottom: 1px solid #eee;
-	color: #555;
-	font-size: 1.2em;
-	font-weight: normal;
-	line-height: 1.5em;
-	padding-left: 2.3em;
+.ecjia-mod .head-title h2{
+    height: 2.4em;
+	line-height: 2.4em;
+    border-bottom: 1px solid #eee;
+    color: #555;
+    font-size: 1.2em;
+    font-weight: normal;
+    padding-left: 2em;
+	position: relative;
 }
-.ecjia-mod.ecjia-promotion-model .ecjia-sales-hd h2 i.icon-goods-promotion{
-	background-image: url(../images/icon/promotion.png);
-	background-size: 1.5em auto;
+.ecjia-mod .head-title i {
+	background-size: 1.4em auto;
     background-repeat: no-repeat;
-	width: 80px;
-	height: 80px;
+    width: 1.4em;
+    height: 1.4em;
+    display: block;
+    position: absolute;
+    top: 0.45em;
+    left: .4em;
 }
-.ecjia-mod.ecjia-promotion-model .ecjia-new-goods h2 i.icon-goods-new{
+.ecjia-mod .head-title .icon-promotion{
+    background-image: url(../images/icon/promotion.png);
+}
+.ecjia-mod .head-title .icon-new{
 	background-image: url(../images/icon/new.png);
-	background-size: 1.5em auto;
-    background-repeat: no-repeat;
-	width: 80px;
-	height: 80px;
 }
-.ecjia-mod.ecjia-promotion-model .more_info{
-	line-height: 1.9em;
-	width: 4em;
-	font-size: .9em;
-	color: #bbb;
-	float: right;
-	padding-left: 1em;
-	border-left: 1px solid #eee;
+.ecjia-mod .head-title .icon-store{
+	background-image: url(../images/icon/store.png);
+}
+.ecjia-mod .more_info{
+    line-height: 2em;
+    margin-top: .4em;
+    width: 4em;
+    font-size: .9em;
+    color: #bbb;
+    float: right;
+    padding-left: 1em;
+    border-left: 1px solid #eee;
 }
 .swiper-promotion {
 	overflow: hidden;
+	padding-left: .5em;
 }
 .swiper-promotion .swiper-slide {
     position: relative;
@@ -1056,7 +1064,6 @@ ul, li, ol, dl, dt, dd {
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 1em;
-	font-family: Helvetica, '宋体', Arial, sans-serif;
 	text-align: left;
 	font-weight: normal;
     color: #555;
@@ -1371,28 +1378,30 @@ footer{
 	margin-left: 1em;
 	font-size: 1em;
 }
-.ecjia-store-brief .store-name {
+.ecjia-store-brief .store-title {
 	font-weight: normal;
 	position: relative;
 	line-height: 35px;
 	height: 35px;
 }
-.ecjia-store-brief .store-name .seller-name {
+.ecjia-store-brief .store-title .store-name {
 	font-size: 1.1em;
 }
-.ecjia-store-brief .store-name .seller-distance {
+.ecjia-store-brief .store-title .seller-distance {
 	font-size: 1em;
 }
-.ecjia-store-brief .store-name .manage-mode {
+.ecjia-store-brief .store-title .manage-mode {
 	color: #ff3434;
-	border: 1px solid #ff3434;
-	border-radius: 4px;
-	margin-left: .4em;
-	font-size: .7em;
-	display: inline-block;
-    line-height: 1.5em;
+    border: 1px solid #ff3434;
+    border-radius: 4px;
+    margin-left: .4em;
+    font-size: .9em;
+    display: inline-block;
+    line-height: 1em;
+    height: 1.3em;
+    padding: 2px;
 }
-.ecjia-store-brief .store-name i{
+.ecjia-store-brief .store-title i{
 	position: absolute;
 	top: 1.2em;
 	right: 0em;
@@ -1422,7 +1431,7 @@ footer{
 	float:right;
 	color: #aaa;
     font-size: 1.2em;
-	font-weight:500;
+	font-weight: normal;
 }
 .ecjia-store-brief .store-promotion li{
 	padding:0 0 .5em .5em;
@@ -1432,7 +1441,7 @@ footer{
 	display:inline-block;
 	border:1px solid #ff3434;
 	border-radius:4px;
-	font-weight:500;
+	font-weight: 500;
 	font-size: .8em;
 	background: #ff3434;
 	padding:.1em .2em;
@@ -2073,7 +2082,6 @@ footer{
 	line-height: 48px;
     font-size: 1em;
     color: #999;
-	font-family: 'Microsoft YaHei',Verdana,Arial,Helvetica,sans-serif;
 }
 .store-add-cart.a4w .a51 {
     position: absolute;
@@ -5410,21 +5418,23 @@ footer{
 .ecjia-store-list .store-right div{
 	padding-left:.5em;
 }
-.ecjia-store-list .store-name{
+.ecjia-store-list .store-title{
 	color: #555;
     font-size: 1.1em;
 	font-weight: normal;
 	line-height: 35px;
 	height: 35px;
 }
-.ecjia-store-list .store-name span{
+.ecjia-store-list .store-title .manage_mode{
 	color: #ff3434;
-	border:1px solid #ff3434;
-	border-radius:4px;
-	margin-left:.4em;
-	font-size: .7em;
-	display: inline-block;
-    line-height: 1.5em;
+    border: 1px solid #ff3434;
+    border-radius: 4px;
+    margin-left: .4em;
+    font-size: .9em;
+    display: inline-block;
+    line-height: 1em;
+    height: 1.3em;
+    padding: 2px;
 }
 .ecjia-store-list .store-range i{
 	top:0;
@@ -5439,7 +5449,7 @@ footer{
 	float:right;
 	color: #555;
     font-size: 1em;
-	font-weight:500;
+	font-weight: normal;
 }
 .ecjia-store-list .store-promotion li{
 	padding-bottom:.5em;
@@ -5588,7 +5598,7 @@ footer{
     background-position: -3em 0;
 	padding-left: .8em;
 }
-.ecjia-store-list .box span.reduce, span.add {
+.ecjia-store-list .box span.reduce, .ecjia-store-list .box span.add {
     float: left;
     text-indent: -99999px;
     display: inline-block;
@@ -6764,6 +6774,7 @@ footer{
 }
 .ecjia-seller-comment .assess-bottom {
     background-color: #fff;
+	margin-bottom: .5em;
 }
 .ecjia-seller-comment .user-name {
     font-size: 13px;
@@ -6853,7 +6864,7 @@ footer{
 .ecjia-seller-comment .assess-bottom .goods-attr{
 	color: #848689;
     line-height: 2em;
-    font-size: .9em;
+    font-size: .8em;
 }
 .ecjia-seller-comment .assess-bottom .store-reply {
     padding: .3em;
@@ -6870,6 +6881,9 @@ footer{
     border-radius: 4px;
 }
 /*首页热门推荐店铺*/
+.ecjia-store-model {
+	padding-bottom: 50px;
+}
 .ecjia-suggest-store{
 	background: #fff;
     height: auto;
@@ -6924,21 +6938,23 @@ footer{
 .ecjia-suggest-store .store-right div{
 	margin-left: .5em;
 }
-.ecjia-suggest-store .store-name{
+.ecjia-suggest-store .store-title{
 	color: #555;
     font-size: 1.1em;
 	font-weight: normal;
 	line-height: 25px;
 	height: 25px;
 }
-.ecjia-suggest-store .store-name span.manage_mode{
+.ecjia-suggest-store .store-title span.manage_mode{
 	color: #ff3434;
-	border:1px solid #ff3434;
-	border-radius:4px;
-	margin-left:.4em;
-	font-size: .7em;
-	display: inline-block;
-    line-height: 1.5em;
+    border: 1px solid #ff3434;
+    border-radius: 4px;
+    margin-left: .4em;
+    font-size: .9em;
+    display: inline-block;
+    line-height: 1em;
+    height: 1.3em;
+    padding: 2px;
 }
 .ecjia-suggest-store i{
 	top: 0;
@@ -6961,9 +6977,9 @@ footer{
     text-overflow: ellipsis;
 }
 .ecjia-suggest-store .store-distance{
-	float:right;
+	float: right;
 	color: #555;
-    font-size: .8em;
+    font-size: .9em;
 	font-weight: normal;
 }
 .ecjia-suggest-store .store-promotion {
@@ -7094,7 +7110,7 @@ footer{
     margin: 0 auto;
     overflow: auto;
     max-height: 12.5em;
-	margin-bottom: 40px;
+	margin-bottom: 50px;
 	padding-bottom: .5em;
 	-webkit-overflow-scrolling: touch;
 }
@@ -7124,11 +7140,11 @@ footer{
     left: 0;
     right: 0;
     bottom: 0;
-    height: 40px;
+    height: 50px;
  	background-color: #eee;
     border-top: 1px solid #eee;
 	text-align: left;
-    line-height: 40px;
+    line-height: 50px;
 }
 .ecjia-goodsAttr-modal .add-tocart {
     position: absolute;
@@ -7151,11 +7167,51 @@ footer{
     width: 65%;
     float: left;
     overflow: hidden;
-    height: 40px;
+    height: 50px;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 .ecjia-goodsAttr-modal .modal-buttons .goods-attr-name {
 	font-size: .8em;
     color: #8c8a8a;
+}
+
+/*弹窗选择商品属性加减样式*/
+.ecjia-choose-attr-box {
+	float: right;
+    margin-top: 15px;
+	margin-right: 10px;
+}
+.ecjia-choose-attr-box span.reduce {
+    float: right;
+    border-radius: 12.5px;
+    width: 25px;
+    height: 25px;
+    background-position: 0;
+    background-image: url(../images/icon/addNumSprite.png);
+    background-size: 400% 100%;
+    display: inline-block;
+    text-align: right;
+	background-color: white;
+}
+.ecjia-choose-attr-box span.add {
+    text-align: left;
+    float: right;
+    width: 25px;
+    height: 25px;
+    background-position: -37.5px 0px;
+    background-size: 400% 100%;
+    display: inline-block;
+    border-radius: 12.5px;
+    background-image: url(../images/icon/addNumSprite.png);
+	background-color: white;
+}
+.ecjia-choose-attr-box label {
+	font-size: 15px;
+    height: 27px;
+    line-height: 27px;
+    min-width: 21px;
+    text-align: center;
+    float: right;
+	font-weight: normal;
 }

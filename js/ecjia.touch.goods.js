@@ -40,6 +40,20 @@
             	var rec_id = $this.attr('rec_id');
             	var goods_id = $this.attr('goods_id');
             	
+            	//选择商品规格
+            	if ($this.hasClass('add_spec')) {
+            		var spec = [];
+            		$('.goods-attr-list').find('li.active').each(function() {
+            			spec.push($(this).attr('data-attr'));
+            		});
+            		
+            		$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+            		var store_id = $('input[name="store_id"]').val();
+            		var val = 1;
+            		
+            		ecjia.touch.category.update_cart(rec_id, val, goods_id, '', store_id, spec);
+            		return false;
+            	}
             	//购物车列表商品数量加减
             	if ($this.hasClass('ecjia-number-group-addon')) {
             		$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
@@ -227,7 +241,7 @@
         },
         
         //更新购物车
-        update_cart : function(rec_id, val, goods_id, checked, store) {
+        update_cart : function(rec_id, val, goods_id, checked, store, spec) {
         	var url = $('input[name="update_cart_url"]').val();
         	var store_id = $('input[name="store_id"]').val();
         	
@@ -243,7 +257,8 @@
         		'store_id' 	: store_id,
         		'goods_id'  : goods_id == undefined ? 0 : goods_id,
         		'checked'	: checked == undefined ? '' : checked,
-        		'response'  : response
+        		'response'  : response,
+        		'spec'		: spec,
         	};
         	
         	//更新购物车中商品

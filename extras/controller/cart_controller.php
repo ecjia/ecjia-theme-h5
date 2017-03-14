@@ -76,6 +76,7 @@ class cart_controller {
     	);
     	//店铺购物车商品
     	$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
+
     	if (!is_ecjia_error($cart_list) && !empty($cart_list['cart_list'])) {
     		foreach ($cart_list['cart_list'] as $k => $v) {
     			$cart_list['cart_list'][$k]['total']['check_all'] = true;
@@ -134,7 +135,8 @@ class cart_controller {
     	$goods_id   = intval($_POST['goods_id']);
     	$checked	= isset($_POST['checked']) ? $_POST['checked'] : '';
     	$response   = isset($_POST['response']) ? true : false;
-    
+    	$spec		= isset($_POST['spec'])	? $_POST['spec'] : '';
+    	
     	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
     		'token' 	=> $token,
@@ -174,6 +176,10 @@ class cart_controller {
     				} elseif (!empty($goods_id)) {
     					//添加商品到购物车
     					$arr['goods_id'] = $goods_id;
+    					
+    					if (!empty($spec)) {
+    						$arr['spec'] = $spec;
+    					}
     					$data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CREATE)->data($arr)->data($arr)->run();
     				}
     			} else {
