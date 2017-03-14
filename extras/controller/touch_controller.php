@@ -190,10 +190,13 @@ class touch_controller {
     		'pagination' 	=> array('count' => $limit, 'page' => $page),
     		'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
     	);
-    	
+    	RC_Logger::getlogger('info')->info('ajax_suggest_store');
+    	RC_Logger::getlogger('info')->info($paramater);
     	$response = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($paramater)->hasPage()->run();
     	if (!is_ecjia_error($response)) {
     		list($data, $paginated) = $response;
+    		RC_Logger::getlogger('info')->info($data);
+    		RC_Logger::getlogger('info')->info($paginated);
     		$data = merchant_function::format_distance($data);
     		
     		ecjia_front::$controller->assign('data', $data);
