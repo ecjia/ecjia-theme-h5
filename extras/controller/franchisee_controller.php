@@ -158,7 +158,7 @@ class franchisee_controller {
 	    $city_list      = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 2))->run();
 	    $district_list  = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 3))->run();
 
-	    if (is_ecjia_error($reaudit)) {
+	    if (is_ecjia_error($mobile)) {
 	        return ecjia_front::$controller->showmessage('请先填写基本信息', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('franchisee/index/first')));
 	    } else {
             foreach ($category_list as $k => $v) {
@@ -194,8 +194,7 @@ class franchisee_controller {
                 }
             }
         }
-        
-        if (empty($_SESSION['franchisee_add']) || empty($_COOKIE['franchisee_add'])) {
+        if (empty($_SESSION['franchisee_add'])) {
             $_SESSION['franchisee_add'] = array(
                 'name'         => $reaudit['responsible_person'],
                 'email'        => $reaudit['email'],
