@@ -61,14 +61,10 @@ class user_controller {
         $shop = is_ecjia_error($shop) ? array() : $shop;
         $shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
         $shop_config = is_ecjia_error($shop_config) ? array() : $shop_config;
-        
         $token = ecjia_touch_user::singleton()->getToken();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
         $signup_reward_url =  RC_Uri::url('user/mobile_reward/init', array('token' => RC_Session::session_id()));
-        if (is_ecjia_error($signup_reward_url)) {
-            $user['signup_reward_url'] = $signup_reward_url;
-        } 
-        
+   
         $user = is_ecjia_error($user) ? array() : $user;
         $signin = ecjia_touch_user::singleton()->isSignin();
 
@@ -105,8 +101,8 @@ class user_controller {
         if (ecjia_touch_user::singleton()->isSignin()) {
         	ecjia_front::$controller->assign('user', $user);
         }
-        
         ecjia_front::$controller->assign('user_img', $user_img);
+        ecjia_front::$controller->assign('signup_reward_url', $signup_reward_url);
         ecjia_front::$controller->assign('shop', $shop);
         ecjia_front::$controller->assign('shop_config', $shop_config);
         ecjia_front::$controller->assign('active', 'mine');
