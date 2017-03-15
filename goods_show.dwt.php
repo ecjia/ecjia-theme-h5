@@ -138,9 +138,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		    	<div class="bd goods-type ecjia-margin-t">
 		            <div class="goods-option-con goods-num goods-option-con-new">
 		                <div class="ecjia-merchants-name">
+		                	{if $comment_list.list}
 		                	<span class="shop-title-name">商品评价</span>
 		                	<i class="iconfont icon-jiantou-right"></i>
 		                	<span class="comment_score">{$comment_list.comment_percent}好评</span>
+		                	{else}
+		                	<span class="shop-title-name">评价晒单</span>
+		                	<i class="iconfont icon-jiantou-right"></i>
+		                	{/if}
 		                </div>
 		            </div>
 		        </div>
@@ -148,7 +153,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	       	{if $comment_list}
 	       	<div class="ecjia-goods-comment ecjia-seller-comment border_t_e">
 	       		<!-- {foreach from=$comment_list.list item=comment} -->
-				<div class="assess-flat">    
+				<div class="assess-flat">
 					<div class="assess-wrapper">        
 						<div class="assess-top">            
 							<span class="user-portrait"><img src="{$theme_url}images/default_user.png"></span>
