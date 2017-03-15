@@ -10,8 +10,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<span class="ecjia-close-modal-icon"><i class="iconfont icon-close"></i></span>
 		<div class="modal-title">{$goods_info.goods_name}</div>
 		<div class="goods-attr-list">
-			<!-- {foreach from=$goods_info.specification item=value} -->
-			<div class="goods-attr">
+			<!-- {foreach from=$goods_info.specification item=value key=key} -->
+			<div class="goods-attr" data-index="{$key}">
 				<p class="attr-name">{$value.name}</p>
 				<ul>
 					<!-- {foreach from=$value.value item=val key=key} -->
