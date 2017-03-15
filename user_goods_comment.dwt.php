@@ -41,8 +41,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </div>
             
             <div class="push_img">   
-                <div class="push_photo_img" id="result">
-                </div>
+                {if $goods.is_showorder eq 1}
+                <!-- {foreach from=$rec_info.comment_image item=photo} 上传照片-->
+                    <div class="push_photo_img" id="result">
+                        <div class="check_push_rm0">
+                        <img src="{$theme_url}images/user_center/750x80.png">
+                        </div>
+                    </div>
+                <!-- {/foreach} -->
+                {else}
+                <div class="push_photo_img" id="result"></div>
             	<div class="push_photo" id="result0">
             	   <div class="push_result_img">
             	       <img src="{$theme_url}images/photograph.png">
@@ -74,6 +82,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             	   </div>
             	</div>
                 <p class="push_img_fonz" >请上传图片 (最多5张)</p>
+                {/if}
             </div>
     	</div>
     </li>
@@ -84,7 +93,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <label class="select-item">
         <li>
             <span class="ecjiaf-fr">
-                <div class="ecjia-anonymity-check" id="option_box"><input type="radio" name="anonymity" value="0" /><p>匿名评价</p></div>
+                <div class="ecjia-anonymity-check {if $rec_info == 0}anonymity-check-checked{/if}" id="option_box"><input type="radio" name="anonymity" value="0" /><p>匿名评价</p></div>
                 <input type="hidden" name="anonymity_status" value="0" />
                 <input type="hidden" value="{$goods.is_commented}" name=is_commented />
             </span>
