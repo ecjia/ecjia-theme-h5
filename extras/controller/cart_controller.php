@@ -214,6 +214,7 @@ class cart_controller {
     	$cart_count = $cart_list['cart_list'][0]['total'];
     	
     	$data_rec = '';
+    	$current = array();
     	if (!empty($cart_goods_list)) {
     		foreach ($cart_goods_list as $k => $v) {
     			if ($v['is_disabled'] == 0 && $v['is_checked'] == 1) {
@@ -228,8 +229,8 @@ class cart_controller {
     				asort($spec);
     				asort($goods_attr);
     				if ($goods_attr == $spec) {
-    					$cart_goods_list['current']['rec_id'] = $v['rec_id'];
-    					$cart_goods_list['current']['goods_number'] = $v['goods_number'];
+    					$current['rec_id'] = $v['rec_id'];
+    					$current['goods_number'] = $v['goods_number'];
     				}
     			}
     		}
@@ -247,7 +248,7 @@ class cart_controller {
     		$sayList = ecjia_front::$controller->fetch('merchant.dwt');
     	}
     
-    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('say_list' => $sayList, 'list' => $cart_goods_list, 'count' => $cart_count, 'data_rec' => $data_rec));
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('say_list' => $sayList, 'list' => $cart_goods_list, 'count' => $cart_count, 'data_rec' => $data_rec, 'current' => $current));
     }
 
     public static function check_spec() {
