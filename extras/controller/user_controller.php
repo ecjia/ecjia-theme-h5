@@ -63,7 +63,7 @@ class user_controller {
         $shop_config = is_ecjia_error($shop_config) ? array() : $shop_config;
         $token = ecjia_touch_user::singleton()->getToken();
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
-        $signup_reward_url =  RC_Uri::url('user/mobile_reward/init', array('token' => RC_Session::session_id()));
+        $signup_reward_url =  RC_Uri::url('user/mobile_reward/init', array('token' => $token));
    
         $user = is_ecjia_error($user) ? array() : $user;
         $signin = ecjia_touch_user::singleton()->isSignin();
