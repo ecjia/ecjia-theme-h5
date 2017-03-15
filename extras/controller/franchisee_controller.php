@@ -116,19 +116,19 @@ class franchisee_controller {
 			    'validate_type' => $type//process,signup
 			);
 			$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_VALIDATE)->data($params)->run();
-			if (is_ecjia_error($rs)) {
-				return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
 			
+			if (is_ecjia_error($rs)) {
+				return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('search_url' => RC_Uri::url('franchisee/index/search')));
 			} else {
 				return ecjia_front::$controller->showmessage("短信已发送到手机".$mobile."，请注意查看", ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
 			}
 	    } else {
 	    	if (empty($mobile)) {
-	    		return ecjia_front::$controller->showmessage('请输入手机号码', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    		return ecjia_front::$controller->showmessage('请输入手机号码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 	    	}
 	    	$chars = "/(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7}/";
 	    	if (!preg_match($chars, $mobile)) {
-	    		return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    		return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_JSON | ecjia::MSGTYPE_ERROR);
 	    	}
 	    }
 	}
