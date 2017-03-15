@@ -200,6 +200,7 @@ class user_order_controller {
         $goods = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDERS_COMMENT)->data($goods_data)->run();
         $goods_list = is_ecjia_error($goods) ? array() : $goods;
         
+        ecjia_front::$controller->assign('order_id', $order_id);
         ecjia_front::$controller->assign('goods_list', $goods_list['comment_order_list']);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_comment_list.dwt');
@@ -210,7 +211,8 @@ class user_order_controller {
      */
     public static function goods_comment() {
         $goods_id = isset($_GET['goods_id']) ? intval($_GET['goods_id']) : 0;
-        
+        $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
+
         //获取商品信息
         $goods_data = array('token' => ecjia_touch_user::singleton()->getToken(), 'goods_id' => $goods_id);
         $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($goods_data)->run();
@@ -227,6 +229,7 @@ class user_order_controller {
             ecjia_front::$controller->assign('rec_info', $rec_info);
         }
 
+        ecjia_front::$controller->assign('order_id', $order_id);
         ecjia_front::$controller->assign('goods', $goods_info);
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->display('user_goods_comment.dwt');
@@ -234,6 +237,7 @@ class user_order_controller {
     
     public static function make_comment() {
         $token = ecjia_touch_user::singleton()->getToken();
+        $order_id = isset($_POST['order_id']) ? intval($_POST['order_id']) : 0;
         $rec_id = isset($_POST['rec_id']) ? intval($_POST['rec_id']) : '';
         $content = !empty($_POST['note']) ? $_POST['note'] : '商品质量俱佳，强烈推荐！';
         $rank = isset($_POST['score']) ? intval($_POST['score']) : 0;
@@ -261,12 +265,11 @@ class user_order_controller {
             "picture"       => $picture,
             "is_anonymous"  => $is_anonymous
         );
-        
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::COMMENT_CREATE)->data($push_comment)->run();
         if (is_ecjia_error($data)) {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         } else {
-            return ecjia_front::$controller->showmessage("提交成功", ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url'=>RC_Uri::url('user/order/comment_list')));
+            return ecjia_front::$controller->showmessage("提交成功 " , ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/order/comment_list', array('order_id' => $order_id))));
         }
     }
 }

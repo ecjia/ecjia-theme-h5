@@ -92,6 +92,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <span class="ecjiaf-fr push-comment-btn">
         <input class="btn" name="push-comment-btn" type="submit" data-url="{RC_Uri::url('user/order/make_comment')}" value="发表评价"/>
         <input type="hidden" value="{$goods.rec_id}" name="rec_id" />
+        <input type="hidden" value="{$order_id}" name="order_id" />
     </span>
 </div>
 {/if}
