@@ -427,11 +427,21 @@
             		} else {
             			$('.a51').removeClass('disabled');
                         //隐藏加入购物车按钮 显示加减按钮
-                        if (val == 0) val = 1;
                         if ($('.goods-add-cart').attr('goods_id') == goods_id) {
-                            $('.goods-add-cart').not('.choose_attr').addClass('hide');
-                            $('.ecjia-goods-plus-box').removeClass('hide').children('label').html(val);
-                            $('.ecjia-goods-plus-box').children().removeClass('hide');
+                        	if (spec == '') {
+                        		if (val > 0) {
+                        			$('.goods-add-cart').addClass('hide').removeClass('show');
+                        			$('.ecjia-goods-plus-box').removeClass('hide').addClass('show');
+                        		} else {
+                        			$('.goods-add-cart').removeClass('hide').addClass('show');
+                        			$('.ecjia-goods-plus-box').addClass('hide').removeClass('show');
+                        		}
+                        	} else {
+                        		if (val == 0) val = 1;
+                                $('.goods-add-cart').not('.choose_attr').addClass('hide');
+                                $('.ecjia-goods-plus-box').removeClass('hide').children('label').html(val);
+                                $('.ecjia-goods-plus-box').children().removeClass('hide');
+                        	}
                         }
             		}
             		var discount_html = '';
@@ -1234,7 +1244,7 @@
  							$('.ecjia-choose-attr-box.box').children('span').attr('rec_id', data.info.rec_id);
  							$('.add-tocart.add_spec').addClass('hide').removeClass('show');
  						} else {
- 							$('.ecjia-choose-attr-box.box').addClass('hide').removeClass('show');
+ 							$('.ecjia-choose-attr-box.box').addClass('hide').removeClass('show').children('label').html('1');
  							$('.add-tocart.add_spec').removeClass('hide').addClass('show');
  							$('.ecjia-choose-attr-box.box').children('span').attr('rec_id', '');
  						}
