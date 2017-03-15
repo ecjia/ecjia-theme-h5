@@ -327,10 +327,13 @@ class merchant_controller {
 		);
 		 
 		//店铺购物车商品
-		$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
+		$cart_list = RC_Cache::app_cache_get('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'], 'cart');
+		if (empty($cart_list)) {
+			$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
+		}
 		
 		$goods_cart_list = array();
-		if (!is_ecjia_error($cart_list)) {
+		if (!empty($cart_list) && !is_ecjia_error($cart_list)) {
 			if (!empty($cart_list['cart_list'][0]['goods_list'])) {
 				foreach ($cart_list['cart_list'][0]['goods_list'] as $k => $v) {
 					if (!empty($v['goods_number'])) {
