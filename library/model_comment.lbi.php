@@ -1,31 +1,30 @@
 <!-- {block name="ajaxinfo"} -->
-<!-- {foreach from=$comment_list item=list} -->
+<!-- {foreach from=$comment_list.list item=list} -->
 <div class="assess-flat">    
 	<div class="assess-wrapper">        
 		<div class="assess-top">            
-			<span class="user-portrait"><img src="{$theme_url}images/default_user.png"></span>            
-			<span class="user-name">j***9</span>     
-			<span class="assess-date">2017-03-03</span>
-			<span class="comment-item-star"><span class="real-star comment-stars-width5"></span></span> 
+			<span class="user-portrait"><img src="{$theme_url}images/default_user.png"></span>           
+			<div class="user-right"> 
+				<span class="user-name">{$list.author}</span>     
+				<span class="assess-date">{$list.add_time}</span>
+			</div>
+			<p class="comment-item-star score-goods" data-val="{$list.rank}"></p> 
 		</div>        
 		<div class="assess-bottom">            
-			<p class="assess-content">商品不错，很好吃，很满意的一次购物。</p>
+			<p class="assess-content">{$list.content}</p>
+			<!-- {if $comment.picture} -->
 			<div class="img-list">
-				<img src="{$theme_url}images/default-goods-pic.png" />
-				<img src="{$theme_url}images/default-goods-pic.png" />
-				<img src="{$theme_url}images/default-goods-pic.png" />
-				<img src="{$theme_url}images/default-goods-pic.png" />
-				<img src="{$theme_url}images/default-goods-pic.png" />
+				<!-- {foreach from=$list.picture item=img} -->
+				<img src="{$img}" />
+				<!-- {/foreach} -->
 			</div>
-			<p class="goods-attr">属性：275g/进口</p>
-			<div class="store-reply">商家回复：谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！谢谢您对我们的赞赏，希望以后多多光顾！</div>
+			<!-- {/if} -->
+			<p class="goods-attr">{$list.goods_attr}</p>
+			{if $list.reply_content}
+			<div class="store-reply">商家回复：{$list.reply_content}</div>
+			{/if}
 		</div>    
 	</div>    
-</div>
-<!-- {foreachelse} -->	
-<div class="ecjia-nolist">
-	<p><img src=""></p>
-	暂无评论
 </div>
 <!-- {/foreach} -->	
 <!-- {/block} -->

@@ -10,8 +10,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">
-    ecjia.touch.goods_detail.init();
-    ecjia.touch.category.init();
+ecjia.touch.goods_detail.init();
+ecjia.touch.category.init();
+var releated_goods = {$releated_goods};
 </script>
 <!-- {/block} -->
 
@@ -64,7 +65,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	            <div class="goods-style-name goods-style-name-new">
 	                <div class=" ecjiaf-fl goods-name-new">{if $goods_info.merchant_info.manage_mode eq 'self'}<span>自营</span>{/if}{$goods_info.goods_name}</div>
 	            </div>
-	            <div class="goods-price goods-price-new">
+	            <div class="goods-price goods-price-new goods_spec_{$goods_info.id}">
 	                <!-- $goods.is_promote and $goods.gmt_end_time -->
 	                <!--{if ($goods_info.promote_price gt 0) AND ($goods_info.promote_start_date lt $goods_info.promote_end_date) AND ($goods_info.formated_promote_price lt $goods_info.shop_price)} 促销-->
 		                <div class="ecjia-price-time">
@@ -93,7 +94,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	                <!--{else}-->
 	                {$goods_info.shop_price}
 	                <del>市场价：{$goods_info.market_price}</del>	
-                	{if $goods_info.goods_attr}
+                	{if $goods_info.specification}
 		            <span class="goods-add-cart choose_attr" goods_id="{$goods_info.id}">选规格</span>
 		            {if $goods_attr_num}<i class="attr-number">{$goods_attr_num}</i>{/if}
 		            {else}
@@ -150,9 +151,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		            </div>
 		        </div>
 	       	</a>
-	       	{if $comment_list}
+	       	{if $comment_list.list}
 	       	<div class="ecjia-goods-comment ecjia-seller-comment border_t_e">
-	       		<!-- {foreach from=$comment_list.list item=comment} -->
+	       		<!-- {foreach from=$comment_list.list item=comment key=key} -->
+	       		{if $key lt 5}
 				<div class="assess-flat">
 					<div class="assess-wrapper">        
 						<div class="assess-top">            
@@ -179,6 +181,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						</div>    
 					</div>    
 				</div>
+				{/if}
 				<!-- {/foreach} -->
 	       	</div>
 	       	{/if}
@@ -205,8 +208,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 									<span>{$goods.shop_price}</span>
 									<!--{/if}-->
 									{if $goods.specification}
-										<div class="goods_attr">
-											<span class="choose_attr" data-toggle="add-to-cart" rec_id="{$goods.rec_id}" goods_id="{$goods.goods_id}" data-num="{$goods.num}" data-url="{RC_Uri::url('goods/index/show')}&get_type=get_spec">选规格</span>
+										<div class="goods_attr goods_spec_{$goods.goods_id}">
+											<span class="choose_attr like_goods" rec_id="{$goods.rec_id}" goods_id="{$goods.goods_id}" data-num="{$goods.num}">选规格</span>
 											{if $goods.num}<i class="attr-number">{$goods.num}</i>{/if}
 										</div>
 									{else}
@@ -271,7 +274,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 {/if}
 <!-- 切换详情页面end -->
 
-<div class="goods-desc-info active ecjia-seller-comment" id="goods-info-three" style="margin-top:3.5em;">
+<div class="goods-desc-info active ecjia-seller-comment" id="goods-info-three" style="margin-top:3.5em; padding-bottom: 48px;">
 <!-- #BeginLibraryItem "/library/store_comment.lbi" --><!-- #EndLibraryItem -->
 </div>
 
