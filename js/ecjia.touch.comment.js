@@ -37,16 +37,19 @@
 		},
 		
 		anonymity : function () {
-			$(".ecjia-anonymity-check").on('click', function (e) {
-				e.preventDefault();
-				if ($(this).hasClass('anonymity-check-checked')) {
-					$(this).removeClass("anonymity-check-checked");
-					$("input[name='anonymity_status']").val("0");
-				} else {
-					$(this).addClass("anonymity-check-checked");
-					$("input[name='anonymity_status']").val("1");
-				}
-			});
+			var is_commented = $("input[name='is_commented']").val();
+			if ( is_commented == 0) {
+				$(".ecjia-anonymity-check").on('click', function (e) {
+					e.preventDefault();
+					if ($(this).hasClass('anonymity-check-checked')) {
+						$(this).removeClass("anonymity-check-checked");
+						$("input[name='anonymity_status']").val("0");
+					} else {
+						$(this).addClass("anonymity-check-checked");
+						$("input[name='anonymity_status']").val("1");
+					}
+				});
+			} 
 		},
 		
 		//评价晒单上传图片，并且不能超过5张。

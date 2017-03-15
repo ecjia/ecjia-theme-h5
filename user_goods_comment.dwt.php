@@ -79,13 +79,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </li>
 </div>
 
-{if $goods_info.is_showorder eq 0 && $goods_info.is_commented eq 0}
+{if $goods.is_showorder eq 0}
 <div class="ecjia-push-comment flow-goods-list">
     <label class="select-item">
         <li>
             <span class="ecjiaf-fr">
                 <div class="ecjia-anonymity-check" id="option_box"><input type="radio" name="anonymity" value="0" /><p>匿名评价</p></div>
                 <input type="hidden" name="anonymity_status" value="0" />
+                <input type="hidden" value="{$goods.is_commented}" name=is_commented />
             </span>
         </li>
     </label>
