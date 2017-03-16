@@ -1231,6 +1231,10 @@
  								'spec' : spec,
  								'store_id' : store_id
  							};
+ 							
+// 							$('.ecjia-attr-static .add-tocart').addClass('show').removeClass('hide');
+// 							$('.ecjia-attr-static .ecjia-choose-attr-box').removeClass('show').addClass('hide');
+ 							
  	 						$.post(url, info, function(data) {
  	 		 					if (data.state == 'error') {
  	 		 						if (data.message == 'Invalid session') {
