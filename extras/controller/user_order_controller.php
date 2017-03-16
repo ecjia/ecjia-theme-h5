@@ -229,7 +229,7 @@ class user_order_controller {
             $rec_info = is_ecjia_error($rec_id) ? array() : $rec_id;
             ecjia_front::$controller->assign('rec_info', $rec_info);
         }
-
+        
         ecjia_front::$controller->assign('order_id', $order_id);
         ecjia_front::$controller->assign('goods', $goods_info);
         ecjia_front::$controller->assign_lang();
@@ -242,28 +242,14 @@ class user_order_controller {
         $rec_id = isset($_POST['rec_id']) ? intval($_POST['rec_id']) : '';
         $content = !empty($_POST['note']) ? $_POST['note'] : '商品质量俱佳，强烈推荐！';
         $rank = isset($_POST['score']) ? intval($_POST['score']) : 0;
-        if (!empty($_FILES['filechooser0']['name'])) {
-            $picture['filechooser0'] = $_FILES['filechooser0'];
-        }
-        if (!empty($_FILES['filechooser1']['name'])) {
-            $picture['filechooser1'] = $_FILES['filechooser1'];
-        }
-        if (!empty($_FILES['filechooser2']['name'])) {
-            $picture['filechooser2'] = $_FILES['filechooser2'];
-        }
-        if (!empty($_FILES['filechooser3']['name'])) {
-            $picture['filechooser3'] = $_FILES['filechooser3'];
-        }
-        if (!empty($_FILES['filechooser4']['name'])) {
-            $picture['filechooser4'] = $_FILES['filechooser4'];
-        }
         $is_anonymous = isset($_POST['anonymity_status']) ? intval($_POST['anonymity_status']) : '';
+        
         $push_comment = array(
             'token'         => $token,
             "rec_id"        => $rec_id,
             "content"       => $content,
             "rank"          => $rank,
-            "picture"       => $picture,
+            "picture"       => $_FILES,
             "is_anonymous"  => $is_anonymous
         );
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::COMMENT_CREATE)->data($push_comment)->run();
