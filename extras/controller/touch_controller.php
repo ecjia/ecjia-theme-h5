@@ -55,6 +55,7 @@ class touch_controller {
      * 首页信息
      */
     public static function init() {
+    	
         ecjia_front::$controller->assign('more_sales', RC_Uri::url('goods/index/promotion'));
         ecjia_front::$controller->assign('more_news', RC_Uri::url('goods/index/new'));
         ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
@@ -62,16 +63,28 @@ class touch_controller {
         //手动选择定位信息返回处理
         $addr = $_GET['addr'];
         $name = $_GET['name'];
+        $city_name = $_GET['city'];
         $latng = explode(",", $_GET['latng']) ;
         $longitude = !empty($latng[1]) ? $latng[1] : $_COOKIE['longitude'];
         $latitude  = !empty($latng[0]) ? $latng[0] : $_COOKIE['latitude'];
-        
+        $params = array(
+        	'token' => ecjia_touch_user::singleton()->getToken(),
+        	'city' 	=> $city_name,
+        );
+        $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION_DETAIL)->data($params)->run();
+        if (is_ecjia_error($rs)) {
+        	return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+        } else {
+        	$city_id = $rs['region_id'];
+        }
+
         if(!empty($addr)){
         	setcookie("location_address", $addr);
         	setcookie("location_name", $name);
         	setcookie("longitude", $longitude);
         	setcookie("latitude", $latitude);
         	setcookie("location_address_id", 0);
+        	setcookie("city_id", $city_id);
         	return ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
         }
         

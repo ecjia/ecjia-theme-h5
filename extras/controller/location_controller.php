@@ -85,6 +85,12 @@ class location_controller {
     	ecjia_front::$controller->assign('title', '上海');
     	ecjia_front::$controller->assign_title('定位');
     
+    	$shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
+    	$recommend_city_name = $shop_config['recommend_city'][0]['name'];
+    	$recommend_city_id   = $shop_config['recommend_city'][0]['id'];
+    	ecjia_front::$controller->assign('recommend_city_name', $recommend_city_name);
+    	ecjia_front::$controller->assign('recommend_city_id', $recommend_city_id);
+    	
     	ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->display('search_location.dwt');
     }
@@ -121,15 +127,10 @@ class location_controller {
 
     //请求接口返回数据
     public static function get_location_msg() {
-    	$old_locations = $_GET['lat'].','.$_GET['lng'];
-    	$href_url = $_GET['href_url'];
-    	
+    	$locations = $_GET['lat'].','.$_GET['lng'];
+    	$href_url  = $_GET['href_url'];
     	$key 				= ecjia::config('map_qq_key');
-    	$change_location 	= "https://apis.map.qq.com/ws/coord/v1/translate?locations=".$old_locations."&type=1"."&key=".$key;
-    	$response_location  = RC_Http::remote_get($change_location);
-    	$content 			= json_decode($response_location['body'],true);
-    	$tencent_locations 	= $content['locations'][0]['lat'].','.$content['locations'][0]['lng'];
-    	$url       			= "https://apis.map.qq.com/ws/geocoder/v1/?location=".$tencent_locations."&key=".$key."&get_poi=1";
+    	$url       			= "https://apis.map.qq.com/ws/geocoder/v1/?location=".$locations."&key=".$key."&get_poi=1";
     	$response_address	= RC_Http::remote_get($url);
     	$content   			= json_decode($response_address['body'],true);
     	$location_content 	= $content['result']['pois'][0];
@@ -139,12 +140,27 @@ class location_controller {
     	$longitude 			= $latng['lng'];
     	$latitude  			= $latng['lat'];
 
+    	$ad_info 			= $location_content['ad_info'];
+    	$city_name			= $ad_info['city'];
+    	
+    	$params = array(
+    		'token' => ecjia_touch_user::singleton()->getToken(),
+    		'city' 	=> $city_name,
+    	);
+    	$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION_DETAIL)->data($params)->run();
+    	if (is_ecjia_error($rs)) {
+    		return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+    	} else {
+    		$city_id = $rs['region_id'];
+    	}
+    	
     	//写入cookie
     	setcookie("location_address", $location_address);
     	setcookie("location_name", $location_name);
     	setcookie("longitude", $longitude);
     	setcookie("latitude", $latitude);
     	setcookie("location_address_id", 0);
+    	setcookie("city_id", $city_id);
     	
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $href_url));
     } 
