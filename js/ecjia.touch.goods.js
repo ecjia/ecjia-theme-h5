@@ -1247,6 +1247,7 @@
     				$('.ecjia-attr-modal').find('.add-tocart').removeClass('add_cart_'+goods_id);
     				$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
     				$(".ecjia-store-goods .a1n .a1x").css({overflow: "auto"});	//启用滚动条
+    				$('div.goods-attr').find('li:eq(0)').addClass('active').siblings('li').removeClass('active');
     			});
     			//禁用滚动条
             	$('body').css('overflow-y', 'hidden').on('touchmove', function(event){event.preventDefault;}, false);
