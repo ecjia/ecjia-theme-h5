@@ -7051,7 +7051,7 @@ footer{
 }
 
 /*选择商品规格弹出层*/
-.ecjia-goodsAttr-modal {
+.ecjia-goodsAttr-modal, .ecjia-attr-static{
   	width: 270px;
   	position: absolute;
   	z-index: 11000;
@@ -7067,14 +7067,14 @@ footer{
     overflow: auto;
     height: auto;
 }
-.ecjia-goodsAttr-modal.modal-in {
+.ecjia-goodsAttr-modal.modal-in, .ecjia-attr-static.modal-in {
   	opacity: 1;
   	-webkit-transition-duration: 400ms;
   	transition-duration: 400ms;
   	-webkit-transform: translate3d(0,0,0) scale(1);
   	transform: translate3d(0,0,0) scale(1);
 }
-.ecjia-goodsAttr-modal.modal-out {
+.ecjia-goodsAttr-modal.modal-out, .ecjia-attr-static.modal-out {
   	opacity: 0;
   	z-index: 10999;
   	-webkit-transition-duration: 400ms;
@@ -7082,7 +7082,7 @@ footer{
   	-webkit-transform: translate3d(0,0,0) scale(0.815);
   	transform: translate3d(0,0,0) scale(0.815);
 }
-.ecjia-goodsAttr-modal .modal-title{
+.ecjia-goodsAttr-modal .modal-title, .ecjia-attr-static .modal-title {
     text-align: center;
 	font-size: 1.1em;
     height: 2.5em;
@@ -7095,11 +7095,11 @@ footer{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.ecjia-goodsAttr-modal .modal-inners{
+.ecjia-goodsAttr-modal .modal-inners, .ecjia-attr-static .modal-inners {
 	padding: 0;
 	background: #fff;
 }
-.ecjia-goodsAttr-overlay{
+.ecjia-goodsAttr-overlay, .ecjia-attr-static-overlay{
 	position: fixed;
   	left: 0;
   	top: 0;
@@ -7113,18 +7113,18 @@ footer{
   	transition-duration: 400ms;
 	display: none;
 }
-.ecjia-goodsAttr-overlay.ecjia-goodsAttr-overlay-visible {
+.ecjia-goodsAttr-overlay.ecjia-goodsAttr-overlay-visible,  .ecjia-attr-static-overlay.ecjia-attr-static-overlay-visible {
   	visibility: visible;
   	opacity: 1;
 }
-.ecjia-goodsAttr-modal .goods-attr {
+.ecjia-goodsAttr-modal .goods-attr, .ecjia-attr-static .goods-attr {
 	height: auto;
     overflow: hidden;
 }
-.ecjia-goodsAttr-modal .goods-attr .attr-name {
+.ecjia-goodsAttr-modal .goods-attr .attr-name, .ecjia-attr-static .goods-attr .attr-name {
 	margin: .2em;
 }
-.ecjia-goodsAttr-modal .goods-attr-list {
+.ecjia-goodsAttr-modal .goods-attr-list, .ecjia-attr-static .goods-attr-list {
     width: 90%;
     text-align: left;
     margin: 0 auto;
@@ -7134,11 +7134,11 @@ footer{
 	padding-bottom: .5em;
 	-webkit-overflow-scrolling: touch;
 }
-.ecjia-goodsAttr-modal .goods-attr-list ul {
+.ecjia-goodsAttr-modal .goods-attr-list ul, .ecjia-attr-static .goods-attr-list ul {
 	height: auto;
     min-height: 2em;
 }
-.ecjia-goodsAttr-modal .goods-attr-list ul>li {
+.ecjia-goodsAttr-modal .goods-attr-list ul>li, .ecjia-attr-static .goods-attr-list ul>li {
     float: left;
     border: 1px solid #aaa;
     border-radius: 50px;
@@ -7149,12 +7149,12 @@ footer{
     width: 30%;
     text-align: center;
 }
-.ecjia-goodsAttr-modal .goods-attr-list ul>li.active {
+.ecjia-goodsAttr-modal .goods-attr-list ul>li.active, .ecjia-attr-static .goods-attr-list ul>li.active {
 	background-color: #47aa4d;
 	color: #fff;
 	border: none;
 }
-.ecjia-goodsAttr-modal .modal-buttons.modal-buttons-vertical {
+.ecjia-goodsAttr-modal .modal-buttons.modal-buttons-vertical, .ecjia-attr-static .modal-buttons.modal-buttons-vertical {
 	position: absolute;
     z-index: 1001;
     left: 0;
@@ -7166,7 +7166,7 @@ footer{
 	text-align: left;
     line-height: 50px;
 }
-.ecjia-goodsAttr-modal .add-tocart {
+.ecjia-goodsAttr-modal .add-tocart, .ecjia-attr-static .add-tocart {
     position: absolute;
     z-index: 14;
     right: 0;
@@ -7178,12 +7178,12 @@ footer{
     font-size: 15px;
     border-radius: 0 0 7px 0;
 }
-.ecjia-goodsAttr-modal .modal-buttons .goods-attr-price {
+.ecjia-goodsAttr-modal .modal-buttons .goods-attr-price, .ecjia-attr-static .modal-buttons .goods-attr-price {
     margin-left: .3em;
     color: #ff3434;
     font-size: 1.1em;
 }
-.ecjia-goodsAttr-modal .modal-buttons .modal-left {
+.ecjia-goodsAttr-modal .modal-buttons .modal-left, .ecjia-attr-static .modal-buttons .modal-left {
     width: 64%;
     float: left;
     overflow: hidden;
@@ -7191,7 +7191,7 @@ footer{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.ecjia-goodsAttr-modal .modal-buttons .goods-attr-name {
+.ecjia-goodsAttr-modal .modal-buttons .goods-attr-name, .ecjia-attr-static .modal-buttons .goods-attr-name {
 	font-size: .8em;
     color: #8c8a8a;
 }

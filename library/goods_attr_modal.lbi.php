@@ -5,7 +5,7 @@ Description: 这是选择商品规格弹窗
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
-<div class="ecjia-goodsAttr-modal">
+<div class="ecjia-goodsAttr-modal ecjia-attr-modal">
 	<div class="modal-inners">
 		<span class="ecjia-close-modal-icon"><i class="iconfont icon-close"></i></span>
 		<div class="modal-title">{$goods_info.goods_name}</div>
@@ -28,11 +28,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<span class="goods-attr-name">{$current_spec.attr}</span>
 		</div>
 		<div class="ecjia-choose-attr-box box {if $current_spec.rec_id}show{else}hide{/if}" id="goods_{$goods_info.id}">
-			<span class="add storeSearchCart add_spec" data-toggle="add-to-cart" goods_id="{$goods_info.id}" rec_id="{$current_spec.rec_id}"></span>
+			<span class="add add_spec" data-toggle="add-to-cart" goods_id="{$goods_info.id}" rec_id="{$current_spec.rec_id}"></span>
 		    <label>{$current_spec.goods_number}</label>
 		    <span class="reduce remove_spec" data-toggle="remove-to-cart" goods_id="{$goods_info.id}" rec_id="{$current_spec.rec_id}"></span>
 		</div>           
-		<a class="add-tocart add_spec {if $current_spec.rec_id}hide{else}show{/if}" data-toggle="add-to-cart" goods_id="{$goods_info.id}">加入购物车</a>
+		<a class="add-tocart add_spec {if $current_spec.rec_id}hide{else}show{/if} add_cart_{$goods_info.id}" data-toggle="add-to-cart" goods_id="{$goods_info.id}">加入购物车</a>
 		<input type="hidden" name="goods_price" value="{if $goods_info.unformatted_promote_price}{$goods_info.unformatted_promote_price}{else}{$goods_info.unformatted_shop_price}{/if}" />
 		<input type="hidden" name="check_spec" value="{RC_Uri::url('cart/index/check_spec')}&store_id={$goods_info.seller_id}" />
 	</div>
