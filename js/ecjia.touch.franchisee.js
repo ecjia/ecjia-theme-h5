@@ -55,6 +55,32 @@
 				}
 				
 				$.get(url, function(data){
+					if (data.state == 'error') {
+        				var myApp = new Framework7();
+                		myApp.modal({
+                			title: '提示',
+                			text: data.message,
+                			buttons: [
+        			          {
+        			            text: '取消',
+        			            onClick: function() {
+        			            	return false;
+        			            }
+        			          },
+        			          {
+        			            text: '查看申请进度',
+        			            onClick: function() {
+        			            	$('.modal').remove();
+        			            	$('.modal-overlay').remove();
+        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});	//启用滚动条
+        			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
+        			            	location.href = data.search_url;
+        	            			return false;
+        			            }
+        			          },
+        			        ]
+                		});
+        			}
 				    if (data.state == 'success') {
 					  　    curCount = count;
 					     $("#mobile").attr("readonly", "true");
@@ -156,7 +182,11 @@
 				var address 		= $("input[name='f_address']").val();
 				var longitude 		= $("input[name='longitude']").val();
 				var latitude 		= $("input[name='latitude']").val();
-				
+				var mobile 			= $("input[name='mobile']").val();
+				var code 			= $("input[name='code']").val();
+				$.cookie('seller', $("input[name='seller_category']").val());
+				$.cookie('address', address);
+				$.cookie('seller_name', seller_name);
 				var url = $("form[name='theForm']").attr('action');
 				if (seller_name == '') {
 					alert('请输入店铺名称');return false;
@@ -192,7 +222,9 @@
 					'district': district,
 					'address': address,
 					'longitude': longitude,
-					'latitude': latitude
+					'latitude': latitude,
+					'mobile' : mobile,
+					'code' : code
 				};
 				$.post(url, info, function(data){
 					if (data.state == 'error') {
@@ -212,7 +244,7 @@
 			$('input[name="seller_name"]').blur(function() {
 				$.cookie('seller_name', $('input[name="seller_name"]').val());
 			});
-			
+
 			var category_list = [];
 			var category = eval('(' + $("input[name='category']").val() + ')')['data'];
 			if(category == null){
@@ -411,13 +443,13 @@
 		coordinate : function () {
 			var longitude 	= $("input[name='longitude']").val();
 			var latitude 	= $("input[name='latitude']").val();
-			
+			var mobile 		= $("input[name='mobile']").val();
+			var code 		= $("input[name='code']").val();
 			if (longitude != '' && latitude != '') {
 				$(".coordinate").html("经度：" + longitude + "；  " + "纬度：" + latitude);
 			}
 
 			$(".coordinate").on('click', function(e) {
-				e.preventDefault();
 				var seller_name = $("input[name='seller_name']").val();
 				$.cookie('seller_name', seller_name); 
 				var f_province 	= $("input[name='f_province']").val();
@@ -427,7 +459,7 @@
 				
 				if(f_province && f_district && f_district && f_address){
 					var url = $(this).attr("data-url");
-					var url = url + '&province=' +f_province+ '&city=' +f_city+ '&district=' +f_district+ '&address=' +f_address;
+					var url = url + '&province=' +f_province+ '&city=' +f_city+ '&district=' +f_district+ '&address=' +f_address+ '&mobile=' +mobile+ '&code=' +code;
 					location.href = url;
 				}else{
 					alert('请输入详细地址');
@@ -440,7 +472,10 @@
 				e.preventDefault();
 				var longitude = $("input[name='longitude']").val();
 				var latitude = $("input[name='latitude']").val();
-				var url = $(this).attr("data-url")+ '&longitude=' +longitude+ '&latitude=' +latitude;
+				var mobile 		= $("input[name='mobile']").val();
+				var code 		= $("input[name='code']").val();
+				var url = $(this).attr("data-url")+ '&longitude=' +longitude+ '&latitude=' +latitude+ '&mobile=' +mobile+ '&code=' +code;
+//				
 				location.href = url;
 			})
 		},

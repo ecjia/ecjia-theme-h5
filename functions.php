@@ -122,7 +122,6 @@ RC_Hook::add_action('franchisee/index/finish', array('franchisee_controller', 'f
 RC_Hook::add_action('franchisee/index/search', array('franchisee_controller', 'search'));//处理入驻申请
 RC_Hook::add_action('franchisee/index/process', array('franchisee_controller', 'process'));//查询进度
 RC_Hook::add_action('franchisee/index/process_search', array('franchisee_controller', 'process_search'));//查询进度处理
-RC_Hook::add_action('franchisee/index/reapply', array('franchisee_controller', 'reapply'));//修改已申请店铺入驻信息
 
 RC_Hook::add_action('franchisee/index/location', array('franchisee_controller', 'get_location'));//获取店铺精确位置
 RC_Hook::add_action('franchisee/index/location_finish', array('franchisee_controller', 'location_finish'));//提交店铺精确位置
