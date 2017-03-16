@@ -77,7 +77,8 @@ class touch_controller {
         }
         
         $arr = array(
-        	'location' => array('longitude' => $longitude, 'latitude' => $latitude)
+        	'location' => array('longitude' => $longitude, 'latitude' => $latitude),
+            'city_id' => $_COOKIE['city_id']
         );
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DATA)->data($arr)->run();
 
@@ -164,7 +165,8 @@ class touch_controller {
         $paramater = array(
         	'action_type' 	=> $type,	
  			'pagination' 	=> array('count' => $limit, 'page' => $page),
-			'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
+			'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+            'city_id'       => $_COOKIE['city_id']
         );
 
         $response = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($paramater)->hasPage()->run();
