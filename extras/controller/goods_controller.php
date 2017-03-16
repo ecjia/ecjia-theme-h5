@@ -113,7 +113,7 @@ class goods_controller {
     			'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
     			'city_id'  => $_COOKIE['city_id']
 	    	);
-// 	    	RC_Cache::app_cache_delete('cart_goods'.$token.$goods_info['seller_id'].$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], 'cart');
+
 	    	$cart_goods = array();
 	    	//店铺购物车商品
 	    	if (ecjia_touch_user::singleton()->isSignin()) {
@@ -125,6 +125,8 @@ class goods_controller {
 		    	if (is_ecjia_error($cart_goods)) {
 		    		$cart_goods = array();
 		    	} else {
+		    		RC_Cache::app_cache_set('cart_goods'.$token.$goods_info['seller_id'].$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], $cart_goods, 'cart');
+		    		
 		    		$cart_goods['arr'] = array();
 		    		$cart_goods['current_goods']['rec_id'] = $cart_goods['current_seller']['data_rec'] = $cart_goods['current_goods']['goods_number'] = '';
 		    		$cart_goods['current_goods']['goods_attr_num'] = 0;
@@ -167,7 +169,6 @@ class goods_controller {
 		    			$cart_goods['cart_list'][0]['total']['check_one'] = false;
 		    		}
 				}
-				RC_Cache::app_cache_set('cart_goods'.$token.$goods_info['seller_id'].$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], $cart_goods, 'cart');
 			}
 			
 			$spec_releated_goods = array();
