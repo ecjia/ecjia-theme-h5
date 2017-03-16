@@ -72,7 +72,8 @@ class cart_controller {
     	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
     		'token' 	=> $token,
-    		'location' 	=> array('longitude' => $longitude, 'latitude' => $latitude)
+    		'location' 	=> array('longitude' => $longitude, 'latitude' => $latitude),
+            'city_id'   => $_COOKIE['city_id']
     	);
     	//店铺购物车商品
     	$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
@@ -139,6 +140,7 @@ class cart_controller {
     	$arr = array(
     		'token' 	=> $token,
     		'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+            'city_id'   => $_COOKIE['city_id']
     	);
     	if (!empty($store_id)) {
     		$arr['seller_id'] = $store_id;
@@ -195,7 +197,8 @@ class cart_controller {
     	$paramater = array(
     		'token' 	=> $token,
     		'seller_id' => $store_id,
-    		'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
+    		'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+            'city_id'   => $_COOKIE['city_id']
     	);
     	 
     	$cart_goods_list = array();
@@ -235,7 +238,7 @@ class cart_controller {
     	 
     	//购物车列表 切换状态直接返回
     	if ($response) {
-    		return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('count' => $cart_count, 'response' => $response, 'data_rec' => $data_rec));
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('count' => $cart_count, 'response' => $response, 'data_rec' => $data_rec));
     	}
     	 
     	$sayList = '';
@@ -255,9 +258,10 @@ class cart_controller {
     
     	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
-    			'token'     => $token,
-    			'seller_id'    => $seller_id,
-    			'location'     => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
+			'token'     => $token,
+			'seller_id'    => $seller_id,
+			'location'     => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+            'city_id'   => $_COOKIE['city_id']
     	);
     	//店铺购物车商品
     	$cart_list = RC_Cache::app_cache_get('cart_goods'.$token.$seller_id.$_COOKIE['longitude'].$_COOKIE['latitude'], 'cart');
@@ -314,6 +318,7 @@ class cart_controller {
                 'longitude' => $_COOKIE['longitude'],
                 'latitude' 	=> $_COOKIE['latitude']
             ),
+            'city_id'   => $_COOKIE['city_id']
         );
         
         $url = RC_Uri::url('cart/index/init');
@@ -511,6 +516,7 @@ class cart_controller {
                 'longitude' => $_COOKIE['longitude'],
                 'latitude' 	=> $_COOKIE['latitude']
             ),
+            'city_id'   => $_COOKIE['city_id']
         );
         
         $total_goods_number = 0;
@@ -581,6 +587,7 @@ class cart_controller {
    				'longitude'	=> $_COOKIE['longitude'],
    				'latitude'  => $_COOKIE['latitude']
    			),
+            'city_id'   => $_COOKIE['city_id']
    		);
    		$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::FLOW_DONE)->data($params)->run();
    		if (is_ecjia_error($rs)) {

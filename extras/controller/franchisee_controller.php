@@ -349,7 +349,7 @@ class franchisee_controller {
 	            'latitude'       => $latitude,
 	        ),
 	    	'validate_code'  	 => $validate_code,
-	  
+	    	'city_id'   => $_COOKIE['city_id']
 	    );
 	    
 // 	    _dump($parameter,1);

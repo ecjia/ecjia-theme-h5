@@ -65,7 +65,7 @@ class merchant_controller {
 		$action_type = !empty($_GET['type']) ? trim($_GET['type']) : '';
 		
 		//店铺信息
-		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data(array('seller_id' => $store_id, 'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])))->run();
+		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data(array('seller_id' => $store_id, 'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']), 'city_id' => $_COOKIE['city_id']))->run();
 		if (!is_ecjia_error($store_info)) {
 			$store_info = merchant_function::format_info_distance($store_info);
 			$store_info['comment']['comment_goods_val'] = (float)$store_info['comment']['comment_goods']/100;
@@ -149,7 +149,8 @@ class merchant_controller {
 		$arr = array(
 			'token' 	=> $token,
 			'seller_id' => $store_id,
-			'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
+			'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+			'city_id' 	=> $_COOKIE['city_id']
 		);
 		 
 		//店铺购物车商品
@@ -242,7 +243,8 @@ class merchant_controller {
 			'location' => array(
 				'longitude' => $_COOKIE['longitude'], 
 				'latitude' => $_COOKIE['latitude']
-			)
+			),
+			'city_id' => $_COOKIE['city_id']
 		);
 		//店铺信息
 		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data($arr)->run();
@@ -337,7 +339,8 @@ class merchant_controller {
 		$arr = array(
 			'token' 	=> $token,
 			'seller_id' => $store_id,
-			'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
+			'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+			'city_id' => $_COOKIE['city_id']
 		);
 		 
 		//店铺购物车商品
