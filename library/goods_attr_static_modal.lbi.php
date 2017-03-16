@@ -23,7 +23,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>           
 		<a class="add-tocart add_spec" data-toggle="add-to-cart">加入购物车</a>
 		<input type="hidden" name="goods_price"  />
-		<input type="hidden" name="check_spec" value="{RC_Uri::url('cart/index/check_spec')}&store_id={$goods_info.seller_id}" />
+		<input type="hidden" name="check_spec" value="{RC_Uri::url('cart/index/check_spec')}&store_id={if $goods_info.seller_id}{else}{$store_id}{/if}" />
 	</div>
 </div>
 <div class="ecjia-attr-static-overlay ecjia-attr-static-overlay-visible"></div>

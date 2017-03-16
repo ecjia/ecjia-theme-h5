@@ -353,21 +353,41 @@ class merchant_controller {
 		if (!empty($cart_list) && !is_ecjia_error($cart_list)) {
 			if (!empty($cart_list['cart_list'][0]['goods_list'])) {
 				foreach ($cart_list['cart_list'][0]['goods_list'] as $k => $v) {
-					if (!empty($v['goods_number'])) {
-						$goods_cart_list[$v['goods_id']] = array('num' => $v['goods_number'], 'rec_id' => $v['rec_id']);
+					$goods_attr_id = array();
+					if (!empty($v['goods_attr_id'])) {
+						$goods_attr_id = explode(',', $v['goods_attr_id']);
+						asort($goods_attr_id);
 					}
+					$goods_cart_list['arr'][$v['goods_id']][] = array('num' => $v['goods_number'], 'rec_id' => $v['rec_id'], 'goods_attr_id' => $goods_attr_id);
 				}
 			}
 		}
 		 
+		$spec_goods = array();
 		if (!empty($goods_list)) {
 			foreach ($goods_list as $k => $v) {
-				if (array_key_exists($v['id'], $goods_cart_list)) {
-					if (!empty($goods_cart_list[$v['id']]['num'])) {
-						$goods_list[$k]['num'] = $goods_cart_list[$v['id']]['num'];
-						$goods_list[$k]['rec_id'] = $goods_cart_list[$v['id']]['rec_id'];
+				if (!empty($v['specification'])) {
+					$spec_goods[$v['id']]['goods_price'] = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : $v['shop_price']), '￥');
+					
+					foreach ($v['specification'] as $key => $val) {
+						if ($key == 0) {
+							$goods_list[$k]['default_spec'] = $val['value'][0]['id'];
+						} else {
+							$goods_list[$k]['default_spec'] .= ','.$val['value'][0]['id'];
+						}
+					}
+					$spec_goods[$v['id']]['goods_info'] = $v;
+					$spec_goods[$v['id']]['goods_info']['goods_id'] = $v['id'];
+				}
+				if (array_key_exists($v['id'], $goods_cart_list['arr'])) {
+					foreach ($goods_cart_list['arr'][$v['id']] as $j => $n) {
+						$goods_list[$k]['num'] += $n['num'];
+						if (empty($n['goods_attr_id'])) {
+							$goods_list[$k]['rec_id'] = $n['rec_id'];
+						}
 					}
 				}
+				$goods_list[$k]['store_id'] = $store_id;
 			}
 		}
 		 
@@ -380,11 +400,21 @@ class merchant_controller {
 		if (isset($page['total']) && $page['total'] == 0) {
 			$goods_list = array();
 		}
+
 		ecjia_front::$controller->assign('goods_list', $goods_list);
 		$say_list = ecjia_front::$controller->fetch('library/merchant_goods.lbi');
-	
 		if ($page['more'] == 0) $data['is_last'] = 1;
-		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'goods_list' => $goods_list, 'name' => $type_name, 'num' => $goods_num, 'type' => $action_type, 'is_last' => $data['is_last']));
+		
+		$response = array(
+			'list' 			=> $say_list, 
+			'goods_list'	=> $goods_list, 
+			'name' 			=> $type_name, 
+			'num' 			=> $goods_num,
+			'type' 			=> $action_type, 
+			'is_last' 		=> $data['is_last'], 
+			'spec_goods' 	=> $spec_goods
+		);
+		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, $response);
 	}
 
 	/**

@@ -22,10 +22,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<dd><label>{$goods.shop_price}</label></dd>
 		</dl>
 	</a>
-	{if $goods.goods.attr}
-	<div class="goods_attr">
-		<span class="choose_attr">选规格</span>
-		<i class="attr-number">1</i>
+	{if $goods.specification}
+	<div class="goods_attr goods_spec_{$goods.id}">
+		<span class="choose_attr spec_goods" rec_id="{$goods.rec_id}" goods_id="{$goods.id}" data-num="{$goods.num}" data-spec="{$goods.default_spec}" data-url="{RC_Uri::url('cart/index/check_spec')}&store_id={$goods.store_id}">选规格</span>
+		{if $goods.num}<i class="attr-number">{$goods.num}</i>{/if}
 	</div>
 	{else}
 	<div class="box" id="goods_{$goods.id}">

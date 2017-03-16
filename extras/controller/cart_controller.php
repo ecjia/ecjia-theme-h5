@@ -255,10 +255,11 @@ class cart_controller {
     public static function check_spec() {
     	$spec = !empty($_POST['spec']) ? $_POST['spec'] : '';
     	if (!is_array($spec)) {
+    		$spec = ltrim($spec, ',');
     		$spec = explode(',', $spec);
     	}
     	asort($spec);
-    
+    	
     	$goods_id = !empty($_POST['goods_id']) ? intval($_POST['goods_id']) : 0;
     	$seller_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
     
@@ -271,7 +272,7 @@ class cart_controller {
     	);
     	//店铺购物车商品
     	$cart_list = RC_Cache::app_cache_get('cart_goods'.$token.$seller_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], 'cart');
-    	
+
     	if (empty($cart_list)) {
     		$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
     		if (is_ecjia_error($cart_list)) {

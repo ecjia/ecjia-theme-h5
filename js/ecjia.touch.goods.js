@@ -601,6 +601,9 @@
             			} else {
             				load_list.addClass('is-last').css('display', 'none');
             			}
+            			if (data.spec_goods) {
+            				window.releated_goods = data.spec_goods;
+            			}
             		});
         		}
         	});
@@ -678,7 +681,7 @@
             				};
             				$.post(url, info, function(data) {
             					if (data.state == 'success') {
-            						var releated_goods = '';
+
             						ecjia.touch.category.hide_cart(true);
             						if ($.find('.box').length != 0) {
             							$('.box').removeClass('show').addClass('hide');
@@ -1200,8 +1203,10 @@
  				
  				if ($this.hasClass('spec_goods')) {
  					var modal = '.ecjia-attr-static';
+ 					
  					for (var i in releated_goods) {
  						var r = releated_goods[i];
+
  						if (r.goods_info != undefined && goods_id == r.goods_info.goods_id) {
  							$('.ecjia-attr-static .modal-title').html(r.goods_info.name);
  							$('.ecjia-attr-static .goods-attr-list').html('');
@@ -1227,13 +1232,10 @@
  	 						$('.ecjia-attr-static input[name="goods_price"]').val(r.goods_price);
  							
  							var info = {
- 								'goods_id' : goods_id,
- 								'spec' : spec,
- 								'store_id' : store_id
+ 								'goods_id' 	: goods_id,
+ 								'spec' 		: spec,
+ 								'store_id' 	: store_id
  							};
- 							
-// 							$('.ecjia-attr-static .add-tocart').addClass('show').removeClass('hide');
-// 							$('.ecjia-attr-static .ecjia-choose-attr-box').removeClass('show').addClass('hide');
  							
  	 						$.post(url, info, function(data) {
  	 		 					if (data.state == 'error') {
@@ -1259,6 +1261,8 @@
  						}
  					}
  				}
+ 				spec_html(modal);
+ 				
             	var height = ($('body').scrollTop() + 160) + 'px';
             	$(modal).show().css('top', height);
     			if (modal == '.ecjia-goodsAttr-modal') {
@@ -1288,9 +1292,8 @@
         			e.stopPropagation();
         			$(modal).css({position: "fixed"});
         		});
-            	spec_html(modal);
-            	ecjia.touch.category.toggle_spec(modal);
             	
+            	ecjia.touch.category.toggle_spec(modal);
         		ecjia.touch.category.add_tocart();
 				ecjia.touch.category.remove_tocart();
  			});
