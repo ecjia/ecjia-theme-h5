@@ -60,6 +60,7 @@
             		ecjia.touch.category.update_cart(rec_id, val, goods_id, '', store_id, spec, 'add');
             		return false;
             	}
+            	var bool_spec = false;//购物车中判断是否是有属性的商品
             	//购物车列表商品数量加减
             	if ($this.hasClass('ecjia-number-group-addon')) {
             		$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
@@ -67,6 +68,7 @@
             		var val = parseInt($this.siblings('input').val()) + 1;
             		$this.siblings('input').val(val);
             		var store_id = $this.parent().attr('data-store');
+            		
             		ecjia.touch.category.update_cart(rec_id, val, goods_id, '', store_id, '', 'add');
             	} else {
                 	//商品详情中点击加入购物车按钮
@@ -75,6 +77,9 @@
                 		var show = $this.parent().children('.ecjia-goods-plus-box');
                 		var val = parseInt(show.children('label').html());
                 	} else {
+                		if ($this.hasClass('attr_spec')) {
+                			bool_spec = true;
+                		}
                 		//商品详情页面购物车里加减
                     	if ($this.hasClass('a5v')) {
                     		$('.minicart-content').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
@@ -130,7 +135,7 @@
                     		$('.may_like_'+goods_id).attr('data-num', val);
                     	}
                 	}
-                	ecjia.touch.category.update_cart(rec_id, val, goods_id, '', true, '', 'add');
+                	ecjia.touch.category.update_cart(rec_id, val, goods_id, '', true, bool_spec, 'add');
             	}
             });
         },
@@ -182,6 +187,10 @@
             			ecjia.touch.category.update_cart(rec_id, val, '', '', store_id, '', 'reduce');
             		}
             	} else {
+            		var bool_spec = false;
+            		if ($this.hasClass('attr_spec')) {
+            			bool_spec = true;
+            		}
 		        	if ($this.hasClass('a5u')) {
 		        		var goods_id = $this.parent('.box').children('.a5v').attr('goods_id');
 		        		$('.minicart-content').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
@@ -233,7 +242,7 @@
 	            		}
 	            		$('.may_like_'+goods_id).attr('data-num', val);
 	            	}
-		        	ecjia.touch.category.update_cart(rec_id, val, goods_id, '', true, '', 'reduce');
+		        	ecjia.touch.category.update_cart(rec_id, val, goods_id, '', true, bool_spec, 'reduce');
             	}
             });
         },
@@ -334,6 +343,7 @@
                 		return false;
             		}
             	}
+
             	if (data.empty == true) {
             		var li = $('.check_cart_' + data.store_id).parents('.cart-single');
         			li.remove();
@@ -362,8 +372,9 @@
             		}
             		return true;
             	}
-
-            	if (spec != '') {
+            	
+            	if (spec != '' || spec != false) {
+            		console.log(type);
                 	if (type == 'add') {
     					var n = parseInt($('.goods_spec_' + goods_id).children('i').html()) + 1;
     					if (isNaN(n)) n = 1;
@@ -371,7 +382,7 @@
         					$('.goods_spec_' + goods_id).append('<i class="attr-number">'+ n + '</i>');
         				}
     				} else if (type == 'reduce') {
-    					var n = parseInt($('.goods_spec_' + goods_id).children('i').html()) + 1;
+    					var n = parseInt($('.goods_spec_' + goods_id).children('i').html()) - 1;
     					if (n == 0) {
     						$('.goods_spec_' + goods_id).find('.attr-number').remove();
     					}
@@ -1247,7 +1258,6 @@
     				$('.ecjia-attr-modal').find('.add-tocart').removeClass('add_cart_'+goods_id);
     				$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
     				$(".ecjia-store-goods .a1n .a1x").css({overflow: "auto"});	//启用滚动条
-    				$('div.goods-attr').find('li:eq(0)').addClass('active').siblings('li').removeClass('active');
     			});
     			//禁用滚动条
             	$('body').css('overflow-y', 'hidden').on('touchmove', function(event){event.preventDefault;}, false);

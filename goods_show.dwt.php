@@ -348,9 +348,9 @@ var releated_goods = {$releated_goods};
                             </tbody>
                         </table>
                         <div class="box" id="goods_cart_{$cart.goods_id}">
-                            <span class="a5u reduce {if $cart.is_disabled eq 1}disabled{/if}" data-toggle="remove-to-cart" rec_id="{$cart.rec_id}" goods_id="{$cart.goods_id}" ></span>
+                            <span class="a5u reduce {if $cart.is_disabled eq 1}disabled{/if} {if $cart.attr}attr_spec{/if}" data-toggle="remove-to-cart" rec_id="{$cart.rec_id}" goods_id="{$cart.goods_id}" ></span>
                             <lable class="a5x">{$cart.goods_number}</lable>
-                            <span class="a5v {if $cart.is_disabled eq 1}disabled{/if}" data-toggle="add-to-cart" rec_id="{$cart.rec_id}" goods_id="{$cart.goods_id}"></span>
+                            <span class="a5v {if $cart.is_disabled eq 1}disabled{/if} {if $cart.attr}attr_spec{/if}" data-toggle="add-to-cart" rec_id="{$cart.rec_id}" goods_id="{$cart.goods_id}"></span>
                         </div>
                     </li>
                     <input type="hidden" name="rec_id" value="{$cart.rec_id}" />

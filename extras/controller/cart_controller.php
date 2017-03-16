@@ -178,7 +178,7 @@ class cart_controller {
     					//添加商品到购物车
     					$arr['goods_id'] = $goods_id;
     					
-    					if (!empty($spec)) {
+    					if (!empty($spec) && $spe != false) {
     						$arr['spec'] = $spec;
     					}
     					$data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CREATE)->data($arr)->data($arr)->run();
@@ -247,7 +247,6 @@ class cart_controller {
     		ecjia_front::$controller->assign('list', $cart_goods_list);
     		$sayList = ecjia_front::$controller->fetch('merchant.dwt');
     	}
-    
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('say_list' => $sayList, 'list' => $cart_goods_list, 'count' => $cart_count, 'data_rec' => $data_rec, 'current' => $current));
     }
 

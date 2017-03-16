@@ -103,7 +103,7 @@ class goods_controller {
 	    		}
 	    	}
 	    	asort($spec);
-	    	
+
 	    	/*商品所属店铺购物车列表*/
 	    	$token = ecjia_touch_user::singleton()->getToken();
 	    	$options = array(
@@ -118,7 +118,6 @@ class goods_controller {
 	    	if (ecjia_touch_user::singleton()->isSignin()) {
 	    		$cart_goods = RC_Cache::app_cache_get('cart_goods'.$token.$goods_info['seller_id'].$_COOKIE['longitude'].$_COOKIE['latitude'], 'cart');
 	    	}
-	    	
 	    	if (empty($cart_goods)) {
 	    		$cart_goods = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($options)->run();
 		    	if (is_ecjia_error($cart_goods)) {
@@ -135,10 +134,13 @@ class goods_controller {
 		    			foreach ($cart_goods['cart_list'][0]['goods_list'] as $key => $val) {
 		    				$goods_attr_id = explode(',', $val['goods_attr_id']);
 		    				asort($goods_attr_id);
-		    				if ($spec == $goods_attr_id) {
+		    				
+		    				if ((empty($spec) && $val['goods_id'] == $goods_id) || (!empty($spec) && $spec == $goods_attr_id)) {
 		    					$cart_goods['current_goods']['rec_id'] = $val['rec_id'];
 		    					$cart_goods['current_goods']['goods_number'] = $val['goods_number'];
-		    					$cart_goods['current_spec'] = $val;
+		    					if (!empty($spec) && $spec == $goods_attr_id) {
+		    						$cart_goods['current_spec'] = $val;
+		    					}
 		    				}
 		    				$cart_goods['arr'][$val['goods_id']][] = array('num' => $val['goods_number'], 'rec_id' => $val['rec_id'], 'goods_attr_id' => $goods_attr_id);
 		    				
@@ -207,7 +209,7 @@ class goods_controller {
 	    		ecjia_front::$controller->assign('goods_desc', $bodystr);
 	    	}
 	    }
-
+	    
 	    if (ecjia_touch_user::singleton()->isSignin()) {
 	    	ecjia_front::$controller->assign('rec_id', 			$cart_goods['current_goods']['rec_id']);
    			ecjia_front::$controller->assign('num', 			$cart_goods['current_goods']['goods_number']);		//该商品购物车数量
