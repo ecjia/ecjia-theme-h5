@@ -281,10 +281,13 @@ class connect_controller {
     
     private static function sync_wechat_user ($user_info) {
         
-        $count = RC_DB::table('connect_user')->where('connect_code', 'sns_wechat')->where('user_id', $user_info['ect_uid'])->count();
-        if ($count) {
-            return false;
+        if ($user_info['ect_uid']) {
+            $count = RC_DB::table('connect_user')->where('connect_code', 'sns_wechat')->where('user_id', $user_info['ect_uid'])->count();
+            if ($count) {
+                return false;
+            } 
         }
+        
         $wechat_info = array(
             'openid' => $user_info['openid'],
             'nickname' => $user_info['nickname'],
@@ -308,7 +311,9 @@ class connect_controller {
         );
         
         RC_DB::table('connect_user')->insert($new_user);
-        RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $wechat_info['headimgurl'], 'user_id' => $wechat_info['ect_uid']));
+        if ($wechat_info['ect_uid']) {
+            RC_Api::api('connect', 'update_user_avatar', array('avatar_url' => $wechat_info['headimgurl'], 'user_id' => $wechat_info['ect_uid']));
+        }
     }
     
 }
