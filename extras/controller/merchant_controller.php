@@ -217,19 +217,19 @@ class merchant_controller {
 		ecjia_front::$controller->assign('referer_url', urlencode(RC_Uri::url('merchant/index/init', array('store_id' => $store_id))));
 		 
 		$type = isset($_GET['type']) ? $_GET['type'] : '';//判断是否是下滑加载
-		$info = array(
-			'token' 		=> $token,
-			'store_id' 		=> $store_id,
-			'pagination' 	=> array('count' => $limit, 'page' => $pages),
-		);
-		$comment_list = ecjia_touch_manager::make()->api(ecjia_touch_api::STORE_COMMENTS)->data($info)->run();
 		
 		if ($type == 'ajax_get') {
+			$info = array(
+				'token' 		=> $token,
+				'store_id' 		=> $store_id,
+				'pagination' 	=> array('count' => $limit, 'page' => $pages),
+			);
+			$comment_list = ecjia_touch_manager::make()->api(ecjia_touch_api::STORE_COMMENTS)->data($info)->run();
+			
 			ecjia_front::$controller->assign('comment_list', $comment_list);
 			$say_list = ecjia_front::$controller->fetch('library/model_comment.lbi');
 		}
-		
-		
+		ecjia_front::$controller->assign('is_last', 1);
 		ecjia_front::$controller->display('merchant.dwt');
 	}
 	

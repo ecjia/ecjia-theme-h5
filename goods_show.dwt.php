@@ -100,7 +100,7 @@ var releated_goods = {$releated_goods};
 		            {else}
                 	<span class="goods-add-cart market-goods-add-cart add-cart-a {if $rec_id}hide{/if}" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加入购物车</span>
               		<div class="ecjia-goods-plus-box ecjia-market-plus-box {if !$rec_id}hide{/if} box" id="goods_{$goods_info.id}">
-              			<span class="reduce show" data-toggle="remove-to-cart" rec_id="{$rec_id}">减</span>
+              			<span class="reduce" data-toggle="remove-to-cart" rec_id="{$rec_id}">减</span>
                      	<label>{if !$rec_id}1{else}{$num}{/if}</label>
               			<span class="add" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
                     </div>
@@ -209,7 +209,7 @@ var releated_goods = {$releated_goods};
 									<!--{/if}-->
 									{if $goods.specification}
 										<div class="goods_attr goods_spec_{$goods.goods_id}" goods_id="{$goods_info.id}">
-											<span class="choose_attr spec_goods" rec_id="{$goods.rec_id}" goods_id="{$goods.goods_id}" data-num="{$goods.num}">选规格</span>
+											<span class="choose_attr spec_goods" rec_id="{$goods.rec_id}" goods_id="{$goods.goods_id}" data-num="{$goods.num}" data-spec="{$goods.default_spec}" data-url="{RC_Uri::url('cart/index/check_spec')}" data-store="{$store_id}">选规格</span>
 											{if $goods.num}<i class="attr-number">{$goods.num}</i>{/if}
 										</div>
 									{else}

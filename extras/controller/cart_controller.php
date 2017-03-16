@@ -133,9 +133,10 @@ class cart_controller {
     	$new_number = intval($_POST['val']);
     	$store_id 	= intval($_POST['store_id']);
     	$goods_id   = intval($_POST['goods_id']);
-    	$checked	= isset($_POST['checked']) ? $_POST['checked'] : '';
+    	$checked	= isset($_POST['checked']) 	? $_POST['checked'] : '';
     	$response   = isset($_POST['response']) ? true : false;
-    
+    	$spec     	= isset($_POST['spec'])    	? $_POST['spec'] 	: '';
+
     	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
     		'token' 	=> $token,
@@ -145,6 +146,8 @@ class cart_controller {
     	if (!empty($store_id)) {
     		$arr['seller_id'] = $store_id;
     	}
+    	
+    	RC_Cache::app_cache_delete('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], 'cart');
     	//修改购物车中商品选中状态
     	if ($checked !== '') {
     		if (is_array($rec_id)) {
@@ -155,7 +158,7 @@ class cart_controller {
     		$arr['is_checked'] = $checked;
     		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CHECKED)->data($arr)->run();
     		if (is_ecjia_error($data)) {
-    			return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+    			return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		}
     	} else {
     		//清空购物车
@@ -163,9 +166,9 @@ class cart_controller {
     			$arr['rec_id'] = implode(',', $rec_id);
     			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_DELETE)->data($arr)->run();
     			if (is_ecjia_error($data)) {
-    				return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+    				return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     			}
-    			return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('empty' => true, 'store_id' => $store_id));
+    			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('empty' => true, 'store_id' => $store_id));
     		} else {
     			if (!empty($new_number)) {
     				$arr['new_number'] = $new_number;
@@ -176,7 +179,7 @@ class cart_controller {
     				} elseif (!empty($goods_id)) {
     					//添加商品到购物车
     					$arr['goods_id'] = $goods_id;
-    					if (!empty($spec) && $spe != false) {
+    					if ($spec != 'false' && !empty($spec)) {
     						$arr['spec'] = $spec;
     					}
     					$data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CREATE)->data($arr)->data($arr)->run();
@@ -189,7 +192,7 @@ class cart_controller {
     				}
     			}
     			if (is_ecjia_error($data)) {
-    				return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+    				return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     			}
     		}
     	}
@@ -251,6 +254,9 @@ class cart_controller {
     
     public static function check_spec() {
     	$spec = !empty($_POST['spec']) ? $_POST['spec'] : '';
+    	if (!is_array($spec)) {
+    		$spec = explode(',', $spec);
+    	}
     	asort($spec);
     
     	$goods_id = !empty($_POST['goods_id']) ? intval($_POST['goods_id']) : 0;
@@ -259,18 +265,18 @@ class cart_controller {
     	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
 			'token'     => $token,
-			'seller_id'    => $seller_id,
-			'location'     => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+			'seller_id' => $seller_id,
+			'location'  => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
             'city_id'   => $_COOKIE['city_id']
     	);
     	//店铺购物车商品
-    	$cart_list = RC_Cache::app_cache_get('cart_goods'.$token.$seller_id.$_COOKIE['longitude'].$_COOKIE['latitude'], 'cart');
+    	$cart_list = RC_Cache::app_cache_get('cart_goods'.$token.$seller_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], 'cart');
     	if (empty($cart_list)) {
     		$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
     		if (is_ecjia_error($cart_list)) {
     			return ecjia_front::$controller->showmessage($cart_list->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		}
-    		RC_Cache::app_cache_set('cart_goods'.$token.$seller_id.$_COOKIE['longitude'].$_COOKIE['latitude'], $cart_list, 'cart');
+    		RC_Cache::app_cache_set('cart_goods'.$token.$seller_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], $cart_list, 'cart');
     	}
 
     	if (!empty($cart_list['cart_list'][0]['goods_list'])) {

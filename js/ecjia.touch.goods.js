@@ -226,15 +226,16 @@
 		            		show.removeClass('show').addClass('hide');
 		            		$this.parent('.box').children('.reduce').removeClass('show').addClass('hide');
 		            		span.attr('rec_id', '');
-		            		
 		            		var span_add = $this.parent().siblings('span');
 		            		if (span_add.hasClass('goods-add-cart')) {
 		            			$this.parent().children('span').addClass('hide');
 		        				span_add.removeClass('hide').addClass('disabled').attr('rec_id', '');
 		                	}
+		            		show.html(1);
+		            	} else {
+		            		show.html(val);
 		            	}
 		            	var goods_id = $this.parent('.box').children('.add').attr('goods_id');
-		            	show.html(val);
 		        	}
 		        	if ($.find('.may_like_'+goods_id)) {
 	            		if (val == 0) {
@@ -374,7 +375,6 @@
             	}
             	
             	if (spec != '' || spec != false) {
-            		console.log(type);
                 	if (type == 'add') {
     					var n = parseInt($('.goods_spec_' + goods_id).children('i').html()) + 1;
     					if (isNaN(n)) n = 1;
@@ -405,7 +405,7 @@
             	} else {
             		ecjia.touch.category.show_cart(true);
             		var goods_number = data.count.goods_number;
-            		
+
             		if (spec == '') {
                 		for (i = 0; i < data.list.length; i++) {
                 			if (data.say_list) {
@@ -423,9 +423,8 @@
                 			}
                 		}
             		} else {
-            			$('#goods_'+goods_id).children('.reduce').removeClass('hide').attr('rec_id', data.current.rec_id);
-        				$('#goods_'+goods_id).children('.add').removeClass('hide').attr('rec_id', data.current.rec_id);
-        				$('#goods_'+goods_id).children('label').removeClass('hide').html(data.current.goods_number);
+            			$('#goods_'+goods_id).children('span').attr('rec_id', data.current.rec_id).removeClass('hide');
+            			$('#goods_'+goods_id).children('label').removeClass('hide').html(data.current.goods_number);
             		}
             		
             		if (data.say_list) {
@@ -679,10 +678,11 @@
             				};
             				$.post(url, info, function(data) {
             					if (data.state == 'success') {
+            						var releated_goods = '';
             						ecjia.touch.category.hide_cart(true);
             						if ($.find('.box').length != 0) {
-            							$('.box').children('.reduce').removeClass('show').addClass('hide');
-                    					$('.box').children('label').html('1').removeClass('show').addClass('hide');
+            							$('.box').removeClass('show').addClass('hide');
+                    					$('.box').children('label').html('1');
                     					$('.box').children('span').attr('rec_id', '');
             						}
             						if ($.find('.goods-add-cart').length != 0) {
@@ -1193,6 +1193,9 @@
  				var $this = $(this);
  				var myApp = new Framework7();
  				var goods_id = $this.attr('goods_id');
+ 				var store_id = $this.attr('data-store');
+ 				var url = $this.attr('data-url');
+ 				var spec = $this.attr('data-spec');
  				var modal = '.ecjia-goodsAttr-modal';
  				
  				if ($this.hasClass('spec_goods')) {
@@ -1207,8 +1210,8 @@
  								var s = r.goods_info.specification[j];
  								html += '<div class="goods-attr" data-index=' + j +'><p class="attr-name">'+ s.name +'<p>' +
  								'<ul>';
- 								for (var k in s.values) {
- 									var t = s.values[k];
+ 								for (var k in s.value) {
+ 									var t = s.value[k];
  									if (k == 0) {
  										html += '<li class="active" data-attr='+ t.id +' data-price='+ t.price +'>' +t.label+ '</li>';
  									} else {
@@ -1220,21 +1223,35 @@
  							$('.ecjia-attr-static .goods-attr-list').html(html);
  							$('.ecjia-attr-static .ecjia-choose-attr-box').children('span').attr('goods_id', goods_id);
  							$('.ecjia-attr-static .add-tocart').addClass('add_cart_'+goods_id);
- 	 						if (r.rec_id != undefined) {
- 	 							$('.ecjia-attr-static .ecjia-choose-attr-box').addClass('show').removeClass('hide').attr('id', 'goods_'+goods_id);
- 	 							$('.ecjia-attr-static .ecjia-choose-attr-box').children('span').attr('rec_id', r.rec_id);
- 	 							$('.ecjia-attr-static .add-tocart').removeClass('show').addClass('hide').attr('goods_id', goods_id);
- 	 						} else {
- 	 							$('.ecjia-attr-static .ecjia-choose-attr-box').children('span').attr('rec_id', '')
- 	 							$('.ecjia-attr-static .ecjia-choose-attr-box').removeClass('show').addClass('hide').attr('id', 'goods_'+goods_id);
- 	 							$('.ecjia-attr-static .add-tocart').addClass('show').removeClass('hide').attr('goods_id', goods_id);
- 	 						}
- 	 						if (r.num != undefined) {
- 	 							$('.ecjia-attr-static .ecjia-choose-attr-box').children('label').html(r.num);
- 	 						} else {
- 	 							$('.ecjia-attr-static .ecjia-choose-attr-box').children('label').html('');
- 	 						}
+
  	 						$('.ecjia-attr-static input[name="goods_price"]').val(r.goods_price);
+ 							
+ 							var info = {
+ 								'goods_id' : goods_id,
+ 								'spec' : spec,
+ 								'store_id' : store_id
+ 							};
+ 	 						$.post(url, info, function(data) {
+ 	 		 					if (data.state == 'error') {
+ 	 		 						if (data.message == 'Invalid session') {
+ 	 		 							return false;
+ 	 		 						} else {
+ 	 		 							ecjia.touch.showmessage(data);
+ 	 		 						}
+ 	 		 					} else {
+ 	 		 						if (data.info) {
+ 	 	 	 							$('.ecjia-attr-static .ecjia-choose-attr-box').addClass('show').removeClass('hide').attr('id', 'goods_'+goods_id);
+ 	 	 	 							$('.ecjia-attr-static .ecjia-choose-attr-box').children('span').attr('rec_id', data.info.rec_id);
+ 	 	 	 							$('.ecjia-attr-static .add-tocart').removeClass('show').addClass('hide').attr('goods_id', goods_id);
+ 	 		 							$('.ecjia-attr-static .ecjia-choose-attr-box').children('label').html(data.info.goods_number);
+ 	 		 						} else {
+ 	 	 	 							$('.ecjia-attr-static .ecjia-choose-attr-box').removeClass('show').addClass('hide').attr('id', 'goods_'+goods_id);
+ 	 	 	 							$('.ecjia-attr-static .ecjia-choose-attr-box').children('span').attr('rec_id', '');
+ 	 	 	 							$('.ecjia-attr-static .add-tocart').addClass('show').removeClass('hide').attr('goods_id', goods_id);
+ 	 		 							$('.ecjia-attr-static .ecjia-choose-attr-box').children('label').html('');
+ 	 		 						}
+ 	 		 					}
+ 	 		 				});
  						}
  					}
  				}
@@ -1330,7 +1347,7 @@
  						}
  					}
  					return false;
- 				})
+ 				});
  			});
 		},
 	};
