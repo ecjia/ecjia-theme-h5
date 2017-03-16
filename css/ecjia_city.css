@@ -5184,6 +5184,19 @@ footer{
     transform: translateY(-50%);
     padding-left: 6em;
 }
+.ecjia-comment-list .cmt-goods-attribute{
+    color: #848688;
+    margin-top: 1em;
+    position: absolute;
+    display: block;
+    width: 100%;
+    max-height: 3em;
+    line-height: 6em;
+    transform: translateY(-50%);
+    padding-left: 6em;
+    font-size: .9em;
+    margin-left: .5em;
+}
 .ecjia-comment-list .cmt-goods-price{
     top: 80%;
     position: absolute;
