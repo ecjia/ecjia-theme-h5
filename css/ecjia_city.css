@@ -4914,6 +4914,16 @@ footer{
     transform: translateY(-50%);
     padding-left: 6em;
 }
+.ecjia-checkout .goods-item .goods-list-attr {
+    position: absolute;
+    display: block;
+    width: 100%;
+    top: 15%;
+    max-height: 3em;
+    line-height: 1.5em;
+    transform: translateY(-50%);
+    padding-left: 6em;
+}
 .goods-list .goods-img-more {    height: 5em;
     line-height: 5em;}
 .goods-list .goods-img-more i {font-size:1.8em;top: 0.1em;}
@@ -4937,7 +4947,10 @@ footer{
     background: none;
 	padding-bottom:4.4em;
 }
-
+.ecjia-order-detail .ecjia-checkout .flow-goods-list{
+    background: none;
+    padding-bottom:4.4em;
+}
 .ecjia-order-detail .flow-goods-list .ecjia-list li {
 	border-bottom:none;
 	padding: .7em 1em;
@@ -4950,6 +4963,39 @@ footer{
 	padding: 0 1em;
 	height:auto;
     background: #ffffff;
+}
+.ecjia-goods-attr{
+    width: 20em;
+    float: left;
+    position: absolute;
+    top: 2em;
+    color: #848689;
+    font-size: .8em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
+.order_list_attr_div {
+   /* position: relative;
+    width: 100%;
+    float: left;
+    padding-left: 1em;
+    margin-left: 5em;
+    height: 2em;
+    top: -1.5em;*/
+}
+.order_list_attr_div .ecjia-order-list-attr{
+    top: 4em;
+    color: #848689;
+    font-size: .8em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    left: 7em;
 }
 .ecjia-order-detail .order-ft-link{
     text-align: center;
@@ -5188,47 +5234,53 @@ footer{
 .ecjia-flow-goodslist.ecjia-order-detail .goods-item {
 	border:none;
 }
+.ecjia-flow-goodslist.ecjia-order-detail .goods-item .ecjia-goods-attr2{
+    float: left;
+    position: absolute;
+    top: 35%;
+    color: #848689;
+    font-size: .8em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
 /*========================  评价晒单 ===========================*/
 .ecjia-comment-list {
     border-bottom: 1px solid #eee;
 }
 .ecjia-comment-list .btn-comment{
     width: 7em;
-    line-height: 7.5em;
     height: 3em;
+    margin-top: 3em;
 }
-.ecjia-comment-list .cmt-goods-name{
-    margin-top: .7em;
+.comment_list_attr {
+    overflow: hidden;
+}
+.ecjia-comment-list .comment_list_attr .cmt-goods-name{
     position: absolute;
     display: block;
     width: 100%;
     max-height: 3em;
     line-height: 1.5em;
-    transform: translateY(-50%);
-    padding-left: 6em;
 }
-.ecjia-comment-list .cmt-goods-attribute{
+.ecjia-comment-list .comment_list_attr .cmt-goods-attribute{
     color: #848688;
-    margin-top: 1em;
+    font-size: .8em;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    top: 23%;
     position: absolute;
-    display: block;
-    width: 100%;
-    max-height: 3em;
-    line-height: 6em;
-    transform: translateY(-50%);
-    padding-left: 6em;
-    font-size: .9em;
-    margin-left: .8em;
+    width: 75%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
 }
 .ecjia-comment-list .cmt-goods-price{
-    top: 85%;
-    position: absolute;
-    display: block;
-    max-height: 3em;
-    line-height: 1.5em;
-    transform: translateY(-50%);
-    padding-left: 6em;
     color: red;
+    margin-top: 3.5em;
 }
 .ecjia-comment-list .btn-comment .btn{
     text-align: center;

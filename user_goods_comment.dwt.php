@@ -23,10 +23,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     	<div class="flow-goods-list">
     		<ul class="goods-item ecjia-comment-list">
     			<li class="goods-img ecjiaf-fl ecjia-margin-r ecjia-icon">
-    				<img class="ecjiaf-fl" src="{$goods.img.thumb}" alt="{$goods.goods_name}" title="{$goods.goods_name}" />
-    				<span class="ecjiaf-fl cmt-goods-name">{$goods.goods_name}</span>
-    				<span class="ecjiaf-fl cmt-goods-attribute">属性：27KG</span>
-    				<span class="ecjiaf-fl cmt-goods-price">{$goods.shop_price}</span>
+    				<img class="ecjiaf-fl ecjia-margin-r" src="{$goods.img.thumb}" alt="{$goods.goods_name}" title="{$goods.goods_name}" />
+    				<div class="comment_list_attr">
+        				<span class="ecjiaf-fl cmt-goods-name">{$goods.goods_name}</span>
+        				<p class="ecjiaf-fl cmt-goods-attribute">
+        				<!-- {foreach from=$goods.goods_attr item=attr} -->
+    					{if $attr.name}{$attr.name}:{$attr.value}{/if}
+    				    <!-- {/foreach} -->
+    				    </p>
+        				<span class="ecjiaf-fl cmt-goods-price">{$goods.shop_price}</span>
+        			</div>	
     			</li>
     		</ul>
     		
