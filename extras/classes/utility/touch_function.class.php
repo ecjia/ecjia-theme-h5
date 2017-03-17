@@ -69,6 +69,27 @@ class touch_function {
         }
         return $new_array;
     }
+    public static function upload_file($url, $params){
+//         $data = array(
+//             'pic'=>'@'.realpath($path).";type=".$type.";filename=".$filename
+//         'pic[0]'=>'@'.realpath($path).";type=".$type.";filename=".$filename//多图
+//         );
+        $ch = curl_init();
+        //设置帐号和帐号名
+        
+//         curl_setopt($ch, CURLOPT_USERPWD, 'joe:secret' );
+        
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true );
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_getinfo($ch);
+        $return_data = curl_exec($ch);
+        curl_close($ch);
+        
+        return $return_data;
+    }
 }
 
 //end
