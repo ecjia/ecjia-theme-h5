@@ -177,7 +177,6 @@ class goods_controller {
 		    		if (!empty($v['specification'])) {
 		    			$spec_releated_goods[$v['goods_id']]['goods_price'] = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : $v['shop_price']), '￥');
 		    			foreach ($v['specification'] as $key => $val) {
-// 		    				$spec_releated_goods[$v['goods_id']]['spec_price'] += $val['value'][0]['price'];
 		    				if ($key == 0) {
 		    					$goods_info['related_goods'][$k]['default_spec'] = $val['value'][0]['id'];
 		    				} else {

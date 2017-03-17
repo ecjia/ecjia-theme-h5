@@ -210,6 +210,8 @@ class cart_controller {
     	$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($paramater)->run();
     	if (is_ecjia_error($cart_list)) {
     		return ecjia_front::$controller->showmessage($cart_list->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	} else {
+    		RC_Cache::app_cache_set('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], $cart_list, 'cart');
     	}
     
     	$cart_goods_list = $cart_list['cart_list'][0]['goods_list'];
