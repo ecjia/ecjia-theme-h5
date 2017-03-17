@@ -216,8 +216,6 @@ class merchant_controller {
 		}
 		ecjia_front::$controller->assign('referer_url', urlencode(RC_Uri::url('merchant/index/init', array('store_id' => $store_id))));
 		 
-		$type = isset($_GET['type']) ? $_GET['type'] : '';//判断是否是下滑加载
-		
 		$info = array(
 			'store_id' 		=> $store_id,
 			'comment_type' 	=> 'all',
@@ -249,7 +247,7 @@ class merchant_controller {
     		'pagination' 	=> array('count' => $limit, 'page' => $pages)
     	);
     	$comments = ecjia_touch_manager::make()->api(ecjia_touch_api::STORE_COMMENTS)->data($info)->hasPage()->run();
-    	
+
     	if (!is_ecjia_error($comments)) {
     		list($data, $page) = $comments;
     		if ($page['more'] == 0) $is_last = 1;

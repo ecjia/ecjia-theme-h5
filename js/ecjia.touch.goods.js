@@ -619,11 +619,13 @@
         		$('.ecjia-seller-comment').find('[data-toggle="asynclist"]').attr('data-type', type);
         		$('.ecjia-seller-comment').find('[data-toggle="asynclist"]').attr('data-page', 1);
         		
+        		
         		if ($this.hasClass('active') || $this.hasClass('disabled')) {
         			return false;
         		} else {
         			$this.addClass('active').siblings('dl').removeClass('active');
         			$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');//加载动画
+        			$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
         			$('.store-option dl').addClass('disabled');//禁止切换
         			
         			$.get(url, function(data) {
@@ -635,6 +637,7 @@
                 		$('#store-comment-'+type).html('');
         				
         				$('.la-ball-atom').remove();//移出加载动画
+        				$('body').css('overflow-y', 'auto').off("touchmove");//启用滚动条
         				$('.store-option dl').removeClass('disabled');//允许切换
         				$('#store-comment-'+type).append(data.list);
         				
@@ -647,9 +650,10 @@
         	                    },
         	                });
         	            });
-        				if (data.is_last == null) {
+
+        	            if (data.is_last == null) {
         					$('#store-comment-'+type).attr('data-page', 2);
-        					ecjia.touch.asynclist();
+                            ecjia.touch.asynclist();
         				} else {
         					$('.ecjia-seller-comment').find('.load-list').addClass('is-last').css('display', 'none');
         				}
@@ -1206,7 +1210,7 @@
         	
  			$('.ecjia-store-li').off('click').on('click', function() {
  				var $this = $(this);
- 				
+
  				$this.children('span').addClass('active');
  				$this.siblings('li').children('span').removeClass('active');
  				var index = $this.index();

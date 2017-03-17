@@ -68,7 +68,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<!-- {/if} -->
 	</div>
 </div>
-<div class="ecjia-mode ecjia-store-ul">
+<div class="ecjia-mod ecjia-store-ul">
 	<ul>
 		<li class="ecjia-store-li"><span class="active">购物</span></li>
 		<li class="ecjia-store-li"><span class="">评价</span></li>

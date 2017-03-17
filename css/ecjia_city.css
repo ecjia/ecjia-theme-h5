@@ -4416,8 +4416,9 @@ footer{
 	margin-bottom: .5em;
 }
 #goods-info-three{
-	display:none;
+	display: none;
 	background-color: #fff;
+	position: relative;
 }
 .goods-desc-info .goods-desc-nav-new {
 	border-bottom:0;
@@ -6775,6 +6776,11 @@ footer{
     border-bottom: 1px solid #eee;
 	padding: .5em;
 	background: #fff;
+	position: fixed;
+    top: 3.5em;
+    width: 100%;
+    max-width: 640px;
+    z-index: 2;
 }
 .ecjia-seller-comment .store-option dl {
     float: left;
@@ -6794,7 +6800,6 @@ footer{
 .store-comment .ecjia-nolist{
 	font-size:1em;
 	background-color:#FFFFFF;
-	padding-top:6em;
 }
 .store-comment .ecjia-nolist img{
 	width: 8em;
