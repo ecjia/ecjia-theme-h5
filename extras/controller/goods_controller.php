@@ -230,11 +230,10 @@ class goods_controller {
 	    //商品评论
 	   	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
 	   	$pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
-	   	$comment_type = isset($_GET['action_type']) ? trim($_GET['action_type']) : 'all';
 	   	
 	   	$info = array(
    			'goods_id' 		=> $goods_id,
-   			'comment_type' 	=> $comment_type,
+   			'comment_type' 	=> 'all',
    			'pagination' 	=> array('count' => $limit, 'page' => $pages)
 	   	);
 	   	$comments = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_COMMENTS)->data($info)->hasPage()->run();
@@ -247,20 +246,19 @@ class goods_controller {
 	   		ecjia_front::$controller->assign('comment_number', $data['comment_number']);
 	   	}
 	   	
-	    ecjia_front::$controller->assign('ajax_url', RC_Uri::url('goods/index/ajax_comment', array('goods_id' => $goods_id)));
+	    ecjia_front::$controller->assign('ajax_url', RC_Uri::url('goods/index/ajax_goods_comment', array('goods_id' => $goods_id)));
 	    ecjia_front::$controller->assign('store_id', $goods_info['seller_id']);
 
 	    ecjia_front::$controller->assign_title('商品详情');
         ecjia_front::$controller->display('goods_show.dwt');
     }
     
-    public static function ajax_comment() {
+    public static function ajax_goods_comment() {
     	//商品评论
     	$goods_id 		= isset($_GET['goods_id']) 		? $_GET['goods_id'] 			: 0;
     	$limit 			= intval($_GET['size']) > 0 	? intval($_GET['size']) 		: 10;
     	$pages 			= intval($_GET['page']) 		? intval($_GET['page']) 		: 1;
     	$comment_type 	= isset($_GET['action_type']) 	? trim($_GET['action_type']) 	: 'all';
-//     	$status 		= trim($_GET['status']);
     	
     	$info = array(
     		'goods_id' 		=> $goods_id,
@@ -277,12 +275,10 @@ class goods_controller {
     		ecjia_front::$controller->assign('comment_number', $data['comment_number']);
     		 
     		$type = isset($_GET['type']) ? $_GET['type'] : '';//判断是否是下滑加载
-//     		if ($status == 'toggle') {
-    			ecjia_front::$controller->assign('comment_list', $data);
-    			$say_list = ecjia_front::$controller->fetch('library/model_comment.lbi');
-    			 
-    			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
-//     		}
+    		ecjia_front::$controller->assign('comment_list', $data);
+    		$say_list = ecjia_front::$controller->fetch('library/model_comment.lbi');
+    		
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
     	}
     }
 

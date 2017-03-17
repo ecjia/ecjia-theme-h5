@@ -218,19 +218,51 @@ class merchant_controller {
 		 
 		$type = isset($_GET['type']) ? $_GET['type'] : '';//判断是否是下滑加载
 		
-		if ($type == 'ajax_get') {
-			$info = array(
-				'token' 		=> $token,
-				'store_id' 		=> $store_id,
-				'pagination' 	=> array('count' => $limit, 'page' => $pages),
-			);
-			$comment_list = ecjia_touch_manager::make()->api(ecjia_touch_api::STORE_COMMENTS)->data($info)->run();
-			
-			ecjia_front::$controller->assign('comment_list', $comment_list);
-			$say_list = ecjia_front::$controller->fetch('library/model_comment.lbi');
-		}
-		ecjia_front::$controller->assign('is_last', 1);
+		$info = array(
+			'store_id' 		=> $store_id,
+			'comment_type' 	=> 'all',
+			'pagination' 	=> array('count' => $limit, 'page' => $pages),
+		);
+		$comments = ecjia_touch_manager::make()->api(ecjia_touch_api::STORE_COMMENTS)->data($info)->hasPage()->run();
+		
+		if (!is_ecjia_error($comments)) {
+	   		list($data, $page) = $comments;
+	   		if ($page['more'] == 0) $is_last = 1;
+
+	   		ecjia_front::$controller->assign('comment_list', $data);
+	   		ecjia_front::$controller->assign('comment_number', $data['comment_number']);
+	   	}
+		
+	   	ecjia_front::$controller->assign('ajax_url', RC_Uri::url('merchant/index/ajax_store_comment', array('store_id' => $store_id)));
 		ecjia_front::$controller->display('merchant.dwt');
+	}
+	
+	public static function ajax_store_comment() {
+    	$store_id 		= isset($_GET['store_id']) 		? $_GET['store_id'] 			: 0;
+    	$limit 			= intval($_GET['size']) > 0 	? intval($_GET['size']) 		: 10;
+    	$pages 			= intval($_GET['page']) 		? intval($_GET['page']) 		: 1;
+    	$comment_type 	= isset($_GET['action_type']) 	? trim($_GET['action_type']) 	: 'all';
+    	
+    	$info = array(
+    		'store_id' 		=> $store_id,
+    		'comment_type' 	=> $comment_type,
+    		'pagination' 	=> array('count' => $limit, 'page' => $pages)
+    	);
+    	$comments = ecjia_touch_manager::make()->api(ecjia_touch_api::STORE_COMMENTS)->data($info)->hasPage()->run();
+    	
+    	if (!is_ecjia_error($comments)) {
+    		list($data, $page) = $comments;
+    		if ($page['more'] == 0) $is_last = 1;
+    	
+    		ecjia_front::$controller->assign('comment_list', $data);
+    		ecjia_front::$controller->assign('comment_number', $data['comment_number']);
+    		 
+    		$type = isset($_GET['type']) ? $_GET['type'] : '';//判断是否是下滑加载
+    		ecjia_front::$controller->assign('comment_list', $data);
+    		$say_list = ecjia_front::$controller->fetch('library/model_comment.lbi');
+    		
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+    	}
 	}
 	
 	/**
