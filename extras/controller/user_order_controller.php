@@ -265,6 +265,7 @@ class user_order_controller {
         
         $api_url = RC_Hook::apply_filters('custom_site_api_url', RC_Uri::home_url() . ecjia_touch_manager::serverHost . ecjia_touch_api::COMMENT_CREATE);
         $data = touch_function::upload_file($api_url, $push_comment);
+        $data = touch_function::format_curl_response($data);
         if (is_ecjia_error($data)) {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         } else {
