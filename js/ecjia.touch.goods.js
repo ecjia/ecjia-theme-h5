@@ -1420,7 +1420,11 @@
  					} else {
  						$spec_html += '/' + $(this).html();
  					}
- 					$spec_price += parseFloat($(this).attr('data-price'));
+ 					var sprice = parseFloat($(this).attr('data-price'));
+ 					if (isNaN(sprice)) {
+ 						sprice = 0;
+ 					}
+ 					$spec_price += sprice;
  				});
  				$spec_html += ')';
  				$spec_price = '￥' + $spec_price;
@@ -2078,7 +2082,11 @@
 			} else {
 				$spec_html += '/' + $(this).html();
 			}
-			$spec_price += parseFloat($(this).attr('data-price'));
+			var sprice = parseFloat($(this).attr('data-price'));
+			if (isNaN(sprice)) {
+				sprice = 0;
+			}
+			$spec_price += sprice;
 		});
 		$spec_html += ')';
 		$spec_price = '￥' + $spec_price;
