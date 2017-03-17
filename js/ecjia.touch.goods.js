@@ -1245,8 +1245,37 @@
  								success: function(data) {
  	 	 		 					if (data.state == 'error') {
  	 	 		 						error = 1;
- 	 	 		 						if (data.message == 'Invalid session') {
- 	 	 		 							return false;
+ 	 	 		 						if (data.referer_url || data.message == 'Invalid session') {
+	 	 	 		 						$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});//禁用滚动条
+	 	 	 		                    	//禁用滚动条
+	 	 	 		                    	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){
+	 	 	 		                    		event.preventDefault;
+	 	 	 		                    	}, false);
+	 	 	 		                    	
+	 	 	 		            			myApp.modal({
+	 	 	 		                			title: '温馨提示',
+	 	 	 		                			text: '您还没有登录',
+	 	 	 		                			buttons: [
+	 	 	 		        			          {
+	 	 	 		        			            text: '取消',
+	 	 	 		        			            onClick: function() {
+	 	 	 		        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条
+	 	 	 		        			            	$('body').css('overflow-y', 'auto').off("touchmove");//启用滚动条
+	 	 	 		        			            	return false;
+	 	 	 		        			            }
+	 	 	 		        			          },
+	 	 	 		        			          {
+	 	 	 		        			            text: '去登录',
+	 	 	 		        			            onClick: function() {
+	 	 	 		        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});	//启用滚动条
+	 	 	 		        			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
+	 	 	 		        			            	location.href = data.referer_url;
+	 	 	 		        	            			return false;
+	 	 	 		        			            }	
+	 	 	 		        			          },
+	 	 	 		        			        ]
+	 	 	 		                		});
+	 	 	 		            			return false;
  	 	 		 						} else {
  	 	 		 							ecjia.touch.showmessage(data);
  	 	 		 							return false;
@@ -1348,8 +1377,37 @@
  				}
  				$.post(url, info, function(data) {
  					if (data.state == 'error') {
- 						if (data.message == 'Invalid session') {
- 							return false;
+ 						var myApp = new Framework7();
+ 						if (data.referer_url || data.message == 'Invalid session') {
+ 							$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});//禁用滚动条
+	                    	//禁用滚动条
+	                    	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){
+	                    		event.preventDefault;
+	                    	}, false);
+	                    	
+	            			myApp.modal({
+	                			title: '温馨提示',
+	                			text: '您还没有登录',
+	                			buttons: [
+	        			          {
+	        			            text: '取消',
+	        			            onClick: function() {
+	        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条
+	        			            	$('body').css('overflow-y', 'auto').off("touchmove");//启用滚动条
+	        			            	return false;
+	        			            }
+	        			          },
+	        			          {
+	        			            text: '去登录',
+	        			            onClick: function() {
+	        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});	//启用滚动条
+	        			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
+	        			            	location.href = data.referer_url;
+	        	            			return false;
+	        			            }	
+	        			          },
+	        			        ]
+	                		});
  						} else {
  							ecjia.touch.showmessage(data);
  						}
