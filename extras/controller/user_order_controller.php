@@ -243,15 +243,26 @@ class user_order_controller {
         $content = !empty($_POST['note']) ? $_POST['note'] : '商品质量俱佳，强烈推荐！';
         $rank = isset($_POST['score']) ? intval($_POST['score']) : 0;
         $is_anonymous = isset($_POST['anonymity_status']) ? intval($_POST['anonymity_status']) : '';
+       
+        $picture = array();
+        $_FILES = $_FILES['picture'];
         
+        for ($i=0; $i<=5; $i++) {
+            if (!empty($_FILES['name'][$i])) {
+                $photo_path = '@'.realpath($_FILES['tmp_name'][$i]).";type=".$_FILES['type'][$i].";filename=".$_FILES['name'][$i];
+                array_push($picture, $photo_path);
+            }
+        }
+
         $push_comment = array(
             'token'         => $token,
             "rec_id"        => $rec_id,
             "content"       => $content,
             "rank"          => $rank,
-            "picture"       => $_FILES,
+            "picture"       => $picture,
             "is_anonymous"  => $is_anonymous
         );
+
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::COMMENT_CREATE)->data($push_comment)->run();
         if (is_ecjia_error($data)) {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
