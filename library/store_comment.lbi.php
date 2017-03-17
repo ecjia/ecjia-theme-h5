@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<dd>({$comment_number.picture})</dd>
 	</dl>
 </div>
-<div class="store-comment" {if $is_last neq 1}data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{$ajax_url}&type=ajax_get{if $store_id}&store_id={$store_id}{/if}" data-page="2" data-type="all"{/if}>
+<div class="store-comment" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{$ajax_url}{if $store_id}&store_id={$store_id}{/if}" data-type="all" data-page="2">
 	{if $comment_list.list}
 	<!-- {foreach from=$comment_list.list item=list} -->
 	<div class="assess-flat">    

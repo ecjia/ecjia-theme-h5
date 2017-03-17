@@ -72,6 +72,7 @@ RC_Hook::add_action('goods/index/show', array('goods_controller', 'show'));//商
 RC_Hook::add_action('goods/index/promotion', array('goods_controller', 'promotion'));
 RC_Hook::add_action('goods/index/ajax_goods', array('goods_controller', 'ajax_goods'));
 RC_Hook::add_action('goods/index/new', array('goods_controller', 'goods_new'));
+RC_Hook::add_action('goods/index/ajax_comment', array('goods_controller', 'ajax_comment'));
 
 //店铺
 RC_Loader::load_theme('extras/controller/merchant_controller.php');

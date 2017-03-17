@@ -595,6 +595,7 @@
          				
             			var info = data.name + '(' + data.num + ')';
             			$('.a20').html(info);
+            			
             			if (data.is_last == null) {
             				$('.store_goods_' + type).attr('data-page', 2);
             				ecjia.touch.asynclist();
@@ -612,14 +613,11 @@
         		var $this = $(this),
         			url = $this.attr('data-url'),
         			type = $this.attr('data-type');
-
+        			
+        		$('.load-list').remove();
         		$('.store-comment').attr('id', 'store-comment-'+type);
-        		
-        		$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
-        		var load_list = $('#store-comment-'+type).parent().find('.load-list');
-        		if (load_list.length == 0 ) {
-        			$('#store-comment-'+type).after($loader);
-        		}
+        		$('.ecjia-seller-comment').find('[data-toggle="asynclist"]').attr('data-type', type);
+        		$('.ecjia-seller-comment').find('[data-toggle="asynclist"]').attr('data-page', 1);
         		
         		if ($this.hasClass('active') || $this.hasClass('disabled')) {
         			return false;
@@ -629,6 +627,11 @@
         			$('.store-option dl').addClass('disabled');//禁止切换
         			
         			$.get(url, function(data) {
+                		$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
+                		var load_list = $('#store-comment-'+type).parent().find('.load-list');
+                		if (load_list.length == 0 ) {
+                			$('#store-comment-'+type).after($loader);
+                		}
         				$('.ecjia-seller-comment').find('[data-toggle="asynclist"]').html('');
         				
         				$('.la-ball-atom').remove();//移出加载动画
@@ -644,13 +647,11 @@
         	                    },
         	                });
         	            });
-        	            
-        	            console.log(data.is_last);
         				if (data.is_last == null) {
         					$('#store-comment-'+type).attr('data-page', 2);
         					ecjia.touch.asynclist();
         				} else {
-        					load_list.addClass('is-last').css('display', 'none');
+        					$('.ecjia-seller-comment').find('.load-list').addClass('is-last').css('display', 'none');
         				}
         				return false;
             		});
