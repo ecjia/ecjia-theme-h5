@@ -632,7 +632,7 @@
                 		if (load_list.length == 0 ) {
                 			$('#store-comment-'+type).after($loader);
                 		}
-        				$('.ecjia-seller-comment').find('[data-toggle="asynclist"]').html('');
+                		$('#store-comment-'+type).html('');
         				
         				$('.la-ball-atom').remove();//移出加载动画
         				$('.store-option dl').removeClass('disabled');//允许切换
