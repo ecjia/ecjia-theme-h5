@@ -266,6 +266,13 @@
 					$(options.trigger).addClass('is-last');
 					$("#load_more_btn").remove();
 				}
+    			if (data.spec_goods) {
+    				if (window.releated_goods != undefined) {
+    					$.extend(window.releated_goods, data.spec_goods);
+    				} else {
+    					window.releated_goods = data.spec_goods;
+    				}
+    			}
 				ecjia.touch.more_callback();
 				var list_length = $.trim(data.list).length;
                 ecjia.touch.update_hot_time(list_length);
