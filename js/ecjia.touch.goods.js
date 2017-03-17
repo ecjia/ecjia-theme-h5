@@ -1184,7 +1184,7 @@
 		},
 		
 		store_toggle: function() {
- 			$('li.favourable_notice').off('click').on('click', function() {
+ 			$('li.favourable_notice, .store-description').off('click').on('click', function() {
  				var $this = $(this);
  				
  				var myApp = new Framework7();

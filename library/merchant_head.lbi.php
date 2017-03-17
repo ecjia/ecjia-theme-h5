@@ -11,7 +11,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<img src="{if $store_info.seller_banner}{$store_info.seller_banner}{else}{$theme_url}images/default_store_banner.png{/if}">
 	</div>
 	<div class="ecjia-store-brief">
-		<li class="store-info">
+		<li class="store-info {if $store_info.favourable_count}boder-eee{/if}">
 			<div class="basic-info">
 				<div class="store-left">
 					<img src="{if $store_info.seller_logo}{$store_info.seller_logo}{else}{$theme_url}images/store_default.png{/if}">
@@ -25,7 +25,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<div class="store-range">
 						<i class="iconfont icon-remind"></i>{$store_info.label_trade_time}
 					</div>
-					<div class="store-description"><i class="iconfont icon-notification"></i>{$store_info.seller_description}</div>
+					<div class="store-description"><i class="iconfont icon-notification"></i>{$store_info.seller_notice}</div>
 				</div>
 			</div>
 		</li>
@@ -39,7 +39,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<!-- {/foreach} -->
 		</ul>
 		{/if}
-		<li class="favourable_notice">共{if $store_info.favourable_count}{$store_info.favourable_count}{else}0{/if}个活动<i class="iconfont icon-jiantou-right"></i></li>
+		{if $store_info.favourable_count}
+		<li class="favourable_notice">共{$store_info.favourable_count}个活动<i class="iconfont icon-jiantou-right"></i></li>
+		{/if}
 	</div>
 	<div class="ecjia-header-right">
 		<!-- {if $header_right.icon neq ''} -->
