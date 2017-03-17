@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     				<div class="comment_list_attr">
         				<span class="ecjiaf-fl cmt-goods-name">{$goods.goods_name}</span>
         				<p class="ecjiaf-fl cmt-goods-attribute">
-        				<!-- {foreach from=$goods.goods_attr item=attr} -->
+        				<!-- {foreach from=$rec_info.goods_attr item=attr} -->
     					{if $attr.name}{$attr.name}:{$attr.value}{/if}
     				    <!-- {/foreach} -->
     				    </p>
@@ -49,10 +49,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             
             <div class="push_img">   
                 {if $goods.is_showorder eq 1}
-                <!-- {foreach from=$rec_info.comment_image item=photo} 上传照片-->
+                <!-- {foreach from=$rec_info.comment_image item=image} 上传照片-->
                     <div class="push_photo_img" id="result">
                         <div class="check_push_rm0">
-                        <img src="{$theme_url}images/user_center/750x80.png">
+                        <img src="{$image}">
                         </div>
                     </div>
                 <!-- {/foreach} -->
