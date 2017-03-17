@@ -335,6 +335,9 @@ ecjia_open::macro('goods_detail', function($querys) {
 ecjia_open::macro('seller', function($querys) {
 	return RC_Uri::url('goods/category/seller_list', array('cid' => $querys['category_id']));
 });
+ecjia_open::macro('user_bonus', function($querys) {
+    return RC_Uri::url('user/bonus/init', array('type' => $querys['type']));
+});
 
 /**
  * 支付响应提示模板

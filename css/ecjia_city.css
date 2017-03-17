@@ -62,6 +62,9 @@ a.ecjia-color-green {
 	line-height: 0;
 	top: 0;
 }
+.boder-eee {
+	border-bottom: 1px dashed #eee;
+}
 .modal-overlay.modal-overlay-visible {
 	position: fixed;
 }
@@ -1370,7 +1373,6 @@ footer{
 .ecjia-store-brief .store-info{
 	width: 92%;
 	margin: 0 auto;
-    border-bottom:1px dashed #eee;
 	height: 8em;
 	min-height: 5em;
 	overflow: hidden;
@@ -1641,6 +1643,8 @@ footer{
 .ecjia-store-seller .store-promotion {
 	padding: .5em;
 	background-color: #fff;
+	border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
 }
 .ecjia-store-seller .store-promotion li {
 	padding: .3em;
@@ -4416,8 +4420,9 @@ footer{
 	margin-bottom: .5em;
 }
 #goods-info-three{
-	display:none;
+	display: none;
 	background-color: #fff;
+	position: relative;
 }
 .goods-desc-info .goods-desc-nav-new {
 	border-bottom:0;
@@ -6635,6 +6640,7 @@ footer{
 	overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+	color: #47b34f;
 }
 .ecjia-store-modal .modal-inners{
 	padding: 0;
@@ -6728,7 +6734,7 @@ footer{
 	font-weight: 400;
 }
 .ecjia-store-modal .line {
-	border-bottom: 1px solid #333;
+	border-bottom: 1px solid #aaa;
 	width: 90%;
 	height: 1px;
 	display: block;
@@ -6750,7 +6756,7 @@ footer{
 	font-weight: 400;
 }
 .ecjia-store-modal .store-promotion {
-	padding: 0 .5em;
+	padding: 0 .5em .5em;
 	background-color: #fff;
 	border-radius: 7px;
 	height: auto;
@@ -6773,6 +6779,7 @@ footer{
     width: 83%;
     float: right;
 	padding-top: .2em;
+	color: #666;
 }
 .ecjia-store-modal .store-notice {
 	padding: .2em 1em 1em 1em;
@@ -6821,6 +6828,21 @@ footer{
 	height: .8em;
     background: #F7F7F7;
 }
+.goods-desc-info .store-comment-container .store-comment{
+	margin-top: 4.5em;
+}
+.goods-desc-info .store-option {
+	height: auto;
+    overflow: hidden;
+    border-bottom: 1px solid #eee;
+	padding: .5em;
+	background: #fff;
+	position: fixed;
+    top: 3.5em;
+    width: 100%;
+    max-width: 640px;
+    z-index: 2;
+}
 .ecjia-seller-comment .store-option {
 	height: auto;
     overflow: hidden;
@@ -6846,7 +6868,6 @@ footer{
 .store-comment .ecjia-nolist{
 	font-size:1em;
 	background-color:#FFFFFF;
-	padding-top:6em;
 }
 .store-comment .ecjia-nolist img{
 	width: 8em;
@@ -6871,12 +6892,11 @@ footer{
 }
 .ecjia-seller-comment .assess-wrapper {
     display: block;
-	padding: 10px 0 10px 15px;
+	padding: 1em;
     background-color: #fff;
 }
 .ecjia-seller-comment .assess-top {
     position: relative;
-    padding: 0 10px 0 0;
     background-color: #fff;
 }
 .ecjia-seller-comment .assess-top:before {

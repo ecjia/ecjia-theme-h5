@@ -3,7 +3,7 @@
 <div class="assess-flat">    
 	<div class="assess-wrapper">        
 		<div class="assess-top">            
-			<span class="user-portrait"><img src="{$theme_url}images/default_user.png"></span>           
+			<span class="user-portrait"><img src="{$list.avatar_img}"></span>           
 			<div class="user-right"> 
 				<span class="user-name">{$list.author}</span>     
 				<span class="assess-date">{$list.add_time}</span>
@@ -12,7 +12,7 @@
 		</div>        
 		<div class="assess-bottom">            
 			<p class="assess-content">{$list.content}</p>
-			<!-- {if $comment.picture} -->
+			<!-- {if $list.picture} -->
 			<div class="img-list">
 				<!-- {foreach from=$list.picture item=img} -->
 				<img src="{$img}" />

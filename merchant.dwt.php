@@ -20,59 +20,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 </div>
 
-<div class="ecjia-mod ecjia-header ecjia-store-banner">
-	<div class="ecjia-header-left">
-		<img src="{if $store_info.seller_banner}{$store_info.seller_banner}{else}{$theme_url}images/default_store_banner.png{/if}">
-	</div>
-	<div class="ecjia-store-brief">
-		<li class="store-info">
-			<div class="basic-info">
-				<div class="store-left">
-					<img src="{if $store_info.seller_logo}{$store_info.seller_logo}{else}{$theme_url}images/store_default.png{/if}">
-				</div>
-				<div class="store-right">
-					<div class="store-title">
-						<span class="store-name">{$store_info.seller_name}</span>
-						{if $store_info.distance} <span class="seller-distance">{$store_info.distance}</span>{/if}
-						{if $store_info.manage_mode}<span class="manage-mode">自营</span>{/if}
-					</div>
-					<div class="store-range">
-						<i class="iconfont icon-remind"></i>{$store_info.label_trade_time}
-					</div>
-					<div class="store-description"><i class="iconfont icon-notification"></i>{$store_info.seller_description}</div>
-				</div>
-			</div>
-		</li>
-		{if $store_info.favourable_list}
-		<ul class="store-promotion" id="promotion-scroll">
-			<!-- {foreach from=$store_info.favourable_list item=list} -->
-			<li class="promotion">
-				<span class="promotion-label">{$list.type_label}</span>
-				<span class="promotion-name">{$list.name}</span>
-			</li>
-			<!-- {/foreach} -->
-		</ul>
-		{/if}
-		<li class="favourable_notice">共{if $store_info.favourable_count}{$store_info.favourable_count}{else}0{/if}个活动<i class="iconfont icon-jiantou-right"></i></li>
-	</div>
-	<div class="ecjia-header-right">
-		<!-- {if $header_right.icon neq ''} -->
-		<i class="{$header_left.icon}"></i>
-		<!-- {else} -->
-			<!-- {if $header_right.search neq ''} -->
-			<a href="{$header_right.search_url}" class="m_r5"><span>{$header_right.search}</span></a>
-			<!-- {/if} -->
-			<!-- {if $header_right.location neq ''} -->
-			<a href="{$header_right.location_url}" class="nopjax external"><span>{$header_right.location}</span></a>
-			<!-- {/if} -->
-		<!-- {/if} -->
-	</div>
-</div>
-<div class="ecjia-mode ecjia-store-ul">
+<!-- #BeginLibraryItem "/library/merchant_head.lbi" --><!-- #EndLibraryItem -->
+<div class="ecjia-mod ecjia-store-ul">
 	<ul>
 		<li class="ecjia-store-li"><span class="active">购物</span></li>
-		<li class="ecjia-store-li"><span class="">评价</span></li>
-		<li class="ecjia-store-li"><span class="">商家</span></li>
+		<li class="ecjia-store-li" data-url="{$url}&status=comment"><span>评价</span></li>
+		<li class="ecjia-store-li"><span class="{if $status eq 'store'}active{/if}">商家</span></li>
 	</ul>
 </div>
 <div class="ecjia-mod ecjia-store-goods ecjia-store-toggle">
@@ -133,74 +86,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 	</div>
 </div>
-
-<div class="ecjia-mod ecjia-store-comment ecjia-store-toggle hide">
-	<div class="ecjia-seller-comment">
-		<div class="store-hr"></div>
-		<div class="store-score">
-			<div class="score-name">商品评分 ({$store_info.comment.comment_goods})</div>
-			<span class="score-val" data-val="{$store_info.comment.comment_goods_val}"></span>
-		</div>
-		<div class="store-comment-container">
-		<!-- #BeginLibraryItem "/library/store_comment.lbi" --><!-- #EndLibraryItem -->
-		</div>
-	</div>
-</div>
-
-<div class="ecjia-store-seller ecjia-store-toggle hide">
-	<ul class="store-goods">
-		<li class="goods-info">
-			<span class="store-goods-count">{$store_info.goods_count.count}</span><br>
-			<span class="store-goods-desc">全部商品</span>
-			<span class="goods-border"></span>
-		</li>
-		<li class="goods-info">
-			<span class="store-goods-count">{$store_info.goods_count.new_goods}</span><br>
-			<span class="store-goods-desc">上新</span>
-			<span class="goods-border"></span>
-		</li>
-		<li class="goods-info">
-			<span class="store-goods-count">{$store_info.goods_count.best_goods}</span><br>
-			<span class="store-goods-desc">促销</span>
-			<span class="goods-border"></span>
-		</li>
-		<li class="goods-info">
-			<span class="store-goods-count">{$store_info.goods_count.hot_goods}</span><br>
-			<span class="store-goods-desc">店铺动态</span>
-		</li>
-	</ul>
-				
-	{if $store_info.favourable_list}
-	<ul class="store-promotion">
-		<!-- {foreach from=$store_info.favourable_list item=list} -->
-		<li class="promotion">
-			<span class="promotion-label">{$list.type_label}</span>
-			<span class="promotion-name">{$list.name}</span>
-		</li>
-		<!-- {/foreach} -->
-	</ul>
-	{/if}
-	<div class="store-hr"></div>
-	<div class="store-tel">
-		<span class="tel-name"><i class="iconfont icon-phone"></i>商家电话</span>
-		<p class="tel-result">{if $store_info.telephone}{$store_info.telephone}<a href="tel:{$store_info.telephone}"><i class="iconfont icon-phone"></i></a>{else}暂无{/if}</p>
-	</div>
-	<div class="store-hr"></div>
-	<ul class="store-other-info">
-		<li>
-			<span class="other-info-name"><i class="iconfont icon-rank"></i>公司名称</span>
-			<p class="other-info-result">{if $store_info.shop_name}{$store_info.shop_name}{else}暂无{/if}</p>
-		</li>
-		<li>
-			<span class="other-info-name"><i class="iconfont icon-location"></i>所在地区</span>
-			<p class="other-info-result">{if $store_info.shop_address}{$store_info.shop_address}{else}暂无{/if}</p>
-		</li>
-		<li>
-			<span class="other-info-name"><i class="iconfont icon-remind"></i>营业时间</span>
-			<p class="other-info-result">{if $store_info.label_trade_time}{$store_info.label_trade_time}{else}暂无{/if}</p>
-		</li>
-	</ul>
-</div>
+<!-- #BeginLibraryItem "/library/merchant_detail.lbi" --><!-- #EndLibraryItem -->
 
 <div class="ecjia-mod store-add-cart a4w">
 	<div class="a52"></div>
