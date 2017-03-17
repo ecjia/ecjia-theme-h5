@@ -107,6 +107,9 @@
 						if ($(".push_photo_img img").length > 4) {
 							$(".push_photo").hide();
 						}
+						if ($(".push_photo_img img").length >= 1) {
+							$(".push_result_img").css("margin-left", "0");
+						}
 					}
 					fr.readAsDataURL(f);
 				}
@@ -138,6 +141,9 @@
 					$('.push_photo').hide();
 					document.getElementById(filechooser).value = "";
 					$(result).show();
+					if ($(".push_photo_img img").length < 1) {
+						$(".push_result_img").css("margin-left", "0.3em");
+					}
 			    });
 			})
 		},
