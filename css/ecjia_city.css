@@ -96,7 +96,7 @@ a.ecjia-color-green {
 .ecjia-merchant-goods.ecjia-nolist {
 	color:#999;
 	padding: 0;
-	padding-top: 30px;
+	padding-top: 5em;
 	font-size: 1em;
 }
 .ecjia-merchant-goods.ecjia-nolist img {
@@ -4417,7 +4417,7 @@ footer{
 }
 #goods-info-three{
 	display:none;
-	background-color: #f7f7f7;
+	background-color: #fff;
 }
 .goods-desc-info .goods-desc-nav-new {
 	border-bottom:0;
@@ -6789,6 +6789,18 @@ footer{
 }
 .ecjia-seller-comment .store-option dl.active {
 	color: #ff3434;
+}
+.store-comment .ecjia-nolist{
+	font-size:1em;
+	background-color:#FFFFFF;
+	padding-top:6em;
+}
+.store-comment .ecjia-nolist img{
+	width: 8em;
+	height: 8em;
+}
+.store-comment .ecjia-nolist .tags_list_font{
+	color:#999;
 }
 .ecjia-seller-comment .assess-flat {
     position: relative;

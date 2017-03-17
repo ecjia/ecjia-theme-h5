@@ -6,28 +6,28 @@ Description: 这是店铺及商品评论页面
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <div class="store-option">
-	<dl class="active">
+	<dl class="active" data-url="{$ajax_url}&action_type=all&status=toggle" data-type="all">
 		<dt>全部</dt>
-		<dd>(290)</dd>
+		<dd>({$comment_number.all})</dd>
 	</dl>
-	<dl>
+	<dl data-url="{$ajax_url}&action_type=good&status=toggle" data-type="good">
 		<dt>好评</dt>
-		<dd>(55)</dd>
+		<dd>({$comment_number.good})</dd>
 	</dl>
-	<dl>
+	<dl data-url="{$ajax_url}&action_type=general&status=toggle" data-type="general">
 		<dt>中评</dt>
-		<dd>(13)</dd>
+		<dd>({$comment_number.general})</dd>
 	</dl>
-	<dl>
+	<dl data-url="{$ajax_url}&action_type=low&status=toggle" data-type="low">
 		<dt>差评</dt>
-		<dd>(22)</dd>
+		<dd>({$comment_number.low})</dd>
 	</dl>
-	<dl>
+	<dl data-url="{$ajax_url}&action_type=picture&status=toggle" data-type="picture">
 		<dt>晒图</dt>
-		<dd>(4)</dd>
+		<dd>({$comment_number.picture})</dd>
 	</dl>
 </div>
-<div class="store-comment" {if $is_last neq 1}data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{$ajax_url}&type=ajax_get{if $store_id}&store_id={$store_id}{/if}" data-page="2"{/if}>
+<div class="store-comment" {if $is_last neq 1}data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{$ajax_url}&type=ajax_get{if $store_id}&store_id={$store_id}{/if}" data-page="2" data-type="all"{/if}>
 	{if $comment_list.list}
 	<!-- {foreach from=$comment_list.list item=list} -->
 	<div class="assess-flat">    
@@ -58,9 +58,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<!-- {/foreach} -->
 	{else}
-	<div class="ecjia-merchant-goods ecjia-nolist">
-		<p><img src="{$theme_url}images/no_comment.png"></p>
-		暂无商品评论
+	<div class="ecjia-nolist">
+		<img src="{$theme_url}images/no_comment.png">
+		<p class="tags_list_font">暂无商品评论</p>
 	</div>
 	{/if}
 </div>

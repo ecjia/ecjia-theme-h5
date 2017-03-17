@@ -579,7 +579,7 @@
         			
             		$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
             		var load_list = $('.store_goods_' + type).parent().find('.load-list');
-            		
+
             		if (load_list.length == 0 ) {
             			$('.store_goods_' + type).after($loader);
             		}
@@ -604,6 +604,55 @@
             			if (data.spec_goods) {
             				window.releated_goods = data.spec_goods;
             			}
+            		});
+        		}
+        	});
+        	
+        	$('.store-option dl').off('click').on('click', function() {
+        		var $this = $(this),
+        			url = $this.attr('data-url'),
+        			type = $this.attr('data-type');
+
+        		$('.store-comment').attr('id', 'store-comment-'+type);
+        		
+        		$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
+        		var load_list = $('#store-comment-'+type).parent().find('.load-list');
+        		if (load_list.length == 0 ) {
+        			$('#store-comment-'+type).after($loader);
+        		}
+        		
+        		if ($this.hasClass('active') || $this.hasClass('disabled')) {
+        			return false;
+        		} else {
+        			$this.addClass('active').siblings('dl').removeClass('active');
+        			$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');//加载动画
+        			$('.store-option dl').addClass('disabled');//禁止切换
+        			
+        			$.get(url, function(data) {
+        				$('.ecjia-seller-comment').find('[data-toggle="asynclist"]').html('');
+        				
+        				$('.la-ball-atom').remove();//移出加载动画
+        				$('.store-option dl').removeClass('disabled');//允许切换
+        				$('#store-comment-'+type).append(data.list);
+        				
+        	 			//商品详情评分
+        	            $('.score-goods').each(function() {
+        	                $(this).raty({
+        	                    readOnly : true,
+        	                    score : function() {
+        	                        return $(this).attr('data-val');
+        	                    },
+        	                });
+        	            });
+        	            
+        	            console.log(data.is_last);
+        				if (data.is_last == null) {
+        					$('#store-comment-'+type).attr('data-page', 2);
+        					ecjia.touch.asynclist();
+        				} else {
+        					load_list.addClass('is-last').css('display', 'none');
+        				}
+        				return false;
             		});
         		}
         	});

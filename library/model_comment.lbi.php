@@ -26,5 +26,10 @@
 		</div>    
 	</div>    
 </div>
-<!-- {/foreach} -->	
+<!-- {foreachelse} -->
+<div class="ecjia-nolist">
+	<img src="{$theme_url}images/no_comment.png">
+	<p class="tags_list_font">暂无商品评论</p>
+</div>
+<!-- {/foreach} -->
 <!-- {/block} -->
