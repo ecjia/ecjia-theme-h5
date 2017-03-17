@@ -83,8 +83,8 @@ class goods_controller {
 	    	'goods_id' => $goods_id,
 	    	'rec_type' => $rec_type,
 	    	'object_id'=> $object_id,
-	    	'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
-	    	'city_id'  => $_COOKIE['city_id']
+// 	    	'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+// 	    	'city_id'  => $_COOKIE['city_id']
 	    );
 	    /*商品基本信息*/
 	    $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($par)->run();
@@ -123,6 +123,8 @@ class goods_controller {
 		    		$cart_goods = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($options)->run();
 		    		if (!is_ecjia_error($cart_goods)) {
 		    			RC_Cache::app_cache_set('cart_goods'.$token.$goods_info['seller_id'].$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], $cart_goods, 'cart');
+		    		} else {
+		    			$cart_goods = array();
 		    		}
 		    	}
 			    		
