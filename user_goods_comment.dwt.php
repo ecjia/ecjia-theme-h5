@@ -55,31 +55,31 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             	<div class="push_photo" id="result0">
             	   <div class="push_result_img">
             	       <img src="{$theme_url}images/photograph.png">
-            	       <input type="file" class="push_img_btn" id="filechooser0" name="picture[]">
+            	       <input type="file" class="push_img_btn" id="filechooser0" name="picture[]" accept="image/*">
             	   </div>
             	</div>
             	<div class="push_photo" id="result1">
             	   <div class="push_result_img">
             	       <img src="{$theme_url}images/photograph.png">
-            	       <input type="file" class="push_img_btn" id="filechooser1" name="picture[]">
+            	       <input type="file" class="push_img_btn" id="filechooser1" name="picture[]" accept="image/*">
             	   </div>
             	</div>
             	<div class="push_photo" id="result2">
             	   <div class="push_result_img">
             	       <img src="{$theme_url}images/photograph.png">
-            	       <input type="file" class="push_img_btn" id="filechooser2" name="picture[]">
+            	       <input type="file" class="push_img_btn" id="filechooser2" name="picture[]" accept="image/*">
             	   </div>
             	</div>
             	<div class="push_photo" id="result3">
             	   <div class="push_result_img">
             	       <img src="{$theme_url}images/photograph.png">
-            	       <input type="file" class="push_img_btn" id="filechooser3" name="picture[]">
+            	       <input type="file" class="push_img_btn" id="filechooser3" name="picture[]" accept="image/*">
             	   </div>
             	</div>
             	<div class="push_photo" id="result4">
             	   <div class="push_result_img">
             	       <img src="{$theme_url}images/photograph.png">
-            	       <input type="file" class="push_img_btn" id="filechooser4" name="picture[]">
+            	       <input type="file" class="push_img_btn" id="filechooser4" name="picture[]" accept="image/*">
             	   </div>
             	</div>
                 <p class="push_img_fonz" >请上传图片 (最多5张)</p>
@@ -94,7 +94,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <label class="select-item">
         <li>
             <span class="ecjiaf-fr">
-                <div class="ecjia-anonymity-check {if $rec_info == 0}anonymity-check-checked{/if}" id="option_box"><input type="radio" name="anonymity" value="0" /><p>匿名评价</p></div>
+                <div class="ecjia-anonymity-check" id="option_box"><input type="radio" name="anonymity" value="0" /><p>匿名评价</p></div>
                 <input type="hidden" name="anonymity_status" value="0" />
                 <input type="hidden" value="{$goods.is_commented}" name=is_commented />
             </span>
