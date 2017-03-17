@@ -216,21 +216,33 @@ class merchant_controller {
 		}
 		ecjia_front::$controller->assign('referer_url', urlencode(RC_Uri::url('merchant/index/init', array('store_id' => $store_id))));
 		 
-		$info = array(
-			'store_id' 		=> $store_id,
-			'comment_type' 	=> 'all',
-			'pagination' 	=> array('count' => $limit, 'page' => $pages),
-		);
-		$comments = ecjia_touch_manager::make()->api(ecjia_touch_api::STORE_COMMENTS)->data($info)->hasPage()->run();
+		ecjia_front::$controller->assign('url', RC_Uri::url('merchant/index/init', array('store_id' => $store_id)));
 		
-		if (!is_ecjia_error($comments)) {
-	   		list($data, $page) = $comments;
-	   		if ($page['more'] == 0) $is_last = 1;
+		$status = !empty($_GET['status']) ? trim($_GET['status']) : '';
+		if ($status == 'comment') {
+			ecjia_front::$controller->assign('ajax_url', RC_Uri::url('merchant/index/ajax_store_comment', array('store_id' => $store_id)));
+			
+			//店铺评论
+			$info = array(
+				'store_id' 		=> $store_id,
+				'comment_type' 	=> 'all',
+				'pagination' 	=> array('count' => $limit, 'page' => $pages),
+			);
+			$comments = ecjia_touch_manager::make()->api(ecjia_touch_api::STORE_COMMENTS)->data($info)->hasPage()->run();
 
-	   		ecjia_front::$controller->assign('comment_list', $data);
-	   		ecjia_front::$controller->assign('comment_number', $data['comment_number']);
-	   	}
+			if (!is_ecjia_error($comments)) {
+				list($data, $page) = $comments;
+				if ($page['more'] == 0) $is_last = 1;
+			
+				ecjia_front::$controller->assign('comment_list', $data);
+				ecjia_front::$controller->assign('comment_number', $data['comment_number']);
+			}
+			
+			ecjia_front::$controller->display('merchant_comment.dwt');
+			return false;
+		}
 		
+		ecjia_front::$controller->assign('status', $status);
 	   	ecjia_front::$controller->assign('ajax_url', RC_Uri::url('merchant/index/ajax_store_comment', array('store_id' => $store_id)));
 		ecjia_front::$controller->display('merchant.dwt');
 	}

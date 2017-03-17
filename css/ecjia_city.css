@@ -6770,7 +6770,10 @@ footer{
 	height: .8em;
     background: #F7F7F7;
 }
-.ecjia-seller-comment .store-option {
+.goods-desc-info .store-comment-container .store-comment{
+	margin-top: 4.5em;
+}
+.goods-desc-info .store-option {
 	height: auto;
     overflow: hidden;
     border-bottom: 1px solid #eee;
@@ -6781,6 +6784,13 @@ footer{
     width: 100%;
     max-width: 640px;
     z-index: 2;
+}
+.ecjia-seller-comment .store-option {
+	height: auto;
+    overflow: hidden;
+    border-bottom: 1px solid #eee;
+	padding: .5em;
+	background: #fff;
 }
 .ecjia-seller-comment .store-option dl {
     float: left;

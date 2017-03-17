@@ -613,7 +613,7 @@
         		var $this = $(this),
         			url = $this.attr('data-url'),
         			type = $this.attr('data-type');
-        			
+        		
         		$('.load-list').remove();
         		$('.store-comment').attr('id', 'store-comment-'+type);
         		$('.ecjia-seller-comment').find('[data-toggle="asynclist"]').attr('data-type', type);
@@ -1209,7 +1209,13 @@
             });
         	
  			$('.ecjia-store-li').off('click').on('click', function() {
- 				var $this = $(this);
+ 				var $this = $(this),
+ 					url = $this.attr('data-url');
+
+ 				if (url != undefined) {
+ 					ecjia.pjax(url);
+ 					return false;
+ 				}
 
  				$this.children('span').addClass('active');
  				$this.siblings('li').children('span').removeClass('active');
