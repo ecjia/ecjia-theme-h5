@@ -24,6 +24,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					</div>
 					<div class="ecjiaf-fl goods-info">
 						<p class="ecjia-truncate2">{$goods.goods_name}</p>
+						<p class="ecjia-goods-attr2">{if $goods.attr}{$goods.attr}{/if}</p>
 						<p class="ecjia-color-red">{$goods.formated_goods_price}</p>
 					</div>
 					<span class="ecjiaf-fr goods-price"> x {$goods.goods_number}</span>

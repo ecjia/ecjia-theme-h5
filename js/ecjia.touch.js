@@ -221,6 +221,9 @@
 			options = $.extend({}, defaults, options),
 			scroll_list = function(){
 				if (!options.lock && ($(window).scrollTop() > $(document).height() - $(window).height() - options.offset)) {
+					if ($('.'+options.areaClass).parent().find('.is-last').length != 0) {
+						return false;
+					}
 					options.lock = true;
 					ecjia.touch.load_list(options);
 					options.page++;
@@ -259,7 +262,10 @@
 				size : options.size,
 				action_type : options.type
 			}, function(data){
-				if ($(options.areaSelect).hasClass(options.areaClass)) $(options.areaSelect).append(data.list);
+//				if ($(options.areaSelect).hasClass(options.areaClass)) $(options.areaSelect).append(data.list);
+                if ($(options.areaSelect).hasClass(options.areaClass)) {
+                    $('.'+options.areaClass).append(data.list);
+                }
 				options.lock = data.is_last;
 				$(options.trigger).hide();
 				if (data.is_last == 1) {

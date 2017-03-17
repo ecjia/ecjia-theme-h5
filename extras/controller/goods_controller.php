@@ -88,6 +88,7 @@ class goods_controller {
 	    );
 	    /*商品基本信息*/
 	    $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($par)->run();
+
 	    if (is_ecjia_error($goods_info)) {
 	    	ecjia_front::$controller->assign('no_goods_info', 1);
 	    } else {
@@ -99,6 +100,9 @@ class goods_controller {
 	    	$goods_info['spec_price'] = !empty($goods_info['unformatted_promote_price']) ? $goods_info['unformatted_promote_price'] : $goods_info['unformatted_shop_price'];
 	    	if (!empty($goods_info['specification'])) {
 	    		foreach ($goods_info['specification'] as $k => $v) {
+	    			if (empty($v['value'][0]['price'])) {
+	    				$v['value'][0]['price'] = 0;
+	    			}
 	    			$goods_info['spec_price'] += $v['value'][0]['price'];
 	    			$spec[] = $v['value'][0]['id'];
 	    		}
