@@ -133,12 +133,11 @@
 					path.remove();
 					var c_name = path[0].className;
 					var num = c_name.substr(c_name.length-1,1);
-					var result = "result" + num;
+					var result = "#result" + num;
 					var filechooser = "filechooser" + num;
 					$('.push_photo').hide();
-					document.getElementById(result).outerHTML += '';
-					document.getElementById(result).value = "";
-					$("#" + result).show();
+					document.getElementById(filechooser).value = "";
+					$(result).show();
 			    });
 			})
 		},

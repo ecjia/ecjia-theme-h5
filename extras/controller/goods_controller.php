@@ -260,7 +260,7 @@ class goods_controller {
 	   	
 	    ecjia_front::$controller->assign('ajax_url', RC_Uri::url('goods/index/show', array('goods_id' => $goods_id)));
 	    ecjia_front::$controller->assign('store_id', $goods_info['seller_id']);
-	    
+
 	    ecjia_front::$controller->assign_title('商品详情');
         ecjia_front::$controller->display('goods_show.dwt');
     }
@@ -287,7 +287,7 @@ class goods_controller {
         	'action_type' 	=> $type,	
  			'pagination' 	=> array('count' => $limit, 'page' => $pages),
 			'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
-			'city_id'  		=> $_COOKIE['city_id']
+            'city_id'       => $_COOKIE['city_id']
         );
         
         $response = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($paramater)->hasPage()->run();
@@ -335,7 +335,7 @@ class goods_controller {
     	$arr = array(
     		'pagination'	=> array('count' => $limit, 'page' => $pages),
     		'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
-    		'city_id'  		=> $_COOKIE['city_id']
+            'city_id'       => $_COOKIE['city_id']
     	);
     	
     	$arr_list = array();
@@ -354,7 +354,7 @@ class goods_controller {
     			$paramater = array(
     				'token' 	=> $token,
     				'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
-    				'city_id'   => $_COOKIE['city_id']
+                    'city_id'   => $_COOKIE['city_id']
     			);
     			if (!empty($store_id)) {
     				$paramater['seller_id'] = $store_id;
@@ -481,7 +481,7 @@ class goods_controller {
     		$arr = array(
     			'pagination'	=> array('count' => $limit, 'page' => $pages),
     			'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
-    			'city_id' 		=> $_COOKIE['city_id']
+                'city_id'       => $_COOKIE['city_id']
     		);
     		$arr['category_id'] = $cid;
     		
