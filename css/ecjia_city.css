@@ -6840,12 +6840,11 @@ footer{
 }
 .ecjia-seller-comment .assess-wrapper {
     display: block;
-	padding: 10px 0 10px 15px;
+	padding: 1em;
     background-color: #fff;
 }
 .ecjia-seller-comment .assess-top {
     position: relative;
-    padding: 0 10px 0 0;
     background-color: #fff;
 }
 .ecjia-seller-comment .assess-top:before {
