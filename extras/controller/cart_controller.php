@@ -281,7 +281,7 @@ class cart_controller {
     	//店铺购物车商品
     	$cart_list = RC_Cache::app_cache_get('cart_goods'.$token.$seller_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], 'cart');
 
-    	if (empty($cart_list)) {
+    	if (empty($cart_list['cart_list'])) {
     		$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
     		if (is_ecjia_error($cart_list)) {
     			return ecjia_front::$controller->showmessage($cart_list->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
