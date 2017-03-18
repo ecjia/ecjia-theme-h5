@@ -10,7 +10,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">
-	ecjia.touch.category.init();
+ecjia.touch.category.init();
+var releated_goods = {$releated_goods};
 </script>
 <!-- {/block} -->
 
@@ -91,8 +92,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</dl>
 			</a>
 			<div class="box" id="goods_{$val.id}">
-				<!-- {if $val.goods_attr} -->
-				<div class="goods_attr"><span class="choose_attr">选规格</span><i class="attr-number">1</i></div>
+				<!-- {if $val.specification} -->
+				<div class="goods_attr goods_spec_{$val.id}">
+					<span class="choose_attr spec_goods" rec_id="{$val.rec_id}" goods_id="{$val.id}" data-num="{$val.num}" data-spec="{$val.default_spec}" data-url="{RC_Uri::url('cart/index/check_spec')}&store_id={$val.store_id}">选规格</span>
+					{if $val.num}<i class="attr-number">{$val.num}</i>{/if}
+				</div>
 				<!-- {else} -->
 				<span class="reduce {if $val.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$val.rec_id}">减</span>
 				<label class="{if $val.num}show{else}hide{/if}">{$val.num}</label>
@@ -107,6 +111,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="ecjia-h48"></div>
 	{/if}
 </div>
+<!-- #BeginLibraryItem "/library/goods_attr_static_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- {else} -->
 <div class="ecjia-mod search-no-pro ecjia-margin-t ecjia-margin-b">
 	<div class="ecjia-nolist">
@@ -227,8 +232,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</dl>
 		</a>
 		<div class="box" id="goods_{$val.id}">
-			<!-- {if $val.goods_attr} -->
-			<div class="goods_attr"><span class="choose_attr">选规格</span><i class="attr-number">1</i></div>
+			<!-- {if $val.specification} -->
+			<div class="goods_attr goods_spec_{$val.id}">
+				<span class="choose_attr spec_goods" rec_id="{$val.rec_id}" goods_id="{$val.id}" data-num="{$val.num}" data-spec="{$val.default_spec}" data-url="{RC_Uri::url('cart/index/check_spec')}&store_id={$val.store_id}">选规格</span>
+				{if $val.num}<i class="attr-number">{$val.num}</i>{/if}
+			</div>
 			<!-- {else} -->
 			<span class="reduce {if $val.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$val.rec_id}">减11</span>
 			<label class="{if $val.num}show{else}hide{/if}">{$val.num}</label>

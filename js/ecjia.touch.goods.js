@@ -1366,9 +1366,9 @@
             	var height = ($('body').scrollTop() + 160) + 'px';
             	$(modal).show().css('top', height);
     			if (modal == '.ecjia-goodsAttr-modal') {
-					$('.ecjia-attr-static-overlay').show();
-				} else if (modal == '.ecjia-attr-static') {
 					$('.ecjia-goodsAttr-overlay').show();
+				} else if (modal == '.ecjia-attr-static') {
+					$('.ecjia-attr-static-overlay').show();
 				}    			
     			myApp.openModal(modal);
     			$('.modal-overlay').remove();
@@ -1376,9 +1376,9 @@
     			$('.ecjia-close-modal-icon').on('click', function(){
     				$(modal).hide();
         			if (modal == '.ecjia-goodsAttr-modal') {
-        				$('.ecjia-attr-static-overlay').hide();
-        			} else if (modal == '.ecjia-attr-static') {
         				$('.ecjia-goodsAttr-overlay').hide();
+        			} else if (modal == '.ecjia-attr-static') {
+        				$('.ecjia-attr-static-overlay').hide();
         			}
     				$('.ecjia-attr-modal').find('.add-tocart').removeClass('add_cart_'+goods_id);
     				$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
