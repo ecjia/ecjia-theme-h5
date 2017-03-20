@@ -21,6 +21,7 @@
 			ecjia.touch.category.check_goods();	//购物车列表 单选多选切换
 			ecjia.touch.category.cart_edit();	//购物车列表编辑
 			ecjia.touch.category.store_toggle();
+			ecjia.touch.category.promotion_scroll();
 			
 			//分类列表 点击分类切换 滚动到顶部
 			$('.category_left li').on('click', function(){
@@ -1491,11 +1492,10 @@
  				});
  			});
 		},
-	};
-	
-	ecjia.touch.store = {
-		scroll : function(){
+		
+		promotion_scroll : function(){
 			window.doscroll;
+			window.clearInterval(window.doscroll);
 			doscroll = window.setInterval(function(){
 			    var $parent = $('#promotion-scroll');
 			    var length = $parent.find('li.promotion').length;

@@ -623,7 +623,6 @@
 			ecjia.touch.asynclist();
 		}
         $('.la-ball-atom').remove();
-        window.clearInterval(doscroll);
         
 		//关闭menu
 		if ($('.ecjia-menu').hasClass('active')) {
