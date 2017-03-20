@@ -5255,10 +5255,6 @@ footer {
 	background-color: #FFFFFF;
 }
 
-.ecjia-seller-comment {
-	background: #F7F7F7;
-}
-
 #goods-info-two .ecjia-nav-new li.active {
 	border-bottom: none !important;
 }
@@ -8079,15 +8075,21 @@ footer {
 	color: #aaa;
 }
 /*店铺评分*/
-.ecjia-store-comment {
-
-}
-
 .ecjia-seller-comment {
     height: auto;
     overflow: hidden;
     clear: both;
-    background-color: #fff;
+    background-color: #f7f7f7;
+}
+
+.ecjia-store-comment .ecjia-seller-comment {
+    position: fixed;
+    top: 13.7em;
+    bottom: 0;
+    width: 100%;
+    max-width: 640px;
+    z-index: 8;
+    padding-bottom: 45px;
 }
 
 .comment-body {
