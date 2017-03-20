@@ -12,7 +12,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <script type="text/javascript">
 ecjia.touch.goods_detail.init();
 ecjia.touch.category.init();
-var releated_goods = {if $releated_goods neq ''}'{$releated_goods}'{else}''{/if};
+{if $releated_goods}
+var releated_goods = {$releated_goods};
+{/if}
 </script>
 <!-- {/block} -->
 
