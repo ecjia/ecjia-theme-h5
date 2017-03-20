@@ -4777,6 +4777,15 @@ footer {
 .ecjia-bonus {
 	height: auto;
 }
+.ecjia-bonus.bonus_explain {
+    padding-top: 4em;
+    width: 100%;
+}
+
+.ecjia-bonus.bonus_explain a{
+    float: right;
+    margin-right: 1em;
+}
 
 .ecjia-bonus-top-head {
 	border-bottom: 1px solid#eee;
@@ -4790,7 +4799,10 @@ footer {
 
 .ecjia-bonus-top-list {
 	padding-top: 3.5em;
-	;
+}
+
+.ecjia-bonus-top-im {
+	padding-top: 1em!important;
 }
 
 .ecjia-bonus-top-list li {
