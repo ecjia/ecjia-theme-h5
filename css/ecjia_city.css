@@ -8084,13 +8084,10 @@ footer {
 }
 
 .ecjia-seller-comment {
-    position: fixed;
-    top: 13.7em;
-    bottom: 0;
-    width: 100%;
-    max-width: 640px;
-    z-index: 8;
-    padding-bottom: 45px;
+    height: auto;
+    overflow: hidden;
+    clear: both;
+    background-color: #fff;
 }
 
 .comment-body {
