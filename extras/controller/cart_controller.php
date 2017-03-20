@@ -256,9 +256,7 @@ class cart_controller {
     
     public static function check_spec() {
     	if (!ecjia_touch_user::singleton()->isSignin()) {
-    		$url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
-    		$referer_url = RC_Uri::url('user/privilege/login', array('referer_url' => urlencode($url)));
-    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
     	}
     	
     	$spec = !empty($_POST['spec']) ? $_POST['spec'] : '';

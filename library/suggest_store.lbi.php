@@ -17,11 +17,11 @@
 						<span class="store-distance">{$val.distance}</span>
 					</div>
 					<div class="store-range">
-						<i class="iconfont icon-remind"></i>{$val.label_trade_time}
+						<i class="icon-shop-time"></i>{$val.label_trade_time}
 					</div>
-				<div class="store-notice">
-					<i class="iconfont icon-notification"></i>{$val.seller_notice}
-				</div>
+					<div class="store-notice">
+						<i class="icon-shop-notice"></i>{$val.seller_notice}
+					</div>
 					<!-- {if $val.favourable_list} -->
 					<ul class="store-promotion">
 						<!-- {foreach from=$val.favourable_list item=list} -->

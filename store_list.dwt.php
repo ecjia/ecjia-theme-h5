@@ -34,13 +34,15 @@ var releated_goods = {$releated_goods};
 						</div>
 						<div class="store-right">
 							<div class="store-title">
-							<span class="store-name">{$val.seller_name}</span>
-							{if $val.manage_mode eq 'self'}<span class="manage_mode">自营</span>{/if}</div>
+								<span class="store-name">{$val.seller_name}</span>
+								{if $val.manage_mode eq 'self'}<span class="manage_mode">自营</span>{/if}
+								{if $val.distance}<span class="store-distance">{$val.distance}</span>{/if}
+							</div>
 							<div class="store-range">
-								<i class="iconfont icon-remind"></i>{$val.label_trade_time}
-								{if $val.distance}
-								<span class="store-distance">{$val.distance}</span>
-								{/if}
+								<i class="icon-shop-time"></i>{$val.label_trade_time}
+							</div>
+							<div class="store-notice">
+								<i class="icon-shop-notice"></i>{$val.seller_notice}
 							</div>
 						</div>
 						<div class="clear"></div>

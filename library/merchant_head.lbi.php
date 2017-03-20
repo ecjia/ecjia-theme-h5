@@ -23,9 +23,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						{if $store_info.manage_mode}<span class="manage-mode">自营</span>{/if}
 					</div>
 					<div class="store-range">
-						<i class="iconfont icon-remind"></i>{$store_info.label_trade_time}
+						<i class="icon-shop-time"></i>{$store_info.label_trade_time}
 					</div>
-					<div class="store-description"><i class="iconfont icon-notification"></i>{$store_info.seller_notice}</div>
+					<div class="store-description"><i class="icon-shop-notice"></i>{$store_info.seller_notice}</div>
 				</div>
 			</div>
 		</li>
