@@ -144,7 +144,7 @@ var releated_goods = {$releated_goods};
 		            <div class="goods-option-con goods-num goods-option-con-new">
 		                <div class="ecjia-merchants-name">
 		                	{if $comment_list.list}
-		                	<span class="shop-title-name">商品评价</span>
+		                	<span class="shop-title-name">商品评价({$comment_number.all}人评价)</span>
 		                	<i class="iconfont icon-jiantou-right"></i>
 		                	<span class="comment_score">{$comment_list.comment_percent}好评</span>
 		                	{else}

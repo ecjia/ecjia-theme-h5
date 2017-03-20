@@ -3,7 +3,7 @@
 <div class="assess-flat">    
 	<div class="assess-wrapper">        
 		<div class="assess-top">            
-			<span class="user-portrait"><img src="{$list.avatar_img}"></span>           
+			<span class="user-portrait"><img src="{if $list.avatar_img}{$list.avatar_img}{else}{$theme_url}images/default_user.png{/if}"></span>           
 			<div class="user-right"> 
 				<span class="user-name">{$list.author}</span>     
 				<span class="assess-date">{$list.add_time}</span>
