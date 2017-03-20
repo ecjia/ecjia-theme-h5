@@ -1766,8 +1766,7 @@ footer {
 }
 
 .ecjia-store-seller {
-	position: fixed;
-	top: 13.7em;
+	margin-top: 13.7em;
 	bottom: 0;
 	width: 100%;
 	max-width: 640px;
