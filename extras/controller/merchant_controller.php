@@ -248,10 +248,10 @@ class merchant_controller {
 	}
 	
 	public static function ajax_store_comment() {
-    	$store_id 		= isset($_GET['store_id']) 		? $_GET['store_id'] 			: 0;
+    	$store_id 		= !empty($_GET['store_id']) 	? $_GET['store_id'] 			: 0;
     	$limit 			= intval($_GET['size']) > 0 	? intval($_GET['size']) 		: 10;
     	$pages 			= intval($_GET['page']) 		? intval($_GET['page']) 		: 1;
-    	$comment_type 	= isset($_GET['action_type']) 	? trim($_GET['action_type']) 	: 'all';
+    	$comment_type 	= !empty($_GET['action_type']) 	? $_GET['action_type'] 			: 'all';
     	
     	$info = array(
     		'store_id' 		=> $store_id,
@@ -266,11 +266,8 @@ class merchant_controller {
     	
     		ecjia_front::$controller->assign('comment_list', $data);
     		ecjia_front::$controller->assign('comment_number', $data['comment_number']);
-    		 
-    		$type = isset($_GET['type']) ? $_GET['type'] : '';//判断是否是下滑加载
-    		ecjia_front::$controller->assign('comment_list', $data);
-    		$say_list = ecjia_front::$controller->fetch('library/model_comment.lbi');
     		
+    		$say_list = ecjia_front::$controller->fetch('library/model_comment.lbi');
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
     	} else {
     		return ecjia_front::$controller->showmessage($comments->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
