@@ -200,7 +200,7 @@ class user_order_controller {
         $goods_data = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
         $goods = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDERS_COMMENT)->data($goods_data)->run();
         $goods_list = is_ecjia_error($goods) ? array() : $goods;
-        
+
         ecjia_front::$controller->assign('order_id', $order_id);
         ecjia_front::$controller->assign('goods_list', $goods_list['comment_order_list']);
         ecjia_front::$controller->assign_lang();
@@ -215,21 +215,29 @@ class user_order_controller {
         $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
 
         //获取商品信息
-        $goods_data = array('token' => ecjia_touch_user::singleton()->getToken(), 'goods_id' => $goods_id);
-        $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($goods_data)->run();
-        $goods_info = is_ecjia_error($goods_info) ? array() : $goods_info;
+        $goods_data = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
+        $goods = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDERS_COMMENT)->data($goods_data)->run();
+        $goods_list = is_ecjia_error($goods) ? array() : $goods;
         $goods_info['rec_id'] = isset($_GET['rec_id']) ? intval($_GET['rec_id']) : 0;
         $goods_info['is_commented'] = isset($_GET['is_commented']) ? intval($_GET['is_commented']) : 0;
         $goods_info['is_showorder'] = isset($_GET['is_showorder']) ? intval($_GET['is_showorder']) : 0;
+        foreach ($goods_list['comment_order_list'] as $key => $val){
+            if (is_array($val)) {
+                foreach ($val as $k => $v) {
+                    if ($k == 'rec_id' && $v == $goods_info['rec_id']) {
+                        $goods_info = $val;
+                    }
+                }
+            }
+        }
         //rec_id返回的信息
-
         if ($goods_info['is_commented'] == 1) {
             $rec_data = array('token' => ecjia_touch_user::singleton()->getToken(), 'rec_id' => $goods_info['rec_id']);
             $rec_id = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDERS_COMMENT_DETAIL)->data($rec_data)->run();
             $rec_info = is_ecjia_error($rec_id) ? array() : $rec_id;
             ecjia_front::$controller->assign('rec_info', $rec_info);
         }
-        
+    
         ecjia_front::$controller->assign('order_id', $order_id);
         ecjia_front::$controller->assign('goods', $goods_info);
         ecjia_front::$controller->assign_lang();

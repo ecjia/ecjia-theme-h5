@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     				<div class="comment_list_attr">
         				<span class="ecjiaf-fl cmt-goods-name">{$goods.goods_name}</span>
         				<p class="ecjiaf-fl cmt-goods-attribute">
-        				<!-- {foreach from=$rec_info.goods_attr item=attr} -->
+        				<!-- {foreach from=$goods.goods_attr item=attr} -->
     					{if $attr.name}{$attr.name}:{$attr.value}{/if}
     				    <!-- {/foreach} -->
     				    </p>
@@ -35,7 +35,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         			</div>	
     			</li>
     		</ul>
-    		
     		<input type="hidden" value="{$rec_info.comment_goods}" name="comment_goods" />
     		<div class="star"><span>评分<span></div>
     		<div class="input">
@@ -61,31 +60,31 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             	<div class="push_photo" id="result0">
             	   <div class="push_result_img">
             	       <img src="{$theme_url}images/photograph.png">
-            	       <input type="file" class="push_img_btn" id="filechooser0" name="picture[]" accept="image/*">
+            	       <input type="file" class="push_img_btn" id="filechooser0" name="picture[]" accept="image/jpeg,image/jpg,image/png,image/bmp,image/gif">
             	   </div>
             	</div>
             	<div class="push_photo" id="result1">
             	   <div class="push_result_img">
             	       <img src="{$theme_url}images/photograph.png">
-            	       <input type="file" class="push_img_btn" id="filechooser1" name="picture[]" accept="image/*">
+            	       <input type="file" class="push_img_btn" id="filechooser1" name="picture[]" accept="image/jpeg,image/jpg,image/png,image/bmp,image/gif">
             	   </div>
             	</div>
             	<div class="push_photo" id="result2">
             	   <div class="push_result_img">
             	       <img src="{$theme_url}images/photograph.png">
-            	       <input type="file" class="push_img_btn" id="filechooser2" name="picture[]" accept="image/*">
+            	       <input type="file" class="push_img_btn" id="filechooser2" name="picture[]" accept="image/jpeg,image/jpg,image/png,image/bmp,image/gif">
             	   </div>
             	</div>
             	<div class="push_photo" id="result3">
             	   <div class="push_result_img">
             	       <img src="{$theme_url}images/photograph.png">
-            	       <input type="file" class="push_img_btn" id="filechooser3" name="picture[]" accept="image/*">
+            	       <input type="file" class="push_img_btn" id="filechooser3" name="picture[]" accept="image/jpeg,image/jpg,image/png,image/bmp,image/gif">
             	   </div>
             	</div>
             	<div class="push_photo" id="result4">
             	   <div class="push_result_img">
             	       <img src="{$theme_url}images/photograph.png">
-            	       <input type="file" class="push_img_btn" id="filechooser4" name="picture[]" accept="image/*">
+            	       <input type="file" class="push_img_btn" id="filechooser4" name="picture[]" accept="image/jpeg,image/jpg,image/png,image/bmp,image/gif">
             	   </div>
             	</div>
                 <p class="push_img_fonz" >请上传图片 (最多5张)</p>
