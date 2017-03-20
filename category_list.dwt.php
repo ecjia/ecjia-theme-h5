@@ -32,7 +32,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			            <div class="hd">
 			                <h5>
 			                    <span class="line"></span>
-			                    <span class="goods-index-title">{$val.name}</span>
+			                    <a href="{RC_Uri::url('goods/category/store_list')}&cid={$val.id}">
+			                    	<span class="goods-index-title"><span class="point"></span>{$val.name}<span class="iconfont icon-jiantou-right"></span></span>
+			                    </a>
 			                </h5>
 			            </div>
 			            <ul class="ecjia-margin-t">

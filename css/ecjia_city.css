@@ -1523,6 +1523,7 @@ footer {
 
 .category .category_left li.active a {
 	color: #47aa4d;
+	height: 4em;
 }
 
 .category .category_right {
@@ -6935,10 +6936,11 @@ footer {
 
 .ecjia-category-list .hd h5 {
 	padding-left: 0;
-	text-align: center;
-	line-height: .1em;
-	font-weight: 400;
-	font-size: 1em;
+    line-height: .1em;
+    font-weight: 400;
+    font-size: 1em;
+    padding-left: -0.5em;
+    position: relative;
 }
 
 .ecjia-category-list .line {
@@ -6947,12 +6949,38 @@ footer {
 	display: block;
 	padding-top: 1em;
 	margin: 0 auto;
-	border-bottom: 1px solid #eee;
+	/* border-bottom: 1px solid #eee; */
+}
+.ecjia-category-list .point {
+	content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 7px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    vertical-align: 1px;
+	background-color: #47aa4d;
+}
+.ecjia-category-list .iconfont.icon-jiantou-right {
+	top: -1px;
+    margin-left: 1.5em;
+    color: #777;
 }
 
 .ecjia-category-list .goods-index-title {
-	padding: 0 1em;
-	background-color: #FFFFFF;
+	padding: 0 .2em;
+    background-color: #FFFFFF;
+    text-align: center;
+    position: absolute;
+    background: #fff;
+    width: auto;
+    display: block;
+    height: 2em;
+    top: 0em;
+    /* left: 1em; */
+    vertical-align: middle;
+    line-height: 2em;
 }
 
 /*========================  底部导航 ===========================*/
