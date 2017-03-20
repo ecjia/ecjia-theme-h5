@@ -1309,7 +1309,9 @@
             $('.score-val').raty({
             	readOnly : true,
             	score : function() {
-            		return $(this).attr('data-val') * 5;
+            		if ($('.score-val').find('img').length == 0) {
+            			return $(this).attr('data-val') * 5;
+            		}
             	},
             });
 

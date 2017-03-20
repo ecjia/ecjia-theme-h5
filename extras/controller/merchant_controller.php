@@ -259,7 +259,7 @@ class merchant_controller {
     		'pagination' 	=> array('count' => $limit, 'page' => $pages)
     	);
     	$comments = ecjia_touch_manager::make()->api(ecjia_touch_api::STORE_COMMENTS)->data($info)->hasPage()->run();
-
+    	
     	if (!is_ecjia_error($comments)) {
     		list($data, $page) = $comments;
     		if ($page['more'] == 0) $is_last = 1;
