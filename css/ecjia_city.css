@@ -1261,11 +1261,7 @@ ul, li, ol, dl, dt, dd {
 	position: relative;
 }
 
-.ecjia-promotion-model .swiper-slide .list-page-goods-img .goods-img img {
-	height: 11em;
-}
-
-.ecjia-promotion-model a.list-page-goods-img .goods-name {
+.ecjia-promotion-model a.list-page-goods-img .goods-name, .ecjia-new-model a.list-page-goods-img .goods-name {
 	height: 1.6em;
 	line-height: 1.5em;
 	margin-top: .5em;
@@ -1285,14 +1281,14 @@ ul, li, ol, dl, dt, dd {
 	top: .1em;
 }
 
-.ecjia-promotion-model .list-page-box .list-page-goods-price {
+.ecjia-promotion-model .list-page-box .list-page-goods-price, .ecjia-new-model .list-page-box .list-page-goods-price {
 	overflow: hidden;
 	display: block;
 	padding: .2em 0 .5em .5em;
 	text-align: left;
 }
 
-.ecjia-promotion-model .list-page-goods-price span {
+.ecjia-promotion-model .list-page-goods-price span, .ecjia-new-model .list-page-goods-price span {
 	color: #ff3434;
 	font-size: 1.1em;
 }
