@@ -8525,7 +8525,8 @@ footer {
 	display: block;
 	margin: .2em;
 	font-size: .9em;
-	width: 30%;
+	min-width: 30%;
+	width: auto;
 	text-align: center;
 }
 
