@@ -1767,7 +1767,7 @@ footer {
 }
 
 .ecjia-store-seller {
-	position: fixed;
+	position: absolute;
     top: 14em;
 	bottom: 0;
 	width: 100%;
@@ -1822,7 +1822,7 @@ footer {
 
 .ecjia-store-seller i.icon-call-phone {
 	background-image: url(../images/icon/icon_phone_green.png);
-	background-size: 1.8em;
+	background-size: 1.6em;
 	margin-top: .1em;
 }
 
