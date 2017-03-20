@@ -1819,6 +1819,12 @@ footer {
     background-image: url(../images/icon/business_hours.png);
 }
 
+.ecjia-store-seller i.icon-call-phone {
+	background-image: url(../images/icon/icon_phone_green.png);
+	background-size: 1.8em;
+	margin-top: .1em;
+}
+
 .ecjia-store-seller .store-tel p.tel-result {
 	position: relative;
 	margin-left: 8em;
