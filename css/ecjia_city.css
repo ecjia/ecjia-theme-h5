@@ -3363,13 +3363,9 @@ footer {
 	height: auto;
 }
 
-.ecjia .ecjia-checkout .flow-goods-list .goods-list .goods_attr {
-	width: 100%;
-	margin-top: 1em;
-}
-
-.ecjia .ecjia-checkout .flow-goods-list .goods-list li.goods_attr:first-child {
-	margin-top: 0;
+.ecjia .ecjia-checkout .flow-goods-list .goods_attr_list {
+	padding-left: .5em;
+	overflow: hidden;
 }
 
 .ecjia .ecjia-checkout .flow-goods-list .goods-list .ecjia-icon.goods_attr .ecjia-icon-num {
@@ -5868,7 +5864,6 @@ footer {
 	max-height: 3em;
 	line-height: 1.5em;
 	transform: translateY(-50%);
-	padding-left: 6em;
 }
 
 .ecjia-checkout .goods_attr_ul .goods-name {

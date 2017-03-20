@@ -55,17 +55,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<li class="goods-img ecjiaf-fl ecjia-margin-r ecjia-icon {if $list.goods_list|@count gt 1}goods_attr{/if}">
 					<img class="ecjiaf-fl" src="{$goods.img.thumb}" alt="{$goods.name}" title="{$goods.name}" />
 					{if $goods.goods_number gt 1}<span class="ecjia-icon-num top">{$goods.goods_number}</span>{/if}
-					{if $goods.goods_attr}
-					<div class="order_list_attr_div">
-    					<p class="ecjiaf-fl goods-name">{$goods.name}</p>
+					{if $list.goods_list|@count eq 1}
+					<div class="goods_attr_list">
+						<p class="ecjiaf-fl goods-name">{$goods.name}</p>
+						{if $goods.goods_attr}
     					<div class="order_list_attr">
     						<!-- {foreach from=$goods.goods_attr item=attr} -->
     					   	{if $attr.name}{$attr.name}:{$attr.value}{/if}
     						<!-- {/foreach} -->
     					</div>
-					</div>  
-					{else}
-					<span class="ecjiaf-fl goods-name ecjia-truncate2">{$goods.name}</span>
+    					{/if}
+    				</div>
 					{/if}
 				</li>
 				<!-- {/foreach} -->
