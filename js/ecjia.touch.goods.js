@@ -1322,6 +1322,8 @@
 	 	 	 		        			          {
 	 	 	 		        			            text: '取消',
 	 	 	 		        			            onClick: function() {
+	 	 	 		        			            	$('.modal').remove();
+	 	 	 		        			            	$('.modal-overlay').remove();
 	 	 	 		        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});//启用滚动条
 	 	 	 		        			            	$('body').css('overflow-y', 'auto').off("touchmove");//启用滚动条
 	 	 	 		        			            	return false;
@@ -1330,6 +1332,8 @@
 	 	 	 		        			          {
 	 	 	 		        			            text: '去登录',
 	 	 	 		        			            onClick: function() {
+	 	 	 		        			            	$('.modal').remove();
+	 	 	 		        			            	$('.modal-overlay').remove();
 	 	 	 		        			            	$(".ecjia-store-goods .a1n .a1x").css({overflow:"auto"});	//启用滚动条
 	 	 	 		        			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
 	 	 	 		        			            	location.href = data.referer_url;

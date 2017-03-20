@@ -957,10 +957,6 @@ ul, li, ol, dl, dt, dd {
 	list-style: outside none none;
 }
 
-
-
-
-
 /*搜索*/
 .focus {
 	margin-top: 5.4em;
@@ -1624,7 +1620,7 @@ footer {
 .ecjia-store-brief .store-right {
 	float: left;
 	width: 70%;
-	margin-top: 2em;
+	margin-top: 2.5em;
 	text-align: left;
 	margin-left: 1em;
 	font-size: 1em;
@@ -1633,8 +1629,8 @@ footer {
 .ecjia-store-brief .store-title {
 	font-weight: normal;
 	position: relative;
-	line-height: 35px;
-	height: 35px;
+	line-height: 25px;
+	height: 25px;
 }
 
 .ecjia-store-brief .store-title .store-name {
@@ -1668,10 +1664,13 @@ footer {
 	line-height: 1.5em;
 }
 
-.ecjia-store-brief .store-range i {
-	font-size: 1.1em;
-	padding-right: .3em;
-	top: 0;
+.ecjia-store-brief i.icon-shop-time {
+	background: url(../images/icon/business_hours_white.png);
+	width: 1.5em;
+    height: 1.3em;
+    background-size: 1.3em;
+    background-repeat: no-repeat;
+    float: left;
 }
 
 .ecjia-store-brief .store-description {
@@ -1682,10 +1681,13 @@ footer {
 	white-space: nowrap;
 }
 
-.ecjia-store-brief .store-description i {
-	font-size: 1.1em;
-	padding-right: .3em;
-	top: 0;
+.ecjia-store-brief i.icon-shop-notice {
+	background: url(../images/icon/shop_notice_white.png);
+	width: 1.5em;
+    height: 1.3em;
+    background-size: 1.3em;
+    background-repeat: no-repeat;
+    float: left;
 }
 
 .ecjia-store-brief .store-distance {
@@ -1774,9 +1776,28 @@ footer {
 	line-height: 2em;
 }
 
-.ecjia-store-seller i.iconfont {
-	font-size: 1.5em;
-	margin-right: .5em;
+.ecjia-store-seller i {
+	width: 1.8em;
+    height: 1.8em;
+    background-size: 1.5em;
+    background-repeat: no-repeat;
+    float: left;
+    margin-top: .2em;
+}
+.ecjia-store-seller i.icon-shop-phone {
+    background-image: url(../images/icon/icon_phone.png);
+}
+
+.ecjia-store-seller i.icon-shop-buliding {
+    background-image: url(../images/icon/icon_buliding.png);
+}
+
+.ecjia-store-seller i.icon-shop-location {
+    background-image: url(../images/icon/icon_position.png);
+}
+
+.ecjia-store-seller i.icon-shop-time {
+    background-image: url(../images/icon/business_hours.png);
 }
 
 .ecjia-store-seller .store-tel p.tel-result {
@@ -6527,11 +6548,11 @@ footer {
 }
 
 .ecjia-store-list .store-info .store-promotion {
-	margin-bottom: .5em;
+	margin-bottom: .3em;
 }
 
 .ecjia-store-list .store-info .store-promotion li {
-	padding-bottom: .5em;
+	padding-bottom: .3em;
 	margin-left: 10px;
 }
 
@@ -6548,12 +6569,12 @@ footer {
 .ecjia-store-list .store-info .store-promotion .promotion-name {
 	font-size: .9em;
 	padding-left: .5em;
-	color: #333;
+	color: #777;
 }
 
 .ecjia-store-list .store-info .basic-info {
 	height: auto;
-	padding: .8em .2em;
+	padding: .5em .2em .3em .2em;
 }
 
 .ecjia-store-list .store-left {
@@ -6581,8 +6602,8 @@ footer {
 	color: #555;
 	font-size: 1.1em;
 	font-weight: normal;
-	line-height: 35px;
-	height: 35px;
+	line-height: 25px;
+	height: 25px;
 }
 
 .ecjia-store-list .store-title .manage_mode {
@@ -6597,15 +6618,38 @@ footer {
 	padding: 2px;
 }
 
-.ecjia-store-list .store-range i {
-	top: 0;
-	font-size: 1.3em;
-	padding-right: .3em;
+.ecjia-store-list i.icon-shop-time {
+	background: url(../images/icon/business_hours.png);
+	width: 1.5em;
+    height: 1.3em;
+    background-size: 1.3em;
+    background-repeat: no-repeat;
+    float: left;
+    margin-top: .1em;
 }
 
 .ecjia-store-list .store-range {
-	line-height: 2em;
-	color: #aaa;
+	line-height: 1.5em;
+	color: #777;
+}
+.ecjia-store-list .store-notice {
+    line-height: 1.5em;
+    color: #777;
+    margin-bottom: .3em;
+    height: 1.8em;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ecjia-store-list i.icon-shop-notice {
+    background: url(../images/icon/shop_notice.png);
+    width: 1.5em;
+    height: 1.3em;
+    background-size: 1.3em;
+    background-repeat: no-repeat;
+    float: left;
+    margin-top: .1em;
 }
 
 .ecjia-store-list .store-distance {
@@ -6613,10 +6657,6 @@ footer {
 	color: #555;
 	font-size: 1em;
 	font-weight: normal;
-}
-
-.ecjia-store-list .store-promotion li {
-	padding-bottom: .5em;
 }
 
 .ecjia-store-list .store-promotion .promotion-label {
@@ -8282,7 +8322,7 @@ footer {
 .ecjia-suggest-store .store-info .store-promotion .promotion-name {
 	font-size: .9em;
 	padding-left: .5em;
-	color: #333;
+	color: #777;
 }
 
 .ecjia-suggest-store .store-info .basic-info {
@@ -8299,8 +8339,8 @@ footer {
 
 .ecjia-suggest-store .store-left img {
 	width: 100%;
-	max-width: 5em;
-	height: 5em;
+	max-width: 4.5em;
+	height: 4.5em;
 	border-radius: 50%;
 	border: 2px solid #47aa4d;
 }
@@ -8334,23 +8374,37 @@ footer {
 	padding: 2px;
 }
 
-.ecjia-suggest-store i {
-	top: 0;
-	font-size: 1.3em;
-	padding-right: .3em;
+.ecjia-suggest-store i.icon-shop-time {
+	background: url(../images/icon/business_hours.png);
+	width: 1.5em;
+    height: 1.3em;
+    background-size: 1.3em;
+    background-repeat: no-repeat;
+    float: left;
+    margin-top: .1em;
+}
+
+.ecjia-suggest-store i.icon-shop-notice {
+	background: url(../images/icon/shop_notice.png);
+	width: 1.5em;
+    height: 1.3em;
+    background-size: 1.3em;
+    background-repeat: no-repeat;
+    float: left;
+	margin-top: .1em;
 }
 
 .ecjia-suggest-store .store-range {
-	line-height: 2em;
-	color: #aaa;
+	line-height: 1.5em;
+	color: #777;
 }
 
 .ecjia-suggest-store .store-notice {
-	line-height: 1em;
-	color: #aaa;
+	line-height: 1.5em;
+	color: #777;
 	border-bottom: 1px dashed #eee;
-	margin-bottom: .5em;
-	height: 2em;
+	margin-bottom: .3em;
+	height: 1.8em;
 	white-space: nowrap;
 	position: relative;
 	overflow: hidden;

@@ -40,21 +40,21 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	{/if}
 	<div class="store-hr"></div>
 	<div class="store-tel">
-		<span class="tel-name"><i class="iconfont icon-phone"></i>商家电话</span>
+		<span class="tel-name"><i class="icon-shop-phone"></i>商家电话</span>
 		<p class="tel-result">{if $store_info.telephone}{$store_info.telephone}<a href="tel:{$store_info.telephone}"><i class="iconfont icon-phone"></i></a>{else}暂无{/if}</p>
 	</div>
 	<div class="store-hr"></div>
 	<ul class="store-other-info">
 		<li>
-			<span class="other-info-name"><i class="iconfont icon-rank"></i>公司名称</span>
+			<span class="other-info-name"><i class="icon-shop-buliding"></i>公司名称</span>
 			<p class="other-info-result">{if $store_info.shop_name}{$store_info.shop_name}{else}暂无{/if}</p>
 		</li>
 		<li>
-			<span class="other-info-name"><i class="iconfont icon-location"></i>所在地区</span>
+			<span class="other-info-name"><i class="icon-shop-location"></i>所在地区</span>
 			<p class="other-info-result">{if $store_info.shop_address}{$store_info.shop_address}{else}暂无{/if}</p>
 		</li>
 		<li>
-			<span class="other-info-name"><i class="iconfont icon-remind"></i>营业时间</span>
+			<span class="other-info-name"><i class="icon-shop-time"></i>营业时间</span>
 			<p class="other-info-result">{if $store_info.label_trade_time}{$store_info.label_trade_time}{else}暂无{/if}</p>
 		</li>
 	</ul>
