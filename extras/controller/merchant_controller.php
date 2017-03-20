@@ -272,6 +272,8 @@ class merchant_controller {
     		$say_list = ecjia_front::$controller->fetch('library/model_comment.lbi');
     		
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+    	} else {
+    		return ecjia_front::$controller->showmessage($comments->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
 	}
 	
@@ -391,6 +393,8 @@ class merchant_controller {
 			$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
 			if (!is_ecjia_error($cart_list)) {
 				RC_Cache::app_cache_set('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'], 'cart');
+			} else {
+				$cart_list = array();
 			}
 		}
 		
