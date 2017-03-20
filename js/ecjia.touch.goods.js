@@ -1494,12 +1494,9 @@
 	};
 	
 	ecjia.touch.store = {
-		init : function(){
-			ecjia.touch.store.store_toggle();
-		},
-		store_toggle : function(){
-			var doscroll;
- 			doscroll = setInterval(function(){
+		scroll : function(){
+			window.doscroll;
+			doscroll = window.setInterval(function(){
 			    var $parent = $('#promotion-scroll');
 			    var length = $parent.find('li.promotion').length;
 			    if (length > 1) {
@@ -1508,7 +1505,7 @@
 				   	$first.animate({
 				       	marginTop: -height + 'px'
 				      	}, 600, function() {
-				      	$first.css('marginTop', 0).appendTo($parent);
+				      	$first.css('margin-top', 0).appendTo($parent);
 				   	});
 			    }
 			}, 3000);
