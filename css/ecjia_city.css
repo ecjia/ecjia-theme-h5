@@ -1540,7 +1540,7 @@ footer {
 	max-width: 640px;
 }
 
-.page_hearer_hide {
+.page_hearder_hide {
 	display: none;
 }
 
@@ -1766,7 +1766,8 @@ footer {
 }
 
 .ecjia-store-seller {
-	margin-top: 13.7em;
+	position: fixed;
+    top: 14em;
 	bottom: 0;
 	width: 100%;
 	max-width: 640px;
@@ -5277,7 +5278,6 @@ footer {
 
 #goods-info-three {
 	display: none;
-	background-color: #fff;
 	position: relative;
 }
 
@@ -8080,26 +8080,48 @@ footer {
 }
 /*店铺评分*/
 .ecjia-store-comment {
-	position: absolute;
-	top: 13.7em;
-	bottom: 0;
-	width: 100%;
-	max-width: 640px;
-	z-index: 1;
+
 }
 
 .ecjia-seller-comment {
-	height: auto;
-	overflow: hidden;
-	clear: both;
-	background-color: #fff;
+    position: fixed;
+    top: 13.7em;
+    bottom: 0;
+    width: 100%;
+    max-width: 640px;
+    z-index: 8;
+    padding-bottom: 45px;
 }
 
+.comment-body {
+	position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 2px solid #eee;
+}
+.ecjia-store-comment .store-header-title {
+	line-height: 2em;
+    color: #47b34f;
+    background-color: #f4f4f4;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 11;
+    text-overflow: ellipsis;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 7.5em;
+	color: #555;
+}
 .ecjia-store-comment .store-score {
 	height: auto;
 	overflow: hidden;
 	border-bottom: 1px solid #eee;
 	padding: .5em 1em;
+	background-color: #fff;
 }
 
 .ecjia-store-comment .store-score .score-name {
@@ -8115,8 +8137,29 @@ footer {
 	background: #F7F7F7;
 }
 
-.goods-desc-info .store-comment-container .store-comment {
-	margin-top: 4.5em;
+.store-header-top {
+	height: 7em;
+	position: relative;
+}
+.ecjia-store-comment .store-container {
+    position: absolute;
+    top: 8em;
+    bottom: 2em;
+    left: 0;
+    right: 0;
+    padding-top: 0;
+    z-index: 10;
+    background-color: #FFF;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+	padding-bottom: 7em;
+}
+
+.ecjia-store-comment .store-comment-container {
+    padding-bottom: 20px;
+    background: #fff;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .goods-desc-info .store-option {

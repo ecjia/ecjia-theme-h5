@@ -237,6 +237,9 @@
 				$('.wd').scroll(function(){
 					scroll_list();
 				});
+				$('.store-container').scroll(function(){
+					scroll_list();
+				});
 			} else {
 				var add_more_btn = '<button id="load_more_btn" class="btn btn-default btn-lg">点击加载更多</button>';
 				$('[data-flag="add_load_more_btn"]').after(add_more_btn);

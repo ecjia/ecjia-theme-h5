@@ -615,6 +615,8 @@
         	});
         	
         	$('.store-option dl').off('click').on('click', function() {
+        		$('.store-container').scrollTop(0);
+        		
         		var $this = $(this),
         			url = $this.attr('data-url'),
         			type = $this.attr('data-type');
@@ -689,7 +691,51 @@
                     	ecjia.touch.category.scroll_show_hide(true); 
                     }
                 });
-        	}
+        	};
+        	
+        	var comment_body = document.getElementById('store-scroll');
+        	if (comment_body != null) {
+                //滑动处理
+                var startX, startY, moveEndX, moveEndY, X, Y;   
+                comment_body.addEventListener('touchstart', function(e) {
+                    startX = e.touches[0].pageX;
+                    startY = e.touches[0].pageY;
+                });
+                comment_body.addEventListener('touchmove', function(e) {
+                	var top = $('#store-comment').find('div.assess-flat:eq(0)').position().top;
+                	moveEndX = e.changedTouches[0].pageX;
+                    moveEndY = e.changedTouches[0].pageY;
+                    X = moveEndX - startX;
+                    Y = moveEndY - startY;
+                    if (Y > 0 && top == 0) {
+                    	ecjia.touch.category.scroll_show_hide(false);
+                    } else if (Y < 0) {
+                    	ecjia.touch.category.scroll_show_hide(true); 
+                    }
+                });
+        	};
+        	
+        	var store_seller = document.getElementById('store-seller');
+        	if (store_seller != null) {
+                //滑动处理
+                var startX, startY, moveEndX, moveEndY, X, Y;   
+                store_seller.addEventListener('touchstart', function(e) {
+                    startX = e.touches[0].pageX;
+                    startY = e.touches[0].pageY;
+                });
+                store_seller.addEventListener('touchmove', function(e) {
+                	var top = $('#store-seller').find('div:first').position().top;
+                	moveEndX = e.changedTouches[0].pageX;
+                    moveEndY = e.changedTouches[0].pageY;
+                    X = moveEndX - startX;
+                    Y = moveEndY - startY;
+                    if (Y > 0) {
+                    	ecjia.touch.category.scroll_show_hide(false);
+                    } else if (Y < 0) {
+                    	ecjia.touch.category.scroll_show_hide(true); 
+                    }
+                });
+        	};
         },
         
         scroll_show_hide : function(e, h) {
@@ -697,12 +743,22 @@
         		$('.ecjia-store-banner').hide();
     			$('.ecjia-store-brief').hide();
     			$('.ecjia-store-goods').children('.a1n').css('top', '3.5em');
-    			$('.page_hearer_hide').show();
+    			$('.page_hearder_hide').show();
+    			
+    			//店铺评论
+    			$('.ecjia-store-ul').css('top', '3.5em');
+    			$('.ecjia-seller-comment').css('top', '7em');
+    			$('.ecjia-store-seller').css('top', '7em');
         	} else {
         		$('.ecjia-store-banner').show();
     			$('.ecjia-store-brief').show();
     			$('.ecjia-store-goods').children('.a1n').css('top', '13.7em');
-    			$('.page_hearer_hide').hide();
+    			$('.page_hearder_hide').hide();
+    			
+    			//店铺评论
+    			$('.ecjia-store-ul').css('top', '9.5em');
+    			$('.ecjia-seller-comment').css('top', '13.7em');
+    			$('.ecjia-store-seller').css('top', '14em');
         	}
         },
         

@@ -246,6 +246,7 @@ class goods_controller {
 	   		if ($page['more'] == 0) $is_last = 1;
 
 	   		ecjia_front::$controller->assign('comment_list', $data);
+	   		ecjia_front::$controller->assign('is_last', $is_last);
 	   		ecjia_front::$controller->assign('comment_number', $data['comment_number']);
 	   	}
 	   	
