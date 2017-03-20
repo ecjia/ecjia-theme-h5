@@ -380,14 +380,18 @@
     					if (isNaN(n)) n = 1;
         				if ($('.goods_spec_' + goods_id).find('.attr-number').length == 0) {
         					$('.goods_spec_' + goods_id).append('<i class="attr-number">'+ n + '</i>');
+        				} else {
+        					$('.goods_spec_' + goods_id).find('.attr-number').html(n);
         				}
     				} else if (type == 'reduce') {
     					var n = parseInt($('.goods_spec_' + goods_id).children('i').html()) - 1;
     					if (n == 0) {
     						$('.goods_spec_' + goods_id).find('.attr-number').remove();
+    					} else {
+    						$('.goods_spec_' + goods_id).find('.attr-number').html(n);
     					}
     				}
-    				$('.goods_spec_' + goods_id).find('.attr-number').html(n);
+    				
                 	if (val == 0) {
     					val = 1;
     					$('.add_cart_'+goods_id).addClass('show').removeClass('hide');

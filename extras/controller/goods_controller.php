@@ -386,7 +386,9 @@ class goods_controller {
     				$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($paramater)->run();
     				if (!is_ecjia_error($cart_list)) {
     					RC_Cache::app_cache_set('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'], 'cart');
-    				}
+    				} else {
+		    			$cart_list = array();
+		    		}
     			}
     			$cart_list['arr'] = array();
     			if (!empty($cart_list)) {

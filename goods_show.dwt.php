@@ -65,7 +65,7 @@ var releated_goods = {$releated_goods};
 	            <div class="goods-style-name goods-style-name-new">
 	                <div class=" ecjiaf-fl goods-name-new">{if $goods_info.merchant_info.manage_mode eq 'self'}<span>自营</span>{/if}{$goods_info.goods_name}</div>
 	            </div>
-	            <div class="goods-price goods-price-new goods_spec_{$goods_info.id}" goods_id="{$goods_info.id}">
+	            <div class="goods-price goods-price-new" goods_id="{$goods_info.id}">
 	                <!-- $goods.is_promote and $goods.gmt_end_time -->
 	                <!--{if ($goods_info.promote_price gt 0) AND ($goods_info.promote_start_date lt $goods_info.promote_end_date) AND ($goods_info.formated_promote_price lt $goods_info.shop_price)} 促销-->
 		                <div class="ecjia-price-time">
@@ -77,7 +77,7 @@ var releated_goods = {$releated_goods};
 									<span class="goods-detail-promote" data-type="1" value="{$goods_info.promote_end_time}"></span>
 			                	</div>
 			                </div>
-			                <div class="cart-plus-right" goods_id="{$goods_info.id}">
+			                <div class="cart-plus-right goods_spec_{$goods_info.id}" goods_id="{$goods_info.id}">
 			                	{if $goods_info.specification}
 			                	<span class="goods-add-cart choose_attr" goods_id="{$goods_info.id}">选规格</span>
 			                	{if $goods_attr_num}<i class="attr-number">{$goods_attr_num}</i>{/if}
@@ -95,8 +95,10 @@ var releated_goods = {$releated_goods};
 	                {$goods_info.shop_price}
 	                <del>市场价：{$goods_info.market_price}</del>	
                 	{if $goods_info.specification}
+                	<span class="goods_spec_{$goods_info.id}">
 		            <span class="goods-add-cart choose_attr" goods_id="{$goods_info.id}">选规格</span>
 		            {if $goods_attr_num}<i class="attr-number">{$goods_attr_num}</i>{/if}
+		            </span>
 		            {else}
                 	<span class="goods-add-cart market-goods-add-cart add-cart-a {if $rec_id}hide{/if}" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加入购物车</span>
               		<div class="ecjia-goods-plus-box ecjia-market-plus-box {if !$rec_id}hide{/if} box" id="goods_{$goods_info.id}">
