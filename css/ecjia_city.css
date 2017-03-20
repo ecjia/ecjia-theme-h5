@@ -3356,6 +3356,7 @@ footer {
 	height: 5em;
 	margin-right: -2em;
 	padding-right: 2em;
+	overflow: hidden;
 }
 
 .ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-info p:first-child {
