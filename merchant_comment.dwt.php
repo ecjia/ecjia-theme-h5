@@ -36,7 +36,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<span class="score-val" data-val="{$store_info.comment.comment_goods_val}"></span>
 		</div>
 		<div class="store-comment-container">
-		<!-- #BeginLibraryItem "/library/store_comment.lbi" --><!-- #EndLibraryItem -->
+		<!-- #BeginLibraryItem "/library/merchant_comment.lbi" --><!-- #EndLibraryItem -->
 		</div>
 	</div>
 </div>

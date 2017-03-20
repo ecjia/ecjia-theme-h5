@@ -1766,8 +1766,7 @@ footer {
 }
 
 .ecjia-store-seller {
-	position: fixed;
-	top: 13.7em;
+	margin-top: 13.7em;
 	bottom: 0;
 	width: 100%;
 	max-width: 640px;
@@ -1817,6 +1816,12 @@ footer {
 
 .ecjia-store-seller i.icon-shop-time {
     background-image: url(../images/icon/business_hours.png);
+}
+
+.ecjia-store-seller i.icon-call-phone {
+	background-image: url(../images/icon/icon_phone_green.png);
+	background-size: 1.8em;
+	margin-top: .1em;
 }
 
 .ecjia-store-seller .store-tel p.tel-result {
@@ -3363,13 +3368,9 @@ footer {
 	height: auto;
 }
 
-.ecjia .ecjia-checkout .flow-goods-list .goods-list .goods_attr {
-	width: 100%;
-	margin-top: 1em;
-}
-
-.ecjia .ecjia-checkout .flow-goods-list .goods-list li.goods_attr:first-child {
-	margin-top: 0;
+.ecjia .ecjia-checkout .flow-goods-list .goods_attr_list {
+	padding-left: .5em;
+	overflow: hidden;
 }
 
 .ecjia .ecjia-checkout .flow-goods-list .goods-list .ecjia-icon.goods_attr .ecjia-icon-num {
@@ -4775,6 +4776,15 @@ footer {
 .ecjia-bonus {
 	height: auto;
 }
+.ecjia-bonus.bonus_explain {
+    padding-top: 4em;
+    width: 100%;
+}
+
+.ecjia-bonus.bonus_explain a{
+    float: right;
+    margin-right: 1em;
+}
 
 .ecjia-bonus-top-head {
 	border-bottom: 1px solid#eee;
@@ -4788,7 +4798,10 @@ footer {
 
 .ecjia-bonus-top-list {
 	padding-top: 3.5em;
-	;
+}
+
+.ecjia-bonus-top-im {
+	padding-top: 1em!important;
 }
 
 .ecjia-bonus-top-list li {
@@ -5868,7 +5881,6 @@ footer {
 	max-height: 3em;
 	line-height: 1.5em;
 	transform: translateY(-50%);
-	padding-left: 6em;
 }
 
 .ecjia-checkout .goods_attr_ul .goods-name {

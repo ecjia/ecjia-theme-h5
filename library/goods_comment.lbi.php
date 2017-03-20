@@ -1,7 +1,7 @@
 <?php
 /*
-Name: 店铺评论及商品评论
-Description: 这是店铺及商品评论页面
+Name: 商品评论
+Description: 这是商品评论页面
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>

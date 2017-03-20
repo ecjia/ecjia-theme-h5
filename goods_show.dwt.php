@@ -279,7 +279,7 @@ var releated_goods = {$releated_goods};
 <!-- 切换详情页面end -->
 
 <div class="goods-desc-info active ecjia-seller-comment" id="goods-info-three" style="margin-top:7.5em;">
-<!-- #BeginLibraryItem "/library/store_comment.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/goods_comment.lbi" --><!-- #EndLibraryItem -->
 </div>
 
 <div class="store-add-cart a4w">
