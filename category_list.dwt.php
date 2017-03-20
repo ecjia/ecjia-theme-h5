@@ -26,26 +26,30 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<!--{foreach from=$data item=children}-->
 			<div class="cat_list ecjia-category-list {if $cat_id eq $children.id}show{else}hide{/if}" id="category_{$children.id}">
 	            <a href="{RC_Uri::url('goods/category/store_list')}&cid={$children.id}"><img src="{$children.image}" alt="{$children.name}"></a>
-	            <div class="hd">
-	                <h5>
-	                    <span class="line"></span>
-	                    <span class="goods-index-title">{$children.name}</span>
-	                </h5>
-	            </div>
-	            <!-- {if $children.children} -->
-	            <ul class="ecjia-margin-t">
-	                <!--{foreach from=$children.children item=cat}-->
-	                <li>
-	                    <a href="{RC_Uri::url('goods/category/store_list')}&cid={$cat.id}">
-	                        <div class="cat-img">
-	                            <img src="{$cat.image}" alt="{$cat.name}">
-	                        </div>
-	                        <div class="child_name">{$cat.name}</div>
-	                    </a>
-	                </li>
-		           	<!--{/foreach}-->
-	            </ul>
-	            <!-- {/if} -->
+	            <!-- {foreach from=$children.children item=val} -->
+		            <!-- {if $val.children} -->
+		            <div>
+			            <div class="hd">
+			                <h5>
+			                    <span class="line"></span>
+			                    <span class="goods-index-title">{$val.name}</span>
+			                </h5>
+			            </div>
+			            <ul class="ecjia-margin-t">
+			                <!--{foreach from=$val.children item=cat}-->
+			                <li>
+			                    <a href="{RC_Uri::url('goods/category/store_list')}&cid={$cat.id}">
+			                        <div class="cat-img">
+			                            <img src="{if $cat.image}{$cat.image}{else}{$theme_url}images/default-goods-pic.png{/if}" alt="{$cat.name}">
+			                        </div>
+			                        <div class="child_name">{$cat.name}</div>
+			                    </a>
+			                </li>
+				           	<!--{/foreach}-->
+			            </ul>
+		            </div>
+		            <!-- {/if} -->
+		    	<!-- {/foreach} -->  
             </div>
     	<!--{/foreach}-->
     </div>
