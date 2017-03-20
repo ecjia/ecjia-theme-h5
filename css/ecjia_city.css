@@ -1544,9 +1544,26 @@ footer {
 	display: none;
 }
 
-.ecjia-header .ecjia-header-right a i {
-	font-size: 1.2em;
-	line-height: 1.5;
+.ecjia-header .ecjia-header-right a i.icon-shop-search {
+    background: url(../images/icon/icon_search_white.png);
+    background-size: .8em;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 1.5em;
+    top: .3em;
+    width: 30px;
+    height: 30px;
+}
+
+.ecjia-header .ecjia-header-right a i.icon-shop-location {
+    background: url(../images/icon/icon_position_white.png);
+    background-size: .75em;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: .4em;
+    top: .3em;
+    width: 30px;
+    height: 30px;
 }
 
 .ecjia-header.ecjia-store-banner {
@@ -1571,7 +1588,9 @@ footer {
 }
 
 .ecjia-store-banner .ecjia-header-right {
-	margin-right: 1em;
+	position: absolute;
+    right: 0;
+    width: 10%;
 }
 
 .ecjia-store-banner .ecjia-header-right a {

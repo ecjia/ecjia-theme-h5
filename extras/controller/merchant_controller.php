@@ -98,9 +98,9 @@ class merchant_controller {
 			ecjia_front::$controller->assign('header_left', ' ');
 				
 			$header_right = array(
-				'location' => '<i class="iconfont icon-location"></i>',
+				'location' => '<i class="icon-shop-location"></i>',
 				'location_url' => RC_Uri::url('merchant/index/position', array('shop_address' => $store_info['shop_address'])),
-				'search' => '<i class="iconfont icon-search"></i>',
+				'search' => '<i class="icon-shop-search"></i>',
 				'search_url' => RC_Uri::url('touch/index/search', array('store_id' => $store_id)),
 			);
 			ecjia_front::$controller->assign('header_right', $header_right);
