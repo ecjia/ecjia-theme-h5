@@ -183,12 +183,14 @@ class goods_controller {
 	    		}
 	    	}
 	    	
+	    	$goods_info['has_spec'] = 0;
 	    	if (!empty($goods_info['specification'])) {
 	    		foreach ($goods_info['specification'] as $k => $v) {
 	    			if (!empty($v['value'])) {
 	    				foreach ($v['value'] as $key => $val) {
 	    					if (!empty($goods_info['last_spec'])) {
 	    						if (in_array($val['id'], $goods_info['last_spec'])) {
+	    							$goods_info['has_spec'] = 1;
 	    							$goods_info['specification'][$k]['value'][$key]['active'] = 1;
 	    						}
 	    					}
