@@ -264,11 +264,8 @@ class merchant_controller {
     		list($data, $page) = $comments;
     		if ($page['more'] == 0) $is_last = 1;
     	
-    		$say_list = '';
-    		if (!empty($data['list'])){
-    			ecjia_front::$controller->assign('comment', $data['list']);
-    			$say_list = ecjia_front::$controller->fetch('merchant_comment.dwt');
-    		}
+    		ecjia_front::$controller->assign('comment', $data['list']);
+    		$say_list = ecjia_front::$controller->fetch('merchant_comment.dwt');
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
     	} else {
     		return ecjia_front::$controller->showmessage($comments->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -458,7 +455,7 @@ class merchant_controller {
 			'name' 			=> $type_name, 
 			'num' 			=> $goods_num,
 			'type' 			=> $action_type, 
-			'is_last' 		=> $data['is_last'], 
+			'is_last' 		=> $data['is_last'],
 			'spec_goods' 	=> $spec_goods
 		);
 		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, $response);

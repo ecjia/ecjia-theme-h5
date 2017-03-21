@@ -626,8 +626,10 @@
 	
 	//PJAX历史和跳转都会执行的方法
 	$(document).on('pjax:end', function() {
-		if (releated_goods != undefined && releated_goods.length != 0) {
-			window.releated_goods = $.extend({}, releated_goods, window.releated);
+		if (typeof(releated_goods) != "undefined") {
+			if (releated_goods.length != 0) {
+				window.releated_goods = $.extend({}, releated_goods, window.releated);
+			}
 		}
 		
 		if ($.find('.is-last').length == 0) {

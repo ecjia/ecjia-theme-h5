@@ -1822,8 +1822,10 @@ footer {
 
 .ecjia-store-seller i.icon-call-phone {
 	background-image: url(../images/icon/icon_phone_green.png);
-	background-size: 1.6em;
+	background-size: 1.8em;
 	margin-top: .1em;
+	width: 2em;
+	height: 2em;
 }
 
 .ecjia-store-seller .store-tel p.tel-result {
@@ -1977,9 +1979,9 @@ footer {
 }
 
 .ecjia-store-seller .store-promotion .promotion-name {
-	font-size: .9em;
+	font-size: 1em;
 	padding-left: .5em;
-	color: #333;
+	color: #555;
 }
 
 .ecjia-store-goods .a2g {
@@ -8158,7 +8160,7 @@ footer {
     position: absolute;
     left: 0;
     right: 0;
-    height: 7.5em;
+    height: 7em;
 	color: #555;
 }
 .ecjia-store-comment .store-score {

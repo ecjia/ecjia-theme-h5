@@ -62,7 +62,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 			<div class="store-container" id="store-scroll">
 				<div class="store-comment-container">
-					<div id="store-comment" class="store-comment" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{$ajax_url}" data-type="all">
+					<div id="store-comment" class="store-comment" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{$ajax_url}" data-type="all" data-page="2">
 					</div>
 				</div>
 			</div>
@@ -100,6 +100,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			{/if}
 		</div>    
 	</div>    
+</div>
+<!-- {foreachelse} -->
+<div class="ecjia-nolist">
+    <img src="{$theme_url}images/no_comment.png">
+    <p class="tags_list_font">暂无商品评论</p>
 </div>
 <!-- {/foreach} -->
 <!-- {/block} -->
