@@ -622,10 +622,9 @@
         			url = $this.attr('data-url'),
         			type = $this.attr('data-type');
         		
-        		$('.load-list').remove();
+//        		$('.load-list').remove();
         		$('.store-comment').attr('id', 'store-comment-'+type);
         		$('.ecjia-seller-comment').find('[data-toggle="asynclist"]').attr('data-type', type);
-        		$('.ecjia-seller-comment').find('[data-toggle="asynclist"]').attr('data-page', 1);
         		
         		
         		if ($this.hasClass('active') || $this.hasClass('disabled')) {

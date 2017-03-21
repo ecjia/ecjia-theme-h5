@@ -216,7 +216,7 @@
 				offset		: 100,						//offset		滑动预留
 				trigger		: '.load-list',				//trigger		点击的触发器
 				lock		: false,					//lock			锁
-				type		: '',						//type			商品类型
+				type		: '',						//type			类型
 			},
 			options = $.extend({}, defaults, options),
 			scroll_list = function(){

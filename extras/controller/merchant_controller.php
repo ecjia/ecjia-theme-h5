@@ -414,7 +414,7 @@ class merchant_controller {
 		if (!empty($goods_list)) {
 			foreach ($goods_list as $k => $v) {
 				if (!empty($v['specification'])) {
-					$spec_goods[$v['id']]['goods_price'] = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : $v['shop_price']), '￥');
+					$spec_goods[$v['id']]['goods_price'] = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : ($v['shop_price'] == '免费' ? '0' : $v['shop_price'])), '￥');
 					
 					foreach ($v['specification'] as $key => $val) {
 						if ($key == 0) {

@@ -1,3 +1,10 @@
+<?php
+/*
+Name: 店铺评论
+Description: 这是店铺评论模板
+*/
+defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
+?>
 <!-- {block name="ajaxinfo"} -->
 <!-- {foreach from=$comment_list.list item=list} -->
 <div class="assess-flat">    
