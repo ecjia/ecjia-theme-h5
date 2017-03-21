@@ -7896,10 +7896,10 @@ footer {
 
 /*店铺主页公告弹出层*/
 .ecjia-store-modal {
-	width: 270px;
+	width: 300px;
 	position: absolute;
 	z-index: 11000;
-	left: 50%;
+	left: 47%;
 	margin-left: -135px;
 	margin-top: 0;
 	top: 10em;
@@ -8604,10 +8604,10 @@ footer {
 
 /*选择商品规格弹出层*/
 .ecjia-goodsAttr-modal, .ecjia-attr-static {
-	width: 270px;
+	width: 300px;
 	position: absolute;
 	z-index: 11000;
-	left: 50%;
+	left: 47%;
 	margin-left: -135px;
 	margin-top: 0;
 	top: 10em;
