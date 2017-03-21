@@ -305,6 +305,7 @@ RC_Hook::add_action('connect_callback_user_signin', function($userid) {
     ecjia_touch_user::singleton()->setUserinfo($res);
      
     update_user_info(); // 更新用户信息
+    user_controller::sync_avatar($userid);/* 获取远程用户头像信息*/
     RC_Loader::load_app_func('cart','cart');
     recalculate_price(); // 重新计算购物车中的商品价格
     
@@ -314,7 +315,7 @@ RC_Hook::add_action('connect_callback_user_signin', function($userid) {
     } else {
         $back_url = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
     }
-    $back_url = empty($back_url) ? RC_Uri::url('touch/my/init') : $back_url;
+    $back_url = empty($back_url) ? RC_Uri::url('touch/index/init') : $back_url;
     $back_url = str_replace('/notify/', '/', $back_url);
 
     return ecjia_front::$controller->redirect($back_url);
