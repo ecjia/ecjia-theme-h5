@@ -3403,7 +3403,7 @@ footer {
 }
 
 .ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-info p:first-child {
-	height: 2em;
+	height: 3em;
 	line-height: 2em;
 	-webkit-line-clamp: 1;
 }
@@ -5971,8 +5971,6 @@ footer {
 
 .ecjia-goods-attr.goods-attr {
 	float: none;
-    position: inherit;
-    top: 0;
 }
 
 .order_list_attr_div {
@@ -6618,8 +6616,8 @@ footer {
 }
 
 .ecjia-store-list .store-left img {
-	width: 5em;
-	height: 5em;
+	width: 4.5em;
+	height: 4.5em;
 	border-radius: 50%;
 	border: 2px solid #47aa4d;
 }
