@@ -1733,7 +1733,7 @@ footer {
 }
 
 .ecjia-store-brief .store-promotion .promotion-name {
-	font-weight: 500;
+	font-weight: normal;
 	font-size: 1em;
 	padding-left: .5em;
 }
@@ -8270,6 +8270,8 @@ footer {
 
 .ecjia-seller-comment .assess-flat {
 	position: relative;
+}
+.ecjia-seller-comment .assess-flat:last-child {
 	border-bottom: 1px solid #eee;
 }
 
@@ -8325,6 +8327,13 @@ footer {
 
 .ecjia-seller-comment .assess-bottom {
 	background-color: #fff;
+	padding-bottom: .5em;
+    border-bottom: 1px solid #eee;
+}
+
+.ecjia-seller-comment .assess-flat:last-child .assess-bottom {
+	padding-bottom: 0;
+	border-bottom: none;
 }
 
 .ecjia-seller-comment .user-name {
@@ -8459,7 +8468,7 @@ footer {
 .ecjia-suggest-store .store-info .basic-info {
 	width: 95%;
 	height: auto;
-	padding: .8em .2em;
+	padding: .8em .2em .5em .2em;
 	margin: 0 auto;
 }
 
@@ -8585,6 +8594,7 @@ footer {
 	float: left;
 	width: 22%;
 	margin-right: 3%;
+	margin-top: .2em;
 }
 
 .ecjia-suggest-store .suggest-goods-list img {
@@ -8595,6 +8605,7 @@ footer {
 	border-radius: 4px;
 	border: 1px solid #ddd;
 	margin-bottom: .5em;
+    margin-top: .2em;
 }
 
 .ecjia-suggest-store .suggest-goods-list .goods_price {
