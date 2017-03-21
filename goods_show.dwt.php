@@ -174,7 +174,7 @@ var releated_goods = {$releated_goods};
 							<!-- {if $comment.picture} -->
 							<div class="img-list">
 								<!-- {foreach from=$comment.picture item=img} -->
-								<a href="{$img}"><img src="{$img}" /></a>
+								<a class="nopjax external" href="{$img}"><img src="{$img}" /></a>
 								<!-- {/foreach} -->
 							</div>
 							<!-- {/if} -->
