@@ -20,7 +20,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<!-- {foreach from=$store_info.favourable_list item=list} -->
 			<li class="promotion">
 				<span class="promotion-label">{$list.type_label}</span>
-				<div class="promotion-name">{$list.name}</div>
+				<span class="promotion-name">{$list.name}</span>
 			</li>
 			<!-- {/foreach} -->
 			<div class="clear_both"></div>

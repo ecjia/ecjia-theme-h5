@@ -745,12 +745,12 @@
         	if (e == true) {
         		$('.ecjia-store-banner').hide();
     			$('.ecjia-store-brief').hide();
-    			$('.ecjia-store-goods').children('.a1n').css('top', '3.5em');
+    			$('.ecjia-store-goods').children('.a1n').css('top', '6.6em');
     			$('.page_hearder_hide').show();
     			
     			//店铺评论
     			$('.ecjia-store-ul').css('top', '3em');
-    			$('.ecjia-seller-comment').css('top', '6.5em');
+    			$('.ecjia-seller-comment').css('top', '6.6em');
     			$('.ecjia-store-seller').css('top', '7em');
         	} else {
         		$('.ecjia-store-banner').show();
