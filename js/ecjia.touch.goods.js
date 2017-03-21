@@ -750,18 +750,18 @@
         	if (e == true) {
         		$('.ecjia-store-banner').hide();
     			$('.ecjia-store-brief').hide();
+        		$('.page_hearder_hide').show();
     			$('.ecjia-store-goods').children('.a1n').css('top', '6.6em');
-    			$('.page_hearder_hide').show();
     			
     			//店铺评论
     			$('.ecjia-store-ul').css('top', '3em');
     			$('.ecjia-seller-comment').css('top', '6.6em');
     			$('.ecjia-store-seller').css('top', '7.3em');
         	} else {
+        		$('.page_hearder_hide').hide();
         		$('.ecjia-store-banner').show();
     			$('.ecjia-store-brief').show();
     			$('.ecjia-store-goods').children('.a1n').css('top', '13.7em');
-    			$('.page_hearder_hide').hide();
     			
     			//店铺评论
     			$('.ecjia-store-ul').css('top', '9.5em');

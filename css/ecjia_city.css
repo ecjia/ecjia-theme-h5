@@ -1772,7 +1772,7 @@ footer {
 	bottom: 0;
 	width: 100%;
 	max-width: 640px;
-	z-index: 1;
+	z-index: 3;
 }
 
 .ecjia-store-seller .store-hr {
