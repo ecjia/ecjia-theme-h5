@@ -1333,6 +1333,9 @@
  				var spec = $this.attr('data-spec');
  				var modal = '.ecjia-goodsAttr-modal';
  				
+ 				if (spec != undefined && spec.length != 0) {
+ 					var spec_arr = spec.split(',');
+ 				}
  				var error = 0;
  				if ($this.hasClass('spec_goods')) {
  					var modal = '.ecjia-attr-static';
@@ -1348,10 +1351,18 @@
  								'<ul>';
  								for (var k in s.value) {
  									var t = s.value[k];
- 									if (k == 0) {
- 										html += '<li class="active" data-attr='+ t.id +' data-price='+ t.price +'>' +t.label+ '</li>';
+ 									if (spec_arr != undefined){
+ 	 									if ($.inArray(t.id, spec_arr) != -1) {
+ 	 										html += '<li class="active" data-attr='+ t.id +' data-price='+ t.price +'>' +t.label+ '</li>';
+ 	 									} else {
+ 	 										html += '<li data-attr='+ t.id +' data-price='+ t.price +'>' +t.label+ '</li>';
+ 	 									}
  									} else {
- 										html += '<li data-attr='+ t.id +' data-price='+ t.price +'>' +t.label+ '</li>';
+ 	                                     if (k == 0) {
+ 	                                         html += '<li class="active" data-attr='+ t.id +' data-price='+ t.price +'>' +t.label+ '</li>';
+ 	                                     } else {
+ 	                                    	html += '<li data-attr='+ t.id +' data-price='+ t.price +'>' +t.label+ '</li>';
+ 	                                     }
  									}
  								}
  								html += '</ul></div>';
