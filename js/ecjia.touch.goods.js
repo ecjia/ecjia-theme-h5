@@ -597,6 +597,7 @@
             			
             			ecjia.touch.category.add_tocart();
          				ecjia.touch.category.remove_tocart();
+         				ecjia.touch.category.store_toggle();
          				
             			var info = data.name + '(' + data.num + ')';
             			$('.a20').html(info);
