@@ -5253,7 +5253,7 @@ footer {
 
 #goods-info-two {
 	display: none;
-	background-color: #FFFFFF;
+	background-color: #f7f7f7;
 }
 
 #goods-info-two .ecjia-nav-new li.active {
@@ -5708,7 +5708,7 @@ footer {
 
 .goods-describe .ecjia-nolist {
 	font-size: 1em;
-	background-color: #FFFFFF;
+	background-color: #f7f7f7;
 	padding-top: 6em;
 }
 
@@ -8063,7 +8063,7 @@ footer {
 .ecjia-store-modal .store-promotion li {
 	padding: .5em;
 	text-align: left;
-	font-size: .8em;
+	font-size: .9em;
 	color: #aaa;
 }
 
@@ -8077,10 +8077,12 @@ footer {
 }
 
 .ecjia-store-modal .store-promotion .promotion-name {
-	width: 83%;
-	float: right;
+	width: 80%;
 	padding-top: .2em;
 	color: #666;
+	overflow: hidden;
+	height: 1.5em;
+	padding-left: .5em;
 }
 
 .ecjia-store-modal .store-notice {
@@ -8228,7 +8230,7 @@ footer {
 
 .store-comment .ecjia-nolist {
 	font-size: 1em;
-	background-color: #FFFFFF;
+	background-color: #f7f7f7;
 	padding-top: 5em;
 }
 

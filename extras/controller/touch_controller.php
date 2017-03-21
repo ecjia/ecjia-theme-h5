@@ -162,6 +162,21 @@ class touch_controller {
         
         ecjia_front::$controller->assign_title();
         ecjia_front::$controller->assign_lang();
+        
+        $paramater = array(
+        	'pagination' 	=> array('count' => 6, 'page' => 1),
+        	'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+        	'city_id'       => $_COOKIE['city_id']
+        );
+        
+        $response = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($paramater)->hasPage()->run();
+        if (!is_ecjia_error($response)) {
+        	list($data, $paginated) = $response;
+        	$data = merchant_function::format_distance($data);
+        
+        	if ($paginated['more'] == 0) $data['is_last'] = 1;
+        	ecjia_front::$controller->assign('data', $data);
+        }
 
         ecjia_front::$controller->display('index.dwt');
     }

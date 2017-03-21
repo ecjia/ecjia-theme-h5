@@ -622,10 +622,9 @@
         			url = $this.attr('data-url'),
         			type = $this.attr('data-type');
         		
-        		$('.load-list').remove();
+//        		$('.load-list').remove();
         		$('.store-comment').attr('id', 'store-comment-'+type);
         		$('.ecjia-seller-comment').find('[data-toggle="asynclist"]').attr('data-type', type);
-        		$('.ecjia-seller-comment').find('[data-toggle="asynclist"]').attr('data-page', 1);
         		
         		
         		if ($this.hasClass('active') || $this.hasClass('disabled')) {
@@ -746,12 +745,12 @@
         	if (e == true) {
         		$('.ecjia-store-banner').hide();
     			$('.ecjia-store-brief').hide();
-    			$('.ecjia-store-goods').children('.a1n').css('top', '3.5em');
+    			$('.ecjia-store-goods').children('.a1n').css('top', '6.6em');
     			$('.page_hearder_hide').show();
     			
     			//店铺评论
     			$('.ecjia-store-ul').css('top', '3em');
-    			$('.ecjia-seller-comment').css('top', '6.5em');
+    			$('.ecjia-seller-comment').css('top', '6.6em');
     			$('.ecjia-store-seller').css('top', '7em');
         	} else {
         		$('.ecjia-store-banner').show();

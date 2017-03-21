@@ -180,7 +180,7 @@ class goods_controller {
 		    if (!empty($goods_info['related_goods'])){
 		    	foreach ($goods_info['related_goods'] as $k => $v) {
 		    		if (!empty($v['specification'])) {
-		    			$spec_releated_goods[$v['goods_id']]['goods_price'] = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : $v['shop_price']), '￥');
+		    			$spec_releated_goods[$v['goods_id']]['goods_price'] = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : ($v['shop_price'] == '免费' ? '0' : $v['shop_price'])), '￥');
 		    			foreach ($v['specification'] as $key => $val) {
 		    				if ($key == 0) {
 		    					$goods_info['related_goods'][$k]['default_spec'] = $val['value'][0]['id'];
@@ -427,7 +427,7 @@ class goods_controller {
     				if (!empty($arr_list)) {
     					foreach ($arr_list as $k => $v) {
     						if (!empty($v['specification'])) {
-    							$spec_goods[$v['id']]['goods_price'] = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : $v['shop_price']), '￥');
+    							$spec_goods[$v['id']]['goods_price'] = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : ($v['shop_price'] == '免费' ? '0' : $v['shop_price'])), '￥');
     							foreach ($v['specification'] as $key => $val) {
     								if ($key == 0) {
     									$arr_list[$k]['default_spec'] = $val['value'][0]['id'];
