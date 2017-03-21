@@ -131,6 +131,9 @@ class user_order_controller {
                     ),
                     'city_id' => $_COOKIE['city_id']
                 );
+                if (!empty($goods['goods_attr_id'])) {
+                	$params_cart['spec'] = explode(',', $goods['goods_attr_id']);
+                }
                 $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CREATE)->data($params_cart)->run();
                 if (is_ecjia_error($rs)) {
                     if ($_GET['from'] == 'list') {
