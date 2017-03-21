@@ -264,11 +264,12 @@ class merchant_controller {
     		list($data, $page) = $comments;
     		if ($page['more'] == 0) $is_last = 1;
     	
-    		ecjia_front::$controller->assign('comment_list', $data);
-    		ecjia_front::$controller->assign('comment_number', $data['comment_number']);
-    		$say_list = ecjia_front::$controller->fetch('library/model_comment.lbi');
-    		
-    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last, $comments));
+    		$say_list = '';
+    		if (!empty($data['list'])){
+    			ecjia_front::$controller->assign('comment_list', $data);
+    			$say_list = ecjia_front::$controller->fetch('library/model_comment.lbi');
+    		}
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last, 'data' => $data));
     	} else {
     		return ecjia_front::$controller->showmessage($comments->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}

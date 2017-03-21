@@ -636,10 +636,7 @@
         			$('.store-option dl').addClass('disabled');//禁止切换
         			
         			$.get(url, function(data) {
-        				console.log(data);
-        				console.log(data.list);
-        				
-                		$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
+        				$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
                 		var load_list = $('#store-comment-'+type).parent().find('.load-list');
                 		if (load_list.length == 0 ) {
                 			$('#store-comment-'+type).after($loader);
@@ -649,8 +646,14 @@
         				$('.la-ball-atom').remove();//移出加载动画
         				$('body').css('overflow-y', 'auto').off("touchmove");//启用滚动条
         				$('.store-option dl').removeClass('disabled');//允许切换
-        				$('#store-comment-'+type).append(data.list);
         				
+        				console.log(data.list);
+        				console.log(data.list.length);
+        				if (data.list.length == 0) {
+        					$('#store-comment-'+type).append('<div class="ecjia-nolist"><img src="'+ theme_url +'images/no_comment.png"><p class="tags_list_font">暂无商品评论</p></div>');
+        				} else {
+        					$('#store-comment-'+type).append(data.list);
+        				}
         				if ($('#store-comment-'+type).find('.assess-flat').length != 0) {
         					$('.ecjia-store-comment .store-container').css('padding-bottom', '7em');
         				}
