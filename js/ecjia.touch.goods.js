@@ -1475,10 +1475,10 @@
  			//切换属性
  			$('.goods-attr-list .goods-attr li').off('click').on('click', function() {
  				var $this = $(this);
- 				var index = $this.parents('.goods-attr').attr('data-index');
- 				if (index == 0) {
- 					$('div.goods-attr:gt(0)').find('li:eq(0)').addClass('active').siblings('li').removeClass('active');
- 				}
+// 				var index = $this.parents('.goods-attr').attr('data-index');
+// 				if (index == 0) {
+// 					$('div.goods-attr:gt(0)').find('li:eq(0)').addClass('active').siblings('li').removeClass('active');
+// 				}
  				$this.addClass('active').siblings('li').removeClass('active');
  				
  				$spec_html = '(';

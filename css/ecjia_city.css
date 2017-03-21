@@ -1749,7 +1749,7 @@ footer {
 	font-size: 1.1em;
 	color: #666;
 	z-index: 2;
-	border-bottom: 2px solid #eee;
+	border-bottom: 1px solid #eee;
 }
 
 .ecjia-store-ul li {
@@ -2041,7 +2041,6 @@ footer {
 	bottom: 0;
 	width: 100%;
 	background-color: #fff;
-	border-top: 2px solid #eee;
 }
 
 .clearfix:after {
@@ -2170,6 +2169,8 @@ footer {
 	left: 6em;
 	right: 0;
 	height: 2em;
+	top: -1px;
+	border-top: 1px solid #eee;
 }
 
 .ecjia-store-goods .a1n .a1x {
@@ -8147,7 +8148,6 @@ footer {
     bottom: 0;
     width: 100%;
     background-color: #fff;
-    border-top: 2px solid #eee;
 }
 .ecjia-store-comment .store-header-title {
 	line-height: 2em;
