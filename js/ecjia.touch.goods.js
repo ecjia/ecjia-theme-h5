@@ -756,7 +756,7 @@
     			//店铺评论
     			$('.ecjia-store-ul').css('top', '3em');
     			$('.ecjia-seller-comment').css('top', '6.6em');
-    			$('.ecjia-store-seller').css('top', '7em');
+    			$('.ecjia-store-seller').css('top', '7.3em');
         	} else {
         		$('.ecjia-store-banner').show();
     			$('.ecjia-store-brief').show();
@@ -766,7 +766,7 @@
     			//店铺评论
     			$('.ecjia-store-ul').css('top', '9.5em');
     			$('.ecjia-seller-comment').css('top', '13.7em');
-    			$('.ecjia-store-seller').css('top', '14em');
+    			$('.ecjia-store-seller').css('top', '14.3em');
         	}
         },
         

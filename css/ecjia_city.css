@@ -1749,7 +1749,7 @@ footer {
 	font-size: 1.1em;
 	color: #666;
 	z-index: 2;
-	border-bottom: 1px solid #eee;
+	border-bottom: 2px solid #eee;
 }
 
 .ecjia-store-ul li {
@@ -1761,14 +1761,14 @@ footer {
 }
 
 .ecjia-store-ul li span.active {
-	padding-bottom: .8em;
+	padding-bottom: .7em;
 	border-bottom: 2px solid #47b34f;
 	color: #47b34f;
 }
 
 .ecjia-store-seller {
 	position: absolute;
-    top: 14em;
+    top: 14.3em;
 	bottom: 0;
 	width: 100%;
 	max-width: 640px;
@@ -8162,6 +8162,7 @@ footer {
     right: 0;
     height: 7em;
 	color: #555;
+	border-bottom: 1px solid #eee;
 }
 .ecjia-store-comment .store-score {
 	height: auto;
@@ -8169,6 +8170,7 @@ footer {
 	border-bottom: 1px solid #eee;
 	padding: .5em 1em;
 	background-color: #fff;
+	border-top: 1px solid #eee;
 }
 
 .ecjia-store-comment .store-score .score-name {
