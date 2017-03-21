@@ -412,14 +412,13 @@ class merchant_controller {
 			foreach ($goods_list as $k => $v) {
 				if (!empty($v['specification'])) {
 					$spec_goods[$v['id']]['goods_price'] = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : ($v['shop_price'] == '免费' ? '0' : $v['shop_price'])), '￥');
-					
-					foreach ($v['specification'] as $key => $val) {
-						if ($key == 0) {
-							$goods_list[$k]['default_spec'] = $val['value'][0]['id'];
-						} else {
-							$goods_list[$k]['default_spec'] .= ','.$val['value'][0]['id'];
-						}
-					}
+// 					foreach ($v['specification'] as $key => $val) {
+// 						if ($key == 0) {
+// 							$goods_list[$k]['default_spec'] = $val['value'][0]['id'];
+// 						} else {
+// 							$goods_list[$k]['default_spec'] .= ','.$val['value'][0]['id'];
+// 						}
+// 					}
 					$spec_goods[$v['id']]['goods_info'] = $v;
 					$spec_goods[$v['id']]['goods_info']['goods_id'] = $v['id'];
 				}
@@ -428,6 +427,10 @@ class merchant_controller {
 						$goods_list[$k]['num'] += $n['num'];
 						if (empty($n['goods_attr_id'])) {
 							$goods_list[$k]['rec_id'] = $n['rec_id'];
+						}
+						
+						if (!empty($n['goods_attr_id']) && !isset($goods_list[$k]['default_spec'])) {
+							$goods_list[$k]['default_spec'] = implode(',', $n['goods_attr_id']);
 						}
 					}
 				}
