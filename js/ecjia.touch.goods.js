@@ -647,9 +647,7 @@
         				$('.la-ball-atom').remove();//移出加载动画
         				$('body').css('overflow-y', 'auto').off("touchmove");//启用滚动条
         				$('.store-option dl').removeClass('disabled');//允许切换
-        				
-        				console.log(data.list);
-        				console.log(data.list.length);
+
         				if (data.list.length == 0) {
         					$('#store-comment-'+type).append('<div class="ecjia-nolist"><img src="'+ theme_url +'images/no_comment.png"><p class="tags_list_font">暂无商品评论</p></div>');
         				} else {
