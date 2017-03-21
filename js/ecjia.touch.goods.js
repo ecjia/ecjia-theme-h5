@@ -636,6 +636,8 @@
         			$('.store-option dl').addClass('disabled');//禁止切换
         			
         			$.get(url, function(data) {
+        				console.log(data);
+        				
                 		$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
                 		var load_list = $('#store-comment-'+type).parent().find('.load-list');
                 		if (load_list.length == 0 ) {

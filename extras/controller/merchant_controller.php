@@ -258,7 +258,6 @@ class merchant_controller {
     		'comment_type' 	=> $comment_type,
     		'pagination' 	=> array('count' => $limit, 'page' => $pages)
     	);
-		_dump($info,1);
     	$comments = ecjia_touch_manager::make()->api(ecjia_touch_api::STORE_COMMENTS)->data($info)->hasPage()->run();
     	
     	if (!is_ecjia_error($comments)) {
@@ -269,7 +268,7 @@ class merchant_controller {
     		ecjia_front::$controller->assign('comment_number', $data['comment_number']);
     		$say_list = ecjia_front::$controller->fetch('library/model_comment.lbi');
     		
-    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last, $comments));
     	} else {
     		return ecjia_front::$controller->showmessage($comments->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
