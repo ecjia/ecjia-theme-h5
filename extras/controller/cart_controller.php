@@ -146,7 +146,7 @@ class cart_controller {
     	if (!empty($store_id)) {
     		$arr['seller_id'] = $store_id;
     	}
-    	
+
     	RC_Cache::app_cache_delete('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], 'cart');
     	//修改购物车中商品选中状态
     	if ($checked !== '') {
@@ -267,7 +267,7 @@ class cart_controller {
     	asort($spec);
     	
     	$goods_id = !empty($_POST['goods_id']) ? intval($_POST['goods_id']) : 0;
-    	$seller_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
+    	$seller_id = !empty($_POST['store_id']) ? intval($_POST['store_id']) : (!empty($_GET['store_id']) ? intval($_GET['store_id']) : 0);
     
     	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
@@ -276,9 +276,10 @@ class cart_controller {
 			'location'  => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
             'city_id'   => $_COOKIE['city_id']
     	);
+
     	//店铺购物车商品
     	$cart_list = RC_Cache::app_cache_get('cart_goods'.$token.$seller_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], 'cart');
-
+    	
     	if (empty($cart_list['cart_list'])) {
     		$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
     		if (is_ecjia_error($cart_list)) {
@@ -286,6 +287,7 @@ class cart_controller {
     		}
     		RC_Cache::app_cache_set('cart_goods'.$token.$seller_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], $cart_list, 'cart');
     	}
+    	
 
     	if (!empty($cart_list['cart_list'][0]['goods_list'])) {
     		foreach ($cart_list['cart_list'][0]['goods_list'] as $key => $val) {

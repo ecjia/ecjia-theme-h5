@@ -376,6 +376,7 @@
             	}
             	
             	if (spec != '' || spec != false) {
+            		$('.goods_spec_' + goods_id).find('.choose_attr').attr('data-spec', spec);
                 	if (type == 'add') {
     					var n = parseInt($('.goods_spec_' + goods_id).children('i').html()) + 1;
     					if (isNaN(n)) n = 1;
@@ -386,8 +387,11 @@
         				}
     				} else if (type == 'reduce') {
     					var n = parseInt($('.goods_spec_' + goods_id).children('i').html()) - 1;
+    					console.log(n);
     					if (n == 0) {
+    						console.log('.goods_spec_' + goods_id);
     						$('.goods_spec_' + goods_id).find('.attr-number').remove();
+    						$('.goods_spec_' + goods_id).children('.choose_attr').attr('data-spec', '');
     					} else {
     						$('.goods_spec_' + goods_id).find('.attr-number').html(n);
     					}
@@ -820,6 +824,9 @@
             						}
             						if ($.find('i.attr-number').length != 0) {
             							$('i.attr-number').remove();
+            						}
+            						if ($.find('.choose_attr').length != 0) {
+            							$('.choose_attr').attr('data-spec', '');
             						}
                             		$('.ecjia-choose-attr-box.box').removeClass('show').addClass('hide');//隐藏加减按钮
                             		$('.add-tocart.add_spec').addClass('show').removeClass('hide');//显示加入购物车按钮
