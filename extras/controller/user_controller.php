@@ -142,7 +142,7 @@ class user_controller {
 		}
     }
     
-    private static function sync_avatar($user_id) {
+    public static function sync_avatar($user_id) {
         if (empty($user_id)) {
             return false;
         }
