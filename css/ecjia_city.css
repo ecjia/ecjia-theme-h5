@@ -6959,7 +6959,6 @@ footer {
     margin-right: 7px;
     -webkit-border-radius: 50%;
     border-radius: 50%;
-    vertical-align: 1px;
 	background-color: #47aa4d;
 }
 .ecjia-category-list .iconfont.icon-jiantou-right {
@@ -8171,7 +8170,7 @@ footer {
 .ecjia-store-comment .store-container {
     position: absolute;
     top: 8em;
-    bottom: 2em;
+    bottom: 0;
     left: 0;
     right: 0;
     padding-top: 0;

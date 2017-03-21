@@ -616,6 +616,7 @@
         	
         	$('.store-option dl').off('click').on('click', function() {
         		$('.store-container').scrollTop(0);
+        		$('.ecjia-store-comment .store-container').css('padding-bottom', 0);
         		
         		var $this = $(this),
         			url = $this.attr('data-url'),
