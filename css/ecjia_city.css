@@ -2772,8 +2772,8 @@ footer {
 
 .store-add-cart.a4w .a7j {
 	font-size: 1em;
-	line-height: 1.8em;
-	height: 1.8em;
+	line-height: 1.5em;
+    height: 1.5em;
 	color: #333;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -3403,8 +3403,9 @@ footer {
 }
 
 .ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-info p:first-child {
-	height: 3.5em;
-	line-height: 1.7;
+	height: 2em;
+	line-height: 2em;
+	-webkit-line-clamp: 1;
 }
 
 .ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-price {
@@ -5966,6 +5967,12 @@ footer {
 	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
 	display: -webkit-box;
+}
+
+.ecjia-goods-attr.goods-attr {
+	float: none;
+    position: inherit;
+    top: 0;
 }
 
 .order_list_attr_div {

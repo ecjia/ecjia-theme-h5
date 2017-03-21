@@ -194,6 +194,7 @@ var releated_goods = {$releated_goods};
 									</td>
 									<td>
 										<div class="a7j">{$cart.goods_name}</div> 
+										{if $cart.attr}<div class="a7s">{$cart.attr}</div>{/if}
 										<span class="a7c">
 										{if $cart.goods_price eq 0}免费{else}{$cart.formated_goods_price}{/if}
 										</span>

@@ -44,7 +44,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					</div>
 					<div class="ecjiaf-fl goods-info">
 						<p class="ecjia-truncate2">{$goods.name}</p>
-						<p class="ecjia-goods-attr">
+						<p class="ecjia-goods-attr goods-attr">
 						<!-- {foreach from=$goods.goods_attr item=attr} -->
 						{if $attr.name}{$attr.name}:{$attr.value}{/if}
 						<!-- {/foreach} -->
