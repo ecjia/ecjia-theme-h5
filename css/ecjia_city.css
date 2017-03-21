@@ -3403,7 +3403,7 @@ footer {
 }
 
 .ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-info p:first-child {
-	height: 3em;
+	height: 2em;
 	line-height: 2em;
 	-webkit-line-clamp: 1;
 }
@@ -5872,13 +5872,18 @@ footer {
 }
 
 .ecjia-checkout .goods-item .goods-name {
-	position: absolute;
-	display: block;
-	width: 100%;
-	top: 50%;
-	max-height: 3em;
-	line-height: 1.5em;
-	transform: translateY(-50%);
+    position: absolute;
+    display: block;
+    width: 80%;
+    top: 50%;
+    max-height: 2em;
+    line-height: 1.5em;
+    transform: translateY(-50%);
+	text-overflow: ellipsis;
+	overflow: hidden;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	display: -webkit-box;
 }
 
 .ecjia-checkout .goods_attr_ul .goods-name {
@@ -5971,6 +5976,7 @@ footer {
 
 .ecjia-goods-attr.goods-attr {
 	float: none;
+	position: inherit;
 }
 
 .order_list_attr_div {
@@ -6307,9 +6313,14 @@ footer {
 .ecjia-comment-list .comment_list_attr .cmt-goods-name {
 	position: absolute;
 	display: block;
-	width: 100%;
-	max-height: 3em;
+	width: 80%;
+	max-height: 2em;
 	line-height: 1.5em;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	display: -webkit-box;
 }
 
 .ecjia-comment-list .comment_list_attr .cmt-goods-attribute {
@@ -8250,7 +8261,7 @@ footer {
 
 .ecjia-seller-comment .assess-flat {
 	position: relative;
-	border-bottom: 1px solid #e0e0e0;
+	border-bottom: 1px solid #eee;
 }
 
 .ecjia-seller-comment .assess-flat:before {
@@ -8266,7 +8277,7 @@ footer {
 
 .ecjia-seller-comment .assess-wrapper {
 	display: block;
-	padding: 1em;
+	padding: .5em 1em;
 	background-color: #fff;
 }
 
