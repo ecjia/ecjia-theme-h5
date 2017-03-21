@@ -637,6 +637,7 @@
         			
         			$.get(url, function(data) {
         				console.log(data);
+        				console.log(data.list);
         				
                 		$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
                 		var load_list = $('#store-comment-'+type).parent().find('.load-list');
