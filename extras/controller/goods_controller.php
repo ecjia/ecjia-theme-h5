@@ -278,8 +278,8 @@ class goods_controller {
     	
     		$say_list = '';
     		if (!empty($data['list'])){
-    			ecjia_front::$controller->assign('comment_list', $data);
-    			$say_list = ecjia_front::$controller->fetch('library/model_comment.lbi');
+    			ecjia_front::$controller->assign('comment', $data['list']);
+    			$say_list = ecjia_front::$controller->fetch('merchant_comment.dwt');
     		}
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last, 'data' => $data));
     	}
