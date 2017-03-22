@@ -454,13 +454,13 @@ class goods_controller {
     					foreach ($arr_list as $k => $v) {
     						if (!empty($v['specification'])) {
     							$spec_goods[$v['id']]['goods_price'] = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : ($v['shop_price'] == '免费' ? '0' : $v['shop_price'])), '￥');
-    							foreach ($v['specification'] as $key => $val) {
-    								if ($key == 0) {
-    									$arr_list[$k]['default_spec'] = $val['value'][0]['id'];
-    								} else {
-    									$arr_list[$k]['default_spec'] .= ','.$val['value'][0]['id'];
-    								}
-    							}
+//     							foreach ($v['specification'] as $key => $val) {
+//     								if ($key == 0) {
+//     									$arr_list[$k]['default_spec'] = $val['value'][0]['id'];
+//     								} else {
+//     									$arr_list[$k]['default_spec'] .= ','.$val['value'][0]['id'];
+//     								}
+//     							}
     							$spec_goods[$v['id']]['goods_info'] = $v;
     							unset($spec_goods[$v['id']]['goods_info']['img']);
     							$spec_goods[$v['id']]['goods_info']['goods_id'] = $v['id'];
@@ -471,6 +471,10 @@ class goods_controller {
 									$arr_list[$k]['num'] += $n['num'];
 									if (empty($n['goods_attr_id'])) {
 										$arr_list[$k]['rec_id'] = $n['rec_id'];
+									}
+									
+									if (!empty($n['goods_attr_id']) && !isset($arr_list[$k]['default_spec'])) {
+										$arr_list[$k]['default_spec'] = implode(',', $n['goods_attr_id']);
 									}
 								}
     						}
