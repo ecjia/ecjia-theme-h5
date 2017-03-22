@@ -176,7 +176,7 @@
 						history.back();
 					}
 				});
-				window.history.pushState('forward', null, '');
+				window.history.pushState('forward', null, "#");
 			}
 		}
 	};
