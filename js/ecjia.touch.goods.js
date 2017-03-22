@@ -379,8 +379,8 @@
             	}
             	
             	if (spec != '' || spec != false) {
-            		$('.goods_spec_' + goods_id).find('.choose_attr').attr('data-spec', spec);
                 	if (type == 'add') {
+                		$('.goods_spec_' + goods_id).find('.choose_attr').attr('data-spec', spec);
     					var n = parseInt($('.goods_spec_' + goods_id).children('i').html()) + 1;
     					if (isNaN(n)) n = 1;
         				if ($('.goods_spec_' + goods_id).find('.attr-number').length == 0) {
@@ -1477,13 +1477,13 @@
                 } else {
                 	var ua = navigator.userAgent.toLowerCase();  
                     if(ua.match(/MicroMessenger/i)=="micromessenger") {  
-                    	top = scrollTop + (wHeight - 230) / 2;
+                    	top = scrollTop + (wHeight - 330) / 2;
                     } else {  
-                    	top = scrollTop + (wHeight - 200) / 2;
+                    	top = scrollTop + (wHeight - 300) / 2;
                     }  
                 }
+                
             	$(modal).show().css('top', top);
-            	
     			if (modal == '.ecjia-goodsAttr-modal') {
 					$('.ecjia-goodsAttr-overlay').show();
 				} else if (modal == '.ecjia-attr-static') {
@@ -1503,16 +1503,16 @@
     				$(".ecjia-store-goods .a1n .a1x").css({overflow: "auto"});	//启用滚动条
     			});
     			//禁用滚动条
-            	$('body').css('overflow-y', 'hidden').on('touchmove', function(event){event.preventDefault;}, false);
+            	$('body').css('overflow-y', 'hidden').on('touchmove', function(event){event.preventDefault();}, false);
             	$(".ecjia-store-goods .a1n .a1x").css({overflow: "hidden"});	//禁用滚动条
-
-            	$('.goods-attr-list').on('touchmove', function(e) {
-        			e.stopPropagation();
-        		});
             	
             	ecjia.touch.category.toggle_spec(modal);
         		ecjia.touch.category.add_tocart();
 				ecjia.touch.category.remove_tocart();
+				
+            	$('.goods-attr-list').on('touchmove', function(e) {
+            		e.stopPropagation();
+        		});
  			});
 		},
 		

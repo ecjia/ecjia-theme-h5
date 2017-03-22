@@ -10,7 +10,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="modal-inners">
 		<span class="ecjia-close-modal-icon"><i class="iconfont icon-close"></i></span>
 		<div class="modal-title"></div>
-		<div class="goods-attr-list"></div>
+		<div class="goods-attr-list" id="goods-attr-list"></div>
 	</div>
 	<div class="modal-buttons modal-buttons-2 modal-buttons-vertical">
 		<div class="modal-left">

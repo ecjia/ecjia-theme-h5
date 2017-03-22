@@ -2633,7 +2633,7 @@ footer {
 
 .store-add-cart.a4w .a5n.disabled .product_empty {
 	position: absolute;
-	background-color: rgba(0,0,0,0.4);
+	background-color: rgba(0,0,0,0.6);
 	z-index: 2;
 	width: 70px;
 	height: 70px;
@@ -2729,7 +2729,7 @@ footer {
 	right: 0;
 	bottom: 0;
 	top: 0;
-	background-color: rgba(0,0,0,0.4);
+	background-color: rgba(0,0,0,0.6);
 }
 
 .store-add-cart.a4w .a5u {
@@ -3016,7 +3016,7 @@ footer {
 
 .ecjia-flow-cart .item-goods .cart-product-photo .product_empty {
 	position: absolute;
-	background-color: rgba(0,0,0,0.4);
+	background-color: rgba(0,0,0,0.6);
 	width: 80px;
 	height: 80px;
 	top: 0;
@@ -3276,7 +3276,7 @@ footer {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0,0,0,0.4);
+	background: rgba(0,0,0,0.6);
 	z-index: 10600;
 	visibility: hidden;
 	opacity: 0;
@@ -8037,7 +8037,7 @@ footer {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0,0,0,0.4);
+	background: rgba(0,0,0,0.6);
 	z-index: 10600;
 	visibility: hidden;
 	opacity: 0;
@@ -8643,20 +8643,17 @@ footer {
 
 /*选择商品规格弹出层*/
 .ecjia-goodsAttr-modal, .ecjia-attr-static {
-	width: 300px;
-	position: absolute;
-	z-index: 11000;
-	left: 47%;
-	margin-left: -135px;
-	margin-top: 0;
-	top: 10em;
-	text-align: center;
-	border-radius: 7px;
-	opacity: 0;
-	color: #000;
-	display: none;
-	overflow: auto;
-	height: auto;
+	width: 95%;
+    position: absolute;
+    z-index: 11000;
+    left: 2.5%;
+    top: 20%;
+    text-align: center;
+    border-radius: 7px;
+    opacity: 0;
+    color: #000;
+    display: none;
+    height: auto;
 }
 
 .ecjia-goodsAttr-modal.modal-in, .ecjia-attr-static.modal-in {
@@ -8693,6 +8690,7 @@ footer {
 .ecjia-goodsAttr-modal .modal-inners, .ecjia-attr-static .modal-inners {
 	padding: 0;
 	background: #fff;
+	border-radius: 4px 4px 0 0;
 }
 
 .ecjia-goodsAttr-overlay, .ecjia-attr-static-overlay {
@@ -8701,7 +8699,7 @@ footer {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0,0,0,0.4);
+	background: rgba(0,0,0,0.6);
 	z-index: 10600;
 	visibility: hidden;
 	opacity: 0;
@@ -8729,7 +8727,8 @@ footer {
 	text-align: left;
 	margin: 0 auto;
 	overflow: auto;
-	max-height: 13em;
+	min-height: 12em;
+	max-height: 24em;
 	margin-bottom: 50px;
 	padding-bottom: .5em;
 	-webkit-overflow-scrolling: touch;
@@ -8770,6 +8769,7 @@ footer {
 	border-top: 1px solid #eee;
 	text-align: left;
 	line-height: 50px;
+	border-radius: 0 0 4px 4px;
 }
 
 .ecjia-goodsAttr-modal .add-tocart, .ecjia-attr-static .add-tocart {
@@ -8782,7 +8782,7 @@ footer {
 	line-height: 50px;
 	background-color: #47b34f;
 	font-size: 15px;
-	border-radius: 0 0 7px 0;
+	border-radius: 0 0 4px 0;
 }
 
 .ecjia-goodsAttr-modal .modal-buttons .goods-attr-price, .ecjia-attr-static .modal-buttons .goods-attr-price {
