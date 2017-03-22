@@ -31,6 +31,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<link rel="stylesheet" href="{$theme_url}dist/other/swiper.min.css">
     <link rel="stylesheet" href="{$theme_url}lib/datePicker/css/datePicker.min.css">
     <link rel="stylesheet" href="{$theme_url}lib/winderCheck/css/winderCheck.min.css">
+    <!-- 图片预览 -->
+    <link rel="stylesheet" href="{$theme_url}lib/photoswipe/css/photoswipe.css">
+    <link rel="stylesheet" href="{$theme_url}lib/photoswipe/css/default-skin/default-skin.css">
+    
 	<!-- skin -->
 	<link rel="stylesheet" href="{$theme_url}{$curr_style}">
 	<script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp&libraries=convertor"></script>
@@ -43,6 +47,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<script type="text/javascript" src="{$theme_url}lib/ecjiaUI/ecjia.js" ></script>
 	<script type="text/javascript" src="{$theme_url}lib/jquery-form/jquery.form.min.js" ></script>	
 	<script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+	<!-- 图片预览 -->
+	<script type="text/javascript" src="{$theme_url}lib/photoswipe/js/photoswipe.js"></script>
+	<script type="text/javascript" src="{$theme_url}lib/photoswipe/js/photoswipe-ui-default.min.js"></script>
 
 	<!-- {block name="meta"} --><!-- {/block} -->
 	<script type="text/javascript" src="{$theme_url}js/ecjia.touch.js" ></script>

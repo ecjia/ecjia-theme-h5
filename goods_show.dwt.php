@@ -172,10 +172,14 @@ var releated_goods = {$releated_goods};
 						<div class="assess-bottom">            
 							<p class="assess-content">{$comment.content}</p>
 							<!-- {if $comment.picture} -->
-							<div class="img-list">
-								<!-- {foreach from=$comment.picture item=img} -->
-								<a class="nopjax external" href="{$img}"><img src="{$img}" /></a>
-								<!-- {/foreach} -->
+							<div class="img-list img-pwsp-list" data-pswp-uid="{$key}">
+								<figure>
+									<span>
+									<!-- {foreach from=$comment.picture item=img} -->
+									<a class="nopjax external" href="{$img}"><img src="{$img}" /></a>
+									<!-- {/foreach} -->
+									</span>
+								</figure>
 							</div>
 							<!-- {/if} -->
 							<p class="goods-attr">{$comment.goods_attr}</p>
@@ -371,4 +375,5 @@ var releated_goods = {$releated_goods};
 <!-- #BeginLibraryItem "/library/address_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/goods_attr_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/goods_attr_static_modal.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/preview_image.lbi" --><!-- #EndLibraryItem -->
 <!-- {/block} -->

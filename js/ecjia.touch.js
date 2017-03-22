@@ -290,6 +290,7 @@
 				ecjia.touch.category.remove_tocart();
 				ecjia.touch.category.store_toggle();
 				ecjia.touch.record_time();
+				ecjia.touch.category.image_preview();
 			});
 		},
 		

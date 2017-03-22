@@ -6,12 +6,7 @@ Libraries: merchant_goods
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
-<!-- {extends file="ecjia-touch.dwt.php"} -->
-
-<!-- {block name="footer"} -->
-<script type="text/javascript">ecjia.touch.category.init();</script>
-<!-- {/block} -->
-
+{nocache}
 <!-- {block name="ajaxinfo"} -->
 <!-- {foreach from=$goods_list item=goods} -->
 <li>
@@ -42,3 +37,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 <!-- {/foreach} -->	
 <!-- {/block} -->
+{/nocache}

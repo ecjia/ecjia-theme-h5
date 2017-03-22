@@ -71,10 +71,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 <!-- #BeginLibraryItem "/library/merchant_detail.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/store_notice_modal.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/preview_image.lbi" --><!-- #EndLibraryItem -->
 <!-- {/block} -->
 
 <!-- {block name="ajaxinfo"} -->
-<!-- {foreach from=$comment item=list} -->
+<!-- {foreach from=$comment item=list key=key} -->
 <div class="assess-flat">    
 	<div class="assess-wrapper">        
 		<div class="assess-top">            
@@ -88,10 +89,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="assess-bottom">            
 			<p class="assess-content">{$list.content}</p>
 			<!-- {if $list.picture} -->
-			<div class="img-list">
-				<!-- {foreach from=$list.picture item=img} -->
-				<a class="nopjax external" href="{$img}"><img src="{$img}" /></a>
-				<!-- {/foreach} -->
+			<div class="img-list img-pwsp-list" data-pswp-uid="{$key}">
+				<figure>
+					<span>
+					<!-- {foreach from=$list.picture item=img} -->
+					<a class="nopjax external" href="{$img}"><img src="{$img}" /></a>
+					<!-- {/foreach} -->
+					</span>
+				</figure>
 			</div>
 			<!-- {/if} -->
 			<p class="goods-attr">{$list.goods_attr}</p>
