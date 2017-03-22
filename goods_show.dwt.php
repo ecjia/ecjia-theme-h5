@@ -162,7 +162,7 @@ var releated_goods = {$releated_goods};
 				<div class="assess-flat">
 					<div class="assess-wrapper">        
 						<div class="assess-top">            
-							<span class="user-portrait"><img src="{$theme_url}images/default_user.png"></span>
+							<span class="user-portrait"><img src="{if $comment.avatar_img}{$comment.avatar_img}{else}{$theme_url}images/default_user.png{/if}"></span>
 							<div class="user-right">
 								<span class="user-name">{$comment.author}</span>     
 								<span class="assess-date">{$comment.add_time}</span>
