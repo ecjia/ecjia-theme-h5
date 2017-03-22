@@ -1266,7 +1266,7 @@
     			//禁用滚动条
             	$('body').css('overflow-y', 'hidden').on('touchmove', function(event){event.preventDefault;}, false);
 
-            	var height = ($('body').scrollTop() + 160) + 'px';
+            	var height = ($(window).height() + $('body').scrollTop()- 380) + 'px';
     			$('.ecjia-store-modal').show().css('top', height);
     			$('.ecjia-store-modal-overlay').show();
     			myApp.openModal('.ecjia-store-modal');
@@ -1453,7 +1453,7 @@
  				}
  				spec_html(modal);
  				
-            	var height = ($('body').scrollTop() + 160) + 'px';
+            	var height = ($(window).height() + $('body').scrollTop()- 380) + 'px';
             	$(modal).show().css('top', height);
     			if (modal == '.ecjia-goodsAttr-modal') {
 					$('.ecjia-goodsAttr-overlay').show();

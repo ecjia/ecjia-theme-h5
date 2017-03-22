@@ -49,7 +49,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						{if $attr.name}{$attr.name}:{$attr.value}{/if}
 						<!-- {/foreach} -->
 						</p>
-						<p class="ecjia-color-red ">{$goods.formated_shop_price}</p>
+						<p class="ecjia-color-red goods-attr-price">{$goods.formated_shop_price}</p>
 					</div>
 					<span class="ecjiaf-fr goods-price"> x {$goods.goods_number}</span>
 					</a>

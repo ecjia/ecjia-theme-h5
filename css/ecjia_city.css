@@ -2982,6 +2982,10 @@ footer {
 	padding-left: 50px;
 }
 
+.ecjia-flow-cart .item-goods:last-child {
+	margin-bottom: 5px;
+}
+
 .ecjia-flow-cart .item-goods .cart-checkbox {
 	position: absolute;
 	left: 10px;
@@ -5989,6 +5993,7 @@ footer {
 	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
 	display: -webkit-box;
+	height: 2em;
 }
 
 .ecjia-goods-attr.goods-attr {
@@ -6303,7 +6308,7 @@ footer {
 .ecjia-flow-goodslist.ecjia-order-detail .goods-item .ecjia-goods-attr2 {
 	float: left;
 	position: absolute;
-	top: 35%;
+	top: 40%;
 	color: #848689;
 	font-size: .8em;
 	text-overflow: ellipsis;
@@ -6312,6 +6317,11 @@ footer {
 	-webkit-box-orient: vertical;
 	display: -webkit-box;
 }
+
+.ecjia-flow-goodslist.ecjia-order-detail .goods-item .goods-attr-price {
+	margin-top: 1.5em;
+}
+
 /*========================  评价晒单 ===========================*/
 .ecjia-comment-list {
 	border-bottom: 1px solid #eee;
@@ -6635,7 +6645,7 @@ footer {
 
 .ecjia-store-list .store-info .basic-info {
 	height: auto;
-	padding: .8em .2em .4em .2em;
+	padding: .8em .2em .2em .2em;
 }
 
 .ecjia-store-list .store-left {
