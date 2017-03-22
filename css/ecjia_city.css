@@ -5658,10 +5658,18 @@ footer {
 	position: relative;
 }
 
+.ecjia-like-goods-list li .link-goods-price .goods-price {
+	width: 60%;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+	color: #ff3434;
+}
+
 .ecjia-like-goods-list li .link-goods-price .choose_attr {
 	position: absolute;
 	right: 0;
-	bottom: -0.1em;
+	bottom: .3em;
 	width: 4em;
 	text-align: center;
 	color: #fff;
@@ -8739,7 +8747,7 @@ footer {
 .ecjia-goodsAttr-modal .goods-attr-list ul>li.active, .ecjia-attr-static .goods-attr-list ul>li.active {
 	background-color: #47aa4d;
 	color: #fff;
-	border: none;
+	border: 1px solid #fff;
 }
 
 .ecjia-goodsAttr-modal .modal-buttons.modal-buttons-vertical, .ecjia-attr-static .modal-buttons.modal-buttons-vertical {
