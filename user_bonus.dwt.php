@@ -22,7 +22,7 @@ var bonus_sn_empty = '{$lang.bonus_sn_empty}';
 	<li {if $smarty.get.status eq 'expired'} class="red-bottom"{else}class=""{/if}><a {if $smarty.get.status eq 'expired'} class="red-font right-border"{else}class="right-border"{/if} href="{url path='user/bonus/init' args='status=expired'}">{t}已过期{/t}</a></li>
 </ul>
 <div class="ecjia-bonus bonus_explain">
-    <a>使用说明</a> 
+    <a href="{$bonus_readme_url}">使用说明</a> 
 </div>
 {if $smarty.get.status eq 'allow_use'}
 <div><ul class="ecjia-bonus-top-list ecjia-bonus-top-im ecjia-margin-t ecjia-bonus ecjia-list-two" id="J_ItemList"  data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/bonus/async_allow_use'}" data-size="10"></ul></div>
