@@ -47,7 +47,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<div class="suggest-goods-list">
 						<!-- {foreach from=$val.seller_goods item=goods key=key} -->
 						<!-- {if $key < 4} -->
-						<a href="{RC_Uri::url('goods/index/show')}&goods_id={$goods.goods_id}">
+						<a href="{RC_Uri::url('merchant/index/init')}&store_id={$val.id}">
 							<img src="{$goods.img.thumb}">
 							<span class="goods_price">{if $goods.promote_price}{$goods.promote_price}{else}{$goods.shop_price}{/if}</span>
 						</a>
