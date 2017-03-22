@@ -174,15 +174,7 @@
             			var store_id = $this.parent().attr('data-store');
             			var li = $this.parents('.item-goods');
             			
-            			ecjia.touch.category.update_cart(rec_id, '', '' , '', store_id, '', 'reduce');
-            			if (li.siblings('li').length == 0) {
-            				li.parents('.cart-single').remove();
-            				if ($('li.cart-single').length == 0) {
-            					$('.ecjia-flow-cart').remove();
-            					$('.flow-no-pro').removeClass('hide');
-            				}
-            			}
-            			li.remove();
+            			ecjia.touch.category.update_cart(rec_id, '', '' , '', store_id, '', 'reduce', li);
             		} else {
             			$this.siblings('input').val(val);
             			var store_id = $this.parent().attr('data-store');
@@ -274,7 +266,7 @@
         },
         
         //更新购物车
-        update_cart : function(rec_id, val, goods_id, checked, store, spec, type) {
+        update_cart : function(rec_id, val, goods_id, checked, store, spec, type, div) {
         	var url = $('input[name="update_cart_url"]').val();
         	var store_id = $('input[name="store_id"]').val();
         	
@@ -295,6 +287,16 @@
         	
         	//更新购物车中商品
             $.post(url, info, function(data){
+            	if (div != undefined) {
+            		if (div.siblings('li').length == 0) {
+            			div.parents('.cart-single').remove();
+        				if ($('li.cart-single').length == 0) {
+        					$('.ecjia-flow-cart').remove();
+        					$('.flow-no-pro').removeClass('hide');
+        				}
+        			}
+            		div.remove();
+            	}
             	$('.la-ball-atom').remove();
             	$('.box').children('span').addClass('limit_click');	//禁止其他加减按钮点击
             	$('[data-toggle="toggle_checkbox"]').removeClass('limit_click');//店铺首页 允许其他单选框点击
