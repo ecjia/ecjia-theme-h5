@@ -1508,7 +1508,6 @@
 
             	$('.goods-attr-list').on('touchmove', function(e) {
         			e.stopPropagation();
-        			$(modal).css({position: "fixed"});
         		});
             	
             	ecjia.touch.category.toggle_spec(modal);
