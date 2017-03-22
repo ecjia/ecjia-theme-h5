@@ -148,7 +148,7 @@ var releated_goods = {$releated_goods};
 		                	<i class="iconfont icon-jiantou-right"></i>
 		                	<span class="comment_score">{$comment_list.comment_percent}好评</span>
 		                	{else}
-		                	<span class="shop-title-name">评价晒单</span>
+		                	<span class="shop-title-name">商品评价</span>
 		                	<i class="iconfont icon-jiantou-right"></i>
 		                	{/if}
 		                </div>
