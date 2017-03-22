@@ -1539,6 +1539,7 @@ footer {
 	position: fixed;
 	width: 100%;
 	max-width: 640px;
+	z-index: 5;
 }
 
 .page_hearder_hide {
@@ -1579,19 +1580,24 @@ footer {
 	z-index: 2;
 }
 
-.ecjia-header.ecjia-store-banner img {
+.ecjia-header.ecjia-store-banner .ecjia-header-left {
 	position: absolute;
-	width: 100%;
-	left: 0;
-	top: 0;
-	z-index: 1;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    height: 10.5em;
+}
+
+.ecjia-header.ecjia-store-banner img {
 	height: 10.5em;
+	width: 120%;
 }
 
 .ecjia-store-banner .ecjia-header-right {
 	position: absolute;
     right: 0;
-    width: 10%;
+    width: 25%;
 }
 
 .ecjia-store-banner .ecjia-header-right a {
@@ -1748,7 +1754,7 @@ footer {
 	line-height: 2em;
 	font-size: 1.1em;
 	color: #666;
-	z-index: 2;
+	z-index: 5;
 	border-bottom: 1px solid #eee;
 }
 
@@ -1768,11 +1774,11 @@ footer {
 
 .ecjia-store-seller {
 	position: absolute;
-    top: 14.3em;
+   	top: 13.7em;
 	bottom: 0;
 	width: 100%;
 	max-width: 640px;
-	z-index: 3;
+	z-index: 4;
 }
 
 .ecjia-store-seller .store-hr {
@@ -6621,7 +6627,7 @@ footer {
 
 .ecjia-store-list .store-info .basic-info {
 	height: auto;
-	padding: .8em .2em;
+	padding: .8em .2em .4em .2em;
 }
 
 .ecjia-store-list .store-left {
@@ -8137,7 +8143,7 @@ footer {
     bottom: 0;
     width: 100%;
     max-width: 640px;
-    z-index: 8;
+    z-index: 4;
     padding-bottom: 45px;
 }
 
@@ -8192,7 +8198,7 @@ footer {
 }
 .ecjia-store-comment .store-container {
     position: absolute;
-    top: 8em;
+    top: 7em;
     bottom: 0;
     left: 0;
     right: 0;
@@ -8210,6 +8216,9 @@ footer {
     -webkit-overflow-scrolling: touch;
 }
 
+.ecjia-store-comment .store-comment-container .store-comment {
+	padding-top: 1em;
+}
 .goods-desc-info .store-option {
 	height: auto;
 	overflow: hidden;
