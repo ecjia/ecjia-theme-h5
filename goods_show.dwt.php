@@ -173,13 +173,9 @@ var releated_goods = {$releated_goods};
 							<p class="assess-content">{$comment.content}</p>
 							<!-- {if $comment.picture} -->
 							<div class="img-list img-pwsp-list" data-pswp-uid="{$key}">
-								<figure>
-									<span>
-									<!-- {foreach from=$comment.picture item=img} -->
-									<a class="nopjax external" href="{$img}"><img src="{$img}" /></a>
-									<!-- {/foreach} -->
-									</span>
-								</figure>
+								<!-- {foreach from=$comment.picture item=img} -->
+								<figure><span><a class="nopjax external" href="{$img}"><img src="{$img}" /></a></span></figure>
+								<!-- {/foreach} -->
 							</div>
 							<!-- {/if} -->
 							<p class="goods-attr">{$comment.goods_attr}</p>

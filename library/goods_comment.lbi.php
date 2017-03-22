@@ -44,13 +44,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <p class="assess-content">{$list.content}</p>
                 <!-- {if $comment.picture} -->
                 <div class="img-list img-pwsp-list" data-pswp-uid="{$key}">
-                	<figure>
-						<span>
-	                    <!-- {foreach from=$list.picture item=img} -->
-	                    <a class="nopjax external" href="{$img}"><img src="{$img}" /></a>
-	                    <!-- {/foreach} -->
-                    	</span>
-                    </figure>
+                    <!-- {foreach from=$list.picture item=img} -->
+                    <figure><span><a class="nopjax external" href="{$img}"><img src="{$img}" /></a></span></figure>
+                    <!-- {/foreach} -->
                 </div>
                 <!-- {/if} -->
                 <p class="goods-attr">{$list.goods_attr}</p>
