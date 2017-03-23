@@ -1360,6 +1360,11 @@
  				}
  				var error = 0;
  				if ($this.hasClass('spec_goods')) {
+ 					var choose_attr = $('.goods_attr.goods_spec_' + goods_id).children('.choose_attr');
+ 					if (store_id == undefined) store_id = choose_attr.attr('data-store');
+ 					if (url == undefined) url = choose_attr.attr('data-url');
+ 					if (spec == undefined) spec = choose_attr.attr('data-spec');
+
  					var modal = '.ecjia-attr-static';
  					for (var i in releated_goods) {
  						var r = releated_goods[i];

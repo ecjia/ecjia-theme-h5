@@ -199,7 +199,7 @@ class goods_controller {
 	    		}
 	    	}
 	    	
-			$spec_releated_goods = array();
+			$spec_releated_goods = $related_goods_list = array();
 		    if (!empty($goods_info['related_goods'])){
 		    	foreach ($goods_info['related_goods'] as $k => $v) {
 		    		if (!empty($v['specification'])) {
@@ -223,6 +223,14 @@ class goods_controller {
 		    				}
 		    			}
 		    		}
+		    		$related_goods_list[] = $v['goods_id'];
+		    	}
+		    }
+		    
+		    $goods_info['in_related_goods'] = 0;
+		    if (!empty($related_goods_list)) {
+		    	if (in_array($goods_id, $related_goods_list)) {
+		    		$goods_info['in_related_goods'] = 1;
 		    	}
 		    }
 

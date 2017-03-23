@@ -81,7 +81,7 @@ var releated_goods = {$releated_goods};
 			                </div>
 			                <div class="cart-plus-right goods_spec_{$goods_info.id}" goods_id="{$goods_info.id}">
 			                	{if $goods_info.specification}
-			                	<span class="goods-add-cart choose_attr" goods_id="{$goods_info.id}">选规格</span>
+			                	<span class="goods-add-cart choose_attr {if $goods_info.in_related_goods eq 1}spec_goods{/if}" goods_id="{$goods_info.id}">选规格</span>
 			                	{if $goods_attr_num}<i class="attr-number">{$goods_attr_num}</i>{/if}
 			                	{else}
 			                	<span class="goods-add-cart add-cart-a {if $rec_id}hide{/if}" data-toggle="add-to-cart" goods_id="{$goods_info.id}">加入购物车</span>
@@ -98,7 +98,7 @@ var releated_goods = {$releated_goods};
 	                <del>市场价：{$goods_info.market_price}</del>	
                 	{if $goods_info.specification}
                 	<span class="goods_spec_{$goods_info.id}">
-		            <span class="goods-add-cart choose_attr" goods_id="{$goods_info.id}">选规格</span>
+		            <span class="goods-add-cart choose_attr {if $goods_info.in_related_goods eq 1}spec_goods{/if}" goods_id="{$goods_info.id}">选规格</span>
 		            {if $goods_attr_num}<i class="attr-number">{$goods_attr_num}</i>{/if}
 		            </span>
 		            {else}
