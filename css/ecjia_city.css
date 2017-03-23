@@ -7,6 +7,10 @@ html, body {
 	margin: 0 4px;
 }
 
+.ecjia {
+	position: relative;	
+}
+
 body .ecjia .ecjia-select .input100 {
 	padding: 0;
 	width: 100%;
@@ -8644,7 +8648,7 @@ footer {
 /*选择商品规格弹出层*/
 .ecjia-goodsAttr-modal, .ecjia-attr-static {
 	width: 95%;
-    position: absolute;
+    position: fixed;
     z-index: 11000;
     left: 2.5%;
     top: 20%;
@@ -8654,6 +8658,7 @@ footer {
     color: #000;
     display: none;
     height: auto;
+	max-width: 640px;
 }
 
 .ecjia-goodsAttr-modal.modal-in, .ecjia-attr-static.modal-in {

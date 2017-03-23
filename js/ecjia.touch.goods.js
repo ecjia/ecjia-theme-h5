@@ -1469,42 +1469,36 @@
  				}
  				spec_html(modal);
  				
-            	var wHeight = $(window).height();
-                var scrollTop = $(document).scrollTop();
-                var top;
-                if (wHeight - 400 < 0) {
-                    top = scrollTop;
-                } else {
-                	var ua = navigator.userAgent.toLowerCase();  
-                    if(ua.match(/MicroMessenger/i)=="micromessenger") {  
-                    	top = scrollTop + (wHeight - 330) / 2;
-                    } else {  
-                    	top = scrollTop + (wHeight - 300) / 2;
-                    }  
-                }
-                
-            	$(modal).show().css('top', top);
+            	$(modal).show();
+            	
+            	var overlay;
     			if (modal == '.ecjia-goodsAttr-modal') {
-					$('.ecjia-goodsAttr-overlay').show();
+					overlay = '.ecjia-goodsAttr-overlay';
 				} else if (modal == '.ecjia-attr-static') {
-					$('.ecjia-attr-static-overlay').show();
-				}    			
+					overlay = '.ecjia-attr-static-overlay';
+				}   
+    			$(overlay).show();
+    			
+    			//禁用滚动条
+            	$('body').css('overflow-y', 'hidden').on('touchmove', function(event){event.preventDefault();}, false);
+            	$(".ecjia-store-goods .a1n .a1x").css({overflow: "hidden"});	//禁用滚动条
+            	
     			myApp.openModal(modal);
     			$('.modal-overlay').remove();
     			
     			$('.ecjia-close-modal-icon').on('click', function(){
     				$(modal).hide();
-        			if (modal == '.ecjia-goodsAttr-modal') {
-        				$('.ecjia-goodsAttr-overlay').hide();
-        			} else if (modal == '.ecjia-attr-static') {
-        				$('.ecjia-attr-static-overlay').hide();
-        			}
+    				$(overlay).hide();
     				$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
     				$(".ecjia-store-goods .a1n .a1x").css({overflow: "auto"});	//启用滚动条
     			});
-    			//禁用滚动条
-            	$('body').css('overflow-y', 'hidden').on('touchmove', function(event){event.preventDefault();}, false);
-            	$(".ecjia-store-goods .a1n .a1x").css({overflow: "hidden"});	//禁用滚动条
+    			
+            	$(overlay).off('click').on('click', function(e){
+            		$(modal).hide();
+            		$(overlay).hide();
+    				$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
+    				$(".ecjia-store-goods .a1n .a1x").css({overflow: "auto"});	//启用滚动条
+            	});
             	
             	ecjia.touch.category.toggle_spec(modal);
         		ecjia.touch.category.add_tocart();
