@@ -174,8 +174,9 @@ class touch_controller {
         	list($data, $paginated) = $response;
         	$data = merchant_function::format_distance($data);
         
-        	if ($paginated['more'] == 0) $data['is_last'] = 1;
+        	if ($paginated['more'] == 0) $is_last = 1;
         	ecjia_front::$controller->assign('data', $data);
+        	ecjia_front::$controller->assign('is_last', $is_last);
         }
 
         ecjia_front::$controller->display('index.dwt');
