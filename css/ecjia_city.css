@@ -7,10 +7,6 @@ html, body {
 	margin: 0 4px;
 }
 
-.ecjia {
-	position: relative;	
-}
-
 body .ecjia .ecjia-select .input100 {
 	padding: 0;
 	width: 100%;
@@ -8650,7 +8646,6 @@ footer {
 	width: 95%;
     position: fixed;
     z-index: 11000;
-    left: 2.5%;
     top: 20%;
     text-align: center;
     border-radius: 7px;

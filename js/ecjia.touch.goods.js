@@ -1469,8 +1469,10 @@
  				}
  				spec_html(modal);
  				
+ 				if ($('body').width() < 640) {
+ 					$(modal).css('left', '2.5%');
+ 				}
             	$(modal).show();
-            	
             	var overlay;
     			if (modal == '.ecjia-goodsAttr-modal') {
 					overlay = '.ecjia-goodsAttr-overlay';
