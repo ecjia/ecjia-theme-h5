@@ -1165,6 +1165,7 @@ ul, li, ol, dl, dt, dd {
 .ecjia-mod .head-title {
 	border-top: 0;
 	color: #FF5000;
+	background: #fff;
 }
 
 .ecjia-mod .head-title h2 {
@@ -8454,6 +8455,10 @@ footer {
 /*首页热门推荐店铺*/
 .ecjia-store-model {
 	padding-bottom: 50px;
+}
+
+.ecjia-mod.ecjia-store-model {
+	background: #f7f7f7;
 }
 
 .ecjia-suggest-store {
