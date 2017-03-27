@@ -76,7 +76,7 @@ class franchisee_controller {
 		if (empty($code)) {
 			return ecjia_front::$controller->showmessage('验证码不能为空', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 		}
-		$chars = "/(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7}/";
+		$chars = "/^1(3|4|5|7|8)\d{9}$/";
 		if (!preg_match($chars, $mobile)) {
 			return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 		}
@@ -126,7 +126,7 @@ class franchisee_controller {
 	    	if (empty($mobile)) {
 	    		return ecjia_front::$controller->showmessage('请输入手机号码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 	    	}
-	    	$chars = "/(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7}/";
+	    	$chars = "/^1(3|4|5|7|8)\d{9}$/";
 	    	if (!preg_match($chars, $mobile)) {
 	    		return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_JSON | ecjia::MSGTYPE_ERROR);
 	    	}
@@ -391,7 +391,7 @@ class franchisee_controller {
 	        return ecjia_front::$controller->showmessage(__('验证码不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 	    }
 	    
-	    $chars = "/(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7}/";
+	    $chars = "/^1(3|4|5|7|8)\d{9}$/";
 	    if (!preg_match($chars, $mobile)) {
 	    	return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 	    }
