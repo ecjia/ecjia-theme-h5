@@ -117,8 +117,8 @@ class cart_controller {
     	
         ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->assign('active', 'cartList');
-    	
     	ecjia_front::$controller->assign_title('购物车列表');
+    	
         ecjia_front::$controller->display('cart_list.dwt');
     }
     
