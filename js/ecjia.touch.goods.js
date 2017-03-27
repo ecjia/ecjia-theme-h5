@@ -810,12 +810,20 @@
             				};
             				$.post(url, info, function(data) {
             					if (data.state == 'success') {
-
             						ecjia.touch.category.hide_cart(true);
             						if ($.find('.box').length != 0) {
-            							$('.box').removeClass('show').addClass('hide');
-                    					$('.box').children('label').html('1');
-                    					$('.box').children('span').attr('rec_id', '');
+            							$('.box').each(function() {
+            								console.log($(this).parent().find('.goods-add-cart').length);
+            								if ($(this).parent().find('.goods-add-cart').length != 0) {
+            									$(this).removeClass('show').addClass('hide');
+            									$(this).children('label').html('1');
+            									$(this).children('span').attr('rec_id', '');
+            								} else {
+            									$(this).children('span.reduce').addClass('hide').removeClass('show');
+            									$(this).children('label').html('');
+            									$(this).children('span').attr('rec_id', '');
+            								}
+            							});
             						}
             						if ($.find('.goods-add-cart').length != 0) {
             							$('.box').addClass('hide');
