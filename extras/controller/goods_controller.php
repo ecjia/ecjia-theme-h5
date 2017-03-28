@@ -319,6 +319,12 @@ class goods_controller {
             'city_id'       => $_COOKIE['city_id']
         );
         
+        if ($type == 'promotion') {
+        	$dwt = 'goods_promotion.dwt';
+        } elseif ($type == 'new') {
+        	$dwt = 'goods_new.dwt';
+        }
+        
         $response = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_SUGGESTLIST)->data($paramater)->hasPage()->run();
         if (!is_ecjia_error($response)) {
         	list($goods_list, $page) = $response;
@@ -330,11 +336,9 @@ class goods_controller {
         	}
         	ecjia_front::$controller->assign('goods_list', $goods_list);
         	ecjia_front::$controller->assign_lang();
-        	if ($type == 'promotion') {
-        		$sayList = ecjia_front::$controller->fetch('goods_promotion.dwt');
-        	} elseif ($type == 'new') {
-        		$sayList = ecjia_front::$controller->fetch('goods_new.dwt');
-        	}
+        	
+        	$sayList = ecjia_front::$controller->fetch($dwt);
+        	
         	if ($page['more'] == 0) $goods_list['is_last'] = 1;
         	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList, 'is_last' => $goods_list['is_last']));
         }
@@ -548,9 +552,8 @@ class goods_controller {
     		$response = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_LIST)->data($arr)->hasPage()->run();
     		if (!is_ecjia_error($response)) {
 				list($data, $page) = $response;
-
 				$arr_list = merchant_function::format_distance($data);
-    			
+				
     			ecjia_front::$controller->assign('data', $arr_list);
     			$say_list = ecjia_front::$controller->fetch('seller_list.dwt');
     			
