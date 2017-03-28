@@ -69,21 +69,23 @@ class article_controller {
     public static function detail() {
         $title = trim($_GET['title']);
         $article_id = intval($_GET['aid']);
-
-        ecjia_front::$controller->assign('title', $title);
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_HELP_DETAIL)->data(array('article_id' => $article_id))->run();
+        $cache_id = sprintf('%X', crc32($title . '-' . $article_id));
         
-        if (!is_ecjia_error($data) && !empty($data)) {
-        	$res = array();
-        	preg_match('/<body>([\s\S]*?)<\/body>/', $data, $res);
-        	$bodystr = trim($res[0]);
-        	if ($bodystr != '<body></body>') {
-        		ecjia_front::$controller->assign('data', $bodystr);
+        if (!ecjia_front::$controller->is_cached('article_detail.dwt', $cache_id)) {
+        	ecjia_front::$controller->assign('title', $title);
+        	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_HELP_DETAIL)->data(array('article_id' => $article_id))->run();
+        	
+        	if (!is_ecjia_error($data) && !empty($data)) {
+        		$res = array();
+        		preg_match('/<body>([\s\S]*?)<\/body>/', $data, $res);
+        		$bodystr = trim($res[0]);
+        		if ($bodystr != '<body></body>') {
+        			ecjia_front::$controller->assign('data', $bodystr);
+        		}
         	}
+        	ecjia_front::$controller->assign_title($title);
         }
-        ecjia_front::$controller->assign_title($title);
-        
-        ecjia_front::$controller->display('article_detail.dwt');
+        ecjia_front::$controller->display('article_detail.dwt', $cache_id);
     }
     
     /**
