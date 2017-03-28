@@ -95,11 +95,15 @@ class user_privilege_controller {
      * 退出
      */
     public static function logout() {
+    	
         $status = !empty($_POST['status']) ? $_POST['status'] : '';
         if ($status == 'logout') {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNOUT)->run();
             $back_act = RC_Uri::url('user/privilege/login');
+            
             ecjia_touch_user::singleton()->signout();
+            RC_Cookie::delete(RC_Config::get('session.session_name'));
+            
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('logout_url' => $back_act));
         }
     }
@@ -211,9 +215,13 @@ class user_privilege_controller {
                 return ecjia_front::$controller->showmessage(__($data->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
         } else {
-            ecjia_front::$controller->assign('title', '设置密码');
-            ecjia_front::$controller->assign_lang();
-            ecjia_front::$controller->display('user_set_password.dwt');
+            $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+            
+            if (!ecjia_front::$controller->is_cached('user_set_password.dwt', $cache_id)) {
+                ecjia_front::$controller->assign('title', '设置密码');
+                ecjia_front::$controller->assign_lang();
+            }
+            ecjia_front::$controller->display('user_set_password.dwt', $cache_id);
         }
     }
 }

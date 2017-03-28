@@ -144,7 +144,7 @@ class user_bonus_controller {
         $token = ecjia_touch_user::singleton()->getToken();
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']).'-'.$token);
         
-        if (!ecjia_front::$controller->is_cached('user_my_reward.dwt', $cache_id)) {
+        if (!ecjia_front::$controller->is_cached('user_reward_detail.dwt', $cache_id)) {
             $type = !empty($_GET['type']) ? $_GET['type'] : '';
             $invite_reward = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_REWARD)->data(array('token' => $token))->run();
             $invite_reward = is_ecjia_error($invite_reward) ? array() : $invite_reward;
@@ -201,7 +201,7 @@ class user_bonus_controller {
     public static function get_integral() {
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
         
-        if (!ecjia_front::$controller->is_cached('article_init.dwt', $cache_id)) {
+        if (!ecjia_front::$controller->is_cached('user_get_integral.dwt', $cache_id)) {
             ecjia_front::$controller->assign_title('赚积分');
         }
         ecjia_front::$controller->display('user_get_integral.dwt', $cache_id);
