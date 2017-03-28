@@ -57,11 +57,14 @@ class user_address_controller {
     public static function address_list() {
     	unset($_SESSION['referer_url']);
     	
-    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
+    	$token = ecjia_touch_user::singleton()->getToken();
+    	
+    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
     	$address_list = is_ecjia_error($address_list) ? array() : $address_list;
     	ecjia_front::$controller->assign('address_list', $address_list);
     	ecjia_front::$controller->assign_title('收货地址管理');
-        ecjia_front::$controller->assign_lang();
+    	ecjia_front::$controller->assign_lang();
+    	    		
         ecjia_front::$controller->display('user_address_list.dwt');
     }
 
@@ -158,25 +161,26 @@ class user_address_controller {
      * 增加收货地址
      */
     public static function add_address() {
-        $temp_data = user_address_controller::save_temp_data(1, 'add', $_GET['clear'], $_GET);
-        ecjia_front::$controller->assign('temp', $temp_data);
-        $location_backurl = urlencode(RC_Uri::url('user/address/add_address'));
-        ecjia_front::$controller->assign('location_backurl', $location_backurl);
-        
-		$referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : (!empty($_SESSION['referer_url']) ? $_SESSION['referer_url'] : '');
-		if (!empty($referer_url)) {
-			$_SESSION['referer_url'] = $referer_url;
-			ecjia_front::$controller->assign('referer_url', $referer_url);
-		}
-		$key       = ecjia::config('map_qq_key');
-		$referer   = ecjia::config('map_qq_referer');
-		$my_location = "https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl=".$location_backurl."&key=".$key."&referer=".$referer;
-		ecjia_front::$controller->assign('my_location', $my_location);
-		
+    	$temp_data = user_address_controller::save_temp_data(1, 'add', $_GET['clear'], $_GET);
+    	ecjia_front::$controller->assign('temp', $temp_data);
+    	$location_backurl = urlencode(RC_Uri::url('user/address/add_address'));
+    	ecjia_front::$controller->assign('location_backurl', $location_backurl);
+    	
+    	$referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : (!empty($_SESSION['referer_url']) ? $_SESSION['referer_url'] : '');
+    	if (!empty($referer_url)) {
+    		$_SESSION['referer_url'] = $referer_url;
+    		ecjia_front::$controller->assign('referer_url', $referer_url);
+    	}
+    	$key       = ecjia::config('map_qq_key');
+    	$referer   = ecjia::config('map_qq_referer');
+    	$my_location = "https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl=".$location_backurl."&key=".$key."&referer=".$referer;
+    	ecjia_front::$controller->assign('my_location', $my_location);
+    	
     	ecjia_front::$controller->assign('form_action', RC_Uri::url('user/address/insert_address'));
-        ecjia_front::$controller->assign('temp_key', 'add');
-        ecjia_front::$controller->assign_title('添加收货地址');
-        ecjia_front::$controller->assign_lang();
+    	ecjia_front::$controller->assign('temp_key', 'add');
+    	ecjia_front::$controller->assign_title('添加收货地址');
+    	ecjia_front::$controller->assign_lang();
+    		
         ecjia_front::$controller->display('user_address_edit.dwt');
     }
 
@@ -221,14 +225,12 @@ class user_address_controller {
         	    setcookie('longitude', $address_info['location']['longitude']);
         	    setcookie('latitude', $address_info['location']['latitude']);
         	}
-    		
         } else {
         	$pjax_url = RC_Uri::url('user/address/address_list');
         }
         unset($_SESSION['referer_url']);
         unset($_SESSION['address']);
         return ecjia_front::$controller->showmessage('添加地址成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pjax_url));
-        
     }
 
     /**
@@ -247,11 +249,13 @@ class user_address_controller {
         
         $location_backurl = urlencode(RC_Uri::url('user/address/edit_address', array('id' => $id)));
         ecjia_front::$controller->assign('location_backurl', $location_backurl);
+        
         $referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : (!empty($_SESSION['referer_url']) ? $_SESSION['referer_url'] : '');
         if (!empty($referer_url)) {
             $_SESSION['referer_url'] = $referer_url;
             ecjia_front::$controller->assign('referer_url', $referer_url);
         }
+        
         $key       = ecjia::config('map_qq_key');
         $referer   = ecjia::config('map_qq_referer');
         $my_location = "https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl=".$location_backurl."&key=".$key."&referer=".$referer;
@@ -267,6 +271,7 @@ class user_address_controller {
         ecjia_front::$controller->assign('location_backurl', urlencode(RC_Uri::url('user/address/edit_address', array('id' => $id))));
         ecjia_front::$controller->assign_title('编辑收货地址');
         ecjia_front::$controller->assign_lang();
+        
         ecjia_front::$controller->display('user_address_edit.dwt');
     }
 

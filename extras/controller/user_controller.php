@@ -106,32 +106,35 @@ class user_controller {
      * 推广页面
      */
     public static function spread() {
-    	$name = trim($_GET['name']);
     	$token = ecjia_touch_user::singleton()->getToken();
-    	$invite_user_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_USER)->data(array('token' => $token))->run();
-    	$invite_user_detail = is_ecjia_error($invite_user_detail) ? array() : $invite_user_detail;
-		
-		if (!empty($invite_user_detail['invite_explain'])) {
-			if (strpos($invite_user_detail['invite_explain'], '；')) {
-				$invite_user_detail['invite_explain_new'] = explode('；', $invite_user_detail['invite_explain']);
-			}
-		}
-		if (!empty($invite_user_detail['invite_explain_new'])) {
-			foreach ($invite_user_detail['invite_explain_new'] as $key => $val) {
-				if (empty($val)) {
-					unset($invite_user_detail[$key]);
+    	
+    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']).'-'.$token);
+    	if (!ecjia_front::$controller->is_cached('spread.dwt', $cache_id)) {
+	    	$name = trim($_GET['name']);
+	    	$invite_user_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_USER)->data(array('token' => $token))->run();
+	    	$invite_user_detail = is_ecjia_error($invite_user_detail) ? array() : $invite_user_detail;
+			
+			if (!empty($invite_user_detail['invite_explain'])) {
+				if (strpos($invite_user_detail['invite_explain'], '；')) {
+					$invite_user_detail['invite_explain_new'] = explode('；', $invite_user_detail['invite_explain']);
 				}
 			}
-		}
-		ecjia_front::$controller->assign('share_title', $name.'推荐这个实用的App给你~');
-		ecjia_front::$controller->assign_title('我的推广');
-    	ecjia_front::$controller->assign('invite_user', $invite_user_detail);
-    	ecjia_front::$controller->assign('url', RC_Uri::url('user/index/wxconfig'));
-    	
-    	$image = ecjia::config('mobile_app_icon') != '' ? RC_Upload::upload_url(ecjia::config('mobile_app_icon')) : '';
-    	ecjia_front::$controller->assign('image', $image);
-    	
-    	ecjia_front::$controller->display('spread.dwt');
+			if (!empty($invite_user_detail['invite_explain_new'])) {
+				foreach ($invite_user_detail['invite_explain_new'] as $key => $val) {
+					if (empty($val)) {
+						unset($invite_user_detail[$key]);
+					}
+				}
+			}
+			ecjia_front::$controller->assign('share_title', $name.'推荐这个实用的App给你~');
+			ecjia_front::$controller->assign_title('我的推广');
+	    	ecjia_front::$controller->assign('invite_user', $invite_user_detail);
+	    	ecjia_front::$controller->assign('url', RC_Uri::url('user/index/wxconfig'));
+	
+	    	$image = ecjia::config('mobile_app_icon') != '' ? RC_Upload::upload_url(ecjia::config('mobile_app_icon')) : '';
+	    	ecjia_front::$controller->assign('image', $image);
+    	}
+    	ecjia_front::$controller->display('spread.dwt', $cache_id);
     }
 	
     public static function wxconfig() {
