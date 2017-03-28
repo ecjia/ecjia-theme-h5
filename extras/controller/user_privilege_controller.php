@@ -95,11 +95,15 @@ class user_privilege_controller {
      * 退出
      */
     public static function logout() {
+    	
         $status = !empty($_POST['status']) ? $_POST['status'] : '';
         if ($status == 'logout') {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNOUT)->run();
             $back_act = RC_Uri::url('user/privilege/login');
+            
             ecjia_touch_user::singleton()->signout();
+            RC_Cookie::delete(RC_Config::get('session.session_name'));
+            
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('logout_url' => $back_act));
         }
     }
