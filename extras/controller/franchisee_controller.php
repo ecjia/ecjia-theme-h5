@@ -140,7 +140,7 @@ class franchisee_controller {
 	//入驻第二步
 	public static function second() {
 	    $token  = ecjia_touch_user::singleton()->getToken();
-	    $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']).'-'.$token);
+	    $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']).'-'.$token.'-'.$_COOKIE['seller_category_id'].'-'.$_COOKIE['province_id'].'-'.$_COOKIE['city_id'].'-'.$_COOKIE['district_id'].'-'.$_SESSION['franchisee_add']);
 	    
 	    if (!ecjia_front::$controller->is_cached('franchisee_second.dwt', $cache_id)) {
 	        //重新修改入驻信息Get获取，正常入驻存session

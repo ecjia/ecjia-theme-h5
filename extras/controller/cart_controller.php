@@ -672,6 +672,7 @@ class cart_controller {
         
         ecjia_front::$controller->assign('title', '支付方式');
         ecjia_front::$controller->assign_title('支付方式');
+        
         ecjia_front::$controller->display('flow_pay.dwt');
     }
 

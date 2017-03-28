@@ -188,8 +188,8 @@ class pay_controller {
     public static function notify() {
     	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
     	if (!ecjia_front::$controller->is_cached('pay_notify.dwt', $cache_id)) {
-    		$mag = '支付成功';
-    		ecjia_front::$controller->assign('mag', $mag);
+    		$msg = '支付成功';
+    		ecjia_front::$controller->assign('msg', $msg);
     		$order_type = isset($_GET['order_type']) ? trim($_GET['order_type']) : '';
     		
     		ecjia_front::$controller->assign('order_type', $order_type);
