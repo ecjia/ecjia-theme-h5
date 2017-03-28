@@ -57,44 +57,49 @@ class user_controller {
     public static function init() {
         //网店信息
         $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
+        
         $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
         $shop = is_ecjia_error($shop) ? array() : $shop;
         $shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
         $shop_config = is_ecjia_error($shop_config) ? array() : $shop_config;
-        $token = ecjia_touch_user::singleton()->getToken();
-        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
-        $signup_reward_url =  RC_Uri::url('user/mobile_reward/init', array('token' => $token));
-   
-        $user = is_ecjia_error($user) ? array() : $user;
+        
         $signin = ecjia_touch_user::singleton()->isSignin();
+        $signup_reward_url = '';
 
+        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
         if ($signin) {
-            if ($user) {
-                ecjia_front::$controller->assign('user', $user);
-            } else {
-                ecjia_touch_user::singleton()->signout();
-            }
+        	$token = ecjia_touch_user::singleton()->getToken();
+        	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token));
+        	
+        	if (!ecjia_front::$controller->is_cached('user.dwt', $cache_id)) {
+        		$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+        		$user = is_ecjia_error($user) ? array() : $user;
+        		 
+        		$signup_reward_url =  RC_Uri::url('user/mobile_reward/init', array('token' => $token));
+        		if ($user) {
+        			//判断是否第三方登录，同步头像
+        			/* 获取远程用户头像信息*/
+        			user_controller::sync_avatar($user['id']);
+        			 
+        			if (!empty($user['avatar_img'])) {
+        				$user_img = $user['avatar_img'];
+        			}
+        			ecjia_front::$controller->assign('user', $user);
+        		} else {
+        			ecjia_touch_user::singleton()->signout();
+        		}
+        	}
         }
-        if (!empty($user['avatar_img'])) {
-            $user_img = $user['avatar_img'];
+        if (!ecjia_front::$controller->is_cached('user.dwt', $cache_id)) {
+        	ecjia_front::$controller->assign('user_img', $user_img);
+        	ecjia_front::$controller->assign('signup_reward_url', $signup_reward_url);
+        	ecjia_front::$controller->assign('shop', $shop);
+        	ecjia_front::$controller->assign('shop_config', $shop_config);
+        	ecjia_front::$controller->assign('active', 'mine');
+        	ecjia_front::$controller->assign_title('个人中心');
         }
-        
-        //判断是否第三方登录，同步头像
-        /* 获取远程用户头像信息*/
-        user_controller::sync_avatar($user['id']);
-        
-        if (ecjia_touch_user::singleton()->isSignin()) {
-        	ecjia_front::$controller->assign('user', $user);
-        }
-        ecjia_front::$controller->assign('user_img', $user_img);
-        ecjia_front::$controller->assign('signup_reward_url', $signup_reward_url);
-        ecjia_front::$controller->assign('shop', $shop);
-        ecjia_front::$controller->assign('shop_config', $shop_config);
-        ecjia_front::$controller->assign('active', 'mine');
-        
-        ecjia_front::$controller->assign_title('个人中心');
-        ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('user.dwt');
+       
+        ecjia_front::$controller->display('user.dwt', $cache_id);
     }
     
     /**

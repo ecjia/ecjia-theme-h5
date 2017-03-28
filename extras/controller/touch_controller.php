@@ -246,18 +246,20 @@ class touch_controller {
      * 搜索
      */
     public static function search() {
-        $keywords = isset($_GET['keywords']) ? $_GET['keywords'] : '';
-        ecjia_front::$controller->assign('keywords', $keywords);
-        
-        $store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
-        ecjia_front::$controller->assign('store_id', $store_id);
-
-        ecjia_front::$controller->assign('searchs', user_function::get_search($store_id));
-        ecjia_front::$controller->assign('searchs_count', count(user_function::get_search($store_id)));
-
-        ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->assign_title('搜索');
-        ecjia_front::$controller->display('search.dwt');
+    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+    	
+    	if (!ecjia_front::$controller->is_cached('search.dwt', $cache_id)) {
+    		$keywords = isset($_GET['keywords']) ? $_GET['keywords'] : '';
+    		ecjia_front::$controller->assign('keywords', $keywords);
+    		
+    		$store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
+    		ecjia_front::$controller->assign('store_id', $store_id);
+    		
+    		ecjia_front::$controller->assign('searchs', user_function::get_search($store_id));
+    		ecjia_front::$controller->assign('searchs_count', count(user_function::get_search($store_id)));
+    		ecjia_front::$controller->assign_title('搜索');
+    	}
+        ecjia_front::$controller->display('search.dwt', $cache_id);
     }
 
     /**

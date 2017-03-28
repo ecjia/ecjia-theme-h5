@@ -54,11 +54,14 @@ class user_bonus_controller {
      * 我的红包
      */
     public static function init() {
-        $shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
-        
-        ecjia_front::$controller->assign('bonus_readme_url', $shop_config['bonus_readme_url']);
-        ecjia_front::$controller->assign_title('我的红包');
-        ecjia_front::$controller->display('user_bonus.dwt');
+    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+    	if (!ecjia_front::$controller->is_cached('user_bonus.dwt', $cache_id)) {
+    		$shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
+    		
+    		ecjia_front::$controller->assign('bonus_readme_url', $shop_config['bonus_readme_url']);
+    		ecjia_front::$controller->assign_title('我的红包');
+    	}
+        ecjia_front::$controller->display('user_bonus.dwt', $cache_id);
     }
 
 
@@ -120,13 +123,18 @@ class user_bonus_controller {
      * 我的奖励
      */
     public static function my_reward() {
-    	$invite_reward = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_REWARD)->data(array('token' => ecjia_touch_user::singleton()->getToken()))->run();
-    	$invite_reward = is_ecjia_error($invite_reward) ? array() : $invite_reward;
-        $intive_total = $invite_reward['invite_total'];
-        
-        ecjia_front::$controller->assign_title('我的奖励');
-        ecjia_front::$controller->assign('intive_total', $intive_total);
-        ecjia_front::$controller->display('user_my_reward.dwt');
+    	$token = ecjia_touch_user::singleton()->getToken();
+    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']).'-'.$token);
+    	
+    	if (!ecjia_front::$controller->is_cached('user_my_reward.dwt', $cache_id)) {
+    		$invite_reward = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_REWARD)->data(array('token' => $token))->run();
+    		$invite_reward = is_ecjia_error($invite_reward) ? array() : $invite_reward;
+    		$intive_total = $invite_reward['invite_total'];
+    		
+    		ecjia_front::$controller->assign_title('我的奖励');
+    		ecjia_front::$controller->assign('intive_total', $intive_total);
+    	}
+        ecjia_front::$controller->display('user_my_reward.dwt', $cache_id);
     }
     
     /**
