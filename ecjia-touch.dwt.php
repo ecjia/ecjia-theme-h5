@@ -1,7 +1,6 @@
 <?php
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
-{nocache}
 <!-- {if not is_pjax()} -->
 <!-- {if is_ajax()} -->
 <!-- {block name="ajaxinfo"} --><!-- {/block} -->
@@ -114,4 +113,3 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #BeginLibraryItem "/library/page_menu.lbi" --><!-- #EndLibraryItem -->
 <!-- {block name="footer"} --><!-- {/block} -->
 <!-- {/if} -->
-{/nocache}
