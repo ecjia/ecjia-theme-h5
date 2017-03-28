@@ -211,9 +211,13 @@ class user_privilege_controller {
                 return ecjia_front::$controller->showmessage(__($data->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
         } else {
-            ecjia_front::$controller->assign('title', '设置密码');
-            ecjia_front::$controller->assign_lang();
-            ecjia_front::$controller->display('user_set_password.dwt');
+            $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+            
+            if (!ecjia_front::$controller->is_cached('user_set_password.dwt', $cache_id)) {
+                ecjia_front::$controller->assign('title', '设置密码');
+                ecjia_front::$controller->assign_lang();
+            }
+            ecjia_front::$controller->display('user_set_password.dwt', $cache_id);
         }
     }
 }
