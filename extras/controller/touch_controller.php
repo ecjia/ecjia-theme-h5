@@ -55,7 +55,6 @@ class touch_controller {
      * 首页信息
      */
     public static function init() {
-    	
         ecjia_front::$controller->assign('more_sales', RC_Uri::url('goods/index/promotion'));
         ecjia_front::$controller->assign('more_news', RC_Uri::url('goods/index/new'));
         ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
@@ -246,7 +245,7 @@ class touch_controller {
      * 搜索
      */
     public static function search() {
-    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$_COOKIE ['ECJia'] ['search']));
     	
     	if (!ecjia_front::$controller->is_cached('search.dwt', $cache_id)) {
     		$keywords = isset($_GET['keywords']) ? $_GET['keywords'] : '';
