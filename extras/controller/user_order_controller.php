@@ -55,21 +55,18 @@ class user_order_controller {
      */
     public static function order_list() {
         $token      = ecjia_touch_user::singleton()->getToken();
-        $cache_id   = sprintf('%X', crc32($_SERVER['QUERY_STRING']).'-'.$token);
         
-        if (!ecjia_front::$controller->is_cached('user_order_list.dwt', $cache_id)) {
-            $params_order = array('token' => $token, 'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
-            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
-            $data = is_ecjia_error($data) ? array() : $data;
-            
-            ecjia_front::$controller->assign('order_list', $data);
-            ecjia_front::$controller->assign_title('全部订单');
-            ecjia_front::$controller->assign('title', '全部订单');
-            ecjia_front::$controller->assign('active', 'orderList');
-             
-            ecjia_front::$controller->assign_lang();
-        }
-        ecjia_front::$controller->display('user_order_list.dwt', $cache_id);
+        $params_order = array('token' => $token, 'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
+        $data = is_ecjia_error($data) ? array() : $data;
+        
+        ecjia_front::$controller->assign('order_list', $data);
+        ecjia_front::$controller->assign_title('全部订单');
+        ecjia_front::$controller->assign('title', '全部订单');
+        ecjia_front::$controller->assign('active', 'orderList');
+         
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_order_list.dwt');
     }
     
     /**
