@@ -56,20 +56,17 @@ class user_controller {
      */
     public static function init() {
     	$user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
-    	
-    	//网店信息
-    	$shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
-    	$shop = is_ecjia_error($shop) ? array() : $shop;
-    	$shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
-    	$shop_config = is_ecjia_error($shop_config) ? array() : $shop_config;
-    	
     	$signin = ecjia_touch_user::singleton()->isSignin();
     	$signup_reward_url = '';
     	
     	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+    	
     	if ($signin) {
     		$token = ecjia_touch_user::singleton()->getToken();
-    		$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token));
+    		$user_info = ecjia_touch_user::singleton()->getUserinfo();
+    	
+	    	$cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+	    	$cache_id = sprintf('%X', crc32($cache_id));
     	
     		if (!ecjia_front::$controller->is_cached('user.dwt', $cache_id)) {
     			$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
@@ -90,11 +87,20 @@ class user_controller {
     			}
     		}
     	}
+    	
     	if (!ecjia_front::$controller->is_cached('user.dwt', $cache_id)) {
     		ecjia_front::$controller->assign('user_img', $user_img);
     		ecjia_front::$controller->assign('signup_reward_url', $signup_reward_url);
+    		
+    		//网店信息
+    		$shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
+    		$shop = is_ecjia_error($shop) ? array() : $shop;
+    		$shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
+    		$shop_config = is_ecjia_error($shop_config) ? array() : $shop_config;
+    		
     		ecjia_front::$controller->assign('shop', $shop);
     		ecjia_front::$controller->assign('shop_config', $shop_config);
+    		
     		ecjia_front::$controller->assign('active', 'mine');
     		ecjia_front::$controller->assign_title('个人中心');
     	}
@@ -106,8 +112,11 @@ class user_controller {
      */
     public static function spread() {
     	$token = ecjia_touch_user::singleton()->getToken();
+    	$user_info = ecjia_touch_user::singleton()->getUserinfo();
     	
-    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']).'-'.$token);
+    	$cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+    	$cache_id = sprintf('%X', crc32($cache_id));
+    	
     	if (!ecjia_front::$controller->is_cached('spread.dwt', $cache_id)) {
 	    	$name = trim($_GET['name']);
 	    	$invite_user_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_USER)->data(array('token' => $token))->run();
