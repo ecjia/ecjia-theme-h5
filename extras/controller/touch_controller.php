@@ -215,7 +215,7 @@ class touch_controller {
      * ajax获取推荐店铺
      */
     public static function ajax_suggest_store() {
-    	$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+    	$limit = 6;
     	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
     	
     	$paramater = array(
