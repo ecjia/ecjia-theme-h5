@@ -60,7 +60,8 @@ class user_privilege_controller {
         $signin = ecjia_touch_user::singleton()->isSignin();
         if ($signin) {
         	$token = ecjia_touch_user::singleton()->getToken();
-        	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token));
+	        $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+	        $cache_id = sprintf('%X', crc32($cache_id));
         	
         	if (!ecjia_front::$controller->is_cached('user_login.dwt', $cache_id)) {
         		$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
@@ -115,7 +116,7 @@ class user_privilege_controller {
         $username = $_POST['username'] ? trim($_POST['username']) : '';
         $password = $_POST['password'] ? trim($_POST['password']) : '';
         $data = ecjia_touch_user::singleton()->signin($username, $password);
-//         $user = ecjia_touch_user::singleton()->getUserinfo();
+
         if (is_ecjia_error($data)) {
             $message = $data->get_error_message();
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('info' => $message));
@@ -216,7 +217,6 @@ class user_privilege_controller {
             }
         } else {
             $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
-            
             if (!ecjia_front::$controller->is_cached('user_set_password.dwt', $cache_id)) {
                 ecjia_front::$controller->assign('title', '设置密码');
                 ecjia_front::$controller->assign_lang();

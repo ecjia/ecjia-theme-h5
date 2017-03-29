@@ -1332,25 +1332,30 @@
  			});
  			
  			//商品详情评分
-            $('.score-goods').each(function() {
-                $(this).raty({
-                    readOnly : true,
-                    score : function() {
-                        return $(this).attr('data-val');
-                    },
-                });
-            });
+ 			if ($.find($('.score-goods')).length != 0) {
+ 	            $('.score-goods').each(function() {
+ 	                $(this).raty({
+ 	                    readOnly : true,
+ 	                    score : function() {
+ 	                        return $(this).attr('data-val');
+ 	                    },
+ 	                });
+ 	            });
+ 			}
+
             
             //店铺首页商品评分
-            $('.score-val').raty({
-            	readOnly : true,
-            	score : function() {
-            		$('.score-val').html('');
-            		if ($('.score-val').find('img').length == 0) {
-            			return $(this).attr('data-val') * 5;
-            		}
-            	},
-            });
+ 			if ($.find($('.score-val')).length != 0) {
+ 	            $('.score-val').raty({
+ 	            	readOnly : true,
+ 	            	score : function() {
+ 	            		$('.score-val').html('');
+ 	            		if ($('.score-val').find('img').length == 0) {
+ 	            			return $(this).attr('data-val') * 5;
+ 	            		}
+ 	            	},
+ 	            });
+ 			}
 
  			$('.choose_attr').off('click').on('click', function() {
  				var $this = $(this);

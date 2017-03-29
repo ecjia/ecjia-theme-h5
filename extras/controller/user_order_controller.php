@@ -54,7 +54,7 @@ class user_order_controller {
      * 获取全部订单
      */
     public static function order_list() {
-        $token      = ecjia_touch_user::singleton()->getToken();
+        $token = ecjia_touch_user::singleton()->getToken();
         
         $params_order = array('token' => $token, 'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
@@ -74,7 +74,10 @@ class user_order_controller {
      */
     public static function order_detail() {
         $token = ecjia_touch_user::singleton()->getToken();
-        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']).'-'.$token);
+        $user_info = ecjia_touch_user::singleton()->getUserinfo();
+        
+        $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+        $cache_id = sprintf('%X', crc32($cache_id));
         
         if (!ecjia_front::$controller->is_cached('user_order_detail.dwt', $cache_id)) {
             $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
@@ -204,8 +207,11 @@ class user_order_controller {
      * 评价晒单商品列表
      */
     public static function comment_list() {
-        $token      = ecjia_touch_user::singleton()->getToken();
-        $cache_id   = sprintf('%X', crc32($_SERVER['QUERY_STRING']).'-'.$token);
+        $token = ecjia_touch_user::singleton()->getToken();
+        $user_info = ecjia_touch_user::singleton()->getUserinfo();
+        
+        $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+        $cache_id = sprintf('%X', crc32($cache_id));
         
         if (!ecjia_front::$controller->is_cached('user_comment_list.dwt', $cache_id)) {
             $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
@@ -226,7 +232,8 @@ class user_order_controller {
      */
     public static function goods_comment() {
         $token      = ecjia_touch_user::singleton()->getToken();
-        $cache_id   = sprintf('%X', crc32($_SERVER['QUERY_STRING']).'-'.$token);
+        $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+        $cache_id = sprintf('%X', crc32($cache_id));
         
         if (!ecjia_front::$controller->is_cached('user_goods_comment.dwt', $cache_id)) {
             $goods_id = isset($_GET['goods_id']) ? intval($_GET['goods_id']) : 0;
@@ -264,13 +271,13 @@ class user_order_controller {
     }
     
     public static function make_comment() {
-        
         $token = ecjia_touch_user::singleton()->getToken();
-        $order_id = isset($_POST['order_id']) ? intval($_POST['order_id']) : 0;
-        $rec_id = isset($_POST['rec_id']) ? intval($_POST['rec_id']) : '';
-        $content = !empty($_POST['note']) ? $_POST['note'] : '商品质量俱佳，强烈推荐！';
-        $rank = isset($_POST['score']) ? intval($_POST['score']) : 0;
-        $is_anonymous = isset($_POST['anonymity_status']) ? intval($_POST['anonymity_status']) : '';
+        
+        $order_id 		= isset($_POST['order_id']) 		? intval($_POST['order_id']) 			: 0;
+        $rec_id 		= isset($_POST['rec_id']) 			? intval($_POST['rec_id']) 				: '';
+        $content 		= !empty($_POST['note']) 			? $_POST['note'] 						: '商品质量俱佳，强烈推荐！';
+        $rank 			= isset($_POST['score']) 			? intval($_POST['score']) 				: 0;
+        $is_anonymous 	= isset($_POST['anonymity_status']) ? intval($_POST['anonymity_status']) 	: '';
        
         $picture = array();
         $_FILES = $_FILES['picture'];

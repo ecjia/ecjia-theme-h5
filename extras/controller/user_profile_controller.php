@@ -131,27 +131,29 @@ class user_profile_controller {
     	$old_password = !empty($_POST['old_password']) ? trim($_POST['old_password']) : '';
     	$new_password = !empty($_POST['new_password']) ? trim($_POST['new_password']) : '';
     	$comfirm_password = !empty($_POST['comfirm_password']) ? trim($_POST['comfirm_password']) : '';
+    	
     	$token = ecjia_touch_user::singleton()->getToken();
-    	$user_info = ecjia_touch_user::singleton()->getUserinfo();	//id,name
+    	if (!empty($old_password)) {
+    		if ($new_password == $comfirm_password) {
+    			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_PASSWORD)->data(array('token' => $token, 'password' => $old_password, 'new_password' => $new_password))->run();
+    			if (! is_ecjia_error($data)) {
+    				return ecjia_front::$controller->showmessage(__('修改密码成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init')));
+    			} else {
+    				return ecjia_front::$controller->showmessage(__($data->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/profile/edit_password')));
+    			}
+    				
+    		} else {
+    			return ecjia_front::$controller->showmessage(__('两次输入的密码不同，请重新输入'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/profile/edit_password')));
+    		}
+    	}
+    	
+    	$user_info = ecjia_touch_user::singleton()->getUserinfo();
     	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name']));
     	
     	if (!ecjia_front::$controller->is_cached('user_edit_password.dwt', $cache_id)) {
-    		if (!empty($old_password)) {
-    			if ($new_password == $comfirm_password) {
-    				$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_PASSWORD)->data(array('token' => $token, 'password' => $old_password, 'new_password' => $new_password))->run();
-    				if (! is_ecjia_error($data)) {
-    					return ecjia_front::$controller->showmessage(__('修改密码成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init')));
-    				} else {
-    					return ecjia_front::$controller->showmessage(__($data->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/profile/edit_password')));
-    				}
-    				 
-    			} else {
-    				return ecjia_front::$controller->showmessage(__('两次输入的密码不同，请重新输入'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/profile/edit_password')));
-    			}
-    		}
     		ecjia_front::$controller->assign_title('修改密码');
     		ecjia_front::$controller->assign_lang();
-    	}
+    	}   	
     	ecjia_front::$controller->display('user_edit_password.dwt', $cache_id);            
     }
 }
