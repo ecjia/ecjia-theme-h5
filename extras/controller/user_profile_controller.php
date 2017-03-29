@@ -57,8 +57,7 @@ class user_profile_controller {
     public static function init() {
     	$token = ecjia_touch_user::singleton()->getToken();			//token参数
     	$user_info = ecjia_touch_user::singleton()->getUserinfo();	//id,name
-    	 
-    	$cache_id = $_SERVER['QUERY_STRING'].'-'.$user_info['id'].'-'.$user_info['name'];
+    	$cache_id = $_SERVER['QUERY_STRING'].'-'.$user_info['id'].'-'.$user_info['name'].'-'.$token;
     	$cache_id = sprintf('%X', crc32($cache_id));
     	
     	if (!ecjia_front::$controller->is_cached('user_profile.dwt', $cache_id)) {
@@ -85,7 +84,9 @@ class user_profile_controller {
     /* 用户中心编辑用户名称 */
     public static function modify_username() {
     	$token = ecjia_touch_user::singleton()->getToken();
-    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token));
+    	$user_info = ecjia_touch_user::singleton()->getUserinfo();	//id,name
+    	
+    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name']));
     	
     	if (!ecjia_front::$controller->is_cached('user_modify_username.dwt', $cache_id)) {
     		$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
@@ -131,8 +132,8 @@ class user_profile_controller {
     	$new_password = !empty($_POST['new_password']) ? trim($_POST['new_password']) : '';
     	$comfirm_password = !empty($_POST['comfirm_password']) ? trim($_POST['comfirm_password']) : '';
     	$token = ecjia_touch_user::singleton()->getToken();
-    	
-    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token));
+    	$user_info = ecjia_touch_user::singleton()->getUserinfo();	//id,name
+    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name']));
     	
     	if (!ecjia_front::$controller->is_cached('user_edit_password.dwt', $cache_id)) {
     		if (!empty($old_password)) {
