@@ -51,7 +51,6 @@ defined('IN_ECJIA') or exit('No permission resources.');
  */
 class pay_controller {
     public static function init() {
-    	
         $order_id = !empty($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         $pay_id = !empty($_GET['pay_id']) ? intval($_GET['pay_id']) : 0;
         $pay_code = !empty($_GET['pay_code']) ? trim($_GET['pay_code']) : '';
@@ -68,9 +67,9 @@ class pay_controller {
         	if ($pay_id && $pay_code) {
         		//修改支付方式，更新订单
         		$params = array(
-        				'token' => $token,
-        				'order_id' => $order_id,
-        				'pay_id' => $pay_id,
+        			'token' => $token,
+        			'order_id' => $order_id,
+        			'pay_id' => $pay_id,
         		);
         		$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_UPDATE)->data($params)->run();
         		if (is_ecjia_error($response)) {
@@ -86,8 +85,8 @@ class pay_controller {
         	
         	//获得订单支付信息
         	$params = array(
-        			'token' => $token,
-        			'order_id'	=> $order_id,
+        		'token' 	=> $token,
+        		'order_id'	=> $order_id,
         	);
         	$rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($params)->run();
         	if (is_ecjia_error($rs_pay)) {
@@ -131,7 +130,7 @@ class pay_controller {
         	 
         	if ($need_other_payment && $order['order_pay_status'] == 0) {
         		$params = array(
-        				'token' => $token,
+        			'token' => $token,
         		);
         		$rs_payment = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->data($params)->run();
         		if (is_ecjia_error($response)) {
@@ -169,7 +168,6 @@ class pay_controller {
         	if ($order['pay_code'] != 'pay_balance') {
         		$order['formated_order_amount'] = price_format($order['order_amount']);
         	}
-        	
         	$order['order_id'] = $order_id;
         	
         	ecjia_front::$controller->assign('detail', $detail);
@@ -196,7 +194,6 @@ class pay_controller {
     	}
         ecjia_front::$controller->display('pay_notify.dwt', $cache_id);
     }
-    
 }
 
 // end

@@ -123,35 +123,27 @@ class connect_controller {
     
     /* 第三方登陆 */
     public static function bind_login() {
-        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
-        
-        if (!ecjia_front::$controller->is_cached('user_bind_login.dwt', $cache_id)) {
-            ecjia_front::$controller->assign_lang();
-        }
-        ecjia_front::$controller->display('user_bind_login.dwt', $cache_id);
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_bind_login.dwt');
     }
     
     /* 第三方登陆快速注册 */
     public static function bind_signup($params) {
     
-        $connect_code   = !empty($_GET['connect_code']) ? trim($_GET['connect_code']) : '';
-        $open_id        = !empty($_GET['open_id']) ? trim($_GET['open_id']) : '';
+        $connect_code = !empty($_GET['connect_code']) ? trim($_GET['connect_code']) : '';
+        $open_id = !empty($_GET['open_id']) ? trim($_GET['open_id']) : '';
     
         if (!$params) {
-            $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
-            
-            if (!ecjia_front::$controller->is_cached('user_bind_signup.dwt', $cache_id)) {
-                if (empty($connect_code) || empty($open_id)) {
-                    return ecjia_front::$controller->showmessage('授权信息异常，请重新授权', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
-                }
-                ecjia_front::$controller->assign('connect_code', $connect_code);
-                ecjia_front::$controller->assign('open_id', $open_id);
-        
-                ecjia_front::$controller->assign('title', "注册绑定");
-                ecjia_front::$controller->assign_title("注册绑定");
-                ecjia_front::$controller->assign_lang();
+            if (empty($connect_code) || empty($open_id)) {
+                return ecjia_front::$controller->showmessage('授权信息异常，请重新授权', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
             }
-            ecjia_front::$controller->display('user_bind_signup.dwt', $cache_id);
+            ecjia_front::$controller->assign('connect_code', $connect_code);
+            ecjia_front::$controller->assign('open_id', $open_id);
+    
+            ecjia_front::$controller->assign('title', "注册绑定");
+            ecjia_front::$controller->assign_title("注册绑定");
+            ecjia_front::$controller->assign_lang();
+            ecjia_front::$controller->display('user_bind_signup.dwt');
         } else {
             $response = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $params['name'], 'password' => $params['password'], 'email' => $params['email']))->run();
             if (is_ecjia_error($response)) {
@@ -228,25 +220,20 @@ class connect_controller {
     
     /* 第三方登陆绑定关联 */
     public static function bind_signin() {
-        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
-        
-        if (!ecjia_front::$controller->is_cached('user_bind_signin.dwt', $cache_id)) {
-            $connect_code   = !empty($_GET['connect_code']) ? trim($_GET['connect_code']) : '';
-            $open_id        = !empty($_GET['open_id']) ? trim($_GET['open_id']) : '';
-            if (empty($connect_code) || empty($open_id)) {
-                return ecjia_front::$controller->showmessage('授权信息异常，请重新授权', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
-            }
-            ecjia_front::$controller->assign('connect_code', $connect_code);
-            ecjia_front::$controller->assign('open_id', $open_id);
-            
-            ecjia_front::$controller->assign('title', "验证并关联");
-            ecjia_front::$controller->assign_title("验证并关联");
-            ecjia_front::$controller->assign('hideinfo', '1');
-            ecjia_front::$controller->assign_lang();
+        $connect_code = !empty($_GET['connect_code']) ? trim($_GET['connect_code']) : '';
+        $open_id = !empty($_GET['open_id']) ? trim($_GET['open_id']) : '';
+        if (empty($connect_code) || empty($open_id)) {
+            return ecjia_front::$controller->showmessage('授权信息异常，请重新授权', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         }
-        ecjia_front::$controller->display('user_bind_signin.dwt', $cache_id);
-    }
+        ecjia_front::$controller->assign('connect_code', $connect_code);
+        ecjia_front::$controller->assign('open_id', $open_id);
     
+        ecjia_front::$controller->assign('title', "验证并关联");
+        ecjia_front::$controller->assign_title("验证并关联");
+        ecjia_front::$controller->assign('hideinfo', '1');
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->display('user_bind_signin.dwt');
+    }
     public static function bind_signin_do() {
         $username = htmlspecialchars($_POST['username']);
         $password = htmlspecialchars($_POST['password']);
