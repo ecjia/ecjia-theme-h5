@@ -77,7 +77,7 @@ class touch_controller {
         	$city_id = $rs['region_id'];
         }
 
-        if(!empty($addr)){
+        if (!empty($addr)) {
         	setcookie("location_address", $addr);
         	setcookie("location_name", $name);
         	setcookie("longitude", $longitude);

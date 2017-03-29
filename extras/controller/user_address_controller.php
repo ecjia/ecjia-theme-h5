@@ -118,7 +118,7 @@ class user_address_controller {
     
     //临时数据
     private static function update_temp_data($data_key, $is_clear, $options = array()) {
-        if($is_clear) {
+        if ($is_clear) {
             return $temp_data = $_SESSION['address'][$data_key] = array();
         } 
         if ($options) {
@@ -370,7 +370,7 @@ class user_address_controller {
     		ecjia_front::$controller->assign('referer_url', $referer_url);
     	}
     	
-        if(!empty($_GET['address_id'])) {
+        if (!empty($_GET['address_id'])) {
             ecjia_front::$controller->assign('action_url', RC_Uri::url('user/address/edit_address', array('id' => intval($_GET['address_id']))));
             $temp_data = user_address_controller::save_temp_data(1, 'edit_'.$_GET['address_id'], $_GET['clear'], $_GET);
         } else {
@@ -406,16 +406,16 @@ class user_address_controller {
         $shop_city          = !empty($_REQUEST['city'])        ? intval($_REQUEST['city'])               : 0;
         $shop_district      = !empty($_REQUEST['district'])    ? intval($_REQUEST['district'])           : 0;
         $shop_address       = !empty($_REQUEST['address'])     ? htmlspecialchars($_REQUEST['address'])  : 0;
-        if(empty($shop_province)){
+        if (empty($shop_province)) {
             return $this->showmessage('请选择省份', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'province'));
         }
-        if(empty($shop_city)){
+        if (empty($shop_city)) {
             return $this->showmessage('请选择城市', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'city'));
         }
-        if(empty($shop_district)){
+        if (empty($shop_district)) {
             return $this->showmessage('请选择地区', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'district'));
         }
-        if(empty($shop_address)){
+        if (empty($shop_address)) {
             return $this->showmessage('请填写详细地址', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('element' => 'address'));
         }
         $city_name = RC_DB::table('region')->where('region_id', $shop_city)->pluck('region_name');

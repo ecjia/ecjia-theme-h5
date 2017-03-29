@@ -176,7 +176,7 @@ class user_controller {
             $connect_user = $connect_user->get_error_message();
         }
         RC_Logger::getlogger('info')->info($connect_user);
-        if($connect_user) {
+        if ($connect_user) {
             if ($connect_user['connect_code'] == 'sns_qq') {
                 $head_img = $connect_user['profile']['figureurl_qq_2'];
             } else if ($connect_user['connect_code'] == 'sns_wechat') {

@@ -796,7 +796,7 @@ class cart_controller {
         $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
         
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
-        if(empty($rec_id)) {
+        if (empty($rec_id)) {
             return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         if (empty($address_id)) {
