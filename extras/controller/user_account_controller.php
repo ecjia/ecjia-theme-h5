@@ -56,7 +56,11 @@ class user_account_controller {
     * 资金管理
     */
     public static function init() {
-        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+        $token = ecjia_touch_user::singleton()->getToken();
+        $user_info = ecjia_touch_user::singleton()->getUserinfo();
+        
+        $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+        $cache_id = sprintf('%X', crc32($cache_id));
         
         if (!ecjia_front::$controller->is_cached('user_account_detail.dwt', $cache_id)) {
             $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
@@ -71,7 +75,11 @@ class user_account_controller {
      * 余额
      */
     public static function balance(){
-        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+        $token = ecjia_touch_user::singleton()->getToken();
+        $user_info = ecjia_touch_user::singleton()->getUserinfo();
+        
+        $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+        $cache_id = sprintf('%X', crc32($cache_id));
         
         if (!ecjia_front::$controller->is_cached('user_account_balance.dwt', $cache_id)) {
             $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
@@ -127,7 +135,11 @@ class user_account_controller {
                 }
             }
         }
-        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+        $token = ecjia_touch_user::singleton()->getToken();
+        $user_info = ecjia_touch_user::singleton()->getUserinfo();
+        
+        $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+        $cache_id = sprintf('%X', crc32($cache_id));
          
         if (!ecjia_front::$controller->is_cached('user_account_recharge.dwt', $cache_id)) {
             ecjia_front::$controller->assign('payment_list', $pay['payment']);
@@ -215,7 +227,11 @@ class user_account_controller {
     * 提现
     */
     public static function withdraw() {
-        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+        $token = ecjia_touch_user::singleton()->getToken();
+        $user_info = ecjia_touch_user::singleton()->getUserinfo();
+        
+        $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+        $cache_id = sprintf('%X', crc32($cache_id));
         
         if (!ecjia_front::$controller->is_cached('user_account_withdraw.dwt', $cache_id)) {
             $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
@@ -257,12 +273,8 @@ class user_account_controller {
      * 充值提现列表
      */
     public static function record() {
-        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
-         
-        if (!ecjia_front::$controller->is_cached('user_record.dwt', $cache_id)) {
-            ecjia_front::$controller->assign_title('交易记录');
-        }
-    	ecjia_front::$controller->display('user_record.dwt', $cache_id);
+        ecjia_front::$controller->assign_title('交易记录');
+    	ecjia_front::$controller->display('user_record.dwt');
     }
     
     public static function ajax_record() {
@@ -433,7 +445,11 @@ class user_account_controller {
             $open_id = $handler->get_open_id();
             $_SESSION['wxpay_open_id'] = $open_id;
         }
-        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+        $token = ecjia_touch_user::singleton()->getToken();
+        $user_info = ecjia_touch_user::singleton()->getUserinfo();
+        
+        $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+        $cache_id = sprintf('%X', crc32($cache_id));
         
         if (!ecjia_front::$controller->is_cached('user_record_info.dwt', $cache_id)) {
             $user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';

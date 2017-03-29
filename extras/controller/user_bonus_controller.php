@@ -54,14 +54,10 @@ class user_bonus_controller {
      * 我的红包
      */
     public static function init() {
-    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
-    	if (!ecjia_front::$controller->is_cached('user_bonus.dwt', $cache_id)) {
-    		$shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
-    		
-    		ecjia_front::$controller->assign('bonus_readme_url', $shop_config['bonus_readme_url']);
-    		ecjia_front::$controller->assign_title('我的红包');
-    	}
-        ecjia_front::$controller->display('user_bonus.dwt', $cache_id);
+		$shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
+		ecjia_front::$controller->assign('bonus_readme_url', $shop_config['bonus_readme_url']);
+		ecjia_front::$controller->assign_title('我的红包');
+        ecjia_front::$controller->display('user_bonus.dwt');
     }
 
 
@@ -124,7 +120,10 @@ class user_bonus_controller {
      */
     public static function my_reward() {
     	$token = ecjia_touch_user::singleton()->getToken();
-    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']).'-'.$token);
+        $user_info = ecjia_touch_user::singleton()->getUserinfo();
+
+        $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+        $cache_id = sprintf('%X', crc32($cache_id));
     	
     	if (!ecjia_front::$controller->is_cached('user_my_reward.dwt', $cache_id)) {
     		$invite_reward = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_REWARD)->data(array('token' => $token))->run();
@@ -160,7 +159,7 @@ class user_bonus_controller {
             );
             $invite_record = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_RECORD)->data($arr)->run();
             $data = is_ecjia_error($invite_record) ? array() : $invite_record;
-             
+            
             ecjia_front::$controller->assign('data', $data);
             ecjia_front::$controller->assign('is_last', $data['paginated']['more']);
             ecjia_front::$controller->assign('max_month', $max_month);
