@@ -53,7 +53,6 @@ class location_controller {
 	//首页定位触发进入页面
 	//1、获取当前位置2、搜索位置  最终返回首页顶部定位更换信息
     public static function select_location() {
-//     	ecjia_front::$controller->assign('hideinfo', '1');
     	ecjia_front::$controller->assign('title', '上海');
     	ecjia_front::$controller->assign_title('定位');
     	
@@ -62,7 +61,10 @@ class location_controller {
     	if (ecjia_touch_user::singleton()->isSignin()) {
     		ecjia_front::$controller->assign('login', 1);
     		$token = ecjia_touch_user::singleton()->getToken();
-    		$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token));
+        	$user_info = ecjia_touch_user::singleton()->getUserinfo();
+        	
+	    	$cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+	    	$cache_id = sprintf('%X', crc32($cache_id));
     		
     		if (!ecjia_front::$controller->is_cached('select_location.dwt', $cache_id)) {
     			$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
@@ -71,6 +73,7 @@ class location_controller {
     			}
     		}
     	}
+    	
     	if (!ecjia_front::$controller->is_cached('select_location.dwt', $cache_id)) {
     		$referer_url = !empty($_GET['referer_url']) ? $_GET['referer_url'] : '';
     		if (!empty($referer_url)) {
@@ -83,8 +86,6 @@ class location_controller {
     		$referer   = ecjia::config('map_qq_referer');
     		$my_location = "https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl=".$backurl."&key=".$key."&referer=".$referer;
     		ecjia_front::$controller->assign('my_location', $my_location);
-    		
-    		ecjia_front::$controller->assign_lang();
     	}
     	
         ecjia_front::$controller->display('select_location.dwt', $cache_id);
@@ -123,7 +124,6 @@ class location_controller {
     
     //选择城市
     public static function select_city() {
-    	
     	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
     	
     	if (!ecjia_front::$controller->is_cached('select_location_city.dwt', $cache_id)) {

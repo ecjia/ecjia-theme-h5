@@ -57,7 +57,7 @@ class user_profile_controller {
     public static function init() {
     	$token = ecjia_touch_user::singleton()->getToken();			//token参数
     	$user_info = ecjia_touch_user::singleton()->getUserinfo();	//id,name
-    	$cache_id = $_SERVER['QUERY_STRING'].'-'.$user_info['id'].'-'.$user_info['name'].'-'.$token;
+    	$cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
     	$cache_id = sprintf('%X', crc32($cache_id));
     	
     	if (!ecjia_front::$controller->is_cached('user_profile.dwt', $cache_id)) {
