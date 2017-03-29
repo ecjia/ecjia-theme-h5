@@ -55,8 +55,11 @@ class user_profile_controller {
      * 会员中心：编辑个人资料
      */
     public static function init() {
-    	$token = ecjia_touch_user::singleton()->getToken();
-    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token));
+    	$token = ecjia_touch_user::singleton()->getToken();			//token参数
+    	$user_info = ecjia_touch_user::singleton()->getUserinfo();	//id,name
+    	 
+    	$cache_id = $_SERVER['QUERY_STRING'].'-'.$user_info['id'].'-'.$user_info['name'];
+    	$cache_id = sprintf('%X', crc32($cache_id));
     	
     	if (!ecjia_front::$controller->is_cached('user_profile.dwt', $cache_id)) {
     		$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
