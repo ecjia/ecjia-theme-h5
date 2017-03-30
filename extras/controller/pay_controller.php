@@ -79,6 +79,9 @@ class pay_controller {
         	/*获取订单信息*/
         	$params_order = array('token' => $token, 'order_id' => $order_id);
         	$detail = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
+        	if (is_ecjia_error($detail)) {
+        	    return ecjia_front::$controller->showmessage($detail->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+        	}
         	//支付方式信息
         	$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
         	$payment_info = $payment_method->payment_info_by_id($detail['pay_id']);
@@ -133,8 +136,8 @@ class pay_controller {
         			'token' => $token,
         		);
         		$rs_payment = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->data($params)->run();
-        		if (is_ecjia_error($response)) {
-        			return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+        		if (is_ecjia_error($rs_payment)) {
+        			return ecjia_front::$controller->showmessage($rs_payment->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         		}
         		$payment_list = touch_function::change_array_key($rs_payment['payment'], 'pay_code');
         			
