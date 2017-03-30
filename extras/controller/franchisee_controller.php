@@ -146,19 +146,11 @@ class franchisee_controller {
 	    }
 	    
 	    $token = ecjia_touch_user::singleton()->getToken();
-	    
+
         //重新修改入驻信息Get获取，正常入驻存session
-        if (empty($_SESSION['franchisee_add']['mobile'])) {
-            $mobile = !empty($_GET['mobile']) ? $_GET['mobile'] : '';
-        } else {
-            $mobile = $_SESSION['franchisee_add']['mobile'];
-        }
-        if (empty($_SESSION['franchisee_add']['code'])) {
-            $code = !empty($_GET['code']) ? $_GET['code'] : '';
-        } else {
-            $code  = $_SESSION['franchisee_add']['code'];
-        }
-        
+        $mobile = !empty($_GET['mobile'])   ? $_GET['mobile']   : '';
+        $code   = !empty($_GET['code'])     ? $_GET['code']     : '';
+
         //之前的入驻信息
         $reaudit = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PREAUDIT)->data(array('token' => $token, 'mobile' => $mobile, 'validate_code' => $code))->run();
         if (is_ecjia_error($reaudit)) {
@@ -208,29 +200,20 @@ class franchisee_controller {
                 }
             }
         }
-        if (empty($_SESSION['franchisee_add'])) {
-            $_SESSION['franchisee_add'] = array(
-                'name'         => $reaudit['responsible_person'],
-                'email'        => $reaudit['email'],
-                'mobile'       => $reaudit['mobile'],
-// 				'code'         => $code,
-                'access_time'  => RC_Time::gmtime()
-            );
-            $second_show = array (
-                'seller_name' 	=> $reaudit['seller_name'],
-                'seller'     	=> $category_show,
-                'validate_type' => $validate_type,
-                'province_name' => $province_show,
-                'city_name'     => $city_show,
-                'district_name' => $district_show,
-                'address'       => $reaudit['address']
-            );
-             
-            $_COOKIE['seller_category_id']    = $reaudit['seller_category'];
-            $_COOKIE['province_id']           = $reaudit['province'];
-            $_COOKIE['city_id']               = $reaudit['city'];
-            $_COOKIE['district_id']           = $reaudit['district'];
-        }
+        $second_show = array (
+            'seller_name' 	=> $reaudit['seller_name'],
+            'seller'     	=> $category_show,
+            'validate_type' => $validate_type,
+            'province_name' => $province_show,
+            'city_name'     => $city_show,
+            'district_name' => $district_show,
+            'address'       => $reaudit['address']
+        );
+         
+        $_COOKIE['seller_category_id']    = $reaudit['seller_category'];
+        $_COOKIE['province_id']           = $reaudit['province'];
+        $_COOKIE['city_id']               = $reaudit['city'];
+        $_COOKIE['district_id']           = $reaudit['district'];
         
         $longitude = !empty($_GET['longitude']) ? $_GET['longitude'] : $reaudit['location']['longitude'];
         $latitude = !empty($_GET['latitude']) ? $_GET['latitude'] : $reaudit['location']['latitude'];
@@ -267,20 +250,9 @@ class franchisee_controller {
 	    
 	    $responsible_person = !empty($_SESSION['franchisee_add']['name']) ? $_SESSION['franchisee_add']['name'] : '';
 	    $email 				= !empty($_SESSION['franchisee_add']['email']) ? $_SESSION['franchisee_add']['email'] : '';
-// 	    $mobile 			= !empty($_SESSION['franchisee_add']['mobile']) ? $_SESSION['franchisee_add']['mobile'] : '';
-// 	    $validate_code 		= $_SESSION['franchisee_add']['code'];
+	    $mobile 			= !empty($_SESSION['franchisee_add']['mobile']) ? $_SESSION['franchisee_add']['mobile'] : '';
+	    $validate_code 		= $_SESSION['franchisee_add']['code'];
 
-        //修改入驻信息POST传，正常入驻存session
-	    if (!empty($_SESSION['franchisee_add']['mobile'])) {
-	        $mobile = $_SESSION['franchisee_add']['mobile'];
-	    } else {
-	        $mobile = !empty($_POST['mobile']) ? $_POST['mobile'] : '';
-	    }
-	    if (!empty($_SESSION['franchisee_add']['code'])) {
-	        $validate_code = $_SESSION['franchisee_add']['code'];
-	    } else {
-	        $validate_code = !empty($_POST['code']) ? $_POST['code'] : '';
-	    }
 	    $seller_name        = !empty($_POST['seller_name']) ? $_POST['seller_name'] : '';
 	    $seller_category 	= !empty($_POST['seller_category']) ? $_POST['seller_category'] : 0;
 	    $validate_type 		= !empty($_POST['validate_type']) ? $_POST['validate_type'] : 0;
@@ -351,7 +323,7 @@ class franchisee_controller {
 	    	'city_id'   		 => $_COOKIE['city_id']
 	    );
 	    
-	    if (empty($_SESSION['franchisee_add']['code']) || empty($_SESSION['franchisee_add']['code'])) {
+	    if ($_SESSION['franchisee_add']['property'] == 'resignup') {
 	        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_RESIGNUP)->data($parameter)->run();
 	    } else {
 	        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_SIGNUP)->data($parameter)->run();
@@ -443,6 +415,16 @@ class franchisee_controller {
                 $back_act = RC_Uri::url('franchisee/index/first');
                 return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('cancel_url' => $back_act));
             }
+
+            //申请修改入驻信息
+            $_SESSION['franchisee_add'] = array(
+                'name'         => $rs['merchant_info']['responsible_person'],
+                'email'        => $rs['merchant_info']['email'],
+                'mobile'       => $rs['merchant_info']['mobile'],
+				'code'         => $code,
+                'property'     => 'resignup',
+                'access_time'  => RC_Time::gmtime()
+            );
         }
         ecjia_front::$controller->assign('mobile', $mobile);
         ecjia_front::$controller->assign('code', $code);
