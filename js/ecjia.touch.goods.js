@@ -1332,7 +1332,7 @@
  			});
  			
  			//商品详情评分
- 			if ($.find($('.score-goods')).length != 0) {
+ 			if ($.find($('.score-goods')).length >= 0) {
  	            $('.score-goods').each(function() {
  	                $(this).raty({
  	                    readOnly : true,
@@ -1345,7 +1345,7 @@
 
             
             //店铺首页商品评分
- 			if ($.find($('.score-val')).length != 0) {
+ 			if ($.find($('.score-val')).length >= 0) {
  	            $('.score-val').raty({
  	            	readOnly : true,
  	            	score : function() {
