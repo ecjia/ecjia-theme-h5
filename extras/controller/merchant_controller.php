@@ -445,7 +445,6 @@ class merchant_controller {
 			ecjia_front::$controller->assign('shop_address', $shop_address);
 			ecjia_front::$controller->assign_title('店铺位置');
 		}
-		 
 		ecjia_front::$controller->display('merchant_position.dwt', $cache_id);
 	}
 }
