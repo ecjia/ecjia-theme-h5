@@ -245,11 +245,11 @@ class connect_controller {
     
             RC_Loader::load_app_class('connect_user', 'connect', false);
             $connect_user = new connect_user($connect_code, $open_id);
-            if ($user['id']) {
+            if ($data['id']) {
                 $result = $connect_user->bind_user($data['id'], 0);
             } else {
                 RC_Logger::getlogger('error')->info('connect_controller-关联账号错误');
-                RC_Logger::getlogger('error')->info($user);
+                RC_Logger::getlogger('error')->info($data);
                 return ecjia_front::$controller->showmessage('用户验证成功，获取用户信息失败，请重试！', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
             if ($result) {
