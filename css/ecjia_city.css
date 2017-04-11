@@ -5756,6 +5756,7 @@ footer {
 
 .goods-desc-info .goods-describe table tr td, .goods-desc-info .goods-describe table tr td:first-child {
 	color: #999;
+	padding-left: 1em;
 }
 
 .goods-desc-info .goods-describe table tr td, .goods-desc-info .goods-describe table tr:last-child {

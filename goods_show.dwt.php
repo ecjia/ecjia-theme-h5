@@ -260,7 +260,7 @@ var releated_goods = {$releated_goods};
 	</div>
 	<div class="goods-describe goods-describe-new ecjia-margin-b" id="two-info" >
 	<!-- {if $goods_info.properties} -->
-		<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#dddddd" style="margin:0 0 0 1em;">
+		<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#dddddd">
 			<!-- {foreach from=$goods_info.properties item=property_group} -->
 			<tr>
 				<td bgcolor="#FFFFFF" align="left" width="40%" class="f1">{$property_group.name|escape:html}</td>
