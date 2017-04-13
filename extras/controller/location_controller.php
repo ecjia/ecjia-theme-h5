@@ -101,13 +101,14 @@ class location_controller {
     	
     	if (!ecjia_front::$controller->is_cached('search_location.dwt', $cache_id)) {
     		$shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->data(array('token' => $token))->run();
-    		$recommend_city_name = $shop_config['recommend_city'][0]['name'];
-    		$recommend_city_id   = $shop_config['recommend_city'][0]['id'];
-    		ecjia_front::$controller->assign('recommend_city_name', $recommend_city_name);
-    		ecjia_front::$controller->assign('recommend_city_id', $recommend_city_id);
+    		if (!is_ecjia_error($shop_config)) {
+    			$recommend_city_name = $shop_config['recommend_city'][0]['name'];
+    			$recommend_city_id   = $shop_config['recommend_city'][0]['id'];
+    			ecjia_front::$controller->assign('recommend_city_name', $recommend_city_name);
+    			ecjia_front::$controller->assign('recommend_city_id', $recommend_city_id);
+    		}
     		ecjia_front::$controller->assign_lang();
     	}
-    	
     	ecjia_front::$controller->display('search_location.dwt', $cache_id);
     }
     
