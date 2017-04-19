@@ -86,7 +86,7 @@ class goods_controller {
     								if ($m == 0) {
     									$data[$key]['children'][$k]['image'] = !empty($n['image']) ? $n['image'] : $j['image'];
     									$data[$key]['children'][$k]['text'] = $n['text'];
-    									if (!empty($v['url']) && strpos($n['url'], 'ecjiaopen://app?open_type=goods_seller_list') === 0) {
+    									if (!empty($n['url']) && strpos($n['url'], 'ecjiaopen://app?open_type=goods_seller_list') === 0) {
     										$data[$key]['children'][$k]['url'] = with(new ecjia_open($n['url']))->toHttpUrl();
     									}
     								}
