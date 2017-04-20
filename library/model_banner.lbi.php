@@ -10,7 +10,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="hd">
 		<ul></ul>
 	</div>
-	<div class="bd">
+	<div class="bd ecjia-mod-cycleimage">
 		<!-- Swiper -->
 		<div class="swiper-container swiper-touchIndex">
 			<div class="swiper-wrapper">

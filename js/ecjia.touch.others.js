@@ -21,6 +21,11 @@
 		},
 	
         init_swiper : function() {
+        	if ($.find('.ecjia-mod-cycleimage').length != 0) {
+        		var width = $('.ecjia-mod-cycleimage').find('.swiper-slide ').width();
+        		$('.swiper-slide').css('height', width*2/5 + 'px');
+        		$('.swiper-slide').find('img').css('height', width*2/5 + 'px');
+        	}
 			var swiper = new Swiper('.swiper-touchIndex', {
 				pagination: '.swiper-pagination',
 				speed: 800,
