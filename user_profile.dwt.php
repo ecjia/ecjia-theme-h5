@@ -36,8 +36,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
     <div class="ecjia-list list-short">
         <li>
-            <a href="{url path='user/profile/bind_mobile'}">
+            <a href="{url path='user/profile/account_bind' args='type=mobile'}">
         		<span class="icon-name margin-no-l">绑定手机</span>
+        		<span class="icon-price">未绑定</span>
+        		<i class="iconfont  icon-jiantou-right  margin-r-icon"></i>
+    		</a>
+       </li>
+       <li>
+            <a href="{url path='user/profile/account_bind' args='type=email'}">
+        		<span class="icon-name margin-no-l">绑定邮箱</span>
         		<span class="icon-price">未绑定</span>
         		<i class="iconfont  icon-jiantou-right  margin-r-icon"></i>
     		</a>

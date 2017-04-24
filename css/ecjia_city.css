@@ -4206,15 +4206,15 @@ footer {
 	height: 5.5em;
 }
 /*========================  绑定手机 ===========================*/
-.ecjia-user .d_bind_mobile .p_bind_mobile{
+.ecjia-user .d_bind_mobile .p_bind{
 	padding: 1em 1em 0 1em;
     font-size: 1.1em;
     color: #85878c;
 }
-.ecjia-user .d_bind_mobile .d_input_mobile {
+.ecjia-user .d_bind_mobile .d_input {
 	border: 0;
 }
-.ecjia-user .d_bind_mobile .d_input_mobile input{
+.ecjia-user .d_bind_mobile .d_input input{
 	height: 100%;
 	font-size: 1.1em;
 }
@@ -4226,7 +4226,6 @@ footer {
 .ecjia-user .d_bind_mobile .d_input_verification_code input{
 	height: 100%;
 	font-size: 1.1em;
-	border-right: 1px solid #eee;
 }
 .ecjia-user .d_bind_mobile .get_code {
 	border: 0;
@@ -4236,8 +4235,9 @@ footer {
 .ecjia-user .d_bind_mobile .get_code input{
 	height: 100%;
 	font-size: 1.1em;
+	color: #47aa4d;
 }
-.ecjia-user .d_bind_mobile .bind_mobile {
+.ecjia-user .d_bind_mobile .bind {
 	margin-bottom: 3em;
 }
 /*========================  城市选择 ===========================*/
