@@ -26,6 +26,10 @@
         		$('.ecjia-mod-cycleimage').find('.swiper-slide').css('height', width*2/5 + 'px');
         		$('.ecjia-mod-cycleimage').find('.swiper-slide').find('img').css('height', width*2/5 + 'px');
         	}
+        	
+		    if (sessionStorage.getItem("swiper") == 1) {
+		        return false;
+		    }
 			var swiper = new Swiper('.swiper-touchIndex', {
 				pagination: '.swiper-pagination',
 				speed: 800,
@@ -45,6 +49,7 @@
 				autoplay: 2500,
 				autoplayDisableOnInteraction: false,
 			});
+			sessionStorage.setItem("swiper", 1);
         },
         swiper_promotion : function() {
 			var swiper = new Swiper('.swiper-promotion', {

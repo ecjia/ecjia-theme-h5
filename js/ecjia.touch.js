@@ -4,7 +4,6 @@
 ;(function(ecjia, $) {
 	ecjia.touch = {
 		init : function() {
-
 			if($.cookie('index') === undefined){
 				var key= $("input[name='key']").val();
 				var referer = $("input[name='referer']").val();
@@ -20,7 +19,7 @@
 			  		    type: "GET",
 			  		    dataType: "json",
 			  		    success:function(data){
-			  		    	 ecjia.pjax(data.url);
+			  		    	ecjia.pjax(data.url);
 			      	    },
 		  	     	});
 				};
@@ -649,6 +648,8 @@
 		ecjia.touch.ecjia_menu();
 		ecjia.touch.region_change();
 		ecjia.touch.goods_detail.change();
+		//初始化轮播图
+		sessionStorage.setItem("swiper", 0);
 		ecjia.touch.index.init_swiper();
 
 	    var ua = navigator.userAgent.toLowerCase();

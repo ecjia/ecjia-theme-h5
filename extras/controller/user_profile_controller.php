@@ -164,6 +164,13 @@ class user_profile_controller {
         
         ecjia_front::$controller->display('user_bind_mobile.dwt');
     }
+    
+    /**
+     * 查看绑定手机号
+     */
+    public static function check_mobile() {
+        ecjia_front::$controller->display('user_check_mobile.dwt');
+    }
 }
 
 // end
