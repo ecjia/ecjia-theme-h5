@@ -619,7 +619,6 @@
 		if (window.releated_goods != undefined && window.releated_goods.length != 0) {
 			window.releated = $.extend({}, window.releated_goods);
 		}
-		sessionStorage.removeItem('swiper');
 	});
 
 	//PJAX前进、返回执行

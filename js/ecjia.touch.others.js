@@ -4,6 +4,7 @@
 ;(function(ecjia, $) {
 	ecjia.touch.index = {
 		init : function(){
+			sessionStorage.removeItem('swiper');
             this.substr();
             this.init_swiper();
             this.change_index();
@@ -26,8 +27,7 @@
         		$('.ecjia-mod-cycleimage').find('.swiper-slide').css('height', width*2/5 + 'px');
         		$('.ecjia-mod-cycleimage').find('.swiper-slide').find('img').css('height', width*2/5 + 'px');
         	}
-        	
-		    if (sessionStorage.getItem("swiper")) {
+		    if (sessionStorage.getItem("swiper") != null) {
 		        return false;
 		    }
 			var swiper = new Swiper('.swiper-touchIndex', {

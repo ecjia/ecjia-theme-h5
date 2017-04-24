@@ -160,9 +160,14 @@ class user_profile_controller {
     /**
      * 修改密码页面
      */
-    public static function bind_mobile() {
-        
-        ecjia_front::$controller->display('user_bind_mobile.dwt');
+    public static function account_bind() {
+        $type=!empty($_GET['type']) ? trim($_GET['type']) : '';
+        if ($type == 'mobile') {
+            ecjia_front::$controller->assign('type', 'mobile');
+        } else if ($type == 'email') {
+            ecjia_front::$controller->assign('type', 'email');
+        }
+        ecjia_front::$controller->display('user_account_bind.dwt');
     }
     
     /**
