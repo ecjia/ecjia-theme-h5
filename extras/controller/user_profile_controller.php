@@ -156,6 +156,13 @@ class user_profile_controller {
     	}   	
     	ecjia_front::$controller->display('user_edit_password.dwt', $cache_id);            
     }
+    
+    /**
+     * 查看绑定手机号
+     */
+    public static function check_mobile() {
+        ecjia_front::$controller->display('user_check_mobile.dwt');
+    }
 }
 
 // end

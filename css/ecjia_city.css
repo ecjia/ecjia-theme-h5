@@ -8860,3 +8860,14 @@ footer {
 	float: right;
 	font-weight: normal;
 }
+.ecjia-address-list .binding-mobile {
+    position: relative;
+    text-align: center;
+}
+.ecjia-address-list .binding-mobile .mobile-phone-logo {
+	margin: 1em 0;
+}
+.ecjia-address-list .binding-mobile img {
+	height: 100px;
+	width: 100px;
+}
