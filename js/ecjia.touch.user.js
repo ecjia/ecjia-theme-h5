@@ -177,10 +177,18 @@
 				e.preventDefault();
 				var url = $(this).attr('data-url');
 				var mobile = $("input[name='mobile']").val();
-				if (mobile.length == 11) {
-					url += '&mobile=' + mobile;
-				} else {
-					alert('请输入正确的手机号');
+				var search_str = /^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/;
+				var email = $("input[name='email']").val();
+				if(mobile || mobile == '') {
+					if (mobile.length == 11) {
+						url += '&mobile=' + mobile;
+					} else {
+						alert('请输入正确的手机号');
+					}
+				} else if (email || email == ''){
+					 if(!search_str.test(email)){       
+					     alert("请输入正确的邮箱格式");
+					 }
 				}
 				$.get(url, function(data){
 				    if (data.state == 'success') {
@@ -188,7 +196,7 @@
 					     $("#mobile").attr("readonly", "true");
 					     $("#get_code").attr("disabled", "true");
 					     $("#get_code").val("重新发送" + curCount + "(s)");
-					     $("#get_code").attr("class", "btn btn-org login-btn");
+					     $("input[name='get_code']").attr("class", "btn btn-org login-btn");
 					     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 				    }
 				    ecjia.touch.showmessage(data);
@@ -201,7 +209,7 @@
 		            $("#mobile").removeAttr("readonly");	//启用按钮
 		            $("#get_code").removeAttr("disabled");	//启用按钮
 		            $("#get_code").val("重新发送");
-		            $("#get_code").attr("class", "btn btn-info login-btn");
+		            $("input[name='get_code']").attr("class", "btn btn-info login-btn");
 		        } else {
 		            curCount--;
 		            $("#get_code").attr("disabled", "true");

@@ -171,6 +171,11 @@ class user_profile_controller {
     }
     
     /**
+     * 获取绑定验证码
+     */
+    public static function get_code() {
+    }
+    /**
      * 查看绑定手机号
      */
     public static function check_mobile() {

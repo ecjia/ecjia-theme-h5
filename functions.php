@@ -206,6 +206,7 @@ RC_Hook::add_action('user/profile/modify_username', array('user_profile_controll
 RC_Hook::add_action('user/profile/modify_username_account', array('user_profile_controller', 'modify_username_account'));
 RC_Hook::add_action('user/profile/edit_password', array('user_profile_controller', 'edit_password'));
 RC_Hook::add_action('user/profile/account_bind', array('user_profile_controller', 'account_bind'));
+RC_Hook::add_action('user/profile/get_code', array('user_profile_controller', 'get_code'));
 RC_Hook::add_action('user/profile/check_mobile', array('user_profile_controller', 'check_mobile'));
 
 //授权登录
