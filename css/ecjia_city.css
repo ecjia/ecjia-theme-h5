@@ -4219,39 +4219,54 @@ footer {
 	height: 5.5em;
 }
 /*========================  绑定手机 ===========================*/
-.ecjia-user .d_bind_mobile .p_bind{
+.ecjia-user .d_bind .p_bind{
 	padding: 1em 1em 0 1em;
     font-size: 1.1em;
     color: #85878c;
 }
-.ecjia-user .d_bind_mobile .d_input {
+.ecjia-user .d_bind .d_input {
 	border: 0;
+	height: 100%;
 }
-.ecjia-user .d_bind_mobile .d_input input{
+.ecjia-user .d_bind .d_input input{
 	height: 100%;
 	font-size: 1.1em;
 }
-.ecjia-user .d_bind_mobile .d_input_verification_code {
+.ecjia-user .d_bind .d_input label {
+	height: 100%;
+}
+.ecjia-user .d_bind .d_input_verification_code {
 	border: 0;
 	width: 60%;
     float: left;
+    height: 100%;
 }
-.ecjia-user .d_bind_mobile .d_input_verification_code input{
+.ecjia-user .d_bind .d_input_verification_code label {
+	height: 100%;
+}
+.ecjia-user .d_bind .d_input_verification_code input{
 	height: 100%;
 	font-size: 1.1em;
 }
-.ecjia-user .d_bind_mobile .get_code {
+.ecjia-user .d_bind .get_code {
 	border: 0;
 	width: 40%;
     float: left;
+    height: 100%;
 }
-.ecjia-user .d_bind_mobile .get_code input{
+.ecjia-user .d_bind .get_code label {
+	height: 100%;
+}
+.ecjia-user .d_bind .get_code input{
 	height: 100%;
 	font-size: 1.1em;
 	color: #47aa4d;
 }
-.ecjia-user .d_bind_mobile .bind {
+.ecjia-user .d_bind .bind {
 	margin-bottom: 3em;
+}
+.ecjia-user .d_bind .bind li {
+	padding: .5em 1em;
 }
 /*========================  城市选择 ===========================*/
 .location-city .location-city-title {
