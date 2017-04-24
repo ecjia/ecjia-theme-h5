@@ -61,6 +61,7 @@
             	    type:"GET",
             	    dataType:"json",
             	    success:function(data){
+            	    	$('.ecjia-near-address').remove();
             	    	ecjia.touch.address_value(data.content.data);
             	    },
 				});

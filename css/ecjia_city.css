@@ -960,6 +960,7 @@ a.ecjia-color-green {
 
 .ecjia-address_list .list_wrapper {
 	padding-bottom: 10px;
+	cursor: pointer;
 }
 
 .a1 {
@@ -4322,6 +4323,10 @@ footer {
     padding: 10px 0;
     text-align: center;
     width: 25%;
+}
+
+.city li {
+	cursor: pointer;
 }
 
 .city li.active {

@@ -44,13 +44,13 @@ $(document).ready(function() {
 <div class="cityall" id="cityall" data-url="{url path='location/index/search_location'}">
 {/if}
 	<input type="hidden" name="address_id" value="{$smarty.get.address_id}">
-	<h2 class="select-city"><span>选择城市</span></h2>
+	<h2 class="select-city"><span>已开通服务的城市</span></h2>
 	<ul class="city citylist">
-	<!-- {foreach from=$citylist item=list} -->
+		<!-- {foreach from=$citylist item=list} -->
 		<li data-id="{$list.id}"{if $list.id eq $smarty.get.city_id} class="active"{/if}>{$list.name}</li>
-	<!-- {foreachelse} -->
+		<!-- {foreachelse} -->
 		<li>暂无</li>
-	<!-- {/foreach} -->
+		<!-- {/foreach} -->
 	</ul>
 </div>
 <!-- {/block} -->
