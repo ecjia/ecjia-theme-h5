@@ -827,8 +827,6 @@ a.ecjia-color-green {
 }
 
 .ecjia-zs .ecjia-zt .ecjia-zv.defaultWidth {
-	left: 15px;
-	width: 92%;
 }
 
 .ecjia-zs .ecjia-zw {
@@ -886,9 +884,17 @@ a.ecjia-color-green {
 	background: rgba(0, 0, 0, 0) url(../images/address_list/down_eee.png) no-repeat scroll right center / 9px auto;
 	display: inline-block;
 	font-size: 16px;
-	line-height: 32px;
-	margin-right: 10px;
+	line-height: 23px;
 	padding-right: 15px;
+}
+
+.ecjia-zu span.city-name {
+	max-width: 45px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-top: 7px;
+	text-overflow: ellipsis;
 }
 
 .ecjia-zu.none {
@@ -903,6 +909,13 @@ a.ecjia-color-green {
 	height: 30px;
 	outline: medium none;
 	width: 100%;
+}
+
+.ecjia-near-address {
+	line-height: 40px;
+    font-size: 14px;
+    margin-left: 15px;
+	color: #aaa;
 }
 
 .ecjia-zs .ecjia-address_list {

@@ -49,7 +49,7 @@
 			$('#search_location_list').bind('input', function () {
 				var url = $(this).attr('data-url');
 				var region   = $(".ecjia-zu").html();
-				var keywords = region + $("input[name='address']").val();
+				var keywords = $("input[name='address']").val();
 				if (region != 'undefined') {
 					url += '&region=' + region
 				}
@@ -65,6 +65,7 @@
             	    },
 				});
 		    })
+		    ecjia.touch.add_link();
 		},
 
 		address_value: function (data) {
