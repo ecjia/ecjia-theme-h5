@@ -4241,24 +4241,28 @@ footer {
 	margin-bottom: 3em;
 }
 /*========================  城市选择 ===========================*/
+.location-city .location-city-title {
+	font-size: 15px;
+    line-height: 40px;
+    margin: 0 15px;
+    position: relative;
+}
 .cityall {
 	background: #f4f4f4 none repeat scroll 0 0;
 	height: 100%;
 	overflow: hidden;
 	width: 100%;
+	border-top: 1px solid #eee;
 }
 
 .select-city {
-	color: #b0b0b0;
-	font-size: 14px;
+	font-size: 15px;
 	line-height: 40px;
-	margin: 0 10px;
+	margin: 0 15px;
 	position: relative;
-	text-align: center;
 }
 
 .select-city::before {
-	border-top: 1px dashed #b0b0b0;
 	content: "";
 	height: 0;
 	left: 0;
@@ -4271,27 +4275,25 @@ footer {
 .select-city span {
 	background-color: #f4f4f4;
 	display: inline-block;
-	padding: 0 6px;
 	position: relative;
 	z-index: 1;
 }
 
-.city {
+.city, .location-city-content {
 	box-sizing: border-box;
-	padding: 10px 62px 10px 10px;
-	width: 125%;
+	overflow: hidden;
 }
 
-.city li {
+.city li, .location-city-content li {
 	background: #ffffff none repeat scroll 0 0;
-	border: 1px solid #dddddd;
-	color: #333333;
-	display: inline-block;
-	float: left;
-	margin: 5px 20px 5px 20px;
-	padding: 10px 0;
-	text-align: center;
-	width: 20%;
+    border: 1px solid #dddddd;
+    color: #333333;
+    display: inline-block;
+    float: left;
+    margin: 0 4% 15px 4%;
+    padding: 10px 0;
+    text-align: center;
+    width: 25%;
 }
 
 .city li.active {
@@ -4299,7 +4301,11 @@ footer {
 	border: 1px solid #d0d0d0;
 }
 
-
+.location-city-content li.active {
+	background-color: #47aa4d;
+	color: #fff;
+	border-none;
+}
 
 /*========================  账户余额 ===========================*/
 

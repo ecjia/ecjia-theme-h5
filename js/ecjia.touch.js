@@ -648,8 +648,6 @@
 		ecjia.touch.ecjia_menu();
 		ecjia.touch.region_change();
 		ecjia.touch.goods_detail.change();
-		//初始化轮播图
-		sessionStorage.setItem("swiper", 0);
 		ecjia.touch.index.init_swiper();
 
 	    var ua = navigator.userAgent.toLowerCase();
@@ -664,7 +662,6 @@
 			    }, 0);
 			  }).appendTo($body);
 	    }
-		    
 	});
 })(ecjia, jQuery);
 

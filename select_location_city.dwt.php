@@ -30,6 +30,12 @@ $(document).ready(function() {
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
+<div class="location-city">
+	<h2 class="location-city-title"><span>定位城市</span></h2>
+	<ul class="location-city-content">
+		<li data-id="{$recommend_city_id}" class="active">{$recommend_city_name}</li>
+	</ul>
+</div>
 {if $smarty.get.type eq 'addcity'}
 <div class="cityall" id="cityall" data-url='{url path="user/address/add_address" args="{if $referer_url}&referer_url={$referer_url|escape:"url"}{/if}"}'>
 {else if $smarty.get.type eq 'editcity'}
@@ -39,7 +45,7 @@ $(document).ready(function() {
 {/if}
 	<input type="hidden" name="address_id" value="{$smarty.get.address_id}">
 	<h2 class="select-city"><span>选择城市</span></h2>
-	<ul class="city citylist" >
+	<ul class="city citylist">
 	<!-- {foreach from=$citylist item=list} -->
 		<li data-id="{$list.id}"{if $list.id eq $smarty.get.city_id} class="active"{/if}>{$list.name}</li>
 	<!-- {foreachelse} -->
