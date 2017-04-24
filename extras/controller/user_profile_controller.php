@@ -177,6 +177,20 @@ class user_profile_controller {
     }
     
     /**
+     * 验证验证码
+     */
+    public static function check_code() {
+        $mobile = !empty($_POST['mobile']) ? trim($_POST['mobile']) : '';
+        $email = !empty($_POST['email']) ? trim($_POST['email']) : '';
+        $code = !empty($_POST['code']) ? trim($_POST['code']) : '';
+        if (!empty($code)) {
+            if (!empty($mobile) || !empty($email)) {
+                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/init')));
+            }
+        }
+        
+    }
+    /**
      * 查看绑定手机号和邮箱
      */
     public static function bind_info() {
