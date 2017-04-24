@@ -158,6 +158,14 @@ class user_profile_controller {
     }
     
     /**
+     * 修改密码页面
+     */
+    public static function bind_mobile() {
+        
+        ecjia_front::$controller->display('user_bind_mobile.dwt');
+    }
+    
+    /**
      * 查看绑定手机号
      */
     public static function check_mobile() {
