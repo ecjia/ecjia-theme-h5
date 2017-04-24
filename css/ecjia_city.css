@@ -8916,14 +8916,10 @@ footer {
 	float: right;
 	font-weight: normal;
 }
-.ecjia-address-list .binding-mobile {
+.ecjia-check-info .bind-info {
     position: relative;
     text-align: center;
 }
-.ecjia-address-list .binding-mobile .mobile-phone-logo {
-	margin: 1em 0;
-}
-.ecjia-address-list .binding-mobile img {
-	height: 100px;
-	width: 100px;
+.ecjia-check-info {
+	margin: 3em 0;
 }
