@@ -171,10 +171,16 @@ class user_profile_controller {
     }
     
     /**
-     * 查看绑定手机号
+     * 查看绑定手机号和邮箱
      */
-    public static function check_mobile() {
-        ecjia_front::$controller->display('user_check_mobile.dwt');
+    public static function bind_info() {
+        $type = !empty($_GET['type']) ? trim($_GET['type']) : '';
+        if ($type == 'mobile') {
+            ecjia_front::$controller->assign('type', 'mobile');
+        } else if ($type == 'email') {
+            ecjia_front::$controller->assign('type', 'email');
+        }
+        ecjia_front::$controller->display('user_bind_info.dwt');
     }
 }
 
