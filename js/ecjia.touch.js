@@ -4,7 +4,6 @@
 ;(function(ecjia, $) {
 	ecjia.touch = {
 		init : function() {
-
 			if($.cookie('index') === undefined){
 				var key= $("input[name='key']").val();
 				var referer = $("input[name='referer']").val();
@@ -650,6 +649,7 @@
 		ecjia.touch.region_change();
 		ecjia.touch.goods_detail.change();
 		ecjia.touch.index.init_swiper();
+		sessionStorage.setItem("swiper", 0);
 
 	    var ua = navigator.userAgent.toLowerCase();
 	    if (ua.match(/MicroMessenger/i)=="micromessenger" || ua.match(/ECJiaBrowse/i)=="ecjiabrowse") {
