@@ -27,7 +27,7 @@
         		$('.ecjia-mod-cycleimage').find('.swiper-slide').find('img').css('height', width*2/5 + 'px');
         	}
         	
-		    if (sessionStorage.getItem("swiper") == 1) {
+		    if (sessionStorage.getItem("swiper")) {
 		        return false;
 		    }
 			var swiper = new Swiper('.swiper-touchIndex', {
@@ -50,6 +50,10 @@
 				autoplayDisableOnInteraction: false,
 			});
 			sessionStorage.setItem("swiper", 1);
+			
+			$('.ecjia-zx').off('click').on('click', function() {
+				sessionStorage.removeItem('swiper');
+			});
         },
         swiper_promotion : function() {
 			var swiper = new Swiper('.swiper-promotion', {
