@@ -19,7 +19,7 @@
 			  		    type: "GET",
 			  		    dataType: "json",
 			  		    success:function(data){
-			  		    	 ecjia.pjax(data.url);
+			  		    	ecjia.pjax(data.url);
 			      	    },
 		  	     	});
 				};
@@ -648,8 +648,9 @@
 		ecjia.touch.ecjia_menu();
 		ecjia.touch.region_change();
 		ecjia.touch.goods_detail.change();
-		ecjia.touch.index.init_swiper();
+		//初始化轮播图
 		sessionStorage.setItem("swiper", 0);
+		ecjia.touch.index.init_swiper();
 
 	    var ua = navigator.userAgent.toLowerCase();
 	    if (ua.match(/MicroMessenger/i)=="micromessenger" || ua.match(/ECJiaBrowse/i)=="ecjiabrowse") {
