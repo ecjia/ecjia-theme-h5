@@ -4232,6 +4232,7 @@ footer {
 .ecjia-user .d_bind .d_input input{
 	height: 100%;
 	font-size: 1.1em;
+	padding-left: 7.7px;
 }
 .ecjia-user .d_bind .d_input label {
 	height: 100%;
