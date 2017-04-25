@@ -339,7 +339,10 @@ a.ecjia-color-green {
 .ecjia-web .ecjia-address {
 	position: relative;
 	display: inline-block;
-	z-index: 2;
+    z-index: 2;
+    width: 300px;
+    height: 2.5em;
+    line-height: 2.5em;
 }
 
 .ecjia-address img {
@@ -348,8 +351,29 @@ a.ecjia-color-green {
 }
 
 .ecjia-address .address-text {
-	margin: 0px 5px 0px 5px;
-	color: #ffffff;
+	color: #fff;
+	background: url(../images/address_list/50x50_2l.png) no-repeat 0 .7em;
+    background-size: 1.1em;
+    padding-left: 20px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: top;
+    max-width: 90%;
+}
+
+.ecjia-address a {
+	height: 2.5em;
+    display: inline-block;
+	width: 100%;
+}
+
+.ecjia-address i.bottom-jiantou {
+    background: url(../images/address_list/down.png) no-repeat;
+    background-size: 1em;
+    background-position: 0px .1em;
+	font-size: 1em;
 }
 
 /*== 商家入驻开始 ==*/
