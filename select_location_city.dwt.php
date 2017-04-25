@@ -33,7 +33,7 @@ $(document).ready(function() {
 <div class="location-city">
 	<h2 class="location-city-title"><span>定位城市</span></h2>
 	<ul class="location-city-content citylist">
-		<li data-id="{$recommend_city_id}" class="active">{$recommend_city_name}</li>
+		<li data-id="{$recommend_city_id}" {if $city_id eq $recommend_city_id}class="active"{/if}>{$recommend_city_name}</li>
 	</ul>
 </div>
 {if $smarty.get.type eq 'addcity'}
@@ -47,7 +47,7 @@ $(document).ready(function() {
 	<h2 class="select-city"><span>已开通服务的城市</span></h2>
 	<ul class="city citylist">
 		<!-- {foreach from=$citylist item=list} -->
-		<li data-id="{$list.id}"{if $list.id eq $smarty.cookies.city_id} class="active"{/if}>{$list.name}</li>
+		<li data-id="{$list.id}" {if $list.id eq $smarty.cookies.city_id}class="active"{/if}>{$list.name}</li>
 		<!-- {foreachelse} -->
 		<li>暂无</li>
 		<!-- {/foreach} -->
