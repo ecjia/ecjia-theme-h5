@@ -915,7 +915,7 @@ a.ecjia-color-green {
 	line-height: 40px;
     font-size: 14px;
     margin-left: 15px;
-	color: #aaa;
+	color: #666666;
 }
 
 .ecjia-zs .ecjia-address_list {
@@ -4284,7 +4284,6 @@ footer {
     position: relative;
 }
 .cityall {
-	background: #f4f4f4 none repeat scroll 0 0;
 	height: 100%;
 	overflow: hidden;
 	width: 100%;
@@ -8942,9 +8941,20 @@ footer {
 	font-weight: normal;
 }
 .ecjia-check-info .bind-info {
+	padding: 3em 0;	
     position: relative;
     text-align: center;
 }
 .ecjia-check-info {
-	margin: 3em 0;
+	background-color: #FFF;
+    min-height: 700px;
+}
+.ecjia-check-info .bind-info p {
+    display: inline-block;
+    -webkit-line-clamp: 2;
+    font-size: 1.4em;
+    width: 90%;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
 }

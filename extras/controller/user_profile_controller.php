@@ -217,15 +217,19 @@ class user_profile_controller {
      */
     public static function bind_info() {
         $token      = ecjia_touch_user::singleton()->getToken();
-        $user       = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
-        $type       = !empty($_GET['type']) ? trim($_GET['type']) : '';
-        ecjia_front::$controller->assign('user', $user);
-        if ($type == 'mobile') {
-            ecjia_front::$controller->assign('type', 'mobile');
-        } else if ($type == 'email') {
-            ecjia_front::$controller->assign('type', 'email');
+        $cache_id   = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token));
+        
+        if (!ecjia_front::$controller->is_cached('user_bind_info.dwt', $cache_id)) {
+            $user       = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+            $type       = !empty($_GET['type']) ? trim($_GET['type']) : '';
+            ecjia_front::$controller->assign('user', $user);
+            if ($type == 'mobile') {
+                ecjia_front::$controller->assign('type', 'mobile');
+            } else if ($type == 'email') {
+                ecjia_front::$controller->assign('type', 'email');
+            } 
         }
-        ecjia_front::$controller->display('user_bind_info.dwt');
+        ecjia_front::$controller->display('user_bind_info.dwt', $cache_id);
     }
 }
 
