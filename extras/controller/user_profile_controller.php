@@ -181,11 +181,12 @@ class user_profile_controller {
     public static function get_code() {
         $mobile = !empty($_GET['mobile']) ? trim($_GET['mobile']) : '';
         $email = !empty($_GET['email']) ? $_GET['email'] : '';
-        
         if (!empty($mobile)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATA_GET)->data(array('type' => 'mobile', 'value' => $mobile))->run();
         } else if (!empty($email)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATA_GET)->data(array('type' => 'email', 'value' => $email))->run();
+        } else {
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         if (is_ecjia_error($data)) {
             return ecjia_front::$controller->showmessage(__($data->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/profile/init')));
