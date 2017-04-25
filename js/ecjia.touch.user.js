@@ -19,6 +19,7 @@
 			ecjia.touch.user.show_password();
 			ecjia.touch.user.modify_username();
 			ecjia.touch.user.record_cancel();
+			ecjia.touch.user.account_bind();
 
 			$(function(){
 				$(".del").click(function(){
@@ -381,6 +382,15 @@
  						callpay();
  					}
 		        })
+			});
+		},
+		
+		account_bind : function() {
+			$("#account_bind_btn").on("click", function() {
+				iosOverlay({
+					text: "绑定成功!",
+					duration: 2e3,
+				});
 			});
 		},
 

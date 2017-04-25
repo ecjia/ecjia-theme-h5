@@ -69,7 +69,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
            </li>
         </div>
         <div class=" ecjia-margin-b">
-        	<input class="btn btn-info" name="submit" type="submit" value="立即绑定" />
+        	<input class="btn btn-info" name="submit" type="submit" value="立即绑定" id="account_bind_btn"/>
         </div>
     </div>
     {/if}
