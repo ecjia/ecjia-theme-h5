@@ -32,7 +32,7 @@ $(document).ready(function() {
 <!-- {block name="main-content"} -->
 <div class="location-city">
 	<h2 class="location-city-title"><span>定位城市</span></h2>
-	<ul class="location-city-content">
+	<ul class="location-city-content citylist">
 		<li data-id="{$recommend_city_id}" class="active">{$recommend_city_name}</li>
 	</ul>
 </div>

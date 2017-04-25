@@ -98,8 +98,8 @@ class location_controller {
     				}
     			}
     			if (empty($recommend_city_name)) {
-    				$recommend_city_name = $shop_config['recommend_city'][0]['name'];
-    				$recommend_city_id   = $shop_config['recommend_city'][0]['id'];
+    				$recommend_city_name = $_COOKIE['city_name'];
+    				$recommend_city_id   = $_COOKIE['city_id'];
     			}
     			ecjia_front::$controller->assign('recommend_city_name', $recommend_city_name);
     			ecjia_front::$controller->assign('recommend_city_id', $recommend_city_id);
@@ -129,8 +129,8 @@ class location_controller {
     				}
     			}
     			if (empty($recommend_city_name)) {
-    				$recommend_city_name = $shop_config['recommend_city'][0]['name'];
-    				$recommend_city_id   = $shop_config['recommend_city'][0]['id'];
+    				$recommend_city_name = $_COOKIE['city_name'];
+    				$recommend_city_id   = $_COOKIE['city_id'];
     			}
     			ecjia_front::$controller->assign('recommend_city_name', $recommend_city_name);
     			ecjia_front::$controller->assign('recommend_city_id', $recommend_city_id);
@@ -156,9 +156,10 @@ class location_controller {
     public static function search_list() {
     	$region   = urlencode($_GET['region']);
     	$keywords = urlencode($_GET['keywords']);
-    	
+
     	$key		= ecjia::config('map_qq_key');
     	$url       	= "http://apis.map.qq.com/ws/place/v1/suggestion/?region=".$region."&keyword=".$keywords."&key=".$key."";
+
     	$response 	= RC_Http::remote_get($url);
     	$content  	= json_decode($response['body'], true);
     	
@@ -190,13 +191,12 @@ class location_controller {
     				}
     			}
     			if (empty($recommend_city_name)) {
-    				$recommend_city_name = $rs['recommend_city'][0]['name'];
-    				$recommend_city_id   = $rs['recommend_city'][0]['id'];
+    				$recommend_city_name = $_COOKIE['city_name'];
+    				$recommend_city_id   = $_COOKIE['city_id'];
     			}
     			ecjia_front::$controller->assign('recommend_city_name', $recommend_city_name);
     			ecjia_front::$controller->assign('recommend_city_id', $recommend_city_id);
     		}
-    		
     		ecjia_front::$controller->assign_title('选择城市');
     		ecjia_front::$controller->assign_lang();
     	}
@@ -241,6 +241,7 @@ class location_controller {
     	setcookie("latitude", $latitude);
     	setcookie("location_address_id", 0);
     	setcookie("city_id", $city_id);
+    	setcookie("city_name", $rs['region_name']);
     	
     	setcookie("position_longitude", $longitude);
     	setcookie("position_latitude", $latitude);

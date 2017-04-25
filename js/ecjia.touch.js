@@ -46,26 +46,29 @@
 		
 		//搜索关键词定位开始
 		address_list : function() {
-			$('#search_location_list').bind('input', function () {
-				var url = $(this).attr('data-url');
-				var region   = $(".ecjia-zu").html();
-				var keywords = $("input[name='address']").val();
-				if (region != 'undefined') {
-					url += '&region=' + region
-				}
-				if (keywords != 'undefined') {
-					url += '&keywords=' + keywords;
-				}
-				$.ajax({
-            	    url:url,
-            	    type:"GET",
-            	    dataType:"json",
-            	    success:function(data){
-            	    	$('.ecjia-near-address').remove();
-            	    	ecjia.touch.address_value(data.content.data);
-            	    },
-				});
-		    })
+    		$('#search_location_list').koala({
+    			delay: 200,
+    		    keyup: function(event){
+    		    	var url = $(this).attr('data-url');
+    				var region   = $(".ecjia-zu").children().html();
+    				var keywords = $("input[name='address']").val();
+    				if (region != 'undefined') {
+    					url += '&region=' + region
+    				}
+    				if (keywords != 'undefined') {
+    					url += '&keywords=' + keywords;
+    				}
+    				$.ajax({
+                	    url:url,
+                	    type:"GET",
+                	    dataType:"json",
+                	    success:function(data){
+                	    	$('.ecjia-near-address').remove();
+                	    	ecjia.touch.address_value(data.content.data);
+                	    },
+    				});
+    		    }
+    		});
 		    ecjia.touch.add_link();
 		},
 
