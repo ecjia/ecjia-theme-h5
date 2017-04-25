@@ -915,7 +915,7 @@ a.ecjia-color-green {
 	line-height: 40px;
     font-size: 14px;
     margin-left: 15px;
-	color: #aaa;
+	color: #666666;
 }
 
 .ecjia-zs .ecjia-address_list {
@@ -4278,7 +4278,6 @@ footer {
     position: relative;
 }
 .cityall {
-	background: #f4f4f4 none repeat scroll 0 0;
 	height: 100%;
 	overflow: hidden;
 	width: 100%;

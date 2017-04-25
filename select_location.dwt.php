@@ -18,7 +18,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<a href="{url path='location/index/select_city' args="type=search{if $smarty.get.city_id}&city_id={$smarty.get.city_id}{else}&city_id={$recommend_city_id}{/if}"}">
 			<h2 class="ecjia-zu"><span class="city-name">{if $smarty.get.city}{$smarty.get.city}{else}{$recommend_city_name}{/if}</span></h2>
  		</a>
-		<a href="{url path='location/index/search_location'}" ><input class="ecjia-zv defaultWidth" type="text" placeholder="小区， 写字楼， 学校" maxlength="50"></a>
+		<a href="{url path='location/index/search_location'}" >
+			<span class="ecjia-zv defaultWidth">小区， 写字楼， 学校</span>
+		</a>
 	</div>
 	<div class="ecjia-zw">
 		<a class="external" href="{$my_location}">
