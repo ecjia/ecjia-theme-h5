@@ -4021,7 +4021,7 @@ footer {
 
 .ecjia-user .ecjia-list.list-short li span.icon-price {
 	float: right;
-	width: 37%;
+	width: 65%;
 	text-align: right;
 	padding-right: 1em;
     overflow: hidden;
@@ -4232,14 +4232,14 @@ footer {
 .ecjia-user .d_bind .d_input input{
 	height: 100%;
 	font-size: 1.1em;
-	padding-left: 7.7px;
+	padding: 0;
 }
 .ecjia-user .d_bind .d_input label {
 	height: 100%;
 }
 .ecjia-user .d_bind .d_input_verification_code {
 	border: 0;
-	width: 60%;
+	width: 65%;
     float: left;
     height: 100%;
 }
@@ -4249,11 +4249,12 @@ footer {
 .ecjia-user .d_bind .d_input_verification_code input{
 	height: 100%;
 	font-size: 1.1em;
+	padding: 0;
 }
 .ecjia-user .d_bind .get_code {
 	border: 0;
-	width: 40%;
-    float: left;
+	width: 35%;
+    float: right;
     height: 100%;
 }
 .ecjia-user .d_bind .get_code label {
@@ -4268,7 +4269,12 @@ footer {
 	margin-bottom: 3em;
 }
 .ecjia-user .d_bind .bind li {
-	padding: .5em 1em;
+	padding: .5em 0 .5em 1em;
+}
+.ecjia-user .d_bind .ecjia-list.list-short li+li::before {
+    width: 97%;
+    left: 3%;
+    border-bottom: 1px solid #eee;
 }
 /*========================  城市选择 ===========================*/
 .location-city .location-city-title {

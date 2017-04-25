@@ -104,6 +104,19 @@ class location_controller {
     			ecjia_front::$controller->assign('recommend_city_name', $recommend_city_name);
     			ecjia_front::$controller->assign('recommend_city_id', $recommend_city_id);
     		}
+    		$region   = !empty($_GET['city']) ? urlencode($_GET['city']) : urlencode($recommend_city_name);
+    		$keywords = !empty($_GET['city']) ? urlencode($_GET['city']) : urlencode($recommend_city_name);
+    		$key      = ecjia::config('map_qq_key');
+    		$url      = "https://apis.map.qq.com/ws/place/v1/suggestion/?region=".$region."&keyword=".$keywords."&key=".$key;
+    		
+    		if ($_COOKIE['city_id'] == $_COOKIE['position_city_id']) {
+    			$lat = $_COOKIE['position_latitude'];
+    			$lng = $_COOKIE['position_longitude'];
+    			$url = "http://apis.map.qq.com/ws/place/v1/search?boundary=nearby(".$lat.",".$lng.",1000)&page_size=20&page_index=1&keyword=".$keywords."&orderby=_distance&key=".$key;
+    		}
+    		$response = RC_Http::remote_get($url);
+    		$content  = json_decode($response['body'], true);
+    		ecjia_front::$controller->assign('content', $content['data']);
     	}
     	
         ecjia_front::$controller->display('select_location.dwt', $cache_id);
