@@ -84,6 +84,11 @@ class touch_controller {
         	setcookie("latitude", $latitude);
         	setcookie("location_address_id", 0);
         	setcookie("city_id", $city_id);
+        	setcookie("city_name", $rs['region_name']);
+        	
+        	setcookie("position_longitude", $longitude);
+        	setcookie("position_latitude", $latitude);
+        	
         	return ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
         }
         
