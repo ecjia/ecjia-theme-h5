@@ -18,7 +18,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <form class="ecjia-user ecjia-form ecjia-user-no-border-b" name="accountBind" action="{url path='user/profile/check_code'}" method="post" >
     {if $type eq 'mobile'}
     <div class="d_bind">
-        <p class="p_bind">绑定手机号后，你可以使用手机号登录，也可以通过手机号找回密码</p>
+        <p class="p_bind">{if $status}请设置新手机号{else}绑定手机号后，你可以使用手机号登录，也可以通过手机号找回密码{/if}</p>
         <div class="ecjia-list list-short bind">
             <li>
         		<div class="form-group d_input">
@@ -47,7 +47,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
     {elseif $type eq 'email'}
     <div class="d_bind">
-        <p class="p_bind">请输入你的邮箱帐号</p>
+        <p class="p_bind">{if $status}请设置新邮箱帐号{else}请输入你的邮箱帐号{/if}</p>
         <div class="ecjia-list list-short bind">
             <li>
         		<div class="form-group d_input">

@@ -161,10 +161,16 @@ class user_profile_controller {
      */
     public static function account_bind() {
         $type=!empty($_GET['type']) ? trim($_GET['type']) : '';
+        $status = !empty($_GET['status']) ? trim($_GET['status']) : '';
+        
         if ($type == 'mobile') {
             ecjia_front::$controller->assign('type', 'mobile');
         } else if ($type == 'email') {
             ecjia_front::$controller->assign('type', 'email');
+        }
+        
+        if (!empty($status)) {
+            ecjia_front::$controller->assign('status', $status);
         }
         ecjia_front::$controller->display('user_account_bind.dwt');
     }
