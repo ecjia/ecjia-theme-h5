@@ -189,11 +189,13 @@ class user_profile_controller {
         }
         if (is_ecjia_error($data)) {
             return ecjia_front::$controller->showmessage(__($data->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/profile/init')));
+        } else {
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
         }
     }
     
     /**
-     * 验证验证码
+     * 验证验证码并绑定
      */
     public static function check_code() {
         $value = !empty($_POST['mobile']) ? trim($_POST['mobile']) : trim($_POST['email']);
