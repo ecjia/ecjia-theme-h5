@@ -86,6 +86,9 @@ class touch_controller {
         	setcookie("city_id", $city_id);
         	setcookie("city_name", $rs['region_name']);
         	
+        	//自动定位的城市id name 经纬度
+        	setcookie("position_city_id", $city_id);
+        	setcookie("position_city_name", $rs['region_name']);
         	setcookie("position_longitude", $longitude);
         	setcookie("position_latitude", $latitude);
         	

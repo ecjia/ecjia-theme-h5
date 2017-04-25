@@ -39,5 +39,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</ul>    
 		</div>
 	</div>
+	<input type="hidden" name="city_id" value="{$city_info.city_id}">
+	<input type="hidden" name="city_name" value="{$city_info.city_name}">
 </div>
 <!-- {/block} -->

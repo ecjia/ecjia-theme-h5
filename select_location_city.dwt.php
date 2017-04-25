@@ -47,7 +47,7 @@ $(document).ready(function() {
 	<h2 class="select-city"><span>已开通服务的城市</span></h2>
 	<ul class="city citylist">
 		<!-- {foreach from=$citylist item=list} -->
-		<li data-id="{$list.id}"{if $list.id eq $smarty.get.city_id} class="active"{/if}>{$list.name}</li>
+		<li data-id="{$list.id}"{if $list.id eq $smarty.cookies.city_id} class="active"{/if}>{$list.name}</li>
 		<!-- {foreachelse} -->
 		<li>暂无</li>
 		<!-- {/foreach} -->

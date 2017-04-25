@@ -97,11 +97,18 @@
                       var Tresult=Uarry.eq(count).text();
                       var title = $(this).children().children("span[class*='ecjia-location-list-title']").html();
                       var address = $(this).children().children("span[class*='ecjia-location-list-address']").html();
+                      var city_id = $('input[name="city_id"]').val();
+                      var city_name = $('input[name="city_name"]').val();
+                      
                       $.cookie('location_address', address); 
                       $.cookie('location_name', title);
                       $.cookie('longitude', lng);
                       $.cookie('latitude', lat);
                       $.cookie('location_address_id', 0); 
+                      
+                      $.cookie('city_id', city_id); 
+                      $.cookie('city_name', city_name); 
+                      
                       var url = $("#ecjia-zs").attr('data-url');
                       ecjia.pjax(url);
                 });	
