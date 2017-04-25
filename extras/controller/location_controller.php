@@ -98,8 +98,8 @@ class location_controller {
     				}
     			}
     			if (empty($recommend_city_name)) {
-    				$recommend_city_id   = $_COOKIE['city_id'];
-    				$recommend_city_name = $_COOKIE['city_name'];
+    				$recommend_city_id   = !empty($_COOKIE['city_id']) ? $_COOKIE['city_id'] : $shop_config['recommend_city'][0]['id'];
+    				$recommend_city_name = !empty($_COOKIE['city_name']) ? $_COOKIE['city_name'] : $shop_config['recommend_city'][0]['name'];
     			}
     			ecjia_front::$controller->assign('recommend_city_name', $recommend_city_name);
     			ecjia_front::$controller->assign('recommend_city_id', $recommend_city_id);
@@ -129,8 +129,8 @@ class location_controller {
     				}
     			}
     			if (empty($recommend_city_name)) {
-    				$recommend_city_id   = $_COOKIE['city_id'];
-    				$recommend_city_name = $_COOKIE['city_name'];
+    				$recommend_city_id   = !empty($_COOKIE['city_id']) ? $_COOKIE['city_id'] : $shop_config['recommend_city'][0]['id'];
+    				$recommend_city_name = !empty($_COOKIE['city_name']) ? $_COOKIE['city_name'] : $shop_config['recommend_city'][0]['name'];
     			}
     			ecjia_front::$controller->assign('recommend_city_id', $recommend_city_id);
     			ecjia_front::$controller->assign('recommend_city_name', $recommend_city_name);
@@ -140,7 +140,7 @@ class location_controller {
     		$key      = ecjia::config('map_qq_key');
     		$url      = "https://apis.map.qq.com/ws/place/v1/suggestion/?region=".$region."&keyword=".$keywords."&key=".$key;
     		
-    		if ($_GET['city_id'] == $_COOKIE['position_city_id'] || empty($_GET['city_id'])) {
+    		if ($_GET['city_id'] == $_COOKIE['position_city_id']) {
     			$lat = $_COOKIE['position_latitude'];
     			$lng = $_COOKIE['position_longitude'];
     			$url = "http://apis.map.qq.com/ws/place/v1/search?boundary=nearby(".$lat.",".$lng.",1000)&page_size=20&page_index=1&keyword=".$keywords."&orderby=_distance&key=".$key;
@@ -180,7 +180,7 @@ class location_controller {
     			return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
     		}
     		ecjia_front::$controller->assign('citylist', $rs['recommend_city']);
-    		
+
     		$referer_url = !empty($_GET['referer_url']) ? $_GET['referer_url'] : '';
     		if (!empty($referer_url)) {
     			ecjia_front::$controller->assign('referer_url', urlencode($referer_url));
@@ -195,12 +195,15 @@ class location_controller {
     				}
     			}
     			if (empty($recommend_city_name)) {
-    				$recommend_city_id = $_COOKIE['position_city_id'];
-    				$recommend_city_name = $_COOKIE['position_city_name'];
+    				$recommend_city_id   = !empty($_COOKIE['position_city_id']) ? $_COOKIE['position_city_id'] : $shop_config['recommend_city'][0]['id'];
+    				$recommend_city_name = !empty($_COOKIE['position_city_name']) ? $_COOKIE['position_city_name'] : $shop_config['recommend_city'][0]['name'];
     			}
     			ecjia_front::$controller->assign('recommend_city_id', $recommend_city_id);
     			ecjia_front::$controller->assign('recommend_city_name', $recommend_city_name);
     		}
+    		$city_id = !empty($_GET['city_id']) ? intval($_GET['city_id']) : 0;
+    		ecjia_front::$controller->assign('city_id', $city_id);
+    		
     		ecjia_front::$controller->assign_title('选择城市');
     		ecjia_front::$controller->assign_lang();
     	}
