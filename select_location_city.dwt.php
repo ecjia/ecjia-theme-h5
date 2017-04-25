@@ -33,7 +33,7 @@ $(document).ready(function() {
 <div class="location-city">
 	<h2 class="location-city-title"><span>定位城市</span></h2>
 	<ul class="location-city-content citylist">
-		<li data-id="{$recommend_city_id}" {if $city_id eq $recommend_city_id}class="active"{/if}>{$recommend_city_name}</li>
+		<li data-id="{$recommend_city_id}" {if $city_id eq $recommend_city_id && $smarty.cookies.city_id}class="active"{/if}>{$recommend_city_name}</li>
 	</ul>
 </div>
 {if $smarty.get.type eq 'addcity'}
@@ -41,6 +41,8 @@ $(document).ready(function() {
 {else if $smarty.get.type eq 'editcity'}
 <div class="cityall" id="cityall" data-url="{url path='user/address/edit_address'}">
 {else if $smarty.get.type eq 'search'}
+<div class="cityall" id="cityall" data-url="{url path='location/index/search_location'}">
+{else}
 <div class="cityall" id="cityall" data-url="{url path='location/index/search_location'}">
 {/if}
 	<input type="hidden" name="address_id" value="{$smarty.get.address_id}">
