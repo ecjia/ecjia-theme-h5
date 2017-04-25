@@ -674,6 +674,18 @@
 			    }, 0);
 			  }).appendTo($body);
 	    }
+	    
+	    //从购物车进入商家店铺页面自动弹出购物车
+	    if ($.find('.ecjia-from-page').length) {
+	    	var from = $('.ecjia-from-page').val();
+	    	if (from == 'cart') {
+	    		//购物车不为空
+	    		if ($('.minicart-goods-list').find('.a5n').length != 0) {
+		    		ecjia.touch.category.show_cart();
+		    		$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});//禁用滚动条
+	    		}
+	    	}
+	    }
 	});
 })(ecjia, jQuery);
 

@@ -40,7 +40,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<span class="cart-checkbox check_all {if $val.total.check_all eq 1}checked{/if}" id="store_check_{$val.seller_id}" data-store="{$val.seller_id}"></span>
 					</div>
 					<div class="shop-title-content">
-						<a href="{RC_Uri::url('merchant/index/init')}&store_id={$val.seller_id}">
+						<a href="{RC_Uri::url('merchant/index/init')}&store_id={$val.seller_id}&from=cart">
 							<span class="shop-title-name"><i class="iconfont icon-shop"></i>{$val.seller_name}</span>
 							{if $val.manage_mode eq 'self'}<span class="self-store">自营</span>{/if}
 						</a>
