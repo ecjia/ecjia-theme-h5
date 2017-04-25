@@ -141,7 +141,6 @@ class user_profile_controller {
     			} else {
     				return ecjia_front::$controller->showmessage(__($data->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/profile/edit_password')));
     			}
-    				
     		} else {
     			return ecjia_front::$controller->showmessage(__('两次输入的密码不同，请重新输入'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/profile/edit_password')));
     		}
@@ -174,21 +173,35 @@ class user_profile_controller {
      * 获取绑定验证码
      */
     public static function get_code() {
+        $mobile = !empty($_GET['mobile']) ? trim($_GET['mobile']) : '';
+        $email = !empty($_GET['email']) ? $_GET['email'] : '';
+        
+        if (!empty($mobile)) {
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATA_GET)->data(array('type' => 'mobile', 'value' => $mobile))->run();
+        } else if (!empty($email)) {
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATA_GET)->data(array('type' => 'email', 'value' => $email))->run();
+        }
+        if (is_ecjia_error($data)) {
+            return ecjia_front::$controller->showmessage(__($data->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/profile/init')));
+        }
     }
     
     /**
      * 验证验证码
      */
     public static function check_code() {
-        $mobile = !empty($_POST['mobile']) ? trim($_POST['mobile']) : '';
-        $email = !empty($_POST['email']) ? trim($_POST['email']) : '';
+        $value = !empty($_POST['mobile']) ? trim($_POST['mobile']) : trim($_POST['email']);
         $code = !empty($_POST['code']) ? trim($_POST['code']) : '';
-        if (!empty($code)) {
-            if (!empty($mobile) || !empty($email)) {
+        $type = !empty($_POST['type']) ? $_POST['type'] : '';
+        
+        if (!empty($code) && !empty($type)) {
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BIND)->data(array('type' => $type, 'value' => $value, 'code' => $code))->run();
+            if (is_ecjia_error($data)) {
+                return ecjia_front::$controller->showmessage(__($data->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            } else {
                 return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/init')));
             }
         }
-        
     }
     /**
      * 查看绑定手机号和邮箱
