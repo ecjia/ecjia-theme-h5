@@ -16,20 +16,21 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 {if $type eq 'mobile'}
 <div class="ecjia-check-info">
     <div class="bind-info">
-        <h2>已绑：{$user.mobile_phone}</h2>
+        <p>已绑：{$user.mobile_phone}</p>
     </div>
-</div>
-<div>
-	<a class="btn btn-info nopjax" href="{RC_uri::url('user/profile/account_bind')}&type=mobile&status=change">更换手机号</a>
+    <div>
+    	<a class="btn btn-info nopjax" href="{RC_uri::url('user/profile/account_bind')}&type=mobile&status=change">更换手机号</a>
+    </div>
 </div>
 {elseif $type eq 'email'}
 <div class="ecjia-check-info">
     <div class="bind-info">
-        <h2>已绑：{$user.email}</h2>
+        <p>已绑：{$user.email}</p>
     </div>
-</div>
-<div>
-	<a class="btn btn-info nopjax" href="{RC_uri::url('user/profile/account_bind')}&type=email&status=change">更换邮箱号</a>
+
+    <div>
+    	<a class="btn btn-info nopjax" href="{RC_uri::url('user/profile/account_bind')}&type=email&status=change">更换邮箱号</a>
+    </div>
 </div>
 {/if}
 <!-- {/block} -->
