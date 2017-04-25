@@ -23,14 +23,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <li>
         		<div class="form-group d_input">
             		<label>
-            			<input placeholder="请输入手机号" name='mobile'>
+            			<input type='number' placeholder="请输入手机号" name='mobile'>
             		</label>
             	</div>
            </li>
            <li>
         		<div class="form-group d_input_verification_code">
             		<label>
-            			<input placeholder="请输入验证码" name="code">
+            			<input type='number' placeholder="请输入验证码" name="code">
             		</label>
             	</div>
             	<div class="form-group get_code">
@@ -59,7 +59,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
            <li>
         		<div class="form-group d_input_verification_code">
             		<label>
-            			<input placeholder="请输入验证码" name="code">
+            			<input type='number' placeholder="请输入验证码" name="code">
             		</label>
             	</div>
             	<div class="form-group get_code">
