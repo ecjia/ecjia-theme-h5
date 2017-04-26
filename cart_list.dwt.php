@@ -55,6 +55,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							{/if}
 						</div>
 					</div>
+					<div class="w4 edit_button"><span>删除</span></div>
 				</div>
 				<!-- {foreachelse} -->
 				<div class="a57"><span>当前位置购物车空空如也哦～</span></div>
@@ -65,7 +66,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<!-- {foreach from=$cart_list.other item=val} -->
 				<div class="a4w">
 					<div class="a4p">
-						<a class="a4x" href="{RC_Uri::url('merchant/index/init')}&store_id={$val.seller_id}&from=cart">
+						<a class="a4x" href="{RC_Uri::url('merchant/index/init')}&store_id={$val.seller_id}&from=cart&out=1">
 							{$val.seller_name}
 							{if $val.manage_mode eq 'self'}<span class="self-store">自营</span>{/if}
 						</a>
@@ -89,6 +90,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							{/if}
 						</div>
 					</div>
+					<div class="w4 edit_button"><span>删除</span></div>
 				</div>
 				<!-- {/foreach} -->
 				<!-- {/if} -->

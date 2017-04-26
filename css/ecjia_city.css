@@ -9198,3 +9198,27 @@ footer {
     background: url(../images/cart/tan.png) 0 center no-repeat;
     background-size: 16px 16px;
 }
+
+.ecjia-flow-cart .w4 {
+    position: absolute;
+    z-index: 5;
+    right: 0;
+    top: 2px;
+    bottom: 6px;
+    overflow: hidden;
+    width: 0;
+    background-color: #ff5757;
+    border-radius: 0 4px 4px 0;
+}
+
+.ecjia-flow-cart .w4 span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    text-align: center;
+    line-height: 146px;
+    font-size: 15px;
+    color: #fff;
+}
