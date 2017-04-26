@@ -4306,7 +4306,7 @@ footer {
 	margin-bottom: 3em;
 }
 .ecjia-user .d_bind .bind li {
-	padding: .5em 0 .5em 1.1em;
+	padding: .5em 0 .5em 1em;
 }
 .ecjia-user .d_bind .ecjia-list.list-short li+li::before {
     width: 97%;
