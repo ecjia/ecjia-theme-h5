@@ -14,81 +14,71 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<a href="{RC_Uri::url('location/index/select_location')}{if $referer_url}&referer_url={$referer_url}{/if}">
-	<div class="flow-address flow-cart {if $address_id eq 0 || !$address_id}location_address{/if}">
-		<label class="ecjiaf-fl">{t}送至：{/t}</label>
-		<div class="ecjiaf-fl address-info">
-			{if $address_id gt 0}
-				<span>{$address_info.consignee}</span>
-				<span>{$address_info.mobile}</span>
-				<p class="ecjia-truncate2 address-desc">{$address_info.address}{$address_info.address_info}</p>
-			{else}
-				<span>{$smarty.cookies.location_name}</span>
-			{/if}
-		</div>
-	</div>
-</a>
 
 <!-- {if !$not_login} -->
 	<!-- {if $cart_list} -->
-	<div class="ecjia-flow-cart">
-		<ul>
-			<!-- {foreach from=$cart_list item=val} -->
-			<li class="cart-single">
-				<div class="item">
-					<div class="check-wrapper">
-						<span class="cart-checkbox check_all {if $val.total.check_all eq 1}checked{/if}" id="store_check_{$val.seller_id}" data-store="{$val.seller_id}"></span>
-					</div>
-					<div class="shop-title-content">
-						<a href="{RC_Uri::url('merchant/index/init')}&store_id={$val.seller_id}&from=cart">
-							<span class="shop-title-name"><i class="iconfont icon-shop"></i>{$val.seller_name}</span>
-							{if $val.manage_mode eq 'self'}<span class="self-store">自营</span>{/if}
-						</a>
-						<span class="shop-edit" data-store="{$val.seller_id}" data-type="edit">编辑</span>
-					</div>
-				</div>
-				<ul class="items">
-					<!-- {foreach $val.goods_list item=v} -->
-					<li class="item-goods cart_item_{$val.seller_id} {if $v.is_disabled}disabled{/if}">
-						<span class="cart-checkbox checkbox_{$val.seller_id} {if $v.is_checked eq 1}checked{/if} {if $v.is_disabled}disabled{/if}" data-store="{$val.seller_id}" rec_id="{$v.rec_id}" goods_id="{$v.goods_id}" data-num="{$v.goods_number}"></span>
-						<div class="cart-product">
-							<a class="cart-product-photo" href="{RC_Uri::url('goods/index/show')}&goods_id={$v.goods_id}">
-								<img src="{$v.img.thumb}">
-								{if $v.is_disabled eq 1}
-								<div class="product_empty">{$v.disabled_label}</div>
-								{/if}
-							</a>
-							<div class="cart-product-info">
-								<a href="{RC_Uri::url('goods/index/show')}&goods_id={$v.goods_id}"><div class="cart-product-name {if $v.is_disabled}disabled{/if}">{$v.goods_name}</div></a>
-								<div class="cart-product-attr">{if $v.attr}{$v.attr}{/if}</div>
-								<div class="cart-product-price {if $v.is_disabled}disabled{/if}">{if $v.goods_price eq 0}免费{else}{$v.formated_goods_price}{/if}</div>
-								<div class="ecjia-input-number input_number_{$val.seller_id} {if $v.is_disabled}disabled{/if}" data-store="{$val.seller_id}">
-			                        <span class="ecjia-number-group-addon" data-toggle="remove-to-cart" rec_id="{$v.rec_id}" goods_id="{$v.goods_id}">－</span>
-			                        {if $v.is_disabled}
-			                        <span class="ecjia-number-contro">{$v.goods_number}</span>
-			                        {else}
-			                        <input type="tel" class="ecjia-number-contro" value="{$v.goods_number}" autocomplete="off" rec_id="{$v.rec_id}"/>
-			                        {/if}
-			                        <span class="ecjia-number-group-addon" data-toggle="add-to-cart" rec_id="{$v.rec_id}" goods_id="{$v.goods_id}">＋</span>
-			                    </div>
-							</div>
+		<div class="ecjia-flow-cart">
+			<div class="a4t">
+				<div class="a4u"><div class="a4v">伸大厦<i>(当前位置)</i></div></div>
+				<div class="a4w" storeid="10055727" orgcode="74418">
+					<div class="a4p">
+						<a class="a4x">崇明生态农场-澳华店</a>
+						<div goodslist="" class="a4y a50">
+							<ul>
+								<li>
+									<img src="https://img10.360buyimg.com/n7//jfs/t2140/227/2860302244/172432/9fb9183/56f3f321Nbad2ccff.jpg">
+									<em>￥7</em>
+								</li>
+								<li>
+									<img src="https://img10.360buyimg.com/n7//jfs/t2887/59/1930100478/162285/fc2aedd8/574f9463Ne8c18b43.jpg">
+									<em>￥7.4</em>
+								</li>
+								<li>
+									<img src="https://img10.360buyimg.com/n7//jfs/t2611/291/1858504955/168398/b8df4743/574f9f19N580a7df2.jpg"> 
+									<em>￥9</em>
+								</li>
+								<li>
+									<img src="https://img10.360buyimg.com/n7//jfs/t2611/291/1858504955/168398/b8df4743/574f9f19N580a7df2.jpg"> 
+									<em>￥9</em>
+								</li>
+							</ul>
+							<div class="a4z">共8件</div>
 						</div>
-					</li>
-					<!-- {/foreach} -->
-				</ul>
-				<div class="item-count">
-					<span class="count">合计：</span>
-					<span class="price price_{$val.seller_id}">{$val.total.goods_price}{if $val.total.discount neq 0}<lable class="discount">(已减{$val.total.discount})</lable>{/if}</span>
-					<a class="check_cart check_cart_{$val.seller_id} {if !$val.total.check_one}disabled{/if}" data-href="{RC_Uri::url('cart/flow/checkout')}" data-store="{$val.seller_id}" data-address="{$address_id}" data-rec="{$val.total.data_rec}" href="javascript:;">去结算</a>
+					</div>
 				</div>
-			</li>
-			<input type="hidden" name="update_cart_url" value="{RC_Uri::url('cart/index/update_cart')}">
-			<!-- {/foreach} -->
-		</ul>
-		<div class="flow-nomore-msg"></div>
-	</div>
+				
+				<div class="a4u a4u-gray"><div class="a4v">伸大厦<i>(其他位置)</i></div></div>
+				<div class="a4w" storeid="10055727" orgcode="74418">
+					<div class="a4p">
+						<a class="a4x">崇明生态农场-澳华店</a>
+						<div goodslist="" class="a4y a50">
+							<ul>
+								<li>
+									<img src="https://img10.360buyimg.com/n7//jfs/t2140/227/2860302244/172432/9fb9183/56f3f321Nbad2ccff.jpg">
+									<em>￥7</em>
+								</li>
+								<li>
+									<img src="https://img10.360buyimg.com/n7//jfs/t2887/59/1930100478/162285/fc2aedd8/574f9463Ne8c18b43.jpg">
+									<em>￥7.4</em>
+								</li>
+								<li>
+									<img src="https://img10.360buyimg.com/n7//jfs/t2611/291/1858504955/168398/b8df4743/574f9f19N580a7df2.jpg"> 
+									<em>￥9</em>
+								</li>
+								<li>
+									<img src="https://img10.360buyimg.com/n7//jfs/t2611/291/1858504955/168398/b8df4743/574f9f19N580a7df2.jpg"> 
+									<em>￥9</em>
+								</li>
+							</ul>
+							<div class="a4z">共8件</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	<!-- {/if} -->
 <!-- {/if} -->
+	
 <div class="flow-no-pro {if $cart_list}hide{elseif $no_login}show{/if}">
 	<div class="ecjia-nolist">
 		您还没有添加商品

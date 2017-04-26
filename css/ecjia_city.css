@@ -1,4 +1,12 @@
 /* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: normal;
+    font-style: normal;
+}
 html, body {
 	background: #f7f7f7;
 	color: #555;
@@ -8986,4 +8994,145 @@ footer {
     overflow: hidden;
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
+}
+
+/*购物车1.5*/
+.ecjia-flow-cart .a4t {
+	padding: 0 0 99px 0;
+	text-align: center;
+	background-color: #f7f7f7
+}
+
+.ecjia-flow-cart .a4u {
+	display: inline-block;
+	vertical-align: top;
+	padding: 6px 7px;
+	border-radius: 32px;
+	background-color: #d1e7d3;
+	margin: 15px 0 10px 0
+}
+
+.ecjia-flow-cart .a4u.a4u-gray {
+	background-color:#e2e2e2;
+}
+
+.ecjia-flow-cart .a4u.a4u-gray .a4v {
+	background-color: #999;
+}
+
+.ecjia-flow-cart .a4v {
+	display: inline-block;
+	vertical-align: top;
+	line-height: 22px;
+	padding: 0 14px 0 31px;
+	border-radius: 22px;
+	font-size: 14px;
+	color: #fff;
+	background: #47b34f url(../images/cart/loc2.png) 13px center no-repeat;
+	background-size: 10px 12px
+}
+
+.ecjia-flow-cart .a4v i {
+	font-size: 12px;
+	position: relative;
+	top: -1px;
+	padding-left: 2px;
+	font-weight: 400;
+	font-style: normal
+}
+
+.ecjia-flow-cart .a4w {
+	position: relative;
+	margin: 0 6px 7px 6px;
+	text-align: left;
+	height: 141px;
+	overflow: hidden;
+	padding: 3px 4% 10px 1.6%;
+	background: url(../images/cart/gc.png) 0 0 no-repeat;
+	background-size: 100% 154px;
+	box-sizing: initial
+}
+
+.ecjia-flow-cart .a4p {
+	overflow: hidden;
+	padding-left: 2.4%;
+}
+
+.ecjia-flow-cart .a4x {
+	display: block;
+	position: relative;
+	z-index: 3;
+	line-height: 44px;
+	height: 147px;
+	margin-bottom: -103px;
+	color: #333;
+	font-size: 15px;
+	background: url(../images/cart/jiantou-right.png) right 17px no-repeat;
+	background-size: 7px 11px
+}
+
+.ecjia-flow-cart .a4y {
+	position: relative;
+	z-index: 2;
+	height: 92px;
+	padding: 1px 0 0 0
+}
+
+.ecjia-flow-cart .a50 {
+	padding-right: 50px
+}
+
+.ecjia-flow-cart .a50 ul {
+	padding-right: 35px
+}
+
+.ecjia-flow-cart .a4y ul {
+	height: 97px;
+	overflow: hidden
+}
+
+.ecjia-flow-cart .a4y li {
+	position: relative;
+	display: inline-block;
+	height: 83px;
+	vertical-align: top;
+	width: 53px;
+	margin-top: 14px;
+	padding-right: 32px;
+	margin-right: -28px;
+	text-align: center;
+	font-size: 12px;
+	line-height: 30px;
+	color: #333;
+	padding-bottom: 99px;
+	list-style: outside none none;
+	box-sizing: initial
+}
+
+.ecjia-flow-cart .a50 li {
+	background: #fff url(../images/cart/ddd.png) right 24px no-repeat;
+	background-size: 22px 5px
+}
+
+.ecjia-flow-cart .a4y img {
+	vertical-align: top;
+	width: 53px;
+	height: 53px;
+	border-radius: 5px;
+	border: 0
+}
+
+.ecjia-flow-cart .a4y em {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.ecjia-flow-cart .a4z {
+	position: absolute;
+	right: 5px;
+	top: 0;
+	line-height: 82px;
+	font-size: 15px
 }
