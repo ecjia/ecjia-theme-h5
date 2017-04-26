@@ -1185,7 +1185,7 @@
         		
         		var myApp = new Framework7();
         		myApp.modal({
-        			title: '你的定位已超出该店配送区域',
+        			title: '您的定位已超出该店配送区域',
         			buttons: [
 			          {
 			            text: '知道了',
