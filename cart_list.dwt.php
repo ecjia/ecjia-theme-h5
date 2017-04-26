@@ -61,7 +61,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<div class="a4u a4u-gray"><div class="a4v"><i>(其他位置)</i></div></div>
 				<div class="a4w">
 					<div class="a4p">
-						<a class="a4x">测试店</a>
+						<a class="a4x out_range_shop">测试店</a>
 						<div class="a4y a50">
 							<ul>
 								<li>
