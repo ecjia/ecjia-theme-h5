@@ -160,7 +160,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <li>
         	<a class="external" href="{url path='mobile/mobile/download'}">
         		<div class="icon-help-center"><img src="{$theme_url}images/user_center/75x75_15.png"></div>
-        		<span class="icon-name">下载app</span>
+        		<span class="icon-name">下载APP</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>

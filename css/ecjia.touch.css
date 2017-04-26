@@ -14,9 +14,9 @@ Template Type: type_0
 	ECJia css reset
   ==================================================*/
 html,
-body {font-family: 'Microsoft YaHei',Verdana,Arial,Helvetica,sans-serif; background: #efeff4; color: #555;height:100%;}
+body {font-family: Helvetica, '宋体', Arial, sans-serif; background: #efeff4; color: #555;height:100%;}
 body,
-ul,\
+ul,
 ol,
 li,
 p,
