@@ -3862,6 +3862,10 @@ footer {
 	color: #ff3434;
 }
 
+.ecjia-user .ecjia-login-pa-left{
+	color: black;
+}
+
 .ecjia-user .ecjia-form .form-group input, .ecjia-form select {
 	height: 2em!important;
 }
