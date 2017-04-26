@@ -56,4 +56,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<!-- {/if} -->
 	</div>
 </div>
-<input type="hidden" name="from" value="{$smarty.get.from}" class="ecjia-from-page" />
+<input type="hidden" name="from" value="{$smarty.get.from}" class="ecjia-from-page {if $store_info.distance eq ''}out-range{/if}" />

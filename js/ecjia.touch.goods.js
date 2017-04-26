@@ -1178,27 +1178,6 @@
         		}
         		$this.attr('data-type', data_type).text(text);
         	});
-        	
-        	$('.out_range_shop').off('click').on('click', function(e){
-        		e.preventDefault();
-        		$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
-        		
-        		var myApp = new Framework7();
-        		myApp.modal({
-        			title: '您的定位已超出该店配送区域',
-        			buttons: [
-			          {
-			            text: '知道了',
-			            onClick: function() {
-			            	$('.modal').remove();
-			            	$('.modal-overlay').remove();
- 			            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
- 			            	return false;
-			          	},
-			          }
-			    	]
-        		});
-        	});
         },
         
 		openSelection : function() {

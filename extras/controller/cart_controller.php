@@ -78,32 +78,36 @@ class cart_controller {
     	
     	//店铺购物车商品
     	$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
-
+    	
     	if (!is_ecjia_error($cart_list) && !empty($cart_list['cart_list'])) {
     		foreach ($cart_list['cart_list'] as $k => $v) {
-    			$cart_list['cart_list'][$k]['total']['check_all'] = true;
-    			$cart_list['cart_list'][$k]['total']['check_one'] = false;
+//     			$cart_list['cart_list'][$k]['total']['check_all'] = true;
+//     			$cart_list['cart_list'][$k]['total']['check_one'] = false;
     			
-    			if (!empty($v['goods_list'])) {
-    				foreach ($v['goods_list'] as $key => $val) {
-    					if ($val['is_checked'] == 0) {
-    						$cart_list['cart_list'][$k]['total']['check_all'] = false;	//全部选择
-    					} elseif ($val['is_disabled'] == 0) {
-    						$cart_list['cart_list'][$k]['total']['check_one'] = true;	//至少选择了一个
-    					}
-    					
-    					if ($val['is_disabled'] == 0 && $val['is_checked'] == 1) {
-    						if ($key == 0) {
-    							$cart_list['cart_list'][$k]['total']['data_rec'] = $val['rec_id'];
-    						} else {
-    							$cart_list['cart_list'][$k]['total']['data_rec'] .= ','.$val['rec_id'];
-    						}
-    					}
-    					$cart_list['cart_list'][$k]['total']['data_rec'] = trim($cart_list['cart_list'][$k]['total']['data_rec'], ',');
-    				}
+//     			if (!empty($v['goods_list'])) {
+//     				foreach ($v['goods_list'] as $key => $val) {
+//     					if ($val['is_checked'] == 0) {
+//     						$cart_list['cart_list'][$k]['total']['check_all'] = false;	//全部选择
+//     					} elseif ($val['is_disabled'] == 0) {
+//     						$cart_list['cart_list'][$k]['total']['check_one'] = true;	//至少选择了一个
+//     					}
+//     					if ($val['is_disabled'] == 0 && $val['is_checked'] == 1) {
+//     						if ($key == 0) {
+//     							$cart_list['cart_list'][$k]['total']['data_rec'] = $val['rec_id'];
+//     						} else {
+//     							$cart_list['cart_list'][$k]['total']['data_rec'] .= ','.$val['rec_id'];
+//     						}
+//     					}
+//     					$cart_list['cart_list'][$k]['total']['data_rec'] = trim($cart_list['cart_list'][$k]['total']['data_rec'], ',');
+//     				}
+//     			}
+    			if ($v['local'] == 1) {
+    				$cart_list['local'][] = $v;
+    			} elseif ($v['local'] == 0) {
+    				$cart_list['other'][] = $v;
     			}
     		}
-    		ecjia_front::$controller->assign('cart_list', $cart_list['cart_list']);
+    		ecjia_front::$controller->assign('cart_list', $cart_list);
     	}
     	ecjia_front::$controller->assign('referer_url', urlencode(RC_Uri::url('cart/index/init')));
     	

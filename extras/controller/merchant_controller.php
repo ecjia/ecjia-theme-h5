@@ -65,7 +65,12 @@ class merchant_controller {
 		$action_type = !empty($_GET['type']) ? trim($_GET['type']) : '';
 		
 		//店铺信息
-		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data(array('seller_id' => $store_id, 'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']), 'city_id' => $_COOKIE['city_id']))->run();
+		$parameter_list = array(
+			'seller_id' => $store_id, 
+// 			'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']), 
+			'city_id' => $_COOKIE['city_id']
+		);
+		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data($parameter_list)->run();
 		if (!is_ecjia_error($store_info)) {
 			$store_info = merchant_function::format_info_distance($store_info);
 			$store_info['comment']['comment_goods_val'] = (float)$store_info['comment']['comment_goods']/100;

@@ -679,11 +679,43 @@
 	    if ($.find('.ecjia-from-page').length) {
 	    	var from = $('.ecjia-from-page').val();
 	    	if (from == 'cart') {
-	    		//购物车不为空
-	    		if ($('.minicart-goods-list').find('.a5n').length != 0) {
-		    		ecjia.touch.category.show_cart();
-		    		$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});//禁用滚动条
+	    		//超出范围的店铺
+	    		if ($('.ecjia-from-page').hasClass('out-range')) {
+                   	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);	//禁用滚动条
+                   	
+                   	//弹出提示
+	    			var myApp = new Framework7();
+	        		myApp.modal({
+	        			title: '您的定位已超出该店配送区域',
+	        			buttons: [
+				          {
+				            text: '知道了',
+				            //点击确定后显示购物车
+				            onClick: function() {
+				            	$('.modal').remove();
+				            	$('.modal-overlay').remove();
+				            	$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
+				            	
+					    		//购物车不为空
+					    		if ($('.minicart-goods-list').find('.a5n').length != 0) {
+					    			//显示购物车
+						    		ecjia.touch.category.show_cart();
+						    		$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});	//禁用店铺商品滚动条
+					    		}
+				          	},
+				          }
+				    	]
+	        		});
+	    		} else {
+		    		//购物车不为空
+		    		if ($('.minicart-goods-list').find('.a5n').length != 0) {
+		    			//显示购物车
+			    		ecjia.touch.category.show_cart();
+			    		$(".ecjia-store-goods .a1n .a1x").css({overflow:"hidden"});	//禁用店铺商品滚动条
+		    		}
+		    		
 	    		}
+	    		return false;
 	    	}
 	    }
 	});
