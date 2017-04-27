@@ -41,7 +41,7 @@
 			ecjia.touch.search_header();
 			ecjia.touch.del_history();
 			
-			$("body").greenCheck();
+			// $("body").greenCheck();
 		},
 		
 		//搜索关键词定位开始

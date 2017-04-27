@@ -36,7 +36,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     
 	<!-- skin -->
 	<link rel="stylesheet" href="{$theme_url}{$curr_style}">
-	
 	<link rel="stylesheet" href="{$theme_url}lib/iOSOverlay/css/iosOverlay.css">
 </head>
 <body>
@@ -88,7 +87,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <script type="text/javascript" src="{$theme_url}lib/winderCheck/js/winderCheck.min.js"></script>
     <script type="text/javascript" src="{$theme_url}js/greenCheck.js"></script>
     
-    <script type="text/javascript" src="{$theme_url}js/greenCheck.js"></script>
+<!--     <script type="text/javascript" src="{$theme_url}js/greenCheck.js"></script> -->
     <script type="text/javascript" src="{$theme_url}lib/iOSOverlay/js/iosOverlay.js"></script>
     <script type="text/javascript" src="{$theme_url}lib/iOSOverlay/js/prettify.js"></script>
 	<!-- {block name="footer"} --><!-- {/block} -->
