@@ -60,13 +60,13 @@ class cart_controller {
     	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
     		'token' 	=> $token,
-    		'location' 	=> array('longitude' => $longitude, 'latitude' => $latitude),
+    		'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
             'city_id'   => $_COOKIE['city_id']
     	);
     	
     	//店铺购物车商品
     	$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
-    	
+
     	if (!is_ecjia_error($cart_list) && !empty($cart_list['cart_list'])) {
     		foreach ($cart_list['cart_list'] as $k => $v) {
 //     			$cart_list['cart_list'][$k]['total']['check_all'] = true;

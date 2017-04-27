@@ -65,7 +65,7 @@ class touch_controller {
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$_COOKIE['city_id'].'-'.$_COOKIE['longitude'].'-'.$_COOKIE['latitude'].'-'.$_COOKIE['close_download']));
         if (!ecjia_front::$controller->is_cached('index.dwt', $cache_id)) {
 	        $arr = array(
-	        	'location' => array('longitude' => $longitude, 'latitude' => $latitude),
+	        	'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
 	            'city_id' => $_COOKIE['city_id']
 	        );
 	        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DATA)->data($arr)->run();
