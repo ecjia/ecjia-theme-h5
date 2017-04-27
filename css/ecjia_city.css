@@ -89,6 +89,16 @@ a.ecjia-color-green {
 	height: 3em;
 }
 
+.ecjia-list .m3 {
+	padding: 0px 15px;
+    font-size: 13px;
+    color: #666;
+}
+
+.ecjia-list.over {
+	color: #999;
+}
+
 .ecjia-nav li {
 	padding: 0;
 }
