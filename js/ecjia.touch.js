@@ -111,8 +111,11 @@
                       
                       var referer_url = $.cookie('referer_url');
                       var url = $("#ecjia-zs").attr('data-url');
+                      if (referer_url.length == 0) {
+                    	  referer_url = url;
+                      }
                       ecjia.pjax(referer_url);
-                      $.cookie('referer_url', null);
+                      $.cookie('referer_url', '');
                 });	
         	}
         	else if (type == 'address') {
