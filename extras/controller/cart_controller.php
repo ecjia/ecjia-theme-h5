@@ -54,31 +54,19 @@ class cart_controller {
      * 购物车列表
      */
     public static function init() {
-    	$addr = $_GET['addr'];
-    	$name = $_GET['name'];
-    	$latng = explode(",", $_GET['latng']) ;
-    	$longitude = !empty($latng[1]) ? $latng[1] : $_COOKIE['longitude'];
-    	$latitude  = !empty($latng[0]) ? $latng[0] : $_COOKIE['latitude'];
-    	
-    	if (!empty($addr)) {
-    		setcookie("location_address", $addr);
-        	setcookie("location_name", $name);
-        	setcookie("longitude", $longitude);
-        	setcookie("latitude", $latitude);
-        	setcookie("location_address_id", 0);
-    		return ecjia_front::$controller->redirect(RC_Uri::url('cart/index/init'));
-    	}
+    	$url = RC_Uri::url('cart/index/init');
+    	touch_function::redirect_referer_url($url);
     	
     	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
     		'token' 	=> $token,
-    		'location' 	=> array('longitude' => $longitude, 'latitude' => $latitude),
+    		'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
             'city_id'   => $_COOKIE['city_id']
     	);
     	
     	//店铺购物车商品
     	$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
-    	
+
     	if (!is_ecjia_error($cart_list) && !empty($cart_list['cart_list'])) {
     		foreach ($cart_list['cart_list'] as $k => $v) {
 //     			$cart_list['cart_list'][$k]['total']['check_all'] = true;

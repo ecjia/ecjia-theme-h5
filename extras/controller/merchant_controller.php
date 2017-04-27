@@ -57,7 +57,10 @@ class merchant_controller {
 	public static function init() {
 		$store_id 		= intval($_GET['store_id']);
 		$category_id 	= intval($_GET['category_id']);
-		 
+		
+		$url = RC_Uri::url('merchant/index/init', array('store_id' => $store_id));
+		touch_function::redirect_referer_url($url);
+		
 		$limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
 		$pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
 		 

@@ -109,8 +109,13 @@
                       $.cookie('city_id', city_id); 
                       $.cookie('city_name', city_name); 
                       
+                      var referer_url = $.cookie('referer_url');
                       var url = $("#ecjia-zs").attr('data-url');
-                      ecjia.pjax(url);
+                      if (referer_url.length == 0) {
+                    	  referer_url = url;
+                      }
+                      ecjia.pjax(referer_url);
+                      $.cookie('referer_url', '');
                 });	
         	}
         	else if (type == 'address') {

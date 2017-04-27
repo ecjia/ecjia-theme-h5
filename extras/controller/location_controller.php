@@ -252,6 +252,14 @@ class location_controller {
     		$city_id = $rs['region_id'];
     	}
     	$href_url = RC_Uri::url('location/index/select_city', array('type' => 'search', 'city_id' => $city_id));
+    	$referer_url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
+    	
+    	$str1 = 'm=location&c=index&a=search_location';
+    	$str2 = 'm=location&c=index&a=select_location';
+    	if (strpos($referer_url, $str1) || strpos($referer_url, $str2)) {
+    		$referer_url = RC_Uri::url('touch/index/init');
+    	}
+    	setcookie("referer_url", $referer_url);
     	
     	//写入cookie
     	setcookie("location_address", $location_address);

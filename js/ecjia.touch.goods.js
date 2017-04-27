@@ -294,16 +294,6 @@
         	
         	//更新购物车中商品
             $.post(url, info, function(data){
-            	if (div != undefined) {
-            		if (div.siblings('li').length == 0) {
-            			div.parents('.cart-single').remove();
-        				if ($('li.cart-single').length == 0) {
-        					$('.ecjia-flow-cart').remove();
-        					$('.flow-no-pro').removeClass('hide');
-        				}
-        			}
-            		div.remove();
-            	}
             	$('.la-ball-atom').remove();
             	$('.box').children('span').addClass('limit_click');	//禁止其他加减按钮点击
             	$('[data-toggle="toggle_checkbox"]').removeClass('limit_click');//店铺首页 允许其他单选框点击
@@ -354,6 +344,31 @@
             			alert(data.message);
                 		return false;
             		}
+            	}
+            	
+            	if (div != undefined) {
+//            		if (div.siblings('li').length == 0) {
+//            			div.parents('.cart-single').remove();
+//        				if ($('li.cart-single').length == 0) {
+//        					$('.ecjia-flow-cart').remove();
+//        					$('.flow-no-pro').removeClass('hide');
+//        				}
+//        			}
+            		if (div.hasClass('other_place')) {
+            			if (div.parent().find('.other_place').length == 1) {
+            				$('.a4u.a4u-gray').remove();
+            			} 
+            		} else if (div.hasClass('current_place')) {
+            			if (div.parent().find('.current_place').length == 1) {
+            				$('.a4u.a4u-greent').parent().append('<div class="a57"><span>当前位置购物车空空如也哦～</span></div>');
+            			} 
+            		}
+            		div.remove();
+            		if ($('.a57').length == 1 && $('.a4u-gray').length == 0) {
+    					$('.ecjia-flow-cart').remove();
+    					$('.flow-no-pro').removeClass('hide');
+            		}
+            		return false;
             	}
 
             	if (data.empty == true) {
@@ -1025,7 +1040,7 @@
         
         //店铺首页 去结算 购物车列表列表编辑
         check_cart : function() {
-        	$('.check_cart').off('click').on('click', function(e) {
+        	$('.check_cart, .w4').off('click').on('click', function(e) {
         		e.stopPropagation();
         		var $this = $(this),
         			url = $this.attr('data-href'),
@@ -1034,7 +1049,7 @@
         			rec_id = $this.attr('data-rec');
         		
         		var myApp = new Framework7();
-        		if ($this.hasClass('edit_button')) {
+        		if ($this.hasClass('remove_all')) {
         			//禁用滚动条
                 	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
                 	
@@ -1059,18 +1074,19 @@
     			            	$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
     			            	
     			            	var rec_id = [];
-                				$('.cart-checkbox.checkbox_' + store_id).each(function(){
-                					rec_id.push($(this).attr('rec_id'));
+    			            	var div = $this.parent('.a4w');
+    			            	div.find('li').each(function(){
+                					rec_id.push($(this).attr('data-rec'));
                 				});
                 				
-    			            	ecjia.touch.category.update_cart(rec_id, 0, 0, '', store_id);
+    			            	ecjia.touch.category.update_cart(rec_id, 0, 0, '', store_id, '', '', div);
     		        			return false;
     			          	},
     			          }
     			        ]
             		});
         		}
-        		if ($this.hasClass('disabled') || $this.hasClass('edit_button')) {
+        		if ($this.hasClass('disabled') || $this.hasClass('remove_all')) {
         			return false;
         		}
         		if (store_id != undefined) {
@@ -1231,7 +1247,7 @@
         			text = '完成';
         			button_text = '全部删除';
         			$this.addClass('edit_font_color');
-        			$('.check_cart_' + store_id).text(button_text).addClass('edit_button');
+        			$('.check_cart_' + store_id).text(button_text).addClass('remove_all');
         			$('#store_check_' + store_id).addClass('edit');
         			$('.checkbox_' + store_id).addClass('edit');
         		} else {
@@ -1239,7 +1255,7 @@
         			text = '编辑';
         			button_text = '去结算';
         			$this.removeClass('edit_font_color');
-        			$('.check_cart_' + store_id).text(button_text).removeClass('edit_button');
+        			$('.check_cart_' + store_id).text(button_text).removeClass('remove_all');
         			$('#store_check_' + store_id).removeClass('edit');
         			$('.checkbox_' + store_id).removeClass('edit');
         		}
