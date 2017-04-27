@@ -219,11 +219,14 @@ class user_address_controller {
         	$params = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $address_id);
         	$address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params)->run();
         	
-        	if (! is_ecjia_error($address_info)) {
+        	if (!is_ecjia_error($address_info)) {
         	    setcookie('location_name', $address_info['address']);
         	    setcookie('location_address', $address_info['address_info']);
         	    setcookie('longitude', $address_info['location']['longitude']);
         	    setcookie('latitude', $address_info['location']['latitude']);
+        	    
+        	    setcookie("city_id", $address_info['city']);
+        	    setcookie("city_name", $address_info['city_name']);
         	}
         } else {
         	$pjax_url = RC_Uri::url('user/address/address_list');
@@ -439,6 +442,9 @@ class user_address_controller {
     		setcookie('location_address', $address_info['address_info']);
     		setcookie('longitude', $address_info['location']['longitude']);
     		setcookie('latitude', $address_info['location']['latitude']);
+    		
+    		setcookie("city_id", $address_info['city']);
+    		setcookie("city_name", $address_info['city_name']);
     	}
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer_url));
     }
