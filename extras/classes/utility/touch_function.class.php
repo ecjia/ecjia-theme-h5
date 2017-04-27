@@ -100,6 +100,39 @@ class touch_function {
             return new ecjia_error($data['status']['error_code'], $data['status']['error_desc']);
         }
     }
+    
+    public static function redirect_referer_url($referer_url) {
+    	//手动选择定位信息返回处理
+    	$addr = $_GET['addr'];
+    	$name = $_GET['name'];
+    	$city_name = $_GET['city'];
+    	$latng = explode(",", $_GET['latng']) ;
+    	$longitude = !empty($latng[1]) ? $latng[1] : $_COOKIE['longitude'];
+    	$latitude  = !empty($latng[0]) ? $latng[0] : $_COOKIE['latitude'];
+    	$params = array(
+    		'token' => ecjia_touch_user::singleton()->getToken(),
+    		'city' 	=> $city_name,
+    	);
+    	$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION_DETAIL)->data($params)->run();
+    	if (is_ecjia_error($rs)) {
+    		return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+    	} else {
+    		$city_id = $rs['region_id'];
+    	}
+    	 
+    	if (!empty($addr)) {
+    		setcookie("location_address", $addr);
+    		setcookie("location_name", $name);
+    		setcookie("longitude", $longitude);
+    		setcookie("latitude", $latitude);
+    		setcookie("location_address_id", 0);
+    		setcookie("city_id", $city_id);
+    		setcookie("city_name", $rs['region_name']);
+    		 
+    		ecjia_front::$controller->redirect($referer_url);
+    		die();
+    	}
+    }
 }
 
 //end

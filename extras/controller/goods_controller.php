@@ -128,6 +128,10 @@ class goods_controller {
      */
     public static function show() {
     	$goods_id 	= isset($_GET['goods_id']) 	? $_GET['goods_id'] 	: 0;
+    	
+    	$url = RC_Uri::url('goods/index/show', array('goods_id' => $goods_id));
+    	touch_function::redirect_referer_url($url);
+    	
 	    $rec_type 	= isset($_GET['rec_type']) 	? $_GET['rec_type'] 	: 0;
 	    $object_id	= isset($_GET['object_id']) ? $_GET['object_id'] 	: 0;
 		
@@ -422,6 +426,9 @@ class goods_controller {
     	$arr_list = array();
     	if ($keywords !== '') {
     		if (!empty($store_id)) {
+    			$url = RC_Uri::url('goods/category/store_list', array('store_id' => $store_id, 'keywords' => $keywords));
+    			touch_function::redirect_referer_url($url);
+    			
     			$arr['filter']['keywords'] = $keywords;
     			$arr['seller_id'] = $store_id;
     			

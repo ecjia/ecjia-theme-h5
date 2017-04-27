@@ -54,20 +54,8 @@ class cart_controller {
      * 购物车列表
      */
     public static function init() {
-    	$addr = $_GET['addr'];
-    	$name = $_GET['name'];
-    	$latng = explode(",", $_GET['latng']) ;
-    	$longitude = !empty($latng[1]) ? $latng[1] : $_COOKIE['longitude'];
-    	$latitude  = !empty($latng[0]) ? $latng[0] : $_COOKIE['latitude'];
-    	
-    	if (!empty($addr)) {
-    		setcookie("location_address", $addr);
-        	setcookie("location_name", $name);
-        	setcookie("longitude", $longitude);
-        	setcookie("latitude", $latitude);
-        	setcookie("location_address_id", 0);
-    		return ecjia_front::$controller->redirect(RC_Uri::url('cart/index/init'));
-    	}
+    	$url = RC_Uri::url('cart/index/init');
+    	touch_function::redirect_referer_url($url);
     	
     	$token = ecjia_touch_user::singleton()->getToken();
     	$arr = array(
