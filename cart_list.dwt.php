@@ -43,15 +43,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 									{if $v.is_disabled eq 1}
 									<div class="product_empty">{$v.disabled_label}</div>
 									{/if}
-									{if $v.goods_number gt 1}
-									<span class="goods_number">{$v.goods_number}</span>
-									{/if}
 									<em>{if $v.goods_price eq 0}免费{else}{$v.formated_goods_price}{/if}</em>
+									{if $v.goods_number gt 1}
+									<i>{$v.goods_number}</i>
+									{/if}
 								</li>
 								<!-- {/foreach} -->
 							</ul>
 							{if $val.total.goods_number gt 3}
-							<div class="a4z">共 {$val.total.goods_number} 件</div>
+							<div class="a4z">共{$val.total.goods_number}件</div>
 							{/if}
 						</div>
 					</div>
@@ -78,15 +78,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 									{if $v.is_disabled eq 1}
 									<div class="product_empty">{$v.disabled_label}</div>
 									{/if}
-									{if $v.goods_number gt 1}
-									<span class="goods_number">{$v.goods_number}</span>
-									{/if}
 									<em>{if $v.goods_price eq 0}免费{else}{$v.formated_goods_price}{/if}</em>
+									{if $v.goods_number gt 1}
+									<i>{$v.goods_number}</i>
+									{/if}
 								</li>
 								<!-- {/foreach} -->
 							</ul>
 							{if $val.total.goods_number gt 3}
-							<div class="a4z">共 {$val.total.goods_number} 件</div>
+							<div class="a4z">共{$val.total.goods_number}件</div>
 							{/if}
 						</div>
 					</div>

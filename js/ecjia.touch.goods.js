@@ -466,7 +466,11 @@
             		}
             		
             		$('p.a6c').html('(已选'+ data.count.goods_number +'件)')
-            		$('.a4x').html('<i class="a4y">'+ goods_number +'</i>');
+                    if (goods_number > 99) {
+                        $('.a4x').html('<i class="a4y">99+</i>');
+                    } else {
+                        $('.a4x').html('<i class="a4y">'+ goods_number +'</i>');
+                    }
             		
             		if (data.count.goods_number == 0) {
             			$('.a51').addClass('disabled');
