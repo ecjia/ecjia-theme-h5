@@ -21,7 +21,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<div class="a4u a4u-greent">
 					<div class="a4v">
 						{if $address_id gt 0}
-							{$address_info.address}{$address_info.address_info}
+							{$address_info.address}
 						{else}
 							{$smarty.cookies.location_name}
 						{/if}
@@ -62,7 +62,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<!-- {/foreach} -->
 				
 				<!-- {if $cart_list.other} -->
-				<div class="a4u a4u-gray"><div class="a4v"><i>(其他位置)</i></div></div>
+				<div class="a4u a4u-gray"><div class="a4v"><i>其他位置</i></div></div>
 				<!-- {foreach from=$cart_list.other item=val} -->
 				<div class="a4w other_place">
 					<div class="a4p">
