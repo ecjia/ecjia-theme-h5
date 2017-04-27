@@ -44,7 +44,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 									<div class="product_empty">{$v.disabled_label}</div>
 									{/if}
 									<em>{if $v.goods_price eq 0}免费{else}{$v.formated_goods_price}{/if}</em>
-									{if $v.goods_number gt 1}
+									{if $v.goods_number gt 1 && $v.is_disabled neq 1}
 									<i>{if $v.goods_number gt 99}99+{else}{$v.goods_number}{/if}</i>
 									{/if}
 								</li>
@@ -79,7 +79,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 									<div class="product_empty">{$v.disabled_label}</div>
 									{/if}
 									<em>{if $v.goods_price eq 0}免费{else}{$v.formated_goods_price}{/if}</em>
-									{if $v.goods_number gt 1}
+									{if $v.goods_number gt 1 && $v.is_disabled neq 1}
 									<i>{if $v.goods_number gt 99}99+{else}{$v.goods_number}{/if}</i>
 									{/if}
 								</li>
