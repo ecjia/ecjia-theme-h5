@@ -15,22 +15,22 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<div class="ecjia-user-info user-new-info ecjia-user">
-    {if $user}
-    	<a href="{url path='user/profile/init'}"><div class="user-img ecjiaf-fl"><img src="{$user_img}" alt=""></div></a>
+{if $user}
+<a href="{url path='user/profile/init'}">
+    <div class="ecjia-user-info user-new-info ecjia-user">
+    	<div class="user-img ecjiaf-fl"><img src="{$user_img}" alt=""></div>
+    	<i class="iconfont  icon-jiantou-right user_info_title"></i>
     	<div class="ecjiaf-fl ecjia-margin-l user-rank-name">
-    		<span>{$user.name}</span>
+    		<p><span>{$user.name}</span></p>
     		<span class="ecjia-user-buttom">{$user.rank_name}</span>
     	</div>
-    	<a href="{url path='user/user_message/msg_list'}">
-    		{if $order_num.msg_num}
-    		<span class="ecjia-icon ecjia-icon ecjia-icon-num">{$order_num.msg_num}</span>
-    		{/if}
-    	</a>
-	{else}
-	   	<a href="{url path='user/privilege/login'}"><div class="no-login">登录 / 注册</div></a>
-	{/if}
+    </div>
+</a>
+{else}
+<div class="ecjia-user-info user-new-info ecjia-user">
+   	<a href="{url path='user/privilege/login'}"><div class="no-login">登录 / 注册</div></a>
 </div>
+{/if}
 
 {if $user.id}
 <div class="ecjia-user-head ecjia-user ecjia-color-green ecjia-user-marg-t">
