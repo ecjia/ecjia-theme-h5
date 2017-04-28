@@ -891,7 +891,7 @@
                     pressedObj = this; // 记录被按下的对象 
 
                     // 记录开始按下时的点
-                    var touches = event.touches[0];
+                    var touches = e.touches[0];
                     start = { 
                         x: touches.pageX, // 横坐标
                         y: touches.pageY  // 纵坐标
@@ -900,44 +900,28 @@
 
                 lines[i].addEventListener('touchmove',function(e){
                     // 计算划动过程中x和y的变化量
-                    var touches = event.touches[0];
+                    var touches = e.touches[0];
                     delta = {
                         x: touches.pageX - start.x,
                         y: touches.pageY - start.y
                     };
-
                     // 横向位移大于纵向位移，阻止纵向滚动
                     if (Math.abs(delta.x) > Math.abs(delta.y)) {
-                        event.preventDefault();
+                        e.preventDefault();
                     }
                 });
 
                 lines[i].addEventListener('touchend', function(e){
-                    if (lastLeftObj && pressedObj != lastLeftObj) { // 点击除当前左滑对象之外的任意其他位置
-                        $(lastLeftObj).find('.a4x').animate({marginLeft:"0"}, 200); // 右滑
-                        $(lastLeftObj).find('.a4y').animate({marginLeft:"0"}, 200); // 右滑
-                        $(lastLeftObj).find('.w4').animate({width:"0"}, 200);		// 右滑
-                        lastLeftObj = null; 										// 清空上一个左滑的对象
-                    }
                     var diffX = e.changedTouches[0].pageX - lastXForMobile;
-                    if (diffX < -50) {
+                    if (diffX < -110) {
                         $(pressedObj).find('.a4x').animate({marginLeft:"-60px",marginRight:"60px"}, 200); // 左滑
                         $(pressedObj).find('.a4y').animate({marginLeft:"-60px",marginRight:"60px"}, 200); // 左滑
                         $(pressedObj).find('.w4').animate({width:"60"}, 200);							  // 左滑
-                        
-                        lastLeftObj && lastLeftObj != pressedObj && 
-                            $(lastLeftObj).find('.a4x').animate({marginLeft:"0",marginRight:"0"}, 200); // 已经左滑状态的按钮右滑
-                        	$(lastLeftObj).find('.a4y').animate({marginLeft:"0",marginRight:"0"}, 200); // 已经左滑状态的按钮右滑
-                        	$(lastLeftObj).find('.w4').animate({width:"0"}, 200);						// 已经左滑状态的按钮右滑
-                        	lastLeftObj = pressedObj; 													// 记录上一个左滑的对象
-                        	
-                    } else if (diffX > 50) {
-                    	if (pressedObj == lastLeftObj) {
-	                        $(pressedObj).find('.a4x').animate({marginLeft:"0",marginRight:"0"}, 200); // 右滑
-	                        $(pressedObj).find('.a4y').animate({marginLeft:"0",marginRight:"0"}, 200); // 右滑
-	                        $(pressedObj).find('.w4').animate({width:"0"}, 200);					   // 右滑
-	                        lastLeftObj = null; 													   // 清空上一个左滑的对象
-                    	}
+                    } 
+                    if (diffX > 70) {
+                        $(pressedObj).find('.a4x').animate({marginLeft:"0",marginRight:"0"}, 200); // 右滑
+                        $(pressedObj).find('.a4y').animate({marginLeft:"0",marginRight:"0"}, 200); // 右滑
+                        $(pressedObj).find('.w4').animate({width:"0"}, 200);					   // 右滑
                     }
                 });
             }
