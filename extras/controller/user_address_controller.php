@@ -490,7 +490,9 @@ class user_address_controller {
     public static function choose_address() {
     	$referer_url = !empty($_GET['referer_url']) ? urldecode($_GET['referer_url']) : RC_Uri::url('touch/index/init');
     	$address_id = !empty($_GET['address_id']) ? intval($_GET['address_id']) : 0;
-    	if (!empty($address_id)) {
+    	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
+    	
+    	if (!empty($address_id) && $type != 'choose') {
     		$address_info = user_function::address_info(ecjia_touch_user::singleton()->getToken(), $address_id);
 
     		setcookie('location_address_id', $address_id);
