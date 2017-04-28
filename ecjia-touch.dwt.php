@@ -56,6 +56,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<script type="text/javascript" src="{$theme_url}lib/ecjiaUI/ecjia.js" ></script>
 	<script type="text/javascript" src="{$theme_url}lib/jquery-form/jquery.form.min.js" ></script>	
 	<script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+	
+	<script type="text/javascript" src="{$theme_url}lib/jquery-localstorage/jquery.localstorage.js" ></script>	
 	<!-- 图片预览 -->
 	<script type="text/javascript" src="{$theme_url}lib/photoswipe/js/photoswipe.min.js"></script>
 	<script type="text/javascript" src="{$theme_url}lib/photoswipe/js/photoswipe-ui-default.min.js"></script>
