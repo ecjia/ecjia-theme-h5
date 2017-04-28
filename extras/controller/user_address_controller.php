@@ -219,8 +219,13 @@ class user_address_controller {
                 'consignee' 	=> htmlspecialchars($_POST['consignee']),
                 'mobile'    	=> htmlspecialchars($_POST['mobile']),
             )
-           
         );
+        $chars = "/(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7}/";
+        $mobile = $params['address']['mobile'];
+        
+        if (!preg_match($chars, $mobile)) {
+            return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_ADD)->data($params)->run();
         if (is_ecjia_error($rs)) {
             return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
@@ -327,6 +332,12 @@ class user_address_controller {
             )
              
         );
+        $chars = "/(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7}/";
+        $mobile = $params['address']['mobile'];
+        
+        if (!preg_match($chars, $mobile)) {
+            return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_UPDATE)->data($params)->run();
 
         if (is_ecjia_error($rs)) {

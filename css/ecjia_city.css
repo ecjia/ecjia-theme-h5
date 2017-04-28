@@ -3887,6 +3887,9 @@ footer {
 
 .ecjia-user .ecjia-form .form-group input, .ecjia-form select {
 	height: 2em!important;
+	-webkit-text-fill-color:black; 
+	-webkit-opacity:1; 
+	opacity: 1;
 }
 
 .ecjia-user .not_submit {
