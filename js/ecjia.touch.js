@@ -426,10 +426,17 @@
 				var $this = $(this),
 					url = $this.attr('href'),
 					referer = $this.attr('data-referer');
+				if ($this.hasClass('disabled')) {
+					return false;
+				}
+				$('[data-toggle="choose_address"]').addClass('disabled');
 				if (url == undefined) {
 					iosOverlay({
 						text: '该地址超出配送范围',
 						duration: 2e3,
+						onbeforehide: function() {
+							$('[data-toggle="choose_address"]').removeClass('disabled');
+						},
 					});
 					return false;
 				}
