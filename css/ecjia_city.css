@@ -134,6 +134,11 @@ a.ecjia-color-green {
 	overflow: hidden;
 }
 
+.ecjia-list .ecjia-margin-t a.choose_address {
+	height: 50px;
+    line-height: 25px;
+}
+
 .m_r5 {
 	margin-right: .5em;
 }

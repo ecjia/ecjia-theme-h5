@@ -39,11 +39,17 @@ $('.setdefault').click(function(){
 			<!-- 配送地址 start-->
 			<!-- {foreach from=$address_list item=value}-->
 			<li class="ecjia-margin-t">
-				<div class="ecjia-of-h">
-					<p class="ecjiaf-fl ecjia-mw6">{$value.consignee}</p>
-					<p class="ecjiaf-fl ecjia-margin-l ecjia-address-mobile">{$value.mobile}</p>
-				</div>
-				<div class="address ecjiaf-wwb">{$value.province_name} {$value.city_name} {$value.address} {$value.address_info}</div>
+				{if $type eq 'choose'}
+				<a class="choose_address" data-toggle="choose_address" href="{RC_Uri::url('user/address/choose_address')}&address_id={$value.id}" data-referer="{$referer_url}&address_id={$value.id}">
+				{/if}
+					<div class="ecjia-of-h">
+						<p class="ecjiaf-fl ecjia-mw6">{$value.consignee}</p>
+						<p class="ecjiaf-fl ecjia-margin-l ecjia-address-mobile">{$value.mobile}</p>
+					</div>
+					<div class="address ecjiaf-wwb">{$value.province_name} {$value.city_name} {$value.address} {$value.address_info}</div>
+				{if $type eq 'choose'}
+				</a>
+				{/if}
 				<hr />
 				<!-- {if $value.default_address eq 1} -->
 				<p class="ecjiaf-fl"><i class="icon-is-default"></i>&nbsp;&nbsp;{t}设为默认{/t}</p>

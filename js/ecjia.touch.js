@@ -424,7 +424,12 @@
 			$('[data-toggle="choose_address"]').off('click').on('click', function(e){
 				e.preventDefault();
 				var $this = $(this),
-					url = $this.attr('href');
+					url = $this.attr('href'),
+					referer = $this.attr('data-referer');
+				if (referer != undefined) {
+					referer = encodeURIComponent(referer);
+					url += '&referer_url=' + referer;
+				}
 				$.get(url, function(data) {
 					ecjia.pjax(data.pjaxurl);
 				});
