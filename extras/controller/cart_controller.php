@@ -309,6 +309,7 @@ class cart_controller {
         
         $address_id = empty($_REQUEST['address_id']) ? 0 : intval($_REQUEST['address_id']);
         $rec_id = empty($_REQUEST['rec_id']) ? 0 : trim($_REQUEST['rec_id']);
+        $store_id = empty($_REQUEST['store_id']) ? 0 : intval($_REQUEST['store_id']);
         
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
         
@@ -494,6 +495,7 @@ class cart_controller {
         ecjia_front::$controller->assign('total', $total);
         ecjia_front::$controller->assign('address_id', $address_id);
         ecjia_front::$controller->assign('rec_id', $rec_id);
+        ecjia_front::$controller->assign('store_id', $store_id);
         ecjia_front::$controller->assign('temp', $_SESSION['cart'][$cart_key]['temp']);
         
         ecjia_front::$controller->assign('title', '结算');

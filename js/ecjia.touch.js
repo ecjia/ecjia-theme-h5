@@ -424,7 +424,26 @@
 			$('[data-toggle="choose_address"]').off('click').on('click', function(e){
 				e.preventDefault();
 				var $this = $(this),
-					url = $this.attr('href');
+					url = $this.attr('href'),
+					referer = $this.attr('data-referer');
+				if ($this.hasClass('disabled')) {
+					return false;
+				}
+				$('[data-toggle="choose_address"]').addClass('disabled');
+				if (url == undefined) {
+					iosOverlay({
+						text: '该地址超出配送范围',
+						duration: 2e3,
+						onbeforehide: function() {
+							$('[data-toggle="choose_address"]').removeClass('disabled');
+						},
+					});
+					return false;
+				}
+				if (referer != undefined) {
+					referer = encodeURIComponent(referer);
+					url += '&referer_url=' + referer;
+				}
 				$.get(url, function(data) {
 					ecjia.pjax(data.pjaxurl);
 				});

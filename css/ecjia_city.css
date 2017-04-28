@@ -96,8 +96,9 @@ a.ecjia-color-green {
     color: #666;
 }
 
-.ecjia-list.over {
+.ecjia-list.over .choose_address {
 	color: #999;
+	cursor: pointer;
 }
 
 .ecjia-nav li {
@@ -132,6 +133,11 @@ a.ecjia-color-green {
 
 .ecjia-of-h {
 	overflow: hidden;
+}
+
+.ecjia-list .ecjia-margin-t a.choose_address {
+	height: 50px;
+    line-height: 25px;
 }
 
 .m_r5 {
@@ -9194,7 +9200,7 @@ footer {
 
 .ecjia-flow-cart .a4z {
 	position: absolute;
-	right: 5px;
+	right: 0;
 	top: 0;
 	line-height: 82px;
 	font-size: 15px

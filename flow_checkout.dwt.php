@@ -20,14 +20,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 <div class="ecjia-checkout ecjia-padding-b">
 	<form id="theForm" name="theForm" action="{url path='flow/done'}" method="post">
-		<div class="flow-address ecjia-margin-b">
-			<label class="ecjiaf-fl">送至：</label>
-			<div class="ecjiaf-fl address-info">
-				<span>{$data.consignee.consignee|escape}</span>
-				<span>{$data.consignee.mobile}</span>
-				<p class="ecjia-truncate2 address-desc">{$data.consignee.address}{$data.consignee.address_info}</p>
+		<a href="{RC_Uri::url('user/address/address_list')}&store_id={$store_id}&rec_id={$rec_id}&type=choose">
+			<div class="flow-address ecjia-margin-b">
+				<label class="ecjiaf-fl">送至：</label>
+				<div class="ecjiaf-fl address-info">
+					<span>{$data.consignee.consignee|escape}</span>
+					<span>{$data.consignee.mobile}</span>
+					<p class="ecjia-truncate2 address-desc">{$data.consignee.address}{$data.consignee.address_info}</p>
+				</div>
 			</div>
-		</div>
+		</a>
 
 		<section class="flow-goods-list ecjia-margin-b">
 			{if count($data.goods_list) gt 1}<a href='{url path="cart/flow/goods_list" args="address_id={$address_id}&rec_id={$rec_id}"}'>{/if}
