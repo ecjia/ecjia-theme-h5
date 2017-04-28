@@ -96,8 +96,9 @@ a.ecjia-color-green {
     color: #666;
 }
 
-.ecjia-list.over {
+.ecjia-list.over .choose_address {
 	color: #999;
+	cursor: pointer;
 }
 
 .ecjia-nav li {

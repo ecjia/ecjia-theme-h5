@@ -69,11 +69,17 @@ $('.setdefault').click(function(){
 			<!-- {foreach from=$address_list item=value key=key}-->
 			<!-- {if $key eq 0} -->
 			<li class="ecjia-margin-t">
-				<div class="ecjia-of-h">
-					<p class="ecjiaf-fl ecjia-mw6">测试收货人</p>
-					<p class="ecjiaf-fl ecjia-margin-l ecjia-address-mobile">测试手机号</p>
-				</div>
-				<div class="address ecjiaf-wwb">{$value.province_name} {$value.city_name} {$value.address} {$value.address_info}</div>
+				{if $type eq 'choose'}
+				<a class="choose_address" data-toggle="choose_address">
+				{/if}
+					<div class="ecjia-of-h">
+						<p class="ecjiaf-fl ecjia-mw6">测试收货人</p>
+						<p class="ecjiaf-fl ecjia-margin-l ecjia-address-mobile">测试手机号</p>
+					</div>
+					<div class="address ecjiaf-wwb">{$value.province_name} {$value.city_name} {$value.address} {$value.address_info}</div>
+				{if $type eq 'choose'}
+				</a>
+				{/if}
 				<hr />
 				<!-- {if $value.default_address eq 1} -->
 				<p class="ecjiaf-fl"><i class="icon-is-default"></i>&nbsp;&nbsp;{t}设为默认{/t}</p>

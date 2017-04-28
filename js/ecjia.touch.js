@@ -426,6 +426,13 @@
 				var $this = $(this),
 					url = $this.attr('href'),
 					referer = $this.attr('data-referer');
+				if (url == undefined) {
+					iosOverlay({
+						text: '该地址超出配送范围',
+						duration: 2e3,
+					});
+					return false;
+				}
 				if (referer != undefined) {
 					referer = encodeURIComponent(referer);
 					url += '&referer_url=' + referer;
