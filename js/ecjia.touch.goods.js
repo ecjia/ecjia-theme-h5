@@ -341,8 +341,8 @@
                 		});
             			return false;
             		} else {
-//            			alert(data.message);
-//                		return false;
+            			alert(data.message);
+                		return false;
             		}
             	}
             	
@@ -1081,25 +1081,25 @@
         			url += '&store_id=' + store_id;
         		}
         		
-        		if (address_id != undefined && address_id != '') {
-        			url += '&address_id=' + address_id;
-        		} else {
-        			//禁用滚动条
-                	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
-                	
-                	var height = ($('body').scrollTop() + 160) + 'px';
-        			$('.ecjia-modal').show().css('top', height);
-        			$('.ecjia-modal-overlay').show();
-        			myApp.openModal('.ecjia-modal');
-        			$('.modal-overlay').remove();
-        			
-        			$('body').on('click', function(){
-        				$('.ecjia-modal').hide();
-        				$('.ecjia-modal-overlay').hide();
-        				$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
-        			});
-        			return false;
-        		}
+//        		if (address_id != undefined && address_id != '') {
+//        			url += '&address_id=' + address_id;
+//        		} else {
+//        			//禁用滚动条
+//                	$('body').css('overflow-y', 'hidden').on('touchmove',function(event){event.preventDefault;}, false);
+//                	
+//                	var height = ($('body').scrollTop() + 160) + 'px';
+//        			$('.ecjia-modal').show().css('top', height);
+//        			$('.ecjia-modal-overlay').show();
+//        			myApp.openModal('.ecjia-modal');
+//        			$('.modal-overlay').remove();
+//        			
+//        			$('body').on('click', function(){
+//        				$('.ecjia-modal').hide();
+//        				$('.ecjia-modal-overlay').hide();
+//        				$('body').css('overflow-y', 'auto').off("touchmove");		//启用滚动条
+//        			});
+//        			return false;
+//        		}
         		if (rec_id != undefined) {
         			url += '&rec_id=' + rec_id;
         		}

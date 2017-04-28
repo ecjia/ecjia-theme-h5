@@ -60,10 +60,6 @@ class user_address_controller {
     	
     	$token = ecjia_touch_user::singleton()->getToken();
     	
-    	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
-    	$address_list = is_ecjia_error($address_list) ? array() : $address_list;
-    	ecjia_front::$controller->assign('address_list', $address_list);
-    	
     	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
     	if ($type == 'choose') {
     		$rec_id = empty($_REQUEST['rec_id']) ? 0 : trim($_REQUEST['rec_id']);
@@ -77,7 +73,35 @@ class user_address_controller {
     		$referer_url = RC_Uri::url('cart/flow/checkout', array('store_id' => $store_id, 'rec_id' => $rec_id));
     		ecjia_front::$controller->assign('referer_url', $referer_url);
     		ecjia_front::$controller->assign_title('选择收货地址');
+    		
+	    	//店铺信息
+			$parameter_store = array(
+				'seller_id' => $store_id, 
+				'city_id' => $_COOKIE['city_id']
+			);
+			$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data($parameter_store)->run();
+			$store_info = is_ecjia_error($store_info) ? array() : $store_info;
+			
+    		$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token, 'location' => array('longitude' => $store_info['location']['longitude'], 'latitude' => $store_info['location']['latitude'])))->run();
+    		$address_list = is_ecjia_error($address_list) ? array() : $address_list;
+    		
+    		if (!empty($address_list)) {
+    			foreach ($address_list as $k => $v) {
+    				if ($v['local'] == 1) {
+    					$address_list['local'][] = $v;
+    				} else {
+    					$address_list['other'][] = $v;
+    				}
+    				unset($address_list[$k]);
+    			}
+    		}
+    		ecjia_front::$controller->assign('address_list', $address_list);
     	} else {
+    		$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
+    		$address_list = is_ecjia_error($address_list) ? array() : $address_list;
+    		
+    		
+    		ecjia_front::$controller->assign('address_list', $address_list);
     		ecjia_front::$controller->assign_title('收货地址管理');
     	}
     	ecjia_front::$controller->assign('type', $type);

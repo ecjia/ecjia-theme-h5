@@ -35,21 +35,18 @@ $('.setdefault').click(function(){
 	<section>
 		<input type="hidden" name="setdefault_url" value="{RC_uri::url('user/address/set_default')}">
 		<!-- {if $address_list} -->
+		{if $type eq 'choose'}
 		<ul class="ecjia-list list-one ecjia-margin-b" id="J_ItemList">
 			<!-- 配送地址 start-->
-			<!-- {foreach from=$address_list item=value}-->
+			<!-- {foreach from=$address_list.local item=value}-->
 			<li class="ecjia-margin-t">
-				{if $type eq 'choose'}
-				<a class="choose_address" data-toggle="choose_address" href="{RC_Uri::url('user/address/choose_address')}&address_id={$value.id}" data-referer="{$referer_url}&address_id={$value.id}">
-				{/if}
+				<a class="choose_address" data-toggle="choose_address" href="{RC_Uri::url('user/address/choose_address')}&address_id={$value.id}&type=choose" data-referer="{$referer_url}&address_id={$value.id}">
 					<div class="ecjia-of-h">
 						<p class="ecjiaf-fl ecjia-mw6">{$value.consignee}</p>
 						<p class="ecjiaf-fl ecjia-margin-l ecjia-address-mobile">{$value.mobile}</p>
 					</div>
 					<div class="address ecjiaf-wwb">{$value.province_name} {$value.city_name} {$value.address} {$value.address_info}</div>
-				{if $type eq 'choose'}
 				</a>
-				{/if}
 				<hr />
 				<!-- {if $value.default_address eq 1} -->
 				<p class="ecjiaf-fl"><i class="icon-is-default"></i>&nbsp;&nbsp;{t}设为默认{/t}</p>
@@ -63,23 +60,19 @@ $('.setdefault').click(function(){
 			<!-- 配送地址end-->
 		</ul>
 		
+		<!-- {if $address_list.other} -->
 		<ul class="ecjia-list list-one ecjia-margin-b over" id="J_ItemList">
 			<p class="m3">* 以下地址超出配送范围</p>
 			<!-- 配送地址 start-->
-			<!-- {foreach from=$address_list item=value key=key}-->
-			<!-- {if $key eq 0} -->
+			<!-- {foreach from=$address_list.other item=value key=key}-->
 			<li class="ecjia-margin-t">
-				{if $type eq 'choose'}
 				<a class="choose_address" data-toggle="choose_address">
-				{/if}
 					<div class="ecjia-of-h">
-						<p class="ecjiaf-fl ecjia-mw6">测试收货人</p>
-						<p class="ecjiaf-fl ecjia-margin-l ecjia-address-mobile">测试手机号</p>
+						<p class="ecjiaf-fl ecjia-mw6">{$value.consignee}</p>
+						<p class="ecjiaf-fl ecjia-margin-l ecjia-address-mobile">{$value.mobile}</p>
 					</div>
 					<div class="address ecjiaf-wwb">{$value.province_name} {$value.city_name} {$value.address} {$value.address_info}</div>
-				{if $type eq 'choose'}
 				</a>
-				{/if}
 				<hr />
 				<!-- {if $value.default_address eq 1} -->
 				<p class="ecjiaf-fl"><i class="icon-is-default"></i>&nbsp;&nbsp;{t}设为默认{/t}</p>
@@ -89,10 +82,34 @@ $('.setdefault').click(function(){
 				<a class="delete-address nopjax ecjiaf-fr ecjia-margin-l" href="javascript:;" data-toggle="del_list" data-url="{url path='user/address/del_address'}" data-id="{$value.id}" data-msg="{t}您确定要删除此收货地址吗？{/t}"><div class="icon-delete-address"></div>{t}删除{/t}</a>
 				<a class="edit-address ecjiaf-fr" href="{RC_uri::url('user/address/edit_address')}&id={$value.id}&clear=1"><div class="icon-edit-address"></div>{t}编辑{/t}</a>
 			</li>
-			<!-- {/if} -->
 			<!-- {/foreach} -->
 			<!-- 配送地址end-->
 		</ul>
+		<!-- {/if} -->
+		
+		{else}
+		<ul class="ecjia-list list-one ecjia-margin-b" id="J_ItemList">
+			<!-- 配送地址 start-->
+			<!-- {foreach from=$address_list item=value}-->
+			<li class="ecjia-margin-t">
+				<div class="ecjia-of-h">
+					<p class="ecjiaf-fl ecjia-mw6">{$value.consignee}</p>
+					<p class="ecjiaf-fl ecjia-margin-l ecjia-address-mobile">{$value.mobile}</p>
+				</div>
+				<div class="address ecjiaf-wwb">{$value.province_name} {$value.city_name} {$value.address} {$value.address_info}</div>
+				<hr />
+				<!-- {if $value.default_address eq 1} -->
+				<p class="ecjiaf-fl"><i class="icon-is-default"></i>&nbsp;&nbsp;{t}设为默认{/t}</p>
+				<!-- {else} -->
+				<p class="setdefault ecjiaf-csp ecjiaf-fl" data-id="{$value.id}"><i class="icon-not-default"></i>&nbsp;&nbsp;{t}设为默认{/t}</p>
+				<!-- {/if} -->
+				<a class="delete-address nopjax ecjiaf-fr ecjia-margin-l" href="javascript:;" data-toggle="del_list" data-url="{url path='user/address/del_address'}" data-id="{$value.id}" data-msg="{t}您确定要删除此收货地址吗？{/t}"><div class="icon-delete-address"></div>{t}删除{/t}</a>
+				<a class="edit-address ecjiaf-fr" href="{RC_uri::url('user/address/edit_address')}&id={$value.id}&clear=1"><div class="icon-edit-address"></div>{t}编辑{/t}</a>
+			</li>
+			<!-- {/foreach} -->
+			<!-- 配送地址end-->
+		</ul>		
+		{/if}
 		
 		<!-- {else} -->
 		<div class="ecjia-margin-t">
