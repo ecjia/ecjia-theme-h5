@@ -312,7 +312,10 @@ class cart_controller {
         $store_id = empty($_REQUEST['store_id']) ? 0 : intval($_REQUEST['store_id']);
         
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
-        $pjax_url = RC_Uri::url('cart/flow/checkout', array('address_id' => $address_id, 'rec_id' => $rec_id));
+        $pjax_url = RC_Uri::url('cart/flow/checkout', array('store_id' => $store_id, 'address_id' => $address_id, 'rec_id' => $rec_id));
+        
+        $_SESSION['order_address_temp']['rec_id'] = $rec_id;
+        $_SESSION['order_address_temp']['store_id'] = $store_id;
         
         if (!empty($_SESSION['order_address_temp'])) {
         	$array = array(
@@ -340,11 +343,12 @@ class cart_controller {
 
         	$params_address = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $address_id, 'location' => array('longitude' => $store_info['location']['longitude'], 'latitude' => $store_info['location']['latitude']));
         	$address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params_address)->run();
+        	
         	if (!is_ecjia_error($address_info) && $address_info['local'] == 1) {
         		ecjia_front::$controller->assign('address_info', $address_info);
         	}       		
 //         }
-       
+        	
         $params_cart = array(
             'token' 		=> ecjia_touch_user::singleton()->getToken(),
             'address_id' 	=> $address_id,
@@ -520,8 +524,8 @@ class cart_controller {
 
         if (!is_ecjia_error($address_info) && !empty($address_info['id'])) {
         	$address_id = $address_info['id'];
-        } elseif (!empty($data['consignee']['id'])) {
-        	$address_id = $data['consignee']['id'];
+        } elseif (!empty($rs['consignee']['id'])) {
+        	$address_id = $rs['consignee']['id'];
         } elseif (!empty($address_id)) {
         	$address_id = $address_id;
         }
@@ -533,7 +537,7 @@ class cart_controller {
         ecjia_front::$controller->assign('title', '结算');
         ecjia_front::$controller->assign_title('结算');
         ecjia_front::$controller->assign_lang();
-        
+
         ecjia_front::$controller->display('flow_checkout.dwt');
     }
 
