@@ -359,3 +359,10 @@ function custom_site_api_url($url) {
     return RC_Config::get('site.site_api', $url);
 }
 RC_Hook::add_filter('custom_site_api_url', 'custom_site_api_url');
+
+/**
+ * 修改Http请求超时时间
+ */
+RC_Hook::add_filter('http_request_redirection_count', function($redirection) {
+	return 20;
+});
