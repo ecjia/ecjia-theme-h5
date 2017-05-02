@@ -345,7 +345,6 @@ class cart_controller {
         	$address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params_address)->run();
         	
         	if (!is_ecjia_error($address_info) && $address_info['local'] == 1) {
-        		$address_id = $address_info['id'];
         		ecjia_front::$controller->assign('address_info', $address_info);
         	}       		
 //         }
