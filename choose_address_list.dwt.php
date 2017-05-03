@@ -74,7 +74,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</section>
 	
 	<section class="ecjia-margin-t jm">
-		<a href="{url path='user/address/add_address' args='clear=1'}">新建收货地址</a>
+		<a class="btn" href="{url path='user/address/add_address' args='clear=1'}"><img src="{$theme_url}images/address_list/50x50_7.png">新建收货地址</a>
 	</section>
 </div>
 <!-- {/block} -->

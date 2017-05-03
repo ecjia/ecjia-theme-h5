@@ -9319,19 +9319,23 @@ footer {
 .ecjia-address-list .ecjia-margin-t.jm {
 	z-index: 100;
     position: fixed;
-    bottom: 0;
+    bottom: 5px;
     width: 100%;
     text-align: center;
-    font-size: 1.2em;
     color: #fff;
-    background: #47aa4d;
-    line-height: 2em;
-    padding: 6px 12px;
 	max-width: 640px;
+	border-radius: 4px;
 }
 
 .ecjia-address-list .ecjia-margin-t.jm a {
 	color: #fff;
+}
+
+.ecjia-address-list .ecjia-margin-t.jm a img {
+	width: 25px;
+    height: 25px;
+    margin-right: 5px;
+	margin-bottom: 3px;
 }
 
 .ecjia-address-list.p_t0 {
