@@ -73,14 +73,6 @@ class user_address_controller {
     		ecjia_front::$controller->assign('referer_url', $referer_url);
     		ecjia_front::$controller->assign_title('选择收货地址');
     		
-// 	    	//店铺信息
-// 			$parameter_store = array(
-// 				'seller_id' => $store_id, 
-// 				'city_id' => $_COOKIE['city_id']
-// 			);
-// 			$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data($parameter_store)->run();
-// 			$store_info = is_ecjia_error($store_info) ? array() : $store_info;
-			
     		$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token, 'seller_id' => $store_id))->run();
     		$address_list = is_ecjia_error($address_list) ? array() : $address_list;
     		
