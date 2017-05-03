@@ -648,6 +648,7 @@
 
 	//PJAX开始
 	$(document).on('pjax:start', function(){
+		sessionStorage.removeItem('swiper');
 		//增加动画
 		$('body').removeClass('blurry');
 		ecjia.touch.pjaxloadding();

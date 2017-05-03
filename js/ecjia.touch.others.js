@@ -27,10 +27,10 @@
         		$('.ecjia-mod-cycleimage').find('.swiper-slide').css('height', width*2/5 + 'px');
         		$('.ecjia-mod-cycleimage').find('.swiper-slide').find('img').css('height', width*2/5 + 'px');
         	}
-		    if (sessionStorage.getItem("swiper") != null) {
+		    if (sessionStorage.getItem("swiper") == 1) {
 		        return false;
 		    }
-			var swiper = new Swiper('.swiper-touchIndex', {
+			var swiper = new Swiper('#swiper-touchIndex', {
 				pagination: '.swiper-pagination',
 				speed: 800,
 				grabCursor: true,
