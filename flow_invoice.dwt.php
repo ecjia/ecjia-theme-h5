@@ -36,6 +36,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <li>暂无</li>
             <!-- {/foreach} -->
         </ul>
+        
+        <!-- {if $inv_type_list} -->
         <p class="select-title ecjia-margin-l">发票类型</p>
         <ul class="ecjia-list ecjia-border-t">
             <!-- {foreach from=$inv_type_list item=list key=index} -->
@@ -52,6 +54,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <li>暂无</li>
             <!-- {/foreach} -->
         </ul>
+        <!-- {/if} -->
+        
         <div class="ecjia-margin-t2 ecjia-margin-b">
             <input type="hidden" name="address_id" value="{$address_id}">
             <input type="hidden" name="rec_id" value="{$rec_id}" />

@@ -371,6 +371,15 @@ class cart_controller {
         	$rs['shipping_list'] = touch_function::change_array_key($rs['shipping_list'], 'shipping_id');
         }
         ecjia_front::$controller->assign('data', $rs);
+        
+        if (!is_ecjia_error($address_info) && !empty($address_info['id'])) {
+        	$address_id = $address_info['id'];
+        } elseif (!empty($rs['consignee']['id'])) {
+        	$address_id = $rs['consignee']['id'];
+        } elseif (!empty($address_id)) {
+        	$address_id = $address_id;
+        }
+
         $cart_key = md5($address_id.$rec_id);
         $_SESSION['cart'][$cart_key]['data'] = $rs;
         
@@ -429,7 +438,7 @@ class cart_controller {
         
         //发票
         if ($_POST['inv_update']) {
-        	if (empty($_POST['inv_content']) || empty($_POST['inv_type']) || empty($_POST['inv_payee'])) {
+        	if (empty($_POST['inv_content']) || empty($_POST['inv_payee'])) {
         		return ecjia_front::$controller->showmessage('请填写完整的发票信息', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         	}
         	$_SESSION['cart'][$cart_key]['temp']['inv_payee'] = empty($_POST['inv_payee']) ? '' : trim($_POST['inv_payee']);
@@ -516,14 +525,6 @@ class cart_controller {
         ecjia_front::$controller->assign('selected_payment', $selected_payment);
         ecjia_front::$controller->assign('selected_shipping', $selected_shipping);
         ecjia_front::$controller->assign('total', $total);
-
-        if (!is_ecjia_error($address_info) && !empty($address_info['id'])) {
-        	$address_id = $address_info['id'];
-        } elseif (!empty($rs['consignee']['id'])) {
-        	$address_id = $rs['consignee']['id'];
-        } elseif (!empty($address_id)) {
-        	$address_id = $address_id;
-        }
 
         ecjia_front::$controller->assign('address_id', $address_id);
         ecjia_front::$controller->assign('rec_id', $rec_id);
