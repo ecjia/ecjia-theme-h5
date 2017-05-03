@@ -21,12 +21,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-checkout ecjia-padding-b">
 	<form id="theForm" name="theForm" action="{url path='flow/done'}" method="post">
 		<a href="{RC_Uri::url('user/address/address_list')}&store_id={$store_id}&rec_id={$rec_id}&type=choose">
-			<div class="flow-address ecjia-margin-b">
+			<div class="flow-address ecjia-margin-b {if !$data.consignee}choose-address{/if}">
 				<label class="ecjiaf-fl">送至：</label>
 				<div class="ecjiaf-fl address-info">
+					{if $data.consignee}
 					<span>{$data.consignee.consignee|escape}</span>
 					<span>{$data.consignee.mobile}</span>
 					<p class="ecjia-truncate2 address-desc">{$data.consignee.address}{$data.consignee.address_info}</p>
+					{else}
+					<p>选择收货地址</p>
+					{/if}
 				</div>
 			</div>
 		</a>

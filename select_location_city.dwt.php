@@ -33,7 +33,7 @@ $(document).ready(function() {
 <div class="location-city">
 	<h2 class="location-city-title"><span>定位城市</span></h2>
 	<ul class="location-city-content citylist">
-		<li data-id="{$recommend_city_id}" {if $city_id eq $recommend_city_id && $smarty.cookies.city_id}class="active"{/if}>{$recommend_city_name}</li>
+		<li data-id="{$recommend_city_id}" {if $smarty.cookies.city_id eq $recommend_city_id && $smarty.cookies.city_id}class="active"{/if}>{$recommend_city_name}</li>
 	</ul>
 </div>
 {if $smarty.get.type eq 'addcity'}

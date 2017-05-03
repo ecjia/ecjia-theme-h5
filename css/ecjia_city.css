@@ -136,7 +136,7 @@ a.ecjia-color-green {
 }
 
 .ecjia-list .ecjia-margin-t a.choose_address {
-	height: 50px;
+	height: auto;
     line-height: 25px;
 }
 
@@ -2895,12 +2895,15 @@ footer {
 /*定位地址、选择的收货地址  - 购物车，结算 通用*/
 .flow-address {
 	min-height: 5em;
-	padding: .5em 1em .5em;
+	padding: .5em 1em 1em 1em;
 	background: url(../images/flow_addres.png) no-repeat bottom #ffffff;
 	background-size: 100% 120%;
-	;
 	overflow: hidden;
 	line-height: 2.5em;
+}
+
+.flow-address.choose-address {
+	padding: 1.5em 1em .5em 1em;
 }
 
 .flow-address.location_address {
@@ -3459,6 +3462,7 @@ footer {
 .ecjia .ecjia-checkout .flow-goods-list .goods-list .ecjia-icon.goods_attr .ecjia-icon-num {
 	left: 4em;
 	right: 85%;
+	background: #ff3434;
 }
 
 .ecjia .ecjia-checkout .flow-goods-list .goods-item li {
