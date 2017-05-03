@@ -32,7 +32,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<div class="address ecjiaf-wwb">{$value.province_name} {$value.city_name} {$value.address} {$value.address_info}</div>
 					</div>
 				</a>
-				<a class="edit-address ecjiaf-fr" href="{RC_uri::url('user/address/edit_address')}&id={$value.id}&clear=1"><div class="icon-edit-address"></div>{t}编辑{/t}</a>
+				<a class="edit-address ecjiaf-fr" href="{RC_uri::url('user/address/edit_address')}&id={$value.id}&clear=1"><div class="icon-edit-address"></div></a>
 			</li>
 			<!-- {/foreach} -->
 			<!-- 配送地址end-->
@@ -45,7 +45,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<!-- {foreach from=$address_list.other item=value key=key}-->
 			<li class="ecjia-margin-t choose_address-list">
 				<a class="choose_address" data-toggle="choose_address">
-					<i class="icon-default"></i>
+					<i class="{if $smarty.session.order_address_temp.address_id eq $value.id}icon-is-default{else}icon-not-default{/if}"></i>
 					<div class="ecjia-address-info">
 						<div class="ecjia-of-h">
 							{if $value.default_address eq 1}<span class="deafult-span">默认</span>{/if}
@@ -55,7 +55,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<div class="address ecjiaf-wwb">{$value.province_name} {$value.city_name} {$value.address} {$value.address_info}</div>
 					</div>
 				</a>
-				<a class="edit-address ecjiaf-fr" href="{RC_uri::url('user/address/edit_address')}&id={$value.id}&clear=1"><div class="icon-edit-address"></div>{t}编辑{/t}</a>
+				<a class="edit-address ecjiaf-fr" href="{RC_uri::url('user/address/edit_address')}&id={$value.id}&clear=1"><div class="icon-edit-address"></div></a>
 			</li>
 			<!-- {/foreach} -->
 			<!-- 配送地址end-->

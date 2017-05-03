@@ -114,6 +114,7 @@ a.ecjia-color-green {
     background: url(../images/address_list/50x50_3.png) no-repeat center;
     background-size: 100%;
     float: left;
+	margin-top: 2px;
 }
 
 .ecjia-list .choose_address .icon-is-default {
@@ -122,6 +123,7 @@ a.ecjia-color-green {
     background: url(../images/address_list/50x50_2.png) no-repeat center;
     background-size: 100%;
     float: left;
+	margin-top: 2px;
 }
 
 .ecjia-list .choose_address .ecjia-address-info {
@@ -136,7 +138,7 @@ a.ecjia-color-green {
 .ecjia-list .choose_address-list .edit-address {
 	position: absolute;
     right: 15px;
-    top: 35px;
+    top: 30px;
 }
 
 .ecjia-list .choose_address-list .deafult-span {
