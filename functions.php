@@ -292,6 +292,9 @@ RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username,
 RC_Hook::add_action('connect_callback_user_signin', function($userid) {
     RC_Loader::load_app_func('admin_user', 'user');
     $user_info = EM_user_info($userid);
+    if (empty($user_info)) {
+        return ecjia_front::$controller->showmessage('关联用户不存在，请联系管理员', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+    }
     
     RC_Loader::load_app_class('integrate', 'user', false);
     $user = integrate::init_users();
