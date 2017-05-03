@@ -128,7 +128,6 @@ a.ecjia-color-green {
 
 .ecjia-list .choose_address .ecjia-address-info {
     margin: 0px 25px 0 30px;
-    border-right: 1px solid #eee;
 }
 
 .ecjia-list .choose_address-list .edit-address {
@@ -140,8 +139,8 @@ a.ecjia-color-green {
 .ecjia-list .choose_address-list .deafult-span {
 	color: #fff;
     border-radius: 4px;
-    padding: 0px 6px;
-    font-size: 15px;
+    padding: 0px 5px;
+    font-size: 12px;
     display: inline-block;
     background: #47aa4d;
     float: left;
