@@ -29,7 +29,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<span>{$data.consignee.mobile}</span>
 					<p class="ecjia-truncate2 address-desc">{$data.consignee.address}{$data.consignee.address_info}</p>
 					{else}
-					<p>选择收货地址</p>
+					<p>已有地址超过配送范围，请重新选择或添加</p>
 					{/if}
 				</div>
 			</div>
