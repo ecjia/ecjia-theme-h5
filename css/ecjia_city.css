@@ -101,6 +101,10 @@ a.ecjia-color-green {
 	cursor: pointer;
 }
 
+.ecjia-list.over a, .ecjia-list.over p {
+	color: #999;
+}
+
 .ecjia-nav li {
 	padding: 0;
 }
