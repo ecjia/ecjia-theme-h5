@@ -76,6 +76,13 @@ a.ecjia-color-green {
 	min-width: 6em;
 }
 
+.ecjia-mxw6 {
+	max-width: 6em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 .ecjia-list.list-short li+li::before ,.ecjia-list li {
 	border-color: #eee;
 }
@@ -99,6 +106,48 @@ a.ecjia-color-green {
 .ecjia-list.over .choose_address {
 	color: #999;
 	cursor: pointer;
+}
+
+.ecjia-list .choose_address .icon-not-default {
+	width: 20px;
+    height: 24px;
+    background: url(../images/address_list/50x50_3.png) no-repeat center;
+    background-size: 100%;
+    float: left;
+}
+
+.ecjia-list .choose_address .icon-is-default {
+	width: 20px;
+    height: 24px;
+    background: url(../images/address_list/50x50_2.png) no-repeat center;
+    background-size: 100%;
+    float: left;
+}
+
+.ecjia-list .choose_address .ecjia-address-info {
+	margin-left: 30px;
+	padding: 0 60px 0 0;
+}
+
+.ecjia-list .choose_address-list.m_t0 {
+	margin-top: 0;
+}
+
+.ecjia-list .choose_address-list .edit-address {
+	position: absolute;
+    right: 15px;
+    top: 35px;
+}
+
+.ecjia-list .choose_address-list .deafult-span {
+	color: #fff;
+    border-radius: 4px;
+    padding: 0px 6px;
+    font-size: 15px;
+    display: inline-block;
+    background: #47aa4d;
+    float: left;
+    margin-right: 5px;
 }
 
 .ecjia-list.over a, .ecjia-list.over p {
@@ -9255,3 +9304,22 @@ footer {
     font-size: 15px;
     color: #fff;
 }
+
+.ecjia-address-list .ecjia-margin-t.jm {
+	z-index: 100;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+    color: #fff;
+    background: #47aa4d;
+    line-height: 15px;
+    padding: 15px 0;
+	max-width: 640px;
+}
+
+.ecjia-address-list .ecjia-margin-t.jm a {
+	color: #fff;
+}
+

@@ -56,7 +56,6 @@ class user_address_controller {
      */
     public static function address_list() {
     	unset($_SESSION['referer_url']);
-    	unset($_SESSION['order_address_temp']);
     	
     	$token = ecjia_touch_user::singleton()->getToken();
     	
@@ -69,7 +68,7 @@ class user_address_controller {
     		
     		$_SESSION['order_address_temp']['rec_id'] = $rec_id;
     		$_SESSION['order_address_temp']['store_id'] = $store_id;
-
+    		
     		$referer_url = RC_Uri::url('cart/flow/checkout', array('store_id' => $store_id, 'rec_id' => $rec_id));
     		ecjia_front::$controller->assign('referer_url', $referer_url);
     		ecjia_front::$controller->assign_title('选择收货地址');
@@ -96,18 +95,26 @@ class user_address_controller {
     			}
     		}
     		ecjia_front::$controller->assign('address_list', $address_list);
+    		
+    		ecjia_front::$controller->assign('type', $type);
+    		ecjia_front::$controller->assign_lang();
+    		 
+    		ecjia_front::$controller->display('choose_address_list.dwt');
     	} else {
+    		unset($_SESSION['order_address_temp']);
+    		
     		$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
     		$address_list = is_ecjia_error($address_list) ? array() : $address_list;
     		
     		
     		ecjia_front::$controller->assign('address_list', $address_list);
     		ecjia_front::$controller->assign_title('收货地址管理');
+    		
+    		ecjia_front::$controller->assign('type', $type);
+    		ecjia_front::$controller->assign_lang();
+    		 
+    		ecjia_front::$controller->display('user_address_list.dwt');
     	}
-    	ecjia_front::$controller->assign('type', $type);
-    	ecjia_front::$controller->assign_lang();
-    	
-        ecjia_front::$controller->display('user_address_list.dwt');
     }
 
     /**

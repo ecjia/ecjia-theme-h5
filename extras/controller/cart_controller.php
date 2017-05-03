@@ -379,7 +379,8 @@ class cart_controller {
         } elseif (!empty($address_id)) {
         	$address_id = $address_id;
         }
-
+        $_SESSION['order_address_temp']['address_id'] = $address_id;
+        
         $cart_key = md5($address_id.$rec_id);
         $_SESSION['cart'][$cart_key]['data'] = $rs;
         
