@@ -136,7 +136,7 @@ a.ecjia-color-green {
 }
 
 .ecjia-list .ecjia-margin-t a.choose_address {
-	height: 50px;
+	height: auto;
     line-height: 25px;
 }
 
