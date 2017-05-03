@@ -47,7 +47,7 @@
 defined('IN_ECJIA') or exit('No permission resources.');
 
 /**
- * 会员登录模块控制器代码
+ * 找回密码模块控制器代码
  */
 class user_get_password_controller {
     public static function mobile_register() {

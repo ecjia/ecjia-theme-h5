@@ -47,7 +47,7 @@
 defined('IN_ECJIA') or exit('No permission resources.');
 
 /**
- * 会员登录模块控制器代码
+ * 会员中心模块控制器代码
  */
 RC_Loader::load_app_class('integrate', 'user', false);
 class user_controller {
