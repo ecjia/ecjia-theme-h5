@@ -13,7 +13,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<div class="ecjia-address-list">
+<div class="ecjia-address-list p_t0">
 	<section>
 		<!-- {if $address_list} -->
 		{if $type eq 'choose'}

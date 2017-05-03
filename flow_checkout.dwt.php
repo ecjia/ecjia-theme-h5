@@ -32,6 +32,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<p>已有地址超过配送范围，请重新选择或添加</p>
 					{/if}
 				</div>
+				<i class="iconfont icon-jiantou-right"></i>
 			</div>
 		</a>
 

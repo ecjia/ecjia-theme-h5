@@ -127,17 +127,13 @@ a.ecjia-color-green {
 }
 
 .ecjia-list .choose_address .ecjia-address-info {
-	margin-left: 30px;
-	padding: 0 60px 0 0;
-}
-
-.ecjia-list .choose_address-list.m_t0 {
-	margin-top: 0;
+    margin: 0px 25px 0 30px;
+    border-right: 1px solid #eee;
 }
 
 .ecjia-list .choose_address-list .edit-address {
 	position: absolute;
-    right: 15px;
+    right: 10px;
     top: 30px;
 }
 
@@ -2972,13 +2968,24 @@ footer {
 }
 
 .flow-address .address-info {
-	width: 100%;
+	width: 95%;
 	margin-left: -15%;
 	padding-left: 15%;
+	color: #333;
+	margin-right: 5%;
+}
+
+.flow-address i.iconfont {
+	position: absolute;
+    right: .5em;
+    top: 1em;
+    font-size: 1.5em;
+    color: #aaa;
 }
 
 .flow-address .address-info span {
 	line-height: normal;
+	font-weight: 500;
 }
 
 .flow-address .address-info span+span {
@@ -2987,6 +2994,7 @@ footer {
 
 .flow-address .address-info span + p.address-desc {
 	line-height: normal;
+	font-weight: 500;
 }
 /*定位地址 ====结束 === */
 
@@ -9323,5 +9331,9 @@ footer {
 
 .ecjia-address-list .ecjia-margin-t.jm a {
 	color: #fff;
+}
+
+.ecjia-address-list.p_t0 {
+	padding-top: 0;
 }
 
