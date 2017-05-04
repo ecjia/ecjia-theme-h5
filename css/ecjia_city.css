@@ -5036,8 +5036,10 @@ footer {
 	max-width: 640px;
 	top: 0;
 }
-
-.ecjia-bonus-top-list li {
+.ecjia-button-top-list {
+    margin-top: 3.5em;
+}
+.ecjia-bouns-list li {
 	background-color: #fff;
 }
 

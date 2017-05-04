@@ -58,7 +58,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
        </li>
    </div>
 </div>
-<div class="ecjia-bonus-top-list">
+<div class="ecjia-button-top-list">
 	<input class="btn btn-info nopjax" name="logout" type="submit" data-url="{url path='user/privilege/logout'}" value="退出登录">
 </div>
 <!-- {/block} -->
