@@ -360,7 +360,7 @@
             			} 
             		} else if (div.hasClass('current_place')) {
             			if (div.parent().find('.current_place').length == 1) {
-            				$('.a4u.a4u-greent').parent().append('<div class="a57"><span>当前位置购物车空空如也哦～</span></div>');
+            				$('.a4u.a4u-green').after('<div class="a57"><span>当前位置购物车空空如也哦～</span></div>');
             			} 
             		}
             		div.remove();

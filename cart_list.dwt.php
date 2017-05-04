@@ -18,7 +18,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!-- {if $cart_list} -->
 		<div class="ecjia-flow-cart">
 			<div class="a4t">
-				<div class="a4u a4u-greent">
+				<div class="a4u a4u-green">
 					<div class="a4v">
 						{if $address_id gt 0}
 							{$address_info.address}
