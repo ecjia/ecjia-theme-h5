@@ -324,25 +324,8 @@ class cart_controller {
             return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
 
-//         if (empty($address_id)) {
-//             return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
-//         } else {
-        	//店铺信息
-        	$parameter_store = array(
-        		'seller_id' => $store_id,
-        		'city_id' => $_COOKIE['city_id']
-        	);
-
-        	$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data($parameter_store)->run();
-        	$store_info = is_ecjia_error($store_info) ? array() : $store_info;
-
-        	$params_address = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $address_id, 'location' => array('longitude' => $store_info['location']['longitude'], 'latitude' => $store_info['location']['latitude']));
-        	$address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params_address)->run();
-        	
-        	if (!is_ecjia_error($address_info) && $address_info['local'] == 1) {
-        		ecjia_front::$controller->assign('address_info', $address_info);
-        	}       		
-//         }
+		$params_address = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $address_id, 'seller_id' => $store_id);
+		$address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params_address)->run();
         	
         $params_cart = array(
             'token' 		=> ecjia_touch_user::singleton()->getToken(),
@@ -357,6 +340,7 @@ class cart_controller {
         
         $url = RC_Uri::url('cart/index/init');
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::FLOW_CHECKORDER)->data($params_cart)->run();
+        
         if (is_ecjia_error($rs)) {
         	return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
         }
