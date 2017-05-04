@@ -137,14 +137,16 @@ a.ecjia-color-green {
 }
 
 .ecjia-list .choose_address-list .deafult-span {
-	color: #fff;
+    color: #fff;
     border-radius: 4px;
-    padding: 0px 5px;
+    padding: 0px 4px;
     font-size: 12px;
     display: inline-block;
     background: #47aa4d;
     float: left;
     margin-right: 10px;
+    line-height: 20px;
+    margin-top: 2px;
 }
 
 .ecjia-list.over a, .ecjia-list.over p {
@@ -8679,7 +8681,6 @@ footer {
 	-webkit-box-orient: vertical;
 	display: -webkit-box;
 	background: #F4F5F4;
-	margin-right: .5em;
 	border-radius: 4px;
 }
 /*首页热门推荐店铺*/
