@@ -243,7 +243,7 @@ class user_address_controller {
                 'mobile'    	=> htmlspecialchars($_POST['mobile']),
             )
         );
-        $chars = "/(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7}/";
+        $chars = "/^1(3|4|5|7|8)\d{9}$/";
         $mobile = $params['address']['mobile'];
         
         if (!preg_match($chars, $mobile)) {
@@ -355,7 +355,7 @@ class user_address_controller {
             )
              
         );
-        $chars = "/(13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7}/";
+        $chars = "/^1(3|4|5|7|8)\d{9}$/";
         $mobile = $params['address']['mobile'];
         
         if (!preg_match($chars, $mobile)) {
