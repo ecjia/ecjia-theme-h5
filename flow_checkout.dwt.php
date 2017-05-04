@@ -13,6 +13,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <script type="text/javascript">
 	ecjia.touch.flow.init();
 	ecjia.touch.flow.init_pay();
+	$.localStorage('address_title', $(document).attr("title"));
+	$.localStorage('address_url', window.location.href);
 </script>
 <!-- {/block} -->
 

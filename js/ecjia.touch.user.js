@@ -461,10 +461,23 @@
 				},
 				ajaxPost: true,
 				callback:function(data){
+					var url = $.localStorage('address_url');
+					var title = $.localStorage('address_title');
+				    state = {
+		    	    	id: uniqueId(),
+		    	    	url: url,
+		    	    	title: title,
+		    	    	container: '.ecjia',
+		    	    	timeout: 10000
+		    	    }
+				    window.history.replaceState(state, title, url)
 					ecjia.touch.showmessage(data);
 				}
 			});
 		}
+	};
+	function uniqueId() {
+	  return (new Date).getTime()
 	}
 })(ecjia, jQuery);
 
