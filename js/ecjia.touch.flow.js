@@ -35,6 +35,19 @@
             	ecjia.touch.pjaxloadding();
             	$("input[type='submit']").click();
             });
+            
+            $('.check_address').off('click').on('click', function(e) {
+            	e.preventDefault();
+            	var $this = $(this),
+            		href = $this.attr('href');
+            	$.post(href, function(data) {
+            		if (data.state == 'error') {
+                		alert(data.message);
+                		return false;
+            		}
+            		ecjia.pjax(href);
+            	})
+            });
         },
 
 		change_number_click : function (){

@@ -76,7 +76,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</section>
 
 		<section class="checklist">
-			<a href='{url path="cart/flow/pay" args="address_id={$address_id}&rec_id={$rec_id}&pay_id={$selected_payment.pay_id}"}'>
+			<a class="check_address" href='{url path="cart/flow/pay" args="address_id={$address_id}&rec_id={$rec_id}&pay_id={$selected_payment.pay_id}"}'>
 				<span>{$lang.payment_method}</span>
 				<i class="iconfont icon-jiantou-right"></i>
 				<span class="ecjiaf-fr select_nav ecjia-truncate">{$selected_payment.pay_name}</span>
@@ -84,7 +84,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</a>
 		</section>
 		<section class="checklist">
-			<a href='{url path="cart/flow/shipping" args="address_id={$address_id}&rec_id={$rec_id}&shipping_id={$selected_shipping.shipping_id}"}'>
+			<a class="check_address" href='{url path="cart/flow/shipping" args="address_id={$address_id}&rec_id={$rec_id}&shipping_id={$selected_shipping.shipping_id}"}'>
 				<span>{$lang.shipping_method}</span>
 				<i class="iconfont icon-jiantou-right"></i>
 				<span class="ecjiaf-fr select_nav ecjia-truncate">{$selected_shipping.shipping_name}</span>
@@ -94,7 +94,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		{if $selected_shipping.shipping_date_enable}
 		<section class="checklist">
 			{if $selected_shipping.shipping_date}
-				<a href='{url path="cart/flow/shipping_date" args="address_id={$address_id}&rec_id={$rec_id}&shipping_id={$selected_shipping.shipping_id}"}'>
+				<a class="check_address" href='{url path="cart/flow/shipping_date" args="address_id={$address_id}&rec_id={$rec_id}&shipping_id={$selected_shipping.shipping_id}"}'>
 			{/if}
 			<span>送达时间</span>
 			{if $selected_shipping.shipping_date}<i class="iconfont icon-jiantou-right"></i>{/if}
@@ -108,7 +108,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		{/if}
 		{if $data.allow_can_invoice}
 		<section class="checklist "><!-- error -->
-			<a href='{url path="cart/flow/invoice" args="address_id={$address_id}&rec_id={$rec_id}"}'>
+			<a class="check_address" href='{url path="cart/flow/invoice" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>发票信息<!-- invoice --></span>
 				<i class="iconfont icon-jiantou-right"></i>
 				<span class="ecjiaf-fr select_nav ecjia-truncate">{$temp.inv_payee}</span>
@@ -119,7 +119,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</section>
 		{/if}
 		<section class="checklist">
-			<a href='{url path="cart/flow/note" args="address_id={$address_id}&rec_id={$rec_id}"}'>
+			<a class="check_address" href='{url path="cart/flow/note" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>备注留言</span>
 				<i class="iconfont icon-jiantou-right"></i>
 				<span class="ecjiaf-fr select_nav ecjia-truncate">{$temp.note}</span>
@@ -132,7 +132,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		{if $data.allow_use_bonus}
 		<section class="checklist">
 			{if $data.bonus|count gt 0}
-			    <a href='{url path="cart/flow/bonus" args="address_id={$address_id}&rec_id={$rec_id}"}'>
+			    <a class="check_address" href='{url path="cart/flow/bonus" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>{$lang.use_bonus}</span>
 				<span class="ecjia-tag">{count($data.bonus)}个可用</span>
 				<i class="iconfont icon-jiantou-right"></i>
@@ -155,7 +155,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				    <span class="ecjia-tag ecjia-tag-disable">不可用</span>
 				</a>
 				{else}
-				<a href='{url path="cart/flow/integral" args="address_id={$address_id}&rec_id={$rec_id}"}'>
+				<a class="check_address" href='{url path="cart/flow/integral" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				    <span>{$lang.use_integral}</span>
     				{if $temp.integral gt 0}
     				<span class="ecjiaf-fr select_nav ecjia-truncate">{$temp.integral}积分</span>

@@ -640,18 +640,18 @@ class cart_controller {
      */
     public static function pay() {
         if (!ecjia_touch_user::singleton()->isSignin()) {
-            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
         $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
         
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
         if (empty($rec_id)) {
-            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         if (empty($address_id)) {
 			$pjax_url = !empty($_SESSION['order_address_temp']['pjax_url']) ? trim($_SESSION['order_address_temp']['pjax_url']) : RC_Uri::url('cart/index/init');
-            return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
+            return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
         }
         
         $cart_key = md5($address_id.$rec_id);
@@ -703,7 +703,7 @@ class cart_controller {
      */
     public static function shipping() {
         if (!ecjia_touch_user::singleton()->isSignin()) {
-            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
@@ -711,11 +711,11 @@ class cart_controller {
         
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
         if (empty($rec_id)) {
-            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         if (empty($address_id)) {
 			$pjax_url = !empty($_SESSION['order_address_temp']['pjax_url']) ? trim($_SESSION['order_address_temp']['pjax_url']) : RC_Uri::url('cart/index/init');
-            return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
+            return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
         }
         
         $cart_key = md5($address_id.$rec_id);
@@ -734,17 +734,17 @@ class cart_controller {
     
     public static function shipping_date() {
         if (!ecjia_touch_user::singleton()->isSignin()) {
-            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
         $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
         
         if (empty($rec_id)) {
-            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         }
         if (empty($address_id)) {
 			$pjax_url = !empty($_SESSION['order_address_temp']['pjax_url']) ? trim($_SESSION['order_address_temp']['pjax_url']) : RC_Uri::url('cart/index/init');
-            return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
+            return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
         }
         
         $cart_key = md5($address_id.$rec_id);
@@ -771,7 +771,7 @@ class cart_controller {
      */
     public static function invoice() {
         if (!ecjia_touch_user::singleton()->isSignin()) {
-            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
 
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
@@ -779,11 +779,11 @@ class cart_controller {
         
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
         if (empty($rec_id)) {
-            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         if (empty($address_id)) {
 			$pjax_url = !empty($_SESSION['order_address_temp']['pjax_url']) ? trim($_SESSION['order_address_temp']['pjax_url']) : RC_Uri::url('cart/index/init');
-            return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
+            return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
         }
         
         $cart_key = md5($address_id.$rec_id);
@@ -808,7 +808,7 @@ class cart_controller {
      */
     public static function note() {
         if (!ecjia_touch_user::singleton()->isSignin()) {
-            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
@@ -816,11 +816,11 @@ class cart_controller {
         
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
         if (empty($rec_id)) {
-            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         if (empty($address_id)) {
 			$pjax_url = !empty($_SESSION['order_address_temp']['pjax_url']) ? trim($_SESSION['order_address_temp']['pjax_url']) : RC_Uri::url('cart/index/init');
-            return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
+            return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
         }
         
         $cart_key = md5($address_id.$rec_id);
@@ -840,24 +840,24 @@ class cart_controller {
      */
     public static function bonus() {
         if (!ecjia_touch_user::singleton()->isSignin()) {
-            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
         $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
         
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
         if (empty($rec_id)) {
-            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         }
         if (empty($address_id)) {
 			$pjax_url = !empty($_SESSION['order_address_temp']['pjax_url']) ? trim($_SESSION['order_address_temp']['pjax_url']) : RC_Uri::url('cart/index/init');
-            return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
+            return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
         }
         
         $cart_key = md5($address_id.$rec_id);
         $data = $_SESSION['cart'][$cart_key]['data'];
         if ($data['allow_use_bonus'] == 0) {
-            return ecjia_front::$controller->showmessage('红包不可用', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+            return ecjia_front::$controller->showmessage('红包不可用', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         }
         ecjia_front::$controller->assign('data', $data);
         ecjia_front::$controller->assign('temp', $_SESSION['cart'][$cart_key]['temp']);
@@ -875,24 +875,24 @@ class cart_controller {
      */
     public static function integral() {
         if (!ecjia_touch_user::singleton()->isSignin()) {
-            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
+            return ecjia_front::$controller->showmessage('请先登录再继续操作', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
         $rec_id = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
         
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
         if (empty($rec_id)) {
-            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+            return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         }
         if (empty($address_id)) {
 			$pjax_url = !empty($_SESSION['order_address_temp']['pjax_url']) ? trim($_SESSION['order_address_temp']['pjax_url']) : RC_Uri::url('cart/index/init');
-            return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
+            return ecjia_front::$controller->showmessage('请先选择收货地址', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
         }
         
         $cart_key = md5($address_id.$rec_id);
         $data = $_SESSION['cart'][$cart_key]['data'];
         if ($data['order_max_integral'] == 0) {
-            return ecjia_front::$controller->showmessage('积分不可用', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+            return ecjia_front::$controller->showmessage('积分不可用', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         }
         ecjia_front::$controller->assign('data', $data);
         ecjia_front::$controller->assign('temp', $_SESSION['cart'][$cart_key]['temp']);
