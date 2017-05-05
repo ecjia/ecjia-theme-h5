@@ -463,7 +463,7 @@
 				callback:function(data){
 					var url = $.localStorage('address_url');
 					var title = $.localStorage('address_title');
-				    state = {
+				    var state = {
 		    	    	id: uniqueId(),
 		    	    	url: url,
 		    	    	title: title,
