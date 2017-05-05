@@ -196,6 +196,10 @@ a.ecjia-color-green {
 	margin-right: .5em;
 }
 
+.m_b5 {
+	margin-bottom: 5em;
+}
+
 .ecjia-nav li.active a {
 	color: #47AA4D;
 }
@@ -9339,16 +9343,18 @@ footer {
 .ecjia-address-list .ecjia-margin-t.jm {
 	z-index: 100;
     position: fixed;
-    bottom: 5px;
+    bottom: 0;
     width: 100%;
     text-align: center;
     color: #fff;
 	max-width: 640px;
 	border-radius: 4px;
+	background: #fff;
 }
 
 .ecjia-address-list .ecjia-margin-t.jm a {
 	color: #fff;
+	margin-bottom: 5px;
 }
 
 .ecjia-address-list .ecjia-margin-t.jm a img {
