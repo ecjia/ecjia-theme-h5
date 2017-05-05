@@ -103,7 +103,7 @@
         },
 
         close_bottom_banner : function() {
-            $.cookie('hide_bottom_banner', 1);
+            $.cookie('hide_bottom_banner', 1, {expires: 7});
 			$('.bottom-banner').remove();
 		},
 
@@ -135,7 +135,7 @@
         },
         close_download : function(){
         	$('.close_tip').on('click', function(){
-        		 $.cookie('close_download', true);
+        		 $.cookie('close_download', true, {expires: 7});
         		 $('.ecjia-download').remove();
         	})
         },

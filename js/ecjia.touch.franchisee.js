@@ -189,9 +189,9 @@
 				var latitude 		= $("input[name='latitude']").val();
 				var mobile 			= $("input[name='mobile']").val();
 				var code 			= $("input[name='code']").val();
-				$.cookie('seller', $("input[name='seller_category']").val());
-				$.cookie('address', address);
-				$.cookie('seller_name', seller_name);
+				$.cookie('seller', $("input[name='seller_category']").val(), {expires: 7});
+				$.cookie('address', address, {expires: 7});
+				$.cookie('seller_name', seller_name, {expires: 7});
 				var url = $("form[name='theForm']").attr('action');
 				if (seller_name == '') {
 					alert('请输入店铺名称');return false;
@@ -248,14 +248,14 @@
 			//更新店铺名
 			var myApp = new Framework7();
 			$('input[name="seller_name"]').blur(function() {
-				$.cookie('seller_name', $('input[name="seller_name"]').val());
+				$.cookie('seller_name', $('input[name="seller_name"]').val(), {expires: 7});
 			});
 
 			var category_list = [];
 			var category = eval('(' + $("input[name='category']").val() + ')')['data'];
 			if(category == null){
 				$("input[name='seller_category']").val('暂无店铺分类，未能入驻');
-				$.cookie('seller_category_id', '');
+				$.cookie('seller_category_id', '', {expires: 7});
 			}else{
 				for (i=0;i < category.length; i++){
 					category_list.push(category[i]['name']);
@@ -266,7 +266,7 @@
 				    cols: [
 				        {
 				        	onChange: function (p, value) {
-				        		$.cookie('seller', value); 
+				        		$.cookie('seller', value, {expires: 7}); 
 				        		for (i = 0; i < category.length; i++) {
 				        			if (category[i]['name'] == value) {
 				        				$.cookie('seller_category_id', category[i]['id']);
@@ -291,7 +291,7 @@
 			        	textAlign: 'center',
 			            values: ['个人入驻', '企业入驻'],
 			            onChange: function (p, value) {
-			            	$.cookie('validate_type', value);
+			            	$.cookie('validate_type', value, {expires: 7});
 			            }
 			        }
 			    ]
@@ -336,8 +336,8 @@
 			            		}
 			            	}
 			            	
-                            $.cookie('province_id', province_id);
-                            $.cookie('province_name', province_name);
+                            $.cookie('province_id', province_id, {expires: 7});
+                            $.cookie('province_name', province_name, {expires: 7});
 			            	$("input[name='province_id']").val(province_id);
 			            	
 		            		var url = $('#get_location_region').attr('data-url');
@@ -386,8 +386,8 @@
 			            		}
 			            	}
 			            	
-			            	$.cookie('city_id', city_id);
-			            	$.cookie('city_name', city_name);
+			            	$.cookie('city_id', city_id, {expires: 7});
+			            	$.cookie('city_name', city_name, {expires: 7});
 			            	$("input[name='city_id']").val(city_id);
 			            	
 		            		var url = $('#get_location_region').attr('data-url');
@@ -435,8 +435,8 @@
 			            			break;
 			            		}
 			            	}
-			            	$.cookie('district_id', district_id); 
-			            	$.cookie('district_name', district_name); 
+			            	$.cookie('district_id', district_id, {expires: 7}); 
+			            	$.cookie('district_name', district_name, {expires: 7}); 
 			            	$("input[name='district_id']").val(district_id);
 			            }
 			        },
@@ -457,7 +457,7 @@
 
 			$(".coordinate").on('click', function(e) {
 				var seller_name = $("input[name='seller_name']").val();
-				$.cookie('seller_name', seller_name); 
+				$.cookie('seller_name', seller_name, {expires: 7}); 
 				var f_province 	= $("input[name='f_province']").val();
 				var f_city 		= $("input[name='f_city']").val();
 				var f_district 	= $("input[name='f_district']").val();

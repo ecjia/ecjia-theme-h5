@@ -4,7 +4,7 @@
 ;(function(ecjia, $) {
 	ecjia.touch = {
 		init : function() {
-			if($.cookie('index') === undefined){
+			if ($.cookie('index') === undefined) {
 				var key= $("input[name='key']").val();
 				var referer = $("input[name='referer']").val();
 				var geolocation = new qq.maps.Geolocation(key, referer);
@@ -24,9 +24,9 @@
 		  	     	});
 				};
 				function showErr(err) {    
-				    console.log(err)
+				    console.log(err);
 				};
-				$.cookie('index', 'first');
+				$.cookie('index', 'first', {expires: 7});
 			}
 
 			ecjia.touch.setpjax();
@@ -100,14 +100,14 @@
                       var city_id = $('input[name="city_id"]').val();
                       var city_name = $('input[name="city_name"]').val();
                       
-                      $.cookie('location_address', address); 
-                      $.cookie('location_name', title);
-                      $.cookie('longitude', lng);
-                      $.cookie('latitude', lat);
-                      $.cookie('location_address_id', 0); 
+                      $.cookie('location_address', address, {expires: 7}); 
+                      $.cookie('location_name', title, {expires: 7});
+                      $.cookie('longitude', lng, {expires: 7});
+                      $.cookie('latitude', lat, {expires: 7});
+                      $.cookie('location_address_id', 0, {expires: 7}); 
                       
-                      $.cookie('city_id', city_id); 
-                      $.cookie('city_name', city_name); 
+                      $.cookie('city_id', city_id, {expires: 7}); 
+                      $.cookie('city_name', city_name, {expires: 7}); 
                       
                       var referer_url = $.cookie('referer_url');
                       var url = $("#ecjia-zs").attr('data-url');
@@ -115,7 +115,7 @@
                     	  referer_url = url;
                       }
                       ecjia.pjax(referer_url);
-                      $.cookie('referer_url', '');
+                      $.cookie('referer_url', '', 1);
                 });	
         	}
         	else if (type == 'address') {
@@ -536,7 +536,7 @@
 
 		close_app_download : function() {
 			$('.ecjia-app-download .icon-close').on('click', function(){
-                $.cookie('hide_download', 1);
+                $.cookie('hide_download', 1, {expires: 7});
 				$('.ecjia-app-download').remove();
 			});
 		},

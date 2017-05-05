@@ -259,22 +259,22 @@ class location_controller {
     	if (strpos($referer_url, $str1) || strpos($referer_url, $str2)) {
     		$referer_url = RC_Uri::url('touch/index/init');
     	}
-    	setcookie("referer_url", $referer_url);
+    	setcookie("referer_url", $referer_url, RC_Time::gmtime() + 3600 * 24 * 7);
     	
     	//写入cookie
-    	setcookie("location_address", $location_address);
-    	setcookie("location_name", $location_name);
-    	setcookie("longitude", $longitude);
-    	setcookie("latitude", $latitude);
-    	setcookie("location_address_id", 0);
-    	setcookie("city_id", $city_id);
-    	setcookie("city_name", $rs['region_name']);
+    	setcookie("location_address", $location_address, RC_Time::gmtime() + 3600 * 24 * 7);
+    	setcookie("location_name", $location_name, RC_Time::gmtime() + 3600 * 24 * 7);
+    	setcookie("longitude", $longitude, RC_Time::gmtime() + 3600 * 24 * 7);
+    	setcookie("latitude", $latitude, RC_Time::gmtime() + 3600 * 24 * 7);
+    	setcookie("location_address_id", 0, RC_Time::gmtime() + 3600 * 24 * 7);
+    	setcookie("city_id", $city_id, RC_Time::gmtime() + 3600 * 24 * 7);
+    	setcookie("city_name", $rs['region_name'], RC_Time::gmtime() + 3600 * 24 * 7);
     	
     	//自动定位的城市id name 经纬度
-    	setcookie("position_city_id", $city_id);
-    	setcookie("position_city_name", $rs['region_name']);
-    	setcookie("position_longitude", $longitude);
-    	setcookie("position_latitude", $latitude);
+    	setcookie("position_city_id", $city_id, RC_Time::gmtime() + 3600 * 24 * 7);
+    	setcookie("position_city_name", $rs['region_name'], RC_Time::gmtime() + 3600 * 24 * 7);
+    	setcookie("position_longitude", $longitude, RC_Time::gmtime() + 3600 * 24 * 7);
+    	setcookie("position_latitude", $latitude, RC_Time::gmtime() + 3600 * 24 * 7);
     	
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $href_url));
     }
