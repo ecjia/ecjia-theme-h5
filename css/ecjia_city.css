@@ -1692,7 +1692,7 @@ footer {
 
 .ecjia-header.ecjia-store-banner {
 	background: #fff;
-	height: 10.5em;
+	height: 12.5em;
 	position: fixed;
 	width: 100%;
 	max-width: 640px;
@@ -1708,12 +1708,12 @@ footer {
     left: 0;
     top: 0;
     z-index: 1;
-    height: 10.5em;
+    height: 12.5em;
 }
 
 .ecjia-header.ecjia-store-banner img {
-	height: 10.5em;
-	width: 118%;
+	height: 12.5em;
+	width: 120%;
 }
 
 .ecjia-store-banner .ecjia-header-right {
@@ -1727,7 +1727,7 @@ footer {
 }
 
 .ecjia-store-brief {
-	height: 10.5em;
+	height: 12.5em;
 	position: fixed;
 	width: 100%;
 	top: 0;
@@ -1739,16 +1739,13 @@ footer {
 .ecjia-store-brief .store-info {
 	width: 92%;
 	margin: 0 auto;
-	height: 8em;
+	height: 10em;
 	min-height: 5em;
 	overflow: hidden;
 }
 
 .ecjia-store-brief .store-info .clear {
 	clear: both;
-}
-
-.ecjia-store-brief .store-info .basic-info {
 }
 
 .ecjia-store-brief .store-left {
@@ -1868,7 +1865,7 @@ footer {
 
 .ecjia-store-ul {
 	position: fixed;
-	top: 9.5em;
+	top: 11.5em;
 	height: 3em;
 	max-width: 640px;
 	width: 100%;
@@ -1889,14 +1886,14 @@ footer {
 }
 
 .ecjia-store-ul li span.active {
-	padding-bottom: .7em;
+	padding-bottom: .8em;
 	border-bottom: 2px solid #47b34f;
 	color: #47b34f;
 }
 
 .ecjia-store-seller {
 	position: absolute;
-   	top: 13.7em;
+   	top: 16em;
 	bottom: 0;
 	width: 100%;
 	max-width: 640px;
@@ -2118,7 +2115,7 @@ footer {
 
 .ecjia-store-goods .a1n {
 	position: fixed;
-	top: 13.7em;
+	top: 16em;
 	bottom: 0;
 	width: 100%;
 	max-width: 640px;
@@ -8397,7 +8394,7 @@ footer {
 
 .ecjia-store-comment .ecjia-seller-comment {
     position: fixed;
-    top: 13.7em;
+    top: 16em;
     bottom: 0;
     width: 100%;
     max-width: 640px;

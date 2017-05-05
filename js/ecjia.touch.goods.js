@@ -791,14 +791,14 @@
     			$('.ecjia-seller-comment').css('top', '6.6em');
     			$('.ecjia-store-seller').css('top', '6.6em');
         	} else {
-        		$('.ecjia-store-banner').css('height', '10.5em');
+        		$('.ecjia-store-banner').css('height', '12.5em');
         		$('.page_hearder_hide').hide();
-    			$('.ecjia-store-goods').children('.a1n').css('top', '13.7em');
+    			$('.ecjia-store-goods').children('.a1n').css('top', '16em');
     			
     			//店铺评论
-    			$('.ecjia-store-ul').css('top', '9.5em');
-    			$('.ecjia-seller-comment').css('top', '13.7em');
-    			$('.ecjia-store-seller').css('top', '13.7em');
+    			$('.ecjia-store-ul').css('top', '11.5em');
+    			$('.ecjia-seller-comment').css('top', '16em');
+    			$('.ecjia-store-seller').css('top', '16em');
         	}
         },
         
