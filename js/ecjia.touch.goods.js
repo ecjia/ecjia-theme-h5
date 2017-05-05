@@ -347,13 +347,6 @@
             	}
             	
             	if (div != undefined) {
-//            		if (div.siblings('li').length == 0) {
-//            			div.parents('.cart-single').remove();
-//        				if ($('li.cart-single').length == 0) {
-//        					$('.ecjia-flow-cart').remove();
-//        					$('.flow-no-pro').removeClass('hide');
-//        				}
-//        			}
             		if (div.hasClass('other_place')) {
             			if (div.parent().find('.other_place').length == 1) {
             				$('.a4u.a4u-gray').remove();
@@ -365,8 +358,8 @@
             		}
             		div.remove();
             		if ($('.a57').length == 1 && $('.a4u-gray').length == 0) {
-    					$('.ecjia-flow-cart').remove();
-    					$('.flow-no-pro').removeClass('hide');
+            			var index_url = $('input[name="index_url"]').val();
+    					$('.ecjia-flow-cart-list').html('').html('<div class="flow-no-pro"><div class="ecjia-nolist">您还没有添加商品<a class="btn btn-small" type="button" href="'+index_url+'">去逛逛</a></div>');
             		}
             		return false;
             	}
