@@ -282,9 +282,9 @@ class user_address_controller {
         	$pjax_url = RC_Uri::url('user/address/address_list');
         	if (!empty($_SESSION['order_address_temp'])) {
         		$array = array(
-        				'store_id' 	=> $_SESSION['order_address_temp']['store_id'],
-        				'rec_id' 	=> $_SESSION['order_address_temp']['rec_id'],
-        				'type' 		=> 'choose'
+        			'store_id' 	=> $_SESSION['order_address_temp']['store_id'],
+        			'rec_id' 	=> $_SESSION['order_address_temp']['rec_id'],
+        			'type' 		=> 'choose'
         		);
         		$pjax_url = RC_Uri::url('user/address/address_list', $array);
         	}
