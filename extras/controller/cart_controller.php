@@ -324,6 +324,13 @@ class cart_controller {
             return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
 
+        //用户收货地址列表
+        $address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
+        $address_list = is_ecjia_error($address_list) ? array() : $address_list;
+        if (!empty($address_list)) {
+        	ecjia_front::$controller->assign('address_list', $address_list);
+        }
+        
 		$params_address = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $address_id, 'seller_id' => $store_id);
 		$address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params_address)->run();
         	

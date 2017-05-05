@@ -2959,6 +2959,12 @@ footer {
 	padding: 1.5em 1em .5em 1em;
 }
 
+.flow-address.choose-address p {
+	font-weight: bold;
+	font-size: 16px;
+	color: #333;
+}
+
 .flow-address.location_address {
 	padding: 1em;
 	line-height: 3em;

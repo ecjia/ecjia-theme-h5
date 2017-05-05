@@ -22,18 +22,22 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 <div class="ecjia-checkout ecjia-padding-b">
 	<form id="theForm" name="theForm" action="{url path='flow/done'}" method="post">
-		<a href="{RC_Uri::url('user/address/address_list')}&store_id={$store_id}&rec_id={$rec_id}&type=choose">
+		<a href="{if !$address_list}{RC_Uri::url('user/address/add_address')}&clear=1{else}{RC_Uri::url('user/address/address_list')}&store_id={$store_id}&rec_id={$rec_id}&type=choose{/if}">
 			<div class="flow-address ecjia-margin-b {if !$data.consignee}choose-address{/if}">
+				<!-- {if !$address_list} -->
+				<p>新建收货地址</p>
+				<!-- {else} -->
+				{if $data.consignee}
 				<label class="ecjiaf-fl">送至：</label>
 				<div class="ecjiaf-fl address-info">
-					{if $data.consignee}
 					<span>{$data.consignee.consignee|escape}</span>
 					<span>{$data.consignee.mobile}</span>
 					<p class="ecjia-truncate2 address-desc">{$data.consignee.address}{$data.consignee.address_info}</p>
-					{else}
-					<p>已有地址超过配送范围，请重新选择或添加</p>
-					{/if}
 				</div>
+				{else}
+				<p>已有地址超过配送范围，请重新选择或添加</p>
+				{/if}
+				<!-- {/if} -->
 				<i class="iconfont icon-jiantou-right"></i>
 			</div>
 		</a>
