@@ -279,27 +279,28 @@ class user_address_controller {
         	    setcookie("city_name", $address_info['city_name']);
         	}
         } else {
-        	$params = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $address_id, 'seller_id' => $_SESSION['order_address_temp']['store_id']);
-        	$address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params)->run();
-        	
         	$type = !empty($_SESSION['order_address_temp']['type']) ? trim($_SESSION['order_address_temp']['type']) : '';
-        	if (!is_ecjia_error($address_info) && $address_info['local'] == 1 && $type == 'choose') {
-        		$array = array(
-        			'store_id' 	=> $_SESSION['order_address_temp']['store_id'],
-        			'rec_id' 	=> $_SESSION['order_address_temp']['rec_id'],
-        			'address_id' => $address_id
-        		);
-        		$pjax_url = RC_Uri::url('cart/flow/checkout', $array);
-        	} else {
-        		$pjax_url = RC_Uri::url('user/address/address_list');
-        		if (!empty($_SESSION['order_address_temp'])) {
-        			$array = array(
-        				'store_id' 	=> $_SESSION['order_address_temp']['store_id'],
-        				'rec_id' 	=> $_SESSION['order_address_temp']['rec_id'],
-        				'type' 		=> 'choose'
-        			);
-        			$pjax_url = RC_Uri::url('user/address/address_list', $array);
-        		}
+        	if ($type == 'choose') {
+        		$params = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $address_id, 'seller_id' => $_SESSION['order_address_temp']['store_id']);
+        		$address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params)->run();
+	        	if (!is_ecjia_error($address_info) && $address_info['local'] == 1) {
+	        		$array = array(
+	        			'store_id' 	=> $_SESSION['order_address_temp']['store_id'],
+	        			'rec_id' 	=> $_SESSION['order_address_temp']['rec_id'],
+	        			'address_id' => $address_id
+	        		);
+	        		$pjax_url = RC_Uri::url('cart/flow/checkout', $array);
+	        	} else {
+	        		$pjax_url = RC_Uri::url('user/address/address_list');
+	        		if (!empty($_SESSION['order_address_temp'])) {
+	        			$array = array(
+	        				'store_id' 	=> $_SESSION['order_address_temp']['store_id'],
+	        				'rec_id' 	=> $_SESSION['order_address_temp']['rec_id'],
+	        				'type' 		=> 'choose'
+	        			);
+	        			$pjax_url = RC_Uri::url('user/address/address_list', $array);
+	        		}
+	        	}
         	}
         }
         unset($_SESSION['referer_url']);
@@ -385,19 +386,18 @@ class user_address_controller {
         }
         $temp_data = user_address_controller::save_temp_data(0, 'edit_'.$_POST['address_id'], 1);
         
-        $url_address_list = RC_Uri::url('user/address/address_list');
-        
+        $pjaxurl = RC_Uri::url('user/address/address_list');
         if (!empty($_SESSION['order_address_temp'])) {
         	$array = array(
         		'store_id' 	=> $_SESSION['order_address_temp']['store_id'],
         		'rec_id' 	=> $_SESSION['order_address_temp']['rec_id'],
         		'type' 		=> 'choose'
         	);
-        	$url_address_list = RC_Uri::url('user/address/address_list', $array);
+        	$pjaxurl = RC_Uri::url('user/address/address_list', $array);
         }
         
         unset($_SESSION['address']);
-        return ecjia_front::$controller->showmessage('编辑地址成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS,array('pjaxurl' => $url_address_list));
+        return ecjia_front::$controller->showmessage('编辑地址成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS,array('pjaxurl' => $pjaxurl));
     }
 
     /**
