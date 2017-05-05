@@ -470,7 +470,7 @@
 		    	    	container: '.ecjia',
 		    	    	timeout: 10000
 		    	    }
-				    window.history.replaceState(state, title, url)
+				    window.history.replaceState(state, title, url);
 					ecjia.touch.showmessage(data);
 				}
 			});
