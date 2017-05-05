@@ -8684,6 +8684,7 @@ footer {
 	display: -webkit-box;
 	background: #F4F5F4;
 	border-radius: 4px;
+	margin-top: .3em;
 }
 /*首页热门推荐店铺*/
 .ecjia-store-model {
