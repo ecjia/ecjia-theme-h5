@@ -324,16 +324,34 @@ class cart_controller {
             return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
         }
 
-        //用户收货地址列表
-        $address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
-        $address_list = is_ecjia_error($address_list) ? array() : $address_list;
-        if (!empty($address_list)) {
-        	ecjia_front::$controller->assign('address_list', $address_list);
+        //有收货地址id，检查该收货地址是否在店铺配送范围内
+        if (!empty($address_id)) {
+        	$params_address = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $address_id, 'seller_id' => $store_id);
+        	$address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params_address)->run();
+        }
+
+        if (!is_ecjia_error($address_info) && $address_info['local'] == 1) {
+        	$address_id = $address_info['id'];
+        } else {
+        	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token, 'seller_id' => $store_id))->run();
+        	$address_list = is_ecjia_error($address_list) ? array() : $address_list;
+
+        	//检查收货地址中是否有在该店铺配送范围内的地址
+        	if (!empty($address_list)) {
+        		foreach ($address_list as $k => $v) {
+        			if ($v['default_address'] == 1 && $v['local'] == 1) {
+        				$address_id = $v['id'];
+        			} elseif ($v['local'] == 1) {
+        				$address_id = $v['id'];
+        			}
+        			if (!empty($address_id)) {
+        				break;
+        			}
+        		}
+        		ecjia_front::$controller->assign('address_list', $address_list);
+        	}
         }
         
-		$params_address = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $address_id, 'seller_id' => $store_id);
-		$address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params_address)->run();
-        	
         $params_cart = array(
             'token' 		=> ecjia_touch_user::singleton()->getToken(),
             'address_id' 	=> $address_id,
@@ -363,14 +381,14 @@ class cart_controller {
         }
         ecjia_front::$controller->assign('data', $rs);
         
-        if (!is_ecjia_error($address_info) && !empty($address_info['id'])) {
-        	$address_id = $address_info['id'];
-        } elseif (!empty($rs['consignee']['id'])) {
+		if (!empty($rs['consignee']['id'])) {
         	$address_id = $rs['consignee']['id'];
         } elseif (!empty($address_id)) {
         	$address_id = $address_id;
         }
-        $_SESSION['order_address_temp']['address_id'] = $address_id;
+        if (!empty($address_id)) {
+        	$_SESSION['order_address_temp']['address_id'] = $address_id;
+        }
         
         $cart_key = md5($address_id.$rec_id);
         $_SESSION['cart'][$cart_key]['data'] = $rs;
