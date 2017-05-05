@@ -9105,7 +9105,10 @@ footer {
 }
 .ecjia-check-info {
 	background-color: #FFF;
-    min-height: 700px;
+    /*min-height: 700px;*/
+    position: fixed;
+    width: 100%;
+    height: 100%;
 }
 .ecjia-check-info .bind-info p {
     display: inline-block;
