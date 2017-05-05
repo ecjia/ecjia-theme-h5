@@ -2958,8 +2958,9 @@ footer {
 
 .flow-address.choose-address p {
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 14px;
 	color: #333;
+	margin-right: 20px;
 }
 
 .flow-address.location_address {
@@ -2990,7 +2991,9 @@ footer {
 
 .flow-address .address-info span {
 	line-height: normal;
-	font-weight: 500;
+	font-weight: bold;
+	font-size: 14px;
+	color: #333;
 }
 
 .flow-address .address-info span+span {
@@ -2999,7 +3002,9 @@ footer {
 
 .flow-address .address-info span + p.address-desc {
 	line-height: normal;
-	font-weight: 500;
+	font-weight: bold;
+	font-size: 14px;
+	color: #333;
 }
 /*定位地址 ====结束 === */
 
