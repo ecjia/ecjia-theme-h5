@@ -3548,6 +3548,10 @@ footer {
 	border: 1px solid #eee;
 }
 
+.ecjia .ecjia-icon-num.top {
+	background: #ff3434;
+}
+
 .ecjia .ecjia-checkout .flow-goods-list .goods-item .goods-info {
 	width: 100%;
 	margin-left: -6em;
