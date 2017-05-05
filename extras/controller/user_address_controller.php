@@ -279,6 +279,16 @@ class user_address_controller {
         	    setcookie("city_name", $address_info['city_name']);
         	}
         } else {
+        	$pjax_url = RC_Uri::url('user/address/address_list');
+        	if (!empty($_SESSION['order_address_temp'])) {
+        		$array = array(
+        				'store_id' 	=> $_SESSION['order_address_temp']['store_id'],
+        				'rec_id' 	=> $_SESSION['order_address_temp']['rec_id'],
+        				'type' 		=> 'choose'
+        		);
+        		$pjax_url = RC_Uri::url('user/address/address_list', $array);
+        	}
+        	
         	$type = !empty($_SESSION['order_address_temp']['type']) ? trim($_SESSION['order_address_temp']['type']) : '';
         	if ($type == 'choose') {
         		$params = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $address_id, 'seller_id' => $_SESSION['order_address_temp']['store_id']);
@@ -290,16 +300,6 @@ class user_address_controller {
 	        			'address_id' => $address_id
 	        		);
 	        		$pjax_url = RC_Uri::url('cart/flow/checkout', $array);
-	        	} else {
-	        		$pjax_url = RC_Uri::url('user/address/address_list');
-	        		if (!empty($_SESSION['order_address_temp'])) {
-	        			$array = array(
-	        				'store_id' 	=> $_SESSION['order_address_temp']['store_id'],
-	        				'rec_id' 	=> $_SESSION['order_address_temp']['rec_id'],
-	        				'type' 		=> 'choose'
-	        			);
-	        			$pjax_url = RC_Uri::url('user/address/address_list', $array);
-	        		}
 	        	}
         	}
         }
