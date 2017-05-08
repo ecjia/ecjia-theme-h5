@@ -689,10 +689,8 @@
 	//PJAX开始
 	$(document).on('pjax:start', function() {
 		sessionStorage.removeItem('swiper');
-		//增加动画
-		$('body').removeClass('blurry');
+		
 		ecjia.touch.pjaxloadding();
-
 		if (window.releated_goods != undefined && window.releated_goods.length != 0) {
 			window.releated = $.extend({}, window.releated_goods);
 		}
@@ -708,7 +706,6 @@
 				window.releated_goods = $.extend({}, releated_goods, window.releated);
 			}
 		}
-
 		if ($.find('.is-last').length == 0) {
 			ecjia.touch.asynclist();
 		}
@@ -789,7 +786,8 @@
 	});
 })(ecjia, jQuery);
 
-$(function() { /* 页面载入后自动执行 */
+$(function() { 
+	/* 页面载入后自动执行 */
 	ecjia.touch.init();
 	window.alert = ecjia.touch.alert;
 });
