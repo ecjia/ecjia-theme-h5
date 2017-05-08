@@ -65,7 +65,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!-- {block name="meta"} --><!-- {/block} -->
 	<script type="text/javascript" src="{$theme_url}js/ecjia.touch.koala.js" ></script>
 	<script type="text/javascript" src="{$theme_url}js/ecjia.touch.js" ></script>
-    <script type="text/javascript" src="{$theme_url}js/ecjia.touch.history.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.others.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.goods.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.user.js" ></script>
