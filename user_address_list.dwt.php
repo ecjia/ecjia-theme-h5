@@ -21,6 +21,9 @@ $('.setdefault').click(function(){
 		ecjia.touch.showmessage(data);
 	}, 'json');
 });
+
+$.localStorage('address_title', '个人中心');
+$.localStorage('address_url', "{RC_Uri::url('touch/my/init')}");
 </script>
 <!-- {/block} -->
 

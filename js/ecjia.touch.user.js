@@ -466,14 +466,16 @@
 				callback: function(data) {
 					var url = $.localStorage('address_url');
 					var title = $.localStorage('address_title');
-					var state = {
-						id: uniqueId(),
-						url: url,
-						title: title,
-						container: '.ecjia',
-						timeout: 10000
+					if (url != undefined && title != undefined) {
+						var state = {
+							id: uniqueId(),
+							url: url,
+							title: title,
+							container: '.ecjia',
+							timeout: 10000
+						}
+						window.history.replaceState(state, title, url);
 					}
-					window.history.replaceState(state, title, url);
 					ecjia.touch.showmessage(data);
 				}
 			});
