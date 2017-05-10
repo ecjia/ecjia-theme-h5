@@ -2730,7 +2730,7 @@ footer {
 
 .store-add-cart.a4w .a5b {
 	background-color: #fff;
-	overflow: scroll;
+	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 }
 

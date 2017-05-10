@@ -103,12 +103,13 @@ class touch_function {
     
     public static function redirect_referer_url($referer_url) {
     	//手动选择定位信息返回处理
-    	$addr = $_GET['addr'];
-    	$name = $_GET['name'];
-    	$city_name = $_GET['city'];
-    	$latng = explode(",", $_GET['latng']) ;
-    	$longitude = !empty($latng[1]) ? $latng[1] : $_COOKIE['longitude'];
-    	$latitude  = !empty($latng[0]) ? $latng[0] : $_COOKIE['latitude'];
+    	$addr 		= isset($_GET['addr']) 	? $_GET['addr'] 				: '';
+    	$name 		= isset($_GET['name']) 	? $_GET['name'] 				: '';
+    	$city_name 	= isset($_GET['city']) 	? $_GET['city'] 				: '';
+    	$latng 		= isset($_GET['latng']) ? explode(",", $_GET['latng']) 	: '';
+    	$longitude 	= !empty($latng[1]) 	? $latng[1] 					: $_COOKIE['longitude'];
+    	$latitude  	= !empty($latng[0]) 	? $latng[0] 					: $_COOKIE['latitude'];
+    	
     	$params = array(
     		'token' => ecjia_touch_user::singleton()->getToken(),
     		'city' 	=> $city_name,
