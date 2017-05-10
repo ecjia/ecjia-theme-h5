@@ -69,7 +69,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.goods.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.user.js" ></script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.flow.js" ></script>
-    <script type="text/javascript" src="{$theme_url}js/ecjia.touch.merchant.js" ></script>
 
     <script type="text/javascript">var theme_url = "{$theme_url}";</script>
     <script type="text/javascript" src="{$theme_url}js/ecjia.touch.goods_detail.js" ></script>
@@ -88,7 +87,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <script type="text/javascript" src="{$theme_url}lib/winderCheck/js/winderCheck.min.js"></script>
     <script type="text/javascript" src="{$theme_url}js/greenCheck.js"></script>
     
-    <script type="text/javascript" src="{$theme_url}js/greenCheck.js"></script>
     <script type="text/javascript" src="{$theme_url}lib/iOSOverlay/js/iosOverlay.js"></script>
     <script type="text/javascript" src="{$theme_url}lib/iOSOverlay/js/prettify.js"></script>
 	<!-- {block name="footer"} --><!-- {/block} -->
