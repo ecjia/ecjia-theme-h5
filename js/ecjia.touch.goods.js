@@ -798,7 +798,7 @@
 				//店铺评论
 				$('.ecjia-store-ul').css('top', '3em');
 				$('.ecjia-seller-comment').css('top', '6.6em');
-				$('.ecjia-store-seller').css('top', '6.6em');
+				$('.ecjia-store-detail').css('top', '6.6em');
 			} else {
 				$('.ecjia-store-banner').css('height', '12.5em');
 				$('.page_hearder_hide').hide();
@@ -807,7 +807,7 @@
 				//店铺评论
 				$('.ecjia-store-ul').css('top', '11.5em');
 				$('.ecjia-seller-comment').css('top', '16em');
-				$('.ecjia-store-seller').css('top', '16em');
+				$('.ecjia-store-detail').css('top', '16em');
 			}
 		},
 
@@ -1421,7 +1421,7 @@
 					var show_div = $('.ecjia-store-comment');
 					$('.store-add-cart').hide();
 				} else if (index == 2) {
-					var show_div = $('.ecjia-store-seller');
+					var show_div = $('.ecjia-store-detail');
 					$('.store-add-cart').hide();
 				}
 				show_div.removeClass('hide').addClass('show');
