@@ -12,6 +12,7 @@
 			this.swiper_promotion();
 			this.promote_time();
 			this.close_download();
+			this.discover_swiper();
 		},
 
 		substr: function() {
@@ -143,6 +144,29 @@
 				});
 				$('.ecjia-download').remove();
 			})
+		},
+		
+		//发现页顶部滚动图标
+		discover_swiper: function() {
+			var index = 0;
+			if (sessionStorage.getItem("discover_swiper")) {
+				index = sessionStorage.getItem("discover_swiper");
+			}
+			var swiper = new Swiper('#swiper-discover-icon', {
+				slidesPerView: 5,
+				paginationClickable: true,
+				initialSlide: index,
+				spaceBetween: 0,
+			});
+			
+			$('#swiper-discover-icon .swiper-slide').find('a').off('click').on('click', function(e) {
+				e.preventDefault();
+				var $this = $(this),
+					url = $this.attr('href');
+				var i = $("#swiper-discover-icon").find('.swiper-slide').index();
+				sessionStorage.setItem("discover_swiper", i);
+				ecjia.pjax(url);
+			});
 		},
 	};
 

@@ -130,8 +130,6 @@ RC_Hook::add_action('franchisee/index/location', array('franchisee_controller', 
 RC_Hook::add_action('franchisee/index/location_finish', array('franchisee_controller', 'location_finish'));//提交店铺精确位置
 RC_Hook::add_action('franchisee/index/get_region', array('franchisee_controller', 'get_region'));//提交店铺精确位置
 
-
-
 //登陆注册
 RC_Loader::load_theme('extras/controller/user_privilege_controller.php');
 RC_Hook::add_action('user/privilege/login', array('user_privilege_controller', 'login'));
@@ -219,7 +217,9 @@ RC_Hook::add_action('connect/index/bind_signin', array('connect_controller', 'bi
 RC_Hook::add_action('connect/index/bind_signin_do', array('connect_controller', 'bind_signin_do'));
 RC_Hook::add_action('connect/index/bind_login', array('connect_controller', 'bind_login'));
 
-
+//发现
+RC_Loader::load_theme('extras/controller/discover_controller.php');
+RC_Hook::add_action('discover/index/init', array('discover_controller', 'init'));//发现首页
 
 /**
  * step：3

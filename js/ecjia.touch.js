@@ -700,6 +700,7 @@
 	//PJAX开始
 	$(document).on('pjax:start', function() {
 		sessionStorage.removeItem('swiper');
+		sessionStorage.removeItem('discover_swiper');
 		
 		ecjia.touch.pjaxloadding();
 		if (window.releated_goods != undefined && window.releated_goods.length != 0) {
