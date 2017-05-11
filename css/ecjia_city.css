@@ -9180,6 +9180,7 @@ footer {
 .ecjia-discover {
     position: relative;
     padding-bottom: .5rem;
+	background: #fff;
 }
 
 .ecjia-discover #swiper-discover-icon a {
