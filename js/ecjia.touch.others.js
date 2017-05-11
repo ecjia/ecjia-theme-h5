@@ -18,10 +18,11 @@
 		},
 		
 		removeItem() {
-			sessionStorage.removeItem('swiper');
-			sessionStorage.removeItem('discover_cycleimage');
-			sessionStorage.removeItem('discover_swiper');
-			sessionStorage.removeItem('discover_cat');
+			sessionStorage.removeItem('swiper');				//首页轮播图
+			
+			sessionStorage.removeItem('discover_swiper');		//发现页滚动图标
+			sessionStorage.removeItem('discover_cycleimage');	//发现页轮播图
+			sessionStorage.removeItem('discover_cat');			//发现页滚动分类
 		},
 
 		substr: function() {
