@@ -60,6 +60,26 @@ class discover_controller {
     		$token = ecjia_touch_user::singleton()->getToken();
     		$signup_reward_url =  RC_Uri::url('user/mobile_reward/init', array('token' => $token));
     		ecjia_front::$controller->assign('signup_reward_url', $signup_reward_url);
+    		
+    		$arr = array(
+    			'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+    			'city_id' => $_COOKIE['city_id']
+    		);
+    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DATA)->data($arr)->run();
+    		
+    		//处理ecjiaopen url
+    		if (!is_ecjia_error($data) && !empty($data)) {
+    			foreach ($data as $k => $v) {
+    				if ($k == 'player' || $k == 'mobile_menu') {
+    					foreach ($v as $key => $val) {
+    						if (strpos($val['url'], 'ecjiaopen://') === 0) {
+    							$data[$k][$key]['url'] = with(new ecjia_open($val['url']))->toHttpUrl();
+    						}
+    					}
+    				}
+    			}
+    			ecjia_front::$controller->assign('cycleimage', $data['player']);
+    		}
     	}
         ecjia_front::$controller->display('discover_init.dwt', $cache_id);
     }

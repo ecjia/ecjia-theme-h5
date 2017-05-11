@@ -9198,3 +9198,36 @@ footer {
     height: 3em;
     margin: .2em auto;
 }
+
+.ecjia-discover-cycleimage {
+	margin-bottom: .5em;
+}
+
+.ecjia-discover-cycleimage .swiper-container-horizontal>.swiper-pagination {
+    bottom: 0;
+}
+
+.ecjia-discover-article {
+	border-top: 2px solid #eee;
+	border-bottom: 2px solid #eee;
+	padding-right: 30px;
+	position: relative;
+}
+
+.ecjia-discover-article .swiper-wrapper {
+	height: 50px;
+    line-height: 50px;
+}
+
+.ecjia-discover-article .swiper-slide.active {
+	border-bottom: 3px solid #47AA4D;
+}
+
+.ecjia-discover-article .article-add {
+    width: 30px;
+    position: absolute;
+    right: 0;
+    top: -2px;
+    font-size: 1.5em;
+    line-height: 50px;
+}

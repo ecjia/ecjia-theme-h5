@@ -5,7 +5,7 @@
 (function(ecjia, $) {
 	ecjia.touch.index = {
 		init: function() {
-			sessionStorage.removeItem('swiper');
+			this.removeItem();
 			this.substr();
 			this.init_swiper();
 			this.change_index();
@@ -13,6 +13,15 @@
 			this.promote_time();
 			this.close_download();
 			this.discover_swiper();
+			this.discover_cycleimage();
+			this.discover_cat();
+		},
+		
+		removeItem() {
+			sessionStorage.removeItem('swiper');
+			sessionStorage.removeItem('discover_cycleimage');
+			sessionStorage.removeItem('discover_swiper');
+			sessionStorage.removeItem('discover_cat');
 		},
 
 		substr: function() {
@@ -165,6 +174,61 @@
 					url = $this.attr('href');
 				var i = $("#swiper-discover-icon").find('.swiper-slide').index();
 				sessionStorage.setItem("discover_swiper", i);
+				ecjia.pjax(url);
+			});
+		},
+		
+		//发现页轮播图
+		discover_cycleimage: function() {
+			if ($.find('.ecjia-discover-cycleimage').length != 0) {
+				var width = $('.ecjia-discover-cycleimage').find('.swiper-slide ').width();
+				$('.ecjia-discover-cycleimage').find('.swiper-slide').css('height', width / 3 + 'px');
+				$('.ecjia-discover-cycleimage').find('.swiper-slide').find('img').css('height', width / 3 + 'px');
+			}
+			if (sessionStorage.getItem("discover_cycleimage") == 1) {
+				return false;
+			}
+			var discover_cycleimage = new Swiper('#swiper-discover-cycleimage', {
+				pagination: '.swiper-pagination',
+				speed: 800,
+				grabCursor: true,
+				centeredSlides: true,
+				coverflow: {
+					rotate: 50,
+					stretch: 0,
+					depth: 100,
+					modifier: 1,
+					slideShadows: true
+				},
+				//无限滚动
+				slidesPerView: 1,
+				loop: true,
+				//自动播放
+				autoplay: 2500,
+				autoplayDisableOnInteraction: false,
+			});
+			sessionStorage.setItem("discover_cycleimage", 1);
+		},
+		
+		//发现页分类滚动
+		discover_cat: function() {
+			var index = 0;
+			if (sessionStorage.getItem("discover_cat")) {
+				index = sessionStorage.getItem("discover_cat");
+			}
+			var swiper = new Swiper('#swiper-article-cat', {
+				slidesPerView: 5,
+				paginationClickable: true,
+				initialSlide: index,
+				spaceBetween: 0,
+			});
+			
+			$('#swiper-article-cat .swiper-slide').find('a').off('click').on('click', function(e) {
+				e.preventDefault();
+				var $this = $(this),
+					url = $this.attr('href');
+				var i = $("#swiper-article-cat").find('.swiper-slide').index();
+				sessionStorage.setItem("discover_cat", i);
 				ecjia.pjax(url);
 			});
 		},
