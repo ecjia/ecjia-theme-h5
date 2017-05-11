@@ -1,4 +1,4 @@
-/* 鍏ㄥ眬鏍峰紡 */
+/* 全局样式 */
 * {
     margin: 0;
     padding: 0;
@@ -231,7 +231,7 @@ a.ecjia-color-green {
 	position: relative;
 }
 
-/* 閫夋嫨鏍峰紡 */
+/* 选择样式 */
 .ecjia-check {
 	width: 20px;
 	height: 20px;
@@ -241,16 +241,16 @@ a.ecjia-color-green {
 	background-size: 20px 220px;
 }
 
-.ecjia-check-checked /* 閫変腑  */ {
+.ecjia-check-checked /* 选中  */ {
 	background-position: 0px -200px;
 }
 
-.ecjia-check-edit /* x鏍峰紡 */ {
+.ecjia-check-edit /* x样式 */ {
 	background-position: 0px -100px;
 }
-/* 閫夋嫨鏍峰紡end */
+/* 选择样式end */
 
-/*鏍囩*/
+/*标签*/
 .ecjia-tag {
 	font-size: .8em;
 	color: #ffffff;
@@ -303,7 +303,7 @@ a.ecjia-color-green {
 .select-title-small {
 	font-size: 0.8em;
 }
-/*========================  棣栭〉 ===========================*/
+/*========================  首页 ===========================*/
 .goods-index-list.ecjia-mod {
 	background-color: #F7F7F7;
 	padding-bottom: 50px;
@@ -412,7 +412,7 @@ a.ecjia-color-green {
 	overflow: hidden;
 }
 
-/*== 椤堕儴瀹氫綅  ==*/
+/*== 顶部定位  ==*/
 .ecjia-web {
 	line-height: 2.5em;
 	text-align: center;
@@ -459,7 +459,7 @@ a.ecjia-color-green {
 	font-size: 1em;
 }
 
-/*== 鍟嗗鍏ラ┗寮� ==*/
+/*== 商家入驻开始 ==*/
 .ecjia-address-list .form-group .settled-message {
 	position: absolute;
 	padding: 0!important;
@@ -765,7 +765,7 @@ a.ecjia-color-green {
 
 .ecjia-address-list .franchisee-process-hint p {
 	font-size: 22px;
-	font-family: '榛戜綋'
+	font-family: '黑体'
 }
 
 .ecjia-address-list .franchisee-progress {
@@ -780,12 +780,12 @@ a.ecjia-color-green {
 	padding: .5em 0 0 0;
 	color: #45a46c;
 	font-size: 20px;
-	font-family: '榛戜綋';
+	font-family: '黑体';
 }
 
 .ecjia-address-list .franchisee-prompt .check-stat {
 	color: #45a46c;
-	font-family: '榛戜綋';
+	font-family: '黑体';
 }
 
 .ecjia-address-list .franchisee-progress hr {
@@ -889,15 +889,15 @@ a.ecjia-color-green {
 	color: #FFF;
 	font-size: 1em;
 	overflow: hidden;
-	font-family: '榛戜綋';
+	font-family: '黑体';
 }
 
 
-/*== 鍟嗗鍏ラ┗缁撴潫 ==*/
+/*== 商家入驻结束 ==*/
 
 
 
-/*== 閫夋嫨瀹氫綅  ==*/
+/*== 选择定位  ==*/
 .ecjia-zs {
 	background: #f4f4f4 none repeat scroll 0 0;
 	height: 100%;
@@ -979,7 +979,7 @@ a.ecjia-color-green {
 }
 
 
-/*== 鎼滅储鎻愮ず  ==*/
+/*== 搜索提示  ==*/
 .a1::before {
 	border-bottom: 1px solid #e8e8e8;
 	bottom: -1px;
@@ -1083,7 +1083,7 @@ ul, li, ol, dl, dt, dd {
 	list-style: outside none none;
 }
 
-/*鎼滅储*/
+/*搜索*/
 .focus {
 	margin-top: 5.4em;
 }
@@ -1217,7 +1217,7 @@ ul, li, ol, dl, dt, dd {
 .ecjia-row-nav.index {
 	padding-bottom: 0;
 }
-/*棣栭〉骞垮憡浣�/
+/*首页广告位*/
 .ecjia-mod {
 	background: #fff;
 }
@@ -1283,7 +1283,7 @@ ul, li, ol, dl, dt, dd {
 	height: 8.5em;
 	border-radius: .4em;
 }
-/*棣栭〉淇冮攢鍟嗗搧*/
+/*首页促销商品*/
 .ecjia-mod.ecjia-promotion-model {
 	overflow: hidden;
 }
@@ -1425,7 +1425,7 @@ ul, li, ol, dl, dt, dd {
 	top: 0em;
 	right: 0em;
 }
-/*淇冮攢鍟嗗搧 鏇村*/
+/*促销商品 更多*/
 .ecjia-promotion-list {
 	overflow: hidden;
 	padding: .5em 1em;
@@ -1491,7 +1491,7 @@ ul, li, ol, dl, dt, dd {
 	background: #fff;
 	padding: .2em;
 }
-/*鏂板搧鎺ㄨ崘 鏇村*/
+/*新品推荐 更多*/
 .ecjia-new-goods .goods-img img {
 	width: 98%;
 	display: block;
@@ -1559,7 +1559,7 @@ ul, li, ol, dl, dt, dd {
 	margin-left: 0;
 	border-left: 0;
 }
-/*鐑棬鎺ㄨ崘*/
+/*热门推荐*/
 .ecjia-mod.ecjia-new-goods .line {
 	width: 96%;
 }
@@ -1611,7 +1611,7 @@ footer {
 .ecjia-index .ecjia-margin-t2 {
 	margin-top: 2em;
 }
-/*========================  鍒嗙被 ===========================*/
+/*========================  分类 ===========================*/
 .category .ecjia-header {
 	position: fixed;
 	height: 3.5em;
@@ -1660,7 +1660,7 @@ footer {
 	margin-left: 5.8em;
 	-webkit-overflow-scrolling: touch;
 }
-/*========================  搴楅摵鍟嗗搧 ===========================*/
+/*========================  店铺商品 ===========================*/
 .ecjia-fixed {
 	position: fixed;
 	width: 100%;
@@ -2941,11 +2941,11 @@ footer {
 	color: #ff3434;
 	font-size: 1.1em;
 }
-/*========================  璐墿杞�===========================*/
+/*========================  购物车 ===========================*/
 .small-btn {
 	margin-top: 50px;
 }
-/*瀹氫綅鍦板潃銆侀�鎷╃殑鏀惰揣鍦板潃  - 璐墿杞︼紝缁撶畻 閫氱敤*/
+/*定位地址、选择的收货地址  - 购物车，结算 通用*/
 .flow-address {
 	min-height: 5em;
 	padding: .5em 1em 1em 1em;
@@ -3010,7 +3010,7 @@ footer {
 	font-size: 14px;
 	color: #333;
 }
-/*瀹氫綅鍦板潃 ====缁撴潫 === */
+/*定位地址 ====结束 === */
 
 .flow-no-pro {
 	position: relative;
@@ -3442,7 +3442,7 @@ footer {
 	visibility: visible;
 	opacity: 1;
 }
-/*========================  缁撶畻 ecjia-checkout =========================== */
+/*========================  结算 ecjia-checkout =========================== */
 
 .ecjia .ecjia-checkout .checklist {
 	overflow: hidden;
@@ -3514,7 +3514,7 @@ footer {
 	font-size: 0.9em;
 }
 
-/* 璁㈠崟鍟嗗搧鍒楄〃 */
+/* 订单商品列表 */
 .ecjia .ecjia-checkout .flow-goods-list {
 	background: #ffffff;
 }
@@ -3629,7 +3629,7 @@ footer {
 .ecjia-address-list.ecjia-select-address .list .ecjia-margin-top {
 	margin-bottom: .5em;
 }
-/*======================== 閫夋嫨鏀粯鏂瑰紡銆侀�鎷╅厤閫佹柟寮忋�閫夋嫨绾㈠寘 ecjia-select  ===========================*/
+/*======================== 选择支付方式、选择配送方式、选择红包 ecjia-select  ===========================*/
 .ecjia .ecjia-select li {
 	padding: 1em;
 	height: 3.5em;
@@ -3696,7 +3696,7 @@ footer {
 .ecjia-shipping-date .data-shipping {
 	display: none;
 }
-/*======================== 鍙戠エ淇℃伅 ecjia-invoice ===========================*/
+/*======================== 发票信息 ecjia-invoice ===========================*/
 .ecjia-flow-invoice .ecjia-list li {
 	border-bottom: none;
 	position: relative;
@@ -3720,15 +3720,15 @@ footer {
 	border-bottom: none;
 }
 
-/*======================== 浣跨敤绉垎銆佽鍗曠暀瑷�ecjia-text ===========================*/
+/*======================== 使用积分、订单留言 ecjia-text ===========================*/
 
-/* 鏀粯 */
+/* 支付 */
 
 .ecjia-pay .ecjia-list {
 	border-top: 1px solid #eee;
 }
 
-/*========================  缁撶畻瀹屾垚 ===========================*/
+/*========================  结算完成 ===========================*/
 .ecjia-flow-done .flow-success {
 	margin: 2em 0;
 }
@@ -3826,7 +3826,7 @@ footer {
 	background: #fff url(../images/icon/pay-cod.png) no-repeat 0 center;
 	background-size: 28px;
 }
-/*========================  鎴戠殑 ===========================*/
+/*========================  我的 ===========================*/
 .ecjia-user {
 	/*margin-top: 0.4em;*/
     /*padding-bottom: calc(44px + 1em);*/
@@ -4373,7 +4373,7 @@ footer {
 	line-height: 2em;
 	height: 5.5em;
 }
-/*========================  缁戝畾鎵嬫満 ===========================*/
+/*========================  绑定手机 ===========================*/
 .ecjia-user .d_bind .p_bind{
 	padding: 1em 1em 0 1em;
     font-size: 1.1em;
@@ -4430,7 +4430,7 @@ footer {
     left: 3%;
     border-bottom: 1px solid #eee;
 }
-/*========================  鍩庡競閫夋嫨 ===========================*/
+/*========================  城市选择 ===========================*/
 .location-city .location-city-title {
 	font-size: 15px;
     line-height: 40px;
@@ -4500,7 +4500,7 @@ footer {
 	border-none;
 }
 
-/*========================  璐︽埛浣欓 ===========================*/
+/*========================  账户余额 ===========================*/
 
 .ecjia-account .account-bonus {
 	background: #fff;
@@ -4732,11 +4732,11 @@ footer {
 	background-size: 20px 220px;
 }
 
-.ecjia-account-padding-input .ecjia-check-checked /* 閫変腑  */ {
+.ecjia-account-padding-input .ecjia-check-checked /* 选中  */ {
 	background-position: 0px -200px;
 }
 
-.ecjia-account-padding-input .ecjia-check-edit /* x鏍峰紡 */ {
+.ecjia-account-padding-input .ecjia-check-edit /* x样式 */ {
 	background-position: 0px -100px;
 }
 
@@ -4787,7 +4787,7 @@ footer {
 	height: 100%;
 	padding: 0;
 }
-/*========================  浜ゆ槗璁板綍 ===========================*/
+/*========================  交易记录 ===========================*/
 .ecjia-account-record {
 	height: auto;
 	padding-top: 4.5em;
@@ -5025,7 +5025,7 @@ footer {
 	padding-right: 1em;
 	width: 100%;
 }
-/*========================  绾㈠寘 ===========================*/
+/*========================  红包 ===========================*/
 .ecjia-bonus {
 	height: auto;
 }
@@ -5193,7 +5193,7 @@ footer {
 	height: 10em;
 }
 
-/*========================  鐧诲綍 ===========================*/
+/*========================  登录 ===========================*/
 .ecjia-login {
 	padding-top: 6em;
 	background-color: #F7F7F7;
@@ -5443,10 +5443,10 @@ footer {
 	background-color: #e78e20;
 	border-color: #e78e20;
 }
-/*========================  鎼滅储 ===========================*/
+/*========================  搜索 ===========================*/
 
 
-/*========================  鍟嗗搧璇︽儏 ===========================*/
+/*========================  商品详情 ===========================*/
 .ecjia-goods-detail-header-title {
 	height: 2.5em;
 	line-height: 2.65em;
@@ -6017,7 +6017,7 @@ footer {
 	line-height: 3em;
 	border-bottom: 1px solid #eee;
 }
-/*========================  璁㈠崟鍒楄〃 ===========================*/
+/*========================  订单列表 ===========================*/
 .ecjia-order-list {
 	padding-bottom: 4em;
 }
@@ -6176,7 +6176,7 @@ footer {
 .ecjia-order-list .two-btn .btn {
 	line-height: 1.2em;
 }
-/*========================  璁㈠崟璇︽儏 ===========================*/
+/*========================  订单详情 ===========================*/
 .ecjia-order-detail .order-hd {
 	background-color: #fff;
 }
@@ -6521,7 +6521,7 @@ footer {
     border-radius: 100%;
 } */
 
-/* 璁㈠崟鍟嗗搧鍒楄〃鍗曠嫭椤甸潰*/
+/* 订单商品列表单独页面*/
 .ecjia-flow-goodslist.ecjia-order-detail .ecjia-checkout {
 	border: none;
 }
@@ -6558,7 +6558,7 @@ footer {
 	margin-top: 1.5em;
 }
 
-/*========================  璇勪环鏅掑崟 ===========================*/
+/*========================  评价晒单 ===========================*/
 .ecjia-comment-list {
 	border-bottom: 1px solid #eee;
 }
@@ -6693,7 +6693,7 @@ footer {
 	font-weight: normal;
 }
 
-.ecjia-push-comment .anonymity-check-checked /* 閫変腑  */ {
+.ecjia-push-comment .anonymity-check-checked /* 选中  */ {
 	background-position: 0px -200px;
 }
 
@@ -6806,15 +6806,15 @@ footer {
 	color: #b7b7b8;
 }
 
-/*========================  鏂囩珷 ===========================*/
+/*========================  文章 ===========================*/
 
 
-/*========================  绾㈠寘 ===========================*/
+/*========================  红包 ===========================*/
 
 
-/*========================  绾㈠寘 ===========================*/
+/*========================  红包 ===========================*/
 
-/*========================  鍒嗙被搴楅摵 ===========================*/
+/*========================  分类店铺 ===========================*/
 .ecjia-store-goods-list {
 	background: #FFFFFF;
 	margin-bottom: 48px;
@@ -7202,7 +7202,7 @@ footer {
 	font-weight: normal;
 }
 
-/*========================  鎵�湁鍒嗙被 ===========================*/
+/*========================  所有分类 ===========================*/
 .ecjia-category-list .hd {
 	height: 3em;
 	border: none;
@@ -7261,7 +7261,7 @@ footer {
     line-height: 2em;
 }
 
-/*========================  搴曢儴瀵艰埅 ===========================*/
+/*========================  底部导航 ===========================*/
 .ecjia-bottom-bar-pannel {
 	position: fixed;
 	z-index: 801;
@@ -7341,7 +7341,7 @@ footer {
 	color: #39ac69;
 }
 
-/*======================== 鎺ㄥ箍 ===========================*/
+/*======================== 推广 ===========================*/
 .ecjia-spread .ecjia-my-reward {
 	width: 100%;
 	padding-left: 1em;
@@ -7802,7 +7802,7 @@ footer {
 	position: absolute;
 	top: 30%;
 	font-size: 16px;
-	font-family: '榛戜綋';
+	font-family: '黑体';
 	right: 2%;
 	display: inline-block;
 	width: auto;
@@ -7817,7 +7817,7 @@ footer {
 	top: 0;
 	border-bottom: 1px solid #eee;
 }
-/*======================== 鍔犺浇鍔ㄧ敾 ===========================*/
+/*======================== 加载动画 ===========================*/
 .load-list {
 	transition: opacity .25s linear;
 	opacity: 1;
@@ -7920,7 +7920,7 @@ footer {
 	animation-fill-mode: both;
 	display: inline-block;
 }
-/*======================涓嬭浇========================*/
+/*======================下载========================*/
 .ecjia-download {
 	height: 60px;
 	line-height: 18px;
@@ -7966,7 +7966,7 @@ footer {
 	z-index: 7;
 }
 
-/*搴楅摵涓婚〉鍏憡寮瑰嚭灞�/
+/*店铺主页公告弹出层*/
 .ecjia-store-modal {
 	width: 300px;
 	position: absolute;
@@ -8194,7 +8194,7 @@ footer {
 	font-size: 1.5em;
 	color: #aaa;
 }
-/*搴楅摵璇勫垎*/
+/*店铺评分*/
 .ecjia-seller-comment {
     height: auto;
     overflow: hidden;
@@ -8503,7 +8503,7 @@ footer {
 	border-radius: 4px;
 	margin-top: .3em;
 }
-/*棣栭〉鐑棬鎺ㄨ崘搴楅摵*/
+/*首页热门推荐店铺*/
 .ecjia-store-model {
 	padding-bottom: 50px;
 }
@@ -8697,7 +8697,7 @@ footer {
 	font-size: .9em;
 }
 
-/*閫夋嫨鍟嗗搧瑙勬牸寮瑰嚭灞�/
+/*选择商品规格弹出层*/
 .ecjia-goodsAttr-modal, .ecjia-attr-static {
 	width: 95%;
     position: fixed;
@@ -8861,7 +8861,7 @@ footer {
 	color: #8c8a8a;
 }
 
-/*寮圭獥閫夋嫨鍟嗗搧灞炴�鍔犲噺鏍峰紡*/
+/*弹窗选择商品属性加减样式*/
 .ecjia-choose-attr-box {
 	float: right;
 	margin-top: 15px;
@@ -8926,7 +8926,7 @@ footer {
     text-overflow: ellipsis;
 }
 
-/*璐墿杞�.5*/
+/*购物车1.5*/
 .ecjia-flow-cart .a4t {
 	padding: 0 0 99px 0;
 	text-align: center;
@@ -9169,30 +9169,31 @@ footer {
 	padding-top: 0;
 }
 
+
 /*发现*/
 .ecjia-discover.clearfix:after {
-	clear: both;
+    clear: both;
     content: "";
     display: block;
 }
 
 .ecjia-discover {
-	position: relative;
-	padding-bottom: .5rem;
+    position: relative;
+    padding-bottom: .5rem;
 }
 
 .ecjia-discover #swiper-discover-icon a {
-	display: inline-block;
+    display: inline-block;
     width: 4em;
     text-align: center;
 }
 
 .ecjia-discover #swiper-discover-icon.swiper-container .swiper-slide {
-	padding: .5em 0;
+    padding: .5em 0;
 }
 
 .ecjia-discover #swiper-discover-icon img {
-	width: 3em;
-	height: 3em;
-	margin: .2em auto;
+    width: 3em;
+    height: 3em;
+    margin: .2em auto;
 }
