@@ -9679,3 +9679,22 @@ footer {
     line-height: 2;
 }
 
+.ecjia-discover-detail .form-group {
+	margin-bottom: 0;
+}
+
+.ecjia-discover-detail .floor {
+	padding-bottom: 1em;
+}
+
+.ecjia-discover-detail .floor .view-more {
+    color: #ff3434;
+    width: 9em;
+    height: 2em;
+    line-height: 2em;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid #ff3434;
+    padding: 0 1em;
+    border-radius: 4px;
+}

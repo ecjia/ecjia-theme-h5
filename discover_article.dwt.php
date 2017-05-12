@@ -56,13 +56,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	
 	<div class="author-panel"> 
 		<div class="author-pic-box" data-lazy="false"> 
-			<img class="author-pic lazy-img" src="{$theme_url}images/default_user.png"> </div> 
-			<div class="author-title clearfix"> 
-				<span class="author-name ellipsis">潮流酷潮玩</span> 
-			</div> 
-			<p class="author-desc"> 
-				<span>共177篇资讯</span> 
-			</p>  
+		<img class="author-pic lazy-img" src="{$theme_url}images/default_user.png"> </div> 
+		<div class="author-title clearfix"> 
+			<span class="author-name ellipsis">潮流酷潮玩</span> 
+		</div> 
+		<p class="author-desc"> 
+			<span>共177篇资讯</span> 
+		</p>  
 		<div class="enter-store">进入店铺</div> 
 	</div>
 	
@@ -73,7 +73,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<span class="floor-title-cn">相关商品</span> 
 				<span class="floor-title-en">Related Products</span> 
 			</div> 
-            <div class="ecjia-margin-b form-group ecjia-form ecjia-like-goods-list">
+            <div class="form-group ecjia-form ecjia-like-goods-list">
                 <div class="bd">
 					<ul class="ecjia-list ecjia-like-goods-list">
 						<!--{foreach from=$goods_info.related_goods item=goods name=goods}-->
@@ -106,6 +106,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </div>
         </div>
 		<!-- {/if} -->
+		<div class="view-more">查看更多商品</div> 
 	</div>
 </div>
 <!-- {/block} -->
