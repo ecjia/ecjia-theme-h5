@@ -9262,14 +9262,14 @@ footer {
 }
 
 .ecjia-article.article-list .article .article-left .article-summary {
-    font-size: .5em;
+    font-size: .8em;
     line-height: 1.6em;
     height: 3.2em;
     color: #646464;
 }
 
 .ecjia-article.article-list .article .article-left .article-author {
-    margin-top: .8em;
+    margin-top: .85em;
 }
 
 .ecjia-article.article-list .article .article-left .article-author .article-author-pic {
@@ -9284,7 +9284,7 @@ footer {
 	font-size: .8em;
     color: #989898;
     float: left;
-    line-height: 1.2em;
+    line-height: 1.3em;
     max-width: 90%;
     overflow: hidden;
     text-overflow: ellipsis;
