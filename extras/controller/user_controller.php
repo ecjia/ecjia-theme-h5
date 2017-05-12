@@ -186,6 +186,19 @@ class user_controller {
             }
         }
     }
+    
+    /**
+     * 百宝箱
+     */
+    public static function magic_box() {
+        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+        
+        if (!ecjia_front::$controller->is_cached('magic_box.dwt', $cache_id)) {
+            ecjia_front::$controller->assign_title('百宝箱');
+        }
+        ecjia_front::$controller->display('magic_box.dwt', $cache_id);
+    }
+    
 }
 
 // end
