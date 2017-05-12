@@ -56,6 +56,10 @@ a.ecjia-color-green {
 	width: 75%
 }
 
+.ecjia .pb_50 {
+	padding-bottom: 50px;
+}
+
 .ecjia .ecjia-margin-t-n {
 	margin-top: 0;
 }
@@ -7301,7 +7305,7 @@ footer {
 }
 
 .o a.cartList {
-	background-position: center -350px;
+	background-position: center -400px;
 }
 
 .o a.orderList {
@@ -7309,7 +7313,7 @@ footer {
 }
 
 .o a.discover {
-	background-position: center -400px;
+	background-position: center -350px;
 }
 
 .o a.mine {
@@ -7333,6 +7337,11 @@ footer {
 
 .o.orderList a.orderList {
 	background-position: center -150px;
+	color: #39ac69;
+}
+
+.o.discover a.discover {
+	background-position: center -100px;
 	color: #39ac69;
 }
 
@@ -9180,6 +9189,10 @@ footer {
 .ecjia-discover {
     position: relative;
     padding-bottom: .5rem;
+	background: #f7f7f7;
+}
+
+.ecjia-discover-icon {
 	background: #fff;
 }
 
@@ -9227,9 +9240,10 @@ footer {
     width: 30px;
     position: absolute;
     right: 0;
-    top: -2px;
+    top: -2.5px;
     font-size: 1.5em;
     line-height: 50px;
+	cursor: pointer;
 }
 
 .ecjia-article.article-list {
@@ -9262,14 +9276,14 @@ footer {
 }
 
 .ecjia-article.article-list .article .article-left .article-summary {
-    font-size: .8em;
+    font-size: 1em;
     line-height: 1.6em;
     height: 3.2em;
     color: #646464;
 }
 
 .ecjia-article.article-list .article .article-left .article-author {
-    margin-top: .85em;
+    margin-top: .4em;
 }
 
 .ecjia-article.article-list .article .article-left .article-author .article-author-pic {
@@ -9350,12 +9364,12 @@ footer {
 
 .ecjia-article.article-list .article .article-right .article-info .article-time .clock {
     float: left;
-	width: .9em;
-    height: .9em;
-	background-image: url(../images/icon/icon-clock.png);
-	background-size: .9em .9em;
-	background-repeat: no-repeat;
-	margin-top: -.1em;
+    width: .7em;
+    height: .7em;
+    background-image: url(../images/icon/icon-clock.png);
+    background-size: .7em .7em;
+    background-repeat: no-repeat;
+    margin-top: .1em;
 }
 
 .ecjia-article.article-list .article .article-right .article-info .little-icon {
@@ -9400,7 +9414,7 @@ footer {
 	background-image: url(../images/icon/icon-eye.png);
 	background-size: .8em .7em;
 	background-repeat: no-repeat;
-	margin-top: 0.02em;
+	margin-top: .1em;
 }
 
 .ecjia-article.article-list .article .article-right .article-info .little-icon {
@@ -9409,20 +9423,64 @@ footer {
     background-repeat: no-repeat;
 }
 
+.ecjia-down-navi.down-transition {
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+}
 
-.ecjia-application-menu {
-	background-color: #FFF;
+.ecjia-down-navi {
+    position: fixed;
+    z-index: 11;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: #f2f2f2;
+	max-width: 640px;
+    margin: 0 auto;
+	display: none;
 }
-.ecjia-application-menu .function-management {
-	text-align: center;
-	color: #ff3434;
-	padding: 1em 0;
+
+.ecjia-down-navi .navi-title {
+	margin: 2em 0 1em 1em;
 }
-.ecjia-application-menu .function-management span {
-	margin: 0 .8em;
+
+.ecjia-down-navi .navi {
+    float: left;
+    margin-right: 5%;
+    margin-bottom: 1em;
+    text-align: center;
+    font-size: 1em;
+    line-height: 2em;
+    height: 2em;
+    display: inline-block;
+    width: 28%;
 }
-.ecjia-application-menu .function-management hr {
-	width: 3em;
-	display: inline-block;
-	background-color: #ff3434
+
+.ecjia-down-navi .navi-list {
+	margin: 0 1em;
+    height: auto;
+    overflow: hidden;
+    min-height: 5em;
+}
+
+.ecjia-down-navi .navi.active .navi-name {
+    color: #47aa4d;
+}
+
+.ecjia-down-navi .navi .navi-name {
+    background-color: #fff;
+    padding: 0 .5em;
+    border: 1px solid #aaa;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.ecjia-down-navi .close_div{
+    position: absolute;
+    right: 1em;
+    top: .5em;
+    font-size: 1.2em;
+    cursor: pointer;
 }

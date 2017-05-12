@@ -15,6 +15,7 @@
 			this.discover_swiper();
 			this.discover_cycleimage();
 			this.discover_cat();
+			this.discover_init();
 		},
 		
 		removeItem() {
@@ -231,6 +232,18 @@
 				var i = $("#swiper-article-cat").find('.swiper-slide').index();
 				sessionStorage.setItem("discover_cat", i);
 				ecjia.pjax(url);
+			});
+		},
+		
+		discover_init: function() {
+			$('.ecjia-discover .article-add').off('click').on('click', function() {
+				$('.ecjia-discover').css('display', 'none');
+				$('.ecjia-down-navi').css('display', 'block');
+			});
+			
+			$('.ecjia-down-navi .close_div').off('click').on('click', function() {
+				$('.ecjia-discover').css('display', 'block');
+				$('.ecjia-down-navi').css('display', 'none');
 			});
 		},
 	};

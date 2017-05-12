@@ -80,6 +80,8 @@ class discover_controller {
     			}
     			ecjia_front::$controller->assign('cycleimage', $data['player']);
     		}
+    		
+    		ecjia_front::$controller->assign('active', 'discover');
     	}
         ecjia_front::$controller->display('discover_init.dwt', $cache_id);
     }
