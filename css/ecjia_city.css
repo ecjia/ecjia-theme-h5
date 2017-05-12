@@ -9550,7 +9550,7 @@ footer {
 .ecjia-discover-detail .article-content-sku .content-sku-img {
     float: left;
     height: 7em;
-    max-width: 30%;
+    max-width: 25%;
 }
 
 .ecjia-discover-detail .article-content-sku .content-sku-right {
@@ -9559,7 +9559,7 @@ footer {
     height: 5.25rem;
     padding-left: 1em;
     padding-right: 1em;
-    width: 70%;
+    width: 75%;
 }
 
 .ecjia-discover-detail .article-content-sku .content-sku-right .content-sku-name {
