@@ -9523,7 +9523,7 @@ footer {
 .ecjia-discover-detail .article-p {
 	font-size: 1.1em;
     color: #404040;
-    line-height: 1.5em;
+	line-height: 2rem;
 	padding-left: .8em;
     padding-right: .8em;
     margin-top: .25em;
@@ -9543,7 +9543,7 @@ footer {
 }
 
 .ecjia-discover-detail .article-content-sku {
-    height: auto;
+	height: auto;
     padding: .5em;
     background-color: #f6f6f6;
     width: 100%;
@@ -9551,37 +9551,31 @@ footer {
 
 .ecjia-discover-detail .article-content-sku .content-sku-img {
     float: left;
-    height: 7em;
-    max-width: 25%;
+    height: 8rem;
+    width: 8rem;
 }
 
 .ecjia-discover-detail .article-content-sku .content-sku-right {
-    position: relative;
-    float: left;
+	position: relative;
     height: 5.25rem;
     padding-left: 1em;
     padding-right: 1em;
-    width: 75%;
+    margin-left: 8rem;
 }
 
 .ecjia-discover-detail .article-content-sku .content-sku-right .content-sku-name {
     font-size: 1.1em;
-    line-height: 1.5;
+	line-height: 2rem;
     width: 100%;
     color: #2f2f2f;
     word-break: break-all;
 }
 
 .ecjia-discover-detail .article-content-sku .content-sku-right .content-sku-bottom {
-	position: absolute;
-    top: 5em;
-	left: 1em;
-    padding-right: 2em;
-    width: 100%;
+	margin-top: 2rem;
 }
 
 .ecjia-discover-detail .article-content-sku .content-sku-right .content-sku-bottom .sku-price {
-    display: inline-block;
     font-size: 1.1em;
     color: #ff3434;
 }
