@@ -9767,6 +9767,7 @@ footer {
 
 .ecjia-discover-detail .floor.comment-floor {
 	padding-bottom: 3em;
+	background: #f7f7f7;
 }
 
 .ecjia-discover-detail .nav-bt-fix {
@@ -9801,4 +9802,58 @@ footer {
 	font-size: .8em;
 	padding-left: .2em;
 	color: #333;
+}
+
+.ecjia-discover-detail .send-box {
+	position: fixed;
+	bottom: 0;
+    z-index: 12;
+	width: 100%;
+    background: #eee;
+    overflow: hidden;
+	display: none;
+	max-width: 640px;
+}
+
+.ecjia-discover-detail .send-box .textarea-box {
+    width: 100%;
+    min-height: 5rem;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.ecjia-discover-detail .send-box .textarea-box textarea {
+    font-size: .24rem;
+    outline: 0;
+    resize: none;
+}
+
+.ecjia-discover-detail .send-box .textarea-box textarea {
+    border: none;
+    line-height: 1.5em;
+    color: #333;
+    outline: 0;
+    width: 85%;
+    min-height: 5rem;
+    font-size: 1.1em;
+	margin: .4em 0 0 .4em;
+}
+
+.ecjia-discover-detail .send-box .textarea-box a {
+    position: absolute;
+    font-size: 1.1em;
+    top: 1.2em;
+    right: .5em;
+    border-radius: 50%;
+    background: #47aa4d;
+    color: #fff;
+    padding: .5em;
+    width: 3em;
+    height: 3em;
+    line-height: 2em;
+}
+
+.ecjia-discover-detail .background-fff {
+	background-color: #fff;
 }

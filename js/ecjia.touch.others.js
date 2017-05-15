@@ -16,6 +16,7 @@
 			this.discover_cycleimage();
 			this.discover_cat();
 			this.discover_init();
+			this.hide_box();
 		},
 		
 		removeItem() {
@@ -253,7 +254,14 @@
 				}
 				$this.addClass('disabled');
 				if ($this.hasClass('active')) {
-					$this.removeClass('active').removeClass('disabled');
+					$this.removeClass('active');
+					iosOverlay({
+						text: '取消点赞成功',
+						duration: 2e3,
+						onhide: function() {
+							$this.removeClass('disabled');
+						},
+					});
 				} else {
 					$this.addClass('active');
 					iosOverlay({
@@ -263,9 +271,35 @@
 							$this.removeClass('disabled');
 						},
 					});
-					return false;
 				}
 			});
+			
+			$('.icon-bianji1').off('click').on('click', function() {
+				$('.nav-bt-fix').hide();
+				$('.ecjia-discover-detail .a53').show();
+				$('.send-box').show();
+			});
+			
+			$('.send-btn').off('click').on('click', function(e) {
+				e.preventDefault();
+				iosOverlay({
+					text: '发表成功！',
+					duration: 2e3,
+				});
+				ecjia.touch.index.hide_box();
+			});
+			
+			$('.a53').off('click').on('click', function(e) {
+				e.preventDefault();
+				ecjia.touch.index.hide_box();
+			});
+		},
+		
+		hide_box: function() {
+			$('.nav-bt-fix').show();
+			$('.ecjia-discover-detail .a53').hide();
+			$('.send-box').find('textarea').html('');
+			$('.send-box').hide();
 		},
 	};
 

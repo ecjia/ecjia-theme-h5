@@ -109,8 +109,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="view-more">查看更多商品</div> 
 	</div>
 	
-	<div class="floor comment-floor"> 
-		<div class="ecjia-margin-t">
+	<div class="floor comment-floor" name="floor-comment" id="floor-comment"> 
+		<div class="ecjia-margin-t background-fff">
 			<div class="floor-title"> 
 				<span class="floor-title-cn">评论</span> 
 				<span class="floor-title-en">Comments</span> 
@@ -169,12 +169,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	        <a href="javascript:;">
 	        	<i class="iconfont icon-bianji1"><span>999999</span></i>
 	        </a>
-	        <a href="javascript:;">
+	        <a href="#floor-comment">
 	        	<i class="iconfont icon-comment"><span>999999</span></i>
 	        </a>
         </div>    
     </nav>
+    
+    <div class="send-box">
+        <div class="textarea-box">
+            <textarea cols="30" rows="3"></textarea>
+            <a class="xin-btn xin-btn-small send-btn" href="javascript:void(0);">发送</a>
+        </div>
+    </div>
+    <div class="a53"></div>
 </div>
-
-
 <!-- {/block} -->
