@@ -9190,6 +9190,7 @@ footer {
     position: relative;
     padding-bottom: .5rem;
 	background: #f7f7f7;
+	margin-top: 3.5em;
 }
 
 .ecjia-discover-icon {
@@ -9225,6 +9226,7 @@ footer {
 	border-bottom: 2px solid #eee;
 	padding-right: 30px;
 	position: relative;
+	background: #fff;
 }
 
 .ecjia-discover-article .swiper-wrapper {
@@ -9697,4 +9699,10 @@ footer {
     border: 1px solid #ff3434;
     padding: 0 1em;
     border-radius: 4px;
+}
+
+.ecjia-header .ecjia-discover-title {
+    margin: 0 30%;
+    text-align: center;
+	font-size: 1.2em;
 }

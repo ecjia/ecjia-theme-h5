@@ -15,6 +15,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
+
+<div class="ecjia-mod ecjia-header ecjia-header-index">
+	<div class="ecjia-discover-title">发现</div>
+	<div class="ecjia-header-icon-short">
+	</div>
+</div>
+
 <div class="ecjia-discover clearfix pb_50">
 	<div class="ecjia-discover-icon">
 		<div class="swiper-container" id="swiper-discover-icon">
