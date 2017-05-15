@@ -48,25 +48,25 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-user-border-b">
     <ul class="ecjia-user ecjia-list bonus ecjia-nav-child-f ecjia-list-four ecjia-login-nav-bottom">
     	<li>
-    		<a href="{url path='user/account/balance'}">
+    		<a href="{url path='user/order/order_list'}&type={'await_pay'}">
     		    <p>{$user.formated_user_money}</p>
     			<p>待付款</p>
     		</a>
     	</li>
     	<li>
-    		<a href="{url path='user/bonus/init'}">
+    		<a href="{url path='user/order/order_list'}&type={'await_ship'}">
     		    <p>{if $user.user_bonus_count eq '0'}{0}{else}{$user.user_bonus_count}{/if}</p>
     			<p>待发货</p>
     		</a>
     	</li>
     	<li>
-    	    <a href="{url path='user/account/init'}">
+    	    <a href="{url path='user/order/order_list'}">
         		<p>{$user.user_points}</p>
         		<p>待收货</p>
     		</a>
     	</li>
     	<li>
-    	    <a href="{url path='user/account/init'}">
+    	    <a href="{url path='user/order/order_list'}">
         		<p>{$user.user_points}</p>
         		<p>待评价</p>
     		</a>
