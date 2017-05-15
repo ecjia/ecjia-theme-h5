@@ -6026,6 +6026,32 @@ footer {
 	padding-bottom: 4em;
 }
 
+.ecjia-order-item-list {
+    margin-top: 3.5em;
+}
+
+.ecjia-order-search .ecjia-header {
+	background :#AAA;
+}
+
+.ecjia-order-search .ecjia-search-header.ecjia-search .ecjia-form {
+	right: .1em;
+}
+
+.ecjia-order-search .ecjia-search-header.ecjia-search .ecjia-form {
+	left: .1em;
+}
+
+.ecjia-order-header {
+	position: fixed;
+    top: 0;
+    width: 100%;
+    max-width: 640px;
+    z-index: 2;
+    overflow: hidden;
+    color: #fff;	
+}
+
 .ecjia-order-list .ecjia-nolist {
 	position: absolute;
 	top: 10em;
