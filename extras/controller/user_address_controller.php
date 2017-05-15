@@ -226,6 +226,22 @@ class user_address_controller {
     	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
     	ecjia_front::$controller->assign('type', $type);
     	
+    	if (!empty($_SESSION['order_address_temp']['store_id'])) {
+    		$store_id = $_SESSION['order_address_temp']['store_id'];
+    		$addr = !empty($_GET['addr']) ? $_COOKIE['city_name'].trim($_GET['addr']) : $_COOKIE['location_address'];
+    		
+    		$shop_point = file_get_contents("https://api.map.baidu.com/geocoder/v2/?address='".$addr."'&output=json&ak=E70324b6f5f4222eb1798c8db58a017b");
+    		$shop_point = json_decode($shop_point, true);
+    		
+    		$address['longitude']	= $shop_point['result']['location']['lng'];
+    		$address['latitude']	= $shop_point['result']['location']['lat'];
+    		
+    		$param = array('address' => array('latitude' => $address['latitude'], 'longitude' => $address['longitude']), 'store_id' => $store_id);
+    		$local = RC_Api::api('user', 'neighbors_address_store', $param);
+			$local = $local ? 1 : 0;
+    		ecjia_front::$controller->assign('local', $local);
+    	}
+    	
         ecjia_front::$controller->display('user_address_edit.dwt');
     }
 
