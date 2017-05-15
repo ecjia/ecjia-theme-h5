@@ -9713,8 +9713,7 @@ footer {
 .ecjia-discover-detail .floor .comment-item {
 	float: left;
     background: #fff;
-    margin: 1em;
-	margin-bottom: .5em;
+    margin: .5em 1em 0 1em;
     padding-bottom: .5em;
 	border-bottom: 1px solid #eee;
 }
@@ -9735,6 +9734,53 @@ footer {
     width: 90%;
 }
 
+.ecjia-discover-detail .floor .comment-item .comment-right .user-name {
+	margin-bottom: .5em;
+}
+
+.ecjia-discover-detail .floor .comment-item .comment-right .user-name .time {
+	float: right;
+    color: #a9a9a9;
+}
+
 .ecjia-discover-detail .floor .comment-item .comment-right .content {
 	color: #a9a9a9;
+}
+
+.ecjia-discover-detail .floor.comment-floor {
+	padding-bottom: 3em;
+}
+
+.ecjia-discover-detail .nav-bt-fix {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+	background: #fff;
+	max-width: 640px;
+	z-index: 2;
+	font-size: 1.2em;
+	line-height: 1.5em;
+	border-top: 1px solid #eee;
+}
+
+.ecjia-discover-detail .nav-bt-fix .nav-bt-center {
+	width: 96%;
+	margin: 0 auto;
+}
+
+.ecjia-discover-detail .nav-bt-center a {
+    display: inline-block;
+	width: 32%;
+    text-align: center;
+    padding: .5em 0;
+    position: relative;
+}
+
+.ecjia-discover-detail .nav-bt-center a i.icon-appreciate.active {
+	color: #ff3434;
+}
+.ecjia-discover-detail .nav-bt-center a i span {
+	font-size: .8em;
+	padding-left: .2em;
+	color: #333;
 }

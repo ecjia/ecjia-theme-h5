@@ -184,8 +184,8 @@
 		discover_cycleimage: function() {
 			if ($.find('.ecjia-discover-cycleimage').length != 0) {
 				var width = $('.ecjia-discover-cycleimage').find('.swiper-slide ').width();
-				$('.ecjia-discover-cycleimage').find('.swiper-slide').css('height', width / 3 + 'px');
-				$('.ecjia-discover-cycleimage').find('.swiper-slide').find('img').css('height', width / 3 + 'px');
+				$('.ecjia-discover-cycleimage').find('.swiper-slide').css('height', width * 2 / 5 + 'px');
+				$('.ecjia-discover-cycleimage').find('.swiper-slide').find('img').css('height', width * 2 / 5 + 'px');
 			}
 			if (sessionStorage.getItem("discover_cycleimage") == 1) {
 				return false;
@@ -244,6 +244,27 @@
 			$('.ecjia-down-navi .close_div').off('click').on('click', function() {
 				$('.ecjia-discover').css('display', 'block');
 				$('.ecjia-down-navi').css('display', 'none');
+			});
+			
+			$('.icon-appreciate').off('click').on('click', function() {
+				var $this = $(this);
+				if ($this.hasClass('disabled')) {
+					return false;
+				}
+				$this.addClass('disabled');
+				if ($this.hasClass('active')) {
+					$this.removeClass('active').removeClass('disabled');
+				} else {
+					$this.addClass('active');
+					iosOverlay({
+						text: '点赞成功！',
+						duration: 2e3,
+						onhide: function() {
+							$this.removeClass('disabled');
+						},
+					});
+					return false;
+				}
 			});
 		},
 	};
