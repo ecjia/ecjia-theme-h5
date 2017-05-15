@@ -56,10 +56,12 @@ class user_order_controller {
     public static function order_list() {
         $token = ecjia_touch_user::singleton()->getToken();
         
+        $type = isset($_GET['type']) ? intval($_GET['type']) : '';
         $params_order = array('token' => $token, 'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
         $data = is_ecjia_error($data) ? array() : $data;
         
+        ecjia_front::$controller->assign('type', $type);
         ecjia_front::$controller->assign('order_list', $data);
         ecjia_front::$controller->assign_title('全部订单');
         ecjia_front::$controller->assign('title', '全部订单');
