@@ -9549,7 +9549,7 @@ footer {
 .ecjia-discover-detail .article-p {
 	font-size: 1.1em;
     color: #404040;
-    line-height: 1.5em;
+	line-height: 2rem;
 	padding-left: .8em;
     padding-right: .8em;
     margin-top: .25em;
@@ -9569,7 +9569,7 @@ footer {
 }
 
 .ecjia-discover-detail .article-content-sku {
-    height: auto;
+	height: auto;
     padding: .5em;
     background-color: #f6f6f6;
     width: 100%;
@@ -9577,37 +9577,31 @@ footer {
 
 .ecjia-discover-detail .article-content-sku .content-sku-img {
     float: left;
-    height: 7em;
-    max-width: 25%;
+    height: 8rem;
+    width: 8rem;
 }
 
 .ecjia-discover-detail .article-content-sku .content-sku-right {
-    position: relative;
-    float: left;
+	position: relative;
     height: 5.25rem;
     padding-left: 1em;
     padding-right: 1em;
-    width: 75%;
+    margin-left: 8rem;
 }
 
 .ecjia-discover-detail .article-content-sku .content-sku-right .content-sku-name {
     font-size: 1.1em;
-    line-height: 1.5;
+	line-height: 2rem;
     width: 100%;
     color: #2f2f2f;
     word-break: break-all;
 }
 
 .ecjia-discover-detail .article-content-sku .content-sku-right .content-sku-bottom {
-	position: absolute;
-    top: 5em;
-	left: 1em;
-    padding-right: 2em;
-    width: 100%;
+	margin-top: 2rem;
 }
 
 .ecjia-discover-detail .article-content-sku .content-sku-right .content-sku-bottom .sku-price {
-    display: inline-block;
     font-size: 1.1em;
     color: #ff3434;
 }
@@ -9739,28 +9733,72 @@ footer {
 .ecjia-discover-detail .floor .comment-item {
 	float: left;
     background: #fff;
-    margin: 1em;
-	margin-bottom: .5em;
+    margin: .5em 1em 0 1em;
     padding-bottom: .5em;
 	border-bottom: 1px solid #eee;
 }
 
 .ecjia-discover-detail .floor .comment-item .comment-left {
-	width: 10%;
+    width: 4.2rem;
     float: left;
-    height: 100%;
+    height: 4.2rem;
+    border-radius: 50%;
+    margin-right: 1rem;
 }
 
 .ecjia-discover-detail .floor .comment-item .comment-left img {
-	width: 2em;
-    height: 2em;
+	width: 4.2rem;
+    height: 4.2rem;
 }
 
-.ecjia-discover-detail .floor .comment-item .comment-right {
-    float: left;
-    width: 90%;
+.ecjia-discover-detail .floor .comment-item .comment-right .user-name {
+	margin-bottom: .5em;
+}
+
+.ecjia-discover-detail .floor .comment-item .comment-right .user-name .time {
+	float: right;
+    color: #a9a9a9;
 }
 
 .ecjia-discover-detail .floor .comment-item .comment-right .content {
 	color: #a9a9a9;
+	margin-left: 5.2rem;
+}
+
+.ecjia-discover-detail .floor.comment-floor {
+	padding-bottom: 3em;
+}
+
+.ecjia-discover-detail .nav-bt-fix {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+	background: #fff;
+	max-width: 640px;
+	z-index: 2;
+	font-size: 1.2em;
+	line-height: 1.5em;
+	border-top: 1px solid #eee;
+}
+
+.ecjia-discover-detail .nav-bt-fix .nav-bt-center {
+	width: 96%;
+	margin: 0 auto;
+}
+
+.ecjia-discover-detail .nav-bt-center a {
+    display: inline-block;
+	width: 32%;
+    text-align: center;
+    padding: .5em 0;
+    position: relative;
+}
+
+.ecjia-discover-detail .nav-bt-center a i.icon-appreciate.active {
+	color: #ff3434;
+}
+.ecjia-discover-detail .nav-bt-center a i span {
+	font-size: .8em;
+	padding-left: .2em;
+	color: #333;
 }

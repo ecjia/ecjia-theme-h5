@@ -109,7 +109,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="view-more">查看更多商品</div> 
 	</div>
 	
-	<div class="floor"> 
+	<div class="floor comment-floor"> 
 		<div class="ecjia-margin-t">
 			<div class="floor-title"> 
 				<span class="floor-title-cn">评论</span> 
@@ -122,7 +122,37 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							<img src="{$theme_url}images/default_user.png" >
 						</div>
 						<div class="comment-right">
-							<div class="user-name">nuomi</div>
+							<div class="user-name">nuomi<div class="time">刚刚</div></div>
+							<div class="content">8848钛金手机专为追求个性与品位的高端用户私人订制，如果你是这样的用户，并且准备趁着517电信节选购一部适合自己的手机，那这个机会一定不要错过了！</div>
+						</div>
+					</li>
+					
+					<li class="comment-item">
+						<div class="comment-left">
+							<img src="{$theme_url}images/default_user.png" >
+						</div>
+						<div class="comment-right">
+							<div class="user-name">nuomi<div class="time">刚刚</div></div>
+							<div class="content">8848钛金手机专为追求个性与品位的高端用户私人订制，如果你是这样的用户，并且准备趁着517电信节选购一部适合自己的手机，那这个机会一定不要错过了！</div>
+						</div>
+					</li>
+					
+					<li class="comment-item">
+						<div class="comment-left">
+							<img src="{$theme_url}images/default_user.png" >
+						</div>
+						<div class="comment-right">
+							<div class="user-name">nuomi<div class="time">刚刚</div></div>
+							<div class="content">8848钛金手机专为追求个性与品位的高端用户私人订制，如果你是这样的用户，并且准备趁着517电信节选购一部适合自己的手机，那这个机会一定不要错过了！</div>
+						</div>
+					</li>
+					
+					<li class="comment-item">
+						<div class="comment-left">
+							<img src="{$theme_url}images/default_user.png" >
+						</div>
+						<div class="comment-right">
+							<div class="user-name">nuomi<div class="time">刚刚</div></div>
 							<div class="content">8848钛金手机专为追求个性与品位的高端用户私人订制，如果你是这样的用户，并且准备趁着517电信节选购一部适合自己的手机，那这个机会一定不要错过了！</div>
 						</div>
 					</li>
@@ -130,5 +160,21 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
         </div>
 	</div>
+	
+	<nav class="nav-bt-fix">
+		<div class="nav-bt-center">
+	        <a href="javascript:;">
+	        	<i class="iconfont icon-appreciate active"><span>999999</span></i>
+	        </a>
+	        <a href="javascript:;">
+	        	<i class="iconfont icon-bianji1"><span>999999</span></i>
+	        </a>
+	        <a href="javascript:;">
+	        	<i class="iconfont icon-comment"><span>999999</span></i>
+	        </a>
+        </div>    
+    </nav>
 </div>
+
+
 <!-- {/block} -->
