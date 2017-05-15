@@ -68,7 +68,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	
 	<div class="floor"> 
         <!-- {if $goods_info.related_goods} -->
-        <div class="ecjia-margin-t address-warehouse-new">
+        <div class="ecjia-margin-t">
 			<div class="floor-title"> 
 				<span class="floor-title-cn">相关商品</span> 
 				<span class="floor-title-en">Related Products</span> 
@@ -107,6 +107,28 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </div>
 		<!-- {/if} -->
 		<div class="view-more">查看更多商品</div> 
+	</div>
+	
+	<div class="floor"> 
+		<div class="ecjia-margin-t">
+			<div class="floor-title"> 
+				<span class="floor-title-cn">评论</span> 
+				<span class="floor-title-en">Comments</span> 
+			</div> 
+			<div class="floor-content">
+				<ul>
+					<li class="comment-item">
+						<div class="comment-left">
+							<img src="{$theme_url}images/default_user.png" >
+						</div>
+						<div class="comment-right">
+							<div class="user-name">nuomi</div>
+							<div class="content">8848钛金手机专为追求个性与品位的高端用户私人订制，如果你是这样的用户，并且准备趁着517电信节选购一部适合自己的手机，那这个机会一定不要错过了！</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+        </div>
 	</div>
 </div>
 <!-- {/block} -->
