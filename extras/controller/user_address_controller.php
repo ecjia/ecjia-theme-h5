@@ -226,6 +226,7 @@ class user_address_controller {
     	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
     	ecjia_front::$controller->assign('type', $type);
     	
+    	$local = 1;
     	if (!empty($_SESSION['order_address_temp']['store_id'])) {
     		$store_id = $_SESSION['order_address_temp']['store_id'];
     		$addr = !empty($_GET['addr']) ? $_COOKIE['city_name'].trim($_GET['addr']) : $_COOKIE['location_address'];
@@ -239,8 +240,8 @@ class user_address_controller {
     		$param = array('address' => array('latitude' => $address['latitude'], 'longitude' => $address['longitude']), 'store_id' => $store_id);
     		$local = RC_Api::api('user', 'neighbors_address_store', $param);
 			$local = $local ? 1 : 0;
-    		ecjia_front::$controller->assign('local', $local);
     	}
+    	ecjia_front::$controller->assign('local', $local);
     	
         ecjia_front::$controller->display('user_address_edit.dwt');
     }
