@@ -19,7 +19,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 <!-- {block name="main-content"} -->
 <!-- #EndLibraryItem -->
-{if $type}
+{if !$type}
     <header class="ecjia-order-search">
         <div class="ecjia-header">
         	<div class="ecjia-search-header ecjia-search">
