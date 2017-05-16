@@ -9548,12 +9548,11 @@ footer {
 .ecjia-discover-detail .article-p {
 	font-size: 1.1em;
     color: #404040;
-	line-height: 2rem;
-	padding-left: .8em;
+    padding-left: .8em;
     padding-right: .8em;
-    margin-top: .25em;
-    margin-bottom: .25em;
-	word-break: break-word;
+    margin-bottom: .8em;
+    word-break: break-word;
+	text-indent:2em;
 }
 
 .ecjia-discover-detail img {
