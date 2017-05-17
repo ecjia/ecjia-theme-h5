@@ -9856,3 +9856,21 @@ footer {
 .ecjia-discover-detail .background-fff {
 	background-color: #fff;
 }
+
+.ecjia-application-menu {
+	background-color: #FFF;
+}
+.ecjia-application-menu .function-management {
+	text-align: center;
+	color: #ff3434;
+	padding: 1em 0;
+}
+.ecjia-application-menu .function-management span {
+	margin: 0 .8em;
+}
+.ecjia-application-menu .function-management hr {
+	width: 3em;
+	display: inline-block;
+	background-color: #ff3434
+}
+

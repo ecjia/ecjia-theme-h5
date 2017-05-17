@@ -221,6 +221,7 @@ RC_Hook::add_action('connect/index/bind_login', array('connect_controller', 'bin
 RC_Loader::load_theme('extras/controller/discover_controller.php');
 RC_Hook::add_action('discover/index/init', array('discover_controller', 'init'));//发现首页
 RC_Hook::add_action('discover/article/detail', array('discover_controller', 'detail'));//文章详情
+RC_Hook::add_action('discover/index/application', array('discover_controller', 'application'));//百宝箱
 
 /**
  * step：3

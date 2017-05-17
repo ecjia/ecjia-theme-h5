@@ -104,6 +104,19 @@ class discover_controller {
     	}
     	ecjia_front::$controller->display('discover_article.dwt', $cache_id);
     }
+    
+    /**
+     * 百宝箱
+     */
+    public static function application() {
+        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+    
+        if (!ecjia_front::$controller->is_cached('application.dwt', $cache_id)) {
+            ecjia_front::$controller->assign_title('百宝箱');
+        }
+        ecjia_front::$controller->display('application.dwt', $cache_id);
+    }
+    
 }
 
 // end
