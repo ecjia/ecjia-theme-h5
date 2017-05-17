@@ -49,25 +49,25 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-user ecjia-list bonus ecjia-nav-child-f ecjia-list-four ecjia-login-nav-bottom">
     	<li>
     		<a href="{url path='user/order/order_list'}&type={'await_pay'}">
-    		    <p>{$user.formated_user_money}</p>
+    		    <p><img src="{$theme_url}images/user_center/o_75_2.png" /></p>
     			<p>待付款</p>
     		</a>
     	</li>
     	<li>
     		<a href="{url path='user/order/order_list'}&type={'await_ship'}">
-    		    <p>{if $user.user_bonus_count eq '0'}{0}{else}{$user.user_bonus_count}{/if}</p>
+    		    <p><img src="{$theme_url}images/user_center/o_75_3.png" /></p>
     			<p>待发货</p>
     		</a>
     	</li>
     	<li>
     	    <a href="{url path='user/order/order_list'}">
-        		<p>{$user.user_points}</p>
+        		<p><img src="{$theme_url}images/user_center/o_75_4.png" /></p>
         		<p>待收货</p>
     		</a>
     	</li>
     	<li>
     	    <a href="{url path='user/order/order_list'}">
-        		<p>{$user.user_points}</p>
+        		<p><img src="{$theme_url}images/user_center/o_75_5.png" /></p>
         		<p>待评价</p>
     		</a>
     	</li>
@@ -123,25 +123,25 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-user ecjia-list bonus ecjia-nav-child-f ecjia-list-four ecjia-login-nav-bottom">
     	<li>
     		<a href="{url path='user/privilege/login'}">
-    		    <p>{'- -'}</p>
+    		    <p><img src="{$theme_url}images/user_center/o_75_2.png" /></p>
     			<p>待付款</p>
     		</a>
     	</li>
     	<li>
     		<a href="{url path='user/privilege/login'}">
-    		    <p>{'- -'}</p>
+    		    <p><img src="{$theme_url}images/user_center/o_75_3.png" /></p>
     			<p>待发货</p>
     		</a>
     	</li>
     	<li>
     	    <a href="{url path='user/privilege/login'}">
-        		<p>{'- -'}</p>
+        		<p><img src="{$theme_url}images/user_center/o_75_4.png" /></p>
         		<p>待收货</p>
     		</a>
     	</li>
     	<li>
     	    <a href="{url path='user/privilege/login'}">
-        		<p>{'- -'}</p>
+        		<p><img src="{$theme_url}images/user_center/o_75_5.png" /></p>
         		<p>待评价</p>
     		</a>
     	</li>
