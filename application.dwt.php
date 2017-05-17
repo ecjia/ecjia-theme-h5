@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <div class="ecjia-application-menu">
 <div class="function-management">
-    &bull;<span>功能管理</span>&bull;
+    <span>&bull;&nbsp;&nbsp;&nbsp;功能管理&nbsp;&nbsp;&nbsp;&bull;</span>
 </div>
 <nav class="ecjia-mod container-fluid user-nav">
 	<ul class="row ecjia-row-nav index">

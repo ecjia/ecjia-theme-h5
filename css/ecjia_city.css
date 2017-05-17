@@ -9876,29 +9876,26 @@ footer {
     background-color: #FFF;
 }
 .ecjia-application-menu .function-management:before {
-	content: '';
+    content: '';
     height: 1px;
     border-top: 1px solid #ff3434;
-    width: 3em;
+    width: 13em;
     position: absolute;
-    top: 1.7em;
-    left: 30%;
+    top: 50%;
+    margin-top: -1px;
+    left: 50%;
     transform: scaleY(0.5) translate(-50%,0);
     -webkit-transform: scaleY(0.5) translate(-50%,0);
 }
-.ecjia-application-menu .function-management:after {
-	content: '';
-    height: 1px;
-    border-top: 1px solid #ff3434;
-    width: 3em;
-    position: absolute;
-    top: 1.7em;
-    left: 70%;
-    transform: scaleY(0.5) translate(-50%,0);
-    -webkit-transform: scaleY(0.5) translate(-50%,0);
-}
+
 .ecjia-application-menu .function-management span {
 	margin: 0 .8em;
+    position: relative;
+    padding: 0 5px;
+    background-color: #FFF;
+    display: inline-block;
+    color: #ff3434;
+	
 }
 .ecjia-application-menu .application-class-code {
 	margin-top: 1.5em;
