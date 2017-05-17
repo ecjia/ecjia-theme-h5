@@ -106,7 +106,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </div>
         </div>
 		<!-- {/if} -->
-		<div class="view-more">查看更多商品</div> 
+		<div class="view-more-goods">查看更多商品</div> 
 	</div>
 	
 	<div class="floor comment-floor" name="floor-comment" id="floor-comment"> 
