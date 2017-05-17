@@ -110,7 +110,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	
 	<div class="floor comment-floor" name="floor-comment" id="floor-comment"> 
-		<div class="ecjia-margin-t background-fff">
+		<div class="background-fff">
 			<div class="floor-title"> 
 				<span class="floor-title-cn">评论</span> 
 				<span class="floor-title-en">Comments</span> 
