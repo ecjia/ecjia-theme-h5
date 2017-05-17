@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <div class="ecjia-application-menu">
 <div class="function-management">
-    &mdash;&mdash;&nbsp;&nbsp;&bull;<span>功能管理</span>&bull;&nbsp;&nbsp;&mdash;&mdash;
+    &bull;<span>功能管理</span>&bull;
 </div>
 <nav class="ecjia-mod container-fluid user-nav">
 	<ul class="row ecjia-row-nav index">
@@ -38,7 +38,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="application-class-code">
 	   <img src="{$theme_url}images/discover/50_1.png" />
 		<span>促销活动</span>
-	   <hr />
 	</div>
 	<ul class="row ecjia-row-nav index">
 		<li class="col-sm-3 col-xs-2">
@@ -58,7 +57,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="application-class-code">
 	   <img src="{$theme_url}images/discover/50_1.png" />
 		<span>百宝箱</span>
-	   <hr />
 	</div>
 	
 	<ul class="row ecjia-row-nav index">
