@@ -114,6 +114,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	<a href="{url path='user/privilege/login'}">
         		<div class="icon-wallet"><img src="{$theme_url}images/user_center/75x75_2.png"></div>
         		<span class="icon-name">{t}我的订单{/t}</span>
+        		<span class="icon-long">查看全部订单</span>
         		<i class="iconfont  icon-jiantou-right"></i>
         	</a>
         </li>

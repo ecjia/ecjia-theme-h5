@@ -9864,9 +9864,16 @@ footer {
     height: 100%;
 }
 .ecjia-application-menu .function-management {
-	text-align: center;
 	color: #ff3434;
-	padding-top: 1em;
+    font-size: 14px;
+    line-height: 50px;
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    position: relative;
+    background-color: #FFF;
 }
 .ecjia-application-menu .function-management:before {
 	content: '';
@@ -9874,7 +9881,7 @@ footer {
     border-top: 1px solid #ff3434;
     width: 3em;
     position: absolute;
-    top: 1.6em;
+    top: 1.7em;
     left: 30%;
     transform: scaleY(0.5) translate(-50%,0);
     -webkit-transform: scaleY(0.5) translate(-50%,0);
@@ -9885,7 +9892,7 @@ footer {
     border-top: 1px solid #ff3434;
     width: 3em;
     position: absolute;
-    top: 1.6em;
+    top: 1.7em;
     left: 70%;
     transform: scaleY(0.5) translate(-50%,0);
     -webkit-transform: scaleY(0.5) translate(-50%,0);
@@ -9895,6 +9902,7 @@ footer {
 }
 .ecjia-application-menu .application-class-code {
 	margin-top: 1.5em;
+    position: relative;
 }
 .ecjia-application-menu .application-class-code span {
 	margin: 0 1em;
