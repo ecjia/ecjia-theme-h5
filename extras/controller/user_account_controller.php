@@ -317,7 +317,7 @@ class user_account_controller {
     	ecjia_front::$controller->assign('sur_amount', $arr);
     	ecjia_front::$controller->assign_lang();
     	$sayList = ecjia_front::$controller->fetch('user_record.dwt');
-    	if ($data['paginated']['more'] == 0) {
+    	if (isset($data['paginated']['more']) && $data['paginated']['more'] == 0) {
     	    $more = 1;
     	}
     	return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList, 'page', 'is_last' => $more));
@@ -363,7 +363,7 @@ class user_account_controller {
         ecjia_front::$controller->assign('sur_amount', $arr);
         ecjia_front::$controller->assign_lang();
         $sayList = ecjia_front::$controller->fetch('user_record.dwt');
-        if ($data['paginated']['more'] == 0) {
+        if (isset($data['paginated']['more']) && $data['paginated']['more'] == 0) {
             $more = 1;
         }
         return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList, 'page', 'is_last' => $more));
@@ -409,7 +409,7 @@ class user_account_controller {
         ecjia_front::$controller->assign('sur_amount', $arr);
         ecjia_front::$controller->assign_lang();
         $sayList = ecjia_front::$controller->fetch('user_record.dwt');
-        if ($data['paginated']['more'] == 0) {
+        if (isset($data['paginated']['more']) && $data['paginated']['more'] == 0) {
             $more = 1;
         }
         return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList, 'page', 'is_last' => $more));

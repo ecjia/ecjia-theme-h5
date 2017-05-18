@@ -191,7 +191,9 @@ class user_order_controller {
         ecjia_front::$controller->assign('order_list', $data);
         ecjia_front::$controller->assign_lang();
         $sayList = ecjia_front::$controller->fetch('user_order_list.dwt');
-        return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList, 'page', 'is_last' => $data['paginated']['more'] ? 0 : 1));
+        
+        if (isset($data['paginated']['more']) && $data['paginated']['more'] == 0) $data['is_last'] = 1;
+        return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList, 'page', 'is_last' => $data['is_last']));
     }
 
     /**

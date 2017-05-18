@@ -74,7 +74,7 @@ class user_bonus_controller {
         
         $sayList = ecjia_front::$controller->fetch('user_bonus.dwt');
         $more = 0;
-        if ($bonus['paginated']['more'] == 0) {
+        if (isset($bonus['paginated']['more']) && $bonus['paginated']['more'] == 0) {
             $more = 1;
         }
         return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList,'page', 'is_last' => $more));
@@ -92,7 +92,7 @@ class user_bonus_controller {
 
         $sayList = ecjia_front::$controller->fetch('user_bonus.dwt');
         $more = 0;
-        if ($bonus['paginated']['more'] == 0) {
+        if (isset($bonus['paginated']['more']) && $bonus['paginated']['more'] == 0) {
             $more = 1;
         }
         return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList,'page', 'is_last' => $more));
@@ -110,7 +110,7 @@ class user_bonus_controller {
         
         $sayList = ecjia_front::$controller->fetch('user_bonus.dwt');
         $more = 0;
-        if ($bonus['paginated']['more'] == 0) {
+        if (isset($bonus['paginated']['more']) && $bonus['paginated']['more'] == 0) {
             $more = 1;
         }
         return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList,'page', 'is_last' => $more));
@@ -185,7 +185,7 @@ class user_bonus_controller {
             $sayList = ecjia_front::$controller->fetch('user_reward_detail.dwt');
         }
         $res = array();
-        if ($data['paginated']['more'] == 0) {
+        if (isset($data['paginated']['more']) && $data['paginated']['more'] == 0) {
             $res['is_last'] = 1;
         } else {
             $res['data_toggle'] = 'asynclist';
