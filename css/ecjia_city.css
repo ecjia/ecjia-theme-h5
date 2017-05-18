@@ -9922,3 +9922,20 @@ footer {
     transform: scaleY(0.5) translate(-50%,0);
     -webkit-transform: scaleY(0.5) translate(-50%,0);
 }
+.ecjia-user.ecjia-list-four .oc-icon {
+	position: relative;
+}
+.ecjia-user.ecjia-list-four .oc-icon .oc-num.top {
+    position: absolute;
+    top: -.2em;
+    width: auto;
+	left: 56%;
+	text-align: center;
+    border-radius: 2em;
+    min-width: 1.3em;
+    max-width: 3em;
+    line-height: 1.3em;
+    height: 1.3em;
+    color: #fff;
+    background: #ff3434;
+}

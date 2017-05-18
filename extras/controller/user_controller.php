@@ -70,6 +70,7 @@ class user_controller {
     		if (!ecjia_front::$controller->is_cached('user.dwt', $cache_id)) {
     			$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
     			$user = is_ecjia_error($user) ? array() : $user;
+    			
     			 
     			if ($user) {
     				//判断是否第三方登录，同步头像
@@ -79,6 +80,7 @@ class user_controller {
     				if (!empty($user['avatar_img'])) {
     					$user_img = $user['avatar_img'];
     				}
+    				ecjia_front::$controller->assign('order_num', $user['order_num']);
     				ecjia_front::$controller->assign('user', $user);
     			} else {
     				ecjia_touch_user::singleton()->signout();

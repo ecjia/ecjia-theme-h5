@@ -49,25 +49,37 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-user ecjia-list bonus ecjia-nav-child-f ecjia-list-four ecjia-login-nav-bottom">
     	<li>
     		<a href="{url path='user/order/order_list'}&type={'await_pay'}">
-    		    <p><img src="{$theme_url}images/user_center/o_75_2.png" /></p>
+    		    <p class="oc-icon">
+    		      <img src="{$theme_url}images/user_center/o_75_2.png" />
+    		      {if $order_num.await_pay gte 1}<span class="oc-num top">{$order_num.await_pay}</span>{/if}
+    		    </p>
     			<p>待付款</p>
     		</a>
     	</li>
     	<li>
     		<a href="{url path='user/order/order_list'}&type={'await_ship'}">
-    		    <p><img src="{$theme_url}images/user_center/o_75_3.png" /></p>
+    		    <p class="oc-icon">
+    		      <img src="{$theme_url}images/user_center/o_75_3.png" />
+    		      {if $order_num.await_ship gte 1}<span class="oc-num top">{$order_num.await_ship}</span>{/if}
+    		    </p>
     			<p>待发货</p>
     		</a>
     	</li>
     	<li>
     	    <a href="{url path='user/order/order_list'}&type={'shipped'}">
-        		<p><img src="{$theme_url}images/user_center/o_75_4.png" /></p>
+        		<p class="oc-icon">
+        		  <img src="{$theme_url}images/user_center/o_75_4.png" />
+        		  {if $order_num.shipped gte 1}<span class="oc-num top">{$order_num.shipped}</span>{/if}
+        		</p>
         		<p>待收货</p>
     		</a>
     	</li>
     	<li>
     	    <a href="{url path='user/order/order_list'}&type={'allow_comment'}">
-        		<p><img src="{$theme_url}images/user_center/o_75_5.png" /></p>
+        		<p class="oc-icon">
+        		  <img src="{$theme_url}images/user_center/o_75_5.png" />
+        		  {if $order_num.allow_comment gte 1}<span class="oc-num top">{$order_num.allow_comment}</span>{/if}
+        		</p>
         		<p>待评价</p>
     		</a>
     	</li>
