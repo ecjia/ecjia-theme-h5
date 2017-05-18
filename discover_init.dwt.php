@@ -20,7 +20,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="ecjia-discover-icon">
 		<div class="swiper-container" id="swiper-discover-icon">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide"><a href="{RC_Uri::url('discover/index/application')}"><img src="{$theme_url}images/discover/200_1.png" /><span>百宝箱</span></a></div>
+				<div class="swiper-slide"><a href="{RC_Uri::url('mobile/discover/init')}"><img src="{$theme_url}images/discover/200_1.png" /><span>百宝箱</span></a></div>
 				<div class="swiper-slide"><a href="{$signup_reward_url}"><img src="{$theme_url}images/user_center/newbie_gift75_1.png" /><span>新人有礼</span></a></div>
 				<div class="swiper-slide"><a href="{RC_Uri::url('user/index/spread')}"><img src="{$theme_url}images/user_center/expand.png" /><span>推广</span></a></div>
 				<div class="swiper-slide"><a href="{RC_Uri::url('goods/index/new')}"><img src="{$theme_url}images/discover/200_3.png" /><span>新品推荐</span></a></div>
@@ -59,7 +59,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	
 	<div class="ecjia-article article-list">
 		<div class="article clearfix"> 
-			<a href="{RC_Uri::url('discover/article/detail')}&article_id=1">
+			<a href="{RC_Uri::url('article/index/detail')}&article_id=1">
 				<div class="article-left"> 
 					<p class="article-title line-clamp2"> 考试季你还差点儿啥 </p> 
 					<p class="article-summary line-clamp2"> 考试，是个令人纠结的事情。想到考试就会想到放假，恨不得日子如梭,立马奔向悠长的暑假,却又巴不得日子一点一点挪动,不要靠近放假前的那道门槛——考试。 讨厌考试吗?当然！但是又没得选择。随着高考、中考的临近和各学校期末考试的到来，“考试季”正在悄悄逼近，小商品城的“文具经济”开始升温发酵，考试除了要准备文具还要准备些什么呢，跟着我们一起来看一看吧！</p> 

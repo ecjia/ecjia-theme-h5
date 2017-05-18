@@ -87,6 +87,9 @@ RC_Hook::add_action('article/help/init', array('article_controller', 'init'));
 RC_Hook::add_action('article/help/detail', array('article_controller', 'detail'));
 RC_Hook::add_action('article/shop/detail', array('article_controller', 'shop_detail'));
 
+RC_Hook::add_action('article/index/init', array('article_controller', 'article_index'));	//发现首页
+RC_Hook::add_action('article/index/detail', array('article_controller', 'article_detail'));	//发现文章详情
+
 //购物车
 RC_Loader::load_theme('extras/controller/cart_controller.php');
 RC_Hook::add_action('cart/index/init', array('cart_controller', 'init'));
@@ -217,11 +220,8 @@ RC_Hook::add_action('connect/index/bind_signin', array('connect_controller', 'bi
 RC_Hook::add_action('connect/index/bind_signin_do', array('connect_controller', 'bind_signin_do'));
 RC_Hook::add_action('connect/index/bind_login', array('connect_controller', 'bind_login'));
 
-//发现
-RC_Loader::load_theme('extras/controller/discover_controller.php');
-RC_Hook::add_action('discover/index/init', array('discover_controller', 'init'));//发现首页
-RC_Hook::add_action('discover/article/detail', array('discover_controller', 'detail'));//文章详情
-RC_Hook::add_action('discover/index/application', array('discover_controller', 'application'));//百宝箱
+RC_Loader::load_theme('extras/controller/mobile_controller.php');
+RC_Hook::add_action('mobile/discover/init', array('mobile_controller', 'init'));//百宝箱
 
 /**
  * step：3
