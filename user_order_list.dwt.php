@@ -19,11 +19,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 <!-- {block name="main-content"} -->
 <!-- #EndLibraryItem -->
-{if !$type}
+{if $type == 'whole'}
     <header class="ecjia-order-search">
         <div class="ecjia-header">
         	<div class="ecjia-search-header ecjia-search">
-        		<form class="ecjia-form" action="{url path='user/order/order_list'}{if $store_id neq 0}&store_id={$store_id}{/if}">
+        		<form class="ecjia-form" action="{url path='user/order/order_list&type=whole'}">
         			<input id="keywordBox" name="keywords" type="search" placeholder="商品名称/订单号" {if $keywords}value={$keywords}{/if}>
         			<i class="iconfont icon-search btn-search"></i>
         		</form>
@@ -34,7 +34,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <div class="ecjia-order-list ">
     {if $order_list}
-	<ul class="ecjia-margin-b" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='order/async_order_list'}" data-size="10" data-page="1">
+	<ul class="ecjia-margin-b" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='order/async_order_list'}&keywords={$keywords}" data-size="10" data-page="1" data-type={$type} data-key="123">
 		<!-- 订单异步加载 -->
 	</ul>
 	{else}

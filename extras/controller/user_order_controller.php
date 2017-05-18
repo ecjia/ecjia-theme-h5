@@ -56,11 +56,18 @@ class user_order_controller {
     public static function order_list() {
         $token = ecjia_touch_user::singleton()->getToken();
         
-        $type = isset($_GET['type']) ? intval($_GET['type']) : '';
-        $params_order = array('token' => $token, 'pagination' => array('count' => 10, 'page' => 1), 'type' => '');
+        $type = isset($_GET['type']) ? $_GET['type'] : '';
+    
+        $params_order = array('token' => $token, 'pagination' => array('count' => 10, 'page' => 1), 'type' => $type);
+        if (!empty($_GET['keywords'])) {
+            $params_order['type'] = 'whole';
+            $params_order['keywords'] = $_GET['keywords'];
+            ecjia_front::$controller->assign('keywords', $params_order['keywords']);
+        }
+  
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
         $data = is_ecjia_error($data) ? array() : $data;
-        
+
         ecjia_front::$controller->assign('type', $type);
         ecjia_front::$controller->assign('order_list', $data);
         ecjia_front::$controller->assign_title('全部订单');
@@ -168,13 +175,19 @@ class user_order_controller {
     public static function async_order_list() {
         $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-        
-        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'pagination' => array('count' => $size, 'page' => $page), 'type' => '');
+        $type = isset($_GET['action_type']) ? $_GET['action_type'] : '';
+
+        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'pagination' => array('count' => $size, 'page' => $page), 'type' => $type);
+        if (!empty($_GET['keywords'])) {
+            $params_order['type'] = 'whole';
+            $params_order['keywords'] = $_GET['keywords'];
+        }
+
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
         if (is_ecjia_error($data)) {
             return false;
         }
-        
+      
         ecjia_front::$controller->assign('order_list', $data);
         ecjia_front::$controller->assign_lang();
         $sayList = ecjia_front::$controller->fetch('user_order_list.dwt');
