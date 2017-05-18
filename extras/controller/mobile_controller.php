@@ -46,69 +46,11 @@
 //
 defined('IN_ECJIA') or exit('No permission resources.');
 
-/**
- * 发现控制器代码
- */
-class discover_controller {
-    /**
-     *  发现首页
-     */
-    public static function init() {
-    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
-    	
-    	if (!ecjia_front::$controller->is_cached('discover_init.dwt', $cache_id)) {
-    		$token = ecjia_touch_user::singleton()->getToken();
-    		$signup_reward_url =  RC_Uri::url('user/mobile_reward/init', array('token' => $token));
-    		ecjia_front::$controller->assign('signup_reward_url', $signup_reward_url);
-    		
-    		$arr = array(
-    			'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
-    			'city_id' => $_COOKIE['city_id']
-    		);
-    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DATA)->data($arr)->run();
-    		
-    		//处理ecjiaopen url
-    		if (!is_ecjia_error($data) && !empty($data)) {
-    			foreach ($data as $k => $v) {
-    				if ($k == 'player' || $k == 'mobile_menu') {
-    					foreach ($v as $key => $val) {
-    						if (strpos($val['url'], 'ecjiaopen://') === 0) {
-    							$data[$k][$key]['url'] = with(new ecjia_open($val['url']))->toHttpUrl();
-    						}
-    					}
-    				}
-    			}
-    			ecjia_front::$controller->assign('cycleimage', $data['player']);
-    		}
-    		
-    		ecjia_front::$controller->assign('active', 'discover');
-    	}
-        ecjia_front::$controller->display('discover_init.dwt', $cache_id);
-    }
-    
-    /**
-     * 文章详情
-     */
-    public static function detail() {
-    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
-    	 
-    	if (!ecjia_front::$controller->is_cached('discover_article.dwt', $cache_id)) {
-
-    		
-    		$par = array(
-    			'goods_id' => 1075,
-    		);
-    		/*商品基本信息*/
-    		$goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($par)->run();
-    		ecjia_front::$controller->assign('goods_info', $goods_info);
-    	}
-    	ecjia_front::$controller->display('discover_article.dwt', $cache_id);
-    }
-    
+class mobile_controller {
     /**
      * 百宝箱
      */
-    public static function application() {
+    public static function init() {
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
     
         if (!ecjia_front::$controller->is_cached('application.dwt', $cache_id)) {
