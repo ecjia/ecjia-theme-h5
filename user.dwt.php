@@ -36,7 +36,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-user-head ecjia-user ecjia-color-green ecjia-user-marg-t">
     <ul class="ecjia-user-marg-t ecjia-list list-short ecjia-user-no-border-t">
        <li>
-        	<a href="{url path='user/order/order_list'}">
+        	<a href="{url path='user/order/order_list'}&type={'whole'}">
         		<div class="icon-wallet"><img src="{$theme_url}images/user_center/75x75_2.png"></div>
         		<span class="icon-name">{t}我的订单{/t}</span>
         		<span class="icon-long">查看全部订单</span>
