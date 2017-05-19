@@ -95,39 +95,45 @@ class user_bonus_controller {
     }
     
     public static function async_is_used() {
-        $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+        $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $cur_date = RC_Time::gmtime();
-
         $status = 'is_used';
-        $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'bonus_type' => $status))->run();
-        $bonus = is_ecjia_error($bonus) ? array() : $bonus;
-        ecjia_front::$controller->assign('bonus', $bonus);
+        
+        $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $pages, 'count' => $limit), 'bonus_type' => $status))->hasPage()->run();
 
-        $sayList = ecjia_front::$controller->fetch('user_bonus.dwt');
-        $more = 0;
-        if (isset($bonus['paginated']['more']) && $bonus['paginated']['more'] == 0) {
-            $more = 1;
+        if (!is_ecjia_error($bonus)) {
+        	list($data, $page) = $bonus;
+        	if (isset($page['more']) && $page['more'] == 0) $is_last = 1;
+        
+        	$say_list = '';
+        	if (!empty($data)){
+        		ecjia_front::$controller->assign('bonus', $data);
+        		$say_list = ecjia_front::$controller->fetch('user_bonus.dwt');
+        	}
+        	return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
         }
-        return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList,'page', 'is_last' => $more));
     }
     
     public static function async_expired() {
-        $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+        $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $cur_date = RC_Time::gmtime();
-
         $status = 'expired';
-        $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $page, 'count' => $limit), 'bonus_type' => $status))->run();
-        $bonus = is_ecjia_error($bonus) ? array() : $bonus;
-        ecjia_front::$controller->assign('bonus', $bonus);
         
-        $sayList = ecjia_front::$controller->fetch('user_bonus.dwt');
-        $more = 0;
-        if (isset($bonus['paginated']['more']) && $bonus['paginated']['more'] == 0) {
-            $more = 1;
+        $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $pages, 'count' => $limit), 'bonus_type' => $status))->hasPage()->run();
+
+        if (!is_ecjia_error($bonus)) {
+        	list($data, $page) = $bonus;
+        	if (isset($page['more']) && $page['more'] == 0) $is_last = 1;
+        
+        	$say_list = '';
+        	if (!empty($data)){
+        		ecjia_front::$controller->assign('bonus', $data);
+        		$say_list = ecjia_front::$controller->fetch('user_bonus.dwt');
+        	}
+        	return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
         }
-        return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList,'page', 'is_last' => $more));
     }
 
     /**
