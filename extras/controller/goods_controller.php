@@ -322,7 +322,7 @@ class goods_controller {
     public static function ajax_goods_comment() {
     	//商品评论
     	$goods_id 		= isset($_GET['goods_id']) 		? $_GET['goods_id'] 			: 0;
-    	$limit 			= intval($_GET['size']) > 0 	? intval($_GET['size']) 		: 5;
+    	$limit 			= intval($_GET['size']) > 0 	? intval($_GET['size']) 		: 10;
     	$pages 			= intval($_GET['page']) 		? intval($_GET['page']) 		: 1;
     	$comment_type 	= isset($_GET['action_type']) 	? trim($_GET['action_type']) 	: 'all';
     	
