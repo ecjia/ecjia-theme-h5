@@ -174,26 +174,27 @@ class user_order_controller {
     */
     public static function async_order_list() {
         $size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
-        $page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+        $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $type = isset($_GET['action_type']) ? $_GET['action_type'] : '';
 
-        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'pagination' => array('count' => $size, 'page' => $page), 'type' => $type);
+        $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'pagination' => array('count' => $size, 'page' => $pages), 'type' => $type);
         if (!empty($_GET['keywords'])) {
             $params_order['type'] = 'whole';
             $params_order['keywords'] = $_GET['keywords'];
         }
-
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
-        if (is_ecjia_error($data)) {
-            return false;
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->hasPage()->run();
+        if (!is_ecjia_error($data)) {
+            list($orders, $page) = $data;
+            if (isset($page['more']) && $page['more'] == 0) $is_last = 1;
+            
+            $say_list = '';
+            if (!empty($orders)) {
+            	ecjia_front::$controller->assign('order_list', $orders);
+            	ecjia_front::$controller->assign_lang();
+            	$say_list = ecjia_front::$controller->fetch('user_order_list.dwt');
+            }
+            return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
         }
-      
-        ecjia_front::$controller->assign('order_list', $data);
-        ecjia_front::$controller->assign_lang();
-        $sayList = ecjia_front::$controller->fetch('user_order_list.dwt');
-        
-        if (isset($data['paginated']['more']) && $data['paginated']['more'] == 0) $data['is_last'] = 1;
-        return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList, 'page', 'is_last' => $data['is_last']));
     }
 
     /**

@@ -166,7 +166,6 @@ RC_Hook::add_action('user/account/record_cancel', array('user_account_controller
 //用户收货地址
 RC_Loader::load_theme('extras/controller/user_address_controller.php');
 RC_Hook::add_action('user/address/address_list', array('user_address_controller', 'address_list'));
-RC_Hook::add_action('user/address/async_address_list', array('user_address_controller', 'async_address_list'));
 RC_Hook::add_action('user/address/add_address', array('user_address_controller', 'add_address'));
 RC_Hook::add_action('user/address/insert_address', array('user_address_controller', 'insert_address'));
 RC_Hook::add_action('user/address/edit_address', array('user_address_controller', 'edit_address'));
