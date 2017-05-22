@@ -31,9 +31,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group form-group-text margin-bottom0 ecjia-border-t">
 		<label class="input">
 			<span class="ecjiaf-fl">收货地址： </span>
-			<a class="external" href='{url path="user/address/near_location" args="{if $temp.tem_city_name}city={$temp.tem_city_name}{/if}{if $temp.tem_city}&city_id={$temp.tem_city}{/if}{if $info.id}&address_id={$info.id}{/if}{if $referer_url}&referer_url={$referer_url|escape:"url"}{/if}"}'>
-				<input name="address" placeholder="{t}写字楼，小区，学校，街道{/t}" type="text" value="{if $temp.tem_address_detail}{$temp.tem_address_detail}{else}{if $info.address}{$info.address}{else}{if $smarty.cookies.location_address_id neq 0}{$smarty.cookies.location_name}{else}{$smarty.cookies.location_address}{/if}{/if}{/if}" nullmsg="请选择收货地址" readonly="readonly" />
-			</a>
+			<input name="address" placeholder="{t}写字楼，小区，学校，街道{/t}" type="text" value="{if $temp.tem_address_detail}{$temp.tem_address_detail}{if $temp.tem_name neq '我的位置'}{$temp.tem_name}{/if}{else}{if $info.address}{$info.address}{else}{if $smarty.cookies.location_address_id neq 0}{$smarty.cookies.location_name}{else}{$smarty.cookies.location_address}{/if}{/if}{/if}" nullmsg="请选择收货地址" />
 			<a class="external" href="{$my_location}">
 				<div class="position"></div>
 			</a>
