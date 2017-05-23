@@ -288,7 +288,7 @@ class connect_controller {
             'connect_code' => 'sns_wechat',
             'user_id' => $user_info['ect_uid'],
             'is_admin' => 0,
-            'open_id' => empty($user_info['unionid']) ? $user_info['open_id'] : $user_info['unionid'],
+            'open_id' => empty($user_info['unionid']) ? $user_info['openid'] : $user_info['unionid'],
             'profile' => serialize($wechat_info),
             'create_at' => RC_Time::gmtime()
         );
