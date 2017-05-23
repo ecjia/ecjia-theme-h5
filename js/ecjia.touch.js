@@ -262,10 +262,13 @@
 				options = $.extend({}, defaults, options),
 				scroll_list = function() {
 					if (!options.lock && ($(window).scrollTop() > $(document).height() - $(window).height() - options.offset)) {
+						var area_class = options.areaClass;
 						options.areaClass = options.areaClass.replace(new RegExp(' ', 'gm'), '.'); //替换空格为点，多个class
 						if ($('.' + options.areaClass).parent().find('.is-last').length != 0) {
 							return false;
 						}
+						options.areaClass = area_class;
+						
 						options.lock = true;
 						ecjia.touch.load_list(options);
 						options.page++;

@@ -96,7 +96,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<span class="close_div">X</span>
 	<ul class="navi-list">
 		<!-- {foreach from=$article_cat item=cat key=key} -->
-		<li class="navi {if $key eq 0}active{/if}"><p class="navi-name">{$cat.cat_name}</p></li>
+		<li class="navi {if $key eq 0}active{/if}" data-id="{$cat.cat_id}"><p class="navi-name">{$cat.cat_name}</p></li>
 		<!-- {/foreach} -->
 	</ul>
 </div>
