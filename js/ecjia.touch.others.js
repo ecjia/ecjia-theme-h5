@@ -17,6 +17,7 @@
 			this.discover_cat();
 			this.discover_init();
 			this.hide_box();
+			this.article_cat_click();
 		},
 		
 		removeItem() {
@@ -301,6 +302,60 @@
 			$('.send-box').find('textarea').html('');
 			$('.send-box').hide();
 		},
+		
+		article_cat_click: function() {
+			$('.ecjia-discover-article .swiper-slide').off('click').on('click', function() {
+				var $this = $(this),
+					url = $this.attr('data-url'),
+					type = $this.attr('data-type');
+
+				$('.ecjia-article.article-list').attr('id', 'discover-article-' + type);
+				$('.article-container').find('[data-toggle="asynclist"]').attr('data-type', type);
+
+				if ($this.hasClass('active') || $this.hasClass('disabled')) {
+					return false;
+				} else {
+					$this.addClass('active').siblings('div').removeClass('active');
+					$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>'); //加载动画
+					$('body').css('overflow-y', 'hidden').on('touchmove', function(event) {
+						event.preventDefault;
+					}, false);
+					$('.ecjia-discover-article .swiper-slide').addClass('disabled'); //禁止切换
+
+					$.get(url, function(data) {
+						$('body').scrollTop(0);
+						
+						$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
+						var load_list = $('#discover-article-' + type).parent().find('.load-list');
+						if (load_list.length == 0) {
+							$('#discover-article-' + type).after($loader);
+						}
+						$('#discover-article-' + type).html('');
+
+						$('.la-ball-atom').remove(); //移出加载动画
+						$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
+						$('.ecjia-discover-article .swiper-slide').removeClass('disabled'); //允许切换
+
+						if (data.list.length == 0) {
+							$('#discover-article-' + type).append('<div class="ecjia-nolist"><img src="' + theme_url + 'images/no_comment.png"><p class="tags_list_font">暂无文章</p></div>');
+						} else {
+							$('#discover-article-' + type).append(data.list);
+						}
+						if ($('#discover-article-' + type).find('.article.clearfix').length != 0) {
+							$('.article-container').css('padding-bottom', '7em');
+						}
+
+						if (data.is_last == 1) {
+							$('.article-container').find('.load-list').addClass('is-last').css('display', 'none');
+						} else {
+							$('#discover-article-' + type).attr('data-page', 2);
+							ecjia.touch.asynclist();
+						}
+						return false;
+					});
+				}
+			});
+		}
 	};
 
 	function checkTime(i) {

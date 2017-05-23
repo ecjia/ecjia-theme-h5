@@ -45,150 +45,48 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="ecjia-discover-article">
 		<div class="swiper-container" id="swiper-article-cat">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide active">精选</div>
-				<div class="swiper-slide">家居家装</div>
-				<div class="swiper-slide">服装首饰</div>
-				<div class="swiper-slide">电脑办公</div>
-				<div class="swiper-slide">食品饮料</div>
-				<div class="swiper-slide">手机数码</div>
-				<div class="swiper-slide">运动户外</div>
+				<!-- {foreach from=$article_cat item=cat key=key} -->
+				<div class="swiper-slide {if $key eq 0}active{/if}" data-url="{url path='article/index/ajax_article_list'}&action_type={$cat.cat_id}" data-type="{$cat.cat_id}">{$cat.cat_name}</div>
+				<!-- {/foreach} -->
 			</div>
 		</div>
 		<div class="article-add"><i class="iconfont icon-add"></i></div>
 	</div>
 	
-	<div class="ecjia-article article-list">
-		<div class="article clearfix"> 
-			<a href="{RC_Uri::url('article/index/detail')}&article_id=1">
-				<div class="article-left"> 
-					<p class="article-title line-clamp2"> 考试季你还差点儿啥 </p> 
-					<p class="article-summary line-clamp2"> 考试，是个令人纠结的事情。想到考试就会想到放假，恨不得日子如梭,立马奔向悠长的暑假,却又巴不得日子一点一点挪动,不要靠近放假前的那道门槛——考试。 讨厌考试吗?当然！但是又没得选择。随着高考、中考的临近和各学校期末考试的到来，“考试季”正在悄悄逼近，小商品城的“文具经济”开始升温发酵，考试除了要准备文具还要准备些什么呢，跟着我们一起来看一看吧！</p> 
-					<div class="article-author clearfix" data-lazy="false"> 
-						<img class="lazy-img article-author-pic" src="{$theme_url}images/store_default.png"> 
-						<span class="lazy-img article-author-name">测试店铺名称</span> 
-					</div> 
-				</div> 
-				<div class="article-right" data-lazy="false"> 
-					<div class="img-box"> 
-						<img class="lazy-img" src="{$theme_url}images/screenshot.png"> 
-					</div> 
-					<div class="article-info clearfix"> 
-						<div class="article-time"> 
-							<div class="clock little-icon"></div> 
-							<span>16小时前</span> 
-						</div> 
-						<div class="article-viewed"> 
-							<span>21497</span> 
-							<div class="eye little-icon"></div> 
+	<div class="article-container">
+		<ul class="ecjia-article article-list" id="discover-article-list" {if $is_last neq 1}data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='article/index/ajax_article_list'}" data-page="2" data-type="{$cat_id}"{/if}>
+			<!-- {foreach from=$data item=val key=key} -->
+			<div class="article clearfix"> 
+				<a href="{RC_Uri::url('article/index/detail')}&article_id={$val.article_id}">
+					<div class="article-left"> 
+						<p class="article-title line-clamp2">{$val.title}</p> 
+						<p class="article-summary line-clamp2">{$val.content}</p> 
+						<div class="article-author clearfix" data-lazy="false"> 
+							<img class="lazy-img article-author-pic" src="{$val.store_info.store_logo}"> 
+							<span class="lazy-img article-author-name">{$val.store_info.store_name}</span> 
 						</div> 
 					</div> 
-				</div>
-			</a> 
-		</div>
-		
-		<div class="article clearfix"> 
-			<div class="article-left"> 
-				<p class="article-title line-clamp2"> 考试季你还差点儿啥 </p> 
-				<p class="article-summary line-clamp2"> 考试，是个令人纠结的事情。想到考试就会想到放假，恨不得日子如梭,立马奔向悠长的暑假,却又巴不得日子一点一点挪动,不要靠近放假前的那道门槛——考试。 讨厌考试吗?当然！但是又没得选择。随着高考、中考的临近和各学校期末考试的到来，“考试季”正在悄悄逼近，小商品城的“文具经济”开始升温发酵，考试除了要准备文具还要准备些什么呢，跟着我们一起来看一看吧！</p> 
-				<div class="article-author clearfix" data-lazy="false"> 
-					<img class="lazy-img article-author-pic" src="{$theme_url}images/store_default.png"> 
-					<span class="lazy-img article-author-name">测试店铺名称</span> 
-				</div> 
-			</div> 
-			<div class="article-right" data-lazy="false"> 
-				<div class="img-box"> 
-					<img class="lazy-img" src="{$theme_url}images/screenshot.png"> 
-				</div> 
-				<div class="article-info clearfix"> 
-					<div class="article-time"> 
-						<div class="clock little-icon"></div> 
-						<span>16小时前</span> 
-					</div> 
-					<div class="article-viewed"> 
-						<span>21497</span> 
-						<div class="eye little-icon"></div> 
-					</div> 
-				</div> 
-			</div> 
-		</div>
-		
-		<div class="article clearfix"> 
-			<div class="article-left"> 
-				<p class="article-title line-clamp2"> 考试季你还差点儿啥 </p> 
-				<p class="article-summary line-clamp2"> 考试，是个令人纠结的事情。想到考试就会想到放假，恨不得日子如梭,立马奔向悠长的暑假,却又巴不得日子一点一点挪动,不要靠近放假前的那道门槛——考试。 讨厌考试吗?当然！但是又没得选择。随着高考、中考的临近和各学校期末考试的到来，“考试季”正在悄悄逼近，小商品城的“文具经济”开始升温发酵，考试除了要准备文具还要准备些什么呢，跟着我们一起来看一看吧！</p> 
-				<div class="article-author clearfix" data-lazy="false"> 
-					<img class="lazy-img article-author-pic" src="{$theme_url}images/store_default.png"> 
-					<span class="lazy-img article-author-name">测试店铺名称</span> 
-				</div> 
-			</div> 
-			<div class="article-right" data-lazy="false"> 
-				<div class="img-box"> 
-					<img class="lazy-img" src="{$theme_url}images/screenshot.png"> 
-				</div> 
-				<div class="article-info clearfix"> 
-					<div class="article-time"> 
-						<div class="clock little-icon"></div> 
-						<span>16小时前</span> 
-					</div> 
-					<div class="article-viewed"> 
-						<span>21497</span> 
-						<div class="eye little-icon"></div> 
-					</div> 
-				</div> 
-			</div> 
-		</div>
-		
-		<div class="article clearfix"> 
-			<div class="article-left"> 
-				<p class="article-title line-clamp2"> 考试季你还差点儿啥 </p> 
-				<p class="article-summary line-clamp2"> 考试，是个令人纠结的事情。想到考试就会想到放假，恨不得日子如梭,立马奔向悠长的暑假,却又巴不得日子一点一点挪动,不要靠近放假前的那道门槛——考试。 讨厌考试吗?当然！但是又没得选择。随着高考、中考的临近和各学校期末考试的到来，“考试季”正在悄悄逼近，小商品城的“文具经济”开始升温发酵，考试除了要准备文具还要准备些什么呢，跟着我们一起来看一看吧！</p> 
-				<div class="article-author clearfix" data-lazy="false"> 
-					<img class="lazy-img article-author-pic" src="{$theme_url}images/store_default.png"> 
-					<span class="lazy-img article-author-name">测试店铺名称</span> 
-				</div> 
-			</div> 
-			<div class="article-right" data-lazy="false"> 
-				<div class="img-box"> 
-					<img class="lazy-img" src="{$theme_url}images/screenshot.png"> 
-				</div> 
-				<div class="article-info clearfix"> 
-					<div class="article-time"> 
-						<div class="clock little-icon"></div> 
-						<span>16小时前</span> 
-					</div> 
-					<div class="article-viewed"> 
-						<span>21497</span> 
-						<div class="eye little-icon"></div> 
-					</div> 
-				</div> 
-			</div> 
-		</div>
-		
-		<div class="article clearfix"> 
-			<div class="article-left"> 
-				<p class="article-title line-clamp2"> 考试季你还差点儿啥 </p> 
-				<p class="article-summary line-clamp2"> 考试，是个令人纠结的事情。想到考试就会想到放假，恨不得日子如梭,立马奔向悠长的暑假,却又巴不得日子一点一点挪动,不要靠近放假前的那道门槛——考试。 讨厌考试吗?当然！但是又没得选择。随着高考、中考的临近和各学校期末考试的到来，“考试季”正在悄悄逼近，小商品城的“文具经济”开始升温发酵，考试除了要准备文具还要准备些什么呢，跟着我们一起来看一看吧！</p> 
-				<div class="article-author clearfix" data-lazy="false"> 
-					<img class="lazy-img article-author-pic" src="{$theme_url}images/store_default.png"> 
-					<span class="lazy-img article-author-name">测试店铺名称</span> 
-				</div> 
-			</div> 
-			<div class="article-right" data-lazy="false"> 
-				<div class="img-box"> 
-					<img class="lazy-img" src="{$theme_url}images/screenshot.png"> 
-				</div> 
-				<div class="article-info clearfix"> 
-					<div class="article-time"> 
-						<div class="clock little-icon"></div> 
-						<span>16小时前</span> 
-					</div> 
-					<div class="article-viewed"> 
-						<span>21497</span> 
-						<div class="eye little-icon"></div> 
-					</div> 
-				</div> 
-			</div> 
-		</div>
+					<div class="article-right" data-lazy="false"> 
+						<div class="img-box"> 
+							<img class="lazy-img" src="{$val.cover_image}"> 
+						</div> 
+						<div class="article-info clearfix"> 
+							<div class="article-time"> 
+								<div class="clock little-icon"></div> 
+								<span>{$val.add_time}</span> 
+							</div> 
+							<div class="article-viewed"> 
+								<span>{$val.click_count}</span> 
+								<div class="eye little-icon"></div> 
+							</div> 
+						</div> 
+					</div>
+				</a> 
+			</div>
+			<!-- {foreachelse} -->
+			<div class="ecjia-nolist"><img src="{$theme_url}images/no_comment.png"><p class="tags_list_font">暂无文章</p></div>
+			<!-- {/foreach} -->
+		</ul>
 	</div>
 	<!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->
 </div>
@@ -197,14 +95,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="navi-title">已有分类</div>
 	<span class="close_div">X</span>
 	<ul class="navi-list">
-		<li class="navi active"><p class="navi-name">精选</p></li>
-		<li class="navi"><p class="navi-name">家居家装</p></li>
-		<li class="navi"><p class="navi-name">服装首饰</p></li>
-		<li class="navi"><p class="navi-name">电脑办公</p></li>
-		<li class="navi"><p class="navi-name">食品饮料</p></li>
-		<li class="navi"><p class="navi-name">手机数码</p></li>
-		<li class="navi"><p class="navi-name">运动户外</p></li>
-		<li class="navi"><p class="navi-name">家用电器</p></li>
+		<!-- {foreach from=$article_cat item=cat key=key} -->
+		<li class="navi {if $key eq 0}active{/if}"><p class="navi-name">{$cat.cat_name}</p></li>
+		<!-- {/foreach} -->
 	</ul>
 </div>
 <!-- {/block} -->

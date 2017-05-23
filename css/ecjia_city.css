@@ -9279,6 +9279,20 @@ footer {
 	padding-top: 0;
 }
 
+.ecjia-article.article-list .ecjia-nolist {
+	background-color: #fff;
+	padding-top: 3em;
+}
+
+.ecjia-article.article-list .ecjia-nolist img {
+    width: 8em;
+    height: 8em;
+}
+
+.ecjia-article.article-list .ecjia-nolist .tags_list_font {
+    color: #999;
+}
+
 .ecjia-article.article-list .article {
 	min-height: 7.5rem;
     border-bottom: 1px solid #f3f3f3;

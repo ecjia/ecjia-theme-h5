@@ -124,13 +124,19 @@ class article_controller {
     	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
     	 
     	if (!ecjia_front::$controller->is_cached('discover_init.dwt', $cache_id)) {
+    		//文章分类
+    		$article_cat = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_CATEGORY)->run();
+    		ecjia_front::$controller->assign('article_cat', $article_cat);
+    		
+    		//新人有礼url
     		$token = ecjia_touch_user::singleton()->getToken();
     		$signup_reward_url =  RC_Uri::url('user/mobile_reward/init', array('token' => $token));
     		ecjia_front::$controller->assign('signup_reward_url', $signup_reward_url);
     
+    		//轮播图
     		$arr = array(
-    				'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
-    				'city_id' => $_COOKIE['city_id']
+    			'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+    			'city_id' => $_COOKIE['city_id']
     		);
     		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DATA)->data($arr)->run();
     
@@ -147,8 +153,26 @@ class article_controller {
     			}
     			ecjia_front::$controller->assign('cycleimage', $data['player']);
     		}
-    
+    		//菜单选中
     		ecjia_front::$controller->assign('active', 'discover');
+    		
+    		if (!empty($article_cat)) {
+    			$cat_id = $article_cat[0]['cat_id'];
+    			$article_param = array(
+    				'cat_id' => $cat_id,
+    				'pagination' => array('count' => 10, 'page' => 1),
+    			);
+    			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_LIST)->data($article_param)->hasPage()->run();
+    			if (!is_ecjia_error($response)) {
+    				list($data, $paginated) = $response;
+    				 
+    				if (isset($paginated['more']) && $paginated['more'] == 0) $is_last = 1;
+    				ecjia_front::$controller->assign('data', $data);
+    				ecjia_front::$controller->assign('is_last', $is_last);
+    				ecjia_front::$controller->assign('cat_id', $cat_id);
+    			}
+    		}
+    		
     	}
     	ecjia_front::$controller->display('discover_init.dwt', $cache_id);
     }
@@ -168,6 +192,30 @@ class article_controller {
     		ecjia_front::$controller->assign('goods_info', $goods_info);
     	}
     	ecjia_front::$controller->display('discover_article.dwt', $cache_id);
+    }
+    
+    public static function ajax_article_list() {
+    	$limit = 10;
+    	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
+    	$cat_id = intval($_GET['action_type']);
+    	
+    	$article_param = array(
+			'cat_id' => $cat_id,
+    		'pagination' => array('count' => 10, 'page' => $page),
+    	);
+    	
+    	$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_LIST)->data($article_param)->hasPage()->run();
+    	if (!is_ecjia_error($response)) {
+    		list($data, $paginated) = $response;
+    		ecjia_front::$controller->assign('data', $data);
+    		
+    		$say_list = '';
+    		if (!empty($data)) {
+    			$say_list = ecjia_front::$controller->fetch('library/article_list.lbi');
+    		}
+    		if (isset($paginated['more']) && $paginated['more'] == 0) $data['is_last'] = 1;
+    		return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $data['is_last']));
+    	}
     }
 }
 

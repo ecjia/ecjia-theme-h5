@@ -262,6 +262,7 @@
 				options = $.extend({}, defaults, options),
 				scroll_list = function() {
 					if (!options.lock && ($(window).scrollTop() > $(document).height() - $(window).height() - options.offset)) {
+						options.areaClass = options.areaClass.replace(new RegExp(' ', 'gm'), '.'); //替换空格为点，多个class
 						if ($('.' + options.areaClass).parent().find('.is-last').length != 0) {
 							return false;
 						}
@@ -601,24 +602,12 @@
 				var val = $('input[name="keywords"]').val().trim(),
 					url = $('.ecjia-form').attr('action'),
 					form = $('.ecjia-form');
-
-				var is_order_list = $('input[name="keywords"]').attr("data-type");
-				if (is_order_list) {
-					if (!val) {
-						ecjia.pjax(url);
-						return false;
-					} else {
-						ecjia.pjax(url + '&keywords=' + val);
-						return false;
-					}
+				if (!val) {
+					$("#keywordBox").blur();
+					return false;
 				} else {
-					if (!val) {
-						$("#keywordBox").blur();
-						return false;
-					} else {
-						ecjia.pjax(url + '&keywords=' + val);
-						return false;
-					}
+					ecjia.pjax(url + '&keywords=' + val);
+					return false;
 				}
 			});
 			$('.search-goods').off('click').on('click', function() {
@@ -691,15 +680,15 @@
 	};
 	
 	//微信浏览器后退pjax刷新
-//	var ua = navigator.userAgent.toLowerCase();
-//	if (ua.match(/MicroMessenger/i) == "micromessenger" || ua.match(/ECJiaBrowse/i) == "ecjiabrowse") {
-//		window.addEventListener("popstate", function(e) { 
-//			if (e.state.url != undefined) {
-//				ecjia.pjax(e.state.url);
-//				return false;
-//			}
-//		}, false); 
-//	}
+	var ua = navigator.userAgent.toLowerCase();
+	if (ua.match(/MicroMessenger/i) == "micromessenger" || ua.match(/ECJiaBrowse/i) == "ecjiabrowse") {
+		window.addEventListener("popstate", function(e) { 
+			if (e.state.url != undefined) {
+				ecjia.pjax(e.state.url);
+				return false;
+			}
+		}, false); 
+	}
 
 	//PJAX跳转执行
 	$(document).on('pjax:complete', function() {
