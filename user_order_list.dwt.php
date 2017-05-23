@@ -24,7 +24,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <div class="ecjia-header">
         	<div class="ecjia-search-header ecjia-search">
         		<form class="ecjia-form" action="{url path='user/order/order_list&type=whole'}{if $store_id neq 0}&store_id={$store_id}{/if}">
-        			<input id="keywordBox" name="keywords" type="search" placeholder="商品名称/订单号" {if $keywords}value={$keywords}{/if}>
+        			<input id="keywordBox" name="keywords" type="search" placeholder="商品名称/订单号" {if $keywords}value={$keywords}{/if} data-type="search_order">
         			<i class="iconfont icon-search btn-search"></i>
         		</form>
         	</div>
