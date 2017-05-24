@@ -226,6 +226,16 @@
 				initialSlide: index,
 				spaceBetween: 0,
 			});
+			
+			$('.navi-list li').off('click').on('click', function() {
+				var cat_id = $(this).attr('data-id');
+				$(this).addClass('active').siblings('li').removeClass('active');
+				$(".ecjia-discover-article .swiper-slide[data-type='"+cat_id+"']").trigger('click').addClass('active');
+				$('.ecjia-discover').css('display', 'block');
+				$('.ecjia-down-navi').css('display', 'none');
+				var index = $(this).index();
+				swiper.slideTo(index, 1000, false);//切换到制定slide，速度为1秒
+			});
 		},
 		
 		discover_init: function() {
@@ -295,13 +305,6 @@
 		},
 		
 		article_cat_click: function() {
-			$('.navi-list li').off('click').on('click', function() {
-				var cat_id = $(this).attr('data-id');
-				$(this).addClass('active').siblings('li').removeClass('active');
-				$(".ecjia-discover-article .swiper-slide[data-type='"+cat_id+"']").trigger('click').addClass('active');
-				$('.ecjia-discover').css('display', 'block');
-				$('.ecjia-down-navi').css('display', 'none');
-			});
 			$('.ecjia-discover-article .swiper-slide').off('click').on('click', function() {
 				var $this = $(this),
 					url = $this.attr('data-url'),
