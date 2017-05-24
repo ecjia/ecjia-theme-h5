@@ -262,10 +262,13 @@
 				options = $.extend({}, defaults, options),
 				scroll_list = function() {
 					if (!options.lock && ($(window).scrollTop() > $(document).height() - $(window).height() - options.offset)) {
+						var area_class = options.areaClass;
 						options.areaClass = options.areaClass.replace(new RegExp(' ', 'gm'), '.'); //替换空格为点，多个class
 						if ($('.' + options.areaClass).parent().find('.is-last').length != 0) {
 							return false;
 						}
+						options.areaClass = area_class;
+						
 						options.lock = true;
 						ecjia.touch.load_list(options);
 						options.page++;
@@ -602,12 +605,24 @@
 				var val = $('input[name="keywords"]').val().trim(),
 					url = $('.ecjia-form').attr('action'),
 					form = $('.ecjia-form');
-				if (!val) {
-					$("#keywordBox").blur();
-					return false;
+				
+				var is_order_list = $('input[name="keywords"]').attr("data-type");
+				if (is_order_list) {
+					if (!val) {
+						ecjia.pjax(url);
+						return false;
+					} else {
+						ecjia.pjax(url + '&keywords=' + val);
+						return false;
+					}
 				} else {
-					ecjia.pjax(url + '&keywords=' + val);
-					return false;
+					if (!val) {
+						$("#keywordBox").blur();
+						return false;
+					} else {
+						ecjia.pjax(url + '&keywords=' + val);
+						return false;
+					}
 				}
 			});
 			$('.search-goods').off('click').on('click', function() {

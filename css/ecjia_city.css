@@ -6027,11 +6027,11 @@ footer {
 }
 
 .ecjia-order-search {
-    margin-top: 3.5em;
+    padding-top: 3.5em;
 }
 
 .ecjia-order-search .ecjia-header {
-	background :#AAA;
+	background :#e5e5e5;
 }
 
 .ecjia-order-search .ecjia-search-header.ecjia-search .ecjia-form {
@@ -9516,6 +9516,7 @@ footer {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+	color: #333333;
 }
 
 .ecjia-down-navi .close_div{
@@ -9636,11 +9637,11 @@ footer {
 }
 
 .ecjia-discover-detail .author-panel {
-    position: relative;
+	position: relative;
     z-index: 2;
-    padding-top: 1em;
+    margin: 1em auto;
     width: 100%;
-    height: 13em;
+    height: 11em;
     box-sizing: border-box;
 }
 
@@ -9780,7 +9781,6 @@ footer {
 .ecjia-discover-detail .floor.comment-floor {
 	padding-bottom: 3em;
 	background: #f7f7f7;
-	margin-top: 2em;
 }
 
 .ecjia-discover-detail .nav-bt-fix {

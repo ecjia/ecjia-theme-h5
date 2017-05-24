@@ -176,7 +176,7 @@
 				e.preventDefault();
 				var $this = $(this),
 					url = $this.attr('href');
-				var i = $("#swiper-discover-icon").find('.swiper-slide').index();
+				var i = $("#swiper-discover-icon").find('.swiper-slide.swiper-slider-active').index();
 				sessionStorage.setItem("discover_swiper", i);
 				ecjia.pjax(url);
 			});
@@ -227,13 +227,14 @@
 				spaceBetween: 0,
 			});
 			
-			$('#swiper-article-cat .swiper-slide').find('a').off('click').on('click', function(e) {
-				e.preventDefault();
-				var $this = $(this),
-					url = $this.attr('href');
-				var i = $("#swiper-article-cat").find('.swiper-slide').index();
-				sessionStorage.setItem("discover_cat", i);
-				ecjia.pjax(url);
+			$('.navi-list li').off('click').on('click', function() {
+				var cat_id = $(this).attr('data-id');
+				$(this).addClass('active').siblings('li').removeClass('active');
+				$(".ecjia-discover-article .swiper-slide[data-type='"+cat_id+"']").trigger('click').addClass('active');
+				$('.ecjia-discover').css('display', 'block');
+				$('.ecjia-down-navi').css('display', 'none');
+				var index = $(this).index();
+				swiper.slideTo(index, 1000, false);//切换到制定slide，速度为1秒
 			});
 		},
 		
