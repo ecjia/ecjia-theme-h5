@@ -9516,6 +9516,7 @@ footer {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+	color: #333333;
 }
 
 .ecjia-down-navi .close_div{
