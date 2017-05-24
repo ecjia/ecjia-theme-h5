@@ -86,11 +86,7 @@
 				$.post(url, info, function(data) {
 					$('.la-ball-atom').remove();
 					if (data.state == 'error') {
-						var myApp = new Framework7({
-							modalButtonOk: '确定',
-							modalTitle: ''
-						});
-						myApp.alert(data.info);
+						alert(data.message);
 					} else {
 						location.href = data.url;
 					}
