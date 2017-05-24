@@ -16,58 +16,48 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <div class="ecjia-discover-detail">
 	<div class="author-header"> 
-		<h1 class="article-title">这只神笔1600万种颜色可任你取</h1> 
+		<h1 class="article-title">{$data.title}</h1> 
 		<div class="author-head clear-fix" data-lazy="false"> 
-			<img class="author-pic lazy-img" src="{$theme_url}images/default_user.png"> 
-			<span class="author-name">潮流酷潮玩</span> 
+			<img class="author-pic lazy-img" src="{$data.store_logo}"> 
+			<span class="author-name">{$data.store_name}</span> 
 		</div> 
 	</div>
 	<div class="article-container">
-		<div class="article-content clearfix"> 
-			<p class="article-p">CRONZY是一支智能画笔，它相当于一个彩色扫描仪，用笔尾贴近取色的对象，按下开关，笔中内置的墨水盒能通过微马达自动合成这种颜色。</p>  
-		</div>
-		
-		<div class="article-content clearfix goods-list"> 
-			<div class="article-content-sku clearfix" data-lazy="false"> 
-				<img class="content-sku-img lazy-img" src="https://cityo2o.ecjia.com/content/uploads/images/201611/goods_img/1128_G_1478110977787.jpg"> 
-				<div class="content-sku-right"> 
-					<p class="content-sku-name line-clamp2">派克（PARKER）威雅系列笔 礼品/礼物 办公用品 钢笔男女 学生钢笔 文具 礼品笔 威雅钢杆白夹宝珠笔</p> 
-					<div class="content-sku-bottom clearfix"> 
-						<span class="sku-price ellipsis">¥118.00</span>  
-						<span class="buy-btn">去购买</span> 
+		<div class="article-content clearfix article-p">{$content}</div>
+		<!-- {if $data.article_related_goods} -->
+			<!-- {foreach from=$data.article_related_goods item=goods} -->
+			<div class="article-content clearfix goods-list"> 
+				<div class="article-content-sku clearfix" data-lazy="false"> 
+					<img class="content-sku-img lazy-img" src="{$goods.img.thumb}"> 
+					<div class="content-sku-right"> 
+						<p class="content-sku-name line-clamp2">{$goods.name}</p> 
+						<div class="content-sku-bottom clearfix"> 
+							<span class="sku-price ellipsis">{$goods.shop_price}</span>  
+							<a href='{url path="goods/index/show"}&goods_id={$goods.goods_id}'><span class="buy-btn">去购买</span> 
+						</div> 
 					</div> 
-				</div> 
-			</div>  
-		</div>
-		
-		<div class="article-content clearfix goods-list"> 
-			<div class="article-content-sku clearfix" data-lazy="false"> 
-				<img class="content-sku-img lazy-img" src="https://cityo2o.ecjia.com/content/uploads/images/201611/goods_img/1128_G_1478110977787.jpg"> 
-				<div class="content-sku-right"> 
-					<p class="content-sku-name line-clamp2">派克（PARKER）威雅系列笔 礼品/礼物 办公用品 钢笔男女 学生钢笔 文具 礼品笔 威雅钢杆白夹宝珠笔</p> 
-					<div class="content-sku-bottom clearfix"> 
-						<span class="sku-price ellipsis">¥118.00</span>  
-						<span class="buy-btn">去购买</span> 
-					</div> 
-				</div> 
-			</div>  
-		</div>
+				</div>  
+			</div>
+			<!-- {/foreach} -->
+		<!-- {/if} -->
 	</div>
 	
 	<div class="author-panel"> 
 		<div class="author-pic-box" data-lazy="false"> 
-		<img class="author-pic lazy-img" src="{$theme_url}images/default_user.png"> </div> 
+		<img class="author-pic lazy-img" src="{$data.store_logo}"> </div> 
 		<div class="author-title clearfix"> 
-			<span class="author-name ellipsis">潮流酷潮玩</span> 
+			<span class="author-name ellipsis">{$data.store_name}</span> 
 		</div> 
 		<p class="author-desc"> 
-			<span>共177篇资讯</span> 
+			<span>共{$data.total_articles}篇资讯</span> 
 		</p>  
-		<div class="enter-store">进入店铺</div> 
+		<a href='{url path="merchant/index/init"}&store_id={$data.store_id}'>
+			<div class="enter-store">进入店铺</div> 
+		</a>
 	</div>
 	
 	<div class="floor"> 
-        <!-- {if $goods_info.related_goods} -->
+        <!-- {if $data.recommend_goods} -->
         <div class="ecjia-margin-t">
 			<div class="floor-title"> 
 				<span class="floor-title-cn">相关商品</span> 
@@ -76,7 +66,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <div class="form-group ecjia-form ecjia-like-goods-list">
                 <div class="bd">
 					<ul class="ecjia-list ecjia-like-goods-list">
-						<!--{foreach from=$goods_info.related_goods item=goods name=goods}-->
+						<!--{foreach from=$data.recommend_goods item=goods name=goods}-->
 						<!-- {if $smarty.foreach.goods.index < 6 } -->
 						<li>
 							<a href='{url path="goods/index/show" args="goods_id={$goods.goods_id}"}'>
@@ -105,8 +95,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</div>
             </div>
         </div>
+        <div class="view-more-goods">查看更多商品</div> 
 		<!-- {/if} -->
-		<div class="view-more-goods">查看更多商品</div> 
 	</div>
 	
 	<div class="floor comment-floor" name="floor-comment" id="floor-comment"> 

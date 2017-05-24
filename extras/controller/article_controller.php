@@ -191,6 +191,16 @@ class article_controller {
     			'article_id'	=> $article_id	
     		);
     		$article_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_DETAIL)->data($article_param)->run();
+    		if (!is_ecjia_error($article_info) && !empty($article_info)) {
+    			list($data, $info) = $article_info;
+    			$res = array();
+    			preg_match('/<body>([\s\S]*?)<\/body>/', $data['content'], $res);
+    			$bodystr = trim($res[0]);
+    			if ($bodystr != '<body></body>') {
+    				ecjia_front::$controller->assign('content', $bodystr);
+    			}
+    			ecjia_front::$controller->assign('data', $data);
+    		}
     	}
     	ecjia_front::$controller->display('discover_article.dwt', $cache_id);
     }
