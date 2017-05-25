@@ -248,31 +248,54 @@
 				$('.ecjia-down-navi').css('display', 'none');
 			});
 			
-			$('.icon-appreciate').off('click').on('click', function() {
+			$('.article-appreciate').off('click').on('click', function() {
 				var $this = $(this);
 				if ($this.hasClass('disabled')) {
 					return false;
 				}
+				var val = parseInt($this.find('span').text());
 				$this.addClass('disabled');
+				
+				var type = 'add';
 				if ($this.hasClass('active')) {
-					$this.removeClass('active');
-					iosOverlay({
-						text: '取消点赞成功',
-						duration: 2e3,
-						onhide: function() {
-							$this.removeClass('disabled');
-						},
-					});
-				} else {
-					$this.addClass('active');
-					iosOverlay({
-						text: '点赞成功！',
-						duration: 2e3,
-						onhide: function() {
-							$this.removeClass('disabled');
-						},
-					});
+					type = 'cancel';
 				}
+				var info = {
+					'type': type,
+				}
+				var url = $('input[name="like_article"]').val();
+				$.post(url, info, function(data) {
+					if (data.state == 'success') {
+						if (type == 'cancel') {
+							$this.removeClass('active');
+							$this.find('span').text(val - 1);
+							iosOverlay({
+								text: '取消点赞成功',
+								duration: 2e3,
+								onhide: function() {
+									$this.removeClass('disabled');
+								},
+							});
+						} else {
+							$this.addClass('active');
+							$this.find('span').text(val + 1);
+							iosOverlay({
+								text: '点赞成功！',
+								duration: 2e3,
+								onhide: function() {
+									$this.removeClass('disabled');
+								},
+							});
+						}
+					} else {
+						$this.removeClass('disabled');
+						if (data.referer_url) {
+							ecjia.touch.index.show_login_message(data.referer_url);
+						} else {
+							alert(data.message);
+						}
+					}
+				});
 			});
 			
 			$('.icon-bianji1').off('click').on('click', function() {
@@ -302,7 +325,6 @@
 						});
 						ecjia.touch.index.hide_box();
 					} else {
-						console.log(data);
 						if (data.referer_url) {
 							ecjia.touch.index.show_login_message(data.referer_url);
 						} else {

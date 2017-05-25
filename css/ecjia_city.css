@@ -9828,7 +9828,7 @@ footer {
     position: relative;
 }
 
-.ecjia-discover-detail .nav-bt-center a i.icon-appreciate.active {
+.ecjia-discover-detail .nav-bt-center a.active i.icon-appreciate {
 	color: #ff3434;
 }
 

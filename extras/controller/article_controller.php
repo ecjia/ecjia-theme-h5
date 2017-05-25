@@ -210,6 +210,9 @@ class article_controller {
     	ecjia_front::$controller->display('discover_article.dwt', $cache_id);
     }
     
+    /**
+     * 评论文章
+     */
     public static function add_comment() {
     	if (!ecjia_touch_user::singleton()->isSignin()) {
     		$url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
@@ -235,6 +238,38 @@ class article_controller {
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
     }
     
+    /**
+     * 文章点赞/取消点赞
+     */
+    public static function like_article() {
+    	if (!ecjia_touch_user::singleton()->isSignin()) {
+    		$url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
+    		$referer_url = RC_Uri::url('user/privilege/login', array('referer_url' => urlencode($url)));
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
+    	}
+    	
+    	$article_id = !empty($_GET['article_id']) ? intval($_GET['article_id']) : 0;
+    	$type = !empty($_POST['type']) ? trim($_POST['type']) : '';
+    	 
+    	$article_param = array(
+    		'token' => ecjia_touch_user::singleton()->getToken(),
+    		'article_id' => $article_id,
+    	);
+    	
+    	if ($type == 'add') {
+    		$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_LIKE_ADD)->data($article_param)->run();
+    	} elseif ($type == 'cancel') {
+    		$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_LIKE_CANCEL)->data($article_param)->run();
+    	}
+    	if (is_ecjia_error($response)) {
+    		return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+    }
+    
+    /**
+     * 获取文章列表
+     */
     public static function ajax_article_list() {
     	$limit = 10;
     	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
@@ -259,6 +294,9 @@ class article_controller {
     	}
     }
     
+    /**
+     * 获取评论列表
+     */
     public static function ajax_comment_list() {
     	$pages = !empty($_GET['page']) ? intval($_GET['page']) : 1;
     	$limit = !empty($_GET['size']) > 0 	? intval($_GET['size']) : 10;
