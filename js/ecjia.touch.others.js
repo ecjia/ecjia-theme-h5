@@ -248,17 +248,14 @@
 					});
 					$('.ecjia-discover-icon').hide();
 					$('.ecjia-discover-cycleimage').hide();
-					$('.ecjia-discover-article .swiper-container').css('width', '83%');
-					$('.ecjia-discover-article .article-add').css('width', '17%');
-					
+					$('.article-container').css('margin-top', '3em');
 				} else if (top > 0) {
 					div.css({ 
 						'position': 'relative',
 					});
-					$('.ecjia-discover-article .swiper-container').css('width', '93%');
-					$('.ecjia-discover-article .article-add').css('width', '7%');
 					$('.ecjia-discover-icon').show();
 					$('.ecjia-discover-cycleimage').show();
+					$('.article-container').css('margin-top', 0);
 				}
 			});
 		},

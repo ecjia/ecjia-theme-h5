@@ -9253,6 +9253,7 @@ footer {
 	background: #fff;
 	max-width: 640px;
 	overflow: hidden;
+	width: 100%;
 }
 
 .ecjia-discover-article .swiper-container {
