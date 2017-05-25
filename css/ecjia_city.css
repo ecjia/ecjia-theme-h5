@@ -9569,6 +9569,11 @@ footer {
     word-break: break-word;
 }
 
+.ecjia-discover-detail .article-p img {
+	display: block;
+    margin: 0 auto;
+}
+    
 .ecjia-discover-detail img {
     width: 100%;
     border: none;
