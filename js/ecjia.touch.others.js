@@ -298,7 +298,7 @@
 				});
 			});
 			
-			$('.icon-bianji1').off('click').on('click', function() {
+			$('.article-bianji').off('click').on('click', function() {
 				$('.nav-bt-fix').hide();
 				$('.ecjia-discover-detail .a53').show();
 				$('.send-box').show();
@@ -323,6 +323,7 @@
 							text: '发表成功！',
 							duration: 2e3,
 						});
+						textarea.html('');
 						ecjia.touch.index.hide_box();
 					} else {
 						if (data.referer_url) {
