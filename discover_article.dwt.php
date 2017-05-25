@@ -118,7 +118,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	        	<i class="iconfont icon-appreciate {if $data.is_like eq 1}active{/if}"><span>{$data.like_count}</span></i>
 	        </a>
 	        <a href="javascript:;">
-	        	<i class="iconfont icon-bianji1"><span>写评价</span></i>
+	        	<i class="iconfont icon-bianji1"></i><span class="write-comment">写评论</span>
 	        </a>
 	        <a href="#floor-comment">
 	        	<i class="iconfont icon-comment"><span>{$data.comment_count}</span></i>

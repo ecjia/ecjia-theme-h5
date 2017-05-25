@@ -9709,14 +9709,14 @@ footer {
 
 .ecjia-discover-detail .floor-title .floor-title-cn {
     color: #3b3b3b;
-    font-size: 1.2em;
+    font-size: 1em;
     margin-right: .2em;
     line-height: 2;
 }
 
 .ecjia-discover-detail .floor-title .floor-title-en {
     color: #a9a9a9;
-    font-size: 1.2em;
+    font-size: 1em;
     padding-left: .5em;
     border-left: 1px solid #a9a9a9;
     line-height: 2;
@@ -9750,6 +9750,15 @@ footer {
 
 .ecjia-discover-detail .floor .floor-content {
 	overflow: hidden;
+}
+
+.ecjia-discover-detail .floor .floor-content .ecjia-nolist {
+	padding: 1em 0;
+}
+
+.ecjia-discover-detail .floor .floor-content .ecjia-nolist img{
+	width: 8em;
+    height: 8em;
 }
     
 .ecjia-discover-detail .floor .comment-item {
@@ -9822,11 +9831,16 @@ footer {
 .ecjia-discover-detail .nav-bt-center a i.icon-appreciate.active {
 	color: #ff3434;
 }
-.ecjia-discover-detail .nav-bt-center a i span {
+
+.ecjia-discover-detail .nav-bt-center a i {
+	top: 2px;
+}
+
+.ecjia-discover-detail .nav-bt-fix .nav-bt-center span {
 	font-size: .8em;
 	padding-left: .2em;
-	color: #333;
 }
+
 
 .ecjia-discover-detail .send-box {
 	position: fixed;
