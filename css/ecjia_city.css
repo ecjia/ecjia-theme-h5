@@ -9642,7 +9642,6 @@ footer {
     z-index: 2;
     margin: 1em auto;
     width: 100%;
-    height: 11em;
     box-sizing: border-box;
 }
 
@@ -9664,7 +9663,7 @@ footer {
 
 .ecjia-discover-detail .author-panel .author-title .author-name {
     color: #0d0d0d;
-    font-size: 1em;
+    font-size: 1.1em;
     line-height: 1em;
     padding-right: 10px;
 }
@@ -9672,10 +9671,10 @@ footer {
 .ecjia-discover-detail .author-panel .author-desc {
     width: 80%;
     margin: 0 auto;
-    margin-top: .5em;
+    margin-top: .8em;
     margin-bottom: .8em;
-    font-size: .8em;
-    line-height: .8em;
+    font-size: 1em;
+    line-height: 1em;
     color: #656565;
     text-align: center;
 }
