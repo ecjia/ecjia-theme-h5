@@ -182,7 +182,7 @@ class touch_controller {
         	$sayList = ecjia_front::$controller->fetch('index.dwt');
         	
         	if (isset($paginated['more']) && $paginated['more'] == 0) $data['is_last'] = 1;
-        	return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList, 'is_last' => $data['is_last']));
+        	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList, 'is_last' => $data['is_last']));
         }
     }
 
@@ -212,7 +212,7 @@ class touch_controller {
     			$sayList = ecjia_front::$controller->fetch('library/suggest_store.lbi');
     		}
     		if (isset($paginated['more']) && $paginated['more'] == 0) $data['is_last'] = 1;
-    		return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList, 'is_last' => $data['is_last']));
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $sayList, 'is_last' => $data['is_last']));
     	}
     }
     

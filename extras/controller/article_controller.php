@@ -201,8 +201,16 @@ class article_controller {
     			}
     			ecjia_front::$controller->assign('data', $data);
     		}
+    		ecjia_front::$controller->assign('article_id', $article_id);
     	}
     	ecjia_front::$controller->display('discover_article.dwt', $cache_id);
+    }
+    
+    public static function add_comment() {
+    	$article_id = !empty($_GET['article_id']) ? intval($_GET['article_id']) : 0;
+    	$content = !empty($_POST['val']) ? $_POST['val'] : '';
+    	if (empty($content)) {
+    	}
     }
     
     public static function ajax_article_list() {
@@ -225,7 +233,7 @@ class article_controller {
     			$say_list = ecjia_front::$controller->fetch('library/article_list.lbi');
     		}
     		if (isset($paginated['more']) && $paginated['more'] == 0) $data['is_last'] = 1;
-    		return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $data['is_last']));
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $data['is_last']));
     	}
     }
 }

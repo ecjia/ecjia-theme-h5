@@ -16,7 +16,6 @@
 			this.discover_cycleimage();
 			this.discover_cat();
 			this.discover_init();
-			this.hide_box();
 			this.article_cat_click();
 		},
 		
@@ -284,11 +283,30 @@
 			
 			$('.send-btn').off('click').on('click', function(e) {
 				e.preventDefault();
-				iosOverlay({
-					text: '发表成功！',
-					duration: 2e3,
+				var textarea = $('.textarea-box').find('textarea');
+				var length = textarea.val().length;
+				if (length == 0) {
+					textarea.focus();
+					return false;
+				}
+				
+				var url = $('input[name="add_comment"]').val();
+				var info = {
+					val: textarea.val(),
+				}
+				$.post(url, info, function(data) {
+					console.log(data);
+					if (data.status == 'success') {
+						iosOverlay({
+							text: '发表成功！',
+							duration: 2e3,
+						});
+						ecjia.touch.index.hide_box();
+					} else {
+						
+					}
 				});
-				ecjia.touch.index.hide_box();
+
 			});
 			
 			$('.a53').off('click').on('click', function(e) {
@@ -356,6 +374,33 @@
 					});
 				}
 			});
+		},
+		
+		show_login_message: function() {
+			//禁用滚动条
+			$('body').css('overflow-y', 'hidden').on('touchmove', function(event) {
+				event.preventDefault;
+			}, false);
+
+			myApp.modal({
+				title: '温馨提示',
+				text: '您还没有登录',
+				buttons: [{
+					text: '取消',
+					onClick: function() {
+						$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
+						return false;
+					}
+				}, {
+					text: '去登录',
+					onClick: function() {
+						$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
+						location.href = data.referer_url;
+						return false;
+					}
+				}, ]
+			});
+			return false;
 		}
 	};
 
@@ -365,6 +410,7 @@
 		}
 		return i;
 	}
+	
 })(ecjia, jQuery);
 
 //end

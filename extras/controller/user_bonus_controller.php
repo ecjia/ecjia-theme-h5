@@ -74,7 +74,7 @@ class user_bonus_controller {
         
         	ecjia_front::$controller->assign('bonus', $data);
         	$say_list = ecjia_front::$controller->fetch('user_bonus.dwt');
-        	return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+        	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
         }
     }
     
@@ -91,7 +91,7 @@ class user_bonus_controller {
         
         	ecjia_front::$controller->assign('bonus', $data);
         	$say_list = ecjia_front::$controller->fetch('user_bonus.dwt');
-        	return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+        	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
         }
     }
     
@@ -107,7 +107,7 @@ class user_bonus_controller {
         
         	ecjia_front::$controller->assign('bonus', $data);
         	$say_list = ecjia_front::$controller->fetch('user_bonus.dwt');
-        	return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+        	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
         }
     }
 
@@ -186,7 +186,7 @@ class user_bonus_controller {
         	}
         	ecjia_front::$controller->assign('data', $reward);
         	$say_list = ecjia_front::$controller->fetch('user_reward_detail.dwt');
-        	return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $res['is_last'], 'data' => $res));
+        	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $res['is_last'], 'data' => $res));
         }
     }
     

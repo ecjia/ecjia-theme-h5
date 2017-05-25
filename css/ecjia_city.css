@@ -9700,14 +9700,14 @@ footer {
 
 .ecjia-discover-detail .floor-title .floor-title-cn {
     color: #3b3b3b;
-    font-size: .8em;
+    font-size: 1.2em;
     margin-right: .2em;
     line-height: 2;
 }
 
 .ecjia-discover-detail .floor-title .floor-title-en {
     color: #a9a9a9;
-    font-size: .8em;
+    font-size: 1.2em;
     padding-left: .5em;
     border-left: 1px solid #a9a9a9;
     line-height: 2;
@@ -9844,13 +9844,13 @@ footer {
 
 .ecjia-discover-detail .send-box .textarea-box textarea {
     border: none;
-    line-height: 1.5em;
     color: #333;
     outline: 0;
     width: 85%;
     min-height: 5rem;
     font-size: 1.1em;
-	margin: .4em 0 0 .4em;
+	margin: 1em 0 0 1em;
+	width: 80%;
 }
 
 .ecjia-discover-detail .send-box .textarea-box a {

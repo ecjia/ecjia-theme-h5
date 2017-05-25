@@ -318,7 +318,7 @@ class user_account_controller {
         	ecjia_front::$controller->assign_lang();
         	$say_list = ecjia_front::$controller->fetch('user_record.dwt');
         	if (isset($page['more']) && $page['more'] == 0) $is_last = 1;
-        	return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+        	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
     	}
     }
 
@@ -366,7 +366,7 @@ class user_account_controller {
             $say_list = ecjia_front::$controller->fetch('user_record.dwt');
             if (isset($page['more']) && $page['more'] == 0) $is_last = 1;
             
-            return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
         }
     }
     
@@ -412,7 +412,7 @@ class user_account_controller {
             $say_list = ecjia_front::$controller->fetch('user_record.dwt');
             
             if (isset($page['more']) && $page['more'] == 0) $is_last = 1;
-            return ecjia_front::$controller->showmessage('success', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
         }
     }
     /**

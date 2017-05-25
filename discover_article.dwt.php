@@ -167,9 +167,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     
     <div class="send-box">
         <div class="textarea-box">
-            <textarea cols="30" rows="3"></textarea>
+            <textarea cols="30" rows="3" placeholder="我来说两句..."></textarea>
             <a class="xin-btn xin-btn-small send-btn" href="javascript:void(0);">发送</a>
         </div>
+        <input type="hidden" name="add_comment" value="{RC_Uri::url('article/index/add_comment')}&article_id={$article_id}" />
     </div>
     <div class="a53"></div>
 </div>
