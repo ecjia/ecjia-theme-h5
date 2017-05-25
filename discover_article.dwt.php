@@ -19,8 +19,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<h1 class="article-title">{$data.title}</h1> 
 		<div class="author-head clear-fix" data-lazy="false"> 
 			<img class="author-pic lazy-img" src="{$data.store_logo}"> 
-			<span class="author-name">{$data.store_name}</span> 
-		</div> 
+			<span class="author-info">{$data.store_name}</span> 
+			<span class="m_l2 author-info">{$data.add_time}</span> 
+		</div>
 	</div>
 	<div class="article-container">
 		<div class="article-content clearfix article-p">{$content}</div>

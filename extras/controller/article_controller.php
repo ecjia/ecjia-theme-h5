@@ -206,8 +206,6 @@ class article_controller {
     			ecjia_front::$controller->assign('data', $data);
     		}
     		ecjia_front::$controller->assign('article_id', $article_id);
-    		
-    		
     	}
     	ecjia_front::$controller->display('discover_article.dwt', $cache_id);
     }

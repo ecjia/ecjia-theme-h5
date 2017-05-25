@@ -9554,10 +9554,13 @@ footer {
     margin-right: .1em;
 }
 
-.ecjia-discover-detail .author-header .author-head .author-name {
+.ecjia-discover-detail .author-header .author-head .author-info {
     color: #989898;
-    font-size: .8em;
+    font-size: 1em;
     line-height: 1em;
+}
+.ecjia-discover-detail .author-header .author-head .m_l2 {
+	margin-left: 2em;
 }
 
 .ecjia-discover-detail .article-p {
@@ -9567,11 +9570,13 @@ footer {
     padding-right: .8em;
     margin-bottom: .8em;
     word-break: break-word;
+	text-indent: 2em;
 }
 
 .ecjia-discover-detail .article-p img {
 	display: block;
     margin: 0 auto;
+	max-width: 100%;
 }
     
 .ecjia-discover-detail img {
