@@ -107,7 +107,7 @@
 								$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 							}
 						}
-						if (flyer != undefined) {
+						if (offset != undefined && flyer != undefined) {
 							flyer.fly({
 								start: { // 开始时位置
 									left: ev.pageX - 40,
