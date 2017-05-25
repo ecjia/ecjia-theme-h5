@@ -91,6 +91,7 @@ RC_Hook::add_action('article/index/init', array('article_controller', 'article_i
 RC_Hook::add_action('article/index/detail', array('article_controller', 'article_detail'));	//发现文章详情
 RC_Hook::add_action('article/index/ajax_article_list', array('article_controller', 'ajax_article_list'));//获取分类下的文章
 RC_Hook::add_action('article/index/add_comment', array('article_controller', 'add_comment'));//获取分类下的文章
+RC_Hook::add_action('article/index/ajax_comment_list', array('article_controller', 'ajax_comment_list'));//获取文章评论列表
 
 //购物车
 RC_Loader::load_theme('extras/controller/cart_controller.php');

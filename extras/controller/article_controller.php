@@ -254,6 +254,29 @@ class article_controller {
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $data['is_last']));
     	}
     }
+    
+    public static function ajax_comment_list() {
+    	$pages = !empty($_GET['page']) ? intval($_GET['page']) : 1;
+    	$limit = !empty($_GET['size']) > 0 	? intval($_GET['size']) : 10;
+    	$article_id = !empty($_GET['article_id']) ? intval($_GET['article_id']) : 0;
+    	 
+    	$article_param = array(
+    		'article_id' => $article_id,
+    		'pagination' => array('count' => $limit, 'page' => $pages),
+    	);
+    	$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_COMMENTS)->data($article_param)->hasPage()->run();
+    	$say_list = '';
+    	if (!is_ecjia_error($response)) {
+    		list($data, $paginated) = $response;
+    		ecjia_front::$controller->assign('data', $data);
+    		if (!empty($data)) {
+    			$say_list = ecjia_front::$controller->fetch('library/article_comment.lbi');
+    		}
+    		if (isset($paginated['more']) && $paginated['more'] == 0) $data['is_last'] = 1;
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $data['is_last']));
+    	}
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => 1));
+    }
 }
 
 // end

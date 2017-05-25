@@ -106,47 +106,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<span class="floor-title-en">Comments</span> 
 			</div> 
 			<div class="floor-content">
-				<ul>
-					<li class="comment-item">
-						<div class="comment-left">
-							<img src="{$theme_url}images/default_user.png" >
-						</div>
-						<div class="comment-right">
-							<div class="user-name">nuomi<div class="time">刚刚</div></div>
-							<div class="content">8848钛金手机专为追求个性与品位的高端用户私人订制，如果你是这样的用户，并且准备趁着517电信节选购一部适合自己的手机，那这个机会一定不要错过了！</div>
-						</div>
-					</li>
-					
-					<li class="comment-item">
-						<div class="comment-left">
-							<img src="{$theme_url}images/default_user.png" >
-						</div>
-						<div class="comment-right">
-							<div class="user-name">nuomi<div class="time">刚刚</div></div>
-							<div class="content">8848钛金手机专为追求个性与品位的高端用户私人订制，如果你是这样的用户，并且准备趁着517电信节选购一部适合自己的手机，那这个机会一定不要错过了！</div>
-						</div>
-					</li>
-					
-					<li class="comment-item">
-						<div class="comment-left">
-							<img src="{$theme_url}images/default_user.png" >
-						</div>
-						<div class="comment-right">
-							<div class="user-name">nuomi<div class="time">刚刚</div></div>
-							<div class="content">8848钛金手机专为追求个性与品位的高端用户私人订制，如果你是这样的用户，并且准备趁着517电信节选购一部适合自己的手机，那这个机会一定不要错过了！</div>
-						</div>
-					</li>
-					
-					<li class="comment-item">
-						<div class="comment-left">
-							<img src="{$theme_url}images/default_user.png" >
-						</div>
-						<div class="comment-right">
-							<div class="user-name">nuomi<div class="time">刚刚</div></div>
-							<div class="content">8848钛金手机专为追求个性与品位的高端用户私人订制，如果你是这样的用户，并且准备趁着517电信节选购一部适合自己的手机，那这个机会一定不要错过了！</div>
-						</div>
-					</li>
-				</ul>
+				<ul class="floor-content-list" data-toggle="asynclist" data-url="{url path='article/index/ajax_comment_list'}&article_id={$article_id}"></ul>
 			</div>
         </div>
 	</div>

@@ -9744,24 +9744,27 @@ footer {
 }
     
 .ecjia-discover-detail .floor .comment-item {
-	float: left;
     background: #fff;
-    margin: .5em 1em 0 1em;
-    padding-bottom: .5em;
+    padding: .5em 1em;
 	border-bottom: 1px solid #eee;
+	width: 100%;
+	float: left;
 }
 
 .ecjia-discover-detail .floor .comment-item .comment-left {
+	float: left;
     width: 4.2rem;
-    float: left;
     height: 4.2rem;
     border-radius: 50%;
-    margin-right: 1rem;
 }
 
 .ecjia-discover-detail .floor .comment-item .comment-left img {
 	width: 4.2rem;
     height: 4.2rem;
+}
+
+.ecjia-discover-detail .floor .comment-item .comment-right {
+    margin-left: 5.2rem;
 }
 
 .ecjia-discover-detail .floor .comment-item .comment-right .user-name {
@@ -9775,7 +9778,6 @@ footer {
 
 .ecjia-discover-detail .floor .comment-item .comment-right .content {
 	color: #a9a9a9;
-	margin-left: 5.2rem;
 }
 
 .ecjia-discover-detail .floor.comment-floor {

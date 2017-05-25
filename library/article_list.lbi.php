@@ -1,4 +1,3 @@
-{nocache}
 <!-- {block name="ajaxinfo"} -->
 	<!-- {foreach from=$data item=val key=key} -->
 	<div class="article clearfix"> 
@@ -30,4 +29,3 @@
 	</div>
 	<!-- {/foreach} -->
 <!-- {/block} -->
-{/nocache}
