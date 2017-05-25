@@ -9400,7 +9400,7 @@ footer {
 
 .ecjia-article.article-list .article .article-right .article-info .article-time {
     float: left;
-    width: 55%;
+    width: 60%;
 }
 
 .ecjia-article.article-list .article .article-right .article-info .article-time .clock {
@@ -9426,7 +9426,7 @@ footer {
     font-size: .8em;
     line-height: 1.1em;
     color: #989898;
-    width: 5em;
+    width: 5.5em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -9434,7 +9434,7 @@ footer {
 
 .ecjia-article.article-list .article .article-right .article-info .article-viewed {
     float: right;
-    width: 45%;
+    width: 40%;
 }
 
 .ecjia-article.article-list .article .article-right .article-info .article-viewed span {
