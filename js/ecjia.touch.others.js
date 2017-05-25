@@ -235,6 +235,32 @@
 				var index = $(this).index();
 				swiper.slideTo(index, 1000, false);//切换到制定slide，速度为1秒
 			});
+			
+			$(window).scroll(function() {
+				var div = $(".ecjia-discover-article");
+				var top = div.offset().top - $("body").scrollTop();
+				console.log(top);
+				if (top <= 0) {
+					div.css({ 
+						'position': 'fixed',
+					    'top': 0,
+					    'z-index': 1
+					});
+					$('.ecjia-discover-icon').hide();
+					$('.ecjia-discover-cycleimage').hide();
+					$('.ecjia-discover-article .swiper-container').css('width', '83%');
+					$('.ecjia-discover-article .article-add').css('width', '17%');
+					
+				} else if (top > 0) {
+					div.css({ 
+						'position': 'relative',
+					});
+					$('.ecjia-discover-article .swiper-container').css('width', '93%');
+					$('.ecjia-discover-article .article-add').css('width', '7%');
+					$('.ecjia-discover-icon').show();
+					$('.ecjia-discover-cycleimage').show();
+				}
+			});
 		},
 		
 		discover_init: function() {

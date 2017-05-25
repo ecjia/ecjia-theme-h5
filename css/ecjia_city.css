@@ -9249,9 +9249,15 @@ footer {
 .ecjia-discover-article {
 	border-top: 2px solid #eee;
 	border-bottom: 2px solid #eee;
-	padding-right: 30px;
 	position: relative;
 	background: #fff;
+	max-width: 640px;
+	overflow: hidden;
+}
+
+.ecjia-discover-article .swiper-container {
+	float: left;
+    width: 93%;
 }
 
 .ecjia-discover-article .swiper-wrapper {
@@ -9264,13 +9270,15 @@ footer {
 }
 
 .ecjia-discover-article .article-add {
-    width: 30px;
-    position: absolute;
-    right: 0;
-    top: -2.5px;
+	width: 7%;
+    float: right;
     font-size: 1.5em;
     line-height: 50px;
-	cursor: pointer;
+    cursor: pointer;
+}
+
+.ecjia-discover-article .article-add i{
+	top: -2px;
 }
 
 .ecjia-article.article-list {
