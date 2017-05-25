@@ -295,15 +295,19 @@
 					val: textarea.val(),
 				}
 				$.post(url, info, function(data) {
-					console.log(data);
-					if (data.status == 'success') {
+					if (data.state == 'success') {
 						iosOverlay({
 							text: '发表成功！',
 							duration: 2e3,
 						});
 						ecjia.touch.index.hide_box();
 					} else {
-						
+						console.log(data);
+						if (data.referer_url) {
+							ecjia.touch.index.show_login_message(data.referer_url);
+						} else {
+							alert(data.message);
+						}
 					}
 				});
 
@@ -376,7 +380,8 @@
 			});
 		},
 		
-		show_login_message: function() {
+		show_login_message: function(referer_url) {
+			var myApp = new Framework7();
 			//禁用滚动条
 			$('body').css('overflow-y', 'hidden').on('touchmove', function(event) {
 				event.preventDefault;
@@ -395,7 +400,7 @@
 					text: '去登录',
 					onClick: function() {
 						$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
-						location.href = data.referer_url;
+						location.href = referer_url;
 						return false;
 					}
 				}, ]
