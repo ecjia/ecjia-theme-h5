@@ -96,7 +96,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</div>
             </div>
         </div>
-        <div class="view-more-goods">查看更多商品</div> 
+        <a href="{RC_Uri::url('merchant/index/init')}&store_id={$data.store_id}">
+        	<div class="view-more-goods">查看更多商品</div> 
+        </a>
 		<!-- {/if} -->
 	</div>
 	

@@ -23,13 +23,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<ul class="row ecjia-row-nav index">
 		<li class="col-sm-3 col-xs-2">
 			<a href="{$signup_reward_url}">
-				<img src="{$theme_url}images/discover/200_1.png" />
+				<img src="{$theme_url}images/discover/50_2.png" />
 				<p class="text-center">新人有礼</p>
 			</a>
 		</li>
 		<li class="col-sm-3 col-xs-2">
 			<a href="{url path='user/index/spread'}">
-				<img src="{$theme_url}images/discover/200_2.png" />
+				<img src="{$theme_url}images/discover/50_3.png" />
 				<p class="text-center">推广</p>
 			</a>
 		</li>
@@ -42,20 +42,20 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<ul class="row ecjia-row-nav index">
 		<li class="col-sm-3 col-xs-2">
 			<a href="{url path='goods/index/new'}">
-				<img src="{$theme_url}images/discover/200_3.png" />
+				<img src="{$theme_url}images/discover/50_4.png" />
 				<p class="text-center">新品推荐</p>
 			</a>
 		</li>
 		<li class="col-sm-3 col-xs-2">
 			<a href="{url path='goods/index/promotion'}">
-				<img src="{$theme_url}images/discover/200_4.png" />
+				<img src="{$theme_url}images/discover/50_5.png" />
 				<p class="text-center">促销商品</p>
 			</a>
 		</li>
 	</ul>
 	
 	<div class="application-class-code">
-	   <img src="{$theme_url}images/discover/50_1.png" />
+	   <img src="{$theme_url}images/discover/50_6.png" />
 		<span>百宝箱</span>
 	</div>
 	
