@@ -220,7 +220,7 @@
 				index = sessionStorage.getItem("discover_cat");
 			}
 			var swiper = new Swiper('#swiper-article-cat', {
-				slidesPerView: 5,
+				slidesPerView: 4,
 				paginationClickable: true,
 				initialSlide: index,
 				spaceBetween: 0,

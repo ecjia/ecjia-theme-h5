@@ -9521,7 +9521,7 @@ footer {
 .ecjia-down-navi .navi .navi-name {
     background-color: #fff;
     padding: 0 .5em;
-    border: 1px solid #aaa;
+    border: 1px solid #ddd;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -9595,8 +9595,7 @@ footer {
 }
 
 .ecjia-discover-detail .article-content.goods-list {
-	padding: 0 .5em;
-	padding-bottom: .5em;
+	padding: .5em;
 }
 
 .ecjia-discover-detail .article-content-sku {
@@ -9810,6 +9809,7 @@ footer {
 .ecjia-discover-detail .floor.comment-floor {
 	padding-bottom: 3em;
 	background: #f7f7f7;
+	margin-top: 2em;
 }
 
 .ecjia-discover-detail .nav-bt-fix {
