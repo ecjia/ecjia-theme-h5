@@ -45,8 +45,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="ecjia-discover-article">
 		<div class="swiper-container" id="swiper-article-cat">
 			<div class="swiper-wrapper">
+				<div class="swiper-slide active" data-url="{url path='article/index/ajax_article_list'}&action_type=stickie" data-type="stickie">精选</div>
 				<!-- {foreach from=$article_cat item=cat key=key} -->
-				<div class="swiper-slide {if $key eq 0}active{/if}" data-url="{url path='article/index/ajax_article_list'}&action_type={$cat.cat_id}" data-type="{$cat.cat_id}">{$cat.cat_name}</div>
+				<div class="swiper-slide" data-url="{url path='article/index/ajax_article_list'}&action_type={$cat.cat_id}" data-type="{$cat.cat_id}">{$cat.cat_name}</div>
 				<!-- {/foreach} -->
 			</div>
 		</div>
@@ -54,38 +55,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	
 	<div class="article-container">
-		<ul class="ecjia-article article-list" id="discover-article-list" {if $is_last neq 1}data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='article/index/ajax_article_list'}" data-page="2" data-type="{$cat_id}"{/if}>
-			<!-- {foreach from=$data item=val key=key} -->
-			<div class="article clearfix"> 
-				<a href="{RC_Uri::url('article/index/detail')}&article_id={$val.article_id}">
-					<div class="article-left"> 
-						<p class="article-title line-clamp2">{$val.title}</p> 
-						<p class="article-summary line-clamp2">{$val.description}</p> 
-						<div class="article-author clearfix" data-lazy="false"> 
-							<img class="lazy-img article-author-pic" src="{$val.store_info.store_logo}"> 
-							<span class="lazy-img article-author-name">{$val.store_info.store_name}</span> 
-						</div> 
-					</div> 
-					<div class="article-right" data-lazy="false"> 
-						<div class="img-box"> 
-							<img class="lazy-img" src="{$val.cover_image}"> 
-						</div> 
-						<div class="article-info clearfix"> 
-							<div class="article-time"> 
-								<div class="clock little-icon"></div> 
-								<span>{$val.add_time}</span> 
-							</div> 
-							<div class="article-viewed">
-								<span>{$val.click_count}</span> 
-								<div class="eye little-icon"></div> 
-							</div> 
-						</div> 
-					</div>
-				</a> 
-			</div>
-			<!-- {foreachelse} -->
-			<div class="ecjia-nolist"><img src="{$theme_url}images/no_comment.png"><p class="tags_list_font">暂无文章</p></div>
-			<!-- {/foreach} -->
+		<ul class="ecjia-article article-list" id="discover-article-list" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='article/index/ajax_article_list'}" data-type="stickie">
 		</ul>
 	</div>
 	<!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->

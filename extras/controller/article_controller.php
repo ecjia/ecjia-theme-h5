@@ -155,24 +155,6 @@ class article_controller {
     		}
     		//菜单选中
     		ecjia_front::$controller->assign('active', 'discover');
-    		
-    		if (!empty($article_cat)) {
-    			$cat_id = $article_cat[0]['cat_id'];
-    			$article_param = array(
-    				'cat_id' => $cat_id,
-    				'pagination' => array('count' => 10, 'page' => 1),
-    			);
-    			$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_LIST)->data($article_param)->hasPage()->run();
-    			if (!is_ecjia_error($response)) {
-    				list($data, $paginated) = $response;
-    				 
-    				if (isset($paginated['more']) && $paginated['more'] == 0) $is_last = 1;
-    				ecjia_front::$controller->assign('data', $data);
-    				ecjia_front::$controller->assign('is_last', $is_last);
-    				ecjia_front::$controller->assign('cat_id', $cat_id);
-    			}
-    		}
-    		
     	}
     	ecjia_front::$controller->display('discover_init.dwt', $cache_id);
     }
@@ -271,27 +253,36 @@ class article_controller {
      * 获取文章列表
      */
     public static function ajax_article_list() {
-    	$limit = 10;
+    	$limit = !empty($_GET['size']) > 0 	? intval($_GET['size']) : 10;
     	$page = intval($_GET['page']) ? intval($_GET['page']) : 1;
-    	$cat_id = intval($_GET['action_type']);
+    	$action_type = $_GET['action_type'];
     	
-    	$article_param = array(
-			'cat_id' => $cat_id,
-    		'pagination' => array('count' => 10, 'page' => $page),
-    	);
+    	if ($action_type == 'stickie') {
+    		//精选文章
+    		$article_param = array(
+    			'type' => 'stickie',
+    			'pagination' => array('count' => $limit, 'page' => $page),
+    		);
+    		$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_SUGGESTLIST)->data($article_param)->hasPage()->run();
+    	} else {
+    		$article_param = array(
+    			'cat_id' => $action_type,
+    			'pagination' => array('count' => $limit, 'page' => $page),
+    		);
+    		$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_LIST)->data($article_param)->hasPage()->run();
+    	}
     	
-    	$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_LIST)->data($article_param)->hasPage()->run();
+    	$say_list = '';
+    	$is_last = 1;
     	if (!is_ecjia_error($response)) {
     		list($data, $paginated) = $response;
     		ecjia_front::$controller->assign('data', $data);
+    		$say_list = ecjia_front::$controller->fetch('library/article_list.lbi');
     		
-    		$say_list = '';
-    		if (!empty($data)) {
-    			$say_list = ecjia_front::$controller->fetch('library/article_list.lbi');
-    		}
-    		if (isset($paginated['more']) && $paginated['more'] == 0) $data['is_last'] = 1;
-    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $data['is_last']));
+    		if (isset($paginated['more']) && $paginated['more'] == 1) $is_last = 0;
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
     	}
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
     }
     
     /**
