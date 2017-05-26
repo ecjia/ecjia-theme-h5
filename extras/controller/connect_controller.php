@@ -76,17 +76,17 @@ class connect_controller {
         }
         
         //关联查询wechat_user
-        $wechat_user = RC_DB::table('wechat_user')->where('unionid', $data['open_id'])->first();
-        if ($wechat_user['ect_uid']) {
-            connect_controller::sync_wechat_user($wechat_user);
-            return RC_Hook::do_action('connect_callback_user_signin', $wechat_user['ect_uid']);
-        } else {
-            $wechat_user = RC_DB::table('wechat_user')->where('openid', $data['open_id'])->first();
-            if ($wechat_user['ect_uid']) {
-                connect_controller::sync_wechat_user($wechat_user);
-                return RC_Hook::do_action('connect_callback_user_signin', $wechat_user['ect_uid']);
-            }
-        }
+//         $wechat_user = RC_DB::table('wechat_user')->where('unionid', $data['open_id'])->first();
+//         if ($wechat_user['ect_uid']) {
+//             connect_controller::sync_wechat_user($wechat_user);
+//             return RC_Hook::do_action('connect_callback_user_signin', $wechat_user['ect_uid']);
+//         } else {
+//             $wechat_user = RC_DB::table('wechat_user')->where('openid', $data['open_id'])->first();
+//             if ($wechat_user['ect_uid']) {
+//                 connect_controller::sync_wechat_user($wechat_user);
+//                 return RC_Hook::do_action('connect_callback_user_signin', $wechat_user['ect_uid']);
+//             }
+//         }
         
         RC_Loader::load_app_class('connect_user', 'connect', false);
         $connect_user = new connect_user($data['connect_code'], $data['open_id']);
