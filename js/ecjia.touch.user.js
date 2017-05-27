@@ -89,7 +89,7 @@
 							modalTitle: ''
 						});
 						myApp.alert(data.info);
-					} else {
+					} else if (data.state == 'success'){
 						location.href = data.url;
 					}
 				});
