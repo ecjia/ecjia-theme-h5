@@ -85,10 +85,10 @@
 				};
 				$.post(url, info, function(data) {
 					$('.la-ball-atom').remove();
-					if (data.state == 'error') {
-						alert(data.message);
-					} else {
+					if (data.state == 'success') {
 						location.href = data.url;
+					} else if (data.state == 'error') {
+						alert(data.message);
 					}
 				});
 			});
