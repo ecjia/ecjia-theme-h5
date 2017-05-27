@@ -72,7 +72,6 @@
 		//用户登录
 		ecjia_login: function() {
 			$('input[name="ecjia-login"]').on('click', function(e) {
-				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 				e.preventDefault();
 				var url = $(this).attr('data-url');
 				var username = $('input[name="username"]').val();
@@ -84,10 +83,13 @@
 					'referer_url': referer_url
 				};
 				$.post(url, info, function(data) {
-					$('.la-ball-atom').remove();
 					if (data.state == 'error') {
-						alert(data.message);
-					} else {
+						var myApp = new Framework7({
+							modalButtonOk: '确定',
+							modalTitle: ''
+						});
+						myApp.alert(data.info);
+					} else if (data.state == 'success'){
 						location.href = data.url;
 					}
 				});
