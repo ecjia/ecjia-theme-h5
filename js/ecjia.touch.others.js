@@ -323,9 +323,31 @@
 			});
 			
 			$('.article-bianji').off('click').on('click', function() {
-				$('.nav-bt-fix').hide();
-				$('.ecjia-discover-detail .box_overlay').show();
-				$('.send-box').show();
+				var $this = $(this);
+				var url = $('input[name="add_comment"]').val();
+				
+				if ($this.hasClass('disabled')) {
+					return false;
+				}
+				$this.addClass('disabled');
+				
+				var info = {
+					'type': 'check',
+				}
+				$.post(url, info, function(data) {
+					$this.removeClass('disabled');
+					if (data.state == 'success') {
+						$('.nav-bt-fix').hide();
+						$('.ecjia-discover-detail .box_overlay').show();
+						$('.send-box').show();
+					} else {
+						if (data.referer_url) {
+							ecjia.touch.index.show_login_message(data.referer_url);
+						} else {
+							alert(data.message);
+						}
+					}
+				});
 			});
 			
 			$('.send-btn').off('click').on('click', function(e) {
@@ -368,7 +390,6 @@
 			$('.nav-bt-fix').show();
 			$('.send-box').hide();
 			$('.ecjia-discover-detail .box_overlay').hide();
-			$('.send-box').find('textarea').html('');
 		},
 		
 		article_cat_click: function() {

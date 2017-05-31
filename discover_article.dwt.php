@@ -122,7 +122,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	        <a class="article-bianji" href="javascript:;">
 	        	<i class="iconfont icon-bianji1"></i><span class="write-comment">写评论</span>
 	        </a>
-	        <a href="#floor-comment">
+	        <a class="external" href="#floor-comment">
 	        	<i class="iconfont icon-comment"><span>{$data.comment_count}</span></i>
 	        </a>
         </div>    

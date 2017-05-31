@@ -195,26 +195,29 @@ class article_controller {
      * 评论文章
      */
     public static function add_comment() {
+    	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
     	if (!ecjia_touch_user::singleton()->isSignin()) {
     		$url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
     		$referer_url = RC_Uri::url('user/privilege/login', array('referer_url' => urlencode($url)));
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
     	}
     	
-    	$article_id = !empty($_GET['article_id']) ? intval($_GET['article_id']) : 0;
-    	$content = !empty($_POST['val']) ? trim($_POST['val']) : '';
-    	if (empty($content)) {
-    		return ecjia_front::$controller->showmessage('请输入评论内容', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-    	}
-    	
-    	$article_param = array(
-    		'token' => ecjia_touch_user::singleton()->getToken(),
-    		'article_id' => $article_id,
-    		'content' => $content,
-    	);
-    	$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_COMMENT_CREATE)->data($article_param)->run();
-    	if (is_ecjia_error($response)) {
-    		return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	if (!empty($type)) {
+    		$article_id = !empty($_GET['article_id']) ? intval($_GET['article_id']) : 0;
+    		$content = !empty($_POST['val']) ? trim($_POST['val']) : '';
+    		if (empty($content)) {
+    			return ecjia_front::$controller->showmessage('请输入评论内容', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    		}
+    		 
+    		$article_param = array(
+    			'token' => ecjia_touch_user::singleton()->getToken(),
+    			'article_id' => $article_id,
+    			'content' => $content,
+    		);
+    		$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_COMMENT_CREATE)->data($article_param)->run();
+    		if (is_ecjia_error($response)) {
+    			return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    		}	
     	}
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
     }
