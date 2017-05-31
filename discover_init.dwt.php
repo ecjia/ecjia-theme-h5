@@ -55,7 +55,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	
 	<div class="article-container">
-		<ul class="ecjia-article article-list" id="discover-article-list" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='article/index/ajax_article_list'}" data-type="stickie">
+		<ul class="ecjia-article article-list" id="discover-article-list" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='article/index/ajax_article_list'}" data-type="stickie" data-color="#f7f7f7">
 		</ul>
 	</div>
 	<!-- #BeginLibraryItem "/library/model_bar.lbi" --><!-- #EndLibraryItem -->

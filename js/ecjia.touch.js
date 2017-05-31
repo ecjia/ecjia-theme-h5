@@ -232,9 +232,10 @@
 						size: $this.attr('data-size'),
 						page: $this.attr('data-page'),
 						type: $this.attr('data-type'),
+						color: $this.attr('data-color')
 					};
 				ecjia.touch.more(options);
-				$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
+				$loader = $('<a class="load-list" style="background-color:'+options.color+'" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
 				if ($this.parent().find('.load-list').length == 0) {
 					$this.after($loader);
 				}
