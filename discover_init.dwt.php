@@ -54,7 +54,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="article-add"><i class="iconfont icon-add"></i></div>
 	</div>
 	
-	<div class="article-container">
+	<div class="article-container" id="article-container">
 		<ul class="ecjia-article article-list" id="discover-article-list" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='article/index/ajax_article_list'}" data-type="stickie" data-color="#f7f7f7">
 		</ul>
 	</div>
