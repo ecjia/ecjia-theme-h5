@@ -5888,9 +5888,10 @@ footer {
 
 .ecjia-like-goods-list li {
 	float: left;
-	width: 33.33%;
+	width: 33%;
 	border-bottom: 0;
-	padding: 0.3em 0.5em;
+	padding: 0.3em 0;
+	padding-left: 1.3%;
 	height: auto;
 }
 
@@ -9710,8 +9711,7 @@ footer {
 }
 
 .ecjia-discover-detail .floor-title {
-    margin-left: .75rem;
-    margin-right: .75rem;
+    margin: 0 1.3%;
     border-bottom: 1px solid #d7d7d7;
 }
 
