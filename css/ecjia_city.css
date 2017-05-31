@@ -2849,7 +2849,7 @@ footer {
 	font-size: 16px;
 }
 
-.a53 {
+.a53, .box_overlay {
 	display: none;
 	position: fixed;
 	z-index: 11;

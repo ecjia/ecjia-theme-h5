@@ -324,7 +324,7 @@
 			
 			$('.article-bianji').off('click').on('click', function() {
 				$('.nav-bt-fix').hide();
-				$('.ecjia-discover-detail .a53').show();
+				$('.ecjia-discover-detail .box_overlay').show();
 				$('.send-box').show();
 			});
 			
@@ -357,20 +357,18 @@
 						}
 					}
 				});
-
 			});
 			
-			$('.a53').off('click').on('click', function(e) {
-				e.preventDefault();
+			$('.box_overlay').off('click').on('click', function() {
 				ecjia.touch.index.hide_box();
 			});
 		},
 		
 		hide_box: function() {
 			$('.nav-bt-fix').show();
-			$('.ecjia-discover-detail .a53').hide();
-			$('.send-box').find('textarea').html('');
 			$('.send-box').hide();
+			$('.ecjia-discover-detail .box_overlay').hide();
+			$('.send-box').find('textarea').html('');
 		},
 		
 		article_cat_click: function() {
