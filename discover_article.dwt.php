@@ -109,7 +109,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<span class="floor-title-en">Comments</span> 
 			</div> 
 			<div class="floor-content">
-				<ul class="floor-content-list" data-toggle="asynclist" data-url="{url path='article/index/ajax_comment_list'}&article_id={$article_id}" data-color="#f7f7f7"></ul>
+				<ul class="floor-content-list" data-toggle="asynclist" data-url="{url path='article/index/ajax_comment_list'}&article_id={$article_id}"></ul>
 			</div>
         </div>
 	</div>
