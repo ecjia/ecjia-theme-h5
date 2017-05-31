@@ -195,20 +195,19 @@ class article_controller {
      * 评论文章
      */
     public static function add_comment() {
-    	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
+    	$type = !empty($_POST['type']) ? trim($_POST['type']) : '';
     	if (!ecjia_touch_user::singleton()->isSignin()) {
     		$url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
     		$referer_url = RC_Uri::url('user/privilege/login', array('referer_url' => urlencode($url)));
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
     	}
     	
-    	if (!empty($type)) {
+    	if (empty($type)) {
     		$article_id = !empty($_GET['article_id']) ? intval($_GET['article_id']) : 0;
     		$content = !empty($_POST['val']) ? trim($_POST['val']) : '';
     		if (empty($content)) {
     			return ecjia_front::$controller->showmessage('请输入评论内容', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		}
-    		 
     		$article_param = array(
     			'token' => ecjia_touch_user::singleton()->getToken(),
     			'article_id' => $article_id,
