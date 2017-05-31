@@ -273,12 +273,14 @@ class article_controller {
     		$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_LIST)->data($article_param)->hasPage()->run();
     	}
     	
+    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].$limit.$page.$action_type));
+    	
     	$say_list = '';
     	$is_last = 1;
     	if (!is_ecjia_error($response)) {
     		list($data, $paginated) = $response;
     		ecjia_front::$controller->assign('data', $data);
-    		$say_list = ecjia_front::$controller->fetch('library/article_list.lbi');
+    		$say_list = ecjia_front::$controller->fetch('library/article_list.lbi', $cache_id);
     		
     		if (isset($paginated['more']) && $paginated['more'] == 1) $is_last = 0;
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
@@ -299,12 +301,15 @@ class article_controller {
     		'pagination' => array('count' => $limit, 'page' => $pages),
     	);
     	$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_COMMENTS)->data($article_param)->hasPage()->run();
+    	
+    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].$limit.$pages.$article_id));
+    	
     	$say_list = '';
     	$is_last = 1;
     	if (!is_ecjia_error($response)) {
     		list($data, $paginated) = $response;
     		ecjia_front::$controller->assign('data', $data);
-    		$say_list = ecjia_front::$controller->fetch('library/article_comment.lbi');
+    		$say_list = ecjia_front::$controller->fetch('library/article_comment.lbi', $cache_id);
     		
     		if (isset($paginated['more']) && $paginated['more'] == 1) $is_last = 0;
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
