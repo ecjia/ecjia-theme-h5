@@ -5887,15 +5887,13 @@ footer {
 }
 
 .ecjia-like-goods-list li {
-	float: left;
-	width: 33%;
-	border-bottom: 0;
-	padding: 0.3em 1.2%;
+	width: 31.333%;
+    margin-bottom: .1rem;
+    display: inline-block;
+	padding: 0;
 	height: auto;
-}
-
-.ecjia-like-goods-list li:nth-child(3) {
-	padding-right: 0;
+	margin: .3em 0 .3em 1.1%;
+	border: none;
 }
 
 .ecjia-like-goods-list li .link-goods-price {
