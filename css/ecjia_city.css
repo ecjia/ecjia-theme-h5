@@ -5890,9 +5890,12 @@ footer {
 	float: left;
 	width: 33%;
 	border-bottom: 0;
-	padding: 0.3em 0;
-	padding-left: 1%;
+	padding: 0.3em 1.2%;
 	height: auto;
+}
+
+.ecjia-like-goods-list li:nth-child(3) {
+	padding-right: 0;
 }
 
 .ecjia-like-goods-list li .link-goods-price {
@@ -9715,7 +9718,7 @@ footer {
 }
 
 .ecjia-discover-detail .floor-title {
-    margin: 0 1%;
+    margin: 0 1.2%;
     border-bottom: 1px solid #d7d7d7;
 }
 
