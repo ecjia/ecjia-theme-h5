@@ -163,32 +163,29 @@ class article_controller {
      * 发现文章详情
      */
     public static function article_detail() {
-    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
-    
-    	if (!ecjia_front::$controller->is_cached('discover_article.dwt', $cache_id)) {
-    		$article_id = !empty($_GET['article_id']) ? intval($_GET['article_id']) : 0;
-    		$token = ecjia_touch_user::singleton()->getToken();
-    		$article_param = array(
+    	$article_id = !empty($_GET['article_id']) ? intval($_GET['article_id']) : 0;
+    	$token = ecjia_touch_user::singleton()->getToken();
+    	$article_param = array(
     			'token' 		=> $token,
     			'article_id'	=> $article_id
-    		);
-    		$article_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_DETAIL)->data($article_param)->run();
-    		if (!is_ecjia_error($article_info) && !empty($article_info)) {
-    			list($data, $info) = $article_info;
-    			$res = array();
-    			if (!empty($data['content'])) {
-    				$data['content'] = stripslashes($data['content']);
-    			}
-    			preg_match('/<body>([\s\S]*?)<\/body>/', $data['content'], $res);
-    			$bodystr = trim($res[0]);
-    			if ($bodystr != '<body></body>') {
-    				ecjia_front::$controller->assign('content', $bodystr);
-    			}
-    			ecjia_front::$controller->assign('data', $data);
+    	);
+    	$article_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_DETAIL)->data($article_param)->run();
+    	if (!is_ecjia_error($article_info) && !empty($article_info)) {
+    		list($data, $info) = $article_info;
+    		$res = array();
+    		if (!empty($data['content'])) {
+    			$data['content'] = stripslashes($data['content']);
     		}
-    		ecjia_front::$controller->assign('article_id', $article_id);
+    		preg_match('/<body>([\s\S]*?)<\/body>/', $data['content'], $res);
+    		$bodystr = trim($res[0]);
+    		if ($bodystr != '<body></body>') {
+    			ecjia_front::$controller->assign('content', $bodystr);
+    		}
+    		ecjia_front::$controller->assign('data', $data);
     	}
-    	ecjia_front::$controller->display('discover_article.dwt', $cache_id);
+    	ecjia_front::$controller->assign('article_id', $article_id);
+    	    	
+    	ecjia_front::$controller->display('discover_article.dwt');
     }
     
     /**
@@ -302,14 +299,13 @@ class article_controller {
     	);
     	$response = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_COMMENTS)->data($article_param)->hasPage()->run();
     	
-    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].$limit.$pages.$article_id));
-    	
     	$say_list = '';
     	$is_last = 1;
     	if (!is_ecjia_error($response)) {
     		list($data, $paginated) = $response;
+    		
     		ecjia_front::$controller->assign('data', $data);
-    		$say_list = ecjia_front::$controller->fetch('library/article_comment.lbi', $cache_id);
+    		$say_list = ecjia_front::$controller->fetch('library/article_comment.lbi');
     		
     		if (isset($paginated['more']) && $paginated['more'] == 1) $is_last = 0;
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
