@@ -6,7 +6,7 @@
 				<p class="article-title line-clamp2">{$val.title}</p> 
 				<p class="article-summary line-clamp2">{$val.description}</p> 
 				<div class="article-author clearfix" data-lazy="false"> 
-					<img class="lazy-img article-author-pic" src="{$val.store_info.store_logo}"> 
+					<img class="lazy-img article-author-pic" src="{if $val.store_info.store_id eq 0}{$theme_url}images/store_logo.png{else}{$val.store_info.store_logo}{/if}"> 
 					<span class="lazy-img article-author-name">{$val.store_info.store_name}</span> 
 				</div> 
 			</div> 

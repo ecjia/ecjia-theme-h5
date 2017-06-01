@@ -5,6 +5,7 @@ Description: 发现文章详情
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
+{nocache}
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
@@ -18,7 +19,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="author-header"> 
 		<h1 class="article-title">{$data.title}</h1> 
 		<div class="author-head clear-fix" data-lazy="false"> 
-			<img class="author-pic lazy-img" src="{$data.store_logo}"> 
+			<img class="author-pic lazy-img" src="{if $data.store_id eq 0}{$theme_url}images/store_logo.png{else}{$data.store_logo}{/if}"> 
 			<span class="author-info">{$data.store_name}</span> 
 			<span class="m_l2 author-info">{$data.add_time}</span> 
 		</div>
@@ -29,12 +30,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<!-- {foreach from=$data.article_related_goods item=goods} -->
 			<div class="article-content clearfix goods-list"> 
 				<div class="article-content-sku clearfix" data-lazy="false"> 
-					<img class="content-sku-img lazy-img" src="{$goods.img.thumb}"> 
+					<a href='{url path="goods/index/show"}&goods_id={$goods.goods_id}'><img class="content-sku-img lazy-img" src="{$goods.img.thumb}"></a>
 					<div class="content-sku-right"> 
-						<p class="content-sku-name line-clamp2">{$goods.name}</p> 
+						<a href='{url path="goods/index/show"}&goods_id={$goods.goods_id}'><p class="content-sku-name line-clamp2">{$goods.name}</p></a>
 						<div class="content-sku-bottom clearfix"> 
 							<span class="sku-price ellipsis">{$goods.shop_price}</span>  
-							<a href='{url path="goods/index/show"}&goods_id={$goods.goods_id}'><span class="buy-btn">去购买</span> 
+							<a href='{url path="goods/index/show"}&goods_id={$goods.goods_id}'><span class="buy-btn">去购买</span></a>
 						</div> 
 					</div> 
 				</div>  
@@ -43,6 +44,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<!-- {/if} -->
 	</div>
 	
+	<!-- {if $data.store_id neq 0} -->
 	<div class="author-panel"> 
 		<div class="author-pic-box" data-lazy="false"> 
 		<img class="author-pic lazy-img" src="{$data.store_logo}"> </div> 
@@ -56,9 +58,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="enter-store">进入店铺</div> 
 		</a>
 	</div>
+	<!-- {/if} -->
 	
+	<!-- {if $data.recommend_goods} -->
 	<div class="floor"> 
-        <!-- {if $data.recommend_goods} -->
         <div class="ecjia-margin-t">
 			<div class="floor-title"> 
 				<span class="floor-title-cn">相关商品</span> 
@@ -99,8 +102,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <a href="{RC_Uri::url('merchant/index/init')}&store_id={$data.store_id}">
         	<div class="view-more-goods">查看更多商品</div> 
         </a>
-		<!-- {/if} -->
 	</div>
+	<!-- {/if} -->
 	
 	<div class="floor comment-floor" name="floor-comment" id="floor-comment"> 
 		<div class="background-fff">
@@ -113,6 +116,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
         </div>
 	</div>
+	
 	
 	<nav class="nav-bt-fix">
 		<div class="nav-bt-center">
@@ -139,3 +143,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <div class="box_overlay"></div>
 </div>
 <!-- {/block} -->
+ {/nocache}
