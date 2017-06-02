@@ -9822,6 +9822,7 @@ footer {
 
 .ecjia-discover-detail .floor .comment-item .comment-right .content {
 	color: #333;
+	word-wrap: break-word;
 }
 
 .ecjia-discover-detail .floor.comment-floor {
