@@ -60,42 +60,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	
 	<ul class="row ecjia-row-nav index">
+	<!--{foreach from=$data item=item}-->
 		<li class="col-sm-3 col-xs-2">
-			<a href="https://ecjia.com/daojia.html">
-				<img src="{$theme_url}images/discover/200_5.png" />
-				<p class="text-center">到家简介</p>
+			<a href="{$item.url}">
+				<img src="{$item.image}" />
+				<p class="text-center">{$item.text}</p>
 			</a>
 		</li>
-		<li class="col-sm-3 col-xs-2">
-			<a href="https://ecjia.com/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">
-				<img src="{$theme_url}images/discover/200_6.png" />
-				<p class="text-center">常见问题</p>
-			</a>
-		</li>
-		<li class="col-sm-3 col-xs-2">
-			<a href="{url path='user/address/address_list'}">
-				<img src="{$theme_url}images/discover/200_7.png" />
-				<p class="text-center">收货地址</p>
-			</a>
-		</li>
-		<li class="col-sm-3 col-xs-2">
-			<a href="https://ecjia.com/">
-				<img src="{$theme_url}images/discover/200_8.png" />
-				<p class="text-center">EC+官网</p>
-			</a>
-		</li>
-		<li class="col-sm-3 col-xs-2">
-			<a href="https://ecjia.com/wiki/%E5%B8%AE%E5%8A%A9:ECJia%E5%88%B0%E5%AE%B6">
-				<img src="{$theme_url}images/discover/200_9.png" />
-				<p class="text-center">帮助手册</p>
-			</a>
-		</li>
-		<li class="col-sm-3 col-xs-2">
-			<a href="{url path='article/help/init'}">
-				<img src="{$theme_url}images/discover/200_10.png" />
-				<p class="text-center">帮助中心</p>
-			</a>
-		</li>
+	<!-- {/foreach} -->
 	</ul>
 </nav>
 

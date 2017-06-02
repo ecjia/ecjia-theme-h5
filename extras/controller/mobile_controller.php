@@ -55,7 +55,11 @@ class mobile_controller {
     
         if (!ecjia_front::$controller->is_cached('application.dwt', $cache_id)) {
             $token = ecjia_touch_user::singleton()->getToken();
+            
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DISCOVER)->run();
             $signup_reward_url =  RC_Uri::url('user/mobile_reward/init', array('token' => $token));
+
+            ecjia_front::$controller->assign('data', $data);
             ecjia_front::$controller->assign('signup_reward_url', $signup_reward_url);
             ecjia_front::$controller->assign_title('百宝箱');
         }
