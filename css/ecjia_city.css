@@ -7313,7 +7313,7 @@ footer {
 .ecjia-bottom-bar-pannel a {
 	display: inline-block;
 	vertical-align: top;
-	width: 19%;
+	width: 20%;
 	font-size: 12px;
 	line-height: 17px;
 	text-align: center;
@@ -7322,6 +7322,7 @@ footer {
 	background-image: url(../images/bar/bar.png);
 	background-repeat: no-repeat;
 	background-size: 24px 600px;
+	float: left;
 }
 
 .o a.index {
