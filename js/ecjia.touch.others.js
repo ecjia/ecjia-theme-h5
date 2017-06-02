@@ -304,7 +304,7 @@
 							$this.removeClass('active');
 							$this.find('span').text(val - 1);
 							iosOverlay({
-								text: '取消点赞成功',
+								text: '取消点赞',
 								duration: 2e3,
 								onhide: function() {
 									$this.removeClass('disabled');

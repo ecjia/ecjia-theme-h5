@@ -103,6 +103,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="floor-title"> 
 				<span class="floor-title-cn">评论</span> 
 				<span class="floor-title-en">Comments</span> 
+				{if $data.comment_count neq 0}
+				<span class="floor-title-count">共{$data.comment_count}条</span>
+				{/if}
 			</div> 
 			<div class="floor-content">
 				<ul class="floor-content-list" data-toggle="asynclist" data-url="{url path='article/index/ajax_comment_list'}&article_id={$article_id}"></ul>
