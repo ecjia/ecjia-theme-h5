@@ -9970,7 +9970,6 @@ footer {
     position: relative;
 }
 .ecjia-application-menu .application-class-code span {
-	margin: 0 1em;
 	color: #ff3434
 }
 .ecjia-application-menu .application-class-code img {
@@ -9991,7 +9990,7 @@ footer {
 	content: '';
     height: 1px;
     border-top: 1px solid #eee;
-    width: 65%;
+    width: 80%;
     margin-top: .8em;
     position: absolute;
     left: 70%;
@@ -10005,13 +10004,14 @@ footer {
     position: absolute;
     top: -.2em;
     width: auto;
-	left: 56%;
-	text-align: center;
-    border-radius: 2em;
-    min-width: 1.3em;
+    left: 56%;
+    text-align: center;
+    border-radius: 15px;
+    min-width: 18px;
     max-width: 3em;
-    line-height: 1.3em;
-    height: 1.3em;
+    line-height: 18px;
+    height: 18px;
     color: #fff;
+    font-size: 10px;
     background: #ff3434;
 }
