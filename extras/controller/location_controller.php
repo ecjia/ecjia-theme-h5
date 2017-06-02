@@ -175,7 +175,7 @@ class location_controller {
     	$keywords = urlencode($_GET['keywords']);
 
     	$key		= ecjia::config('map_qq_key');
-    	$url       	= "http://apis.map.qq.com/ws/place/v1/suggestion/?region=".$region."&keyword=".$keywords."&key=".$key."";
+    	$url       	= "http://apis.map.qq.com/ws/place/v1/suggestion/?&region_fix=1&region=".$region."&keyword=".$keywords."&key=".$key."";
 
     	$response 	= RC_Http::remote_get($url);
     	$content  	= json_decode($response['body'], true);
