@@ -9227,9 +9227,8 @@ footer {
 
 .ecjia-discover #swiper-discover-icon a {
     display: inline-block;
-    width: 50px;
     text-align: center;
-	font-size: 12px;
+	font-size: .9em;
 }
 
 .ecjia-discover #swiper-discover-icon.swiper-container .swiper-slide {
