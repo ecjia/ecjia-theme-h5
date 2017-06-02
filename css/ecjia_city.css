@@ -9233,6 +9233,7 @@ footer {
 
 .ecjia-discover #swiper-discover-icon.swiper-container .swiper-slide {
     padding: .5em 0;
+	max-width: 20%;
 }
 
 .ecjia-discover #swiper-discover-icon img {
@@ -9267,6 +9268,10 @@ footer {
 .ecjia-discover-article .swiper-wrapper {
 	height: 50px;
     line-height: 50px;
+}
+
+.ecjia-discover-article .swiper-slide {
+	max-width: 30%;
 }
 
 .ecjia-discover-article .swiper-slide.active {
