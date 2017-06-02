@@ -7313,7 +7313,7 @@ footer {
 .ecjia-bottom-bar-pannel a {
 	display: inline-block;
 	vertical-align: top;
-	width: 19%;
+	width: 20%;
 	font-size: 12px;
 	line-height: 17px;
 	text-align: center;
@@ -7322,6 +7322,7 @@ footer {
 	background-image: url(../images/bar/bar.png);
 	background-repeat: no-repeat;
 	background-size: 24px 600px;
+	float: left;
 }
 
 .o a.index {
@@ -9226,8 +9227,9 @@ footer {
 
 .ecjia-discover #swiper-discover-icon a {
     display: inline-block;
-    width: 4em;
+    width: 50px;
     text-align: center;
+	font-size: 12px;
 }
 
 .ecjia-discover #swiper-discover-icon.swiper-container .swiper-slide {
@@ -9235,8 +9237,8 @@ footer {
 }
 
 .ecjia-discover #swiper-discover-icon img {
-    width: 3em;
-    height: 3em;
+    width: 50px;
+    height: 50px;
     margin: .2em auto;
 }
 
@@ -9249,8 +9251,8 @@ footer {
 }
 
 .ecjia-discover-article {
-	border-top: 2px solid #eee;
-	border-bottom: 2px solid #eee;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
 	position: relative;
 	background: #fff;
 	max-width: 640px;

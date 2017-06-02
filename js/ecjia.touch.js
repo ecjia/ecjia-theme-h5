@@ -52,7 +52,7 @@
 		//搜索关键词定位开始
 		address_list: function() {
 			$('#search_location_list').koala({
-				delay: 200,
+				delay: 300,
 				keyup: function(event) {
 					var url = $(this).attr('data-url');
 					var region = $(".ecjia-zu").children().html();

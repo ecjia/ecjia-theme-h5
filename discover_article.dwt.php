@@ -47,7 +47,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!-- {if $data.store_id neq 0} -->
 	<div class="author-panel"> 
 		<div class="author-pic-box" data-lazy="false"> 
-		<img class="author-pic lazy-img" src="{$data.store_logo}"> </div> 
+			<a href='{url path="merchant/index/init"}&store_id={$data.store_id}'><img class="author-pic lazy-img" src="{$data.store_logo}"></a>
+		</div> 
 		<div class="author-title clearfix"> 
 			<span class="author-name ellipsis">{$data.store_name}</span> 
 		</div> 
