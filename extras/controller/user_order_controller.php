@@ -135,6 +135,7 @@ class user_order_controller {
         
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
+        
         if (is_ecjia_error($data)) {
             return ecjia_front::$controller->showmessage('error', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
@@ -164,8 +165,8 @@ class user_order_controller {
                     return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
                 }
             }
-            $url = RC_Uri::url('cart/index/init');
-            header('Location: ' . $url);
+            $url = RC_Uri::url('merchant/index/init', array('store_id' => $data['store_id'], 'from' => 'cart'));
+            ecjia_front::$controller->redirect($url);
         }
     }
     
