@@ -1060,7 +1060,7 @@ a.ecjia-color-green {
 }
 
 .ecjia-list_title i {
-	background: #39ac69 none repeat scroll 0 0;
+	background: #47aa4d none repeat scroll 0 0;
 	border-radius: 3px;
 	color: #ffffff;
 	font-size: 10px;
@@ -7351,32 +7351,32 @@ footer {
 
 .o.index a.index {
 	background-position: center 0;
-	color: #39ac69;
+	color: #47aa4d;
 }
 
 .o.category a.category {
 	background-position: center -50px;
-	color: #39ac69;
+	color: #47aa4d;
 }
 
 .o.cartList a.cartList {
 	background-position: center -150px;
-	color: #39ac69;
+	color: #47aa4d;
 }
 
 .o.orderList a.orderList {
 	background-position: center -150px;
-	color: #39ac69;
+	color: #47aa4d;
 }
 
 .o.discover a.discover {
 	background-position: center -100px;
-	color: #39ac69;
+	color: #47aa4d;
 }
 
 .o.mine a.mine {
 	background-position: center -200px;
-	color: #39ac69;
+	color: #47aa4d;
 }
 
 /*======================== 推广 ===========================*/
