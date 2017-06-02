@@ -1973,7 +1973,7 @@ footer {
 
 .ecjia-store-detail .store-tel p.tel-result a {
 	float: right;
-	color: #47b34f;
+	color: #47aa4d;
 }
 
 .ecjia-store-detail .store-other-info {
@@ -2206,7 +2206,7 @@ footer {
 }
 
 .ecjia-store-goods .a1p.a1t {
-	color: #47b34f;
+	color: #47aa4d;
 }
 
 .ecjia-store-goods .a1p.a1r {
@@ -2239,8 +2239,8 @@ footer {
 
 .ecjia-store-goods .a1u.active {
 	background: #fff;
-	color: #47b34f;
-	border-left: 2px solid #47b34f;
+	color: #47aa4d;
+	border-left: 2px solid #47aa4d;
 	border-right: none;
 }
 
@@ -3298,7 +3298,7 @@ footer {
 	text-align: center;
 	color: #fff;
 	line-height: 48px;
-	background-color: #47b34f;
+	background-color: #47aa4d;
 	font-size: 1.1em;
 }
 
@@ -3307,11 +3307,11 @@ footer {
 }
 
 .ecjia-flow-cart .check_cart.remove_all {
-	background-color: #47b34f;
+	background-color: #47aa4d;
 }
 
 .ecjia-flow-cart .edit_font_color {
-	color: #47b34f;
+	color: #47aa4d;
 }
 
 .flow-nomore-msg {
@@ -3372,7 +3372,7 @@ footer {
 }
 
 .ecjia-modal .modal-button .create_address {
-	background: #47b34f;
+	background: #47aa4d;
 	height: 2.5em;
 	display: block;
 	line-height: 2.5em;
@@ -5572,7 +5572,7 @@ footer {
 	text-align: center;
 	color: #fff;
 	line-height: 38px;
-	background-color: #47b34f;
+	background-color: #47aa4d;
 	float: right;
 	border-radius: 4px;
 	clear: both;
@@ -8051,7 +8051,7 @@ footer {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	color: #47b34f;
+	color: #47aa4d;
 }
 
 .ecjia-store-modal .modal-inners {
@@ -8066,7 +8066,7 @@ footer {
 }
 
 .ecjia-store-modal .modal-button .create_address {
-	background: #47b34f;
+	background: #47aa4d;
 	height: 2.5em;
 	display: block;
 	line-height: 2.5em;
@@ -8260,7 +8260,7 @@ footer {
 }
 .ecjia-store-comment .store-header-title {
 	line-height: 2em;
-    color: #47b34f;
+    color: #47aa4d;
     background-color: #f4f4f4;
     white-space: nowrap;
     overflow: hidden;
@@ -8874,7 +8874,7 @@ footer {
 	text-align: center;
 	color: #fff;
 	line-height: 50px;
-	background-color: #47b34f;
+	background-color: #47aa4d;
 	font-size: 15px;
 	border-radius: 0 0 4px 0;
 }
