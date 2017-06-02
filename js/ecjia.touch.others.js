@@ -332,20 +332,15 @@
 				});
 			});
 			
-			$('.article-bianji').off('click').on('click', function() {
+			$('.article-bianji').off('click').on('click', function(e) {
+				e.preventDefault();
 				var $this = $(this);
 				var url = $('input[name="add_comment"]').val();
-				
-				if ($this.hasClass('disabled')) {
-					return false;
-				}
-				$this.addClass('disabled');
 				
 				var info = {
 					'type': 'check',
 				}
 				$.post(url, info, function(data) {
-					$this.removeClass('disabled');
 					if (data.state == 'success') {
 						$('.nav-bt-fix').hide();
 						$('.ecjia-discover-detail .box_overlay').show();
