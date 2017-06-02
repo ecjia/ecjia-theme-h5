@@ -9235,8 +9235,8 @@ footer {
 }
 
 .ecjia-discover #swiper-discover-icon img {
-    width: 3em;
-    height: 3em;
+    width: 50px;
+    height: 50px;
     margin: .2em auto;
 }
 
@@ -9249,8 +9249,8 @@ footer {
 }
 
 .ecjia-discover-article {
-	border-top: 2px solid #eee;
-	border-bottom: 2px solid #eee;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
 	position: relative;
 	background: #fff;
 	max-width: 640px;
