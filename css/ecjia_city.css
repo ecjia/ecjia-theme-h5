@@ -5892,7 +5892,7 @@ footer {
     display: inline-block;
 	padding: 0;
 	height: auto;
-	margin: .3em 0 .3em 1.1%;
+	margin: .5em 0 .3em 1.1%;
 	border: none;
 }
 
@@ -9723,7 +9723,7 @@ footer {
 
 .ecjia-discover-detail .floor-title {
     margin: 0 1.2%;
-    border-bottom: 1px solid #d7d7d7;
+    border-bottom: 1px solid #eee;
 }
 
 .ecjia-discover-detail .floor-title .floor-title-cn {
@@ -9739,6 +9739,12 @@ footer {
     padding-left: .5em;
     border-left: 1px solid #a9a9a9;
     line-height: 2;
+}
+
+.ecjia-discover-detail .floor-title .floor-title-count {
+	float: right;
+	color: #a9a9a9;
+	font-size: 1em;
 }
 
 .ecjia-discover-detail .form-group {
@@ -9783,7 +9789,7 @@ footer {
     
 .ecjia-discover-detail .floor .comment-item {
     background: #fff;
-    padding: .5em 1em .2em 1em;
+    padding: .8em 1em .2em 1em;
 	width: 100%;
 	float: left;
 }
