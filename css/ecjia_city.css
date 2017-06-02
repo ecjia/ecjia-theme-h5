@@ -9237,8 +9237,8 @@ footer {
 }
 
 .ecjia-discover #swiper-discover-icon img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     margin: .2em auto;
 }
 
@@ -9783,8 +9783,7 @@ footer {
     
 .ecjia-discover-detail .floor .comment-item {
     background: #fff;
-    padding: .5em 1em;
-	border-bottom: 1px solid #eee;
+    padding: .5em 1em .2em 1em;
 	width: 100%;
 	float: left;
 }
@@ -9799,10 +9798,17 @@ footer {
 .ecjia-discover-detail .floor .comment-item .comment-left img {
 	width: 4.2rem;
     height: 4.2rem;
+	border-radius: 50%;
 }
 
 .ecjia-discover-detail .floor .comment-item .comment-right {
     margin-left: 5.2rem;
+	border-bottom: 1px solid #eee;
+	padding-bottom: .5em;
+}
+
+.ecjia-discover-detail .floor .comment-item:last-child .comment-right {
+	border-bottom: none;
 }
 
 .ecjia-discover-detail .floor .comment-item .comment-right .user-name {
@@ -9815,7 +9821,7 @@ footer {
 }
 
 .ecjia-discover-detail .floor .comment-item .comment-right .content {
-	color: #a9a9a9;
+	color: #333;
 }
 
 .ecjia-discover-detail .floor.comment-floor {
