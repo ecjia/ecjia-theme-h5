@@ -9996,10 +9996,10 @@ footer {
 	content: '';
     height: 1px;
     border-top: 1px solid #eee;
-    width: 70%;
+    width: 75%;
     margin-top: .8em;
     position: absolute;
-    left: 67%;
+    left: 65%;
     transform: scaleY(0.5) translate(-50%,0);
     -webkit-transform: scaleY(0.5) translate(-50%,0);
 }
