@@ -610,7 +610,7 @@
 				var is_order_list = $('input[name="keywords"]').attr("data-type");
 				if (is_order_list) {
 					if (!val) {
-						ecjia.pjax(url);
+//						ecjia.pjax(url);
 						return false;
 					} else {
 						ecjia.pjax(url + '&keywords=' + val);
