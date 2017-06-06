@@ -56,10 +56,18 @@ class mobile_controller {
         if (!ecjia_front::$controller->is_cached('application.dwt', $cache_id)) {
             $token = ecjia_touch_user::singleton()->getToken();
             
-            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DISCOVER)->run();
+            $discover = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DISCOVER)->run();
             $signup_reward_url =  RC_Uri::url('user/mobile_reward/init', array('token' => $token));
 
-            ecjia_front::$controller->assign('data', $data);
+            if (!is_ecjia_error($discover) && !empty($discover)) {
+                foreach ($discover as $key => $val) {
+                    if (strpos($val['url'], 'ecjiaopen://') === 0) {
+                        $discover[$key]['url'] = with(new ecjia_open($val['url']))->toHttpUrl();
+                    }
+                }
+            }
+
+            ecjia_front::$controller->assign('data', $discover);
             ecjia_front::$controller->assign('signup_reward_url', $signup_reward_url);
             ecjia_front::$controller->assign_title('百宝箱');
         }
