@@ -350,6 +350,12 @@ ecjia_open::macro('seller', function($querys) {
 ecjia_open::macro('user_bonus', function($querys) {
     return RC_Uri::url('user/bonus/init', array('type' => $querys['type']));
 });
+ecjia_open::macro('user_address', function() {
+	return RC_Uri::url('user/address/address_list');
+});
+ecjia_open::macro('help', function() {
+	return RC_Uri::url('article/help/init');
+});
 
 /**
  * 支付响应提示模板
