@@ -729,15 +729,18 @@
 					startY = e.touches[0].pageY;
 				});
 				mybody.addEventListener('touchmove', function(e) {
-					var top = $('.wd').find('ul li:first').position().top;
-					moveEndX = e.changedTouches[0].pageX;
-					moveEndY = e.changedTouches[0].pageY;
-					X = moveEndX - startX;
-					Y = moveEndY - startY;
-					if (Y > 0 && top >= 30) {
-						ecjia.touch.category.scroll_show_hide(false);
-					} else if (Y < 0) {
-						ecjia.touch.category.scroll_show_hide(true);
+					var position = $('.wd').find('ul li:first').position();
+					if (position != undefined) {
+						var top = position.top;
+						moveEndX = e.changedTouches[0].pageX;
+						moveEndY = e.changedTouches[0].pageY;
+						X = moveEndX - startX;
+						Y = moveEndY - startY;
+						if (Y > 0 && top >= 30) {
+							ecjia.touch.category.scroll_show_hide(false);
+						} else if (Y < 0) {
+							ecjia.touch.category.scroll_show_hide(true);
+						}
 					}
 				});
 			};
@@ -751,7 +754,6 @@
 					startY = e.touches[0].pageY;
 				});
 				comment_body.addEventListener('touchmove', function(e) {
-					//var top = $('#store-comment').find('div.assess-flat:eq(0)').position().top;
 					moveEndX = e.changedTouches[0].pageX;
 					moveEndY = e.changedTouches[0].pageY;
 					X = moveEndX - startX;
