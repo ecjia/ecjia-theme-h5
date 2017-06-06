@@ -65,9 +65,9 @@ class mobile_controller {
                         $discover[$key]['url'] = with(new ecjia_open($val['url']))->toHttpUrl();
                     }
                 }
+                ecjia_front::$controller->assign('data', $discover);
             }
 
-            ecjia_front::$controller->assign('data', $discover);
             ecjia_front::$controller->assign('signup_reward_url', $signup_reward_url);
             ecjia_front::$controller->assign_title('百宝箱');
         }
