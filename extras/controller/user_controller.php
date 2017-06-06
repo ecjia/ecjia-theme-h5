@@ -76,7 +76,7 @@ class user_controller {
     				/* 获取远程用户头像信息*/
     				user_controller::sync_avatar($user['id']);
     				 
-    				if (!empty($user['avatar_img'])) {
+    				if (!empty($user['avatar_img'])) {   
     					$user_img = $user['avatar_img'];
     				}
     				ecjia_front::$controller->assign('user', $user);
@@ -168,11 +168,11 @@ class user_controller {
         }
         $connect_user = RC_Api::api('connect', 'connect_user_info', array('user_id' => $user_id));
         
-//         RC_Logger::getlogger('info')->info('user_controller-connect');
+        RC_Logger::getlogger('info')->info('user_controller-connect');
         if (is_ecjia_error($connect_user)) {
             $connect_user = $connect_user->get_error_message();
         }
-//         RC_Logger::getlogger('info')->info($connect_user);
+        RC_Logger::getlogger('info')->info($connect_user);
         if ($connect_user) {
             if ($connect_user['connect_code'] == 'sns_qq') {
                 $head_img = $connect_user['profile']['figureurl_qq_2'];
