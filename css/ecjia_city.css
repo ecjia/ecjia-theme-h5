@@ -5882,7 +5882,6 @@ footer {
 }
 
 .ecjia-like-goods-list {
-	padding-bottom: .5em;
 	margin-top: 0;
 }
 
@@ -9625,7 +9624,7 @@ footer {
 
 .ecjia-discover-detail .article-content-sku .content-sku-right {
 	position: relative;
-    height: 5.25rem;
+    height: 8rem;
     padding-left: 1em;
     padding-right: 1em;
     margin-left: 8rem;
@@ -9637,16 +9636,19 @@ footer {
     width: 100%;
     color: #2f2f2f;
     word-break: break-all;
-	min-height: 4rem;
+	height: 4rem;
 }
 
 .ecjia-discover-detail .article-content-sku .content-sku-right .content-sku-bottom {
-	margin-top: 2rem;
+	height: 4rem;
+	line-height: 3rem;
 }
 
 .ecjia-discover-detail .article-content-sku .content-sku-right .content-sku-bottom .sku-price {
     font-size: 1.1em;
     color: #ff3434;
+	display: inline-block;
+    padding-top: 1rem;
 }
 
 .ellipsis, .jd-header-title {
@@ -9664,6 +9666,7 @@ footer {
     padding-left: .5em;
     padding-right: .5em;
     border-radius: 4px;
+	margin-top: 1rem;
 }
 
 .ecjia-discover-detail .author-panel {
@@ -9724,6 +9727,7 @@ footer {
 .ecjia-discover-detail .floor-title {
     margin: 0 1.2%;
     border-bottom: 1px solid #eee;
+	margin-bottom: 5px;
 }
 
 .ecjia-discover-detail .floor-title .floor-title-cn {
