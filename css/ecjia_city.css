@@ -9313,19 +9313,19 @@ footer {
     color: #999;
 }
 
-.ecjia-article.article-list .article {
+.ecjia-article.article-list .article-item {
 	min-height: 7.5rem;
     border-bottom: 1px solid #eee;
     background-color: #fff;
 }
 
-.ecjia-article.article-list .article:after {
+.ecjia-article.article-list .article-item:after {
 	clear: both;
     content: "";
     display: block;
 }
 
-.ecjia-article.article-list .article .article-left {
+.ecjia-article.article-list .article-item .article-left {
     float: left;
     box-sizing: border-box;
     width: 60%;
@@ -9334,7 +9334,7 @@ footer {
     padding-right: 1em;
 }
 
-.ecjia-article.article-list .article .article-left .article-title {
+.ecjia-article.article-list .article-item .article-left .article-title {
     font-size: 1.2em;
     line-height: 1.6em;
     color: #2e2e2e;
@@ -9342,18 +9342,18 @@ footer {
     height: 3.2em
 }
 
-.ecjia-article.article-list .article .article-left .article-summary {
+.ecjia-article.article-list .article-item .article-left .article-summary {
     font-size: 1em;
     line-height: 1.6em;
     height: 3.2em;
     color: #646464;
 }
 
-.ecjia-article.article-list .article .article-left .article-author {
+.ecjia-article.article-list .article-item .article-left .article-author {
     margin-top: .4em;
 }
 
-.ecjia-article.article-list .article .article-left .article-author .article-author-pic {
+.ecjia-article.article-list .article-item .article-left .article-author .article-author-pic {
     width: 1em;
     height: 1em;
     border-radius: 50%;
@@ -9361,7 +9361,7 @@ footer {
     margin-right: .2em;
 }
 
-.ecjia-article.article-list .article .article-left .article-author .article-author-name {
+.ecjia-article.article-list .article-item .article-left .article-author .article-author-name {
 	font-size: .8em;
     color: #989898;
     float: left;
@@ -9395,7 +9395,7 @@ footer {
     -webkit-line-clamp: 2;
 }
 
-.ecjia-article.article-list .article .article-right {
+.ecjia-article.article-list .article-item .article-right {
     float: left;
     box-sizing: border-box;
     width: 40%;
@@ -9404,17 +9404,17 @@ footer {
     padding-bottom: 1em;
 }
 
-.ecjia-article.article-list .article .article-right .img-box {
+.ecjia-article.article-list .article-item .article-right .img-box {
     position: relative;
 }
 
-.ecjia-article.article-list .article .article-right .img-box img {
+.ecjia-article.article-list .article-item .article-right .img-box img {
 	width: 100%;
     height: 7em;
     margin-bottom: .5em;
 }
 
-.ecjia-article.article-list .article .article-right .img-box .play-icon {
+.ecjia-article.article-list .article-item .article-right .img-box .play-icon {
     position: absolute;
     width: 2rem;
     height: 2rem;
@@ -9424,12 +9424,12 @@ footer {
     margin-top: -1rem;
 }
 
-.ecjia-article.article-list .article .article-right .article-info .article-time {
+.ecjia-article.article-list .article-item .article-right .article-info .article-time {
     float: left;
     width: 60%;
 }
 
-.ecjia-article.article-list .article .article-right .article-info .article-time .clock {
+.ecjia-article.article-list .article-item .article-right .article-info .article-time .clock {
     float: left;
     width: .7em;
     height: .7em;
@@ -9439,7 +9439,7 @@ footer {
     margin-top: .08em;
 }
 
-.ecjia-article.article-list .article .article-right .article-info .little-icon {
+.ecjia-article.article-list .article-item .article-right .article-info .little-icon {
     display: inline-block;
     margin-top: .125rem;
     margin-right: .15rem;
@@ -9447,7 +9447,7 @@ footer {
     background-repeat: no-repeat;
 }
 
-.ecjia-article.article-list .article .article-right .article-info .article-time span {
+.ecjia-article.article-list .article-item .article-right .article-info .article-time span {
     float: left;
     font-size: .8em;
     line-height: 1.1em;
@@ -9458,12 +9458,12 @@ footer {
     white-space: nowrap;
 }
 
-.ecjia-article.article-list .article .article-right .article-info .article-viewed {
+.ecjia-article.article-list .article-item .article-right .article-info .article-viewed {
     float: right;
     width: 40%;
 }
 
-.ecjia-article.article-list .article .article-right .article-info .article-viewed span {
+.ecjia-article.article-list .article-item .article-right .article-info .article-viewed span {
     float: right;
     font-size: .8em;
     line-height: 1.1em;
@@ -9474,7 +9474,7 @@ footer {
     white-space: nowrap;
 }
 
-.ecjia-article.article-list .article .article-right .article-info .article-viewed .eye {
+.ecjia-article.article-list .article-item .article-right .article-info .article-viewed .eye {
     float: right;
 	width: .8em;
     height: .7em;
@@ -9484,7 +9484,7 @@ footer {
 	margin-top: .08em;
 }
 
-.ecjia-article.article-list .article .article-right .article-info .little-icon {
+.ecjia-article.article-list .article-item .article-right .article-info .little-icon {
     display: inline-block;
     background-size: 100% 100%;
     background-repeat: no-repeat;
