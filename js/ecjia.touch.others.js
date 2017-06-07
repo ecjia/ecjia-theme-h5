@@ -435,10 +435,6 @@
 						} else {
 							$('#discover-article-' + type).append(data.list);
 						}
-						if ($('#discover-article-' + type).find('.article.clearfix').length != 0) {
-							$('.article-container').css('padding-bottom', '7em');
-						}
-
 						if (data.is_last == 1) {
 							$('.article-container').find('.load-list').addClass('is-last').css('display', 'none');
 						} else {
