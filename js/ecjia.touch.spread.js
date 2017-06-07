@@ -39,11 +39,18 @@
 					$("ul").each(function(){
 				        //取出ul下的第一个li
 				        var li= $(this).children(".article-init").first();
-				        li.css("margin-top", div_height);
+				        if (scroH > 0) {
+				        	li.css("margin-top", div_height);
+				        }
 				    });
 					if (pfTop - scroH < div_height) {
-						$(this).css({"position":"fixed","top":0, "z-index":9});
-						$(this).siblings('.pf').css({"position":"relative"}); 
+						if (scroH <= 0) {
+							$("ul .pf").css({"position":'',"top":'', "z-index":''}); 
+							$("ul .article-init").css("margin-top", 0);
+						} else {
+							$(this).css({"position":"fixed","top":0, "z-index":9});
+							$(this).siblings('.pf').css({"position":"relative"});
+						}
 					}
 			    });
 			});
