@@ -30,7 +30,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	{if $login}
 	<div class="ecjia-list ecjia-address-list ecjia-select-address">
-		<div class="address-backgroundw"><span>我的收货地址</span></div>
+		<div class="address-backgroundw"><span>{if $address_list}我的收货地址{else}暂无收货地址{/if}</span></div>
 		{if $address_list}
 		<ul class="list-one">
 			<!-- {foreach from=$address_list item=value} 循环地址列表 -->
@@ -50,8 +50,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</ul>
 		{/if}
 		<div class="address-list-center">
-			<a type="botton" href="{url path='user/address/address_list'}">
-				<i class="iconfont icon-roundadd"></i> {t}管理收货地址{/t}
+			<a type="botton" href="{if $address_list}{RC_Uri::url('user/address/address_list')}{else}{RC_Uri::url('user/address/add_address')}&referer_url={$location_url}{/if}">
+				<i class="iconfont icon-roundadd"></i> {if $address_list}管理收货地址{else}添加收货地址{/if}
 			</a>
 		</div>
 	</div>

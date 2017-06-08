@@ -72,6 +72,8 @@ class location_controller {
     				ecjia_front::$controller->assign('address_list', $address_list);
     			}
     		}
+    		$location_url = RC_Uri::url('location/index/select_location');
+    		ecjia_front::$controller->assign('location_url', urlencode($location_url));
     	}
     	
     	if (!ecjia_front::$controller->is_cached('select_location.dwt', $cache_id)) {
