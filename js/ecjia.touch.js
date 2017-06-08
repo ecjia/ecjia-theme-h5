@@ -63,12 +63,15 @@
 					if (keywords != 'undefined') {
 						url += '&keywords=' + keywords;
 					}
+					$('.ecjia-zw').hide();
+					$('.ecjia-list.ecjia-address-list.ecjia-select-address').hide();
+					$('.ecjia-location-list-wrap').html('');
+					$('.ecjia-near-address').hide();
 					$.ajax({
 						url: url,
 						type: "GET",
 						dataType: "json",
 						success: function(data) {
-							$('.ecjia-near-address').remove();
 							ecjia.touch.address_value(data.content.data);
 						},
 					});
@@ -78,11 +81,8 @@
 		},
 
 		address_value: function(data) {
-			$('.ecjia-location-list-wrap').html('');
 			if (data) {
 				if (data.length > 0) {
-					$('.ecjia-zw').hide();
-					$('.ecjia-list.ecjia-address-list.ecjia-select-address').hide();
 					for (var i = 0; i < data.length; i++) {
 						var opt = '<li data-lng="' + data[i].location.lng + '" data-lat="' + data[i].location.lat + '"><p class="list_wrapper a1"><span class="ecjia-list_title ecjia-location-list-title">' + data[i].title + '</span><span class="ecjia-list_title ecjia-location-list-address">' + data[i].address + '</span></p></li>'
 						$('.ecjia-location-list-wrap.location-search-result').append(opt);
