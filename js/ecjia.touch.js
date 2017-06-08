@@ -63,10 +63,19 @@
 					if (keywords != 'undefined') {
 						url += '&keywords=' + keywords;
 					}
-					$('.ecjia-zw').hide();
-					$('.ecjia-list.ecjia-address-list.ecjia-select-address').hide();
-					$('.ecjia-location-list-wrap').html('');
-					$('.ecjia-near-address').hide();
+					if (keywords == '') {
+						$('.ecjia-zw').show();
+						$('.ecjia-list.ecjia-address-list.ecjia-select-address').show();
+						$('.ecjia-location-list-wrap.near-location-list').show();
+						$('.ecjia-location-list-wrap.location-search-result').html('');
+						$('.ecjia-near-address').show();
+					} else {
+						$('.ecjia-zw').hide();
+						$('.ecjia-list.ecjia-address-list.ecjia-select-address').hide();
+						$('.ecjia-location-list-wrap.near-location-list').hide();
+						$('.ecjia-location-list-wrap.location-search-result').html('');
+						$('.ecjia-near-address').hide();
+					}
 					$.ajax({
 						url: url,
 						type: "GET",
