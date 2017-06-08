@@ -25,3 +25,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!-- {/foreach} -->
 	</ul>
 </div>
+<!-- {if !$data && !$new_goods && !$promotion_goods} -->
+<div class="ecjia-mod-h35"></div>
+<!-- {/if} -->

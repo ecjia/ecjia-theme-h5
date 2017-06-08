@@ -175,6 +175,13 @@ class location_controller {
     	$referer_url = RC_Uri::url('touch/index/init');
     	setcookie("referer_url", $referer_url, RC_Time::gmtime() + 3600 * 24 * 7);
     	
+    	$href_url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
+    	 
+    	$str1 = 'm=location&c=index&a=select_location';
+    	if (strpos($href_url, $str1)) {
+    		$href_url = RC_Uri::url('touch/index/init');
+    	}
+    	
     	//写入cookie
     	setcookie("location_address", $location_address, RC_Time::gmtime() + 3600 * 24 * 7);
     	setcookie("location_name", $location_name, RC_Time::gmtime() + 3600 * 24 * 7);
@@ -191,7 +198,7 @@ class location_controller {
     	setcookie("position_longitude", $longitude, RC_Time::gmtime() + 3600 * 24 * 7);
     	setcookie("position_latitude", $latitude, RC_Time::gmtime() + 3600 * 24 * 7);
     	
-    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => ''));
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $href_url));
     }
     
     public static function get_location_info() {
