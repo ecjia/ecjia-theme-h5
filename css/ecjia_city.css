@@ -3615,12 +3615,20 @@ footer {
 	padding: .5em 0 .3em 1em;
 }
 
+.ecjia-list.ecjia-address-list.ecjia-select-address {
+	padding-top: 0;
+}
+
 .ecjia-address-list.ecjia-select-address .address-backgroundw {
-	border-bottom: 1px solid #eee;
+	line-height: 40px;
+    font-size: 14px;
+    margin-left: 15px;
+	background: #f7f7f7;
+	padding-left: 0;
 }
 
 .ecjia-address-list.ecjia-select-address .address-backgroundw span {
-	color: #c1c1c1;
+	color: #666666;
 }
 
 .ecjia-address-list.ecjia-select-address li a {
