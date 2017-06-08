@@ -5,7 +5,7 @@ Description: 这是首页的广告模块
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
-<div class="ecjia-mod">
+<div class="ecjia-mod {if !$data && !$new_goods && !$promotion_goods}ecjia-mod-pb35{/if}">
 	<ul class="ecjia-adsense-model">
 	<!-- {foreach from=$adsense_group item=val} -->
 		<li class="adsense-item">
@@ -25,6 +25,3 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!-- {/foreach} -->
 	</ul>
 </div>
-<!-- {if !$data && !$new_goods && !$promotion_goods} -->
-<div class="ecjia-mod-h35"></div>
-<!-- {/if} -->

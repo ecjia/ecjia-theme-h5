@@ -68,9 +68,11 @@ a.ecjia-color-green {
 	margin-top: 2em;
 }
 
-.ecjia-mod-h35 {
-	height: 3.5em;
+.ecjia-mod.ecjia-mod-pb35 {
+	padding-bottom: 3.5em;
+	background-color: #f7f7f7;
 }
+
 .ecjia-h48 {
 	height: 48px;
 }
@@ -1234,6 +1236,7 @@ ul, li, ol, dl, dt, dd {
 .ecjia-mod .ecjia-adsense-model {
 	height: auto;
 	padding-top: 1em;
+	background-color: #fff;
 }
 
 .ecjia-mod .ecjia-adsense-model .adsense-item {
@@ -1346,6 +1349,7 @@ ul, li, ol, dl, dt, dd {
 
 .swiper-promotion {
 	overflow: hidden;
+	background: #fff;
 }
 
 .swiper-promotion .swiper-slide {
