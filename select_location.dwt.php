@@ -19,11 +19,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-zs" id="ecjia-zs" data-type="index" data-url="{url path='touch/index/init'}">
 	<div class="ecjia-zt a1">
 		<a href="{url path='location/index/select_city' args="type=search{if $smarty.get.city_id}&city_id={$smarty.get.city_id}{else}&city_id={$recommend_city_id}{/if}"}">
-			<h2 class="ecjia-zu"><span class="city-name">{if $smarty.get.city}{$smarty.get.city}{else}{$recommend_city_name}{/if}</span></h2>
+			<h2 class="ecjia-zu"><span class="city-name">{if $smarty.cookies.city_name}{$smarty.cookies.city_name}{else}请选择{/if}</span></h2>
  		</a>
-		<a href="{url path='location/index/search_location'}" >
-			<span class="ecjia-zv defaultWidth">小区， 写字楼， 学校</span>
-		</a>
+		<input class="ecjia-zv" type="text" id="search_location_list" data-toggle="search-address" data-url="{url path='location/index/search_list'}"  name="address" placeholder="选择城市、小区、写字楼、学校" maxlength="50" >
 	</div>
 	<div class="ecjia-zw">
 		<a class="external" href="{$my_location}">
@@ -57,10 +55,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</a>
 		</div>
 	</div>
-	{else}
+	{/if}
+	
 	<div class="ecjia-near-address">您附近的地址</div>
 	<div class="ecjia-address_list">
-		<ul class="nav-list-ready ecjia-location-list-wrap">
+		<ul class="nav-list-ready ecjia-location-list-wrap near-location-list">
 		<!-- {if $content} -->
 		<!-- {foreach from=$content item=val} -->
 			<li data-lng="{$val.location.lng}" data-lat="{$val.location.lat}">
@@ -71,8 +70,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</li>
 		<!-- {/foreach} -->
 		<!-- {/if} -->
-		</ul>    
+		</ul>   
+		<ul class="nav-list-ready ecjia-location-list-wrap location-search-result">
+		</ul> 
 	</div>
-	{/if}
 </div>
 <!-- {/block} -->

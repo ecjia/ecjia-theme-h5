@@ -1053,6 +1053,8 @@ a.ecjia-color-green {
 	display: block;
 	font-size: 14px;
 	line-height: 20px;
+	text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .ecjia-list_title i {
