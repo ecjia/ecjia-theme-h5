@@ -3615,6 +3615,12 @@ footer {
 	padding: .5em 0 .3em 1em;
 }
 
+.ecjia-address-list.ecjia-select-address li.no-address {
+	padding: 1em .5em;
+    padding-left: 15px;
+    color: #bbb;
+}
+
 .ecjia-list.ecjia-address-list.ecjia-select-address {
 	padding-top: 0;
 }
