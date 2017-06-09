@@ -1006,7 +1006,7 @@ a.ecjia-color-green {
 }
 
 .ecjia-zu span.city-name {
-	max-width: 45px;
+	max-width: 50px;
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;

@@ -37,12 +37,14 @@ $(document).ready(function() {
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
+{if $smarty.cookies.position_city_name}
 <div class="location-city">
 	<h2 class="location-city-title"><span>定位城市</span></h2>
 	<ul class="location-city-content citylist">
 		<li data-id="{$smarty.cookies.position_city_id}" class="{if $smarty.cookies.position_city_id eq $smarty.cookies.city_id}active{/if}">{$smarty.cookies.position_city_name}</li>
 	</ul>
 </div>
+{/if}
 {if $smarty.get.type eq 'addcity'}
 <div class="cityall" id="cityall" data-url='{url path="user/address/add_address" args="{if $referer_url}&referer_url={$referer_url|escape:"url"}{/if}"}'>
 {else if $smarty.get.type eq 'editcity'}
