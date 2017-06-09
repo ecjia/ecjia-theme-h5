@@ -30,9 +30,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	{if $login}
 	<div class="ecjia-list ecjia-address-list ecjia-select-address">
-		<div class="address-backgroundw"><span>{if $address_list}我的收货地址{else}暂无收货地址{/if}</span></div>
-		{if $address_list}
+		<div class="address-backgroundw"><span>我的收货地址</span></div>
 		<ul class="list-one">
+			{if $address_list}
 			<!-- {foreach from=$address_list item=value} 循环地址列表 -->
 			<li>
 				<a data-toggle="choose_address" href="{RC_Uri::url('user/address/choose_address')}&address_id={$value.id}{if $referer_url}&referer_url={$referer_url}{/if}">
@@ -47,8 +47,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</a>
 			</li>
 			<!-- {/foreach} -->
+			{else}
+			<li class="no-address">您当前还没有收货地址</li>
+			{/if}
 		</ul>
-		{/if}
 		<div class="address-list-center">
 			<a type="botton" href="{if $address_list}{RC_Uri::url('user/address/address_list')}{else}{RC_Uri::url('user/address/add_address')}&referer_url={$location_url}{/if}">
 				<i class="iconfont icon-roundadd"></i> {if $address_list}管理收货地址{else}添加收货地址{/if}

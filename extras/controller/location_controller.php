@@ -68,7 +68,7 @@ class location_controller {
     		
     		if (!ecjia_front::$controller->is_cached('select_location.dwt', $cache_id)) {
     			$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
-    			if (!is_ecjia_error($address_list)) {
+    			if (!is_ecjia_error($address_list) && !empty($address_list)) {
     				ecjia_front::$controller->assign('address_list', $address_list);
     			}
     		}
