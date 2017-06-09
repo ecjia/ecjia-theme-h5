@@ -123,11 +123,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
          <li>
-        	{if $user.id}
-        	   <a class="external" href="{$signup_reward_url}">
-        	{else}
-        	   <a class="external" href="{url path='user/privilege/login'}">
-        	{/if}
+    	    <a class="external" href="{$signup_reward_url}">
         		<div class="icon-expand"><img src="{$theme_url}images/user_center/newbie_gift75_1.png"></div>
         		<span class="icon-name">新人有礼</span>
         		<i class="iconfont  icon-jiantou-right"></i>
