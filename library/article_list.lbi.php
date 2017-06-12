@@ -1,3 +1,4 @@
+{nocache}
 <!-- {block name="ajaxinfo"} -->
 	<!-- {foreach from=$data item=val key=key} -->
 	<div class="article-item"> 
@@ -31,3 +32,4 @@
 	<div class="ecjia-nolist"><img src="{$theme_url}images/no_comment.png"><p class="tags_list_font">暂无文章</p></div>
 	<!-- {/foreach} -->
 <!-- {/block} -->
+{/nocache}
