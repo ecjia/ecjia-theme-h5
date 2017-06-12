@@ -9454,7 +9454,7 @@ footer {
 
 .ecjia-article.article-list .article-item .article-right .article-info .article-time .clock {
     float: left;
-    width: .7em;
+    width: 15%;
     height: .7em;
     background-image: url(../images/icon/icon-clock.png);
     background-size: .7em .7em;
@@ -9475,7 +9475,7 @@ footer {
     font-size: .8em;
     line-height: 1.1em;
     color: #989898;
-    width: 5.5em;
+    width: 80%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

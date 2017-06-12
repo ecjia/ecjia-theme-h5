@@ -10,8 +10,8 @@
 			ecjia.touch.spread.share_spread();
 		},
 		spread: function() {
-			$('.would-spread').off('click').on('click', function() {
-				
+			$('.would-spread').off('click').on('click', function(e) {
+				e.preventDefault();
 				var ua = navigator.userAgent.toLowerCase();
 				if (ua.match(/MicroMessenger/i) == "micromessenger") {
 	        		$('.ecjia-spread-share').removeClass('hide').css('top', $('body').scrollTop() + 'px');
@@ -22,6 +22,8 @@
 	            		$('body').css('overflow-y', 'auto').off("touchmove");//启用滚动条
 	            	})
 	            	ecjia.touch.spread.share_spread();
+				} else {
+					alert('请在微信客户端打开链接');
 				}
         	});
         },  
