@@ -374,7 +374,7 @@
 							text: '发表成功！',
 							duration: 2e3,
 						});
-						textarea.html('');
+						textarea.val('');
 						ecjia.touch.index.hide_box();
 					} else {
 						if (data.referer_url) {
