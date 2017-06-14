@@ -121,39 +121,36 @@ class article_controller {
      *  发现首页
      */
     public static function article_index() {
-    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
-    	 
-    	if (!ecjia_front::$controller->is_cached('discover_init.dwt', $cache_id)) {
-    		//文章分类及轮播图
-    		$article_cat = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_HOME_CYCLEIMAGE)->data(array('city_id' => $_COOKIE['city_id']))->run();
-
-    		//处理ecjiaopen url
-    		if (!is_ecjia_error($article_cat) && !empty($article_cat)) {
-    			foreach ($article_cat as $k => $v) {
-    				if ($k == 'player') {
-    					foreach ($v as $key => $val) {
-    						if (strpos($val['url'], 'ecjiaopen://') === 0) {
-    							$article_cat[$k][$key]['url'] = with(new ecjia_open($val['url']))->toHttpUrl();
-    						}
+    	//文章分类及轮播图
+    	$article_cat = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_HOME_CYCLEIMAGE)->data(array('city_id' => $_COOKIE['city_id']))->run();
+    	
+    	//处理ecjiaopen url
+    	if (!is_ecjia_error($article_cat) && !empty($article_cat)) {
+    		foreach ($article_cat as $k => $v) {
+    			if ($k == 'player') {
+    				foreach ($v as $key => $val) {
+    					if (strpos($val['url'], 'ecjiaopen://') === 0) {
+    						$article_cat[$k][$key]['url'] = with(new ecjia_open($val['url']))->toHttpUrl();
     					}
     				}
     			}
-    			ecjia_front::$controller->assign('cycleimage', $article_cat['player']);
-    			 
-    			if (!empty($article_cat['category'])) {
-    				ecjia_front::$controller->assign('article_cat', $article_cat['category']);
-    			}
     		}
-    		
-    		//新人有礼url
-    		$token = ecjia_touch_user::singleton()->getToken();
-    		$signup_reward_url =  RC_Uri::url('user/mobile_reward/init', array('token' => $token));
-    		ecjia_front::$controller->assign('signup_reward_url', $signup_reward_url);
-    
-    		//菜单选中
-    		ecjia_front::$controller->assign('active', 'discover');
+    		ecjia_front::$controller->assign('cycleimage', $article_cat['player']);
+    	
+    		if (!empty($article_cat['category'])) {
+    			ecjia_front::$controller->assign('article_cat', $article_cat['category']);
+    		}
     	}
-    	ecjia_front::$controller->display('discover_init.dwt', $cache_id);
+    	
+    	//新人有礼url
+    	$token = ecjia_touch_user::singleton()->getToken();
+    	$signup_reward_url =  RC_Uri::url('user/mobile_reward/init', array('token' => $token));
+    	ecjia_front::$controller->assign('signup_reward_url', $signup_reward_url);
+    	
+    	//菜单选中
+    	ecjia_front::$controller->assign('active', 'discover');    		
+    		
+    	ecjia_front::$controller->display('discover_init.dwt');
     }
     
     /**
