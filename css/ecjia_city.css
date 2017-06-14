@@ -9275,11 +9275,16 @@ footer {
 .ecjia-discover-article {
 	border-top: 1px solid #eee;
 	border-bottom: 1px solid #eee;
-	position: relative;
+	position: sticky;
+	position: -webkit-sticky; 
+	position: -moz-sticky;
+    position: -ms-sticky;
 	background: #fff;
 	max-width: 640px;
 	overflow: hidden;
 	width: 100%;
+	top: 0;
+	z-index: 3;
 }
 
 .ecjia-discover-article .swiper-container {

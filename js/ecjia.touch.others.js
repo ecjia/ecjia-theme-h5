@@ -235,40 +235,6 @@
 				var index = $(this).index();
 				swiper.slideTo(index, 1000, false);//切换到制定slide，速度为1秒
 			});
-			
-			var article_container = document.getElementById('article-container');
-			if (article_container != null) {
-				//滑动处理
-				var startX, startY, moveEndX, moveEndY, X, Y;
-				article_container.addEventListener('touchstart', function(e) {
-					startX = e.touches[0].pageX;
-					startY = e.touches[0].pageY;
-				});
-				
-				article_container.addEventListener('touchmove', function(e) {
-					var top = $(".article-container").offset().top - $("body").scrollTop();
-					moveEndX = e.changedTouches[0].pageX;
-					moveEndY = e.changedTouches[0].pageY;
-					Y = moveEndY - startY;
-					if (Y < 0 && top <= 50) {
-						$(".ecjia-discover-article").css({ 
-							'position': 'fixed',
-						    'top': 0,
-						    'z-index': 1
-						});
-						$('.ecjia-discover-icon').hide();
-						$('.ecjia-discover-cycleimage').hide();
-						$('.article-container').css('margin-top', '50px');
-					} else if (Y > 0 && top >= 50) {
-						$(".ecjia-discover-article").css({ 
-							'position': 'relative',
-						});
-						$('.ecjia-discover-icon').show();
-						$('.ecjia-discover-cycleimage').show();
-						$('.article-container').css('margin-top', 0);
-					}
-				});
-			};			
 		},
 		
 		discover_init: function() {
