@@ -9281,7 +9281,6 @@ footer {
     position: -ms-sticky;
 	background: #fff;
 	max-width: 640px;
-	overflow: hidden;
 	width: 100%;
 	top: 0;
 	z-index: 3;
@@ -9311,18 +9310,33 @@ footer {
     font-size: 1.5em;
     line-height: 50px;
     cursor: pointer;
+	background-color: #fff;
 }
 
 .ecjia-discover-article .article-add i{
-	top: -2px;
+	top: 0;
+    -webkit-perspective: 36px;
+    cursor: pointer;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+.ecjia-discover-article .article-add i:before {
+	-webkit-transition: .5s;
+    transition: .5s;
+}
+
+.ecjia-discover-article .article-add i.expanded {
+	-webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg);
 }
 
 .article-container {
 	overflow: hidden;
+	margin-top: 50px;
 }
 
 .ecjia-article.article-list {
-	float: left;
 	width: 100%;
 	padding-top: 0;
 }
@@ -9518,22 +9532,21 @@ footer {
     background-repeat: no-repeat;
 }
 
-.ecjia-down-navi.down-transition {
-    -webkit-transition: all .2s ease;
-    transition: all .2s ease;
-}
-
 .ecjia-down-navi {
-    position: fixed;
+    position: absolute;
     z-index: 11;
     left: 0;
     right: 0;
     bottom: 0;
-    top: 0;
+    top: 50px;
     background-color: #f2f2f2;
 	max-width: 640px;
     margin: 0 auto;
 	display: none;
+	background-color: rgba(255,255,255,0.9);
+	
+	-webkit-transition: .5s;
+    transition: .5s;
 }
 
 .ecjia-down-navi .navi-title {
@@ -9542,18 +9555,19 @@ footer {
 
 .ecjia-down-navi .navi {
     float: left;
-    margin-right: 5%;
+	margin-left: 4%;
+    margin-right: 4%;
     margin-bottom: 1em;
     text-align: center;
     font-size: 1em;
     line-height: 2em;
     height: 2em;
     display: inline-block;
-    width: 28%;
+    width: 25%;
 }
 
 .ecjia-down-navi .navi-list {
-	margin: 0 1em;
+	margin: 1em;
     height: auto;
     overflow: hidden;
     min-height: 5em;

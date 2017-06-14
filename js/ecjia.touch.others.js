@@ -234,18 +234,25 @@
 				$('.ecjia-down-navi').css('display', 'none');
 				var index = $(this).index();
 				swiper.slideTo(index, 1000, false);//切换到制定slide，速度为1秒
+				
+				$('.ecjia-discover .article-add').children('i').removeClass('expanded');
 			});
 		},
 		
 		discover_init: function() {
 			$('.ecjia-discover .article-add').off('click').on('click', function() {
-				$('.ecjia-discover').css('display', 'none');
-				$('.ecjia-down-navi').css('display', 'block');
-			});
-			
-			$('.ecjia-down-navi .close_div').off('click').on('click', function() {
-				$('.ecjia-discover').css('display', 'block');
-				$('.ecjia-down-navi').css('display', 'none');
+				var $this = $(this);
+					children = $this.children('i');
+					
+				if (children.hasClass('expanded')) {
+					children.removeClass('expanded');
+					$('.ecjia-down-navi').hide();
+				} else {
+					children.addClass('expanded');
+					$('.ecjia-down-navi').show();
+					var height = $('.navi-list').height();
+					$('.ecjia-down-navi').css('height', height);
+				}
 			});
 			
 			$('.article-appreciate').off('click').on('click', function() {
