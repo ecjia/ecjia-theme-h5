@@ -246,6 +246,9 @@
 				var $this = $(this);
 					children = $this.children('i');
 					
+				if ($this.hasClass('disabled')) {
+					return false;
+				}	
 				if (children.hasClass('expanded')) {
 					children.removeClass('expanded');
 					$('.ecjia-down-navi').removeClass('show');
@@ -382,10 +385,20 @@
 		
 		article_cat_click: function() {
 			$('.ecjia-discover-article .swiper-slide').off('click').on('click', function() {
+				$('.ecjia-discover .article-add').children('i').removeClass('expanded');
+				$('.ecjia-down-navi').removeClass('show');
+				$('.ecjia-down-navi').off('touchmove');
+				
 				var $this = $(this),
 					url = $this.attr('data-url'),
 					type = $this.attr('data-type');
 
+				$('li.navi').removeClass('active');
+				$('li.navi').each(function() {
+					if ($(this).attr('data-id') == type) {
+						$(this).addClass('active');
+					}
+				})
 				$('.ecjia-article.article-list').attr('id', 'discover-article-' + type);
 				$('.article-container').find('[data-toggle="asynclist"]').attr('data-type', type);
 
@@ -397,10 +410,12 @@
 					$('body').css('overflow-y', 'hidden').on('touchmove', function(event) {
 						event.preventDefault;
 					}, false);
+					$('.ecjia-discover .article-add').addClass('disabled');
 					$('.ecjia-discover-article .swiper-slide').addClass('disabled'); //禁止切换
 
 					$.get(url, function(data) {
 						$('body').scrollTop(0);
+						$('.ecjia-discover .article-add').removeClass('disabled');
 						
 						$loader = $('<a class="load-list" href="javascript:;"><div class="loaders"><div class="loader"><div class="loader-inner ball-pulse"><div></div><div></div><div></div></div></div></div></a>');
 						var load_list = $('#discover-article-' + type).parent().find('.load-list');
