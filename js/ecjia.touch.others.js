@@ -236,6 +236,8 @@
 				swiper.slideTo(index, 1000, false);//切换到制定slide，速度为1秒
 				
 				$('.ecjia-discover .article-add').children('i').removeClass('expanded');
+				$('.ecjia-down-navi').removeClass('show');
+				$('.ecjia-down-navi').off('touchmove');
 			});
 		},
 		
@@ -246,12 +248,20 @@
 					
 				if (children.hasClass('expanded')) {
 					children.removeClass('expanded');
-					$('.ecjia-down-navi').hide();
+					$('.ecjia-down-navi').removeClass('show');
+					$('.ecjia-down-navi').off('touchmove');
 				} else {
 					children.addClass('expanded');
-					$('.ecjia-down-navi').show();
-					var height = $('.navi-list').height();
+					$('.ecjia-down-navi').addClass('show');
+					var height = $('.article-container').height();
+					if (height < 800) {
+						height = 800;
+					}
 					$('.ecjia-down-navi').css('height', height);
+					//阻止浏览器下拉事件
+					$('.ecjia-down-navi').on('touchmove', function(event) {
+						event.preventDefault;
+					}, false);
 				}
 			});
 			

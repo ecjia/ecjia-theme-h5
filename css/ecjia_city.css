@@ -9284,6 +9284,7 @@ footer {
 	width: 100%;
 	top: 0;
 	z-index: 3;
+	height: 52px;
 }
 
 .ecjia-discover-article .swiper-container {
@@ -9329,11 +9330,6 @@ footer {
 .ecjia-discover-article .article-add i.expanded {
 	-webkit-transform: rotateX(180deg);
     transform: rotateX(180deg);
-}
-
-.article-container {
-	overflow: hidden;
-	margin-top: 50px;
 }
 
 .ecjia-article.article-list {
@@ -9542,11 +9538,23 @@ footer {
     background-color: #f2f2f2;
 	max-width: 640px;
     margin: 0 auto;
-	display: none;
 	background-color: rgba(255,255,255,0.9);
+	height: 0;
 	
-	-webkit-transition: .5s;
+	visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    -webkit-transition: .5s;
     transition: .5s;
+	-webkit-backdrop-filter: blur(10px) saturate(180%);
+}
+
+.ecjia-down-navi:not(.show) {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .ecjia-down-navi .navi-title {
@@ -9571,6 +9579,9 @@ footer {
     height: auto;
     overflow: hidden;
     min-height: 5em;
+	
+	-webkit-transition: 1s cubic-bezier(0.35,2,0.35,1),opacity 1s;
+    transition: 1s cubic-bezier(0.35,2,0.35,1),opacity 1s;
 }
 
 .ecjia-down-navi .navi.active .navi-name {
