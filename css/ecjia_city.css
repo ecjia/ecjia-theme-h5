@@ -2651,7 +2651,7 @@ footer {
 	z-index: 12;
 	left: 0;
 	right: 0;
-	top: 49px;
+	top: 0;
 	transition: transform .5s ease-out 0s;
 	-webkit-transition: -webkit-transform .5s ease-out 0s;
 	background-color: #fff;
