@@ -159,9 +159,8 @@ class user_order_controller {
                     if ($_GET['from'] == 'list') {
                         $url = RC_Uri::url('user/order/order_list');
                     } else {
-                        $url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
+                        $url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id, 'type' => 'detail'));
                     }
-                    $url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
                     return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
                 }
             }
