@@ -101,9 +101,8 @@ class pay_controller {
         	}
         	 
         	$order = $rs_pay['payment'];
-        	
         	//免费商品直接余额支付
-        	if ($order['order_amount'] != 0) {
+        	if ($order['order_amount'] !== 0) {
 	        	$need_other_payment = 0;
 	        	if ($order ['pay_code'] == 'pay_balance') {
 	        		if ($rs_pay['payment']['error_message']) {
