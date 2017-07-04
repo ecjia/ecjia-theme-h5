@@ -2524,7 +2524,6 @@
 	};
 
 	//切换属性
-
 	function spec_html(modal) {
 		$spec_html = '(';
 		$spec_price = parseFloat($(modal).find($('input[name="goods_price"]')).val());
