@@ -319,6 +319,7 @@ class cart_controller {
         if (!is_ecjia_error($address_info) && $address_info['local'] == 1) {
         	$address_id = $address_info['id'];
         } else {
+        	$token = ecjia_touch_user::singleton()->getToken();
         	$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token, 'seller_id' => $store_id))->run();
         	$address_list = is_ecjia_error($address_list) ? array() : $address_list;
 
