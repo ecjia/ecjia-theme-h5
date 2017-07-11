@@ -145,6 +145,7 @@ class cart_controller {
     			if (is_ecjia_error($data)) {
     				return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     			}
+    			RC_Cache::app_cache_delete('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], 'cart');
     			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('empty' => true, 'store_id' => $store_id));
     		} else {
     			if (!empty($new_number)) {
@@ -176,25 +177,19 @@ class cart_controller {
     			}
     		}
     	}
-
-    	$paramater = array(
-    		'token' 	=> $token,
-    		'seller_id' => $store_id,
-    		'location' 	=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
-            'city_id'   => $_COOKIE['city_id']
-    	);
-    	 
-    	$cart_goods_list = array();
-    	$cart_count = 0;
-    	//店铺购物车商品
-    	$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($paramater)->run();
-    	if (is_ecjia_error($cart_list)) {
-    		return ecjia_front::$controller->showmessage($cart_list->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-    	} else {
-    		RC_Cache::app_cache_set('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], $cart_list, 'cart');
-    	}
-    
-    	$cart_goods_list = $cart_list['cart_list'][0]['goods_list'];
+    	
+    	$cart_list = array();
+		if (!is_ecjia_error($data) && !empty($data['cart_list'])) {
+			foreach ($data['cart_list'] as $k => $v) {
+				if ($v['seller_id'] == $store_id) {
+					$cart_list['cart_list'][0] = $v;
+					$cart_list['total'] = $v['total'];
+				}
+			}
+		}
+		
+		RC_Cache::app_cache_set('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], $cart_list, 'cart');
+		$cart_goods_list = $cart_list['cart_list'][0]['goods_list'];
     	$cart_count = $cart_list['cart_list'][0]['total'];
     	
     	$data_rec = '';
@@ -225,7 +220,6 @@ class cart_controller {
     	if ($response) {
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('count' => $cart_count, 'response' => $response, 'data_rec' => $data_rec));
     	}
-    	 
     	$sayList = '';
     	if ($_POST['checked'] === '') {
     		ecjia_front::$controller->assign('list', $cart_goods_list);

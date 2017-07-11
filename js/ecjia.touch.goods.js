@@ -405,7 +405,9 @@
 
 				if (spec != '' || spec != false) {
 					if (type == 'add') {
-						$('.goods_spec_' + goods_id).find('.choose_attr').attr('data-spec', spec);
+						if (spec.length != undefined) {
+							$('.goods_spec_' + goods_id).find('.choose_attr').attr('data-spec', spec);
+						}
 						var n = parseInt($('.goods_spec_' + goods_id).children('i').html()) + 1;
 						if (isNaN(n)) n = 1;
 						if ($('.goods_spec_' + goods_id).find('.attr-number').length == 0) {
@@ -422,7 +424,6 @@
 							$('.goods_spec_' + goods_id).find('.attr-number').html(n);
 						}
 					}
-
 					if (val == 0) {
 						val = 1;
 						$('.ecjia-attr-modal').find('.add-tocart').addClass('show').removeClass('hide');
@@ -1665,9 +1666,13 @@
 					}
 					$spec_price += sprice;
 				});
+				$spec_price = $spec_price.toFixed(2);
 				$spec_html += ')';
-				$spec_price = '￥' + $spec_price;
-
+				if ($spec_price == 0) {
+					$spec_price = '免费';
+				} else {
+					$spec_price = '￥' + $spec_price;
+				}
 				$(modal).find('.goods-attr-name').html($spec_html);
 				$(modal).find('.goods-attr-price').html($spec_price);
 
@@ -2539,8 +2544,13 @@
 			}
 			$spec_price += sprice;
 		});
+		$spec_price = $spec_price.toFixed(2);
 		$spec_html += ')';
-		$spec_price = '￥' + $spec_price;
+		if ($spec_price == 0) {
+			$spec_price = '免费';
+		} else {
+			$spec_price = '￥' + $spec_price;
+		}
 		$(modal).find('.goods-attr-name').html($spec_html);
 		$(modal).find('.goods-attr-price').html($spec_price);
 	};
