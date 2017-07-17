@@ -215,7 +215,7 @@ class user_address_controller {
     		$store_id = $_SESSION['order_address_temp']['store_id'];
     		$addr = !empty($_GET['addr']) ? $_COOKIE['city_name'].trim($_GET['addr']) : $_COOKIE['location_address'];
     		
-    		$key = ecjia_config::has('map_baidu_key') ? ecjia::config('map_baidu_key') : '';
+    		$key = ecjia_config::has('map_qq_key') ? ecjia::config('map_qq_key') : '';
     		if (!empty($key)) {
                 $addr = urlencode($addr);
                 $shop_point = RC_Http::remote_get("https://apis.map.qq.com/ws/geocoder/v1/?address=".$addr."&key=".$key);
@@ -357,7 +357,7 @@ class user_address_controller {
         	$store_id = $_SESSION['order_address_temp']['store_id'];
         	$addr = !empty($_GET['addr']) ? $_COOKIE['city_name'].trim($_GET['addr']) : $_COOKIE['location_address'];
         
-        	$key = ecjia_config::has('map_baidu_key') ? ecjia::config('map_baidu_key') : '';
+        	$key = ecjia_config::has('map_qq_key') ? ecjia::config('map_qq_key') : '';
         	if (!empty($key)) {
                 $addr = urlencode($addr);
                 $shop_point = RC_Http::remote_get("https://apis.map.qq.com/ws/geocoder/v1/?address=".$addr."&key=".$key);
