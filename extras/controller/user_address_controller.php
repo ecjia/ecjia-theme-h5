@@ -269,18 +269,18 @@ class user_address_controller {
         if (!empty($_SESSION['referer_url'])) {
         	$pjax_url = urldecode($_SESSION['referer_url']);
         	
-        	setcookie('location_address_id', $address_id, RC_Time::gmtime() + 3600 * 24 * 7);
+        	setcookie('location_address_id', $address_id, time() + 1800);
         	$params = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $address_id);
         	$address_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params)->run();
         	
         	if (!is_ecjia_error($address_info)) {
-        	    setcookie('location_name', $address_info['address'], RC_Time::gmtime() + 3600 * 24 * 7);
-        	    setcookie('location_address', $address_info['address_info'], RC_Time::gmtime() + 3600 * 24 * 7);
-        	    setcookie('longitude', $address_info['location']['longitude'], RC_Time::gmtime() + 3600 * 24 * 7);
-        	    setcookie('latitude', $address_info['location']['latitude'], RC_Time::gmtime() + 3600 * 24 * 7);
+        	    setcookie('location_name', $address_info['address'], time() + 1800);
+        	    setcookie('location_address', $address_info['address_info'], time() + 1800);
+        	    setcookie('longitude', $address_info['location']['longitude'], time() + 1800);
+        	    setcookie('latitude', $address_info['location']['latitude'], time() + 1800);
         	    
-        	    setcookie("city_id", $address_info['city'], RC_Time::gmtime() + 3600 * 24 * 7);
-        	    setcookie("city_name", $address_info['city_name'], RC_Time::gmtime() + 3600 * 24 * 7);
+        	    setcookie("city_id", $address_info['city'], time() + 1800);
+        	    setcookie("city_name", $address_info['city_name'], time() + 1800);
         	}
         } else {
         	$pjax_url = RC_Uri::url('user/address/address_list');
@@ -570,14 +570,14 @@ class user_address_controller {
     	if (!empty($address_id) && $type != 'choose') {
     		$address_info = user_function::address_info(ecjia_touch_user::singleton()->getToken(), $address_id);
 
-    		setcookie('location_address_id', $address_id, RC_Time::gmtime() + 3600 * 24 * 7);
-    		setcookie('location_name', $address_info['address'], RC_Time::gmtime() + 3600 * 24 * 7);
-    		setcookie('location_address', $address_info['address_info'], RC_Time::gmtime() + 3600 * 24 * 7);
-    		setcookie('longitude', $address_info['location']['longitude'], RC_Time::gmtime() + 3600 * 24 * 7);
-    		setcookie('latitude', $address_info['location']['latitude'], RC_Time::gmtime() + 3600 * 24 * 7);
+    		setcookie('location_address_id', $address_id, time() + 1800);
+    		setcookie('location_name', $address_info['address'], time() + 1800);
+    		setcookie('location_address', $address_info['address_info'], time() + 1800);
+    		setcookie('longitude', $address_info['location']['longitude'], time() + 1800);
+    		setcookie('latitude', $address_info['location']['latitude'], time() + 1800);
     		
-    		setcookie("city_id", $address_info['city'], RC_Time::gmtime() + 3600 * 24 * 7);
-    		setcookie("city_name", $address_info['city_name'], RC_Time::gmtime() + 3600 * 24 * 7);
+    		setcookie("city_id", $address_info['city'], time() + 1800);
+    		setcookie("city_name", $address_info['city_name'], time() + 1800);
     	}
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer_url));
     }

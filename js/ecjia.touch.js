@@ -25,13 +25,12 @@
 						},
 					});
 				};
-
 				function showErr(err) {
 					console.log(err);
 				};
-				$.cookie('index', 'first', {
-					expires: 7
-				});
+				var date = new Date();
+				date.setTime(date.getTime() + (30 * 60 * 1000));
+				$.cookie('index', 'first', {expires: date});
 			}
 
 			ecjia.touch.setpjax();
@@ -116,27 +115,30 @@
 					var city_id = $('input[name="city_id"]').val();
 					var city_name = $('input[name="city_name"]').val();
 
+					var date = new Date();
+					date.setTime(date.getTime() + (30 * 60 * 1000));
+
 					$.cookie('location_address', address, {
-						expires: 7
+						expires: date
 					});
 					$.cookie('location_name', title, {
-						expires: 7
+						expires: date
 					});
 					$.cookie('longitude', lng, {
-						expires: 7
+						expires: date
 					});
 					$.cookie('latitude', lat, {
-						expires: 7
+						expires: date
 					});
 					$.cookie('location_address_id', 0, {
-						expires: 7
+						expires: date
 					});
 
 					$.cookie('city_id', city_id, {
-						expires: 7
+						expires: date
 					});
 					$.cookie('city_name', city_name, {
-						expires: 7
+						expires: date
 					});
 
 					var referer_url = $.cookie('referer_url');
