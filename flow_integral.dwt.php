@@ -15,7 +15,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <div class="ecjia-select ecjia-margin-t">
         <span class="select-title ecjia-margin-l">您总共有{$data.your_integral}积分</span>
         <div class="input">
-            <input type="text" name="integral" value="{$temp.integral}" placeholder="您本单最多可以使用{$data.order_max_integral}积分">
+            <input type="text" name="integral" value="{$temp.integral}" placeholder="您本单最多可以使用{$data.allow_use_integral}积分">
         </div>
         <div class="ecjia-margin-t ecjia-margin-b">
             <input type="hidden" name="address_id" value="{$address_id}">

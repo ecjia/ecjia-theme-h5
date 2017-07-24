@@ -155,7 +155,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		{/if}
 		{if $data.allow_use_integral}
 		<section class="checklist ecjia-margin-b">
-			{if $data.order_max_integral eq 0}
+			{if $data.allow_use_integral eq 0}
 				<a href='javascript:;' title="不可用">
 				    <span class="ecjia-color-999">{$lang.use_integral}</span>
 				    <span class="ecjia-tag ecjia-tag-disable">不可用</span>
@@ -167,7 +167,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     				<span class="ecjiaf-fr select_nav ecjia-truncate">{$temp.integral}积分</span>
     				<input type="hidden" name="integral" value="{$temp.integral}" />
     				{else}
-    				<span class="ecjia-tag">{if $data.your_integral lt $data.order_max_integral }{$data.your_integral}{else}{$data.order_max_integral}{/if}积分可用</span>
+    				<span class="ecjia-tag">{if $data.your_integral lt $data.allow_use_integral }{$data.your_integral}{else}{$data.allow_use_integral}{/if}积分可用</span>
     				{/if}
     				<i class="iconfont icon-jiantou-right"></i>
 				</a>
