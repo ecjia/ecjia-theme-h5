@@ -510,7 +510,7 @@ class cart_controller {
         }
         $total['tax_fee_formated'] = price_format($total['tax_fee']);
         $total['amount'] += $total['tax_fee'];
-        $total['amount_formated'] = price_format($total['amount']);
+        $total['amount_formated'] = $total['amount'] < 0 ? price_format(0) : price_format($total['amount']);
         
         ecjia_front::$controller->assign('total_goods_number', $total['goods_number']);
         ecjia_front::$controller->assign('selected_payment', $selected_payment);
