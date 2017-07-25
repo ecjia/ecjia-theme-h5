@@ -460,7 +460,7 @@ class cart_controller {
         
         //积分
         if ($_POST['integral_update']) {
-        	if ($_POST['integral'] >  $_SESSION['cart'][$cart_key]['data']['allow_use_integral']) {
+        	if ($_POST['integral'] >  $_SESSION['cart'][$cart_key]['data']['order_max_integral']) {
         		return ecjia_front::$controller->showmessage('积分使用超出订单限制', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         	} else if ($_POST['integral'] >  $_SESSION['cart'][$cart_key]['data']['your_integral']) {
         		return ecjia_front::$controller->showmessage('积分不足', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -903,7 +903,7 @@ class cart_controller {
         
         $cart_key = md5($address_id.$rec_id);
         $data = $_SESSION['cart'][$cart_key]['data'];
-        if ($data['allow_use_integral'] == 0) {
+        if ($data['order_max_integral'] == 0) {
             return ecjia_front::$controller->showmessage('积分不可用', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         }
         ecjia_front::$controller->assign('data', $data);
