@@ -489,13 +489,19 @@ class cart_controller {
         if ($_SESSION['cart'][$cart_key]['temp']['integral']) {
         	$total['discount_integral'] = $_SESSION['cart'][$cart_key]['temp']['integral']/100;
         }
-        
+
         $total['discount'] = $rs['discount'] + $total['discount_bonus'] + $total['discount_integral'];//优惠金额 -红包 -积分
         $total['discount_formated'] = price_format($total['discount']);
-        
+    
         $total['pay_fee'] = $selected_payment['pay_fee'];
         $total['pay_fee_formated'] = price_format($total['pay_fee']);
-        $total['amount'] = $total['goods_price'] + $total['shipping_fee'] + $total['pay_fee'] - $total['discount'];
+        $total['amount'] = $total['goods_price'] + $total['pay_fee'] - $total['discount'];
+
+        if ($total['amount'] < 0) {
+            $total['amount'] = 0;
+        }
+        $total['amount'] += $total['shipping_fee'];
+
         //发票税费
         $total['tax_fee'] = 0;
         if ($_SESSION['cart'][$cart_key]['temp']['inv_type']) {
