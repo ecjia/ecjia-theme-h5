@@ -6867,6 +6867,59 @@ footer {
 
 
 /*========================  红包 ===========================*/
+/*========================  发票页  ===========================*/
+.ecjia-flow-invoice .select-type {
+	background: #FFF;
+    height: auto;
+    padding: .5em 1em;
+    float: left;
+    width: 100%;
+}
+
+.ecjia-flow-invoice .select-type .inv_type {
+	float: left;
+    width: 7em;
+    text-align: center;
+    margin-right: 1.5em;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    height: 3em;
+    line-height: 3em;
+    position: relative;
+}
+
+.ecjia-flow-invoice .select-type .inv_type img{
+    position: absolute;
+    right: 0;
+    border: none;
+    top: 0px;
+    z-index: 100;
+    width: 1.5em;
+    border-top-right-radius: 3px;
+}
+
+.ecjia-flow-invoice .select-type .action{
+	border:1px solid #47aa4d!important; 
+}
+
+.ecjia-flow-invoice .select-type .inv_none {
+    display: none;
+}
+
+.ecjia-flow-invoice .select-type .inv_input .img_flat{
+	position: relative;
+}
+
+.ecjia-flow-invoice .select-type .inv_input input{
+	margin-top: .5em;
+}
+
+.ecjia-flow-invoice .select-type .inv_input img{
+    width: 1.7em;
+    position: absolute;
+    top: 1.4em;
+    right: 1em;
+}
 
 /*========================  分类店铺 ===========================*/
 .ecjia-store-goods-list {

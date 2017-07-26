@@ -573,7 +573,7 @@
 				obj_abter.append(obj_this);
 			});
 		},
-
+		
 		valid: function() {
 			var $ecjiaform = $(".ecjia-form");
 			$ecjiaform.length && $ecjiaform.each(function(index) {

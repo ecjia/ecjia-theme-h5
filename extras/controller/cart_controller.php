@@ -426,12 +426,15 @@ class cart_controller {
         		$_SESSION['cart'][$cart_key]['temp']['shipping_time'] = $selected_shipping['shipping_date'][0]['time'][0]['start_time'] . '-' . $selected_shipping['shipping_date'][0]['time'][0]['end_time'];
         	}
         }
-        
         //发票
         if ($_POST['inv_update']) {
-        	if (empty($_POST['inv_content']) || empty($_POST['inv_payee'])) {
-        		return ecjia_front::$controller->showmessage('请填写完整的发票信息', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+        	if (empty($_POST['inv_content']) || $_POST['inv_type_name'] == 'enterprise') {
+    	        if(empty($_POST['inv_payee']) || empty($_POST['inv_bill_code'])) {
+    	            return ecjia_front::$controller->showmessage('请填写完整的发票信息', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+    	        }
         	}
+        	$_SESSION['cart'][$cart_key]['temp']['inv_type_name'] = empty($_POST['inv_type_name']) ? '' : trim($_POST['inv_type_name']);
+        	$_SESSION['cart'][$cart_key]['temp']['inv_bill_code'] = empty($_POST['inv_bill_code']) ? '' : trim($_POST['inv_bill_code']);
         	$_SESSION['cart'][$cart_key]['temp']['inv_payee'] = empty($_POST['inv_payee']) ? '' : trim($_POST['inv_payee']);
         	$_SESSION['cart'][$cart_key]['temp']['inv_content'] = empty($_POST['inv_content']) ? '' : trim($_POST['inv_content']);
         	$_SESSION['cart'][$cart_key]['temp']['inv_type'] = empty($_POST['inv_type']) ? '' : trim($_POST['inv_type']);
@@ -439,7 +442,9 @@ class cart_controller {
         }
         //发票清空
         if ($_POST['inv_clear']) {
-        	$_SESSION['cart'][$cart_key]['temp']['inv_payee'] = '';
+            $_SESSION['cart'][$cart_key]['temp']['inv_payee'] = '';
+            $_SESSION['cart'][$cart_key]['temp']['inv_type_name'] = '';
+            $_SESSION['cart'][$cart_key]['temp']['inv_bill_code'] = '';
         	$_SESSION['cart'][$cart_key]['temp']['inv_content'] = '';
         	$_SESSION['cart'][$cart_key]['temp']['inv_type'] = '';
         	$_SESSION['cart'][$cart_key]['temp']['need_inv'] = 0;
@@ -598,15 +603,17 @@ class cart_controller {
    		$shipping_time 	= empty($_POST['shipping_time']) ? '' : trim($_POST['shipping_time']);
    		
      	$inv_payee 		= empty($_POST['inv_payee'])	? '' : trim($_POST['inv_payee']);
+     	$inv_tax_no     = empty($_POST['inv_tax_no'])	? '' : trim($_POST['inv_tax_no']);
  		$inv_content 	= empty($_POST['inv_content']) 	? '' : trim($_POST['inv_content']);
      	$inv_type 		= empty($_POST['inv_type']) 	? '' : trim($_POST['inv_type']);
+     	$inv_title_type = empty($_POST['inv_title_type'])	? '' : trim($_POST['inv_title_type']);
      	
        	$need_inv 		= empty($_POST['need_inv'])	? '' : trim($_POST['need_inv']);
 		$postscript 	= empty($_POST['note'])		? '' : trim($_POST['note']);
 		
    		$integral 		= empty($_POST['integral']) ? 0 : intval($_POST['integral']);
  		$bonus 			= empty($_POST['bonus']) 	? 0 : intval($_POST['bonus']);
-            
+        
  		if (empty($rec_id)) {
      		return ecjia_front::$controller->showmessage('请选择商品再进行结算', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
 		}
@@ -626,8 +633,10 @@ class cart_controller {
    			'expect_shipping_time' 	=> $expect_shipping_time,
    			'pay_id' 				=> $pay_id,
    			'inv_payee'				=> $inv_payee,
+   		    'inv_tax_no'            => $inv_tax_no,
    			'inv_type'				=> $inv_type,
    			'inv_content'			=> $inv_content,
+   		    'inv_title_type'        => $inv_title_type,
    			'need_inv'      		=> $need_inv,
    			'postscript' 			=> $postscript,
    			'integral' 				=> $integral,
@@ -638,6 +647,7 @@ class cart_controller {
    			),
             'city_id' => $_COOKIE['city_id']
    		);
+
    		$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::FLOW_DONE)->data($params)->run();
    		if (is_ecjia_error($rs)) {
    			$pjax_url = !empty($_SESSION['order_address_temp']['pjax_url']) ? trim($_SESSION['order_address_temp']['pjax_url']) : RC_Uri::url('cart/index/init');
