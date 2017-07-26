@@ -36,24 +36,29 @@
 		
 		inv_img :function(){
 			$('.inv_img').on('click', function () {
-			    alert('<div style="height:2em;position: fixed;"><h2 style="post;position: fixed;width: 100%;padding: 15px;height: 2.5em;background: #FFF;border-bottom: 1px solid #eee;">发票税号说明</h2></div>'
-			    		+ '<div style="text-align: left;padding:50px 15px 15px 15px;"><br>' +'<b>1、什么是纳税人识别号／统一社会信用代码？</b>' 
-			    		+ '<br>' + '纳税人识别号，通常简称为“税号”，就是税务登记证上的号，每个企业的识别号都是唯一的，相当于税务局颁发给企业的“身份证”号。统一社会信用代码，是一组长度为18位的用于法人和其他组织身份识别的代码。统一社会信用代码由国家标准委发布。2015年10月1日起，国家启动将企业依次申请的工商营业执照，组织机构代码和税务登记证三证合为一证，并将三证号码合并为统一社会信用代码，目前大部分企业均已完成合并，另外有少部分企业其纳税人识别号仍然有效。' 
+			    alert('<div style="height: 3.7em;background: #FFF;border-bottom: 1px solid #eee;"><h2 style="post;position: fixed;width: 100%;padding: 15px;height: 2.5em;background: #FFF;">发票税号说明</h2></div>'
+			    		+ '<div style="width: 100%;padding: 15px;height:85%;overflow-y:scroll;text-align:left;font-size: 16px;">' +'<b>1、什么是纳税人识别号／统一社会信用代码？</b>' 
+			    		+ '<br>' + '<span style="color:#838383">纳税人识别号，通常简称为“税号”，就是税务登记证上的号，每个企业的识别号都是唯一的，相当于税务局颁发给企业的“身份证”号。统一社会信用代码，是一组长度为18位的用于法人和其他组织身份识别的代码。统一社会信用代码由国家标准委发布。2015年10月1日起，国家启动将企业依次申请的工商营业执照，组织机构代码和税务登记证三证合为一证，并将三证号码合并为统一社会信用代码，目前大部分企业均已完成合并，另外有少部分企业其纳税人识别号仍然有效。</span>' 
 			    		+ '<br>' + '<b>2、如何获取／知晓纳税人识别号／统一社会信用代码？</b>'
-			    		+ '<br>' + '您可向贵单位的财务部门索取；另外也可以根据单位名称在国家企业信用信息公示系统（https://www.gsxt.gov.cn/index.html）查询统一社会信用代码。' 
+			    		+ '<br>' + '<span style="color:#838383">您可向贵单位的财务部门索取；另外也可以根据单位名称在国家企业信用信息公示系统（https://www.gsxt.gov.cn/index.html）查询统一社会信用代码。</span>' 
 			    		+ '<br>' + '<b>3、为什么要填写纳税人识别号／统一社会信用代码？</b>'
-			    		+ '<br>' + '根据国家税务总局2017年16号公告，从7月1日起企业（包括公司、非公司制企业法人、企业分支机构、个人独资企业、合伙企业和其他企业）索取票面带有“购买方纳税人识别号”栏目的发票时，应向销售方提供纳税人识别号或统一社会信用代码。因此，当您选择开具单位抬头增值税普通发票时，请根据提示准确填写贵单位号码，以免影响您的发票报销。请注意此公告并不适用于政府机构及事业单位中的非企业单位，因此，如贵单位属于这种类型，可无需填写纳税人识别号／统一社会信用代码，谨慎起见，请您与贵单位财务部门联系确认。</div>'
+			    		+ '<br>' + '<span style="color:#838383">根据国家税务总局2017年16号公告，从7月1日起企业（包括公司、非公司制企业法人、企业分支机构、个人独资企业、合伙企业和其他企业）索取票面带有“购买方纳税人识别号”栏目的发票时，应向销售方提供纳税人识别号或统一社会信用代码。因此，当您选择开具单位抬头增值税普通发票时，请根据提示准确填写贵单位号码，以免影响您的发票报销。请注意此公告并不适用于政府机构及事业单位中的非企业单位，因此，如贵单位属于这种类型，可无需填写纳税人识别号／统一社会信用代码，谨慎起见，请您与贵单位财务部门联系确认。</span></div>'
 			    		);
 			    $(".modal-overlay").css('transition-duration', "0ms");
 			    $(".modal-in").css("position", "absolute");
 			    $(".modal-in").css("top", "30%");
+			    $(".modal-in").css("width", "90%");
+			    $(".modal-in").css("height", "70%");
 			    $(".modal-inner").css("background-color", "#FFF");
-			    $(".modal-inner").css("overflow-y", "scroll");
-			    $(".modal-inner").css("height", "60%");
+			    $(".modal-inner").css("width", "100%");
 			    $(".modal-inner").css("padding", "0");
+			    $(".modal-inner").css("height", "85%");
 			    $(".modal-button-bold").css("background-color", "#FFF");
 			    $(".modal-button-bold").css("border-top", "1px solid #eee");
 			    $(".modal-inner").append("<style>.modal-inner::after{ width:0 }</style>");
+			    $(".modal").css("margin-left","0");
+			    $(".modal").css("left","5%");
+			    $(".modal-text").css("height","100%");
 			});
 		},
 		
