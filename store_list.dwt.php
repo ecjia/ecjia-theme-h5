@@ -121,9 +121,9 @@ var releated_goods = {$releated_goods};
 <div class="ecjia-mod search-no-pro ecjia-margin-t ecjia-margin-b">
 	<div class="ecjia-nolist">
 		{if !$store_id}
-		<p><img src="{$theme_url}images/no_store.png"></p>
+		<p><img src="{$theme_url}images/wallet/null280.png"></p>
 		{else}
-		<p><img src="{$theme_url}images/no_goods.png"></p>
+		<p><img src="{$theme_url}images/wallet/null280.png"></p>
 		{/if}
 		{if $keywords}
 		暂无搜索结果
