@@ -714,8 +714,10 @@
 		window.addEventListener("popstate", function(e) { 
 			if (e.state.url != undefined) {
 				ecjia.pjax(e.state.url);
-				return false;
+			} else {
+				ecjia.pjax($.cookie('index_url'));
 			}
+			return false;
 		}, false); 
 	}
 
@@ -739,7 +741,7 @@
 	});
 
 	//PJAX前进、返回执行
-	$(document).on('pjax:popstate', function() {});
+//	$(document).on('pjax:popstate', function() {});
 
 	//PJAX历史和跳转都会执行的方法
 	$(document).on('pjax:end', function() {
