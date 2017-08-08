@@ -5,7 +5,7 @@
 (function(ecjia, $) {
 	ecjia.touch = {
 		init: function() {
-			if ($.cookie('index') === undefined) {
+			if ($.cookie('h5_index') === undefined) {
 				var key = $("input[name='key']").val();
 				var referer = $("input[name='referer']").val();
 				var geolocation = new qq.maps.Geolocation(key, referer);
@@ -30,7 +30,7 @@
 				};
 				var date = new Date();
 				date.setTime(date.getTime() + (30 * 60 * 1000));
-				$.cookie('index', 'first', {expires: date});
+				$.cookie('h5_index', 'first', {expires: date});
 			}
 
 			ecjia.touch.setpjax();
