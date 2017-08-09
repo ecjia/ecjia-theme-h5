@@ -243,9 +243,9 @@ var releated_goods = {$releated_goods};
 				{if $val.num}<i class="attr-number">{$val.num}</i>{/if}
 			</div>
 			<!-- {else} -->
-			<span class="reduce {if $val.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$val.rec_id}">减11</span>
+			<span class="reduce {if $val.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$val.rec_id}">减</span>
 			<label class="{if $val.num}show{else}hide{/if}">{$val.num}</label>
-			<span class="add" data-toggle="add-to-cart" rec_id="{$val.rec_id}" goods_id="{$val.id}">加11</span>
+			<span class="add" data-toggle="add-to-cart" rec_id="{$val.rec_id}" goods_id="{$val.id}">加</span>
 			<!-- {/if} -->
 		</div>
 	</li>
