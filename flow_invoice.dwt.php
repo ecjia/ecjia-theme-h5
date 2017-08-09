@@ -1,7 +1,7 @@
 <?php
 /*
-Name: 使用积分
-Description: 使用积分模板
+Name: 填写发票信息
+Description: 填写发票信息模板
 Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
