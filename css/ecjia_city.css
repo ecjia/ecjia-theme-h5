@@ -768,6 +768,10 @@ a.ecjia-color-green {
 	height: 13em;
 }
 
+.ecjia-address-list .franchisee-process-hint .quickpay-status-g {
+	color: #45a46c;
+}
+
 .ecjia-address-list .franchisee-process-hint img {
 	margin: 1em 0;
 }
@@ -874,7 +878,6 @@ a.ecjia-color-green {
 
 .franchisee-info ul {
 	overflow: hidden;
-	padding-bottom: 20px;
 }
 
 .franchisee-info .address-span {
@@ -6376,7 +6379,8 @@ footer {
 	left: 7em;
 }
 
-.ecjia-order-detail .order-ft-link {
+.ecjia-order-detail .order-ft-link,
+.ecjia-address-list .order-ft-link {
 	text-align: center;
 	bottom: 0;
 	position: fixed;
@@ -10366,9 +10370,16 @@ footer {
     width: 6em;
     border: 1px solid #eee;
 }
+
 .quickpay-info-li {
 	margin-bottom: .2em;
 }
+
+.quickpay-detail {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
 .quickpay-w {
 	width: 100%;
 }
