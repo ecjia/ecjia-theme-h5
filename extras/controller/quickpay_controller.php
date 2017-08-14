@@ -67,6 +67,11 @@ class quickpay_controller {
         
     }
     
+    public static function quickpay_detail() {
+        ecjia_front::$controller->assign_title('买单详情');
+        ecjia_front::$controller->display('quickpay_detail.dwt');
+    }
+    
     
     public static function checkout() {
         $token = ecjia_touch_user::singleton()->getToken();			//token参数
