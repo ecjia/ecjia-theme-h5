@@ -10152,3 +10152,25 @@ footer {
     font-size: 10px;
     background: #ff3434;
 }
+.quickpay-info-list {
+    overflow: hidden;
+    position: relative;
+    padding: 1em;
+    height: 8em;
+}
+.quickpay-info {
+	margin-left: 2em;
+	margin-right: 3em;	
+}
+.quickpay-info-list img {
+    width: 100%;
+    height: 6em;
+    width: 6em;
+    border: 1px solid #eee;
+}
+.quickpay-info-li {
+	margin-bottom: .2em;
+}
+.quickpay-w {
+	width: 100%;
+}
