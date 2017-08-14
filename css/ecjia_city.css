@@ -10390,3 +10390,6 @@ footer {
     padding: 5px 0;
 }
 
+.save_discard input{
+	margin-top: 1em;
+}

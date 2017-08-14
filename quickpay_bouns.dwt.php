@@ -43,6 +43,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
        </label>
         </div>
     </div>
+    
+     <div class="save_discard">
+        <input class="btn" name="submit" type="submit" value="保存">
+        <input class="btn btn-hollow-danger" name="submit" type="submit" value="清空">
+    </div>
 </div>
 
 <!-- {/block} -->
