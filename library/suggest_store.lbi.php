@@ -31,6 +31,13 @@
 						<!-- {/foreach} -->
 					</ul>
 					<!-- {/if} -->
+					<!-- 测试样式 -->
+					<ul class="store-promotion">
+						<li class="quick">
+							<span class="quick-label">买单</span>
+							<span class="promotion-name">每满100减8元</span>
+						</li>
+					</ul>
 				</a>
 				{if $val.seller_goods}
 				<div class="suggest-goods-list">
