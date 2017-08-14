@@ -1,6 +1,6 @@
 <?php
 /*
-Name: 查询进度页
+Name: 闪惠详情
 Description: 
 Libraries: page_menu,page_header
 */
@@ -15,8 +15,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 <div class="ecjia-address-list">
-    <div class="franchisee-process-hint"> 
-        <img src="{$theme_url}images/user_center/apply.png" width="100" height="100">
+    <div class="franchisee-process-hint quickpay-hint"> 
+        <img class="quickpay-status-img" src="{$theme_url}images/user_center/apply.png">
         <p class="quickpay-status-g">买单成功</p>
     </div>
     <div class="franchisee-info quickpay-detail">
