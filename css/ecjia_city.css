@@ -10407,3 +10407,69 @@ footer {
 .save_discard input{
 	margin-top: 1em;
 }
+
+.quickpay-flow-done .quickpay-success p::before {
+    background: #50ad0b;
+}
+
+.quickpay-flow-done .quickpay-success p::after {
+    content: '';
+    position: absolute;
+    left: 49.2%;
+    top: 55px;
+    width: 15px;
+    height: 1.8em;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    border-radius: 0 0 5px 0;
+    transform: rotate(45deg);
+}
+
+.quickpay-flow-done .quickpay-success p::before {
+    content: '';
+    position: absolute;
+    left: 46%;
+    display: inline-block;
+    width: 3em;
+    height: 3em;
+    top: 3.5em;
+    border-radius: 100%;
+}
+
+.quickpay .checkout .notify_head{
+	background-color: #FFF;
+    margin-bottom: 1em;
+}
+
+.notify_head .quickpay-color-green {
+    text-align: center;
+    margin-top: 3em;
+    color: #47aa4d;
+    font-size: 1.3em;
+    padding-bottom: 2em;
+}
+
+.quickpay .checkout .notify_body {
+	background-color: #FFF;
+}
+
+.quickpay .checkout .notify_body .store_name {
+	font-size: 20px;
+    padding: 0 20px;
+    height: 2em;
+    line-height: 2em;
+    border-bottom: 1px solid #eee;
+}
+
+.quickpay .checkout .notify_body ul{
+	padding: .5em 20px;
+    font-size: 1.1em;
+}
+
+.quickpay .checkout .notify_body ul li:not(:first-child){
+	margin-top: 1em;
+}
+
+.quickpay-flow-done {
+	margin-bottom: 2em;
+}

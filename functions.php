@@ -232,6 +232,7 @@ RC_Hook::add_action('user/quickpay/checkout', array('quickpay_controller', 'chec
 RC_Hook::add_action('user/quickpay/explain', array('quickpay_controller', 'explain'));
 RC_Hook::add_action('user/quickpay/bouns', array('quickpay_controller', 'bouns'));
 RC_Hook::add_action('user/quickpay/integral', array('quickpay_controller', 'integral'));
+RC_Hook::add_action('user/quickpay/notify', array('quickpay_controller', 'notify'));
 RC_Hook::add_action('user/quickpay/async_quickpay_list', array('quickpay_controller', 'async_quickpay_list')); //闪惠异步加载
 RC_Hook::add_action('user/quickpay/quickpay_detail', array('quickpay_controller', 'quickpay_detail')); //单个闪惠订单详情
 
