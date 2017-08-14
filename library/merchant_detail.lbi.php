@@ -37,12 +37,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<span class="quick-name">买单立享优惠</span>
 			<a class="quick-btn" href="{RC_Uri::url('user/quickpay/checkout')}" >优惠买单</a>
 		</li>
-		<li class="promotion">
-			<span class="quick-name">每满100减8元</span>
-			<span class="quick-time">(周一至周六 07:00-12:00)</span>
-			<span class="quick-money">已买20</span>
-		</li>
-		<li class="promotion">
+		<li class="quick-li">
 			<span class="quick-name">每满100减8元</span>
 			<span class="quick-time">(周一至周六 07:00-12:00)</span>
 			<span class="quick-money">已买20</span>

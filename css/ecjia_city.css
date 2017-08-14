@@ -2127,9 +2127,16 @@ footer {
 }
 
 .ecjia-store-detail .store-promotion li.quick {
+	border-bottom: 1px solid #eee;
+	padding-top: 0;
+    padding-bottom: .5em;
+}
+
+.ecjia-store-detail .store-promotion li.quick-li {
 	padding: .3em;
 	margin-left: .3em;
-	border-bottom: 1px solid #eee;
+	padding-top: .5em;
+    padding-bottom: 0;
 }
 
 .ecjia-store-detail .store-promotion .quick-label {
