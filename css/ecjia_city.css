@@ -10225,6 +10225,20 @@ footer {
     height: auto;
 }
 
+.quickpay .checkout .intergal_input{
+    height: 3em;
+    width: 100%;
+    padding: 0 20px;
+    margin-bottom: 1em;
+}
+
+.checkout .intergal_title{
+	height: 3em;
+	line-height: 3em;
+	padding: 0 20px;
+	font-size: 1.1em;
+}
+
 .quickpay .checkout .outher_d {
 	height: 3em;
     line-height: 3em;
