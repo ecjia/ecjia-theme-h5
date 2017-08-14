@@ -87,6 +87,10 @@ class quickpay_controller {
         $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
         $cache_id = sprintf('%X', crc32($cache_id));
          
+
+        
+        
+        
         if (!ecjia_front::$controller->is_cached('user_profile.dwt', $cache_id)) {
             $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
             $user_img_login = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
@@ -105,7 +109,7 @@ class quickpay_controller {
             ecjia_front::$controller->assign_title('个人资料');
         }
     
-        ecjia_front::$controller->display('user_profile.dwt', $cache_id);
+        ecjia_front::$controller->display('quickpay_checkout.dwt', $cache_id);
     }
 }
 

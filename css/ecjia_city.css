@@ -10152,3 +10152,109 @@ footer {
     font-size: 10px;
     background: #ff3434;
 }
+
+/*闪惠*/
+.quickpay .checkout {
+    height: auto;
+}
+
+.quickpay .checkout .outher_d {
+	height: 3em;
+    line-height: 3em;
+    padding: 0 1em;
+    font-size: 1.1em;
+}
+
+.quickpay .checkout .outher_d input{
+    float: right;
+    line-height: 3em;
+    text-align: right;
+}
+
+.quickpay .checkout .before_two li+li::before{
+    content: '';
+    position: absolute;
+    display: block;
+    width: 96%;
+    left: 4%;
+    border-bottom: 1px solid #eee;
+}
+
+.quickpay .checkout .quickpay_div{
+	margin-bottom: 1em;
+	background: #FFF;
+	width: 100%;
+	position: relative;
+}
+
+.shanhui {
+	background-color: #F79B31;
+    border-radius: 5px;
+    font-size: .7em;
+    position: absolute;
+    height: 2em;
+    line-height: 2em;
+    margin-top: 10px;
+    padding: 0 .5em;
+    color: #FFF;
+}
+
+.quickpay .checkout .quickpay_div .slect-title{
+	margin-left: 3em;
+}
+
+.quickpay .checkout .outher_d .redio-height{
+	height: 0;
+	line-height:3em;
+}
+
+.quickpay .checkout .outher_d .icon-jiantou-right{
+    float: right;
+    line-height: 1.8em;
+    font-size: 1.5em;
+    height: 0;
+    width: 18px;
+}
+
+.quickpay .checkout .outher_d .fav_info{
+    position: absolute;
+    margin-left: 1em;
+    background-color: red;
+    height: 2em;
+    line-height: 2em;
+    margin-top: 10px;
+    padding: 0 .5em;
+    border-radius: 5px;
+    font-size: .7em;
+    color: #FFF;
+}
+
+.quickpay .checkout .outher_d .other_width{
+    float: right;
+    position: relative;
+    right: 25px;
+}
+
+.quickpay .checkout .outher_d .quickpay_info {
+    position: absolute;
+    right: 50px;
+}
+
+.quickpay .checkout .outher_d .redio-height label{
+    margin-top: .8em;
+}
+
+.pri {
+    margin-bottom: 1em;
+    height: 2em;
+}
+
+.pri .pri_info {
+    float: right;
+    text-align: center;
+    margin-right: 2em;
+    font-size: 1.2em;
+    margin-left: 40%;
+    border-bottom: 1px solid #47aa4d;
+    color: #47aa4d;
+}
