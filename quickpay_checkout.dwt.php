@@ -88,7 +88,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
     
     <div class="pri">
-        <a href="{url path='user/account/record'}"><p class="pri_info">优惠说明</p></a>
+        <a href="{url path='user/quickpay/explain'}"><p class="pri_info">优惠说明</p></a>
     </div>
     
     <div>

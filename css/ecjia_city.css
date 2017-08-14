@@ -10232,6 +10232,20 @@ footer {
     font-size: 1.1em;
 }
 
+.quickpay .checkout .outher_d.explain_d {
+	height: auto!important;
+    line-height: 2em!important;
+    font-size: 1em!important;
+}
+
+.quickpay .checkout .quickpay_list {
+    margin: 1em 0;
+    padding: 0 20px;
+    font-size: 1.1em;
+    line-height: 2em;
+    padding-bottom: 1em;
+}
+
 .quickpay .checkout .outher_d input{
     float: right;
     line-height: 3em;
@@ -10252,6 +10266,16 @@ footer {
 	background: #FFF;
 	width: 100%;
 	position: relative;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+}
+
+.quickpay .checkout .quickpay_div .explain_title{
+	font-size: 20px;
+    height: 2em;
+    line-height: 2em;
+    padding: 0 20px;
+    border-bottom: 1px solid #eee;
 }
 
 .shanhui {
@@ -10347,5 +10371,22 @@ footer {
 }
 .quickpay-w {
 	width: 100%;
+}
+
+.explain_info .explain_status {
+	background-color: #F79B31;
+    border-radius: 5px;
+    font-size: .7em;
+    position: absolute;
+    height: 2em;
+    line-height: 2em;
+    margin-top: 3px;
+    padding: 0 .5em;
+    color: #FFF;
+    margin-left: 1em;
+}
+
+.explain_info_top {
+    padding: 5px 0;
 }
 
