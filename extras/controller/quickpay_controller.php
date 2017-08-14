@@ -134,6 +134,14 @@ class quickpay_controller {
     public static function bouns() {
         ecjia_front::$controller->display('quickpay_bouns.dwt', $cache_id);
     }
+    
+    public static function integral() {
+        ecjia_front::$controller->display('quickpay_integral.dwt', $cache_id);
+    }
+    
+    public static function notify() {
+        ecjia_front::$controller->display('quickpay_notify.dwt', $cache_id);
+    }
 }
 
 // end

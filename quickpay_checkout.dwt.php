@@ -44,7 +44,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             	</a>
             </li>
             <li class="outher_d">
-                <a href="{url path='user/account/init'}">
+                <a href="{url path='user/quickpay/integral'}">
             		<div class="icon-wallet"></div>
             		<span class="icon-name">{t}积分{/t}</span>
             		<span class="fav_info">{t}500积分可用{/t}</span>
