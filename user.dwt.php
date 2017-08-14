@@ -199,6 +199,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <div class="ecjia-user ecjia-margin-b">
      <ul class="ecjia-list list-short">
+        <li>
+			<a href="{url path='user/quickpay/quickpay_list'}">
+        		<div class="icon-address-list"><img src="{$theme_url}images/user_center/quickpay.png"></div>
+        		<span class="icon-name">我的买单</span>
+        		<i class="iconfont  icon-jiantou-right"></i>
+        	</a>
+		</li>
 		<li>
 			<a href="{url path='user/address/address_list'}">
         		<div class="icon-address-list"><img src="{$theme_url}images/user_center/75x75_3.png"></div>

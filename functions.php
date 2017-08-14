@@ -225,6 +225,10 @@ RC_Hook::add_action('connect/index/bind_login', array('connect_controller', 'bin
 RC_Loader::load_theme('extras/controller/mobile_controller.php');
 RC_Hook::add_action('mobile/discover/init', array('mobile_controller', 'init'));//百宝箱
 
+//闪惠
+RC_Loader::load_theme('extras/controller/quickpay_controller.php');
+RC_Hook::add_action('user/quickpay/quickpay_list', array('quickpay_controller', 'quickpay_list'));
+
 /**
  * step：3
  * 这里开始 注册“方法函数”自动加载列表 到Hook自动加载列表，为自动加载做准备
