@@ -1991,19 +1991,9 @@ footer {
 }
 
 .ecjia-store-detail .store-other-info li {
+	border-top: 1px solid #eee;
 	padding: 1em;
 	background-color: #fff;
-	position: relative;
-}
-
-.ecjia-store-detail .store-other-info li:before {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 100%;
-    left: 1em;
-    top: 0;
-    border-bottom: 1px solid #eee;
 }
 
 .ecjia-store-detail .store-other-info li:last-child {
