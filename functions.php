@@ -228,6 +228,7 @@ RC_Hook::add_action('mobile/discover/init', array('mobile_controller', 'init'));
 //闪惠
 RC_Loader::load_theme('extras/controller/quickpay_controller.php');
 RC_Hook::add_action('user/quickpay/quickpay_list', array('quickpay_controller', 'quickpay_list'));
+RC_Hook::add_action('user/quickpay/checkout', array('quickpay_controller', 'checkout'));
 
 /**
  * step：3
