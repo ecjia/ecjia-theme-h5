@@ -768,6 +768,11 @@ a.ecjia-color-green {
 	height: 13em;
 }
 
+.ecjia-address-list .franchisee-process-hint .quickpay-status-g {
+	margin-top: 1em;
+	color: #45a46c;
+}
+
 .ecjia-address-list .franchisee-process-hint img {
 	margin: 1em 0;
 }
@@ -874,7 +879,6 @@ a.ecjia-color-green {
 
 .franchisee-info ul {
 	overflow: hidden;
-	padding-bottom: 20px;
 }
 
 .franchisee-info .address-span {
@@ -6376,7 +6380,8 @@ footer {
 	left: 7em;
 }
 
-.ecjia-order-detail .order-ft-link {
+.ecjia-order-detail .order-ft-link,
+.ecjia-address-list .order-ft-link {
 	text-align: center;
 	bottom: 0;
 	position: fixed;
@@ -10402,9 +10407,25 @@ footer {
     width: 6em;
     border: 1px solid #eee;
 }
+
 .quickpay-info-li {
 	margin-bottom: .2em;
 }
+
+.quickpay-detail {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.ecjia-address-list .quickpay-hint {
+	padding-top: 1em;
+}
+
+.quickpay-status-img {
+	width: 5em;
+	height: 5em;
+}
+
 .quickpay-w {
 	width: 100%;
 }
@@ -10447,28 +10468,24 @@ footer {
     transform: rotate(45deg);
 }
 
-.quickpay-flow-done .quickpay-success p::before {
-    content: '';
-    position: absolute;
-    left: 46%;
-    display: inline-block;
-    width: 3em;
-    height: 3em;
-    top: 3.5em;
-    border-radius: 100%;
-}
-
 .quickpay .checkout .notify_head{
 	background-color: #FFF;
     margin-bottom: 1em;
+	position: relative;
+	text-align: center;
+	height: 14em;
+	padding-top: 2em;
+}
+
+.quickpay .checkout .notify_head img {
+	margin: 1em 0;
 }
 
 .notify_head .quickpay-color-green {
-    text-align: center;
-    margin-top: 3em;
+    margin-top: 1em;
     color: #47aa4d;
-    font-size: 1.3em;
-    padding-bottom: 2em;
+    font-size: 22px;
+    font-family: '黑体';
 }
 
 .quickpay .checkout .notify_body {

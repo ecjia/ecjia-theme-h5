@@ -18,7 +18,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="quickpay quickpay-flow-done">
     <div class="checkout quickpay-success">
         <div class="notify_head">
-            <p style="width:4em;height:4em;"></p>
+            <img class="quickpay-status-img" src="{$theme_url}images/user_center/apply.png">
             <div class="quickpay-color-green">支付成功</div>
         </div>
         
