@@ -10246,6 +10246,16 @@ footer {
     font-size: 1.1em;
 }
 
+.quickpay .checkout .outher_d .ecjia-margin-l{
+    position: relative;
+    width: 50%;
+    height: 3em;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .quickpay .checkout .outher_d.explain_d {
 	height: auto!important;
     line-height: 2em!important;
@@ -10338,11 +10348,23 @@ footer {
     float: right;
     position: relative;
     right: 25px;
+    width: 50%;
+    height: 3em;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .quickpay .checkout .outher_d .quickpay_info {
     position: absolute;
     right: 50px;
+    width: 30%;
+    height: 3em;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .quickpay .checkout .outher_d .redio-height label{
