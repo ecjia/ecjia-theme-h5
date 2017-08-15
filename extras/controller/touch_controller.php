@@ -155,7 +155,9 @@ class touch_controller {
 	        	ecjia_front::$controller->assign('is_last', $is_last);
 	        }
         }
-        setcookie("index_url", RC_Uri::url('touch/index/init'));
+        if (empty(RC_Cache::app_cache_get('h5_auth_login', 'h5'))) {
+        	RC_Cache::app_cache_set('h5_auth_login', 1, 'h5');
+        }
         ecjia_front::$controller->display('index.dwt', $cache_id);
     }
    
