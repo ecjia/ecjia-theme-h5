@@ -254,13 +254,13 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
     if (strpos($user_agent, 'MicroMessenger') !== false && ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {
         //微信浏览器
         if (ROUTE_M != 'connect') {
-//             if (!ecjia_touch_user::singleton()->isSignin()) {
-//                 if ($_REQUEST['referer_url']) {
-//                     RC_Cookie::set('referer', $_REQUEST['referer_url']);
-//                 }
-//                 $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat', 'login_type' => 'platform_userinfo'));
-//                 header("location: ".$url);exit();
-//             }
+            if (!ecjia_touch_user::singleton()->isSignin()) {
+                if ($_REQUEST['referer_url']) {
+                    RC_Cookie::set('referer', $_REQUEST['referer_url']);
+                }
+                $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat', 'login_type' => 'platform_userinfo'));
+                header("location: ".$url);exit();
+            }
         }
     }
 
