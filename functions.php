@@ -335,6 +335,25 @@ RC_Hook::add_action('connect_callback_user_signin', function($userid) {
 });
 
 /**
+ * 判断是否安装微信登录
+ */
+RC_Hook::add_action('connect_code_before_launching', function($connect_code) {
+    if ($connect_code == 'sns_wechat' && !ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {
+        echo '请先购买并安装微信登录插件<br><a href="https://ecjia.com/daojia_authorize.html" target="_blank">购买链接</a>';
+        exit();
+    }
+});
+
+RC_Hook::add_action('connect_sns_wechat_handle', function($connect_handle) {
+    $login_type = royalcms('request')->query('login_type');
+    
+    if ($login_type) {
+        $connect_handle->set_login_type($login_type);
+    }
+});
+
+
+/**
  * ecjiaopen协议 
  **/
 ecjia_open::macro('goods_seller_list', function($querys) {
