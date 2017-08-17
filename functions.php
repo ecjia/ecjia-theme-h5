@@ -280,7 +280,7 @@ RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $da
     _dump($data,1);
     RC_Loader::load_theme('extras/controller/connect_controller.php');
     return connect_controller::callback_template($data);
-}, 10, 1);
+}, 10, 2);
     
 /**
  * 第三方登录用户注册
