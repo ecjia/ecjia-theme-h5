@@ -108,7 +108,8 @@ class connect_controller {
 //         ecjia_front::$controller->assign('user_info', $user_info);
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('user_name', $user_name);
-//         ecjia_front::$controller->assign('hideinfo', '1');
+        //隐藏公共头部信息
+        ecjia_front::$controller->assign('hideinfo', '1');
         
         $data['bind_url'] = RC_Uri::url('connect/index/bind_signin', array('connect_code' => $connect_user->getConnectCode(), 'open_id' => $connect_user->getOpenId()));
         //快速注册修改
