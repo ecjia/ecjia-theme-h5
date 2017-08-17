@@ -10308,19 +10308,15 @@ footer {
 }
 
 .shanhui {
-	background-color: #F79B31;
+    background-color: #F79B31;
     border-radius: 5px;
-    font-size: .7em;
-    position: absolute;
-    height: 2em;
-    line-height: 2em;
-    margin-top: 10px;
-    padding: 0 .5em;
+    font-size: 1em;
+    padding: .2em;
     color: #FFF;
 }
 
 .quickpay .checkout .quickpay_div .slect-title{
-	margin-left: 3em;
+	margin-left: .5em;
 }
 
 .quickpay .checkout .outher_d .redio-height{
@@ -10337,13 +10333,9 @@ footer {
 }
 
 .quickpay .checkout .outher_d .fav_info{
-    position: absolute;
-    margin-left: 1em;
+	margin-left: .5em;
     background-color: red;
-    height: 2em;
-    line-height: 2em;
-    margin-top: 10px;
-    padding: 0 .5em;
+    padding: .5em;
     border-radius: 5px;
     font-size: .7em;
     color: #FFF;
@@ -10434,13 +10426,11 @@ footer {
 	background-color: #F79B31;
     border-radius: 5px;
     font-size: .7em;
-    position: absolute;
     height: 2em;
-    line-height: 2em;
     margin-top: 3px;
-    padding: 0 .5em;
+    padding: .5em;
     color: #FFF;
-    margin-left: 1em;
+    margin-left: .5em;
 }
 
 .explain_info_top {
