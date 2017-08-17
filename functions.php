@@ -258,7 +258,7 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
                 if ($_REQUEST['referer_url']) {
                     RC_Cookie::set('referer', $_REQUEST['referer_url']);
                 }
-                $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat', 'login_type' => 'platform_userinfo'));
+                $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat', 'login_type' => 'snsapi_userinfo'));
                 header("location: ".$url);exit();
             }
         }
@@ -275,7 +275,7 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
 /**
  * 第三方登录回调提示模板
  */
-RC_Hook::add_filter('connect_callback_template', function($data) {
+RC_Hook::add_filter('connect_callback_user_template', function($data) {
     RC_Loader::load_theme('extras/controller/connect_controller.php');
     return connect_controller::callback_template($data);
 }, 10, 1);
@@ -283,7 +283,7 @@ RC_Hook::add_filter('connect_callback_template', function($data) {
 /**
  * 第三方登录用户注册
  */
-RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username, $password, $email) {
+RC_Hook::add_filter('connect_callback_user_bind_signup', function($userid, $username, $password, $email) {
     $result = connect_controller::bind_signup(array('name' => $username, 'password' => $password, 'email' => $email));
     if (is_ecjia_error($result)) {
         RC_Logger::getlogger('error')->info('connect_callback_bind_signup-error');
@@ -296,8 +296,9 @@ RC_Hook::add_filter('connect_callback_bind_signup', function($userid, $username,
 /**
  * 第三方登录用户登录
  */
-RC_Hook::add_action('connect_callback_user_signin', function($userid) {
+RC_Hook::add_action('connect_callback_user_signin', function($connect_user) {
     RC_Loader::load_app_func('admin_user', 'user');
+    $userid = $connect_user->getUserId();
     $user_info = EM_user_info($userid);
     if (empty($user_info)) {
         return ecjia_front::$controller->showmessage('关联用户不存在，请联系管理员', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
@@ -318,20 +319,49 @@ RC_Hook::add_action('connect_callback_user_signin', function($userid) {
     ecjia_touch_user::singleton()->setUserinfo($res);
      
     update_user_info(); // 更新用户信息
-    user_controller::sync_avatar($userid);/* 获取远程用户头像信息*/
+    
+    /*获取远程用户头像信息*/
+    user_controller::sync_avatar($connect_user);
+    
+    // 重新计算购物车中的商品价格
     RC_Loader::load_app_func('cart','cart');
-    recalculate_price(); // 重新计算购物车中的商品价格
+    recalculate_price(); 
     
     //结合cookie判断返回来源url
-    if(RC_Cookie::get('referer')) {
-        $back_url = RC_Cookie::get('referer');
-    } else {
-        $back_url = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
-    }
-    $back_url = empty($back_url) ? RC_Uri::url('touch/index/init') : $back_url;
-    $back_url = str_replace('/notify/', '/', $back_url);
+//     if(RC_Cookie::get('referer')) {
+//         $back_url = RC_Cookie::get('referer');
+//     } else {
+//         $back_url = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
+//     }
+//     $back_url = empty($back_url) ? RC_Uri::url('touch/index/init') : $back_url;
+//     $back_url = str_replace('/notify/', '/', $back_url);
+    
+    $back_url = RC_Cookie::get('referer', RC_Uri::url('touch/index/init'));
 
     return ecjia_front::$controller->redirect($back_url);
+});
+
+/**
+ * 用户绑定完成后的结果判断处理，用于界面显示
+ * @param $result boolean 判断对错
+ */
+RC_Hook::add_action('connect_callback_user_bind_complete', function($result) {
+    if (is_ajax()) {
+        if ($result) {
+            $link[] = array(RC_Lang::get('connect::connect.back_member'), 'href' => RC_Uri::url('touch/my/init'));
+            return ecjia_front::$controller->showmessage(RC_Lang::get('connect::connect.bind_success'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('links' => $link));
+        } else {
+            $link[] = array('text' => RC_Lang::get('system::system.go_back'), 'href' => 'javascript:history.back(-1)');
+            return ecjia_front::$controller->showmessage(RC_Lang::get('connect::connect.bind_fail'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('links' => $link));
+        }
+    } else {
+        if ($result) {
+            return ecjia_front::$controller->redirect(RC_Uri::url('touch/my/init'));
+        } else {
+            $link[] = array('text' => RC_Lang::get('system::system.go_back'), 'href' => 'javascript:history.back(-1)');
+            return ecjia_front::$controller->showmessage(RC_Lang::get('connect::connect.bind_fail'), ecjia::MSGTYPE_HTML | ecjia::MSGSTAT_ERROR, array('links' => $link));
+        }
+    }
 });
 
 /**
