@@ -276,7 +276,7 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
 /**
  * 第三方登录回调提示模板
  */
-RC_Hook::add_filter('connect_callback_user_template', function($data) {
+RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $data) {
     RC_Loader::load_theme('extras/controller/connect_controller.php');
     return connect_controller::callback_template($data);
 }, 10, 1);
