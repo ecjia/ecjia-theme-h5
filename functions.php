@@ -287,7 +287,7 @@ RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $da
 RC_Hook::add_filter('connect_callback_user_bind_signup', function($userid, $username, $password, $email) {
     $result = connect_controller::bind_signup(array('name' => $username, 'password' => $password, 'email' => $email));
     if (is_ecjia_error($result)) {
-        RC_Logger::getlogger('error')->info('connect_callback_bind_signup-error');
+        RC_Logger::getlogger('wechat')->info('connect_callback_bind_signup-error');
         return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     } else {
         return $result;
@@ -339,6 +339,9 @@ RC_Hook::add_action('connect_callback_user_signin', function($connect_user) {
     
     $back_url = RC_Cookie::get('referer', RC_Uri::url('touch/index/init'));
 
+    RC_Logger::getlogger('wechat')->info('connect_callback_user_signin-info');
+    RC_Logger::getlogger('wechat')->info($back_url);
+    
     return ecjia_front::$controller->redirect($back_url);
 });
 
