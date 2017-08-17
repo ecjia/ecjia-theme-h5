@@ -110,6 +110,7 @@ class connect_controller {
         ecjia_front::$controller->assign('user_name', $user_name);
 //         ecjia_front::$controller->assign('hideinfo', '1');
         
+        $data['bind_url'] = RC_Uri::url('connect/index/bind_signin', array('connect_code' => $connect_user->getConnectCode(), 'open_id' => $connect_user->getOpenId()));
         //快速注册修改
         ecjia_front::$controller->assign('data', $data);
 //         $url['bind_signup'] = str_replace('/notify/', '/', $data['login_url']);
@@ -128,8 +129,8 @@ class connect_controller {
     /* 第三方登陆快速注册 */
     public static function bind_signup($params) {
     
-        $connect_code = !empty($_GET['connect_code']) ? trim($_GET['connect_code']) : '';
-        $open_id = !empty($_GET['open_id']) ? trim($_GET['open_id']) : '';
+        $connect_code = royalcms('request')->query('connect_code'); //!empty($_GET['connect_code']) ? trim($_GET['connect_code']) : '';
+        $open_id = royalcms('request')->query('open_id'); //!empty($_GET['open_id']) ? trim($_GET['open_id']) : '';
     
         if (!$params) {
             if (empty($connect_code) || empty($open_id)) {
