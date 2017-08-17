@@ -258,7 +258,6 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
                     RC_Cookie::set('referer', $_REQUEST['referer_url']);
                 }
                 $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat', 'login_type' => 'snsapi_userinfo'));
-//                 header("location: ".$url);
                 ecjia_front::$controller->redirect($url);
             }
         }
@@ -328,14 +327,6 @@ RC_Hook::add_action('connect_callback_user_signin', function($connect_user) {
     recalculate_price(); 
     
     //结合cookie判断返回来源url
-//     if(RC_Cookie::get('referer')) {
-//         $back_url = RC_Cookie::get('referer');
-//     } else {
-//         $back_url = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
-//     }
-//     $back_url = empty($back_url) ? RC_Uri::url('touch/index/init') : $back_url;
-//     $back_url = str_replace('/notify/', '/', $back_url);
-    
     $back_url = RC_Cookie::get('referer', RC_Uri::url('touch/index/init'));
 
     RC_Logger::getlogger('wechat')->info('connect_callback_user_signin-info');
