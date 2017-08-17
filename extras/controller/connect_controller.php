@@ -115,7 +115,7 @@ class connect_controller {
 //         $url['bind_signup'] = str_replace('/notify/', '/', $data['login_url']);
 //         $url['bind_signin'] = str_replace('/notify/', '/', RC_Uri::url('connect/index/bind_signin', array('connect_code' => $data['connect_code'], 'open_id' => $data['open_id'])));
 //         ecjia_front::$controller->assign('url', $url);
-        return ecjia_front::$controller->fetch ('user_bind_login.dwt');
+        return ecjia_front::$controller->fetch('user_bind_login.dwt');
     }
     
     
