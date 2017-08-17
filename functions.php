@@ -350,7 +350,7 @@ RC_Hook::add_action('connect_callback_user_signin', function($connect_user) {
  * @param $result boolean 判断对错
  */
 RC_Hook::add_action('connect_callback_user_bind_complete', function($result) {
-    if (is_ajax()) {
+    if (is_ajax() && !is_pjax()) {
         if ($result) {
             $link[] = array(RC_Lang::get('connect::connect.back_member'), 'href' => RC_Uri::url('touch/my/init'));
             return ecjia_front::$controller->showmessage(RC_Lang::get('connect::connect.bind_success'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('links' => $link));
