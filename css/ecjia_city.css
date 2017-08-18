@@ -10281,6 +10281,20 @@ footer {
     text-align: right;
 }
 
+.quickpay .checkout .quickpay_div+.quickpay_div::before {
+	content: '';
+    position: absolute;
+    display: block;
+    width: 96%;
+    left: 4%;
+    border-bottom: 1px solid #eee;
+}
+
+.quickpay .checkout .before_two {
+	border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+}
+
 .quickpay .checkout .before_two li+li::before{
     content: '';
     position: absolute;
@@ -10291,12 +10305,9 @@ footer {
 }
 
 .quickpay .checkout .quickpay_div{
-	margin-bottom: 1em;
-	background: #FFF;
-	width: 100%;
-	position: relative;
-    border-bottom: 1px solid #eee;
-    border-top: 1px solid #eee;
+    background: #FFF;
+    width: 100%;
+    margin-bottom: 0;
 }
 
 .quickpay .checkout .quickpay_div .explain_title{
@@ -10320,8 +10331,14 @@ footer {
 }
 
 .quickpay .checkout .outher_d .redio-height{
-	height: 0;
-	line-height:3em;
+	vertical-align: middle;
+    display: inline-block;
+    position: relative;
+}
+
+.quickpay .checkout .outher_d .redio-height.redio-mr-t {
+    float: right;
+    margin-top: .8em;
 }
 
 .quickpay .checkout .outher_d .icon-jiantou-right{
@@ -10362,10 +10379,6 @@ footer {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-.quickpay .checkout .outher_d .redio-height label{
-    margin-top: .8em;
 }
 
 .pri {
@@ -10437,7 +10450,7 @@ footer {
     padding: 5px 0;
 }
 
-.save_discard input{
+.save_discard .mag-t1{
 	margin-top: 1em;
 }
 
@@ -10501,4 +10514,23 @@ footer {
 
 .quickpay-flow-done {
 	margin-bottom: 2em;
+}
+
+.dont_time {
+	position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background: #eee;
+    opacity: 0.3;
+    /*display: none;*/
+}
+
+.quickpay_hint {
+	height: 3em;
+    line-height: 3em;
+    padding: 0 1em;
+    background: #f0e6d1;
+    color: #e66423;
+    font-size: 1.1em;
 }

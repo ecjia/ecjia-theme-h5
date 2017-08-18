@@ -15,6 +15,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
+<div class="quickpay_hint">当前不在可用时段哦～</div>
+<div class="dont_time"></div>
 <div class="quickpay">
     <div class="checkout">
         <div class="quickpay_div before_two">
@@ -22,20 +24,22 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <li class="outher_d"><span>{t}不参与优惠金额 (元){/t}</span><input placeholder="请询问店员后输入"></li>
         </div>
         
-       <label class="quickpay_div">
-           <li class="outher_d">
-               <span class="shanhui">{t}闪惠{/t}</span>
-               <span class="slect-title">{t}每满100减8元{/t}</span>
-               <span class="ecjiaf-fr redio-height">
-                   <span class="quickpay_info">123</span>
-                   <label class="ecjia-check"><input type="radio" id="pay_balance" name="payment" value="9"></label>
-               </span>
-           </li>
-       </label>
+        <div class="before_two ecjia-margin-t">
+           <label class="quickpay_div">
+               <li class="outher_d">
+                    <span class="redio-height redio-mr-t">
+                       <label class="ecjia-check ecjiaf-fr"><input type="radio" id="pay_balance" name="payment" value="9"></label>
+                   </span>
+                   <span class="shanhui">{t}闪惠{/t}</span>
+                   <span class="slect-title">{t}每满100减8元{/t}</span>
+                   <span class="ecjiaf-fr ecjia-margin-r">123</span>
+               </li>
+           </label>
+        </div>
        
-        <div class="quickpay_div before_two">
+        <div class="quickpay_div before_two ecjia-margin-t">
             <li class="outher_d">
-                <a href="{url path='user/quickpay/bouns'}">
+                <a class="nopjax" href="{url path='user/quickpay/bouns'}">
             		<div class="icon-wallet"></div>
             		<span class="icon-name">{t}红包{/t}</span>
             		<span class="fav_info">{t}3个可用{/t}</span>
@@ -58,8 +62,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </li>
         </div>
     
-        <div class="quickpay_div">
-            <ul class="ecjia-list ecjia-margin-t">
+        <div class="before_two ecjia-margin-t">
+            <ul class="ecjia-list">
                 <li>
                                 其它支付方式 <span class="ecjiaf-fr"></span>
                 </li>
@@ -87,7 +91,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </div>
     </div>
     
-    <div class="pri">
+    <div class="pri ecjia-margin-t">
         <a href="{url path='user/quickpay/explain'}"><p class="pri_info">优惠说明</p></a>
     </div>
     
@@ -96,3 +100,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
 </div>
 <!-- {/block} -->
+{/nocache}
