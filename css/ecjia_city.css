@@ -10527,10 +10527,9 @@ footer {
 }
 
 .quickpay_hint {
-	height: 3em;
-    line-height: 3em;
+	height: 2em;
+    line-height: 2em;
     padding: 0 1em;
     background: #f0e6d1;
     color: #e66423;
-    font-size: 1.1em;
 }
