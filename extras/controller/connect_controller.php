@@ -153,11 +153,10 @@ class connect_controller {
         //绑定第三方
         $user_id = $response['user']['id'];
     
-        RC_Loader::load_app_class('connect_user', 'connect', false);
-        $connect_user = new connect_user($connect_code, $open_id);
+        $connect_user = new \Ecjia\App\Connect\ConnectUser($connect_code, $open_id);
         $result = false;
         if ($user_id) {
-            $result = $connect_user->bind_user($user_id, 0);
+            $result = $connect_user->bindUser($user_id);
         }
         if ($result) {
             //登录
