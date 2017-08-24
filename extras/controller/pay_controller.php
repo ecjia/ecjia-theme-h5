@@ -118,6 +118,7 @@ class pay_controller {
 	        		$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($payment_info['pay_code']);
 	        		$handler->set_orderinfo($detail);
 	        		$handler->set_mobile(false);
+	        		$handler->setPaymentRecord(new Ecjia\App\Payment\Repositories\PaymentRecordRepository());
 	        		$rs_pay = $handler->get_code(Ecjia\App\Payment\PayConstant::PAYCODE_PARAM);
 	        		if (is_ecjia_error($rs_pay)) {
 	        		    return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
