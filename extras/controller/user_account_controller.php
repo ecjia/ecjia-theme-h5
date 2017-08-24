@@ -208,6 +208,7 @@ class user_account_controller {
     		        $handler->set_orderinfo($order);
     		        $handler->set_mobile(false);
     		        $handler->setOrderType(Ecjia\App\Payment\PayConstant::PAY_SURPLUS);
+    		        $handler->setPaymentRecord(new Ecjia\App\Payment\Repositories\PaymentRecordRepository());
     		        $rs_pay = $handler->get_code(Ecjia\App\Payment\PayConstant::PAYCODE_PARAM);
     		         
     		        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $rs_pay['pay_online']));
