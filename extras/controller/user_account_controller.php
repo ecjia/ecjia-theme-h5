@@ -182,8 +182,8 @@ class user_account_controller {
     		         
     		        RC_Loader::load_app_func('admin_order', 'orders');
     		        //获取需要支付的log_id
-    		        $order['order_sn']	 = get_order_sn();
-    		        $order['log_id']	 = $payment_method->get_paylog_id($data_account_id, $pay_type = PAY_SURPLUS);
+    		        $order['order_sn']	 = $data['order_sn'];
+//     		        $order['log_id']	 = $payment_method->get_paylog_id($data_account_id, $pay_type = PAY_SURPLUS);
     		         
     		        $order['surplus_amount'] = $amount;
     		        $order['open_id']	 = $_SESSION['wxpay_open_id'];
@@ -192,16 +192,16 @@ class user_account_controller {
     		        //计算此次预付款需要支付的总金额
     		        $order['order_amount']   = $order['surplus_amount'] + $payment_info['pay_fee'];
     		         
-    		        if (!empty($order['log_id'])) {
-        				//如果支付费用改变了，也要相应的更改pay_log表的order_amount
-        				$pay_db = RC_Model::model('orders/pay_log_model');
-        				$order_amount = $pay_db-> where(array('log_id' => $order['log_id']))->get_field('order_amount');
-        				if ($order_amount <> $order['order_amount']) {
-        				    $pay_db->where(array('log_id' => $order['log_id']))->update(array('order_amount' => $order['order_amount']));
-        				}
-    		        } else {
-        				$order['log_id'] = $payment_method->insert_pay_log($data_account_id, $order['order_amount'], PAY_SURPLUS, 0);
-    		        }
+//     		        if (!empty($order['log_id'])) {
+//         				//如果支付费用改变了，也要相应的更改pay_log表的order_amount
+//         				$pay_db = RC_Model::model('orders/pay_log_model');
+//         				$order_amount = $pay_db-> where(array('log_id' => $order['log_id']))->get_field('order_amount');
+//         				if ($order_amount <> $order['order_amount']) {
+//         				    $pay_db->where(array('log_id' => $order['log_id']))->update(array('order_amount' => $order['order_amount']));
+//         				}
+//     		        } else {
+//         				$order['log_id'] = $payment_method->insert_pay_log($data_account_id, $order['order_amount'], PAY_SURPLUS, 0);
+//     		        }
     		        $order['order_type'] = 'user_account';
 //     		        $handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
     		        $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($payment_info['pay_code']);
@@ -210,6 +210,10 @@ class user_account_controller {
     		        $handler->setOrderType(Ecjia\App\Payment\PayConstant::PAY_SURPLUS);
     		        $handler->setPaymentRecord(new Ecjia\App\Payment\Repositories\PaymentRecordRepository());
     		        $rs_pay = $handler->get_code(Ecjia\App\Payment\PayConstant::PAYCODE_PARAM);
+    		        
+    		        if (is_ecjia_error($rs_pay)) {
+    		            return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    		        }
     		         
     		        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $rs_pay['pay_online']));
     		    } else {
