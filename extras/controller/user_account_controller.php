@@ -207,7 +207,7 @@ class user_account_controller {
     		        $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($payment_info['pay_code']);
     		        $handler->set_orderinfo($order);
     		        $handler->set_mobile(false);
-    		        $rs_pay = $handler->get_code(payment_abstract::PAYCODE_PARAM);
+    		        $rs_pay = $handler->get_code(Ecjia\App\Payment\PayConstant::PAYCODE_PARAM);
     		         
     		        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $rs_pay['pay_online']));
     		    } else {
