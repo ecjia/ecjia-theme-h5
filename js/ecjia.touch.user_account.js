@@ -51,7 +51,8 @@
 					url: url,
 					dataType: "json",
 					success: function(data) {
-						ecjia.touch.showmessage(data);
+						location.href = data.redirect_url;
+//						ecjia.touch.showmessage(data);
 					}
 				});
 			});
