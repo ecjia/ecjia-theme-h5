@@ -212,7 +212,7 @@ class user_account_controller {
     		            RC_Logger::getLogger('pay')->info($pay);
     		            RC_Logger::getLogger('pay')->info($pay_online);
     		            if (array_get($pay, 'pay_code') == 'pay_alipay') {
-    		                return ecjia_front::$controller->redirect($pay_online);
+    		                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('redirect_url' => $pay_online));
     		            } else {
     		                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $pay_online));
     		            }
