@@ -174,8 +174,8 @@ class user_account_controller {
     		    $data_payment_id = $data['payment']['payment_id'];
     		    $data_account_id = $data['payment']['account_id'];
     		    
-    		    $payment_method = RC_Loader::load_app_class('payment_method', 'payment');
-    		    $payment_info = $payment_method->payment_info_by_id($data_payment_id);
+//     		    $payment_method = RC_Loader::load_app_class('payment_method', 'payment');
+//     		    $payment_info = $payment_method->payment_info_by_id($data_payment_id);
 //     		    if ($payment_info['pay_code'] == 'pay_wxpay') {
 //     		        // 取得支付信息，生成支付代码
 //     		        RC_Loader::load_app_func('admin_order', 'orders');
