@@ -205,6 +205,8 @@ class user_account_controller {
     		        $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $data_account_id, 'payment_id' => $data_payment_id, 'wxpay_open_id' => $_SESSION['wxpay_open_id']))->run();
     		        if (! is_ecjia_error($pay)) {
     		            $pay_online = array_get($pay, 'payment.private_data.pay_online');
+    		            RC_Logger::getLogger('pay')->info('user_account_controller::recharge_account');
+    		            RC_Logger::getLogger('pay')->info($pay);
     		            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pay_online));
     		        } else {
     		            return ecjia_front::$controller->showmessage($pay->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
