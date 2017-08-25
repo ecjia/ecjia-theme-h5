@@ -32,6 +32,7 @@
 				e.preventDefault();
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 				
+				var record = $('input[name="record"]').val();
 				var amount = $('input[name="amount"]').val();
 				if (amount == '') {
 					$('.la-ball-atom').remove();
@@ -39,7 +40,9 @@
 					return false;
 				}
 
-				$(this).val("支付请求中，请稍后");
+				if (record != 1) {
+					$(this).val("支付请求中，请稍后");
+				}
 				$(this).attr("disabled", true); 
 				$(this).css("border", 0);
 				$(this).css("background", "#ddd");

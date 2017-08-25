@@ -10,8 +10,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">
-	ecjia.touch.init();
-	ecjia.touch.user.init();
+ecjia.touch.user_account.init();
 </script>
 <!-- {/block} -->
 
@@ -35,7 +34,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	{if $sur_amount.pay_status eq '已完成'}
     {elseif $sur_amount.pay_status eq ''}
     {else}
-        <form  class="ecjia-form" action="{url path='user/account/recharge_account'}" method="post" >
+        <form  class="ecjia-form" name="useraccountForm" action="{url path='user/account/recharge_account'}" method="post" >
         {if $sur_amount.type eq 'deposit'}
             <div class="two-btn btn-bottom">
                 <input name="record_type" type="hidden" value={$sur_amount.type} />
@@ -49,7 +48,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         			<input class="btn ecjiaf-fr ecjia-fl" name="record_sure" data-url="{url path='user/account/recharge_account'}" type="submit" value="{t}充值{/t}" />
         			<div class="wei-xin-pay hide"></div>
         		{else}
-        			<input class="btn btn-recharge ecjiaf-fr ecjia-fl" type="submit" value="{t}充值{/t}" />
+        			<input class="btn btn-recharge ecjiaf-fr ecjia-fl alipay-btn" type="submit" value="{t}充值{/t}" />
+        			<input type="hidden" name="record" value="1">
         		{/if}
         	</div>
         {else}
