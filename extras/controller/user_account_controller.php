@@ -211,7 +211,11 @@ class user_account_controller {
     		            RC_Logger::getLogger('pay')->info('user_account_controller::recharge_account');
     		            RC_Logger::getLogger('pay')->info($pay);
     		            RC_Logger::getLogger('pay')->info($pay_online);
-    		            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $pay_online, 'pjaxurl' => $pay_online));
+    		            if (array_get($pay, 'pay_code') == 'pay_alipay') {
+    		                return ecjia_front::$controller->redirect($pay_online);
+    		            } else {
+    		                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $pay_online);
+    		            }
     		        } else {
     		            return ecjia_front::$controller->showmessage($pay->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		        }
