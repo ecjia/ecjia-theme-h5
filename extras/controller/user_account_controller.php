@@ -214,7 +214,7 @@ class user_account_controller {
     		            if (array_get($pay, 'pay_code') == 'pay_alipay') {
     		                return ecjia_front::$controller->redirect($pay_online);
     		            } else {
-    		                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $pay_online);
+    		                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $pay_online));
     		            }
     		        } else {
     		            return ecjia_front::$controller->showmessage($pay->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
