@@ -11,7 +11,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="footer"} -->
 <script type="text/javascript" >
 ecjia.touch.user_account.init();
-ecjia.touch.init();
 </script>
 <!-- {/block} -->
 
@@ -52,7 +51,7 @@ ecjia.touch.init();
     	<div class="wei-xin-pay hide"></div>
     	{else}
     	<div class=" text-center account-top">
-    		<input class="btn btn-recharge" name="submit" type="submit" value="{t}立即充值{/t}" />
+    		<input class="btn btn-recharge alipay-btn" type="button" value="{t}立即充值{/t}" />
     	</div>
     	{/if}
     </div>	
