@@ -147,6 +147,9 @@ class user_account_controller {
             ecjia_front::$controller->assign('payment_list', $pay['payment']);
             ecjia_front::$controller->assign('user', $user);
             ecjia_front::$controller->assign_title('充值');
+            
+            //生成返回url cookie
+            RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
         }
         ecjia_front::$controller->display('user_account_recharge.dwt', $cache_id);
     }
