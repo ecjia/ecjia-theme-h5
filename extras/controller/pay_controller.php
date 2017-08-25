@@ -124,7 +124,7 @@ class pay_controller {
 	        		    return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
 	        		}
 	        		$order = $rs_pay;
-	        		ecjia_front::$controller->assign('pay_button', $rs_pay['pay_online']);
+	        		ecjia_front::$controller->assign('pay_button', $rs_pay['private_data']['pay_online']);
 	        		unset($order['pay_online']);
 	        		$need_other_payment = 1;
 	        	} else {
