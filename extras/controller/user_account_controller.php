@@ -431,6 +431,7 @@ class user_account_controller {
 	        $data['add_time'] = !empty($_GET['add_time']) ? $_GET['add_time'] : '';
 	        $data['payment_id'] = !empty($_GET['payment_id']) ? $_GET['payment_id'] : '';
 	        $data['payment_name'] = !empty($_GET['payment_id']) ? trim($_GET['payment_name']) : '';
+	        $data['order_sn'] = !empty($_GET['order_sn']) ? trim($_GET['order_sn']) : '';
 	        
 	        /*微信充值相关处理*/
 	        $payment_method = RC_Loader::load_app_class('payment_method', 'payment');

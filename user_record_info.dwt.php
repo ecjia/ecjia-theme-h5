@@ -23,6 +23,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <p class="record-money">{$sur_amount.format_amount}</p>
     <p class="record-status">{$sur_amount.pay_status}</p>
     <div class="record-info">
+        <p class="record-val">{$sur_amount.order_sn}</p>
+        <p class="record-key">订单编号</p>
         <p class="record-val">{if $sur_amount.type eq 'raply'}账户余额{else}{$sur_amount.payment_name}{/if}</p>
         <p class="record-key">支付方式</p>
         <p class="record-val">{$sur_amount.type_lable}</p>
