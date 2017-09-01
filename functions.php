@@ -136,7 +136,7 @@ RC_Hook::add_action('franchisee/index/location', array('franchisee_controller', 
 RC_Hook::add_action('franchisee/index/location_finish', array('franchisee_controller', 'location_finish'));//提交店铺精确位置
 RC_Hook::add_action('franchisee/index/get_region', array('franchisee_controller', 'get_region'));//提交店铺精确位置
 
-//登陆注册
+//登录注册
 RC_Loader::load_theme('extras/controller/user_privilege_controller.php');
 RC_Hook::add_action('user/privilege/login', array('user_privilege_controller', 'login'));
 RC_Hook::add_action('user/privilege/signin', array('user_privilege_controller', 'signin'));
