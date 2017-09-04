@@ -15,14 +15,16 @@
 				
 				var record = $('input[name="record"]').val();
 				var amount = $('input[name="amount"]').val();
+				alert(amount)
 				if (amount == '') {
 					$('.la-ball-atom').remove();
 					alert("金额不能为空");
 					return false;
 				}
-				
+				alert(record)
 				if (record != 1) {
 					$(this).val("支付请求中，请稍后");
+					alert(record)
 				}
 				
 				$(this).attr("disabled", true); 
