@@ -21,7 +21,7 @@ ecjia.touch.user_account.init();
     	<div class="form-group form-group-text account-lr-fom no-border">
     		<label class="input">
     			<span class="ecjiaf-fl">{t}金额{/t}</span>
-    			<input placeholder="{t}建议充入100元以上金额{/t}" type="number" name="amount"/>
+    			<input placeholder="{t}建议充入100元以上金额{/t}" type="tel" name="amount"/>
     		</label>
     	</div>
     	 {if $payment_list}
