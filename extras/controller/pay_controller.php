@@ -183,9 +183,11 @@ class pay_controller {
         	}
         	$order['order_id'] = $order_id;
         	
+        	$pay_online = array_get($order, 'pay_online', array_get($order, 'private_data.pay_online'));
+        	
         	ecjia_front::$controller->assign('detail', $detail);
         	ecjia_front::$controller->assign('data', $order);
-        	ecjia_front::$controller->assign('pay_online', $order['pay_online']);
+        	ecjia_front::$controller->assign('pay_online', $pay_online);
         	ecjia_front::$controller->assign('tips_show', $tips_show);
         	
         	//生成返回url cookie
