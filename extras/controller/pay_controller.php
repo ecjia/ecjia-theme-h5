@@ -203,7 +203,14 @@ class pay_controller {
     		$msg = '支付成功';
     		ecjia_front::$controller->assign('msg', $msg);
     		$order_type = isset($_GET['order_type']) ? trim($_GET['order_type']) : '';
+    		$url['index'] = RC_Cookie::get('pay_response_index');
+    		$url['order'] = RC_Cookie::get('pay_response_order');
     		
+    		$url = array(
+    		    'index' => RC_Cookie::get('pay_response_index') ? RC_Cookie::get('pay_response_index') : str_replace('notify/', '', RC_Uri::url('touch/index/init')),
+    		    'order' => RC_Cookie::get('pay_response_order') ? RC_Cookie::get('pay_response_order') : str_replace('notify/', '', RC_Uri::url('touch/user/order_list')),
+    		);
+    		ecjia_front::$controller->assign('url', $url);
     		ecjia_front::$controller->assign('order_type', $order_type);
     	}
         ecjia_front::$controller->display('pay_notify.dwt', $cache_id);
