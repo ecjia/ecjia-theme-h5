@@ -36,14 +36,12 @@
 					url: url,
 					dataType: "json",
 					success: function(data) {
-						if (data.weixin_data) {
+						if (data.redirect_url) {
+							location.href = data.redirect_url;
+						} else if(data.weixin_data) {
 							$('.wei-xin-pay').html("");
 							$('.wei-xin-pay').html(data.weixin_data);
-							if (data.pay_name != 'weixin') {
-								location.href = data.redirect_url;
-							} else {
-								callpay();
-							}
+							callpay();
 						}
 					}
 				});
