@@ -12,10 +12,10 @@
 			$('.wxpay-btn').on('click', function(e) {
 				e.preventDefault();
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
-		
+				
 				var record = $('input[name="record"]').val();
 				var amount = $('input[name="amount"]').val();
-				
+	
 				if (amount == '') {
 					$('.la-ball-atom').remove();
 					alert("金额不能为空");
@@ -39,7 +39,11 @@
 						if (data.weixin_data) {
 							$('.wei-xin-pay').html("");
 							$('.wei-xin-pay').html(data.weixin_data);
-							callpay();
+							if (data.redirect_url) {
+								location.href = data.redirect_url;
+							} else if (data.weixin_data){
+								callpay();
+							}
 						}
 					}
 				});
