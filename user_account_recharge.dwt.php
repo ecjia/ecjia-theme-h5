@@ -35,7 +35,7 @@ ecjia.touch.user_account.init();
 		        <li class="ecjia-account-padding-input user_pay_way">
 		            <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}">
                 		<label for="{$list.pay_code}" class="ecjiaf-fr ecjia-check" value="10">
-                		<input type="radio" id="{$list.pay_code}" name="payment_id" value="{$list.pay_id}" checked="true">
+                		<input type="radio" id="{$list.pay_code}" name="payment_id" value="{$list.pay_id}" {if $list.checked}checked="true"{/if}>
                 		</label>
 		            	{$list.pay_name}
 		            </span>
@@ -44,6 +44,7 @@ ecjia.touch.user_account.init();
 		    </ul>
 	    {/if}
     	<input name="act" type="hidden" value="profile" />
+
     	{if $brownser}
     	<div class=" text-center account-top">
     		<input class="btn btn-recharge wxpay-btn" name="submit" type="submit" value="{t}立即充值{/t}" />

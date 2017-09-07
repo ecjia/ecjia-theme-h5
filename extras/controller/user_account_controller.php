@@ -45,6 +45,7 @@
 //  ---------------------------------------------------------------------------------
 //
 use Guzzle\Http\Message\Header;
+use Royalcms\Component\Image\Size;
 defined('IN_ECJIA') or exit('No permission resources.');
 
 /**
@@ -143,7 +144,8 @@ class user_account_controller {
 	                }
 	            }
 	        }
-
+	        
+	        $pay['payment'][array_keys($pay['payment'])[0]]['checked'] = true;
             ecjia_front::$controller->assign('payment_list', $pay['payment']);
             ecjia_front::$controller->assign('user', $user);
             ecjia_front::$controller->assign_title('充值');
@@ -164,7 +166,7 @@ class user_account_controller {
     	$account_id = !empty($_POST['account_id']) ? intval($_POST['account_id']) : '';
     	$brownser_wx = $_POST['brownser_wx'];
     	$brownser_other = $_POST['brownser_other'];
-    	
+
     	if ($brownser_wx == 1) {
     		return ecjia_front::$controller->showmessage(__('请使用其他浏览器打开进行支付'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/account/record')));
     	} elseif ($brownser_other == 1) {
@@ -182,12 +184,14 @@ class user_account_controller {
 		            //生成返回url cookie
 		            RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
 		            RC_Cookie::set('pay_response_order', RC_Uri::url('user/account/record', array('status' => 'deposit')));
-		            
+
 		            $pay_online = array_get($pay, 'payment.private_data.pay_online', array_get($pay, 'payment.pay_online'));
 		            if (array_get($pay, 'payment.pay_code') == 'pay_alipay') {
 		                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('redirect_url' => $pay_online));
-		            } else {
+		            } else if (array_get($pay, 'payment.pay_code') == 'pay_wxpay'){
 		                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $pay_online));
+		            } else {
+		                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('redirect_url' => $pay_online));
 		            }
 		        } else {
 		            return ecjia_front::$controller->showmessage($pay->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
