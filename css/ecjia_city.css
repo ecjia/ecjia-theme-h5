@@ -3824,6 +3824,12 @@ footer {
 	line-height: 1.8em;
 }
 
+.payment-bottom {
+	border: 0!important;
+	background:#ddd!important;
+	color: black!important;
+}
+
 .ecjia-flow-done .ecjia-list.list-short li+li::before {
 	width: 100%;
 	left: 8%;

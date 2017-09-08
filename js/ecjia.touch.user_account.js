@@ -27,15 +27,21 @@
 				}
 				
 				$(this).attr("disabled", true); 
-				$(this).css("border", 0);
-				$(this).css("background", "#ddd");
-				$(this).css("color", "black");
+				$(this).addClass("payment-bottom");
+				
 				var url = $("form[name='useraccountForm']").attr('action');
 				$("form[name='useraccountForm']").ajaxSubmit({
 					type: 'post',
 					url: url,
 					dataType: "json",
 					success: function(data) {
+						$('.wxpay-btn').removeClass("payment-bottom")
+						$('.la-ball-atom').remove();
+						$('.wxpay-btn').removeAttr("disabled"); 
+						if (record != 1) {
+							$('.wxpay-btn').val("立即充值"); 
+						}
+						
 						if (data.redirect_url) {
 							location.href = data.redirect_url;
 						} else if(data.weixin_data) {
@@ -65,16 +71,20 @@
 					$(this).val("支付请求中，请稍后");
 				}
 				$(this).attr("disabled", true); 
-				$(this).css("border", 0);
-				$(this).css("background", "#ddd");
-				$(this).css("color", "black");
-				
+				$(this).addClass("payment-bottom");
+		
 				var url = $("form[name='useraccountForm']").attr('action');
 				$("form[name='useraccountForm']").ajaxSubmit({
 					type: 'post',
 					url: url,
 					dataType: "json",
 					success: function(data) {
+						$('.alipay-btn').removeClass("payment-bottom")
+						$('.la-ball-atom').remove();
+						$('.alipay-btn').removeAttr("disabled"); 
+						if (record != 1) {
+							$('.alipay-btn').val("立即充值"); 
+						}
 						location.href = data.redirect_url;
 //						ecjia.touch.showmessage(data);
 					}
