@@ -44,7 +44,6 @@
 			ecjia.touch.close_app_download();
 			ecjia.touch.search_header();
 			ecjia.touch.del_history();
-			ecjia.touch.share_spread();
 
 			$("body").greenCheck();
 		},
@@ -164,90 +163,6 @@
 		},
 		//搜索关键词定位结束
 
-		share_spread: function() {
-			var info = {
-    			'url' : window.location.href
-    		};
-			var url = $('input[name="spread_url"]').val();
-			if (url != '') { return false; }
-			
-			var wxconfig_url = $('input[name="wxconfig_url"]').val();
-        	if (wxconfig_url == undefined) {
-        		return false;
-        	}
-        	var desc = $('textarea[name="invite_template"]').val();
-        	var title = document.title;
-        	var link = window.location.href;
-        	var desc = window.location.href;
-        	var image = '';
-        	ecjia.touch.wechat_spread(wxconfig_url, info, title, link, image, desc);
-		},
-		
-		wechat_spread: function(url, info, title, link, image, desc) {
-			$.post(url, info, function(response){
-	    		if (response == '') {return false;}
-	    		var data = response.data;
-	    		wx.config({
-	    			debug: false,
-	    			appId: data.appId,
-	    			timestamp: data.timestamp,
-	    			nonceStr: data.nonceStr,
-	    			signature: data.signature,
-	    			jsApiList: [
-	    				'checkJsApi',
-	    				'onMenuShareTimeline',
-	    				'onMenuShareAppMessage',
-	    				'onMenuShareAppMessage',
-	    				'hideOptionMenu',
-	    			]
-	    		});
-	    		wx.ready(function () {
-	    			//分享到朋友圈
-	    			wx.onMenuShareTimeline({
-	    		        title: title, 					// 分享标题【必填】
-	    		        link: link, 					// 分享链接【必填】
-	    		        imgUrl: image, 					// 分享图标【必填】
-	    		        success: function () { 
-	    		            // 用户确认分享后执行的回调函数
-	    		        },
-	    		        cancel: function () { 
-	    		            // 用户取消分享后执行的回调函数
-	    		        }
-	    		    });
-
-	    			//分享给朋友
-	    		    wx.onMenuShareAppMessage({
-	    		        title: title, 					// 分享标题【必填】
-	    		        desc: desc,	 					// 分享描述【必填】
-	    		        link: link, 					// 分享链接【必填】
-	    		        imgUrl: image, 					// 分享图标【必填】
-	    		        type: 'link', 					// 分享类型,music、video或link，不填默认为link【必填】
-	    		        dataUrl: '', 					// 如果type是music或video，则要提供数据链接，默认为空
-	    		        success: function () { 
-	    		            // 用户确认分享后执行的回调函数
-	    		        },
-	    		        cancel: function () { 
-	    		            // 用户取消分享后执行的回调函数
-	    		        }
-	    		    });
-
-	    		    //分享到QQ
-	    		    wx.onMenuShareQQ({
-	    		        title: title, 					// 分享标题
-	    		        desc: desc, 					// 分享描述
-	    		        link: link, 					// 分享链接
-	    		        imgUrl: image, 					// 分享图标
-	    		        success: function () { 
-	    		           // 用户确认分享后执行的回调函数
-	    		        },
-	    		        cancel: function () { 
-	    		           // 用户取消分享后执行的回调函数
-	    		        }
-	    		    });
-	    		});	
-	    	});
-		},
-		
 		/**
 		 * 设置PJAX
 		 */
@@ -270,6 +185,7 @@
 							if (typeof(callback) === 'function') callback();
 						}
 					});
+					console.log(option)
 					$.pjax(option);
 					delete ecjia.pjaxoption.url;
 				}
@@ -281,6 +197,7 @@
 			/* 移动pjax方法的调用，使用document元素委派pjax点击事件 */
 			if ($.support.pjax) {
 				$(document).on('click', 'a:not(.nopjax)', function(event) {
+					console.log(11);
 					$.pjax.click(event, ecjia.pjaxoption.container, ecjia.pjaxoption);
 				});
 			}
