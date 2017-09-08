@@ -50,8 +50,8 @@ defined('IN_ECJIA') or exit('No permission resources.');
  * 找回密码模块控制器代码
  */
 class user_get_password_controller {
+	
     public static function mobile_register() {
-   
         /*验证码相关设置*/
         $mobile = !empty($_POST['mobile']) ? trim($_POST['mobile']) : '';
         $code = !empty($_POST['code']) ? trim($_POST['code']) : '';
@@ -59,9 +59,9 @@ class user_get_password_controller {
         
         if (!empty($code)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_FORGET_PASSWORD)->data(array('token' => $token, 'type' => 'mobile', 'value' => $mobile, 'code' => $code))->run();
-            $_SESSION['mobile'] = $mobile;
-            $_SESSION['code_status'] = 'succeed';
             if (! is_ecjia_error($data)) {
+                $_SESSION['mobile'] = $mobile;
+                $_SESSION['code_status'] = 'succeed';
                 return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/get_password/reset_password')));
             } else {
                 return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -86,7 +86,7 @@ class user_get_password_controller {
         }
         $token = ecjia_touch_user::singleton()->getToken();
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_FORGET_PASSWORD)->data(array('token' => $token, 'type' => 'mobile', 'value' => $mobile))->run();
-
+        
         if (!is_ecjia_error($data)) {
         	return ecjia_front::$controller->showmessage(__("短信已发送到手机".$mobile."，请注意查看"), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
         } else {
