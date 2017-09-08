@@ -51,6 +51,7 @@ defined('IN_ECJIA') or exit('No permission resources.');
  */
 class user_get_password_controller {
     public static function mobile_register() {
+   
         /*验证码相关设置*/
         $mobile = !empty($_POST['mobile']) ? trim($_POST['mobile']) : '';
         $code = !empty($_POST['code']) ? trim($_POST['code']) : '';
@@ -58,9 +59,9 @@ class user_get_password_controller {
         
         if (!empty($code)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_FORGET_PASSWORD)->data(array('token' => $token, 'type' => 'mobile', 'value' => $mobile, 'code' => $code))->run();
+            $_SESSION['mobile'] = $mobile;
+            $_SESSION['code_status'] = 'succeed';
             if (! is_ecjia_error($data)) {
-                $_SESSION['mobile'] = $mobile;
-                $_SESSION['code_status'] = 'succeed';
                 return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/get_password/reset_password')));
             } else {
                 return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
