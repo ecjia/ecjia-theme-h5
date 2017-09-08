@@ -185,7 +185,6 @@
 							if (typeof(callback) === 'function') callback();
 						}
 					});
-					console.log(option)
 					$.pjax(option);
 					delete ecjia.pjaxoption.url;
 				}
@@ -197,7 +196,6 @@
 			/* 移动pjax方法的调用，使用document元素委派pjax点击事件 */
 			if ($.support.pjax) {
 				$(document).on('click', 'a:not(.nopjax)', function(event) {
-					console.log(11);
 					$.pjax.click(event, ecjia.pjaxoption.container, ecjia.pjaxoption);
 				});
 			}
