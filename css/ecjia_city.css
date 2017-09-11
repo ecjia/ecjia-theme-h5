@@ -1966,6 +1966,10 @@ footer {
     background-image: url(../images/icon/business_hours.png);
 }
 
+.ecjia-store-detail i.icon-shop-description {
+    background-image: url(../images/icon/icon_description.png);
+}
+
 .ecjia-store-detail i.icon-call-phone {
 	background-image: url(../images/icon/icon_phone_green.png);
 	background-size: 1.8em;
@@ -3824,7 +3828,7 @@ footer {
 .ecjia-flow-done .flow-success p {
 	padding-left: 4.5em;
 	width: 15.5em;
-	hieght: 4em;
+	height: 4em;
 	line-height: 4em;
 	margin: 0 auto;
 	position: relative;
@@ -3883,6 +3887,12 @@ footer {
 	padding-left: 40px;
 	height: 1.8em;
 	line-height: 1.8em;
+}
+
+.payment-bottom {
+	border: 0!important;
+	background:#ddd!important;
+	color: black!important;
 }
 
 .ecjia-flow-done .ecjia-list.list-short li+li::before {
@@ -4854,7 +4864,7 @@ footer {
 
 .ecjia-account.ecjia-form .form-group-text {
 	position: relative;
-	height: 3em;
+	height: 3.2em;
 	padding: .7em 1em;
 	border: 1px solid #eee;
 }
