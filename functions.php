@@ -259,6 +259,10 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
     $referer = ecjia::config('map_qq_referer');
     ecjia_front::$controller->assign('key', $key);
     ecjia_front::$controller->assign('referer', $referer);
+    $wap_logo = ecjia::config('wap_logo');
+    if (!empty($wap_logo)) {
+    	setcookie("wap_logo", RC_Upload::upload_url($wap_logo), time() + 1800);
+    }
     //判断并微信登录
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
     if (strpos($user_agent, 'MicroMessenger') !== false && ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {
