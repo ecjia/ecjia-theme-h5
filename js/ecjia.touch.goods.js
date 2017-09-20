@@ -576,7 +576,7 @@
 					category_id = $this.attr('data-category') == undefined ? 0 : $this.attr('data-category'),
 					li = $this.parent('li');
 
-				if ($this.hasClass('disabled') || $this.parent().hasClass('a1r') || ($this.hasClass('a1u') && $this.hasClass('active'))) {
+				if ($this.hasClass('disabled') || ($this.parent().hasClass('a1r') && $this.parent().find('.a1v').length == 0) || ($this.hasClass('a1u') && $this.hasClass('active'))) {
 					return false;
 				}
 				var bool = true;
