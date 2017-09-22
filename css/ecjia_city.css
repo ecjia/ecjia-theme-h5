@@ -1399,6 +1399,10 @@ ul, li, ol, dl, dt, dd {
 	position: relative;
 }
 
+.ecjia-promotion-model .swiper-slide .list-page-goods-img .goods-img img {
+	max-width: 250px;
+}
+
 .ecjia-promotion-model a.list-page-goods-img .goods-name, .ecjia-new-model a.list-page-goods-img .goods-name {
 	height: 1.6em;
 	line-height: 1.5em;
