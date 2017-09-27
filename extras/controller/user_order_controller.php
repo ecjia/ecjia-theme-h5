@@ -255,6 +255,7 @@ class user_order_controller {
      */
     public static function goods_comment() {
         $token      = ecjia_touch_user::singleton()->getToken();
+        $user_info = ecjia_touch_user::singleton()->getUserinfo();
         $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
         $cache_id = sprintf('%X', crc32($cache_id));
         
@@ -302,11 +303,11 @@ class user_order_controller {
         $rank 			= isset($_POST['score']) 			? intval($_POST['score']) 				: 0;
         $is_anonymous 	= isset($_POST['anonymity_status']) ? intval($_POST['anonymity_status']) 	: '';
        
-        $picture = array();
+        $file = array();
         $_FILES = $_FILES['picture'];
         for ($i=0; $i<5; $i++) {
             if (!empty($_FILES['name'][$i])) {
-                $picture['picture['.$i.']'] = '@'.realpath($_FILES['tmp_name'][$i]).";type=".$_FILES['type'][$i].";filename=".$_FILES['name'][$i];
+                $file['picture['.$i.']'] = curl_file_create(realpath($_FILES['tmp_name'][$i]), $_FILES['type'][$i], $_FILES['name'][$i]);
             }
         }
 
@@ -317,12 +318,8 @@ class user_order_controller {
             "rank"          => $rank,
             "is_anonymous"  => $is_anonymous
         );
-        
-        $push_comment = array_merge($push_comment, $picture);
-        
-        $api_url = RC_Hook::apply_filters('custom_site_api_url', RC_Uri::home_url() . ecjia_touch_manager::serverHost . ecjia_touch_api::COMMENT_CREATE);
-        $data = touch_function::upload_file($api_url, $push_comment);
-        $data = touch_function::format_curl_response($data);
+  
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::COMMENT_CREATE)->data($push_comment)->file($file)->run();
         if (is_ecjia_error($data)) {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         } else {
