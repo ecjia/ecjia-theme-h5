@@ -85,22 +85,22 @@ class merchant_controller {
 			ecjia_front::$controller->assign('store_info', $store_info);
 			ecjia_front::$controller->assign_title($store_info['seller_name']);
 			
-			if (empty($action_type) && empty($category_id)) {
-				$goods_count = $store_info['goods_count'];
-				if ($goods_count['best_goods'] > 0) {
-					$action_type = 'best';
-					$goods_num = $goods_count['best_goods'];
-					$type_name = '精选';
-				} elseif ($goods_count['hot_goods'] > 0) {
-					$action_type = 'hot';
-					$goods_num = $goods_count['hot_goods'];
-					$type_name = '热销';
-				} elseif ($goods_count['new_goods'] > 0) {
-					$action_type = 'new';
-					$goods_num = $goods_count['new_goods'];
-					$type_name = '新品';
-				}
-			}
+// 			if (empty($action_type) && empty($category_id)) {
+// 				$goods_count = $store_info['goods_count'];
+// 				if ($goods_count['best_goods'] > 0) {
+// 					$action_type = 'best';
+// 					$goods_num = $goods_count['best_goods'];
+// 					$type_name = '精选';
+// 				} elseif ($goods_count['hot_goods'] > 0) {
+// 					$action_type = 'hot';
+// 					$goods_num = $goods_count['hot_goods'];
+// 					$type_name = '热销';
+// 				} elseif ($goods_count['new_goods'] > 0) {
+// 					$action_type = 'new';
+// 					$goods_num = $goods_count['new_goods'];
+// 					$type_name = '新品';
+// 				}
+// 			}
 
 			ecjia_front::$controller->assign('title', $store_info['seller_name']);
 			ecjia_front::$controller->assign('header_left', ' ');
@@ -120,7 +120,8 @@ class merchant_controller {
 		if (!is_ecjia_error($store_category)) {
 			ecjia_front::$controller->assign('store_category', $store_category);
 		}
-		
+		//默认显示全部商品
+		$action_type = 'all';
 		$goods_list = array();
 		if (!empty($action_type) && $action_type != 'all') {
 			$parameter = array(
