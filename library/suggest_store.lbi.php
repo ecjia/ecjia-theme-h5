@@ -31,13 +31,16 @@
 						<!-- {/foreach} -->
 					</ul>
 					<!-- {/if} -->
-					<!-- 测试样式 -->
+					<!-- {if $val.quickpay_activity_list} -->
 					<ul class="store-promotion">
+						<!-- {foreach from=$val.quickpay_activity_list item=list} -->
 						<li class="quick">
-							<span class="quick-label">买单</span>
-							<span class="promotion-name">每满100减8元</span>
+							<span class="quick-label">{$list.title}</span>
+							<span class="promotion-name">{$list.label_activity_type}</span>
 						</li>
+						<!-- {/foreach} -->
 					</ul>
+					<!-- {/if} -->
 				</a>
 				{if $val.seller_goods}
 				<div class="suggest-goods-list">

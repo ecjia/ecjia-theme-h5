@@ -43,6 +43,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							<!-- {/foreach} -->
 						</ul>
 						<!-- {/if} -->
+						<!-- {if $val.quickpay_activity_list} -->
+						<ul class="store-promotion">
+							<!-- {foreach from=$val.quickpay_activity_list item=list} -->
+							<li class="quick">
+								<span class="quick-label">{$list.title}</span>
+								<span class="promotion-name">{$list.label_activity_type}</span>
+							</li>
+							<!-- {/foreach} -->
+						</ul>
+						<!-- {/if} -->
 					</a>
 					{if $val.seller_goods}
 					<div class="suggest-goods-list">
