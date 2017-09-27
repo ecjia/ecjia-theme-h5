@@ -33,11 +33,13 @@
 					<!-- {/if} -->
 					<!-- {if $val.quickpay_activity_list} -->
 					<ul class="store-promotion">
-						<!-- {foreach from=$val.quickpay_activity_list item=list} -->
+						<!-- {foreach from=$val.quickpay_activity_list item=list key=key} -->
+						{if $key eq 0}
 						<li class="quick">
-							<span class="quick-label">{$list.title}</span>
-							<span class="promotion-name">{$list.label_activity_type}</span>
+							<span class="quick-label">买单</span>
+							<span class="promotion-name">{$list.title}</span>
 						</li>
+						{/if}
 						<!-- {/foreach} -->
 					</ul>
 					<!-- {/if} -->
