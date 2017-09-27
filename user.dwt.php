@@ -267,6 +267,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </li>
     </ul>
     
+    {if $merchant_join_close neq 1}
     <ul class="ecjia-list list-short">
         <li>
         	<a class="external nopjax external" href="{url path='franchisee/index/first'}">
@@ -283,6 +284,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
     </ul>
+    {/if}
     
     <ul class="ecjia-list list-short">
         <!-- {foreach from=$shop item=value} 网店信息 -->
