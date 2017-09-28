@@ -104,10 +104,12 @@ class user_order_controller {
         if (!ecjia_front::$controller->is_cached('user_order_detail.dwt', $cache_id)) {
             
             ecjia_front::$controller->assign('order', $data);
+            ecjia_front::$controller->assign('headInfo', $data['order_status_log'][0]);
             ecjia_front::$controller->assign('title', '订单详情');
             ecjia_front::$controller->assign_title('订单详情');
             ecjia_front::$controller->assign_lang();
         }
+//         _dump($data,1);
         ecjia_front::$controller->display('user_order_detail.dwt', $cache_id);
     }
 

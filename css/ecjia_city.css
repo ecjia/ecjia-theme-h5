@@ -6159,6 +6159,43 @@ footer {
     padding: 2px 4px;
 }
 
+.order-status-head {
+	padding: 0 1em;
+	background-color: #FFF;
+    margin-bottom: 20px;
+}
+
+.order-status-head .order-status-msg {
+	padding: 23px 0 20px 35px;
+}
+
+.order-status-head .order-status-msg .order-head-font {
+    font-size: 1.4em;
+}
+
+.order-status-head .order-status-msg .order-color {
+	color: #DDD;
+}
+
+.order-status-head .order-status-msg .order-more-color {
+	color: #47aa4d;
+}
+
+.order-status-head .order-status-img {
+	float: left;
+}
+
+.order-status-head .order-status-img img{
+    width: 30px;
+    height: 30px;
+}
+
+.order-status-head .order-status-img p{
+	height: 20px;
+    width: 15px;
+    border-right: 1px solid #eee;
+}
+
 .ecjia-order-list .ecjia-nolist {
 	position: absolute;
 	top: 10em;
