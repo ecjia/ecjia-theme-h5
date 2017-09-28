@@ -1704,6 +1704,21 @@ footer {
     height: 30px;
 }
 
+.ecjia-header .ecjia-header-right a .check {
+	position: absolute;
+    color: #fff;
+    display: inline-block;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    font-size: .8em;
+    padding: .1em .2em;
+    line-height: 1.5em;
+    z-index: 2;
+    right: 7.5em;
+    top: 1em;
+	width: 3em;
+}
+
 .ecjia-header .ecjia-header-right a i.icon-shop-location {
     background: url(../images/icon/icon_position_white.png);
     background-size: .75em;
@@ -2176,7 +2191,7 @@ footer {
 }
 
 .ecjia-store-detail .store-promotion .quick-btn {
-	background-color: #47aa4d;
+	background-color: #F79B31;
 	color: #fff;
 	border-radius: 4px;
 	float: right;
