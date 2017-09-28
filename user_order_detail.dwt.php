@@ -11,28 +11,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #EndLibraryItem -->
 <div class="ecjia-order-detail">
-	<ul class="ecjia-list ecjia-list-two ecjia-nav ecjia-margin-t-n">
-		<li class="{if $smarty.get.type neq 'detail'} active{/if}"><a class="nopjax" href="#one" role="tab" data-toggle="tab">订单状态</a></li>
-		<li class="{if $smarty.get.type eq 'detail'} active{/if}"><a class="nopjax" href="#two" role="tab" data-toggle="tab">订单详情</a></li>
-	</ul>
-	<div class="goods-describe order-log-list {if $smarty.get.type neq 'detail'} active{/if}" id="one">
-		<!-- {foreach from=$order.order_status_log item=info} -->
-		<div class='order-log-item {$info.status} {if count($order.order_status_log) lt 2} item-only{/if}'>
-			<div class="order-log">
-				<span>{$info.order_status}</span><span class="ecjiaf-fr order-time">{$info.time}</span>
-				<p>{$info.message}</p>{if $info.status eq 'express_user_pickup' && $order.express_mobile}<a class="tel" href="tel://{$order.express_mobile}"></a>{/if}
-			</div>
-		</div>
-		<!-- {/foreach} -->
-	</div>
-	<div class="ecjia-checkout goods-describe ecjia-margin-b {if $smarty.get.type eq 'detail'} active{/if} " id="two">
+	<div class="ecjia-checkout ecjia-margin-b">
 		<div class="flow-goods-list">
 		    <div class="order-status-head">
+		    <a href="{url path='user/order/order_detail'}&order_id={$order.order_id}&type={'status'}">
 		        <span class="order-status-img"><p></p><img src="{$theme_url}images/icon/list_h_circle_50.png"></span>
 		        <div class="order-status-msg">
     		        <span><span class="order-head-font">{$headInfo.order_status}</span><span class="ecjiaf-fr order-color">{$headInfo.time}</span></span>
     		        <p class="ecjia-margin-t"><span class="order-color">{$headInfo.message}</span><span class="ecjiaf-fr order-more-color">更多状态 ></span></p>
 		        </div>
+	        </a>
 		    </div>
 			<div class="order-hd">
 				<a class="ecjiaf-fl" href='{url path="merchant/index/init" args="store_id={$order.store_id}"}'>
