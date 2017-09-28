@@ -45,6 +45,7 @@
 			ecjia.touch.search_header();
 			ecjia.touch.del_history();
 			ecjia.touch.share_spread();
+			ecjia.touch.copy_btn();
 
 			$("body").greenCheck();
 		},
@@ -255,6 +256,12 @@
         	});
 		},
 		
+		copy_btn : function() {
+			var clipboard = new Clipboard('.copy-btn');
+			clipboard.on('success', function(e) {  
+			        alert("订单号复制成功！");
+			});  
+		},
 		
 		/**
 		 * 设置PJAX

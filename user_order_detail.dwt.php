@@ -74,12 +74,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</ul>
 			<p class="select-title ecjiaf-fwb ecjia-margin-l">订单信息</p>
 			<ul class="ecjia-list">
+			    <li><span class="ecjiaf-fl width-25-p">订单编号：</span><span class="width-75-p">{$order.order_sn}</span><span class="copy-btn" data-clipboard-text="{$order.order_sn}">复制</span></li>
+			    <li><span class="ecjiaf-fl width-25-p">下单时间：</span><span class="ecjiaf-fr width-75-p">{$order.formated_add_time}</span></li>
+				<li><span class="ecjiaf-fl width-25-p">支付方式：</span><span class="ecjiaf-fr width-75-p">{$order.pay_name}</span></li>
 				<li><span class="ecjiaf-fl width-25-p">发票抬头：</span><span class="ecjiaf-fr width-75-p">{if $order.inv_title_type}{$order.inv_payee}{else}无{/if}</span></li>
 				<li><span class="ecjiaf-fl width-25-p">发票识别码：</span><span class="ecjiaf-fr width-75-p">{if $order.inv_tax_no}{$order.inv_tax_no}{else}无{/if}</span></li>
-				<li><span class="ecjiaf-fl width-25-p">订单编号：</span><span class="ecjiaf-fr width-75-p">{$order.order_sn}</span></li>
-				<li><span class="ecjiaf-fl width-25-p">下单时间：</span><span class="ecjiaf-fr width-75-p">{$order.formated_add_time}</span></li>
 				<li class="remark"><span class="ecjiaf-fl width-25-p">订单备注：</span><span class="ecjiaf-fr width-75-p">{if $order.postscript}{$order.postscript}{else}无{/if}</span></li>
-				<li><span class="ecjiaf-fl width-25-p">支付方式：</span><span class="ecjiaf-fr width-75-p">{$order.pay_name}</span></li>
 			</ul>
 			<div class="order-ft-link">
 				<a class="btn btn-small btn-hollow external" href="{if $order.service_phone}tel://{$order.service_phone}{else}javascript:alert('无法联系卖家');{/if}">联系卖家</a>

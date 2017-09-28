@@ -6151,6 +6151,14 @@ footer {
     color: #fff;	
 }
 
+.copy-btn {
+    float: right;
+    border: 1px solid #eee;
+    font-size: 10px;
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
 .ecjia-order-list .ecjia-nolist {
 	position: absolute;
 	top: 10em;
