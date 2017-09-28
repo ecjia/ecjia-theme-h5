@@ -39,9 +39,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</li>
 		<!-- {foreach from=$store_info.quickpay_activity_list item=list key=key} -->
 		<li class="quick-li">
-			<span class="quick-name">{$list.label_activity_type}</span>
-			<span class="quick-time">时间时间</span>
-			<span class="quick-money">已买xxx</span>
+			<span class="quick-name">{$list.title}</span>
+			{if $list.limit_time_weekly neq '0'}
+			<span class="quick-time">（{$list.limit_time_weekly}&nbsp;{$list.limit_time_daily}）</span>
+			{/if}
+			{if $list.total_order_count > 0}
+			<span class="quick-money">已买{$list.total_order_count}元</span>
+			{/if}
 		</li>
 		<!-- {/foreach} -->
 	</ul>
