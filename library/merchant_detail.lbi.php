@@ -79,7 +79,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</li>
 		<li>
 			<span class="other-info-name"><i class="icon-shop-description"></i>商家简介</span>
-			<p class="other-info-result">{if $store_info.shop_description}{$store_info.shop_description}{else}暂无{/if}</p>
+			<p class="other-info-result">{if $store_info.seller_description}{$store_info.seller_description}{else}暂无{/if}</p>
 		</li>
 	</ul>
 </div>
