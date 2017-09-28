@@ -1890,7 +1890,7 @@ footer {
 
 .ecjia-store-ul {
 	position: fixed;
-	top: 11.5em;
+	top: 11.3em;
 	height: 3em;
 	max-width: 640px;
 	width: 100%;
@@ -1918,11 +1918,10 @@ footer {
 
 .ecjia-store-detail {
 	position: absolute;
-   	top: 16em;
+   	top: 15.8em;
 	bottom: 0;
 	width: 100%;
 	max-width: 640px;
-	z-index: 4;
 }
 
 .ecjia-store-detail .store-hr {
@@ -2201,7 +2200,7 @@ footer {
 
 .ecjia-store-goods .a1n {
 	position: fixed;
-	top: 16em;
+	top: 15.8em;
 	bottom: 0;
 	width: 100%;
 	max-width: 640px;
@@ -8401,7 +8400,7 @@ footer {
 
 .ecjia-store-comment .ecjia-seller-comment {
     position: fixed;
-    top: 16em;
+    top: 15.8em;
     bottom: 0;
     width: 100%;
     max-width: 640px;

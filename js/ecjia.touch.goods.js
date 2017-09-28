@@ -792,7 +792,7 @@
 
 		scroll_show_hide: function(e) {
 			if (e == true) {
-				$('.ecjia-store-banner').css('height', 0);
+				$('.ecjia-store-banner').css('display', 'none');
 
 				$('.page_hearder_hide').show();
 				$('.ecjia-store-goods').children('.a1n').css('top', '6.6em');
@@ -802,14 +802,14 @@
 				$('.ecjia-seller-comment').css('top', '6.6em');
 				$('.ecjia-store-detail').css('top', '6.6em');
 			} else {
-				$('.ecjia-store-banner').css('height', '12.5em');
+				$('.ecjia-store-banner').css('display', 'block');
 				$('.page_hearder_hide').hide();
-				$('.ecjia-store-goods').children('.a1n').css('top', '16em');
+				$('.ecjia-store-goods').children('.a1n').css('top', '15.8em');
 
 				//店铺评论
-				$('.ecjia-store-ul').css('top', '11.5em');
-				$('.ecjia-seller-comment').css('top', '16em');
-				$('.ecjia-store-detail').css('top', '16em');
+				$('.ecjia-store-ul').css('top', '11.3em');
+				$('.ecjia-seller-comment').css('top', '15.8em');
+				$('.ecjia-store-detail').css('top', '15.8em');
 			}
 		},
 
