@@ -1694,38 +1694,37 @@ footer {
 }
 
 .ecjia-header .ecjia-header-right a i.icon-shop-search {
-    background: url(../images/icon/icon_search_white.png);
-    background-size: .8em;
+	background: url(../images/icon/icon_search_white.png);
+    background-size: .9em;
     background-repeat: no-repeat;
     position: absolute;
-    right: 1.5em;
-    top: .3em;
+    top: 10px;
+	right: 1.6em;
     width: 30px;
     height: 30px;
 }
 
 .ecjia-header .ecjia-header-right a .check {
-	position: absolute;
+    position: absolute;
     color: #fff;
     display: inline-block;
-    border: 2px solid #fff;
+    border: 1px solid #fff;
     border-radius: 4px;
     font-size: .8em;
-    padding: .1em .2em;
+    padding: .1em .3em;
     line-height: 1.5em;
     z-index: 2;
-    right: 7.5em;
-    top: 1em;
-	width: 3em;
+    right: 7.2em;
+    top: 12px;
 }
 
 .ecjia-header .ecjia-header-right a i.icon-shop-location {
-    background: url(../images/icon/icon_position_white.png);
-    background-size: .75em;
+	background: url(../images/icon/icon_position_white.png);
+    background-size: .9em;
     background-repeat: no-repeat;
     position: absolute;
-    right: .4em;
-    top: .3em;
+    right: .5em;
+    top: 10px;
     width: 30px;
     height: 30px;
 }
@@ -1759,7 +1758,7 @@ footer {
 .ecjia-store-banner .ecjia-header-right {
 	position: absolute;
     right: 0;
-    width: 25%;
+    width: 50%;
 }
 
 .ecjia-store-banner .ecjia-header-right a {
