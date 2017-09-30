@@ -18,7 +18,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		        <span class="order-status-img"><p></p><img src="{$theme_url}images/icon/list_h_circle_50.png"></span>
 		        <div class="order-status-msg">
     		        <span><span class="order-head-font">{$headInfo.order_status}</span><span class="ecjiaf-fr order-color">{$headInfo.time}</span></span>
-    		        <p class="ecjia-margin-t"><span class="order-color">{$headInfo.message}</span><span class="ecjiaf-fr order-more-color">更多状态 ></span></p>
+    		        <p class="ecjia-margin-t h-1"><span class="order-color order-status">{$headInfo.message}</span><span class="ecjiaf-fr order-more-color">更多状态 ></span></p>
 		        </div>
 	        </a>
 		    </div>
@@ -77,7 +77,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			{/if}
 			<p class="select-title ecjiaf-fwb ecjia-margin-l">订单信息</p>
 			<ul class="ecjia-list">
-			    <li><span class="ecjiaf-fl width-25-p">订单编号：</span><span class="width-75-p">{$order.order_sn}</span><span class="copy-btn" data-clipboard-text="{$order.order_sn}">复制</span></li>
+			    <li><span class="ecjiaf-fl width-25-p">订单编号：</span><span class="width-75-p">{$order.order_sn}</span><button class="copy-btn" data-clipboard-text="{$order.order_sn}">复制</button></li>
 			    <li><span class="ecjiaf-fl width-25-p">下单时间：</span><span class="ecjiaf-fr width-75-p">{$order.formated_add_time}</span></li>
 				<li><span class="ecjiaf-fl width-25-p">支付方式：</span><span class="ecjiaf-fr width-75-p">{$order.pay_name}</span></li>
 				<li><span class="ecjiaf-fl width-25-p">发票抬头：</span><span class="ecjiaf-fr width-75-p">{if $order.inv_title_type}{$order.inv_payee}{else}无{/if}</span></li>

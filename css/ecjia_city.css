@@ -6153,9 +6153,11 @@ footer {
 .copy-btn {
     float: right;
     border: 1px solid #eee;
-    font-size: 10px;
+    font-size: 13px;
     border-radius: 4px;
     padding: 2px 4px;
+    z-index:999;
+    background: #FFF;
 }
 
 .order-status-head {
@@ -6169,11 +6171,25 @@ footer {
 }
 
 .order-status-head .order-status-msg .order-head-font {
-    font-size: 1.4em;
+    font-size: 1.3em;
 }
 
 .order-status-head .order-status-msg .order-color {
 	color: #86888D;
+}
+
+.h-1 {
+    height: 1em;
+}
+
+.order-status-head .order-status-msg .order-color.order-status {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    width: 70%;
+    float: left;
 }
 
 .order-status-head .order-status-msg .order-more-color {
@@ -10582,6 +10598,7 @@ footer {
     background: #eee;
     opacity: 0.3;
     /*display: none;*/
+    z-index:1;
 }
 
 .quickpay_hint {
