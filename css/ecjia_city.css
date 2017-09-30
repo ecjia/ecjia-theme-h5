@@ -1783,13 +1783,20 @@ footer {
 	overflow: hidden;
 }
 
+.ecjia-store-brief .basic-info {
+	width: 100%;
+    overflow: hidden;
+    height: 10em;
+}
+
 .ecjia-store-brief .store-info .clear {
 	clear: both;
 }
 
 .ecjia-store-brief .store-left {
 	float: left;
-	width: 5em;
+	text-align: left;
+	height: 10em;
 }
 
 .ecjia-store-brief .store-left img {
@@ -1798,16 +1805,16 @@ footer {
 	border-radius: 50%;
 	border: 2px solid #47aa4d;
 	top: 2.5em;
-	position: relative;
+	position: absolute;
 }
 
 .ecjia-store-brief .store-right {
-	float: left;
-	width: 70%;
-	margin-top: 2.5em;
-	text-align: left;
-	margin-left: 1em;
-	font-size: 1em;
+    float: right;
+    width: 100%;
+    margin-top: 2.5em;
+    text-align: left;
+    font-size: 1em;
+    padding-left: 6em;
 }
 
 .ecjia-store-brief .store-title {
