@@ -74,33 +74,17 @@ class quickpay_controller {
     
     
     public static function checkout() {
-//         $token = ecjia_touch_user::singleton()->getToken();			//token参数
-//         $user_info = ecjia_touch_user::singleton()->getUserinfo();	//id,name
-//         $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
-//         $cache_id = sprintf('%X', crc32($cache_id));
-         
-
+        $token = ecjia_touch_user::singleton()->getToken();
+        $user_info = ecjia_touch_user::singleton()->getUserinfo();
+        $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+        $cache_id = sprintf('%X', crc32($cache_id));
+        
+        $city_id = !empty($_COOKIE['city_id']) ? $_COOKIE['city_id'] : '';
         
         
         
-//         if (!ecjia_front::$controller->is_cached('user_profile.dwt', $cache_id)) {
-//             $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
-//             $user_img_login = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
-//             $user_img_logout = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-out2x.png';
-//             if (!empty($user) && !is_ecjia_error($user)) {
-//                 if (!empty($user['avatar_img'])) {
-//                     $user_img_login = $user['avatar_img'];
-//                 }
-//                 ecjia_front::$controller->assign('user', $user);
-//                 ecjia_front::$controller->assign('user_img', $user_img_login);
-//             } else {
-//                 ecjia_front::$controller->assign('user_img', $user_img_logout);
-//             }
-    
-//             ecjia_front::$controller->assign_lang();
-//             ecjia_front::$controller->assign_title('个人资料');
-//         }
-    
+        
+        ecjia_front::$controller->assign_title('买单详情');
         ecjia_front::$controller->display('quickpay_checkout.dwt', $cache_id);
     }
     

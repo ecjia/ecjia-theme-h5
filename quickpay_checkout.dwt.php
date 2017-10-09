@@ -15,8 +15,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<div class="quickpay_hint">当前不在可用时段哦～</div>
-<div class="dont_time"></div>
+<!-- <div class="quickpay_hint">当前不在可用时段哦～</div> -->
+<!-- <div class="dont_time"></div> -->
 <div class="quickpay">
     <div class="checkout">
         <div class="quickpay_div before_two">
