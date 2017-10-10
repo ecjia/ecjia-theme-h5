@@ -35,7 +35,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<li class="quick">
 			<span class="quick-label">买单</span>
 			<span class="quick-name">买单立享优惠</span>
-			<a class="quick-btn" href="{RC_Uri::url('user/quickpay/checkout')}" >优惠买单</a>
+			<a class="quick-btn" href="{RC_Uri::url('user/quickpay/checkout')}&store_id={$store_info.id}" >优惠买单</a>
 		</li>
 		<!-- {foreach from=$store_info.quickpay_activity_list item=list key=key} -->
 		<li class="quick-li">

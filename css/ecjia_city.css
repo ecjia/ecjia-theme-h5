@@ -6401,6 +6401,11 @@ footer {
 	border-bottom: none;
 }
 
+.ecjia-order-detail .ecjia-checkout .order-map {
+	width: 25px;
+	float: right;
+}
+
 .ecjia-order-detail .ecjia-checkout .flow-goods-list {
 	background: none;
 	padding-bottom: 4.4em;
@@ -10345,6 +10350,10 @@ footer {
     line-height: 3em;
     padding: 0 1em;
     font-size: 1.1em;
+}
+
+.quickpay .ecjia-list.list-short {
+	border:0!important;
 }
 
 .quickpay .checkout .outher_d .ecjia-margin-l{

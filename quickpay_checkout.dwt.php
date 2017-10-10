@@ -10,25 +10,24 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">
-// 	ecjia.touch.user.init();
+	ecjia.touch.quickpay.init();
 </script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- <div class="quickpay_hint">当前不在可用时段哦～</div> -->
-<!-- <div class="dont_time"></div> -->
 <div class="quickpay">
     <div class="checkout">
         <div class="quickpay_div before_two">
-            <li class="outher_d"><span>{t}订单金额 (元){/t}</span><input placeholder="请询问店员后输入"></li>
-            <li class="outher_d"><span>{t}不参与优惠金额 (元){/t}</span><input placeholder="请询问店员后输入"></li>
+            <li class="outher_d"><span>{t}订单金额 (元){/t}</span><input name="order-money" placeholder="请询问店员后输入"></li>
+            <li class="outher_d"><span>{t}不参与优惠金额 (元){/t}</span><input name="drop-out-money" placeholder="请询问店员后输入" data-url="{url path='user/quickpay/checkout'}"></li>
         </div>
+        <input type="hidden" name="store_id" value="{$store_id}">
         
-        <div class="before_two ecjia-margin-t">
+        <div class="before_two ecjia-margin-t goods-describe">
            <label class="quickpay_div">
                <li class="outher_d">
                     <span class="redio-height redio-mr-t">
-                       <label class="ecjia-check ecjiaf-fr"><input type="radio" id="pay_balance" name="payment" value="9"></label>
+                       <label class="ecjia-check ecjiaf-fr"><input type="radio" id="11" name="11" value="91"></label>
                    </span>
                    <span class="shanhui">{t}闪惠{/t}</span>
                    <span class="slect-title">{t}每满100减8元{/t}</span>
@@ -37,7 +36,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
            </label>
         </div>
        
-        <div class="quickpay_div before_two ecjia-margin-t">
+        <div class="quickpay_div before_two ecjia-margin-t goods-describe">
             <li class="outher_d">
                 <a class="nopjax" href="{url path='user/quickpay/bouns'}">
             		<div class="icon-wallet"></div>
@@ -72,16 +71,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <!-- {foreach from=$payment_list item=list} -->
                 <li class="ecjia-account-padding-input user_pay_way">
                     <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}">
-                		<label for="{$list.pay_code}" class="ecjiaf-fr ecjia-check" value="10">
-                		<input type="radio" id="{$list.pay_code}" name="payment_id" value="{$list.pay_id}" checked="true">
-                		</label>
-                    	{$list.pay_name}
-                    </span>
-                </li>
-                <li class="ecjia-account-padding-input user_pay_way">
-                    <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}">
-                		<label for="{$list.pay_code}" class="ecjiaf-fr ecjia-check" value="10">
-                		<input type="radio" id="{$list.pay_code}" name="payment_id" value="{$list.pay_id}" checked="true">
+                		<label for="{$list.pay_code}" class="ecjiaf-fr ecjia-check" value="{$list.pay_id}">
+                		  <input type="radio" id="{$list.pay_code}" name="payment_id" value="{$list.pay_id}" checked="true">
                 		</label>
                     	{$list.pay_name}
                     </span>
