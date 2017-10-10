@@ -64,7 +64,22 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<li style="height: auto;"><span class="ecjiaf-fl width-25-p">收货地址：</span>
 				<span class="ecjiaf-fr width-75-p">{$order.consignee} {$order.mobile}</span>
 				<span class="ecjiaf-fr width-75-p">{$order.province} {$order.city} {$order.district}{$order.address}</span></li>
-				<li><span class="ecjiaf-fl width-25-p">配送员：</span><span class="ecjiaf-fr width-75-p">{if $order.express_user}{$order.express_user}<span><img class="order-map" src="{$theme_url}images/icon/order-map.png"></span>{else}暂无{/if}</span></li>
+				<li>
+					<span class="ecjiaf-fl width-25-p">配送员：</span><span class="ecjiaf-fr width-75-p">
+					{if $order.express_user}
+						{$order.express_user}
+						{if $express_url}
+						<span>
+							<a style="float: right;display: inline-block;" class="nopjax external" href="{$express_url}">
+								<img class="order-map" src="{$theme_url}images/icon/order-map.png">
+							</a>
+						</span>
+						{/if}
+					{else}
+						暂无
+					{/if}
+					</span>
+				</li>
 				<li><span class="ecjiaf-fl width-25-p">配送员号码：</span><span class="ecjiaf-fr width-75-p">{if $order.express_user}{$order.express_mobile}{else}暂无{/if}</span></li>
 				<li><span class="ecjiaf-fl width-25-p">配送方式：</span><span class="ecjiaf-fr width-75-p">{$order.shipping_name}</span></li>
 			</ul>
