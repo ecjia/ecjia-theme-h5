@@ -357,6 +357,7 @@ class user_order_controller {
 
     	ecjia_front::$controller->assign('data', json_encode($data));
     	ecjia_front::$controller->assign('arr', json_encode($arr));
+    	ecjia_front::$controller->assign('express_info', $arr);
     	ecjia_front::$controller->assign('hidenav', 1);
     	
     	if (!empty($data['order_status_log']) && $data['order_status_log'][0]['status'] == 'finished') {

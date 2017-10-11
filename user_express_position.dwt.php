@@ -11,16 +11,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="footer"} -->
 <style type="text/css">
 .ecjia{ height:100%;max-width:640px }
-.ecjia #allmap{ width:100%;height:90% }
-.express-info{ height:10%;display:flex;flex-direction:row;justify-content:space-between;align-items:center }
-.express-img image{ width:100rpx;height:100rpx }
-.info{ width:65%;display:flex;flex-direction:column;font-size:26rpx;line-height:50rpx;height:100% }
-.name{ height:25%;padding-top:8% }
-.status{ color:#999;overflow:hidden;text-overflow:ellipsis;white-space:nowrap }
-.express-img{ height:100%;display:flex;align-items:center;width:20%;justify-content:center }
-.phone{ height:60%;display:flex;align-items:center;border-left:2rpx solid #eee;width:15%;justify-content:center }
-.phone image{ width:60rpx;height:60rpx }
+.ecjia #allmap{ width:100%;height:85% }
+.express-info{ height:15%;position:relative }
+.express-img{ width:100px;text-align:center;position:absolute;top:20% }
+.express-img img{ width:60px;height:60px;border-radius:50% }
+.info{ margin-left:100px;margin-right:85px;height:100% }
+.phone{ width:85px;position:absolute;right:0;top:15%;height:75%;padding-top:15px;border-left:1px solid #eee;text-align:center }
+.phone img{ width:40px;height:40px }
+.name{ height:50%;line-height:4em }
+.status{ height:25%;line-height:2em;overflow:hidden }
 </style>
+
 <script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp"></script>
 <script>
 // var center = new qq.maps.LatLng(39.91474,116.37333);
@@ -50,7 +51,7 @@ icon_0 = new qq.maps.MarkerImage(theme_url + 'images/icon/icon-shopping-express.
 icon_1 = new qq.maps.MarkerImage(theme_url + 'images/icon/icon-shopping-address.png', size, origin, anchor);
 icon_2 = new qq.maps.MarkerImage(theme_url + 'images/icon/icon-store-address.png', size, origin, anchor);
 
-for(var i = 0;i < latlngs.length; i++) {
+for (var i = 0;i < latlngs.length; i++) {
     (function(n){
         if (n == 0) {
             var marker = new qq.maps.Marker({
@@ -73,7 +74,8 @@ for(var i = 0;i < latlngs.length; i++) {
         } 
 
     })(i);
-}    
+} 
+setTimeout(function () { location.reload(); }, 20000)
 </script>
 <!-- {/block} -->
 <!-- {block name="main-content"} -->
@@ -81,14 +83,14 @@ for(var i = 0;i < latlngs.length; i++) {
 </div>
 <div class="express-info">
 	<div class="express-img">
-		<img src="" />
+		<img src="{$express_info.avatar}" />
 	</div>
 	<div class="info">
-		<div class="name"></view>
-		<div class="status"></view>
+		<div class="name">{$express_info.express_user}</div>
+		<div class="status">{$express_info.label_shipping_status}</div>
 	</div>
 	<div class="phone">
-		<img src="" />
+		<a href="tel:{$express_info.express_mobile}"><img src="{$theme_url}images/icon/icon-phone.png" /></a>
 	</div>
 </div>
 <!-- {/block} -->
