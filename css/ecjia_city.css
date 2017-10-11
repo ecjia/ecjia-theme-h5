@@ -10437,15 +10437,24 @@ footer {
 }
 
 .shanhui {
-    background-color: #F79B31;
+	background-color: #F79B31;
     border-radius: 5px;
     font-size: 1em;
     padding: .2em;
     color: #FFF;
+    float: left;
+    line-height: 1.3em;
+    margin-top: .6em;
 }
 
 .quickpay .checkout .quickpay_div .slect-title{
 	margin-left: .5em;
+    display: block;
+    float: left;
+    max-width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .quickpay .checkout .outher_d .redio-height{

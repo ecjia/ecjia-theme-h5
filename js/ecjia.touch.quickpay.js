@@ -23,7 +23,6 @@
 			        		'drop_out_money' : drop_out_money,
 			        	}
 			        	$.post(url, info, function(data) {
-			        		console.log(data);
 			        		$('.quickpay-content').html(data.list);
 			        		$("body").greenCheck();
 			        	});

@@ -18,8 +18,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="quickpay">
     <div class="checkout">
         <div class="quickpay_div before_two">
-            <li class="outher_d"><span>{t}订单金额 (元){/t}</span><input class="quick_money" name="order-money" placeholder="请询问店员后输入" value="{$goods_amount}"></li>
-            <li class="outher_d"><span>{t}不参与优惠金额 (元){/t}</span><input class="quick_money" name="drop-out-money" placeholder="请询问店员后输入" data-url="{url path='user/quickpay/flow_checkorder'}" value="{$exclude_amount}" /></li>
+            <li class="outher_d"><span>{t}订单金额 (元){/t}</span><input class="quick_money" name="order-money" placeholder="请询问店员后输入" value="{$data.goods_amount}"></li>
+            <li class="outher_d"><span>{t}不参与优惠金额 (元){/t}</span><input class="quick_money" name="drop-out-money" placeholder="请询问店员后输入" data-url="{url path='user/quickpay/flow_checkorder'}" value="{$data.exclude_amount}" /></li>
         </div>
         <input type="hidden" name="store_id" value="{$store_id}">
         <div class="quickpay-content">
@@ -83,7 +83,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			    
 				<li class="outher_d">
 			        <span>实付金额</span>
-			        <span class="ecjiaf-fr">￥0.00</span>
+			        <span class="ecjiaf-fr">￥{$total_fee}</span>
 			    </li>
 			</div>
 			
@@ -179,7 +179,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     
 	<li class="outher_d">
         <span>实付金额</span>
-        <span class="ecjiaf-fr">￥0.00</span>
+        <span class="ecjiaf-fr">￥{$total_fee}</span>
     </li>
 </div>
 

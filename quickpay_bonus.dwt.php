@@ -1,7 +1,7 @@
 <?php
 /*
-Name: 获取全部订单模板
-Description: 获取全部订单页
+Name: 闪惠红包
+Description: 闪惠红包页
 Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');

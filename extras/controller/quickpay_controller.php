@@ -128,10 +128,15 @@ class quickpay_controller {
         
         if (!empty($_SESSION['quick_pay'])) {
         	$_SESSION['quick_pay']['data']['bonus_list'] = touch_function::change_array_key($_SESSION['quick_pay']['data']['bonus_list'], 'bonus_id');
-        	ecjia_front::$controller->assign('goods_amount', $_SESSION['quick_pay']['goods_amount']);
-        	ecjia_front::$controller->assign('exclude_amount', $_SESSION['quick_pay']['exclude_amount']);
+        	$_SESSION['quick_pay']['data']['payment_list'] = touch_function::change_array_key($_SESSION['quick_pay']['data']['payment_list'], 'pay_id');
+        	
         	ecjia_front::$controller->assign('data', $_SESSION['quick_pay']['data']);
         	ecjia_front::$controller->assign('temp', $_SESSION['quick_pay']['temp']);
+        	$data = $_SESSION['quick_pay']['data'];
+        	$temp = $_SESSION['quick_pay']['temp'];
+			
+        	$total_fee = $data['goods_amount']-$data['exclude_amount']-$data['discount']-($temp['integral']/100)-$data['bonus_list'][$temp['bonus']]['type_money'];
+        	ecjia_front::$controller->assign('total_fee', $total_fee);
         }
         ecjia_front::$controller->assign_title('优惠买单');
         ecjia_front::$controller->display('quickpay_checkout.dwt', $cache_id);
@@ -155,6 +160,8 @@ class quickpay_controller {
     			$_SESSION['quick_pay']['data'] = $data;
     			unset($_SESSION['quick_pay']['temp']);
     			ecjia_front::$controller->assign('data', $data);
+    			$total_fee = $data['goods_amount']-$data['exclude_amount']-$data['discount'];
+    			ecjia_front::$controller->assign('total_fee', $total_fee);
     			ecjia_front::$controller->assign('store_id', $store_id);
     			$say_list = ecjia_front::$controller->fetch('quickpay_checkout.dwt');
     			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'content' => $data));
