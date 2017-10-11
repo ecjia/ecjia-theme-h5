@@ -3932,21 +3932,29 @@ footer {
 .payment-list li span.pay_balance {
 	background: #fff url(../images/icon/wallet-icon.png) no-repeat 0 center;
 	background-size: 28px;
+	width: 100%;
+	margin-left: 0;
 }
 
 .payment-list li span.pay_alipay {
 	background: #fff url(../images/icon/alipay-icon.png) no-repeat 0 center;
 	background-size: 28px;
+	width: 100%;
+	margin-left: 0;
 }
 
 .payment-list li span.pay_wxpay {
 	background: #fff url(../images/icon/wxpay-icon.png) no-repeat 0 center;
 	background-size: 28px;
+	width: 100%;
+	margin-left: 0;
 }
 
 .payment-list li span.pay_cod {
 	background: #fff url(../images/icon/pay-cod.png) no-repeat 0 center;
 	background-size: 28px;
+	width: 100%;
+	margin-left: 0;
 }
 /*========================  我的 ===========================*/
 .ecjia-user {
@@ -10352,6 +10360,10 @@ footer {
     font-size: 1.1em;
 }
 
+.quickpay .checkout .outher_d a {
+	display: block;
+}
+
 .quickpay .ecjia-list.list-short {
 	border:0!important;
 }
@@ -10364,6 +10376,7 @@ footer {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+	margin-left: .2em;
 }
 
 .quickpay .checkout .outher_d.explain_d {

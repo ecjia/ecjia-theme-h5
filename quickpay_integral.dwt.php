@@ -15,17 +15,19 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </script>
 <!-- {/block} -->
 <!-- {block name="main-content"} -->
-<div class="quickpay">
-    <div class="checkout">
-        <p class="intergal_title">{t}您总共1447个积分{/t}</p>
-        <input class="intergal_input before_two" placeholder="最多可使用500个积分">
-    </div>
-    
-     <div class="save_discard">
-        <input class="btn mag-t1" name="submit" type="submit" value="保存">
-        <input class="btn btn-hollow-danger mag-t1" name="submit" type="submit" value="清空">
-    </div>
-</div>
-
+<form id="theForm" name="theForm" action='{url path="user/quickpay/checkout" args="store_id={$store_id}"}' method="post">
+	<div class="quickpay">
+	    <div class="checkout">
+	        <p class="intergal_title">{t}您总共有{$data.user_integral}个积分{/t}</p>
+	        <input class="intergal_input before_two" placeholder="最多可使用{$data.order_max_integral}个积分" name="integral" value="{$temp.integral}">
+	    </div>
+	    
+	     <div class="save_discard">
+	        <input class="btn mag-t1" name="save" type="submit" value="保存">
+	        <input type="hidden" name="integral_update" value="1" />
+	        <input class="btn btn-hollow-danger mag-t1" name="integral_clear" type="submit" value="清空">
+	    </div>
+	</div>
+</form>
 <!-- {/block} -->
 {/nocache}

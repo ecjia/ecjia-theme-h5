@@ -12,7 +12,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <style type="text/css">
 .ecjia{ height:100%;max-width:640px }
 .ecjia #allmap{ width:100%;height:85% }
-.express-info{ height:15%;position:relative;max-height: 110px; }
+.express-info{ height:15%;position:relative;max-height:110px; }
 .express-img{ width:100px;text-align:center;position:absolute;top:20% }
 .express-img img{ width:60px;height:60px;border-radius:50% }
 .info{ margin-left:100px;margin-right:85px;height:100% }

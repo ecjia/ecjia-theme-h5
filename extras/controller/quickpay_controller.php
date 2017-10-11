@@ -55,7 +55,13 @@ class quickpay_controller {
      * 闪惠模块
      */
     public static function quickpay_list() {
-        $token = ecjia_touch_user::singleton()->getToken();
+    	$token = ecjia_touch_user::singleton()->getToken();
+    	$param = array('token' => $token, 'pagination' => array('count' => 10, 'page' => 1));
+    	 
+    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICK_ORDER_LIST)->data($param)->run();
+    	$data = is_ecjia_error($data) ? array() : $data;
+    	ecjia_front::$controller->assign('order_list', $data);
+    	
         ecjia_front::$controller->assign_title('我的买单');
         ecjia_front::$controller->display('quickpay_list.dwt');
     }
@@ -64,7 +70,23 @@ class quickpay_controller {
      * 闪惠列表异步
      */
     public static function async_quickpay_list() {
-        
+    	$size = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+    	$pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
+    	
+    	$param = array('token' => ecjia_touch_user::singleton()->getToken(), 'pagination' => array('count' => $size, 'page' => $pages));
+    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICK_ORDER_LIST)->data($param)->run();
+    	if (!is_ecjia_error($data)) {
+    		list($orders, $page) = $data;
+    		if (isset($page['more']) && $page['more'] == 0) $is_last = 1;
+    	
+    		$say_list = '';
+    		if (!empty($orders)) {
+    			ecjia_front::$controller->assign('order_list', $orders);
+    			ecjia_front::$controller->assign_lang();
+    			$say_list = ecjia_front::$controller->fetch('quickpay_list.dwt');
+    		}
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+    	}
     }
     
     public static function quickpay_detail() {
@@ -75,56 +97,104 @@ class quickpay_controller {
     
     public static function checkout() {
         $token = ecjia_touch_user::singleton()->getToken();
-        $user_info = ecjia_touch_user::singleton()->getUserinfo();
-        $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
-        $cache_id = sprintf('%X', crc32($cache_id));
         
         $city_id = !empty($_COOKIE['city_id']) ? $_COOKIE['city_id'] : '';
+        $store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) :0;
+        ecjia_front::$controller->assign('store_id', $store_id);
         
+        //红包
+        if ($_POST['bonus_update']) {
+        	$_SESSION['quick_pay']['temp']['bonus'] = $_POST['bonus'];
+        }
+        //红包清空
+        if ($_POST['bonus_clear']) {
+        	unset($_SESSION['quick_pay']['temp']['bonus']);
+        }
         
+        //积分
+        if ($_POST['integral_update']) {
+        	if ($_POST['integral'] >  $_SESSION['quick_pay']['data']['order_max_integral']) {
+        		return ecjia_front::$controller->showmessage('积分使用超出订单限制', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        	} else if ($_POST['integral'] >  $_SESSION['quick_pay']['data']['user_integral']) {
+        		return ecjia_front::$controller->showmessage('积分不足', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        	} else {
+        		if ($_POST['integral_clear']) {
+        			unset($_SESSION['quick_pay']['temp']['integral']);
+        		} else {
+        			$_SESSION['quick_pay']['temp']['integral'] = empty($_POST['integral']) ? 0 : intval($_POST['integral']);
+        		}
+        	}
+        }
         
-        
-        ecjia_front::$controller->assign_title('买单详情');
+        if (!empty($_SESSION['quick_pay'])) {
+        	$_SESSION['quick_pay']['data']['bonus_list'] = touch_function::change_array_key($_SESSION['quick_pay']['data']['bonus_list'], 'bonus_id');
+        	ecjia_front::$controller->assign('goods_amount', $_SESSION['quick_pay']['goods_amount']);
+        	ecjia_front::$controller->assign('exclude_amount', $_SESSION['quick_pay']['exclude_amount']);
+        	ecjia_front::$controller->assign('data', $_SESSION['quick_pay']['data']);
+        	ecjia_front::$controller->assign('temp', $_SESSION['quick_pay']['temp']);
+        }
+        ecjia_front::$controller->assign_title('优惠买单');
         ecjia_front::$controller->display('quickpay_checkout.dwt', $cache_id);
     }
     
+    public static function flow_checkorder() {
+    	$order_money = !empty($_POST['order_money']) ? $_POST['order_money'] : 0;
+    	$drop_out_money = !empty($_POST['drop_out_money']) ? $_POST['drop_out_money'] : 0;
+    	$store_id = !empty($_POST['store_id']) ? intval($_POST['store_id']) :0;
+    	if (!empty($order_money) && !empty($store_id)) {
+    		$param = array(
+    			'token' 		=> $token,
+    			'store_id'		=> $store_id,
+    			'goods_amount'	=> $order_money,
+    			'exclude_amount'=> $drop_out_money
+    		);
+    		$_SESSION['quick_pay']['goods_amount'] = $order_money;
+    		$_SESSION['quick_pay']['exclude_amount'] = $drop_out_money;
+    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICK_FLOW_CHECKORDER)->data($param)->run();
+    		if (!is_ecjia_error($data)) {
+    			$_SESSION['quick_pay']['data'] = $data;
+    			unset($_SESSION['quick_pay']['temp']);
+    			ecjia_front::$controller->assign('data', $data);
+    			ecjia_front::$controller->assign('store_id', $store_id);
+    			$say_list = ecjia_front::$controller->fetch('quickpay_checkout.dwt');
+    			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'content' => $data));
+    		}
+    	}
+    }
+    
     public static function explain() {
-//         $token = ecjia_touch_user::singleton()->getToken();			//token参数
-//         $user_info = ecjia_touch_user::singleton()->getUserinfo();	//id,name
-//         $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
-//         $cache_id = sprintf('%X', crc32($cache_id));
-         
-//         if (!ecjia_front::$controller->is_cached('user_profile.dwt', $cache_id)) {
-//             $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
-//             $user_img_login = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
-//             $user_img_logout = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-out2x.png';
-//             if (!empty($user) && !is_ecjia_error($user)) {
-//                 if (!empty($user['avatar_img'])) {
-//                     $user_img_login = $user['avatar_img'];
-//                 }
-//                 ecjia_front::$controller->assign('user', $user);
-//                 ecjia_front::$controller->assign('user_img', $user_img_login);
-//             } else {
-//                 ecjia_front::$controller->assign('user_img', $user_img_logout);
-//             }
-    
-//             ecjia_front::$controller->assign_lang();
-//             ecjia_front::$controller->assign_title('个人资料');
-//         }
-    
         ecjia_front::$controller->display('quickpay_explain.dwt', $cache_id);
     }
     
-    public static function bouns() {
-        ecjia_front::$controller->display('quickpay_bouns.dwt', $cache_id);
+    public static function bonus() {
+    	$store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) :0;
+    	ecjia_front::$controller->assign('store_id', $store_id);
+
+    	if (!empty($_SESSION['quick_pay'])) {
+    		ecjia_front::$controller->assign('temp', $_SESSION['quick_pay']['temp']);
+    		ecjia_front::$controller->assign('data', $_SESSION['quick_pay']['data']);
+    	}
+        ecjia_front::$controller->display('quickpay_bonus.dwt', $cache_id);
     }
     
     public static function integral() {
+    	$store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) :0;
+    	ecjia_front::$controller->assign('store_id', $store_id);
+    	
+    	if (!empty($_SESSION['quick_pay'])) {
+    		ecjia_front::$controller->assign('temp', $_SESSION['quick_pay']['temp']);
+    		ecjia_front::$controller->assign('data', $_SESSION['quick_pay']['data']);
+    	}
         ecjia_front::$controller->display('quickpay_integral.dwt', $cache_id);
     }
     
     public static function notify() {
         ecjia_front::$controller->display('quickpay_notify.dwt', $cache_id);
+    }
+    
+    public static function payment() {
+    	$val = !empty($_POST['val']) ? intval($_POST['val']) : 0;
+    	$_SESSION['quick_pay']['temp']['payment_id'] = $val;
     }
 }
 
