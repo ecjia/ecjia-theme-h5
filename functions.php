@@ -237,6 +237,7 @@ RC_Hook::add_action('user/quickpay/async_quickpay_list', array('quickpay_control
 RC_Hook::add_action('user/quickpay/quickpay_detail', array('quickpay_controller', 'quickpay_detail')); //单个闪惠订单详情
 RC_Hook::add_action('user/quickpay/flow_checkorder', array('quickpay_controller', 'flow_checkorder'));
 RC_Hook::add_action('user/quickpay/payment', array('quickpay_controller', 'payment'));
+RC_Hook::add_action('user/quickpay/done', array('quickpay_controller', 'done'));
 
 /**
  * step：3

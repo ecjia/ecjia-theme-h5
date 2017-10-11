@@ -252,6 +252,7 @@ class merchant_controller {
 			return false;
 		}
 		
+		unset($_SESSION['quick_pay']);
 		ecjia_front::$controller->assign('status', $status);
 	   	ecjia_front::$controller->assign('ajax_url', RC_Uri::url('merchant/index/ajax_store_comment', array('store_id' => $store_id)));
 		ecjia_front::$controller->display('merchant.dwt');

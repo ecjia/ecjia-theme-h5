@@ -11,12 +11,12 @@
 			$('.quick_money').koala({
 				delay: 500,
 				keyup: function(event) {
-					var order_money = $("input[name='order-money']").val();
-			        var drop_out_money = $("input[name='drop-out-money']").val();
+					var order_money = $("input[name='order_money']").val();
+			        var drop_out_money = $("input[name='drop_out_money']").val();
 			        var store_id = $("input[name='store_id']").val();
 			        $('.quickpay-content').html('');
 			        if (order_money != '' && drop_out_money != '') {
-			        	var url =  $("input[name='drop-out-money']").attr('data-url')
+			        	var url =  $("input[name='drop_out_money']").attr('data-url')
 			        	var info = {
 			        		'store_id'    : store_id,
 			        		'order_money' : order_money,

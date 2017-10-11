@@ -99,7 +99,7 @@ class quickpay_controller {
         $token = ecjia_touch_user::singleton()->getToken();
         
         $city_id = !empty($_COOKIE['city_id']) ? $_COOKIE['city_id'] : '';
-        $store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) :0;
+        $store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
         ecjia_front::$controller->assign('store_id', $store_id);
         
         //红包
@@ -125,11 +125,9 @@ class quickpay_controller {
         		}
         	}
         }
-        
+
         if (!empty($_SESSION['quick_pay'])) {
         	$_SESSION['quick_pay']['data']['bonus_list'] = touch_function::change_array_key($_SESSION['quick_pay']['data']['bonus_list'], 'bonus_id');
-        	$_SESSION['quick_pay']['data']['payment_list'] = touch_function::change_array_key($_SESSION['quick_pay']['data']['payment_list'], 'pay_id');
-        	
         	ecjia_front::$controller->assign('data', $_SESSION['quick_pay']['data']);
         	ecjia_front::$controller->assign('temp', $_SESSION['quick_pay']['temp']);
         	$data = $_SESSION['quick_pay']['data'];
@@ -145,7 +143,7 @@ class quickpay_controller {
     public static function flow_checkorder() {
     	$order_money = !empty($_POST['order_money']) ? $_POST['order_money'] : 0;
     	$drop_out_money = !empty($_POST['drop_out_money']) ? $_POST['drop_out_money'] : 0;
-    	$store_id = !empty($_POST['store_id']) ? intval($_POST['store_id']) :0;
+    	$store_id = !empty($_POST['store_id']) ? intval($_POST['store_id']) : 0;
     	if (!empty($order_money) && !empty($store_id)) {
     		$param = array(
     			'token' 		=> $token,
@@ -174,7 +172,7 @@ class quickpay_controller {
     }
     
     public static function bonus() {
-    	$store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) :0;
+    	$store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
     	ecjia_front::$controller->assign('store_id', $store_id);
 
     	if (!empty($_SESSION['quick_pay'])) {
@@ -185,7 +183,7 @@ class quickpay_controller {
     }
     
     public static function integral() {
-    	$store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) :0;
+    	$store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
     	ecjia_front::$controller->assign('store_id', $store_id);
     	
     	if (!empty($_SESSION['quick_pay'])) {
@@ -202,6 +200,29 @@ class quickpay_controller {
     public static function payment() {
     	$val = !empty($_POST['val']) ? intval($_POST['val']) : 0;
     	$_SESSION['quick_pay']['temp']['payment_id'] = $val;
+    }
+    
+    public static function done() {
+    	$token = ecjia_touch_user::singleton()->getToken();
+    	$store_id = !empty($_POST['store_id']) ? intval($_POST['store_id']) : 0;
+    	
+    	$goods_amount = !empty($_POST['order_money']) ? $_POST['order_money'] : 0;
+    	$exclude_amount = !empty($_POST['drop_out_money']) ? $_POST['drop_out_money'] : 0;
+    	$activity_id = !empty($_POST['activity_id']) ? intval($_POST['activity_id']) : 0;
+    	$bonus_id = !empty($_POST['bonus']) ? intval($_POST['bonus']) : 0;
+    	$integral = !empty($_POST['integral']) ? intval($_POST['integral']) : 0;
+    	$pay_id = !empty($_POST['payment_id']) ? intval($_POST['payment_id']) : 0;
+    	
+    	$param = array(
+    		'token' 			=> $token, 
+    		'store_id' 			=> $store_id, 
+    		'goods_amount' 		=> $goods_amount, 
+    		'exclude_amount' 	=> $exclude_amount, 
+    		'activity_id' 		=> $activity_id,
+    		'bonus_id'			=> $bonus_id,
+    		'integral'			=> $integral,
+    		'pay_id'			=> $pay_id
+    	);
     }
 }
 
