@@ -9,13 +9,12 @@
 		check: function() {
 			$("body").greenCheck();
 			$('.quick_money').koala({
-				delay: 500,
+				delay: 1000,
 				keyup: function(event) {
 					var order_money = $("input[name='order_money']").val();
 			        var drop_out_money = $("input[name='drop_out_money']").val();
 			        var store_id = $("input[name='store_id']").val();
-			        $('.quickpay-content').html('');
-			        if (order_money != '' && drop_out_money != '') {
+			        if (order_money != '') {
 			        	var url =  $("input[name='drop_out_money']").attr('data-url')
 			        	var info = {
 			        		'store_id'    : store_id,
@@ -26,6 +25,8 @@
 			        		$('.quickpay-content').html(data.list);
 			        		$("body").greenCheck();
 			        	});
+			        } else {
+			        	$('.quickpay-content').html('');
 			        }
 			        return false;
 				}
