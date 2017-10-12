@@ -34,36 +34,38 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="ajaxinfo"} -->
+<!-- {foreach from=$data item=list} -->
 <li class="ecjia-order-item ecjia-checkout ecjia-margin-t">
 	<div class="order-hd">
-		<a class="ecjiaf-fl" href='{url path="merchant/index/init" args="store_id={$list.seller_id}"}'>
-			<i class="iconfont icon-shop"></i>天天果园 <i class="iconfont icon-jiantou-right"></i>
+		<a class="ecjiaf-fl" href='{url path="merchant/index/init" args="store_id={$list.store_id}"}'>
+			<i class="iconfont icon-shop"></i>{$list.store_name} <i class="iconfont icon-jiantou-right"></i>
 		</a>
-		<a class="ecjiaf-fr" href='{url path="user/order/order_detail" args="order_id={$list.order_id}"}'><span class="ecjia-color-green">买单成功</span></a>
+		<a class="ecjiaf-fr" href='{url path="user/quickpay/quickpay_detail" args="order_id={$list.order_id}"}'><span class="ecjia-color-green">{$list.label_order_status}</span></a>
 	</div>
 	<div class="flow-goods-list">
-		<a class="ecjiaf-db" href='{url path="user/quickpay/quickpay_detail"}'>
+		<a class="ecjiaf-db" href='{url path="user/quickpay/quickpay_detail" args="order_id={$list.order_id}"}'>
 			<ul class="quickpay-info-list">
 				<li class="goods-img ecjiaf-fl ecjia-margin-r ecjia-icon quickpay-w">
-					<img class="ecjiaf-fl" src="https://cityo2o.ecjia.com/content/uploads/images/201606/goods_img/1045_G_1465321882351.jpg" alt="{$goods.name}" title="{$goods.name}" />
+					<img class="ecjiaf-fl" src="{$list.store_logo}" alt="{$list.store_name}" title="{$list.store_name}" />
 				    <ul>
 				        <li class="quickpay-info-li">
 				            <span class="quickpay-info">订单编号</span>2234253453342
 				        </li>
 				        <li class="quickpay-info-li">
-				            <span class="quickpay-info">优惠金额</span>￥10.00
+				            <span class="quickpay-info">优惠金额</span>{$list.formated_total_discount}
 				        </li>
 				        <li class="quickpay-info-li">
-				            <span class="quickpay-info">实付金额</span>￥490.00
+				            <span class="quickpay-info">实付金额</span>{$list.formated_order_amount}
 				        </li>
 				        <li class="quickpay-info-li">
-				            <span class="quickpay-info">买单时间</span>2017-05-07 22:27
+				            <span class="quickpay-info">买单时间</span>{$list.formated_add_time}
 				        </li>
 				    </ul>
 				</li>
 			</ul>
 		</a>
 	</div>
-</li>		
+</li>
+<!-- {/foreach} -->		
 <!-- {/block} -->
 {/nocache}

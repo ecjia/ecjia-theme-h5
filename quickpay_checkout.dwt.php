@@ -115,9 +115,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	    <div class="pri ecjia-margin-t">
 	        <a href="{url path='user/quickpay/explain'}"><p class="pri_info">优惠说明</p></a>
 	    </div>
-	    
+
 	    <div>
-	        <input class="btn btn-info nopjax" name="submit" type="submit" value="和店员已确认，立即买单">
+	    	<input class="btn btn-info" name="submit" type="submit" value="立即买单" style="display:none;"/>
+			<a class="btn quickpay_done pjax">和店员已确认，立即买单</a>
 	    </div>
 	</form>
 </div>

@@ -37,7 +37,21 @@
 				var $this = $(this);
 				var val = $this.val();
 				$.post(url, {val: val});
-			})
+			});
+			
+			$('.quickpay_done').on('click', function() {
+				var order_money = $("input[name='order_money']").val();
+				if (order_money == '' || order_money.length == 0 || order_money == undefined) {
+					alert('订单金额不能为空');
+					return false;
+				}
+				if (order_money == 0) {
+					alert('订单金额不能为0');
+					return false;
+				}
+				ecjia.touch.pjaxloadding();
+				$("input[type='submit']").click();
+			});
 			
         },
 	};
