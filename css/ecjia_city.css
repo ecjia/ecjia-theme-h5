@@ -7150,6 +7150,16 @@ footer {
 	padding: .1em .2em;
 }
 
+.ecjia-store-list .store-info .store-promotion .quick-label {
+	color: #fff;
+    display: inline-block;
+    border: 1px solid #F79B31;
+    border-radius: 4px;
+    font-size: .8em;
+    background: #F79B31;
+    padding: .1em .2em;
+}
+
 .ecjia-store-list .store-info .store-promotion .promotion-name {
 	font-size: .9em;
 	padding-left: .5em;
