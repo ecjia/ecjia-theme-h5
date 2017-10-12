@@ -146,7 +146,7 @@ class quickpay_controller {
         	ecjia_front::$controller->assign('total_fee', $total_fee);
         }
         ecjia_front::$controller->assign_title('优惠买单');
-        ecjia_front::$controller->display('quickpay_checkout.dwt', $cache_id);
+        ecjia_front::$controller->display('quickpay_checkout.dwt');
     }
     
     public static function flow_checkorder() {
