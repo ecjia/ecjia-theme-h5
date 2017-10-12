@@ -9,7 +9,7 @@
 		check: function() {
 			$("body").greenCheck();
 			$('.quick_money').koala({
-				delay: 1000,
+				delay: 500,
 				keyup: function(event) {
 					var order_money = $("input[name='order_money']").val();
 			        var drop_out_money = $("input[name='drop_out_money']").val();

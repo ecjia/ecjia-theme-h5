@@ -31,29 +31,25 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <div class="quickpay_div">
             <li class="explain_title"><span><b>{t}买单优惠{/t}</b></span></li>
             <div class="before_two">
+            	<!-- {foreach from=$data item=list} -->
                 <li class="outher_d explain_d">
                     <div class="explain_info">
-                        <p class="explain_info_top"><span class="explain_name">{t}9.9折{/t}</span><span class="explain_status">{t}进行中{/t}</span></p>
-                        <p class="explain_info_top">{t}使用时间：周一至周日全天可用{/t}</p>
-                        <p class="explain_info_top">{t}有效日期： 2017-06-01至2017-09-30{/t}</p>
+                        <p class="explain_info_top">
+                        	<span class="explain_name">{$list.title}</span>
+                        	{if RC_Time::gmtime() lt $list.end_time && RC_Time::gmtime() gt $list.start_time}
+                        	<span class="explain_status">进行中</span>
+                        	{/if}
+                        </p>
+                        {if $list.limit_time_weekly neq '0'}
+                        <p class="explain_info_top">使用时间：{$list.limit_time_weekly}</p>
+                        {/if}
+                        {if $list.limit_time_exclude}
+                        <p class="explain_info_top">不可用时间：{$list.limit_time_exclude}</p>
+                        {/if}
+                        <p class="explain_info_top">{t}有效日期：{$list.formated_start_time}至{$list.formated_end_time}{/t}</p>
                     </div>
                 </li>
-                <li class="outher_d explain_d">
-                    <div class="explain_info">
-                        <p class="explain_info_top"><span class="explain_name">{t}每满100减10元{/t}</span><span class="explain_status">{t}进行中{/t}</span></p>
-                        <p class="explain_info_top">{t}周一至周五全天可用{/t}</p>
-                        <p class="explain_info_top">{t}不可用时间：2017-06-05,2017-06-30,2017-08-12{/t}</p>
-                        <p class="explain_info_top">{t}有效日期： 2017-06-01至2017-09-30{/t}</p>
-                    </div>
-                </li>
-                 <li class="outher_d explain_d">
-                    <div class="explain_info">
-                        <p class="explain_info_top"><span class="explain_name">{t}满100减5元{/t}</span><span class="explain_status">{t}进行中{/t}</span></p>
-                        <p class="explain_info_top">{t}使用时间：周一至周五 09:00～12:00 14:00～20:00{/t}</p>
-                        <p class="explain_info_top">{t}不可用时间：2017-06-05,2017-06-30,2017-08-12{/t}</p>
-                        <p class="explain_info_top">{t}有效日期： 2017-06-01至2017-09-30{/t}</p>
-                    </div>
-                </li>
+                <!-- {/foreach} -->
             </div>
         </div>
     </div>

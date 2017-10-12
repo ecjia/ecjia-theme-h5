@@ -2179,6 +2179,25 @@ footer {
 	margin-left: .3em;
 	padding-top: .5em;
     padding-bottom: 0;
+	display: block;
+    overflow: hidden;
+}
+
+.ecjia-store-detail .store-promotion li.quick-li .quick-left {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 80%;
+    overflow: hidden;
+    float: left;
+}
+
+.ecjia-store-detail .store-promotion li.quick-li .quick-right {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+	width: 20%;
+    float: right;
+	text-align: right;
 }
 
 .ecjia-store-detail .store-promotion .quick-label {
@@ -2214,7 +2233,6 @@ footer {
 }
 
 .ecjia-store-detail .store-promotion .quick-money {
-	float: right;
 	color: #aaa;
 	line-height: 2em;
 }
@@ -10365,6 +10383,7 @@ footer {
 	line-height: 3em;
 	padding: 0 20px;
 	font-size: 1.1em;
+	border-bottom: 1px solid #eee;
 }
 
 .quickpay .checkout .outher_d {
@@ -10408,9 +10427,11 @@ footer {
 }
 
 .quickpay .checkout .outher_d input{
-    float: right;
-    line-height: 3em;
+	float: right;
+    padding-top: 1em;
     text-align: right;
+    font-size: 1em;
+    height: 2em;
 }
 
 .quickpay .checkout .quickpay_div+.quickpay_div::before {
@@ -10424,7 +10445,6 @@ footer {
 
 .quickpay .checkout .before_two {
 	border-bottom: 1px solid #eee;
-    border-top: 1px solid #eee;
 }
 
 .quickpay .checkout .before_two li+li::before{
@@ -10443,9 +10463,9 @@ footer {
 }
 
 .quickpay .checkout .quickpay_div .explain_title{
-	font-size: 20px;
-    height: 2em;
-    line-height: 2em;
+	font-size: 1.1em;
+    height: 3em;
+    line-height: 3em;
     padding: 0 20px;
     border-bottom: 1px solid #eee;
 }

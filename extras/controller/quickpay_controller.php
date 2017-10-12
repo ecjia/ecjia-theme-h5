@@ -197,6 +197,14 @@ class quickpay_controller {
     }
     
     public static function explain() {
+    	$store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
+    	$param = array('store_id' => $store_id, 'pagination' => array('count' => 10, 'page' => 1));
+    	
+    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$store_id));
+    	if (!ecjia_front::$controller->is_cached('quickpay_explain.dwt', $cache_id)) {
+    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_ACTIVIRY_LIST)->data($param)->run();
+    		ecjia_front::$controller->assign('data', $data);
+    	}
         ecjia_front::$controller->display('quickpay_explain.dwt', $cache_id);
     }
     

@@ -20,14 +20,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<form id="theForm" name="theForm" action="{url path='user/quickpay/done'}" method="post">
 	    <div class="checkout">
 	        <div class="quickpay_div before_two">
-	            <li class="outher_d"><span>{t}订单金额 (元){/t}</span><input class="quick_money" name="order_money" placeholder="请询问店员后输入" value="{$data.goods_amount}"></li>
-	            <li class="outher_d"><span>{t}不参与优惠金额 (元){/t}</span><input class="quick_money" name="drop_out_money" placeholder="请询问店员后输入" data-url="{url path='user/quickpay/flow_checkorder'}" value="{$data.exclude_amount}" /></li>
+	            <li class="outher_d"><span>{t}订单金额 (元){/t}</span><input class="quick_money" type="number"  name="order_money" placeholder="请询问店员后输入" value="{$data.goods_amount}"></li>
+	            <li class="outher_d"><span>{t}不参与优惠金额 (元){/t}</span><input class="quick_money" type="number" name="drop_out_money" placeholder="请询问店员后输入" data-url="{url path='user/quickpay/flow_checkorder'}" value="{$data.exclude_amount}" /></li>
 	        </div>
 	        <input type="hidden" name="store_id" value="{$store_id}">
 	        <div class="quickpay-content">
 	        	{if $data}
 	        	<div class="before_two ecjia-margin-t">
-				   <label class="quickpay_div">
+				   <div class="quickpay_div">
 				       <li class="outher_d">
 				            <span class="redio-height redio-mr-t">
 								<label class="ecjia-check ecjiaf-fr" for="activity">
@@ -38,7 +38,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				           <span class="slect-title">{$data.title}</span>
 				           <span class="ecjiaf-fr ecjia-margin-r">-{$data.formated_discount}</span>
 				       </li>
-				   </label>
+				   </div>
 				</div>
 				<div class="quickpay_div before_two ecjia-margin-t">
 					{if $data.allow_use_bonus}
@@ -114,7 +114,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	    </div>
 	
 	    <div class="pri ecjia-margin-t">
-	        <a href="{url path='user/quickpay/explain'}"><p class="pri_info">优惠说明</p></a>
+	        <a href='{url path="user/quickpay/explain" args="store_id={$store_id}"}'><p class="pri_info">优惠说明</p></a>
 	    </div>
 
 	    <div>
@@ -127,7 +127,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="ajaxinfo"} -->
 <div class="before_two ecjia-margin-t">
-   <label class="quickpay_div">
+   <div class="quickpay_div">
        <li class="outher_d">
             <span class="redio-height redio-mr-t">
 				<label class="ecjia-check ecjiaf-fr" for="activity">
@@ -138,7 +138,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
            <span class="slect-title">{$data.title}</span>
            <span class="ecjiaf-fr ecjia-margin-r">-{$data.formated_discount}</span>
        </li>
-   </label>
+   </div>
 </div>
 <div class="quickpay_div before_two ecjia-margin-t">
 	{if $data.allow_use_bonus}
