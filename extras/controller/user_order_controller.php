@@ -351,12 +351,15 @@ class user_order_controller {
     	$token = ecjia_touch_user::singleton()->getToken();
     	$params = array('token' => $token, 'order_id' => $order_id, 'city_id' => $_COOKIE['city_id']);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params)->run();
+    	if (!is_ecjia_error($data)) {
+    		ecjia_front::$controller->assign('data', json_encode($data));
+    	}
     	
     	$params_express = array('token' => $token, 'order_id' => $order_id, 'express_id' => $express_id);
     	$arr = ecjia_touch_manager::make()->api(ecjia_touch_api::EXPRESS_USER_LOCATION)->data($params)->run();
-
-    	ecjia_front::$controller->assign('data', json_encode($data));
-    	ecjia_front::$controller->assign('arr', json_encode($arr));
+    	if (!is_ecjia_error($arr)) {
+    		ecjia_front::$controller->assign('arr', json_encode($arr));
+    	}
     	ecjia_front::$controller->assign('express_info', $arr);
     	ecjia_front::$controller->assign('hidenav', 1);
     	
@@ -367,7 +370,9 @@ class user_order_controller {
     			'city_id' => $_COOKIE['city_id']
     		);
     		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data($parameter_list)->run();
-    		ecjia_front::$controller->assign('store_location', json_encode($store_info['location']));
+    		if (!is_ecjia_error($store_info)) {
+    			ecjia_front::$controller->assign('store_location', json_encode($store_info['location']));
+    		}
     	}
     	ecjia_front::$controller->display('user_express_position.dwt');
     }

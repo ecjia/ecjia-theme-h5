@@ -10661,3 +10661,16 @@ footer {
     background: #f0e6d1;
     color: #e66423;
 }
+
+
+/* 配送员位置 */
+.ecjia{ height:auto;max-width:640px }
+.ecjia #allmap{ width:100%;height:85% }
+.express-info{ height:15%;position:relative;max-height:110px; }
+.express-info .express-img{ width:100px;text-align:center;position:absolute;top:20% }
+.express-info .express-img img{ width:60px;height:60px;border-radius:50% }
+.express-info .info{ margin-left:100px;margin-right:85px;height:100% }
+.express-info .phone{ width:85px;position:absolute;right:0;top:15%;height:75%;padding-top:15px;border-left:1px solid #eee;text-align:center }
+.express-info .phone img{ width:40px;height:40px }
+.express-info .name{ height:50%;line-height:4em }
+.express-info .status{ height:25%;line-height:2em;overflow:hidden }
