@@ -238,6 +238,7 @@ RC_Hook::add_action('user/quickpay/quickpay_detail', array('quickpay_controller'
 RC_Hook::add_action('user/quickpay/flow_checkorder', array('quickpay_controller', 'flow_checkorder'));
 RC_Hook::add_action('user/quickpay/payment', array('quickpay_controller', 'payment'));
 RC_Hook::add_action('user/quickpay/done', array('quickpay_controller', 'done'));
+RC_Hook::add_action('user/quickpay/pay', array('quickpay_controller', 'pay'));
 
 /**
  * step：3

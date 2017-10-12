@@ -6,6 +6,7 @@ Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
+{nocache}
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
@@ -13,10 +14,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<div class="ecjia-address-list">
+<div class="ecjia-address-list ecjia-order-detail">
     <div class="franchisee-process-hint quickpay-hint"> 
+    	{if $data.order_status_str eq 'unpaid'}
+        <img class="quickpay-status-img" src="{$theme_url}images/user_center/wait_paid.png">
+        {else}
         <img class="quickpay-status-img" src="{$theme_url}images/user_center/apply.png">
-        <p class="quickpay-status-g">{$data.label_order_status}</p>
+        {/if}
+        <p class="quickpay-status-g {if $data.order_status_str eq 'unpaid'}unpaid{/if}">{$data.label_order_status}</p>
     </div>
     <div class="franchisee-info quickpay-detail">
         <ul>
@@ -52,7 +57,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
     
     <div class="order-ft-link">
+    	{if $data.order_status_str eq 'unpaid'}
+    	<a class="btn btn-small btn-hollow external" href='{url path="user/quickpay/pay" args="order_id={$data.order_id}"}'>去支付</a>
+    	{/if}
         <a class="btn btn-small btn-hollow external" href="tel://{$data.service_phone}">联系卖家</a>
     </div>
 </div>
 <!-- {/block} -->
+{/nocache}

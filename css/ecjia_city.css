@@ -773,6 +773,10 @@ a.ecjia-color-green {
 	color: #45a46c;
 }
 
+.ecjia-address-list .franchisee-process-hint .quickpay-status-g.unpaid {
+	color: #ff3434;
+}
+
 .ecjia-address-list .franchisee-process-hint img {
 	margin: 1em 0;
 }
