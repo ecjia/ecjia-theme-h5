@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <p>{t}5、如需发票，请您在消费时向商家咨询；{/t}</p>
             </li>
         </div>
-        
+        {if $data}
         <div class="quickpay_div">
             <li class="explain_title"><span><b>{t}买单优惠{/t}</b></span></li>
             <div class="before_two">
@@ -52,6 +52,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <!-- {/foreach} -->
             </div>
         </div>
+        {/if}
     </div>
 </div>
 <!-- {/block} -->
