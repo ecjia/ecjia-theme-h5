@@ -10597,18 +10597,22 @@ footer {
 }
 
 .explain_info .explain_status {
-	background-color: #F79B31;
-    border-radius: 5px;
-    font-size: .7em;
-    height: 2em;
-    margin-top: 3px;
-    padding: .5em;
-    color: #FFF;
-    margin-left: .5em;
+	background-color: #FAE6E4;
+	border-radius: 5px;
+	font-size: .7em;
+	height: 2em;
+	margin-top: 3px;
+	padding: .5em;
+	color: #ff3434;
+	margin-left: .5em;
 }
 
 .explain_info_top {
     padding: 5px 0;
+}
+
+.explain_info_top .explain_name {
+	color: #ff3434;
 }
 
 .save_discard .mag-t1{

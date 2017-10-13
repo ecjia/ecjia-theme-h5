@@ -26,6 +26,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	        <input type="hidden" name="store_id" value="{$store_id}">
 	        <div class="quickpay-content">
 	        	{if $data}
+	        	{if $data.activity_id neq 0}
 	        	<div class="before_two ecjia-margin-t">
 				   <div class="quickpay_div">
 				       <li class="outher_d">
@@ -40,6 +41,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				       </li>
 				   </div>
 				</div>
+				{/if}
 				<div class="quickpay_div before_two ecjia-margin-t">
 					{if $data.allow_use_bonus}
 				    <li class="outher_d">
@@ -126,6 +128,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="ajaxinfo"} -->
+{if $data.activity_id neq 0}
 <div class="before_two ecjia-margin-t">
    <div class="quickpay_div">
        <li class="outher_d">
@@ -140,6 +143,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
        </li>
    </div>
 </div>
+{/if}
 <div class="quickpay_div before_two ecjia-margin-t">
 	{if $data.allow_use_bonus}
     <li class="outher_d">
