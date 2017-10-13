@@ -310,6 +310,10 @@ class quickpay_controller {
     	$order = $rs_pay['payment'];
     	$order_amount = ltrim($order['order_amount'], '￥');
 
+    	//生成返回url cookie
+    	RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
+    	RC_Cookie::set('pay_response_order', RC_Uri::url('user/quickpay/quickpay_detail', array('order_id' => $order_id)));
+    	
     	//免费商品直接余额支付
     	if ($order_amount != 0) {
     		/* 调起微信支付*/
@@ -340,11 +344,6 @@ class quickpay_controller {
     	if ($order['pay_code'] != 'pay_balance') {
     		$order['formated_order_amount'] = $order['order_amount'];
     	}
-    	$order['order_id'] = $order_id;
-    	
-    	//生成返回url cookie
-    	RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
-    	RC_Cookie::set('pay_response_order', RC_Uri::url('user/quickpay/quickpay_detail', array('order_id' => $order_id)));
     }
 }
 

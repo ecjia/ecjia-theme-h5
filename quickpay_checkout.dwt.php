@@ -20,8 +20,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<form id="theForm" name="theForm" action="{url path='user/quickpay/done'}" method="post">
 	    <div class="checkout">
 	        <div class="quickpay_div before_two">
-	            <li class="outher_d"><span>{t}订单金额 (元){/t}</span><input class="quick_money" type="number"  name="order_money" placeholder="请询问店员后输入" value="{$data.goods_amount}"></li>
-	            <li class="outher_d"><span>{t}不参与优惠金额 (元){/t}</span><input class="quick_money" type="number" name="drop_out_money" placeholder="请询问店员后输入" data-url="{url path='user/quickpay/flow_checkorder'}" value="{$data.exclude_amount}" /></li>
+	            <li class="outher_d"><span>{t}订单金额 (元){/t}</span><input class="quick_money" type="number"  name="order_money" step="0.01" placeholder="请询问店员后输入" value="{$data.goods_amount}"></li>
+	            <li class="outher_d"><span>{t}不参与优惠金额 (元){/t}</span><input class="quick_money" type="number" name="drop_out_money" step="0.01" placeholder="请询问店员后输入" data-url="{url path='user/quickpay/flow_checkorder'}" value="{$data.exclude_amount}" /></li>
 	        </div>
 	        <input type="hidden" name="store_id" value="{$store_id}">
 	        <div class="quickpay-content">
