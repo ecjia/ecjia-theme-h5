@@ -29,10 +29,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <span class="ecjiaf-fl fran-info-color">订单编号</span>
                 <span class="ecjiaf-fr">{$data.order_sn}</span>
             </p>
+            {if $data.title}
             <p>
                 <span class="ecjiaf-fl fran-info-color">优惠名称</span>
                 <span class="ecjiaf-fr">{$data.title}</span>
             </p>
+            {/if}
             <p>
                 <span class="ecjiaf-fl fran-info-color">消费金额</span>
                 <span class="ecjiaf-fr">{$data.formated_goods_amount}</span>
