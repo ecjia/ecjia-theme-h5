@@ -128,6 +128,11 @@ class quickpay_controller {
         			unset($_SESSION['quick_pay']['temp']['integral']);
         		} else {
         			$_SESSION['quick_pay']['temp']['integral'] = empty($_POST['integral']) ? 0 : intval($_POST['integral']);
+        			if (!empty($_POST['integral'])) {
+        				$params_integral = array('token' => $token, 'integral' => $_POST['integral']);
+        				$data_integral = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_INTEGRAL)->data($params_integral)->run();
+        				ecjia_front::$controller->assign('integral_bonus', $data_integral['bonus']);
+        			}
         		}
         	}
         }

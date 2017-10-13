@@ -10393,6 +10393,12 @@ footer {
     font-size: 1.1em;
 }
 
+.quickpay .checkout .outher_d .total_fee {
+	color: #ff3434;
+    font-size: 1.1em;
+	padding-right: .5em;
+}
+
 .quickpay .checkout .outher_d a {
 	display: block;
 }
@@ -10424,6 +10430,7 @@ footer {
     font-size: 1.1em;
     line-height: 2em;
     padding-bottom: 1em;
+	border-bottom: 1px solid #eee;
 }
 
 .quickpay .checkout .outher_d input{
@@ -10460,13 +10467,14 @@ footer {
     background: #FFF;
     width: 100%;
     margin-bottom: 0;
+	position: relative;
 }
 
 .quickpay .checkout .quickpay_div .explain_title{
 	font-size: 1.1em;
     height: 3em;
     line-height: 3em;
-    padding: 0 20px;
+    padding: 0 1em;
     border-bottom: 1px solid #eee;
 }
 
