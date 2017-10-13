@@ -313,7 +313,7 @@ class quickpay_controller {
     	//免费商品直接余额支付
     	if ($order_amount != 0) {
     		/* 调起微信支付*/
-    		if ( $pay_code == 'pay_wxpay' || $payment_info['pay_code'] == 'pay_wxpay') {
+    		if ($pay_code == 'pay_wxpay' || $payment_info['pay_code'] == 'pay_wxpay') {
     			// 取得支付信息，生成支付代码
     			$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($payment_info['pay_code']);
     			$handler->set_orderinfo($detail);
@@ -338,7 +338,7 @@ class quickpay_controller {
     		ecjia_front::$controller->redirect($url);
     	}
     	if ($order['pay_code'] != 'pay_balance') {
-    		$order['formated_order_amount'] = price_format($order['order_amount']);
+    		$order['formated_order_amount'] = $order['order_amount'];
     	}
     	$order['order_id'] = $order_id;
     	
