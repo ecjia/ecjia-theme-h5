@@ -291,9 +291,10 @@ class quickpay_controller {
     	if (is_ecjia_error($detail)) {
     		return ecjia_front::$controller->showmessage($detail->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     	}
+    	
     	//支付方式信息
     	$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
-    	$payment_info = $payment_method->payment_info_by_id($detail['pay_code']);
+    	$payment_info = $payment_method->payment_info_by_code($detail['pay_code']);
     	
     	//获得订单支付信息
     	$params = array(
@@ -301,15 +302,19 @@ class quickpay_controller {
     		'order_id'	=> $order_id,
     	);
     	$rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_ORDER_PAY)->data($params)->run();
+    	//微信支付$rs_pay返回空
     	if (is_ecjia_error($rs_pay)) {
     		return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     	}
+    	
     	if (isset($rs_pay) && $rs_pay['payment']['error_message']) {
     		return ecjia_front::$controller->showmessage($rs_pay['payment']['error_message'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     	}
     	$order = $rs_pay['payment'];
     	$order_amount = ltrim($order['order_amount'], '￥');
-
+    	$order_surplus = ltrim($order['order_surplus'], '￥');
+    	$order_amount = !empty($order_amount) ? $order_amount : $order_surplus;
+    	
     	//生成返回url cookie
     	RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
     	RC_Cookie::set('pay_response_order', RC_Uri::url('user/quickpay/quickpay_detail', array('order_id' => $order_id)));
@@ -317,7 +322,7 @@ class quickpay_controller {
     	//免费商品直接余额支付
     	if ($order_amount != 0) {
     		/* 调起微信支付*/
-    		if ($pay_code == 'pay_wxpay' || $payment_info['pay_code'] == 'pay_wxpay') {
+    		if ($payment_info['pay_code'] == 'pay_wxpay') {
     			// 取得支付信息，生成支付代码
     			$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($payment_info['pay_code']);
     			$handler->set_orderinfo($detail);
