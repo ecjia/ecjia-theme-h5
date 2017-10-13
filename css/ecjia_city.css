@@ -10434,11 +10434,11 @@ footer {
 }
 
 .quickpay .checkout .outher_d input{
-	float: right;
-    padding-top: 1em;
+    float: right;
     text-align: right;
     font-size: 1em;
-    height: 2em;
+    height: 3em;
+    width: 140px;
 }
 
 .quickpay .checkout .quickpay_div+.quickpay_div::before {
@@ -10573,7 +10573,7 @@ footer {
 }
 .quickpay-info {
 	margin-left: 2em;
-	margin-right: 3em;	
+	margin-right: 2em;	
 }
 .quickpay-info-list img {
     width: 100%;
@@ -10584,6 +10584,9 @@ footer {
 
 .quickpay-info-li {
 	margin-bottom: .2em;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .quickpay-detail {
@@ -10710,13 +10713,13 @@ footer {
 
 
 /* 配送员位置 */
-.ecjia{ height:auto;max-width:640px }
+.ecjia{ height:100%;max-width:640px }
 .ecjia #allmap{ width:100%;height:85% }
 .express-info{ height:15%;position:relative;max-height:110px; }
 .express-info .express-img{ width:100px;text-align:center;position:absolute;top:20% }
 .express-info .express-img img{ width:60px;height:60px;border-radius:50% }
 .express-info .info{ margin-left:100px;margin-right:85px;height:100% }
 .express-info .phone{ width:85px;position:absolute;right:0;top:15%;height:75%;padding-top:15px;border-left:1px solid #eee;text-align:center }
-.express-info .phone img{ width:40px;height:40px }
+.express-info .phone img{ width:30px;height:30px }
 .express-info .name{ height:50%;line-height:4em }
-.express-info .status{ height:25%;line-height:2em;overflow:hidden }
+.express-info .status{ height: 25%;line-height: 2em;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; }
