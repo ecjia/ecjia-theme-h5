@@ -131,7 +131,7 @@ class quickpay_controller {
         			if (!empty($_POST['integral'])) {
         				$params_integral = array('token' => $token, 'integral' => $_POST['integral']);
         				$data_integral = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_INTEGRAL)->data($params_integral)->run();
-        				ecjia_front::$controller->assign('integral_bonus', $data_integral['bonus']);
+        				$_SESSION['quick_pay']['temp']['integral_bonus'] = $data_integral['bonus'];
         			}
         		}
         	}
@@ -143,7 +143,7 @@ class quickpay_controller {
         	ecjia_front::$controller->assign('temp', $_SESSION['quick_pay']['temp']);
         	$data = $_SESSION['quick_pay']['data'];
         	$temp = $_SESSION['quick_pay']['temp'];
-			
+        	
         	$total_fee = $data['goods_amount']-$data['exclude_amount']-$data['discount']-($temp['integral']/100)-$data['bonus_list'][$temp['bonus']]['type_money'];
         	if ($total_fee < 0) {
         		$total_fee = 0;
@@ -308,9 +308,10 @@ class quickpay_controller {
     		return ecjia_front::$controller->showmessage($rs_pay['payment']['error_message'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     	}
     	$order = $rs_pay['payment'];
-    	
+    	$order_amount = ltrim($order['order_amount'], '￥');
+
     	//免费商品直接余额支付
-    	if ($order['order_amount'] !== 0) {
+    	if ($order_amount != 0) {
     		/* 调起微信支付*/
     		if ( $pay_code == 'pay_wxpay' || $payment_info['pay_code'] == 'pay_wxpay') {
     			// 取得支付信息，生成支付代码

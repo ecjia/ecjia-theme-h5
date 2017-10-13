@@ -81,8 +81,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				            <span class="fav_info">{if $data.user_integral lt $data.order_max_integral }{$data.user_integral}{else}{$data.order_max_integral}{/if}积分可用</span>
 				            {/if}
 				            <i class="iconfont icon-jiantou-right"></i>
-				            {if $integral_bonus}
-				            <span class="other_width">{$temp.integral}积分抵{$integral_bonus}元</span>
+				            {if $temp.integral_bonus}
+				            <span class="other_width">{$temp.integral}积分抵{$temp.integral_bonus}元</span>
 				            {/if}
 				        </a>
 				        {/if}
