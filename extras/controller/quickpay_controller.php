@@ -289,14 +289,13 @@ class quickpay_controller {
     	$params_order = array('token' => $token, 'order_id' => $order_id);
     	$detail = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_ORDER_DETAIL)->data($params_order)->run();
     	RC_Logger::getlogger('info')->info($detail);
-    	 
     	if (is_ecjia_error($detail)) {
     		return ecjia_front::$controller->showmessage($detail->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     	}
     	
     	//支付方式信息
     	$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
-    	$payment_info = $payment_method->payment_info_by_id($detail['pay_id']);
+    	$payment_info = $payment_method->payment_info_by_code($detail['pay_code']);
     	RC_Logger::getlogger('info')->info($payment_info);
     	
     	//获得订单支付信息
