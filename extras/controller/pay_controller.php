@@ -100,8 +100,7 @@ class pay_controller {
         	    'wxpay_open_id' => $open_id,
         	);
         	_dump($params);
-        	$rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($params)->send();
-        	_dump($rs_pay);
+        	$rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($params)->run();
         	if (is_ecjia_error($rs_pay)) {
         		return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         	}
@@ -109,7 +108,7 @@ class pay_controller {
         	if (isset($rs_pay) && $rs_pay['payment']['error_message']) {
         		ecjia_front::$controller->assign('pay_error', $rs_pay['payment']['error_message']);
         	}
-        	_dump($rs_pay,1);
+        	_dump($rs_pay);
         	$order = $rs_pay['payment'];
         	//免费商品直接余额支付
         	if ($order['order_amount'] !== 0) {
