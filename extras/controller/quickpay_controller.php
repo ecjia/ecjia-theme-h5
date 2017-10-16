@@ -155,7 +155,7 @@ class quickpay_controller {
         	$data = $_SESSION['quick_pay']['data'];
         	$temp = $_SESSION['quick_pay']['temp'];
         	
-        	$total_fee = $data['goods_amount']-$data['exclude_amount']-$data['discount']-($temp['integral']/100)-$data['bonus_list'][$temp['bonus']]['type_money'];
+        	$total_fee = $data['goods_amount']-$data['discount']-($temp['integral']/100)-$data['bonus_list'][$temp['bonus']]['type_money'];
         	if ($total_fee < 0) {
         		$total_fee = 0;
         	}
@@ -199,7 +199,7 @@ class quickpay_controller {
     			$_SESSION['quick_pay']['data'] = $data;
     			unset($_SESSION['quick_pay']['temp']);
     			ecjia_front::$controller->assign('data', $data);
-    			$total_fee = $data['goods_amount']-$data['exclude_amount']-$data['discount'];
+    			$total_fee = $data['goods_amount']-$data['discount'];
     			if ($total_fee < 0) {
     				$total_fee = 0;
     			}
