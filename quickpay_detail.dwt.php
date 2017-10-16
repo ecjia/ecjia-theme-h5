@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 <div class="ecjia-address-list ecjia-order-detail">
-	<form  class="ecjia-form" name="quickpayForm" action="{url path='user/quickpay/done'}" method="post" >
+	<form name="quickpayForm" action="{url path='user/quickpay/done'}" method="post" >
 	    <div class="franchisee-process-hint quickpay-hint"> 
 	    	{if $data.order_status_str eq 'unpaid'}
 	        <img class="quickpay-status-img" src="{$theme_url}images/user_center/wait_paid.png">
