@@ -186,7 +186,6 @@ class quickpay_controller {
     				}
     			}
     			$_SESSION['quick_pay']['data'] = $data;
-    			
     			unset($_SESSION['quick_pay']['temp']);
     			ecjia_front::$controller->assign('data', $data);
     			$total_fee = $data['goods_amount']-$data['exclude_amount']-$data['discount'];
@@ -307,6 +306,7 @@ class quickpay_controller {
     		$params['wxpay_open_id'] = $open_id;
     	}
     	$rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_ORDER_PAY)->data($params)->run();
+    	RC_Logger::getlogger('info')->info($rs_pay);
     	
     	//微信支付$rs_pay返回空
     	if (is_ecjia_error($rs_pay)) {
@@ -326,21 +326,12 @@ class quickpay_controller {
     	RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
     	RC_Cookie::set('pay_response_order', RC_Uri::url('user/quickpay/quickpay_detail', array('order_id' => $order_id)));
 
+    	RC_Logger::getlogger('info')->info($order);
     	//免费商品直接余额支付
     	if ($detail['pay_code'] != 'pay_balance' && $order_amount !== 0) {
-    		/* 调起微信支付*/
-    		if ($payment_info['pay_code'] == 'pay_wxpay') {
-    			ecjia_front::$controller->redirect($order['pay_online']);
-    			unset($order['pay_online']);
-    		} else {
-    			//其他支付方式
-    			$not_need_otherpayment_arr = array('pay_cod');
-    			$order['pay_online'] = array_get($order, 'pay_online', array_get($order, 'pay_online'));
-    			ecjia_front::$controller->redirect($rs_pay['payment']['pay_online']);
-    			unset($order['pay_online']);
-    		}
+    		$pay_online = array_get($order, 'private_data.pay_online', array_get($order, 'pay_online'));
+    		ecjia_front::$controller->redirect($pay_online);
     	} else {
-    		unset($order['pay_online']);
     		$url = RC_Uri::url('user/quickpay/quickpay_detail', array('order_id' => $order_id));
     		ecjia_front::$controller->redirect($url);
     	}
