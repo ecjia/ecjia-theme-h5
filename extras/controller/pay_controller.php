@@ -88,7 +88,7 @@ class pay_controller {
 //         	$payment_info = $payment_method->payment_info_by_id($detail['pay_id']);
         	
         	if ($detail['pay_code'] == 'pay_wxpay') {
-        	    $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($pay_code);
+        	    $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($detail['pay_code']);
         	    $open_id = $handler->getWechatOpenId();
         	    $_SESSION['wxpay_open_id'] = $open_id;
         	}
