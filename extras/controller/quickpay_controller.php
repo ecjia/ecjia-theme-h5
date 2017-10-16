@@ -331,24 +331,23 @@ class quickpay_controller {
     		if ($payment_info['pay_code'] == 'pay_wxpay') {
     			RC_Logger::getlogger('info')->info('pay_wxpay');
     			// 取得支付信息，生成支付代码
-    			$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($payment_info['pay_code']);
-    			$handler->set_orderinfo($detail);
-    			$handler->set_mobile(false);
-    			$handler->setPaymentRecord(new Ecjia\App\Payment\Repositories\PaymentRecordRepository());
-    			$handler->setOrderType(Ecjia\App\Payment\PayConstant::PAY_QUICKYPAY);
-    			$rs_pay = $handler->get_code(Ecjia\App\Payment\PayConstant::PAYCODE_PARAM);
+        		$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($payment_info['pay_code']);
+        		$handler->set_orderinfo($detail);
+        		$handler->set_mobile(false);
+        		$handler->setPaymentRecord(new Ecjia\App\Payment\Repositories\PaymentRecordRepository());
+        		$rs_pay = $handler->get_code(Ecjia\App\Payment\PayConstant::PAYCODE_PARAM);
     			if (is_ecjia_error($rs_pay)) {
     				return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     			}
-    			unset($order['pay_online']);
     			ecjia_front::$controller->redirect($order['pay_online']);
+    			unset($order['pay_online']);
     		} else {
     			RC_Logger::getlogger('info')->info('pay_alipay');
     			//其他支付方式
     			$not_need_otherpayment_arr = array('pay_cod');
     			$order['pay_online'] = array_get($order, 'pay_online', array_get($order, 'pay_online'));
-    			unset($order['pay_online']);
     			ecjia_front::$controller->redirect($rs_pay['payment']['pay_online']);
+    			unset($order['pay_online']);
     		}
     	} else {
     		RC_Logger::getlogger('info')->info('pay_balance');
