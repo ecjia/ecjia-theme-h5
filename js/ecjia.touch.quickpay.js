@@ -39,7 +39,7 @@
 				$.post(url, {val: val});
 			});
 			
-			$('.quickpay_done').on('click', function(e) {
+			$('.quickpay_done').off('click').on('click', function(e) {
 				e.preventDefault();
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 				var order_id = $("input[name='order_id']").val();
