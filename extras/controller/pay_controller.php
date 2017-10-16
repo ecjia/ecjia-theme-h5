@@ -139,7 +139,7 @@ class pay_controller {
 	        	}
 	        	 
 	        	if ($need_other_payment && $order['order_pay_status'] == 0) {
-	        		$params = array(
+	        		/* $params = array(
 	        			'token' => $token,
 	        		);
 	        		$rs_payment = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->data($params)->run();
@@ -148,31 +148,36 @@ class pay_controller {
 	        		}
 	        		$payment_list = touch_function::change_array_key($rs_payment['payment'], 'pay_code');
 	        			
-	        		/*根据浏览器过滤支付方式，微信自带浏览器过滤掉支付宝支付，其他浏览器过滤掉微信支付*/
-	        		if (!empty($payment_list)) {
-	        			if (cart_function::is_weixin() == true) {
-	        				foreach ($payment_list as $key => $val) {
-	        					if ($val['pay_code'] == 'pay_alipay') {
-	        						unset($payment_list[$key]);
-	        					}
-	        				}
-	        			} else {
-	        				foreach ($payment_list as $key => $val) {
-	        					if ($val['pay_code'] == 'pay_wxpay') {
-	        						unset($payment_list[$key]);
-	        					}
-	        				}
-	        			}
-	        		}
-	        	
 	        		//过滤当前支付方式
 	        		unset($payment_list[$pay_code]);
 	        		unset($payment_list[$payment_info['pay_code']]);
 	        		
-	        		//非自营过滤货到付款
-	        		if ($detail['manage_mode'] != 'self') {
-	        			unset($payment_list['pay_cod']);
-	        		}
+	        		*/
+	        	    //根据浏览器过滤支付方式，微信自带浏览器过滤掉支付宝支付，其他浏览器过滤掉微信支付
+	        	    $payment_list = $rs_pay['others'];
+	        	    if (!empty($payment_list)) {
+	        	        if (cart_function::is_weixin() == true) {
+	        	            foreach ($payment_list as $key => $val) {
+	        	                if ($val['pay_code'] == 'pay_alipay') {
+	        	                    unset($payment_list[$key]);
+	        	                }
+	        	                //非自营过滤货到付款
+	        	                if ($detail['manage_mode'] != 'self' && $val['pay_code'] == 'pay_cod') {
+	        	                    unset($payment_list[$key]);
+	        	                }
+	        	            }
+	        	        } else {
+	        	            foreach ($payment_list as $key => $val) {
+	        	                if ($val['pay_code'] == 'pay_wxpay') {
+	        	                    unset($payment_list[$key]);
+	        	                }
+	        	                //非自营过滤货到付款
+	        	                if ($detail['manage_mode'] != 'self' && $val['pay_code'] == 'pay_cod') {
+	        	                    unset($payment_list[$key]);
+	        	                }
+	        	            }
+	        	        }
+	        	    }
 	        		ecjia_front::$controller->assign('payment_list', $payment_list);
 	        	}
         	} else {
