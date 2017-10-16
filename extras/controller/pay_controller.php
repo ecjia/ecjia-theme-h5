@@ -107,7 +107,7 @@ class pay_controller {
         	if (isset($rs_pay) && $rs_pay['payment']['error_message']) {
         		ecjia_front::$controller->assign('pay_error', $rs_pay['payment']['error_message']);
         	}
-        	 
+        	_dump($rs_pay,1);
         	$order = $rs_pay['payment'];
         	//免费商品直接余额支付
         	if ($order['order_amount'] !== 0) {
