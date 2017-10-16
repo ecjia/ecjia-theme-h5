@@ -313,7 +313,7 @@ class quickpay_controller {
     	);
     	if ($payment_info['pay_code'] == 'pay_wxpay') {
     		$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($payment_info['pay_code']);
-    		$open_id = $handler->get_open_id();
+    		$open_id = $handler->getWechatOpenId();
     		$params['wxpay_open_id'] = $open_id;
     	}
     	$rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_ORDER_PAY)->data($params)->run();
