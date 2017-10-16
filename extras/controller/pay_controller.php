@@ -100,7 +100,8 @@ class pay_controller {
         	    'wxpay_open_id' => $open_id,
         	);
         	_dump($params);
-        	$rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($params)->run();
+        	$rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($params)->send();
+        	_dump($rs_pay);
         	if (is_ecjia_error($rs_pay)) {
         		return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         	}
