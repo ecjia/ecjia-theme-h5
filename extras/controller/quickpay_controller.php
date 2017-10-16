@@ -90,6 +90,7 @@ class quickpay_controller {
     
     public static function quickpay_detail() {
     	$order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
+    	$store_id = isset($_GET['order_id']) ? intval($_GET['store_id']) : 0;
     	
     	$params_order = array('token' => $token, 'order_id' => $order_id);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_ORDER_DETAIL)->data($params_order)->run();
@@ -106,6 +107,7 @@ class quickpay_controller {
 				}
 			}
 			ecjia_front::$controller->assign('data', $data);
+			ecjia_front::$controller->assign('store_id', $store_id);
 		}
     	ecjia_front::$controller->assign_title('买单详情');
         ecjia_front::$controller->display('quickpay_detail.dwt');
@@ -258,40 +260,37 @@ class quickpay_controller {
     	$token = ecjia_touch_user::singleton()->getToken();
     	$store_id = !empty($_POST['store_id']) ? intval($_POST['store_id']) : 0;
     	
-    	$goods_amount = !empty($_POST['order_money']) ? $_POST['order_money'] : 0;
-    	if (empty($goods_amount)) {
-    		return ecjia_front::$controller->showmessage('订单金额不能为空', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
-    	}
-    	$exclude_amount = !empty($_POST['drop_out_money']) ? $_POST['drop_out_money'] : 0;
-    	$activity_id = !empty($_POST['activity_id']) ? intval($_POST['activity_id']) : 0;
-    	$bonus_id = !empty($_POST['bonus']) ? intval($_POST['bonus']) : 0;
-    	$integral = !empty($_POST['integral']) ? intval($_POST['integral']) : 0;
-    	$pay_id = !empty($_POST['payment_id']) ? intval($_POST['payment_id']) : 0;
-    	
-    	$params = array(
-    		'token' 			=> $token, 
-    		'store_id' 			=> $store_id, 
-    		'goods_amount' 		=> $goods_amount, 
-    		'exclude_amount' 	=> $exclude_amount, 
-    		'activity_id' 		=> $activity_id,
-    		'bonus_id'			=> $bonus_id,
-    		'integral'			=> $integral,
-    		'pay_id'			=> $pay_id
-    	);
-    	$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_FLOW_DONE)->data($params)->run();
-    	if (!is_ecjia_error($rs)) {
-    		$order_id = $rs['order_id'];
-    		ecjia_front::$controller->redirect(RC_Uri::url('user/quickpay/pay', array('order_id' => $order_id)));
-    	} else {
-    		return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
-    	}
-    }
-    
-    public static function pay() {
-    	$order_id = !empty($_GET['order_id']) ? intval($_GET['order_id']) : 0;
-    	
+    	$order_id = !empty($_POST['order_id']) ? intval($_POST['order_id']) : 0;
     	if (empty($order_id)) {
-    		return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+	    	$goods_amount = !empty($_POST['order_money']) ? $_POST['order_money'] : 0;
+	    	if (empty($goods_amount)) {
+	    		return ecjia_front::$controller->showmessage('订单金额不能为空', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+	    	}
+	    	$exclude_amount = !empty($_POST['drop_out_money']) ? $_POST['drop_out_money'] : 0;
+	    	$activity_id = !empty($_POST['activity_id']) ? intval($_POST['activity_id']) : 0;
+	    	$bonus_id = !empty($_POST['bonus']) ? intval($_POST['bonus']) : 0;
+	    	$integral = !empty($_POST['integral']) ? intval($_POST['integral']) : 0;
+	    	$pay_id = !empty($_POST['payment_id']) ? intval($_POST['payment_id']) : 0;
+	    	
+	    	$params = array(
+	    		'token' 			=> $token, 
+	    		'store_id' 			=> $store_id, 
+	    		'goods_amount' 		=> $goods_amount, 
+	    		'exclude_amount' 	=> $exclude_amount, 
+	    		'activity_id' 		=> $activity_id,
+	    		'bonus_id'			=> $bonus_id,
+	    		'integral'			=> $integral,
+	    		'pay_id'			=> $pay_id
+	    	);
+	    	$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_FLOW_DONE)->data($params)->run();
+	    	if (!is_ecjia_error($rs)) {
+	    		$order_id = $rs['order_id'];
+	    		if (empty($order_id)) {
+	    			return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+	    		}
+	    	} else {
+	    		return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+	    	}
     	}
     	
     	$token = ecjia_touch_user::singleton()->getToken();
@@ -301,6 +300,7 @@ class quickpay_controller {
     	if (is_ecjia_error($detail)) {
     		return ecjia_front::$controller->showmessage($detail->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     	}
+    	RC_Logger::getlogger('info')->info($detail);
     	
     	//支付方式信息
     	$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
@@ -317,34 +317,38 @@ class quickpay_controller {
     		$params['wxpay_open_id'] = $open_id;
     	}
     	$rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_ORDER_PAY)->data($params)->run();
+    	 
     	RC_Logger::getlogger('info')->info($rs_pay);
-    	
     	//微信支付$rs_pay返回空
     	if (is_ecjia_error($rs_pay)) {
     		return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     	}
-    	
+    	 
     	if (isset($rs_pay) && $rs_pay['payment']['error_message']) {
     		return ecjia_front::$controller->showmessage($rs_pay['payment']['error_message'], ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     	}
     	$order = $rs_pay['payment'];
-
+    	
     	$order_amount = ltrim($order['order_amount'], '￥');
     	$order_surplus = ltrim($order['order_surplus'], '￥');
     	$order_amount = !empty($order_amount) ? $order_amount : $order_surplus;
-
+    	
     	//生成返回url cookie
     	RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
     	RC_Cookie::set('pay_response_order', RC_Uri::url('user/quickpay/quickpay_detail', array('order_id' => $order_id)));
-
-    	RC_Logger::getlogger('info')->info($order);
+    	
+    	RC_Logger::getlogger('info')->info($payment_info);
     	//免费商品直接余额支付
-    	if ($detail['pay_code'] != 'pay_balance' && $order_amount !== 0) {
+    	if ($payment_info['pay_code'] != 'pay_balance' && $order_amount !== 0) {
     		$pay_online = array_get($order, 'private_data.pay_online', array_get($order, 'pay_online'));
-    		ecjia_front::$controller->redirect($pay_online);
+    		if ($payment_info['pay_code'] == 'pay_alipay') {
+    			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('redirect_url' => $pay_online, 'pay_name' => 'ali'));
+    		} else if ($detail['pay_code'] == 'pay_wxpay') {
+    			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $pay_online, 'pay_name' => 'weixin'));
+    		}
     	} else {
     		$url = RC_Uri::url('user/quickpay/quickpay_detail', array('order_id' => $order_id));
-    		ecjia_front::$controller->redirect($url);
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('redirect_url' => $url, 'pay_name' => 'redirect'));
     	}
     }
 }

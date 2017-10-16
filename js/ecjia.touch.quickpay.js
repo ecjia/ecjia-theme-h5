@@ -39,20 +39,38 @@
 				$.post(url, {val: val});
 			});
 			
-			$('.quickpay_done').on('click', function() {
-				var order_money = $("input[name='order_money']").val();
-				if (order_money == '' || order_money.length == 0 || order_money == undefined) {
-					alert('订单金额不能为空');
-					return false;
+			$('.quickpay_done').on('click', function(e) {
+				e.preventDefault();
+				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+				var order_id = $("input[name='order_id']").val();
+				if (order_id == undefined) {
+					var order_money = $("input[name='order_money']").val();
+					if (order_money == '' || order_money.length == 0 || order_money == undefined) {
+						alert('订单金额不能为空');
+						return false;
+					}
+					if (order_money == 0) {
+						alert('订单金额不能为0');
+						return false;
+					}
 				}
-				if (order_money == 0) {
-					alert('订单金额不能为0');
-					return false;
-				}
-				ecjia.touch.pjaxloadding();
-				$("input[type='submit']").click();
+				var url = $("form[name='quickpayForm']").attr('action');
+				$("form[name='quickpayForm']").ajaxSubmit({
+					type: 'post',
+					url: url,
+					dataType: "json",
+					success: function(data) {
+						$('.la-ball-atom').remove();
+						if (data.redirect_url) {
+							location.href = data.redirect_url;
+						} else if(data.weixin_data) {
+							$('.wei-xin-pay').html("");
+							$('.wei-xin-pay').html(data.weixin_data);
+							callpay();
+						}
+					}
+				});
 			});
-			
         },
 	};
 })(ecjia, jQuery);
