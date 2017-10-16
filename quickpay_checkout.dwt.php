@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 <div class="quickpay">
-	<form id="theForm" name="theForm" action="{url path='user/quickpay/done'}" method="post">
+	<form name="quickpayForm" action="{url path='user/quickpay/done'}" method="post">
 	    <div class="checkout">
 	        <div class="quickpay_div before_two">
 	            <li class="outher_d"><span>{t}订单金额 (元){/t}</span><input class="quick_money" type="number"  name="order_money" step="0.01" placeholder="请询问店员后输入" value="{$data.goods_amount}"></li>
@@ -123,8 +123,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	    </div>
 
 	    <div>
-	    	<input class="btn btn-info" name="submit" type="submit" value="立即买单" style="display:none;"/>
-			<a class="btn quickpay_done pjax">和店员已确认，立即买单</a>
+	    	<input class="btn btn-info quickpay_done" type="submit" value="和店员已确认，立即买单" />
+	    	<div class="wei-xin-pay hide"></div>
 	    </div>
 	</form>
 </div>
