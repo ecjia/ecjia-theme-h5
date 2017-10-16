@@ -77,12 +77,6 @@ class pay_controller {
         		}
         	}
         	
-        	if ($pay_code == 'pay_wxpay') {
-        	    $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($pay_code);
-        	    $open_id = $handler->getWechatOpenId();
-        	    $_SESSION['wxpay_open_id'] = $open_id;
-        	}
-        	
         	/*获取订单信息*/
         	$params_order = array('token' => $token, 'order_id' => $order_id);
         	$detail = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
@@ -92,6 +86,12 @@ class pay_controller {
 //         	//支付方式信息
 //         	$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
 //         	$payment_info = $payment_method->payment_info_by_id($detail['pay_id']);
+        	
+        	if ($detail['pay_code'] == 'pay_wxpay') {
+        	    $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($pay_code);
+        	    $open_id = $handler->getWechatOpenId();
+        	    $_SESSION['wxpay_open_id'] = $open_id;
+        	}
         	
         	//获得订单支付信息
         	$params = array(
