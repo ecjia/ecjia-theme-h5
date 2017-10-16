@@ -288,7 +288,6 @@ class quickpay_controller {
     	/*获取订单信息*/
     	$params_order = array('token' => $token, 'order_id' => $order_id);
     	$detail = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_ORDER_DETAIL)->data($params_order)->run();
-    	RC_Logger::getlogger('info')->info($detail);
     	if (is_ecjia_error($detail)) {
     		return ecjia_front::$controller->showmessage($detail->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     	}
@@ -296,15 +295,18 @@ class quickpay_controller {
     	//支付方式信息
     	$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
     	$payment_info = $payment_method->payment_info_by_code($detail['pay_code']);
-    	RC_Logger::getlogger('info')->info($payment_info);
     	
     	//获得订单支付信息
     	$params = array(
     		'token' 	=> $token,
     		'order_id'	=> $order_id,
     	);
+    	if ($payment_info['pay_code'] == 'pay_wxpay') {
+    		$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($payment_info['pay_code']);
+    		$open_id = $handler->get_open_id();
+    		$params['wxpay_open_id'] = $open_id;
+    	}
     	$rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_ORDER_PAY)->data($params)->run();
-    	RC_Logger::getlogger('info')->info($rs_pay);
     	
     	//微信支付$rs_pay返回空
     	if (is_ecjia_error($rs_pay)) {
@@ -324,25 +326,13 @@ class quickpay_controller {
     	RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
     	RC_Cookie::set('pay_response_order', RC_Uri::url('user/quickpay/quickpay_detail', array('order_id' => $order_id)));
 
-    	RC_Logger::getlogger('info')->info($order_amount);
     	//免费商品直接余额支付
     	if ($detail['pay_code'] != 'pay_balance' && $order_amount !== 0) {
     		/* 调起微信支付*/
     		if ($payment_info['pay_code'] == 'pay_wxpay') {
-    			RC_Logger::getlogger('info')->info('pay_wxpay');
-    			// 取得支付信息，生成支付代码
-        		$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($payment_info['pay_code']);
-        		$handler->set_orderinfo($detail);
-        		$handler->set_mobile(false);
-        		$handler->setPaymentRecord(new Ecjia\App\Payment\Repositories\PaymentRecordRepository());
-        		$rs_pay = $handler->get_code(Ecjia\App\Payment\PayConstant::PAYCODE_PARAM);
-    			if (is_ecjia_error($rs_pay)) {
-    				return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
-    			}
     			ecjia_front::$controller->redirect($order['pay_online']);
     			unset($order['pay_online']);
     		} else {
-    			RC_Logger::getlogger('info')->info('pay_alipay');
     			//其他支付方式
     			$not_need_otherpayment_arr = array('pay_cod');
     			$order['pay_online'] = array_get($order, 'pay_online', array_get($order, 'pay_online'));
@@ -350,7 +340,6 @@ class quickpay_controller {
     			unset($order['pay_online']);
     		}
     	} else {
-    		RC_Logger::getlogger('info')->info('pay_balance');
     		unset($order['pay_online']);
     		$url = RC_Uri::url('user/quickpay/quickpay_detail', array('order_id' => $order_id));
     		ecjia_front::$controller->redirect($url);
