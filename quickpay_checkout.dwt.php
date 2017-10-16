@@ -123,7 +123,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	    </div>
 
 	    <div>
-	    	<input class="btn btn-info quickpay_done" type="submit" value="和店员已确认，立即买单" />
+	    	<input class="btn btn-info quickpay_done external" type="submit" value="和店员已确认，立即买单" />
 	    	<div class="wei-xin-pay hide"></div>
 	    </div>
 	</form>
