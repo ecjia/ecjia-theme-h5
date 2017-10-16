@@ -94,6 +94,17 @@ class quickpay_controller {
     	$params_order = array('token' => $token, 'order_id' => $order_id);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_ORDER_DETAIL)->data($params_order)->run();
 		if (!is_ecjia_error($data)) {
+			if (!empty($data)) {
+				if (cart_function::is_weixin() == true) {
+					if ($data['pay_code'] == 'pay_alipay') {
+						unset($data['pay_code']);
+					}
+				} else {
+					if ($data['pay_code'] == 'pay_wxpay') {
+						unset($data['pay_code']);
+					}
+				}
+			}
 			ecjia_front::$controller->assign('data', $data);
 		}
     	ecjia_front::$controller->assign_title('买单详情');
