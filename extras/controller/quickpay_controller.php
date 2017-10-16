@@ -295,13 +295,14 @@ class quickpay_controller {
     	//支付方式信息
     	$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
     	$payment_info = $payment_method->payment_info_by_code($detail['pay_code']);
-    	
+    	RC_Logger::getlogger('info')->info($payment_info);
     	//获得订单支付信息
     	$params = array(
     		'token' 	=> $token,
     		'order_id'	=> $order_id,
     	);
     	$rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_ORDER_PAY)->data($params)->run();
+    	RC_Logger::getlogger('info')->info($rs_pay);
     	//微信支付$rs_pay返回空
     	if (is_ecjia_error($rs_pay)) {
     		return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
@@ -318,7 +319,7 @@ class quickpay_controller {
     	//生成返回url cookie
     	RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
     	RC_Cookie::set('pay_response_order', RC_Uri::url('user/quickpay/quickpay_detail', array('order_id' => $order_id)));
-    	
+    	RC_Logger::getlogger('info')->info($order_amount);
     	//免费商品直接余额支付
     	if ($order_amount != 0) {
     		/* 调起微信支付*/
