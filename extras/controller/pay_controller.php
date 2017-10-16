@@ -76,20 +76,28 @@ class pay_controller {
         			return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         		}
         	}
+        	
+        	if ($pay_code == 'pay_wxpay') {
+        	    $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($pay_code);
+        	    $open_id = $handler->getWechatOpenId();
+        	    $_SESSION['wxpay_open_id'] = $open_id;
+        	}
+        	
         	/*获取订单信息*/
         	$params_order = array('token' => $token, 'order_id' => $order_id);
         	$detail = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
         	if (is_ecjia_error($detail)) {
         	    return ecjia_front::$controller->showmessage($detail->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         	}
-        	//支付方式信息
-        	$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
-        	$payment_info = $payment_method->payment_info_by_id($detail['pay_id']);
+//         	//支付方式信息
+//         	$payment_method = RC_Loader::load_app_class('payment_method', 'payment');
+//         	$payment_info = $payment_method->payment_info_by_id($detail['pay_id']);
         	
         	//获得订单支付信息
         	$params = array(
         		'token' 	=> $token,
         		'order_id'	=> $order_id,
+        	    'wxpay_open_id' => $open_id,
         	);
         	$rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($params)->run();
         	if (is_ecjia_error($rs_pay)) {
@@ -104,33 +112,34 @@ class pay_controller {
         	//免费商品直接余额支付
         	if ($order['order_amount'] !== 0) {
 	        	$need_other_payment = 0;
-	        	if ($order ['pay_code'] == 'pay_balance') {
+	        	if ($order['pay_code'] == 'pay_balance') {
 	        		if ($rs_pay['payment']['error_message']) {
 	        			$need_other_payment = 1;
 	        		}
 	        	}
 	        	/* 调起微信支付*/
-	        	else if ( $pay_code == 'pay_wxpay' || $payment_info['pay_code'] == 'pay_wxpay') {
+	        	else if ($order['pay_code'] == 'pay_wxpay') {
 	        		// 取得支付信息，生成支付代码
 // 	        		$payment_config = $payment_method->unserialize_config($payment_info['pay_config']);
 	        		 
-// 	        		$handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
-	        		$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($payment_info['pay_code']);
-	        		$handler->set_orderinfo($detail);
-	        		$handler->set_mobile(false);
-	        		$handler->setPaymentRecord(new Ecjia\App\Payment\Repositories\PaymentRecordRepository());
-	        		$rs_pay = $handler->get_code(Ecjia\App\Payment\PayConstant::PAYCODE_PARAM);
-	        		if (is_ecjia_error($rs_pay)) {
-	        		    return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
-	        		}
-	        		$order = $rs_pay;
-	        		ecjia_front::$controller->assign('pay_button', $rs_pay['private_data']['pay_online']);
+// // 	        		$handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
+// 	        		$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($order['pay_code']);
+// 	        		$handler->set_orderinfo($detail);
+// 	        		$handler->set_mobile(false);
+// 	        		$handler->setPaymentRecord(new Ecjia\App\Payment\Repositories\PaymentRecordRepository());
+// 	        		$rs_pay = $handler->get_code(Ecjia\App\Payment\PayConstant::PAYCODE_PARAM);
+// 	        		if (is_ecjia_error($rs_pay)) {
+// 	        		    return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+// 	        		}
+// 	        		$order = $rs_pay;
+	        		$pay_online = array_get($rs_pay, 'payment.private_data.pay_online', array_get($rs_pay, 'payment.pay_online'));
+	        		ecjia_front::$controller->assign('pay_button', $pay_online);
 	        		unset($order['pay_online']);
 	        		$need_other_payment = 1;
 	        	} else {
 	        		//其他支付方式
 	        		$not_need_otherpayment_arr = array('pay_cod');
-	        		if (in_array($order ['pay_code'], $not_need_otherpayment_arr)) {
+	        		if (in_array($order['pay_code'], $not_need_otherpayment_arr)) {
 	        			$need_other_payment = 0;
 	        		} else {
 	        			$need_other_payment = 1;
