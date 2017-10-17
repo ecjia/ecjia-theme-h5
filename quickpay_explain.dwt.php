@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <div class="quickpay">
     <div class="checkout">
-         <div class="quickpay_div">
+         <div class="quickpay_div content">
             <li class="explain_title"><span><b>{t}买单说明{/t}</b></span></li>
             <li class="quickpay_list">
                 <p>{t}1、优惠买单仅限于到店消费后使用，请勿提前支付；{/t}</p>
@@ -28,9 +28,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </li>
         </div>
         {if $data}
-        <div class="quickpay_div">
+        <div class="quickpay_div content">
             <li class="explain_title"><span><b>{t}买单优惠{/t}</b></span></li>
-            <div class="before_two">
+            <div class="before_two line">
             	<!-- {foreach from=$data item=list} -->
                 <li class="outher_d explain_d">
                     <div class="explain_info">
