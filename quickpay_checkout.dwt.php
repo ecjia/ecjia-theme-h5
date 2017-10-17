@@ -107,7 +107,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 	    <div>
 	    	<input class="btn quickpay_done external" type="submit" value="确认买单" {if $data.goods_amount eq '' || !$data.goods_amount}disabled{/if}/>
-	    	<div class="wei-xin-pay hide"></div>
+	    	<div class="help-block">优惠买单仅限于到店支付，请确认金额后提交。</div>
 	    </div>
 	</form>
 </div>

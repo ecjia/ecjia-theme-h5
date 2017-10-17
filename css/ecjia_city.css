@@ -10652,6 +10652,12 @@ footer {
 	color: #aaa;
 }
 
+.quickpay .help-block {
+	width: 92%;
+    margin: 1em 4%;
+    color: #aaa;
+}
+
 .pri {
     margin-bottom: 1em;
     height: 2em;
