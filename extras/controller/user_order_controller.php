@@ -210,6 +210,7 @@ class user_order_controller {
             $say_list = '';
             if (!empty($orders)) {
             	ecjia_front::$controller->assign('order_list', $orders);
+            	ecjia_front::$controller->assign('type', $type);
             	ecjia_front::$controller->assign_lang();
             	$say_list = ecjia_front::$controller->fetch('user_order_list.dwt');
             }

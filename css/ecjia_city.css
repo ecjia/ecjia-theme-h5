@@ -6283,7 +6283,11 @@ footer {
 	overflow: hidden;
 }
 
-.ecjia-order-list .ecjia-order-item:first-child {
+/*.ecjia-order-list .ecjia-order-item:first-child {
+	margin: 0;
+}*/
+
+.ecjia-order-list .ecjia-order-mt:first-child {
 	margin: 0;
 }
 
