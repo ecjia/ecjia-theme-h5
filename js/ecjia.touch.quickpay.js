@@ -125,7 +125,7 @@
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 				var bool = $(this).hasClass('external');
 				if (bool) {
-					$(this).val("支付中");
+					$(this).val("请求中");
 				} else {
 					$(this).val("支付请求中，请稍后");
 				}
