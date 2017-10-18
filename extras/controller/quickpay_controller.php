@@ -363,6 +363,11 @@ class quickpay_controller {
 				return ecjia_front::$controller->showmessage('该订单已支付请勿重复支付', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
 			}
 			
+			//提前获取微信支付wxpay_open_id
+			$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
+			$open_id = $handler->getWechatOpenId();
+			$_SESSION['wxpay_open_id'] = $open_id;
+			
 			$params = array('store_id' => $order_info['store_id']);
 			$payment_list = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_SHOP_PAYMENT)->data($params)->run();
 			/*根据浏览器过滤支付方式，微信自带浏览器过滤掉支付宝支付，其他浏览器过滤掉微信支付*/
