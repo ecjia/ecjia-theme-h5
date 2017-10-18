@@ -110,10 +110,12 @@ class quickpay_controller {
 			ecjia_front::$controller->assign('store_id', $store_id);
 		}
 		
-		//提前获取微信支付wxpay_open_id
-		$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
-		$open_id = $handler->getWechatOpenId();
-		$_SESSION['wxpay_open_id'] = $open_id;
+    	if (cart_function::is_weixin()) {
+			//提前获取微信支付wxpay_open_id
+			$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
+			$open_id = $handler->getWechatOpenId();
+			$_SESSION['wxpay_open_id'] = $open_id;
+		}
 		
     	ecjia_front::$controller->assign_title('买单详情');
         ecjia_front::$controller->display('quickpay_detail.dwt');
@@ -363,10 +365,12 @@ class quickpay_controller {
 				return ecjia_front::$controller->showmessage('该订单已支付请勿重复支付', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
 			}
 			
-			//提前获取微信支付wxpay_open_id
-			$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
-			$open_id = $handler->getWechatOpenId();
-			$_SESSION['wxpay_open_id'] = $open_id;
+			if (cart_function::is_weixin()) {
+				//提前获取微信支付wxpay_open_id
+				$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
+				$open_id = $handler->getWechatOpenId();
+				$_SESSION['wxpay_open_id'] = $open_id;
+			}
 			
 			$params = array('store_id' => $order_info['store_id']);
 			$payment_list = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_SHOP_PAYMENT)->data($params)->run();
