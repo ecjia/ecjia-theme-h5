@@ -15,7 +15,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<form class="ecjia-account ecjia-form user-profile-form" name="quickpay_form" action="{url path='user/quickpay/do_pay'}" method="post">
+<form class="ecjia-account ecjia-form user-profile-form" name="quickpay_form" action="{url path='user/quickpay/dopay'}" method="post">
 	<div class="quickpay">
 	    <div class="checkout">
 			<div class="quickpay_div background_fff">
