@@ -41,7 +41,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<li class="quick-li">
 			<div class="quick-left">
 				<span class="quick-name">{$list.title}</span>
-				{if $list.limit_time_weekly neq '0'}
+				{if $list.limit_time_weekly neq '' || $list.limit_time_daily neq ''}
 				<span class="quick-time">（{$list.limit_time_weekly}&nbsp;{$list.limit_time_daily}）</span>
 				{/if}
 			</div>

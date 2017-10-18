@@ -20,135 +20,120 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<form name="quickpayForm" action="{url path='user/quickpay/done'}" method="post">
 	    <div class="checkout">
 	        <div class="quickpay_div before_two">
-	            <li class="outher_d"><span>{t}订单金额 (元){/t}</span><input class="quick_money" type="number"  name="order_money" step="0.01" placeholder="请询问店员后输入" value="{$data.goods_amount}"></li>
-	            <li class="outher_d"><span>{t}不参与优惠金额 (元){/t}</span><input class="quick_money" type="number" name="drop_out_money" step="0.01" placeholder="请询问店员后输入" data-url="{url path='user/quickpay/flow_checkorder'}" value="{$data.exclude_amount}" /></li>
+	            <li class="outher_d amount_li">
+	            	<span>{t}消费金额 (元){/t}</span>
+	            	<input class="quick_money" type="number" name="order_money" step="0.01" placeholder="请询问店员后输入" value="{$data.goods_amount}">
+	            </li>
+	            
+	            <li class="outher_d exclude_amount_li">
+		            <label class="ecjia-checkbox {if $show_exclude_amount eq 1}ecjia-checkbox-checked{/if}">
+		            	<input type="checkbox" name="show_exclude_amount" value="1" {if $show_exclude_amount eq 1}checked{/if}>
+		            </label>
+	            	<span>{t}输入不参与优惠金额 (元){/t}</span>
+	            </li>
+	            
+	            <li class="outher_d amount_li li" {if $show_exclude_amount eq 1}style="display:block;"{/if}>
+	            	<span>{t}不参与优惠金额 (元){/t}</span>
+	            	<input class="quick_money" type="number" name="drop_out_money" step="0.01" placeholder="请询问店员后输入" data-url="{url path='user/quickpay/flow_checkorder'}" value="{$data.exclude_amount}">
+	            </li>
 	        </div>
 	        <input type="hidden" name="store_id" value="{$store_id}">
-	        <div class="quickpay-content">
-	        	{if $data}
-	        	{if $data.activity_id neq 0}
-	        	<div class="before_two ecjia-margin-t">
-				   <div class="quickpay_div">
-				       <li class="outher_d">
-				            <span class="redio-height redio-mr-t">
-								<label class="ecjia-check ecjiaf-fr" for="activity">
-				               		<input type="radio" id="activity" name="activity_id" value="{$data.activity_id}" checked>
-				               </label>
-				           </span>
-				           <span class="shanhui">买单</span>
-				           <span class="slect-title">{$data.title}</span>
-				           <span class="ecjiaf-fr ecjia-margin-r">-{$data.formated_discount}</span>
-				       </li>
-				   </div>
-				</div>
+				
+			<div class="quickpay-content before_two">
+				{if $activity_list}
+				<div class="quickpay_div content">
+			   		<!-- {foreach from=$activity_list item=val} -->
+			       	<li class="outher_d">
+			        	<span class="radio-height radio-mr-t">
+							<label class="ecjia-check ecjiaf-fr" for="activity_{$val.activity_id}">
+			       				<input type="radio" id="activity_{$val.activity_id}" name="activity_id" value="{$val.activity_id}" {if $val.checked eq 1}checked{else}disabled{/if}>
+			               	</label>
+			           	</span>
+			           	<span class="shanhui">买单</span>
+			           	<span class="slect-title">{$val.title}</span>
+			           	<span class="ecjiaf-fr ecjia-margin-r ecjia-color-aaa">{$val.check_label}</span>
+			       	</li>
+			       	<!-- {/foreach} -->
+			   	</div>
 				{/if}
-				<div class="quickpay_div before_two ecjia-margin-t">
-					{if $data.allow_use_bonus}
-				    <li class="outher_d">
-				    	{if $data.bonus_list|count gt 0}
-				        <a class="nopjax" href='{url path="user/quickpay/bonus" args="store_id={$store_id}"}'>
-				            <div class="icon-wallet"></div>
-				            <span class="icon-name">使用红包</span>
-				            <span class="fav_info">{count($data.bonus_list)}个可用</span>
-				            <i class="iconfont icon-jiantou-right"></i>
-				            <span class="other_width">{$data.bonus_list[$temp.bonus].type_name} {$data.bonus_list[$temp.bonus].bonus_money_formated}</span>
-				       		<input type="hidden" name="bonus" value="{$temp.bonus}">
-				        </a>
-				        {else}
-				        <a href='javascript:;' title="不可用">
-							<span class="ecjia-color-999">使用红包</span>
-							<span class="ecjia-tag ecjia-tag-disable">不可用</span>
-						</a>
-				        {/if}
-				    </li>
-				    {/if}
-				    
-				    {if $data.allow_use_integral}
-				    <li class="outher_d">
-				    	{if $data.order_max_integral eq 0}
-						<a href='javascript:;' title="不可用">
-							<span class="ecjia-color-999">使用积分</span>
-							<span class="ecjia-tag ecjia-tag-disable">不可用</span>
-						</a>
-						{else}	
-				        <a href='{url path="user/quickpay/integral" args="store_id={$store_id}"}'>
-				            <div class="icon-wallet"></div>
-				            <span class="icon-name">{t}使用积分{/t}</span>
-				            {if $temp.integral gt 0}
-				            <span class="fav_info">{$temp.integral}积分</span>
-				            <input type="hidden" name="integral" value="{$temp.integral}" />
-				            {else}
-				            <span class="fav_info">{if $data.user_integral lt $data.order_max_integral }{$data.user_integral}{else}{$data.order_max_integral}{/if}积分可用</span>
-				            {/if}
-				            <i class="iconfont icon-jiantou-right"></i>
-				            {if $temp.integral_bonus}
-				            <span class="other_width">{$temp.integral}积分抵{$temp.integral_bonus}元</span>
-				            {/if}
-				        </a>
-				        {/if}
-				    </li>
-				    {/if}
-				    
+			
+				{if $data.bonus_list|count gt 0 || $data.allow_use_integral}
+					<div class="quickpay_div content ecjia-margin-t">
+						{if $data.allow_use_bonus && $data.bonus_list|count gt 0}
+					    <li class="outher_d">
+					        <a class="nopjax" href='{url path="user/quickpay/bonus" args="store_id={$store_id}"}'>
+					            <div class="icon-wallet"></div>
+					            <span class="icon-name">使用红包</span>
+					            <span class="fav_info">{count($data.bonus_list)}个可用</span>
+					            <i class="iconfont icon-jiantou-right"></i>
+					            <input type="hidden" name="bonus" value="{$temp.bonus}">
+					        </a>
+					    </li>
+					    {/if}
+					    
+					    {if $data.allow_use_integral && $data.order_max_integral neq 0}
+					    <li class="outher_d">
+					        <a href='{url path="user/quickpay/integral" args="store_id={$store_id}"}'>
+					            <div class="icon-wallet"></div>
+					            <span class="icon-name">{t}使用积分{/t}</span>
+					            {if $temp.integral gt 0}
+					            <span class="ecjia-tag">{$temp.integral}积分</span>
+					            <input type="hidden" name="integral" value="{$temp.integral}" />
+					            {else}
+					            <span class="fav_info">{if $data.user_integral lt $data.order_max_integral }{$data.user_integral}{else}{$data.order_max_integral}{/if}积分可用</span>
+					            {/if}
+					            <i class="iconfont icon-jiantou-right"></i>
+						        {if $temp.integral_bonus}
+	                            <span class="other_width">{$temp.integral}积分抵{$temp.integral_bonus}元</span>
+	                            {/if}
+					        </a>
+					    </li>
+					    {/if}
+					</div>
+				{/if}
+				
+				<div class="quickpay_div before_two ecjia-margin-t content">
 					<li class="outher_d">
 				        <span>实付金额</span>
-				        <span class="ecjiaf-fr total_fee">￥{$total_fee}</span>
+				        <span class="ecjiaf-fr total_fee">{if $total_fee}￥{$total_fee}{else}￥0.00{/if}</span>
 				    </li>
-				</div>
-				
-				<div class="before_two ecjia-margin-t">
-				    <ul class="ecjia-list">
-				        <li>
-				                        选择支付方式 <span class="ecjiaf-fr"></span>
-				        </li>
-				    </ul>
-				    <ul class="ecjia-list list-short payment-list" data-url="{url path='user/quickpay/payment'}">
-				    <!-- {foreach from=$data.payment_list item=list key=key} -->
-				        <li class="ecjia-account-padding-input user_pay_way">
-				            <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}">
-				                <label class="ecjiaf-fr ecjia-check">
-				                  	<input type="radio" name="payment_id" value="{$list.pay_id}" {if $temp.payment_id eq $list.pay_id}checked{else if $key eq 0}checked{/if}/>
-				                </label>
-				                {$list.pay_name}
-				            </span>
-				        </li>
-				    <!-- {/foreach} -->
-				    </ul>
-				</div>  
-				{/if}
-	        </div>
-	    </div>
+			    </div>
+			</div>
+        </div>
 	
 	    <div class="pri ecjia-margin-t">
 	        <a href='{url path="user/quickpay/explain" args="store_id={$store_id}"}'><p class="pri_info">优惠说明</p></a>
 	    </div>
 
 	    <div>
-	    	<input class="btn btn-info quickpay_done external" type="submit" value="和店员已确认，立即买单" />
-	    	<div class="wei-xin-pay hide"></div>
+	    	<input class="btn quickpay_done external" type="submit" value="确认买单" {if $data.goods_amount eq '' || !$data.goods_amount}disabled{/if}/>
+	    	<div class="help-block">优惠买单仅限于到店支付，请确认金额后提交。</div>
 	    </div>
 	</form>
 </div>
 <!-- {/block} -->
 
 <!-- {block name="ajaxinfo"} -->
-{if $data.activity_id neq 0}
-<div class="before_two ecjia-margin-t">
-   <div class="quickpay_div">
-       <li class="outher_d">
-            <span class="redio-height redio-mr-t">
-				<label class="ecjia-check ecjiaf-fr" for="activity">
-               		<input type="radio" id="activity" name="activity_id" value="{$data.activity_id}" checked>
-               </label>
-           </span>
-           <span class="shanhui">买单</span>
-           <span class="slect-title">{$data.title}</span>
-           <span class="ecjiaf-fr ecjia-margin-r">-{$data.formated_discount}</span>
-       </li>
-   </div>
+{if $activity_list}
+<div class="quickpay_div content">
+	<!-- {foreach from=$activity_list item=val} -->
+	<li class="outher_d">
+		<span class="radio-height radio-mr-t">
+			<label class="ecjia-check ecjiaf-fr" for="activity_{$val.activity_id}">
+				<input type="radio" id="activity_{$val.activity_id}" name="activity_id" value="{$val.activity_id}" {if $val.checked eq 1}checked{else}disabled{/if}>
+			</label>
+		</span>
+		<span class="shanhui">买单</span>
+		<span class="slect-title">{$val.title}</span>
+		<span class="ecjiaf-fr ecjia-margin-r ecjia-color-aaa">{$val.check_label}</span>
+	</li>
+	<!-- {/foreach} -->
 </div>
 {/if}
-<div class="quickpay_div before_two ecjia-margin-t">
-	{if $data.allow_use_bonus}
+			   
+{if $data.bonus_list|count gt 0 || $data.allow_use_integral}
+<div class="quickpay_div content ecjia-margin-t">
+	{if $data.allow_use_bonus && $data.bonus_list|count gt 0}
     <li class="outher_d">
     	{if $data.bonus_list|count gt 0}
         <a class="nopjax" href='{url path="user/quickpay/bonus" args="store_id={$store_id}"}'>
@@ -158,23 +143,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <i class="iconfont icon-jiantou-right"></i>
             <input type="hidden" name="bonus" value="{$temp.bonus}">
         </a>
-        {else}
-        <a href='javascript:;' title="不可用">
-			<span class="ecjia-color-999">使用红包</span>
-			<span class="ecjia-tag ecjia-tag-disable">不可用</span>
-		</a>
         {/if}
     </li>
     {/if}
     
-    {if $data.allow_use_integral}
+    {if $data.allow_use_integral && $data.order_max_integral neq 0}
     <li class="outher_d">
-    	{if $data.order_max_integral eq 0}
-		<a href='javascript:;' title="不可用">
-			<span class="ecjia-color-999">使用积分</span>
-			<span class="ecjia-tag ecjia-tag-disable">不可用</span>
-		</a>
-		{else}	
         <a href='{url path="user/quickpay/integral" args="store_id={$store_id}"}'>
             <div class="icon-wallet"></div>
             <span class="icon-name">{t}使用积分{/t}</span>
@@ -186,34 +160,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             {/if}
             <i class="iconfont icon-jiantou-right"></i>
         </a>
-        {/if}
     </li>
     {/if}
-    
-	<li class="outher_d">
-        <span>实付金额</span>
-        <span class="ecjiaf-fr total_fee">￥{$total_fee}</span>
-    </li>
 </div>
-
-<div class="before_two ecjia-margin-t">
-    <ul class="ecjia-list">
-        <li>
-                        选择支付方式 <span class="ecjiaf-fr"></span>
-        </li>
-    </ul>
-    <ul class="ecjia-list list-short payment-list" data-url="{url path='user/quickpay/payment'}">
-    <!-- {foreach from=$data.payment_list item=list key=key} -->
-        <li class="ecjia-account-padding-input user_pay_way">
-            <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}">
-                <label class="ecjiaf-fr ecjia-check">
-                  	<input type="radio" name="payment_id" value="{$list.pay_id}" {if $key eq 0}checked{/if}/>
-                </label>
-                {$list.pay_name}
-            </span>
-        </li>
-    <!-- {/foreach} -->
-    </ul>
-</div>        
+{/if}
+<div class="quickpay_div before_two ecjia-margin-t content">
+	<li class="outher_d">
+		<span>实付金额</span>
+		<span class="ecjiaf-fr total_fee">￥{$total_fee}</span>
+	</li>
+</div>
 <!-- {/block} -->
 {/nocache}

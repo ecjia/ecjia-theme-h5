@@ -257,6 +257,23 @@ a.ecjia-color-green {
 .ecjia-check-edit /* x样式 */ {
 	background-position: 0px -100px;
 }
+
+.ecjia-checkbox {
+	width: 20px;
+	height: 20px;
+	margin: 2px;
+	padding: 0;
+	background: url(../images/icon/ckbox.png)  0 0 no-repeat;
+	background-size: 20px 220px;
+}
+
+.ecjia-checkbox-checked /* 选中  */ {
+	background-position: 0px -200px;
+}
+
+.ecjia-checkbox-edit /* x样式 */ {
+	background-position: 0px -100px;
+}
 /* 选择样式end */
 
 /*标签*/
@@ -10393,6 +10410,33 @@ footer {
     font-size: 1.1em;
 }
 
+.quickpay .checkout .outher_d.amount_li {
+	background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.quickpay .checkout .outher_d.amount_li.li {
+	margin-bottom: .5em;
+	display: none;
+}
+
+.quickpay .checkout .outher_d.exclude_amount_li {
+    height: 40px;
+    line-height: 40px;
+    font-size: 1em;
+    padding: 0;
+}
+
+.quickpay .checkout .outher_d.exclude_amount_li .ecjia-checkbox {
+	margin-top: 10px;
+    float: left;
+}
+
+.quickpay .checkout .outher_d.exclude_amount_li span {
+	margin-left: .3em;
+}
+
 .quickpay .checkout .outher_d .total_fee {
 	color: #ff3434;
     font-size: 1.1em;
@@ -10437,8 +10481,9 @@ footer {
     float: right;
     text-align: right;
     font-size: 1em;
-    height: 3em;
+    line-height: 2.8em;
     width: 10em;
+    padding: 0;
 }
 
 .quickpay .checkout .quickpay_div+.quickpay_div::before {
@@ -10447,27 +10492,76 @@ footer {
     display: block;
     width: 96%;
     left: 4%;
-    border-bottom: 1px solid #eee;
+    border-bottom: none;
 }
 
 .quickpay .checkout .before_two {
 	border-bottom: 1px solid #eee;
 }
 
+.quickpay .seller_info {
+    height: 7.5em;
+    text-align: center;
+	border-bottom: 1px solid #eee;
+}
+
+.quickpay .seller_info .seller_logo {
+	padding: .5em 0;
+}
+
+.seller_name {
+	font-size: 1.1em;
+}
+
+.quickpay .seller_info img {
+	width: 80px;
+    height: 80px;
+    border-radius: 50%;
+	border: 2px solid #47aa4d;
+}
+
+.quickpay .order_info {
+	line-height: 2em;
+    padding: .5em;
+}
+
+.quickpay .order_amount {
+	color: #ff3434;
+    font-size: 1.1em;
+}
+
+.quickpay .order_sn {
+	color: #999;
+}
+
 .quickpay .checkout .before_two li+li::before{
     content: '';
     position: absolute;
     display: block;
-    width: 96%;
-    left: 4%;
-    border-bottom: 1px solid #eee;
+    left: 1em;
+    right: 0;
+}
+
+.quickpay .checkout .before_two.line li+li::before{
+	border-bottom: 1px solid #eee;
+}
+
+.quickpay .checkout .before_two .quickpay_div.content li+li::before {
+	border-bottom: 1px solid #eee;
 }
 
 .quickpay .checkout .quickpay_div{
-    background: #FFF;
+    background: #F3F3F3;
     width: 100%;
     margin-bottom: 0;
-	position: relative;
+    position: relative;
+    padding: .5em;
+	padding-bottom: 0;
+}
+
+.quickpay .checkout .quickpay_div.content {
+	background: #fff;
+	padding: 0;
 }
 
 .quickpay .checkout .quickpay_div .explain_title{
@@ -10499,13 +10593,13 @@ footer {
     text-overflow: ellipsis;
 }
 
-.quickpay .checkout .outher_d .redio-height{
+.quickpay .checkout .outher_d .radio-height{
 	vertical-align: middle;
     display: inline-block;
     position: relative;
 }
 
-.quickpay .checkout .outher_d .redio-height.redio-mr-t {
+.quickpay .checkout .outher_d .radio-height.radio-mr-t {
     float: right;
     margin-top: .8em;
 }
@@ -10548,6 +10642,16 @@ footer {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.quickpay .ecjia-color-aaa {
+	color: #aaa;
+}
+
+.quickpay .help-block {
+    width: 92%;
+    margin: 1em 4%;
+    color: #aaa;
 }
 
 .pri {
