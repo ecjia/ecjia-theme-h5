@@ -20,8 +20,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="quickpay_div content">
 			<div class="before_two">
 				<div class="seller_info">
-					<div class="seller_logo"><img src="{$shop_info.seller_logo}" /></div>
-					<div class="seller_name">{$shop_info.seller_name}</div>
+					<div class="seller_logo"><img src="{$shop_info.store_logo}" /></div>
+					<div class="seller_name">{$shop_info.store_name}</div>
 				</div>
 				<div class="order_info">
 					<div class="order_amount">￥190.00</div>

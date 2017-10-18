@@ -10508,6 +10508,10 @@ footer {
     border-bottom: none;
 }
 
+.quickpay .checkout .quickpay_div.content+.quickpay_div.content::before {
+    border-bottom: 1px solid #eee;
+}
+
 .quickpay .checkout .before_two {
 	border-bottom: 1px solid #eee;
 }
@@ -10616,6 +10620,12 @@ footer {
     float: right;
     margin-top: .8em;
 }
+
+.quickpay .checkout .outher_d .radio-height.radio-ml-t {
+    float: left;
+    margin-top: .8em;
+}
+
 
 .quickpay .checkout .outher_d .icon-jiantou-right{
     float: right;

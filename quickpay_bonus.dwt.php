@@ -19,16 +19,16 @@ ecjia.touch.user.init();
 	<div class="quickpay ecjia-select">
 	    <div class="checkout">
 	        <div class="before_two">
-	        	<!-- {foreach from=$data.bonus_list item=list} -->
-	           	<label class="quickpay_div">
+	        	<!-- {foreach from=$activity.bonus_list item=list} -->
+	           	<div class="quickpay_div content">
 	            	<li class="outher_d">
-	                	<span class="redio-height">
+	                	<span class="radio-height radio-ml-t">
 	                       	<label class="ecjia-check ecjiaf-fl"><input name="bonus" type="radio" value="{$list.bonus_id}" id="{$list.bonus_id}" {if $temp.bonus eq $list.bonus_id}checked{/if}></label>
 	                   	</span>
 	                   	<span class="ecjia-margin-l">{$list.type_name}</span>
 	                   	<span class="ecjiaf-fr">{$list.bonus_money_formated}</span>
 	               </li>
-				</label>
+				</div>
 	           	<!-- {foreachelse} -->
 	           	<label class="select-item">
 	           		<li>
