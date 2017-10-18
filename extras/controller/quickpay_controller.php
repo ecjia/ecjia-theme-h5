@@ -117,7 +117,6 @@ class quickpay_controller {
     public static function checkout() {
         $token = ecjia_touch_user::singleton()->getToken();
         
-        $city_id = !empty($_COOKIE['city_id']) ? $_COOKIE['city_id'] : '';
         $store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
         ecjia_front::$controller->assign('store_id', $store_id);
         
@@ -175,7 +174,7 @@ class quickpay_controller {
 	        	'city_id' 	=> $_COOKIE['city_id']
 	        );
 	        $store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data($parameter_list)->run();
-	        if (!empty($store_info['quickpay_activity_list'])) {
+	        if (!is_ecjia_error($store_info) && !empty($store_info['quickpay_activity_list'])) {
 				$_SESSION['quick_pay']['shop_info']['store_id'] = $store_info['id'];
 				$_SESSION['quick_pay']['shop_info']['store_name'] = $store_info['seller_name'];
 				$_SESSION['quick_pay']['shop_info']['store_logo'] = $store_info['seller_logo'];
