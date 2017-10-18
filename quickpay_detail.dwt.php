@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 <div class="ecjia-address-list ecjia-order-detail ecjia-order-pad">
-	<form name="quickpayForm" action="{url path='user/quickpay/done'}" method="post" >
+	<form name="quickpay_form" action="{url path='user/quickpay/do_pay'}" method="post" >
 	    <div class="franchisee-process-hint quickpay-hint"> 
 	    	{if $data.order_status_str eq 'unpaid'}
 	        <img class="quickpay-status-img" src="{$theme_url}images/user_center/wait_paid.png">
@@ -63,8 +63,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	    
 	    <div class="order-ft-link">
 	    	<input type="hidden" name="order_id" value="{$data.order_id}">
+	    	<input  type="hidden" name="pay_code" value="{$data.pay_code}" />
 	    	{if $data.order_status_str eq 'unpaid' && $data.pay_code}
-	    	<input type="submit" class="btn btn-small btn-hollow external quickpay_done" value="去支付" />
+	    	<input type="submit" class="btn btn-small btn-hollow external quick_pay_btn" value="去支付" />
 	    	<div class="wei-xin-pay hide"></div>
 	    	{/if}
 	        <a class="btn btn-small btn-hollow external" href="tel://{$data.service_phone}">联系卖家</a>

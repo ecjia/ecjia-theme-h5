@@ -123,8 +123,13 @@
 			$('.quick_pay_btn').on('click', function(e) {
 				e.preventDefault();
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+				var bool = $(this).hasClass('external');
+				if (bool) {
+					$(this).val("支付中");
+				} else {
+					$(this).val("支付请求中，请稍后");
+				}
 				
-				$(this).val("支付请求中，请稍后");
 				$(this).attr("disabled", true); 
 				$(this).addClass("payment-bottom");
 				
@@ -137,7 +142,12 @@
 						$('.quick_pay_btn').removeClass("payment-bottom")
 						$('.la-ball-atom').remove();
 						$('.quick_pay_btn').removeAttr("disabled"); 
-						$('.quick_pay_btn').val("确认支付");
+						if (bool) {
+							$(this).val("去支付");
+						} else {
+							$('.quick_pay_btn').val("确认支付");
+						}
+						
 						if (data.state == 'error') {
 							alert(data.message);
 							return false;
