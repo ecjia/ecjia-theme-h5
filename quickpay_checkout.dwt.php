@@ -26,15 +26,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	            </li>
 	            
 	            <li class="outher_d exclude_amount_li">
-		            <label class="ecjia-checkbox {if $temp.show_exclude_amount eq 1}ecjia-checkbox-checked{/if}">
-		            	<input type="checkbox" name="show_exclude_amount" value="1" {if $temp.show_exclude_amount eq 1}checked{/if}>
+		            <label class="ecjia-checkbox {if $show_exclude_amount eq 1}ecjia-checkbox-checked{/if}">
+		            	<input type="checkbox" name="show_exclude_amount" value="1" {if $show_exclude_amount eq 1}checked{/if}>
 		            </label>
 	            	<span>{t}输入不参与优惠金额 (元){/t}</span>
 	            </li>
 	            
 	            <li class="outher_d amount_li li" {if $show_exclude_amount eq 1}style="display:block;"{/if}>
 	            	<span>{t}不参与优惠金额 (元){/t}</span>
-	            	<input class="quick_money" type="number" name="drop_out_money" step="0.01" placeholder="请询问店员后输入" data-url="{url path='user/quickpay/flow_checkorder'}" value="{$temp.exclude_amount}">
+	            	<input class="quick_money" type="number" name="drop_out_money" step="0.01" placeholder="请询问店员后输入" data-url="{url path='user/quickpay/flow_checkorder'}" value="{$data.exclude_amount}">
 	            </li>
 	        </div>
 	        <input type="hidden" name="store_id" value="{$store_id}">
@@ -46,12 +46,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			       	<li class="outher_d">
 			        	<span class="radio-height radio-mr-t">
 							<label class="ecjia-check ecjiaf-fr" for="activity_{$val.activity_id}">
-			       				<input type="radio" id="activity_{$val.activity_id}" name="activity_id" value="{$val.activity_id}" {if $val.is_allow_use eq 0}disabled{else if $temp.activity_id eq $val.activity_id}checked{/if} />
+			       				<input type="radio" id="activity_{$val.activity_id}" name="activity_id" value="{$val.activity_id}" {if $val.is_allow_use && $val.is_allow_use eq 0}disabled{else if $temp.activity_id eq $val.activity_id}checked{/if} />
 			               	</label>
 			           	</span>
 			           	<span class="shanhui">买单</span>
 			           	<span class="slect-title">{$val.title}</span>
-			           	{if $val.is_allow_use eq 0}
+			           	{if $val.is_allow_use && $val.is_allow_use eq 0}
 			           	<span class="ecjiaf-fr ecjia-margin-r ecjia-color-aaa">不可用</span>
 			           	{/if}
 			       	</li>
@@ -82,7 +82,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					            <div class="icon-wallet"></div>
 					            <span class="icon-name">{t}使用积分{/t}</span>
 					            {if $temp.integral gt 0}
-					            <span class="ecjia-tag">{$temp.integral}积分</span>
+					            <span class="fav_info">{$temp.integral}积分</span>
 					            <input type="hidden" name="integral" value="{$temp.integral}" />
 					            {else}
 					            <span class="fav_info">{if $data.user_integral lt $activity.order_max_integral }{$data.user_integral}{else}{$activity.order_max_integral}{/if}积分可用</span>
@@ -163,7 +163,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <div class="icon-wallet"></div>
             <span class="icon-name">{t}使用积分{/t}</span>
             {if $temp.integral gt 0}
-            <span class="ecjia-tag">{$temp.integral}积分</span>
+            <span class="fav_info">{$temp.integral}积分</span>
             <input type="hidden" name="integral" value="{$temp.integral}" />
             {else}
             <span class="fav_info">{if $data.user_integral lt $arr.order_max_integral }{$data.user_integral}{else}{$arr.order_max_integral}{/if}积分可用</span>

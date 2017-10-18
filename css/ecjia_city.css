@@ -10557,6 +10557,7 @@ footer {
     display: block;
     left: 1em;
     right: 0;
+	width: 100%;
 }
 
 .quickpay .checkout .before_two.line li+li::before{
@@ -10574,9 +10575,10 @@ footer {
     position: relative;
     padding: .5em;
 	padding-bottom: 0;
+	overflow: hidden;
 }
 
-.quickpay .checkout .quickpay_div.content {
+.quickpay .checkout .quickpay_div.content, .quickpay .checkout .quickpay_div.background_fff {
 	background: #fff;
 	padding: 0;
 }
