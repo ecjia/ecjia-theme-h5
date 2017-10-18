@@ -109,6 +109,12 @@ class quickpay_controller {
 			ecjia_front::$controller->assign('data', $data);
 			ecjia_front::$controller->assign('store_id', $store_id);
 		}
+		
+		//提前获取微信支付wxpay_open_id
+		$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
+		$open_id = $handler->getWechatOpenId();
+		$_SESSION['wxpay_open_id'] = $open_id;
+		
     	ecjia_front::$controller->assign_title('买单详情');
         ecjia_front::$controller->display('quickpay_detail.dwt');
     }
