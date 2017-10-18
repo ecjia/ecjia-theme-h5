@@ -15,7 +15,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </script>
 <!-- {/block} -->
 <!-- {block name="main-content"} -->
-<form id="theForm" name="theForm" action='{url path="user/quickpay/checkout" args="store_id={$store_id}"}' method="post">
+<form id="theForm" name="theForm" action='{url path="user/quickpay/init" args="store_id={$store_id}"}' method="post">
 	<div class="quickpay">
 	    <div class="checkout">
 	        <p class="intergal_title">{t}您总共有{$data.user_integral}个积分{/t}</p>

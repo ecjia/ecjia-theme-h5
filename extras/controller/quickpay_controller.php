@@ -114,7 +114,7 @@ class quickpay_controller {
     }
     
     
-    public static function checkout() {
+    public static function init() {
         $token = ecjia_touch_user::singleton()->getToken();
         
         $store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;

@@ -15,7 +15,7 @@ ecjia.touch.user.init();
 </script>
 <!-- {/block} -->
 <!-- {block name="main-content"} -->
-<form id="theForm" name="theForm" action='{url path="user/quickpay/checkout" args="store_id={$store_id}"}' method="post">
+<form id="theForm" name="theForm" action='{url path="user/quickpay/init" args="store_id={$store_id}"}' method="post">
 	<div class="quickpay ecjia-select">
 	    <div class="checkout">
 	        <div class="before_two">

@@ -45,7 +45,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<i class="{$header_left.icon}"></i>
 		<!-- {else} -->
 			{if $store_info.quickpay_activity_list}
-			<a href="{RC_Uri::url('user/quickpay/checkout')}&store_id={$store_id}"><span class="check">买单</span></a>
+			<a href="{RC_Uri::url('user/quickpay/init')}&store_id={$store_id}"><span class="check">买单</span></a>
 			{/if}
 			<!-- {if $header_right.search neq ''} -->
 			<a href="{$header_right.search_url}">{$header_right.search}</a>

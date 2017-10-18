@@ -228,7 +228,7 @@ RC_Hook::add_action('mobile/discover/init', array('mobile_controller', 'init'));
 //闪惠
 RC_Loader::load_theme('extras/controller/quickpay_controller.php');
 RC_Hook::add_action('user/quickpay/quickpay_list', array('quickpay_controller', 'quickpay_list'));
-RC_Hook::add_action('user/quickpay/checkout', array('quickpay_controller', 'checkout'));
+RC_Hook::add_action('user/quickpay/init', array('quickpay_controller', 'init'));
 RC_Hook::add_action('user/quickpay/explain', array('quickpay_controller', 'explain'));
 RC_Hook::add_action('user/quickpay/bonus', array('quickpay_controller', 'bonus'));
 RC_Hook::add_action('user/quickpay/integral', array('quickpay_controller', 'integral'));
@@ -236,9 +236,10 @@ RC_Hook::add_action('user/quickpay/notify', array('quickpay_controller', 'notify
 RC_Hook::add_action('user/quickpay/async_quickpay_list', array('quickpay_controller', 'async_quickpay_list')); //闪惠异步加载
 RC_Hook::add_action('user/quickpay/quickpay_detail', array('quickpay_controller', 'quickpay_detail')); //单个闪惠订单详情
 RC_Hook::add_action('user/quickpay/flow_checkorder', array('quickpay_controller', 'flow_checkorder'));
-RC_Hook::add_action('user/quickpay/payment', array('quickpay_controller', 'payment'));
 RC_Hook::add_action('user/quickpay/done', array('quickpay_controller', 'done'));
 RC_Hook::add_action('user/quickpay/pay', array('quickpay_controller', 'pay'));
+RC_Hook::add_action('user/quickpay/do_pay', array('quickpay_controller', 'do_pay'));
+RC_Hook::add_action('user/quickpay/notify', array('quickpay_controller', 'notify'));
 
 /**
  * step：3
@@ -420,6 +421,9 @@ ecjia_open::macro('user_address', function() {
 });
 ecjia_open::macro('help', function() {
 	return RC_Uri::url('article/help/init');
+});
+ecjia_open::macro('quickpay', function($querys) {
+	return RC_Uri::url('user/quickpay/init', array('store_id' => $querys['merchant_id']));
 });
 
 /**
