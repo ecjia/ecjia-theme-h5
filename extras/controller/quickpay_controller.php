@@ -380,7 +380,7 @@ class quickpay_controller {
     	ecjia_front::$controller->display('quickpay_pay.dwt', $cache_id);
     }
     
-    public static function do_pay() {
+    public static function dopay() {
     	$order_id = !empty($_POST['order_id'])	? intval($_POST['order_id']) 	: 0;
     	$pay_code = !empty($_POST['pay_code'])	? trim($_POST['pay_code']) 		: '';
     	$token = ecjia_touch_user::singleton()->getToken();
