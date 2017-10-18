@@ -15,7 +15,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<div class="quickpay">
+<div class="quickpay ecjia-margin-t">
     <div class="checkout">
          <div class="quickpay_div content">
             <li class="explain_title"><span><b>{t}买单说明{/t}</b></span></li>
@@ -40,7 +40,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                         	<span class="explain_status">进行中</span>
                         	{/if}
                         </p>
-                        {if $list.limit_time_weekly neq '0'}
+                        {if $list.limit_time_weekly neq '0' && $list.limit_time_weekly neq ''}
                         <p class="explain_info_top">使用时间：{$list.limit_time_weekly}</p>
                         {/if}
                         {if $list.limit_time_exclude}

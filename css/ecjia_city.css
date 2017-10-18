@@ -6315,6 +6315,7 @@ footer {
 	height: 3em;
 	line-height: 3em;
 	padding: 0 1em;
+    border-top: 1px solid #eee;
 }
 
 .order-hd i {

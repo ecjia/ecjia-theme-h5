@@ -87,7 +87,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 
 <div class="ecjia-user-head ecjia-user ecjia-color-green">
-    <ul class="ecjia-user-marg-t ecjia-list list-short ecjia-user-no-border-t">
+    <ul class="ecjia-user-marg-t ecjia-list list-short">
        <li>
         	<a href="{url path='user/account/init'}">
         		<div class="icon-wallet"><img src="{$theme_url}images/user_center/75x75_1.png"></div>
