@@ -9504,6 +9504,14 @@ footer {
     color: #fff;
 }
 
+.ecjia-order-pad {
+	padding-bottom: 5em;
+}
+
+.ecjia-padding-l {
+	padding-left: 1em;
+}
+
 .ecjia-address-list .ecjia-margin-t.jm {
 	z-index: 100;
     position: fixed;
