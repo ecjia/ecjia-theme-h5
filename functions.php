@@ -282,6 +282,10 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
                 ecjia_front::$controller->redirect($url);
             }
         }
+        //提前获取微信支付wxpay_open_id
+        $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
+        $open_id = $handler->getWechatOpenId();
+        $_SESSION['wxpay_open_id'] = $open_id;
     }
 
     if (ROUTE_M == 'user') {

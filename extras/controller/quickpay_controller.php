@@ -385,18 +385,15 @@ class quickpay_controller {
     	$pay_code = !empty($_POST['pay_code'])	? trim($_POST['pay_code']) 		: '';
     	$token = ecjia_touch_user::singleton()->getToken();
 
-    	$open_id = 0;
-    	if ($pay_code == 'pay_wxpay') {
-    		$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($pay_code);
-    		$open_id = $handler->getWechatOpenId();
-    		$_SESSION['wxpay_open_id'] = $open_id;
-    	}
     	$params_list = array(
     		'token' 		=> $token,
     		'pay_code' 		=> $pay_code,
     		'order_id' 		=> $order_id,
-    		'wxpay_open_id' => $open_id
     	);
+    	if ($pay_code == 'pay_wxpay') {
+    		$params_list['wxpay_open_id'] = $_SESSION['wxpay_open_id'];
+    	}
+    	
     	$pay = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_ORDER_PAY)->data($params_list)->run();
     	if (!is_ecjia_error($pay)) {
     	    if (isset($pay) && $pay['payment']['error_message']) {
