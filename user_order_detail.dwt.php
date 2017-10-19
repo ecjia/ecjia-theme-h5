@@ -83,7 +83,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<li><span class="ecjiaf-fl width-25-p">配送员号码：</span><span class="ecjiaf-fr width-75-p">{if $order.express_user}{$order.express_mobile}{else}暂无{/if}</span></li>
 				<li><span class="ecjiaf-fl width-25-p">配送方式：</span><span class="ecjiaf-fr width-75-p">{$order.shipping_name}</span></li>
 			</ul>
-			{if $order.shipping_code == 'ship_cac'}
+			{if $order.shipping_code == 'ship_cac' && $order.pickup_code neq ''}
 			<p class="select-title ecjiaf-fwb ecjia-margin-l">提货信息</p>
 			<ul class="ecjia-list">
 				<li><span class="ecjiaf-fl width-25-p">提货码：</span><span class="ecjiaf-fr width-75-p">{$order.pickup_code}</span></li>
