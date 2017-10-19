@@ -66,8 +66,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	    <div class="order-ft-link">
 	    	<input type="hidden" name="order_id" value="{$data.order_id}">
 	    	<input  type="hidden" name="pay_code" value="{$data.pay_code}" />
-	    	{if $data.order_status_str eq 'unpaid' && $data.pay_code}
-	    	<input type="submit" class="btn btn-small btn-hollow external quick_pay_btn" value="去支付" />
+	    	{if $data.order_status_str eq 'unpaid'}
+		    	{if $data.pay_code eq ''}
+		    	<a class="btn btn-small btn-hollow external" href="{RC_Uri::url('user/quickpay/pay')}&order_id={$data.order_id}">去支付</a>
+		    	{else}
+		    	<input type="submit" class="btn btn-small btn-hollow external quick_pay_btn" value="去支付" />
+		    	{/if}
 	    	<div class="wei-xin-pay hide"></div>
 	    	{/if}
 	        <a class="btn btn-small btn-hollow external" href="tel://{$data.service_phone}">联系卖家</a>
