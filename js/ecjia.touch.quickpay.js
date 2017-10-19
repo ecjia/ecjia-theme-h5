@@ -44,8 +44,6 @@
 				var drop_out_money = $("input[name='drop_out_money']").val();
 				if (drop_out_money != '' && drop_out_money != 0) {
 					ecjia.touch.quickpay.checkout('change_amount');
-				} else {
-					ecjia.touch.quickpay.checkout();
 				}
 			});
 			
