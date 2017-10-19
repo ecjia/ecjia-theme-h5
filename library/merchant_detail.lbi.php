@@ -45,11 +45,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<span class="quick-time">（{$list.limit_time_weekly}&nbsp;{$list.limit_time_daily}）</span>
 				{/if}
 			</div>
-			<div class="quick-right">
-			{if $list.total_order_count > 0}
-			<span class="quick-money">已买{$list.total_order_count}</span>
-			{/if}
-			</div>
 		</li>
 		<!-- {/foreach} -->
 	</ul>

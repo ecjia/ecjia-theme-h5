@@ -54,10 +54,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	                <span class="ecjiaf-fl fran-info-color">买单时间</span>
 	                <span class="ecjiaf-fr address-span">{$data.formated_add_time}</span>
 	            </p>
+	           	{if $data.pay_name}
 	            <p>
 	                <span class="ecjiaf-fl fran-info-color">支付方式</span>
 	                <span class="ecjiaf-fr address-span">{$data.pay_name}</span>
 	            </p>
+	            {/if}
 	        </ul>
 	    </div>
 	    

@@ -2203,18 +2203,9 @@ footer {
 .ecjia-store-detail .store-promotion li.quick-li .quick-left {
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 80%;
+    width: 100%;
     overflow: hidden;
     float: left;
-}
-
-.ecjia-store-detail .store-promotion li.quick-li .quick-right {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-	width: 20%;
-    float: right;
-	text-align: right;
 }
 
 .ecjia-store-detail .store-promotion .quick-label {
@@ -10488,7 +10479,6 @@ footer {
     font-size: 1.1em;
     line-height: 2em;
     padding-bottom: 1em;
-	border-bottom: 1px solid #eee;
 }
 
 .quickpay .checkout .quickpay_list.m_b0 {
@@ -10499,9 +10489,10 @@ footer {
     float: right;
     text-align: right;
     font-size: 1em;
-    line-height: 2.8em;
     width: 10em;
     padding: 0;
+    height: 2em;
+    padding-top: .8em;
 }
 
 .quickpay .checkout .quickpay_div+.quickpay_div::before {
@@ -10517,22 +10508,18 @@ footer {
     border-bottom: 1px solid #eee;
 }
 
-.quickpay .checkout .before_two {
-	border-bottom: 1px solid #eee;
-}
-
 .quickpay .seller_info {
-    height: 7.5em;
     text-align: center;
 	border-bottom: 1px solid #eee;
 }
 
 .quickpay .seller_info .seller_logo {
-	padding: .5em 0;
+	padding: 1em 0;
 }
 
 .seller_name {
 	font-size: 1.1em;
+    margin-bottom: 1em;
 }
 
 .quickpay .seller_info img {
@@ -10582,6 +10569,12 @@ footer {
 	padding-bottom: 0;
 	overflow: hidden;
 }
+
+.quickpay .checkout .item_list {
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+
 
 .quickpay .checkout .quickpay_div.content, .quickpay .checkout .quickpay_div.background_fff {
 	background: #fff;
@@ -10640,6 +10633,7 @@ footer {
     font-size: 1.5em;
     height: 0;
     width: 18px;
+	color: #999;
 }
 
 .quickpay .checkout .outher_d .fav_info{
