@@ -10491,6 +10491,10 @@ footer {
 	border-bottom: 1px solid #eee;
 }
 
+.quickpay .checkout .quickpay_list.m_b0 {
+	margin-bottom: 0;
+}
+
 .quickpay .checkout .outher_d input{
     float: right;
     text-align: right;

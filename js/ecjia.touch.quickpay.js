@@ -12,14 +12,14 @@
 			$('input[name="order_money"]').koala({
 				delay: 500,
 				keyup: function(event) {
-					ecjia.touch.quickpay.checkout('change', 'activity_id');
+					ecjia.touch.quickpay.checkout('change_amount');
 				}
             });
 			
 			$('input[name="drop_out_money"]').koala({
 				delay: 500,
 				keyup: function(event) {
-					ecjia.touch.quickpay.checkout('change', 'activity_id');
+					ecjia.touch.quickpay.checkout('change_amount');
 				}
             });
 			
@@ -29,7 +29,7 @@
 					alert('请输入消费金额');
 					return false;
 				}
-				ecjia.touch.quickpay.checkout('change');
+				ecjia.touch.quickpay.checkout('change_amount', 'change_activity');
 			});
 			
 			$('input[name="show_exclude_amount"]').off('change').on('change', function() {
@@ -43,7 +43,7 @@
 				}
 				var drop_out_money = $("input[name='drop_out_money']").val();
 				if (drop_out_money != '' && drop_out_money != 0) {
-					ecjia.touch.quickpay.checkout('change');
+					ecjia.touch.quickpay.checkout('change_amount');
 				} else {
 					ecjia.touch.quickpay.checkout();
 				}
@@ -86,31 +86,37 @@
         },
         
         checkout: function(c, a) {
-        	var change = 0;
-        	if (c == 'change') {
-        		change = 1;
-        	}
+        	var change_amount = 0;
 			var order_money = $("input[name='order_money']").val();
 	        var drop_out_money = $("input[name='drop_out_money']").val();
 	        var store_id = $("input[name='store_id']").val();
 	        var show_exclude_amount = $("input[name='show_exclude_amount']:checked").val();
 	        
+			if (order_money == '' || order_money.length == 0 || order_money == undefined) {
+				return false;
+			}
+			
         	var url =  $("input[name='drop_out_money']").attr('data-url')
         	var activity_id = $("input[name='activity_id']:checked").val();
-        	if (a != undefined) {
-        		activity_id = 0;
+        	if (c == 'change_amount') {
+        		change_amount = 1;
         	}
-        	
+        	var change_activity = 0;
+        	if (a != 'change_activity') {
+        		activity_id = 0;
+        	} else {
+        		change_activity = 1;
+        	}
         	var info = {
         		'store_id' 				: store_id,
         		'order_money' 			: order_money,
         		'drop_out_money' 		: drop_out_money,
         		'activity_id'			: activity_id,
         		'show_exclude_amount' 	: show_exclude_amount,
-        		'change'				: change
+        		'change_amount'			: change_amount,
+        		'change_activity'		: change_activity
         	}
         	$.post(url, info, function(data) {
-        		console.log(data);
         		$('.quickpay_done').removeAttr('disabled');
         		$('.quickpay-content').html(data.list);
         		$("body").greenCheck();

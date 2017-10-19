@@ -19,7 +19,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <div class="checkout">
          <div class="quickpay_div content">
             <li class="explain_title"><span><b>{t}买单说明{/t}</b></span></li>
-            <li class="quickpay_list">
+            <li class="quickpay_list m_b0">
                 <p>{t}1、优惠买单仅限于到店消费后使用，请勿提前支付；{/t}</p>
                 <p>{t}2、请在输入买单金额前与商家确认门店信息和消费金额；{/t}</p>
                 <p>{t}3、遇节假日能否享受优惠，请详细咨询商家；{/t}</p>
@@ -28,10 +28,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </li>
         </div>
         {if $data}
-        <div class="quickpay_div content">
+        <div class="quickpay_div background_fff">
             <li class="explain_title"><span><b>{t}买单优惠{/t}</b></span></li>
             <div class="before_two line">
-            	<!-- {foreach from=$data item=list} -->
+            	<!-- {foreach from=$data.activity_list item=list} -->
                 <li class="outher_d explain_d">
                     <div class="explain_info">
                         <p class="explain_info_top">

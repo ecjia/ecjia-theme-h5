@@ -46,12 +46,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			       	<li class="outher_d">
 			        	<span class="radio-height radio-mr-t">
 							<label class="ecjia-check ecjiaf-fr" for="activity_{$val.activity_id}">
-			       				<input type="radio" id="activity_{$val.activity_id}" name="activity_id" value="{$val.activity_id}" {if $val.is_allow_use && $val.is_allow_use eq 0}disabled{else if $temp.activity_id eq $val.activity_id}checked{/if} />
+			       				<input type="radio" id="activity_{$val.activity_id}" name="activity_id" value="{$val.activity_id}" {if $val.is_allow_use eq 0}disabled{else if $val.is_favorable eq 1}checked{/if} />
 			               	</label>
 			           	</span>
 			           	<span class="shanhui">买单</span>
 			           	<span class="slect-title">{$val.title}</span>
-			           	{if $val.is_allow_use && $val.is_allow_use eq 0}
+			           	{if $val.is_allow_use eq 0}
 			           	<span class="ecjiaf-fr ecjia-margin-r ecjia-color-aaa">不可用</span>
 			           	{/if}
 			       	</li>
@@ -125,7 +125,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<li class="outher_d">
 		<span class="radio-height radio-mr-t">
 			<label class="ecjia-check ecjiaf-fr" for="activity_{$val.activity_id}">
-				<input type="radio" id="activity_{$val.activity_id}" name="activity_id" value="{$val.activity_id}" {if $val.is_allow_use eq 0}disabled{else if $activity_id eq $val.activity_id}checked{/if}>
+				<input type="radio" id="activity_{$val.activity_id}" name="activity_id" value="{$val.activity_id}" {if $val.is_allow_use eq 0}disabled{else if $val.is_favorable eq 1}checked{/if}>
 			</label>
 		</span>
 		<span class="shanhui">买单</span>
