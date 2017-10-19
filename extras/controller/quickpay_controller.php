@@ -183,18 +183,24 @@ class quickpay_controller {
     							}
     						} else if ($change_amount != 1 || $change_activity == 1) {
     							$activity_list[$k]['is_favorable'] = 0;
+    						} else if ($v['is_allow_use'] == 1 && $v['is_favorable'] == 1){
+    							$discount = $v['discount'];
+    							$arr = $v;
+    							$arr['bonus_list'] = touch_function::change_array_key($arr['bonus_list'], 'bonus_id');
+    							$_SESSION['quick_pay']['activity'] = $arr;
+    							if (!empty($arr['bonus_list']) && !empty($temp['bonus'])) {
+    								$type_money = $arr['bonus_list'][$temp['bonus']]['type_money'];
+    							}
     						}
     					}
     				}
     				$_SESSION['quick_pay']['data']['activity_list'] = $activity_list;
     				ecjia_front::$controller->assign('activity_list', $activity_list);
-    			}    		
-    			
+    			}
     			ecjia_front::$controller->assign('data', $data);
     			ecjia_front::$controller->assign('arr', $arr);
     			ecjia_front::$controller->assign('temp', $_SESSION['quick_pay']['temp']);
     			$total_fee = $data['goods_amount']-$discount-$temp['integral_bonus']-$type_money;
-    			
     			if ($total_fee < 0) {
     				$total_fee = 0;
     			}
