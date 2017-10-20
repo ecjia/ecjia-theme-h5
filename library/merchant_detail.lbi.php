@@ -28,15 +28,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<span class="store-goods-desc">店铺动态</span>
 		</li>
 	</ul>
-	<div class="store-hr"></div>
 	
 	{if $store_info.allow_use_quickpay eq 1}
+	<div class="store-hr"></div>
 	<ul class="store-promotion">
 		<li class="quick">
 			<span class="quick-label">买单</span>
 			<span class="quick-name">买单立享优惠</span>
 			<a class="quick-btn" href="{RC_Uri::url('user/quickpay/init')}&store_id={$store_info.id}" >优惠买单</a>
 		</li>
+		{if $store_info.quick_activity_list}
+		<ul class="quick-item">
 		<!-- {foreach from=$store_info.quickpay_activity_list item=list key=key} -->
 		<li class="quick-li">
 			<div class="quick-left">
@@ -47,6 +49,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 		</li>
 		<!-- {/foreach} -->
+		</ul>
+		{/if}
 	</ul>
 	{/if}
 	

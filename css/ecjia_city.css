@@ -2049,7 +2049,7 @@ footer {
 	position: relative;
 }
 
-.ecjia-store-detail .store-other-info li:before {
+.ecjia-store-detail .store-other-info li+li:before {
     content: '';
     position: absolute;
     display: block;
@@ -2191,13 +2191,25 @@ footer {
     padding-bottom: .5em;
 }
 
+.ecjia-store-detail .store-promotion li.quick:first-child {
+	border-bottom: none;
+	padding-bottom: 0;
+}
+
 .ecjia-store-detail .store-promotion li.quick-li {
-	padding: .3em;
-	margin-left: .3em;
-	padding-top: .5em;
+    padding: .3em;
+    margin-left: 0;
+    padding-left: 0;
+    padding-top: .5em;
     padding-bottom: 0;
-	display: block;
+    display: block;
     overflow: hidden;
+}
+
+.ecjia-store-detail .store-promotion .quick-item {
+	border-top: 1px solid #eee;
+	margin-top: .5em;
+	margin-left: .3em;
 }
 
 .ecjia-store-detail .store-promotion li.quick-li .quick-left {
