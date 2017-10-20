@@ -30,7 +30,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</ul>
 	<div class="store-hr"></div>
 	
-	{if $store_info.quickpay_activity_list}
+	{if $store_info.allow_use_quickpay eq 1}
 	<ul class="store-promotion">
 		<li class="quick">
 			<span class="quick-label">买单</span>
