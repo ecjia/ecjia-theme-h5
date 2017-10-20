@@ -122,6 +122,7 @@ class quickpay_controller {
 				$_SESSION['quick_pay']['shop_info']['store_name'] = $store_info['seller_name'];
 				$_SESSION['quick_pay']['shop_info']['store_logo'] = $store_info['seller_logo'];
 				ecjia_front::$controller->assign('activity_list', $store_info['quickpay_activity_list']);
+				ecjia_front::$controller->assign('is_available', 1);
 			}
 		} else {
 			ecjia_front::$controller->assign('activity_list', $_SESSION['quick_pay']['data']['activity_list']);
