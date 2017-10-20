@@ -411,7 +411,11 @@ ecjia_open::macro('goods_detail', function($querys) {
 	return RC_Uri::url('goods/index/show', array('goods_id' => $querys['goods_id']));
 });
 ecjia_open::macro('seller', function($querys) {
-	return RC_Uri::url('seller/category/list', array('cid' => $querys['category_id']));
+	if (!empty($querys['category_id'])) {
+		return RC_Uri::url('seller/category/list', array('cid' => $querys['category_id']));
+	} else {
+		return RC_Uri::url('seller/category/list');
+	}
 });
 ecjia_open::macro('user_bonus', function($querys) {
     return RC_Uri::url('user/bonus/init', array('type' => $querys['type']));
