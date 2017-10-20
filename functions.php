@@ -66,7 +66,6 @@ RC_Hook::add_action('location/index/get_location_msg',array('location_controller
 RC_Loader::load_theme('extras/controller/goods_controller.php');
 RC_Hook::add_action('goods/category/init', array('goods_controller', 'init'));
 RC_Hook::add_action('goods/category/store_list', array('goods_controller', 'store_list'));//店铺分类列表
-RC_Hook::add_action('goods/category/seller_list', array('goods_controller', 'seller_list'));//店铺分类列表
 RC_Hook::add_action('goods/index/show', array('goods_controller', 'show'));//商品详情页
 RC_Hook::add_action('goods/index/promotion', array('goods_controller', 'promotion'));
 RC_Hook::add_action('goods/index/ajax_goods', array('goods_controller', 'ajax_goods'));
@@ -79,6 +78,7 @@ RC_Hook::add_action('merchant/index/init', array('merchant_controller', 'init'))
 RC_Hook::add_action('merchant/index/ajax_goods', array('merchant_controller', 'ajax_goods'));//获取店铺商品
 RC_Hook::add_action('merchant/index/position', array('merchant_controller', 'position'));//店铺位置
 RC_Hook::add_action('merchant/index/ajax_store_comment', array('merchant_controller', 'ajax_store_comment'));//获取店铺评论
+RC_Hook::add_action('seller/category/list', array('merchant_controller', 'seller_list'));//店铺分类列表
 
 //文章
 RC_Loader::load_theme('extras/controller/article_controller.php');
@@ -411,7 +411,7 @@ ecjia_open::macro('goods_detail', function($querys) {
 	return RC_Uri::url('goods/index/show', array('goods_id' => $querys['goods_id']));
 });
 ecjia_open::macro('seller', function($querys) {
-	return RC_Uri::url('goods/category/seller_list', array('cid' => $querys['category_id']));
+	return RC_Uri::url('seller/category/list', array('cid' => $querys['category_id']));
 });
 ecjia_open::macro('user_bonus', function($querys) {
     return RC_Uri::url('user/bonus/init', array('type' => $querys['type']));
