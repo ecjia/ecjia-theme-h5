@@ -30,7 +30,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</div>
         </div>
         
-        {if $data}
+        {if $data.activity_list}
         <div class="item_list ecjia-margin-t">
 	        <div class="quickpay_div background_fff">
 	            <li class="explain_title"><span><b>{t}买单优惠{/t}</b></span></li>
