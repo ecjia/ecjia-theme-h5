@@ -210,7 +210,7 @@ class connect_controller {
             
             $connect_user = new \Ecjia\App\Connect\ConnectUser($connect_code, $open_id);
             if ($data['id']) {
-                $result = $connect_user->bind_user($data['id'], 0);
+                $result = $connect_user->bindUser($data['id'], 0);
             } else {
                 RC_Logger::getlogger('error')->info('connect_controller-关联账号错误');
                 RC_Logger::getlogger('error')->info($data);
