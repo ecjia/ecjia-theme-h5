@@ -245,7 +245,7 @@ class user_address_controller {
         $params = array(
             'token' => ecjia_touch_user::singleton()->getToken(),
             'address' => array(
-                'city'      	=> intval($_POST['city_id']),
+                'city'      	=> trim($_POST['city_id']),
                 'address'   	=> htmlspecialchars($_POST['address']),
                 'address_info'	=> htmlspecialchars($_POST['address_info']),
                 'consignee' 	=> htmlspecialchars($_POST['consignee']),
@@ -391,7 +391,7 @@ class user_address_controller {
             'token' 		=> ecjia_touch_user::singleton()->getToken(),
             'address_id' 	=> $_POST['address_id'],
             'address' 		=> array(
-                'city'      	=> intval($_POST['city_id']),
+                'city'      	=> trim($_POST['city_id']),
                 'address'   	=> htmlspecialchars($_POST['address']),
                 'address_info'	=> htmlspecialchars($_POST['address_info']),
                 'consignee' 	=> htmlspecialchars($_POST['consignee']),

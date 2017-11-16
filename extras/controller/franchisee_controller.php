@@ -288,12 +288,12 @@ class franchisee_controller {
 	    } else {
 	        $validate_type = 1;
 	    }
-	    $province 	        = !empty($_POST['province']) ? $_POST['province'] : 0;
-	    $city 	            = !empty($_POST['city']) ? $_POST['city'] : 0;
-	    $district 	        = !empty($_POST['district']) ? $_POST['district'] : 0;
-	    $address 		    = !empty($_POST['address']) ? $_POST['address'] : '';
-	    $longitude 			= !empty($_POST['longitude']) ? $_POST['longitude'] : '';
-	    $latitude 			= !empty($_POST['latitude']) ? $_POST['latitude'] : '';
+	    $province 	        = !empty($_POST['province']) 	? $_POST['province'] 	: '';
+	    $city 	            = !empty($_POST['city']) 		? $_POST['city'] 		: '';
+	    $district 	        = !empty($_POST['district']) 	? $_POST['district'] 	: '';
+	    $address 		    = !empty($_POST['address']) 	? $_POST['address'] 	: '';
+	    $longitude 			= !empty($_POST['longitude']) 	? $_POST['longitude'] 	: '';
+	    $latitude 			= !empty($_POST['latitude']) 	? $_POST['latitude'] 	: '';
 	    
 	    if (empty($responsible_person)) {
 	        return ecjia_front::$controller->showmessage('请输入真实姓名', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);

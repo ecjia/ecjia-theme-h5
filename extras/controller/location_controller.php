@@ -137,7 +137,7 @@ class location_controller {
     			ecjia_front::$controller->assign('referer_url', urlencode($referer_url));
     		}
     		
-    		$city_id = !empty($_GET['city_id']) ? intval($_GET['city_id']) : 0;
+    		$city_id = !empty($_GET['city_id']) ? trim($_GET['city_id']) : '';
     		ecjia_front::$controller->assign('city_id', $city_id);
     		
     		ecjia_front::$controller->assign_title('选择城市');
