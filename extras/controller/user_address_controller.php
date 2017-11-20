@@ -526,7 +526,7 @@ class user_address_controller {
     public function get_region(){
         $type      = !empty($_GET['type'])   ? intval($_GET['type'])   : 0;
         $parent        = !empty($_GET['parent']) ? intval($_GET['parent']) : 0;
-        $arr['regions'] = ecjia_region::instance()->region_datas($type, $parent);
+        $arr['regions'] = ecjia_region::getSubarea($parent);
         $arr['type']    = $type;
         $arr['target']  = !empty($_GET['target']) ? stripslashes(trim($_GET['target'])) : '';
         $arr['target']  = htmlspecialchars($arr['target']);
