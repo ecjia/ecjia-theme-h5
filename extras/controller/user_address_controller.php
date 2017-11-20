@@ -520,19 +520,6 @@ class user_address_controller {
         ecjia_front::$controller->display('user_near_location.dwt');
     }
 
-    /**
-     * 获取指定地区的子级地区
-     */
-    public function get_region(){
-        $type      = !empty($_GET['type'])   ? intval($_GET['type'])   : 0;
-        $parent        = !empty($_GET['parent']) ? intval($_GET['parent']) : 0;
-        $arr['regions'] = ecjia_region::getSubarea($parent);
-        $arr['type']    = $type;
-        $arr['target']  = !empty($_GET['target']) ? stripslashes(trim($_GET['target'])) : '';
-        $arr['target']  = htmlspecialchars($arr['target']);
-        echo json_encode($arr);
-    }
-    
     public static function choose_address() {
     	$referer_url = !empty($_GET['referer_url']) ? urldecode($_GET['referer_url']) : RC_Uri::url('touch/index/init');
     	$address_id = !empty($_GET['address_id']) ? intval($_GET['address_id']) : 0;
