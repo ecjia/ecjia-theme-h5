@@ -291,6 +291,7 @@ class franchisee_controller {
 	    $province 	        = !empty($_POST['province']) 	? $_POST['province'] 	: '';
 	    $city 	            = !empty($_POST['city']) 		? $_POST['city'] 		: '';
 	    $district 	        = !empty($_POST['district']) 	? $_POST['district'] 	: '';
+	    $street				= !empty($_POST['street'])      ? $_POST['street']      : '';
 	    $address 		    = !empty($_POST['address']) 	? $_POST['address'] 	: '';
 	    $longitude 			= !empty($_POST['longitude']) 	? $_POST['longitude'] 	: '';
 	    $latitude 			= !empty($_POST['latitude']) 	? $_POST['latitude'] 	: '';
@@ -322,6 +323,9 @@ class franchisee_controller {
 	    if (empty($district)) {
 	        return ecjia_front::$controller->showmessage('请选择区', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 	    }
+	    if (empty($street)) {
+	    	return ecjia_front::$controller->showmessage('请选择街道', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+	    }
 	    if (empty($address)) {
 	        return ecjia_front::$controller->showmessage('请填写详细地址', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 	    }
@@ -340,6 +344,7 @@ class franchisee_controller {
 	        'province'           => $province,
 	        'city'               => $city,
 	        'district'           => $district,
+	    	'street'			 => $street,
 	    	'address'            => $address,
 	    	
 	        'location' => array(

@@ -61,6 +61,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     		<input name="district_id" type="hidden" value="{$smarty.cookies.district_id}" />
     	</label>
     	
+    	<label class="input">
+    		<span class="ecjiaf-fl"></span>
+    		<i class="iconfont  icon-jiantou-right"></i>
+    		<input class="ecjia-franchisee-location_street" name="f_street" placeholder="{t}选择街道{/t}" type="text" {if $smarty.cookies.street_name neq ''} value="{$smarty.cookies.street_name}" {else}value="{$second_show.street_name}" {/if}/>
+    		<input name="street_id" type="hidden" value="{$smarty.cookies.street_id}" />
+    	</label>
+    	
 		<label class="input">
     	   <input name="f_address" placeholder="{t}输入详细地址{/t}" type="text" {if $smarty.cookies.address neq ''} value="{$smarty.cookies.address}" {else} value="{$second_show.address}" {/if}>
 		</label>

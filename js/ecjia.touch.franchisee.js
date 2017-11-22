@@ -185,6 +185,7 @@
 				var province = $("input[name='province_id']").val();
 				var city = $("input[name='city_id']").val();
 				var district = $("input[name='district_id']").val();
+				var street = $("input[name='street_id']").val();
 				var address = $("input[name='f_address']").val();
 				var longitude = $("input[name='longitude']").val();
 				var latitude = $("input[name='latitude']").val();
@@ -224,6 +225,10 @@
 					alert('请选择店铺所在区');
 					return false;
 				}
+				if (street == '') {
+					alert('请选择店铺所在街道');
+					return false;
+				}
 				if (address == '') {
 					alert('请填写店铺详细地址');
 					return false;
@@ -240,6 +245,7 @@
 					'province': province,
 					'city': city,
 					'district': district,
+					'street': street,
 					'address': address,
 					'longitude': longitude,
 					'latitude': latitude,
@@ -324,6 +330,9 @@
 
 			var district_list = [];
 			var district_array = [];
+			
+			var street_list = [];
+			var street_array = [];
 
 			var province = eval('(' + $("input[name='province']").val() + ')')['data']['regions'];
 
@@ -388,8 +397,15 @@
 								};
 							}
 						});
+						$("input[name='city_id']").val('');
+						$("input[name='district_id']").val('');
+						$("input[name='street_id']").val('');
+						
+						$("input[name='f_city']").val('');
+						$("input[name='f_district']").val('');
+						$("input[name='f_street']").val('');
 					}
-				}, ]
+				}]
 			});
 
 			var pickerCity = myApp.picker({
@@ -443,8 +459,13 @@
 								};
 							}
 						});
+						$("input[name='district_id']").val('');
+						$("input[name='street_id']").val('');
+						
+						$("input[name='f_district']").val('');
+						$("input[name='f_street']").val('');
 					}
-				}, ]
+				}]
 			});
 
 			var pickerDistrict = myApp.picker({
@@ -473,8 +494,64 @@
 							expires: 7
 						});
 						$("input[name='district_id']").val(district_id);
+						
+						var url = $('#get_location_region').attr('data-url');
+						$.ajax({
+							type: "POST",
+							url: url,
+							data: {
+								"parent_id": district_id,
+							},
+							dataType: "json",
+							success: function(data) {
+								data = data.content;
+								street_list.length = 0;
+								street_array.length = 0;
+								for (i = 0; i < data.length; i++) {
+									var name = data[i]['name'];
+									var id = data[i]['id'];
+									street_list.push(name);
+									street_array.push({
+										name: name,
+										id: id
+									});
+								};
+							}
+						});
+						$("input[name='street_id']").val('');
+						$("input[name='f_street']").val('');
 					}
-				}, ]
+				}]
+			});
+			
+			var pickerStreet = myApp.picker({
+				input: '.ecjia-franchisee-location_street',
+				toolbarCloseText: '完成',
+				formatValue: function(picker, values) {
+					return values[1];
+				},
+				cols: [{
+					textAlign: 'center',
+					values: street_list,
+					onChange: function(picker, district) {
+						var street_id;
+						for (i = 0; i < street_array.length; i++) {
+							if (street_array[i]['name'] == district) {
+								street_id = street_array[i]['id'];
+								street_name = street_array[i]['name'];
+								$(".ecjia-franchisee-location_street").val(street_array[i]['name']);
+								break;
+							}
+						}
+						$.cookie('street_id', street_id, {
+							expires: 7
+						});
+						$.cookie('street_name', street_name, {
+							expires: 7
+						});
+						$("input[name='street_id']").val(street_id);
+					}
+				}]
 			});
 		},
 
@@ -497,11 +574,12 @@
 				var f_province = $("input[name='f_province']").val();
 				var f_city = $("input[name='f_city']").val();
 				var f_district = $("input[name='f_district']").val();
+				var f_street = $("input[name='f_street']").val();
 				var f_address = $("input[name='f_address']").val();
 
-				if (f_province && f_district && f_district && f_address) {
+				if (f_province && f_district && f_district && f_address && f_street) {
 					var url = $(this).attr("data-url");
-					var url = url + '&province=' + f_province + '&city=' + f_city + '&district=' + f_district + '&address=' + f_address + '&mobile=' + mobile + '&code=' + code;
+					var url = url + '&province=' + f_province + '&city=' + f_city + '&district=' + f_district + '&street=' + f_street + '&address=' + f_address + '&mobile=' + mobile + '&code=' + code;
 					location.href = url;
 				} else {
 					alert('请输入详细地址');
