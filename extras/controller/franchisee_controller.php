@@ -397,7 +397,7 @@ class franchisee_controller {
 	    }
 	    
 	    $params  = array(
-	        'token' 		=> ecjia_touch_user::singleton()->getToken(),
+// 	        'token' 		=> ecjia_touch_user::singleton()->getToken(),
 	        'mobile' 		=> $mobile,
 	        'validate_code' => $code,
 	    );
@@ -432,7 +432,7 @@ class franchisee_controller {
             );
         } else {
             $params    = array(
-                'token' 		=> $token,
+//                 'token' 		=> $token,
                 'mobile' 		=> $mobile,
                 'validate_code' => $code,
             );
