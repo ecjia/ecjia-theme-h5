@@ -404,7 +404,6 @@ class franchisee_controller {
 	        'mobile' 		=> $mobile,
 	        'validate_code' => $code,
 	    );
-	    RC_Logger::getLogger('error')->info($params);
 	    $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data($params)->run();
 	    if (is_ecjia_error($rs)) {
 	    	return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
