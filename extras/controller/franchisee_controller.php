@@ -117,12 +117,13 @@ class franchisee_controller {
 		$mobile    = !empty($_GET['mobile']) ? $_GET['mobile'] : '';
 		$type      = !empty($_GET['type']) ? $_GET['type'] : 'signup';
 
+		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_SHOP_TOKEN)->run();
 		if (!empty($mobile)) {
 			$params = array(
-				'token' => ecjia_touch_user::singleton()->getToken(),
-				'type' 	=> 'mobile',
-				'value' =>  $mobile,
-				'validate_type' => $type//process,signup
+				'token' 		=> $data['access_token'],
+				'type' 			=> 'mobile',
+				'value' 		=>  $mobile,
+				'validate_type' => $type		//process,signup
 			);
 			RC_Logger::getLogger('error')->info($params);
 			$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_VALIDATE)->data($params)->run();
@@ -397,8 +398,9 @@ class franchisee_controller {
 	    	return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 	    }
 	    
+	    $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_SHOP_TOKEN)->run();
 	    $params  = array(
-	        'token' 		=> ecjia_touch_user::singleton()->getToken(),
+	        'token' 		=> $data['access_token'],
 	        'mobile' 		=> $mobile,
 	        'validate_code' => $code,
 	    );
@@ -417,10 +419,11 @@ class franchisee_controller {
 			return ecjia_front::$controller->showmessage('抱歉，该网站已关闭入驻商加盟！', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 		}
 		
-	    $token     = ecjia_touch_user::singleton()->getToken();
-        $mobile    = trim($_GET['mobile']);
-        $code      = trim($_GET['code']);
-        $show      = trim($_GET['show']);
+	    $data	= ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_SHOP_TOKEN)->run();
+	    $token	= $data['access_token'];
+        $mobile	= trim($_GET['mobile']);
+        $code 	= trim($_GET['code']);
+        $show  	= trim($_GET['show']);
         
         if ($show) {
             $check_status = 0;
