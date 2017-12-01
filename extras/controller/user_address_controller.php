@@ -189,6 +189,7 @@ class user_address_controller {
     public static function add_address() {
     	$temp_data = user_address_controller::save_temp_data(1, 'add', $_GET['clear'], $_GET);
     	ecjia_front::$controller->assign('temp', $temp_data);
+    	
     	$location_backurl = urlencode(RC_Uri::url('user/address/add_address'));
     	ecjia_front::$controller->assign('location_backurl', $location_backurl);
     	
@@ -210,6 +211,12 @@ class user_address_controller {
     	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
     	ecjia_front::$controller->assign('type', $type);
     	
+    	$address_temp = $_SESSION['address_temp']['add'];
+    	ecjia_front::$controller->assign('address_temp', $address_temp);
+    	
+    	$region_data = user_function::get_region_list($address_temp['province_id'], $address_temp['city_id'], $address_temp['district_id'], $address_temp['street_id']);
+    	ecjia_front::$controller->assign('region_data', $region_data);
+    	
     	$local = 1;
     	if (!empty($_SESSION['order_address_temp']['store_id'])) {
     		$store_id = $_SESSION['order_address_temp']['store_id'];
@@ -230,22 +237,27 @@ class user_address_controller {
     		}
     	}
     	ecjia_front::$controller->assign('local', $local);
+    	ecjia_front::$controller->assign('get_region_url', RC_Uri::url('user/address/get_region'));
+    	ecjia_front::$controller->assign('save_temp_url', RC_Uri::url('user/address/save_address_temp'));
     	
-        ecjia_front::$controller->display('user_address_edit.dwt');
+    	ecjia_front::$controller->display('user_address_edit.dwt');
     }
 
     /**
      * 插入收货地址
      */
     public static function insert_address() {
-        if (empty($_POST['city_id']) || empty($_POST['address']) || empty($_POST['consignee']) || empty($_POST['mobile'])) {
+        if (empty($_POST['province']) || empty($_POST['city']) || empty($_POST['district']) || empty($_POST['street']) || empty($_POST['address']) || empty($_POST['consignee']) || empty($_POST['mobile'])) {
             return ecjia_front::$controller->showmessage('请完整填写相关信息', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         }
 
         $params = array(
             'token' => ecjia_touch_user::singleton()->getToken(),
             'address' => array(
-                'city'      	=> trim($_POST['city_id']),
+                'province'   	=> trim($_POST['province']),
+            	'city'   		=> trim($_POST['city']),
+            	'district'   	=> trim($_POST['district']),
+            	'street'   		=> trim($_POST['street']),
                 'address'   	=> htmlspecialchars($_POST['address']),
                 'address_info'	=> htmlspecialchars($_POST['address_info']),
                 'consignee' 	=> htmlspecialchars($_POST['consignee']),
@@ -335,6 +347,9 @@ class user_address_controller {
             $_SESSION['referer_url'] = $referer_url;
             ecjia_front::$controller->assign('referer_url', $referer_url);
         }
+        
+        $region_data = user_function::get_region_list();
+        ecjia_front::$controller->assign('region_data', $region_data);
         
         $key       = ecjia::config('map_qq_key');
         $referer   = ecjia::config('map_qq_referer');
@@ -538,6 +553,26 @@ class user_address_controller {
     		setcookie("city_name", $address_info['city_name'], time() + 1800);
     	}
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $referer_url));
+    }
+    
+    public static function get_region() {
+    	$province_id = !empty($_POST['province_id']) ? trim($_POST['province_id']) : '';
+    	$city_id = !empty($_POST['city_id']) ? trim($_POST['city_id']) : '';
+    	$district_id = !empty($_POST['district_id']) ? trim($_POST['district_id']) : '';
+
+    	if (!empty($province_id) || !empty($city_id) || !empty($district_id)) {
+    		$region_data = user_function::get_region_list($province_id, $city_id, $district_id);
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, $region_data);
+    	}
+    }
+    
+    public static function save_address_temp() {
+    	$info = !empty($_POST['info']) ? $_POST['info'] : '';
+    	if (!empty($info)) {
+    		foreach ($info as $k => $v) {
+    			$_SESSION['address_temp']['add'][$k] = $v;
+    		}
+    	}
     }
 }
 

@@ -452,6 +452,201 @@
 
 	ecjia.touch.address_from = {
 		init: function() {
+			var province = eval('(' + $("input[name='province_list']").val() + ')');
+			var city = eval('(' + $("input[name='city_list']").val() + ')');
+			var district = eval('(' + $("input[name='district_list']").val() + ')');
+
+			var province_list = [];
+			var province_name = [];
+
+			var city_list = [];
+			var city_name = [];
+
+			var district_list = [];
+			var district_name = [];
+			
+			var province_data = region_data(province);
+			province_list = province_data[0];
+			province_name = province_data[1];
+
+			var city_data = region_data(city);
+			city_list = city_data[0];
+			city_name = city_data[1];
+
+			var district_data = region_data(district);
+			district_list = district_data[0];
+			district_name = district_data[1];
+
+			var url = $('.ecjia_user_address_picker').attr('data-url');
+			var myApp = new Framework7();
+
+			var pickerCustomToolbar = myApp.picker({
+			    input: '.ecjia_user_address_picker',
+			    cssClass: 'ecjia-user-address-picker',
+			    toolbarTemplate: 
+			        '<div class="toolbar">' +
+			            '<div class="toolbar-inner">' +
+			                '<div class="left">' +
+			                    '<a href="#" class="link close-picker">取消</a>' +
+			                '</div>' +
+			                '<div class="right">' +
+			                    '<a href="#" class="link save-picker">完成</a>' +
+			                '</div>' +
+			            '</div>' +
+			        '</div>',
+			    cols: [
+			        {
+			            values: province_list,
+			            displayValues: province_name,
+			            onChange: function (picker, value) {
+							$.post(url, {province_id:value}, function(data) {
+								$('input[name="city_list"]').val(data.city_list);
+								var city_list_data = region_data(eval(data.city_list));
+								picker.cols[1].replaceValues(city_list_data[0], city_list_data[1]);
+
+								$('input[name="district_list"]').val(data.district_list);
+								var district_list_data = region_data(eval(data.district_list));
+								picker.cols[2].replaceValues(district_list_data[0], district_list_data[1]);
+							});
+			            }
+			        },
+			        {
+			            values: city_list,
+			            displayValues: city_name,
+			            onChange: function (picker, value) {
+							$.post(url, {city_id:value}, function(data) {
+								var district_list_data = region_data(eval(data.district_list));
+								picker.cols[2].replaceValues(district_list_data[0], district_list_data[1]);
+							});
+			            }
+			        },
+			        {
+			            values: district_list,
+			            displayValues: district_name
+			        },
+			    ],
+			    onOpen: function (picker) {
+			    	var province = $('input[name="province"]').val();
+					var city = $('input[name="city"]').val();
+					var district = $('input[name="district"]').val();
+					console.log(province);
+					console.log(city);
+					console.log(district);
+			    	picker.setValue([province, city, district]);
+
+			        picker.container.find('.save-picker').on('click', function () {
+			        	var district_value = $('input[name="district"]').val();
+			        	var col0 = picker.cols[0].container.find('.picker-selected');
+			        	var col1 = picker.cols[1].container.find('.picker-selected');
+			        	var col2 = picker.cols[2].container.find('.picker-selected');
+		        		var html = col0.html()+'-'+col1.html()+'-'+col2.html();
+						$('.ecjia_user_address_picker').html(html);
+
+						var col0Value = col0.attr('data-picker-value');
+		        		var col1Value = col1.attr('data-picker-value');
+		        		var col2Value = col2.attr('data-picker-value');
+		        		$('input[name="province"]').val(col0Value);
+		        		$('input[name="city"]').val(col1Value);
+		        		$('input[name="district"]').val(col2Value);
+
+		        		if (district_value != col2Value) {
+		        			$('.ecjia_user_address_street_picker').html('');
+		        			$('input[name="street"]').val('');
+		        		}
+
+		        		$.post(url, {district_id:col2Value}, function(data) {
+							$('input[name="street_list"]').val(data.street_list);
+						});
+
+						var temp_data = {
+							'province_id': col0Value,
+							'province_name': col0.html(),
+							'city_id': col1Value,
+							'city_name': col1.html(),
+							'district_id': col2Value,
+							'district_name': col2.html(),
+						};
+						save_temp(temp_data);
+						picker.close();
+			        });
+			    },
+			    onClose: function(picker) {
+			    	picker.close();
+			    	$('.modal-overlay').remove();
+			    }
+			});
+
+			var street_list = [];
+			var street_name = [];  
+
+			$('.ecjia_user_address_street_picker').off('click').on('click', function() {
+				var province = $('input[name="province"]').val();
+				var city = $('input[name="city"]').val();
+				var district = $('input[name="district"]').val();
+				
+				if (province == '' || city == '' || district == '') {
+					alert('请先选择所在地区');
+					return false;
+				}
+				var val = $("input[name='street_list']").val();
+				if (val.length == 0) {
+					return false;
+				}
+				var street_arr = eval('(' + val + ')');
+				var street_list = [];
+				var street_name = [];
+
+				var street_data = region_data(street_arr);
+				street_list = street_data[0];
+				street_name = street_data[1];
+
+				var pickerStreetToolbar = myApp.picker({
+				    input: '.ecjia_user_address_street_picker',
+				    cssClass: 'ecjia-user-address-street-picker',
+				    toolbarTemplate: 
+				        '<div class="toolbar">' +
+				            '<div class="toolbar-inner">' +
+				                '<div class="left">' +
+				                    '<a href="#" class="link close-picker">取消</a>' +
+				                '</div>' +
+				                '<div class="right">' +
+				                    '<a href="#" class="link save-picker">完成</a>' +
+				                '</div>' +
+				            '</div>' +
+				        '</div>',
+				    cols: [
+				        {
+				            values: street_list,
+				            displayValues: street_name,
+				        },
+				    ],
+				    onOpen: function (picker) {
+				    	var street = $('input[name="street"]').val();
+				    	picker.setValue([street]);
+				        picker.container.find('.save-picker').on('click', function () {
+				        	var col0 = picker.cols[0].container.find('.picker-selected');
+			        		var html = col0.html();
+							$('.ecjia_user_address_street_picker').html(html);
+							var col0Value = col0.attr('data-picker-value');
+			        		$('input[name="street"]').val(col0Value);
+
+					     	var temp_data = {
+								'stree_id': col0Value,
+								'street_name': html
+							};
+							save_temp(temp_data); 
+
+							picker.destroy();
+				        });
+				    },
+				    onClose: function(picker) {
+				    	picker.close();
+				    	$('.modal-overlay').remove();
+				    }
+				});
+			});
+
+
 			$("form[name='theForm']").on('submit', function(e) {
 				e.preventDefault();
 				return false;
@@ -486,6 +681,24 @@
 
 	function uniqueId() {
 		return (new Date).getTime()
+	}
+
+	//处理地区数据
+	function region_data(region_data) {
+		var id_list = [];
+		var name_list = [];
+		for (i = 0; i < region_data.length; i++) {
+			var name = region_data[i]['name'];
+			var id = region_data[i]['id'];
+			id_list.push(id);
+			name_list.push(name);
+		};
+		return [id_list, name_list];
+	}
+
+	function save_temp(arr) {
+		var save_temp_url = $('.ecjia_user_address_picker').attr('data-save-temp-url');
+		$.post(save_temp_url,{info: arr});
 	}
 })(ecjia, jQuery);
 

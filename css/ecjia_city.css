@@ -925,8 +925,6 @@ a.ecjia-color-green {
 	overflow: hidden;
 	font-family: '黑体';
 }
-
-
 /*== 商家入驻结束 ==*/
 
 
@@ -10850,6 +10848,26 @@ footer {
     color: #e66423;
 }
 
+.ecjia_user_address_picker, .ecjia_user_address_street_picker {
+	padding-left: 7em;
+    padding-right: 3.5em;
+    height: 3.2em;
+    text-overflow: ellipsis;
+    background-color: #fff;
+    line-height: 3.2em;
+    color: #555;
+	font-family: sans-serif;
+}
+.ecjia-user-address-picker .picker-item, .ecjia-user-address-street-picker .picker-item {
+	text-align: center;
+	padding: 0;
+}
+.ecjia-user-address-picker .picker-items-col {
+	width: 33.6667%;
+}
+.ecjia-user-address-street-picker .picker-items-col {
+	width: 100%;
+}
 
 /* 配送员位置 */
 .ecjia{ height:100%;max-width:640px }
