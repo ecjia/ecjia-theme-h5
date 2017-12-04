@@ -191,13 +191,13 @@
 				var latitude = $("input[name='latitude']").val();
 				var mobile = $("input[name='mobile']").val();
 				var code = $("input[name='code']").val();
-				$.cookie('seller', $("input[name='seller_category']").val(), {
+				$.cookie('franchisee_seller', $("input[name='seller_category']").val(), {
 					expires: 7
 				});
-				$.cookie('address', address, {
+				$.cookie('franchisee_address', address, {
 					expires: 7
 				});
-				$.cookie('seller_name', seller_name, {
+				$.cookie('franchisee_seller_name', seller_name, {
 					expires: 7
 				});
 				var url = $("form[name='theForm']").attr('action');
@@ -269,7 +269,7 @@
 			//更新店铺名
 			var myApp = new Framework7();
 			$('input[name="seller_name"]').blur(function() {
-				$.cookie('seller_name', $('input[name="seller_name"]').val(), {
+				$.cookie('franchisee_seller_name', $('input[name="seller_name"]').val(), {
 					expires: 7
 				});
 			});
@@ -278,7 +278,7 @@
 			var category = eval('(' + $("input[name='category']").val() + ')')['data'];
 			if (category == null) {
 				$("input[name='seller_category']").val('暂无店铺分类，未能入驻');
-				$.cookie('seller_category_id', '', {
+				$.cookie('franchisee_seller_category_id', '', {
 					expires: 7
 				});
 			} else {
@@ -290,12 +290,12 @@
 					toolbarCloseText: '完成',
 					cols: [{
 						onChange: function(p, value) {
-							$.cookie('seller', value, {
+							$.cookie('franchisee_seller', value, {
 								expires: 7
 							});
 							for (i = 0; i < category.length; i++) {
 								if (category[i]['name'] == value) {
-									$.cookie('seller_category_id', category[i]['id']);
+									$.cookie('franchisee_seller_category_id', category[i]['id']);
 									$("input[name='seller_category_id']").val(category[i]['id']);
 								}
 							}
@@ -315,7 +315,7 @@
 					textAlign: 'center',
 					values: ['个人入驻', '企业入驻'],
 					onChange: function(p, value) {
-						$.cookie('validate_type', value, {
+						$.cookie('franchisee_validate_type', value, {
 							expires: 7
 						});
 					}
@@ -366,10 +366,10 @@
 							}
 						}
 
-						$.cookie('province_id', province_id, {
+						$.cookie('franchisee_province_id', province_id, {
 							expires: 7
 						});
-						$.cookie('province_name', province_name, {
+						$.cookie('franchisee_province_name', province_name, {
 							expires: 7
 						});
 						$("input[name='province_id']").val(province_id);
@@ -428,10 +428,10 @@
 							}
 						}
 
-						$.cookie('city_id', city_id, {
+						$.cookie('franchisee_city_id', city_id, {
 							expires: 7
 						});
-						$.cookie('city_name', city_name, {
+						$.cookie('franchisee_city_name', city_name, {
 							expires: 7
 						});
 						$("input[name='city_id']").val(city_id);
@@ -487,10 +487,10 @@
 								break;
 							}
 						}
-						$.cookie('district_id', district_id, {
+						$.cookie('franchisee_district_id', district_id, {
 							expires: 7
 						});
-						$.cookie('district_name', district_name, {
+						$.cookie('franchisee_district_name', district_name, {
 							expires: 7
 						});
 						$("input[name='district_id']").val(district_id);
@@ -543,10 +543,10 @@
 								break;
 							}
 						}
-						$.cookie('street_id', street_id, {
+						$.cookie('franchisee_street_id', street_id, {
 							expires: 7
 						});
-						$.cookie('street_name', street_name, {
+						$.cookie('franchisee_street_name', street_name, {
 							expires: 7
 						});
 						$("input[name='street_id']").val(street_id);
@@ -568,7 +568,7 @@
 
 			$(".coordinate").on('click', function(e) {
 				var seller_name = $("input[name='seller_name']").val();
-				$.cookie('seller_name', seller_name, {
+				$.cookie('franchisee_seller_name', seller_name, {
 					expires: 7
 				});
 				var f_province = $("input[name='f_province']").val();
@@ -577,6 +577,12 @@
 				var f_street = $("input[name='f_street']").val();
 				var f_address = $("input[name='f_address']").val();
 
+				$.cookie('franchisee_address', f_address, {
+					expires: 7
+				});
+				$.cookie('franchisee_seller_name', seller_name, {
+					expires: 7
+				});
 				if (f_province && f_district && f_district && f_address && f_street) {
 					var url = $(this).attr("data-url");
 					var url = url + '&province=' + f_province + '&city=' + f_city + '&district=' + f_district + '&street=' + f_street + '&address=' + f_address + '&mobile=' + mobile + '&code=' + code;

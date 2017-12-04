@@ -20,7 +20,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group form-group-text franchisee">
 		<label class="input">
 			<span class="ecjiaf-fl"><img src="{$theme_url}images/user_center/f_store.png" width="30" height="30"></span>
-			<input name="seller_name" placeholder="{t}请输入店铺名称10字以内{/t}" type="text"  {if $smarty.cookies.seller_name neq ''}value="{$smarty.cookies.seller_name}" {else} value="{$second_show.seller_name}" {/if}/>
+			<input name="seller_name" placeholder="{t}请输入店铺名称10字以内{/t}" type="text"  {if $smarty.cookies.franchisee_seller_name neq ''}value="{$smarty.cookies.franchisee_seller_name}" {else} value="{$second_show.seller_name}" {/if}/>
 		</label>
 	</div>
 	
@@ -28,48 +28,48 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<label class="input">
 			<span class="ecjiaf-fl"><img src="{$theme_url}images/user_center/f_category.png" width="30" height="30"></span>
 			<i class="iconfont  icon-jiantou-right"></i>
-			<input class="ecjia-franchisee-category" style="padding-left: 3.5em;" name="seller_category" placeholder="{t}请选择店铺分类{/t}" type="text"  {if $smarty.cookies.seller neq ''} value="{$smarty.cookies.seller}" {else} value="{$second_show.seller}" {/if}/>
+			<input class="ecjia-franchisee-category" style="padding-left: 3.5em;" name="seller_category" placeholder="{t}请选择店铺分类{/t}" type="text"  {if $smarty.cookies.franchisee_seller neq ''} value="{$smarty.cookies.franchisee_seller}" {else} value="{$second_show.seller}" {/if}/>
 		    <input name="category" type="hidden" value={$category} />
-		    <input name="seller_category_id" type="hidden" value="{if $smarty.cookies.seller_category_id}{$smarty.cookies.seller_category_id}{else}{$category_arr.data.0.id}{/if}" />
+		    <input name="seller_category_id" type="hidden" value="{if $smarty.cookies.franchisee_seller_category_id}{$smarty.cookies.franchisee_seller_category_id}{else}{$category_arr.data.0.id}{/if}" />
 		</label>
 		<label class="input">
 			<span class="ecjiaf-fl"><img src="{$theme_url}images/user_center/f_type.png" width="30" height="30"></span>
 			<i class="iconfont  icon-jiantou-right"></i>
-			<input class="ecjia-franchisee-type" style="padding-left: 3.5em;" name="validate_type" placeholder="{t}请选择入驻类型 {/t}" type="text" {if $smarty.cookies.validate_type neq ''} value="{$smarty.cookies.validate_type}" {else} value="{$second_show.validate_type}" {/if} />
+			<input class="ecjia-franchisee-type" style="padding-left: 3.5em;" name="validate_type" placeholder="{t}请选择入驻类型 {/t}" type="text" {if $smarty.cookies.franchisee_validate_type neq ''} value="{$smarty.cookies.franchisee_validate_type}" {else} value="{$second_show.validate_type}" {/if} />
 		</label>
 	</div>
 	<div class="form-group form-group-text franchisee" id="get_location_region" data-url="{url path='franchisee/index/get_region'}">
 		<label class="input">
     		<span class="ecjiaf-fl"><img src="{$theme_url}images/user_center/f_location.png" width="30" height="30"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_province" name="f_province" placeholder="{t}选择省{/t}" type="text" {if $smarty.cookies.province_name neq ''} value="{$smarty.cookies.province_name}" {else} value="{$second_show.province_name}" {/if}>
+    		<input class="ecjia-franchisee-location_province" name="f_province" placeholder="{t}选择省{/t}" type="text" {if $smarty.cookies.franchisee_province_name neq ''} value="{$smarty.cookies.franchisee_province_name}" {else} value="{$second_show.province_name}" {/if}>
 	        <input name="province" type="hidden" value={$province} />
-    		<input name="province_id" type="hidden" value="{$smarty.cookies.province_id}" />
+    		<input name="province_id" type="hidden" value="{$smarty.cookies.franchisee_province_id}" />
     	</label>
     	
     	<label class="input">
     		<span class="ecjiaf-fl"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_city" name="f_city" placeholder="{t}选择市{/t}" type="text" {if $smarty.cookies.city_name neq ''} value="{$smarty.cookies.city_name}" {else}value="{$second_show.city_name}" {/if}>
-    		<input name="city_id" type="hidden" value="{$smarty.cookies.city_id}" />
+    		<input class="ecjia-franchisee-location_city" name="f_city" placeholder="{t}选择市{/t}" type="text" {if $smarty.cookies.franchisee_city_name neq ''} value="{$smarty.cookies.franchisee_city_name}" {else}value="{$second_show.city_name}" {/if}>
+    		<input name="city_id" type="hidden" value="{$smarty.cookies.franchisee_city_id}" />
     	</label>
     	
     	<label class="input">
     		<span class="ecjiaf-fl"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_district" name="f_district" placeholder="{t}选择区{/t}" type="text" {if $smarty.cookies.district_name neq ''} value="{$smarty.cookies.district_name}" {else}value="{$second_show.district_name}" {/if}/>
-    		<input name="district_id" type="hidden" value="{$smarty.cookies.district_id}" />
+    		<input class="ecjia-franchisee-location_district" name="f_district" placeholder="{t}选择区{/t}" type="text" {if $smarty.cookies.franchisee_district_name neq ''} value="{$smarty.cookies.franchisee_district_name}" {else}value="{$second_show.district_name}" {/if}/>
+    		<input name="district_id" type="hidden" value="{$smarty.cookies.franchisee_district_id}" />
     	</label>
     	
     	<label class="input">
     		<span class="ecjiaf-fl"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_street" name="f_street" placeholder="{t}选择街道{/t}" type="text" {if $smarty.cookies.street_name neq ''} value="{$smarty.cookies.street_name}" {else}value="{$second_show.street_name}" {/if}/>
-    		<input name="street_id" type="hidden" value="{$smarty.cookies.street_id}" />
+    		<input class="ecjia-franchisee-location_street" name="f_street" placeholder="{t}选择街道{/t}" type="text" {if $smarty.cookies.franchisee_street_name neq ''} value="{$smarty.cookies.franchisee_street_name}" {else}value="{$second_show.street_name}" {/if}/>
+    		<input name="street_id" type="hidden" value="{$smarty.cookies.franchisee_street_id}" />
     	</label>
     	
 		<label class="input">
-    	   <input name="f_address" placeholder="{t}输入详细地址{/t}" type="text" {if $smarty.cookies.address neq ''} value="{$smarty.cookies.address}" {else} value="{$second_show.address}" {/if}>
+    	   <input name="f_address" placeholder="{t}输入详细地址{/t}" type="text" {if $smarty.cookies.franchisee_address neq ''} value="{$smarty.cookies.franchisee_address}" {else} value="{$second_show.address}" {/if}>
 		</label>
 	</div>
 

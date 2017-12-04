@@ -222,10 +222,10 @@ class franchisee_controller {
                         }
                     }
                 }
-                $_COOKIE['seller_category_id']    = $reaudit['seller_category'];
-                $_COOKIE['province_id']           = $reaudit['province'];
-                $_COOKIE['city_id']               = $reaudit['city'];
-                $_COOKIE['district_id']           = $reaudit['district'];
+                $_COOKIE['franchisee_seller_category_id']    = $reaudit['seller_category'];
+                $_COOKIE['franchisee_province_id']           = $reaudit['province'];
+                $_COOKIE['franchisee_city_id']               = $reaudit['city'];
+                $_COOKIE['franchisee_district_id']           = $reaudit['district'];
                 
             }
         }
@@ -238,7 +238,6 @@ class franchisee_controller {
             'district_name' => $district_show,
             'address'       => $reaudit['address']
         );
-        
         
         $longitude = !empty($_GET['longitude']) ? $_GET['longitude'] : $reaudit['location']['longitude'];
         $latitude = !empty($_GET['latitude']) ? $_GET['latitude'] : $reaudit['location']['latitude'];
@@ -430,9 +429,9 @@ class franchisee_controller {
                 'responsible_person' 	=> $_SESSION['franchisee_add']['name'],
                 'email' 				=> $_SESSION['franchisee_add']['email'],
                 'mobile'		 		=> $_SESSION['franchisee_add']['mobile'],
-                'seller_name' 			=> $_COOKIE['seller_name'],
-                'seller_category' 		=> $_COOKIE['seller'],
-                'address' 				=> $_COOKIE['address'],
+                'seller_name' 			=> $_COOKIE['franchisee_seller_name'],
+                'seller_category' 		=> $_COOKIE['franchisee_seller'],
+                'address' 				=> $_COOKIE['franchisee_province_name'].$_COOKIE['franchisee_city_name'].$_COOKIE['franchisee_district_name'].$_COOKIE['franchisee_street_name'].' '.$_COOKIE['franchisee_address'],
             );
         } else {
             $params    = array(
