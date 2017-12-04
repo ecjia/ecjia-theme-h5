@@ -189,7 +189,7 @@ class user_address_controller {
     	$temp_data = user_address_controller::save_temp_data(1, 'add', $_GET['clear'], $_GET);
     	ecjia_front::$controller->assign('temp', $temp_data);
     	
-    	$location_backurl = urlencode(RC_Uri::url('user/address/add_address'));
+    	$location_backurl = urlencode(RC_Uri::url('user/address/add_address', array('clear' => 0)));
     	ecjia_front::$controller->assign('location_backurl', $location_backurl);
     	
     	$referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : (!empty($_SESSION['referer_url']) ? $_SESSION['referer_url'] : '');
@@ -209,7 +209,9 @@ class user_address_controller {
     	
     	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
     	ecjia_front::$controller->assign('type', $type);
-    	
+    	if ($_GET['clear'] == 1) {
+    		unset($_SESSION['address_temp']['add']);
+    	}
     	$address_temp = $_SESSION['address_temp']['add'];
     	ecjia_front::$controller->assign('address_temp', $address_temp);
     	

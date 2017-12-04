@@ -10861,6 +10861,7 @@ footer {
 .ecjia-user-address-picker .picker-item, .ecjia-user-address-street-picker .picker-item {
 	text-align: center;
 	padding: 0;
+	font-size: 14px;
 }
 .ecjia-user-address-picker .picker-items-col {
 	width: 33.6667%;

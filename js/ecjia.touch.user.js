@@ -567,6 +567,7 @@
 	            		var value = $('.picker-items').find('.picker-items-col').eq(1).find('.picker-selected').attr('data-picker-value');
 	            		$.post(url, {city_id:value}, function(data) {
 							var district_list_data = region_data(eval(data.district_list));
+							
 							picker.cols[2].replaceValues(district_list_data[0], district_list_data[1]);
 						});
 	            	}, false);
@@ -582,7 +583,10 @@
 			        	var col0 = picker.cols[0].container.find('.picker-selected');
 			        	var col1 = picker.cols[1].container.find('.picker-selected');
 			        	var col2 = picker.cols[2].container.find('.picker-selected');
-		        		var html = col0.html()+'-'+col1.html()+'-'+col2.html();
+		        		var html = col0.html()+'-'+col1.html();
+		        		if (col2.html() != '暂无') {
+		        			html += '-'+col2.html();
+		        		}
 						$('.ecjia_user_address_picker').html(html);
 
 						var col0Value = col0.attr('data-picker-value');
@@ -688,18 +692,15 @@
 			        	}
 			        	picker.close();
 						$('.modal-overlay').remove();
-//						$('.picker-modal').remove();
 			        });
 			        picker.container.find('.close-picker').on('click', function () {
 			    		picker.close();
 				    	$('.modal-overlay').remove();
-//				    	$('.picker-modal').remove();
 			    	});
 			    },
 			    onClose: function(picker) {
 			    	picker.close();
 			    	$('.modal-overlay').remove();
-//			    	$('.picker-modal').remove();
 			    }
 			});
 		}
@@ -711,6 +712,9 @@
 
 	//处理地区数据
 	function region_data(region_data) {
+		if (region_data == null || region_data.length == 0) {
+			return [[''], ['暂无']];
+		}
 		var id_list = [];
 		var name_list = [];
 		for (i = 0; i < region_data.length; i++) {

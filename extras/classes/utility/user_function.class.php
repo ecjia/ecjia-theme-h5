@@ -135,15 +135,13 @@ class user_function {
 				}
 			}
 		}
-// 		_dump($city_list_arr,1);
-
 		$city_id = !empty($city_id) ? $city_id : $city_list_arr[0]['id'];
 		 
 		$district_list = RC_Cache::app_cache_get('user_address_district', 'user_address');
 		if (empty($district_list)) {
 			$rs_district = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('type' => 3))->run();
 			if (!is_ecjia_error($rs_district) && !empty($rs_district['regions'])) {
-				RC_Cache::app_cache_set('user_address_province', $rs_district['regions'], 'user_address');
+				RC_Cache::app_cache_set('user_address_district', $rs_district['regions'], 'user_address');
 				$district_list = $rs_district['regions'];
 			}
 		}
