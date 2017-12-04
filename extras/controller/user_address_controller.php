@@ -98,8 +98,7 @@ class user_address_controller {
     		
     		$address_list = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_LIST)->data(array('token' => $token))->run();
     		$address_list = is_ecjia_error($address_list) ? array() : $address_list;
-    		
-    		
+
     		ecjia_front::$controller->assign('address_list', $address_list);
     		ecjia_front::$controller->assign_title('收货地址管理');
     		
@@ -210,9 +209,7 @@ class user_address_controller {
     	
     	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
     	ecjia_front::$controller->assign('type', $type);
-    	if (isset($_GET['clear']) && $_GET['clear'] == 1) {
-    		unset($_SESSION['address_temp']['add']);
-    	}
+    	
     	$address_temp = $_SESSION['address_temp']['add'];
     	ecjia_front::$controller->assign('address_temp', $address_temp);
     	
@@ -324,6 +321,7 @@ class user_address_controller {
         }
         unset($_SESSION['referer_url']);
         unset($_SESSION['address']);
+        unset($_SESSION['address_temp']['add']);
         return ecjia_front::$controller->showmessage('添加地址成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pjax_url));
     }
 
@@ -339,6 +337,7 @@ class user_address_controller {
         $temp_data = user_address_controller::save_temp_data(1, $temp_key, $_GET['clear'], $_GET);
         $params = array('token' => ecjia_touch_user::singleton()->getToken(), 'address_id' => $id);
         $info = ecjia_touch_manager::make()->api(ecjia_touch_api::ADDRESS_INFO)->data($params)->run();
+
         $info = is_ecjia_error($info) ? array() : $info;
         
         $location_backurl = urlencode(RC_Uri::url('user/address/edit_address', array('id' => $id)));
@@ -350,7 +349,7 @@ class user_address_controller {
             ecjia_front::$controller->assign('referer_url', $referer_url);
         }
         
-        $region_data = user_function::get_region_list();
+        $region_data = user_function::get_region_list($info['province_id'], $info['city_id'], $info['district_id'], $info['street_id']);
         ecjia_front::$controller->assign('region_data', $region_data);
         
         $key       = ecjia::config('map_qq_key');
@@ -389,6 +388,8 @@ class user_address_controller {
         	}
         }
         ecjia_front::$controller->assign('local', $local);
+        ecjia_front::$controller->assign('get_region_url', RC_Uri::url('user/address/get_region'));
+        ecjia_front::$controller->assign('save_temp_url', RC_Uri::url('user/address/save_address_temp'));
         
         ecjia_front::$controller->display('user_address_edit.dwt');
     }
@@ -401,20 +402,22 @@ class user_address_controller {
         if (empty($_POST['address_id'])) {
             return ecjia_front::$controller->showmessage('参数错误', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         }
-        if (empty($_POST['city_id']) || empty($_POST['address']) || empty($_POST['consignee']) || empty($_POST['mobile'])) {
+        if (empty($_POST['province']) || empty($_POST['city']) || empty($_POST['district']) || empty($_POST['street']) || empty($_POST['address']) || empty($_POST['consignee']) || empty($_POST['mobile'])) {
             return ecjia_front::$controller->showmessage('请完整填写相关信息', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         }
         $params = array(
             'token' 		=> ecjia_touch_user::singleton()->getToken(),
             'address_id' 	=> $_POST['address_id'],
             'address' 		=> array(
-                'city'      	=> trim($_POST['city_id']),
+                'province'   	=> trim($_POST['province']),
+            	'city'   		=> trim($_POST['city']),
+            	'district'   	=> trim($_POST['district']),
+            	'street'   		=> trim($_POST['street']),
                 'address'   	=> htmlspecialchars($_POST['address']),
                 'address_info'	=> htmlspecialchars($_POST['address_info']),
                 'consignee' 	=> htmlspecialchars($_POST['consignee']),
                 'mobile'    	=> htmlspecialchars($_POST['mobile']),
             )
-             
         );
         $chars = "/^1(3|4|5|7|8)\d{9}$/";
         $mobile = $params['address']['mobile'];
@@ -440,6 +443,7 @@ class user_address_controller {
         }
         
         unset($_SESSION['address']);
+        unset($_SESSION['address_temp']['add']);
         return ecjia_front::$controller->showmessage('编辑地址成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS,array('pjaxurl' => $pjaxurl));
     }
 
