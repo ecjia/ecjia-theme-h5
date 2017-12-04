@@ -348,8 +348,8 @@ class user_address_controller {
             $_SESSION['referer_url'] = $referer_url;
             ecjia_front::$controller->assign('referer_url', $referer_url);
         }
-        
-        $region_data = user_function::get_region_list($info['province_id'], $info['city_id'], $info['district_id'], $info['street_id']);
+
+        $region_data = user_function::get_region_list($info['province'], $info['city'], $info['district'], $info['street']);
         ecjia_front::$controller->assign('region_data', $region_data);
         
         $key       = ecjia::config('map_qq_key');
