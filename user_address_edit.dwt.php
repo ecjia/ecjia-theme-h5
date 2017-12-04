@@ -11,7 +11,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">
-	ecjia.touch.address_from.init();
+	ecjia.touch.address_form.init();
 	ecjia.touch.user.address_save();
 </script>
 <!-- {/block} -->
@@ -83,7 +83,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<input type="hidden" name="province_list" value='{$region_data.province_list}' />
 	<input type="hidden" name="city_list" value='{$region_data.city_list}' />
 	<input type="hidden" name="district_list" value='{$region_data.district_list}' />
-	<input type="hidden" name="street_list" />
+	<input type="hidden" name="street_list" value='{$region_data.street_list}' />
 </form>
 <!-- {/block} -->
 {/nocache}

@@ -10865,6 +10865,9 @@ footer {
 .ecjia-user-address-picker .picker-items-col {
 	width: 33.6667%;
 }
+.ecjia-user-address-picker .picker-items-col .picker-items-col-wrapper {
+	-webkit-overflow-scrolling: touch;
+}
 .ecjia-user-address-street-picker .picker-items-col {
 	width: 100%;
 }

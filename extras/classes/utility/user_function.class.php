@@ -163,17 +163,16 @@ class user_function {
 			if (empty($street_list)) {
 				$rs_street = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('parent_id' => $district_id))->run();
 				if (!is_ecjia_error($rs_street) && !empty($rs_street['regions'])) {
-					RC_Cache::app_cache_set('user_address_street', $rs_street['regions'], 'user_address');
+					RC_Cache::app_cache_set('user_address_street'.$district_id, $rs_street['regions'], 'user_address');
 					$street_list = $rs_street['regions'];
 				}
 			}
 		}
-		
 		return array(
 			'province_list' => json_encode($province_list),
 			'city_list' 	=> json_encode($city_list_arr),
 			'district_list' => json_encode($district_list_arr),
-			'street_list' => json_encode($street_list),
+			'street_list' => !empty($street_list) ? json_encode($street_list) : '',
 		);
 		 
 	}

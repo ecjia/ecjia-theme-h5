@@ -210,7 +210,9 @@ class user_address_controller {
     	
     	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
     	ecjia_front::$controller->assign('type', $type);
-    	
+    	if (isset($_GET['clear']) && $_GET['clear'] == 1) {
+    		unset($_SESSION['address_temp']['add']);
+    	}
     	$address_temp = $_SESSION['address_temp']['add'];
     	ecjia_front::$controller->assign('address_temp', $address_temp);
     	
@@ -571,6 +573,10 @@ class user_address_controller {
     	if (!empty($info)) {
     		foreach ($info as $k => $v) {
     			$_SESSION['address_temp']['add'][$k] = $v;
+    		}
+    		if (!isset($info['street_id']) || !isset($info['street_name'])) {
+    			unset($_SESSION['address_temp']['add']['street_id']);
+    			unset($_SESSION['address_temp']['add']['street_name']);
     		}
     	}
     }

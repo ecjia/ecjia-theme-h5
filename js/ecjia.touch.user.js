@@ -450,8 +450,43 @@
 		},
 	};
 
-	ecjia.touch.address_from = {
+	ecjia.touch.address_form = {
 		init: function() {
+			ecjia.touch.address_form.choose_pcd();
+			ecjia.touch.address_form.choose_street();
+			
+			$("form[name='theForm']").on('submit', function(e) {
+				e.preventDefault();
+				return false;
+			}).Validform({
+				tiptype: function(msg, o, cssctl) {
+					//msg：提示信息;
+					//o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+					//cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+					if (o.type == 3) {
+						alert(msg);
+					}
+				},
+				ajaxPost: true,
+				callback: function(data) {
+					var url = $.localStorage('address_url');
+					var title = $.localStorage('address_title');
+					if (url != undefined && title != undefined) {
+						var state = {
+							id: uniqueId(),
+							url: url,
+							title: title,
+							container: '.ecjia',
+							timeout: 10000
+						}
+						window.history.replaceState(state, title, url);
+					}
+					ecjia.touch.showmessage(data);
+				}
+			});
+		},
+		
+		choose_pcd: function() {
 			var province = eval('(' + $("input[name='province_list']").val() + ')');
 			var city = eval('(' + $("input[name='city_list']").val() + ')');
 			var district = eval('(' + $("input[name='district_list']").val() + ')');
@@ -487,10 +522,10 @@
 			        '<div class="toolbar">' +
 			            '<div class="toolbar-inner">' +
 			                '<div class="left">' +
-			                    '<a href="#" class="link close-picker">取消</a>' +
+			                    '<a href="javascript:;" class="link close-picker external">取消</a>' +
 			                '</div>' +
 			                '<div class="right">' +
-			                    '<a href="#" class="link save-picker">完成</a>' +
+			                    '<a href="javascript:;" class="link save-picker external">完成</a>' +
 			                '</div>' +
 			            '</div>' +
 			        '</div>',
@@ -498,27 +533,10 @@
 			        {
 			            values: province_list,
 			            displayValues: province_name,
-			            onChange: function (picker, value) {
-							$.post(url, {province_id:value}, function(data) {
-								$('input[name="city_list"]').val(data.city_list);
-								var city_list_data = region_data(eval(data.city_list));
-								picker.cols[1].replaceValues(city_list_data[0], city_list_data[1]);
-
-								$('input[name="district_list"]').val(data.district_list);
-								var district_list_data = region_data(eval(data.district_list));
-								picker.cols[2].replaceValues(district_list_data[0], district_list_data[1]);
-							});
-			            }
 			        },
 			        {
 			            values: city_list,
 			            displayValues: city_name,
-			            onChange: function (picker, value) {
-							$.post(url, {city_id:value}, function(data) {
-								var district_list_data = region_data(eval(data.district_list));
-								picker.cols[2].replaceValues(district_list_data[0], district_list_data[1]);
-							});
-			            }
 			        },
 			        {
 			            values: district_list,
@@ -526,14 +544,39 @@
 			        },
 			    ],
 			    onOpen: function (picker) {
+			    	//切换省份
+			    	$('.picker-items').find('.picker-items-col').eq(0).attr('id', 'ecjia-address-province-picker');
+	            	var p = document.getElementById('ecjia-address-province-picker'); 
+	            	p.addEventListener('touchend', function(event) { 
+	            		var value = $('.picker-items').find('.picker-items-col').eq(0).find('.picker-selected').attr('data-picker-value');
+	            		$.post(url, {province_id:value}, function(data) {
+							$('input[name="city_list"]').val(data.city_list);
+							var city_list_data = region_data(eval(data.city_list));
+							picker.cols[1].replaceValues(city_list_data[0], city_list_data[1]);
+
+							$('input[name="district_list"]').val(data.district_list);
+							var district_list_data = region_data(eval(data.district_list));
+							picker.cols[2].replaceValues(district_list_data[0], district_list_data[1]);
+						});
+	            	}, false);
+	            	
+	            	//切换城市
+			    	$('.picker-items').find('.picker-items-col').eq(1).attr('id', 'ecjia-address-city-picker');
+	            	var c = document.getElementById('ecjia-address-city-picker'); 
+	            	c.addEventListener('touchend', function(event) { 
+	            		var value = $('.picker-items').find('.picker-items-col').eq(1).find('.picker-selected').attr('data-picker-value');
+	            		$.post(url, {city_id:value}, function(data) {
+							var district_list_data = region_data(eval(data.district_list));
+							picker.cols[2].replaceValues(district_list_data[0], district_list_data[1]);
+						});
+	            	}, false);
+	            	
 			    	var province = $('input[name="province"]').val();
 					var city = $('input[name="city"]').val();
 					var district = $('input[name="district"]').val();
-					console.log(province);
-					console.log(city);
-					console.log(district);
+					
 			    	picker.setValue([province, city, district]);
-
+			    	
 			        picker.container.find('.save-picker').on('click', function () {
 			        	var district_value = $('input[name="district"]').val();
 			        	var col0 = picker.cols[0].container.find('.picker-selected');
@@ -553,11 +596,9 @@
 		        			$('.ecjia_user_address_street_picker').html('');
 		        			$('input[name="street"]').val('');
 		        		}
-
 		        		$.post(url, {district_id:col2Value}, function(data) {
 							$('input[name="street_list"]').val(data.street_list);
 						});
-
 						var temp_data = {
 							'province_id': col0Value,
 							'province_name': col0.html(),
@@ -568,113 +609,98 @@
 						};
 						save_temp(temp_data);
 						picker.close();
+						$('.modal-overlay').remove();
 			        });
+			        picker.container.find('.close-picker').on('click', function () {
+			    		picker.close();
+				    	$('.modal-overlay').remove();
+			    	});
 			    },
 			    onClose: function(picker) {
 			    	picker.close();
 			    	$('.modal-overlay').remove();
 			    }
 			});
-
-			var street_list = [];
-			var street_name = [];  
-
+			
 			$('.ecjia_user_address_street_picker').off('click').on('click', function() {
 				var province = $('input[name="province"]').val();
 				var city = $('input[name="city"]').val();
 				var district = $('input[name="district"]').val();
-				
 				if (province == '' || city == '' || district == '') {
 					alert('请先选择所在地区');
 					return false;
 				}
-				var val = $("input[name='street_list']").val();
-				if (val.length == 0) {
-					return false;
-				}
-				var street_arr = eval('(' + val + ')');
-				var street_list = [];
-				var street_name = [];
+			});
+		},
+		
+		choose_street: function() {
+			var App = new Framework7();
+			var pickerStreetToolbar = App.picker({
+			    input: '.ecjia_user_address_street_picker',
+			    cssClass: 'ecjia-user-address-street-picker',
+			    toolbarTemplate: 
+			        '<div class="toolbar">' +
+			            '<div class="toolbar-inner">' +
+			                '<div class="left">' +
+			                    '<a href="javascript:;" class="link close-picker external">取消</a>' +
+			                '</div>' +
+			                '<div class="right">' +
+			                    '<a href="javascript:;" class="link save-picker external">完成</a>' +
+			                '</div>' +
+			            '</div>' +
+			        '</div>',
+			    cols: [
+			        {
+			            values: [''],
+			            displayValues: ['该地区下暂无街道可选择...'],
+			        },
+			    ],
+			    onOpen: function (picker) {
+					var street_list = [];
+					var street_name = [];  
 
-				var street_data = region_data(street_arr);
-				street_list = street_data[0];
-				street_name = street_data[1];
-
-				var pickerStreetToolbar = myApp.picker({
-				    input: '.ecjia_user_address_street_picker',
-				    cssClass: 'ecjia-user-address-street-picker',
-				    toolbarTemplate: 
-				        '<div class="toolbar">' +
-				            '<div class="toolbar-inner">' +
-				                '<div class="left">' +
-				                    '<a href="#" class="link close-picker">取消</a>' +
-				                '</div>' +
-				                '<div class="right">' +
-				                    '<a href="#" class="link save-picker">完成</a>' +
-				                '</div>' +
-				            '</div>' +
-				        '</div>',
-				    cols: [
-				        {
-				            values: street_list,
-				            displayValues: street_name,
-				        },
-				    ],
-				    onOpen: function (picker) {
-				    	var street = $('input[name="street"]').val();
-				    	picker.setValue([street]);
-				        picker.container.find('.save-picker').on('click', function () {
-				        	var col0 = picker.cols[0].container.find('.picker-selected');
+					var val = $("input[name='street_list']").val();
+					if (val.length != 0) {
+						var street_arr = eval('(' + val + ')');
+						var street_list = [];
+						var street_name = [];
+	
+						var street_data = region_data(street_arr);
+						street_list = street_data[0];
+						street_name = street_data[1];
+						picker.cols[0].replaceValues(street_list, street_name);
+					}
+			    	var street = $('input[name="street"]').val();
+			    	picker.setValue([street]);
+			    	
+			        picker.container.find('.save-picker').on('click', function () {
+			        	var col0 = picker.cols[0].container.find('.picker-selected');
+			        	var col0Value = col0.attr('data-picker-value');
+			        	if (col0Value.length != 0) {
 			        		var html = col0.html();
 							$('.ecjia_user_address_street_picker').html(html);
-							var col0Value = col0.attr('data-picker-value');
 			        		$('input[name="street"]').val(col0Value);
-
 					     	var temp_data = {
-								'stree_id': col0Value,
+								'street_id': col0Value,
 								'street_name': html
 							};
 							save_temp(temp_data); 
-
-							picker.destroy();
-				        });
-				    },
-				    onClose: function(picker) {
-				    	picker.close();
+			        	}
+			        	picker.close();
+						$('.modal-overlay').remove();
+//						$('.picker-modal').remove();
+			        });
+			        picker.container.find('.close-picker').on('click', function () {
+			    		picker.close();
 				    	$('.modal-overlay').remove();
-				    }
-				});
-			});
-
-
-			$("form[name='theForm']").on('submit', function(e) {
-				e.preventDefault();
-				return false;
-			}).Validform({
-				tiptype: function(msg, o, cssctl) {
-					//msg：提示信息;
-					//o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
-					//cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
-					if (o.type == 3) {
-						alert(msg);
-					}
-				},
-				ajaxPost: true,
-				callback: function(data) {
-					var url = $.localStorage('address_url');
-					var title = $.localStorage('address_title');
-					if (url != undefined && title != undefined) {
-						var state = {
-							id: uniqueId(),
-							url: url,
-							title: title,
-							container: '.ecjia',
-							timeout: 10000
-						}
-						window.history.replaceState(state, title, url);
-					}
-					ecjia.touch.showmessage(data);
-				}
+//				    	$('.picker-modal').remove();
+			    	});
+			    },
+			    onClose: function(picker) {
+			    	picker.close();
+			    	$('.modal-overlay').remove();
+//			    	$('.picker-modal').remove();
+			    }
 			});
 		}
 	};
