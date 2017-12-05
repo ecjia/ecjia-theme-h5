@@ -42,30 +42,23 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<label class="input">
     		<span class="ecjiaf-fl"><img src="{$theme_url}images/user_center/f_location.png" width="30" height="30"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_province" name="f_province" placeholder="{t}选择省{/t}" type="text" {if $smarty.cookies.franchisee_province_name neq ''} value="{$smarty.cookies.franchisee_province_name}" {else} value="{$second_show.province_name}" {/if}>
-	        <input name="province" type="hidden" value={$province} />
-    		<input name="province_id" type="hidden" value="{$smarty.cookies.franchisee_province_id}" />
+    		<div class="ecjia-franchisee-location-pcd"/>请选择省、市、区</div>
+	        <input type="hidden" name="f_province" />
+			<input type="hidden" name="f_city" />
+			<input type="hidden" name="f_district" />
+			
+			
+			<input type="hidden" name="f_province_name" disabled/>
+			<input type="hidden" name="f_city_name" disabled/>
+			<input type="hidden" name="f_district_name" disabled/>
+			<input type="hidden" name="f_street_name" disabled/>
     	</label>
     	
     	<label class="input">
     		<span class="ecjiaf-fl"></span>
     		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_city" name="f_city" placeholder="{t}选择市{/t}" type="text" {if $smarty.cookies.franchisee_city_name neq ''} value="{$smarty.cookies.franchisee_city_name}" {else}value="{$second_show.city_name}" {/if}>
-    		<input name="city_id" type="hidden" value="{$smarty.cookies.franchisee_city_id}" />
-    	</label>
-    	
-    	<label class="input">
-    		<span class="ecjiaf-fl"></span>
-    		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_district" name="f_district" placeholder="{t}选择区{/t}" type="text" {if $smarty.cookies.franchisee_district_name neq ''} value="{$smarty.cookies.franchisee_district_name}" {else}value="{$second_show.district_name}" {/if}/>
-    		<input name="district_id" type="hidden" value="{$smarty.cookies.franchisee_district_id}" />
-    	</label>
-    	
-    	<label class="input">
-    		<span class="ecjiaf-fl"></span>
-    		<i class="iconfont  icon-jiantou-right"></i>
-    		<input class="ecjia-franchisee-location_street" name="f_street" placeholder="{t}选择街道{/t}" type="text" {if $smarty.cookies.franchisee_street_name neq ''} value="{$smarty.cookies.franchisee_street_name}" {else}value="{$second_show.street_name}" {/if}/>
-    		<input name="street_id" type="hidden" value="{$smarty.cookies.franchisee_street_id}" />
+    		<div class="ecjia-franchisee-location-street">请选择街道</div>
+    		<input name="f_street" type="hidden" value="{$smarty.cookies.franchisee_street_id}" />
     	</label>
     	
 		<label class="input">
@@ -79,6 +72,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<input name="latitude" type="hidden" value="{$latitude}" />
 	<input type="hidden" name="mobile" value={$mobile} />
 	<input type="hidden" name="code" value={$code} />
+	
+	<input type="hidden" name="province_list" disabled value='{$region_data.province_list}' />
+	<input type="hidden" name="city_list" disabled value='{$region_data.city_list}' />
+	<input type="hidden" name="district_list" disabled value='{$region_data.district_list}' />
+	<input type="hidden" name="street_list" disabled value='{$region_data.street_list}' />
 	
 	<div class="ecjia-margin-t ecjia-margin-b">
 		<input class="btn btn-info nopjax external" name="franchisee_submit" type="submit" value="{t}提交{/t}"/>

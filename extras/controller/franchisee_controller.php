@@ -174,12 +174,10 @@ class franchisee_controller {
         	return ecjia_front::$controller->showmessage($reaudit->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('franchisee/index/first')));
         }
         $category = ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_CATEGORY)->data(array('token' => $token))->send()->getBody();
-        $province = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 1))->send()->getBody();
-         
         $category_list 	= ecjia_touch_manager::make()->api(ecjia_touch_api::SELLER_CATEGORY)->data(array('token' => $token))->run();
-        $province_list  = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 1))->run();
-        $city_list      = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 2))->run();
-        $district_list  = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('token' => $token, 'type' => 3))->run();
+        
+        $region_data = user_function::get_region_list();
+        ecjia_front::$controller->assign('region_data', $region_data);
         
         if (is_ecjia_error($mobile)) {
             return ecjia_front::$controller->showmessage('请先填写基本信息', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('franchisee/index/first')));
@@ -257,15 +255,16 @@ class franchisee_controller {
 		ecjia_front::$controller->display('franchisee_second.dwt');
 	}
 	
-	public static function get_region() {
-		$parent_id = $_POST['parent_id'];
-		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION)->data(array('parent_id' => $parent_id))->run();
-		if (is_ecjia_error($data)) {
-			return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
-		} else {
-			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('content' => $data['regions']));
-		}
-	}
+    public static function get_region() {
+    	$province_id = !empty($_POST['province_id']) ? trim($_POST['province_id']) : '';
+    	$city_id = !empty($_POST['city_id']) ? trim($_POST['city_id']) : '';
+    	$district_id = !empty($_POST['district_id']) ? trim($_POST['district_id']) : '';
+
+    	if (!empty($province_id) || !empty($city_id) || !empty($district_id)) {
+    		$region_data = user_function::get_region_list($province_id, $city_id, $district_id);
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, $region_data);
+    	}
+    }
 
 	//入驻信息验证提交
 	public static function finish() {

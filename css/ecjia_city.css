@@ -10878,6 +10878,32 @@ footer {
 	width: 100%;
 }
 
+
+.ecjia-franchisee-location-pcd, .ecjia-franchisee-location-street {
+	padding-left: 3.5em;
+    padding-right: 3.5em;
+    height: 3.2em;
+    text-overflow: ellipsis;
+    background-color: #fff;
+    line-height: 3.2em;
+    color: #555;
+	font-family: sans-serif;
+}
+.ecjia-franchisee-pcd-picker .picker-item, .ecjia-franchisee-street-picker .picker-item {
+	text-align: center;
+	padding: 0;
+	font-size: 14px;
+}
+.ecjia-franchisee-pcd-picker .picker-items-col {
+	width: 33.6667%;
+}
+.ecjia-franchisee-pcd-picker .picker-items-col .picker-items-col-wrapper {
+	-webkit-overflow-scrolling: touch;
+}
+.ecjia-franchisee-street-picker .picker-items-col {
+	width: 100%;
+}
+
 /* 配送员位置 */
 .ecjia{ height:100%;max-width:640px }
 .ecjia #allmap{ width:100%;height:85% }
