@@ -210,12 +210,9 @@ class user_address_controller {
     	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
     	ecjia_front::$controller->assign('type', $type);
     	
-    	RC_Logger::getLogger('error')->info($_GET['clear']);
     	if ($_GET['clear'] == 1) {
-    		RC_Logger::getLogger('error')->info('clear');
     		unset($_SESSION['address_temp']['add']);
     	}
-    	RC_Logger::getLogger('error')->info($_SESSION['address_temp']);
     	$address_temp = $_SESSION['address_temp']['add'];
     	ecjia_front::$controller->assign('address_temp', $address_temp);
     	
@@ -346,7 +343,7 @@ class user_address_controller {
 
         $info = is_ecjia_error($info) ? array() : $info;
         
-        $location_backurl = urlencode(RC_Uri::url('user/address/edit_address', array('id' => $id)));
+        $location_backurl = urlencode(RC_Uri::url('user/address/edit_address', array('id' => $id, 'clear' => 0)));
         ecjia_front::$controller->assign('location_backurl', $location_backurl);
         
         $referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : (!empty($_SESSION['referer_url']) ? $_SESSION['referer_url'] : '');
@@ -355,6 +352,12 @@ class user_address_controller {
             ecjia_front::$controller->assign('referer_url', $referer_url);
         }
 
+    	if ($_GET['clear'] == 1) {
+    		unset($_SESSION['address_temp']['add']);
+    	}
+    	$address_temp = $_SESSION['address_temp']['add'];
+    	ecjia_front::$controller->assign('address_temp', $address_temp);
+        
         $region_data = user_function::get_region_list($info['province'], $info['city'], $info['district'], $info['street']);
         ecjia_front::$controller->assign('region_data', $region_data);
         
