@@ -214,6 +214,7 @@ class user_address_controller {
     	if ($_GET['clear'] == 1) {
     		unset($_SESSION['address_temp']['add']);
     	}
+    	RC_Logger::getLogger('error')->info($_SESSION['address_temp']);
     	$address_temp = $_SESSION['address_temp']['add'];
     	ecjia_front::$controller->assign('address_temp', $address_temp);
     	
