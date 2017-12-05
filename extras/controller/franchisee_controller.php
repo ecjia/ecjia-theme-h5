@@ -154,7 +154,7 @@ class franchisee_controller {
 	    	return ecjia_front::$controller->showmessage('请先填写基本信息', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('franchisee/index/first')));
 	    }
 	    
-	    $token = ecjia_touch_user::singleton()->getToken();
+	    $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_SHOP_TOKEN)->run();
 
         //重新修改入驻信息Get获取，正常入驻存session
         if (empty($_SESSION['franchisee_add']['mobile'])) {
@@ -169,7 +169,7 @@ class franchisee_controller {
         }
 
         //之前的入驻信息
-        $reaudit = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PREAUDIT)->data(array('token' => $token, 'mobile' => $mobile, 'validate_code' => $code))->run();
+        $reaudit = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PREAUDIT)->data(array('token' => $data['access_token'], 'mobile' => $mobile, 'validate_code' => $code))->run();
         if (is_ecjia_error($reaudit)) {
         	return ecjia_front::$controller->showmessage($reaudit->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('franchisee/index/first')));
         }
@@ -273,7 +273,7 @@ class franchisee_controller {
 		if ($config['merchant_join_close'] == 1) {
 			return ecjia_front::$controller->showmessage('抱歉，该网站已关闭入驻商加盟！', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 		}
-	    $token = ecjia_touch_user::singleton()->getToken();
+	    $token = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_SHOP_TOKEN)->run();
 	    
 	    $responsible_person = !empty($_SESSION['franchisee_add']['name']) ? $_SESSION['franchisee_add']['name'] : '';
 	    $email 				= !empty($_SESSION['franchisee_add']['email']) ? $_SESSION['franchisee_add']['email'] : '';
@@ -334,7 +334,7 @@ class franchisee_controller {
 	    }
 
 	    $parameter = array(
-	        'token'              => $token,
+	        'token'              => $token['access_token'],
 	        'responsible_person' => $responsible_person,
 	        'email'              => $email,
 	        'mobile'             => $mobile,
