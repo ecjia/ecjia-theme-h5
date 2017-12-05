@@ -50,7 +50,7 @@ class user_function {
 	/**
 	 * 记录搜索历史
 	 */
-	public static function insert_search($keywords, $store_id = 0) {
+	public static function insert_search($keywords = '', $store_id = 0) {
 		$ecjia_search = 'ECJia[search]';
 		if (!empty($store_id)) {
 			$cookie_search = $_COOKIE ['ECJia'] ['search'][$store_id];
@@ -59,7 +59,7 @@ class user_function {
 			$cookie_search = $_COOKIE ['ECJia'] ['search']['other'];
 			$ecjia_search .= '[other]';
 		}
-		if (isset($keywords)) {
+		if (!empty($keywords)) {
 			if (!empty($cookie_search)) {
 				$history = explode(',', $cookie_search);
 				array_unshift($history, $keywords);
