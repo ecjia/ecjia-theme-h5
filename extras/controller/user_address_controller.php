@@ -588,6 +588,7 @@ class user_address_controller {
     			unset($_SESSION['address_temp']['add']['street_id']);
     			unset($_SESSION['address_temp']['add']['street_name']);
     		}
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, $_SESSION['address_temp']['add']);
     	}
     }
 }

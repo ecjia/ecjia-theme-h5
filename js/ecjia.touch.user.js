@@ -731,7 +731,9 @@
 
 	function save_temp(arr) {
 		var save_temp_url = $('.ecjia_user_address_picker').attr('data-save-temp-url');
-		$.post(save_temp_url,{info: arr});
+		$.post(save_temp_url,{info: arr}, function(data) {
+			console.log(data);
+		});
 	}
 })(ecjia, jQuery);
 
