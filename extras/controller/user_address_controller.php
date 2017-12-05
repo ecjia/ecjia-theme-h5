@@ -358,7 +358,7 @@ class user_address_controller {
     	$address_temp = $_SESSION['address_temp']['add'];
     	ecjia_front::$controller->assign('address_temp', $address_temp);
         
-        $region_data = user_function::get_region_list($info['province'], $info['city'], $info['district'], $info['street']);
+        $region_data = user_function::get_region_list($info['province'], $info['city'], $info['district']);
         ecjia_front::$controller->assign('region_data', $region_data);
         
         $key       = ecjia::config('map_qq_key');
