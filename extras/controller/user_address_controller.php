@@ -211,8 +211,8 @@ class user_address_controller {
     	ecjia_front::$controller->assign('type', $type);
     	
     	RC_Logger::getLogger('error')->info($_GET['clear']);
-    	RC_Logger::getLogger('error')->info($_GET['clear'] == 1);
     	if ($_GET['clear'] == 1) {
+    		RC_Logger::getLogger('error')->info('clear');
     		unset($_SESSION['address_temp']['add']);
     	}
     	RC_Logger::getLogger('error')->info($_SESSION['address_temp']);
