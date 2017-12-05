@@ -487,31 +487,27 @@
 		},
 		
 		choose_pcd: function() {
-			var province = eval('(' + $("input[name='province_list']").val() + ')');
-			var city = eval('(' + $("input[name='city_list']").val() + ')');
-			var district = eval('(' + $("input[name='district_list']").val() + ')');
+			var province = $("input[name='province_list']").val();
+			var city = $("input[name='city_list']").val();
+			var district = $("input[name='district_list']").val();
 
-			var province_list = [];
-			var province_name = [];
-
-			var city_list = [];
-			var city_name = [];
-
-			var district_list = [];
-			var district_name = [];
+			if ($.localStorage('province') == undefined) {
+				$.localStorage('province', province);
+			}
+			if ($.localStorage('city') == undefined) {
+				$.localStorage('city', city);
+			}
+			if ($.localStorage('district') == undefined) {
+				$.localStorage('district', district);
+			}
+			var data 		= region_data();
+			var province_list 	= data[0];
+			var province_name 	= data[1];
+			var city_list 		= data[2];
+			var city_name 		= data[3];
+			var district_list 	= data[4];
+			var district_name 	= data[5];
 			
-			var province_data = region_data(province);
-			province_list = province_data[0];
-			province_name = province_data[1];
-
-			var city_data = region_data(city);
-			city_list = city_data[0];
-			city_name = city_data[1];
-
-			var district_data = region_data(district);
-			district_list = district_data[0];
-			district_name = district_data[1];
-
 			var url = $('.ecjia_user_address_picker').attr('data-url');
 			var myApp = new Framework7();
 
@@ -533,10 +529,25 @@
 			        {
 			            values: province_list,
 			            displayValues: province_name,
+			            onChange: function(picker, value) {
+		            		var data = region_data(value);
+		            		if (picker.cols[1].replaceValues) {
+		            			picker.cols[1].replaceValues(data[2], data[3]);
+		            		}
+		            		if (picker.cols[2].replaceValues) {
+		            			picker.cols[2].replaceValues(data[4], data[5]);
+		            		}
+			            }
 			        },
 			        {
 			            values: city_list,
 			            displayValues: city_name,
+			            onChange: function(picker, value) {
+			            	var data = region_data('', value);
+			            	if (picker.cols[2].replaceValues) {
+			            		picker.cols[2].replaceValues(data[4], data[5]);
+			            	}
+			            }
 			        },
 			        {
 			            values: district_list,
@@ -544,39 +555,10 @@
 			        },
 			    ],
 			    onOpen: function (picker) {
-			    	//切换省份
-			    	$('.picker-items').find('.picker-items-col').eq(0).attr('id', 'ecjia-address-province-picker');
-	            	var p = document.getElementById('ecjia-address-province-picker'); 
-	            	p.addEventListener('touchend', function(event) { 
-	            		var value = $('.picker-items').find('.picker-items-col').eq(0).find('.picker-selected').attr('data-picker-value');
-	            		$.post(url, {province_id:value}, function(data) {
-							$('input[name="city_list"]').val(data.city_list);
-							var city_list_data = region_data(eval(data.city_list));
-							picker.cols[1].replaceValues(city_list_data[0], city_list_data[1]);
-
-							$('input[name="district_list"]').val(data.district_list);
-							var district_list_data = region_data(eval(data.district_list));
-							picker.cols[2].replaceValues(district_list_data[0], district_list_data[1]);
-						});
-	            	}, false);
-	            	
-	            	//切换城市
-			    	$('.picker-items').find('.picker-items-col').eq(1).attr('id', 'ecjia-address-city-picker');
-	            	var c = document.getElementById('ecjia-address-city-picker'); 
-	            	c.addEventListener('touchend', function(event) { 
-	            		var value = $('.picker-items').find('.picker-items-col').eq(1).find('.picker-selected').attr('data-picker-value');
-	            		$.post(url, {city_id:value}, function(data) {
-							var district_list_data = region_data(eval(data.district_list));
-							
-							picker.cols[2].replaceValues(district_list_data[0], district_list_data[1]);
-						});
-	            	}, false);
-	            	
 			    	var province = $('input[name="province"]').val();
 					var city = $('input[name="city"]').val();
 					var district = $('input[name="district"]').val();
-					
-			    	picker.setValue([province, city, district]);
+			    	picker.setValue([province, city, district]);//设置选中值
 			    	
 			        picker.container.find('.save-picker').on('click', function () {
 			        	var district_value = $('input[name="district"]').val();
@@ -641,6 +623,11 @@
 		},
 		
 		choose_street: function() {
+			var data = region_data();
+			
+			var street_list 	= data[6];
+			var street_name 	= data[7];
+			
 			var App = new Framework7();
 			var pickerStreetToolbar = App.picker({
 			    input: '.ecjia_user_address_street_picker',
@@ -659,26 +646,17 @@
 			    cols: [
 			        {
 			            values: [''],
-			            displayValues: ['该地区下暂无街道可选择...'],
+			            displayValues: ['请选择所在街道'],
 			        },
 			    ],
 			    onOpen: function (picker) {
-					var street_list = [];
-					var street_name = [];  
-
-					var val = $("input[name='street_list']").val();
-					if (val.length != 0) {
-						var street_arr = eval('(' + val + ')');
-						var street_list = [];
-						var street_name = [];
-	
-						var street_data = region_data(street_arr);
-						street_list = street_data[0];
-						street_name = street_data[1];
-						picker.cols[0].replaceValues(street_list, street_name);
-					}
+			    	var district = $('input[name="district"]').val();
+			    	var street_list = $("input[name='street_list']").val();
+			    	$.localStorage('street', street_list);
+			    	var data = region_data('', '', district);
+			    	picker.cols[0].replaceValues(data[6], data[7]);
 			    	var street = $('input[name="street"]').val();
-			    	picker.setValue([street]);
+			    	picker.setValue([street]);//设置选中值
 			    	
 			        picker.container.find('.save-picker').on('click', function () {
 			        	var col0 = picker.cols[0].container.find('.picker-selected');
@@ -714,19 +692,79 @@
 	}
 
 	//处理地区数据
-	function region_data(region_data) {
-		if (region_data == null || region_data.length == 0) {
-			return [[''], ['暂无']];
-		}
-		var id_list = [];
-		var name_list = [];
-		for (i = 0; i < region_data.length; i++) {
-			var name = region_data[i]['name'];
-			var id = region_data[i]['id'];
-			id_list.push(id);
-			name_list.push(name);
-		};
-		return [id_list, name_list];
+	function region_data(province_id = '', city_id = '', district_id = '') {
+		var province = eval($.localStorage('province'));
+		var city = eval($.localStorage('city'));
+		var district = eval($.localStorage('district'));
+		var street = eval($.localStorage('street'));
+
+		var province_value = [];
+        var province_display_value = [];
+        if (district_id == '') {
+	        for (i = 0; i < province.length; i++) {
+	            var name = province[i]['name'];
+	            var id = province[i]['id'];
+	            province_value.push(id);
+	            province_display_value.push(name);
+	        };
+        }
+        if (province_id == '') {
+        	province_id = province_value[0];
+        }
+        
+        var city_value = [];
+        var city_display_value = [];
+        if (district_id == '') {
+	        for (i = 0; i < city.length; i++) {
+	        	if (city[i]['parent_id'] == province_id) {
+	        		var name = city[i]['name'];
+	                var id = city[i]['id'];
+	                city_value.push(id);
+	                city_display_value.push(name);
+	        	}
+	        };
+        }
+        if (city_id == '') {
+        	city_id = city_value[0];
+        }
+        var district_value = [];
+        var district_display_value = [];
+        if (district_id == '') {
+	        for (i = 0; i < district.length; i++) {
+	        	if (district[i]['parent_id'] == city_id) {
+	        		var name = district[i]['name'];
+	                var id = district[i]['id'];
+	                district_value.push(id);
+	                district_display_value.push(name);
+	        	}
+	        };
+        }
+        
+        if (district_id == '') {
+        	district_id = district_value[0];
+        }
+        
+        var street_value = [];
+        var street_display_value = [];
+        if (street != undefined) {
+	        for (i = 0; i < street.length; i++) {
+	        	if (street[i]['parent_id'] == district_id) {
+	        		var name = street[i]['name'];
+	                var id = street[i]['id'];
+	                street_value.push(id);
+	                street_display_value.push(name);
+	        	}
+	        };
+        }
+        if (district_value.length == 0 || district_display_value.length == 0) {
+        	district_value = [''];
+        	district_display_value = ['暂无'];
+        }
+        if (street_value.length == 0 || street_display_value.length == 0) {
+        	street_value = [''];
+        	street_display_value = ['暂无'];
+        }
+        return [province_value, province_display_value, city_value, city_display_value, district_value, district_display_value, street_value, street_display_value];
 	}
 
 	function save_temp(arr) {
