@@ -82,10 +82,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<input name="referer_url" type="hidden" value="{$referer_url}" />
 	</div>
 	
-	<input type="hidden" name="province_list" value='{$region_data.province_list}' />
-	<input type="hidden" name="city_list" value='{$region_data.city_list}' />
-	<input type="hidden" name="district_list" value='{$region_data.district_list}' />
-	<input type="hidden" name="street_list" value='{$region_data.street_list}' />
+	<input type="hidden" name="province_list" disabled value='{$region_data.province_list}' />
+	<input type="hidden" name="city_list" disabled value='{$region_data.city_list}' />
+	<input type="hidden" name="district_list" disabled value='{$region_data.district_list}' />
+	<input type="hidden" name="street_list" disabled value='{$region_data.street_list}' />
 </form>
 <!-- {/block} -->
 {/nocache}
