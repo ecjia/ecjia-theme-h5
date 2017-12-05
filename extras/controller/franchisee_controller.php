@@ -98,7 +98,6 @@ class franchisee_controller {
 	        'validate_code' => $code,
 	        'validate_type' => 'signup'
 	    );
-	    RC_Logger::getLogger('error')->info($params);
 	    $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_VALIDATE)->data($params)->run();
 	    if (is_ecjia_error($rs)) {
 	        return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
@@ -127,7 +126,6 @@ class franchisee_controller {
 				'value' 		=>  $mobile,
 				'validate_type' => $type		//process,signup
 			);
-			RC_Logger::getLogger('error')->info($params);
 			$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_VALIDATE)->data($params)->run();
 			if (is_ecjia_error($rs)) {
 				return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('search_url' => RC_Uri::url('franchisee/index/search')));
