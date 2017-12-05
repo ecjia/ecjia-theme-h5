@@ -491,6 +491,56 @@
 			var city = $("input[name='city_list']").val();
 			var district = $("input[name='district_list']").val();
 
+			var clear = $("input[name='clear']").val();
+			if (clear == 1) {
+				sessionStorage.removeItem('province_id');
+				sessionStorage.removeItem('province_name');
+				sessionStorage.removeItem('city_id');
+				sessionStorage.removeItem('city_name');
+				sessionStorage.removeItem('district_id');
+				sessionStorage.removeItem('district_name');
+				sessionStorage.removeItem('street_id');
+				sessionStorage.removeItem('street_name');
+			} else {
+				var temp_province_id = sessionStorage.getItem('province_id');
+				if (temp_province_id != null) {
+					$('input[name="province"]').val(temp_province_id);
+				}
+				var temp_city_id = sessionStorage.getItem('city_id');
+				if (temp_city_id != null) {
+					$('input[name="city"]').val(temp_city_id);
+				}
+				var temp_district_id = sessionStorage.getItem('district_id');
+				if (temp_district_id != null) {
+					$('input[name="district"]').val(temp_district_id);
+				}
+				var temp_street_id = sessionStorage.getItem('street_id');
+				if (temp_street_id != null) {
+					$('input[name="street"]').val(temp_street_id);
+				}
+				
+				var val = '';
+				var temp_province_name 	= sessionStorage.getItem('province_name');
+				if (temp_province_name != null) {
+					val += temp_province_name;
+				}
+				var temp_city_name 		= sessionStorage.getItem('city_name');
+				if (temp_city_name != null) {
+					val += '-' + temp_city_name;
+				}
+				var temp_district_name 	= sessionStorage.getItem('district_name');
+				if (temp_district_name != null) {
+					val += '-' + temp_district_name;
+				}
+				if (val != '') {
+					$('.ecjia_user_address_picker').html(val);
+				}
+				var temp_street_name = sessionStorage.getItem('street_name');
+				if (temp_street_name != null) {
+					$('.ecjia_user_address_street_picker').html(temp_street_name);
+				}
+			}
+			
 			if ($.localStorage('province') == undefined) {
 				$.localStorage('province', province);
 			}
@@ -500,13 +550,14 @@
 			if ($.localStorage('district') == undefined) {
 				$.localStorage('district', district);
 			}
-			var data 		= region_data();
+			var data = region_data();
+			
 			var province_list 	= data[0];
-			var province_name 	= data[1];
+			var province_list_name 	= data[1];
 			var city_list 		= data[2];
-			var city_name 		= data[3];
+			var city_list_name 		= data[3];
 			var district_list 	= data[4];
-			var district_name 	= data[5];
+			var district_list_name 	= data[5];
 			
 			var url = $('.ecjia_user_address_picker').attr('data-url');
 			var myApp = new Framework7();
@@ -528,7 +579,7 @@
 			    cols: [
 			        {
 			            values: province_list,
-			            displayValues: province_name,
+			            displayValues: province_list_name,
 			            onChange: function(picker, value) {
 		            		var data = region_data(value);
 		            		if (picker.cols[1].replaceValues) {
@@ -541,7 +592,7 @@
 			        },
 			        {
 			            values: city_list,
-			            displayValues: city_name,
+			            displayValues: city_list_name,
 			            onChange: function(picker, value) {
 			            	var data = region_data('', value);
 			            	if (picker.cols[2].replaceValues) {
@@ -551,7 +602,7 @@
 			        },
 			        {
 			            values: district_list,
-			            displayValues: district_name
+			            displayValues: district_list_name
 			        },
 			    ],
 			    onOpen: function (picker) {
@@ -587,6 +638,8 @@
 		        		}
 		        		$.post(url, {district_id:col2Value}, function(data) {
 							$('input[name="street_list"]').val(data.street_list);
+							var key = 'street_' + col2Value;
+					    	$.localStorage(key, data.street_list);
 						});
 						var temp_data = {
 							'province_id': col0Value,
@@ -623,11 +676,6 @@
 		},
 		
 		choose_street: function() {
-			var data = region_data();
-			
-			var street_list 	= data[6];
-			var street_name 	= data[7];
-			
 			var App = new Framework7();
 			var pickerStreetToolbar = App.picker({
 			    input: '.ecjia_user_address_street_picker',
@@ -651,8 +699,11 @@
 			    ],
 			    onOpen: function (picker) {
 			    	var district = $('input[name="district"]').val();
-			    	var street_list = $("input[name='street_list']").val();
-			    	$.localStorage('street', street_list);
+			    	var key = 'street_' + district;
+			    	if ($.localStorage(key) == undefined) {
+			    		var street_list = $("input[name='street_list']").val();
+				    	$.localStorage(key, street_list);
+			    	}
 			    	var data = region_data('', '', district);
 			    	picker.cols[0].replaceValues(data[6], data[7]);
 			    	var street = $('input[name="street"]').val();
@@ -696,7 +747,7 @@
 		var province = eval($.localStorage('province'));
 		var city = eval($.localStorage('city'));
 		var district = eval($.localStorage('district'));
-		var street = eval($.localStorage('street'));
+		var street = eval($.localStorage('street_' + district_id));
 
 		var province_value = [];
         var province_display_value = [];
@@ -768,10 +819,13 @@
 	}
 
 	function save_temp(arr) {
-		var save_temp_url = $('.ecjia_user_address_picker').attr('data-save-temp-url');
-		$.post(save_temp_url,{info: arr}, function(data) {
-			console.log(data);
-		});
+		for (var i in arr) {
+			sessionStorage.setItem(i, arr[i]);
+			if (arr['street_id'] == undefined) {
+				sessionStorage.removeItem('street_id');
+				sessionStorage.removeItem('street_name');
+			}
+		}
 	}
 })(ecjia, jQuery);
 

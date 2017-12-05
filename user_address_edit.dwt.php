@@ -24,26 +24,24 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group form-group-text margin-bottom0 ecjia-border-t">
 		<div class="input">
 			<span>所在地区</span>
-			<div class="ecjia_user_address_picker" data-url="{$get_region_url}" data-save-temp-url="{$save_temp_url}">
-				{if $address_temp.province_name || $address_temp.city_name || $address_temp.district_name}
-				{$address_temp.province_name}-{$address_temp.city_name}-{$address_temp.district_name}
-				{else if $info.province_name || $info.city_name || $info.district_name}
+			<div class="ecjia_user_address_picker" data-url="{$get_region_url}">
+				{if $info.province_name || $info.city_name || $info.district_name}
 				{$info.province_name}-{$info.city_name}-{$info.district_name}
 				{/if}
 			</div>
 			<i class="iconfont icon-jiantou-right"></i>
-			<input type="hidden" name="province" value="{if $address_temp.province_id}{$address_temp.province_id}{else}{$info.province}{/if}"/>
-			<input type="hidden" name="city" value="{if $address_temp.city_id}{$address_temp.city_id}{else}{$info.city}{/if}"/>
-			<input type="hidden" name="district" value="{if $address_temp.district_id}{$address_temp.district_id}{else}{$info.district}{/if}"/>
+			<input type="hidden" name="province" value="{if $info.province}{$info.province}{/if}"/>
+			<input type="hidden" name="city" value="{if $info.city}{$info.city}{/if}"/>
+			<input type="hidden" name="district" value="{if $info.district}{$info.district}{/if}"/>
 		</div>
 	</div>
 	
 	<div class="form-group form-group-text margin-bottom0">
 		<div class="input">
 			<span>街道</span>
-			<div class="ecjia_user_address_street_picker" data-url="{$get_region_url}">{if $address_temp.street_name}{$address_temp.street_name}{else}{$info.street_name}{/if}</div>
+			<div class="ecjia_user_address_street_picker" data-url="{$get_region_url}">{if $info.street_name}{$info.street_name}{/if}</div>
 			<i class="iconfont icon-jiantou-right"></i>
-			<input type="hidden" name="street" value="{if $address_temp.street_id}{$address_temp.street_id}{else}{$info.street}{/if}"/>
+			<input type="hidden" name="street" value="{if $info.street}{$info.street}{/if}"/>
 		</div>
 	</div>
 	
@@ -86,6 +84,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<input type="hidden" name="city_list" disabled value='{$region_data.city_list}' />
 	<input type="hidden" name="district_list" disabled value='{$region_data.district_list}' />
 	<input type="hidden" name="street_list" disabled value='{$region_data.street_list}' />
+	
+	<input type="hidden" name="clear" disabled value='{$clear}' />
 </form>
 <!-- {/block} -->
 {/nocache}

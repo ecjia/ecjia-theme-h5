@@ -210,13 +210,11 @@ class user_address_controller {
     	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
     	ecjia_front::$controller->assign('type', $type);
     	
-    	if ($_GET['clear'] == 1) {
-    		unset($_SESSION['address_temp']['add']);
+    	$clear = !empty($_GET['clear']) ? intval($_GET['clear']) : 0;
+    	if ($clear == 1) {
+    		ecjia_front::$controller->assign('clear', $clear);
     	}
-    	$address_temp = $_SESSION['address_temp']['add'];
-    	ecjia_front::$controller->assign('address_temp', $address_temp);
-    	
-    	$region_data = user_function::get_region_list($address_temp['province_id'], $address_temp['city_id'], $address_temp['district_id'], $address_temp['street_id']);
+    	$region_data = user_function::get_region_list();
     	ecjia_front::$controller->assign('region_data', $region_data);
     	
     	$local = 1;
@@ -240,7 +238,6 @@ class user_address_controller {
     	}
     	ecjia_front::$controller->assign('local', $local);
     	ecjia_front::$controller->assign('get_region_url', RC_Uri::url('user/address/get_region'));
-    	ecjia_front::$controller->assign('save_temp_url', RC_Uri::url('user/address/save_address_temp'));
     	
     	ecjia_front::$controller->display('user_address_edit.dwt');
     }
@@ -324,7 +321,6 @@ class user_address_controller {
         }
         unset($_SESSION['referer_url']);
         unset($_SESSION['address']);
-        unset($_SESSION['address_temp']['add']);
         return ecjia_front::$controller->showmessage('添加地址成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pjax_url));
     }
 
@@ -352,13 +348,12 @@ class user_address_controller {
             ecjia_front::$controller->assign('referer_url', $referer_url);
         }
 
-    	if ($_GET['clear'] == 1) {
-    		unset($_SESSION['address_temp']['add']);
+        $clear = !empty($_GET['clear']) ? intval($_GET['clear']) : 0;
+    	if ($clear == 1) {
+    		ecjia_front::$controller->assign('clear', $clear);
     	}
-    	$address_temp = $_SESSION['address_temp']['add'];
-    	ecjia_front::$controller->assign('address_temp', $address_temp);
-        
-        $region_data = user_function::get_region_list($info['province'], $info['city'], $info['district']);
+
+    	$region_data = user_function::get_region_list($info['province'], $info['city'], $info['district']);
         ecjia_front::$controller->assign('region_data', $region_data);
         
         $key       = ecjia::config('map_qq_key');
@@ -398,7 +393,6 @@ class user_address_controller {
         }
         ecjia_front::$controller->assign('local', $local);
         ecjia_front::$controller->assign('get_region_url', RC_Uri::url('user/address/get_region'));
-        ecjia_front::$controller->assign('save_temp_url', RC_Uri::url('user/address/save_address_temp'));
         
         ecjia_front::$controller->display('user_address_edit.dwt');
     }
@@ -452,7 +446,6 @@ class user_address_controller {
         }
         
         unset($_SESSION['address']);
-        unset($_SESSION['address_temp']['add']);
         return ecjia_front::$controller->showmessage('编辑地址成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS,array('pjaxurl' => $pjaxurl));
     }
 
@@ -578,20 +571,6 @@ class user_address_controller {
     	if (!empty($province_id) || !empty($city_id) || !empty($district_id)) {
     		$region_data = user_function::get_region_list($province_id, $city_id, $district_id);
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, $region_data);
-    	}
-    }
-    
-    public static function save_address_temp() {
-    	$info = !empty($_POST['info']) ? $_POST['info'] : '';
-    	if (!empty($info)) {
-    		foreach ($info as $k => $v) {
-    			$_SESSION['address_temp']['add'][$k] = $v;
-    		}
-    		if (!isset($info['street_id']) || !isset($info['street_name'])) {
-    			unset($_SESSION['address_temp']['add']['street_id']);
-    			unset($_SESSION['address_temp']['add']['street_name']);
-    		}
-    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, $_SESSION['address_temp']['add']);
     	}
     }
 }
