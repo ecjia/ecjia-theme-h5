@@ -125,7 +125,6 @@ class franchisee_controller {
 				'value' 		=>  $mobile,
 				'validate_type' => $type		//process,signup
 			);
-			RC_Logger::getLogger('error')->info($params);
 			$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_VALIDATE)->data($params)->run();
 				
 			if (is_ecjia_error($rs)) {
