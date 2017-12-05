@@ -424,8 +424,9 @@
 		        		$('input[name="f_district"]').val(col2Value);
 
 		        		if (district_value != col2Value) {
-		        			$('.ecjia-franchisee-location_street').html('');
+		        			$('.ecjia-franchisee-location-street').html('');
 		        			$('input[name="f_street"]').val('');
+		        			$('input[name="f_street_name"]').val('');
 		        		}
 		        		$.post(url, {district_id:col2Value}, function(data) {
 							$('input[name="street_list"]').val(data.street_list);
