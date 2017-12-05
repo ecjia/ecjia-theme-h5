@@ -209,6 +209,8 @@ class user_address_controller {
     	
     	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
     	ecjia_front::$controller->assign('type', $type);
+    	
+    	RC_Logger::getLogger('error')->info($_GET['clear']);
     	if ($_GET['clear'] == 1) {
     		unset($_SESSION['address_temp']['add']);
     	}
