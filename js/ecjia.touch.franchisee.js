@@ -424,7 +424,7 @@
 		        		$('input[name="f_district"]').val(col2Value);
 
 		        		if (district_value != col2Value) {
-		        			$('.ecjia-franchisee-location-street').html('');
+		        			$('.ecjia-franchisee-location-street').html('请选择街道');
 		        			$('input[name="f_street"]').val('');
 		        			$('input[name="f_street_name"]').val('');
 		        		}
@@ -625,7 +625,7 @@
 					var url = url + '&province=' + f_province + '&city=' + f_city + '&district=' + f_district + '&street=' + f_street + '&address=' + f_address + '&mobile=' + mobile + '&code=' + code;
 					location.href = url;
 				} else {
-					alert('请输入详细地址');
+					alert('请选择省市区、街道并填写详细地址');
 				}
 			})
 		},
