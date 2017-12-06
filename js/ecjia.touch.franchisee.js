@@ -191,6 +191,19 @@
 				var latitude = $("input[name='latitude']").val();
 				var mobile = $("input[name='mobile']").val();
 				var code = $("input[name='code']").val();
+				
+				$.cookie('franchisee_province_name', $("input[name='f_province_name']").val(), {
+					expires: 7
+				});
+				$.cookie('franchisee_city_name', $("input[name='f_city_name']").val(), {
+					expires: 7
+				});
+				$.cookie('franchisee_district_name', $("input[name='f_district_name']").val(), {
+					expires: 7
+				});
+				$.cookie('franchisee_street_name', $("input[name='f_street_name']").val(), {
+					expires: 7
+				});
 				$.cookie('franchisee_seller', $("input[name='seller_category']").val(), {
 					expires: 7
 				});
