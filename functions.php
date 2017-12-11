@@ -270,6 +270,16 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
     if (!empty($wap_logo)) {
     	setcookie("wap_logo", RC_Upload::upload_url($wap_logo), time() + 1800);
     }
+    
+    RC_Loader::load_app_class('platform_account', 'platform', false);
+    $uuid = platform_account::getCurrentUUID('wechat');
+    $wechat = with(new Ecjia\App\Wechat\WechatUUID($uuid))->getWechatInstance();
+    
+    
+    $apis = array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ');
+    $config = $wechat->js->config($apis, false);
+    ecjia_front::$controller->assign('config', $config);
+
     //判断并微信登录
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
     if (strpos($user_agent, 'MicroMessenger') !== false && ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {

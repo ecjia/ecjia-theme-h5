@@ -12,15 +12,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="footer"} -->
 <script type="text/javascript">
 	var config = {$config};
-	var is_pjax = {$is_pjax};
-	wx.config({
-		debug: config.debug,
-		appId: config.appId,
-		timestamp: config.timestamp,
-		nonceStr: config.nonceStr,
-		signature: config.signature,
-		jsApiList: config.jsApiList
-	});
 	ecjia.touch.goods_detail.init();
 	ecjia.touch.category.init();
 	{if $releated_goods}
