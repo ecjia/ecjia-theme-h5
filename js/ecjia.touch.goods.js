@@ -1932,6 +1932,9 @@
 		},
 		
 		share_spread : function() {
+			if (config == undefined) {
+				return false;
+			}
     		wx.config({
     			debug: false,
     			appId: config.appId,

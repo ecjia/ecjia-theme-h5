@@ -131,6 +131,9 @@
 	};
 	
 	function wechat_spread(title, link, image, desc) {
+		if (config == undefined) {
+			return false;
+		}
 		wx.config({
 			debug: false,
 			appId: config.appId,
