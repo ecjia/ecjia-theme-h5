@@ -369,6 +369,7 @@ var releated_goods = {$releated_goods};
 <!-- 遮罩层 -->
 <div class="a53" style="display: none;"></div>
 <input type="hidden" name="share_image" value="{$goods_info.img.thumb}">
+<input type="hidden" name="wxconfig_url" value="{url path='user/index/wxconfig'}"/>
 <!-- #BeginLibraryItem "/library/address_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/goods_attr_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/goods_attr_static_modal.lbi" --><!-- #EndLibraryItem -->
