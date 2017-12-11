@@ -134,6 +134,9 @@ class goods_controller {
     	$apis = array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ');
     	$list = $wechat->js->config($apis, false);
     	ecjia_front::$controller->assign('config', $list);
+    	$is_pjax = is_pjax() ? 1 : 0;
+    	ecjia_front::$controller->assign('is_pjax', $is_pjax);
+    	
 		    	
     	$goods_id = isset($_GET['goods_id']) 	? $_GET['goods_id'] 	: 0;
     	$url = RC_Uri::url('goods/index/show', array('goods_id' => $goods_id));

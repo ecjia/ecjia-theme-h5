@@ -135,7 +135,7 @@
 			return false;
 		}
 		wx.config({
-			debug: false,
+			debug: config.debug,
 			appId: config.appId,
 			timestamp: config.timestamp,
 			nonceStr: config.nonceStr,

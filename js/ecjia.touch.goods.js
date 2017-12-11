@@ -1936,7 +1936,7 @@
 				return false;
 			}
     		wx.config({
-    			debug: true,
+    			debug: config.debug,
     			appId: config.appId,
     			timestamp: config.timestamp,
     			nonceStr: config.nonceStr,
@@ -1954,44 +1954,52 @@
     			image = $.cookie('wap_logo');
     		}
     		var desc = $('input[name="share_desc"]').val();
-    		wx.ready(function () {
-    			//分享到朋友圈
-    			wx.onMenuShareTimeline({
-    		        title: title, 					// 分享标题【必填】
-    		        link: link, 					// 分享链接【必填】
-    		        imgUrl: image, 					// 分享图标【必填】
-    		        success: function () { 
-    		        },
-    		        cancel: function () { 
-    		        }
-    		    });
+    		if (is_pjax == 1) {
+    			ecjia.touch.category.share(title, link, image, desc);
+    		} else {
+    			wx.ready(function() {
+    				ecjia.touch.category.share(title, link, image, desc);
+        		});
+    		}
+		},
+		
+		share: function(title, link, image, desc) {
+			//分享到朋友圈
+			wx.onMenuShareTimeline({
+		        title: title, 					// 分享标题【必填】
+		        link: link, 					// 分享链接【必填】
+		        imgUrl: image, 					// 分享图标【必填】
+		        success: function () { 
+		        },
+		        cancel: function () { 
+		        }
+		    });
 
-    			//分享给朋友
-    		    wx.onMenuShareAppMessage({
-    		        title: title, 					// 分享标题【必填】
-    		        desc: desc,	 					// 分享描述【必填】
-    		        link: link, 					// 分享链接【必填】
-    		        imgUrl: image, 					// 分享图标【必填】
-    		        type: 'link', 					// 分享类型,music、video或link，不填默认为link【必填】
-    		        dataUrl: '', 					// 如果type是music或video，则要提供数据链接，默认为空
-    		        success: function () { 
-    		        },
-    		        cancel: function () { 
-    		        }
-    		    });
+			//分享给朋友
+		    wx.onMenuShareAppMessage({
+		        title: title, 					// 分享标题【必填】
+		        desc: desc,	 					// 分享描述【必填】
+		        link: link, 					// 分享链接【必填】
+		        imgUrl: image, 					// 分享图标【必填】
+		        type: 'link', 					// 分享类型,music、video或link，不填默认为link【必填】
+		        dataUrl: '', 					// 如果type是music或video，则要提供数据链接，默认为空
+		        success: function () { 
+		        },
+		        cancel: function () { 
+		        }
+		    });
 
-    		    //分享到QQ
-    		    wx.onMenuShareQQ({
-    		        title: title, 					// 分享标题
-    		        desc: desc, 					// 分享描述
-    		        link: link, 					// 分享链接
-    		        imgUrl: image, 					// 分享图标
-    		        success: function () { 
-    		        },
-    		        cancel: function () { 
-    		        }
-    		    });
-    		});	
+		    //分享到QQ
+		    wx.onMenuShareQQ({
+		        title: title, 					// 分享标题
+		        desc: desc, 					// 分享描述
+		        link: link, 					// 分享链接
+		        imgUrl: image, 					// 分享图标
+		        success: function () { 
+		        },
+		        cancel: function () { 
+		        }
+		    });
 		},
 	};
 
@@ -2617,6 +2625,45 @@
 		}
 		$(modal).find('.goods-attr-name').html($spec_html);
 		$(modal).find('.goods-attr-price').html($spec_price);
+	};
+	
+	function share(title, link, image, desc) {
+		//分享到朋友圈
+		wx.onMenuShareTimeline({
+	        title: title, 					// 分享标题【必填】
+	        link: link, 					// 分享链接【必填】
+	        imgUrl: image, 					// 分享图标【必填】
+	        success: function () { 
+	        },
+	        cancel: function () { 
+	        }
+	    });
+
+		//分享给朋友
+	    wx.onMenuShareAppMessage({
+	        title: title, 					// 分享标题【必填】
+	        desc: desc,	 					// 分享描述【必填】
+	        link: link, 					// 分享链接【必填】
+	        imgUrl: image, 					// 分享图标【必填】
+	        type: 'link', 					// 分享类型,music、video或link，不填默认为link【必填】
+	        dataUrl: '', 					// 如果type是music或video，则要提供数据链接，默认为空
+	        success: function () { 
+	        },
+	        cancel: function () { 
+	        }
+	    });
+
+	    //分享到QQ
+	    wx.onMenuShareQQ({
+	        title: title, 					// 分享标题
+	        desc: desc, 					// 分享描述
+	        link: link, 					// 分享链接
+	        imgUrl: image, 					// 分享图标
+	        success: function () { 
+	        },
+	        cancel: function () { 
+	        }
+	    });
 	};
 })(ecjia, jQuery);
 

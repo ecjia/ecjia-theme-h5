@@ -12,6 +12,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="footer"} -->
 <script type="text/javascript">
 	var config = {$config};
+	var is_pjax = {$is_pjax};
+	
 	ecjia.touch.category.init();
 </script>
 <!-- {/block} -->

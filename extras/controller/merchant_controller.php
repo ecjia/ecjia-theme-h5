@@ -62,6 +62,8 @@ class merchant_controller {
 		$apis = array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ');
 		$list = $wechat->js->config($apis, false);
 		ecjia_front::$controller->assign('config', $list);
+		$is_pjax = is_pjax() ? 1 : 0;
+		ecjia_front::$controller->assign('is_pjax', $is_pjax);
 		
 		$store_id 		= intval($_GET['store_id']);
 		$category_id 	= intval($_GET['category_id']);
