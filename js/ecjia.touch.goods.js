@@ -1932,7 +1932,7 @@
 		},
 		
 		share_spread : function() {
-			if (config == undefined) {
+			if (typeof(config) == 'undefined') {
 				return false;
 			}
     		wx.config({
@@ -1953,7 +1953,7 @@
     		if (image == undefined) {
     			image = $.cookie('wap_logo');
     		}
-    		var desc = link;
+    		var desc = $('input[name="share_desc"]').val();
     		wx.ready(function () {
     			//分享到朋友圈
     			wx.onMenuShareTimeline({

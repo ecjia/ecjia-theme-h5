@@ -131,7 +131,7 @@
 	};
 	
 	function wechat_spread(title, link, image, desc) {
-		if (config == undefined) {
+		if (typeof(config) == 'undefined') {
 			return false;
 		}
 		wx.config({
