@@ -157,6 +157,18 @@ class user_controller {
     	}
     	ecjia_front::$controller->display('spread.dwt', $cache_id);
     }
+    
+    public static function wxconfig() {
+    	RC_Loader::load_app_class('platform_account', 'platform', false);
+    	$uuid = platform_account::getCurrentUUID('wechat');
+    	$wechat = with(new Ecjia\App\Wechat\WechatUUID($uuid))->getWechatInstance();
+    	
+    	$apis = array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ');
+    	$config = $wechat->js->config($apis, false);
+    	$config = json_decode($config, true);
+    	
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('data' => $config));
+    }
 	
     public static function sync_avatar($connect_user) {
         $user_id = $connect_user->getUserId();
