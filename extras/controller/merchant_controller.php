@@ -55,6 +55,14 @@ class merchant_controller {
 	 * 店铺首页
 	 */
 	public static function init() {
+		RC_Loader::load_app_class('platform_account', 'platform', false);
+		$uuid = platform_account::getCurrentUUID('wechat');
+		$wechat = with(new Ecjia\App\Wechat\WechatUUID($uuid))->getWechatInstance();
+		
+		$apis = array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ');
+		$list = $wechat->js->config($apis, false);
+		ecjia_front::$controller->assign('config', $list);
+		
 		$store_id 		= intval($_GET['store_id']);
 		$category_id 	= intval($_GET['category_id']);
 		

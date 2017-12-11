@@ -125,81 +125,64 @@
         },
 		
 		share_spread : function() {
-			var info = {
-    			'url' : window.location.href
-    		};
-			var url = $('input[name="spread_url"]').val();
-        	if (url == undefined) {
-        		return false;
-        	}
         	var desc = $('textarea[name="invite_template"]').val();
-        	wechat_spread(url, info, title, link, image, desc);
+        	wechat_spread(title, link, image, desc);
 		},
 	};
 	
-	function wechat_spread(url, info, title, link, image, desc) {
-    	$.post(url, info, function(response){
-    		if (response == '') {return false;}
-    		var data = response.data;
-    		wx.config({
-    			debug: false,
-    			appId: data.appId,
-    			timestamp: data.timestamp,
-    			nonceStr: data.nonceStr,
-    			signature: data.signature,
-    			jsApiList: [
-    				'checkJsApi',
-    				'onMenuShareTimeline',
-    				'onMenuShareAppMessage',
-    				'onMenuShareQQ',
-    				'hideOptionMenu',
-    			]
-    		});
-    		wx.ready(function () {
-    			//分享到朋友圈
-    			wx.onMenuShareTimeline({
-    		        title: title, 					// 分享标题【必填】
-    		        link: link, 					// 分享链接【必填】
-    		        imgUrl: image, 					// 分享图标【必填】
-    		        success: function () { 
-    		            // 用户确认分享后执行的回调函数
-    		        },
-    		        cancel: function () { 
-    		            // 用户取消分享后执行的回调函数
-    		        }
-    		    });
+	function wechat_spread(title, link, image, desc) {
+		wx.config({
+			debug: false,
+			appId: config.appId,
+			timestamp: config.timestamp,
+			nonceStr: config.nonceStr,
+			signature: config.signature,
+			jsApiList: config.jsApiList
+		});
+		wx.ready(function () {
+			//分享到朋友圈
+			wx.onMenuShareTimeline({
+		        title: title, 					// 分享标题【必填】
+		        link: link, 					// 分享链接【必填】
+		        imgUrl: image, 					// 分享图标【必填】
+		        success: function () { 
+		            // 用户确认分享后执行的回调函数
+		        },
+		        cancel: function () { 
+		            // 用户取消分享后执行的回调函数
+		        }
+		    });
 
-    			//分享给朋友
-    		    wx.onMenuShareAppMessage({
-    		        title: title, 					// 分享标题【必填】
-    		        desc: desc,	 					// 分享描述【必填】
-    		        link: link, 					// 分享链接【必填】
-    		        imgUrl: image, 					// 分享图标【必填】
-    		        type: 'link', 					// 分享类型,music、video或link，不填默认为link【必填】
-    		        dataUrl: '', 					// 如果type是music或video，则要提供数据链接，默认为空
-    		        success: function () { 
-    		            // 用户确认分享后执行的回调函数
-    		        },
-    		        cancel: function () { 
-    		            // 用户取消分享后执行的回调函数
-    		        }
-    		    });
+			//分享给朋友
+		    wx.onMenuShareAppMessage({
+		        title: title, 					// 分享标题【必填】
+		        desc: desc,	 					// 分享描述【必填】
+		        link: link, 					// 分享链接【必填】
+		        imgUrl: image, 					// 分享图标【必填】
+		        type: 'link', 					// 分享类型,music、video或link，不填默认为link【必填】
+		        dataUrl: '', 					// 如果type是music或video，则要提供数据链接，默认为空
+		        success: function () { 
+		            // 用户确认分享后执行的回调函数
+		        },
+		        cancel: function () { 
+		            // 用户取消分享后执行的回调函数
+		        }
+		    });
 
-    		    //分享到QQ
-    		    wx.onMenuShareQQ({
-    		        title: title, 					// 分享标题
-    		        desc: desc, 					// 分享描述
-    		        link: link, 					// 分享链接
-    		        imgUrl: image, 					// 分享图标
-    		        success: function () { 
-    		           // 用户确认分享后执行的回调函数
-    		        },
-    		        cancel: function () { 
-    		           // 用户取消分享后执行的回调函数
-    		        }
-    		    });
-    		});	
-    	});
+		    //分享到QQ
+		    wx.onMenuShareQQ({
+		        title: title, 					// 分享标题
+		        desc: desc, 					// 分享描述
+		        link: link, 					// 分享链接
+		        imgUrl: image, 					// 分享图标
+		        success: function () { 
+		           // 用户确认分享后执行的回调函数
+		        },
+		        cancel: function () { 
+		           // 用户取消分享后执行的回调函数
+		        }
+		    });
+		});
     };
     
 })(ecjia, jQuery);

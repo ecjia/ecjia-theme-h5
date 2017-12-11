@@ -127,8 +127,15 @@ class goods_controller {
      * 商品详情
      */
     public static function show() {
-    	$goods_id 	= isset($_GET['goods_id']) 	? $_GET['goods_id'] 	: 0;
-    	
+    	RC_Loader::load_app_class('platform_account', 'platform', false);
+    	$uuid = platform_account::getCurrentUUID('wechat');
+    	$wechat = with(new Ecjia\App\Wechat\WechatUUID($uuid))->getWechatInstance();
+		
+    	$apis = array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ');
+    	$list = $wechat->js->config($apis, false);
+    	ecjia_front::$controller->assign('config', $list);
+		    	
+    	$goods_id = isset($_GET['goods_id']) 	? $_GET['goods_id'] 	: 0;
     	$url = RC_Uri::url('goods/index/show', array('goods_id' => $goods_id));
     	touch_function::redirect_referer_url($url);
     	
