@@ -328,6 +328,10 @@ RC_Hook::add_action('connect_callback_user_signin', function($connect_user) {
     
     RC_Loader::load_app_class('integrate', 'user', false);
     $user = integrate::init_users();
+    if (is_ecjia_error($user)) {
+    	return ecjia_front::$controller->showmessage($user->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+    }
+    
     $user->set_session($user_info['name']);
     $user->set_cookie($user_info['name']);
     $res = array(
