@@ -176,7 +176,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <input type="hidden" name="share_image" value="{if $store_info.seller_logo}{$store_info.seller_logo}{else}{$theme_url}images/store_default.png{/if}">
 <input type="hidden" name="share_title" value="{$store_info.seller_name}">
 <input type="hidden" name="share_desc" value="{$store_info.seller_description}">
-
+<input type="hidden" name="wxconfig_url" value="{url path='user/index/wxconfig'}"/>
 <!-- #BeginLibraryItem "/library/address_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/store_notice_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/goods_attr_modal.lbi" --><!-- #EndLibraryItem -->
