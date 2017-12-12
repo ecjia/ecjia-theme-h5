@@ -159,12 +159,14 @@ class user_controller {
     }
     
     public static function wxconfig() {
+    	$url = trim($_POST['url']);
     	RC_Loader::load_app_class('platform_account', 'platform', false);
     	$uuid = platform_account::getCurrentUUID('wechat');
     	$wechat = with(new Ecjia\App\Wechat\WechatUUID($uuid))->getWechatInstance();
     	
     	$apis = array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ');
-    	$config = $wechat->js->config($apis, false);
+    	$wechat->js->setUrl($url);
+    	$config = $wechat->js->config($apis, true);
     	$config = json_decode($config, true);
     	
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('data' => $config));

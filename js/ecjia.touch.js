@@ -55,7 +55,10 @@
 			if (typeof(wxconfig_url) == 'undefined') {
 				return false;
 			}
-            $.post(wxconfig_url, function(response){
+            var info = {
+            	'url' : window.location.href.split('#')[0]
+          	};
+            $.post(wxconfig_url, info, function(response){
             	var config = response.data;
     			wx.config({
     				debug: config.debug,
@@ -69,7 +72,7 @@
         			console.log(res);
         		    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
         		});
-        		var title = $('input[name="share_title"]').val() != undefined ? document.tital : '';
+        		var title = $('input[name="share_title"]').val() == undefined ? document.title : '';
         		var image = $('input[name="share_image"]').val();
         		var link = window.history.state != null ? window.history.state.url : window.location.href;
         		if (image == undefined) {
