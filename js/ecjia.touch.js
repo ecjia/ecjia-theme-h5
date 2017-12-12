@@ -177,8 +177,6 @@
         	if (wxconfig_url == undefined) {
         		return false;
         	}
-        	var desc = $('textarea[name="invite_template"]').val();
-
         	$.post(wxconfig_url, info, function(response){
         		if (response == '') {return false;}
         		var data = response.data;
@@ -206,7 +204,6 @@
 	        		if (image == undefined) {
 	        			image = $.cookie('wap_logo');
 	        		}
-	        		var desc = link;
 	        		wx.ready(function () {
 	        			//分享到朋友圈
 	        			wx.onMenuShareTimeline({
