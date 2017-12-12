@@ -371,6 +371,7 @@ var releated_goods = {$releated_goods};
 <input type="hidden" name="share_title" value="{$goods_info.goods_name}">
 <input type="hidden" name="share_desc" value="{$goods_info.goods_brief}">
 <input type="hidden" name="share_image" value="{$goods_info.img.thumb}">
+
 <!-- #BeginLibraryItem "/library/address_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/goods_attr_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/goods_attr_static_modal.lbi" --><!-- #EndLibraryItem -->

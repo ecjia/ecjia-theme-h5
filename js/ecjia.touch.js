@@ -200,8 +200,7 @@
 	        		var title = $('input[name="share_title"]').val() == undefined ? document.title : $('input[name="share_title"]').val();
 	        		var image = $('input[name="share_image"]').val() == undefined ? $.cookie('wap_logo') : $('input[name="share_image"]').val();
 	        		var desc = $('input[name="share_desc"]').val() == undefined ? document.title : $('input[name="share_desc"]').val();
-	        		var link = data.url;
-
+	        		var link = window.location.href.split('#')[0];
 	        		wx.ready(function () {
 	        			//分享到朋友圈
 	        			wx.onMenuShareTimeline({
