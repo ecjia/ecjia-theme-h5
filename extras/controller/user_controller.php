@@ -170,7 +170,7 @@ class user_controller {
 		
 		$apis = array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ');
 		$wechat->js->setUrl($url);
-		$config = $wechat->js->config($apis, true);
+		$config = $wechat->js->config($apis, false);
 		$config = json_decode($config, true);
 		
 		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('data' => $config));
