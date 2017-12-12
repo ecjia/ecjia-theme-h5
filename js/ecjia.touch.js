@@ -190,11 +190,9 @@
 	        			nonceStr: data.nonceStr,
 	        			signature: data.signature,
 	        			jsApiList: [
-	        				'checkJsApi',
 	        				'onMenuShareTimeline',
 	        				'onMenuShareAppMessage',
 	        				'onMenuShareQQ',
-	        				'hideOptionMenu',
 	        			]
 	        		});
 	        		var title = $('input[name="share_title"]').val() == undefined ? document.title : '';
