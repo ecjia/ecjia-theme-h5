@@ -13,7 +13,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 var title = '{$share_title}',
 	link = '{$invite_user.invite_url}',
 	image = '{$image}';
-var config = {$config};
 ecjia.touch.spread.init();
 </script>
 <!-- {/block} -->
@@ -41,6 +40,7 @@ ecjia.touch.spread.init();
 	<div class="ecjia-my-reward">
 		<a class="nopjax external" href="{url path='user/bonus/my_reward'}"><div class="my_reward">查看我的奖励</div></a>
 	</div>
+	<input type="hidden" name="spread_url" value="{$url}" />
 	
 	<div class="invite_explain"> 
 		<p class="invite_explain-literal">邀请说明：</p>

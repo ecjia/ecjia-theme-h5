@@ -44,80 +44,10 @@
 			ecjia.touch.close_app_download();
 			ecjia.touch.search_header();
 			ecjia.touch.del_history();
-			ecjia.touch.copy_btn();
 			ecjia.touch.share_spread();
+			ecjia.touch.copy_btn();
 
 			$("body").greenCheck();
-		},
-		
-		share_spread: function() {
-            var wxconfig_url = $('input[name="wxconfig_url"]').val();
-			if (typeof(wxconfig_url) == 'undefined') {
-				return false;
-			}
-            var info = {
-            	'url' : window.location.href.split('#')[0]
-          	};
-            $.post(wxconfig_url, info, function(response){
-            	var config = response.data;
-    			wx.config({
-    				debug: config.debug,
-    				appId: config.appId,
-    				timestamp: config.timestamp,
-    				nonceStr: config.nonceStr,
-    				signature: config.signature,
-    				jsApiList: config.jsApiList
-    			});
-        		wx.error(function(res){
-        			console.log(res);
-        		    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-        		});
-        		var title = $('input[name="share_title"]').val() == undefined ? document.title : '';
-        		var image = $('input[name="share_image"]').val();
-        		var link = window.history.state != null ? window.history.state.url : window.location.href;
-        		if (image == undefined) {
-        			image = $.cookie('wap_logo');
-        		}
-        		var desc = $('input[name="share_desc"]').val();
-    			wx.ready(function() {
-    				//分享到朋友圈
-    				wx.onMenuShareTimeline({
-    			        title: title, 					// 分享标题【必填】
-    			        link: link, 					// 分享链接【必填】
-    			        imgUrl: image, 					// 分享图标【必填】
-    			        success: function () { 
-    			        },
-    			        cancel: function () { 
-    			        }
-    			    });
-
-    				//分享给朋友
-    			    wx.onMenuShareAppMessage({
-    			        title: title, 					// 分享标题【必填】
-    			        desc: desc,	 					// 分享描述【必填】
-    			        link: link, 					// 分享链接【必填】
-    			        imgUrl: image, 					// 分享图标【必填】
-    			        type: 'link', 					// 分享类型,music、video或link，不填默认为link【必填】
-    			        dataUrl: '', 					// 如果type是music或video，则要提供数据链接，默认为空
-    			        success: function () { 
-    			        },
-    			        cancel: function () { 
-    			        }
-    			    });
-
-    			    //分享到QQ
-    			    wx.onMenuShareQQ({
-    			        title: title, 					// 分享标题
-    			        desc: desc, 					// 分享描述
-    			        link: link, 					// 分享链接
-    			        imgUrl: image, 					// 分享图标
-    			        success: function () { 
-    			        },
-    			        cancel: function () { 
-    			        }
-    			    });
-        		});
-            });
 		},
 
 		//搜索关键词定位开始
@@ -234,6 +164,98 @@
 			}
 		},
 		//搜索关键词定位结束
+		
+		share_spread : function() {
+			var info = {
+	        	'url' : window.location.href.split('#')[0]
+    		};
+			var url = $('input[name="spread_url"]').val();
+        	if (url != undefined) {
+        		return false;
+        	}
+			var wxconfig_url = $('input[name="wxconfig_url"]').val();
+        	if (wxconfig_url == undefined) {
+        		return false;
+        	}
+        	var desc = $('textarea[name="invite_template"]').val();
+
+        	$.post(wxconfig_url, info, function(response){
+        		if (response == '') {return false;}
+        		var data = response.data;
+        		if (data != undefined && data.appId != '') {
+	        		wx.config({
+	        			debug: false,
+	        			appId: data.appId,
+	        			timestamp: data.timestamp,
+	        			nonceStr: data.nonceStr,
+	        			signature: data.signature,
+	        			jsApiList: [
+	        				'checkJsApi',
+	        				'onMenuShareTimeline',
+	        				'onMenuShareAppMessage',
+	        				'onMenuShareQQ',
+	        				'hideOptionMenu',
+	        			]
+	        		});
+	        		wx.error(function(res){
+	        			console.log(res);
+	        		    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+	        		});
+	        		var title = $('input[name="share_title"]').val() == undefined ? document.title : '';
+	        		var image = $('input[name="share_image"]').val();
+	        		var desc = $('input[name="share_desc"]').val() == undefined ? document.title : '';
+	        		var link = window.history.state != null ? window.history.state.url : window.location.href;
+	        		if (image == undefined) {
+	        			image = $.cookie('wap_logo');
+	        		}
+	        		var desc = link;
+	        		wx.ready(function () {
+	        			//分享到朋友圈
+	        			wx.onMenuShareTimeline({
+	        		        title: title, 					// 分享标题【必填】
+	        		        link: link, 					// 分享链接【必填】
+	        		        imgUrl: image, 					// 分享图标【必填】
+	        		        success: function () { 
+	        		            // 用户确认分享后执行的回调函数
+	        		        },
+	        		        cancel: function () { 
+	        		            // 用户取消分享后执行的回调函数
+	        		        }
+	        		    });
+	
+	        			//分享给朋友
+	        		    wx.onMenuShareAppMessage({
+	        		        title: title, 					// 分享标题【必填】
+	        		        desc: desc,	 					// 分享描述【必填】
+	        		        link: link, 					// 分享链接【必填】
+	        		        imgUrl: image, 					// 分享图标【必填】
+	        		        type: 'link', 					// 分享类型,music、video或link，不填默认为link【必填】
+	        		        dataUrl: '', 					// 如果type是music或video，则要提供数据链接，默认为空
+	        		        success: function () { 
+	        		            // 用户确认分享后执行的回调函数
+	        		        },
+	        		        cancel: function () { 
+	        		            // 用户取消分享后执行的回调函数
+	        		        }
+	        		    });
+	
+	        		    //分享到QQ
+	        		    wx.onMenuShareQQ({
+	        		        title: title, 					// 分享标题
+	        		        desc: desc, 					// 分享描述
+	        		        link: link, 					// 分享链接
+	        		        imgUrl: image, 					// 分享图标
+	        		        success: function () { 
+	        		           // 用户确认分享后执行的回调函数
+	        		        },
+	        		        cancel: function () { 
+	        		           // 用户取消分享后执行的回调函数
+	        		        }
+	        		    });
+	        		});	
+        		}
+        	});
+		},
 		
 		copy_btn : function() {
 			var clipboard = new Clipboard('.copy-btn');

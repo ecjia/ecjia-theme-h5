@@ -11,11 +11,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">
-	ecjia.touch.goods_detail.init();
-	ecjia.touch.category.init();
-	{if $releated_goods}
-		var releated_goods = {$releated_goods};
-	{/if}
+ecjia.touch.goods_detail.init();
+ecjia.touch.category.init();
+{if $releated_goods}
+var releated_goods = {$releated_goods};
+{/if}
 </script>
 <!-- {/block} -->
 
@@ -368,10 +368,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 <!-- 遮罩层 -->
 <div class="a53" style="display: none;"></div>
-<input type="hidden" name="share_image" value="{$goods_info.img.thumb}">
 <input type="hidden" name="share_title" value="{$goods_info.goods_name}">
 <input type="hidden" name="share_desc" value="{$goods_info.goods_name}">
-<input type="hidden" name="wxconfig_url" value="{url path='user/index/wxconfig'}"/>
+<input type="hidden" name="share_image" value="{$goods_info.img.thumb}">
 <!-- #BeginLibraryItem "/library/address_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/goods_attr_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/goods_attr_static_modal.lbi" --><!-- #EndLibraryItem -->

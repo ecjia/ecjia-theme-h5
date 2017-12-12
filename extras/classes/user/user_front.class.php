@@ -95,8 +95,7 @@ class user_front {
 	        'user/privilege/signup',
 	        'user/get_password/mobile_register_account',
 	        'user/mobile_reward/init',
-	        'user/mobile_reward/recieve',
-	    	'user/index/wxconfig'
+	        'user/mobile_reward/recieve'
 	    );
 	}
 
