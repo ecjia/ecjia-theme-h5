@@ -501,6 +501,18 @@
 				sessionStorage.removeItem('district_name');
 				sessionStorage.removeItem('street_id');
 				sessionStorage.removeItem('street_name');
+			} else if (clear == 2) {
+				var temp_data = {
+					'province_id': $("input[name='province']").val(),
+					'province_name': $("input[name='province_list']").val(),
+					'city_id': $("input[name='city']").val(),
+					'city_name': $("input[name='city_name']").val(),
+					'district_id': $("input[name='district']").val(),
+					'district_name': $("input[name='district_name']").val(),
+					'street_id': $("input[name='street']").val(),
+					'street_name': $("input[name='street_name']").val()
+				};
+				save_temp(temp_data);
 			} else {
 				var temp_province_id = sessionStorage.getItem('province_id');
 				if (temp_province_id != null) {
