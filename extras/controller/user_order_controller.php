@@ -370,7 +370,7 @@ class user_order_controller {
     			'seller_id' => $store_id,
     			'city_id' => $_COOKIE['city_id']
     		);
-    		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_HOME_DATA)->data($parameter_list)->run();
+    		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
     		if (!is_ecjia_error($store_info)) {
     			ecjia_front::$controller->assign('store_location', json_encode($store_info['location']));
     		}
