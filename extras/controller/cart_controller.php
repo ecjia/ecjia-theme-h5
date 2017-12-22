@@ -417,6 +417,7 @@ class cart_controller {
 //         			$selected_shipping = $tem_shipping;break;
 //         		}
         		$selected_shipping = head($rs['shipping_list']);
+        		$_SESSION['cart'][$cart_key]['temp']['shipping_id'] = $selected_shipping['shipping_id'];
         	}
         }
         if (isset($selected_shipping['shipping_date'])) {
