@@ -159,6 +159,9 @@ class user_controller {
 // 		}
 		
     	$url = trim($_POST['url']);
+    	if (empty($url)) {
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
 		RC_Loader::load_app_class('platform_account', 'platform', false);
 		$uuid = platform_account::getCurrentUUID('wechat');
 		$wechat = with(new Ecjia\App\Wechat\WechatUUID($uuid))->getWechatInstance();

@@ -169,8 +169,8 @@
 			var info = {
 	        	'url' : window.location.href.split('#')[0]
     		};
-			var url = $('input[name="spread_url"]').val();
-        	if (url != undefined) {
+			var spread_url = $('input[name="spread_url"]').val();
+        	if (spread_url != undefined) {
         		return false;
         	}
 			var wxconfig_url = $('input[name="wxconfig_url"]').val();
@@ -184,7 +184,7 @@
     		var link = window.location.href.split('#')[0];
     		
         	$.post(wxconfig_url, info, function(response){
-        		if (response == '') {return false;}
+        		if (response == '' || response.data == undefined) {return false;}
         		var data = response.data;
         		if (data != undefined && data.appId != '') {
 	        		wx.config({
