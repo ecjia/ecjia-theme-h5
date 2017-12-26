@@ -84,7 +84,7 @@ class user_order_controller {
     public static function order_detail() {
         
         $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
-        $type = !empty($_GET['type']) ? $_GET['type'] : '';
+        $type = !empty($_GET['type']) ? $_GET['type'] : 'detail';
         if (empty($order_id)) {
             return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
         }
