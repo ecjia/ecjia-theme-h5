@@ -28,7 +28,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				{if $info.province_name || $info.city_name || $info.district_name}
 				{$info.province_name}-{$info.city_name}-{$info.district_name}
 				{else}
-				<p class="inherit">请选择所在地区</p>
+				<span class="inherit">请选择所在地区</span>
 				{/if}
 			</div>
 			<i class="iconfont icon-jiantou-right"></i>
@@ -45,7 +45,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group form-group-text margin-bottom0">
 		<div class="input">
 			<span>街道</span>
-			<div class="ecjia_user_address_street_picker" data-url="{$get_region_url}">{if $info.street_name}{$info.street_name}{else}<p class="inherit">请选择街道</p>{/if}</div>
+			<div class="ecjia_user_address_street_picker" data-url="{$get_region_url}">{if $info.street_name}{$info.street_name}{else}<span class="inherit">请选择街道</span>{/if}</div>
 			<i class="iconfont icon-jiantou-right"></i>
 			<input type="hidden" name="street" value="{if $info.street}{$info.street}{/if}"/>
 			<input type="hidden" name="street_name" value="{if $info.street_name}{$info.street_name}{/if}" disabled/>
