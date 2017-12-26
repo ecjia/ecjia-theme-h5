@@ -105,7 +105,9 @@ class user_controller {
     		ecjia_front::$controller->assign('shop_config', $shop_config);
     		
     		$config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
-    		ecjia_front::$controller->assign('merchant_join_close', $config['merchant_join_close']);
+    		if (!is_ecjia_error($config)) {
+    			ecjia_front::$controller->assign('merchant_join_close', $config['merchant_join_close']);
+    		}
     		
     		ecjia_front::$controller->assign('active', 'mine');
     		ecjia_front::$controller->assign_title('个人中心');
