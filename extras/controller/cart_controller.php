@@ -632,6 +632,9 @@ class cart_controller {
    		if (!empty($shipping_date) || !empty($shipping_time)) {
    		    $expect_shipping_time = $shipping_date .' '. $shipping_time;
    		}
+   		if (empty($shipping_id)) {
+   			return ecjia_front::$controller->showmessage('请选择一个配送方式', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+   		}
    		$params = array(
    			'token' 				=> ecjia_touch_user::singleton()->getToken(),
    			'address_id' 			=> $address_id,
