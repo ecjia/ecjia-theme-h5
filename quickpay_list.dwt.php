@@ -49,7 +49,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<img class="ecjiaf-fl" src="{$list.store_logo}" alt="{$list.store_name}" title="{$list.store_name}" />
 				    <ul>
 				        <li class="quickpay-info-li">
-				            <span class="quickpay-info">订单编号</span>2234253453342
+				            <span class="quickpay-info">订单编号</span>{$list.order_sn}
 				        </li>
 				        <li class="quickpay-info-li">
 				            <span class="quickpay-info">优惠金额</span>{$list.formated_total_discount}
