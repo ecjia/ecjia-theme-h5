@@ -21,6 +21,7 @@
 			ecjia.touch.user.modify_username();
 			ecjia.touch.user.record_cancel();
 			ecjia.touch.user.account_bind();
+			ecjia.touch.user.cancel_order();
 
 			$(function() {
 				$(".del").click(function() {
@@ -424,6 +425,27 @@
 
 					}
 				}
+			});
+		},
+
+		cancel_order: function() {
+			$('.cancel_order').off('click').on('click', function(e) {
+				e.preventDefault();
+				var myApp = new Framework7();
+				var url = $(this).attr('href');
+				myApp.modal({
+					title: '您确定要取消该订单吗？',
+					buttons: [{
+						text: '取消',
+					}, {
+						text: '确定',
+						onClick: function() {
+							$.post(url, function(data) {
+								ecjia.touch.showmessage(data);
+							});
+						},
+					}]
+				});
 			});
 		},
 
