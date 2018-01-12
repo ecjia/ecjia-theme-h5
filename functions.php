@@ -242,6 +242,8 @@ RC_Hook::add_action('user/quickpay/done', array('quickpay_controller', 'done'));
 RC_Hook::add_action('user/quickpay/pay', array('quickpay_controller', 'pay'));
 RC_Hook::add_action('user/quickpay/dopay', array('quickpay_controller', 'dopay'));
 RC_Hook::add_action('user/quickpay/notify', array('quickpay_controller', 'notify'));
+RC_Hook::add_action('user/quickpay/cancel', array('quickpay_controller', 'cancel'));//取消闪惠订单
+RC_Hook::add_action('user/quickpay/delete', array('quickpay_controller', 'delete'));//删除闪惠订单
 
 /**
  * step：3

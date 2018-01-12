@@ -54,6 +54,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				           	<span class="slect-title">{$val.title}</span>
 				           	{if $is_available neq 1 && $val.is_allow_use eq 0}
 				           	<span class="ecjiaf-fr ecjia-margin-r ecjia-color-aaa">不可用</span>
+				           	{else}
+				           	<span class="ecjiaf-fr ecjia-margin-r">-{$val.formated_discount}</span>
 				           	{/if}
 				       	</li>
 				       	<!-- {/foreach} -->
@@ -138,6 +140,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<span class="slect-title">{$val.title}</span>
 			{if $val.is_allow_use eq 0}
 			<span class="ecjiaf-fr ecjia-margin-r ecjia-color-aaa">不可用</span>
+			{else}
+			<span class="ecjiaf-fr ecjia-margin-r">-{$val.formated_discount}</span>
 			{/if}
 		</li>
 		<!-- {/foreach} -->
