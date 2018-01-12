@@ -2768,12 +2768,13 @@ footer {
 	position: absolute;
 	z-index: 14;
 	right: 0;
-	width: 115px;
 	text-align: center;
 	color: #fff;
 	line-height: 48px;
 	background-color: #47aa4d;
 	font-size: 1.1em;
+	padding: 0 5px;
+	min-width: 105px;
 }
 
 .store-add-cart.a4w .a51.disabled {
