@@ -11068,8 +11068,8 @@ footer {
 	width: 30%;
 	height: 100%;
 	overflow-y: auto;
-    border-right: 1px solid #eee;
 	background-color: #eee;
+	-webkit-overflow-scrolling: touch;
 }
 .mod_address_slide_body .mod_address_slide_tabs.navBar li {
     text-align: center;
@@ -11085,6 +11085,7 @@ footer {
 	width: 70%;
 	height: 100%;
 	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
 }
 .mod_address_slide_body .mod_address_slide_list.selShip li {
 	background-color: #eee;
