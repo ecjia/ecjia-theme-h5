@@ -101,6 +101,7 @@ RC_Hook::add_action('cart/index/check_spec', array('cart_controller', 'check_spe
 RC_Hook::add_action('cart/flow/checkout', array('cart_controller', 'checkout'));
 RC_Hook::add_action('cart/flow/pay', array('cart_controller', 'pay'));
 RC_Hook::add_action('cart/flow/shipping', array('cart_controller', 'shipping'));
+RC_Hook::add_action('cart/flow/pay_shipping', array('cart_controller', 'pay_shipping'));
 RC_Hook::add_action('cart/flow/shipping_date', array('cart_controller', 'shipping_date'));
 RC_Hook::add_action('cart/flow/invoice', array('cart_controller', 'invoice'));
 RC_Hook::add_action('cart/flow/bonus', array('cart_controller', 'bonus'));
