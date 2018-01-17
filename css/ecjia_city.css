@@ -11120,3 +11120,16 @@ footer {
 .mod_address_slide_body .mod_address_slide_list.selShip .hide {
 	display: none;
 }
+
+.cancel_order_reason .toolbar-inner a {
+	color: #47aa4d;
+}
+.cancel_order_reason .center {
+	font-size: 17px;
+	color: #47aa4d;
+}
+.cancel_order_reason .picker-item {
+	text-align: center;
+	padding: 0;
+    font-size: 14px;
+}

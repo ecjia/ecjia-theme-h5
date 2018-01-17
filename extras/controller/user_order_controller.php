@@ -112,6 +112,20 @@ class user_order_controller {
                 ecjia_front::$controller->assign('title', '订单详情');
                 ecjia_front::$controller->assign_title('订单详情');
                 ecjia_front::$controller->assign_lang();
+                
+                $reason_list = array(
+                	'暂不想购买了',
+                	'忘记使用优惠券',
+                	'商家缺货，不想购买了',
+                	'商家服务态度有问题',
+                	'商家长时间未发货',
+                	'信息填写有误，重新购买'
+                );
+                //已发货订单
+                if ($data['shipping_status'] == 1) {
+                	$reason_list = array('拨打电话，联系配送员');
+                }
+                ecjia_front::$controller->assign('reason_list', json_encode($reason_list));
             }
             if ($data['order_mode'] == 'storebuy') {
             	ecjia_front::$controller->display('user_order_storebuy_detail.dwt', $cache_id);

@@ -429,24 +429,63 @@
 		},
 
 		cancel_order: function() {
-			$('.cancel_order').off('click').on('click', function(e) {
-				e.preventDefault();
-				var myApp = new Framework7();
-				var url = $(this).attr('href');
-				myApp.modal({
-					title: '您确定要取消该订单吗？',
-					buttons: [{
-						text: '取消',
-					}, {
-						text: '确定',
-						onClick: function() {
-							$.post(url, function(data) {
-								ecjia.touch.showmessage(data);
-							});
-						},
-					}]
-				});
+			var App = new Framework7();
+			var reason_list = eval($('input[name="reason_list"]').val());
+			
+			var pickerStreetToolbar = App.picker({
+			    input: '.cancel_order',
+			    cssClass: 'cancel_order_reason',
+			    toolbarTemplate: 
+			        '<div class="toolbar">' +
+			            '<div class="toolbar-inner">' +
+			                '<div class="left">' +
+			                    '<a href="javascript:;" class="link close-picker external">取消</a>' +
+			                '</div>' +
+			                '<div class="center">' + '订单取消原因' + '</div>' +
+			                '<div class="right">' +
+			                    '<a href="javascript:;" class="link save-picker external">确定</a>' +
+			                '</div>' +
+			            '</div>' +
+			        '</div>',
+			    cols: [
+			        {
+			            values: reason_list,
+			        },
+			    ],
+			    onOpen: function (picker) {
+			        picker.container.find('.save-picker').on('click', function () {
+			        	picker.close();
+						$('.modal-overlay').remove();
+			        });
+			        picker.container.find('.close-picker').on('click', function () {
+			    		picker.close();
+				    	$('.modal-overlay').remove();
+			    	});
+			    },
+			    onClose: function(picker) {
+			    	picker.close();
+			    	$('.modal-overlay').remove();
+			    }
 			});
+			
+//			$('.cancel_order').off('click').on('click', function(e) {
+//				e.preventDefault();
+//				var myApp = new Framework7();
+//				var url = $(this).attr('href');
+//				myApp.modal({
+//					title: '您确定要取消该订单吗？',
+//					buttons: [{
+//						text: '取消',
+//					}, {
+//						text: '确定',
+//						onClick: function() {
+//							$.post(url, function(data) {
+//								ecjia.touch.showmessage(data);
+//							});
+//						},
+//					}]
+//				});
+//			});
 		},
 
 		show_goods_list_click: function() {
