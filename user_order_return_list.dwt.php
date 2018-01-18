@@ -13,7 +13,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-user ecjia-margin-b">
      <ul class="ecjia-list ecjia-return-list">
         <li>
-			<a href="{url path='user/order/return_order'}&order_id={$order_id}">
+			<a class="data-pjax" href="{url path='user/order/return_order'}&order_id={$order_id}">
 				<div class="ecjia-return-item">
         			<img class="return-item-icon" src="{$theme_url}images/user_center/return_order.png">
         			<div class="return-item-right">
@@ -26,7 +26,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</li>
 		
 		<li>
-			<a href="{url path='user/quickpay/return_order'}&order_id={$order_id}">
+			<a class="data-pjax" href="{url path='user/quickpay/return_order'}&order_id={$order_id}">
 				<div class="ecjia-return-item">
         			<img class="return-item-icon" src="{$theme_url}images/user_center/quickpay.png">
         			<div class="return-item-right">

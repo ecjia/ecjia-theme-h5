@@ -47,7 +47,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </ul>
 </div>
 <div class="ecjia-user-border-b">
-    <ul class="ecjia-user ecjia-list bonus ecjia-nav-child-f ecjia-list-four ecjia-login-nav-bottom">
+    <ul class="ecjia-user ecjia-list bonus ecjia-nav-child-f ecjia-list-five ecjia-login-nav-bottom">
     	<li>
     		<a href="{url path='user/order/order_list'}&type={'await_pay'}">
     		    <p class="oc-icon">
@@ -82,6 +82,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		  {if $order_num.allow_comment gte 1}<span class="oc-num top">{$order_num.allow_comment}</span>{/if}
         		</p>
         		<p>待评价</p>
+    		</a>
+    	</li>
+   		<li>
+    	    <a href="{url path='user/order/order_list'}&type={'return'}">
+        		<p class="oc-icon">
+        		  <img src="{$theme_url}images/user_center/return_order.png" />
+        		  {if $order_num.return_order gte 1}<span class="oc-num top">{$order_num.return_order}</span>{/if}
+        		</p>
+        		<p>售后</p>
     		</a>
     	</li>
     </ul>
@@ -134,7 +143,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </ul>
 </div>
 <div class="ecjia-user-border-b">
-    <ul class="ecjia-user ecjia-list bonus ecjia-nav-child-f ecjia-list-four ecjia-login-nav-bottom">
+    <ul class="ecjia-user ecjia-list bonus ecjia-nav-child-f ecjia-list-five ecjia-login-nav-bottom">
     	<li>
     		<a href="{url path='user/privilege/login'}">
     		    <p><img src="{$theme_url}images/user_center/o_75_2.png" /></p>
@@ -157,6 +166,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     	    <a href="{url path='user/privilege/login'}">
         		<p><img src="{$theme_url}images/user_center/o_75_5.png" /></p>
         		<p>待评价</p>
+    		</a>
+    	</li>
+  		<li>
+    	    <a href="{url path='user/privilege/login'}">
+        		<p class="oc-icon">
+        		  <img src="{$theme_url}images/user_center/return_order.png" />
+        		</p>
+        		<p>售后</p>
     		</a>
     	</li>
     </ul>
