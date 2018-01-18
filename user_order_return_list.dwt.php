@@ -47,9 +47,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<a href="javascript:;">
 						<h4 class="aq">服务单号：<em>20564080</em></h4>
 						<div class="ar">
-							<span class="as">
-								<img class="at" src="">
-							</span>
+							<span class="as"><img class="at" src=""></span>
+							<span class="as"><img class="at" src=""></span>
+							<span class="as"><img class="at" src=""></span>
+							<span class="as none"><img class="at" src=""></span>
 							<em class="av">共1件</em><em class="aw">退款：¥6.01</em>
 						</div>
 						<div class="ay h">

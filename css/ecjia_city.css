@@ -11259,13 +11259,13 @@ footer {
 .ecjia-return-list .a7 .ai{border-bottom:1px solid #eee;height:auto}
 .ecjia-return-list .a7 .aq{font-size:.8em;color:#999;padding:1em 0 .5em;display:block}
 .ecjia-return-list .a7 .ar{position:relative;margin-right:1em;padding-bottom:1em}
-.ecjia-return-list .a7 .as{display:inline-block;position:relative;padding:8px 2px 5px;vertical-align:middle;width:4em;height:4em}
+.ecjia-return-list .a7 .as{display:inline-block;position:relative;margin:.5em .1em .1em;vertical-align:middle;width:53px;height:53px}
 .ecjia-return-list .a7 .av{top:1em}
 .a7 .aw,.ecjia-return-list .a7 .av{position:absolute;right:0;line-height:.5em;font-size:1em}
-.ecjia-return-list .a7 .aw{bottom:1.8em}
+.ecjia-return-list .a7 .aw{bottom:1.5em}
 .ecjia-return-list .a7 .ay{padding:1em 0 1em 1.5em}
 .ecjia-return-list .a7 .ab{width:1.1em;height:1.1em;position:absolute;left:0;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}
 .ecjia-return-list .a7 .sales_view_details{font-size:1em;color:#fff;line-height:2em;padding:0 .5em;background:#47aa4d;border-radius:4px;position:absolute;right:1em;bottom:1em}
 .ecjia-return-list .a7 .ai .h::after{height:1px;content:'';width:100%;border-top:1px solid #eee;position:absolute;top:0;right:0;transform:scaleY(1);-webkit-transform:scaleY(1);z-index:10}
 .ecjia-return-list .h::after{height:1px;content:'';width:100%;border-top:1px solid #e8e8e8;position:absolute;top:0;right:0;transform:scaleY(.5);-webkit-transform:scaleY(.5);z-index:10}
-.ecjia-return-list .a7 .at{width:100%;height:100%;background:#fff}
+.ecjia-return-list .a7 .at{width:53px;height:53px;background:#fff}

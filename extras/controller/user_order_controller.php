@@ -425,7 +425,7 @@ class user_order_controller {
     	);
     	ecjia_front::$controller->assign('reason_list', json_encode($reason_list));
     	
-    	ecjia_front::$controller->display('user_order_return_detail.dwt');
+    	ecjia_front::$controller->display('user_order_return_reply.dwt');
     }
 }
 
