@@ -396,19 +396,24 @@ class user_order_controller {
     	ecjia_front::$controller->display('user_express_position.dwt');
     }
     
-    //售后
+    //申请售后列表
     public static function return_order_list() {
     	$token 		= ecjia_touch_user::singleton()->getToken();
     	$order_id 	= intval($_GET['order_id']);
     	
     	$cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$order_id;
     	$cache_id = sprintf('%X', crc32($cache_id));
-    	
-    	if (!ecjia_front::$controller->is_cached('user_order_return.dwt', $cache_id)) {
+    	if (!ecjia_front::$controller->is_cached('user_order_return_list.dwt', $cache_id)) {
+    		ecjia_front::$controller->assign('order_id', $order_id);
     		ecjia_front::$controller->assign_title('申请售后');
     		ecjia_front::$controller->assign('title', '申请售后');
     	}
-    	ecjia_front::$controller->display('user_order_return.dwt', $cache_id);
+    	ecjia_front::$controller->display('user_order_return_list.dwt', $cache_id);
+    }
+    
+    //申请售后页面
+    public static function return_order() {
+    	
     }
 }
 
