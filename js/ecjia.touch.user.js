@@ -22,6 +22,8 @@
 			ecjia.touch.user.record_cancel();
 			ecjia.touch.user.account_bind();
 			ecjia.touch.user.cancel_order();
+			
+			ecjia.touch.user.return_order();
 
 			$(function() {
 				$(".del").click(function() {
@@ -494,6 +496,149 @@
 						},
 					}]
 				});
+			});
+		},
+		
+		return_order: function() {
+			ecjia.touch.user.photo();
+			ecjia.touch.user.remove_goods_img();
+			ecjia.touch.user.choose_reason();
+		},
+		
+		//评价晒单上传图片，并且不能超过5张。
+		photo: function() {
+			$('.push_photo').hide();
+			$('#result0').show();
+			$(".push_img_btn").on('change', function() {
+				var f = $(this)[0].files[0];
+				if (f) {
+					var fr = new FileReader();
+					fr.onload = function() {
+						var _img = new Image();
+						_img.src = this.result;
+
+						var num = [];
+						$(".push_photo").each(function() {
+							if (!$(this).is(':hidden')) {
+								var id = $(this).attr('id');
+								var number = id.substr(id.length - 1, 1);
+								num.push(number);
+							}
+						});
+
+						var num = parseInt(num[0]);
+
+						var check_push_rm = "check_push_rm" + num;
+						var img_span = "<i class='a4y'>X</i>";
+						var url = "<div class='" + check_push_rm + "'></div>";
+
+						$(url).appendTo(".push_photo_img");
+						$(_img).appendTo("." + check_push_rm);
+						$(img_span).appendTo("." + check_push_rm);
+						ecjia.touch.comment.remove_goods_img();
+
+						var result = [];
+						$(".push_photo").each(function() {
+							if ($(this).is(':hidden')) {
+								var id = $(this).attr('id');
+								var number = id.substr(id.length - 1, 1);
+								var check_push_rm = ".check_push_rm" + number;
+
+								if ($(check_push_rm).length == 0) {
+									result.push(id);
+								}
+							}
+						});
+
+						var result = "#" + result[0];
+						$('.push_photo').hide();
+						$(result).show();
+
+						if ($(".push_photo_img img").length > 4) {
+							$(".push_photo").hide();
+						}
+						if ($(".push_photo_img img").length >= 1) {
+							$(".push_result_img").css("margin-left", "0");
+						}
+					}
+					fr.readAsDataURL(f);
+				}
+			})
+		},
+
+		remove_goods_img: function() {
+			$(".a4y").on('click', function(e) {
+				e.preventDefault();
+
+				var path = $(this).parent();
+				var myApp = new Framework7({
+					modalButtonCancel: '取消',
+					modalButtonOk: '确定',
+					modalTitle: ''
+				});
+				myApp.confirm('您确定要删除照片？', function() {
+					if ($(".push_photo_img img").length <= 5) {
+						$(".push_photo").show();
+					}
+					path.remove();
+					var c_name = path[0].className;
+					var num = c_name.substr(c_name.length - 1, 1);
+					var result = "#result" + num;
+					var filechooser = "filechooser" + num;
+					$('.push_photo').hide();
+					document.getElementById(filechooser).value = "";
+					$(result).show();
+					if ($(".push_photo_img img").length < 1) {
+						$(".push_result_img").css("margin-left", "0.3em");
+					}
+				});
+			})
+		},
+		
+		choose_reason: function() {
+			var App = new Framework7();
+			var reason_list = eval($('input[name="reason_list"]').val());
+			
+			var pickerStreetToolbar = App.picker({
+			    input: '.choose_reason',
+			    cssClass: 'choose_reason_modal',
+			    toolbarTemplate: 
+			        '<div class="toolbar">' +
+			            '<div class="toolbar-inner">' +
+			                '<div class="left">' +
+			                    '<a href="javascript:;" class="link close-picker external">取消</a>' +
+			                '</div>' +
+			                '<div class="right">' +
+			                    '<a href="javascript:;" class="link save-picker external">确定</a>' +
+			                '</div>' +
+			            '</div>' +
+			        '</div>',
+			    cols: [
+			        {
+			            values: reason_list,
+			        },
+			    ],
+			    onOpen: function (picker) {
+			    	var $pick_overlay = '<div class="picker-modal-overlay"></div>';
+			    	if ($('.picker-modal').hasClass('modal-in')) {
+			    		$('.picker-modal').after($pick_overlay);
+			    	}
+			    	
+			        picker.container.find('.save-picker').on('click', function () {
+			        	var value = picker.cols[0].container.find('.picker-selected').attr('data-picker-value');
+			        	$('.choose_reason').children('span').html(value);
+			        	picker.close();
+			        	remove_overlay();
+			        });
+			        picker.container.find('.close-picker').on('click', function () {
+			    		picker.close();
+			    		remove_overlay();
+			    	});
+			    },
+			    onClose: function(picker) {
+			    	picker.close();
+			    	remove_overlay();
+			    }
 			});
 		},
 

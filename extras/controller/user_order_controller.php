@@ -413,7 +413,19 @@ class user_order_controller {
     
     //申请售后页面
     public static function return_order() {
+    	$order_id 	= intval($_GET['order_id']);
     	
+    	$reason_list = array(
+    		'商品质量问题',
+    		'发错货',
+    		'缺斤少两',
+    		'外表损伤（包装，商品等）',
+    		'未在时效内送达',
+    		'误购'
+    	);
+    	ecjia_front::$controller->assign('reason_list', json_encode($reason_list));
+    	
+    	ecjia_front::$controller->display('user_order_return_detail.dwt');
     }
 }
 

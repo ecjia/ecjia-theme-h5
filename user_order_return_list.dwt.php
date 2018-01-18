@@ -1,7 +1,7 @@
 <?php
 /*
-Name: 申请售后模板
-Description: 这是申请售后首页
+Name: 申请售后列表模板
+Description: 这是申请售后列表页
 Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
