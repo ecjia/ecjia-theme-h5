@@ -453,39 +453,48 @@
 			        },
 			    ],
 			    onOpen: function (picker) {
+			    	var $pick_overlay = '<div class="picker-modal-overlay"></div>';
+			    	if ($('.picker-modal').hasClass('modal-in')) {
+			    		$('.picker-modal').after($pick_overlay);
+			    	}
+			    	
 			        picker.container.find('.save-picker').on('click', function () {
 			        	picker.close();
-						$('.modal-overlay').remove();
+			        	remove_overlay();
+			        	var url = $('.cancel_order').attr('href');
+			        	$.post(url, function(data) {
+							ecjia.touch.showmessage(data);
+						});
 			        });
 			        picker.container.find('.close-picker').on('click', function () {
 			    		picker.close();
-				    	$('.modal-overlay').remove();
+			    		remove_overlay();
 			    	});
 			    },
 			    onClose: function(picker) {
 			    	picker.close();
-			    	$('.modal-overlay').remove();
+			    	remove_overlay();
 			    }
 			});
 			
-//			$('.cancel_order').off('click').on('click', function(e) {
-//				e.preventDefault();
-//				var myApp = new Framework7();
-//				var url = $(this).attr('href');
-//				myApp.modal({
-//					title: '您确定要取消该订单吗？',
-//					buttons: [{
-//						text: '取消',
-//					}, {
-//						text: '确定',
-//						onClick: function() {
-//							$.post(url, function(data) {
-//								ecjia.touch.showmessage(data);
-//							});
-//						},
-//					}]
-//				});
-//			});
+			$('.shipping_cancel_order').off('click').on('click', function(e) {
+				e.preventDefault();
+				var myApp = new Framework7();
+				var url = $(this).attr('href');
+				myApp.modal({
+					title: '您确定要取消该订单吗？',
+					buttons: [{
+						text: '取消',
+					}, {
+						text: '确定',
+						onClick: function() {
+							$.post(url, function(data) {
+								ecjia.touch.showmessage(data);
+							});
+						},
+					}]
+				});
+			});
 		},
 
 		show_goods_list_click: function() {
@@ -680,6 +689,11 @@
 			        },
 			    ],
 			    onOpen: function (picker) {
+			    	var $pick_overlay = '<div class="picker-modal-overlay"></div>';
+			    	if ($('.picker-modal').hasClass('modal-in')) {
+			    		$('.picker-modal').after($pick_overlay);
+			    	}
+			    	
 			    	var province = $('input[name="province"]').val();
 					var city = $('input[name="city"]').val();
 					var district = $('input[name="district"]').val();
@@ -730,16 +744,16 @@
 						};
 						save_temp(temp_data);
 						picker.close();
-						$('.modal-overlay').remove();
+						remove_overlay();
 			        });
 			        picker.container.find('.close-picker').on('click', function () {
 			    		picker.close();
-				    	$('.modal-overlay').remove();
+			    		remove_overlay();
 			    	});
 			    },
 			    onClose: function(picker) {
 			    	picker.close();
-			    	$('.modal-overlay').remove();
+			    	remove_overlay();
 			    }
 			});
 			
@@ -777,6 +791,11 @@
 			        },
 			    ],
 			    onOpen: function (picker) {
+			    	var $pick_overlay = '<div class="picker-modal-overlay"></div>';
+			    	if ($('.picker-modal').hasClass('modal-in')) {
+			    		$('.picker-modal').after($pick_overlay);
+			    	}
+			    	
 			    	var district = $('input[name="district"]').val();
 			    	var key = 'street_' + district;
 			    	if ($.localStorage(key) == undefined) {
@@ -804,16 +823,16 @@
 							save_temp(temp_data); 
 			        	}
 			        	picker.close();
-						$('.modal-overlay').remove();
+			        	remove_overlay();
 			        });
 			        picker.container.find('.close-picker').on('click', function () {
 			    		picker.close();
-				    	$('.modal-overlay').remove();
+			    		remove_overlay();
 			    	});
 			    },
 			    onClose: function(picker) {
 			    	picker.close();
-			    	$('.modal-overlay').remove();
+			    	remove_overlay();
 			    }
 			});
 		}
@@ -907,6 +926,11 @@
 				sessionStorage.removeItem('street_name');
 			}
 		}
+	}
+	
+	function remove_overlay() {
+		$('.modal-overlay').remove();
+    	$('.picker-modal-overlay').remove();
 	}
 })(ecjia, jQuery);
 

@@ -205,6 +205,7 @@ RC_Hook::add_action('user/order/goods_comment', array('user_order_controller', '
 RC_Hook::add_action('user/order/make_comment', array('user_order_controller', 'make_comment'));
 RC_Hook::add_action('user/order/buy_again', array('user_order_controller', 'buy_again'));
 RC_Hook::add_action('user/order/express_position', array('user_order_controller', 'express_position'));
+RC_Hook::add_action('user/order/return_order_list', array('user_order_controller', 'return_order_list'));
 
 //用户资料
 RC_Loader::load_theme('extras/controller/user_profile_controller.php');

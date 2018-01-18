@@ -357,6 +357,20 @@ textarea{
 	text-align: center;
 	padding: 0;
 }
+
+/**
+ * ecjia-list-five
+ * 全局五栏列表样式
+ * 依赖:ecjia-list
+ */
+.ecjia-list-five li {
+	float: left;
+	width: 20%;
+	border-bottom: 0;
+	text-align: center;
+	padding: 0;
+}
+
 /**
  * ecjia-nav
  * 扩展列表nav下划线

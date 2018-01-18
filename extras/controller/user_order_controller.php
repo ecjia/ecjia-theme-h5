@@ -103,8 +103,8 @@ class user_order_controller {
         
         if ($type == 'detail') {
             if (!ecjia_front::$controller->is_cached('user_order_detail.dwt', $cache_id)) {
-            	
-                ecjia_front::$controller->assign('order', $data);
+
+            	ecjia_front::$controller->assign('order', $data);
                 ecjia_front::$controller->assign('headInfo', $data['order_status_log'][0]);
                 if ($data['shipping_code'] == 'ship_o2o_express' && !empty($data['express_id'])) {
                 	ecjia_front::$controller->assign('express_url', RC_Uri::url('user/order/express_position', array('code' => $data['shipping_code'], 'express_id' => $data['express_id'], 'order_id' => $data['order_id'], 'store_id' => $data['store_id'])));
@@ -157,7 +157,7 @@ class user_order_controller {
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_CANCEL)->data($params_order)->run();
 
         $url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
-        if (! is_ecjia_error($data)) {
+        if (!is_ecjia_error($data)) {
             return ecjia_front::$controller->showmessage('取消订单成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url, 'is_show' => false));
         } else {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
@@ -394,6 +394,21 @@ class user_order_controller {
     		}
     	}
     	ecjia_front::$controller->display('user_express_position.dwt');
+    }
+    
+    //售后
+    public static function return_order_list() {
+    	$token 		= ecjia_touch_user::singleton()->getToken();
+    	$order_id 	= intval($_GET['order_id']);
+    	
+    	$cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$order_id;
+    	$cache_id = sprintf('%X', crc32($cache_id));
+    	
+    	if (!ecjia_front::$controller->is_cached('user_order_return.dwt', $cache_id)) {
+    		ecjia_front::$controller->assign_title('申请售后');
+    		ecjia_front::$controller->assign('title', '申请售后');
+    	}
+    	ecjia_front::$controller->display('user_order_return.dwt', $cache_id);
     }
 }
 
