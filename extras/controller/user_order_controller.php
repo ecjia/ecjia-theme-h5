@@ -122,7 +122,7 @@ class user_order_controller {
                 	'信息填写有误，重新购买'
                 );
                 //已发货订单
-                if ($data['shipping_status'] == 1) {
+                if ($data['shipping_status'] == SS_SHIPPED) {
                 	$reason_list = array('拨打电话，联系配送员');
                 }
                 ecjia_front::$controller->assign('reason_list', json_encode($reason_list));

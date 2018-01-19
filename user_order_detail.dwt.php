@@ -107,14 +107,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<li class="remark"><span class="ecjiaf-fl width-25-p">订单备注：</span><span class="ecjiaf-fr width-75-p">{if $order.postscript}{$order.postscript}{else}无{/if}</span></li>
 			</ul>
 			<div class="order-ft-link">
+			
 				<a class="btn btn-small btn-hollow external" href="{if $order.service_phone}tel://{$order.service_phone}{else}javascript:alert('无法联系卖家');{/if}">联系卖家</a>
 				
-				{if $order.order_status lt 2}
-					<a class="btn btn-small btn-hollow cancel_order" href='{url path="user/order/order_cancel" args="order_id={$order.order_id}"}'>取消订单</a> 
+				{if $order.order_status lt 2 || $order.shipping_status eq 1}
+					<a class="btn btn-small btn-hollow cancel_order" href='{url path="user/order/order_cancel" args="order_id={$order.order_id}"}'>取消订单</a>
+					
+					{if $order.pay_status eq 0} 
 					<a class="btn btn-small btn-hollow" href='{url path="pay/index/init" args="order_id={$order.order_id}"}'>去支付</a>
+					{/if}
 				{/if}
 				
-				{if $order.shipping_status eq '1'} 
+				{if $order.shipping_status eq 1} 
 					<a class="btn btn-small btn-hollow" href='{url path="user/order/affirm_received" args="order_id={$order.order_id}"}'>确认收货</a>
 				{/if}
 				
@@ -122,7 +126,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- 					<a class="btn btn-small btn-hollow" href='{url path="user/order/buy_again" args="order_id={$order.order_id}"}'>再次购买</a> -->
 <!-- 				{/if} -->
 				
-				{if $order.shipping_status eq '2'} 
+				{if $order.shipping_status eq 2} 
 					<a class="btn btn-small btn-hollow" href='{url path="user/order/comment_list" args="order_id={$order.order_id}"}'>评价晒单</a>
 					<a class="btn btn-small btn-hollow" href='{url path="user/order/return_order_list" args="order_id={$order.order_id}"}'>售后</a>
 				{/if}
