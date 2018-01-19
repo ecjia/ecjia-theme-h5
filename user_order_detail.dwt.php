@@ -128,7 +128,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				
 				{if $order.shipping_status eq 2} 
 					<a class="btn btn-small btn-hollow" href='{url path="user/order/comment_list" args="order_id={$order.order_id}"}'>评价晒单</a>
-					<a class="btn btn-small btn-hollow" href='{url path="user/order/return_order_list" args="order_id={$order.order_id}"}'>售后</a>
+					<a class="btn btn-small btn-hollow" href='{url path="user/order/return_list" args="order_id={$order.order_id}"}'>售后</a>
 				{/if}
 			</div>
 		</div>

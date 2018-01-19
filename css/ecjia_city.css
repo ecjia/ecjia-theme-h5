@@ -6682,6 +6682,95 @@ footer {
 	width: 100%;
 }
 
+.ecjia-order-detail .return-item {
+	background-color: #fff;
+}
+
+.ecjia-order-detail .return-item .c9 {
+	line-height: 2;
+    margin-left: 1em;
+    padding: 10px 15px 10px 0;
+}
+
+.ecjia-order-detail .return-item .c9 .c6 {
+	float: right;
+}
+
+.ecjia-order-detail .return-item .c9 .k0 {
+	width: 20px;
+    height: 15px;
+    background: url(//static-o2o.360buyimg.com/daojia/new/images/settlement/icon_question.png) no-repeat;
+    background-size: 13px;
+    display: inline-block;
+    vertical-align: middle;
+    background-origin: content-box;
+    padding: 0 4px 4px 4px;
+}
+
+.ecjia-order-detail .return-item .c9 b {
+	font-weight: normal;
+}
+
+.ecjia-order-detail .return-item .ca {
+	margin-top: 5px;
+    color: #999;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.ecjia-order-detail .return-item .ca span {
+	float: left;
+}
+
+.ecjia-order-detail .return-item .ca b {
+	display: block;
+    margin-left: 5em;
+}
+
+.ecjia-order-detail .co {
+    background: #fff;
+    padding: 5px 0 0 1em;
+}
+
+.ecjia-order-detail .cp {
+	border-bottom: 1px #eee solid;
+    padding: 10px 0;
+}
+
+.ecjia-order-detail .cp:last-child {
+	border-bottom: none;
+}
+
+.ecjia-order-detail .cp span {
+    float: left;
+}
+
+.ecjia-order-detail .cp b {
+	display: block;
+    margin-left: 6em;
+    font-weight: normal;
+}
+
+.ecjia-order-detail .cq {
+    padding: 10px 0;
+}
+
+.ecjia-order-detail .cq span {
+	float: left;
+}
+
+.ecjia-order-detail .cq img {
+	width: 3em;
+    height: 3em;
+    margin: 0 .2em 0 0;
+}
+
+.ecjia-order-detail .cq b {
+    display: block;
+    margin-left: 6em;
+    font-weight: normal;
+}
+
 .ecjia-goods-attr {
 	width: 20em;
 	float: left;

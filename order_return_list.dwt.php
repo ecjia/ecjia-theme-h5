@@ -44,7 +44,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="a7 ah">
 			<ul class="a8 ao">
 				<li class="ai">
-					<a href="javascript:;">
+					<a class="data-pjax" href="{url path='user/order/return_detail'}&order_id={$order_id}">
 						<h4 class="aq">服务单号：<em>20564080</em></h4>
 						<div class="ar">
 							<span class="as"><img class="at" src=""></span>

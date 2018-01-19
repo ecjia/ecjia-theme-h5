@@ -397,18 +397,18 @@ class user_order_controller {
     }
     
     //申请售后列表
-    public static function return_order_list() {
+    public static function return_list() {
     	$token 		= ecjia_touch_user::singleton()->getToken();
     	$order_id 	= intval($_GET['order_id']);
     	
     	$cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$order_id;
     	$cache_id = sprintf('%X', crc32($cache_id));
-    	if (!ecjia_front::$controller->is_cached('user_order_return_list.dwt', $cache_id)) {
+    	if (!ecjia_front::$controller->is_cached('order_return_list.dwt', $cache_id)) {
     		ecjia_front::$controller->assign('order_id', $order_id);
     		ecjia_front::$controller->assign_title('申请售后');
     		ecjia_front::$controller->assign('title', '申请售后');
     	}
-    	ecjia_front::$controller->display('user_order_return_list.dwt', $cache_id);
+    	ecjia_front::$controller->display('order_return_list.dwt', $cache_id);
     }
     
     //申请售后页面
@@ -425,7 +425,16 @@ class user_order_controller {
     	);
     	ecjia_front::$controller->assign('reason_list', json_encode($reason_list));
     	
-    	ecjia_front::$controller->display('user_order_return_reply.dwt');
+    	ecjia_front::$controller->assign('order_id', $order_id);
+    	ecjia_front::$controller->display('order_return_reply.dwt');
+    }
+    
+    //售后详情
+    public static function return_detail() {
+    	$order_id 	= intval($_GET['order_id']);
+    	
+    	ecjia_front::$controller->assign('order_id', $order_id);
+    	ecjia_front::$controller->display('order_return_detail.dwt');
     }
 }
 
