@@ -503,6 +503,7 @@
 			ecjia.touch.user.photo();
 			ecjia.touch.user.remove_goods_img();
 			ecjia.touch.user.choose_reason();
+			ecjia.touch.user.undo_reply();
 		},
 		
 		//评价晒单上传图片，并且不能超过5张。
@@ -639,6 +640,27 @@
 			    	picker.close();
 			    	remove_overlay();
 			    }
+			});
+		},
+		
+		undo_reply: function() {
+			$('.undo_reply').off('click').on('click', function(e) {
+				e.preventDefault();
+				var myApp = new Framework7();
+				var url = $(this).attr('href');
+				myApp.modal({
+					title: '您确定要撤销申请？',
+					buttons: [{
+						text: '取消',
+					}, {
+						text: '确定',
+						onClick: function() {
+							$.post(url, function(data) {
+								ecjia.touch.showmessage(data);
+							});
+						},
+					}]
+				});
 			});
 		},
 
