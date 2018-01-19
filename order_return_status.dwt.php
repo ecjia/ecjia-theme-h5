@@ -13,10 +13,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="return-status-content">
 	<div class="q5">
 		<div class="qi">
-			<span class="qj"></span>
-			<span class="qk"></span>
-			<span class="qk"></span>
-			
 			<div class="q6">
 				<i class="or ot iconState6"></i>
 				<span class="firstLine"></span>
