@@ -6708,6 +6708,7 @@ footer {
     vertical-align: middle;
     background-origin: content-box;
     padding: 0 4px 4px 4px;
+	cursor: pointer;
 }
 
 .ecjia-order-detail .return-item .c9 b {
@@ -11403,3 +11404,20 @@ footer {
 .ecjia-order-detail.ecjia-return-way .ct input{border:0;background-color:#fff;text-align:right}
 .ecjia-order-detail.ecjia-return-way .cu{border:1px solid #eee;font-size:.7em;border-radius:4px;padding:2px 4px;background:#fff;line-height:1.5em;position:absolute;right:1em;top:1em;cursor:pointer;}
 .ecjia-order-detail.ecjia-return-way .cv{margin-right:4em}
+
+.ecjia-shipping-fee-modal{width:300px;position:absolute;z-index:11000;left:47%;margin-left:-135px;margin-top:0;top:10em;text-align:center;border-radius:7px;opacity:0;color:#000;display:none;max-height:20em;overflow:auto;}
+.ecjia-shipping-fee-modal.modal-in{opacity:1;-webkit-transition-duration:.4s;transition-duration:.4s;-webkit-transform:translate3d(0,0,0) scale(1);transform:translate3d(0,0,0) scale(1)}
+.ecjia-shipping-fee-overlay.ecjia-shipping-fee-overlay-visible{visibility:visible;opacity:1;}
+.ecjia-shipping-fee-overlay{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:10600;visibility:hidden;opacity:0;-webkit-transition-duration:.4s;transition-duration:.4s;display:none}
+.ecjia-shipping-fee-modal .modal-inners{padding:0 1em;background:#fff;border-radius:7px;border:1px solid #eee}
+.ecjia-shipping-fee-modal .modal-inners .title{line-height:3em;font-size:1.1em;font-weight:500}
+.ecjia-shipping-fee-modal .item{min-height:2em;line-height:2em;border-bottom:1px solid #eee}
+.ecjia-shipping-fee-modal .item:nth-child(3){padding:.5em 0}
+.ecjia-shipping-fee-modal .item .item-left{float:left;font-weight:500}
+.ecjia-shipping-fee-modal .item .item-right{float:right}
+.ecjia-shipping-fee-modal .item-right.big-font{font-size:1.2em}
+.ecjia-shipping-fee-modal .item .item-li{height:2em}
+.ecjia-shipping-fee-modal .item:last-child{border:none}
+.ecjia-shipping-fee-modal .item .notice-title{text-align:left;padding-top:1em;line-height:1em;font-weight:500}
+.ecjia-shipping-fee-modal .item .notice{color:#999;font-size:.7em;text-align:left}
+

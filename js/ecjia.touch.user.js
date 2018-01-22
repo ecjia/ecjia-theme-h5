@@ -505,6 +505,7 @@
 			ecjia.touch.user.undo_reply();
 			ecjia.touch.user.copy_btn();
 			ecjia.touch.user.form();
+			ecjia.touch.user.shipping_fee_notice();
 		},
 		
 		//评价晒单上传图片，并且不能超过5张。
@@ -689,6 +690,43 @@
 				callback: function(data) {
 					ecjia.touch.showmessage(data);
 				}
+			});
+		},
+		
+		shipping_fee_notice: function() {
+			$('.shipping_fee_notice').off('click').on('click', function() {
+				var $this = $(this);
+				var myApp = new Framework7();
+				//禁用滚动条
+				$('body').css('overflow-y', 'hidden').on('touchmove', function(event) {
+					event.preventDefault;
+				}, false);
+
+				var wHeight = $(window).height();
+				var scrollTop = $(document).scrollTop();
+				var top;
+				if (wHeight - 400 < 0) {
+					top = scrollTop;
+				} else {
+					var ua = navigator.userAgent.toLowerCase();
+					if (ua.match(/MicroMessenger/i) == "micromessenger") {
+						top = scrollTop + (wHeight - 230) / 2;
+					} else {
+						top = scrollTop + (wHeight - 200) / 2;
+					}
+				}
+				$('.ecjia-shipping-fee-modal').show().css('top', top);
+				$('.ecjia-shipping-fee-overlay').show();
+				
+				myApp.openModal('.ecjia-shipping-fee-modal');
+				$('.modal-overlay').remove();
+				return false;
+			});
+			
+			$('.ecjia-shipping-fee-overlay').on('click', function() {
+				$('.ecjia-shipping-fee-modal').hide();
+				$('.ecjia-shipping-fee-overlay').hide();
+				$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
 			});
 		},
 

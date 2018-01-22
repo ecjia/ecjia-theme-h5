@@ -90,7 +90,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="return-item">
 				<div class="c9">
 					<p><i class="c6">¥6.01</i><b>退商品金额</b></p>
-					<p><i class="c6">¥6.01</i><b>退配送费</b><i class="k0"></i></p>
+					<p><i class="c6">¥6.01</i><b>退配送费</b><i class="k0 shipping_fee_notice"></i></p>
 					<p><i class="c6 ecjia-red">¥6.01</i><b>退总金额</b></p>
 					<p class="ca"><span>温馨提示:</span><b>退商品金额是按照您实际支付的商品金额进行退回，如有问题，请联系商家到家客服。</b></p>
 				</div>
@@ -128,4 +128,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<input type="hidden" name="reason_list" value='{$reason_list}'>
 </div>
+<!-- #BeginLibraryItem "/library/shipping_fee_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- {/block} -->

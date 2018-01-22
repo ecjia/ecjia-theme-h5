@@ -23,7 +23,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<ul class="goods-item">
 					<!-- {foreach from=$order.goods_list item=goods} -->
 					<li>
-					    <a href='{url path="goods/index/show" args="goods_id={$goods.goods_id}"}'>
 						<div class="ecjiaf-fl goods-img">
 							<img src="{$goods.img.thumb}" alt="{$goods.name}" title="{$goods.name}" />
 						</div>
@@ -37,28 +36,25 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							<p class="ecjia-color-red goods-attr-price">{$goods.formated_shop_price}</p>
 						</div>
 						<span class="ecjiaf-fr goods-price"> x {$goods.goods_number}</span>
-						</a>
 					</li>
 					<!-- {/foreach} -->
 				</ul>
 				
 				<ul class="goods-item">
 					<li>
-					    <a href='{url path="goods/index/show" args="goods_id={$goods.goods_id}"}'>
-							<div class="ecjiaf-fl goods-img">
-								<img src="" alt="{$goods.name}" title="{$goods.name}" />
-							</div>
-							<div class="ecjiaf-fl goods-info">
-								<p class="ecjia-truncate2">精品红霞草莓32粒</p>
-								<p class="ecjia-goods-attr goods-attr">
-								<!-- {foreach from=$goods.goods_attr item=attr} -->
-								{if $attr.name}{$attr.name}:{$attr.value}{/if}
-								<!-- {/foreach} -->
-								</p>
-								<p class="ecjia-color-red goods-attr-price">￥19.90</p>
-							</div>
-							<span class="ecjiaf-fr goods-price"> x 1</span>
-						</a>
+						<div class="ecjiaf-fl goods-img">
+							<img src="" alt="{$goods.name}" title="{$goods.name}" />
+						</div>
+						<div class="ecjiaf-fl goods-info">
+							<p class="ecjia-truncate2">精品红霞草莓32粒</p>
+							<p class="ecjia-goods-attr goods-attr">
+							<!-- {foreach from=$goods.goods_attr item=attr} -->
+							{if $attr.name}{$attr.name}:{$attr.value}{/if}
+							<!-- {/foreach} -->
+							</p>
+							<p class="ecjia-color-red goods-attr-price">￥19.90</p>
+						</div>
+						<span class="ecjiaf-fr goods-price"> x 1</span>
 					</li>
 				</ul>
 				
