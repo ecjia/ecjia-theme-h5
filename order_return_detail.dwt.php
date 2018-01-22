@@ -122,6 +122,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="order-ft-link">
 				<a class="btn btn-small btn-hollow external" href="{if $order.service_phone}tel://{$order.service_phone}{else}javascript:alert('无法联系卖家');{/if}">联系卖家</a>
 				<a class="btn btn-small btn-hollow undo_reply" href='{url path="user/order/undo_reply" args="order_id={$order_id}"}'>撤销申请</a>
+				<a class="btn btn-small btn-hollow data-pjax" href='{url path="user/order/return_way_list" args="order_id={$order_id}"}'>返还方式</a>
 			</div>
 		</div>
 	</div>

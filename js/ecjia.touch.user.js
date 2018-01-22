@@ -22,7 +22,6 @@
 			ecjia.touch.user.record_cancel();
 			ecjia.touch.user.account_bind();
 			ecjia.touch.user.cancel_order();
-			
 			ecjia.touch.user.return_order();
 
 			$(function() {
@@ -504,6 +503,8 @@
 			ecjia.touch.user.remove_goods_img();
 			ecjia.touch.user.choose_reason();
 			ecjia.touch.user.undo_reply();
+			ecjia.touch.user.copy_btn();
+			ecjia.touch.user.form();
 		},
 		
 		//评价晒单上传图片，并且不能超过5张。
@@ -661,6 +662,33 @@
 						},
 					}]
 				});
+			});
+		},
+		
+		copy_btn: function() {
+			var clipboard = new Clipboard('.copy-btn');
+			clipboard.on('success', function(e) {  
+				alert("复制成功！");
+			});  
+		},
+		
+		form: function() {
+			$("form[name='theForm']").on('submit', function(e) {
+				e.preventDefault();
+				return false;
+			}).Validform({
+				tiptype: function(msg, o, cssctl) {
+					//msg：提示信息;
+					//o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+					//cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+					if (o.type == 3) {
+						alert(msg);
+					}
+				},
+				ajaxPost: true,
+				callback: function(data) {
+					ecjia.touch.showmessage(data);
+				}
 			});
 		},
 

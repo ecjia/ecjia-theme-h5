@@ -63,9 +63,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</ul>
 				
 				<ul class="ecjia-list">
-					<li>退商品金额：<span class="ecjiaf-fr ">￥14.90</span></li>
-					<li>退配送费：<span class="ecjiaf-fr ">￥5.00</span></li>
-					<li>退总金额：<span class="ecjiaf-fr ecjia-red">￥19.90</span></li>
+					<li>退商品金额<span class="ecjiaf-fr ">￥14.90</span></li>
+					<li>退配送费<i class="k0"></i><span class="ecjiaf-fr ">￥5.00</span></li>
+					<li>退总金额<span class="ecjiaf-fr ecjia-red">￥19.90</span></li>
 					<li class="notice">
 						<div class="notice-content">
 							<span class="title">温馨提示：</span>
@@ -131,6 +131,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 			
 			<div class="order-ft-link">
+				<input type="hidden" name="order_id" value="{$order_id}">
 				<input class="btn btn-small btn-hollow" name="add-return-btn" type="submit" value="提交"/>
 			</div>
 		</div>

@@ -6335,7 +6335,7 @@ footer {
 }
 
 .order-status-head .order-status-msg .order-head-font {
-    font-size: 1.3em;
+    font-size: 1em;
 }
 
 .order-status-head .order-status-msg .order-color {
@@ -6699,7 +6699,7 @@ footer {
 	float: right;
 }
 
-.ecjia-order-detail .return-item .c9 .k0 {
+.ecjia-order-detail .return-item .c9 .k0, .ecjia-order-detail .flow-goods-list .ecjia-list li .k0 {
 	width: 20px;
     height: 15px;
     background: url(//static-o2o.360buyimg.com/daojia/new/images/settlement/icon_question.png) no-repeat;
@@ -11336,7 +11336,7 @@ footer {
 .ecjia-user .ecjia-list.ecjia-return-list{margin-top:0}
 .ecjia-return-list{border-top:1px solid #eee;border-bottom:1px solid #eee}
 .ecjia-return-list li{height:4em;border-bottom:0;position:relative}
-.ecjia-return-list li+li::before{content:'';position:absolute;display:block;width:90%;left:10%;top:0;left:3.1em;border-bottom:1px solid #eee}
+.ecjia-return-list li+li::before{content:'';position:absolute;display:block;width:100%;top:0;left:1em;border-bottom:1px solid #eee}
 .ecjia-return-list li a{line-height:2em;display:block}
 .ecjia-return-item{display:flex;-webkit-box-flex:1;-ms-flex:1 1 0;flex:1 1 0;-webkit-box-orient:horizontal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-ordinal-group:1;height:2.6em}
 .ecjia-return-item .return-item-icon{width:1.6em;height:1.6em;margin-right:.5em;margin-top:.2em;display:flex;max-width:100%;flex:0 0 auto}
@@ -11382,3 +11382,24 @@ footer {
 .return-status-content .aam li{position:relative;border-bottom:1px solid #eee}
 .return-status-content .aam li:last-child{border-bottom:none}
 .return-status-content .aan{position:absolute;right:1em;top:0}
+
+.ecjia-user .ecjia-list.ecjia-return-way-list {margin-top:0;}
+.ecjia-return-way-list{border-top:1px solid #eee;border-bottom:1px solid #eee;}
+.ecjia-return-way-list li{height:3.2em;border-bottom:0;position:relative}
+.ecjia-return-way-list li+li::before{content:'';position:absolute;display:block;left:1em;top:0;width:100%;border-bottom:1px solid #eee}
+.ecjia-return-way-list li a{line-height:2em;display:block}
+.ecjia-return-way-list .ecjia-return-item .return-item-right .title{line-height:2em;}
+.ecjia-return-way-list .ecjia-return-item .iconfont{top:-0.3em;}
+
+.ecjia-order-detail.ecjia-return-way .cp .cs{text-align:right;float:left;width:8em;display:flex;flex-direction:row-reverse;align-items:center}
+.ecjia-order-detail.ecjia-return-way .cp .cs span{float:none;height:2.5em;width:1em;text-align:center}
+.ecjia-order-detail.ecjia-return-way .co{padding:5px 0}
+.ecjia-order-detail.ecjia-return-way .cp b{margin-left:9em;color:#999}
+.ecjia-order-detail.ecjia-return-way .cp{position:relative;height:3em;line-height:3em;border-bottom:none;padding:0}
+.ecjia-order-detail.ecjia-return-way .cp.line{border-bottom:1px solid #eee}
+.ecjia-order-detail.ecjia-return-way .cp.text{height:auto;line-height:2em;padding:.5em 0}
+.ecjia-order-detail.ecjia-return-way .cr{position:absolute;left:9em;right:1em}
+.ecjia-order-detail.ecjia-return-way .cr input{width:100%;height:2.5em;border:1px solid #eee;background-color:#f7f7f7;border-radius:4px}
+.ecjia-order-detail.ecjia-return-way .ct input{border:0;background-color:#fff;text-align:right}
+.ecjia-order-detail.ecjia-return-way .cu{border:1px solid #eee;font-size:.7em;border-radius:4px;padding:2px 4px;background:#fff;line-height:1.5em;position:absolute;right:1em;top:1em;cursor:pointer;}
+.ecjia-order-detail.ecjia-return-way .cv{margin-right:4em}

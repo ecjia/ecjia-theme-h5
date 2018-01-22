@@ -210,6 +210,9 @@ RC_Hook::add_action('user/order/return_order', array('user_order_controller', 'r
 RC_Hook::add_action('user/order/add_return', array('user_order_controller', 'add_return'));
 RC_Hook::add_action('user/order/return_detail', array('user_order_controller', 'return_detail'));
 RC_Hook::add_action('user/order/undo_reply', array('user_order_controller', 'undo_reply'));
+RC_Hook::add_action('user/order/return_way_list', array('user_order_controller', 'return_way_list'));
+RC_Hook::add_action('user/order/return_way', array('user_order_controller', 'return_way'));
+RC_Hook::add_action('user/order/add_return_way', array('user_order_controller', 'add_return_way'));
 
 //用户资料
 RC_Loader::load_theme('extras/controller/user_profile_controller.php');

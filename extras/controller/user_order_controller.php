@@ -445,6 +445,17 @@ class user_order_controller {
     	}
     }
     
+    public static function add_return() {
+    	$order_id = !empty($_POST['order_id']) ? intval($_POST['order_id']) : 0;
+    	if (empty($order_id)) {
+    		return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
+    	
+    	$url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
+    	return ecjia_front::$controller->showmessage('提交成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
+    }
+    
+    //撤销申请
     public static function undo_reply() {
     	$order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
     	if (empty($order_id)) {
@@ -453,7 +464,6 @@ class user_order_controller {
     	
     	$url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
     	return ecjia_front::$controller->showmessage('撤销成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
-    	
     	
     	$params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_CANCEL)->data($params_order)->run();
@@ -464,6 +474,40 @@ class user_order_controller {
     	} else {
     		return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
     	}
+    }
+    
+    //返还方式列表
+    public static function return_way_list() {
+    	$order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
+    	if (empty($order_id)) {
+    		return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
+    	
+    	ecjia_front::$controller->assign('order_id', $order_id);
+    	ecjia_front::$controller->display('order_return_way_list.dwt');
+    }
+    
+    public static function return_way() {
+    	$order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
+    	if (empty($order_id)) {
+    		return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
+    	ecjia_front::$controller->assign('order_id', $order_id);
+    	
+    	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
+    	ecjia_front::$controller->assign('type', $type);
+    	
+    	ecjia_front::$controller->display('order_return_way.dwt');
+    }
+    
+    public static function add_return_way() {
+    	$order_id = !empty($_POST['order_id']) ? intval($_POST['order_id']) : 0;
+    	if (empty($order_id)) {
+    		return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
+    	 
+    	$url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
+    	return ecjia_front::$controller->showmessage('提交成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
     }
 }
 
