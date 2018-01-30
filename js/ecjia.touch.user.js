@@ -380,6 +380,10 @@
 					'submit': '充值'
 				}
 				$.post(url, options, function(data) {
+					if (data.state == 'error') {
+						ecjia.touch.showmessage(data);
+						return false;
+					}
 					if (data.weixin_data) {
 						$('.wei-xin-pay').html("");
 						$('.wei-xin-pay').html(data.weixin_data);
