@@ -23,7 +23,7 @@
 				}
 			
 				if (record != 1) {
-					$(this).val("支付请求中，请稍后");
+					$(this).val("支付中...");
 				}
 				
 				$(this).attr("disabled", true); 
@@ -35,13 +35,17 @@
 					url: url,
 					dataType: "json",
 					success: function(data) {
+						
 						$('.wxpay-btn').removeClass("payment-bottom")
 						$('.la-ball-atom').remove();
 						$('.wxpay-btn').removeAttr("disabled"); 
 						if (record != 1) {
 							$('.wxpay-btn').val("立即充值"); 
 						}
-						
+						if (data.state == 'error') {
+							ecjia.touch.showmessage(data);
+							return false;
+						}
 						if (data.redirect_url) {
 							location.href = data.redirect_url;
 						} else if(data.weixin_data) {

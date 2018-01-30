@@ -362,7 +362,7 @@
 				});
 				myApp.confirm('你确定要取消吗？', function() {
 					$.post(url, options, function(data) {
-						ecjia.pjax(data.url);
+						ecjia.touch.showmessage(data);
 					})
 				});
 			});
