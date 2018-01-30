@@ -169,6 +169,8 @@ class user_account_controller {
     		return ecjia_front::$controller->showmessage(__('请使用其他浏览器打开进行支付'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	} elseif ($brownser_other == 1) {
     		return ecjia_front::$controller->showmessage(__('请使用微信浏览器打开进行支付'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	} elseif ($brownser_other == 2) {
+    		return ecjia_front::$controller->showmessage(__('请在到家APP内进行支付'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
     	
     	if (!empty($amount)) {
@@ -423,8 +425,13 @@ class user_account_controller {
 	        /*依据当前浏览器和所选支付方式给出支付提示*/
 	        if (cart_function::is_weixin() == true && $payment_info['pay_code'] == 'pay_alipay') {
 	            ecjia_front::$controller->assign('brownser_wx', 1);
-	        } elseif (cart_function::is_weixin() == false && $payment_info['pay_code'] == 'pay_wxpay') {
-	            ecjia_front::$controller->assign('brownser_other', 1);
+	        } elseif (cart_function::is_weixin() == false) {
+	        	if ($payment_info['pay_code'] == 'pay_wxpay') {
+	        		ecjia_front::$controller->assign('brownser_other', 1);
+	        	}
+	            if ($payment_info['pay_code'] == 'pay_wxpay_app') {
+	            	ecjia_front::$controller->assign('brownser_other', 2);
+	            }
 	        }
 	        
 	        if ($payment_info['pay_code'] == 'pay_wxpay') {
