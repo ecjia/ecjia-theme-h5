@@ -372,12 +372,16 @@
 				var amount = $("input[name='amount']").val();
 				var account_id = $("input[name='account_id']").val();
 				var payment_id = $("input[name='payment_id']").val();
+				var brownser_wx = $("input[name='brownser_wx']").val();
+				var brownser_other = $("input[name='brownser_other']").val();
 				var url = $(this).attr('data-url');
 				options = {
 					'amount': amount,
 					'account_id': account_id,
 					'payment_id': payment_id,
-					'submit': '充值'
+					'submit': '充值',
+					'brownser_other': brownser_other,
+					'brownser_wx': brownser_wx,
 				}
 				$.post(url, options, function(data) {
 					if (data.state == 'error') {

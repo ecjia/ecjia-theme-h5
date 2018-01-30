@@ -22,11 +22,10 @@
 					alert("金额不能为空");
 					return false;
 				}
-			
+				var alipay_btn_html = $(this).val();
 				if (record != 1) {
 					$(this).val("请求中...");
 				}
-				
 				$(this).attr("disabled", true); 
 				$(this).addClass("payment-bottom");
 				
@@ -40,7 +39,7 @@
 						$('.la-ball-atom').remove();
 						$('.wxpay-btn').removeAttr("disabled"); 
 						if (record != 1) {
-							$('.wxpay-btn').val("立即充值"); 
+							$('.wxpay-btn').val(alipay_btn_html); 
 						}
 						if (data.state == 'error') {
 							ecjia.touch.showmessage(data);
@@ -70,10 +69,9 @@
 					alert("金额不能为空");
 					return false;
 				}
-
-				if (record != 1) {
-					$(this).val("请求中...");
-				}
+				var alipay_btn_html = $(this).val();
+				
+				$(this).val("请求中...");
 				$(this).attr("disabled", true); 
 				$(this).addClass("payment-bottom");
 		
@@ -86,8 +84,11 @@
 						$('.alipay-btn').removeClass("payment-bottom")
 						$('.la-ball-atom').remove();
 						$('.alipay-btn').removeAttr("disabled"); 
-						if (record != 1) {
-							$('.alipay-btn').val("立即充值"); 
+						$('.alipay-btn').val(alipay_btn_html);
+						
+						if (data.state == 'error') {
+							ecjia.touch.showmessage(data);
+							return false;
 						}
 						location.href = data.redirect_url;
 					}
