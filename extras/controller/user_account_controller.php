@@ -122,12 +122,6 @@ class user_account_controller {
 	                        unset($pay['payment'][$key]);
 	                    }
 	                    if ($val['pay_code'] == 'pay_wxpay') {
-// 	                        $payment_method = RC_Loader::load_app_class('payment_method', 'payment');
-// 	                        $payment_info = $payment_method->payment_info_by_id($val['pay_id']);
-	                        // 取得支付信息，生成支付代码
-// 	                        $payment_config = $payment_method->unserialize_config($val['pay_config']);
-	        
-// 	                        $handler = $payment_method->get_payment_instance($val['pay_code'], $payment_config);
 	                        $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($val['pay_code']);
 	                        $open_id = $handler->getWechatOpenId();
 	                        $_SESSION['wxpay_open_id'] = $open_id;
@@ -436,8 +430,6 @@ class user_account_controller {
 	        
 	        if ($payment_info['pay_code'] == 'pay_wxpay') {
 	            // 取得支付信息，生成支付代码
-// 	            $payment_config = $payment_method->unserialize_config($payment_info['pay_config']);
-// 	            $handler = $payment_method->get_payment_instance($payment_info['pay_code'], $payment_config);
 	            $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($payment_info['pay_code']);
 	            $open_id = $handler->getWechatOpenId();
 	            $_SESSION['wxpay_open_id'] = $open_id;
