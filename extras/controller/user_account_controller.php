@@ -141,7 +141,6 @@ class user_account_controller {
             ecjia_front::$controller->assign('payment_list', $pay['payment']);
             ecjia_front::$controller->assign('user', $user);
             ecjia_front::$controller->assign_title('充值');
-            
             //生成返回url cookie
             RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
         }
@@ -548,11 +547,9 @@ class user_account_controller {
 	        
 	        $pay['payment'][array_keys($pay['payment'])[0]]['checked'] = true;
             ecjia_front::$controller->assign('payment_list', $pay['payment']);
+         
             ecjia_front::$controller->assign('user', $user);
             ecjia_front::$controller->assign_title('继续充值');
-            
-            //生成返回url cookie
-            RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
         }
         ecjia_front::$controller->display('user_account_recharge_again.dwt', $cache_id);
     }
@@ -565,7 +562,7 @@ class user_account_controller {
     	$pay_code = trim($_POST['pay_code']);
     	$order_sn = trim($_POST['order_sn']);
     	$account_id = intval($_POST['account_id']);
-    	$payment_id = intval($_POST['pay_id']);
+    	$payment_id = intval($_POST['payment_id']);
     	//更改支付方式
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_SWITCHPAYMENT)->data(array('order_sn' => $order_sn, 'pay_code' => $pay_code))->run();
     	if (!is_ecjia_error($data)) {
