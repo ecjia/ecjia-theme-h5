@@ -570,11 +570,6 @@ class user_account_controller {
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_SWITCHPAYMENT)->data(array('order_sn' => $order_sn, 'pay_code' => $pay_code))->run();
     	if (!is_ecjia_error($data)) {
     		
-    		//生成返回url cookie
-    		RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
-    		RC_Cookie::set('pay_response_order', RC_Uri::url('user/account/record', array('status' => 'deposit')));
-    		
-    		
     		//用户充值付款
     		$pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $account_id, 'payment_id' => $payment_id, 'wxpay_open_id' => $_SESSION['wxpay_open_id']))->run();
     		if (!is_ecjia_error($pay)) {
