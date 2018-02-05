@@ -416,9 +416,9 @@ class user_account_controller {
 	        //微信再次充值入口（浏览器充值方式兼容处理）
 	        if(cart_function::is_weixin() == true){//微信浏览器 
 	        	if($data['payment_name'] == '微信支付') {
-	        		ecjia_front::$controller->assign('recharge_action', 'again');//again选择支付方式
-	        	} else{
 	        		ecjia_front::$controller->assign('recharge_action', 'direct');//直接支付
+	        	} else{
+	        		ecjia_front::$controller->assign('recharge_action', 'again');//again选择支付方式
 	        	} 
 	        } else {//其他浏览器
 	        	if($data['payment_name'] == '支付宝') {
