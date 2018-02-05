@@ -32,8 +32,8 @@ ecjia.touch.user_account.init();
 		        <li class="ecjia-account-padding-input user_pay_way">
 		            <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}">
                 		<label for="{$list.pay_code}" class="ecjiaf-fr ecjia-check" value="10">
-                		<input type="radio" id="{$list.pay_code}" name="pay_code" value="{$list.pay_code}" {if $list.checked}checked="true"{/if}>
-                		<input type="hidden" name="pay_id" value="{$list.pay_id}" >
+                		<input type="radio" id="{$list.pay_code}" name="payment_id" value="{$list.pay_id}" {if $list.checked}checked="true"{/if}>
+                		<input type="hidden" name="pay_code" value="{$list.pay_code}" >
                 		</label>
 		            	{$list.pay_name}
 		            </span>
