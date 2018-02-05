@@ -4824,14 +4824,14 @@ footer {
 }
 
 .ecjia-account .help-text {
-	height:50px;
+	height:100px;
 	background: #ffecca;
-	line-height:50px;
 }
 
 .ecjia-account .help-text p{
  	margin-left:1em;
 	color: #fc8d41;
+	padding-top: 1em;
 }
 
 .ecjia-account .account-user-money {
