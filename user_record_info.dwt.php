@@ -45,9 +45,9 @@ ecjia.touch.user.record_cancel();
                 <input name="brownser_wx" type="hidden" value="{$brownser_wx}" />
                 <input name="brownser_other" type="hidden" value="{$brownser_other}" />
                 
-        		<input class="btn ecjia-fl btn-c" id="record_cancel" name="record_cancel" data-url="{url path='user/account/record_cancel'}" type="button" value="{t}取消{/t}" />
+        		<input class="btn ecjia-fl btn-c nopjax" id="record_cancel" name="record_cancel" data-url="{url path='user/account/record_cancel'}" type="button" value="{t}取消{/t}" />
         		{if $recharge_action eq 'again'}
-        			<a  class="btn ecjiaf-fr ecjia-fl"href="{RC_Uri::url('user/account/recharge_again')}&format_amount={$sur_amount.format_amount}&order_sn={$sur_amount.order_sn}&account_id={$sur_amount.account_id}" class="btn nopjax">{t}充值{/t}</a>
+        			<a  class="btn ecjiaf-fr ecjia-fl"href="{RC_Uri::url('user/account/recharge_again')}&format_amount={$sur_amount.format_amount}&order_sn={$sur_amount.order_sn}&account_id={$sur_amount.account_id}" >{t}充值{/t}</a>
         		{else}
 					{if $sur_amount.payment_name eq '微信支付'}
 	        			<input class="btn ecjiaf-fr ecjia-fl" name="record_sure" data-url="{url path='user/account/recharge_account'}" type="button" value="{t}充值{/t}" />
