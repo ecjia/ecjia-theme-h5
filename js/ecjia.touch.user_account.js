@@ -122,12 +122,17 @@
 						$('.pay-btn').removeClass("payment-bottom")
 						$('.pay-btn').removeAttr("disabled"); 
 						$('.pay-btn').val(alipay_btn_html);
-						
 						if (data.state == 'error') {
 							ecjia.touch.showmessage(data);
 							return false;
 						}
-						location.href = data.redirect_url;
+						if (data.redirect_url) {
+							location.href = data.redirect_url;
+						} else if(data.weixin_data) {
+							$('.wei-xin-pay').html("");
+							$('.wei-xin-pay').html(data.weixin_data);
+							callpay();
+						}
 					}
 				});
 			});

@@ -47,7 +47,7 @@ ecjia.touch.user_account.init();
     	<div class="text-center account-top">
     		<input class="btn btn-recharge pay-btn" name="submit" type="submit" value="{t}继续充值{/t}" />
     	</div>
-    	
+    	<div class="wei-xin-pay hide"></div>
     </div>	
 </form>
 <!-- {/block} -->
