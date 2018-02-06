@@ -7,6 +7,7 @@
 		init: function() {
 			 ecjia.touch.user_account.wxpay_user_account();
 			 ecjia.touch.user_account.btnflash();
+			 ecjia.touch.user_account.btnpay();
 		},
 
 		wxpay_user_account: function() {
@@ -85,6 +86,36 @@
 						$('.la-ball-atom').remove();
 						$('.alipay-btn').removeAttr("disabled"); 
 						$('.alipay-btn').val(alipay_btn_html);
+						
+						if (data.state == 'error') {
+							ecjia.touch.showmessage(data);
+							return false;
+						}
+						location.href = data.redirect_url;
+					}
+				});
+			});
+		},
+		
+		//继续充值
+		btnpay : function() {
+			$('.pay-btn').off('click').on('click', function(e) {
+				e.preventDefault();
+				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+				
+				var alipay_btn_html = $(this).val();
+				$(this).val("请求中...");
+				$(this).attr("disabled", true); 
+				$(this).addClass("payment-bottom");
+				var url = $("form[name='useraccountForm']").attr('action');
+				$("form[name='useraccountForm']").ajaxSubmit({
+					type: 'post',
+					url: url,
+					dataType: "json",
+					success: function(data) {
+						$('.pay-btn').removeClass("payment-bottom")
+						$('.pay-btn').removeAttr("disabled"); 
+						$('.pay-btn').val(alipay_btn_html);
 						
 						if (data.state == 'error') {
 							ecjia.touch.showmessage(data);
