@@ -31,9 +31,8 @@ ecjia.touch.user_account.init();
 		    <!-- {foreach from=$payment_list item=list} -->
 		        <li class="ecjia-account-padding-input user_pay_way">
 		            <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}">
-                		<label for="{$list.pay_code}" class="ecjiaf-fr ecjia-check" value="10">
-                		<input type="radio" id="{$list.pay_code}" name="payment_id" value="{$list.pay_id}" {if $list.checked}checked="true"{/if}>
-                		<input type="hidden" name="pay_code" value="{$list.pay_code}" >
+                		<label for="{$list.pay_id}" class="ecjiaf-fr ecjia-check">
+                			<input type="radio" id="{$list.pay_id}" name="pay_id" value="{$list.pay_id}"{if $list.checked}checked="true"{/if} >
                 		</label>
 		            	{$list.pay_name}
 		            </span>
@@ -41,20 +40,13 @@ ecjia.touch.user_account.init();
 		    <!-- {/foreach} -->
 		    </ul>
 	    {/if}
-    	<input name="act" type="hidden" value="profile" />
     	<input name="order_sn" type="hidden" value="{$order_sn}" />
     	<input name="account_id" type="hidden" value="{$account_id}" />
-    	<input name="payment_id" type="hidden" value="{$payment_id}" />
-    	{if $brownser}
-	    	<div class=" text-center account-top">
-	    		<input class="btn btn-recharge wxpay-btn" name="submit" type="submit" value="{t}确认充值{/t}" />
-	    	</div>
-    		<div class="wei-xin-pay hide"></div>
-    	{else}
-	    	<div class=" text-center account-top">
-	    		<input class="btn btn-recharge alipay-btn" type="button" value="{t}确认充值{/t}" />
-	    	</div>
-    	{/if}
+    	
+    	<div class="text-center account-top">
+    		<input class="btn btn-recharge pay-btn" name="submit" type="submit" value="{t}继续充值{/t}" />
+    	</div>
+    	
     </div>	
 </form>
 <!-- {/block} -->
