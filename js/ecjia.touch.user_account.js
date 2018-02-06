@@ -107,6 +107,12 @@
 				$(this).val("请求中...");
 				$(this).attr("disabled", true); 
 				$(this).addClass("payment-bottom");
+				
+				if ($("input[name='pay_id']:checked").val() == null) {
+					alert("请选择支付方式");
+					return false;
+				} 
+				
 				var url = $("form[name='useraccountForm']").attr('action');
 				$("form[name='useraccountForm']").ajaxSubmit({
 					type: 'post',
