@@ -528,23 +528,18 @@ class user_account_controller {
     	if (empty($payment_id)) {
     		return ecjia_front::$controller->showmessage(__('请选择支付方式'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
-    	_dump($_SESSION['wxpay_open_id']);
+    	
     	$pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $account_id, 'payment_id' => $payment_id, 'wxpay_open_id' => $_SESSION['wxpay_open_id']))->run();
     	if (!is_ecjia_error($pay)) {
     		$pay_online = array_get($pay, 'payment.private_data.pay_online', array_get($pay, 'payment.pay_online'));
-    		_dump($pay_online);
     		if (array_get($pay, 'payment.pay_code') == 'pay_alipay') {
-    			_dump("aa",1);
     			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('redirect_url' => $pay_online, 'pay_name' => 'ali'));
     		} else if (array_get($pay, 'payment.pay_code') == 'pay_wxpay'){
-    			_dump("bb",1);
     			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('weixin_data' => $pay_online, 'pay_name' => 'weixin'));
     		} else {
-    			_dump("cc",1);
     			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('redirect_url' => $pay_online, 'pay_name' => 'redirect'));
     		}
     	} else {
-    		_dump("ceshi",1);
     		return ecjia_front::$controller->showmessage($pay->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}		
     }
