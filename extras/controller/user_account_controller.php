@@ -453,16 +453,15 @@ class user_account_controller {
     	$cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
     	$cache_id = sprintf('%X', crc32($cache_id));
     	
-    	ecjia_front::$controller->assign('format_amount', $_GET['format_amount']);
-    	ecjia_front::$controller->assign('order_sn', $_GET['order_sn']);
-    	ecjia_front::$controller->assign('account_id', $_GET['account_id']);
-    	
     	if (!ecjia_front::$controller->is_cached('user_account_recharge_again.dwt', $cache_id)) {
+
+    		ecjia_front::$controller->assign('format_amount', $_GET['format_amount']);
+    		ecjia_front::$controller->assign('account_id', $_GET['account_id']);
+    		 
 	        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
 	        $user = is_ecjia_error($user) ? array() : $user;
 	        $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->run();
 	        $pay = is_ecjia_error($pay) ? array() : $pay;
-	        
 	        if (!empty($pay['payment'])) {
 	            foreach ($pay['payment'] as $key => $val) {
 	                if ($val['is_online'] == '0' || $val['pay_code'] == 'pay_balance') {
@@ -483,7 +482,6 @@ class user_account_controller {
 	                        $_SESSION['wxpay_open_id'] = $open_id;
 	                    }
 	                }
-	                ecjia_front::$controller->assign('brownser', 1);
 	            } else {
 	                foreach ($pay['payment'] as $key => $val) {
 	                    if ($val['pay_code'] == 'pay_wxpay') {
@@ -492,10 +490,28 @@ class user_account_controller {
 	                }
 	            }
 	        }
-	   
-	        $pay['payment'][array_keys($pay['payment'])[0]]['checked'] = true;
+
+	        //获取对应的pay_code,判断是否支持
+	        $payment_info = with(new Ecjia\App\Payment\PaymentPlugin)->getPluginDataById($_GET['payment_id']);
+	        $pay_code = $payment_info['pay_code'];
+	        
+	        foreach($pay['payment'] as $key=>$val){
+	        	if(in_array($pay_code, $val)) {
+	        		$pay['payment'][$key]['checked'] = true;
+	        	}
+	        }
             ecjia_front::$controller->assign('payment_list', $pay['payment']);
-         
+            
+            $pay_array = $pay['payment'];
+            $new_array = array();
+            foreach ($pay_array as $key=>$val){
+            	$new_array[$val['pay_code']] = $val;
+            }
+            $new_array = array_keys($new_array);
+            if (in_array($pay_code, $new_array)) {
+            	ecjia_front::$controller->assign('pay_msg', 'pay_msg');
+            }
+            
             ecjia_front::$controller->assign('user', $user);
             ecjia_front::$controller->assign_title('继续充值');
         }
@@ -509,6 +525,9 @@ class user_account_controller {
     public static function recharge_again_account() {
     	$account_id = intval($_POST['account_id']);
     	$payment_id = intval($_POST['pay_id']);
+    	if (empty($payment_id)) {
+    		return ecjia_front::$controller->showmessage(__('请选择支付方式'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
     	
     	$pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $account_id, 'payment_id' => $payment_id, 'wxpay_open_id' => $_SESSION['wxpay_open_id']))->run();
     	if (!is_ecjia_error($pay)) {

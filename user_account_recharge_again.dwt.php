@@ -17,7 +17,10 @@ ecjia.touch.user_account.init();
 <!-- {block name="main-content"} -->
 <form class="ecjia-account ecjia-form user-profile-form" name="useraccountForm" action="{url path='user/account/recharge_again_account'}" method="post">
     <div class="ecjia-form ecjia-account ecjia-flow-done ecjia-pay">
-    	<div class="help-text"><p>{t}当前订单不支持原有支付方式，请切换新的支付方式继续支付。{/t}</p></div>
+    	{if !$pay_msg}
+    		<div class="help-text"><p>{t}当前订单不支持原有支付方式，请切换新的支付方式继续支付。{/t}</p></div>
+    	{/if}
+    	
     	<div class="account-user-money">{$format_amount}</div>
     	<div class="account-user-info">{t}为账户【{$user.name}】充值{/t}</div>
     	
@@ -40,9 +43,7 @@ ecjia.touch.user_account.init();
 		    <!-- {/foreach} -->
 		    </ul>
 	    {/if}
-    	<input name="order_sn" type="hidden" value="{$order_sn}" />
     	<input name="account_id" type="hidden" value="{$account_id}" />
-    	
     	<div class="text-center account-top">
     		<input class="btn btn-recharge pay-btn" name="submit" type="submit" value="{t}继续充值{/t}" />
     	</div>
