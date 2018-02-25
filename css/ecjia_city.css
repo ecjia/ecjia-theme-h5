@@ -7925,6 +7925,19 @@ footer {
 	font-style: normal;
 }
 
+/*兼容iPhone X*/
+@media only screen and (device-width: 375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) {
+    .ecjia-bottom-bar-pannel {
+        height: 70px; 
+    }
+    .store-add-cart.a4w {
+		height: 68px;
+    }
+    .store-add-cart.a4w .a4z {
+		bottom: 20px;
+    }
+}
+
 .ecjia-bottom-bar-pannel a {
 	display: inline-block;
 	vertical-align: top;
