@@ -7925,19 +7925,6 @@ footer {
 	font-style: normal;
 }
 
-/*兼容iPhone X*/
-@media only screen and (device-width: 375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) {
-    .ecjia-bottom-bar-pannel {
-        height: 70px; 
-    }
-    .store-add-cart.a4w {
-		height: 68px;
-    }
-    .store-add-cart.a4w .a4z {
-		bottom: 20px;
-    }
-}
-
 .ecjia-bottom-bar-pannel a {
 	display: inline-block;
 	vertical-align: top;
@@ -11457,3 +11444,63 @@ footer {
 .ecjia-shipping-fee-modal .item .notice-title{text-align:left;padding-top:1em;line-height:1em;font-weight:500}
 .ecjia-shipping-fee-modal .item .notice{color:#999;font-size:.7em;text-align:left}
 
+/*兼容iPhone X*/
+@media only screen and (device-width: 375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) {
+    .ecjia-bottom-bar-pannel {
+        height: 70px; 
+    }
+    .store-add-cart.a4w {
+		height: 68px;
+    }
+    .store-add-cart.a4w .a4z {
+		bottom: 20px;
+    }
+    .ecjia-discover-detail .nav-bt-fix {
+		bottom: 20px;
+    }
+    .ecjia-user.ecjia-margin-b {
+		padding-bottom: 70px;
+    }
+    .ecjia-mod.ecjia-mod-pb35 {
+		padding-bottom: 4.5em;
+    }
+    .ecjia-download {
+		bottom: 70px;
+    }
+    .ecjia-store-model {
+		padding-bottom: 70px;
+    }
+    .category .category_right {
+		padding-bottom: 5em;
+    }
+    .category .category_left {
+		bottom: 4.5em;
+    }
+    .ecjia-store-goods .a1n .a1x {
+		bottom: 3em;
+    }
+    .ecjia-store-goods .a1o {
+		padding-bottom: 6em;
+    }
+    .ecjia-goods-basic-info {
+		padding-bottom: 68px;
+    }
+    .goods-desc-info {
+		padding-bottom: 8em;
+    }
+    .ecjia-order-detail .ecjia-checkout .flow-goods-list {
+		padding-bottom: 5.4em;
+    }
+    .ecjia-order-detail .order-ft-link, .ecjia-address-list .order-ft-link {
+		height: 4.6em;
+    }
+    .ecjia-checkout-bonus .two-btn {
+		padding-bottom: 2em;
+    }
+    .ecjia-spread .spread-bottom-bar-pannel {
+		height: 70px;
+    }
+    .ecjia-store-goods-list {
+		margin-bottom: 68px;
+    }
+}
