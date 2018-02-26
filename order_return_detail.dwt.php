@@ -20,11 +20,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="ecjia-checkout ecjia-margin-b">
 		<div class="flow-goods-list">
 			<div class="order-status-head">
-			    <a href="{url path='user/order/return_detail'}&order_id={$order_id}&type={'status'}">
+			    <a href="{url path='user/order/return_detail'}&refund_sn={$data.refund_sn}&type={'status'}">
 			        <span class="order-status-img"><p></p><img src="{$theme_url}images/address_list/50X50_2.png"></span>
 			        <div class="order-status-msg">
-	    		        <span><span class="order-head-font">售后服务单已提交</span><span class="ecjiaf-fr order-color">2017-11-25 13:52:22</span></span>
-	    		        <p class="ecjia-margin-t status"><span class="order-color order-status">操作员：买家</span><span class="ecjiaf-fr more-status">更多状态 ></span></p>
+	    		        <span><span class="order-head-font">{$refund_logs.label_status}</span><span class="ecjiaf-fr order-color">{$refund_logs.formatted_action_time}</span></span>
+	    		        <p class="ecjia-margin-t status"><span class="order-color order-status">{$refund_logs.log_description}</span><span class="ecjiaf-fr more-status">更多状态 ></span></p>
 			        </div>
 		        </a>
 	        </div>
@@ -89,27 +89,27 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			
 			<div class="return-item">
 				<div class="c9">
-					<p><i class="c6">¥6.01</i><b>退商品金额</b></p>
-					<p><i class="c6">¥6.01</i><b>退配送费</b><i class="k0 shipping_fee_notice"></i></p>
-					<p><i class="c6 ecjia-red">¥6.01</i><b>退总金额</b></p>
+					<p><i class="c6">{$data.refund_goods_amount}</i><b>退商品金额</b></p>
+					<p><i class="c6">{$data.shipping_fee}</i><b>退配送费</b><i class="k0 shipping_fee_notice"></i></p>
+					<p><i class="c6 ecjia-red">{$data.refund_total_amount}</i><b>退总金额</b></p>
 					<p class="ca"><span>温馨提示:</span><b>退商品金额是按照您实际支付的商品金额进行退回，如有问题，请联系商家到家客服。</b></p>
 				</div>
 			</div>
 			
 			<p class="select-title ecjiaf-fwb ecjia-margin-l">问题描述</p>
 			<div class="co">
-				<p class="cp"><span>售后原因：</span><b>误购</b></p>
-				<p class="cp"><span>问题描述：</span><b>没看清，不好意思</b></p>
+				<p class="cp"><span>售后原因：</span><b>{$data.reason}</b></p>
+				<p class="cp"><span>问题描述：</span><b>暂无</b></p>
+				{if $data.return_images}
 				<p class="cq">
 					<span>售后图片：</span>
 					<b>
-						<img src="{$theme_url}images/no_goods.png">
-						<img src="{$theme_url}images/no_goods.png">
-						<img src="{$theme_url}images/no_goods.png">
-						<img src="{$theme_url}images/no_goods.png">
-						<img src="{$theme_url}images/no_goods.png">
+						<!-- {foreach from=$data.return_images item=img} -->
+						<img src="{$img}">
+						<!-- {/foreach} -->
 					</b>
 				</p>
+				{/if}
 			</div>
 			
 			<p class="select-title ecjiaf-fwb ecjia-margin-l">取货信息</p>
@@ -120,9 +120,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 
 			<div class="order-ft-link">
-				<a class="btn btn-small btn-hollow external" href="{if $order.service_phone}tel://{$order.service_phone}{else}javascript:alert('无法联系卖家');{/if}">联系卖家</a>
-				<a class="btn btn-small btn-hollow undo_reply" href='{url path="user/order/undo_reply" args="order_id={$order_id}"}'>撤销申请</a>
+				<a class="btn btn-small btn-hollow external" href="{if $data.store_service_phone}tel://{$data.store_service_phone}{else}javascript:alert('无法联系卖家');{/if}">联系卖家</a>
+				<a class="btn btn-small btn-hollow undo_reply" href='{url path="user/order/undo_reply" args="order_id={$order_id}&refund_sn={$data.refund_sn}"}'>撤销申请</a>
+				{if $data.refund_type eq 'return'}
 				<a class="btn btn-small btn-hollow data-pjax" href='{url path="user/order/return_way_list" args="order_id={$order_id}"}'>返还方式</a>
+				{/if}
 			</div>
 		</div>
 	</div>

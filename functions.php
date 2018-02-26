@@ -201,6 +201,7 @@ RC_Loader::load_theme('extras/controller/user_order_controller.php');
 RC_Hook::add_action('user/order/order_list', array('user_order_controller', 'order_list'));
 RC_Hook::add_action('user/order/order_cancel', array('user_order_controller', 'order_cancel'));
 RC_Hook::add_action('user/order/async_order_list', array('user_order_controller', 'async_order_list'));
+RC_Hook::add_action('user/order/async_return_order_list', array('user_order_controller', 'async_return_order_list'));
 RC_Hook::add_action('user/order/order_detail', array('user_order_controller', 'order_detail'));
 RC_Hook::add_action('user/order/affirm_received', array('user_order_controller', 'affirm_received'));
 RC_Hook::add_action('user/order/comment_list', array('user_order_controller', 'comment_list'));

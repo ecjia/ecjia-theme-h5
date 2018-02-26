@@ -695,23 +695,36 @@
 		},
 		
 		form: function() {
-			$("form[name='theForm']").on('submit', function(e) {
+			$('input[name="add-return-btn"]').on('click', function(e) {
 				e.preventDefault();
-				return false;
-			}).Validform({
-				tiptype: function(msg, o, cssctl) {
-					//msg：提示信息;
-					//o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
-					//cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
-					if (o.type == 3) {
-						alert(msg);
+				var url = $("form[name='theForm']").attr('action');
+				$("form[name='theForm']").ajaxSubmit({
+					type: 'post',
+					url: url,
+					dataType: "json",
+					success: function(data) {
+						ecjia.touch.showmessage(data);
 					}
-				},
-				ajaxPost: true,
-				callback: function(data) {
-					ecjia.touch.showmessage(data);
-				}
+				});
 			});
+			
+//			$("form[name='theForm']").on('submit', function(e) {
+//				e.preventDefault();
+//				return false;
+//			}).Validform({
+//				tiptype: function(msg, o, cssctl) {
+//					//msg：提示信息;
+//					//o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+//					//cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+//					if (o.type == 3) {
+//						alert(msg);
+//					}
+//				},
+//				ajaxPost: true,
+//				callback: function(data) {
+//					ecjia.touch.showmessage(data);
+//				}
+//			});
 		},
 		
 		shipping_fee_notice: function() {
