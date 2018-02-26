@@ -123,13 +123,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<a class="btn btn-small btn-hollow" href='{url path="user/order/affirm_received" args="order_id={$order.order_id}"}'>确认收货</a>
 				{/if}
 				
-<!-- 				{if $order.order_status gt 1 || ($order.shipping_status eq 0 && $order.pay_status neq 0)}  -->
-<!-- 					<a class="btn btn-small btn-hollow" href='{url path="user/order/buy_again" args="order_id={$order.order_id}"}'>再次购买</a> -->
-<!-- 				{/if} -->
-				
 				{if $order.shipping_status eq 2} 
 					<a class="btn btn-small btn-hollow" href='{url path="user/order/comment_list" args="order_id={$order.order_id}"}'>评价晒单</a>
+					{if !$order.refund_info}
 					<a class="btn btn-small btn-hollow" href='{url path="user/order/return_list" args="order_id={$order.order_id}"}'>售后</a>
+					{else}
+					<a class="btn btn-small btn-hollow" href='{url path="user/order/return_list" args="order_id={$order.order_id}&refund_sn={$order.refund_info.refund_sn}"}'>售后详情</a>
+					{/if}
 				{/if}
 			</div>
 		</div>
