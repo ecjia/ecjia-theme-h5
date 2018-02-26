@@ -10713,6 +10713,10 @@ footer {
     background: #ff3434;
 }
 
+.ecjia-user.ecjia-list-three a p img {
+	width: 2em;
+}
+
 /*闪惠*/
 .quickpay .checkout {
     height: auto;
