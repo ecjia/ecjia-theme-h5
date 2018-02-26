@@ -77,6 +77,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<div class="choose_reason">
 							<span>请选择售后原因</span>
 							<img src="{$theme_url}images/address_list/down_eee.png"></i>
+							<input type="hidden" name="reason_id" />
 						</div>
 					</li>
 					<li class="return-reason">
@@ -128,6 +129,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			
 			<div class="order-ft-link">
 				<input type="hidden" name="order_id" value="{$order_id}">
+				<input type="hidden" name="refund_type" value="{$type}">
 				<input class="btn btn-small btn-hollow" name="add-return-btn" type="submit" value="提交"/>
 			</div>
 		</div>

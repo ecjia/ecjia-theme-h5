@@ -609,7 +609,17 @@
 		choose_reason: function() {
 			var App = new Framework7();
 			var reason_list = eval($('input[name="reason_list"]').val());
-			
+			var reason_id = [];
+			var reason_value = [];
+			if (reason_list == undefined) {
+				return false;
+			}
+	        for (i = 0; i < reason_list.length; i++) {
+	            var id = reason_list[i]['reason_id'];
+	            var name = reason_list[i]['reason_name'];
+	            reason_id.push(id);
+	            reason_value.push(name);
+	        };
 			var pickerStreetToolbar = App.picker({
 			    input: '.choose_reason',
 			    cssClass: 'choose_reason_modal',
@@ -626,7 +636,8 @@
 			        '</div>',
 			    cols: [
 			        {
-			            values: reason_list,
+			            values: reason_id,
+			            displayValues: reason_value
 			        },
 			    ],
 			    onOpen: function (picker) {
@@ -636,8 +647,10 @@
 			    	}
 			    	
 			        picker.container.find('.save-picker').on('click', function () {
-			        	var value = picker.cols[0].container.find('.picker-selected').attr('data-picker-value');
-			        	$('.choose_reason').children('span').html(value);
+			        	var reason_name = picker.cols[0].container.find('.picker-selected').html();
+			        	var reason_id = picker.cols[0].container.find('.picker-selected').attr('data-picker-value');
+			        	$('.choose_reason').children('span').html(reason_name);
+			        	$('input[name="reason_id"]').val(reason_id);
 			        	picker.close();
 			        	remove_overlay();
 			        });
