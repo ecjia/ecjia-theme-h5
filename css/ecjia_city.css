@@ -8281,7 +8281,6 @@ footer {
 	position: relative;
 	background-color: #fff;
 	overflow-x: hidden;
-	box-shadow: 0 0 10px 0 rgba(155,143,143,0.6);
 }
 
 .ecjia-spread .spread-bottom-bar-pannel .tab5 li {
@@ -9838,6 +9837,7 @@ footer {
 	max-width: 640px;
 	border-radius: 4px;
 	background: #fff;
+	height: 4em;
 }
 
 .ecjia-address-list .ecjia-margin-t.jm a {
@@ -10537,6 +10537,7 @@ footer {
 	font-size: 1.2em;
 	line-height: 1.5em;
 	border-top: 1px solid #eee;
+	heigth: 3em;
 }
 
 .ecjia-discover-detail .nav-bt-fix .nav-bt-center {
@@ -11456,7 +11457,7 @@ footer {
 		bottom: 20px;
     }
     .ecjia-discover-detail .nav-bt-fix {
-		bottom: 20px;
+		height: 4em;
     }
     .ecjia-user.ecjia-margin-b {
 		padding-bottom: 70px;
@@ -11498,9 +11499,34 @@ footer {
 		padding-bottom: 2em;
     }
     .ecjia-spread .spread-bottom-bar-pannel {
-		height: 70px;
+		padding-bottom: 20px;
+    	height: 70px;
     }
     .ecjia-store-goods-list {
 		margin-bottom: 68px;
+    }
+    .ecjia .pb_50 {
+		padding-bottom: 70px;
+    }
+    .ecjia-discover-detail .floor.comment-floor {
+		padding-bottom: 5em;
+    }
+    .ecjia-address-list .p_b5 {
+		padding-bottom: 6em;
+    }
+    .ecjia-address-list .ecjia-margin-t.jm {
+		height: 5em;
+    }
+    .picker-modal {
+		height: 280px;
+    }
+    .ecjia-push-comment {
+		height: 5em;
+    }
+    .ecjia-account .btn-bottom {
+		margin-bottom: 2.2em;
+    }
+    .ecjia-article .ecjia-list {
+		padding-bottom: 20px;
     }
 }
