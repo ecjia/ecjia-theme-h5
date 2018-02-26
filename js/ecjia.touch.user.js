@@ -438,8 +438,61 @@
 		},
 
 		cancel_order: function() {
+			//未付款订单
+			$('.cancel_order_unpay').off('click').on('click', function(e) {
+				e.preventDefault();
+				var myApp = new Framework7();
+				var url = $(this).attr('href');
+				myApp.modal({
+					title: '您确定要取消该订单吗？',
+					buttons: [{
+						text: '取消',
+					}, {
+						text: '确定',
+						onClick: function() {
+							$.post(url, function(data) {
+								ecjia.touch.showmessage(data);
+							});
+						},
+					}]
+				});
+			});
+			
+			$('.affirm_received').off('click').on('click', function(e) {
+				e.preventDefault();
+				var myApp = new Framework7();
+				var url = $(this).attr('href');
+				alert(1);
+				myApp.modal({
+					title: '您确定要确认收货吗？',
+					buttons: [{
+						text: '取消',
+					}, {
+						text: '确定',
+						onClick: function() {
+							$.post(url, function(data) {
+								ecjia.touch.showmessage(data);
+							});
+						},
+					}]
+				});
+			});
+
+			
 			var App = new Framework7();
 			var reason_list = eval($('input[name="reason_list"]').val());
+			var reason_id = [];
+			var reason_value = [];
+			if (reason_list == undefined) {
+				return false;
+			}
+			
+	        for (i = 0; i < reason_list.length; i++) {
+	            var id = reason_list[i]['reason_id'];
+	            var name = reason_list[i]['reason_name'];
+	            reason_id.push(id);
+	            reason_value.push(name);
+	        };
 			
 			var pickerStreetToolbar = App.picker({
 			    input: '.cancel_order',
@@ -458,7 +511,8 @@
 			        '</div>',
 			    cols: [
 			        {
-			            values: reason_list,
+			            values: reason_id,
+			            displayValues: reason_value
 			        },
 			    ],
 			    onOpen: function (picker) {
@@ -484,25 +538,6 @@
 			    	picker.close();
 			    	remove_overlay();
 			    }
-			});
-			
-			$('.shipping_cancel_order').off('click').on('click', function(e) {
-				e.preventDefault();
-				var myApp = new Framework7();
-				var url = $(this).attr('href');
-				myApp.modal({
-					title: '您确定要取消该订单吗？',
-					buttons: [{
-						text: '取消',
-					}, {
-						text: '确定',
-						onClick: function() {
-							$.post(url, function(data) {
-								ecjia.touch.showmessage(data);
-							});
-						},
-					}]
-				});
 			});
 		},
 		
