@@ -6,6 +6,7 @@ Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
+{nocache}
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
@@ -40,28 +41,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<!-- {/foreach} -->
 				</ul>
 				
-				<ul class="goods-item">
-					<li>
-						<div class="ecjiaf-fl goods-img">
-							<img src="" alt="{$goods.name}" title="{$goods.name}" />
-						</div>
-						<div class="ecjiaf-fl goods-info">
-							<p class="ecjia-truncate2">精品红霞草莓32粒</p>
-							<p class="ecjia-goods-attr goods-attr">
-							<!-- {foreach from=$goods.goods_attr item=attr} -->
-							{if $attr.name}{$attr.name}:{$attr.value}{/if}
-							<!-- {/foreach} -->
-							</p>
-							<p class="ecjia-color-red goods-attr-price">￥19.90</p>
-						</div>
-						<span class="ecjiaf-fr goods-price"> x 1</span>
-					</li>
-				</ul>
-				
 				<ul class="ecjia-list">
-					<li>退商品金额<span class="ecjiaf-fr ">￥14.90</span></li>
-					<li>退配送费<i class="k0 shipping_fee_notice"></i><span class="ecjiaf-fr ">￥5.00</span></li>
-					<li>退总金额<span class="ecjiaf-fr ecjia-red">￥19.90</span></li>
+					<li>退商品金额<span class="ecjiaf-fr ">{$order.formated_goods_amount}</span></li>
+					<li>退配送费<i class="k0 shipping_fee_notice"></i><span class="ecjiaf-fr ">{$order.formated_shipping_fee}</span></li>
+					<li>退总金额<span class="ecjiaf-fr ecjia-red">{$order.formated_total_fee}</span></li>
 					<li class="notice">
 						<div class="notice-content">
 							<span class="title">温馨提示：</span>
@@ -138,3 +121,4 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <input type="hidden" name="reason_list" value='{$reason_list}'>
 <!-- #BeginLibraryItem "/library/shipping_fee_modal.lbi" --><!-- #EndLibraryItem -->
 <!-- {/block} -->
+{/nocache}

@@ -6859,6 +6859,10 @@ footer {
 	background-color: #fff;
 }
 
+.ecjia-order-detail .order-ft-link span.canceled {
+	color: #999;
+}
+
 .ecjia-order-detail .order-ft-link .btn-small {
 	margin: 0;
 	margin-right: 4%;
@@ -11424,14 +11428,14 @@ footer {
 .ecjia-order-detail.ecjia-return-way .cp .cs span{float:none;height:2.5em;width:1em;text-align:center}
 .ecjia-order-detail.ecjia-return-way .co{padding:5px 0}
 .ecjia-order-detail.ecjia-return-way .cp b{margin-left:9em;color:#999}
-.ecjia-order-detail.ecjia-return-way .cp{position:relative;height:3em;line-height:3em;border-bottom:none;padding:0}
+.ecjia-order-detail.ecjia-return-way .cp{position:relative;min-height:3em;line-height:3em;border-bottom:none;padding:0}
 .ecjia-order-detail.ecjia-return-way .cp.line{border-bottom:1px solid #eee}
 .ecjia-order-detail.ecjia-return-way .cp.text{height:auto;line-height:2em;padding:.5em 0}
 .ecjia-order-detail.ecjia-return-way .cr{position:absolute;left:9em;right:1em}
 .ecjia-order-detail.ecjia-return-way .cr input{width:100%;height:2.5em;border:1px solid #eee;background-color:#f7f7f7;border-radius:4px}
 .ecjia-order-detail.ecjia-return-way .ct input{border:0;background-color:#fff;text-align:right}
 .ecjia-order-detail.ecjia-return-way .cu{border:1px solid #eee;font-size:.7em;border-radius:4px;padding:2px 4px;background:#fff;line-height:1.5em;position:absolute;right:1em;top:1em;cursor:pointer;}
-.ecjia-order-detail.ecjia-return-way .cv{margin-right:4em}
+.ecjia-order-detail.ecjia-return-way .cv{margin-right:4em;line-height:2em;}
 
 .ecjia-shipping-fee-modal{width:300px;position:absolute;z-index:11000;left:47%;margin-left:-135px;margin-top:0;top:10em;text-align:center;border-radius:7px;opacity:0;color:#000;display:none;max-height:20em;overflow:auto;}
 .ecjia-shipping-fee-modal.modal-in{opacity:1;-webkit-transition-duration:.4s;transition-duration:.4s;-webkit-transform:translate3d(0,0,0) scale(1);transform:translate3d(0,0,0) scale(1)}

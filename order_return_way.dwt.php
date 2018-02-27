@@ -20,47 +20,52 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="ecjia-order-detail ecjia-return-way">
 		<div class="ecjia-checkout ecjia-margin-b">
 			<div class="flow-goods-list">
-				{if $type eq 'visit'}
+				{if $type eq 'home'}
 				<p class="select-title ecjiaf-fwb ecjia-margin-l">取件信息</p>
 				<div class="co">
-					<p class="cp"><span class="cs">取货方式：</span><b>上门取货</b></p>
-					<p class="cp"><span class="cs">取货地址：</span><b>上海市普陀区长风街道伸大厦301室</b></p>
-					<p class="cp"><span class="cs">期望取件时间：<span class="ecjia-red">*</span></span><label class="cr"><input type="text" name="expect_date"></label></p>
+					<p class="cp"><span class="cs">取货方式：</span><b>{$return_info.pickup_address}</b></p>
+					<p class="cp"><span class="cs">取货地址：</span><b>{$return_info.pickup_address}</b></p>
+					<p class="cp"><span class="cs">期望取件时间：<span class="ecjia-red">*</span></span><label class="cr"><input type="text" name="expect_pickup_time"></label></p>
 				</div>
 				
 				<p class="select-title ecjiaf-fwb ecjia-margin-l">联系人信息</p>
 				<div class="co">
-					<p class="cp"><span class="cs">联系人：</span><label class="cr"><input type="text" name="contact"></label></p>
-					<p class="cp"><span class="cs">联系电话：</span><label class="cr"><input type="text" name="contact_mobile"></label></p>
+					<p class="cp"><span class="cs">联系人：<span class="ecjia-red">*</span></span><label class="cr"><input type="text" name="contact_name"></label></p>
+					<p class="cp"><span class="cs">联系电话：<span class="ecjia-red">*</span></span><label class="cr"><input type="text" name="contact_phone"></label></p>
 				</div>
 	
-				{else if $type eq 'shipping'}
+				{else if $type eq 'express'}
 			
 				<p class="select-title ecjiaf-fwb ecjia-margin-l">返还地址</p>
 				<div class="co">
-					<p class="cp line"><span class="cs">收件人：</span><b>向xx</b><span class="cu copy-btn" data-clipboard-text="向xx">复制</span></p>
-					<p class="cp line"><span class="cs">联系方式：</span><b>18917865421</b><span class="cu copy-btn" data-clipboard-text="18917865421">复制</span></p>
-					<p class="cp"><span class="cs">收件地址：</span><b class="cv">上海市普陀区长风街道伸大厦301室</b><span class="cu copy-btn" data-clipboard-text="上海市普陀区长风街道伸大厦301室">复制</span></p>
+					<p class="cp line"><span class="cs">收件人：</span><b>{$return_info.recipients}</b><span class="cu copy-btn" data-clipboard-text="{$return_info.recipients}">复制</span></p>
+					<p class="cp line"><span class="cs">联系方式：</span><b>{$return_info.contact_phone}</b><span class="cu copy-btn" data-clipboard-text="{$return_info.contact_phone}">复制</span></p>
+					<p class="cp"><span class="cs">收件地址：</span><b class="cv">{$return_info.recipient_address}</b><span class="cu copy-btn" data-clipboard-text="{$return_info.recipient_address}">复制</span></p>
+					
+					<input type="hidden" name="recipients" value="{$return_info.recipients}">
+					<input type="hidden" name="contact_phone" value="{$return_info.contact_phone}">
+					<input type="hidden" name="recipient_address" value="{$return_info.recipient_address}">
 				</div>
 				
 				<p class="select-title ecjiaf-fwb ecjia-margin-l">快递信息</p>
 				<div class="co">
-					<p class="cp line"><span class="cs">快递名称：</span><label class="cr ct"><input type="text" name="contact" placeholder="请输入快递名称"></label></p>
-					<p class="cp"><span class="cs">快递单号：</span><label class="cr ct"><input type="text" name="contact_mobile" placeholder="请输入快递单号"></label></p>
+					<p class="cp line"><span class="cs">快递名称：</span><label class="cr ct"><input type="text" name="shipping_name" placeholder="请输入快递名称"></label></p>
+					<p class="cp"><span class="cs">快递单号：</span><label class="cr ct"><input type="text" name="shipping_sn" placeholder="请输入快递单号"></label></p>
 				</div>
 				
-				{else if $type eq 'to_store'}
+				{else if $type eq 'shop'}
 				
 				<p class="select-title ecjiaf-fwb ecjia-margin-l">返还地址</p>
 				<div class="co">
-					<p class="cp line"><span class="cs">店铺名称：</span><b>xx旗舰店</b><span class="cu copy-btn" data-clipboard-text="xx旗舰店">复制</span></p>
-					<p class="cp line"><span class="cs">联系方式：</span><b>021-0000000</b><span class="cu copy-btn" data-clipboard-text="021-0000000">复制</span></p>
-					<p class="cp text"><span class="cs">店铺地址：</span><b class="cv">上海市普陀区长风街道伸大厦301室</b><span class="cu copy-btn" data-clipboard-text="上海市普陀区长风街道伸大厦301室">复制</span></p>
+					<p class="cp line"><span class="cs">店铺名称：</span><b>{$return_info.store_name}</b><span class="cu copy-btn" data-clipboard-text="{$return_info.store_name}">复制</span></p>
+					<p class="cp line"><span class="cs">联系方式：</span><b>{$return_info.contact_phone}</b><span class="cu copy-btn" data-clipboard-text="{$return_info.contact_phone}">复制</span></p>
+					<p class="cp text"><span class="cs">店铺地址：</span><b class="cv">{$return_info.store_address}</b><span class="cu copy-btn" data-clipboard-text="{$return_info.store_address}">复制</span></p>
 				</div>
 				
 				{/if}
 				<div class="order-ft-link">
-					<input type="hidden" name="order_id" value="{$order_id}">
+					<input type="hidden" name="refund_sn" value="{$refund_sn}">
+					<input type="hidden" name="type" value="{$type}">
 					<input class="btn btn-small btn-hollow" name="add-return-btn" type="submit" value="提交"/>
 				</div>
 			</div>

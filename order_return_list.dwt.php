@@ -6,10 +6,12 @@ Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
+{nocache}
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="main-content"} -->
 <div class="ecjia-user ecjia-margin-b">
+	{if !$refund_sn}
 	 <div class="ecjia-return-title">售后类型选择</div>
      <ul class="ecjia-list ecjia-return-list">
         <li>
@@ -38,29 +40,39 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
 		</li>
     </ul>
+    {/if}
     
+    {if $order_list}
     <div class="ecjia-return-title">售后进度查询</div>
     <div class="ecjia-return-list">
 		<div class="a7 ah">
-			<ul class="a8 ao">
-				<li class="ai">
-					<a class="data-pjax" href="{url path='user/order/return_detail'}&order_id={$order_id}">
-						<h4 class="aq">服务单号：<em>20564080</em></h4>
-						<div class="ar">
-							<span class="as"><img class="at" src=""></span>
-							<span class="as"><img class="at" src=""></span>
-							<span class="as"><img class="at" src=""></span>
-							<span class="as none"><img class="at" src=""></span>
-							<em class="av">共1件</em><em class="aw">退款：¥6.01</em>
-						</div>
-						<div class="ay h">
-							<img class="ab" src="{$theme_url}images/user_center/return_order.png"><span class="audit_result">退款, 退款成功</span><em class="sales_view_details">查看详情</em>
-						</div>
-					</a>
-				</li>
+			<ul class="a8 ao" id="J_ItemList" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/order/async_return_order_list'}&order_id={$order_id}" data-size="10" data-page="1">
+				<!-- 订单异步加载 -->
 			</ul>
 		</div>
-		
-     </div>
+	</div>
+	{/if}
 </div>
-<!-- {/block} -->	
+<!-- {/block} -->
+
+<!-- {block name="ajaxinfo"} -->
+<!-- {foreach from=$order_list item=list} -->
+<li class="ai">
+	<a class="data-pjax" href="{url path='user/order/return_detail'}&refund_sn={$list.refund_sn}">
+		<h4 class="aq">服务单号：<em>{$list.201802273453948}</em></h4>
+		<div class="ar">
+			<!-- {foreach from=$list.goods_list item=goods key=key} -->
+			{if $key lt 4}
+			<span class="as"><img class="at" src="{$goods.img.small}"></span>
+			{/if}
+			<!-- {/foreach} -->
+			<em class="av">共{$list.total_goods_number}件</em><em class="aw">退款：{$list.total_refund_amount}</em>
+		</div>
+		<div class="ay h">
+			<img class="ab" src="{$theme_url}images/user_center/return_order.png"><span class="audit_result">{$list.label_refund_type}，{$list.label_service_status}</span><em class="sales_view_details">查看详情</em>
+		</div>
+	</a>
+</li>
+<!-- {/foreach} -->
+<!-- {/block} -->
+{/nocache}

@@ -462,7 +462,6 @@
 				e.preventDefault();
 				var myApp = new Framework7();
 				var url = $(this).attr('href');
-				alert(1);
 				myApp.modal({
 					title: '您确定要确认收货吗？',
 					buttons: [{
@@ -524,7 +523,12 @@
 			        picker.container.find('.save-picker').on('click', function () {
 			        	picker.close();
 			        	remove_overlay();
+			        	
+			        	var reason_id = picker.cols[0].container.find('.picker-selected').attr('data-picker-value');
 			        	var url = $('.cancel_order').attr('href');
+			        	if (reason_id != undefined) {
+			        		url += '&reason_id=' + reason_id;
+			        	}
 			        	$.post(url, function(data) {
 							ecjia.touch.showmessage(data);
 						});
