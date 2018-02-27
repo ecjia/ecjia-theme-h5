@@ -488,7 +488,8 @@ class user_order_controller {
     	$params_order = array('token' => $token, 'order_id' => $order_id);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
     	$data = is_ecjia_error($data) ? array() : $data;
-    	$data['formated_shipping_fee_total'] = price_format(($data['shipping_fee'] + $data['pack_fee']));
+    	
+    	ecjia_front::$controller->assign('shipping_desc', $data['shipping_fee_desc']);
     	ecjia_front::$controller->assign('order', $data);
     	
     	ecjia_front::$controller->assign('order_id', $order_id);
@@ -505,6 +506,9 @@ class user_order_controller {
     	$type = !empty($_GET['type']) ? $_GET['type'] : 'detail';
     	$refund_sn = trim($_GET['refund_sn']);
     	ecjia_front::$controller->assign('refund_sn', $refund_sn);
+    	
+    	$order_id = !empty($_GET['order_id']) ? intval($_GET['order_id']) : 0;
+    	ecjia_front::$controller->assign('order_id', $order_id);
     	
     	$token = ecjia_touch_user::singleton()->getToken();
     	$params = array('token' => $token, 'refund_sn' => $refund_sn);

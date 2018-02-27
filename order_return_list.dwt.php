@@ -58,8 +58,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="ajaxinfo"} -->
 <!-- {foreach from=$order_list item=list} -->
 <li class="ai">
-	<a class="data-pjax" href="{url path='user/order/return_detail'}&refund_sn={$list.refund_sn}">
-		<h4 class="aq">服务单号：<em>{$list.201802273453948}</em></h4>
+	<a class="data-pjax" href="{url path='user/order/return_detail'}&order_id={$list.order_id}&refund_sn={$list.refund_sn}">
+		<h4 class="aq">服务单号：<em>{$list.refund_sn}</em></h4>
 		<div class="ar">
 			<!-- {foreach from=$list.goods_list item=goods key=key} -->
 			{if $key lt 4}

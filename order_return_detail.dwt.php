@@ -117,7 +117,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					{/if}
 					
 					{if $order.status eq 'refused'}
-						<a class="btn btn-small btn-hollow" href='{url path="user/order/return_reply" args="order_id={$order_id}"}'>重新申请</a>
+						<a class="btn btn-small btn-hollow" href='{url path="user/order/return_order" args="order_id={$order_id}&refund_sn={$order.refund_sn}&type={$order.refund_type}"}'>重新申请</a>
 					{/if}
 				{/if}
 				
