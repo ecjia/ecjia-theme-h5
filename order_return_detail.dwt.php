@@ -78,12 +78,68 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 			
 			{if $order.selected_returnway_info}
-			<p class="select-title ecjiaf-fwb ecjia-margin-l">取货信息{$order.refund_type}</p>
-			<div class="co">
-				<p class="cp"><span>取货方式：</span><b>{$order.selected_returnway_info.return_way_name}</b></p>
-				<p class="cp"><span>取货时间：</span><b>{$order.selected_returnway_info.expect_pickup_time}</b></p>
-				<p class="cp"><span>取货地址：</span><b>{$order.selected_returnway_info.pickup_address}</b></p>
-			</div>
+			<p class="select-title ecjiaf-fwb ecjia-margin-l">取货信息</p>
+				{if $order.selected_returnway_info.return_way_code eq 'home'}
+				<div class="co">
+					{if $order.selected_returnway_info.return_way_name}
+					<p class="cp"><span>退货方式：</span><b>{$order.selected_returnway_info.return_way_name}</b></p>
+					{/if}
+					{if $order.selected_returnway_info.expect_pickup_time}
+					<p class="cp"><span>取货时间：</span><b>{$order.selected_returnway_info.expect_pickup_time}</b></p>
+					{/if}
+					{if $order.selected_returnway_info.pickup_address}
+					<p class="cp"><span>取货地址：</span><b>{$order.selected_returnway_info.pickup_address}</b></p>
+					{/if}
+					{if $order.selected_returnway_info.contact_name}
+					<p class="cp"><span>联系人：</span><b>{$order.selected_returnway_info.contact_name}</b></p>
+					{/if}
+					{if $order.selected_returnway_info.contact_phone}
+					<p class="cp"><span>联系电话：</span><b>{$order.selected_returnway_info.contact_phone}</b></p>
+					{/if}
+				</div>
+				{/if}
+				
+				{if $order.selected_returnway_info.return_way_code eq 'express'}
+				<div class="co">
+					{if $order.selected_returnway_info.return_way_name}
+					<p class="cp"><span>退货方式：</span><b>{$order.selected_returnway_info.return_way_name}</b></p>
+					{/if}
+					{if $order.selected_returnway_info.recipients}
+					<p class="cp"><span>收件人：</span><b>{$order.selected_returnway_info.recipients}</b></p>
+					{/if}
+					{if $order.selected_returnway_info.contact_phone}
+					<p class="cp"><span>联系方式：</span><b>{$order.selected_returnway_info.contact_phone}</b></p>
+					{/if}
+					{if $order.selected_returnway_info.recipient_address}
+					<p class="cp"><span>收件地址：</span><b>{$order.selected_returnway_info.recipient_address}</b></p>
+					{/if}
+					{if $order.selected_returnway_info.shipping_name}
+					<p class="cp"><span>快递名称：</span><b>{$order.selected_returnway_info.shipping_name}</b></p>
+					{/if}
+					{if $order.selected_returnway_info.shipping_sn}
+					<p class="cp"><span>快递单号：</span><b>{$order.selected_returnway_info.shipping_sn}</b></p>
+					{/if}
+				</div>
+				{/if}
+				
+				{if $order.selected_returnway_info.return_way_code eq 'shop'}
+				<div class="co">
+					{if $order.selected_returnway_info.return_way_name}
+					<p class="cp"><span>退货方式：</span><b>{$order.selected_returnway_info.return_way_name}</b></p>
+					{/if}
+					{if $order.selected_returnway_info.store_name}
+					<p class="cp"><span>店铺名称：</span><b>{$order.selected_returnway_info.store_name}</b></p>
+					{/if}
+					{if $order.selected_returnway_info.contact_phone}
+					<p class="cp"><span>联系方式：</span><b>{$order.selected_returnway_info.contact_phone}</b></p>
+					{/if}
+					{if $order.selected_returnway_info.store_address}
+					<p class="cp"><span>店铺地址：</span><b>{$order.selected_returnway_info.store_address}</b></p>
+					{/if}
+				</div>
+				{/if}
+			
+			
 			{/if}
 
 			<div class="order-ft-link">

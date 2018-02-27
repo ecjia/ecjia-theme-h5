@@ -110,7 +110,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</ul>
 			<div class="order-ft-link">
 				<a class="btn btn-small btn-hollow external" href="{if $order.service_phone}tel://{$order.service_phone}{else}javascript:alert('无法联系卖家');{/if}">联系卖家</a>
-				
 				{if !$order.refund_info}
 					{if $order.order_status_code eq 'await_pay'}
 						<a class="btn btn-small btn-hollow cancel_order_unpay" href='{url path="user/order/order_cancel" args="order_id={$order.order_id}"}'>取消订单</a>
@@ -136,9 +135,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				
 				{if $order.shipping_status eq 2}
 				<a class="btn btn-small btn-hollow" href='{url path="user/order/comment_list" args="order_id={$order.order_id}"}'>评价晒单</a>
-					{if $order.order_status_code eq 'refunded' || $order.order_status_code eq 'finished'}
-					<a class="btn btn-small btn-hollow" href='{url path="user/order/return_list" args="order_id={$order.order_id}{if $order.refund_info}&refund_sn={$order.refund_info.refund_sn}{/if}"}'>售后</a>
-					{/if}
+				{/if}
+				
+				{if $order.order_status_code eq 'refunded' || $order.order_status_code eq 'finished'}
+				<a class="btn btn-small btn-hollow" href='{url path="user/order/return_list" args="order_id={$order.order_id}{if $order.refund_info}&refund_sn={$order.refund_info.refund_sn}{/if}"}'>售后</a>
 				{/if}
 			</div>
 		</div>
