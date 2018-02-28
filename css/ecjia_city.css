@@ -6353,6 +6353,10 @@ footer {
     margin-bottom: 20px;
 }
 
+.order-status-head.margin-bottom-none {
+	margin-bottom: 0;
+}
+
 .order-status-head .order-status-msg {
 	padding: 23px 0 20px 35px;
 }
@@ -11384,7 +11388,7 @@ footer {
 .ecjia-return-list .a7 .a8{background-color:#fff}
 .ecjia-return-list .a7 .ai:last-child{border-bottom:0 none}
 .ecjia-return-list .a7 .ai{border-bottom:1px solid #eee;height:auto}
-.ecjia-return-list .a7 .aq{font-size:.8em;color:#999;padding:1em 0 .5em;display:block}
+.ecjia-return-list .a7 .aq{font-size:1.1em;color:#999;padding:1em 0 .5em;display:block}
 .ecjia-return-list .a7 .ar{position:relative;margin-right:1em;padding-bottom:1em}
 .ecjia-return-list .a7 .as{display:inline-block;position:relative;margin:.5em .1em .1em;vertical-align:middle;width:53px;height:53px}
 .ecjia-return-list .a7 .av{top:1em}
@@ -11400,7 +11404,7 @@ footer {
 .return-status-content{height:auto;min-height:100%;background-color:#fff}
 .return-status-content .q5{padding-top:.5em;margin-bottom:6em}
 .return-status-content .qi{position:relative;width:100%}
-.return-status-content .q6{margin:0 1em 0 4em;color:#999;border-radius:6px;font-size:.8em;background-color:#fff;-webkit-border-radius:6px;position:relative}
+.return-status-content .q6{margin:0 1em 0 4em;color:#999;border-radius:6px;font-size:1em;background-color:#fff;-webkit-border-radius:6px;position:relative}
 .return-status-content .q6:before{content:'';width:1px;position:absolute;top:2em;left:-2.2em;height:calc(100% + .8em);background:#ddd}
 .return-status-content .q6:last-child:before{display:none}
 .return-status-content .iconState6{background-position:-64px 0}
@@ -11556,8 +11560,6 @@ footer {
     position: absolute;
     right: 1em;
     bottom: 1em;
-    color: #999;
-    font-size: .9em;
 }
 
 .flow-goods-list .return-log.order-log-item:first-child {
@@ -11578,6 +11580,6 @@ footer {
 }
 
 .order-log-item.return-log:first-child::after {
-	background: url(../images/address_list/50X50_2.png) #F7F7F7 no-repeat center;
+	background: url(../images/address_list/50x50_2.png) #F7F7F7 no-repeat center;
 	background-size: 60%;
 }

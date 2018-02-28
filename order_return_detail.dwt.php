@@ -20,16 +20,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-order-detail">
 	<div class="ecjia-checkout ecjia-margin-b">
 		<div class="flow-goods-list">
-			<div class="order-status-head">
+			<div class="order-status-head margin-bottom-none">
 			    <a href="{url path='user/order/return_detail'}&refund_sn={$order.refund_sn}&type={'status'}">
-			        <span class="order-status-img"><p></p><img src="{$theme_url}images/address_list/50X50_2.png"></span>
+			        <span class="order-status-img"><p></p><img src="{$theme_url}images/address_list/50x50_2.png"></span>
 			        <div class="order-status-msg">
 	    		        <span><span class="order-head-font">{if $refund_logs.log_description}{$refund_logs.log_description}{else}暂无{/if}</span><span class="ecjiaf-fr order-color">{$refund_logs.formatted_action_time}</span></span>
 	    		        <p class="ecjia-margin-t status"><span class="order-color order-status">操作员：{$refund_logs.action_user}</span><span class="ecjiaf-fr more-status">更多状态 ></span></p>
 			        </div>
 		        </a>
 	        </div>
-
+	        
+			<p class="select-title ecjiaf-fwb ecjia-margin-l">售后商品</p>
 		    <ul class="goods-item">
 				<!-- {foreach from=$order.goods_list item=goods} -->
 				<li>
@@ -55,7 +56,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="return-item">
 				<div class="c9">
 					<p><i class="c6">{$order.refund_goods_amount}</i><b>退商品金额</b></p>
-					<p><i class="c6">{$order.shipping_fee}</i><b>退配送费</b><i class="k0 shipping_fee_notice"></i></p>
+					<p><i class="c6">{$shipping_desc.total_fee}</i><b>退配送费</b><i class="k0 shipping_fee_notice"></i></p>
 					<p><i class="c6 ecjia-red">{$order.refund_total_amount}</i><b>退总金额</b></p>
 					<p class="ca"><span>温馨提示:</span><b>退商品金额是按照您实际支付的商品金额进行退回，如有问题，请联系商家到家客服。</b></p>
 				</div>
