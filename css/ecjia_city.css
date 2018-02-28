@@ -10898,13 +10898,13 @@ footer {
 }
 
 .quickpay .checkout .quickpay_div{
-    background: #F3F3F3;
     width: 100%;
     margin-bottom: 0;
     position: relative;
     padding: .5em;
 	padding-bottom: 0;
 	overflow: hidden;
+	padding-top: 1em;
 }
 
 .quickpay .checkout .item_list {

@@ -129,7 +129,7 @@ class quickpay_controller {
 			ecjia_front::$controller->assign('activity_list', $_SESSION['quick_pay']['data']['activity_list']);
 		}
 		ecjia_front::$controller->assign('show_exclude_amount', $_SESSION['quick_pay']['show_exclude_amount']);
-		ecjia_front::$controller->assign_title('优惠买单');
+		ecjia_front::$controller->assign_title($store_info['seller_name']);
 		ecjia_front::$controller->display('quickpay_checkout.dwt');
 	}
 
