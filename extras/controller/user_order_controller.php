@@ -172,15 +172,17 @@ class user_order_controller {
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
         if (empty($refund_type)) {
         	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_CANCEL)->data($params_order)->run();
+        	$message = '取消订单成功';
         } else {
         	$params_order['reason_id'] = $reason_id;
         	$params_order['refund_type'] = 'refund';
         	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_APPLY)->data($params_order)->run();
+        	$message = '订单取消申请已提交至商家审核';
         }
 
         $url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
         if (!is_ecjia_error($data)) {
-            return ecjia_front::$controller->showmessage('取消订单成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
+            return ecjia_front::$controller->showmessage($message, ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
         } else {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
         }
@@ -277,7 +279,6 @@ class user_order_controller {
     		$say_list = '';
     		if (!empty($orders)) {
     			ecjia_front::$controller->assign('order_list', $orders);
-    			ecjia_front::$controller->assign('type', $type);
     			ecjia_front::$controller->assign_lang();
     			if (!empty($order_id)) {
     				$say_list = ecjia_front::$controller->fetch('order_return_list.dwt');

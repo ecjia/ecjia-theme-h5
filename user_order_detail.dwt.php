@@ -116,8 +116,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<a class="btn btn-small btn-hollow" href='{url path="pay/index/init" args="order_id={$order.order_id}"}'>去支付</a>
 					{/if}
 					
-					{if $order.order_status_code eq 'await_ship' || $order.order_status_code eq 'shipped' || $order.order_status_code eq 'shipped_part'}
+					{if $order.order_status_code eq 'await_ship'}
 						<a class="btn btn-small btn-hollow cancel_order" href='{url path="user/order/order_cancel" args="order_id={$order.order_id}&refund_type=$refund_type"}'>取消订单</a>
+					{/if}
+					
+					{if $order.shipping_code eq 'ship_o2o_express' && $order.order_status_code eq 'shipped' && $order.express_mobile neq ''}
+						<a class="btn btn-small btn-hollow cancel_order_connect" href='{url path="user/order/order_cancel" args="order_id={$order.order_id}&refund_type=$refund_type"}' data-name="{$order.express_user}" data-phone="{$order.express_mobile}">取消订单</a>
 					{/if}
 					
 					{if $order.order_status_code eq 'shipped'} 

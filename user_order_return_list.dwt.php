@@ -61,9 +61,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<p class="ecjiaf-fl goods-name">{$goods.name}</p>
 						{if $goods.goods_attr}
     					<div class="order_list_attr">
-    						<!-- {foreach from=$goods.goods_attr item=attr} -->
-    					   	{if $attr.name}{$attr.name}:{$attr.value}{/if}
-    						<!-- {/foreach} -->
+    						{$goods.goods_attr}
     					</div>
     					{/if}
     				</div>

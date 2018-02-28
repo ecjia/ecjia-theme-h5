@@ -458,6 +458,26 @@
 				});
 			});
 			
+			//商家配送 已发货 配送中联系快递员 没配送联系商家 取消
+			$('.cancel_order_connect').off('click').on('click', function(e) {
+				e.preventDefault();
+				var myApp = new Framework7();
+				var url = $(this).attr('href');
+				var phone = $(this).attr('data-phone');
+				var name = $(this).attr('data-name');
+				myApp.modal({
+					title: '取消需联系配送员，和配送员商议是否继续配送' + '<br>' + name + ' [' + phone + '] ',
+					buttons: [{
+						text: '取消',
+					}, {
+						text: '确定',
+						onClick: function() {
+							window.location.href = 'tel://' + phone;
+						},
+					}]
+				});
+			});
+			
 			$('.affirm_received').off('click').on('click', function(e) {
 				e.preventDefault();
 				var myApp = new Framework7();
