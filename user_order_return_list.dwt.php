@@ -43,14 +43,26 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<div class="flow-goods-list">
 		<a class="ecjiaf-db" href='{url path="user/order/order_detail" args="order_id={$list.order_id}&type=detail"}'>
-			<ul class="{if count($list.goods_list) > 1}goods-list{else}goods-item{/if} goods_attr_ul"><!-- goods-list 多个商品隐藏商品名称,goods-item -->
+			{if $list.service_status_code eq 'going'}
+			<div class="order-log-div">
+				<div class='order-log-item return-log'>
+					<div class="order-log">
+						<span class="bold">{$list.latest_refund_log.label_status}</span>
+						<p>{$list.latest_refund_log.log_description}</p>
+					</div>
+				</div>
+			</div>
+			{/if}
+			<ul class="{if $list.service_status_code eq 'going'}return-goods{/if} {if count($list.goods_list) > 1}goods-list{else}goods-item{/if} goods_attr_ul"><!-- goods-list 多个商品隐藏商品名称,goods-item -->
 				<!-- {foreach from=$list.goods_list item=goods name=goods} -->
 				<!-- {if $smarty.foreach.goods.iteration gt 3} -->
 				<!-- 判断不能大于4个 -->
+				{if $list.service_status_code neq 'going'}
 				<li class="goods-img-more">
 					<i class="icon iconfont">&#xe62e;</i>
 					<p class="ecjiaf-ib">共{$list.total_goods_number}件</p>
 				</li>
+				{/if}
 				<!-- {break} -->
 				<!-- {/if} -->
 				<li class="goods-img ecjiaf-fl ecjia-margin-r ecjia-icon {if $list.goods_list|@count gt 1}goods_attr{/if}">
@@ -68,6 +80,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					{/if}
 				</li>
 				<!-- {/foreach} -->
+				{if $list.service_status_code eq 'going'}
+				<span class="return-number">x{$list.total_goods_number}</span>
+				{/if}
 			</ul>
 		</a>
 	</div>

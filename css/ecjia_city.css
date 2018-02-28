@@ -11538,3 +11538,46 @@ footer {
 		padding-bottom: 20px;
     }
 }
+
+.flow-goods-list .return-log.order-log-item:first-child::after {
+	background-color: #fff;
+	clear: both;
+}
+
+.order-log-div {
+	padding-left: 1.5em;
+}
+
+.order-log-div .bold {
+	font-weight: 600;
+}
+
+.flow-goods-list .return-number {
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+    color: #999;
+    font-size: .9em;
+}
+
+.flow-goods-list .return-log.order-log-item:first-child {
+	background: #F4F4F4;
+	margin: 1em 1em 0 4em;
+}
+
+.flow-goods-list .return-log.order-log-item:first-child .order-log::before {
+	border-right-color: #F4F4F4;
+}
+
+.flow-goods-list .order-log-item:first-child::before {
+	height: calc(50% + 6em);
+}
+
+.ecjia .ecjia-checkout .flow-goods-list .return-goods {
+	padding: 1em 1em 1em 4em;
+}
+
+.order-log-item.return-log:first-child::after {
+	background: url(../images/address_list/50X50_2.png) #F7F7F7 no-repeat center;
+	background-size: 60%;
+}
