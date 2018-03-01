@@ -286,6 +286,11 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
     if (!empty($wap_logo)) {
     	setcookie("wap_logo", RC_Upload::upload_url($wap_logo), time() + 1800);
     }
+    
+    if (strpos($user_agent, 'MicroMessenger')) {
+    	ecjia_front::$controller->assign('is_weixin', true);
+    }
+    
     //判断并微信登录
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
     if (strpos($user_agent, 'MicroMessenger') !== false && ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {
