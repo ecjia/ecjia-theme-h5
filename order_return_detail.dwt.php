@@ -24,7 +24,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			    <a href="{url path='user/order/return_detail'}&refund_sn={$order.refund_sn}&type={'status'}">
 			        <span class="order-status-img"><p></p><img src="{$theme_url}images/address_list/50x50_2.png"></span>
 			        <div class="order-status-msg">
-	    		        <span><span class="order-head-font">{if $refund_logs.log_description}{$refund_logs.log_description}{else}暂无{/if}</span><span class="ecjiaf-fr order-color">{$refund_logs.formatted_action_time}</span></span>
+	    		        <span><span class="order-head-font">{$refund_logs.label_status}</span><span class="ecjiaf-fr order-color">{$refund_logs.formatted_action_time}</span></span>
 	    		        <p class="ecjia-margin-t status"><span class="order-color order-status">操作员：{$refund_logs.action_user}</span><span class="ecjiaf-fr more-status">更多状态 ></span></p>
 			        </div>
 		        </a>
@@ -40,11 +40,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					</div>
 					<div class="ecjiaf-fl goods-info">
 						<p class="ecjia-truncate2">{$goods.name}</p>
-						<p class="ecjia-goods-attr goods-attr">
-						<!-- {foreach from=$goods.goods_attr item=attr} -->
-						{if $attr.name}{$attr.name}:{$attr.value}{/if}
-						<!-- {/foreach} -->
-						</p>
+						<p class="ecjia-goods-attr goods-attr">{$goods.goods_attr}</p>
 						<p class="ecjia-color-red goods-attr-price">{$goods.formated_shop_price}</p>
 					</div>
 					<span class="ecjiaf-fr goods-price"> x {$goods.goods_number}</span>
@@ -65,7 +61,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<p class="select-title ecjiaf-fwb ecjia-margin-l">问题描述</p>
 			<div class="co">
 				<p class="cp"><span>售后原因：</span><b>{$order.reason}</b></p>
-				<p class="cp"><span>问题描述：</span><b>暂无</b></p>
+				<p class="cp"><span>问题描述：</span><b>{if $order.refund_desc}{$order.refund_desc}{else}暂无{/if}</b></p>
 				{if $order.return_images}
 				<p class="cq">
 					<span>售后图片：</span>

@@ -573,6 +573,7 @@
 			ecjia.touch.user.copy_btn();
 			ecjia.touch.user.form();
 			ecjia.touch.user.shipping_fee_notice();
+			ecjia.touch.user.select_pickup_time();
 		},
 		
 		//评价晒单上传图片，并且不能超过5张。
@@ -820,6 +821,42 @@
 				$('.ecjia-shipping-fee-modal').hide();
 				$('.ecjia-shipping-fee-overlay').hide();
 				$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
+			});
+		},
+		
+		select_pickup_time: function() {
+			//显示送达时间选择框
+			$('input[name="expect_pickup_time"]').off('click').on('click', function() {
+				$('.mod_address_slide').addClass('show');
+			});
+			//关闭送达时间选择框
+			$('.mod_address_slide_head .icon-close').off('click').on('click', function() {
+				$('.mod_address_slide').removeClass('show');
+			});
+			
+			//点击日期
+			$('.mod_address_slide_tabs li').off('click').on('click', function() {
+				var $this = $(this),
+					date = $this.attr('data-date');
+				$this.addClass('active').siblings('li').removeClass('active');
+				$('.mod_address_slide_list').removeClass('hide');
+				$('.mod_address_slide_list li').each(function() {
+					$(this).removeClass('active');
+				});
+			});
+			
+			//点击时间
+			$('.mod_address_slide_list li').off('click').on('click', function() {
+				var $this = $(this);
+					date = $('.mod_address_slide_tabs').find('li.active').attr('data-date'),
+					time = $this.attr('data-time');
+				$('.mod_address_slide_list').find('li').removeClass('active');
+				$this.addClass('active');
+
+				var val = date+' '+time;
+				$('input[name="expect_pickup_time"]').val(val);
+				
+				$('.mod_address_slide').removeClass('show');
 			});
 		},
 

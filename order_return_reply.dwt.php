@@ -63,12 +63,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							<input type="hidden" name="reason_id" />
 						</div>
 					</li>
-					<li class="return-reason">
+					<li class="return-reason desc">
 						<span class="input-must">*</span>
-						<span class="title">问题描述</span>
-						<span class="text">
-							<input class="question_desc" type="text" name="question_desc" placeholder="请填写问题描述" />
-						</span>
+						<div class="title question-desc-title">问题描述</div>
+						<div class="text question-desc-content">
+							<textarea class="question_desc" type="text" name="question_desc" placeholder="请填写问题描述" /></textarea>
+						</div>
 					</li>
 					
 					<li class="ecjia-met-goods-info">

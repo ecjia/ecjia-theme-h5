@@ -537,10 +537,10 @@ class user_order_controller {
     	} else {
     		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_DETAIL)->data($params)->run();
     		$data = is_ecjia_error($data) ? array() : $data;
-
+			
     		ecjia_front::$controller->assign('order', $data);
     		ecjia_front::$controller->assign('shipping_desc', $data['shipping_fee_desc']);
-    		
+
     		if (!empty($data['refund_logs'])) {
     			ecjia_front::$controller->assign('refund_logs', $data['refund_logs'][0]);
     		}
@@ -650,6 +650,7 @@ class user_order_controller {
     			}
     		}
     	}
+
     	ecjia_front::$controller->assign('return_info', $return_info);
     	ecjia_front::$controller->assign('refund_sn', $refund_sn);
     	
@@ -669,6 +670,18 @@ class user_order_controller {
     		$expect_pickup_time = !empty($_POST['expect_pickup_time']) 	? trim($_POST['expect_pickup_time']) 	: '';
     		$contact_name 		= !empty($_POST['contact_name']) 		? trim($_POST['contact_name']) 			: '';
     		$contact_phone 		= !empty($_POST['contact_phone']) 		? trim($_POST['contact_phone']) 		: '';
+    		
+    		if (empty($expect_pickup_time)) {
+    			return ecjia_front::$controller->showmessage('请选择期望取件时间', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    		}
+    		
+    		if (empty($contact_name)) {
+    			return ecjia_front::$controller->showmessage('请输入联系人', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    		}
+    		
+    		if (empty($contact_phone)) {
+    			return ecjia_front::$controller->showmessage('请输入联系电话', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    		}
     		
     		$params = array(
     			'token' 			=> $token,

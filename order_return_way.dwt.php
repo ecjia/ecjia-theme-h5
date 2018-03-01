@@ -23,8 +23,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				{if $type eq 'home'}
 				<p class="select-title ecjiaf-fwb ecjia-margin-l">取件信息</p>
 				<div class="co">
-					<p class="cp"><span class="cs">取货方式：</span><b>{$return_info.pickup_address}</b></p>
-					<p class="cp"><span class="cs">取货地址：</span><b>{$return_info.pickup_address}</b></p>
+					<p class="cp"><span class="cs">取货方式：</span><b>{$return_info.return_way_name}</b></p>
+					<p class="cp"><span class="cs">取货地址：</span><b class="cq">{$return_info.pickup_address}</b></p>
 					<p class="cp"><span class="cs">期望取件时间：<span class="ecjia-red">*</span></span><label class="cr"><input type="text" name="expect_pickup_time"></label></p>
 				</div>
 				
@@ -58,7 +58,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<p class="select-title ecjiaf-fwb ecjia-margin-l">返还地址</p>
 				<div class="co">
 					<p class="cp line"><span class="cs">店铺名称：</span><b>{$return_info.store_name}</b><span class="cu copy-btn" data-clipboard-text="{$return_info.store_name}">复制</span></p>
-					<p class="cp line"><span class="cs">联系方式：</span><b>{$return_info.contact_phone}</b><span class="cu copy-btn" data-clipboard-text="{$return_info.contact_phone}">复制</span></p>
+					<p class="cp line"><span class="cs">联系方式：</span><b>{$return_info.store_service_phone}</b><span class="cu copy-btn" data-clipboard-text="{$return_info.store_service_phone}">复制</span></p>
 					<p class="cp text"><span class="cs">店铺地址：</span><b class="cv">{$return_info.store_address}</b><span class="cu copy-btn" data-clipboard-text="{$return_info.store_address}">复制</span></p>
 				</div>
 				
@@ -72,4 +72,24 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 	</div>
 </form>
+
+<div class="mod_address_slide" id="shippingTimeArea">
+	<div class="mod_address_slide_main">
+		<div class="mod_address_slide_head">
+			取件时间<i class="iconfont icon-close"></i>
+		</div>
+		<div class="mod_address_slide_body">
+			<ul class="mod_address_slide_tabs navBar">
+				<!-- {foreach from=$return_info.expect_pickup_date.dates item=val} -->
+				<li data-date="{$val}">{$val}</li>
+				<!-- {/foreach} -->
+			</ul>
+			<ul class="mod_address_slide_list selShip hide">
+				<!-- {foreach from=$return_info.expect_pickup_date.times item=val} -->
+				<li data-time="{$val.start_time}-{$val.end_time}">{$val.start_time}-{$val.end_time}</li>
+				<!-- {/foreach} -->
+			</ul>
+		</div>
+	</div>
+</div>
 <!-- {/block} -->
