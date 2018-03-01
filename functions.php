@@ -78,6 +78,7 @@ RC_Hook::add_action('merchant/index/init', array('merchant_controller', 'init'))
 RC_Hook::add_action('merchant/index/ajax_goods', array('merchant_controller', 'ajax_goods'));//获取店铺商品
 RC_Hook::add_action('merchant/index/position', array('merchant_controller', 'position'));//店铺位置
 RC_Hook::add_action('merchant/index/ajax_store_comment', array('merchant_controller', 'ajax_store_comment'));//获取店铺评论
+RC_Hook::add_action('merchant/quickpay/collectmoney', array('merchant_controller', 'collectmoney'));
 RC_Hook::add_action('seller/category/list', array('merchant_controller', 'seller_list'));//店铺分类列表
 
 //文章

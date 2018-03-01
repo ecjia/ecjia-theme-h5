@@ -491,6 +491,22 @@ class merchant_controller {
 		ecjia_front::$controller->assign('cid', $cid);
 		ecjia_front::$controller->display('seller_list.dwt');
 	}
+	
+	public static function collectmoney() {
+		$store_id 		= intval($_GET['store_id']);
+		
+		//店铺信息
+		$parameter_list = array(
+			'seller_id' => $store_id,
+			'city_id' => $_COOKIE['city_id']
+		);
+		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
+		$store_info = !is_ecjia_error($store_info) ? $store_info : array();
+		
+		ecjia_front::$controller->assign('store_info', $store_info);
+		
+		ecjia_front::$controller->display('quickpay_collectmoney.dwt');
+	}
 }
 
 // end
