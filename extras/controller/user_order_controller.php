@@ -59,7 +59,7 @@ class user_order_controller {
         $type = isset($_GET['type']) ? $_GET['type'] : '';
         if ($type == 'return') {
         	$params_order = array('token' => $token, 'pagination' => array('count' => 10, 'page' => 1), 'type' => $type);
-			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_LIST)->data($params_order)->run();
+			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
         	$data = is_ecjia_error($data) ? array() : $data;
         	 
         	ecjia_front::$controller->assign('type', $type);

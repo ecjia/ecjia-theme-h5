@@ -2015,6 +2015,13 @@ footer {
     float: left;
     margin-top: .2em;
 }
+
+.ecjia-store-detail i.icon-jiantou-right {
+	position: absolute;
+    right: 0;
+    top: 1.3em;
+}
+
 .ecjia-store-detail i.icon-shop-phone {
     background-image: url(../images/icon/icon_phone.png);
 }
@@ -2094,6 +2101,10 @@ footer {
 	font-weight: normal;
 	overflow: hidden;
 	line-height: 2em;
+}
+
+.ecjia-store-detail .store-other-info p.other-info-result.shop-address-result {
+	padding-right: 1em;
 }
 
 .ecjia-store-detail .store-other-info p.other-info-result .shop-location-icon {
