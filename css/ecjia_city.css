@@ -11500,7 +11500,7 @@ footer {
 .ecjia-order-detail.ecjia-return-way .cp .cs span{float:none;height:2.5em;width:1em;text-align:center}
 .ecjia-order-detail.ecjia-return-way .co{padding:5px 0}
 .ecjia-order-detail.ecjia-return-way .cp b{margin-left:9em;color:#999;}
-.ecjia-order-detail.ecjia-return-way .cp b.cq{margin-right: 1em;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
+.ecjia-order-detail.ecjia-return-way .cp b.cq{margin-right: 1em;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;padding-top: .5em;line-height: 2em;}
 .ecjia-order-detail.ecjia-return-way .cp{position:relative;min-height:3em;line-height:3em;border-bottom:none;padding:0}
 .ecjia-order-detail.ecjia-return-way .cp.cq {height:4em;line-height:2em;}
 .ecjia-order-detail.ecjia-return-way .cp.line{border-bottom:1px solid #eee}
@@ -11530,10 +11530,14 @@ footer {
 .flow-goods-list .return-log.order-log-item:first-child::after {
 	background-color: #fff;
 	clear: both;
+	top: 25%;
 }
 
 .order-log-div {
-	padding-left: 1.5em;
+	padding-left: 5em;
+    width: 100%;
+    margin: 1em 0;
+    position: relative;
 }
 
 .order-log-div .bold {
@@ -11548,7 +11552,10 @@ footer {
 
 .flow-goods-list .return-log.order-log-item:first-child {
 	background: #F4F4F4;
-	margin: 1em 1em 0 4em;
+    width: 100%;
+    left: -1em;
+    float: none;
+    position: relative;
 }
 
 .flow-goods-list .return-log.order-log-item:first-child .order-log::before {
@@ -11556,7 +11563,7 @@ footer {
 }
 
 .flow-goods-list .order-log-item:first-child::before {
-	height: calc(50% + 6em);
+	height: calc(50% + 7em);
 }
 
 .ecjia .ecjia-checkout .flow-goods-list .return-goods {

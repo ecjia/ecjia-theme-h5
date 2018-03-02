@@ -25,7 +25,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<div class="co">
 					<p class="cp"><span class="cs">取货方式：</span><b>{$return_info.return_way_name}</b></p>
 					<p class="cp"><span class="cs">取货地址：</span><b class="cq">{$return_info.pickup_address}</b></p>
-					<p class="cp"><span class="cs">期望取件时间：<span class="ecjia-red">*</span></span><label class="cr"><input type="text" name="expect_pickup_time"></label></p>
+					<p class="cp"><span class="cs">期望取件时间：<span class="ecjia-red">*</span></span><label class="cr"><input type="text" readonly name="expect_pickup_time"></label></p>
 				</div>
 				
 				<p class="select-title ecjiaf-fwb ecjia-margin-l">联系人信息</p>
