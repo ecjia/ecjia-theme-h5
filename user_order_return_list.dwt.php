@@ -91,9 +91,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="order-ft">
 		<span>退款金额：<span class="ecjia-color-red">{$list.formated_total_fee}</span></span>
 		<span class="two-btn ecjiaf-fr">
-			{if $list.order_status_code eq 'refunded'} 
-				<a class="btn btn-hollow" href='{url path="user/order/return_detail" args="refund_sn={$list.refund_sn}&type=return_money"}'>查看退款</a>
-			{/if}
 			{if $list.order_status_code eq 'refunded' || $list.order_status_code eq 'canceled'} 
 				<a class="btn btn-hollow" href='{url path="user/order/buy_again" args="order_id={$list.order_id}&from=list"}'>再次购买</a>
 			{/if}
