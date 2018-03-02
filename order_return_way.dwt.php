@@ -34,6 +34,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<p class="cp"><span class="cs">联系电话：<span class="ecjia-red">*</span></span><label class="cr"><input type="text" name="contact_phone"></label></p>
 				</div>
 	
+				<input type="hidden" name="pickup_address" value="{$return_info.pickup_address}">
+	
 				{else if $type eq 'express'}
 			
 				<p class="select-title ecjiaf-fwb ecjia-margin-l">返还地址</p>
@@ -61,6 +63,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<p class="cp line"><span class="cs">联系方式：</span><b>{$return_info.store_service_phone}</b><span class="cu copy-btn" data-clipboard-text="{$return_info.store_service_phone}">复制</span></p>
 					<p class="cp text"><span class="cs">店铺地址：</span><b class="cv">{$return_info.store_address}</b><span class="cu copy-btn" data-clipboard-text="{$return_info.store_address}">复制</span></p>
 				</div>
+				
+				<input type="hidden" name="store_name" value="{$return_info.store_name}">
+				<input type="hidden" name="contact_phone" value="{$return_info.store_service_phone}">
+				<input type="hidden" name="store_address" value="{$return_info.store_address}">
 				
 				{/if}
 				<div class="order-ft-link">

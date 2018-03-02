@@ -667,6 +667,7 @@ class user_order_controller {
     	$token = ecjia_touch_user::singleton()->getToken();
     	
     	if ($type == 'home') {
+    		$pickup_address 	= !empty($_POST['pickup_address']) 		? trim($_POST['pickup_address']) 		: '';
     		$expect_pickup_time = !empty($_POST['expect_pickup_time']) 	? trim($_POST['expect_pickup_time']) 	: '';
     		$contact_name 		= !empty($_POST['contact_name']) 		? trim($_POST['contact_name']) 			: '';
     		$contact_phone 		= !empty($_POST['contact_phone']) 		? trim($_POST['contact_phone']) 		: '';
@@ -686,11 +687,10 @@ class user_order_controller {
     		$params = array(
     			'token' 			=> $token,
     			'refund_sn' 		=> $refund_sn,
-    			'recipient_address' => $recipient_address,
-    			'recipients' 		=> $recipients,
+    			'pickup_address' 	=> $pickup_address,
+    			'expect_pickup_time'=> $expect_pickup_time,
+    			'contact_name' 		=> $contact_name,
     			'contact_phone' 	=> $contact_phone,
-    			'shipping_name' 	=> $shipping_name,
-    			'shipping_sn' 		=> $shipping_sn
     		);
     		$api = ecjia_touch_api::REFUND_RETURNWAY_HOME;
     	}
@@ -722,14 +722,16 @@ class user_order_controller {
     	}
     	
     	if ($type == 'shop') {
+    		$store_name 	= !empty($_POST['store_name']) 		? trim($_POST['store_name']) 	: '';
+    		$contact_phone	= !empty($_POST['contact_phone'])	? trim($_POST['contact_phone'])	: '';
+    		$store_address	= !empty($_POST['store_address'])	? trim($_POST['store_address']) 	: '';
+    		
     		$params = array(
     			'token' 			=> $token,
     			'refund_sn' 		=> $refund_sn,
-    			'recipient_address' => $recipient_address,
-    			'recipients' 		=> $recipients,
+    			'store_name' 		=> $store_name,
     			'contact_phone' 	=> $contact_phone,
-    			'shipping_name' 	=> $shipping_name,
-    			'shipping_sn' 		=> $shipping_sn
+    			'store_address' 	=> $store_address
     		);
     		$api = ecjia_touch_api::REFUND_RETURNWAY_SHOP;
     	}
