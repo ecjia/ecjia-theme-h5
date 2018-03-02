@@ -522,6 +522,11 @@ ecjia_open::macro('quickpay', function($querys) {
 	return RC_Uri::url('user/quickpay/init', array('store_id' => $querys['merchant_id']));
 });
 
+//收款二维码
+ecjia_open::macro('collectmoney', function($querys) {
+	return RC_Uri::url('merchant/quickpay/collectmoney', array('store_id' => $querys['merchant_id']));
+});
+
 /**
  * 支付响应提示模板
  */
