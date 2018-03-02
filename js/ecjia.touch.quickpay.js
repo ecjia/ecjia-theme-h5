@@ -90,6 +90,29 @@
 					dataType: "json",
 					success: function(data) {
 						$('.la-ball-atom').remove();
+						
+						var myApp = new Framework7();
+						if (data.referer_url || data.message == 'Invalid session') {
+							myApp.modal({
+								title: '温馨提示',
+								text: '您还没有登录',
+								buttons: [{
+									text: '取消',
+								}, {
+									text: '去登录',
+									onClick: function() {
+										location.href = data.referer_url;
+										return false;
+									}
+								}, ]
+							});
+							return false;
+						}
+						
+						if (data.status == 'error') {
+							alert(data.message);
+							return false;
+						}
 						if (data.redirect_url) {
 							location.href = data.redirect_url;
 						}

@@ -267,14 +267,21 @@ class quickpay_controller {
     		ecjia_front::$controller->assign('data', $_SESSION['quick_pay']['data']);
     		ecjia_front::$controller->assign('activity', $_SESSION['quick_pay']['activity']);
     	}
-        ecjia_front::$controller->display('quickpay_integral.dwt', $cache_id);
+        ecjia_front::$controller->display('quickpay_integral.dwt');
     }
     
     /**
      * 提交订单
      */
     public static function done() {
+    	$url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
+    	$referer_url = RC_Uri::url('user/privilege/login', array('referer_url' => urlencode($url)));
+    	if (!ecjia_touch_user::singleton()->isSignin()) {
+    		return ecjia_front::$controller->showmessage('Invalid session', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
+    	}
+    	
     	$token = ecjia_touch_user::singleton()->getToken();
+    	
     	$store_id = !empty($_POST['store_id']) ? intval($_POST['store_id']) : 0;
     	
     	$goods_amount = !empty($_POST['order_money']) ? $_POST['order_money'] : 0;
@@ -303,7 +310,7 @@ class quickpay_controller {
     	);
     	$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_FLOW_DONE)->data($params)->run();
     	if (is_ecjia_error($rs)) {
-    		return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+    		return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	} else {
     		$order_id = $rs['order_id'];
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('redirect_url' => RC_Uri::url('user/quickpay/pay', array('order_id' => $order_id))));

@@ -55,7 +55,7 @@ class user_front {
 
 	public function __construct() {
 	    $this->makePublicRoute();
-		
+
 		if (!$this->check_login()) {
 		    /*未登录处理*/
             $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
@@ -96,7 +96,9 @@ class user_front {
 	        'user/get_password/mobile_register_account',
 	        'user/mobile_reward/init',
 	        'user/mobile_reward/recieve',
-	    	'user/index/wxconfig'
+	    	'user/index/wxconfig',
+	    		
+	    	'user/quickpay/done',
 	    );
 	}
 
