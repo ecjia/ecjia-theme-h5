@@ -15,7 +15,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </script>
 <!-- {/block} -->
 <!-- {block name="main-content"} -->
-
 <div class="ecjia-mod ecjia-header ecjia-store-banner" style="background: url('{if $store_info.seller_banner}{$store_info.seller_banner}{else}{$theme_url}images/default_store_banner.png{/if}') center center no-repeat;background-size: 144% 100%;">
 	<div class="ecjia-store-brief quickpay-brief">
 		<a href="{RC_Uri::url('merchant/index/init')}&store_id={$store_id}">
@@ -28,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <input type="hidden" name="from" value="{$smarty.get.from}" class="ecjia-from-page {if $smarty.get.out eq 1}out-range{/if}" />
 
 <div class="ecjia-quickpay-form">
-	<form name="quickpayForm" action="{url path='user/quickpay/done'}" method="post" data-url="{url path='user/quickpay/flow_checkorder'}">
+	<form name="quickpayForm" action="{url path='quickpay/flow/done'}" method="post" data-url="{url path='user/quickpay/flow_checkorder'}">
 		<div class="ecjia-quickpay-content">
 			<div class="quickpay-content-title">
 				消费总金额（元）
@@ -47,7 +46,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 	</form>
 </div>      
-
 <!-- {/block} -->
-
 {/nocache}

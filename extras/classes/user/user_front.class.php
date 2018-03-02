@@ -97,8 +97,6 @@ class user_front {
 	        'user/mobile_reward/init',
 	        'user/mobile_reward/recieve',
 	    	'user/index/wxconfig',
-	    		
-	    	'user/quickpay/done',
 	    );
 	}
 
