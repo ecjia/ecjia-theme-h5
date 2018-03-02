@@ -6453,6 +6453,7 @@ footer {
 	background: url(../images/wallet/null280.png) center 0 no-repeat;
 	margin: 0 auto;
 	background-size: 10em;
+	max-width: 640px;
 }
 
 .ecjia-order-list .ecjia-order-item {
