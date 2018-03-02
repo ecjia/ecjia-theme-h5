@@ -758,11 +758,13 @@
 			$('input[name="add-return-btn"]').on('click', function(e) {
 				e.preventDefault();
 				var url = $("form[name='theForm']").attr('action');
+				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 				$("form[name='theForm']").ajaxSubmit({
 					type: 'post',
 					url: url,
 					dataType: "json",
 					success: function(data) {
+						$('.la-ball-atom').remove();
 						ecjia.touch.showmessage(data);
 					}
 				});
