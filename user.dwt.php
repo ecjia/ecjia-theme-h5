@@ -85,7 +85,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     		</a>
     	</li>
    		<li>
-    	    <a href="{url path='user/order/order_list'}&type={'return'}">
+    	    <a href="{url path='user/order/order_list'}&type={'refund'}">
         		<p class="oc-icon">
         		  <img src="{$theme_url}images/user_center/o_75_6.png" />
         		  {if $order_num.refund_order gte 1}<span class="oc-num top">{$order_num.refund_order}</span>{/if}
