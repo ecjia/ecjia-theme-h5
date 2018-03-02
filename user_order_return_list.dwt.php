@@ -36,10 +36,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {foreach from=$order_list item=list} -->
 <li class="ecjia-order-item ecjia-checkout ecjia-margin-t {if $type == "whole"}ecjia-order-mt{/if}">
 	<div class="order-hd">
-		<a class="ecjiaf-fl" href='{url path="merchant/index/init" args="store_id={$list.store_id}"}'>
-			<i class="iconfont icon-shop"></i>{$list.store_name} <i class="iconfont icon-jiantou-right"></i>
+		<a class="ecjiaf-fl" href='{url path="merchant/index/init" args="store_id={$list.seller_id}"}'>
+			<i class="iconfont icon-shop"></i>{$list.seller_name} <i class="iconfont icon-jiantou-right"></i>
 		</a>
-		<a class="ecjiaf-fr" href='{url path="user/order/order_detail" args="order_id={$list.order_id}"}'><span class="ecjia-color-green">{$list.label_service_status}</span></a>
+		<a class="ecjiaf-fr" href='{url path="user/order/order_detail" args="order_id={$list.order_id}"}'><span class="ecjia-color-green">{$list.label_order_status}</span></a>
 	</div>
 	<div class="flow-goods-list">
 		<a class="ecjiaf-db" href='{url path="user/order/order_detail" args="order_id={$list.order_id}&type=detail"}'>
@@ -60,7 +60,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				{if $list.service_status_code neq 'going'}
 				<li class="goods-img-more">
 					<i class="icon iconfont">&#xe62e;</i>
-					<p class="ecjiaf-ib">共{$list.total_goods_number}件</p>
+					<p class="ecjiaf-ib">共{$list.goods_number}件</p>
 				</li>
 				{/if}
 				<!-- {break} -->
@@ -73,7 +73,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<p class="ecjiaf-fl goods-name">{$goods.name}</p>
 						{if $goods.goods_attr}
     					<div class="order_list_attr">
-    						{$goods.goods_attr}
+    						<!-- {foreach from=$goods.goods_attr item=attr} -->
+    					   	{if $attr.name}{$attr.name}:{$attr.value}{/if}
+    						<!-- {/foreach} -->
     					</div>
     					{/if}
     				</div>
@@ -87,12 +89,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</a>
 	</div>
 	<div class="order-ft">
-		<span>退款金额：<span class="ecjia-color-red">{$list.total_refund_amount}</span></span>
+		<span>退款金额：<span class="ecjia-color-red">{$list.formated_total_fee}</span></span>
 		<span class="two-btn ecjiaf-fr">
-			{if $list.service_status_code eq 'refunded'} 
+			{if $list.order_status_code eq 'refunded'} 
 				<a class="btn btn-hollow" href='{url path="user/order/return_detail" args="refund_sn={$list.refund_sn}&type=return_money"}'>查看退款</a>
 			{/if}
-			{if $list.service_status_code eq 'refunded' || $list.service_status_code eq 'canceled'} 
+			{if $list.order_status_code eq 'refunded' || $list.order_status_code eq 'canceled'} 
 				<a class="btn btn-hollow" href='{url path="user/order/buy_again" args="order_id={$list.order_id}&from=list"}'>再次购买</a>
 			{/if}
 		</span>

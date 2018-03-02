@@ -272,7 +272,8 @@ class user_order_controller {
     	if (!empty($order_id)) {
     		$params_order['order_id'] = $order_id;
     	}
-    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_LIST)->data($params_order)->hasPage()->run();
+    	$params_order['type'] = 'refund';
+    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->hasPage()->run();
     	if (!is_ecjia_error($data)) {
     		list($orders, $page) = $data;
     		if (isset($page['more']) && $page['more'] == 0) $is_last = 1;
