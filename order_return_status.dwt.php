@@ -19,10 +19,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<i class="or ot iconState6"></i>
 				<span class="firstLine"></span>
 				<div class="q8">
-					<span class="q7">{$log.log_description}</span>
+					<span class="q7">{$log.label_status}</span>
 				</div>
 				<div class="q9">{$log.formatted_action_time}</div>
-				<div class="qa">操作人：{$log.action_user}</div>  
+				<div class="qa">{$log.log_description}</div>
 			</div>
 			<!-- {/foreach} -->
 		</div>

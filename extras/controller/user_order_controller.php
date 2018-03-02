@@ -57,7 +57,7 @@ class user_order_controller {
         $token = ecjia_touch_user::singleton()->getToken();
         
         $type = isset($_GET['type']) ? $_GET['type'] : '';
-        if ($type == 'return') {
+        if ($type == 'refund') {
         	$params_order = array('token' => $token, 'pagination' => array('count' => 10, 'page' => 1), 'type' => $type);
 			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
         	$data = is_ecjia_error($data) ? array() : $data;
@@ -106,7 +106,7 @@ class user_order_controller {
         $params_order = array('token' => $token, 'order_id' => $order_id);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
         $data = is_ecjia_error($data) ? array() : $data;
-
+		
         if (empty($data)) {
             return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
         }
@@ -537,7 +537,7 @@ class user_order_controller {
     	} else {
     		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_DETAIL)->data($params)->run();
     		$data = is_ecjia_error($data) ? array() : $data;
-			
+    		
     		ecjia_front::$controller->assign('order', $data);
     		ecjia_front::$controller->assign('shipping_desc', $data['shipping_fee_desc']);
 
