@@ -41,8 +41,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 		</div>
 		<div class="ecjia-service-content-bottom">
+			<input type="hidden" name="activity_id" class="auto_activity_id"/>
 			<input type="hidden" name="store_id" value="{$store_id}">
-			<input class="btn quickpay_done external" type="submit" value="我要买单" />
+			<input class="btn quickpay_done external check_quickpay_btn" type="submit" value="我要买单" />
 		</div>
 	</form>
 </div>      

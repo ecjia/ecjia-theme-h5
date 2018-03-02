@@ -9,6 +9,8 @@
 			ecjia.touch.quickpay.quick_pay();
 		},
 		check: function() {
+			ecjia.touch.quickpay.checkbtn();
+			
 			$('input[name="order_money"]').koala({
 				delay: 500,
 				keyup: function(event) {
@@ -40,7 +42,7 @@
 			
 			$('input[name="activity_id"]').off('click').on('click', function() {
 				var order_money = $("input[name='order_money']").val();
-				if (order_money == '' || order_money.length == 0 || order_money == undefined) {
+				if (order_money == '' || order_money == undefined) {
 					alert('请输入消费金额');
 					return false;
 				}
@@ -68,7 +70,7 @@
 				var show_exclude_amount = $("input[name='show_exclude_amount']:checked").val();
 				if (order_id == undefined) {
 					var order_money = $("input[name='order_money']").val();
-					if (order_money == '' || order_money.length == 0 || order_money == undefined) {
+					if (order_money == '' || order_money == undefined) {
 						alert('消费金额不能为空');
 						return false;
 					}
@@ -147,10 +149,11 @@
 	        var drop_out_money = $("input[name='drop_out_money']").val();
 	        var store_id = $("input[name='store_id']").val();
 	        var show_exclude_amount = $("input[name='show_exclude_amount']:checked").val();
-	        
-			if (order_money == '' || order_money.length == 0 || order_money == undefined) {
+			if (order_money == '' || order_money == undefined) {
+				$('.check_quickpay_btn').prop('disabled', true);
 				return false;
 			}
+			$('.check_quickpay_btn').prop('disabled', false);
 			
         	var url =  $('form[name="quickpayForm"]').attr('data-url');
         	var activity_id = $("input[name='activity_id']:checked").val();
@@ -173,6 +176,7 @@
         		'change_activity'		: change_activity
         	}
         	$.post(url, info, function(data) {
+        		$('.auto_activity_id').val(data.activity_id);
         		$('.quickpay_done').removeAttr('disabled');
         		$('.quickpay-content').html(data.list);
         		$("body").greenCheck();
@@ -224,6 +228,13 @@
 					}
 				});
 			});
+		},
+		
+		checkbtn: function() {
+			var order_money = $("input[name='order_money']").val();
+			if (order_money == '' || order_money == undefined) {
+				$('.check_quickpay_btn').prop('disabled', true);
+			}
 		},
 	};
 })(ecjia, jQuery);
