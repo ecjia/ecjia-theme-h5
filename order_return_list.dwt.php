@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <li>
 			<a class="data-pjax" href="{url path='user/order/return_order'}&type=refund&order_id={$order_id}">
 				<div class="ecjia-return-item">
-        			<img class="return-item-icon" src="{$theme_url}images/user_center/return_order.png">
+        			<img class="return-item-icon" src="{$theme_url}images/icon/icon-refund.png">
         			<div class="return-item-right">
         				<span class="title">仅退款</span>
         				<p class="notice">全部商品/部分商品未收到，或商家协商同意</p>
@@ -30,7 +30,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<li>
 			<a class="data-pjax" href="{url path='user/order/return_order'}&type=return&order_id={$order_id}">
 				<div class="ecjia-return-item">
-        			<img class="return-item-icon" src="{$theme_url}images/user_center/quickpay.png">
+        			<img class="return-item-icon" src="{$theme_url}images/icon/icon-return.png">
         			<div class="return-item-right">
         				<span class="title">退货退款</span>
         				<p class="notice">如您已收到商品或收到送错的商品</p>
@@ -69,7 +69,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<em class="av">共{$list.total_goods_number}件</em><em class="aw">退款：{$list.total_refund_amount}</em>
 		</div>
 		<div class="ay h">
-			<img class="ab" src="{$theme_url}images/user_center/return_order.png"><span class="audit_result">{$list.label_refund_type}，{$list.label_service_status}</span><em class="sales_view_details">查看详情</em>
+			<img class="ab" src="{if $list.refund_type eq 'refund'}{$theme_url}images/icon/icon-refund.png{elseif $list.refund_type eq 'return'}{$theme_url}images/icon/icon-return.png{/if}">
+			<span class="audit_result">{$list.label_refund_type}，{$list.label_service_status}</span><em class="sales_view_details">查看详情</em>
 		</div>
 	</a>
 </li>
