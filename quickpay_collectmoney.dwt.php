@@ -18,8 +18,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <div class="ecjia-mod ecjia-header ecjia-store-banner" style="background: url('{if $store_info.seller_banner}{$store_info.seller_banner}{else}{$theme_url}images/default_store_banner.png{/if}') center center no-repeat;background-size: 144% 100%;">
 	<div class="ecjia-store-brief quickpay-brief">
-		<img src="{if $store_info.seller_logo}{$store_info.seller_logo}{else}{$theme_url}images/store_default.png{/if}">
-		<div class="store-name">{$store_info.seller_name}</div>
+		<a href="{RC_Uri::url('merchant/index/init')}&store_id={$store_id}">
+			<img src="{if $store_info.seller_logo}{$store_info.seller_logo}{else}{$theme_url}images/store_default.png{/if}">
+		</a>
+		<div class="store-name"><a href="{RC_Uri::url('merchant/index/init')}&store_id={$store_id}">{$store_info.seller_name}</a></div>
 	</div>
 </div>
 
@@ -36,7 +38,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<input type="number" placeholder='请询问店员后输入' step="0.01" name="order_money" maxlength="9" />
 			</div>
 			<div class="quickpay-content-block">
-				<a class="more-discount" href="{RC_Uri::url('user/quickpay/init')}&store_id={$store_id}">更多优惠选择 >>></a>
+				<a class="more-discount external" href="{RC_Uri::url('user/quickpay/init')}&store_id={$store_id}">更多优惠选择 >>></a>
 			</div>
 		</div>
 		<div class="ecjia-service-content-bottom">
