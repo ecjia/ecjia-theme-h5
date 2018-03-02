@@ -1723,11 +1723,11 @@ footer {
 
 .ecjia-header .ecjia-header-right a i.icon-shop-search {
 	background: url(../images/icon/icon_search_white.png);
-    background-size: .9em;
+	background-size: .9em;
     background-repeat: no-repeat;
     position: absolute;
+    right: .5em;
     top: 10px;
-	right: 1.6em;
     width: 30px;
     height: 30px;
 }
@@ -2094,6 +2094,16 @@ footer {
 	font-weight: normal;
 	overflow: hidden;
 	line-height: 2em;
+}
+
+.ecjia-store-detail .store-other-info p.other-info-result .shop-location-icon {
+	float: right;
+    margin-top: .2em;
+    background-image: url(../images/icon/icon_position.png);
+    width: 1.8em;
+    height: 1.8em;
+    background-size: 1.5em;
+    background-repeat: no-repeat;
 }
 
 .ecjia-store-detail .store-goods {
@@ -11536,7 +11546,7 @@ footer {
 .order-log-div {
 	padding-left: 5em;
     width: 100%;
-    margin: 1em 0;
+    margin: 1em 0 0 0;
     position: relative;
 }
 
@@ -11556,6 +11566,7 @@ footer {
     left: -1em;
     float: none;
     position: relative;
+	margin-bottom: 0;
 }
 
 .flow-goods-list .return-log.order-log-item:first-child .order-log::before {
@@ -11563,7 +11574,7 @@ footer {
 }
 
 .flow-goods-list .order-log-item:first-child::before {
-	height: calc(50% + 7em);
+	height: calc(50% + 6em);
 }
 
 .ecjia .ecjia-checkout .flow-goods-list .return-goods {
