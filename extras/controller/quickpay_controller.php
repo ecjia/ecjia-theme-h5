@@ -56,7 +56,7 @@ class quickpay_controller {
 	 */
 	public static function init() {
 		$token = ecjia_touch_user::singleton()->getToken();
-	
+
 		$store_id = !empty($_GET['store_id']) ? intval($_GET['store_id']) : 0;
 		ecjia_front::$controller->assign('store_id', $store_id);
 	
@@ -115,6 +115,9 @@ class quickpay_controller {
 				'city_id' 	=> $_COOKIE['city_id']
 			);
 			$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
+			if (is_ecjia_error($store_info)) {
+				return ecjia_front::$controller->showmessage($store_info->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+			}
 			if (empty($store_info['allow_use_quickpay'])) {
 				return ecjia_front::$controller->showmessage('该店铺未开启优惠买单活动', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('merchant/index/init', array('store_id' => $store_id))));
 			}
@@ -216,6 +219,9 @@ class quickpay_controller {
     			$say_list = ecjia_front::$controller->fetch('quickpay_checkout.dwt');
     			return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'content' => $data));
     		}
+    	} elseif (empty($order_money)) {
+    		unset($_SESSION['quick_pay']['temp']);
+    		unset($_SESSION['quick_pay']['data']);
     	}
     }
     

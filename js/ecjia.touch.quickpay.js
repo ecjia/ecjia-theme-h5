@@ -16,6 +16,21 @@
 				}
             });
 			
+			$('.more-discount').off('click').on('click', function(e) {
+				e.preventDefault();
+				var order_money = $("input[name='order_money']").val();
+				var store_id = $("input[name='store_id']").val();
+				var href = $(this).attr('href');
+				var url =  $('form[name="quickpayForm"]').attr('data-url');
+				var info = {
+	        		'store_id': store_id,
+	        		'order_money': order_money,
+	        	}
+	        	$.post(url, info, function() {
+					ecjia.pjax(href);
+	        	});
+			});
+			
 			$('input[name="drop_out_money"]').koala({
 				delay: 500,
 				keyup: function(event) {
@@ -114,7 +129,7 @@
 				return false;
 			}
 			
-        	var url =  $("input[name='drop_out_money']").attr('data-url')
+        	var url =  $('form[name="quickpayForm"]').attr('data-url');
         	var activity_id = $("input[name='activity_id']:checked").val();
         	if (c == 'change_amount') {
         		change_amount = 1;

@@ -493,7 +493,7 @@ class merchant_controller {
 	}
 	
 	public static function collectmoney() {
-		$store_id 		= intval($_GET['store_id']);
+		$store_id = intval($_GET['store_id']);
 		
 		//店铺信息
 		$parameter_list = array(
@@ -504,7 +504,8 @@ class merchant_controller {
 		$store_info = !is_ecjia_error($store_info) ? $store_info : array();
 		
 		ecjia_front::$controller->assign('store_info', $store_info);
-		
+		ecjia_front::$controller->assign('store_id', $store_id);
+
 		ecjia_front::$controller->display('quickpay_collectmoney.dwt');
 	}
 }

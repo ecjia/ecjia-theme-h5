@@ -11567,3 +11567,60 @@ footer {
 	background: url(../images/address_list/50x50_2.png) #F7F7F7 no-repeat center;
 	background-size: 60%;
 }
+
+.ecjia-store-brief.quickpay-brief img {
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    border: 2px solid #47aa4d;
+    margin: 3em 0 .5em 0;
+}
+
+.ecjia-store-brief.quickpay-brief .store-name {
+	font-size: 1.2em;
+}
+
+.ecjia-quickpay-form {
+	position: fixed;
+    top: 12.5em;
+    bottom: 0;
+    height: 100%;
+    background-color: #fff;
+	max-width: 640px;
+    width: 100%;
+}
+
+.ecjia-quickpay-content {
+    margin: 1em;
+    margin-top: 2em;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+}
+
+.quickpay-content-title {
+	margin: 1em 0;
+}
+
+.quickpay-content-input {
+    padding: 1em 1em;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+.quickpay-content-input .logo {
+	font-size: 1.2em;
+    margin-right: .5em;
+}
+
+.quickpay-content-input input {
+	font-size: 1em;
+    width: 100%;
+	padding-left: 0;
+}
+
+.quickpay-content-block .more-discount {
+	color: #838383;
+    font-size: .9em;
+}
