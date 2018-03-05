@@ -122,6 +122,10 @@ RC_Hook::add_action('touch/my/init', array('user_controller', 'init'));
 RC_Hook::add_action('user/index/spread', array('user_controller', 'spread'));
 RC_Hook::add_action('user/index/wxconfig', array('user_controller', 'wxconfig'));
 
+//推荐
+RC_Loader::load_theme('extras/controller/affiliate_controller.php');
+RC_Hook::add_action('affiliate/index/init', array('affiliate_controller', 'init'));//邀请注册
+
 //商家入驻申请
 RC_Loader::load_theme('extras/controller/franchisee_controller.php');
 RC_Hook::add_action('franchisee/index/first', array('franchisee_controller', 'first'));//入驻申请加载页面

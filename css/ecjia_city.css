@@ -11323,7 +11323,7 @@ footer {
 }
 
 /* 配送员位置 */
-.ecjia{ height:100%;max-width:640px }
+.ecjia .ecjia-express-info{ height:100%;max-width:640px }
 .ecjia #allmap{ width:100%;height:85% }
 .express-info{ height:15%;position:relative;max-height:110px; }
 .express-info .express-img{ width:100px;text-align:center;position:absolute;top:20% }
@@ -11653,4 +11653,121 @@ footer {
 .quickpay-content-block .more-discount {
 	color: #838383;
     font-size: .9em;
+}
+
+
+.ecjia-invite-register {
+    position: relative;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.ecjia-invite-register .form {
+    position: absolute;
+    height: 13em;
+    width: 90%;
+    top: 38%;
+    left: 5%;
+}
+
+.ecjia-invite-register .invite-notice {
+    position: absolute;
+    height: auto;
+    width: 92%;
+    bottom: 3%;
+    left: 4%;
+    font-size: 13px;
+}
+
+.ecjia-invite-register .invite-notice ul {
+	padding: 0;
+}
+
+.ecjia-invite-register .invite-notice p {
+    line-height: 20px;
+    color: #fff;
+    margin: 5px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.ecjia-invite-register .invite-notice p i {
+	font-style: normal;
+    position: absolute;
+    left: 5px;
+    top: 0;
+}
+
+.ecjia-invite-register .invite-form {
+	padding: 0 20px;
+	position: relative;
+    height: 100%;
+}
+
+.ecjia-invite-register .input-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 3%;
+    border: 1px solid #eee;
+    border-radius: 20px;
+}
+
+.ecjia-invite-register .input-container input {
+	width: 100%;
+    padding: 0 20px 0 20px;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+	outline: none;
+	font-size: 15px;
+}
+
+.ecjia-invite-register .input-container input.code_captcha {
+	padding: 0 70px 0 70px;
+}
+
+.ecjia-invite-register .input-container .identify_code {
+    position: absolute;
+    left: 5px;
+    height: 20px;
+    line-height: 20px;
+    top: 10px;
+    z-index: 1;
+    width: 55px;
+    text-align: center;
+    border-right: 1px solid #eee;
+	font-size: 15px;
+}
+
+.ecjia-invite-register .identify_code_btn {
+    position: absolute;
+    right: -1px;
+    height: 40px;
+    line-height: 40px;
+    top: 0;
+    z-index: 1;
+    width: 70px;
+    text-align: center;
+    background-color: #ED9117;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+.ecjia-invite-register .receive_btn {
+    width: 70%;
+    margin: 0 15%;
+    height: 35px;
+    color: #fff;
+    background-color: #339933;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    font-size: 16px;
 }
