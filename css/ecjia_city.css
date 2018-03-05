@@ -11675,7 +11675,7 @@ footer {
     position: absolute;
     height: auto;
     width: 92%;
-    bottom: 3%;
+    bottom: 2%;
     left: 4%;
     font-size: 13px;
 }
@@ -11763,7 +11763,7 @@ footer {
     margin: 0 15%;
     height: 35px;
     color: #fff;
-    background-color: #339933;
+    background-color: #47aa4d;
     border: none;
     outline: none;
     border-radius: 20px;
