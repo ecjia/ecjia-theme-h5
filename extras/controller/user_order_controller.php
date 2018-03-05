@@ -61,8 +61,7 @@ class user_order_controller {
         	$params_order = array('token' => $token, 'pagination' => array('count' => 10, 'page' => 1), 'type' => $type);
 			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
         	$data = is_ecjia_error($data) ? array() : $data;
-        	 
-        	ecjia_front::$controller->assign('type', $type);
+
         	ecjia_front::$controller->assign('order_list', $data);
         	ecjia_front::$controller->assign_title('售后');
         	ecjia_front::$controller->assign('title', '售后');
@@ -106,7 +105,7 @@ class user_order_controller {
         $params_order = array('token' => $token, 'order_id' => $order_id);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
         $data = is_ecjia_error($data) ? array() : $data;
-		
+
         if (empty($data)) {
             return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
         }
@@ -273,7 +272,12 @@ class user_order_controller {
     		$params_order['order_id'] = $order_id;
     	}
     	$params_order['type'] = 'refund';
-    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->hasPage()->run();
+    	if (!empty($order_id)) {
+    		$api = ecjia_touch_api::REFUND_LIST;
+    	} else {
+    		$api = ecjia_touch_api::ORDER_LIST;
+    	}
+    	$data = ecjia_touch_manager::make()->api($api)->data($params_order)->hasPage()->run();
     	if (!is_ecjia_error($data)) {
     		list($orders, $page) = $data;
     		if (isset($page['more']) && $page['more'] == 0) $is_last = 1;
@@ -465,8 +469,8 @@ class user_order_controller {
     	ecjia_front::$controller->assign('title', '申请查询');
     	
     	$param = array('token' => $token, 'order_id' => $order_id, 'pagination' => array('count' => 10, 'page' => 1));
-    	
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_LIST)->data($param)->run();
+
     	$data = is_ecjia_error($data) ? array() : $data;
     	ecjia_front::$controller->assign('order_list', $data);
     	
@@ -530,7 +534,6 @@ class user_order_controller {
     		$data = is_ecjia_error($data) ? array() : $data;
 
     		ecjia_front::$controller->assign('data', $data);
-    		
     		ecjia_front::$controller->assign_title('退款详情');
     		ecjia_front::$controller->assign('title', '退款详情');
     		
