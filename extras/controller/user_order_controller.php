@@ -482,18 +482,22 @@ class user_order_controller {
     	$order_id 	= intval($_GET['order_id']);
     	$token 		= ecjia_touch_user::singleton()->getToken();
     	$type		= trim($_GET['type']);
-    	if ($type == 'refund') {
-    		$refund_type = 'cancel';
-    	} else {
-    		$refund_type = 'afterservice';
-    	}
-    	$params = array('token' => $token, 'type' => $refund_type);
-    	$reason_list = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_RESIONS)->data($params)->run();
-    	ecjia_front::$controller->assign('reason_list', json_encode($reason_list));
     	
     	$params_order = array('token' => $token, 'order_id' => $order_id);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
     	$data = is_ecjia_error($data) ? array() : $data;
+    	
+    	if (empty($type)) {
+    		if ($data['order_status_code'] == 'await_ship') {
+    			$type = 'refund';
+    		} else if ($data['order_status_code'] == 'shipped' || $type == 'finished'){
+    			$type = 'return';
+    		}
+    	}
+    	$params = array('token' => $token, 'type' => $data['order_status_code']);
+    	$reason_list = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_RESIONS)->data($params)->run();
+    	ecjia_front::$controller->assign('reason_list', json_encode($reason_list));
+
     	
     	ecjia_front::$controller->assign('shipping_desc', $data['shipping_fee_desc']);
     	ecjia_front::$controller->assign('order', $data);

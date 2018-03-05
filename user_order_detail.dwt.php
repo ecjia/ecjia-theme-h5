@@ -118,16 +118,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					
 					{if $order.order_status_code eq 'await_ship'}
 						<a class="btn btn-small btn-hollow cancel_order" href='{url path="user/order/order_cancel" args="order_id={$order.order_id}&refund_type=$refund_type"}'>取消订单</a>
-						<a class="btn btn-small btn-hollow" href='{url path="user/order/return_order" args="type=refund&order_id={$order.order_id}"}'>申请退款</a>
-					{/if}
-					
-					{if $order.shipping_code eq 'ship_o2o_express' && $order.order_status_code eq 'shipped' && $order.express_mobile neq ''}
-						<a class="btn btn-small btn-hollow cancel_order_connect" href='{url path="user/order/order_cancel" args="order_id={$order.order_id}&refund_type=$refund_type"}' data-name="{$order.express_user}" data-phone="{$order.express_mobile}">取消订单</a>
+						<a class="btn btn-small btn-hollow" href='{url path="user/order/return_order" args="order_id={$order.order_id}"}'>申请退款</a>
 					{/if}
 					
 					{if $order.order_status_code eq 'shipped'} 
 						<a class="btn btn-small btn-hollow affirm_received" href='{url path="user/order/affirm_received" args="order_id={$order.order_id}"}'>确认收货</a>
-						<a class="btn btn-small btn-hollow" href='{url path="user/order/return_order" args="type=refund&order_id={$order.order_id}"}'>申请退款</a>
+						<a class="btn btn-small btn-hollow" href='{url path="user/order/return_order" args="order_id={$order.order_id}"}'>申请退款</a>
 					{/if}
 				{/if}
 				
