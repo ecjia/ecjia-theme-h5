@@ -912,7 +912,7 @@ select, input, textarea {
 .ecjia-header .ecjia-header-left a,
 .ecjia-header .ecjia-header-right a {
 	display: block;
-	width: 4em;
+	min-width: 4em;
 	height: 3.5em;
 	/*padding: 1em 0;*/
 	line-height: 3.5em;
@@ -923,7 +923,8 @@ select, input, textarea {
 }
 .ecjia-header .ecjia-header-left a span,
 .ecjia-header .ecjia-header-right a span {
-	font-size: 1.2em;
+	font-size: 1em;
+    margin-right: .5em;
 }
 .ecjia-header .ecjia-header-left a i,
 .ecjia-header .ecjia-header-right a i {

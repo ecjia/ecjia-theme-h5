@@ -145,6 +145,7 @@ RC_Hook::add_action('franchisee/index/get_region', array('franchisee_controller'
 //登录注册
 RC_Loader::load_theme('extras/controller/user_privilege_controller.php');
 RC_Hook::add_action('user/privilege/login', array('user_privilege_controller', 'login'));
+RC_Hook::add_action('user/privilege/pass_login', array('user_privilege_controller', 'pass_login'));
 RC_Hook::add_action('user/privilege/signin', array('user_privilege_controller', 'signin'));
 RC_Hook::add_action('user/privilege/signup', array('user_privilege_controller', 'signup'));
 RC_Hook::add_action('user/privilege/register', array('user_privilege_controller', 'register'));

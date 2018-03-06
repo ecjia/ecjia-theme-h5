@@ -5576,6 +5576,45 @@ footer {
 	background-color: #fff;
 }
 
+.ecjia-login.ecjia-form .form-group .roaming {
+	position: absolute;
+    top: .5em;
+    left: 0;
+    border-right: 1px solid #aaa;
+    padding-right: 1em;
+}
+
+.ecjiaf-tac.other-account {
+	margin-top: 10em;
+	position: relative;
+}
+
+.ecjiaf-tac.other-account:before {
+    content: '';
+    position: absolute;
+    border-bottom: 1px solid #aaa;
+    width: 10%;
+    top: .6em;
+    left: 27%;
+}
+
+.ecjiaf-tac.other-account:after {
+	content: '';
+    position: absolute;
+    border-bottom: 1px solid #aaa;
+    width: 10%;
+    top: .6em;
+    right: 27%;
+}
+
+.ecjia-form .form-group .input input.p_d0 {
+	padding-left: 0;
+}
+
+.ecjia-form .form-group .input input.mobile_phone {
+	padding-left: 4em;
+}
+
 .ecjia-login-login-foot {
 	overflow: hidden;
 	margin-right: 12%;

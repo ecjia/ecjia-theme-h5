@@ -70,6 +70,7 @@ class user_front {
 	protected function makePublicRoute() {
 	    $this->public_route = array(
 	        'user/privilege/login',
+	    	'user/privilege/pass_login',
 	        'user/privilege/signin',
 	        'user/privilege/register',
 	        
