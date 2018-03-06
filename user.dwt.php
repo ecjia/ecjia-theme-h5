@@ -90,7 +90,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		  <img src="{$theme_url}images/user_center/o_75_6.png" />
         		  {if $order_num.refund_order gte 1}<span class="oc-num top">{$order_num.refund_order}</span>{/if}
         		</p>
-        		<p>售后</p>
+        		<p>退款/售后</p>
     		</a>
     	</li>
     </ul>
@@ -173,7 +173,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		<p class="oc-icon">
         		  <img src="{$theme_url}images/user_center/o_75_6.png" />
         		</p>
-        		<p>售后</p>
+        		<p>退款/售后</p>
     		</a>
     	</li>
     </ul>
