@@ -6632,6 +6632,31 @@ footer {
 	line-height: 5em;
 }
 
+.flow-goods-list .goods-img-more.more-info {
+	float: right;
+	position: relative;
+}
+
+.flow-goods-list .goods-img-more.more-info .ecjiaf-ib {
+    position: absolute;
+    right: 0;
+    top: 0;
+    line-height: 3em;
+    text-align: right;
+    width: 4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.flow-goods-list .goods-img-more.more-info .ecjiaf-ib p {
+	height: 2em;
+}
+
+.flow-goods-list .goods-img-more.more-info .ecjiaf-ib p.price {
+	color: #47aa4d;
+}
+
 .goods-list .goods-img-more i {
 	font-size: 1.8em;
 	top: 0.1em;

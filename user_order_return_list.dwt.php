@@ -44,37 +44,26 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="flow-goods-list">
 		<a class="ecjiaf-db" href='{url path="user/order/order_detail" args="order_id={$list.order_id}&type=detail"}'>
 			<ul class="{if count($list.goods_list) > 1}goods-list{else}goods-item{/if} goods_attr_ul"><!-- goods-list 多个商品隐藏商品名称,goods-item -->
-				<!-- {foreach from=$list.goods_list item=goods name=goods} -->
-				<!-- {if $smarty.foreach.goods.iteration gt 3} -->
-				<!-- 判断不能大于4个 -->
-				<li class="goods-img-more">
-					<i class="icon iconfont">&#xe62e;</i>
-					<p class="ecjiaf-ib">共{$list.goods_number}件</p>
+				<li class="goods-img-more more-info">
+					<span class="ecjiaf-ib">
+						<p class="price">{$list.formated_total_fee}</p>
+						<p>共{$list.goods_number}件</p>
+					</span>
 				</li>
-				<!-- {break} -->
-				<!-- {/if} -->
+				<!-- {foreach from=$list.goods_list item=goods key=key} -->
+				<!-- 判断不能大于3个 -->
+				<!-- {if $key lt 3} -->
 				<li class="goods-img ecjiaf-fl ecjia-margin-r ecjia-icon {if $list.goods_list|@count gt 1}goods_attr{/if}">
 					<img class="ecjiaf-fl" src="{$goods.img.thumb}" alt="{$goods.name}" title="{$goods.name}" />
 					{if $goods.goods_number gt 1}<span class="ecjia-icon-num top">{$goods.goods_number}</span>{/if}
-					{if $list.goods_list|@count eq 1}
-					<div class="goods_attr_list">
-						<p class="ecjiaf-fl goods-name">{$goods.name}</p>
-						{if $goods.goods_attr}
-    					<div class="order_list_attr">
-    						<!-- {foreach from=$goods.goods_attr item=attr} -->
-    					   	{if $attr.name}{$attr.name}:{$attr.value}{/if}
-    						<!-- {/foreach} -->
-    					</div>
-    					{/if}
-    				</div>
-					{/if}
 				</li>
+				<!-- {/if} -->
 				<!-- {/foreach} -->
 			</ul>
 		</a>
 	</div>
 	<div class="order-ft">
-		<span>退款金额：<span class="ecjia-color-red">{$list.formated_total_fee}</span></span>
+		<span>{$list.order_time}</span></span>
 		<span class="two-btn ecjiaf-fr">
 			{if $list.refund_info.refund_status_code eq 'refunded'} 
                 <a class="btn btn-hollow" href='{url path="user/order/return_detail" args="refund_sn={$list.refund_info.refund_sn}&type=return_money"}'>查看退款</a>
