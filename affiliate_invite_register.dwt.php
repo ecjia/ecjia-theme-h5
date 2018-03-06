@@ -21,7 +21,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<form class="invite-form" name="theForm" action="">
 			<div class="input-container"><input type="text" name="mobile" placeholder="输入手机号码"/></div>
 			<div class="input-container">
-				<span class="identify_code">GY6B</span>
+				<span class="identify_code"><img src="data:image/png;base64,{$captcha_image}"></span>
 				<input class="code_captcha" type="text" name="mobile" placeholder="请输入左侧验证码"/>
 				<span class="identify_code_btn">验证</span>
 			</div>

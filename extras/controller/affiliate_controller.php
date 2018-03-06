@@ -51,7 +51,12 @@ defined('IN_ECJIA') or exit('No permission resources.');
  */
 class affiliate_controller {
 	public static function init() {
-
+		$data	= ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+		$token	= $data['access_token'];
+		
+		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();
+		
+		ecjia_front::$controller->assign('captcha_image', $res['base64']);
 		ecjia_front::$controller->display('affiliate_invite_register.dwt');
 	}
 }

@@ -11766,20 +11766,25 @@ footer {
 }
 
 .ecjia-invite-register .input-container input.code_captcha {
-	padding: 0 70px 0 70px;
+	padding: 0 70px 0 95px;
 }
 
 .ecjia-invite-register .input-container .identify_code {
     position: absolute;
     left: 5px;
-    height: 20px;
-    line-height: 20px;
-    top: 10px;
+    height: 30px;
+    line-height: 30px;
+    top: 5px;
     z-index: 1;
-    width: 55px;
+    width: 85px;
     text-align: center;
-    border-right: 1px solid #eee;
-	font-size: 15px;
+    border-right: 2px solid #eee;
+    font-size: 15px;
+}
+
+.ecjia-invite-register .input-container .identify_code img {
+	width: 80px;
+    height: 30px;
 }
 
 .ecjia-invite-register .identify_code_btn {

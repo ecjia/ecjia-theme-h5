@@ -117,7 +117,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					{/if}
 					
 					{if $order.order_status_code eq 'await_ship'}
-						<a class="btn btn-small btn-hollow cancel_order" href='{url path="user/order/order_cancel" args="order_id={$order.order_id}&refund_type=$refund_type"}'>取消订单</a>
 						<a class="btn btn-small btn-hollow" href='{url path="user/order/return_order" args="order_id={$order.order_id}"}'>申请退款</a>
 					{/if}
 					
@@ -131,7 +130,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<a class="btn btn-small btn-hollow" href='{url path="user/order/buy_again" args="order_id={$order.order_id}"}'>再次购买</a>
 				{/if}
 				
-				{if $order.refund_type eq 'refund' && $order.refund_status eq 'going'}
+				{if ($order.refund_type eq 'refund' || $order.refund_type eq 'return') && $order.refund_status eq 'going'}
 				<a class="btn btn-small btn-hollow undo_reply" href='{url path="user/order/undo_reply" args="order_id={$order.order_id}&refund_sn={$order.refund_info.refund_sn}"}'>撤销申请</a>
 				{/if}
 				
