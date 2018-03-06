@@ -124,20 +124,11 @@ class user_order_controller {
                 ecjia_front::$controller->assign_title('订单详情');
                 ecjia_front::$controller->assign_lang();
                 
-                $refund_type = '';
-                $cancal_arr = array('await_ship');
-                if ($data['order_status_code'] == 'await_ship') {
-                	$refund_type = 'cancel';
-                }
-                $service_arr = array('shipped', 'shipped_part');
-                if (in_array($data['order_status_code'], $service_arr)) {
-                	$refund_type = 'afterservice';
-                }
-                if (!empty($refund_type)) {
-                	$params = array('token' => $token, 'type' => $refund_type);
+                if (!empty($data['order_status_code'])) {
+                	$params = array('token' => $token, 'type' => $data['order_status_code']);
                 	$reason_list = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_RESIONS)->data($params)->run();
                 	ecjia_front::$controller->assign('reason_list', json_encode($reason_list));
-                	ecjia_front::$controller->assign('refund_type', $refund_type);
+                	ecjia_front::$controller->assign('refund_type', 'refund');
                 }
             }
             if ($data['order_mode'] == 'storebuy') {
@@ -147,7 +138,6 @@ class user_order_controller {
             }
         } else {
             if (!ecjia_front::$controller->is_cached('user_order_status.dwt', $cache_id)) {
-            
                 ecjia_front::$controller->assign('order', $data);
                 ecjia_front::$controller->assign('title', '订单状态');
                 ecjia_front::$controller->assign_title('订单状态');
@@ -167,8 +157,8 @@ class user_order_controller {
         }
         $reason_id = !empty($_GET['reason_id']) ? intval($_GET['reason_id']) : 0;
         $refund_type = !empty($_GET['refund_type']) ? trim($_GET['refund_type']) : '';
-        
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
+        
         if (empty($refund_type)) {
         	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_CANCEL)->data($params_order)->run();
         	$message = '取消订单成功';
