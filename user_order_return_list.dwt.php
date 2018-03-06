@@ -39,10 +39,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<a class="ecjiaf-fl" href='{url path="merchant/index/init" args="store_id={$list.seller_id}"}'>
 			<i class="iconfont icon-shop"></i>{$list.seller_name} <i class="iconfont icon-jiantou-right"></i>
 		</a>
-		<a class="ecjiaf-fr" href='{url path="user/order/order_detail" args="order_id={$list.order_id}"}'><span class="ecjia-color-green">{$list.refund_info.label_refund_status}</span></a>
+		<a class="ecjiaf-fr" href='{url path="user/order/return_detail" args="refund_sn={$list.refund_info.refund_sn}"}'><span class="ecjia-color-green">{$list.refund_info.label_refund_status}</span></a>
 	</div>
 	<div class="flow-goods-list">
-		<a class="ecjiaf-db" href='{url path="user/order/order_detail" args="order_id={$list.order_id}&type=detail"}'>
+		<a class="ecjiaf-db" href='{url path="user/order/return_detail" args="refund_sn={$list.refund_info.refund_sn}"}'>
 			<ul class="{if count($list.goods_list) > 1}goods-list{else}goods-item{/if} goods_attr_ul"><!-- goods-list 多个商品隐藏商品名称,goods-item -->
 				<li class="goods-img-more more-info">
 					<span class="ecjiaf-ib">

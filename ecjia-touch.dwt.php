@@ -24,9 +24,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.develop.css">
 	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.b2b2c.css">
 	<link rel="stylesheet" href="{$theme_url}css/ecjia_city.css">
-	<!-- {if $is_weixin} -->
-	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.iphonex.css">
-	<!-- {/if} -->
 	<link rel="stylesheet" href="{$theme_url}css/ecjia_help.css">
     <!-- 弹窗 -->
 	<link rel="stylesheet" href="{$theme_url}css/ecjia.touch.models.css">
