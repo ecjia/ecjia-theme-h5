@@ -534,7 +534,7 @@ class merchant_controller {
 				} elseif (cart_function::is_alipay()) {
 					$direct_pay = true;
 					foreach ($payment_list['payment'] as $key => $val) {
-						if ($val['pay_code'] != 'pay_alipay') {
+						if ($val['pay_code'] == 'pay_alipay') {
 							$payment = $payment_list['payment'][$key];
 						}
 					}
