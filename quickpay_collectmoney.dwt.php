@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <input type="hidden" name="from" value="{$smarty.get.from}" class="ecjia-from-page {if $smarty.get.out eq 1}out-range{/if}" />
 
 <div class="ecjia-quickpay-form">
-	<form name="quickpayForm" action="{url path='quickpay/flow/done'}" method="post" data-url="{url path='user/quickpay/flow_checkorder'}">
+	<form name="quickpayForm" action="{if $direct_pay eq 1}{else}{url path='user/quickpay/flow_checkorder'}{url path='quickpay/flow/done'}{/if}" method="post" data-url="{url path='user/quickpay/flow_checkorder'}">
 		<div class="ecjia-quickpay-content">
 			<div class="quickpay-content-title">
 				消费总金额（元）

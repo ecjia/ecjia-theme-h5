@@ -80,10 +80,7 @@
 				}
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 				var url = $("form[name='quickpayForm']").attr('action');
-				
-				if (direct_pay == 1) {
-					url = $("form[name='quickpayForm']").attr('data-url');
-				}
+
 				$("form[name='quickpayForm']").ajaxSubmit({
 					type: 'post',
 					url: url,
