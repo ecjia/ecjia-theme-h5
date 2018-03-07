@@ -60,6 +60,8 @@
 				var direct_pay = $("input[name='direct_pay']").val();
 				
 				var show_exclude_amount = $("input[name='show_exclude_amount']:checked").val();
+				var direct_pay = $("input[name='direct_pay']").val();
+				
 				if (order_id == undefined) {
 					var order_money = $("input[name='order_money']").val();
 					if (order_money == '' || order_money == undefined) {
@@ -78,13 +80,16 @@
 				}
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 				var url = $("form[name='quickpayForm']").attr('action');
+				
+				if (direct_pay == 1) {
+					url = $("form[name='quickpayForm']").attr('data-url');
+				}
 				$("form[name='quickpayForm']").ajaxSubmit({
 					type: 'post',
 					url: url,
 					dataType: "json",
 					success: function(data) {
 						$('.la-ball-atom').remove();
-						
 						var myApp = new Framework7();
 						if (data.referer_url || data.message == 'Invalid session') {
 							myApp.modal({
@@ -102,15 +107,18 @@
 							});
 							return false;
 						}
-						
-						if (direct_pay == 1) {
-							$('.ecjia-pay-content').addClass('show');
-							$('.ecjia-pay-content-lay').show();
-							return false;
-						}
-						
 						if (data.status == 'error') {
 							alert(data.message);
+							return false;
+						}
+						if (direct_pay == 1) {
+							$('.ecjia-pay-content').find('.goods-amount').html(data.content.format_goods_amount);
+							$('.ecjia-pay-content').find('.discount').html('-'+data.content.format_discount);
+							$('.ecjia-pay-content').find('.total-fee').html(data.content.format_total_fee);
+							$('.confirm-pay-btn').attr('data-money', data.content.goods_amount);
+							$('.confirm-pay-btn').attr('data-activity', data.activity_id);
+							$('.ecjia-pay-content').addClass('show');
+							$('.ecjia-pay-content-lay').show();
 							return false;
 						}
 						if (data.redirect_url) {
@@ -193,6 +201,11 @@
 			}
 			$('.check_quickpay_btn').prop('disabled', false);
 			
+        	var direct_pay = $("input[name='direct_pay']").val();
+        	if (direct_pay == 1) {
+        		return false;
+        	}
+        	
         	var url =  $('form[name="quickpayForm"]').attr('data-url');
         	var activity_id = $("input[name='activity_id']:checked").val();
         	if (c == 'change_amount') {
@@ -219,15 +232,6 @@
         		$('.quickpay-content').html(data.list);
         		$("body").greenCheck();
         		ecjia.touch.quickpay.init();
-        		
-        		var direct_pay = $("input[name='direct_pay']").val();
-				if (direct_pay == 1) {
-					$('.ecjia-pay-content').find('.goods-amount').html(data.content.format_goods_amount);
-					$('.ecjia-pay-content').find('.discount').html('-'+data.content.format_discount);
-					$('.ecjia-pay-content').find('.total-fee').html(data.content.format_total_fee);
-					$('.confirm-pay-btn').attr('data-money', data.content.goods_amount);
-					$('.confirm-pay-btn').attr('data-activity', data.activity_id);
-				}
         	});
 	        return false;
         },

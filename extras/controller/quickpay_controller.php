@@ -148,6 +148,7 @@ class quickpay_controller {
     	$show_exclude_amount 	= !empty($_POST['show_exclude_amount']) ? intval($_POST['show_exclude_amount']) : 0;
     	$change_amount 			= !empty($_POST['change_amount']) 		? intval($_POST['change_amount']) 		: 0;
     	$change_activity 		= !empty($_POST['change_activity']) 	? intval($_POST['change_activity']) 	: 0;
+    	$direct_pay 			= intval($_POST['direct_pay']);
     	
     	if ($show_exclude_amount != 1) {
     		$drop_out_money = 0;
@@ -177,7 +178,7 @@ class quickpay_controller {
     			$discount = $type_money = 0;
     			$arr = array();
     			$activity_list = $data['activity_list'];
-    			
+
     			$auto_activity_id = 0;
     			if (!empty($activity_list)) {
     				foreach ($activity_list as $k => $v) {
@@ -190,7 +191,7 @@ class quickpay_controller {
     						if (!empty($arr['bonus_list']) && !empty($temp['bonus'])) {
     							$type_money = $arr['bonus_list'][$temp['bonus']]['type_money'];
     						}
-    					} else if ($change_amount != 1 || $change_activity == 1) {
+    					} else if (($change_amount != 1 || $change_activity == 1) && $direct_pay != 1) {
     						$activity_list[$k]['is_favorable'] = 0;
     					} else if ($v['is_allow_use'] == 1 && $v['is_favorable'] == 1){
     						$discount = $v['discount'];
@@ -285,14 +286,7 @@ class quickpay_controller {
     	if (!ecjia_touch_user::singleton()->isSignin()) {
     		return ecjia_front::$controller->showmessage('Invalid session', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
     	}
-    	$direct_pay = intval($_POST['direct_pay']);
-    	//直接返回 只判断是否登录不提交订单
-    	if ($direct_pay == 1) {
-    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
-    	}
-    	
     	$token = ecjia_touch_user::singleton()->getToken();
-    	
     	$store_id = !empty($_POST['store_id']) ? intval($_POST['store_id']) : 0;
     	
     	$goods_amount = !empty($_POST['order_money']) ? $_POST['order_money'] : 0;
