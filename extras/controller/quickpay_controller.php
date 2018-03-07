@@ -285,6 +285,11 @@ class quickpay_controller {
     	if (!ecjia_touch_user::singleton()->isSignin()) {
     		return ecjia_front::$controller->showmessage('Invalid session', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
     	}
+    	$direct_pay = intval($_POST['direct_pay']);
+    	//直接返回 只判断是否登录不提交订单
+    	if ($direct_pay == 1) {
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+    	}
     	
     	$token = ecjia_touch_user::singleton()->getToken();
     	

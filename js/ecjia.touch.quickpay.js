@@ -58,64 +58,66 @@
 				e.preventDefault();
 				var order_id = $("input[name='order_id']").val();
 				var direct_pay = $("input[name='direct_pay']").val();
-				if (direct_pay == 1) {
-					$('.ecjia-pay-content').addClass('show');
-					$('.ecjia-pay-content-lay').show();
-				} else {
-					var show_exclude_amount = $("input[name='show_exclude_amount']:checked").val();
-					if (order_id == undefined) {
-						var order_money = $("input[name='order_money']").val();
-						if (order_money == '' || order_money == undefined) {
-							alert('消费金额不能为空');
+				
+				var show_exclude_amount = $("input[name='show_exclude_amount']:checked").val();
+				if (order_id == undefined) {
+					var order_money = $("input[name='order_money']").val();
+					if (order_money == '' || order_money == undefined) {
+						alert('消费金额不能为空');
+						return false;
+					}
+					if (order_money == 0) {
+						alert('消费金额不能为0');
+						return false;
+					}
+					var drop_out_money = $("input[name='drop_out_money']").val();
+					if (show_exclude_amount == 1 && drop_out_money > order_money) {
+						alert('不参与优惠金额不能大于消费总金额');
+						return false;
+					}
+				}
+				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+				var url = $("form[name='quickpayForm']").attr('action');
+				$("form[name='quickpayForm']").ajaxSubmit({
+					type: 'post',
+					url: url,
+					dataType: "json",
+					success: function(data) {
+						$('.la-ball-atom').remove();
+						
+						var myApp = new Framework7();
+						if (data.referer_url || data.message == 'Invalid session') {
+							myApp.modal({
+								title: '温馨提示',
+								text: '您还没有登录',
+								buttons: [{
+									text: '取消',
+								}, {
+									text: '去登录',
+									onClick: function() {
+										location.href = data.referer_url;
+										return false;
+									}
+								}, ]
+							});
 							return false;
 						}
-						if (order_money == 0) {
-							alert('消费金额不能为0');
+						
+						if (direct_pay == 1) {
+							$('.ecjia-pay-content').addClass('show');
+							$('.ecjia-pay-content-lay').show();
 							return false;
 						}
-						var drop_out_money = $("input[name='drop_out_money']").val();
-						if (show_exclude_amount == 1 && drop_out_money > order_money) {
-							alert('不参与优惠金额不能大于消费总金额');
+						
+						if (data.status == 'error') {
+							alert(data.message);
 							return false;
+						}
+						if (data.redirect_url) {
+							location.href = data.redirect_url;
 						}
 					}
-					$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
-					var url = $("form[name='quickpayForm']").attr('action');
-					$("form[name='quickpayForm']").ajaxSubmit({
-						type: 'post',
-						url: url,
-						dataType: "json",
-						success: function(data) {
-							$('.la-ball-atom').remove();
-							
-							var myApp = new Framework7();
-							if (data.referer_url || data.message == 'Invalid session') {
-								myApp.modal({
-									title: '温馨提示',
-									text: '您还没有登录',
-									buttons: [{
-										text: '取消',
-									}, {
-										text: '去登录',
-										onClick: function() {
-											location.href = data.referer_url;
-											return false;
-										}
-									}, ]
-								});
-								return false;
-							}
-							
-							if (data.status == 'error') {
-								alert(data.message);
-								return false;
-							}
-							if (data.redirect_url) {
-								location.href = data.redirect_url;
-							}
-						}
-					});
-				}
+				});
 			});
 			
 			$('.quickpay_order_handle').off('click').on('click', function(e) {
