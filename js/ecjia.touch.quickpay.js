@@ -157,10 +157,12 @@
 				$.post(url, info, function(data) {
 					if (data.status == 'error') {
 						alert(data.message);
+						$this.removeClass('disabled').html('确认买单');
 						return false;
 					}
 					var order_id = data.order_id;
 					$.post(pay_url, {order_id: order_id, pay_code: pay_code}, function(data) {
+						$this.removeClass('disabled').html('确认买单');
 						if (data.state == 'error') {
 							alert(data.message);
 							return false;

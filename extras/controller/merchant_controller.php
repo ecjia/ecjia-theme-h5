@@ -517,8 +517,7 @@ class merchant_controller {
 		}
 			
 		$direct_pay = false;
-		if (cart_function::is_weixin() && cart_function::is_alipay()) {
-			$direct_pay = true;
+		if (cart_function::is_weixin() || cart_function::is_alipay()) {
 			$params = array('store_id' => $store_id);
 			$payment_list = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_SHOP_PAYMENT)->data($params)->run();
 			/*根据浏览器过滤支付方式，微信自带浏览器过滤掉支付宝支付，其他浏览器过滤掉微信支付*/
@@ -526,12 +525,14 @@ class merchant_controller {
 			$payment = array();
 			if (!empty($payment_list['payment'])) {
 				if (cart_function::is_weixin() == true) {
+					$direct_pay = true;
 					foreach ($payment_list['payment'] as $key => $val) {
 						if ($val['pay_code'] == 'pay_wxpay') {
 							$payment = $payment_list['payment'][$key];
 						}
 					}
 				} elseif (cart_function::is_alipay()) {
+					$direct_pay = true;
 					foreach ($payment_list['payment'] as $key => $val) {
 						if ($val['pay_code'] != 'pay_alipay') {
 							$payment = $payment_list['payment'][$key];
