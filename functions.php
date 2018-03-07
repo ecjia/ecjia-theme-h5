@@ -125,6 +125,8 @@ RC_Hook::add_action('user/index/wxconfig', array('user_controller', 'wxconfig'))
 //推荐
 RC_Loader::load_theme('extras/controller/affiliate_controller.php');
 RC_Hook::add_action('affiliate/index/init', array('affiliate_controller', 'init'));//邀请注册
+RC_Hook::add_action('affiliate/index/check', array('affiliate_controller', 'check'));
+RC_Hook::add_action('affiliate/index/change_captcha', array('affiliate_controller', 'change_captcha'));
 
 //商家入驻申请
 RC_Loader::load_theme('extras/controller/franchisee_controller.php');

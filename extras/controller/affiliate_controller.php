@@ -62,7 +62,50 @@ class affiliate_controller {
 	
 	//验证图形验证码
 	public static function check() {
+		$mobile = trim($_GET['mobile']);
+		$code_captcha = trim($_GET['code_captcha']);
 		
+		if (empty($mobile)) {
+			return ecjia_front::$controller->showmessage('请输入手机号', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+		}
+		
+		if (empty($code_captcha)) {
+			return ecjia_front::$controller->showmessage('请输入验证码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+		}
+		
+		$data	= ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+		$token	= $data['access_token'];
+		
+		$param = array(
+			'token'	=> $token,
+			'type'	=> 'mobile',
+			'value'	=> $mobile,
+			'captcha_code' => $code_captcha
+		);
+		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::AFFILIATE_USER_INVITE)->data($param)->run();
+		if (is_ecjia_error($res)) {
+			return ecjia_front::$controller->showmessage($res->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
+		}
+		if ($res['registered'] == 1) {
+			return ecjia_front::$controller->showmessage('该用户已注册', ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
+		}
+		
+		if ($res['is_invited'] == 1) {
+			return ecjia_front::$controller->showmessage('该用户已被推荐邀请', ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
+		}
+		
+		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+	}
+	
+	public static function change_captcha() {
+		$data	= ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+		$token	= $data['access_token'];
+		
+		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();
+		if (is_ecjia_error($res)) {
+			return ecjia_front::$controller->showmessage($res->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
+		}
+		return ecjia_front::$controller->showmessage($res['base64'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
 	}
 }
 

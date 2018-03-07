@@ -23,6 +23,7 @@
 			ecjia.touch.user.account_bind();
 			ecjia.touch.user.cancel_order();
 			ecjia.touch.user.return_order();
+			ecjia.touch.user.affiliate();
 
 			$(function() {
 				$(".del").click(function() {
@@ -863,6 +864,80 @@
 				}
 			})
 		},
+		
+		affiliate: function() {
+			var InterValObj; //timer变量，控制时间
+			var count = 120; //间隔函数，1秒执行
+			var curCount; //当前剩余秒数
+			
+			$('.identify_code_btn').off('click').on('click', function() {
+				var $this = $(this),
+					mobile = $('input[name="mobile"]').val(),
+					code_captcha = $('input[name="code_captcha"]').val(),
+					url = $this.attr('data-url');
+					
+				if (mobile || mobile == '') {
+					if (mobile.length == 11) {
+						url += '&mobile=' + mobile;
+					} else {
+						alert('请输入正确的手机号');
+						return false;
+					}
+				}
+					
+				if (code_captcha || code_captcha == '') {
+					if (code_captcha == '') {
+						alert("请输入验证码");
+						return false;
+					} else {
+						url += '&code_captcha=' + code_captcha;
+					}
+				}
+				
+				$.get(url, function(data) {
+					if (data.state == 'success') {　
+						curCount = count;
+						$("#mobile").attr("readonly", "true");
+						$(".identify_code_btn").attr("disabled", "true");
+						$('.identify_code').addClass('disabled');
+						$(".identify_code_btn").html(curCount + "s");
+						InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+					}
+					ecjia.touch.showmessage(data);
+				});
+			});
+			
+			$('.identify_code').off('click').on('click', function() {
+				var $this = $(this),
+					url = $this.attr('data-url');
+				if ($this.hasClass('disabled')) {
+					return false;
+				}
+				$.post(url, function(data) {
+					if (data.state == 'error') {
+						ecjia.touch.showmessage(data);
+						return false;
+					}
+					$this.find('img').attr('src', 'data:image/png;base64,' + data.message);
+				});
+			});
+			
+			//timer处理函数
+			function SetRemainTime() {
+				if (curCount == 0) {
+					window.clearInterval(InterValObj); 		//停止计时器
+					$("#mobile").removeAttr("readonly");	//启用按钮
+					$(".identify_code_btn").removeAttr("disabled"); 	//启用按钮
+					$(".identify_code_btn").html("验证");
+					$('.identify_code').removeClass('disabled');
+				} else {
+					curCount--;
+					$(".identify_code_btn").attr("disabled", "true");
+					$(".identify_code_btn").html(curCount + "s");
+				}
+			};
+			
+		}
 	};
 
 	ecjia.touch.address_form = {
