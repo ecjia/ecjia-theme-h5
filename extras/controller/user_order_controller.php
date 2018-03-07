@@ -105,6 +105,7 @@ class user_order_controller {
         $params_order = array('token' => $token, 'order_id' => $order_id);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
         $data = is_ecjia_error($data) ? array() : $data;
+
         if (empty($data)) {
             return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
         }
@@ -475,7 +476,7 @@ class user_order_controller {
     	$params_order = array('token' => $token, 'order_id' => $order_id);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
     	$data = is_ecjia_error($data) ? array() : $data;
-
+		
     	if (empty($type)) {
     		if ($data['order_status_code'] == 'await_ship') {
     			$type = 'refund';
@@ -533,9 +534,13 @@ class user_order_controller {
     	} else {
     		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_DETAIL)->data($params)->run();
     		$data = is_ecjia_error($data) ? array() : $data;
-    		
+
     		ecjia_front::$controller->assign('order', $data);
     		ecjia_front::$controller->assign('shipping_desc', $data['shipping_fee_desc']);
+    		
+    		if (count($data['return_way_list']) == 1) {
+    			ecjia_front::$controller->assign('return_way_info', $data['return_way_list'][0]);
+    		}
 
     		if (!empty($data['refund_logs'])) {
     			ecjia_front::$controller->assign('refund_logs', $data['refund_logs'][0]);

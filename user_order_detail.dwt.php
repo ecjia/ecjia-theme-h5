@@ -138,7 +138,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<a class="btn btn-small btn-hollow" href='{url path="user/order/comment_list" args="order_id={$order.order_id}"}'>评价晒单</a>
 				{/if}
 				
-				{if $order.order_status_code eq 'refunded' || $order.order_status_code eq 'finished'}
+				{if $order.order_status_code eq 'refunded' || $order.order_status_code eq 'finished' || $order.refund_info}
 					{if $order.refund_info}
 					<a class="btn btn-small btn-hollow" href='{url path="user/order/return_detail" args="order_id={$order.order_id}{if $order.refund_info}&refund_sn={$order.refund_info.refund_sn}{/if}"}'>售后</a>
 					{else}

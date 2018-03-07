@@ -169,7 +169,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					{/if}
 					
 					{if $order.status eq 'agree' && !$order.selected_returnway_info}
+						{if $return_way_info}
+						<a class="btn btn-small btn-hollow data-pjax" href='{url path="user/order/return_way" args="refund_sn={$order.refund_sn}&type={$return_way_info.return_way_code}"}'>返还方式</a>
+						{else}
 						<a class="btn btn-small btn-hollow data-pjax" href='{url path="user/order/return_way_list" args="refund_sn={$order.refund_sn}"}'>返还方式</a>
+						{/if}
 					{/if}
 					
 					{if $order.status eq 'refused'}
