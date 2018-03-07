@@ -158,7 +158,7 @@
 	        		'order_money' 			: order_money,
 	        		'activity_id'			: activity_id,
 				};
-				var url = $('form[name="quickpayForm"]').attr('action');
+				var url = $('input[name="quickpay_done_url"]').val();
 				
 				$this.addClass('disabled').html('请求中...');
 				$.post(url, info, function(data) {

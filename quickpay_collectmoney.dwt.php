@@ -68,6 +68,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
           <div class="right total-fee"></div>
         </div>
         <div class="pay-content-btn">
+        	<input type="hidden" name="quickpay_done_url" value="{url path='quickpay/flow/done'}">
         	<input type="hidden" name="pay_url" value="{url path='user/quickpay/dopay'}">
           	<button class="btn confirm-pay-btn" data-money="" data-activity="" data-paycode="{$payment.pay_code}">确认买单</button>
           	<div class="wei-xin-pay hide"></div>
