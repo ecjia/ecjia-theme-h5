@@ -140,6 +140,12 @@ class quickpay_controller {
 	 * 检查订单
 	 */
     public static function flow_checkorder() {
+    	$url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
+    	$referer_url = RC_Uri::url('user/privilege/login', array('referer_url' => urlencode($url)));
+    	if (!ecjia_touch_user::singleton()->isSignin()) {
+    		return ecjia_front::$controller->showmessage('Invalid session', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
+    	}
+    	
     	$token 					= ecjia_touch_user::singleton()->getToken();
     	$order_money 			= !empty($_POST['order_money'])	 		? $_POST['order_money'] 				: 0;
     	$drop_out_money 		= !empty($_POST['drop_out_money']) 		? $_POST['drop_out_money'] 				: 0;
