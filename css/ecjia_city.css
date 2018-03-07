@@ -5873,7 +5873,8 @@ footer {
 }
 
 .ecjia-goods-basic-info .focus {
-	margin-top: 0px;
+	margin-top: 0;
+	padding-top: 0;;
 }
 
 #goods-info-two {
