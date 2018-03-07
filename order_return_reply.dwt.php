@@ -43,11 +43,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				
 				<ul class="ecjia-list">
 					<div class="return-fee-list">
-						<p>退商品金额<span class="ecjiaf-fr ">{$order.formated_goods_amount}</span></p>
-						<p>退配送费<i class="k0 shipping_fee_notice"></i><span class="ecjiaf-fr ">{$order.formated_shipping_fee}</span></p>
-						<p>退积分<span class="ecjiaf-fr ">{$order.integral}</span></p>
-						<p>退发票<span class="ecjiaf-fr ">{$order.formated_tax}</span></p>
-						<p>退总金额<span class="ecjiaf-fr ecjia-red">{$order.formated_total_fee}</span></p>
+						<p>退商品金额<span class="ecjiaf-fr ">{$order.refund_fee_info.refund_goods_amount}</span></p>
+						<p>退配送费<i class="k0 shipping_fee_notice"></i><span class="ecjiaf-fr ">{$shipping_desc.total_fee}</span></p>
+						<p>退积分<span class="ecjiaf-fr ">{$order.refund_fee_info.refund_integral}</span></p>
+						<p>退发票<span class="ecjiaf-fr ">{$order.refund_fee_info.refund_inv_tax}</span></p>
+						<p>退总金额<span class="ecjiaf-fr ecjia-red">{$order.refund_fee_info.refund_total_amount}</span></p>
 					</div>
 					<li class="notice">
 						<div class="notice-content">
@@ -117,6 +117,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<div class="order-ft-link">
 				<input type="hidden" name="order_id" value="{$order_id}">
 				<input type="hidden" name="refund_type" value="{$type}">
+				<input type="hidden" name="refund_sn" value="{$order.refund_info.refund_sn}">
+				
 				<input class="btn btn-small btn-hollow" name="add-return-btn" type="submit" value="提交"/>
 			</div>
 		</div>
