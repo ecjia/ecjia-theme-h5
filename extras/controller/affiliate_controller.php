@@ -59,6 +59,11 @@ class affiliate_controller {
 		ecjia_front::$controller->assign('captcha_image', $res['base64']);
 		ecjia_front::$controller->display('affiliate_invite_register.dwt');
 	}
+	
+	//验证图形验证码
+	public static function check() {
+		
+	}
 }
 
 // end

@@ -43,35 +43,37 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="ecjia-service-content-bottom">
 			<input type="hidden" name="activity_id" class="auto_activity_id"/>
 			<input type="hidden" name="store_id" value="{$store_id}">
+			<input type="hidden" name="direct_pay" value="{$direct_pay}">
 			<input class="btn quickpay_done external check_quickpay_btn" type="submit" value="我要买单" />
 		</div>
 	</form>
 </div>      
 
-    <div class="ecjia-pay-content">
-      <div class="ecjia-pay-content-area">
-        <div class="pay-content-title">确认付款
+<div class="ecjia-pay-content">
+	<div class="ecjia-pay-content-area">
+		<div class="pay-content-title">确认付款
           <image class="pay-content-close" src="{$theme_url}images/icon/close.png" />
         </div>
         <div class="pay-content-price"></div>
         <div class="pay-content-li">
           <div class="left">消费金额</div>
-          <div class="right"></div>
+          <div class="right goods-amount"></div>
         </div>
         <div class="pay-content-li">
           <div class="left">优惠金额</div>
-          <div class="right red"></div>
+          <div class="right red discount"></div>
         </div>
         <div class="pay-content-li">
           <div class="left">实付金额</div>
-          <div class="right"></div>
+          <div class="right total-fee"></div>
         </div>
         <div class="pay-content-btn">
-          <button class="btn" data-money="" data-activity="">确认买单</button>
+        	<input type="hidden" name="pay_url" value="{url path='user/quickpay/dopay'}">
+          	<button class="btn confirm-pay-btn" data-money="" data-activity="" data-paycode="{$payment.pay_code}">确认买单</button>
+          	<div class="wei-xin-pay hide"></div>
         </div>
-      </div>
-    </div>
-    <div class="ecjia-pay-content-lay"></div>
+	</div>
+</div>
     
 <!-- {/block} -->
 {/nocache}

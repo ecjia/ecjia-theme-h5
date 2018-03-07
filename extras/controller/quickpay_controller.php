@@ -212,6 +212,10 @@ class quickpay_controller {
     			ecjia_front::$controller->assign('temp', $_SESSION['quick_pay']['temp']);
     			
     			$total_fee = $data['goods_amount']-$discount-$temp['integral_bonus']-$type_money;
+    			
+    			$data['format_goods_amount'] = price_format($data['goods_amount']);
+    			$data['format_discount'] = price_format($discount);
+    			$data['format_total_fee'] = price_format($total_fee);
     			if ($total_fee < 0) {
     				$total_fee = 0;
     			}
@@ -315,7 +319,7 @@ class quickpay_controller {
     		return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	} else {
     		$order_id = $rs['order_id'];
-    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('redirect_url' => RC_Uri::url('user/quickpay/pay', array('order_id' => $order_id))));
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('redirect_url' => RC_Uri::url('user/quickpay/pay', array('order_id' => $order_id)), 'order_id' => $order_id));
     	}
     }
     
