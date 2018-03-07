@@ -524,7 +524,7 @@ class merchant_controller {
 			
 			$payment = array();
 			if (!empty($payment_list['payment'])) {
-				if (cart_function::is_weixin() == true) {
+				if (cart_function::is_weixin()) {
 					$direct_pay = true;
 					foreach ($payment_list['payment'] as $key => $val) {
 						if ($val['pay_code'] == 'pay_wxpay') {
