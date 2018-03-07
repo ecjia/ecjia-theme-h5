@@ -14,10 +14,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</div>
 		<div class="item">
 			<div class="item-li">
-				<span class="item-left">运费</span><span class="item-right">{$shipping_desc.shipping_fee}</span>
+				<span class="item-left">配送费</span><span class="item-right">{$shipping_desc.shipping_fee}</span>
 			</div>
 			<div class="item-li">
-				<span class="item-left">包装费</span><span class="item-right">{$shipping_desc.pack_fee}</span>
+				<span class="item-left">保价费</span><span class="item-right">{$shipping_desc.insure_fee}</span>
 			</div>
 		</div>
 		<div class="item">

@@ -3847,6 +3847,12 @@ footer {
     color: #aaa;
 }
 
+.return-fee-list {
+	line-height: 2em;
+    padding: .5em 1em;
+    background-color: #fff;
+}
+
 .ecjia-list.ecjia-address-list.ecjia-select-address {
 	padding-top: 0;
 }
@@ -11571,7 +11577,7 @@ footer {
 .ecjia-return-list .a7 .at{width:53px;height:53px;background:#fff}
 
 .return-status-content{height:auto;min-height:100%;background-color:#fff}
-.return-status-content .q5{padding-top:.5em;margin-bottom:6em}
+.return-status-content .q5{padding-top:.5em;margin-bottom:6em;padding-bottom:2em;}
 .return-status-content .qi{position:relative;width:100%}
 .return-status-content .q6{margin:0 1em 0 4em;color:#999;border-radius:6px;font-size:1em;background-color:#fff;-webkit-border-radius:6px;position:relative}
 .return-status-content .q6:before{content:'';width:1px;position:absolute;top:2em;left:-2.2em;height:calc(100% + .8em);background:#ddd}

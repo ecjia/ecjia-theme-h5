@@ -42,9 +42,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</ul>
 				
 				<ul class="ecjia-list">
-					<li>退商品金额<span class="ecjiaf-fr ">{$order.formated_goods_amount}</span></li>
-					<li>退配送费<i class="k0 shipping_fee_notice"></i><span class="ecjiaf-fr ">{$order.formated_shipping_fee}</span></li>
-					<li>退总金额<span class="ecjiaf-fr ecjia-red">{$order.formated_total_fee}</span></li>
+					<div class="return-fee-list">
+						<p>退商品金额<span class="ecjiaf-fr ">{$order.formated_goods_amount}</span></p>
+						<p>退配送费<i class="k0 shipping_fee_notice"></i><span class="ecjiaf-fr ">{$order.formated_shipping_fee}</span></p>
+						<p>退积分<span class="ecjiaf-fr ">{$order.integral}</span></p>
+						<p>退发票<span class="ecjiaf-fr ">{$order.format_inv_tax}</span></p>
+						<p>退总金额<span class="ecjiaf-fr ecjia-red">{$order.formated_total_fee}</span></p>
+					</div>
 					<li class="notice">
 						<div class="notice-content">
 							<span class="title">温馨提示：</span>
