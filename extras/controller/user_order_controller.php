@@ -476,11 +476,12 @@ class user_order_controller {
     	$params_order = array('token' => $token, 'order_id' => $order_id);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
     	$data = is_ecjia_error($data) ? array() : $data;
-		
+
     	//重新申请
     	if (!empty($data['refund_info'])) {
     		$reason_list = $data['refund_info']['refused_reasons'];
     		$type = $data['refund_info']['refund_type'];
+    		
     		ecjia_front::$controller->assign('refund_info', $data['refund_info']);
     	} else {
     		if (empty($type)) {
@@ -495,7 +496,7 @@ class user_order_controller {
     	}
     	ecjia_front::$controller->assign('reason_list', json_encode($reason_list));
 		
-    	ecjia_front::$controller->assign('shipping_desc', $data['shipping_fee_desc']);
+    	ecjia_front::$controller->assign('refund_fee_info', $data['refund_fee_info']);
     	ecjia_front::$controller->assign('order', $data);
     	
     	ecjia_front::$controller->assign('order_id', $order_id);
@@ -545,8 +546,6 @@ class user_order_controller {
     		$data = is_ecjia_error($data) ? array() : $data;
 
     		ecjia_front::$controller->assign('order', $data);
-    		ecjia_front::$controller->assign('shipping_desc', $data['shipping_fee_desc']);
-    		
     		if (count($data['return_way_list']) == 1) {
     			ecjia_front::$controller->assign('return_way_info', $data['return_way_list'][0]);
     		}

@@ -43,11 +43,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				
 				<ul class="ecjia-list">
 					<div class="return-fee-list">
-						<p>退商品金额<span class="ecjiaf-fr ">{$order.refund_fee_info.refund_goods_amount}</span></p>
-						<p>退配送费<i class="k0 shipping_fee_notice"></i><span class="ecjiaf-fr ">{$shipping_desc.total_fee}</span></p>
-						<p>退积分<span class="ecjiaf-fr ">{$order.refund_fee_info.refund_integral}</span></p>
-						<p>退发票<span class="ecjiaf-fr ">{$order.refund_fee_info.refund_inv_tax}</span></p>
-						<p>退总金额<span class="ecjiaf-fr ecjia-red">{$order.refund_fee_info.refund_total_amount}</span></p>
+						<p>退商品金额<span class="ecjiaf-fr">{$refund_fee_info.refund_goods_amount}</span></p>
+						{if $refund_fee_info.refund_shipping_fee neq '0'}
+						<p>退配送费<span class="ecjiaf-fr">{$refund_fee_info.refund_shipping_fee}</span></p>
+						{/if}
+						{if $refund_fee_info.refund_integral neq '0'}
+						<p>退积分<span class="ecjiaf-fr ">{$refund_fee_info.refund_integral}</span></p>
+						{/if}
+						{if $refund_fee_info.refund_inv_tax neq '0'}
+						<p>退发票<span class="ecjiaf-fr ">{$refund_fee_info.refund_inv_tax}</span></p>
+						{/if}
+						<p>退总金额<span class="ecjiaf-fr ecjia-red">{$refund_fee_info.refund_total_amount}</span></p>
 					</div>
 					<li class="notice">
 						<div class="notice-content">

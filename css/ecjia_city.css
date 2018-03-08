@@ -11547,7 +11547,7 @@ footer {
 
 .ecjia-return-title{line-height:2.5em;padding-left:1em;padding-top:.5em;font-size:1.1em;font-weight:500}
 .ecjia-user .ecjia-list.ecjia-return-list{margin-top:0}
-.ecjia-return-list{border-top:1px solid #eee;border-bottom:1px solid #eee}
+.ecjia-return-list{border-top:1px solid #eee;border-bottom:1px solid #eee;max-width: 640px;overflow-x: hidden;}
 .ecjia-return-list li{height:4em;border-bottom:0;position:relative}
 .ecjia-return-list li+li::before{content:'';position:absolute;display:block;width:100%;top:0;left:1em;border-bottom:1px solid #eee}
 .ecjia-return-list li a{line-height:2em;display:block}
