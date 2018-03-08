@@ -11360,7 +11360,7 @@ footer {
     background-color: #fff;
     line-height: 3.2em;
     color: #555;
-	font-family: sans-serif;
+	font-family: 'Microsoft YaHei',Verdana,Arial,Helvetica,sans-serif;
 }
 
 .ecjia_user_address_picker .inherit, .ecjia_user_address_street_picker .inherit {
@@ -11391,7 +11391,7 @@ footer {
     background-color: #fff;
     line-height: 3.2em;
     color: #555;
-	font-family: sans-serif;
+	font-family: 'Microsoft YaHei',Verdana,Arial,Helvetica,sans-serif;
 }
 .ecjia-franchisee-pcd-picker .picker-item, .ecjia-franchisee-street-picker .picker-item {
 	text-align: center;
