@@ -294,7 +294,7 @@
 				e.preventDefault();
 				var url = $(this).attr('data-url'),
 					passwordf = $("input[name='passwordf']").val().trim();
-				passwords = $("input[name='passwords']").val().trim();
+					passwords = $("input[name='passwords']").val().trim();
 				var info = {
 					'passwordf': passwordf,
 					'passwords': passwords
@@ -947,6 +947,20 @@
 				}
 			};
 			
+			$("form[name='inviteForm']").on('submit', function(e) {
+				e.preventDefault();
+				return false;
+			}).Validform({
+				tiptype: function(msg, o, cssctl) {
+					if (o.type == 3) {
+						alert(msg);
+					}
+				},
+				ajaxPost: true,
+				callback: function(data) {
+					ecjia.touch.showmessage(data);
+				}
+			});
 		}
 	};
 

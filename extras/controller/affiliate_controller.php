@@ -55,8 +55,11 @@ class affiliate_controller {
 		$token	= $data['access_token'];
 		
 		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();
-		
 		ecjia_front::$controller->assign('captcha_image', $res['base64']);
+		
+		$invite_code = trim($_GET['invite_code']);
+		ecjia_front::$controller->assign('invite_code', $invite_code);
+		
 		ecjia_front::$controller->display('affiliate_invite_register.dwt');
 	}
 	
@@ -82,22 +85,24 @@ class affiliate_controller {
 			'value'	=> $mobile,
 			'captcha_code' => $code_captcha
 		);
-		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::AFFILIATE_USER_INVITE)->data($param)->run();
+		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data($param)->run();
+
 		if (is_ecjia_error($res)) {
 			return ecjia_front::$controller->showmessage($res->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
 		}
 		if ($res['registered'] == 1) {
-			return ecjia_front::$controller->showmessage('该用户已注册', ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
+			return ecjia_front::$controller->showmessage('该手机号已注册', ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
 		}
 		
 		if ($res['is_invited'] == 1) {
-			return ecjia_front::$controller->showmessage('该用户已被推荐邀请', ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
+			return ecjia_front::$controller->showmessage('该手机号已被推荐邀请', ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
 		}
 		
 		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
 	}
 	
-	public static function change_captcha() {
+	//刷新图形验证码
+	public static function refresh() {
 		$data	= ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
 		$token	= $data['access_token'];
 		
@@ -106,6 +111,35 @@ class affiliate_controller {
 			return ecjia_front::$controller->showmessage($res->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
 		}
 		return ecjia_front::$controller->showmessage($res['base64'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+	}
+	
+	public static function invite() {
+		$mobile = trim($_POST['mobile']);
+		$invite_code = trim($_POST['invite_code']);
+		$code = trim($_POST['code']);
+		
+		if (empty($mobile)) {
+			return ecjia_front::$controller->showmessage('请输入手机号', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+		}
+		
+		if (empty($code)) {
+			return ecjia_front::$controller->showmessage('请输入短信验证码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+		}
+		
+		$data	= ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+		$token	= $data['access_token'];
+		
+		$param = array(
+			'token'			=> $token,
+			'mobile'		=> $mobile,
+			'invite_code' 	=> $invite_code,
+			'sms_code' 		=> $code
+		);
+		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::AFFILIATE_USER_INVITE)->data($param)->run();
+		if (is_ecjia_error($res)) {
+			return ecjia_front::$controller->showmessage($res->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
+		}
+		return ecjia_front::$controller->showmessage('领取成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
 	}
 }
 

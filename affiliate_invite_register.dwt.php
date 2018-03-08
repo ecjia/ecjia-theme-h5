@@ -18,14 +18,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-invite-register">
 	<img style="width: 100%;" src="{$theme_url}images/invite.png">
 	<div class="form">
-		<form class="invite-form" name="theForm" action="">
+		<form class="invite-form" name="inviteForm" action='{url path="affiliate/index/invite"}'>
 			<div class="input-container"><input type="text" id="mobile" name="mobile" placeholder="输入手机号码"/></div>
 			<div class="input-container">
-				<span class="identify_code" data-url="{url path='affiliate/index/change_captcha'}"><img src="data:image/png;base64,{$captcha_image}"></span>
+				<span class="identify_code" data-url="{url path='affiliate/index/refresh'}"><img src="data:image/png;base64,{$captcha_image}"></span>
 				<input class="code_captcha" type="text" name="code_captcha" placeholder="请输入左侧验证码"/>
 				<span class="identify_code_btn" data-url="{url path='affiliate/index/check'}">验证</span>
 			</div>
 			<div class="input-container"><input type="text" name="code" placeholder="输入短信验证码"/></div>
+			<input type="hidden" name="invite_code" value="{$invite_code}" />
 			<input class="receive_btn" type="submit" value="立即领取" />
 		</form>
 	</div>
