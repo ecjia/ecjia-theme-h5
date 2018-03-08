@@ -62,52 +62,32 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<span class="input-must">*</span>
 						<span class="title">售后原因</span>
 						<div class="choose_reason">
-							<span>请选择售后原因</span>
+							<span>{if $refund_info.reason}{$refund_info.reason}{else}请选择售后原因{/if}</span>
 							<img src="{$theme_url}images/address_list/down_eee.png"></i>
-							<input type="hidden" name="reason_id" />
+							<input type="hidden" name="reason_id" value="{$refund_info.reason_id}"/>
 						</div>
 					</li>
 					<li class="return-reason desc">
 						<span class="input-must">*</span>
 						<div class="title question-desc-title">问题描述</div>
 						<div class="text question-desc-content">
-							<textarea class="question_desc" type="text" name="question_desc" placeholder="请填写问题描述" /></textarea>
+							<textarea class="question_desc" type="text" name="question_desc" placeholder="请填写问题描述">{$refund_info.refund_desc}</textarea>
 						</div>
 					</li>
 					
 					<li class="ecjia-met-goods-info">
 						<div class="push_img">
 							<div class="push_photo_img" id="result"></div>
-			            	<div class="push_photo" id="result0">
+							
+							<!-- {foreach from=$img_list item=list key=k} -->
+			            	<div class="push_photo" id="result{$k}">
 			            	   <div class="push_result_img">
 			            	       <img src="{$theme_url}images/photograph.png">
-			            	       <input type="file" class="push_img_btn" id="filechooser0" name="picture[]" accept="image/jpeg,image/jpg,image/png,image/bmp,image/gif">
+			            	       <input type="file" class="push_img_btn" id="filechooser{$k}" name="picture[]" accept="image/jpeg,image/jpg,image/png,image/bmp,image/gif">
 			            	   </div>
 			            	</div>
-			            	<div class="push_photo" id="result1">
-			            	   <div class="push_result_img">
-			            	       <img src="{$theme_url}images/photograph.png">
-			            	       <input type="file" class="push_img_btn" id="filechooser1" name="picture[]" accept="image/jpeg,image/jpg,image/png,image/bmp,image/gif">
-			            	   </div>
-			            	</div>
-			            	<div class="push_photo" id="result2">
-			            	   <div class="push_result_img">
-			            	       <img src="{$theme_url}images/photograph.png">
-			            	       <input type="file" class="push_img_btn" id="filechooser2" name="picture[]" accept="image/jpeg,image/jpg,image/png,image/bmp,image/gif">
-			            	   </div>
-			            	</div>
-			            	<div class="push_photo" id="result3">
-			            	   <div class="push_result_img">
-			            	       <img src="{$theme_url}images/photograph.png">
-			            	       <input type="file" class="push_img_btn" id="filechooser3" name="picture[]" accept="image/jpeg,image/jpg,image/png,image/bmp,image/gif">
-			            	   </div>
-			            	</div>
-			            	<div class="push_photo" id="result4">
-			            	   <div class="push_result_img">
-			            	       <img src="{$theme_url}images/photograph.png">
-			            	       <input type="file" class="push_img_btn" id="filechooser4" name="picture[]" accept="image/jpeg,image/jpg,image/png,image/bmp,image/gif">
-			            	   </div>
-			            	</div>
+			            	<!-- {/foreach} -->
+			            	
 		                </div>
 		                <p class="push_img_fonz">为了帮助我们更好的解决问题，请上传照片，最多5张。</p>
 					</li>

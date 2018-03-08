@@ -560,7 +560,12 @@
 		//评价晒单上传图片，并且不能超过5张。
 		photo: function() {
 			$('.push_photo').hide();
-			$('#result0').show();
+			var length = $('.push_photo_img').children().length;
+			if (length != 0 && length != undefined) {
+				$('.push_img').find('.push_photo').eq(length).show();
+			} else {
+				$('#result0').show();
+			}
 			$(".push_img_btn").on('change', function() {
 				var f = $(this)[0].files[0];
 				if (f) {
@@ -577,7 +582,6 @@
 								num.push(number);
 							}
 						});
-
 						var num = parseInt(num[0]);
 
 						var check_push_rm = "check_push_rm" + num;
@@ -587,7 +591,7 @@
 						$(url).appendTo(".push_photo_img");
 						$(_img).appendTo("." + check_push_rm);
 						$(img_span).appendTo("." + check_push_rm);
-						ecjia.touch.comment.remove_goods_img();
+						ecjia.touch.user.remove_goods_img();
 
 						var result = [];
 						$(".push_photo").each(function() {
@@ -601,7 +605,6 @@
 								}
 							}
 						});
-
 						var result = "#" + result[0];
 						$('.push_photo').hide();
 						$(result).show();
@@ -635,10 +638,12 @@
 					path.remove();
 					var c_name = path[0].className;
 					var num = c_name.substr(c_name.length - 1, 1);
+					if (isNaN(parseInt(num))) num = 0;
 					var result = "#result" + num;
-					var filechooser = "filechooser" + num;
+					var filechooser = "#filechooser" + num;
 					$('.push_photo').hide();
-					document.getElementById(filechooser).value = "";
+					
+					$(filechooser).val('');
 					$(result).show();
 					if ($(".push_photo_img img").length < 1) {
 						$(".push_result_img").css("margin-left", "0.3em");
@@ -655,6 +660,7 @@
 			if (reason_list == undefined) {
 				return false;
 			}
+			
 	        for (i = 0; i < reason_list.length; i++) {
 	            var id = reason_list[i]['reason_id'];
 	            var name = reason_list[i]['reason_name'];
@@ -685,6 +691,10 @@
 			    	var $pick_overlay = '<div class="picker-modal-overlay"></div>';
 			    	if ($('.picker-modal').hasClass('modal-in')) {
 			    		$('.picker-modal').after($pick_overlay);
+			    	}
+			    	var current_reason_id = $('input[name="reason_id"]').val();
+			    	if (current_reason_id != undefined && current_reason_id != '') {
+			    		picker.setValue([current_reason_id]);//设置选中值
 			    	}
 			    	
 			        picker.container.find('.save-picker').on('click', function () {

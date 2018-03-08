@@ -477,15 +477,22 @@ class user_order_controller {
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
     	$data = is_ecjia_error($data) ? array() : $data;
 		
-    	if (empty($type)) {
-    		if ($data['order_status_code'] == 'await_ship') {
-    			$type = 'refund';
-    		} else if ($data['order_status_code'] == 'shipped' || $type == 'finished'){
-    			$type = 'return';
+    	//重新申请
+    	if (!empty($data['refund_info'])) {
+    		$reason_list = $data['refund_info']['refused_reasons'];
+    		$type = $data['refund_info']['refund_type'];
+    		ecjia_front::$controller->assign('refund_info', $data['refund_info']);
+    	} else {
+    		if (empty($type)) {
+    			if ($data['order_status_code'] == 'await_ship') {
+    				$type = 'refund';
+    			} else if ($data['order_status_code'] == 'shipped' || $type == 'finished'){
+    				$type = 'return';
+    			}
     		}
+    		$params = array('token' => $token, 'type' => $data['order_status_code']);
+    		$reason_list = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_RESIONS)->data($params)->run();
     	}
-    	$params = array('token' => $token, 'type' => $data['order_status_code']);
-    	$reason_list = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_RESIONS)->data($params)->run();
     	ecjia_front::$controller->assign('reason_list', json_encode($reason_list));
 		
     	ecjia_front::$controller->assign('shipping_desc', $data['shipping_fee_desc']);
@@ -496,6 +503,8 @@ class user_order_controller {
     	
     	ecjia_front::$controller->assign_title('申请售后');
     	ecjia_front::$controller->assign('title', '申请售后');
+    	
+    	ecjia_front::$controller->assign('img_list', array(0, 1, 2, 3, 4));
     	
     	ecjia_front::$controller->display('order_return_reply.dwt');
     }
@@ -588,7 +597,6 @@ class user_order_controller {
     		'reason_id' 			=> $reason_id,
     		'refund_description' 	=> $refund_description
     	);
-    	
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_APPLY)->data($params)->file($file)->run();
     	if (is_ecjia_error($data)) {
     		return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
