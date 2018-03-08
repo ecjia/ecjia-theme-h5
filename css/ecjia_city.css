@@ -6659,7 +6659,7 @@ footer {
     top: 0;
     line-height: 3em;
     text-align: right;
-    width: 4em;
+    min-width: 4em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
