@@ -60,7 +60,7 @@ class user_privilege_controller {
         $signin = ecjia_touch_user::singleton()->isSignin();
         if ($signin) {
         	$token = ecjia_touch_user::singleton()->getToken();
-	        $cache_id = $_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name'];
+	        $cache_id = $_SERVER['QUERY_STRING'].'-'.$token;
 	        $cache_id = sprintf('%X', crc32($cache_id));
         	
         	if (!ecjia_front::$controller->is_cached('user_login.dwt', $cache_id)) {
@@ -74,19 +74,21 @@ class user_privilege_controller {
         }
 
         if (!ecjia_front::$controller->is_cached('user_login.dwt', $cache_id)) {
-        	$captcha = intval(ecjia::config('captcha'));
-        	if (($captcha & CAPTCHA_LOGIN) && (!($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2))) {
-        		ecjia_front::$controller->assign('enabled_captcha', 1);
-        		ecjia_front::$controller->assign('rand', mt_rand());
-        	}
+//         	$captcha = intval(ecjia::config('captcha'));
+//         	if (($captcha & CAPTCHA_LOGIN) && (!($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2))) {
+//         		ecjia_front::$controller->assign('enabled_captcha', 1);
+//         		ecjia_front::$controller->assign('rand', mt_rand());
+//         	}
         	$user_img = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
         	
         	ecjia_front::$controller->assign('user_img', $user_img);
         	ecjia_front::$controller->assign('step', isset($_GET['step']) ? htmlspecialchars($_GET['step']) : '');
         	ecjia_front::$controller->assign('anonymous_buy', ecjia::config('anonymous_buy'));
-        	ecjia_front::$controller->assign('header_right', array('info' => '注册', 'href' => RC_Uri::url('user/privilege/register')));
-        	ecjia_front::$controller->assign('title', '登录');
-        	ecjia_front::$controller->assign_title('登录');
+//         	ecjia_front::$controller->assign('header_right', array('info' => '注册', 'href' => RC_Uri::url('user/privilege/register')));
+        	ecjia_front::$controller->assign('header_right', array('info' => '密码登录', 'href' => RC_Uri::url('user/privilege/pass_login')));
+        	
+        	ecjia_front::$controller->assign('title', '手机登录');
+        	ecjia_front::$controller->assign_title('手机登录');
         	ecjia_front::$controller->assign_lang();
 
             if (ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {
@@ -99,11 +101,48 @@ class user_privilege_controller {
         ecjia_front::$controller->display('user_login.dwt', $cache_id);
     }
     
+    //密码登录
+    public static function pass_login() {
+    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+    	 
+    	$signin = ecjia_touch_user::singleton()->isSignin();
+    	if ($signin) {
+    		$token = ecjia_touch_user::singleton()->getToken();
+    		$cache_id = $_SERVER['QUERY_STRING'].'-'.$token;
+    		$cache_id = sprintf('%X', crc32($cache_id));
+    		 
+    		if (!ecjia_front::$controller->is_cached('user_login.dwt', $cache_id)) {
+    			$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+    			if (!is_ecjia_error($user)) {
+    				ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
+    			} else {
+    				ecjia_touch_user::singleton()->signout();
+    			}
+    		}
+    	}
+    	
+    	if (!ecjia_front::$controller->is_cached('user_pass_login.dwt', $cache_id)) {
+    		ecjia_front::$controller->assign('header_right', array('info' => '手机登录', 'href' => RC_Uri::url('user/privilege/login')));
+    		 
+    		ecjia_front::$controller->assign('title', '密码登录');
+    		ecjia_front::$controller->assign_title('密码登录');
+    		ecjia_front::$controller->assign_lang();
+    		
+    		if (ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {
+    			ecjia_front::$controller->assign('sns_wechat', 1);
+    		}
+    		if (ecjia_plugin::is_active('sns_qq/sns_qq.php')) {
+    			ecjia_front::$controller->assign('sns_qq', 1);
+    		}
+    	}
+    	
+    	ecjia_front::$controller->display('user_pass_login.dwt', $cache_id);
+    }
+    
     /**
      * 退出
      */
     public static function logout() {
-    	
         $status = !empty($_POST['status']) ? $_POST['status'] : '';
         if ($status == 'logout') {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNOUT)->run();
@@ -129,8 +168,9 @@ class user_privilege_controller {
         	$message = '请输入密码';
         }
         
+        $type = 'password';
         if (empty($message)) {
-        	$data = ecjia_touch_user::singleton()->signin($username, $password);
+        	$data = ecjia_touch_user::singleton()->signin($type, $username, $password);
         	if (is_ecjia_error($data)) {
         		$message = $data->get_error_message();
         	} else {
@@ -143,6 +183,108 @@ class user_privilege_controller {
         	}
         }
         return ecjia_front::$controller->showmessage($message, ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    }
+    
+    /**
+     * 手机登录
+     */
+    public static function mobile_login() {
+    	$mobile_phone = trim($_POST['mobile_phone']);
+    	if (empty($mobile_phone)) {
+    		return ecjia_front::$controller->showmessage('请输入手机号', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
+    	
+    	$chars = "/^1(3|4|5|7|8)\d{9}$/";
+    	if (!preg_match($chars, $mobile_phone)) {
+    		return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
+    	
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/captcha_validate', array('mobile_phone' => $mobile_phone))));
+    }
+    
+    //身份验证
+    public static function captcha_validate() {
+    	$mobile_phone = trim($_GET['mobile_phone']);
+    	
+    	$data	= ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+    	$token	= $data['access_token'];
+    	
+    	$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();
+    	ecjia_front::$controller->assign('captcha_image', $res['base64']);
+    	
+    	ecjia_front::$controller->assign('token', $token);
+    	ecjia_front::$controller->assign('mobile_phone', $mobile_phone);
+    	
+    	ecjia_front::$controller->assign('title', '身份验证');
+    	ecjia_front::$controller->assign_title('身份验证');
+    	ecjia_front::$controller->assign_lang();
+    	
+    	ecjia_front::$controller->display('user_captcha_validate.dwt');
+    }
+    
+    //刷新验证码
+    public static function captcha_refresh() {
+    	$token = trim($_POST['token']);
+    	
+    	$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();
+    	if (is_ecjia_error($res)) {
+    		return ecjia_front::$controller->showmessage($res->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
+    	}
+    	return ecjia_front::$controller->showmessage($res['base64'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+    }
+    
+    //检查图形验证码
+    public static function captcha_check() {
+    	$token = trim($_POST['token']);
+    	$mobile = trim($_POST['mobile_phone']);
+    	$code_captcha = trim($_POST['code_captcha']);
+    	
+    	$param = array(
+    		'token'	=> $token,
+    		'type'	=> 'mobile',
+    		'value'	=> $mobile,
+    		'captcha_code' => $code_captcha
+    	);
+    	$res = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data($param)->run();
+    	if (is_ecjia_error($res)) {
+    		return ecjia_front::$controller->showmessage($res->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
+    	}
+    	
+    	return ecjia_front::$controller->showmessage('身份验证成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/enter_code', array('mobile_phone' => $mobile))));
+    }
+    
+    //输入验证码
+    public static function enter_code() {
+    	$mobile = trim($_GET['mobile_phone']);
+    	
+    	ecjia_front::$controller->assign('title', '输入验证码');
+    	ecjia_front::$controller->assign_title('输入验证码');
+    	ecjia_front::$controller->assign_lang();
+    	
+    	ecjia_front::$controller->assign('mobile', $mobile);
+    	ecjia_front::$controller->assign('type', 'smslogin');
+    	
+    	ecjia_front::$controller->display('user_enter_code.dwt');
+    }
+    
+    
+    //验证码验证登录
+    public static function mobile_signin() {
+    	$type = trim($_POST['type']);
+    	$password = trim($_POST['password']);
+    	$mobile = trim($_POST['mobile']);
+    	
+    	$data = ecjia_touch_user::singleton()->signin($type, $mobile, $password);
+    	if (is_ecjia_error($data)) {
+    		return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
+    	
+    	$url = RC_Uri::url('touch/my/init');
+    	$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : '';
+    	if (!empty($referer_url)) {
+    		$url = $referer_url;
+    	}
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
     }
     
     /**
@@ -176,8 +318,7 @@ class user_privilege_controller {
         	return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         
-		$token = ecjia_touch_user::singleton()->getToken();
-		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data(array('token' => $token, 'type' => 'mobile', 'value' => $mobile))->run();
+		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data(array('type' => 'mobile', 'value' => $mobile))->run();
 		if (is_ecjia_error($data)) {
 			return ecjia_front::$controller->showmessage('短信发送失败，请联系客服', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 		}
@@ -223,7 +364,7 @@ class user_privilege_controller {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => $password, 'invite_code' => $verification))->run();
             if (!is_ecjia_error($data)) {
                 unset($_SESSION['verification']);
-                ecjia_touch_user::singleton()->signin($username, $password);
+                ecjia_touch_user::singleton()->signin('password', $username, $password);
                 
                 unset($_SESSION['register_status']);
                 return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init')));

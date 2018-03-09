@@ -148,6 +148,7 @@ RC_Hook::add_action('franchisee/index/get_region', array('franchisee_controller'
 //登录注册
 RC_Loader::load_theme('extras/controller/user_privilege_controller.php');
 RC_Hook::add_action('user/privilege/login', array('user_privilege_controller', 'login'));
+RC_Hook::add_action('user/privilege/mobile_login', array('user_privilege_controller', 'mobile_login'));
 RC_Hook::add_action('user/privilege/pass_login', array('user_privilege_controller', 'pass_login'));
 RC_Hook::add_action('user/privilege/signin', array('user_privilege_controller', 'signin'));
 RC_Hook::add_action('user/privilege/signup', array('user_privilege_controller', 'signup'));
@@ -155,6 +156,11 @@ RC_Hook::add_action('user/privilege/register', array('user_privilege_controller'
 RC_Hook::add_action('user/privilege/validate_code', array('user_privilege_controller', 'validate_code'));
 RC_Hook::add_action('user/privilege/set_password', array('user_privilege_controller', 'set_password'));
 RC_Hook::add_action('user/privilege/logout', array('user_privilege_controller', 'logout'));
+RC_Hook::add_action('user/privilege/captcha_validate', array('user_privilege_controller', 'captcha_validate'));
+RC_Hook::add_action('user/privilege/captcha_refresh', array('user_privilege_controller', 'captcha_refresh'));
+RC_Hook::add_action('user/privilege/captcha_check', array('user_privilege_controller', 'captcha_check'));
+RC_Hook::add_action('user/privilege/enter_code', array('user_privilege_controller', 'enter_code'));
+RC_Hook::add_action('user/privilege/mobile_signin', array('user_privilege_controller', 'mobile_signin'));
 
 //找回密码
 RC_Loader::load_theme('extras/controller/user_get_password_controller.php');
@@ -302,16 +308,16 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
     
     //判断并微信登录
     if (strpos($user_agent, 'MicroMessenger') !== false && ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {
-        //微信浏览器
-        if (ROUTE_M != 'connect') {
-            if (!ecjia_touch_user::singleton()->isSignin()) {
-                if ($_REQUEST['referer_url']) {
-                    RC_Cookie::set('referer', $_REQUEST['referer_url']);
-                }
-                $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat', 'login_type' => 'snsapi_userinfo'));
-                ecjia_front::$controller->redirect($url);
-            }
-        }
+        // //微信浏览器
+        // if (ROUTE_M != 'connect') {
+        //     if (!ecjia_touch_user::singleton()->isSignin()) {
+        //         if ($_REQUEST['referer_url']) {
+        //             RC_Cookie::set('referer', $_REQUEST['referer_url']);
+        //         }
+        //         $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat', 'login_type' => 'snsapi_userinfo'));
+        //         ecjia_front::$controller->redirect($url);
+        //     }
+        // }
     }
 
     if (ROUTE_M == 'user') {

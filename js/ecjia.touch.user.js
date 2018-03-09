@@ -74,7 +74,7 @@
 		},
 		//用户登录
 		ecjia_login: function() {
-			$('input[name="ecjia-login"]').on('click', function(e) {
+			$('input[name="ecjia-login"]').off('click').on('click', function(e) {
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 				e.preventDefault();
 				var url = $(this).attr('data-url');
@@ -98,6 +98,126 @@
 						location.href = data.url;
 					}
 				});
+			});
+			
+			$('input[name="ecjia-mobile-login"]').off('click').on('click', function(e) {
+				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+				e.preventDefault();
+				var url = $(this).attr('data-url');
+				var mobile_phone = $('input[name="mobile_phone"]').val();
+
+				var info = {
+					'mobile_phone': mobile_phone,
+				};
+				$.post(url, info, function(data) {
+					$('.la-ball-atom').remove();
+					if (data.state == 'error') {
+						alert(data.message);
+					}
+					ecjia.touch.showmessage(data);
+				});
+			});
+			
+			$('.refresh_captcha').off('click').on('click', function(e) {
+				var token = $('input[name="token"]').val();
+				var url = $(this).attr('data-url');
+				var info = {
+					'token': token,
+				};
+				$.post(url, info, function(data) {
+					if (data.state == 'error') {
+						ecjia.touch.showmessage(data);
+						return false;
+					}
+					$('.captcha').children('img').attr('src', 'data:image/png;base64,' + data.message);
+				});
+			});
+			
+			$('input[name="ecjia-captcha-validate"]').off('click').on('click', function(e) {
+				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+				e.preventDefault();
+				var url = $(this).attr('data-url');
+				var mobile_phone = $('input[name="mobile_phone"]').val();
+				var code_captcha = $('input[name="code_captcha"]').val();
+				var token = $('input[name="token"]').val();
+				
+				var info = {
+					'token'		  : token,
+					'mobile_phone': mobile_phone,
+					'code_captcha': code_captcha
+				};
+				$.post(url, info, function(data) {
+					$('.la-ball-atom').remove();
+					if (data.state == 'error') {
+						alert(data.message);
+					}
+					ecjia.touch.showmessage(data);
+				});
+			});
+			
+			var payPassword = $("#payPassword_container"),
+				_this = payPassword.find('i'),
+				k = 0,
+				j = 0,
+				password = '';
+			payPassword.on('focus', "input[name='payPassword_rsainput']", function() {
+				var _this = payPassword.find('i');
+				if (payPassword.attr('data-busy') === '0') {
+					_this.eq(k).addClass("active");
+					payPassword.attr('data-busy', '1')
+				}
+			});
+			payPassword.on('change', "input[name='payPassword_rsainput']", function() {
+				_this.eq(k).removeClass("active");
+				payPassword.attr('data-busy', '0')
+			}).on('blur', "input[name='payPassword_rsainput']", function() {
+				_this.eq(k).removeClass("active");
+				payPassword.attr('data-busy', '0')
+			});
+			payPassword.on('keyup', "input[name='payPassword_rsainput']", function(e) {
+				var e = (e) ? e : window.event;
+				if (e.keyCode == 8 || (e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
+					k = this.value.length;
+					l = _this.size();
+					for (; l--;) {
+						if (l === k) {
+							_this.eq(l).addClass("active");
+							_this.eq(l).find('b').css('visibility', 'hidden')
+						} else {
+							_this.eq(l).removeClass("active");
+							_this.eq(l).find('b').css('visibility', l < k ? 'visible' : 'hidden')
+						}
+						if (k === 6) {
+							$('input[name="payPassword_rsainput"]').blur();
+							var val = this.value;
+							var type = $('input[name="type"]').val();
+							var mobile = $('input[name="mobile"]').val();
+							var url = $('input[name="url"]').val();
+							var info = {
+								'type': type,
+								'password': val,
+								'mobile': mobile
+							}
+							$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+							$.post(url, info, function(data) {
+								$('.la-ball-atom').remove();
+								if (data.state == 'error') {
+									alert(data.message);
+								} else if (data.state == 'success'){
+									location.href = data.url;
+								}
+							})
+							return false;
+						}
+					}
+				} else {
+					var _val = this.value;
+					this.value = _val.replace(/\D/g, '')
+				}
+			});
+			
+			$('.i-block i').off('click').on('click', function() {
+				$('input[name="payPassword_rsainput"]').focus();
 			});
 		},
 
