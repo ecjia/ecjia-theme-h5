@@ -63,8 +63,8 @@ class user_order_controller {
         	$data = is_ecjia_error($data) ? array() : $data;
 
         	ecjia_front::$controller->assign('order_list', $data);
-        	ecjia_front::$controller->assign_title('售后');
-        	ecjia_front::$controller->assign('title', '售后');
+        	ecjia_front::$controller->assign_title('售后订单');
+        	ecjia_front::$controller->assign('title', '售后订单');
         	ecjia_front::$controller->assign('active', 'orderList');
         	
         	ecjia_front::$controller->assign_lang();
@@ -81,8 +81,23 @@ class user_order_controller {
         	
         	ecjia_front::$controller->assign('type', $type);
         	ecjia_front::$controller->assign('order_list', $data);
-        	ecjia_front::$controller->assign_title('全部订单');
-        	ecjia_front::$controller->assign('title', '全部订单');
+        	
+        	$title = '全部订单';
+        	if ($type == 'await_pay') {
+        		$title = '待付款订单';
+        	}
+        	if ($type == 'await_ship') {
+        		$title = '待发货订单';
+        	}
+        	if ($type == 'shipped') {
+        		$title = '待收货订单';
+        	}
+        	if ($type == 'allow_comment') {
+        		$title = '待评价订单';
+        	}
+        	ecjia_front::$controller->assign_title($title);
+        	ecjia_front::$controller->assign('title', $title);
+        	
         	ecjia_front::$controller->assign('active', 'orderList');
         	 
         	ecjia_front::$controller->assign_lang();
