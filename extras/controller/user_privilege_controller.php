@@ -239,6 +239,9 @@ class user_privilege_controller {
     	$mobile = trim($_POST['mobile_phone']);
     	$code_captcha = trim($_POST['code_captcha']);
     	
+    	if (empty($code_captcha)) {
+			return ecjia_front::$controller->showmessage('请输入验证码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+		}
     	$param = array(
     		'token'	=> $token,
     		'type'	=> 'mobile',
@@ -246,16 +249,27 @@ class user_privilege_controller {
     		'captcha_code' => $code_captcha
     	);
     	$res = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data($param)->run();
+    	
     	if (is_ecjia_error($res)) {
     		return ecjia_front::$controller->showmessage($res->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
     	}
-    	
-    	return ecjia_front::$controller->showmessage('身份验证成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/enter_code', array('mobile_phone' => $mobile))));
+    	$registered = 0;
+    	if ($res['registered'] == 1) {
+    		$registered = 1;
+    	}
+    	$invited = 0;
+    	if ($res['is_invited'] == 1) {
+    		$invited = 1;
+    	}
+    	$pjaxurl = RC_Uri::url('user/privilege/enter_code', array('mobile_phone' => $mobile, 'registered' => $registered, 'invited' => $invited));
+    	return ecjia_front::$controller->showmessage('身份验证成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pjaxurl));
     }
     
     //输入验证码
     public static function enter_code() {
     	$mobile = trim($_GET['mobile_phone']);
+    	$registered = intval($_GET['registered']);
+    	$invited = intval($_GET['invited']);
     	
     	ecjia_front::$controller->assign('title', '输入验证码');
     	ecjia_front::$controller->assign_title('输入验证码');
@@ -263,6 +277,8 @@ class user_privilege_controller {
     	
     	ecjia_front::$controller->assign('mobile', $mobile);
     	ecjia_front::$controller->assign('type', 'smslogin');
+    	ecjia_front::$controller->assign('registered', $registered);
+    	ecjia_front::$controller->assign('invited', $invited);
     	
     	ecjia_front::$controller->display('user_enter_code.dwt');
     }
@@ -273,16 +289,31 @@ class user_privilege_controller {
     	$type = trim($_POST['type']);
     	$password = trim($_POST['password']);
     	$mobile = trim($_POST['mobile']);
-    	
-    	$data = ecjia_touch_user::singleton()->signin($type, $mobile, $password);
-    	if (is_ecjia_error($data)) {
-    		return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-    	}
-    	
-    	$url = RC_Uri::url('touch/my/init');
-    	$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : '';
-    	if (!empty($referer_url)) {
-    		$url = $referer_url;
+    	$registered = intval($_POST['registered']);
+    	$invited = intval($_POST['invited']);
+
+    	//已经注册 走登录接口
+    	if ($registered == 1) {
+    		$data = ecjia_touch_user::singleton()->signin($type, $mobile, $password);
+    		if (is_ecjia_error($data)) {
+    			return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    		}
+    		
+    		$url = RC_Uri::url('touch/my/init');
+    		$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : '';
+    		if (!empty($referer_url)) {
+    			$url = $referer_url;
+    		}
+    	} else {
+    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $password))->run();
+    		if (is_ecjia_error($data)) {
+    			return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    		}
+    		
+    		//未注册 走注册接口 
+    		$url = RC_Uri::url('user/privilege/set_password');
+    		$_SESSION['mobile'] = $mobile;
+    		$_SESSION['register_status'] = 'succeed';
     	}
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
     }
@@ -320,7 +351,7 @@ class user_privilege_controller {
         
 		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data(array('type' => 'mobile', 'value' => $mobile))->run();
 		if (is_ecjia_error($data)) {
-			return ecjia_front::$controller->showmessage('短信发送失败，请联系客服', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+			return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 		}
 		
 		if ($data['registered'] == 1) {
@@ -374,7 +405,7 @@ class user_privilege_controller {
         } else {
             $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
             if (!ecjia_front::$controller->is_cached('user_set_password.dwt', $cache_id)) {
-                ecjia_front::$controller->assign('title', '设置密码');
+                ecjia_front::$controller->assign('title', '设置名字密码');
                 ecjia_front::$controller->assign_lang();
             }
             ecjia_front::$controller->display('user_set_password.dwt', $cache_id);

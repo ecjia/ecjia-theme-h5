@@ -193,10 +193,15 @@
 							var type = $('input[name="type"]').val();
 							var mobile = $('input[name="mobile"]').val();
 							var url = $('input[name="url"]').val();
+							var registered = $('input[name="registered"]').val();
+							var invited = $('input[name="invited"]').val();
+							
 							var info = {
 								'type': type,
 								'password': val,
-								'mobile': mobile
+								'mobile': mobile,
+								'registered': registered,
+								'invited': invited
 							}
 							$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 							$.post(url, info, function(data) {
