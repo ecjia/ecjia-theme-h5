@@ -6943,6 +6943,7 @@ footer {
 	display: block;
     margin-left: 6em;
     font-weight: normal;
+	word-wrap: break-word;
 }
 
 .ecjia-order-detail .cq {
