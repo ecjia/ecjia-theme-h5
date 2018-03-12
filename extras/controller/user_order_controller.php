@@ -308,12 +308,13 @@ class user_order_controller {
         if (empty($order_id)) {
             return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
+        $order_type = trim($_GET['order_type']);
         
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_AFFIRMRECEIVED)->data($params_order)->run();
 
         if (isset($_GET['from']) && $_GET['from'] == 'list') {
-            $url = RC_Uri::url('user/order/order_list');
+            $url = RC_Uri::url('user/order/order_list', array('type' => $order_type));
         } else {
             $url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
         }

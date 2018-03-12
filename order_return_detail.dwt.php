@@ -160,7 +160,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				
 				{if $order.refund_type eq 'refund' && $order.refund_status neq 'refunded'}
 					{if $order.status eq 'agree' || $order.refund_status eq 'refunded'}
-						<a class="btn btn-small btn-hollow external" href="{url path='user/order/return_detail'}&refund_sn={$order.refund_sn}&type=return_money">退款详情</a>
+<!-- 						<a class="btn btn-small btn-hollow external" href="{url path='user/order/return_detail'}&refund_sn={$order.refund_sn}&type=return_money">退款详情</a> -->
 					{/if}
 					
 					{if $order.status eq 'uncheck'}
@@ -190,7 +190,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					{/if}
 				{/if}
 				
-				{if $order.refund_status eq 'refunded'}
+				{if $order.refund_status eq 'refunded' || $order.refund_status eq 'checked'}
 					<a class="btn btn-small btn-hollow external" href="{url path='user/order/return_detail'}&refund_sn={$order.refund_sn}&type=return_money">退款详情</a>
 				{/if}
 			</div>
