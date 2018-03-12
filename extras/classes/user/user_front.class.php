@@ -72,7 +72,8 @@ class user_front {
 	        'user/privilege/login',
 	    	'user/privilege/mobile_login',
 	    	'user/privilege/pass_login',
-	        'user/privilege/signin',
+	    	'user/privilege/signin',
+	    	'user/privilege/signup',
 	        'user/privilege/register',
 	    	'user/privilege/captcha_validate',
 	    	'user/privilege/captcha_refresh',
@@ -85,6 +86,8 @@ class user_front {
 	        'user/privilege/bind_signup',
 	        'user/privilege/bind_signup_do',
 	        'user/privilege/bind_login',
+	    	'user/privilege/validate_code',
+	    	'user/privilege/set_password',
 	        
 	        'user/get_password/get_password_phone',
 	        'user/get_password/pwd_question_name',
@@ -94,15 +97,13 @@ class user_front {
 	        'user/get_password/reset_pwd_mail',
 	        'user/get_password/reset_pwd_form',
 	        'user/get_password/reset_pwd',
-	        'user/privilege/validate_code',
-	        'user/privilege/set_password',
-	        'user/get_password/mobile_register',
-	        'user/get_password/reset_password',
-	        'user/privilege/signin',
-	        'user/privilege/signup',
 	        'user/get_password/mobile_register_account',
+	    	'user/get_password/mobile_register',
+	    	'user/get_password/reset_password',
+	    		
 	        'user/mobile_reward/init',
 	        'user/mobile_reward/recieve',
+	    		
 	    	'user/index/wxconfig',
 	    );
 	}

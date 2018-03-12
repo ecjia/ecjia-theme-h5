@@ -5591,6 +5591,10 @@ footer {
 	background-color: #fff;
 }
 
+.ecjia-login.ecjia-form .form-group.verification_div {
+	display: none;
+}
+
 .ecjia-login.ecjia-form .form-group .roaming {
 	position: absolute;
     top: .5em;
@@ -5610,6 +5614,10 @@ footer {
 .ecjiaf-tac.blue {
 	color: #378FCB;
 	cursor: pointer;
+}
+
+.ecjiaf-tac.blue.disabled {
+	color: #aaa;
 }
 .ecjia-login.ecjia-form .form-group .captcha img {
 	width: 5em;
@@ -5654,6 +5662,19 @@ footer {
 .ecjia-login-login-foot {
 	overflow: hidden;
 	margin-right: 12%;
+}
+
+.ecjia-login-login-foot.m_r0.verification {
+	margin-right: 0;
+	line-height: 2em;
+}
+
+.ecjia-login-login-foot.m_r0.verification .ecjia-checkbox {
+	margin-top: 0.5em;
+    margin-right: .5em;
+    margin-left: 7%;
+    margin-bottom: 0.5em;
+    float: left;
 }
 
 .ecjia-login .user-img {
@@ -12040,3 +12061,7 @@ body,
 .alieditContainer .sixDigitPassword-box span{position:absolute;display:block;left:0;top:0;height:30px;border:1px solid rgba(82,168,236,.8);border:1px solid #0ff\9;border-radius:2px;visibility:hidden;-webkit-box-shadow:inset 0 2px 2px rgba(0,0,0,.75),0 0 8px rgba(82,168,236,.6);box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6)}
 .alieditContainer .ui-securitycore .ui-form-item .ui-form-explain{margin-top:8px}
 .alieditContainer .six-password{position:relative;height:50px;overflow:hidden;vertical-align:middle}
+
+.ecjia-form .form-group .input input.p_d0 {
+	padding: 0;
+}

@@ -24,9 +24,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</label>
 	</div>
     <div class="around">
-    	<input type="hidden" name="token" value="{$token}" />
         <input type="hidden" name="referer_url" value="{$smarty.get.referer_url}" />
-		<input type="hidden" name="mobile_phone" value="{$mobile_phone}" />
         <input type="button" class="btn btn-info login-btn" name="ecjia-captcha-validate" value="验证" data-url="{url path='user/privilege/captcha_check'}"/>
     </div>
     <p class="ecjiaf-tac blue refresh_captcha" data-url="{url path='user/privilege/captcha_refresh'}">看不清，换一张</p>

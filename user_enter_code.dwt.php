@@ -35,13 +35,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</div>
 		</div>
 	</div>
-	<input type="hidden" name="mobile" value="{$mobile}" />
 	<input type="hidden" name="type" value="{$type}" />
 	<input type="hidden" name="url" value="{url path='user/privilege/mobile_signin'}" />
-	<input type="hidden" name="registered" value="{$registered}" />
-	<input type="hidden" name="invited" value="{$invited}" />
 	
-    <p class="ecjiaf-tac blue resend_sms" data-url="">重新发送验证码</p>
+    <p class="ecjiaf-tac blue resend_sms" data-url="{url path='user/privilege/captcha_check'}">重新发送验证码</p>
 </div>
 <!-- {/block} -->
 {/nocache}

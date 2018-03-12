@@ -24,6 +24,7 @@
 			ecjia.touch.user.cancel_order();
 			ecjia.touch.user.return_order();
 			ecjia.touch.user.affiliate();
+			ecjia.touch.user.resend_sms();
 
 			$(function() {
 				$(".del").click(function() {
@@ -119,12 +120,8 @@
 			});
 			
 			$('.refresh_captcha').off('click').on('click', function(e) {
-				var token = $('input[name="token"]').val();
 				var url = $(this).attr('data-url');
-				var info = {
-					'token': token,
-				};
-				$.post(url, info, function(data) {
+				$.post(url, function(data) {
 					if (data.state == 'error') {
 						ecjia.touch.showmessage(data);
 						return false;
@@ -137,13 +134,9 @@
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 				e.preventDefault();
 				var url = $(this).attr('data-url');
-				var mobile_phone = $('input[name="mobile_phone"]').val();
 				var code_captcha = $('input[name="code_captcha"]').val();
-				var token = $('input[name="token"]').val();
 				
 				var info = {
-					'token'		  : token,
-					'mobile_phone': mobile_phone,
 					'code_captcha': code_captcha
 				};
 				$.post(url, info, function(data) {
@@ -193,15 +186,11 @@
 							var type = $('input[name="type"]').val();
 							var mobile = $('input[name="mobile"]').val();
 							var url = $('input[name="url"]').val();
-							var registered = $('input[name="registered"]').val();
-							var invited = $('input[name="invited"]').val();
 							
 							var info = {
 								'type': type,
 								'password': val,
-								'mobile': mobile,
-								'registered': registered,
-								'invited': invited
+								'mobile': mobile
 							}
 							$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 							$.post(url, info, function(data) {
@@ -224,6 +213,43 @@
 			$('.i-block i').off('click').on('click', function() {
 				$('input[name="payPassword_rsainput"]').focus();
 			});
+			
+			$('input[name="show_verification"]').off('change').on('change', function() {
+				var val = $('input[name="show_verification"]:checked').val();
+				if (val == 1) {
+					$('.verification_div').show();
+					$(this).parent('label').addClass('ecjia-checkbox-checked');
+				} else {
+					$('.verification_div').hide();
+					$(this).parent('label').removeClass('ecjia-checkbox-checked');
+				}
+			});
+		},
+		
+		resend_sms: function() {
+			$('.resend_sms').off('click').on('click', function() {
+				var $this = $(this),
+					url = $this.attr('data-url');
+				$.post(url, {'type': 'resend'}, function(data) {
+					ecjia.touch.showmessage(data);
+				});
+			});
+
+			var InterValObj; //timer变量，控制时间
+			var count = 180; //间隔函数，1秒执行
+			var curCount; //当前剩余秒数
+			$(".resend_sms").addClass("disabled");
+			InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+			
+			//timer处理函数
+			function SetRemainTime() {
+				if (curCount == 0) {
+					window.clearInterval(InterValObj); 			//停止计时器
+					$(".resend_sms").removeClass("disabled"); 	//启用按钮
+				} else {
+					curCount--;
+				}
+			};
 		},
 
 		//用户登出
@@ -387,10 +413,14 @@
 				e.preventDefault();
 				var url = $(this).attr('data-url'),
 					username = $("input[name='username']").val().trim(),
-					password = $("input[name='password']").val().trim();
+					password = $("input[name='password']").val().trim(),
+					show_verification = $("input[name='show_verification']:checked").val(),
+					verification = $("input[name='verification']").val().trim();
 				var info = {
 					'username': username,
-					'password': password
+					'password': password,
+					'show_verification': show_verification,
+					'verification': verification
 				};
 				$.post(url, info, function(data) {
 					ecjia.touch.showmessage(data);
