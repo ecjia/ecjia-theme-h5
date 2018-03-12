@@ -600,9 +600,9 @@ class user_order_controller {
     			$file['refund_images['.$i.']'] = curl_file_create(realpath($_FILES['tmp_name'][$i]), $_FILES['type'][$i], $_FILES['name'][$i]);
     		}
     	}
-    	if (empty($file)) {
-    		return ecjia_front::$controller->showmessage('申请失败，请上传照片', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-    	}
+//     	if (empty($file)) {
+//     		return ecjia_front::$controller->showmessage('申请失败，请上传照片', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+//     	}
     	$params = array(
     		'token' 				=> ecjia_touch_user::singleton()->getToken(),
     		'order_id' 				=> $order_id,
