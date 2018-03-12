@@ -202,6 +202,10 @@ class user_privilege_controller {
     public static function captcha_validate() {
     	$mobile_phone = $_SESSION['user_temp']['mobile_phone'];
     	
+    	if (empty($mobile_phone)) {
+    		ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
+    	}
+    	
     	$data	= ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
     	$token	= $data['access_token'];
     	$_SESSION['user_temp']['token'] = $token;
@@ -242,7 +246,7 @@ class user_privilege_controller {
 			return ecjia_front::$controller->showmessage('请输入验证码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 		}
 		if (RC_Time::gmtime() < $_SESSION['user_temp']['resend_sms_time'] + 180) {
-// 			return ecjia_front::$controller->showmessage('规定时间以外，可重新发送验证码（3分钟）', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+			return ecjia_front::$controller->showmessage('规定时间以外，可重新发送验证码（3分钟）', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 		}
     	$param = array(
     		'token'	=> $token,
@@ -250,6 +254,7 @@ class user_privilege_controller {
     		'value'	=> $mobile,
     		'captcha_code' => $code_captcha
     	);
+    	
     	$res = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data($param)->run();
     	if (is_ecjia_error($res)) {
     		return ecjia_front::$controller->showmessage($res->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGTYPE_JSON);
@@ -283,6 +288,10 @@ class user_privilege_controller {
     
     //输入验证码
     public static function enter_code() {
+    	if (empty($mobile_phone)) {
+    		ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
+    	}
+    	
     	$mobile = $_SESSION['user_temp']['mobile_phone'];
     	$code_captcha = $_SESSION['user_temp']['captcha_code'];
     	
@@ -397,12 +406,12 @@ class user_privilege_controller {
     }
     
     public static function set_password() {
-        if ($_SESSION['user_temp']['register_status'] != 'succeed') {
+    	$mobile = !empty($_SESSION['user_temp']['mobile']) ? $_SESSION['user_temp']['mobile'] : '';
+    	
+        if ($_SESSION['user_temp']['register_status'] != 'succeed' || empty($mobile)) {
             ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
         }
-        
        	if (isset($_POST['username'])) {
-	        $mobile 			= !empty($_SESSION['user_temp']['mobile']) 	? $_SESSION['user_temp']['mobile'] 	: '';
 	        $username 			= !empty($_POST['username']) 				? trim($_POST['username']) 			: '';
 	        $password 			= !empty($_POST['password']) 				? trim($_POST['password']) 			: '';
 	        $show_verification 	= intval($_POST['show_verification']);
