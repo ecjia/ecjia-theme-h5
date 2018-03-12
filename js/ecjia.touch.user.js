@@ -238,6 +238,7 @@
 			var InterValObj; //timer变量，控制时间
 			var count = 180; //间隔函数，1秒执行
 			var curCount; //当前剩余秒数
+			curCount = count;
 			$(".resend_sms").addClass("disabled");
 			InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 			
