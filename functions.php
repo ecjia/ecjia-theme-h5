@@ -164,7 +164,13 @@ RC_Hook::add_action('user/privilege/mobile_signin', array('user_privilege_contro
 
 //找回密码
 RC_Loader::load_theme('extras/controller/user_get_password_controller.php');
-RC_Hook::add_action('user/get_password/mobile_register', array('user_get_password_controller', 'mobile_register'));
+RC_Hook::add_action('user/get_password/init', array('user_get_password_controller', 'init'));
+RC_Hook::add_action('user/get_password/mobile_check', array('user_get_password_controller', 'mobile_check'));
+RC_Hook::add_action('user/get_password/captcha_validate', array('user_get_password_controller', 'captcha_validate'));
+RC_Hook::add_action('user/get_password/enter_code', array('user_get_password_controller', 'enter_code'));
+RC_Hook::add_action('user/get_password/captcha_check', array('user_get_password_controller', 'captcha_check'));
+RC_Hook::add_action('user/get_password/validate_forget_password', array('user_get_password_controller', 'validate_forget_password'));
+
 RC_Hook::add_action('user/get_password/mobile_register_account', array('user_get_password_controller', 'mobile_register_account'));
 RC_Hook::add_action('user/get_password/reset_password', array('user_get_password_controller', 'reset_password'));
 
@@ -332,6 +338,8 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
  * 第三方登录回调提示模板
  */
 RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $data) {
+	_dump($templateStr);
+	_dump($data,1);
     RC_Loader::load_theme('extras/controller/connect_controller.php');
     return connect_controller::callback_template($data);
 }, 10, 2);

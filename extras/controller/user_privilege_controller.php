@@ -194,14 +194,14 @@ class user_privilege_controller {
     	if (!preg_match($chars, $mobile_phone)) {
     		return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
-    	$_SESSION['user_temp']['mobile_phone'] = $mobile_phone;
+    	$_SESSION['user_temp']['mobile'] = $mobile_phone;
     	
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/captcha_validate')));
     }
     
     //身份验证
     public static function captcha_validate() {
-    	$mobile_phone = $_SESSION['user_temp']['mobile_phone'];
+    	$mobile_phone = $_SESSION['user_temp']['mobile'];
     	
     	if (empty($mobile_phone)) {
     		ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
@@ -217,6 +217,7 @@ class user_privilege_controller {
     	ecjia_front::$controller->assign('title', '身份验证');
     	ecjia_front::$controller->assign_title('身份验证');
     	ecjia_front::$controller->assign_lang();
+    	ecjia_front::$controller->assign('url', RC_Uri::url('user/privilege/captcha_check'));
     	
     	ecjia_front::$controller->display('user_captcha_validate.dwt');
     }
@@ -235,7 +236,7 @@ class user_privilege_controller {
     //检查图形验证码
     public static function captcha_check() {
     	$token = $_SESSION['user_temp']['token'];
-    	$mobile = $_SESSION['user_temp']['mobile_phone'];
+    	$mobile = $_SESSION['user_temp']['mobile'];
     	
     	$type = trim($_POST['type']);
     	if ($type == 'resend') {
@@ -289,7 +290,7 @@ class user_privilege_controller {
     
     //输入验证码
     public static function enter_code() {
-    	$mobile = $_SESSION['user_temp']['mobile_phone'];
+    	$mobile = $_SESSION['user_temp']['mobile'];
     	if (empty($mobile)) {
     		ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
     	}
@@ -304,6 +305,9 @@ class user_privilege_controller {
     	ecjia_front::$controller->assign('code_captcha', $code_captcha);
     	ecjia_front::$controller->assign('mobile', $mobile);
     	
+    	ecjia_front::$controller->assign('url', RC_Uri::url('user/privilege/mobile_signin'));
+    	ecjia_front::$controller->assign('resend_url', RC_Uri::url('user/privilege/captcha_check'));
+    	
     	ecjia_front::$controller->display('user_enter_code.dwt');
     }
     
@@ -312,7 +316,7 @@ class user_privilege_controller {
     public static function mobile_signin() {
     	$type = trim($_POST['type']);
     	$password = trim($_POST['password']);
-    	$mobile = $_SESSION['user_temp']['mobile_phone'];
+    	$mobile = $_SESSION['user_temp']['mobile'];
     	
     	$registered = $_SESSION['user_temp']['registered'];
     	$invited = $_SESSION['user_temp']['invited'];
