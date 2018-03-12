@@ -32,13 +32,7 @@
 						'f_code': $("input[name='f_code']").val()
 					};
 				$.post(url, info, function(data) {
-					if (data.state == 'error') {
-						alert(data.message);
-					} else {
-						if (typeof(data.pjaxurl) != 'undefined') {
-							location.href = data.pjaxurl;
-						}
-					}
+					ecjia.touch.showmessage(data);
 				});
 			});
 		},

@@ -52,6 +52,7 @@ defined('IN_ECJIA') or exit('No permission resources.');
 class franchisee_controller {
 
 	public static function first() {
+		unset($_SESSION['franchisee_add']);
 	    $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
 	    
 	    if (!ecjia_front::$controller->is_cached('franchisee_first.dwt', $cache_id)) {
@@ -111,11 +112,12 @@ class franchisee_controller {
 	        return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
 	    } else {
 	        $_SESSION['franchisee_add'] = array(
-	            'name' => $name,
-	            'email' => $email,
-	            'mobile' => $mobile,
-	            'captcha_code'   => $code,
-	            'access_time' => RC_Time::gmtime()
+	            'name' 			=> $name,
+	            'email' 		=> $email,
+	            'mobile' 		=> $mobile,
+	            'captcha_code'	=> $code,
+	            'access_time'	=> RC_Time::gmtime(),
+	        	'validate_type' =>'signup'
 	        );
 	        return ecjia_front::$controller->showmessage( '', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('franchisee/index/enter_code')));
 	    }
@@ -148,7 +150,7 @@ class franchisee_controller {
 			'type' 			=> 'mobile',
 			'value' 		=> $_SESSION['franchisee_add']['mobile'],
 			'captcha_code'  => $_SESSION['franchisee_add']['captcha_code'],
-			'validate_type' => 'signup'
+			'validate_type' => $_SESSION['franchisee_add']['validate_type']
 		);
 		$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_VALIDATE)->data($params)->run();
 		if (is_ecjia_error($rs)) {
@@ -435,45 +437,133 @@ class franchisee_controller {
 	}
 
 	public static function search() {
+		unset($_SESSION['franchisee_add']);
 	    $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
 	    
+	    $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_SHOP_TOKEN)->run();
+	    $res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $data['access_token']))->run();
+	    if (is_ecjia_error($res)) {
+	    	return ecjia_front::$controller->showmessage($res->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGTYPE_JSON);
+	    }
+	    ecjia_front::$controller->assign('image', $res['base64']);
+	    
 	    if (!ecjia_front::$controller->is_cached('franchisee_search.dwt', $cache_id)) {
-	        ecjia_front::$controller->assign('url', RC_Uri::url('franchisee/index/process_search'));
+	        ecjia_front::$controller->assign('url', RC_Uri::url('franchisee/index/process_captcha_check'));
 	        ecjia_front::$controller->assign_lang();
 	        ecjia_front::$controller->assign_title('进度查询');
 	    }
 	    ecjia_front::$controller->display('franchisee_search.dwt', $cache_id);
 	}
 
-	public static function process_search() {
+// 	public static function process_search() {
+// 		$mobile	= !empty($_POST['f_mobile'])	? $_POST['f_mobile']        : '';
+// 		$code	= !empty($_POST['f_code'])      ? trim($_POST['f_code'])    : '';
+
+// 	    if (empty($mobile)) {
+// 	        return ecjia_front::$controller->showmessage(__('请输入手机号码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+// 	    }
+
+// 	    if (empty($code)) {
+// 	        return ecjia_front::$controller->showmessage(__('验证码不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+// 	    }
+	    
+// 	    $chars = "/^1(3|4|5|7|8)\d{9}$/";
+// 	    if (!preg_match($chars, $mobile)) {
+// 	    	return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+// 	    }
+	    
+// 	    $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_SHOP_TOKEN)->run();
+// 	    $params  = array(
+// 	        'token' 		=> $data['access_token'],
+// 	        'mobile' 		=> $mobile,
+// 	        'validate_code' => $code,
+// 	    );
+// 	    $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data($params)->run();
+// 	    if (is_ecjia_error($rs)) {
+// 	    	return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+// 	    } else {
+//     	    return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('franchisee/index/process', array('mobile' => $mobile, 'code' => $code))));
+// 	    }
+// 	}
+	
+	//查询 图形验证码 检查
+	public static function process_captcha_check() {
 		$mobile	= !empty($_POST['f_mobile'])	? $_POST['f_mobile']        : '';
 		$code	= !empty($_POST['f_code'])      ? trim($_POST['f_code'])    : '';
+		
+		if (empty($mobile)) {
+			return ecjia_front::$controller->showmessage(__('请输入手机号码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+		}
+		
+		if (empty($code)) {
+			return ecjia_front::$controller->showmessage(__('验证码不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+		}
+		 
+		$chars = "/^1(3|4|5|7|8)\d{9}$/";
+		if (!preg_match($chars, $mobile)) {
+			return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+		}
+		 
+		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_SHOP_TOKEN)->run();
+		$params  = array(
+			'token' 		=> $data['access_token'],
+			'value' 		=> $mobile,
+			'captcha_code'  => $code,
+			'validate_type' => 'process',
+			'type' 			=> 'mobile',
+		);
+		
+		$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_VALIDATE)->data($params)->run();
+		if (is_ecjia_error($rs)) {
+			return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+		} else {
+			$_SESSION['franchisee_add']['captcha_code'] = $code;
+			$_SESSION['franchisee_add']['mobile'] = $mobile;
+			$_SESSION['franchisee_add']['validate_type'] = 'process';
+			return ecjia_front::$controller->showmessage('验证码已发送', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('franchisee/index/process_enter_code', array('mobile' => $mobile, 'code' => $code))));
+		}
+	}
+	
+	//查询 输入验证码页面
+	public static function process_enter_code() {
+		$mobile = trim($_GET['mobile']);
+		if (empty($mobile)) {
+			ecjia_front::$controller->redirect(RC_Uri::url('franchisee/index/search'));
+		}
+	
+		ecjia_front::$controller->assign('title', '输入验证码');
+		ecjia_front::$controller->assign_title('输入验证码');
+		ecjia_front::$controller->assign_lang();
+	
+		ecjia_front::$controller->assign('mobile', $mobile);
+	
+		ecjia_front::$controller->assign('resend_url', RC_Uri::url('franchisee/index/resend_sms'));
+		ecjia_front::$controller->assign('url', RC_Uri::url('franchisee/index/process_validate_code'));
+	
+		ecjia_front::$controller->display('franchisee_process_enter_code.dwt');
+	}
+	
+	//查询 检查短信验证码
+	public static function process_validate_code() {
+		$mobile	= !empty($_POST['mobile'])	? $_POST['mobile']        : '';
+		$code	= !empty($_POST['value'])	? trim($_POST['value'])    : '';
+		
+		if (empty($code)) {
+			return ecjia_front::$controller->showmessage(__('验证码不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+		}
 
-	    if (empty($mobile)) {
-	        return ecjia_front::$controller->showmessage(__('请输入手机号码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-	    }
-
-	    if (empty($code)) {
-	        return ecjia_front::$controller->showmessage(__('验证码不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-	    }
-	    
-	    $chars = "/^1(3|4|5|7|8)\d{9}$/";
-	    if (!preg_match($chars, $mobile)) {
-	    	return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-	    }
-	    
-	    $data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_SHOP_TOKEN)->run();
-	    $params  = array(
-	        'token' 		=> $data['access_token'],
-	        'mobile' 		=> $mobile,
-	        'validate_code' => $code,
-	    );
-	    $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data($params)->run();
-	    if (is_ecjia_error($rs)) {
-	    	return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
-	    } else {
-    	    return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('franchisee/index/process', array('mobile' => $mobile, 'code' => $code))));
-	    }
+		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_SHOP_TOKEN)->run();
+		$params  = array(
+			'token' 		=> $data['access_token'],
+			'mobile' 		=> $mobile,
+			'validate_code' => $code,
+		);
+		$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data($params)->run();
+		if (is_ecjia_error($rs)) {
+			return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+		} else {
+			return ecjia_front::$controller->showmessage('校验成功', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('url' => RC_Uri::url('franchisee/index/process', array('mobile' => $mobile, 'code' => $code))));
+		}
 	}
 	
 	public static function process() {

@@ -1,7 +1,7 @@
 <?php
 /*
-Name: 商家入驻验证码模板
-Description: 这是商家入驻验证码页
+Name: 商家入驻查询验证码模板
+Description: 这是商家入驻查询验证码页
 Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
