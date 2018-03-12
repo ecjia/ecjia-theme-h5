@@ -314,16 +314,16 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
     
     //判断并微信登录
     if (strpos($user_agent, 'MicroMessenger') !== false && ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {
-        // //微信浏览器
-        // if (ROUTE_M != 'connect') {
-        //     if (!ecjia_touch_user::singleton()->isSignin()) {
-        //         if ($_REQUEST['referer_url']) {
-        //             RC_Cookie::set('referer', $_REQUEST['referer_url']);
-        //         }
-        //         $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat', 'login_type' => 'snsapi_userinfo'));
-        //         ecjia_front::$controller->redirect($url);
-        //     }
-        // }
+        //微信浏览器
+        if (ROUTE_M != 'connect') {
+            if (!ecjia_touch_user::singleton()->isSignin()) {
+                if ($_REQUEST['referer_url']) {
+                    RC_Cookie::set('referer', $_REQUEST['referer_url']);
+                }
+                $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat', 'login_type' => 'snsapi_userinfo'));
+                ecjia_front::$controller->redirect($url);
+            }
+        }
     }
 
     if (ROUTE_M == 'user') {
@@ -338,8 +338,6 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
  * 第三方登录回调提示模板
  */
 RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $data) {
-	_dump($templateStr);
-	_dump($data,1);
     RC_Loader::load_theme('extras/controller/connect_controller.php');
     return connect_controller::callback_template($data);
 }, 10, 2);
