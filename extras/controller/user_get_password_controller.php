@@ -227,7 +227,7 @@ class user_get_password_controller {
             if (!is_ecjia_error($data)) {
                 unset($_SESSION['user_temp']['mobile']);
                 unset($_SESSION['user_temp']['code_status']);
-                return ecjia_front::$controller->showmessage(__('您已成功找回密码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/login')));
+                return ecjia_front::$controller->showmessage(__('您已成功找回密码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/pass_login')));
             } else {
                 return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
