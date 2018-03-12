@@ -22,6 +22,8 @@
 
 			ecjia.touch.franchisee.validate_code();
 			ecjia.touch.franchisee.next();
+			ecjia.touch.franchisee.enter_code();
+			ecjia.touch.franchisee.resend_sms();
 
 			$('.process_search').off('click').on('click', function() {
 				var url = $(this).attr('data-url'),
@@ -172,6 +174,113 @@
 						}
 					}
 				});
+			});
+			
+			$('.captcha-refresh').off('click').on('click', function(e) {
+				var url = $(this).attr('data-url');
+				$.post(url, function(data) {
+					if (data.state == 'error') {
+						ecjia.touch.showmessage(data);
+						return false;
+					}
+					$('.captcha').find('img').attr('src', 'data:image/png;base64,' + data.message);
+				});
+			});
+			
+			$('.resend_sms').off('click').on('click', function() {
+				var $this = $(this),
+					url = $this.attr('data-url');
+				if ($this.hasClass('disabled')) {
+					return false;
+				}
+				$.post(url, {'type': 'resend'}, function(data) {
+					ecjia.touch.showmessage(data);
+				});
+			});
+		},
+		
+		resend_sms: function() {
+			var InterValObj; //timer变量，控制时间
+			var count = 60; //间隔函数，1秒执行
+			var curCount; //当前剩余秒数
+			curCount = count;
+			$(".resend_sms").addClass("disabled");
+			InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+			$(".resend_sms").html(curCount + "s后可重新获取");
+			//timer处理函数
+			function SetRemainTime() {
+				if (curCount == 0) {
+					window.clearInterval(InterValObj); 			//停止计时器
+					$(".resend_sms").removeClass("disabled"); 	//启用按钮
+					$(".resend_sms").html('重新发送验证码');
+				} else {
+					curCount--;
+					$(".resend_sms").html(curCount + "s后可重新获取");
+				}
+			};
+		},
+		
+		enter_code: function() {
+			var payPassword = $("#payPassword_container"),
+			_this = payPassword.find('i'),
+			k = 0,
+			j = 0,
+			password = '';
+			payPassword.on('focus', "input[name='payPassword_rsainput']", function() {
+				var _this = payPassword.find('i');
+				if (payPassword.attr('data-busy') === '0') {
+					_this.eq(k).addClass("active");
+					payPassword.attr('data-busy', '1')
+				}
+			});
+			payPassword.on('change', "input[name='payPassword_rsainput']", function() {
+				_this.eq(k).removeClass("active");
+				payPassword.attr('data-busy', '0')
+			}).on('blur', "input[name='payPassword_rsainput']", function() {
+				_this.eq(k).removeClass("active");
+				payPassword.attr('data-busy', '0')
+			});
+			payPassword.on('keyup', "input[name='payPassword_rsainput']", function(e) {
+				var e = (e) ? e : window.event;
+				if (e.keyCode == 8 || (e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
+					k = this.value.length;
+					l = _this.size();
+					for (; l--;) {
+						if (l === k) {
+							_this.eq(l).addClass("active");
+							_this.eq(l).find('b').css('visibility', 'hidden')
+						} else {
+							_this.eq(l).removeClass("active");
+							_this.eq(l).find('b').css('visibility', l < k ? 'visible' : 'hidden')
+						}
+						if (k === 6) {
+							$('input[name="payPassword_rsainput"]').blur();
+							var val = this.value;
+							var type = $('input[name="type"]').val();
+							var mobile = $('input[name="mobile"]').val();
+							var url = $('input[name="url"]').val();
+							
+							var info = {
+								'type': type,
+								'value': val,
+								'mobile': mobile
+							}
+							$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+							$.post(url, info, function(data) {
+								$('.la-ball-atom').remove();
+								if (data.state == 'error') {
+									alert(data.message);
+								} else if (data.state == 'success'){
+									location.href = data.url;
+								}
+							})
+							return false;
+						}
+					}
+				} else {
+					var _val = this.value;
+					this.value = _val.replace(/\D/g, '')
+				}
 			});
 		},
 

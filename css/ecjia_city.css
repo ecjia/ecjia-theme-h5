@@ -12065,3 +12065,26 @@ body,
 .ecjia-form .form-group .input input.p_d0 {
 	padding: 0;
 }
+
+.ecjia-address-list .form-group .input.captcha span {
+	height: 2em;
+    border-right: 1px solid #aaa;
+    top: .7em;
+}
+
+.ecjia-address-list .form-group .input.captcha span img {
+	width: 5em;
+    height: 2em;
+    position: absolute;
+    top: .2em;
+}
+
+.ecjia-address-list .form-group-text .input.captcha input {
+	padding-left: 8em;
+}
+
+.captcha-refresh {
+	margin-right: 1em;
+    margin-bottom: 1em;
+	color: #378FCB;
+}

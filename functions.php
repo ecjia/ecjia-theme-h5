@@ -134,6 +134,11 @@ RC_Loader::load_theme('extras/controller/franchisee_controller.php');
 RC_Hook::add_action('franchisee/index/first', array('franchisee_controller', 'first'));//入驻申请加载页面
 RC_Hook::add_action('franchisee/index/first_check', array('franchisee_controller', 'first_check'));//入驻申请第一步验证
 RC_Hook::add_action('franchisee/index/validate', array('franchisee_controller', 'validate'));//入驻验证码
+
+RC_Hook::add_action('franchisee/index/enter_code', array('franchisee_controller', 'enter_code'));
+RC_Hook::add_action('franchisee/index/resend_sms', array('franchisee_controller', 'resend_sms'));
+RC_Hook::add_action('franchisee/index/validate_code', array('franchisee_controller', 'validate_code'));
+
 RC_Hook::add_action('franchisee/index/second', array('franchisee_controller', 'second'));//入驻申请第二步
 RC_Hook::add_action('franchisee/index/finish', array('franchisee_controller', 'finish'));//处理入驻申请
 
@@ -144,6 +149,8 @@ RC_Hook::add_action('franchisee/index/process_search', array('franchisee_control
 RC_Hook::add_action('franchisee/index/location', array('franchisee_controller', 'get_location'));//获取店铺精确位置
 RC_Hook::add_action('franchisee/index/location_finish', array('franchisee_controller', 'location_finish'));//提交店铺精确位置
 RC_Hook::add_action('franchisee/index/get_region', array('franchisee_controller', 'get_region'));//提交店铺精确位置
+
+RC_Hook::add_action('franchisee/index/captcha_refresh', array('franchisee_controller', 'captcha_refresh'));
 
 //登录注册
 RC_Loader::load_theme('extras/controller/user_privilege_controller.php');

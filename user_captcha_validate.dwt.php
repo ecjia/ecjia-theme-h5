@@ -20,7 +20,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="form-group margin-right-left">
 		<label class="input">
 			<span class="captcha"><img src="data:image/png;base64,{$captcha_image}"></span>
-			<input placeholder="请输入左侧验证码" name="code_captcha" class="code_captcha">
+			<input type="text" placeholder="请输入左侧验证码" name="code_captcha" class="code_captcha">
 		</label>
 	</div>
     <div class="around">
