@@ -80,7 +80,13 @@ class user_privilege_controller {
         	ecjia_front::$controller->assign('user_img', $user_img);
         	ecjia_front::$controller->assign('step', isset($_GET['step']) ? htmlspecialchars($_GET['step']) : '');
         	ecjia_front::$controller->assign('anonymous_buy', ecjia::config('anonymous_buy'));
-        	ecjia_front::$controller->assign('header_right', array('info' => '密码登录', 'href' => RC_Uri::url('user/privilege/pass_login')));
+        	
+        	$url = RC_Uri::url('user/privilege/pass_login');
+        	if (!empty($_GET['referer_url'])) {
+        		$url = RC_Uri::url('user/privilege/pass_login', array('referer_url' => urlencode($_GET['referer_url'])));
+        		$_SESSION['user_temp']['referer_url'] = urlencode($_GET['referer_url']);
+        	}
+        	ecjia_front::$controller->assign('header_right', array('info' => '密码登录', 'href' => $url));
         	
         	ecjia_front::$controller->assign('title', '手机登录');
         	ecjia_front::$controller->assign_title('手机登录');
@@ -118,7 +124,12 @@ class user_privilege_controller {
     	}
     	
     	if (!ecjia_front::$controller->is_cached('user_pass_login.dwt', $cache_id)) {
-    		ecjia_front::$controller->assign('header_right', array('info' => '手机登录', 'href' => RC_Uri::url('user/privilege/login')));
+    		$url = RC_Uri::url('user/privilege/login');
+    		if (!empty($_GET['referer_url'])) {
+    			$url = RC_Uri::url('user/privilege/login', array('referer_url' => urlencode($_GET['referer_url'])));
+    		}
+    		
+    		ecjia_front::$controller->assign('header_right', array('info' => '手机登录', 'href' => $url));
     		 
     		ecjia_front::$controller->assign('title', '密码登录');
     		ecjia_front::$controller->assign_title('密码登录');
@@ -329,7 +340,7 @@ class user_privilege_controller {
     		}
     		
     		$url = RC_Uri::url('touch/my/init');
-    		$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : '';
+    		$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : urldecode($_SESSION['user_temp']['referer_url']);
     		if (!empty($referer_url)) {
     			$url = $referer_url;
     		}
@@ -437,9 +448,14 @@ class user_privilege_controller {
         if (!empty($username) && !empty($password)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => $password, 'invite_code' => $verification))->run();
             if (!is_ecjia_error($data)) {
+            	$url = RC_Uri::url('touch/my/init');
+            	if (!empty($_SESSION['user_temp']['referer_url'])) {
+            		$url = urldecode($_SESSION['user_temp']['referer_url']);
+            	}
                 unset($_SESSION['user_temp']);
+                
                 ecjia_touch_user::singleton()->signin('password', $username, $password);
-                return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init')));
+                return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
             } else {
                 return ecjia_front::$controller->showmessage(__($data->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }

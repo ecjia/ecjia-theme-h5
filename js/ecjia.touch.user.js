@@ -174,7 +174,7 @@
 					
 					var info = {
 						'type': type,
-						'value': value,
+						'password': value,
 						'mobile': mobile
 					}
 					$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
