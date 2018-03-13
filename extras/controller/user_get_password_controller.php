@@ -175,6 +175,7 @@ class user_get_password_controller {
     	ecjia_front::$controller->display('user_enter_code.dwt');
     }
     
+    //验证短信验证码
     public static function validate_forget_password() {
     	$token = $_SESSION['user_temp']['token'];
     	$mobile = $_SESSION['user_temp']['mobile'];

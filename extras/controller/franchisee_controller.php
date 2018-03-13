@@ -175,7 +175,7 @@ class franchisee_controller {
 		);
 		$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_VALIDATE)->data($params)->run();
 		if (is_ecjia_error($rs)) {
-			return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
+			return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
 		} else {
 			$_SESSION['franchisee_add']['code'] = $value;
 			return ecjia_front::$controller->showmessage('校验成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('franchisee/index/second')));
@@ -436,6 +436,7 @@ class franchisee_controller {
 		}
 	}
 
+	//店铺入驻 进度查询
 	public static function search() {
 		unset($_SESSION['franchisee_add']);
 	    $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));

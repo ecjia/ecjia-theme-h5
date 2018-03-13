@@ -21,7 +21,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<p class="ecjiaf-tac ecjia-margin-b">已发送验证码到{$mobile}</p>
 
 	<div id="payPassword_container">
-		<div class="pass_container">
+		<div class="franchisee_pass_container">
 			<input class="input" type="tel" maxlength="1">  
 			<input class="input" type="tel" maxlength="1">
 			<input class="input" type="tel" maxlength="1">

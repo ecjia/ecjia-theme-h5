@@ -215,8 +215,8 @@
 		},
 		
 		enter_code: function() {
-			var $input = $(".pass_container input"); 
-            $(".pass_container input").on("input", function() {  
+			var $input = $(".franchisee_pass_container input"); 
+            $(".franchisee_pass_container input").on("input", function() {  
             	var val = $(this).val();
             	if (val == '') {
             		var index = parseInt($(this).index()) - 1;
@@ -241,7 +241,7 @@
 					
 					var info = {
 						'type': type,
-						'password': value,
+						'value': value,
 						'mobile': mobile
 					}
 					$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
