@@ -450,6 +450,9 @@ class connect_controller {
     		if (is_ecjia_error($data)) {
     			return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		}
+    		if ($data['registered'] == 1) {
+    			return ecjia_front::$controller->showmessage('该手机号已注册', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    		}
     
     		//未注册 走注册接口
     		$url = RC_Uri::url('connect/index/set_password');

@@ -368,7 +368,7 @@
 				e.preventDefault();
 				var url = $(this).attr('data-url'),
 					mobile = $("input[name='mobile']").val().trim(),
-					verification = $("input[name='verification']").val().trim(),
+					verification = $("input[name='verification']").val(),
 					code = $("input[name='code']").val().trim();
 				if (code == '') {
 					alert('请输入验证码');
@@ -396,7 +396,7 @@
 					username = $("input[name='username']").val().trim(),
 					password = $("input[name='password']").val().trim(),
 					show_verification = $("input[name='show_verification']:checked").val(),
-					verification = $("input[name='verification']").val().trim();
+					verification = $("input[name='verification']").val();
 				var info = {
 					'username': username,
 					'password': password,
