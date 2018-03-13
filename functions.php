@@ -268,6 +268,14 @@ RC_Hook::add_action('connect/index/bind_signup_do', array('connect_controller', 
 RC_Hook::add_action('connect/index/bind_signin', array('connect_controller', 'bind_signin'));
 RC_Hook::add_action('connect/index/bind_signin_do', array('connect_controller', 'bind_signin_do'));
 
+RC_Hook::add_action('connect/index/mobile_login', array('connect_controller', 'mobile_login'));
+RC_Hook::add_action('connect/index/captcha_validate', array('connect_controller', 'captcha_validate'));
+RC_Hook::add_action('connect/index/captcha_refresh', array('connect_controller', 'captcha_refresh'));
+RC_Hook::add_action('connect/index/captcha_check', array('connect_controller', 'captcha_check'));
+RC_Hook::add_action('connect/index/enter_code', array('connect_controller', 'enter_code'));
+RC_Hook::add_action('connect/index/mobile_signin', array('connect_controller', 'mobile_signin'));
+RC_Hook::add_action('connect/index/set_password', array('connect_controller', 'set_password'));
+
 RC_Loader::load_theme('extras/controller/mobile_controller.php');
 RC_Hook::add_action('mobile/discover/init', array('mobile_controller', 'init'));//百宝箱
 

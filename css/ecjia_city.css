@@ -5536,6 +5536,10 @@ footer {
 	background-color: #F7F7F7;
 }
 
+.ecjia-login.ecjia-no-header {
+	padding-top: 3em;
+}
+
 .ecjia-login-margin-l {
 	margin-left: 91%;
 	margin-top: 0.2em;

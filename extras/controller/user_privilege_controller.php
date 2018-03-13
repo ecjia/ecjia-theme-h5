@@ -229,6 +229,7 @@ class user_privilege_controller {
     	ecjia_front::$controller->assign_title('身份验证');
     	ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->assign('url', RC_Uri::url('user/privilege/captcha_check'));
+    	ecjia_front::$controller->assign('refresh_url', RC_Uri::url('user/privilege/captcha_refresh'));
     	
     	ecjia_front::$controller->display('user_captcha_validate.dwt');
     }
@@ -259,7 +260,7 @@ class user_privilege_controller {
 			return ecjia_front::$controller->showmessage('请输入验证码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 		}
 		if (RC_Time::gmtime() < $_SESSION['user_temp']['resend_sms_time'] + 180) {
-			return ecjia_front::$controller->showmessage('规定时间以外，可重新发送验证码（3分钟）', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+// 			return ecjia_front::$controller->showmessage('规定时间以外，可重新发送验证码（3分钟）', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 		}
     	$param = array(
     		'token'	=> $token,
@@ -466,6 +467,8 @@ class user_privilege_controller {
                 ecjia_front::$controller->assign_lang();
             }
             ecjia_front::$controller->assign('invited', $_SESSION['user_temp']['invited']);
+            
+            ecjia_front::$controller->assign('set_url', RC_Uri::url('user/privilege/set_password'));
             ecjia_front::$controller->display('user_set_password.dwt', $cache_id);
         }
     }
