@@ -31,8 +31,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				
 				<p class="select-title ecjiaf-fwb ecjia-margin-l">联系人信息</p>
 				<div class="co">
-					<p class="cp"><span class="cs">联系人：<span class="ecjia-red">*</span></span><label class="cr"><input type="text" name="contact_name"></label></p>
-					<p class="cp"><span class="cs">联系电话：<span class="ecjia-red">*</span></span><label class="cr"><input type="text" type="number" name="contact_phone"></label></p>
+					<p class="cp"><span class="cs">联系人：<span class="ecjia-red">*</span></span><label class="cr"><input type="text" name="contact_name" value="{$return_info.contact_name}"></label></p>
+					<p class="cp"><span class="cs">联系电话：<span class="ecjia-red">*</span></span><label class="cr"><input type="text" type="number" name="contact_phone" value="{$return_info.contact_phone}"></label></p>
 				</div>
 	
 				{else if $type eq 'express'}
