@@ -390,7 +390,7 @@
 		},
 		/* 处理注册  */
 		register_password: function() {
-			$("#signin").on('click', function(e) {
+			$("#signin").off('click').on('click', function(e) {
 				e.preventDefault();
 				var url = $(this).attr('data-url'),
 					username = $("input[name='username']").val().trim(),
@@ -410,7 +410,7 @@
 		},
 		/*找回密码重置密码*/
 		mobile_register: function() {
-			$("input[name='mobile_register']").on('click', function(e) {
+			$("input[name='mobile_register']").off('click').on('click', function(e) {
 				e.preventDefault();
 				var url = $(this).attr('data-url'),
 					mobile = $("input[name='mobile']").val().trim(),
