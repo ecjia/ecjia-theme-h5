@@ -92,7 +92,7 @@ class connect_controller {
         ecjia_front::$controller->assign('title', '绑定手机号');
         ecjia_front::$controller->assign_title('绑定手机号');
         
-        ecjia_front::$controller->fetch('user_bind_mobile.dwt');
+        return ecjia_front::$controller->fetch('user_bind_mobile.dwt');
     }
     
     
