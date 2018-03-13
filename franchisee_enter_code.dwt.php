@@ -19,21 +19,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- #EndLibraryItem -->
 <div class="ecjia-form ecjia-login">
 	<p class="ecjiaf-tac ecjia-margin-b">已发送验证码到{$mobile}</p>
-	<div id="payPassword_container" class="alieditContainer" data-busy="0">
-		<div class="i-block" data-error="i_error">
-			<div class="i-block six-password">
-				<input class="i-text sixDigitPassword" id="payPassword_rsainput" type="password" autocomplete="off" required="required" name="payPassword_rsainput" data-role="sixDigitPassword" tabindex="" maxlength="6" minlength="6" aria-required="true">
-				<div tabindex="0" class="sixDigitPassword-box">
-					<i><b></b></i>
-					<i><b></b></i>
-					<i><b></b></i>
-					<i><b></b></i>
-					<i><b></b></i>
-					<i><b></b></i>
-				</div>
-			</div>
+
+	<div id="payPassword_container">
+		<div class="pass_container">
+			<input class="input" type="tel" maxlength="1">  
+			<input class="input" type="tel" maxlength="1">
+			<input class="input" type="tel" maxlength="1">
+			<input class="input" type="tel" maxlength="1">
+			<input class="input" type="tel" maxlength="1">
+			<input class="input" type="tel" maxlength="1">
 		</div>
 	</div>
+	
 	<input type="hidden" name="url" value="{$url}" />
 	<input type="hidden" name="mobile" value="{$mobile}" />
     <p class="ecjiaf-tac blue resend_sms" data-url="{$resend_url}">重新发送验证码</p>
