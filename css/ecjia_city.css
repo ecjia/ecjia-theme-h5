@@ -12115,6 +12115,7 @@ body,
     font-size: 2em;
 	-webkit-box-shadow: none;
     -moz-box-shadow: none;
+	line-height: 50px;
 }
 
 #payPassword_container .pass_container input:last-child, #payPassword_container .franchisee_pass_container input:last-child {
