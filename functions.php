@@ -47,8 +47,14 @@
 defined('IN_ECJIA') or exit('No permission resources.');
 
 RC_Loader::load_app_class('touch', 'touch', false);
+RC_Loader::load_theme('extras/classes/ecjia_extra.class.php');
 
-RC_Loader::load_theme('extras/controller/touch_controller.php');
+/**
+ * 自动加载类管理
+ */
+ecjia_extra::autoload();
+
+// RC_Loader::load_theme('extras/controller/touch_controller.php');
 RC_Hook::add_action('touch/index/init', array('touch_controller', 'init'));
 RC_Hook::add_action('touch/index/ajax_goods', array('touch_controller', 'ajax_goods'));
 RC_Hook::add_action('touch/index/ajax_suggest_store', array('touch_controller', 'ajax_suggest_store'));
@@ -56,14 +62,14 @@ RC_Hook::add_action('touch/index/search', array('touch_controller', 'search'));
 RC_Hook::add_action('touch/index/del_search', array('touch_controller', 'del_search'));
 
 //定位
-RC_Loader::load_theme('extras/controller/location_controller.php');
+// RC_Loader::load_theme('extras/controller/location_controller.php');
 RC_Hook::add_action('location/index/select_location', array('location_controller', 'select_location'));
 RC_Hook::add_action('location/index/search_list', 	  array('location_controller', 'search_list'));
 RC_Hook::add_action('location/index/select_city', 	  array('location_controller', 'select_city'));
 RC_Hook::add_action('location/index/get_location_msg',array('location_controller', 'get_location_msg'));
 
 //商品
-RC_Loader::load_theme('extras/controller/goods_controller.php');
+// RC_Loader::load_theme('extras/controller/goods_controller.php');
 RC_Hook::add_action('goods/category/init', array('goods_controller', 'init'));
 RC_Hook::add_action('goods/category/store_list', array('goods_controller', 'store_list'));//店铺分类列表
 RC_Hook::add_action('goods/index/show', array('goods_controller', 'show'));//商品详情页
@@ -73,7 +79,7 @@ RC_Hook::add_action('goods/index/new', array('goods_controller', 'goods_new'));
 RC_Hook::add_action('goods/index/ajax_goods_comment', array('goods_controller', 'ajax_goods_comment'));//获取商品评论
 
 //店铺
-RC_Loader::load_theme('extras/controller/merchant_controller.php');
+// RC_Loader::load_theme('extras/controller/merchant_controller.php');
 RC_Hook::add_action('merchant/index/init', array('merchant_controller', 'init'));//店铺首页
 RC_Hook::add_action('merchant/index/ajax_goods', array('merchant_controller', 'ajax_goods'));//获取店铺商品
 RC_Hook::add_action('merchant/index/position', array('merchant_controller', 'position'));//店铺位置
@@ -82,7 +88,7 @@ RC_Hook::add_action('merchant/quickpay/collectmoney', array('merchant_controller
 RC_Hook::add_action('seller/category/list', array('merchant_controller', 'seller_list'));//店铺分类列表
 
 //文章
-RC_Loader::load_theme('extras/controller/article_controller.php');
+// RC_Loader::load_theme('extras/controller/article_controller.php');
 RC_Hook::add_action('article/help/init', array('article_controller', 'init'));
 RC_Hook::add_action('article/help/detail', array('article_controller', 'detail'));
 RC_Hook::add_action('article/shop/detail', array('article_controller', 'shop_detail'));
@@ -95,7 +101,7 @@ RC_Hook::add_action('article/index/ajax_comment_list', array('article_controller
 RC_Hook::add_action('article/index/like_article', array('article_controller', 'like_article'));//文章点赞/取消点赞
 
 //购物车
-RC_Loader::load_theme('extras/controller/cart_controller.php');
+// RC_Loader::load_theme('extras/controller/cart_controller.php');
 RC_Hook::add_action('cart/index/init', array('cart_controller', 'init'));
 RC_Hook::add_action('cart/index/update_cart', array('cart_controller', 'update_cart'));//更新购物车中商品
 RC_Hook::add_action('cart/index/check_spec', array('cart_controller', 'check_spec'));//检查购物车中商品规格
@@ -112,25 +118,25 @@ RC_Hook::add_action('cart/flow/goods_list', array('cart_controller', 'goods_list
 RC_Hook::add_action('cart/flow/done', array('cart_controller', 'done'));
 
 //支付
-RC_Loader::load_theme('extras/controller/pay_controller.php');
+// RC_Loader::load_theme('extras/controller/pay_controller.php');
 RC_Hook::add_action('pay/index/init', array('pay_controller', 'init'));
 RC_Hook::add_action('pay/index/notify', array('pay_controller', 'notify'));
 
 //会员
-RC_Loader::load_theme('extras/controller/user_controller.php');
+// RC_Loader::load_theme('extras/controller/user_controller.php');
 RC_Hook::add_action('touch/my/init', array('user_controller', 'init'));
 RC_Hook::add_action('user/index/spread', array('user_controller', 'spread'));
 RC_Hook::add_action('user/index/wxconfig', array('user_controller', 'wxconfig'));
 
 //推荐
-RC_Loader::load_theme('extras/controller/affiliate_controller.php');
+// RC_Loader::load_theme('extras/controller/affiliate_controller.php');
 RC_Hook::add_action('affiliate/index/init', array('affiliate_controller', 'init'));//邀请注册
 RC_Hook::add_action('affiliate/index/check', array('affiliate_controller', 'check'));
 RC_Hook::add_action('affiliate/index/refresh', array('affiliate_controller', 'refresh'));
 RC_Hook::add_action('affiliate/index/invite', array('affiliate_controller', 'invite'));
 
 //商家入驻申请
-RC_Loader::load_theme('extras/controller/franchisee_controller.php');
+// RC_Loader::load_theme('extras/controller/franchisee_controller.php');
 RC_Hook::add_action('franchisee/index/first', array('franchisee_controller', 'first'));//入驻申请加载页面
 RC_Hook::add_action('franchisee/index/first_check', array('franchisee_controller', 'first_check'));//入驻申请第一步验证
 RC_Hook::add_action('franchisee/index/validate', array('franchisee_controller', 'validate'));//入驻验证码
@@ -156,7 +162,7 @@ RC_Hook::add_action('franchisee/index/get_region', array('franchisee_controller'
 RC_Hook::add_action('franchisee/index/captcha_refresh', array('franchisee_controller', 'captcha_refresh'));
 
 //登录注册
-RC_Loader::load_theme('extras/controller/user_privilege_controller.php');
+// RC_Loader::load_theme('extras/controller/user_privilege_controller.php');
 RC_Hook::add_action('user/privilege/login', array('user_privilege_controller', 'login'));
 RC_Hook::add_action('user/privilege/mobile_login', array('user_privilege_controller', 'mobile_login'));
 RC_Hook::add_action('user/privilege/pass_login', array('user_privilege_controller', 'pass_login'));
@@ -173,7 +179,7 @@ RC_Hook::add_action('user/privilege/enter_code', array('user_privilege_controlle
 RC_Hook::add_action('user/privilege/mobile_signin', array('user_privilege_controller', 'mobile_signin'));
 
 //找回密码
-RC_Loader::load_theme('extras/controller/user_get_password_controller.php');
+// RC_Loader::load_theme('extras/controller/user_get_password_controller.php');
 RC_Hook::add_action('user/get_password/init', array('user_get_password_controller', 'init'));
 RC_Hook::add_action('user/get_password/mobile_check', array('user_get_password_controller', 'mobile_check'));
 RC_Hook::add_action('user/get_password/captcha_validate', array('user_get_password_controller', 'captcha_validate'));
@@ -184,7 +190,7 @@ RC_Hook::add_action('user/get_password/validate_forget_password', array('user_ge
 RC_Hook::add_action('user/get_password/mobile_register_account', array('user_get_password_controller', 'mobile_register_account'));
 RC_Hook::add_action('user/get_password/reset_password', array('user_get_password_controller', 'reset_password'));
 
-RC_Loader::load_theme('extras/controller/user_account_controller.php');
+// RC_Loader::load_theme('extras/controller/user_account_controller.php');
 RC_Hook::add_action('user/account/init', array('user_account_controller', 'init'));//我的钱包
 RC_Hook::add_action('user/account/recharge', array('user_account_controller', 'recharge'));
 RC_Hook::add_action('user/account/recharge_account', array('user_account_controller', 'recharge_account'));
@@ -202,7 +208,7 @@ RC_Hook::add_action('user/account/recharge_again', array('user_account_controlle
 RC_Hook::add_action('user/account/recharge_again_account', array('user_account_controller', 'recharge_again_account'));//继续充值
 
 //用户收货地址
-RC_Loader::load_theme('extras/controller/user_address_controller.php');
+// RC_Loader::load_theme('extras/controller/user_address_controller.php');
 RC_Hook::add_action('user/address/address_list', array('user_address_controller', 'address_list'));
 RC_Hook::add_action('user/address/add_address', array('user_address_controller', 'add_address'));
 RC_Hook::add_action('user/address/insert_address', array('user_address_controller', 'insert_address'));
@@ -217,7 +223,7 @@ RC_Hook::add_action('user/address/get_region', array('user_address_controller', 
 RC_Hook::add_action('user/address/save_address_temp', array('user_address_controller', 'save_address_temp'));
 
 //用户红包
-RC_Loader::load_theme('extras/controller/user_bonus_controller.php');
+// RC_Loader::load_theme('extras/controller/user_bonus_controller.php');
 RC_Hook::add_action('user/bonus/init', array('user_bonus_controller', 'init'));
 RC_Hook::add_action('user/bonus/async_allow_use', array('user_bonus_controller', 'async_allow_use'));
 RC_Hook::add_action('user/bonus/async_is_used', array('user_bonus_controller', 'async_is_used'));
@@ -228,7 +234,7 @@ RC_Hook::add_action('user/bonus/get_integral', array('user_bonus_controller', 'g
 RC_Hook::add_action('user/bonus/async_reward_detail', array('user_bonus_controller', 'async_reward_detail'));
 
 //订单
-RC_Loader::load_theme('extras/controller/user_order_controller.php');
+// RC_Loader::load_theme('extras/controller/user_order_controller.php');
 RC_Hook::add_action('user/order/order_list', array('user_order_controller', 'order_list'));
 RC_Hook::add_action('user/order/order_cancel', array('user_order_controller', 'order_cancel'));
 RC_Hook::add_action('user/order/async_order_list', array('user_order_controller', 'async_order_list'));
@@ -250,7 +256,7 @@ RC_Hook::add_action('user/order/return_way', array('user_order_controller', 'ret
 RC_Hook::add_action('user/order/add_return_way', array('user_order_controller', 'add_return_way'));
 
 //用户资料
-RC_Loader::load_theme('extras/controller/user_profile_controller.php');
+// RC_Loader::load_theme('extras/controller/user_profile_controller.php');
 RC_Hook::add_action('user/profile/init', array('user_profile_controller', 'init'));
 RC_Hook::add_action('user/profile/modify_username', array('user_profile_controller', 'modify_username'));
 RC_Hook::add_action('user/profile/modify_username_account', array('user_profile_controller', 'modify_username_account'));
@@ -261,7 +267,7 @@ RC_Hook::add_action('user/profile/check_code', array('user_profile_controller', 
 RC_Hook::add_action('user/profile/bind_info', array('user_profile_controller', 'bind_info'));
 
 //授权登录
-RC_Loader::load_theme('extras/controller/connect_controller.php');
+// RC_Loader::load_theme('extras/controller/connect_controller.php');
 RC_Hook::add_action('connect/index/dump_user_info', array('connect_controller', 'dump_user_info'));
 RC_Hook::add_action('connect/index/bind_signup', array('connect_controller', 'bind_signup'));
 RC_Hook::add_action('connect/index/bind_signup_do', array('connect_controller', 'bind_signup_do'));
@@ -276,11 +282,11 @@ RC_Hook::add_action('connect/index/enter_code', array('connect_controller', 'ent
 RC_Hook::add_action('connect/index/mobile_signin', array('connect_controller', 'mobile_signin'));
 RC_Hook::add_action('connect/index/set_password', array('connect_controller', 'set_password'));
 
-RC_Loader::load_theme('extras/controller/mobile_controller.php');
+// RC_Loader::load_theme('extras/controller/mobile_controller.php');
 RC_Hook::add_action('mobile/discover/init', array('mobile_controller', 'init'));//百宝箱
 
 //闪惠
-RC_Loader::load_theme('extras/controller/quickpay_controller.php');
+// RC_Loader::load_theme('extras/controller/quickpay_controller.php');
 RC_Hook::add_action('user/quickpay/quickpay_list', array('quickpay_controller', 'quickpay_list'));
 RC_Hook::add_action('user/quickpay/init', array('quickpay_controller', 'init'));
 RC_Hook::add_action('user/quickpay/explain', array('quickpay_controller', 'explain'));
@@ -301,15 +307,15 @@ RC_Hook::add_action('user/quickpay/delete', array('quickpay_controller', 'delete
  * step：3
  * 这里开始 注册“方法函数”自动加载列表 到Hook自动加载列表，为自动加载做准备
  */
-RC_Hook::add_action('class_touch_function',     function () {RC_Loader::load_theme('extras/classes/utility/touch_function.class.php');});
-RC_Hook::add_action('class_article_function',   function () {RC_Loader::load_theme('extras/classes/utility/article_function.class.php');});
-RC_Hook::add_action('class_cart_function',      function () {RC_Loader::load_theme('extras/classes/utility/cart_function.class.php');});
-RC_Hook::add_action('class_goods_function',     function () {RC_Loader::load_theme('extras/classes/utility/goods_function.class.php');});
-RC_Hook::add_action('class_orders_function',    function () {RC_Loader::load_theme('extras/classes/utility/orders_function.class.php');});
-RC_Hook::add_action('class_user_function',      function () {RC_Loader::load_theme('extras/classes/utility/user_function.class.php');});
-RC_Hook::add_action('class_merchant_function', 	function () {RC_Loader::load_theme('extras/classes/utility/merchant_function.class.php');});
+// RC_Hook::add_action('class_touch_function',     function () {RC_Loader::load_theme('extras/classes/utility/touch_function.class.php');});
+// RC_Hook::add_action('class_article_function',   function () {RC_Loader::load_theme('extras/classes/utility/article_function.class.php');});
+// RC_Hook::add_action('class_cart_function',      function () {RC_Loader::load_theme('extras/classes/utility/cart_function.class.php');});
+// RC_Hook::add_action('class_goods_function',     function () {RC_Loader::load_theme('extras/classes/utility/goods_function.class.php');});
+// RC_Hook::add_action('class_orders_function',    function () {RC_Loader::load_theme('extras/classes/utility/orders_function.class.php');});
+// RC_Hook::add_action('class_user_function',      function () {RC_Loader::load_theme('extras/classes/utility/user_function.class.php');});
+// RC_Hook::add_action('class_merchant_function', 	function () {RC_Loader::load_theme('extras/classes/utility/merchant_function.class.php');});
 
-RC_Hook::add_action('class_user_front',      function () {RC_Loader::load_theme('extras/classes/user/user_front.class.php');});
+// RC_Hook::add_action('class_user_front',      function () {RC_Loader::load_theme('extras/classes/user/user_front.class.php');});
 
 /**
  * step:5
