@@ -52,7 +52,7 @@ class ecjia_extra
      */
     public static function autoload() 
     {
-        $autoload_classes = RC_Loader::load_theme('extras/configs/classmap.php');
+        $autoload_classes = include_once RC_Theme::get_template_directory() . '/extras/configs/classmap.php';
         dd($autoload_classes);
         if (!empty($autoload_classes)) {
             foreach ($autoload_classes as $key => $class) {
