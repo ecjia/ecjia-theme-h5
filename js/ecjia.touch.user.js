@@ -232,7 +232,7 @@
 				}
 			};
 		},
-
+		
 		//用户登出
 		ecjia_logout: function() {
 			$('input[name="logout"]').on('click', function(e) {
@@ -321,6 +321,10 @@
 				var mobile = $("input[name='mobile']").val();
 				var search_str = /^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/;
 				var email = $("input[name='email']").val();
+				var set_count = $(this).attr('data-time');
+				if (set_count != undefined) {
+					count = set_count;
+				}
 				if (mobile || mobile == '') {
 					if (mobile.length == 11) {
 						url += '&mobile=' + mobile;

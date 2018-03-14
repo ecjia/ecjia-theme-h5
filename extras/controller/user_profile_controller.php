@@ -175,12 +175,14 @@ class user_profile_controller {
     	
     	$user_info = ecjia_touch_user::singleton()->getUserinfo();
     	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name']));
-    	
-    	if (!ecjia_front::$controller->is_cached('user_edit_password.dwt', $cache_id)) {
+
+    	ecjia_front::$controller->assign('mobile', $user_info['mobile_phone']);
+    	if (!ecjia_front::$controller->is_cached('user_modify_password.dwt', $cache_id)) {
     		ecjia_front::$controller->assign_title('修改密码');
+    		ecjia_front::$controller->assign('title', '修改密码');
     		ecjia_front::$controller->assign_lang();
     	}   	
-    	ecjia_front::$controller->display('user_edit_password.dwt', $cache_id);            
+    	ecjia_front::$controller->display('user_modify_password.dwt', $cache_id);            
     }
     
     /**
@@ -234,6 +236,52 @@ class user_profile_controller {
         } else {
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
         }
+    }
+    
+    /**
+     * 获取修改密码验证码
+     */
+    public static function get_sms_code() {
+    	$mobile = !empty($_GET['mobile']) ? trim($_GET['mobile']) : '';
+    	if (empty($mobile)) {
+    		return ecjia_front::$controller->showmessage('手机号码不能为空', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
+    	
+    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CAPTCHA_SMS)->data(array('type' => 'user_modify_password', 'mobile' => $mobile))->run();
+    	if (is_ecjia_error($data)) {
+    		return ecjia_front::$controller->showmessage(__($data->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	} else {
+    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+    	}
+    }
+    
+    /**
+     * 修改密码
+     */
+    public static function modify_password() {
+    	$mobile = trim($_POST['mobile']);
+    	$code = trim($_POST['code']);
+    	$password = trim($_POST['password']);
+    	
+    	if (empty($mobile)) {
+    		return ecjia_front::$controller->showmessage('手机号码不能为空', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
+    	if (empty($code)) {
+    		return ecjia_front::$controller->showmessage('请输入验证码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
+    	if (empty($password)) {
+    		return ecjia_front::$controller->showmessage('请设置密码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
+    	if (strlen($password) < 6) {
+    		return ecjia_front::$controller->showmessage('登录密码不能少于 6 个字符', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
+    	
+    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_PASSWORD)->data(array('type' => 'use_sms', 'mobile' => $mobile, 'password' => $code, 'new_password' => $password))->run();
+    	if (is_ecjia_error($data)) {
+    		return ecjia_front::$controller->showmessage(__($data->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	} else {
+    		return ecjia_front::$controller->showmessage('修改成功，请重新登录', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/pass_login')));
+    	}
     }
     
     /**

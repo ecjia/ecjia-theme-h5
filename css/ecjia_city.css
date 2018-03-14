@@ -5536,6 +5536,14 @@ footer {
 	background-color: #F7F7F7;
 }
 
+.ecjia-login.background-fff {
+	background-color: #fff;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    max-width: 640px;
+}
+
 .ecjia-login.ecjia-no-header {
 	padding-top: 3em;
 }
@@ -12120,4 +12128,45 @@ body,
 
 #payPassword_container .pass_container input:last-child, #payPassword_container .franchisee_pass_container input:last-child {
 	margin-right: 0;
+}
+
+.ecjia-form.background-fff .form-group {
+	border-radius: 0;
+	padding: .5em 0;
+	position: relative;
+}
+
+.ecjia-form .form-group .input.p_r7 {
+	padding-right: 9em;
+}
+
+.ecjia-form.background-fff .notice {
+	margin: 1em 7%;
+    color: #aaa;
+}
+
+.ecjia-form.background-fff .get-code {
+	position: absolute;
+    background-color: #fff;
+    top: .5em;
+    width: 8em;
+    border: 1px solid #47aa4d;
+    z-index: 1;
+    height: 2.5em;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    color: #47aa4d;
+    font-size: 1em;	
+	line-height: 2.5em;
+}
+.ecjia-form.background-fff .form-group .input input {
+	padding-left: 2.5em;
+}
+
+.ecjia-form.background-fff .form-group .input img {
+	position: absolute;
+    width: 2em;
+    height: 2em;
+    top: .2em;
 }

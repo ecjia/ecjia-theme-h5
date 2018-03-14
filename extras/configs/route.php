@@ -236,6 +236,8 @@ return [
     'user/profile/get_code'             => 'user_profile_controller@get_code',
     'user/profile/check_code'           => 'user_profile_controller@check_code',
     'user/profile/bind_info'            => 'user_profile_controller@bind_info',
+    'user/profile/get_sms_code'			=> 'user_profile_controller@get_sms_code',
+    'user/profile/modify_password'		=> 'user_profile_controller@modify_password',
     
     //授权登录
     'connect/index/dump_user_info'      => 'connect_controller@dump_user_info',
