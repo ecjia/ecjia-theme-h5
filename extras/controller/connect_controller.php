@@ -428,7 +428,6 @@ class connect_controller {
     		$connect_user = new \Ecjia\App\Connect\ConnectUser($connect_code, $open_id);
 
     		if ($data['id']) {
-    			RC_Logger::getlogger('error')->info('test1'.$data['id']);
     			$result = $connect_user->bindUser($data['id']);
     		} else {
 //     			RC_Logger::getlogger('error')->info('connect_controller-关联账号错误');
@@ -441,9 +440,6 @@ class connect_controller {
  			if (!empty($referer_url)) {
     			$url = $referer_url;
 			}
-			
-			RC_Logger::getlogger('error')->info('test2'.$result);
-			
     		if ($result) {
     			return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
     		} else {
