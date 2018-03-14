@@ -65,8 +65,8 @@ class connect_controller {
             //错误
             RC_Logger::getlogger('wechat')->info('connect-controller,callback_template');
             RC_Logger::getlogger('wechat')->error($connect_user->get_error_message());
-            $msg = '登录授权失败，请使用其他方式登录';
-            return ecjia_front::$controller->showmessage($msg, ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            // $msg = '登录授权失败，请使用其他方式登录';
+            return ecjia_front::$controller->showmessage($connect_user->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
         $profile = $connect_user->getProfile();
