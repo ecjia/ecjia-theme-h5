@@ -220,7 +220,7 @@ class connect_controller {
             
             $connect_user = new \Ecjia\App\Connect\ConnectUser($connect_code, $open_id);
             if ($data['id']) {
-                $result = $connect_user->bindUser($data['id'], 0);
+                $result = $connect_user->bindUser($data['id']);
             } else {
                 RC_Logger::getlogger('error')->info('connect_controller-关联账号错误');
                 RC_Logger::getlogger('error')->info($data);
@@ -231,7 +231,6 @@ class connect_controller {
             } else {
                 return ecjia_front::$controller->showmessage('授权用户信息关联失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
-    
         }
     }
     
@@ -348,10 +347,10 @@ class connect_controller {
 //     		return ecjia_front::$controller->showmessage('规定时间以外，可重新发送验证码（3分钟）', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
     	$param = array(
-    			'token'	=> $token,
-    			'type'	=> 'mobile',
-    			'value'	=> $mobile,
-    			'captcha_code' => $code_captcha
+    		'token'	=> $token,
+    		'type'	=> 'mobile',
+    		'value'	=> $mobile,
+    		'captcha_code' => $code_captcha
     	);
     	 
     	$res = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data($param)->run();
@@ -428,7 +427,7 @@ class connect_controller {
     		
     		$connect_user = new \Ecjia\App\Connect\ConnectUser($connect_code, $open_id);
     		if ($data['id']) {
-    			$result = $connect_user->bindUser($data['id'], 0);
+    			$result = $connect_user->bindUser($data['id']);
     		} else {
     			RC_Logger::getlogger('error')->info('connect_controller-关联账号错误');
     			RC_Logger::getlogger('error')->info($data);
@@ -439,7 +438,6 @@ class connect_controller {
  			if (!empty($referer_url)) {
     			$url = $referer_url;
 			}
-    		
     		if ($result) {
     			return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
     		} else {
