@@ -74,7 +74,7 @@ class ecjia_extra
                 if (empty($action)) {
                     $action = 'init';
                 }
-                RC_Hook::add_action($key, [$value, $action]);
+                RC_Hook::add_action($key, [$class, $action]);
             }
         }
     }
