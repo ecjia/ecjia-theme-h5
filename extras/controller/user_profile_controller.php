@@ -177,12 +177,11 @@ class user_profile_controller {
     	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name']));
 
     	ecjia_front::$controller->assign('mobile', $user_info['mobile_phone']);
-    	if (!ecjia_front::$controller->is_cached('user_modify_password.dwt', $cache_id)) {
-    		ecjia_front::$controller->assign_title('修改密码');
-    		ecjia_front::$controller->assign('title', '修改密码');
-    		ecjia_front::$controller->assign_lang();
-    	}   	
-    	ecjia_front::$controller->display('user_modify_password.dwt', $cache_id);            
+		ecjia_front::$controller->assign_title('修改密码');
+		ecjia_front::$controller->assign('title', '修改密码');
+		ecjia_front::$controller->assign_lang();
+        
+    	ecjia_front::$controller->display('user_modify_password.dwt');            
     }
     
     /**

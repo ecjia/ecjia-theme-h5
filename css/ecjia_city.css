@@ -5542,6 +5542,7 @@ footer {
     width: 100%;
     height: 100%;
     max-width: 640px;
+    padding-top: 3em;
 }
 
 .ecjia-login.ecjia-no-header {
@@ -12143,6 +12144,7 @@ body,
 .ecjia-form.background-fff .notice {
 	margin: 1em 7%;
     color: #aaa;
+    font-size: .9em;
 }
 
 .ecjia-form.background-fff .get-code {
