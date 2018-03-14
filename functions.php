@@ -54,12 +54,17 @@ RC_Loader::load_theme('extras/classes/ecjia_extra.class.php');
  */
 ecjia_extra::autoload();
 
+/**
+ * 加载路由
+ */
+ecjia_extra::routeDispacth();
+
 // RC_Loader::load_theme('extras/controller/touch_controller.php');
-RC_Hook::add_action('touch/index/init', array('touch_controller', 'init'));
-RC_Hook::add_action('touch/index/ajax_goods', array('touch_controller', 'ajax_goods'));
-RC_Hook::add_action('touch/index/ajax_suggest_store', array('touch_controller', 'ajax_suggest_store'));
-RC_Hook::add_action('touch/index/search', array('touch_controller', 'search'));
-RC_Hook::add_action('touch/index/del_search', array('touch_controller', 'del_search'));
+// RC_Hook::add_action('touch/index/init', array('touch_controller', 'init'));
+// RC_Hook::add_action('touch/index/ajax_goods', array('touch_controller', 'ajax_goods'));
+// RC_Hook::add_action('touch/index/ajax_suggest_store', array('touch_controller', 'ajax_suggest_store'));
+// RC_Hook::add_action('touch/index/search', array('touch_controller', 'search'));
+// RC_Hook::add_action('touch/index/del_search', array('touch_controller', 'del_search'));
 
 //定位
 // RC_Loader::load_theme('extras/controller/location_controller.php');

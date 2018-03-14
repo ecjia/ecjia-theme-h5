@@ -61,4 +61,23 @@ class ecjia_extra
             }
         }
     }
+    
+    /**
+     * 路由加载调度
+     */
+    public static function routeDispacth()
+    {
+        $routemap = include_once RC_Theme::get_template_directory() . '/extras/configs/route.php';
+        if (!empty($routemap)) {
+            foreach ($routemap as $key => $value) {
+                list($class, $action) = explode('@', $value);
+                if (empty($action)) {
+                    $action = 'init';
+                }
+                RC_Hook::add_action($key, [$value, $action]);
+            }
+        }
+    }
+    
+    
 }
