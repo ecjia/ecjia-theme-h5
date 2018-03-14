@@ -66,11 +66,16 @@ class connect_controller {
             RC_Logger::getlogger('wechat')->info('connect-controller,callback_template');
             RC_Logger::getlogger('wechat')->error($connect_user->get_error_message());
             
-            if ($connect_user->get_error_code() == 'retry_return_login') {
+            if ($connect_user->get_error_code() == 'retry_return_login' || $connect_user->get_error_code() == '-1') {
                 return ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
             }
-            // $msg = '登录授权失败，请使用其他方式登录';
-            return ecjia_front::$controller->showmessage($connect_user->get_error_code(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            
+            if ($connect_user->get_error_message()) {
+                $msg = $connect_user->get_error_message();
+            } else {
+                $msg = '登录授权失败，请使用其他方式登录';
+            }
+            return ecjia_front::$controller->showmessage($msg, ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
         $profile = $connect_user->getProfile();
