@@ -222,8 +222,8 @@ class connect_controller {
             if ($data['id']) {
                 $result = $connect_user->bindUser($data['id']);
             } else {
-                RC_Logger::getlogger('error')->info('connect_controller-关联账号错误');
-                RC_Logger::getlogger('error')->info($data);
+//                 RC_Logger::getlogger('error')->info('connect_controller-关联账号错误');
+//                 RC_Logger::getlogger('error')->info($data);
                 return ecjia_front::$controller->showmessage('用户验证成功，获取用户信息失败，请重试！', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
             if ($result) {
@@ -426,18 +426,24 @@ class connect_controller {
     		$open_id = $_SESSION['user_temp']['open_id'];
     		
     		$connect_user = new \Ecjia\App\Connect\ConnectUser($connect_code, $open_id);
+
     		if ($data['id']) {
+    			RC_Logger::getlogger('error')->info('test1'.$data['id']);
     			$result = $connect_user->bindUser($data['id']);
     		} else {
-    			RC_Logger::getlogger('error')->info('connect_controller-关联账号错误');
-    			RC_Logger::getlogger('error')->info($data);
+//     			RC_Logger::getlogger('error')->info('connect_controller-关联账号错误');
+//     			RC_Logger::getlogger('error')->info($data);
     			return ecjia_front::$controller->showmessage('用户验证成功，获取用户信息失败，请重试！', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		}
+
 			$url = RC_Uri::url('touch/my/init', array('connect_code' => $connect_code, 'open_id' => $open_id));
 			$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : urldecode($_SESSION['user_temp']['referer_url']);
  			if (!empty($referer_url)) {
     			$url = $referer_url;
 			}
+			
+			RC_Logger::getlogger('error')->info('test2'.$result);
+			
     		if ($result) {
     			return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
     		} else {
