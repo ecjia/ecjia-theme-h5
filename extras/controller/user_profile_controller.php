@@ -279,6 +279,8 @@ class user_profile_controller {
     	if (is_ecjia_error($data)) {
     		return ecjia_front::$controller->showmessage(__($data->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	} else {
+    		ecjia_touch_user::singleton()->signout();
+    		RC_Cookie::delete(RC_Config::get('session.session_name'));
     		return ecjia_front::$controller->showmessage('修改成功，请重新登录', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/privilege/pass_login')));
     	}
     }
