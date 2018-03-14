@@ -70,7 +70,7 @@ class connect_controller {
                 return ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
             }
             // $msg = '登录授权失败，请使用其他方式登录';
-            return ecjia_front::$controller->showmessage($connect_user->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage($connect_user->get_error_code(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
         $profile = $connect_user->getProfile();
