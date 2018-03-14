@@ -47,12 +47,13 @@
 class ecjia_extra
 {
     
-    
     /**
      * 加载手动加载的类
      */
-    public static function autoload() {
+    public static function autoload() 
+    {
         $autoload_classes = RC_Loader::load_theme('extras/configs/classmap.php');
+        dd($autoload_classes);
         if (!empty($autoload_classes)) {
             foreach ($autoload_classes as $key => $class) {
                 RC_Hook::add_action('class_'.$key, function () use ($class) {
