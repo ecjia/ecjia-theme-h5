@@ -146,7 +146,7 @@ class user_get_password_controller {
     	$_SESSION['user_temp']['resend_sms_time'] = RC_Time::gmtime();
     
     	$pjaxurl = RC_Uri::url('user/get_password/enter_code');
-    	$message = '身份验证成功';
+    	$message = '验证码已发送';
     	if ($type == 'resend') {
     		return ecjia_front::$controller->showmessage('发送成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
     	}

@@ -388,7 +388,7 @@ class connect_controller {
     	$_SESSION['user_temp']['invited'] = $invited;
     	 
     	$pjaxurl = RC_Uri::url('connect/index/enter_code');
-    	$message = '身份验证成功';
+    	$message = '验证码已发送';
     	if ($type == 'resend') {
     		return ecjia_front::$controller->showmessage('发送成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
     	}
