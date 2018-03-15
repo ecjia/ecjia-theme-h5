@@ -11936,6 +11936,10 @@ body,
 	padding-bottom: env(safe-area-inset-bottom);
 }
 
+.ecjia-user .ecjia-list.list-short:last-chide {
+	margin-bottom: constant(safe-area-inset-bottom);
+	margin-bottom: env(safe-area-inset-bottom);
+}
 
 .ecjia-quickpay-content {
 	margin: 25px;
