@@ -11936,7 +11936,7 @@ body,
 	padding-bottom: env(safe-area-inset-bottom);
 }
 
-.ecjia-user .ecjia-list.list-short:last-chide {
+.ecjia-user .ecjia-list.list-short:last-child {
 	margin-bottom: constant(safe-area-inset-bottom);
 	margin-bottom: env(safe-area-inset-bottom);
 }
