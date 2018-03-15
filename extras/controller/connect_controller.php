@@ -105,6 +105,7 @@ class connect_controller {
     }
     
     
+    
     /* 第三方登录快速注册 */
     public static function bind_signup($params) {
         $connect_code = royalcms('request')->query('connect_code'); 
@@ -180,7 +181,8 @@ class connect_controller {
         if ($result) {
             //登录
             ecjia_touch_user::singleton()->signin('password', $username, $password);
-            return ecjia_front::$controller->showmessage('恭喜您，注册成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init')));
+            $return_url = RC_Cookie::get('referer') ? RC_Cookie::get('referer') : RC_Uri::url('touch/my/init');
+            return ecjia_front::$controller->showmessage('恭喜您，注册成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $return_url));
         } else {
             return ecjia_front::$controller->showmessage('授权用户信息关联失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
@@ -236,7 +238,9 @@ class connect_controller {
                 return ecjia_front::$controller->showmessage('用户验证成功，获取用户信息失败，请重试！', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
             if ($result) {
-                return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init', array('connect_code' => $connect_code, 'open_id' => $open_id))));
+                $return_url = RC_Cookie::get('referer') ? RC_Cookie::get('referer') : RC_Uri::url('touch/my/init', array('connect_code' => $connect_code, 'open_id' => $open_id));
+                return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, 
+                    array('pjaxurl' => $return_url));
             } else {
                 return ecjia_front::$controller->showmessage('授权用户信息关联失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
