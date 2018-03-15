@@ -85,6 +85,8 @@ class user_privilege_controller {
         	if (!empty($_GET['referer_url'])) {
         		$url = RC_Uri::url('user/privilege/pass_login', array('referer_url' => urlencode($_GET['referer_url'])));
         		$_SESSION['user_temp']['referer_url'] = urlencode($_GET['referer_url']);
+        	} else {
+        	    $_SESSION['user_temp']['referer_url'] = $GLOBALS['_SERVER']['HTTP_REFERER'];
         	}
         	ecjia_front::$controller->assign('header_right', array('info' => '密码登录', 'href' => $url));
         	
@@ -182,7 +184,7 @@ class user_privilege_controller {
         		$message = $data->get_error_message();
         	} else {
         		$url = RC_Uri::url('touch/my/init');
-        		$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : '';
+        		$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : urldecode($_SESSION['user_temp']['referer_url']);
         		if (!empty($referer_url)) {
         			$url = $referer_url;
         		}
