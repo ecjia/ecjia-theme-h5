@@ -265,11 +265,12 @@ return [
     'user/quickpay/notify'              => 'quickpay_controller@notify',
     'user/quickpay/async_quickpay_list' => 'quickpay_controller@async_quickpay_list',
     'user/quickpay/quickpay_detail'     => 'quickpay_controller@quickpay_detail',
-    'user/quickpay/flow_checkorder'     => 'quickpay_controller@flow_checkorder',
-    'user/quickpay/done'                => 'quickpay_controller@done',
     'user/quickpay/pay'                 => 'quickpay_controller@pay',
     'user/quickpay/dopay'               => 'quickpay_controller@dopay',
     'user/quickpay/notify'              => 'quickpay_controller@notify',
     'user/quickpay/cancel'              => 'quickpay_controller@cancel',
     'user/quickpay/delete'              => 'quickpay_controller@delete',
+    
+    'quickpay/flow/flow_checkorder'     => 'quickpay_controller@flow_checkorder',
+    'quickpay/flow/done'                => 'quickpay_controller@done',
 ];
