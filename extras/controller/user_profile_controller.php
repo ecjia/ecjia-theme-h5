@@ -173,9 +173,10 @@ class user_profile_controller {
     		}
     	}
     	
-    	$user_info = ecjia_touch_user::singleton()->getUserinfo();
-    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name']));
-
+    	$user_info = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+    	if (empty($user_info['mobile_phone'])) {
+    		return ecjia_front::$controller->showmessage('请先绑定手机号码', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+    	}
     	ecjia_front::$controller->assign('mobile', $user_info['mobile_phone']);
 		ecjia_front::$controller->assign_title('修改密码');
 		ecjia_front::$controller->assign('title', '修改密码');

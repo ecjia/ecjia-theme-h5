@@ -104,7 +104,7 @@ class franchisee_controller {
 	        'token' 		=> $data['access_token'],
 	        'type' 			=> 'mobile',
 	        'value' 		=> $mobile,
-	        'captcha_code' => $code,
+	        'captcha_code' 	=> $code,
 	        'validate_type' => 'signup'
 	    );
 	    $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_VALIDATE)->data($params)->run();
@@ -119,7 +119,7 @@ class franchisee_controller {
 	            'access_time'	=> RC_Time::gmtime(),
 	        	'validate_type' =>'signup'
 	        );
-	        return ecjia_front::$controller->showmessage( '', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('franchisee/index/enter_code')));
+	        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('franchisee/index/enter_code')));
 	    }
 	}
 	
