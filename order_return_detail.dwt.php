@@ -147,11 +147,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					{/if}
 				</div>
 				{/if}
-			
 			{/if}
-			
-			<!-- 样式兼容iPhone X -->
-			<div class="ecjia-list mb-safe"></div>
 
 			<div class="order-ft-link">
 				{if $order.status eq 'canceled'}

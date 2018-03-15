@@ -11921,6 +11921,7 @@ footer {
 
 /*兼容iPhone X*/
 body,
+.ecjia,
 .ecjia-bottom-bar-pannel,
 .store-add-cart.a4w,
 .store-add-cart.a4w .a4z,
@@ -11942,8 +11943,7 @@ body,
 .ecjia-user .ecjia-list.list-short:last-child,
 .category .category_right div.cat_list.show,
 .ecjia-article.article-list,
-.ecjia-discover-detail .floor .floor-content,
-.ecjia-list.mb-safe
+.ecjia-discover-detail .floor .floor-content
 {
 	margin-bottom: constant(safe-area-inset-bottom);
 	margin-bottom: env(safe-area-inset-bottom);

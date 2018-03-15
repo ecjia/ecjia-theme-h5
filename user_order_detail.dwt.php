@@ -100,7 +100,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</ul>
 			{/if}
 			<p class="select-title ecjiaf-fwb ecjia-margin-l">订单信息</p>
-			<ul class="ecjia-list mb-safe">
+			<ul class="ecjia-list">
 			    <li><span class="ecjiaf-fl width-25-p">订单编号：</span><span class="width-75-p">{$order.order_sn}</span><button class="copy-btn" data-clipboard-text="{$order.order_sn}">复制</button></li>
 			    <li><span class="ecjiaf-fl width-25-p">下单时间：</span><span class="ecjiaf-fr width-75-p">{$order.formated_add_time}</span></li>
 				<li><span class="ecjiaf-fl width-25-p">支付方式：</span><span class="ecjiaf-fr width-75-p">{$order.pay_name}</span></li>
