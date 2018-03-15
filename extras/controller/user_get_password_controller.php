@@ -114,6 +114,7 @@ class user_get_password_controller {
     	ecjia_front::$controller->assign_title('身份验证');
     	ecjia_front::$controller->assign_lang();
     	ecjia_front::$controller->assign('url', RC_Uri::url('user/get_password/captcha_check'));
+    	ecjia_front::$controller->assign('refresh_url', RC_Uri::url('user/privilege/captcha_refresh'));
     	
     	ecjia_front::$controller->display('user_captcha_validate.dwt');
     }
@@ -183,6 +184,7 @@ class user_get_password_controller {
     	$param = array('token' => $token, 'type' => 'mobile', 'value' => $mobile, 'code' => $code);
     	
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_FORGET_PASSWORD)->data($param)->run();
+
     	if (!is_ecjia_error($data)) {
     		$_SESSION['user_temp']['mobile'] = $mobile;
     		$_SESSION['user_temp']['code_status'] = 'succeed';
@@ -219,12 +221,18 @@ class user_get_password_controller {
             ecjia_front::$controller->redirect(RC_Uri::url('user/get_password/mobile_register'));
         }
         
-        if ($passwordf != $passwords) {
-            return ecjia_front::$controller->showmessage(__('两次密码输入不一致'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-        }
+        if (isset($_POST['passwordf'])) {
+        	if (empty($passwordf)) {
+        		return ecjia_front::$controller->showmessage(__('请输入新密码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        	}
+        	if (empty($passwords)) {
+        		return ecjia_front::$controller->showmessage(__('请输入确认密码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        	}
+        	if ($passwordf != $passwords) {
+        		return ecjia_front::$controller->showmessage(__('两次密码输入不一致'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        	}
         
-        $token = touch_function::get_token();
-        if ($passwordf) {
+        	$token = touch_function::get_token();
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_RESET_PASSWORD)->data(array('token' => $token, 'type' => 'mobile', 'value' => $mobile, 'password' => $passwordf))->run();
             if (!is_ecjia_error($data)) {
                 unset($_SESSION['user_temp']['mobile']);
