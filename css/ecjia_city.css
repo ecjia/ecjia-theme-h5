@@ -11928,7 +11928,8 @@ body,
 .ecjia-discover-detail .nav-bt-fix,
 .ecjia-download,
 .ecjia-account .btn-bottom,
-.ecjia-order-detail .order-ft-link, .ecjia-address-list .order-ft-link,
+.ecjia-order-detail .order-ft-link, 
+.ecjia-address-list .order-ft-link,
 .ecjia-spread .spread-bottom-bar-pannel,
 .ecjia-address-list .ecjia-margin-t.jm,
 .category .category_left
@@ -11941,7 +11942,8 @@ body,
 .ecjia-user .ecjia-list.list-short:last-child,
 .category .category_right div.cat_list.show,
 .ecjia-article.article-list,
-.ecjia-discover-detail .floor .floor-content 
+.ecjia-discover-detail .floor .floor-content,
+.ecjia-list.mb-safe
 {
 	margin-bottom: constant(safe-area-inset-bottom);
 	margin-bottom: env(safe-area-inset-bottom);
