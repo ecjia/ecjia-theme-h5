@@ -48,15 +48,15 @@
  * 加载手动加载的类
  */
 return [
-	'touch_function'       => 'extras/classes/utility/touch_function.class.php',
-	'article_function'     => 'extras/classes/utility/article_function.class.php',
-	'cart_function'        => 'extras/classes/utility/cart_function.class.php',
-	'goods_function'       => 'extras/classes/utility/goods_function.class.php',
-	'orders_function'      => 'extras/classes/utility/orders_function.class.php',
-	'user_function'        => 'extras/classes/utility/user_function.class.php',
-	'merchant_function'    => 'extras/classes/utility/merchant_function.class.php',
+	'touch_function'               => 'extras/classes/utility/touch_function.class.php',
+	'article_function'             => 'extras/classes/utility/article_function.class.php',
+	'cart_function'                => 'extras/classes/utility/cart_function.class.php',
+	'goods_function'               => 'extras/classes/utility/goods_function.class.php',
+	'orders_function'              => 'extras/classes/utility/orders_function.class.php',
+	'user_function'                => 'extras/classes/utility/user_function.class.php',
+	'merchant_function'            => 'extras/classes/utility/merchant_function.class.php',
 	
-	'user_front'           => 'extras/classes/user/user_front.class.php',
+	'user_front'                   => 'extras/classes/user/user_front.class.php',
 	
 	'touch_controller'             => 'extras/controller/touch_controller.php',
 	'location_controller'          => 'extras/controller/location_controller.php', //定位
@@ -78,5 +78,7 @@ return [
 	'connect_controller'           => 'extras/controller/connect_controller.php',      //授权登录
 	'mobile_controller'            => 'extras/controller/mobile_controller.php',       
 	'quickpay_controller'          => 'extras/controller/quickpay_controller.php',     //闪惠
+	
+	'ecjia_location'               => 'extras/classes/ecjia_location.class.php',
 	
 ];
