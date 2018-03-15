@@ -521,7 +521,7 @@ class franchisee_controller {
 			$_SESSION['franchisee_add']['captcha_code'] = $code;
 			$_SESSION['franchisee_add']['mobile'] = $mobile;
 			$_SESSION['franchisee_add']['validate_type'] = 'process';
-			return ecjia_front::$controller->showmessage('验证码已发送', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('pjaxurl' => RC_Uri::url('franchisee/index/process_enter_code', array('mobile' => $mobile, 'code' => $code))));
+			return ecjia_front::$controller->showmessage('验证码已发送', ecjia::MSGSTAT_SUCCESS | ecjia::MSGTYPE_JSON, array('url' => RC_Uri::url('franchisee/index/process_enter_code', array('mobile' => $mobile, 'code' => $code))));
 		}
 	}
 	

@@ -32,7 +32,13 @@
 						'f_code': $("input[name='f_code']").val()
 					};
 				$.post(url, info, function(data) {
-					ecjia.touch.showmessage(data);
+//					ecjia.touch.showmessage(data);
+					$('.la-ball-atom').remove();
+					if (data.state == 'error') {
+						alert(data.message);
+					} else if (data.state == 'success'){
+						location.href = data.url;
+					}
 				});
 			});
 		},
