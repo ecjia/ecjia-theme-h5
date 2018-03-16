@@ -85,7 +85,7 @@ class location_controller {
     		} else{
     			$backurl = RC_Uri::url('touch/index/init');
     		}
-    		
+    		dd(1);
     		// 获取当前定位地址
     		$ecjia_location = new ecjia_location();
     		$my_location = $ecjia_location->getLocationUrl($backurl);
