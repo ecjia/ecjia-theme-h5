@@ -78,29 +78,32 @@ class location_controller {
     	
     	if (!ecjia_front::$controller->is_cached('select_location.dwt', $cache_id)) {
     		$referer_url = !empty($_GET['referer_url']) ? $_GET['referer_url'] : '';
+    		
     		if (!empty($referer_url)) {
-    			ecjia_front::$controller->assign('referer_url', urlencode($referer_url));
-    			$backurl = urlencode($referer_url);
+    			ecjia_front::$controller->assign('referer_url', $referer_url);
+    			$backurl = $referer_url;
     		} else{
-    			$backurl = urlencode(RC_Uri::url('touch/index/init'));
+    			$backurl = RC_Uri::url('touch/index/init');
     		}
-    		$key       = ecjia::config('map_qq_key');
-    		$referer   = ecjia::config('map_qq_referer');
-    		$my_location = "https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl=".$backurl."&key=".$key."&referer=".$referer;
+    		
+    		$ecjia_location = new ecjia_location();
+    		$my_location = $ecjia_location->getLocationUrl($backurl);
     		ecjia_front::$controller->assign('my_location', $my_location);
     		
-    		$key = ecjia::config('map_qq_key');
-    		$lat = $_COOKIE['position_latitude'];
-    		$lng = $_COOKIE['position_longitude'];
-    		$url = "http://apis.map.qq.com/ws/place/v1/search?boundary=nearby(".$lat.",".$lng.",1000)&page_size=20&page_index=1&keyword=".$_COOKIE['position_city_name']."&orderby=_distance&key=".$key;
+//     		$key = ecjia::config('map_qq_key');
+//     		$lat = $_COOKIE['position_latitude'];
+//     		$lng = $_COOKIE['position_longitude'];
+//     		$url = "http://apis.map.qq.com/ws/place/v1/search?boundary=nearby(".$lat.",".$lng.",1000)&page_size=20&page_index=1&keyword=".$_COOKIE['position_city_name']."&orderby=_distance&key=".$key;
     		
-    		$response = RC_Http::remote_get($url);
-    		$content  = json_decode($response['body'], true);
-    		if (empty($content['data'])) {
-    			$url = "http://apis.map.qq.com/ws/place/v1/search?boundary=region(".$_COOKIE['position_city_name'].",0)&page_size=20&page_index=1&keyword=".$_COOKIE['position_name']."&orderby=_distance&key=".$key;
-    			$response = RC_Http::remote_get($url);
-    			$content  = json_decode($response['body'], true);
-    		}
+//     		$response = RC_Http::remote_get($url);
+//     		$content  = json_decode($response['body'], true);
+//     		if (empty($content['data'])) {
+//     			$url = "http://apis.map.qq.com/ws/place/v1/search?boundary=region(".$_COOKIE['position_city_name'].",0)&page_size=20&page_index=1&keyword=".$_COOKIE['position_name']."&orderby=_distance&key=".$key;
+//     			$response = RC_Http::remote_get($url);
+//     			$content  = json_decode($response['body'], true);
+//     		}
+    		
+    		$content = $ecjia_location->getNearByBoundary();
     		ecjia_front::$controller->assign('content', $content['data']);
     	}
     	
