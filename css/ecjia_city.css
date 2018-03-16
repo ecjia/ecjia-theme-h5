@@ -11935,7 +11935,7 @@ body,
 }
 
 .ecjia-suggest-store,
-.ecjia-user .ecjia-list.list-short:last-child,
+.ecjia-user .ecjia-list.safe-area:last-child,
 .category .category_right div.cat_list.show,
 .ecjia-article.article-list,
 .ecjia-discover-detail .floor .floor-content
