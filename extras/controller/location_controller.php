@@ -90,12 +90,12 @@ class location_controller {
     		$ecjia_location = new ecjia_location();
     		$my_location = $ecjia_location->getLocationUrl($backurl);
     		ecjia_front::$controller->assign('my_location', $my_location);
-    		dd(2);
+    		
     		// 获取周边数据
     		$content = $ecjia_location->getNearByBoundary();
     		ecjia_front::$controller->assign('content', $content['data']);
     	}
-    	
+    	dd(3);
         ecjia_front::$controller->display('select_location.dwt', $cache_id);
     }
     
