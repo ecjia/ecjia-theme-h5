@@ -37,6 +37,10 @@ class ecjia_location
         $longitude = $_COOKIE['position_longitude'];
         $city_name = urlencode($_COOKIE['position_city_name']);
         
+        if (empty($latitude) || empty($longitude)) {
+            
+        }
+        
         $nearByUrl = "http://apis.map.qq.com/ws/place/v1/search?boundary=nearby(%s,%s,1000)&page_size=20&page_index=1&keyword=%s&orderby=_distance&key=%s";
         $nearByUrl = sprintf($nearByUrl, $latitude, $longitude, $city_name, $this->mapKey);
         
@@ -45,7 +49,7 @@ class ecjia_location
         
         $body  = json_decode($response['body'], true);
         if (empty($body['data'])) {
-            $body = $this->getRegion();
+            $body = $this->getRegionBoundary();
         }
         
         return $body;
