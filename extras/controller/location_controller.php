@@ -104,14 +104,7 @@ class location_controller {
     	$region   = $_GET['region'];
     	$keywords = $_GET['keywords'];
 
-//     	$key		= ecjia::config('map_qq_key');
-//     	$url       	= "http://apis.map.qq.com/ws/place/v1/suggestion/?&region_fix=1&region=".$region."&keyword=".$keywords."&key=".$key."";
-
-//     	$response 	= RC_Http::remote_get($url);
-//     	$content  	= json_decode($response['body'], true);
-    	
     	$content = with(new ecjia_location())->getSuggestionRegion($region, $keywords);
-    	
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('content' => $content));
     }
     
@@ -143,11 +136,8 @@ class location_controller {
 
     //请求接口返回数据
     public static function get_location_msg() {
-    	$locations 			= $_GET['lat'].','.$_GET['lng'];
-    	$key 				= ecjia::config('map_qq_key');
-    	$url       			= "https://apis.map.qq.com/ws/geocoder/v1/?location=".$locations."&key=".$key."&get_poi=1";
-    	$response_address	= RC_Http::remote_get($url);
-    	$content   			= json_decode($response_address['body'],true);
+    	$content = with(new ecjia_location())->getGeoCoder($_GET['lat'], $_GET['lng']);
+    	
     	$location_content 	= $content['result']['pois'][0];
     	$location_name    	= $location_content['title'];
     	$location_address 	= $location_content['address'];
@@ -180,11 +170,12 @@ class location_controller {
     	}
     	
     	//写入cookie
+    	setcookie("location_address_id", 0, time() + 1800);
     	setcookie("location_address", $location_address, time() + 1800);
     	setcookie("location_name", $location_name, time() + 1800);
     	setcookie("longitude", $longitude, time() + 1800);
     	setcookie("latitude", $latitude, time() + 1800);
-    	setcookie("location_address_id", 0, time() + 1800);
+    	
     	setcookie("city_id", $city_id, time() + 1800);
     	setcookie("city_name", $rs['region_name'], time() + 1800);
     	

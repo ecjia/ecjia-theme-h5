@@ -99,4 +99,44 @@ class ecjia_location
         return $body;
     }
     
+    /**
+     * 自动定位信息，包含城市ID，名称，经纬度
+     * position_city_id
+     * position_city_name
+     * position_name
+     * position_longitude
+     * position_latitude
+     */
+    public function defaultPlace()
+    {
+        $place = [
+        	'position_city_id'     => $_COOKIE['position_city_id'],
+        	'position_city_name'   => $_COOKIE['position_city_name'],
+        	'position_name'        => $_COOKIE['position_name'],
+        	'position_longitude'   => $_COOKIE['position_longitude'],
+        	'position_latitude'    => $_COOKIE['position_latitude'],
+            
+            'city_id'              => $_COOKIE['city_id'],
+            'city_name'            => $_COOKIE['city_name'],
+        ];
+        
+        return $place;
+    }
+    
+    /**
+     * 用户选择指定位置的信息
+     * @return array
+     */
+    public function getSelectLocationPlace()
+    {
+        $location_msg = array(
+        	'location_address_id'  => $_COOKIE['location_address_id'],
+        	'location_address'     => $_COOKIE['location_address'],
+        	'location_name'        => $_COOKIE['location_name'],
+        	'longitude'            => $_COOKIE['longitude'],
+        	'latitude'             => $_COOKIE['latitude'],
+        );
+        return $location_msg;
+    }
+    
 }
