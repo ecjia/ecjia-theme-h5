@@ -85,12 +85,12 @@ class location_controller {
     		} else{
     			$backurl = RC_Uri::url('touch/index/init');
     		}
-    		dd(1);
+    		
     		// 获取当前定位地址
     		$ecjia_location = new ecjia_location();
     		$my_location = $ecjia_location->getLocationUrl($backurl);
     		ecjia_front::$controller->assign('my_location', $my_location);
-    		
+    		dd(2);
     		// 获取周边数据
     		$content = $ecjia_location->getNearByBoundary();
     		ecjia_front::$controller->assign('content', $content['data']);
