@@ -95,7 +95,7 @@ class location_controller {
     		$content = $ecjia_location->getNearByBoundary();
     		ecjia_front::$controller->assign('content', $content['data']);
     	}
-    	dd(3);
+    	
         ecjia_front::$controller->display('select_location.dwt', $cache_id);
     }
     
