@@ -86,23 +86,12 @@ class location_controller {
     			$backurl = RC_Uri::url('touch/index/init');
     		}
     		
+    		// 获取当前定位地址
     		$ecjia_location = new ecjia_location();
     		$my_location = $ecjia_location->getLocationUrl($backurl);
     		ecjia_front::$controller->assign('my_location', $my_location);
     		
-//     		$key = ecjia::config('map_qq_key');
-//     		$lat = $_COOKIE['position_latitude'];
-//     		$lng = $_COOKIE['position_longitude'];
-//     		$url = "http://apis.map.qq.com/ws/place/v1/search?boundary=nearby(".$lat.",".$lng.",1000)&page_size=20&page_index=1&keyword=".$_COOKIE['position_city_name']."&orderby=_distance&key=".$key;
-    		
-//     		$response = RC_Http::remote_get($url);
-//     		$content  = json_decode($response['body'], true);
-//     		if (empty($content['data'])) {
-//     			$url = "http://apis.map.qq.com/ws/place/v1/search?boundary=region(".$_COOKIE['position_city_name'].",0)&page_size=20&page_index=1&keyword=".$_COOKIE['position_name']."&orderby=_distance&key=".$key;
-//     			$response = RC_Http::remote_get($url);
-//     			$content  = json_decode($response['body'], true);
-//     		}
-    		
+    		// 获取周边数据
     		$content = $ecjia_location->getNearByBoundary();
     		ecjia_front::$controller->assign('content', $content['data']);
     	}
@@ -112,14 +101,16 @@ class location_controller {
     
     //请求接口返回数据
     public static function search_list() {
-    	$region   = urlencode($_GET['region']);
-    	$keywords = urlencode($_GET['keywords']);
+    	$region   = $_GET['region'];
+    	$keywords = $_GET['keywords'];
 
-    	$key		= ecjia::config('map_qq_key');
-    	$url       	= "http://apis.map.qq.com/ws/place/v1/suggestion/?&region_fix=1&region=".$region."&keyword=".$keywords."&key=".$key."";
+//     	$key		= ecjia::config('map_qq_key');
+//     	$url       	= "http://apis.map.qq.com/ws/place/v1/suggestion/?&region_fix=1&region=".$region."&keyword=".$keywords."&key=".$key."";
 
-    	$response 	= RC_Http::remote_get($url);
-    	$content  	= json_decode($response['body'], true);
+//     	$response 	= RC_Http::remote_get($url);
+//     	$content  	= json_decode($response['body'], true);
+    	
+    	$content = with(new ecjia_location())->getSuggestionRegion($region, $keywords);
     	
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('content' => $content));
     }
