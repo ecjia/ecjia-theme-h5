@@ -203,7 +203,7 @@ class user_privilege_controller {
     		return ecjia_front::$controller->showmessage('请输入手机号', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
     	
-    	$chars = "/^1(3|4|5|7|8)\d{9}$/";
+    	$chars = "/^1(3|4|5|6|7|8)\d{9}$/";
     	if (!preg_match($chars, $mobile_phone)) {
     		return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
@@ -385,7 +385,7 @@ class user_privilege_controller {
      * 验证注册
      */
     public static function signup() {
-        $chars = "/^1(3|4|5|7|8)\d{9}$/";
+        $chars = "/^1(3|4|5|6|7|8)\d{9}$/";
         $mobile = !empty($_GET['mobile']) ? htmlspecialchars($_GET['mobile']) : '';
         
         if (!preg_match($chars, $mobile)) {
