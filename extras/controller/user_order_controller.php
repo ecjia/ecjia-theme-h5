@@ -59,8 +59,8 @@ class user_order_controller {
         $type = isset($_GET['type']) ? $_GET['type'] : '';
         if ($type == 'refund') {
         	$params_order = array('token' => $token, 'pagination' => array('count' => 10, 'page' => 1), 'type' => $type);
-			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_LIST)->data($params_order)->run();
-        	$data = is_ecjia_error($data) ? array() : $data;
+			$data = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_LIST)->data($params_order)->run();
+			$data = is_ecjia_error($data) ? array() : $data;
 
         	ecjia_front::$controller->assign('order_list', $data);
         	ecjia_front::$controller->assign_title('售后订单');
@@ -280,7 +280,7 @@ class user_order_controller {
     	if (!empty($order_id)) {
     		$api = ecjia_touch_api::REFUND_LIST;
     	} else {
-    		$api = ecjia_touch_api::ORDER_LIST;
+    		$api = ecjia_touch_api::REFUND_LIST;
     	}
     	$data = ecjia_touch_manager::make()->api($api)->data($params_order)->hasPage()->run();
     	if (!is_ecjia_error($data)) {
