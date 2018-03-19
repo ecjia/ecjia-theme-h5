@@ -632,14 +632,14 @@ class franchisee_controller {
 	    ecjia_front::$controller->display('franchisee_process.dwt');
 	}
 
-	public static function get_location() {
+	public static function location() {
 		$token = ecjia_touch_user::singleton()->getToken();
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token));
 		
         if (!ecjia_front::$controller->is_cached('franchisee_get_location.dwt', $cache_id)) {
         	$mobile = !empty($_GET['mobile']) ? $_GET['mobile'] : '';
         	$code = !empty($_GET['code']) ? $_GET['code'] : '';
-        	 
+
         	$province = !empty($_GET['province']) ? $_GET['province'] 	: '';
         	$city 	  = !empty($_GET['city']) 	  ? $_GET['city'] 		: '';
         	$district = !empty($_GET['district']) ? $_GET['district'] 	: '';
