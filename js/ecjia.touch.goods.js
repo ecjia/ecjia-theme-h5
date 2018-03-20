@@ -1504,7 +1504,6 @@
 								html += '<div class="goods-attr" data-index=' + j + '><p class="attr-name">' + s.name + '<p>' + '<ul>';
 								for (var k in s.value) {
 									var t = s.value[k];
-									console.log(spec_arr);
 									if (spec_arr != undefined) {
 										if ($.inArray(t.id, spec_arr) != -1) {
 											html += '<li class="active '+ multi +'" data-attr=' + t.id + ' data-price=' + t.price + '>' + t.label + '</li>';
