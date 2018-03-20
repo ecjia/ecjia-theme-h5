@@ -1699,6 +1699,9 @@
 				} else {
 					$spec_price = '￥' + $spec_price;
 				}
+				if ($spec_html == '()') {
+					$spec_html = '';
+				}
 				$(modal).find('.goods-attr-name').html($spec_html);
 				$(modal).find('.goods-attr-price').html($spec_price);
 
@@ -2576,6 +2579,9 @@
 			$spec_price = '免费';
 		} else {
 			$spec_price = '￥' + $spec_price;
+		}
+		if ($spec_html == '()') {
+			$spec_html = '';
 		}
 		$(modal).find('.goods-attr-name').html($spec_html);
 		$(modal).find('.goods-attr-price').html($spec_price);
