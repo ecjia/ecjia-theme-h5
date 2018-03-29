@@ -347,6 +347,7 @@ class user_privilege_controller {
     		if (!empty($referer_url)) {
     			$url = $referer_url;
     		}
+    		unset($_SESSION['user_temp']);
     	} else {
     		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $password))->run();
     		if (is_ecjia_error($data)) {

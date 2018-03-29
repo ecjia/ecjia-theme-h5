@@ -18,7 +18,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-form  ecjia-login">
 	<div class="form-group margin-right-left">
 		<label class="input">
-			<input class="p_d0" placeholder="手机号" name="username">
+			<input class="p_d0" placeholder="请输入用户名或手机号" name="username">
 		</label>
 	</div>
 	<div class="form-group ecjia-margin-t margin-right-left">

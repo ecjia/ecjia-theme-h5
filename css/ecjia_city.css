@@ -842,6 +842,7 @@ a.ecjia-color-green {
 .ecjia-address-list .franchisee-prompt {
 	padding: 1em;
 	height: auto;
+	line-height: 2em;
 }
 
 .ecjia-address-list .franchisee-prompt .warm-prompt {
@@ -2024,6 +2025,19 @@ footer {
     top: 1.3em;
 }
 
+.ecjia-store-detail i.icon-position {
+	position: absolute;
+    top: 1em;
+    right: .5em;
+    width: 1.8em;
+    height: 1.8em;
+    background-size: 1.5em;
+    background-repeat: no-repeat;
+    margin-top: .2em;
+    background-image: url(../images/icon/icon_position.png);
+}
+
+
 .ecjia-store-detail i.icon-shop-phone {
     background-image: url(../images/icon/icon_phone.png);
 }
@@ -2033,7 +2047,7 @@ footer {
 }
 
 .ecjia-store-detail i.icon-shop-location {
-    background-image: url(../images/icon/icon_position.png);
+    background-image: url(../images/icon/icon_shop.png);
 }
 
 .ecjia-store-detail i.icon-shop-time {
@@ -7753,6 +7767,18 @@ footer {
 
 .ecjia-store-list .store-right div {
 	padding-left: .5em;
+}
+
+.ecjia-store-list .store-right span.manage_mode {
+    color: #ff3434;
+    border: 1px solid #ff3434;
+    border-radius: 4px;
+    margin-left: .4em;
+    font-size: .9em;
+    display: inline-block;
+    line-height: 1em;
+    height: 1.3em;
+    padding: 2px;
 }
 
 .ecjia-store-list .store-title {
