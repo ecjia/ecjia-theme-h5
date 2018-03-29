@@ -3999,7 +3999,6 @@ footer {
 	bottom: 0;
 	width: 100%;
 	max-width: 640px;
-	box-sizing: content-box;
 }
 
 .ecjia-shipping-date .data-shipping {
