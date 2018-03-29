@@ -38,6 +38,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 								<a href="{RC_Uri::url('user/quickpay/init')}&store_id={$val.id}"><span class="store-quickpay-btn">买单</span></a>
 							<!-- {/if} -->
 						</div>
+						{if $val.seller_notice neq ''}
+						<div class="store-notice">
+							<i class="icon-shop-notice"></i>{$val.seller_notice}
+						</div>
+						{/if}
 					</div>
 					<div class="clear"></div>
 				</div>
