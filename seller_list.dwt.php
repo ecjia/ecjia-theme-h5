@@ -56,6 +56,20 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<!-- {/foreach} -->
 				</ul>
 				{/if}
+
+				<!-- {if $val.allow_use_quickpay eq 1 && $val.quickpay_activity_list} -->
+				<ul class="store-promotion">
+					<!-- {foreach from=$val.quickpay_activity_list item=list key=key} -->
+					{if $key eq 0}
+					<li class="quick">
+						<span class="quick-label">买单</span>
+						<span class="promotion-name">{$list.title}</span>
+					</li>
+					{/if}
+					<!-- {/foreach} -->
+				</ul>
+				<!-- {/if} -->
+
 				</a>
 			</li>
 		</ul>
