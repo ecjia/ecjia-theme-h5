@@ -5004,9 +5004,6 @@ footer {
 	position: fixed;
 	bottom: 0px;
 	margin-bottom: 1.2em;
-	width: 130%!important;
-	max-width: 640px;
-	margin-left: 1.2em!important;
 }
 
 .ecjia-account .btn-c {
@@ -5201,17 +5198,23 @@ footer {
 .ecjia-account .two-btn {
 	width: 100%;
 	text-align: center;
+	max-width: 640px;
 }
 
 .ecjia-account .two-btn .btn {
-	width: 30%;
-	margin-right: .5em;
-	margin-left: .5em;
+	width: 48%;
 	line-height: 1.5em;
 	background-color: #47aa4d;
 	color: #fff;
 	height: 2.3em;
 	font-size: 1.3em;
+	float: left;
+}
+
+.ecjia-account .two-btn .info {
+	width: 48%;
+	margin: 0 1%;
+	float: left;
 }
 
 .ecjia-account .ecjia-fl {
