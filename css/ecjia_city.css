@@ -10173,6 +10173,10 @@ footer {
 	height: 52px;
 }
 
+.ecjia-discover-article.fixed {
+	position: fixed;
+}
+
 .ecjia-discover-article .swiper-container {
 	float: left;
     width: 93%;
@@ -10412,6 +10416,10 @@ footer {
     display: inline-block;
     background-size: 100% 100%;
     background-repeat: no-repeat;
+}
+
+.ecjia-down-navi-content {
+	position: relative;
 }
 
 .ecjia-down-navi {
