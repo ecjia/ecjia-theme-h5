@@ -5014,7 +5014,6 @@ footer {
 .ecjia-account .apply {
 	float: left;
 	font-size: 1.5em;
-	margin-right: 1em;
 	width: 3em;
 	line-height: 2em;
 }
@@ -5025,7 +5024,7 @@ footer {
 	float: left;
 	width: 2em;
 	height: 2em;
-	margin-left: 1.6em;
+	margin-left: 22%;
 	margin-right: .5em;
 	margin-top: .5em;
 }
