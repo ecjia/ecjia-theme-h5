@@ -98,7 +98,9 @@ class cart_controller {
     
     public static function update_cart() {
     	$url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
-    	$referer_url = RC_Uri::url('user/privilege/login', array('referer_url' => urlencode($url)));
+        $login_str = user_function::return_login_str();
+
+    	$referer_url = RC_Uri::url($login_str, array('referer_url' => urlencode($url)));
     	if (!ecjia_touch_user::singleton()->isSignin()) {
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
     	}

@@ -105,11 +105,10 @@ class user_controller {
     	ecjia_front::$controller->assign('active', 'mine');
     	ecjia_front::$controller->assign_title('个人中心');
     	
-    	if (user_function::is_weixin()) {
-    		ecjia_front::$controller->assign('login_url', RC_Uri::url('user/privilege/wechat_login'));
-    	} else {
-    		ecjia_front::$controller->assign('login_url', RC_Uri::url('user/privilege/login'));
-    	}
+    	
+        $login_str = user_function::return_login_str();
+		ecjia_front::$controller->assign('login_url', RC_Uri::url($login_str));
+        
     	ecjia_front::$controller->display('user.dwt');
     }
     

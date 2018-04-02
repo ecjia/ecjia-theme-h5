@@ -67,7 +67,8 @@ class connect_controller {
             RC_Logger::getlogger('wechat')->error($connect_user->get_error_message());
             
             if ($connect_user->get_error_code() == 'retry_return_login' || $connect_user->get_error_code() == '-1') {
-                return ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
+                $login_str = user_function::return_login_str();
+                return ecjia_front::$controller->redirect(RC_Uri::url($login_str));
             }
             
             if ($connect_user->get_error_message()) {
@@ -298,7 +299,8 @@ class connect_controller {
     	$mobile_phone = $_SESSION['user_temp']['mobile'];
     	 
     	if (empty($mobile_phone)) {
-    		ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
+            $login_str = user_function::return_login_str();
+    		ecjia_front::$controller->redirect(RC_Uri::url($login_str));
     	}
     	 
     	$data	= ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
@@ -386,7 +388,8 @@ class connect_controller {
     public static function enter_code() {
     	$mobile = $_SESSION['user_temp']['mobile'];
     	if (empty($mobile)) {
-    		ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
+            $login_str = user_function::return_login_str();
+    		ecjia_front::$controller->redirect(RC_Uri::url($login_str));
     	}
     	 
     	$code_captcha = $_SESSION['user_temp']['captcha_code'];
@@ -466,7 +469,8 @@ class connect_controller {
     	$mobile = !empty($_SESSION['user_temp']['mobile']) ? $_SESSION['user_temp']['mobile'] : '';
     	 
     	if ($_SESSION['user_temp']['register_status'] != 'succeed' || empty($mobile)) {
-    		ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
+            $login_str = user_function::return_login_str();
+    		ecjia_front::$controller->redirect(RC_Uri::url($login_str));
     	}
     	if (isset($_POST['username'])) {
     		$username 			= !empty($_POST['username']) 				? trim($_POST['username']) 			: '';
