@@ -103,7 +103,7 @@ class connect_controller {
         
 //         return ecjia_front::$controller->fetch('user_bind_mobile.dwt');
         
-        $user_type = $this->request->query('user_type', 'user');
+        $user_type = 'user';
         $connect_user = new Ecjia\App\Connect\ConnectUser($connect_code, $open_id, $user_type);
         //判断已绑定授权登录用户 直接登录
         if ($connect_user->checkUser()) {
