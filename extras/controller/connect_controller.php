@@ -86,26 +86,10 @@ class connect_controller {
         $_SESSION['user_temp']['open_id'] = $open_id;
         $_SESSION['user_temp']['user_name'] = $user_name;
         
-        $user_type = 'user';
-        $connect_user = new Ecjia\App\Connect\ConnectUser($connect_code, $open_id, $user_type);
-        //判断已绑定授权登录用户 直接登录
-        if ($connect_user->checkUser()) {
-        	$this->userBindedProcessHandle($user_type, $connect_user);
-        } else {
-        	//新用户注册并登录
-        	$username = $connect_user->getGenerateUserName();
-        	$password = $connect_user->getGeneratePassword();
-        	$email    = $connect_user->getGenerateEmail();
+		ecjia_front::$controller->assign('title', '绑定手机号');
+ 		ecjia_front::$controller->assign_title('绑定手机号');
         
-        	$user_id = RC_Hook::apply_filters(sprintf("connect_callback_%s_bind_signup", $connect_user->getUserType()), 0, $username, $password, $email);
-        	$result  = $connect_user->bindUser($user_id);
-        	
-        	/**
-        	 * 用户绑定完成后的结果判断处理，用于界面显示
-        	 * @param $result boolean 判断执行成功与否
-        	 */
-        	RC_Hook::do_action(sprintf("connect_callback_%s_bind_complete", $connect_user->getUserType()), $result);
-        }
+		return ecjia_front::$controller->fetch('user_bind_mobile.dwt');
     }
     
     /* 第三方登录快速注册 */

@@ -11799,12 +11799,12 @@ footer {
 
 /*微信登录页样式*/
 .ecjia-wechat-login{position:fixed;top:0;bottom:0;left:0;right:0;background:#fff;overflow-y:auto;overflow-scrolling:touch;-webkit-overflow-scrolling:touch}
-.ecjia-wechat-login .notice{padding-top:4em;line-height:4em;font-size:1.3em;text-align:center}
+.ecjia-wechat-login .notice{padding-top:4em;line-height:4em;font-size:1.5em;text-align:center}
 .ecjia-wechat-login .safe-area{text-align:center;margin-bottom:2em}
 .ecjia-wechat-login .safe-area img{width:5em;height:5em}
-.ecjia-wechat-login .other-type{padding-top:30%;line-height:5em;font-size:1.3em;text-align:center;color:#47aa4d}
+.ecjia-wechat-login .other-type{padding-top:20%;line-height:5em;font-size:1.2em;text-align:center;color:#47aa4d}
 .ecjia-wechat-login .btn img{width:2em;height:2em}
 .login-type-list{margin:0 auto;text-align:center;height:8em;width:14em}
 .login-type-list .type-item{float:left;width:7em;text-align:center}
 .login-type-list .type-item img{width:4em;height:4em}
-.login-type-list .type-item p{line-height:3em;color:#666}
+.login-type-list .type-item p{line-height:3em;color:#666;font-size:.9em;}
