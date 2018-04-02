@@ -80,6 +80,7 @@ class user_front {
 	    	'user/privilege/captcha_check',
 	    	'user/privilege/enter_code',
 	    	'user/privilege/mobile_signin',
+	    	'user/privilege/wechat_login',
 	    		
 	        'user/privilege/bind_signin',
 	        'user/privilege/bind_signin_do',

@@ -155,6 +155,7 @@ return [
     'user/privilege/captcha_check'      => 'user_privilege_controller@captcha_check',
     'user/privilege/enter_code'         => 'user_privilege_controller@enter_code',
     'user/privilege/mobile_signin'      => 'user_privilege_controller@mobile_signin',
+    'user/privilege/wechat_login'       => 'user_privilege_controller@wechat_login',
     
     //找回密码
     'user/get_password/init'            => 'user_get_password_controller@init',

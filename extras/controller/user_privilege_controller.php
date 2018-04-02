@@ -104,6 +104,37 @@ class user_privilege_controller {
         ecjia_front::$controller->display('user_login.dwt', $cache_id);
     }
     
+    //微信登录
+    public static function wechat_login() {
+    	unset($_SESSION['user_temp']);
+    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+    	 
+    	$signin = ecjia_touch_user::singleton()->isSignin();
+    	if ($signin) {
+    		$token = ecjia_touch_user::singleton()->getToken();
+    		$cache_id = $_SERVER['QUERY_STRING'].'-'.$token;
+    		$cache_id = sprintf('%X', crc32($cache_id));
+    		 
+    		if (!ecjia_front::$controller->is_cached('user_wechat_login.dwt', $cache_id)) {
+    			$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+    			if (!is_ecjia_error($user)) {
+    				ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
+    			} else {
+    				ecjia_touch_user::singleton()->signout();
+    			}
+    		}
+    	}
+    	
+    	if (!ecjia_front::$controller->is_cached('user_wechat_login.dwt', $cache_id)) {
+    		ecjia_front::$controller->assign('title', 'EC+到家');
+    		ecjia_front::$controller->assign_title('EC+到家');
+    		ecjia_front::$controller->assign_lang();
+    		ecjia_front::$controller->assign('hidenav', 1);
+    	}
+    	
+    	ecjia_front::$controller->display('user_wechat_login.dwt', $cache_id);
+    }
+    
     //密码登录
     public static function pass_login() {
     	unset($_SESSION['user_temp']);
