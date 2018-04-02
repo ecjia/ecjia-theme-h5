@@ -25,14 +25,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     
     <div class="login-type-list">
     	<div class="type-item">
-    		<a href="{RC_Uri::url('user/privilege/login')}">
+    		<a href="{$login_url}">
 	    		<img src="{$theme_url}images/user/phone_login.png">
 	    		<p>手机号</p>
     		</a>
     	</div>
     	
     	<div class="type-item">
-    		<a href="{RC_Uri::url('user/privilege/pass_login')}">
+    		<a href="{$pass_login_url}">
 	    		<img src="{$theme_url}images/user/user_login.png">
 	    		<p>账号密码</p>
     		</a>

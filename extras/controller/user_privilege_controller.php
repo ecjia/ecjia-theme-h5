@@ -130,6 +130,18 @@ class user_privilege_controller {
     		ecjia_front::$controller->assign_title('EC+到家');
     		ecjia_front::$controller->assign_lang();
     		ecjia_front::$controller->assign('hidenav', 1);
+    		
+    		$pass_login_url = RC_Uri::url('user/privilege/pass_login');
+    		$login_url = RC_Uri::url('user/privilege/login');
+    		if (!empty($_GET['referer_url'])) {
+    			$pass_login_url = RC_Uri::url('user/privilege/pass_login', array('referer_url' => urlencode($_GET['referer_url'])));
+    			$login_url = RC_Uri::url('user/privilege/login', array('referer_url' => urlencode($_GET['referer_url'])));
+    			$_SESSION['user_temp']['referer_url'] = urlencode($_GET['referer_url']);
+    		} else {
+    			$_SESSION['user_temp']['referer_url'] = $GLOBALS['_SERVER']['HTTP_REFERER'];
+    		}
+    		ecjia_front::$controller->assign('pass_login_url', $pass_login_url);
+    		ecjia_front::$controller->assign('login_url', $login_url);
     	}
     	
     	ecjia_front::$controller->display('user_wechat_login.dwt', $cache_id);
