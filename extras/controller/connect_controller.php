@@ -77,31 +77,14 @@ class connect_controller {
             }
             return ecjia_front::$controller->showmessage($msg, ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
-
-        $profile = $connect_user->getProfile();
-
-        $user_name = $connect_user->getUserName();
-        $user_img = $connect_user->getUserHeaderImg();
-        
-        ecjia_front::$controller->assign('connect_code', $data['connect_code']);
-        ecjia_front::$controller->assign('user_img', $user_img);
-        ecjia_front::$controller->assign('user_name', $user_name);
         
         $connect_code = $connect_user->getConnectCode();
         $open_id = $connect_user->getOpenId();
-        
-        $data['bind_url'] = RC_Uri::url('connect/index/bind_signin', array('connect_code' => $connect_code, 'open_id' => $open_id));
-        //快速注册修改
-        ecjia_front::$controller->assign('data', $data);
+        $user_name = $connect_user->getUserName();
 
         $_SESSION['user_temp']['connect_code'] = $connect_code;
         $_SESSION['user_temp']['open_id'] = $open_id;
         $_SESSION['user_temp']['user_name'] = $user_name;
-        
-//         ecjia_front::$controller->assign('title', '绑定手机号');
-//         ecjia_front::$controller->assign_title('绑定手机号');
-        
-//         return ecjia_front::$controller->fetch('user_bind_mobile.dwt');
         
         $user_type = 'user';
         $connect_user = new Ecjia\App\Connect\ConnectUser($connect_code, $open_id, $user_type);
@@ -116,16 +99,14 @@ class connect_controller {
         
         	$user_id = RC_Hook::apply_filters(sprintf("connect_callback_%s_bind_signup", $connect_user->getUserType()), 0, $username, $password, $email);
         	$result  = $connect_user->bindUser($user_id);
-        
+        	
         	/**
         	 * 用户绑定完成后的结果判断处理，用于界面显示
         	 * @param $result boolean 判断执行成功与否
-        	*/
+        	 */
         	RC_Hook::do_action(sprintf("connect_callback_%s_bind_complete", $connect_user->getUserType()), $result);
         }
     }
-    
-    
     
     /* 第三方登录快速注册 */
     public static function bind_signup($params) {
