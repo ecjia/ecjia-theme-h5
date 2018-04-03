@@ -287,7 +287,7 @@
 								});
 								setTimeout(function(){
 									location.href = refresh_url;
-								}, 1000);
+								}, 50);
 							});
 						},
 					}]
