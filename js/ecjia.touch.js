@@ -280,7 +280,13 @@
 						onClick: function() {
 							sessionStorage.clear();
 							$.post(url, function(data) {
-								location.href = data.url;
+								iosOverlay({
+									text: '清除成功',
+									duration: 2e3,
+								});
+								setTimeout(function(){
+									location.href = data.url;
+								}, 1000);
 							});
 						},
 					}]
