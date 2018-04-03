@@ -82,14 +82,18 @@ class user_privilege_controller {
         	ecjia_front::$controller->assign('anonymous_buy', ecjia::config('anonymous_buy'));
         	
         	$url = RC_Uri::url('user/privilege/pass_login');
+        	$wechat_login_url = RC_Uri::url('user/privilege/wechat_login');
         	if (!empty($_GET['referer_url'])) {
         		$url = RC_Uri::url('user/privilege/pass_login', array('referer_url' => urlencode($_GET['referer_url'])));
+        		$wechat_login_url = RC_Uri::url('user/privilege/wechat_login', array('referer_url' => urlencode($_GET['referer_url'])));
+        		
         		$_SESSION['user_temp']['referer_url'] = urlencode($_GET['referer_url']);
         	} else {
         	    $_SESSION['user_temp']['referer_url'] = $GLOBALS['_SERVER']['HTTP_REFERER'];
         	}
         	ecjia_front::$controller->assign('header_right', array('info' => '密码登录', 'href' => $url));
         	
+        	ecjia_front::$controller->assign('wechat_login_url', $wechat_login_url);
         	ecjia_front::$controller->assign('title', '手机登录');
         	ecjia_front::$controller->assign_title('手机登录');
         	ecjia_front::$controller->assign_lang();
@@ -172,12 +176,20 @@ class user_privilege_controller {
     	
     	if (!ecjia_front::$controller->is_cached('user_pass_login.dwt', $cache_id)) {
     		$url = RC_Uri::url('user/privilege/login');
+    		$wechat_login_url = RC_Uri::url('user/privilege/wechat_login');
+    		
     		if (!empty($_GET['referer_url'])) {
     			$url = RC_Uri::url('user/privilege/login', array('referer_url' => urlencode($_GET['referer_url'])));
+    			$wechat_login_url = RC_Uri::url('user/privilege/wechat_login', array('referer_url' => urlencode($_GET['referer_url'])));
+    			
+    			$_SESSION['user_temp']['referer_url'] = urlencode($_GET['referer_url']);
+    		} else {
+    			$_SESSION['user_temp']['referer_url'] = $GLOBALS['_SERVER']['HTTP_REFERER'];
     		}
     		
     		ecjia_front::$controller->assign('header_right', array('info' => '手机登录', 'href' => $url));
     		 
+    		ecjia_front::$controller->assign('wechat_login_url', $wechat_login_url);
     		ecjia_front::$controller->assign('title', '密码登录');
     		ecjia_front::$controller->assign_title('密码登录');
     		ecjia_front::$controller->assign_lang();
