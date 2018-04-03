@@ -142,6 +142,8 @@ class user_privilege_controller {
     		}
     		ecjia_front::$controller->assign('pass_login_url', $pass_login_url);
     		ecjia_front::$controller->assign('login_url', $login_url);
+    		
+    		RC_Cookie::set('wechat_auto_register', 1);
     	}
     	
     	ecjia_front::$controller->display('user_wechat_login.dwt', $cache_id);
