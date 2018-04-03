@@ -17,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-wechat-login">
 	<div class="notice">微信一键登录，更方便，更安全</div>
 	<div class="safe-area"><img src="{$theme_url}images/user/safe.png" /></div>
-	<a class="external btn" href="{url path='connect/index/init' args='connect_code=sns_wechat&login_type=snsapi_userinfo'}">
+	<a class="external btn" href="{url path='connect/index/init' args='connect_code=sns_wechat&login_type=snsapi_userinfo&auth_type=hand'}">
 		<li class="thirdparty-weixin"></li>
 		<img src="{$theme_url}images/user/wechat.png" />微信登录
 	</a>
