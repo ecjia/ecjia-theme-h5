@@ -46,6 +46,7 @@
 			ecjia.touch.del_history();
 			ecjia.touch.share_spread();
 			ecjia.touch.copy_btn();
+			ecjia.touch.clear_cache();
 
 			$("body").greenCheck();
 		},
@@ -256,6 +257,35 @@
 			clipboard.on('success', function(e) {  
 			        alert("复制成功！");
 			});  
+		},
+		
+		clear_cache: function() {
+			$('.clear_cache').off('click').on('click', function() {
+				var $this = $(this),
+				url = $this.attr('data-url'),
+				message = $this.attr('data-message');
+			
+				var myApp = new Framework7();
+				myApp.modal({
+					title: message,
+					buttons: [{
+						text: '取消',
+						onClick: function() {
+							$('.modal').remove();
+							$('.modal-overlay').remove();
+							return false;
+						}
+					}, {
+						text: '确定',
+						onClick: function() {
+							sessionStorage.clear();
+							$.post(url, function(data) {
+								location.href = data.url;
+							});
+						},
+					}]
+				});
+			});
 		},
 		
 		/**

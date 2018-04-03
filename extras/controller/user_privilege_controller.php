@@ -242,7 +242,7 @@ class user_privilege_controller {
         	} else {
         		$url = RC_Uri::url('touch/my/init');
         		$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : urldecode($_SESSION['user_temp']['referer_url']);
-        		if (!empty($referer_url)) {
+        		if (!empty($referer_url) && $referer_url != RC_Uri::url('user/privilege/login')) {
         			$url = $referer_url;
         		}
         		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));

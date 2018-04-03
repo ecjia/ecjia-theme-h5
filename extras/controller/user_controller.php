@@ -218,7 +218,6 @@ class user_controller {
             
 //         }
     }
-    
 }
 
 // end
