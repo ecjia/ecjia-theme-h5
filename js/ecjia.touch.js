@@ -282,7 +282,7 @@
 							$.post(url, function(data) {
 								var refresh_url = data.url;
 								iosOverlay({
-									text: '清除成功',
+									text: '清除缓存中，请稍后...',
 									duration: 2e3,
 								});
 								setTimeout(function(){
