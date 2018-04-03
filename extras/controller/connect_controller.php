@@ -78,11 +78,6 @@ class connect_controller {
             }
             return ecjia_front::$controller->showmessage($msg, ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
-        $auth_type = $data['auth_type'];
-        //自动授权
-        if ($auth_type != 'hand') {
-        	return ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
-        }
         
         $connect_code = $connect_user->getConnectCode();
         $open_id = $connect_user->getOpenId();
