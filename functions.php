@@ -107,7 +107,7 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
 RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $data) {
     $wechat_auto_register = royalcms('request')->cookie('wechat_auto_register', 0);
     if ($wechat_auto_register) {
-        RC_Cookie::set('wechat_auto_register', 0);
+        RC_Cookie::delete('wechat_auto_register', 0);
         
         RC_Loader::load_theme('extras/controller/connect_controller.php');
         return connect_controller::callback_template($data);
