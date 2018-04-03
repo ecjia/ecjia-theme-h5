@@ -273,12 +273,11 @@ class touch_controller {
     }
     
     public static function clear_cache() {
-		ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNOUT)->run();
    		ecjia_touch_user::singleton()->signout();
    		
-    	RC_Cookie::delete(RC_Config::get('session.session_name'));
+    	RC_Cookie::clear();
     	foreach ($_COOKIE as $key => $value) {
-    		setcookie($key, null);
+    		setcookie($key, null, -3600);
     	}
     	
     	$url = RC_Uri::url('touch/my/init');
