@@ -105,8 +105,20 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
  * 第三方登录回调提示模板
  */
 RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $data) {
-    RC_Loader::load_theme('extras/controller/connect_controller.php');
-    return connect_controller::callback_template($data);
+    $wechat_auto_register = royalcms('request')->cookie('wechat_auto_register', 0);
+    if ($wechat_auto_register) {
+        RC_Cookie::set('wechat_auto_register', 0);
+        
+        RC_Loader::load_theme('extras/controller/connect_controller.php');
+        return connect_controller::callback_template($data);
+        
+    } else {
+        
+        //结合cookie判断返回来源url
+        $back_url = RC_Cookie::get('referer', RC_Uri::url('touch/index/init'));
+        ecjia_front::$controller->redirect($back_url);
+        
+    }
 }, 10, 2);
     
 /**
