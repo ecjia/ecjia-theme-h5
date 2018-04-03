@@ -82,7 +82,7 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
     if (strpos($user_agent, 'MicroMessenger') !== false && ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {
         //微信浏览器
         if (ROUTE_M != 'connect') {
-            if (!ecjia_touch_user::singleton()->isSignin()) {
+            if (!ecjia_touch_user::singleton()->isSignin() && !RC_Cookie::get('wechat_not_login', 0)) {
                 if ($_REQUEST['referer_url']) {
                     RC_Cookie::set('referer', $_REQUEST['referer_url']);
                 } else {
@@ -113,7 +113,7 @@ RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $da
         return connect_controller::callback_template($data);
         
     } else {
-        
+        RC_Cookie::set('wechat_not_login', 1);
         //结合cookie判断返回来源url
         $back_url = RC_Cookie::get('referer', RC_Uri::url('touch/index/init'));
         ecjia_front::$controller->redirect($back_url);
