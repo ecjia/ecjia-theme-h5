@@ -880,6 +880,7 @@
 		ecjia.touch.goods_detail.change();
 		ecjia.touch.index.init_swiper();
 		ecjia.touch.share_spread();
+		ecjia.touch.clear_cache();
 
 		var ua = navigator.userAgent.toLowerCase();
 		if (ua.match(/MicroMessenger/i) == "micromessenger" || ua.match(/ECJiaBrowse/i) == "ecjiabrowse") {
