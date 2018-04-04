@@ -86,7 +86,7 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
                 if ($_REQUEST['referer_url']) {
                     RC_Cookie::set('referer', $_REQUEST['referer_url']);
                 } else {
-                    RC_Cookie::set('referer', $GLOBALS['_SERVER']['HTTP_REFERER']);
+                    RC_Cookie::set('referer', $_SERVER['HTTP_REFERER']);
                 }
                 $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat', 'login_type' => 'snsapi_userinfo'));
                 ecjia_front::$controller->redirect($url);
