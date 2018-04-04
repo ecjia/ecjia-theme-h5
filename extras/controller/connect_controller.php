@@ -143,8 +143,7 @@ class connect_controller {
             return ecjia_front::$controller->showmessage('邀请码格式不正确', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
     
-        $data   = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-        $token  = $data['access_token'];
+        $token = touch_function::get_token();
 
         $response = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code, 'token' => $token))->run();
         if (is_ecjia_error($response)) {
@@ -306,8 +305,7 @@ class connect_controller {
     		ecjia_front::$controller->redirect(RC_Uri::url($login_str));
     	}
     	 
-    	$data	= ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-    	$token	= $data['access_token'];
+    	$token = touch_function::get_token();
     	$_SESSION['user_temp']['token'] = $token;
     	 
     	$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();

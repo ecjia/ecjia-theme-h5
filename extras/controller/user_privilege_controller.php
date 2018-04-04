@@ -277,8 +277,7 @@ class user_privilege_controller {
     		ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
     	}
     	
-    	$data	= ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-    	$token	= $data['access_token'];
+    	$token = touch_function::get_token();
     	$_SESSION['user_temp']['token'] = $token;
     	
     	$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();

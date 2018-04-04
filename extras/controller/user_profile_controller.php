@@ -293,9 +293,7 @@ class user_profile_controller {
         $value = !empty($_POST['mobile']) ? trim($_POST['mobile']) : trim($_POST['email']);
         $code = !empty($_POST['code']) ? trim($_POST['code']) : '';
         $type = !empty($_POST['type']) ? $_POST['type'] : '';
-        
-        $data	= ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-        $token	= $data['access_token'];
+        $token = touch_function::get_token();
         
         if (!empty($code) && !empty($type)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BIND)->data(array('type' => $type, 'value' => $value, 'code' => $code, 'token' => $token))->run();
