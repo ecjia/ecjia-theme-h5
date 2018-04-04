@@ -388,6 +388,7 @@ class user_privilege_controller {
     	$type = trim($_POST['type']);
     	$password = trim($_POST['password']);
     	$mobile = $_SESSION['user_temp']['mobile'];
+        $token = $_SESSION['user_temp']['token'];
     	
     	$registered = $_SESSION['user_temp']['registered'];
     	$invited = $_SESSION['user_temp']['invited'];
@@ -406,7 +407,7 @@ class user_privilege_controller {
     		}
     		unset($_SESSION['user_temp']);
     	} else {
-    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $password))->run();
+    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $password, 'token' => $token))->run();
     		if (is_ecjia_error($data)) {
     			return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		}

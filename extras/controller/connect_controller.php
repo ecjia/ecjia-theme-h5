@@ -143,7 +143,10 @@ class connect_controller {
             return ecjia_front::$controller->showmessage('邀请码格式不正确', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
     
-        $response = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code))->run();
+        $data   = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+        $token  = $data['access_token'];
+
+        $response = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code, 'token' => $token))->run();
         if (is_ecjia_error($response)) {
         	return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
@@ -413,6 +416,7 @@ class connect_controller {
     	$type = trim($_POST['type']);
     	$password = trim($_POST['password']);
     	$mobile = $_SESSION['user_temp']['mobile'];
+    	$token = $_SESSION['user_temp']['token'];
     	 
     	$registered = $_SESSION['user_temp']['registered'];
     	$invited = $_SESSION['user_temp']['invited'];
@@ -448,7 +452,7 @@ class connect_controller {
     			return ecjia_front::$controller->showmessage('授权用户信息关联失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		}
     	} else {
-    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $password))->run();
+    		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $password, 'token' => $token))->run();
     		if (is_ecjia_error($data)) {
     			return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		}
