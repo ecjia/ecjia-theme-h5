@@ -2003,5 +2003,6 @@ footer{padding-bottom:3em}
 /*页面二维码样式*/
 .ecjia-wap-qrcode-container{height:240px;width:180px;border:1px solid #e4e4e4;border-radius:5px;margin-bottom:20px;background-color:#fff;padding:10px;text-align:center;position:fixed;left:50%;top:100px;margin-left:330px}
 .ecjia-wap-qrcode-container p{font-size:14px;color:#666;line-height:26px}
-.ecjia-wap-qrcode-container .qrcode-image{height:160px;width:160px}
+.ecjia-wap-qrcode-container .wap-qrcode-image {width:160px;height:160px}
+.ecjia-wap-qrcode-container .wap-qrcode-image img {width:160px;height:160px}
 .ecjia-wap-qrcode-container canvas{height:158px;width:158px;border:1px solid #ddd;border-radius:4px}
