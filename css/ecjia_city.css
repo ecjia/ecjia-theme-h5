@@ -102,6 +102,10 @@ a.ecjia-color-green {
 	overflow: hidden;
 }
 
+.ecjia-list.list-one li.article-init.border-top {
+	border-top: 1px solid #ddd;
+}
+
 .ecjia-list-normal li {
 	height: 3em;
 }

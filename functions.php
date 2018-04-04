@@ -193,6 +193,9 @@ RC_Hook::add_action('connect_callback_user_signin', function($connect_user) {
     RC_Logger::getlogger('wechat')->info($back_url);
     
     RC_Cookie::delete('wechat_not_login');
+    if ($back_url == RC_Uri::url('touch/index/cache_set')) {
+    	$back_url = RC_Uri::url('touch/my/init');
+    } 
     
     return ecjia_front::$controller->redirect($back_url);
 });
