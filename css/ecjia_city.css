@@ -422,7 +422,7 @@ footer{padding-bottom:3em}
 .store-add-cart.active i{background:#47aa4d;font-size:2em;top:-.5em}
 .store-add-cart.active .font-price{padding-left:1em;color:#ef3030}
 .store-add-cart .checkout{display:inline-block;width:6em;color:#fff;background:grey;text-align:center}
-.store-add-cart.a4w{position:fixed;z-index:1001;left:0;right:0;bottom:0;height:48px;background-color:#fff;border-top:1px solid #eee;box-sizing:content-box}
+.store-add-cart.a4w{position:fixed;z-index:1001;left:0;right:0;bottom:0;height:48px;background-color:#fff;border-top:1px solid #eee;box-sizing:content-box;max-width:640px;margin:0 auto;}
 .store-add-cart.a4w .a52{position:absolute;z-index:13;left:0;top:-1px;right:0;bottom:0;background-color:#fff;border-top:1px solid #eee}
 .store-add-cart.a4w .a4x.light{top:-13px;height:58px;background-position:10px -75px;background-size:50px 125px}
 .store-add-cart.a4w .a4x{visibility:hidden;position:absolute;z-index:15;left:0;top:0;width:80px;height:48px;background:url(../images/icon/cart.png) 10px 3px no-repeat;background-size:50px 125px;transition:transform .5s ease-out 0s;-webkit-transition:-webkit-transform .5s ease-out 0s}
