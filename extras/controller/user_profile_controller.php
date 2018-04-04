@@ -294,8 +294,11 @@ class user_profile_controller {
         $code = !empty($_POST['code']) ? trim($_POST['code']) : '';
         $type = !empty($_POST['type']) ? $_POST['type'] : '';
         
+        $data	= ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+        $token	= $data['access_token'];
+        
         if (!empty($code) && !empty($type)) {
-            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BIND)->data(array('type' => $type, 'value' => $value, 'code' => $code))->run();
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BIND)->data(array('type' => $type, 'value' => $value, 'code' => $code, 'token' => $token))->run();
             if (is_ecjia_error($data)) {
                 return ecjia_front::$controller->showmessage(__($data->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             } else {
