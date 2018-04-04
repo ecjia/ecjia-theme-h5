@@ -105,18 +105,28 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
  * 第三方登录回调提示模板
  */
 RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $data) {
-    $wechat_auto_register = royalcms('request')->cookie('wechat_auto_register', 0);
-    if ($wechat_auto_register) {
-        RC_Cookie::delete('wechat_auto_register');
+    $user_agent = $_SERVER['HTTP_USER_AGENT'];
+    //判断并微信登录
+    if (strpos($user_agent, 'MicroMessenger') !== false && ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {
+        $wechat_auto_register = royalcms('request')->cookie('wechat_auto_register', 0);
+        if ($wechat_auto_register) {
+            RC_Cookie::delete('wechat_auto_register');
+        
+            RC_Loader::load_theme('extras/controller/connect_controller.php');
+            return connect_controller::callback_template($data);
+        
+        } else {
+            
+            RC_Cookie::set('wechat_not_login', 1);
+            //结合cookie判断返回来源url
+            $back_url = RC_Cookie::get('referer', RC_Uri::url('touch/index/init'));
+            ecjia_front::$controller->redirect($back_url);
+        
+        }
+    } else {
         
         RC_Loader::load_theme('extras/controller/connect_controller.php');
         return connect_controller::callback_template($data);
-        
-    } else {
-        RC_Cookie::set('wechat_not_login', 1);
-        //结合cookie判断返回来源url
-        $back_url = RC_Cookie::get('referer', RC_Uri::url('touch/index/init'));
-        ecjia_front::$controller->redirect($back_url);
         
     }
 }, 10, 2);
