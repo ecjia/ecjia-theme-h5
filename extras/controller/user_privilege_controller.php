@@ -130,8 +130,7 @@ class user_privilege_controller {
     	}
     	
     	if (!ecjia_front::$controller->is_cached('user_wechat_login.dwt', $cache_id)) {
-    		ecjia_front::$controller->assign('title', 'EC+到家');
-    		ecjia_front::$controller->assign_title('EC+到家');
+    		ecjia_front::$controller->assign_title('微信快捷登录');
     		ecjia_front::$controller->assign_lang();
     		ecjia_front::$controller->assign('hidenav', 1);
     		
