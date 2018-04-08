@@ -62,7 +62,6 @@ class article_controller {
     			ecjia_front::$controller->assign('data', $data);
     		}
     		ecjia_front::$controller->assign_title('帮助中心');
-    		ecjia_front::$controller->assign('title', '帮助中心');
     	}
         ecjia_front::$controller->display('article_init.dwt', $cache_id);
     }
