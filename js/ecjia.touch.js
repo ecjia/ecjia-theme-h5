@@ -861,7 +861,9 @@
 	});
 
 	//PJAX前进、返回执行
-//	$(document).on('pjax:popstate', function() {});
+	$(document).on('pjax:popstate', function() {
+		window.scrollTo(0,1);
+	});
 
 	//PJAX历史和跳转都会执行的方法
 	$(document).on('pjax:end', function() {
