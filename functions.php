@@ -83,16 +83,12 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
         //微信浏览器
         if (ROUTE_M != 'connect') {
             if (!ecjia_touch_user::singleton()->isSignin() && !RC_Cookie::get('wechat_not_login', 0)) {
-                RC_Logger::getlogger('info')->info('functions.php');
-                RC_Logger::getlogger('info')->info($_REQUEST);
-                RC_Logger::getlogger('info')->info($_SERVER['HTTP_REFERER']);
                 if ($_REQUEST['referer_url']) {
                     RC_Cookie::set('referer', $_REQUEST['referer_url']);
                 } else {
                     RC_Cookie::set('referer', empty($_SERVER['HTTP_REFERER']) ? RC_Uri::current_url() : $_SERVER['HTTP_REFERER']);
                 }
                 
-                RC_Logger::getlogger('info')->info(RC_Cookie::get('referer'));
                 $url = RC_Uri::url('connect/index/init', array('connect_code' => 'sns_wechat', 'login_type' => 'snsapi_userinfo'));
                 ecjia_front::$controller->redirect($url);
             }
@@ -126,8 +122,6 @@ RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $da
             return connect_controller::callback_template($data);
         
         } else {
-            RC_Logger::getlogger('info')->info('connect_callback_user_template');
-            RC_Logger::getlogger('info')->info(RC_Cookie::get('referer'));
             RC_Cookie::set('wechat_not_login', 1);
             //结合cookie判断返回来源url
             $back_url = RC_Cookie::get('referer', RC_Uri::url('touch/index/init'));
