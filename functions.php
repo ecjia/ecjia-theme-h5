@@ -89,7 +89,7 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
                 if ($_REQUEST['referer_url']) {
                     RC_Cookie::set('referer', $_REQUEST['referer_url']);
                 } else {
-                    RC_Cookie::set('referer', $_SERVER['HTTP_REFERER']);
+                    RC_Cookie::set('referer', empty($_SERVER['HTTP_REFERER']) ? RC_Uri::current_url() : $_SERVER['HTTP_REFERER']);
                 }
                 
                 RC_Logger::getlogger('info')->info(RC_Cookie::get('referer'));
