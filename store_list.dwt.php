@@ -110,7 +110,7 @@ var releated_goods = {$releated_goods};
 				<img class="pic" src="{$val.img.small}">
 				<dl>
 					<dt>{$val.name}</dt>
-					<dd><label>{if $val.promote_price}{$val.promote_price}{else}{$val.shop_price}{/if}</label></dd>
+					<dd><label>{if $val.unformatted_promote_price neq 0 && $val.unformatted_promote_price lt $val.unformatted_shop_price}{$val.promote_price}{else}{$val.shop_price}{/if}</label></dd>
 				</dl>
 			</a>
 			<div class="box" id="goods_{$val.id}">
@@ -250,7 +250,7 @@ var releated_goods = {$releated_goods};
 			<dl>
 				<dt>{$val.name}</dt>
 				<dd></dd>
-				<dd><label>{if $val.promote_price}{$val.promote_price}{else}{$val.shop_price}{/if}</label></dd>
+				<dd><label>{if $val.unformatted_promote_price neq 0 && $val.unformatted_promote_price lt $val.unformatted_shop_price}{$val.promote_price}{else}{$val.shop_price}{/if}</label></dd>
 			</dl>
 		</a>
 		<div class="box" id="goods_{$val.id}">

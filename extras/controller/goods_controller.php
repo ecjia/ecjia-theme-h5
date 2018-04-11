@@ -150,6 +150,19 @@ class goods_controller {
 	    	if (!empty($goods_info['promote_end_date'])) {
 	    		$goods_info['promote_end_time'] = RC_Time::local_strtotime($goods_info['promote_end_date']);
 	    	}
+	    	
+	    	$token = ecjia_touch_user::singleton()->getToken();
+	    	$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+	    	if (!is_ecjia_error($user)) {
+	    		if (!empty($goods_info['rank_prices'])) {
+	    			foreach ($goods_info['rank_prices'] as $k => $v) {
+	    				if ($v['id'] == $user['rank_id'] && $goods_info['promote_price'] > $v['unformatted_price']) {
+	    					$goods_info['promote_price'] = $v['unformatted_price'];
+	    					$goods_info['formated_promote_price'] = $v['price'];
+	    				}
+	    			}
+	    		}
+	    	}
 	    	/*商品所属店铺购物车列表*/
 	    	$token = ecjia_touch_user::singleton()->getToken();
 	    	$options = array(
