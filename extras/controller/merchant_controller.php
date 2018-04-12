@@ -362,7 +362,7 @@ class merchant_controller {
 		if (empty($cart_list)) {
 			$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
 			if (!is_ecjia_error($cart_list)) {
-				RC_Cache::app_cache_set('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'], 'cart');
+				RC_Cache::app_cache_set('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'], $cart_list, 'cart')
 			} else {
 				$cart_list = array();
 			}

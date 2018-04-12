@@ -324,7 +324,7 @@ footer{padding-bottom:3em}
 .ecjia-store-brief .store-promotion .promotion-name{font-weight:400;font-size:1em;padding-left:.5em}
 .ecjia-store-ul{position:fixed;top:11.3em;height:3em;max-width:640px;width:100%;background-color:#fff;line-height:2em;font-size:1.1em;color:#666;z-index:5;border-bottom:1px solid #eee}
 .ecjia-store-ul li{float:left;width:33.3%;border-bottom:0;text-align:center;padding-top:.5em}
-.ecjia-store-ul li span.active{padding-bottom:.85em;border-bottom:2px solid #47aa4d;color:#47aa4d}
+.ecjia-store-ul li span.active{padding-bottom:.8em;border-bottom:2px solid #47aa4d;color:#47aa4d}
 .ecjia-store-detail{position:absolute;top:15.8em;bottom:0;width:100%;max-width:640px}
 .ecjia-store-detail .store-hr{height:.8em;background:#F7F7F7}
 .ecjia-store-detail .store-tel{border-top:1px solid #eee;border-bottom:1px solid #eee;padding:1em;overflow:hidden;clear:both;color:#555;font-weight:400;background-color:#fff}

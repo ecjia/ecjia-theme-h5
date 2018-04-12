@@ -804,12 +804,12 @@
 				$('.ecjia-store-banner').css('display', 'none');
 
 				$('.page_hearder_hide').show();
-				$('.ecjia-store-goods').children('.a1n').css('top', '6.6em');
+				$('.ecjia-store-goods').children('.a1n').css('top', '6.7em');
 
 				//店铺评论
 				$('.ecjia-store-ul').css('top', '3em');
-				$('.ecjia-seller-comment').css('top', '6.6em');
-				$('.ecjia-store-detail').css('top', '6.6em');
+				$('.ecjia-seller-comment').css('top', '6.7em');
+				$('.ecjia-store-detail').css('top', '6.7em');
 			} else {
 				$('.ecjia-store-banner').css('display', 'block');
 				$('.page_hearder_hide').hide();
