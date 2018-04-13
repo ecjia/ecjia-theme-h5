@@ -519,7 +519,11 @@
 				if (data.count != undefined) {
 					var count = data.count;
 					if (count.meet_min_amount == 1 || !count.label_short_amount) {
-						$('.check_cart').removeClass('disabled').html('去结算');
+						if (count.real_goods_count > 0) {
+							$('.check_cart').removeClass('disabled').html('去结算');
+						} else {
+							$('.check_cart').html('去结算');
+						}
 					} else {
 						$('.check_cart').addClass('disabled').html('还差'+ count.label_short_amount +'起送');
 					}
