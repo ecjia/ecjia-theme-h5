@@ -24,7 +24,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			    <a href="{url path='user/order/order_detail'}&order_id={$order.order_id}&type={'status'}">
 			        <span class="order-status-img"><p></p><img src="{$theme_url}images/icon/list_h_circle_50.png"></span>
 			        <div class="order-status-msg">
-	    		        <span><span class="order-head-font">{$headInfo.order_status}</span><span class="ecjiaf-fr order-color">{$headInfo.time}</span></span>
+	    		        <span class="order-head-top"><span class="order-head-font">{$headInfo.order_status}</span><span class="ecjiaf-fr order-color">{$headInfo.time}</span></span>
 	    		        <p class="ecjia-margin-t status"><span class="order-color order-status">{$headInfo.message}</span><span class="ecjiaf-fr more-status">更多状态 ></span></p>
 			        </div>
 		        </a>

@@ -1043,7 +1043,8 @@ footer{padding-bottom:3em}
 .order-status-head{padding:0 1em;background-color:#fff;margin-bottom:20px}
 .order-status-head.margin-bottom-none{margin-bottom:0}
 .order-status-head .order-status-msg{padding:23px 0 20px 35px}
-.order-status-head .order-status-msg .order-head-font{font-size:1em}
+.order-status-head .order-status-msg .order-head-top{position:relative;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap}
+.order-status-head .order-status-msg .order-head-font{font-size:1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;-webkit-box-flex:1;-webkit-flex:1;flex:1;padding-right:10px}
 .order-status-head .order-status-msg .order-color{color:#86888D}
 .h-1{height:1em}
 .order-status-head .order-status-msg .order-more-color{color:#47aa4d}
