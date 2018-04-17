@@ -322,7 +322,7 @@ ecjia_open::macro('goods_seller_list', function($querys) {
 
 //所有分类
 ecjia_open::macro('goods_list', function($querys) {
-    return RC_Uri::url('goods/category/init', array('cid' => $querys['category_id']));
+    return RC_Uri::url('goods/category/init', array('category_id' => $querys['category_id']));
 });
 //店铺列表
 ecjia_open::macro('seller', function($querys) {
