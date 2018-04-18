@@ -273,7 +273,7 @@ ecjia_open::macro('help', function() {
 });
 //用户中心
 ecjia_open::macro('user_center', function() {
-	return RC_Uri::url('touch/my/init');
+	return RC_Uri::url('user/profile/init');
 });
 //商品详情
 ecjia_open::macro('goods_detail', function($querys) {
