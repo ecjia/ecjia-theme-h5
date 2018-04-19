@@ -990,9 +990,9 @@ footer{padding-bottom:3em}
 .goods-info .ecjia-left-time{border:1px solid #ff3434;width:82%;height:1.1em;line-height:1.1em;margin-top:9px}
 .goods-info .ecjia-left-time .detail-clock-icon{width:1.1em;height:1.03em;background:url(../images/icon/goods-detail-colok.png);position:absolute;background-origin:content-box;background-repeat:no-repeat;background-size:100% 100%}
 .goods-price-plus{background:url(../images/icon/goods-plus.png);background-size:100% 100%;background-repeat:no-repeat;background-origin:content-box;display:inline-block;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;height:22px;width:22px;float:right}
-.goods-info .ecjia-left-time .goods-detail-promote{height:1.1em;line-height:1.5em;font-size:.7em;display:inline-block;float:right;width:89.5%;text-align:center}
+.goods-info .ecjia-left-time .goods-detail-promote{height:1.3em;line-height:1.3em;font-size:.7em;display:inline-block;float:right;width:89.5%;text-align:center}
 .goods-info .ecjia-left-time .iconfont{background:#ff3434;color:#fff;line-height:.8em;top:-1px}
-.goods-info .goods-price-new .ecjia-left-time span{background-color:#fff;color:#ff3434}
+.goods-info .goods-price-new .ecjia-left-time span{background-color:#fff;color:#ff3434;overflow:hidden;}
 .goods-type .goods-option-con-new{padding:0;height:3em;line-height:3em;font-size:1.1em}
 .ecjia-merchants-name .shop-title-name{max-width:300px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;padding-left:.6em;color:#555}
 .ecjia-merchants-name .shop-title-name i{top:0;padding-right:.5em;font-size:1.2em;color:#555}
