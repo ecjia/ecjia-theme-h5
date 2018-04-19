@@ -1937,7 +1937,7 @@ footer{padding-bottom:3em}
 
 /*兼容iPhone X*/
 .category .category_left,.ecjia-account .btn-bottom,.ecjia-address-list .ecjia-margin-t.jm,.ecjia-address-list .order-ft-link,.ecjia-bottom-bar-pannel,.ecjia-discover-detail .nav-bt-fix,.ecjia-download,.ecjia-order-detail .ecjia-checkout,.ecjia-order-detail .order-ft-link,.ecjia-spread .spread-bottom-bar-pannel,.store-add-cart.a4w,.store-add-cart.a4w .a4z,.store-add-cart.a4w .a52,body{padding-bottom:constant(safe-area-inset-bottom);padding-bottom:env(safe-area-inset-bottom)}
-.category .category_right div.cat_list.show,.ecjia-article.article-list,.ecjia-discover-detail .floor .floor-content,.ecjia-suggest-store,.ecjia-user .ecjia-list.safe-area:last-child{margin-bottom:constant(safe-area-inset-bottom);margin-bottom:env(safe-area-inset-bottom)}
+.category .category_right div.cat_list.show,.ecjia-article.article-list,.ecjia-discover-detail .floor .floor-content,.ecjia-suggest-store-content,.ecjia-user .ecjia-list.safe-area:last-child{margin-bottom:constant(safe-area-inset-bottom);margin-bottom:env(safe-area-inset-bottom)}
 
 /*优惠买单样式*/
 .ecjia-quickpay-content{margin:25px;margin-top:40px;font-size:1em;margin-bottom:15px}
