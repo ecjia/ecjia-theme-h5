@@ -1342,7 +1342,7 @@ footer{padding-bottom:3em}
 .ecjia-spread .invite_explain .invite_explain-literal{font-weight:700;font-size:16px;padding-left:1em}
 .ecjia-spread .invite_explain .invite_explain-content{padding-left:1em;color:#999}
 .ecjia-spread .share-buttons .cancel-butoons{height:45px;line-height:45px;border-radius:7px}
-.ecjia-spread .ecjia-spread-share{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:999}
+.ecjia-spread .ecjia-spread-share{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:999}
 .ecjia-spread .ecjia-spread-share img{position:relative;left:0;top:5px;width:100%;height:40%;z-index:998}
 .ecjia-spread .ecjia-margin-b>a img{position:relative;width:100%;padding:0 .8em;height:37%}
 .ecjia-spread.ecjia-spread-get_integral{background-color:#F7F7F7!important}
