@@ -2008,3 +2008,13 @@ footer{padding-bottom:3em}
 .ecjia-wap-qrcode-container .wap-qrcode-image {width:160px;height:160px}
 .ecjia-wap-qrcode-container .wap-qrcode-image img {width:160px;height:160px}
 .ecjia-wap-qrcode-container canvas{height:158px;width:158px;border:1px solid #ddd;border-radius:4px}
+
+/*店铺非营业时间显示样式*/
+.store-add-cart.a4w .a61{
+	line-height: 23px;
+    color: #555;
+    font-size: .8em;
+}
+.store-add-cart.a4w .a61.m_l1 {
+	margin-left: 1em;
+}

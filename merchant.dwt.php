@@ -98,12 +98,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		{/if}
 	</a>
 	<div class="a4z" style="transform: translateX(0px);">
-		{if !$real_count.goods_number}
-			<div class="a50">购物车是空的</div>
+		{if $store_info.shop_closed eq 1}
+			<div class="a61">商家打烊了</div>
+			<div class="a61">营业时间：{$store_info.label_trade_time}</div>
 		{else}
-		<div>
-			{$count.goods_price}{if $count.discount neq 0}<label>(已减{$count.discount})</label>{/if}
-		</div>
+			{if !$real_count.goods_number}
+				<div class="a50">购物车是空的</div>
+			{else}
+			<div>
+				{$count.goods_price}{if $count.discount neq 0}<label>(已减{$count.discount})</label>{/if}
+			</div>
+			{/if}
 		{/if}
 	</div>
 	<a class="a51 {if !$count.check_one || $count.meet_min_amount neq 1}disabled{/if} check_cart" data-href="{RC_Uri::url('cart/flow/checkout')}" data-store="{$store_id}" data-address="{$address_id}" data-rec="{$rec_id}">{if $count.meet_min_amount eq 1 || !$count.label_short_amount}去结算{else}还差{$count.label_short_amount}起送{/if}</a>
