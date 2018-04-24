@@ -100,7 +100,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="a4z" style="transform: translateX(0px);">
 		{if $store_info.shop_closed eq 1}
 			<div class="a61">商家打烊了</div>
-			<div class="a61">营业时间：{$store_info.label_trade_time}</div>
+			<div class="a62">营业时间 {$store_info.label_trade_time}</div>
 		{else}
 			{if !$real_count.goods_number}
 				<div class="a50">购物车是空的</div>
