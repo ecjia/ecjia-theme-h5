@@ -1253,7 +1253,7 @@ footer{padding-bottom:3em}
     bottom: 0;
     line-height: 4.5em;
     text-align: center;
-    background-color: rgba(0,0,0,.3);
+    background-color: rgba(0,0,0,.6);
     border-radius: 50%;
     color: #fff;
 }
@@ -1512,7 +1512,7 @@ footer{padding-bottom:3em}
     bottom: 0;
     line-height: 4.5em;
     text-align: center;
-    background-color: rgba(0,0,0,.3);
+    background-color: rgba(0,0,0,.6);
     border-radius: 50%;
     color: #fff;
 }
