@@ -170,7 +170,7 @@ class goods_controller {
 	    		'city_id' => $_COOKIE['city_id']
 	    	);
 	    	$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
-	    	
+
 	    	$goods_info['shop_closed'] = $store_info['shop_closed'];
 	    	$goods_info['label_trade_time'] = $store_info['label_trade_time'];
 	    	

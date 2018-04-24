@@ -32,6 +32,9 @@ var releated_goods = {$releated_goods};
 					<div class="basic-info">
 						<div class="store-left">
 							<img src="{if $val.seller_logo}{$val.seller_logo}{else}{$theme_url}images/store_default.png{/if}">
+							{if $val.shop_closed eq 1}
+								<div class="shop_closed_mask">休息中</div>
+							{/if}
 						</div>
 						<div class="store-right">
 							<div class="store-title">

@@ -1242,8 +1242,21 @@ footer{padding-bottom:3em}
 .ecjia-store-list .store-info .store-promotion .quick-label{color:#fff;display:inline-block;border:1px solid #F79B31;border-radius:4px;font-size:.8em;background:#F79B31;padding:.1em .2em}
 .ecjia-store-list .store-info .store-promotion .promotion-name{font-size:.9em;padding-left:.5em;color:#777}
 .ecjia-store-list .store-info .basic-info{height:auto;padding:.8em .2em .2em .2em}
-.ecjia-store-list .store-left{float:left;width:5em}
+.ecjia-store-list .store-left{float:left;width:4.5em;position:relative;}
 .ecjia-store-list .store-left img{width:4.5em;height:4.5em;border-radius:50%;border:2px solid #47aa4d}
+.ecjia-store-list .store-left .shop_closed_mask {
+	position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 4.5em;
+    text-align: center;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 50%;
+    color: #fff;
+}
 .ecjia-store-list .store-right{width:100%;padding-left:5em}
 .ecjia-store-list .store-right div{padding-left:.5em}
 .ecjia-store-list .store-right span.manage_mode{color:#ff3434;border:1px solid #ff3434;border-radius:4px;margin-left:.4em;font-size:.9em;display:inline-block;line-height:1em;height:1.3em;padding:2px}
@@ -1482,6 +1495,28 @@ footer{padding-bottom:3em}
 .ecjia-suggest-store .store-info .basic-info{width:95%;height:auto;padding:.8em .2em .5em .2em;margin:0 auto}
 .ecjia-suggest-store .store-left{float:left;width:20%}
 .ecjia-suggest-store .store-left img{width:100%;max-width:4.5em;height:4.5em;border-radius:50%;border:2px solid #47aa4d}
+.ecjia-suggest-store .store-left .seller-logo {
+	position: relative;
+    width: 100%;
+    max-width: 4.5em;
+    height: 4.5em;
+    display: inline-block;
+}
+
+.ecjia-suggest-store .store-left .shop_closed_mask {
+	position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 4.5em;
+    text-align: center;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 50%;
+    color: #fff;
+}
+
 .ecjia-suggest-store .store-right{float:left;width:80%}
 .ecjia-suggest-store .store-right div{margin-left:.5em}
 .ecjia-suggest-store .store-title{color:#555;font-size:1.1em;font-weight:400;line-height:25px;height:25px}
@@ -2020,6 +2055,16 @@ footer{padding-bottom:3em}
     color: #555;
     font-size: .8em;
 }
-.store-add-cart.a4w .a61.m_l1, .store-add-cart.a4w .a62.m_l1 {
+.store-add-cart.a4w .a61.m_l1 {
 	margin-left: 1em;
+}
+.store-add-cart.a4w .a62.m_l1 {
+	margin-left: 1.2em;
+}
+.quickpay .shop_closed_notice, .ecjia-quickpay-form .shop_closed_notice {
+	text-align: center;
+    background-color: #FBE8CA;
+    color: #ff8214;
+    line-height: 2em;
+    font-size: 1em;
 }

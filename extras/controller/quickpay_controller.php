@@ -133,6 +133,8 @@ class quickpay_controller {
 		}
 		ecjia_front::$controller->assign('show_exclude_amount', $_SESSION['quick_pay']['show_exclude_amount']);
 		ecjia_front::$controller->assign_title($store_info['seller_name']);
+		ecjia_front::$controller->assign('store_info', $store_info);
+		
 		ecjia_front::$controller->display('quickpay_checkout.dwt');
 	}
 
