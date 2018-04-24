@@ -74,6 +74,8 @@ class merchant_controller {
 			'city_id' => $_COOKIE['city_id']
 		);
 		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
+		$store_info = is_ecjia_error($store_info) ? array() : $store_info;
+		
 		if (!is_ecjia_error($store_info)) {
 			$store_info = merchant_function::format_info_distance($store_info);
 			$store_info['comment']['comment_goods_val'] = (float)$store_info['comment']['comment_goods']/100;
@@ -358,7 +360,8 @@ class merchant_controller {
 			'city_id' => $_COOKIE['city_id']
 		);
 		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
-		
+		$store_info = is_ecjia_error($store_info) ? array() : $store_info;
+
 		if ($store_info['shop_closed'] != 1) {
 			$token = ecjia_touch_user::singleton()->getToken();
 			$arr = array(
@@ -372,7 +375,7 @@ class merchant_controller {
 			$cart_list = RC_Cache::app_cache_get('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], 'cart');
 			if (empty($cart_list)) {
 				$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
-				if (!is_ecjia_error($cart_list)) {
+				if (!is_ecjia_error($cart_list) && ecjia_touch_user::singleton()->isSignin()) {
 					RC_Cache::app_cache_set('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], $cart_list, 'cart');
 				} else {
 					$cart_list = array();
