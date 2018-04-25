@@ -585,7 +585,7 @@ footer{padding-bottom:3em}
 .ecjia-checkout .ecjia-color-green{color:#47aa4d}
 .ecjia-checkout .ecjia-list li{border-bottom:none}
 .ecjia-address-list .address-list-center .iconfont.icon-roundadd{color:#47aa4d;font-size:1.5em}
-.ecjia-address-list.ecjia-select-address li{border:none;padding:.5em 0 .3em 1em}
+.ecjia-address-list.ecjia-select-address li{border:none;padding:.5em 1em .3em 1em}
 .ecjia-address-list.ecjia-select-address li.no-address{padding:1em .5em;padding-left:15px;color:#aaa}
 .return-fee-list{line-height:2em;padding:.5em 1em;background-color:#fff}
 .ecjia-list.ecjia-address-list.ecjia-select-address{padding-top:0}
