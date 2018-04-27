@@ -1090,7 +1090,7 @@ footer{padding-bottom:3em}
 .ecjia-checkout .goods-item .goods-name{position:absolute;display:block;width:80%;top:50%;max-height:2em;line-height:1.5em;transform:translateY(-50%);text-overflow:ellipsis;overflow:hidden;-webkit-line-clamp:1;-webkit-box-orient:vertical;display:-webkit-box}
 .ecjia-checkout .goods_attr_ul .goods-name{top:15%}
 .ecjia-checkout .goods-item .goods-list-attr{position:absolute;display:block;width:100%;top:15%;max-height:3em;line-height:1.5em;transform:translateY(-50%);padding-left:6em}
-.goods-list .goods-img-more{height:5em;line-height:5em}
+.goods-list .goods-img-more{height:5em;line-height:5em;text-align: right;}
 .flow-goods-list .goods-img-more.more-info{float:right;position:relative}
 .flow-goods-list .goods-img-more.more-info .ecjiaf-ib{position:absolute;right:0;top:0;line-height:3em;text-align:right;min-width:4em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .flow-goods-list .goods-img-more.more-info .ecjiaf-ib p{height:2em}
