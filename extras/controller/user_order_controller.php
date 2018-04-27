@@ -148,6 +148,21 @@ class user_order_controller {
             if ($data['order_mode'] == 'storebuy') {
             	ecjia_front::$controller->display('user_order_storebuy_detail.dwt', $cache_id);
             } else {
+				//店铺信息
+				$parameter_list = array(
+					'seller_id' => $data['store_id'],
+					'city_id' => $_COOKIE['city_id']
+				);
+				$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
+				$store_info = is_ecjia_error($store_info) ? array() : $store_info;
+		
+				if (!empty($store_info)) {
+					$map_url = 'https://3gimg.qq.com/lightmap/v1/marker/index.html?type=0&marker=coord:';
+					$url_param = ''.$store_info['location']['latitude'].','.$store_info['location']['longitude'].';title:'.$store_info['seller_name'].';addr:'.$store_info['shop_address'];
+					$url_param = urlencode($url_param);
+					$map_url .= $url_param;
+					ecjia_front::$controller->assign('location_url', $map_url);
+				}
             	ecjia_front::$controller->display('user_order_detail.dwt', $cache_id);
             }
         } else {

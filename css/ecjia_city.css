@@ -1107,6 +1107,7 @@ footer{padding-bottom:3em}
 .ecjia-order-detail .ecjia-checkout .order-map{width:25px;float:right}
 .ecjia-order-detail .ecjia-checkout .flow-goods-list{background:0 0;padding-bottom:3.6em}
 .ecjia-order-detail .flow-goods-list .ecjia-list li{border-bottom:none;padding:.7em 1em}
+.ecjia-order-detail .flow-goods-list .ecjia-list li .ecjiaf-fr.width-75-p.p_d {padding-right: 3em;padding-bottom: .5em;}
 .ecjia-order-detail .flow-goods-list .ecjia-list .notice .notice-content{background-color:#eee;padding:1em;font-size:.8em;color:#999}
 .ecjia-order-detail .flow-goods-list .ecjia-list li.notice{height:auto;padding:0}
 .ecjia-order-detail .flow-goods-list .ecjia-list li.notice .title{float:left}
@@ -2156,6 +2157,18 @@ footer{padding-bottom:3em}
     position: absolute;
     right: 1em;
     top: 40%;
+    font-size: .8em;
+}
+
+.ecjia-checkout i.icon-shopguide-detail {
+    background-image: url(../images/icon/shopguide.png);
+    background-size: 1.5em 1.5em;
+    width: 1.5em;
+    height: 1.5em;
+    display: block;
+    position: absolute;
+    right: 1em;
+    top: 1.2em;
     font-size: .8em;
 }
 

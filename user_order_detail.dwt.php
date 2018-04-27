@@ -84,9 +84,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<ul class="ecjia-list">
 				    <li><span class="ecjiaf-fl width-25-p">提货时间：</span><span class="ecjiaf-fr width-75-p">{if $order.expect_shipping_time}{$order.expect_shipping_time}{else}暂无{/if}</span></li>
 					<li><span class="ecjiaf-fl width-25-p">提货码：</span><span class="ecjiaf-fr width-75-p">{if $order.pickup_code}{$order.pickup_code}{else}暂无{/if}</span></li>
-					<li style="height: auto;"><span class="ecjiaf-fl width-25-p">提货门店：</span>
-					<span class="ecjiaf-fr width-75-p">{$order.seller_name} {if $order.service_phone}({$order.service_phone}){/if}</span>
-					<span class="ecjiaf-fr width-75-p">{$order.store_address}</span></li>
+					<li style="height: auto; position: relative;">
+						<span class="ecjiaf-fl width-25-p">提货门店：</span>
+						<span class="ecjiaf-fr width-75-p p_d">{$order.seller_name} {if $order.service_phone}({$order.service_phone}){/if}</span>
+						<span class="ecjiaf-fr width-75-p">{$order.store_address}</span>
+						{if $location_url}
+						<a class="nopjax external" href="{$location_url}"><i class="icon-shopguide-detail"></i></a>
+						{/if}
+					</li>
 				</ul>
 			{else}
 				<p class="select-title ecjiaf-fwb ecjia-margin-l">配送信息</p>
