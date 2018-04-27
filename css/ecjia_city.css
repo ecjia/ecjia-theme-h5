@@ -1178,7 +1178,7 @@ footer{padding-bottom:3em}
 .order-log-item.payed::after,.order-log-item.unpay::after{background:url(../images/icon/money_circle_50.png) #F7F7F7 no-repeat center;background-size:60%}
 .order-log-item.payed:first-child::after{background:url(../images/icon/money_h_circle_50.png) #F7F7F7 no-repeat center;background-size:60%}
 .order-log-item.payed::after{background:url(../images/icon/money_circle_50.png) #F7F7F7 no-repeat center;background-size:60%}
-.order-log-item.merchant_process:first-child::after,.order-log-item.shipped:first-child::after,.order-log-item.shipping:first-child::after{background:url(../images/icon/shop_h_circle_50.png) #F7F7F7 no-repeat center;background-size:60%}
+.order-log-item.merchant_process:first-child::after,.order-log-item.shipped:first-child::after,.order-log-item.shipping:first-child::after,.order-log-item.pickup_success::after{background:url(../images/icon/shop_h_circle_50.png) #F7F7F7 no-repeat center;background-size:60%}
 .order-log-item.merchant_process::after,.order-log-item.shipped::after,.order-log-item.shipping::after{background:url(../images/icon/shop_circle_50.png) #F7F7F7 no-repeat center;background-size:60%}
 .order-log-item.express_user_pickup:first-child::after{background:url(../images/icon/bike_h_circle_50.png) #F7F7F7 no-repeat center;background-size:60%}
 .order-log-item.express_user_pickup::after{background:url(../images/icon/bike_circle_50.png) #F7F7F7 no-repeat center;background-size:60%}
@@ -1653,13 +1653,33 @@ footer{padding-bottom:3em}
 .ecjia-article.article-list .article-item .article-right .img-box{position:relative}
 .ecjia-article.article-list .article-item .article-right .img-box img{width:100%;height:7em;margin-bottom:.5em}
 .ecjia-article.article-list .article-item .article-right .img-box .play-icon{position:absolute;width:2rem;height:2rem;top:50%;left:50%;margin-left:-1rem;margin-top:-1rem}
-.ecjia-article.article-list .article-item .article-right .article-info .article-time{float:left;width:60%}
-.ecjia-article.article-list .article-item .article-right .article-info .article-time .clock{float:left;width:12%;height:.7em;background-image:url(../images/icon/icon-clock.png);background-size:.7em .7em;background-repeat:no-repeat;margin-top:.08em;margin-right:0;}
+
+.ecjia-article.article-list .article-item .article-right .article-info .article-time{    float: left;
+    width: 60%;
+    font-size: .8em;
+    position: relative;}
+.ecjia-article.article-list .article-item .article-right .article-info .article-time .clock{    float: left;
+    width: .8em;
+    height: .85em;
+    background-image: url(../images/icon/icon-clock.png);
+    background-size: .8em .85em;
+    background-repeat: no-repeat;
+    }
 .ecjia-article.article-list .article-item .article-right .article-info .little-icon{display:inline-block;margin-top:.125rem;margin-right:.15rem;background-size:100% 100%;background-repeat:no-repeat}
-.ecjia-article.article-list .article-item .article-right .article-info .article-time span{float:left;font-size:.6em;line-height:1.1em;color:#989898;width:82%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ecjia-article.article-list .article-item .article-right .article-info .article-time span{float: left;
+    line-height: 1.1em;
+    color: #989898;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+    right: 40%;
+    left: .9em;}
 .ecjia-article.article-list .article-item .article-right .article-info .article-viewed{float:right;width:40%}
-.ecjia-article.article-list .article-item .article-right .article-info .article-viewed span{float:right;font-size:.6em;line-height:1.1em;color:#989898;max-width:3em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ecjia-article.article-list .article-item .article-right .article-info .article-viewed .eye{float:right;width:.8em;height:.7em;background-image:url(../images/icon/icon-eye.png);background-size:.8em .7em;background-repeat:no-repeat;margin-top:.08em;}
+.ecjia-article.article-list .article-item .article-right .article-info .article-viewed span{float:right;font-size:.8em;line-height:1.1em;color:#989898;max-width:3em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ecjia-article.article-list .article-item .article-right .article-info .article-viewed .eye{float:right;width:.8em;height:.8em;background-image:url(../images/icon/icon-eye.png);background-size:.8em .7em;background-repeat:no-repeat;}
+
 
 .ecjia-article.article-list .article-item .article-right .article-info .little-icon{display:inline-block;background-size:100% 100%;background-repeat:no-repeat}
 .ecjia-down-navi-content{position:relative}
