@@ -477,16 +477,25 @@ footer{padding-bottom:3em}
 .small-btn{margin-top:50px}
 
 /*定位地址、选择的收货地址  - 购物车，结算 通用*/
-.flow-address{min-height:5em;padding:.5em 1em 1em 1em;background:url(../images/flow_addres.png) no-repeat bottom #fff;background-size:100% 120%;overflow:hidden;line-height:2.5em;position:relative}
-.flow-address.choose-address{padding:1.5em 1em .5em 1em}
+.flow-address{min-height:5em;padding:0 1em .5em 1em;background:url(../images/flow_addres.png) no-repeat bottom #fff;background-size:100% 120%;overflow:hidden;line-height:2.5em;position:relative}
+.flow-address.choose-address{padding:0 1em .5em 1em}
 .flow-address.choose-address p{font-weight:700;font-size:14px;color:#333;margin-right:20px}
+.flow-address.choose-address p.notice {
+	position: absolute;
+    top: 30%;
+    left: 4em;
+}
 .flow-address.location_address{padding:1em;line-height:3em}
 .flow-address label{width:15%;font-weight:400}
-.flow-address .address-info{width:95%;margin-left:-15%;padding-left:15%;color:#333;margin-right:5%}
-.flow-address i.iconfont{position:absolute;right:.5em;top:1.25em;font-size:1.5em;color:#aaa}
+.flow-address .address-info{width: 95%;
+    margin-left: 0;
+    padding-left: 10%;
+    color: #333;
+    margin-right: 5%;}
+.flow-address i.iconfont{position:absolute;right:.5em;top:35%;font-size:1.5em;color:#aaa}
 .flow-address .address-info span{line-height:normal;font-weight:700;font-size:14px;color:#333}
 .flow-address .address-info span+span{margin-left:2em}
-.flow-address .address-info span+p.address-desc{line-height:normal;font-weight:700;font-size:14px;color:#333}
+.flow-address .address-info .address-desc{line-height:normal;font-weight:normal;font-size:14px;color:#838383;margin-right:0;}
 /*定位地址 ====结束 === */
 
 .flow-no-pro{position:relative}
@@ -552,10 +561,12 @@ footer{padding-bottom:3em}
 
 /*========================  结算 ecjia-checkout =========================== */
 .ecjia .ecjia-checkout .checklist{overflow:hidden;background-color:#fff;padding:0 1em;line-height:3em;position:relative}
-.ecjia .ecjia-checkout .checklist.line{line-height:2em;padding:.5em 1em}
+.ecjia .ecjia-checkout .checklist.line{line-height:1.5em;padding:.5em 1em;}
 .ecjia .ecjia-checkout .checklist.line .icon-shop-time{background:url(../images/icon/business_hours.png);width:1.5em;height:1.5em;background-size:1.3em;background-repeat:no-repeat;display:inline-block;vertical-align:middle}
-.ecjia .ecjia-checkout .checklist.line::before{content:'';position:absolute;top:0;left:1em;width:100%;border-bottom:1px solid #eee}
+.ecjia .ecjia-checkout .checklist.border-top::before{content:'';position:absolute;top:0;left:1em;width:100%;border-bottom:1px solid #eee}
 .ecjia .ecjia-checkout .checklist+.checklist::before{content:'';position:absolute;top:0;left:1em;width:100%;border-bottom:1px solid #eee}
+.ecjia .ecjia-checkout .checklist.border-top-none::before{border-top:none;}
+
 .ecjia .ecjia-select .ecjia-list .select-item+.select-item::before{content:'';position:absolute;border:0;left:1em;width:100%;border-bottom:1px solid #eee}
 .ecjia .ecjia-select .ecjia-list .select-item li{border:0}
 .ecjia .ecjia-select .ecjia-list{border-top:1px solid #eee;border-bottom:1px solid #eee}
@@ -564,12 +575,13 @@ footer{padding-bottom:3em}
 .ecjia .ecjia-checkout .checklist.error{border:1px solid #ef3030;box-shadow:0 0 6px #d59392;box-shadow:0 1px 1px rgba(0,0,0,.075) inset,0 0 6px #d59392;outline:0 none}
 .ecjia .ecjia-checkout .checklist .iconfont{position:absolute;right:1em;top:45%;transform:translateY(-50%)}
 .ecjia .ecjia-checkout .checklist a{display:inline-block;width:100%}
+.ecjia .ecjia-checkout .checklist .pay_title{position:absolute;top:20%;}
 .ecjia-checkout .checklist .select_nav{margin-right:2em;width:70%;text-align:right}
 .ecjia-checkout .checklist .select_nav_short{margin-right:2em;width:50%;text-align:right}
 .flow-done-text{font-size:.9em}
 
 /* 订单商品列表 */
-.ecjia .ecjia-checkout .flow-goods-list{background:#fff}
+.ecjia .ecjia-checkout .flow-goods-list{background:#fff;position: relative;}
 .ecjia .ecjia-checkout .flow-goods-list .goods-item,.ecjia .ecjia-checkout .flow-goods-list .goods-list{overflow:hidden;position:relative;padding:1em;height:7em}
 .ecjia .ecjia-checkout .flow-goods-list .goods-list.goods_attr_ul{height:auto}
 .ecjia .ecjia-checkout .flow-goods-list .goods_attr_list{padding-left:.5em;overflow:hidden}
@@ -1058,6 +1070,10 @@ footer{padding-bottom:3em}
 .ecjia-order-list .ecjia-order-mt:first-child{margin:0}
 .ecjia-order-list .ecjia-order-item .flow-goods-list{border-top:1px solid #eee;border-bottom:1px solid #eee}
 .ecjia-order-detail .order-hd,.ecjia-order-list .ecjia-order-item .order-ft,.ecjia-order-list .ecjia-order-item .order-hd{height:3em;line-height:3em;padding:0 1em}
+.ecjia-order-list .ecjia-order-item .order-hd .order_model {
+	color: #47aa4d;
+    padding-right: .5em;
+}
 .ecjia-order-list .ecjia-order-item .ecjiaf-order-status{background-color:#f4a12e;color:#fff;border-radius:10px 0 10px 0;font-size:.8em;padding:.2em.5em}
 .order-hd i{font-size:1.5em;margin-right:.5em}
 .ecjia-order-list .ecjia-order-item .two-btn{padding:0}
@@ -2061,4 +2077,104 @@ footer{padding-bottom:3em}
     color: #ff8214;
     line-height: 2em;
     font-size: 1em;
+}
+
+/*结算配送方式 配送上门/上门提货*/
+.ecjia-checkout-tab {
+	line-height: 4em;
+    text-align: center;
+    font-size: 1.1em;
+}
+.ecjia-checkout-tab .tab-left {
+	border: 1px solid #47aa4d;
+    padding: .5em 1em;
+    border-radius: 20px 0 0 20px;
+}
+.ecjia-checkout-tab .tab-right {
+	border: 1px solid #47aa4d;
+    padding: .5em 1em;
+    border-radius: 0 20px 20px 0;
+}
+.ecjia-checkout-tab .tab {
+	cursor: pointer;
+	color: #47aa4d;
+	font-weight: bold;
+}
+.ecjia-checkout-tab .tab.active {
+	background-color: #47aa4d;
+	color: #fff;
+}
+.ecjia-checkout label i.icon-position {
+    background-image: url(../images/location.png);
+    background-size: 2em 2em;
+    width: 2em;
+    height: 2em;
+    display: block;
+    position: absolute;
+    left: 1em;
+    top: 40%;
+    font-size: .8em;
+}
+.ecjia-checkout label i.icon-store {
+	background-image: url(../images/icon/store_green.png);
+    background-size: 2em 2em;
+    width: 2em;
+    height: 2em;
+    display: block;
+    position: absolute;
+    left: 1em;
+    top: 40%;
+    font-size: .8em;
+}
+.ecjia-checkout i.icon-shopguide {
+	background-image: url(../images/icon/shopguide.png);
+    background-size: 1.5em 1.5em;
+    width: 1.5em;
+    height: 1.5em;
+    display: block;
+    position: absolute;
+    right: 1em;
+    top: 40%;
+    font-size: .8em;
+}
+
+.ecjia-checkout {
+	max-width: 640px;
+    overflow-x: hidden;
+}
+
+.ecjia-checkout .checklist.note {
+    position: relative;
+    padding: 10px 1em 10px 3.5em;
+}
+
+.ecjia-checkout .checklist .note-title {
+	position: absolute;
+    left: 1em;
+    text-align: left;
+    display: block;
+    height: 12px;
+    line-height: 12px;
+    top: 50%;
+    margin-top: -6px;
+}
+
+.ecjia-checkout .checklist input.note {
+    display: block;
+    width: 100%;
+    height: 32px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
+	font-size: .9em;
+}
+
+.ecjia .ecjia-checkout .flow-goods-list.border::before, .ecjia .ecjia-checkout .checklist.border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1em;
+    width: 100%;
+    border-bottom: 1px solid #eee;
 }

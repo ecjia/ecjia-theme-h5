@@ -211,7 +211,7 @@ class user_privilege_controller {
         $status = !empty($_POST['status']) ? $_POST['status'] : '';
         if ($status == 'logout') {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNOUT)->run();
-            $back_act = RC_Uri::url('user/privilege/login');
+            $back_act = RC_Uri::url('touch/my/init');
             
             ecjia_touch_user::singleton()->signout();
             RC_Cookie::delete(RC_Config::get('session.session_name'));

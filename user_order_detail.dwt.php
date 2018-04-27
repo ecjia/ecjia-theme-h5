@@ -58,40 +58,66 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</ul>
 			<ul class="ecjia-list">
 				<li>商品金额：<span class="ecjiaf-fr ">{$order.formated_goods_amount}</span></li>
+				{if $order.tax neq 0}
 				<li>税费金额：<span class="ecjiaf-fr ">{$order.formated_tax}</span></li>
+				{/if}
+				{if $order.integral_money neq 0}
 				<li>积分抵扣：<span class="ecjiaf-fr ecjia-color-red ">-{$order.formated_integral_money}</span></li>
+				{/if}
+				{if $order.bonus neq 0}
 				<li>红包抵扣：<span class="ecjiaf-fr ecjia-color-red ">-{$order.formated_bonus}</span></li>
+				{/if}
+				{if $order.discount neq 0}
 				<li>优惠金额：<span class="ecjiaf-fr ecjia-color-red ">-{$order.formated_discount}</span></li>
+				{/if}
+				{if $order.shipping_fee neq 0}
 				<li>运费：<span class="ecjiaf-fr ">{$order.formated_shipping_fee}</span></li>
+				{/if}
+				{if $order.pay_fee neq 0}
+				<li>手续费：<span class="ecjiaf-fr ">{$order.formated_pay_fee}</span></li>
+				{/if}
 				<li>共计：<span class="ecjiaf-fr ">{$order.formated_total_fee}</span></li>
 			</ul>
-			<p class="select-title ecjiaf-fwb ecjia-margin-l">配送信息</p>
-			<ul class="ecjia-list">
-			    <!-- <li><span class="ecjiaf-fl width-25-p">发货时间：</span><span class="ecjiaf-fr width-75-p">{if $order.shipping_time}{$order.shipping_time}{else}暂未发货{/if}</span></li> -->
-				{if $order.expect_shipping_time neq ' ' && $order.expect_shipping_time neq '' && $order.expect_shipping_time neq 'undefined'}<li><span class="ecjiaf-fl width-25-p">送达时间：</span><span class="ecjiaf-fr width-75-p">{$order.expect_shipping_time}</span></li>{/if}
-				<li style="height: auto;"><span class="ecjiaf-fl width-25-p">收货地址：</span>
-				<span class="ecjiaf-fr width-75-p">{$order.consignee} {$order.mobile}</span>
-				<span class="ecjiaf-fr width-75-p">{$order.province}{$order.city}{$order.district}{$order.street} {$order.address}</span></li>
-				<li>
-					<span class="ecjiaf-fl width-25-p">配送员：</span><span class="ecjiaf-fr width-75-p">
-					{if $order.express_user}
-						{$order.express_user}
-						{if $express_url}
-						<span>
-							<a style="float: right;display: inline-block;" class="nopjax external" href="{$express_url}">
-								<img class="order-map" src="{$theme_url}images/icon/order-map.png">
-							</a>
-						</span>
+			
+			{if $order.order_mode eq 'storepickup'}
+				<p class="select-title ecjiaf-fwb ecjia-margin-l">自提信息</p>
+				<ul class="ecjia-list">
+				    <li><span class="ecjiaf-fl width-25-p">提货时间：</span><span class="ecjiaf-fr width-75-p">{if $order.expect_shipping_time}{$order.expect_shipping_time}{else}暂无{/if}</span></li>
+					<li><span class="ecjiaf-fl width-25-p">提货码：</span><span class="ecjiaf-fr width-75-p">{if $order.pickup_code}{$order.pickup_code}{else}暂无{/if}</span></li>
+					<li style="height: auto;"><span class="ecjiaf-fl width-25-p">提货门店：</span>
+					<span class="ecjiaf-fr width-75-p">{$order.seller_name} {if $order.service_phone}({$order.service_phone}){/if}</span>
+					<span class="ecjiaf-fr width-75-p">{$order.store_address}</span></li>
+				</ul>
+			{else}
+				<p class="select-title ecjiaf-fwb ecjia-margin-l">配送信息</p>
+				<ul class="ecjia-list">
+				    <!-- <li><span class="ecjiaf-fl width-25-p">发货时间：</span><span class="ecjiaf-fr width-75-p">{if $order.shipping_time}{$order.shipping_time}{else}暂未发货{/if}</span></li> -->
+					{if $order.expect_shipping_time neq ' ' && $order.expect_shipping_time neq '' && $order.expect_shipping_time neq 'undefined'}<li><span class="ecjiaf-fl width-25-p">送达时间：</span><span class="ecjiaf-fr width-75-p">{$order.expect_shipping_time}</span></li>{/if}
+					<li style="height: auto;"><span class="ecjiaf-fl width-25-p">收货地址：</span>
+					<span class="ecjiaf-fr width-75-p">{$order.consignee} {$order.mobile}</span>
+					<span class="ecjiaf-fr width-75-p">{$order.province}{$order.city}{$order.district}{$order.street} {$order.address}</span></li>
+					<li>
+						<span class="ecjiaf-fl width-25-p">配送员：</span><span class="ecjiaf-fr width-75-p">
+						{if $order.express_user}
+							{$order.express_user}
+							{if $express_url}
+							<span>
+								<a style="float: right;display: inline-block;" class="nopjax external" href="{$express_url}">
+									<img class="order-map" src="{$theme_url}images/icon/order-map.png">
+								</a>
+							</span>
+							{/if}
+						{else}
+							暂无
 						{/if}
-					{else}
-						暂无
-					{/if}
-					</span>
-				</li>
-				<li><span class="ecjiaf-fl width-25-p">配送员号码：</span><span class="ecjiaf-fr width-75-p">{if $order.express_user}{$order.express_mobile}{else}暂无{/if}</span></li>
-				<li><span class="ecjiaf-fl width-25-p">配送方式：</span><span class="ecjiaf-fr width-75-p">{$order.shipping_name}</span></li>
-			</ul>
-			{if $order.shipping_code == 'ship_cac' && $order.pickup_code neq ''}
+						</span>
+					</li>
+					<li><span class="ecjiaf-fl width-25-p">配送员号码：</span><span class="ecjiaf-fr width-75-p">{if $order.express_user}{$order.express_mobile}{else}暂无{/if}</span></li>
+					<li><span class="ecjiaf-fl width-25-p">配送方式：</span><span class="ecjiaf-fr width-75-p">{$order.shipping_name}</span></li>
+				</ul>
+			{/if}
+			
+			{if $order.shipping_code == 'ship_cac' && $order.pickup_code neq '' && $order.order_mode neq 'storepickup'}
 			<p class="select-title ecjiaf-fwb ecjia-margin-l">提货信息</p>
 			<ul class="ecjia-list">
 				<li><span class="ecjiaf-fl width-25-p">提货码：</span><span class="ecjiaf-fr width-75-p">{$order.pickup_code}</span></li>
@@ -99,6 +125,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<li hidden><span class="ecjiaf-fl width-25-p">有效期至：</span><span class="ecjiaf-fr width-75-p">{$order.pickup_code_expiretime}</span></li>
 			</ul>
 			{/if}
+			
 			<p class="select-title ecjiaf-fwb ecjia-margin-l">订单信息</p>
 			<ul class="ecjia-list">
 			    <li><span class="ecjiaf-fl width-25-p">订单编号：</span><span class="width-75-p">{$order.order_sn}</span><button class="copy-btn" data-clipboard-text="{$order.order_sn}">复制</button></li>
