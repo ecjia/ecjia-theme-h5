@@ -56,12 +56,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 				<!-- {if $store_category} -->
 					<!-- {foreach from=$store_category item=val} -->
-					<li class="a1p {if $val.id eq $category_id}a1r{/if}">
+					<li class="a1p {if $val.id eq $category_id}a1r{else if $val.checked eq 1}a1t{/if}">
 						<strong class="a1s" data-href="{RC_Uri::url('merchant/index/ajax_goods')}&store_id={$store_id}" data-category="{$val.id}" data-toggle="toggle-category">{$val.name}</strong>
 						<!-- {if $val.children} -->
 							<strong class="a1v">
 							<!-- {foreach from=$val.children item=v} -->
-							<span class="a1u h a1w" data-href="{RC_Uri::url('merchant/index/ajax_goods')}&store_id={$store_id}" data-category="{$v.id}" data-toggle="toggle-category">
+							<span class="a1u h a1w {if $v.checked eq 1}active{/if}" data-href="{RC_Uri::url('merchant/index/ajax_goods')}&store_id={$store_id}" data-category="{$v.id}" data-toggle="toggle-category">
 								{$v.name}
 							</span>
 							<!-- {/foreach} -->

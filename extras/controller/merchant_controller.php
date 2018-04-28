@@ -103,17 +103,57 @@ class merchant_controller {
 			);
 			ecjia_front::$controller->assign('header_right', $header_right);
 		}
+		
+		//获取浏览器后退显示原来的分类
+		$store_temp_action_type = $_SESSION['store_temp'.$store_id]['action_type'];
+
+		if ($store_temp_action_type == 'all') {
+			$type_name = '全部';
+		} elseif ($store_temp_action_type == 'best') {
+			$type_name = '精选';
+		} elseif ($store_temp_action_type == 'hot') {
+			$type_name = '热销';
+		} elseif ($store_temp_action_type == 'new') {
+			$type_name = '新品';
+		}
+
+		if (!empty($store_temp_action_type)) {
+			$action_type = $store_temp_action_type;
+		} else {
+			$action_type = 'all';
+		}
 		ecjia_front::$controller->assign('action_type', $action_type);
 		 
 		//店铺分类
 		$store_category = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_CATEGORY)->data(array('seller_id' => $store_id))->run();
 		if (!is_ecjia_error($store_category)) {
+			//默认选中分类
+			if (!empty($store_temp_action_type) && is_numeric($store_temp_action_type)) {
+				$category_id = $store_temp_action_type;
+				
+				foreach ($store_category as $key => $value) {
+					if ($value['id'] == $store_temp_action_type) {
+						$store_category[$key]['checked'] = 1;
+						$type_name = $value['name'];
+						break;
+					}
+					if (!empty($value['children'])) {
+						foreach ($value['children'] as $k => $v) {
+							if ($v['id'] == $store_temp_action_type) {
+								$store_category[$key]['checked'] = 1;
+								$store_category[$key]['children'][$k]['checked'] = 1;
+								$type_name = $v['name'];
+								break;
+							}
+						}
+					}
+				}
+			}
 			ecjia_front::$controller->assign('store_category', $store_category);
 		}
-		//默认显示全部商品
-		$action_type = 'all';
+
 		$goods_list = array();
-		if (!empty($action_type) && $action_type != 'all') {
+		if (!empty($action_type) && $action_type != 'all' && !is_numeric($action_type)) {
 			$parameter = array(
 				'action_type' 	=> $action_type,
 				'pagination' 	=> array('count' => $limit, 'page' => $pages),
@@ -284,6 +324,7 @@ class merchant_controller {
 		$category_id = 0;
 		$action_type = '';
 		 
+		$_SESSION['store_temp'.$store_id]['action_type'] = $_GET['action_type'];
 		if (!empty($_GET['action_type']) && is_numeric($_GET['action_type'])) {
 			$category_id = intval($_GET['action_type']);
 		} else {
@@ -353,7 +394,8 @@ class merchant_controller {
 				}
 			}
 		}
-		 
+		
+		
 		//店铺信息
 		$parameter_list = array(
 			'seller_id' => $store_id,
@@ -361,7 +403,7 @@ class merchant_controller {
 		);
 		$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
 		$store_info = is_ecjia_error($store_info) ? array() : $store_info;
-
+		
 		if ($store_info['shop_closed'] != 1) {
 			$token = ecjia_touch_user::singleton()->getToken();
 			$arr = array(
