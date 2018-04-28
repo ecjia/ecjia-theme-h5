@@ -13092,3 +13092,96 @@ footer {
     width: 100%;
     border-bottom: 1px solid #eee;
 }
+
+/*选择城市*/
+.ecjia-select-city .showLetter {
+    position: fixed;
+    color: #006ac7;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    border: #006ac7 1px solid;
+    text-align: center;
+    display: none
+}
+
+.ecjia-select-city .showLetter span {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px
+}
+
+.ecjia-select-city .city-container {
+    width: 100%
+}
+
+.ecjia-select-city .letter {
+    width: auto;
+    position: fixed;
+    top: 10em;
+    right: 10px;
+    text-align: center
+}
+
+.ecjia-select-city .letter ul {
+    list-style-type: none
+}
+
+.ecjia-select-city .letter ul li a {
+    text-decoration: none;
+    color: #006ac7;
+    font-size: 16px
+}
+
+.ecjia-select-city .city-list {
+    width: 100%;
+    overflow: hidden
+}
+
+.ecjia-select-city .city-list .city-letter {
+    font-size: 20px;
+    display: inline-block;
+    padding: 5px 20px;
+    width: 100%
+}
+
+.ecjia-select-city .city-list p {
+    width: 85%;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #e8ecf1;
+    cursor: pointer;
+    padding: 0 5px;
+    margin-left: 15px
+}
+
+.location-city {
+    background-color: #fff
+}
+
+.ecjia-select-city .city-list .city-li {
+    background-color: #fff
+}
+
+.ecjia-select-city .city-item .city-li:last-child p {
+    border-bottom: none
+}
+
+.location-city-container {
+    padding-left: 4%;
+    padding-bottom: 1em;
+}
+
+.location-city-container .icon-position {
+    width: 1.5em;
+    height: 1.5em;
+    background-size: 1.5em;
+    background-repeat: no-repeat;
+    background-image: url(../images/icon/icon_position.png);
+    display: block;
+    float: left;
+    margin-right: .5em;
+}

@@ -48,6 +48,7 @@
             ecjia.touch.share_spread();
             ecjia.touch.copy_btn();
             ecjia.touch.clear_cache();
+            ecjia.touch.select_city();
 
             $("body").greenCheck();
         },
@@ -296,6 +297,57 @@
                         },
                     }]
                 });
+            });
+        },
+
+        select_city: function () {
+            $('.city-list p').off('click').on('click', function () {
+                var $this = $(this);
+                var id = $this.attr('data-id');
+                var city_name = $this.text();
+                var address_id = $('input[name="address_id"]').val();
+                var url = $("#cityall").attr('data-url');
+
+                var date = new Date();
+                date.setTime(date.getTime() + (30 * 60 * 1000));
+
+                if (id) {
+                    $.cookie('city_id', id, {
+                        expires: date
+                    });
+                    $.cookie('city_name', city_name, {
+                        expires: date
+                    });
+                    url += '&city_id=' + id;
+                }
+                if (address_id) {
+                    url += '&id=' + address_id;
+                }
+                ecjia.pjax(url);
+            });
+            //点击索引查询城市
+            $('.letter a').off('click').on('click', function () {
+                var s = $(this).html();
+                var top = $(this).attr('data-top');
+                if (top == 'top') {
+                    $('html,body').stop(true, false).animate({
+                        scrollTop: 0
+                    }, 500);
+                } else {
+                    if ($('#' + s + '1').offset() == undefined) {
+                        return false;
+                    }
+                    var top = $('#' + s + '1').offset().top;
+                    $('html,body').stop(true, false).animate({
+                        scrollTop: top
+                    }, 500);
+                    $("#showLetter span").html(s);
+                    $("#showLetter").show().delay(1000).hide(0);
+                }
+            });
+            //中间的标记显示
+            $('body').on('onMouse', '.showLetter span', function () {
+                $("#showLetter").show().delay(500).hide(0);
             });
         },
 

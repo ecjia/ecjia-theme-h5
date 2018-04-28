@@ -115,13 +115,21 @@ class location_controller
     public static function select_city()
     {
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
-
         if (!ecjia_front::$controller->is_cached('select_location_city.dwt', $cache_id)) {
-            $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
+
+            $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::STORE_BUSINESS_CITY)->run();
             if (is_ecjia_error($rs)) {
                 return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
             }
-            ecjia_front::$controller->assign('citylist', $rs['recommend_city']);
+
+            $arr = [];
+            if (!empty($rs)) {
+                foreach ($rs as $key => $value) {
+                    $value['business_district_list'] = '';
+                    $arr[$value['index_letter']][] = $value;
+                }
+            }
+            ecjia_front::$controller->assign('rs', $arr);
 
             $referer_url = !empty($_GET['referer_url']) ? $_GET['referer_url'] : '';
             if (!empty($referer_url)) {
@@ -152,7 +160,7 @@ class location_controller
 
         $ad_info = $location_content['ad_info'];
         $city_name = $ad_info['district'];
-        $adcode = $ad_info['adcode'];
+        $adcode = !empty($ad_info['adcode']) ? substr($ad_info['adcode'], 0, 4) : array();
 
         $params = array(
             'token' => ecjia_touch_user::singleton()->getToken(),
