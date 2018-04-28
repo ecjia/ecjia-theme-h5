@@ -160,7 +160,7 @@ class location_controller
 
         $ad_info = $location_content['ad_info'];
         $city_name = $ad_info['district'];
-        $adcode = !empty($ad_info['adcode']) ? substr($ad_info['adcode'], 0, 4) : array();
+        $adcode = !empty($ad_info['adcode']) ? substr($ad_info['adcode'], 0, 4) : '';
 
         $params = array(
             'token' => ecjia_touch_user::singleton()->getToken(),
