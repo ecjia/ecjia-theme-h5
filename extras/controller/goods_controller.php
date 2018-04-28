@@ -170,7 +170,8 @@ class goods_controller {
 	    		'city_id' => $_COOKIE['city_id']
 	    	);
 	    	$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
-
+			$store_info = !is_ecjia_error($store_info) ? $store_info : array();
+			
 	    	$goods_info['shop_closed'] = $store_info['shop_closed'];
 	    	$goods_info['label_trade_time'] = $store_info['label_trade_time'];
 	    	
@@ -486,12 +487,12 @@ class goods_controller {
 	    				$paramater['seller_id'] = $store_id;
 	    			}
 	    			//店铺购物车商品
-	    			$cart_list = RC_Cache::app_cache_get('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'].$_COOKIE['city_id'], 'cart');
+	    			$cart_list = RC_Cache::app_cache_get('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], 'cart');
 	    			
 	    			if (empty($cart_list)) {
 	    				$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($paramater)->run();
 	    				if (!is_ecjia_error($cart_list)) {
-	    					RC_Cache::app_cache_set('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], 'cart');
+	    					RC_Cache::app_cache_set('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], $cart_list, 'cart');
 	    				} else {
 			    			$cart_list = array();
 			    		}

@@ -279,7 +279,9 @@ class user_privilege_controller {
     	$token = touch_function::get_token();
     	$_SESSION['user_temp']['token'] = $token;
     	
-    	$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();
+		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();
+		$res = !is_ecjia_error($res) ? $res : array();
+
     	ecjia_front::$controller->assign('captcha_image', $res['base64']);
     	
     	ecjia_front::$controller->assign('title', '身份验证');
@@ -427,7 +429,7 @@ class user_privilege_controller {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_VALIDATE)->data(array('mobile' => $mobile))->run();
             $data = is_ecjia_error($data) ? array() : $data;
             $verification = $data['invite_code'];
-            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS,array('verification' => $verification));
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('verification' => $verification));
         }
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
         if (!ecjia_front::$controller->is_cached('user_register.dwt', $cache_id)) {

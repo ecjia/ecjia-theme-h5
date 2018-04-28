@@ -54,6 +54,8 @@ class affiliate_controller {
 		$token = touch_function::get_affiliate_token();
 		
 		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();
+		$res = !is_ecjia_error($res) ? $res : array();
+
 		ecjia_front::$controller->assign('captcha_image', $res['base64']);
 		
 		$invite_code = trim($_GET['invite_code']);

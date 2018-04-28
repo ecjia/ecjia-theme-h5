@@ -140,7 +140,9 @@ class user_order_controller {
                 
                 if (!empty($data['order_status_code'])) {
                 	$params = array('token' => $token, 'type' => $data['order_status_code']);
-                	$reason_list = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_RESIONS)->data($params)->run();
+					$reason_list = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_RESIONS)->data($params)->run();
+					$reason_list = !is_ecjia_error($reason_list) ? $reason_list : array();
+
                 	ecjia_front::$controller->assign('reason_list', json_encode($reason_list));
                 	ecjia_front::$controller->assign('refund_type', 'refund');
                 }
@@ -396,8 +398,9 @@ class user_order_controller {
             //rec_id返回的信息
             if ($goods_info['is_commented'] == 1) {
                 $rec_data = array('token' => $token, 'rec_id' => $goods_info['rec_id']);
-                $rec_id = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDERS_COMMENT_DETAIL)->data($rec_data)->run();
-                $rec_info = is_ecjia_error($rec_id) ? array() : $rec_id;
+                $rec_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDERS_COMMENT_DETAIL)->data($rec_data)->run();
+				$rec_info = is_ecjia_error($rec_info) ? array() : $rec_info;
+				
                 ecjia_front::$controller->assign('rec_info', $rec_info);
             }
             
@@ -522,7 +525,8 @@ class user_order_controller {
     			}
     		}
     		$params = array('token' => $token, 'type' => $data['order_status_code']);
-    		$reason_list = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_RESIONS)->data($params)->run();
+			$reason_list = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_RESIONS)->data($params)->run();
+			$reason_list = !is_ecjia_error($reason_list) ? $reason_list : array();
     	}
     	ecjia_front::$controller->assign('reason_list', json_encode($reason_list));
 		

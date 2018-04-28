@@ -373,7 +373,8 @@ class merchant_controller {
 			 
 			//店铺购物车商品
 			$cart_list = RC_Cache::app_cache_get('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], 'cart');
-			if (empty($cart_list)) {
+			
+			if (empty($cart_list['cart_list'])) {
 				$cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
 				if (!is_ecjia_error($cart_list) && ecjia_touch_user::singleton()->isSignin()) {
 					RC_Cache::app_cache_set('cart_goods'.$token.$store_id.$_COOKIE['longitude'].$_COOKIE['latitude'].$_COOKIE['city_id'], $cart_list, 'cart');
@@ -525,6 +526,7 @@ class merchant_controller {
 		if (cart_function::is_weixin() || cart_function::is_alipay()) {
 			$params = array('store_id' => $store_id);
 			$payment_list = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_SHOP_PAYMENT)->data($params)->run();
+			$payment_list = !is_ecjia_error($payment_list) ? $payment_list : array();
 			/*根据浏览器过滤支付方式，微信自带浏览器过滤掉支付宝支付，其他浏览器过滤掉微信支付*/
 			
 			$payment = array();
