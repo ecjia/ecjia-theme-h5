@@ -35,6 +35,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 {/if}
 	<input type="hidden" name="address_id" value="{$smarty.get.address_id}">
 
+	<div class="ecjia-history-city">
+		
+	</div>
+
+	{if $rs}
 	<div class="ecjia-select-city">
 		<!--显示点击的是哪一个字母-->
 		<div id="showLetter" class="showLetter"><span>A</span></div>
@@ -55,12 +60,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<div class="city-item">
 					<span class="city-letter" id="{$key}1">{$key}</span>
                     <!--{foreach from=$val item=v}-->
-					<div class="city-li"><p data-id="{$v.business_city}">{$v.business_city_name}</p></div>
+					<div class="city-li"><p class="select-city-li" data-id="{$v.business_city}">{$v.business_city_name}</p></div>
                     <!--{/foreach}-->
 				</div>
                 <!--{/foreach}-->
 			</div>
 		</div>
 	</div>
+	{/if}
+
 </div>
 <!-- {/block} -->

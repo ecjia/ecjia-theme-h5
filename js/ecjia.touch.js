@@ -301,7 +301,18 @@
         },
 
         select_city: function () {
-            $('.city-list p').off('click').on('click', function () {
+            var history_city = $.localStorage('history_city');
+            if (history_city != undefined) {
+                history_city = JSON.parse(history_city);
+                var html = '<h2 class="history-city-title"><span>历史访问城市</span></h2><ul class="history-city-list">';
+                for (var i = history_city.length - 1; i >= 0; i--) {
+                    html += '<li class="data-li"><p class="select-city-li" data-id='+ history_city[i].id +'>'+ history_city[i].city_name +'</p></li>';         
+                }
+                html += '</ul>';
+                $('.ecjia-history-city').html(html);
+            }
+
+            $('.select-city-li').off('click').on('click', function () {
                 var $this = $(this);
                 var id = $this.attr('data-id');
                 var city_name = $this.text();
@@ -310,6 +321,33 @@
 
                 var date = new Date();
                 date.setTime(date.getTime() + (30 * 60 * 1000));
+
+                var city = {id: id, city_name: city_name};
+                var history_city = $.localStorage('history_city');
+                var push = 1;
+
+                if (history_city == undefined) {
+                    history_city = [];
+                } else {
+                    history_city = JSON.parse(history_city);
+                    //重复的不追加
+                    for (var i = history_city.length - 1; i >= 0; i--) {
+                        if (history_city[i].id == id) {
+                            push = 0;
+                            break;
+                        }
+                    }
+                }
+                if (push == 1) {
+                    //超过3个 删除首个
+                    if (history_city.length == 3) {
+                        history_city.shift();
+                    }
+                    history_city.push(city);
+                }
+                history_city = JSON.stringify(history_city);
+                //存入缓存
+                $.localStorage('history_city', history_city);
 
                 if (id) {
                     $.cookie('city_id', id, {
@@ -325,6 +363,7 @@
                 }
                 ecjia.pjax(url);
             });
+
             //点击索引查询城市
             $('.letter a').off('click').on('click', function () {
                 var s = $(this).html();
@@ -345,6 +384,7 @@
                     $("#showLetter").show().delay(1000).hide(0);
                 }
             });
+
             //中间的标记显示
             $('body').on('onMouse', '.showLetter span', function () {
                 $("#showLetter").show().delay(500).hide(0);
