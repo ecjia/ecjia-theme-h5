@@ -312,6 +312,11 @@
                 $('.ecjia-history-city').html(html);
             }
 
+            var height = $(window).height();
+            var letter_height = $('.letter').height();
+            var top = (height - letter_height) / 2;
+            $('.letter').css('top', top);
+
             $('.select-city-li').off('click').on('click', function () {
                 var $this = $(this);
                 var id = $this.attr('data-id');

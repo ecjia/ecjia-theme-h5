@@ -4763,10 +4763,11 @@ footer {
 
 /*========================  城市选择 ===========================*/
 .location-city .location-city-title {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 40px;
     margin: 0 15px;
-    position: relative
+    position: relative;
+    color: #838383;
 }
 
 .cityall {
@@ -13096,15 +13097,16 @@ footer {
 /*选择城市*/
 .ecjia-select-city .showLetter {
     position: fixed;
-    color: #006ac7;
+    color: #fff;
     width: 50px;
     height: 50px;
     top: 50%;
     left: 50%;
-    border-radius: 50%;
-    border: #006ac7 1px solid;
+    border-radius: 8px;
     text-align: center;
-    display: none
+    display: none;
+    background-color: #444444;
+    opacity: 0.8;
 }
 
 .ecjia-select-city .showLetter span {
@@ -13121,7 +13123,6 @@ footer {
 .ecjia-select-city .letter {
     width: auto;
     position: fixed;
-    top: 10em;
     right: 10px;
     text-align: center
 }
@@ -13133,7 +13134,7 @@ footer {
 .ecjia-select-city .letter ul li a {
     text-decoration: none;
     color: #006ac7;
-    font-size: 16px
+    font-size: 12px
 }
 
 .ecjia-select-city .city-list {
@@ -13142,10 +13143,11 @@ footer {
 }
 
 .ecjia-select-city .city-list .city-letter {
-    font-size: 20px;
+    font-size: 15px;
     display: inline-block;
     padding: 5px 20px;
-    width: 100%
+    width: 100%;
+    color: #232323;
 }
 
 .ecjia-select-city .city-list p {
@@ -13155,7 +13157,8 @@ footer {
     border-bottom: 1px solid #e8ecf1;
     cursor: pointer;
     padding: 0 5px;
-    margin-left: 15px
+    margin-left: 15px;
+    color: #232323;
 }
 
 .location-city {
@@ -13173,6 +13176,7 @@ footer {
 .location-city-container {
     padding-left: 4%;
     padding-bottom: 1em;
+    font-weight: bold;
 }
 
 .location-city-container .icon-position {
@@ -13187,7 +13191,7 @@ footer {
 }
 
 .history-city-title {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 40px;
     margin: 0 15px;
     position: relative;
@@ -13195,9 +13199,9 @@ footer {
 
 .ecjia-history-city ul li {
     float: left;
-    margin: 10px;
+    margin: 5px;
     background-color: #fff;
-    padding: 5px 30px;
+    padding: 10px 30px;
     border-radius: 4px;
     cursor: pointer;
 }
