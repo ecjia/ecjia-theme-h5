@@ -60,7 +60,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<div class="city-item">
 					<span class="city-letter" id="{$key}1">{$key}</span>
                     <!--{foreach from=$val item=v}-->
-					<div class="city-li"><p class="select-city-li" data-id="{$v.business_city}">{$v.business_city_name}</p></div>
+					<div class="city-li"><p class="select-city-li" data-id="{$v.business_city}">{$v.business_city_alias}</p></div>
                     <!--{/foreach}-->
 				</div>
                 <!--{/foreach}-->
