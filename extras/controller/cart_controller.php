@@ -384,7 +384,8 @@ class cart_controller {
         	$_SESSION['order_address_temp']['address_id'] = $address_id;
         }
         $cart_key = md5($address_id.$rec_id);
-        $_SESSION['cart'][$cart_key]['data'] = $rs;
+        $rs_session = $rs;unset($rs_session['goods_list']);
+        $_SESSION['cart'][$cart_key]['data'] = $rs_session;
         
         //支付方式
         $payment_id = 0;
@@ -657,7 +658,8 @@ class cart_controller {
     	}
     
     	$cart_key = md5($address_id.$rec_id);
-    	$_SESSION['cart'][$cart_key]['data'] = $rs;
+    	$rs_session = $rs;unset($rs_session['goods_list']);
+    	$_SESSION['cart'][$cart_key]['data'] = $rs_session;
     
     	//支付方式
     	$payment_id = 0;
@@ -942,6 +944,8 @@ class cart_controller {
    			return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
    		}
    		$order_id = $rs['order_id'];
+   		//释放session
+   		unset($_SESSION['cart']);
    		
    		$url = RC_Uri::url('pay/index/init', array('order_id' => $order_id, 'tips_show' => 1));
    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
@@ -1016,6 +1020,8 @@ class cart_controller {
     		return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
     	}
     	$order_id = $rs['order_id'];
+    	//释放session
+    	unset($_SESSION['cart']);
     	 
     	$url = RC_Uri::url('pay/index/init', array('order_id' => $order_id, 'tips_show' => 1));
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
