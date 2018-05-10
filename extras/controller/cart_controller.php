@@ -363,17 +363,22 @@ class cart_controller {
         if ($rs['payment_list']) {
         	$rs['payment_list'] = touch_function::change_array_key($rs['payment_list'], 'pay_id');
         }
+        $show_storepickup = false;
         if ($rs['shipping_list']) {
         	$shipping_arr = array();
         	foreach ($rs['shipping_list'] as $k => $v) {
         		if ($v['shipping_code'] != 'ship_cac') {
         			$shipping_arr[] = $v;
-        		}
+        		} else {
+                    $show_storepickup = true;
+                }
         	}
         	$rs['shipping_list'] = $shipping_arr;
         	$rs['shipping_list'] = touch_function::change_array_key($rs['shipping_list'], 'shipping_id');
         }
         ecjia_front::$controller->assign('data', $rs);
+
+        ecjia_front::$controller->assign('show_storepickup', $show_storepickup);
         
 		if (!empty($rs['consignee']['id'])) {
         	$address_id = $rs['consignee']['id'];
