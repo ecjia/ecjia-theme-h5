@@ -13209,3 +13209,11 @@ footer {
 .ecjia-history-city ul li:first-child {
     margin-left: 15px;
 }
+
+.ecjia-payment-notice {
+    color: #fc8d41;
+    background: #ffecca;
+    height: 3em;
+    line-height: 3em;
+    padding-left: 1em;
+}
