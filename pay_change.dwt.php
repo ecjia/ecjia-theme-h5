@@ -1,6 +1,6 @@
 <?php
 /*
-Name: ¸ü¸ÄÖ§¸¶·½Ê½Ò³Ãæ
+Name: æ›´æ”¹æ”¯ä»˜æ–¹å¼é¡µé¢
 Description: 
 Libraries: page_menu,page_header
 */
@@ -19,18 +19,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <form class="ecjia-form" name="payForm" action="{url path='pay/index/pay_order'}" method="post">
     <div class="ecjia-flow-done ecjia-pay">
-        <p class="ecjia-payment-notice">µ±Ç°¶©µ¥²»Ö§³ÖÔ­ÓĞÖ§¸¶·½Ê½£¬ÇëÇĞ»»ĞÂµÄÖ§¸¶·½Ê½¼ÌĞøÖ§¸¶¡£</p>
+        <p class="ecjia-payment-notice">å½“å‰è®¢å•ä¸æ”¯æŒåŸæœ‰æ”¯ä»˜æ–¹å¼ï¼Œè¯·åˆ‡æ¢æ–°çš„æ”¯ä»˜æ–¹å¼ç»§ç»­æ”¯ä»˜ã€‚</p>
 
 
         <ul class="ecjia-list ecjia-margin-t">
-            <li>¶©µ¥½ğ¶î£º<span class="ecjiaf-fr">{$detail.formated_total_fee}</span></li>
-            <li>Ö§¸¶·½Ê½£º<span class="ecjiaf-fr flow-msg">{$detail.pay_name}</span></li>
+            <li>è®¢å•é‡‘é¢ï¼š<span class="ecjiaf-fr">{$detail.formated_total_fee}</span></li>
+            <li>æ”¯ä»˜æ–¹å¼ï¼š<span class="ecjiaf-fr flow-msg">{$detail.pay_name}</span></li>
         </ul>
         
         {if $payment_list}
             <ul class="ecjia-list ecjia-margin-t">
                 <li>
-                    ÆäËüÖ§¸¶·½Ê½ <span class="ecjiaf-fr"></span>
+                    å…¶å®ƒæ”¯ä»˜æ–¹å¼ <span class="ecjiaf-fr"></span>
                 </li>
             </ul>
 
@@ -50,7 +50,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
         <div class="ecjia-margin-t ecjia-margin-b">
             <input name="order_id" type="hidden" value="{$detail.order_id}" />
-            <input class="btn btn-recharge confirm-payment" name="submit" type="submit" value="{t}È·ÈÏÖ§¸¶{/t}" />
+            <input class="btn btn-recharge confirm-payment" name="submit" type="submit" value="{t}ç¡®è®¤æ”¯ä»˜{/t}" />
         </div>
     </div>
 </form>
