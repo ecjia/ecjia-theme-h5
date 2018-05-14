@@ -651,6 +651,7 @@ class cart_controller {
     	if ($rs['shipping_list']) {
     		$rs['shipping_list'] = touch_function::change_array_key($rs['shipping_list'], 'shipping_id');
     	}
+        ecjia_front::$controller->assign('show_storepickup', true);
     	ecjia_front::$controller->assign('data', $rs);
     
     	if (!empty($rs['consignee']['id'])) {
