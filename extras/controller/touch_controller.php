@@ -140,7 +140,7 @@ class touch_controller {
 	        ecjia_front::$controller->assign_lang();
 	        
 	        $paramater = array(
-	        	'pagination' 	=> array('count' => 6, 'page' => 1),
+	        	'pagination' 	=> array('count' => 10, 'page' => 1),
 	        	'location' 		=> array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude'])
 	        );
 	        
