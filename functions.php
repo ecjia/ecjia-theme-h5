@@ -311,15 +311,18 @@ ecjia_open::macro('forget_password', function($querys) {
 ecjia_open::macro('user_password', function($querys) {
 	return RC_Uri::url('user/profile/edit_password');
 });
-//促销商品
+//促销商品/新品
 ecjia_open::macro('goods_suggest', function($querys) {
-	return RC_Uri::url('goods/index/promotion');
+	if ($querys['type'] == 'promotion') {
+		return RC_Uri::url('goods/index/promotion');
+	} elseif ($querys['type'] == 'new') {
+		return RC_Uri::url('goods/index/new');
+	}
 });
 //店铺分类列表
 ecjia_open::macro('goods_seller_list', function($querys) {
 	return RC_Uri::url('goods/category/store_list', array('cid' => $querys['category_id']));
 });
-
 //所有分类
 ecjia_open::macro('goods_list', function($querys) {
     return RC_Uri::url('goods/category/init', array('category_id' => $querys['category_id']));
@@ -340,10 +343,17 @@ ecjia_open::macro('user_bonus', function($querys) {
 ecjia_open::macro('quickpay', function($querys) {
 	return RC_Uri::url('user/quickpay/init', array('store_id' => $querys['merchant_id']));
 });
-
 //收款二维码
 ecjia_open::macro('collectmoney', function($querys) {
 	return RC_Uri::url('merchant/quickpay/collectmoney', array('store_id' => $querys['merchant_id']));
+});
+//历史记录
+ecjia_open::macro('history', function($querys) {
+	return RC_Uri::url('touch/index/history');
+});
+//店铺首页
+ecjia_open::macro('merchant', function($querys) {
+    return RC_Uri::url('merchant/index/init', array('store_id' => $querys['merchant_id']));
 });
 
 /**
