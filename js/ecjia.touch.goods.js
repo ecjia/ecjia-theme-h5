@@ -12,6 +12,8 @@
 
 			ecjia.touch.category.add_tocart();
 			ecjia.touch.category.remove_tocart();
+			ecjia.touch.category.change_num();
+
 			ecjia.touch.category.toggle_cart();
 			ecjia.touch.category.toggle_category();
 			ecjia.touch.category.scroll();
@@ -245,6 +247,63 @@
 			});
 		},
 
+		change_num: function() {
+			$("[data-toggle='change-number']").off('click').on('click', function (e) {
+				var $this = $(this),
+					val = $this.attr('goods_num'),
+					goods_id = $this.attr('goods_id'),
+					rec_id = $this.attr('rec_id');
+				$('.ecjia-num-view').find('input[name="value"]').val(val);
+				$('.ecjia-num-view').find('input[name="old_value"]').val(val);
+				$('.ecjia-num-view').find('input[name="rec_id"]').val(rec_id);
+				$('.ecjia-num-view').find('input[name="goods_id"]').val(goods_id);
+				$('.ecjia-num-content').addClass('show');
+			});
+
+			$('.ecjia-num-view .addNum').off('click').on('click', function (e) {
+				var val = parseInt($('.ecjia-num-view').find('input').val());
+				val += 1;
+				$('.ecjia-num-view').find('input[name="value"]').val(val);
+			});
+
+			$('.ecjia-num-view .minusNum').off('click').on('click', function (e) {
+				var val = parseInt($('.ecjia-num-view').find('input[name="value"]').val());
+				if (val == 1) {
+					return false;
+				}
+				val -= 1;
+				$('.ecjia-num-view').find('input[name="value"]').val(val);
+			});
+
+			$('.ecjia-num-view .btn-cancel').off('click').on('click', function (e) {
+				$('.ecjia-num-content').removeClass('show');
+			});
+
+			$('.ecjia-num-view .btn-ok').off('click').on('click', function (e) {
+				var $this = $(this),
+					goods_id = $('.ecjia-num-view').find('input[name="goods_id"]').val(),
+					rec_id = $('.ecjia-num-view').find('input[name="rec_id"]').val(),
+					num = $('.ecjia-num-view').find('input[name="value"]').val(),
+					old_value = parseInt($('.ecjia-num-view').find('input[name="old_value"]').val());
+				if ($this.hasClass('disabled')) {
+					return false;
+				}
+				$this.addClass('disabled');
+				if (num == 0 || isNaN(num) || num == undefined) {
+					$this.removeClass('disabled');
+					alert('数量超出范围');
+					return false;
+				}
+				if (parseInt(num) == old_value) {
+					$this.removeClass('disabled');
+					$('.ecjia-num-content').removeClass('show');
+					return false;
+				}
+				$('.ecjia-num-view').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+				ecjia.touch.category.update_cart(rec_id, num, goods_id, '', '', '', '');
+			});
+		},
+
 		//切换购物车 弹出/隐藏 效果
 		toggle_cart: function() {
 			$('.show_cart').off('click').on('click', function(e) {
@@ -308,6 +367,8 @@
 				$("[data-toggle='remove-to-cart']").removeClass('limit_click');
 
 				$('.goods-add-cart').removeClass('disabled');
+				$('.ecjia-num-view').find('.btn-ok').removeClass('disabled');
+
 				if (data.state == 'error') {
 					var myApp = new Framework7();
 
@@ -465,6 +526,7 @@
 
 					if (data.say_list) {
 						$('.minicart-goods-list').html(data.say_list);
+						ecjia.touch.category.change_num();
 					}
 
 					$('p.a6c').html('(已选' + data.count.goods_number + '件)')
@@ -513,6 +575,8 @@
 					ecjia.touch.category.add_tocart();
 					ecjia.touch.category.remove_tocart();
 					ecjia.touch.category.toggle_checkbox();
+					//隐藏修改购物车商品数量弹窗
+					$('.ecjia-num-content').removeClass('show');
 				}
 				ecjia.touch.category.check_all();
 				

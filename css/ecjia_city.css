@@ -3067,14 +3067,15 @@ footer {
 
 .store-add-cart.a4w .a5u {
     right: 61px;
-    background-position: center -68px
+    background-position: center -68px;
+    margin-right: 12px;
 }
 
 .a5u, .store-add-cart.a4w .a5v {
     position: absolute;
     z-index: 3;
     top: 40px;
-    width: 49px;
+    width: 30px;
     height: 40px;
     background-image: url(../images/icon/op.png);
     background-repeat: no-repeat;
@@ -3084,19 +3085,19 @@ footer {
 .store-add-cart.a4w .a5x {
     position: absolute;
     top: 39px;
-    right: 35px;
-    width: 39px;
+    right: 38px;
+    width: 35px;
     line-height: 55px;
     height: 40px;
     overflow: hidden;
     text-align: center;
     font-size: 1em;
-    font-weight: 400
+    font-weight: 400;
 }
 
 .store-add-cart.a4w .a5v {
-    right: 0;
-    background-position: center 12px
+    right: 10px;
+    background-position: center 12px;
 }
 
 .store-add-cart.a4w .a7g {
@@ -13217,3 +13218,108 @@ footer {
     line-height: 3em;
     padding-left: 1em;
 }
+
+.ecjia-num-content {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    max-width: 640px;
+    margin: 0 auto;
+    display: none;
+    z-index: 1001;
+}
+
+.ecjia-num-content.show {
+    display: block;
+}
+
+.ecjia-num-view-screen {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,.2);
+    z-index: 1002;
+}
+
+.ecjia-num-view {
+	position: absolute;
+	width: 66%;
+	z-index: 1003;
+	min-height: 5em;
+	background-color: #fff;
+	border-radius: 8px;
+	left: 17%;
+    top: 45%;
+}
+
+.ecjia-num-view img {
+	width: 30px;
+	height: 32px;
+	float: left;
+    padding-top: 2px;
+    cursor: pointer;
+}
+
+.ecjia-num-view .title {
+	line-height: 3em;
+	text-align: center;
+	font-size: 1.1em
+}
+
+.ecjia-num-view .num-handle {
+	height: 45px;
+	border-bottom: 1px solid #eee
+}
+
+.ecjia-num-view .num-handle .num-handle-content {
+	width: 160px;
+	text-align: center;
+	margin: 0 auto
+}
+
+.ecjia-num-view input {
+	float: left;
+	width: 80px;
+	border: 1px solid #eee;
+	margin: 0 10px;
+	height: 35px;
+	line-height: 24px;
+	text-align: center;
+	border-radius: 15px;
+	padding: 5px 5px 5px 10px
+}
+
+.ecjia-num-view .num-confirm {
+	width: 100%
+}
+
+.ecjia-num-view .btn-confirm {
+	width: 50%;
+	line-height: 40px;
+	background-color: #fff;
+	color: #47aa4d;
+	padding: 0;
+	float: left;
+	margin: 0;
+	border: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.ecjia-num-view .btn-confirm.btn-cancel {
+	border-right: 1px solid #eee;
+	border-bottom-left-radius: 8px;
+	color: #838383
+}
+
+.ecjia-num-view .btn-confirm.btn-ok {
+	border-bottom-right-radius: 8px
+}
+
