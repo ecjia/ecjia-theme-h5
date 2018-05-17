@@ -59,7 +59,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	            </label>
 	            {/if}
 	            
-	            <label class="select-item select-shipping-date {if $shipping.shipping_code eq 'ship_o2o_express'}show{/if}">
+	            <label class="select-item select-shipping-date {if $shipping.shipping_code eq 'ship_o2o_express' || $shipping.shipping_code eq 'ship_ecjia_express'}show{/if}">
 	                <li>
 	                	<span class="slect-title">送达时间</span>
 	                	<span class="ecjiaf-fr icon-span"><i class="iconfont icon-jiantou-right"></i></span>
@@ -90,7 +90,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="mod_address_slide_body">
 			<ul class="mod_address_slide_tabs navBar">
 				<!-- {foreach from=$shipping_list item=list} -->
-				{if $list.shipping_code eq 'ship_o2o_express'}
+				{if $list.shipping_code eq 'ship_o2o_express' || $list.shipping_code eq 'ship_ecjia_express'}
 				<!-- {foreach from=$list.shipping_date item=val} -->
 				<li class="{if $temp.shipping_date eq $val.date}active{/if}" data-date="{$val.date}">{$val.date}</li>
 				<!-- {/foreach} -->
@@ -99,7 +99,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</ul>
 			<ul class="mod_address_slide_list selShip">
 				<!-- {foreach from=$shipping_list item=list} -->
-					{if $list.shipping_code eq 'ship_o2o_express'}
+					{if $list.shipping_code eq 'ship_o2o_express' || $list.shipping_code eq 'ship_ecjia_express'}
 					<!-- {foreach from=$list.shipping_date item=date} -->
 						<!-- {foreach from=$date.time item=time} -->
 						{assign var="shipping_time" value="{$time.start_time}-{$time.end_time}"}
