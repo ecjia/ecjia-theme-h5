@@ -52,7 +52,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <input name="order_id" type="hidden" value="{$detail.order_id}" />
             <input class="btn btn-recharge confirm-payment" name="submit" type="submit" value="{t}确认支付{/t}" />
         </div>
-        <div class="wei-xin-pay hide"></div>
     </div>
 </form>
 <!-- {/block} -->
