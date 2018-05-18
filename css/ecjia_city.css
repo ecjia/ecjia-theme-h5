@@ -13181,6 +13181,9 @@ footer {
 .location-city-container {
     padding-left: 4%;
     padding-bottom: 1em;
+}
+
+.location-city-container span {
     font-weight: bold;
 }
 
