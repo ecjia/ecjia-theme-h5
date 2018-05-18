@@ -258,6 +258,7 @@
 				$('.ecjia-num-view').find('input[name="rec_id"]').val(rec_id);
 				$('.ecjia-num-view').find('input[name="goods_id"]').val(goods_id);
 				$('.ecjia-num-content').addClass('show');
+				$('.ecjia-num-view').find('input[name="value"]').focus();
 			});
 
 			$('.ecjia-num-view .addNum').off('click').on('click', function (e) {
