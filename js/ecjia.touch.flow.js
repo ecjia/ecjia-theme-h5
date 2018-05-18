@@ -419,14 +419,34 @@
 				parent.find('.select-shipping-title ').removeClass('active');
 				$this.addClass('active');
 				$('input[name="shipping"]').val(shipping_id);
-				if (shipping_code == 'ship_o2o_express') {
-					$('.select-shipping-date').addClass('show');
+				if (shipping_code == 'ship_o2o_express' || shipping_code == 'ship_ecjia_express') {
+					$('.select-shipping-date').addClass('show').attr('data-code', shipping_code);
+					$(('ul.' + shipping_code + '_date')).find('li').eq(0).addClass('active').siblings('li').removeClass('active');
+					var index = $(('ul.' + shipping_code + '_time')).find('li').eq(0);
+					var date = index.attr('data-date');
+					var time = index.attr('data-time');
+					$(('ul.' + shipping_code + '_time li')).each(function () {
+						if ($(this).attr('data-date') == date) {
+							$(this).removeClass('hide');
+							if ($(this).attr('data-time') == time) {
+								$(this).addClass('active');
+							}
+						} else {
+							$(this).addClass('hide').removeClass('active');
+						}
+					});
+					$('input[name="shipping_date"]').val(date);
+					$('input[name="shipping_time"]').val(time);
+					$('.shipping-time').html(date + ' ' + time);
 				} else {
 					$('.select-shipping-date').removeClass('show');
 				}
 			});
 			//显示送达时间选择框
 			$('.select-shipping-date').off('click').on('click', function() {
+				var code = $(this).attr('data-code');
+				$('.mod_address_slide').find('ul.' + code + '_date').show().siblings('ul').hide();
+				$('.mod_address_slide').find('ul.' + code + '_time').show().siblings('ul').hide();
 				$('.mod_address_slide').addClass('show');
 			});
 			//关闭送达时间选择框
