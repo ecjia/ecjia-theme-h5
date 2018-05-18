@@ -55,7 +55,9 @@ var releated_goods = {$releated_goods};
 					{/if}
 				</div>
 				<!-- Add Pagination -->
+				{if count($goods_info.pictures) > 1}
 				<div class="swiper-pagination"></div>
+				{/if}
 			</div>
 		</div>
 	</div>

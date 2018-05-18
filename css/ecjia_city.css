@@ -5920,7 +5920,8 @@ footer {
 }
 
 .ecjia-goods-basic-info .swiper-goods-img {
-    max-height: 40em
+    max-height: 40em;
+    background-color: #fff;
 }
 
 .ecjia-goods-basic-info .focus {
