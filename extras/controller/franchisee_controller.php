@@ -325,6 +325,17 @@ class franchisee_controller {
                 
             }
         }
+
+        $pcd_name = '';
+        if (!empty($province_show)) {
+        	$pcd_name .= $province_show . '-';
+        }
+     	if (!empty($city_show)) {
+			$pcd_name .= $city_show . '-';
+        }
+     	if (!empty($district_show)) {
+			$pcd_name .= $district_show;
+        }
         $second_show = array (
             'seller_name' 	=> $reaudit['seller_name'],
             'seller'     	=> $category_show,
@@ -334,7 +345,7 @@ class franchisee_controller {
             'district_name' => $district_show,
             'street_name'   => $stree_show,
             'address'       => $reaudit['address'],
-            'pcd_name'		=> $province_show . '-' . $city_show . '-' . $district_show
+            'pcd_name'		=> $pcd_name
         );
         
         $longitude = !empty($_GET['longitude']) ? $_GET['longitude'] : $reaudit['location']['longitude'];
