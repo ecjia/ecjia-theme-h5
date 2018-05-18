@@ -6154,7 +6154,6 @@ footer {
     border: 1px solid #ff3434;
     width: 82%;
     height: 1.1em;
-    line-height: 1.1em;
     margin-top: 9px
 }
 
@@ -6183,13 +6182,14 @@ footer {
 }
 
 .goods-info .ecjia-left-time .goods-detail-promote {
-    height: 1.3em;
-    line-height: 1.3em;
+    height: 1.4em;
+    line-height: 1.55em;
     font-size: .7em;
     display: inline-block;
     float: right;
     width: 89.5%;
-    text-align: center
+    text-align: center;
+    vertical-align: center;
 }
 
 .goods-info .ecjia-left-time .iconfont {
@@ -13241,89 +13241,90 @@ footer {
 }
 
 .ecjia-num-view-screen {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	background-color: rgba(0,0,0,.2);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.2);
     z-index: 1002;
 }
 
 .ecjia-num-view {
-	position: absolute;
-	width: 66%;
-	z-index: 1003;
-	min-height: 5em;
-	background-color: #fff;
-	border-radius: 8px;
-	left: 17%;
+    position: absolute;
+    width: 66%;
+    z-index: 1003;
+    min-height: 5em;
+    background-color: #fff;
+    border-radius: 8px;
+    left: 17%;
     top: 45%;
 }
 
 .ecjia-num-view img {
-	width: 30px;
-	height: 32px;
-	float: left;
-    padding-top: 2px;
+    width: 2em;
+    height: 2.1em;
+    float: left;
+    padding-top: .1em;
     cursor: pointer;
 }
 
 .ecjia-num-view .title {
-	line-height: 3em;
-	text-align: center;
-	font-size: 1.1em
+    line-height: 3em;
+    text-align: center;
+    font-size: 1.1em
 }
 
 .ecjia-num-view .num-handle {
-	height: 45px;
-	border-bottom: 1px solid #eee
+    height: 3.5em;
+    border-bottom: 1px solid #eee;
 }
 
 .ecjia-num-view .num-handle .num-handle-content {
-	width: 160px;
-	text-align: center;
-	margin: 0 auto
+    width: 12em;
+    text-align: center;
+    margin: 0 auto;
+    height: 3.5em;
 }
 
 .ecjia-num-view input {
-	float: left;
-	width: 80px;
-	border: 1px solid #eee;
-	margin: 0 10px;
-	height: 35px;
-	line-height: 24px;
-	text-align: center;
-	border-radius: 15px;
-	padding: 5px 5px 5px 10px
+    float: left;
+    width: 6.5em;
+    border: 1px solid #eee;
+    margin: 0 .7em;
+    height: 2.3em;
+    line-height: 2.5em;
+    text-align: center;
+    border-radius: 15px;
+    padding: .2em .5em;
 }
 
 .ecjia-num-view .num-confirm {
-	width: 100%
+    width: 100%
 }
 
 .ecjia-num-view .btn-confirm {
-	width: 50%;
-	line-height: 40px;
-	background-color: #fff;
-	color: #47aa4d;
-	padding: 0;
-	float: left;
-	margin: 0;
-	border: none;
+    width: 50%;
+    line-height: 40px;
+    background-color: #fff;
+    color: #47aa4d;
+    padding: 0;
+    float: left;
+    margin: 0;
+    border: none;
     text-align: center;
     cursor: pointer;
 }
 
 .ecjia-num-view .btn-confirm.btn-cancel {
-	border-right: 1px solid #eee;
-	border-bottom-left-radius: 8px;
-	color: #838383
+    border-right: 1px solid #eee;
+    border-bottom-left-radius: 8px;
+    color: #838383
 }
 
 .ecjia-num-view .btn-confirm.btn-ok {
-	border-bottom-right-radius: 8px
+    border-bottom-right-radius: 8px
 }
 
