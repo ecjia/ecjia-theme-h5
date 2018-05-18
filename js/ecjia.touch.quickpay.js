@@ -4,32 +4,53 @@
 ;(function(ecjia, $) {
 	ecjia.touch.quickpay = {
 		init : function(){
-			ecjia.touch.quickpay.check();
 			$("body").greenCheck();
+			ecjia.touch.quickpay.checkbtn();
+			ecjia.touch.quickpay.order_money();
+			ecjia.touch.quickpay.drop_out_money();
+			ecjia.touch.quickpay.close_pay_content();
+			ecjia.touch.quickpay.change_activity();
+			ecjia.touch.quickpay.show_exclude_amount();
+			ecjia.touch.quickpay.quickpay_done();
+			ecjia.touch.quickpay.quickpay_order_handle();
+			ecjia.touch.quickpay.confirm_pay();
 			ecjia.touch.quickpay.quick_pay();
 		},
-		check: function() {
-			ecjia.touch.quickpay.checkbtn();
-			
+
+  		checkbtn: function() {
+			var order_money = $("input[name='order_money']").val();
+			if (order_money == '' || order_money == undefined) {
+				$('.check_quickpay_btn').prop('disabled', true);
+			}
+		},
+
+        order_money: function() {
 			$('input[name="order_money"]').koala({
 				delay: 500,
 				keyup: function(event) {
 					ecjia.touch.quickpay.checkout('change_amount');
 				}
             });
-			
-			$('input[name="drop_out_money"]').koala({
+        },
+
+        drop_out_money: function() {
+        	$('input[name="drop_out_money"]').koala({
 				delay: 500,
 				keyup: function(event) {
+					console.log(22);
 					ecjia.touch.quickpay.checkout('change_amount');
 				}
             });
-			
+        },
+
+        close_pay_content: function() {
 			//关闭确认付款框
 			$('.ecjia-pay-content .pay-content-close').off('click').on('click', function() {
 				$('.ecjia-pay-content').removeClass('show');
 			});
-			
+        },
+
+        change_activity: function() {
 			$('input[name="activity_id"]').off('click').on('click', function() {
 				var order_money = $("input[name='order_money']").val();
 				if (order_money == '' || order_money == undefined) {
@@ -38,7 +59,9 @@
 				}
 				ecjia.touch.quickpay.checkout('change_amount', 'change_activity');
 			});
-			
+        },
+
+        show_exclude_amount: function() {
 			$('input[name="show_exclude_amount"]').off('change').on('change', function() {
 				var val = $('input[name="show_exclude_amount"]:checked').val();
 				if (val == 1) {
@@ -53,7 +76,9 @@
 					ecjia.touch.quickpay.checkout('change_amount');
 				}
 			});
-			
+        },
+
+		quickpay_done: function() {
 			$('.quickpay_done').off('click').on('click', function(e) {
 				e.preventDefault();
 				var $this = $(this);
@@ -133,7 +158,9 @@
 					}
 				});
 			});
-			
+		},
+
+		quickpay_order_handle: function() {
 			$('.quickpay_order_handle').off('click').on('click', function(e) {
 				e.preventDefault();
 				var myApp = new Framework7();
@@ -153,7 +180,9 @@
 					}]
 				});
 			});
-			
+		},
+
+		confirm_pay: function() {
 			$('.confirm-pay-btn').off('click').on('click', function(e) {
 				e.preventDefault();
 				var $this = $(this),
@@ -193,8 +222,8 @@
 					});
 				});
 			});
-        },
-        
+		},
+
         checkout: function(c, a) {
         	var change_amount = 0;
 			var order_money = $("input[name='order_money']").val();
@@ -236,10 +265,8 @@
         		$('.auto_activity_id').val(data.activity_id);
         		$('.quickpay_done').removeAttr('disabled');
         		$('.quickpay-content').html(data.list);
-        		$("body").greenCheck();
         		ecjia.touch.quickpay.init();
         	});
-	        return false;
         },
         
 		quick_pay: function() {
@@ -286,13 +313,7 @@
 				});
 			});
 		},
-		
-		checkbtn: function() {
-			var order_money = $("input[name='order_money']").val();
-			if (order_money == '' || order_money == undefined) {
-				$('.check_quickpay_btn').prop('disabled', true);
-			}
-		},
+
 	};
 })(ecjia, jQuery);
 
