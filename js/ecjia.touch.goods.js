@@ -130,8 +130,8 @@
 						}
 					}
 					//商品详情点击加入购物车val为1，点击加号val递增，点击猜你喜欢val为NaN，点击店铺首页加号val递增，点击店铺搜索商品结果列表加号val递增
-					if (isNaN(val)) {
-						if ($this.attr('data-num') != 0) {
+					if (isNaN(val) || val == 0) {
+						if ($this.attr('data-num') != 0 && $this.attr('data-num') != undefined) {
 							val = parseInt($this.attr('data-num')) + 1;
 						} else {
 							val = 1;
@@ -222,14 +222,8 @@
 						var span = $this.parent('.box').children('span');
 						var val = parseInt(show.html()) - 1;
 						if (val == 0) {
-							show.removeClass('show').addClass('hide');
-							$this.parent('.box').children('.reduce').removeClass('show').addClass('hide');
 							span.attr('rec_id', '');
 							var span_add = $this.parent().siblings('span');
-							if (span_add.hasClass('goods-add-cart')) {
-								$this.parent().children('span').addClass('hide');
-								span_add.removeClass('hide').addClass('disabled').attr('rec_id', '');
-							}
 							show.html(1);
 						} else {
 							show.html(val);
@@ -417,7 +411,15 @@
 						return false;
 					}
 				}
-
+				if (val == 0) {
+					$('#goods_' + goods_id).children('.reduce').removeClass('show').addClass('hide');
+					$('#goods_' + goods_id).children('label').removeClass('show').addClass('hide');
+					$('#goods_' + goods_id).children('span.detail-add').removeClass('show').addClass('hide');
+					$('#goods_' + goods_id).children('span.goods-detail').addClass('hide');
+					$('#goods_' + goods_id).siblings('span').removeClass('hide').attr('rec_id', '')
+					$('#setion_' + goods_id).remove();
+				}
+				
 				if (div != undefined) {
 					if (div.hasClass('other_place')) {
 						if (div.parent().find('.other_place').length == 1) {

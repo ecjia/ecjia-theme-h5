@@ -95,7 +95,7 @@ var releated_goods = {$releated_goods};
                                 <div class="ecjia-goods-plus-box {if !$rec_id}hide{/if} box" id="goods_{$goods_info.id}">
                                     <span class="reduce" data-toggle="remove-to-cart" rec_id="{$rec_id}">减</span>
                                     <label>{if !$rec_id}1{else}{$num}{/if}</label>
-                                    <span class="add" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
+                                    <span class="add detail-add" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
                                 </div>
                                 {/if}
 		                    </div>
@@ -118,7 +118,7 @@ var releated_goods = {$releated_goods};
 		              		<div class="ecjia-goods-plus-box ecjia-market-plus-box {if !$rec_id}hide{/if} box" id="goods_{$goods_info.id}">
 		              			<span class="reduce" data-toggle="remove-to-cart" rec_id="{$rec_id}">减</span>
 		                     	<label>{if !$rec_id}1{else}{$num}{/if}</label>
-		              			<span class="add" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
+		              			<span class="add detail-add" data-toggle="add-to-cart" rec_id="{$rec_id}" goods_id="{$goods_info.id}">加</span>
 		                    </div>
 		                    {/if}
 	                    {/if}
