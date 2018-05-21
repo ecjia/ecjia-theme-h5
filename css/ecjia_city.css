@@ -3966,14 +3966,15 @@ footer {
     margin: 1.6% 3.2%;
     display: block;
     float: left;
-    width: 21.5%;
+    min-width: 21.5%;
     text-align: center;
     height: 30px;
     line-height: 30px;
     margin-left: 0;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
+    padding: 0 .5em;
 }
 
 .ecjia .ecjia-select label.select-item .active {
