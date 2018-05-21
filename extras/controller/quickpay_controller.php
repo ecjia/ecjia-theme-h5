@@ -414,6 +414,12 @@ class quickpay_controller {
     		'order_id' 		=> $order_id,
     	);
     	if ($pay_code == 'pay_wxpay') {
+            if (empty($_SESSION['wxpay_open_id']) && cart_function::is_weixin()) {
+                //提前获取微信支付wxpay_open_id
+                $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
+                $open_id = $handler->getWechatOpenId();
+                $_SESSION['wxpay_open_id'] = $open_id;
+            }
     		$params_list['wxpay_open_id'] = $_SESSION['wxpay_open_id'];
     	}
     	

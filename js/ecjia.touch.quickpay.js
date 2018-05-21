@@ -308,6 +308,7 @@
 							$('.wei-xin-pay').html("");
 							$('.wei-xin-pay').html(data.weixin_data);
 							callpay();
+							$(this).val("去支付");
 						}
 					}
 				});
