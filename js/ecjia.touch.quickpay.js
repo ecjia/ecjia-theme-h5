@@ -271,17 +271,18 @@
         
 		quick_pay: function() {
 			$('.quick_pay_btn').on('click', function(e) {
+				var $this = $(this);
 				e.preventDefault();
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
-				var bool = $(this).hasClass('external');
+				var bool = $this.hasClass('external');
 				if (bool) {
-					$(this).val("请求中");
+					$this.val("请求中");
 				} else {
-					$(this).val("支付请求中，请稍后");
+					$this.val("支付请求中，请稍后");
 				}
 				
-				$(this).attr("disabled", true); 
-				$(this).addClass("payment-bottom");
+				$this.attr("disabled", true); 
+				$this.addClass("payment-bottom");
 				
 				var url = $("form[name='quickpay_form']").attr('action');
 				$("form[name='quickpay_form']").ajaxSubmit({
@@ -293,22 +294,23 @@
 						$('.la-ball-atom').remove();
 						$('.quick_pay_btn').removeAttr("disabled"); 
 						if (bool) {
-							$(this).val("去支付");
+							$this.val("去支付");
 						} else {
 							$('.quick_pay_btn').val("确认支付");
 						}
 						
 						if (data.state == 'error') {
+							$this.val("去支付");
 							alert(data.message);
 							return false;
 						}
 						if (data.redirect_url) {
 							location.href = data.redirect_url;
 						} else if(data.weixin_data) {
+							$this.val("去支付");
 							$('.wei-xin-pay').html("");
 							$('.wei-xin-pay').html(data.weixin_data);
 							callpay();
-							$(this).val("去支付");
 						}
 					}
 				});
