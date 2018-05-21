@@ -173,11 +173,6 @@ class user_function {
                     if ($val['pay_code'] == 'pay_alipay') {
                         unset($pay['payment'][$key]);
                     }
-                    if ($val['pay_code'] == 'pay_wxpay') {
-                        $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($val['pay_code']);
-                        $open_id = $handler->getWechatOpenId();
-                        $_SESSION['wxpay_open_id'] = $open_id;
-                    }
                 }
             } else {
                 foreach ($pay['payment'] as $key => $val) {

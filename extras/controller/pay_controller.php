@@ -254,6 +254,12 @@ class pay_controller {
             return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         }
 
+		if (cart_function::is_weixin()) {
+			//提前获取微信支付wxpay_open_id
+			$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
+			$open_id = $handler->getWechatOpenId();
+			$_SESSION['wxpay_open_id'] = $open_id;
+		}
         //获得订单支付信息
         $param_list = array(
             'token'     => $token,
