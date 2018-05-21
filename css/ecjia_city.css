@@ -13242,8 +13242,9 @@ footer {
 .ecjia-payment-notice {
     color: #fc8d41;
     background: #ffecca;
-    padding: .5em 1em;
+    padding: .5em 0;
     line-height: 1.5em;
+    padding-left: 1em;
 }
 
 .ecjia-num-content {
