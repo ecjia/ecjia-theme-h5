@@ -105,6 +105,7 @@ class user_privilege_controller {
                 ecjia_front::$controller->assign('sns_qq', 1);
             }
         }
+
         ecjia_front::$controller->display('user_login.dwt', $cache_id);
     }
     
@@ -411,11 +412,24 @@ class user_privilege_controller {
     		if (is_ecjia_error($data)) {
     			return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		}
-    		
     		//未注册 走注册接口 
     		$url = RC_Uri::url('user/privilege/set_password');
     		$_SESSION['user_temp']['mobile'] = $mobile;
     		$_SESSION['user_temp']['register_status'] = 'succeed';
+
+            $res = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => ''))->run();
+            if (!is_ecjia_error($res)) {
+                $url = RC_Uri::url('touch/my/init');
+                if (!empty($_SESSION['user_temp']['referer_url'])) {
+                    $url = urldecode($_SESSION['user_temp']['referer_url']);
+                }
+                unset($_SESSION['user_temp']);
+                
+                ecjia_touch_user::singleton()->signin('smslogin', $res['user']['name'], $password);
+                return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
+            } else {
+                return ecjia_front::$controller->showmessage(__($res->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
     	}
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
     }
