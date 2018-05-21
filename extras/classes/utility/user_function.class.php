@@ -162,7 +162,7 @@ class user_function {
 		return $str;
 	}
 
-	public static function is_change_payment($pay_code = '') {
+	public static function is_change_payment($pay_code = '', $manage_mode = '') {
 		$pay = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->run();
         $pay = is_ecjia_error($pay) ? array() : $pay;
         
@@ -173,12 +173,20 @@ class user_function {
                     if ($val['pay_code'] == 'pay_alipay') {
                         unset($pay['payment'][$key]);
                     }
+                	//非自营过滤货到付款
+	                if ($manage_mode != 'self' && $val['pay_code'] == 'pay_cod') {
+	                    unset($pay['payment'][$key]);
+	                }
                 }
             } else {
                 foreach ($pay['payment'] as $key => $val) {
                     if ($val['pay_code'] == 'pay_wxpay') {
                         unset($pay['payment'][$key]);
-                    }
+					}
+					//非自营过滤货到付款
+	                if ($manage_mode != 'self' && $val['pay_code'] == 'pay_cod') {
+	                    unset($pay['payment'][$key]);
+	                }
                 }
             }
         }
@@ -191,7 +199,7 @@ class user_function {
         		}
         	}
         }
-        return $change_payment;
+        return array('change' => $change_payment, 'payment' => $pay['payment']);
 	}
 }
 

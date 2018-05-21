@@ -81,37 +81,22 @@ class pay_controller {
     	    return ecjia_front::$controller->showmessage($detail->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     	}
 
-        $change_payment = user_function::is_change_payment($detail['pay_code']);
-        ecjia_front::$controller->assign('change_payment', $change_payment);
+        $change_result = user_function::is_change_payment($detail['pay_code'], $detail['manage_mode']);
+        ecjia_front::$controller->assign('change_payment', $change_result['change']);
 
-        if ($change_payment) {
+        if ($change_result['change'] && $detail['pay_code'] != 'pay_cod') {
             ecjia_front::$controller->assign('detail', $detail);
-            
-            $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->run();
-            $pay = is_ecjia_error($pay) ? array() : $pay;
-            
-            /*根据浏览器过滤支付方式，微信自带浏览器过滤掉支付宝支付，其他浏览器过滤掉微信支付*/
-            if (!empty($pay['payment'])) {
-                if (cart_function::is_weixin() == true) {
-                    foreach ($pay['payment'] as $key => $val) {
-                        if ($val['pay_code'] == 'pay_alipay') {
-                            unset($pay['payment'][$key]);
-                        }
-                        if ($val['pay_code'] == 'pay_wxpay') {
-                            $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($val['pay_code']);
-                            $open_id = $handler->getWechatOpenId();
-                            $_SESSION['wxpay_open_id'] = $open_id;
-                        }
-                    }
-                } else {
-                    foreach ($pay['payment'] as $key => $val) {
-                        if ($val['pay_code'] == 'pay_wxpay') {
-                            unset($pay['payment'][$key]);
-                        }
-                    }
-                }
+            ecjia_front::$controller->assign('payment_list', $change_result['payment']);
+
+            if (cart_function::is_weixin()) {
+                //提前获取微信支付wxpay_open_id
+                $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
+                RC_Logger::getlogger('pay')->info('handler'.$handler);
+                $open_id = $handler->getWechatOpenId();
+                RC_Logger::getlogger('pay')->info('open_id'.$open_id);
+                $_SESSION['wxpay_open_id'] = $open_id;
             }
-            ecjia_front::$controller->assign('payment_list', $pay['payment']);
+
             ecjia_front::$controller->display('pay_change.dwt');
             return false;
         }
@@ -238,6 +223,7 @@ class pay_controller {
         $order_id = intval($_POST['order_id']);
         $pay_id = intval($_POST['pay_id']);
 
+        RC_Logger::getlogger('pay')->info('post'.$_POST);
         if (empty($pay_id)) {
             return ecjia_front::$controller->showmessage(__('请选择支付方式'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
@@ -251,24 +237,21 @@ class pay_controller {
         );
         $response = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_UPDATE)->data($params)->run();
         if (is_ecjia_error($response)) {
-            return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
-		if (cart_function::is_weixin()) {
-			//提前获取微信支付wxpay_open_id
-			$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
-			$open_id = $handler->getWechatOpenId();
-			$_SESSION['wxpay_open_id'] = $open_id;
-		}
         //获得订单支付信息
         $param_list = array(
             'token'     => $token,
             'order_id'  => $order_id,
             'wxpay_open_id' => $_SESSION['wxpay_open_id'],
         );
+
+        RC_Logger::getlogger('pay')->info('param_list'.$param_list);
         $rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($param_list)->run();
+        RC_Logger::getlogger('pay')->info('rs_pay'.$rs_pay);
         if (is_ecjia_error($rs_pay)) {
-            return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
         if (!is_ecjia_error($rs_pay)) {
