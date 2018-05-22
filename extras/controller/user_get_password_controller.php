@@ -187,7 +187,7 @@ class user_get_password_controller {
         $passwords = !empty($_POST['passwords']) ? trim($_POST['passwords']) : '';
         $mobile    = !empty($_SESSION['user_temp']['mobile']) ? trim($_SESSION['user_temp']['mobile']) : '';
         if ($_SESSION['user_temp']['code_status'] != 'succeed') {
-            ecjia_front::$controller->redirect(RC_Uri::url('user/get_password/mobile_register'));
+            ecjia_front::$controller->redirect(RC_Uri::url('user/get_password/init'));
         }
         
         if (isset($_POST['passwordf'])) {
