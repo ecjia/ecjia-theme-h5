@@ -305,7 +305,7 @@ ecjia_open::macro('sign_up', function($querys) {
 });
 //找回密码
 ecjia_open::macro('forget_password', function($querys) {
-	return RC_Uri::url('user/get_password/mobile_register');
+	return RC_Uri::url('user/get_password/init');
 });
 //修改密码
 ecjia_open::macro('user_password', function($querys) {
