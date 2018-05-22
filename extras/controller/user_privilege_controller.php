@@ -242,7 +242,7 @@ class user_privilege_controller {
         	} else {
         		$url = RC_Uri::url('touch/my/init');
         		$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : urldecode($_SESSION['user_temp']['referer_url']);
-        		if (!empty($referer_url) && $referer_url != RC_Uri::url('user/privilege/login')) {
+        		if (!empty($referer_url) && $referer_url != RC_Uri::url('user/privilege/login') && $referer_url != undefined) {
         			$url = $referer_url;
         		}
         		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
@@ -403,7 +403,7 @@ class user_privilege_controller {
     		
     		$url = RC_Uri::url('touch/my/init');
     		$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : urldecode($_SESSION['user_temp']['referer_url']);
-    		if (!empty($referer_url)) {
+    		if (!empty($referer_url) && $referer_url != undefined) {
     			$url = $referer_url;
     		}
     		unset($_SESSION['user_temp']);
@@ -420,7 +420,7 @@ class user_privilege_controller {
             $res = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => ''))->run();
             if (!is_ecjia_error($res)) {
                 $url = RC_Uri::url('touch/my/init');
-                if (!empty($_SESSION['user_temp']['referer_url'])) {
+                if (!empty($_SESSION['user_temp']['referer_url']) && $_SESSION['user_temp']['referer_url'] != undefined) {
                     $url = urldecode($_SESSION['user_temp']['referer_url']);
                 }
                 unset($_SESSION['user_temp']);
@@ -525,7 +525,7 @@ class user_privilege_controller {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => $password, 'invite_code' => $verification))->run();
             if (!is_ecjia_error($data)) {
             	$url = RC_Uri::url('touch/my/init');
-            	if (!empty($_SESSION['user_temp']['referer_url'])) {
+            	if (!empty($_SESSION['user_temp']['referer_url']) && $_SESSION['user_temp']['referer_url'] != undefined) {
             		$url = urldecode($_SESSION['user_temp']['referer_url']);
             	}
                 unset($_SESSION['user_temp']);
