@@ -149,10 +149,10 @@
 
                     var referer_url = $.cookie('referer_url');
                     var url = $("#ecjia-zs").attr('data-url');
-                    if (referer_url != undefined && referer_url.length == 0) {
-                        referer_url = url;
+                    if (referer_url != undefined && referer_url.length != 0) {
+                        url = referer_url;
                     }
-                    ecjia.pjax(referer_url);
+                    ecjia.pjax(url);
                     $.cookie('referer_url', '', 1);
                 });
             } else if (type == 'address') {
