@@ -252,7 +252,7 @@ class pay_controller
             $notify_url = RC_Uri::url('pay/index/notify', array('order_id' => $order_id));
             //生成返回url cookie
             RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
-            RC_Cookie::set('pay_response_order', $notify_url);
+            RC_Cookie::set('pay_response_order', RC_Uri::url('user/order/order_detail', array('order_id' => $order_id, 'type' => 'detail')));
 
             $pay_online = array_get($rs_pay, 'payment.private_data.pay_online', array_get($rs_pay, 'payment.pay_online'));
             if (array_get($rs_pay, 'payment.pay_code') == 'pay_alipay') {
