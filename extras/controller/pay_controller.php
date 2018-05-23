@@ -104,7 +104,7 @@ class pay_controller
         $params = array(
             'token' => $token,
             'order_id' => $order_id,
-            'wxpay_open_id' => $open_id,
+            'wxpay_open_id' => $_SESSION['wxpay_open_id'],
         );
         $rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($params)->run();
         if (is_ecjia_error($rs_pay)) {
