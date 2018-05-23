@@ -368,7 +368,7 @@ class quickpay_controller {
 				return ecjia_front::$controller->showmessage('该订单已支付请勿重复支付', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
 			}
 			
-			if (cart_function::is_weixin()) {
+			if (empty($_SESSION['wxpay_open_id']) && cart_function::is_weixin()) {
 				//提前获取微信支付wxpay_open_id
 				$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
 				$open_id = $handler->getWechatOpenId();
@@ -578,7 +578,7 @@ class quickpay_controller {
     		ecjia_front::$controller->assign('data', $data);
     	}
     
-    	if (cart_function::is_weixin()) {
+    	if (empty($_SESSION['wxpay_open_id']) && cart_function::is_weixin()) {
     		//提前获取微信支付wxpay_open_id
     		$handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
     		$open_id = $handler->getWechatOpenId();
