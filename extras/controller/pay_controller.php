@@ -94,7 +94,7 @@ class pay_controller
         }
 
         //支付方式信息
-        if ($detail['pay_code'] == 'pay_wxpay') {
+        if (empty($_SESSION['wxpay_open_id']) && $detail['pay_code'] == 'pay_wxpay') {
             $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($detail['pay_code']);
             $open_id = $handler->getWechatOpenId();
             $_SESSION['wxpay_open_id'] = $open_id;
