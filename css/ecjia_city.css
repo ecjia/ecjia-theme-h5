@@ -1371,6 +1371,10 @@ dd, dl, dt, li, ol, ul {
     background-image: url(../images/icon/new.png)
 }
 
+.ecjia-mod .head-title .icon-best {
+    background-image: url(../images/icon/best.png)
+}
+
 .ecjia-mod .head-title .icon-store {
     background-image: url(../images/icon/store.png)
 }

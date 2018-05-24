@@ -127,8 +127,11 @@ class touch_controller {
             //首页促销商品
             ecjia_front::$controller->assign('promotion_goods', $data['promote_goods']);
             
-            //新品推荐
+            //新品首发
             ecjia_front::$controller->assign('new_goods', $data['new_goods']);
+            
+            //推荐商品
+            ecjia_front::$controller->assign('best_goods', $data['best_goods']);
             
             ecjia_front::$controller->assign('cycleimage', $data['player']);
         }
