@@ -92,20 +92,21 @@ class pay_controller
             ecjia_front::$controller->display('pay_change.dwt');
             return false;
         }
-
-        //支付方式信息
-        if (empty($_SESSION['wxpay_open_id']) && $detail['pay_code'] == 'pay_wxpay') {
-            $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($detail['pay_code']);
-            $open_id = $handler->getWechatOpenId();
-            $_SESSION['wxpay_open_id'] = $open_id;
-        }
-
         //获得订单支付信息
         $params = array(
             'token' => $token,
-            'order_id' => $order_id,
-            'wxpay_open_id' => $_SESSION['wxpay_open_id'],
+            'order_id' => $order_id
         );
+
+        //支付方式信息
+        if ($detail['pay_code'] == 'pay_wxpay' && empty($change_result['open_id'])) {
+            $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($detail['pay_code']);
+            $open_id = $handler->getWechatOpenId();
+            $params['wxpay_open_id'] = $open_id;
+        } elseif (!empty($change_result['open_id'])) {
+            $params['wxpay_open_id'] = $change_result['open_id'];
+        }
+
         $rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($params)->run();
         if (is_ecjia_error($rs_pay)) {
             return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
@@ -236,13 +237,13 @@ class pay_controller
             'token' => $token,
             'order_id' => $order_id,
         );
-        if (empty($_SESSION['wxpay_open_id']) && cart_function::is_weixin()) {
+        if (cart_function::is_weixin()) {
             //提前获取微信支付wxpay_open_id
-            $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
-            $open_id = $handler->getWechatOpenId();
-            $_SESSION['wxpay_open_id'] = $open_id;
+            // $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
+            // $open_id = $handler->getWechatOpenId();
+            $param_list['wxpay_open_id'] = $_SESSION['wxpay_open_id'];
         }
-        $param_list['wxpay_open_id'] = $_SESSION['wxpay_open_id'];
+        
         $rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($param_list)->run();
 
         if (!is_ecjia_error($rs_pay)) {

@@ -38,7 +38,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <!-- {foreach from=$payment_list item=list} -->
                 <li>
                     <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}">
-                        <label class="ecjiaf-fr ecjia-check">
+                        <label for="{$list.pay_id}" class="ecjiaf-fr ecjia-check">
                             <input type="radio" id="{$list.pay_id}" name="pay_id" value="{$list.pay_id}"{if $list.checked}checked="true"{/if} >
                         </label>
                         {$list.pay_name}
@@ -52,7 +52,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <input name="order_id" type="hidden" value="{$detail.order_id}" />
             <input class="btn btn-recharge confirm-payment" name="submit" type="submit" value="{t}确认支付{/t}" />
         </div>
-        <div class="wei-xin-pay"></div>
+        <div class="wei-xin-pay hide"></div>
     </div>
 </form>
 <!-- {/block} -->
