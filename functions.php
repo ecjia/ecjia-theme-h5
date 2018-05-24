@@ -69,6 +69,7 @@ RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
     $referer = ecjia::config('map_qq_referer');
     ecjia_front::$controller->assign('key', $key);
     ecjia_front::$controller->assign('referer', $referer);
+    
     $wap_logo = ecjia::config('wap_logo');
     if (!empty($wap_logo)) {
     	setcookie("wap_logo", RC_Upload::upload_url($wap_logo), time() + 1800);
@@ -126,7 +127,6 @@ RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $da
             //结合cookie判断返回来源url
             $back_url = RC_Cookie::get('referer', RC_Uri::url('touch/index/init'));
             ecjia_front::$controller->redirect($back_url);
-        
         }
     } else {
         
@@ -177,7 +177,6 @@ RC_Hook::add_action('connect_callback_user_signin', function($connect_user) {
             'sid' => RC_Session::session_id(),
             'uid' => $_SESSION['user_id']
         ),
-    
         'user' => $user_info
     );
     ecjia_touch_user::singleton()->setUserinfo($res);
@@ -246,11 +245,9 @@ RC_Hook::add_action('connect_sns_wechat_handle', function($connect_handle) {
     }
 });
 
-
 /**
  * ecjiaopen协议 
  **/
-
 //首页
 ecjia_open::macro('main', function($querys) {
 	return RC_Uri::url('touch/index/init');
