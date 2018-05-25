@@ -62,10 +62,6 @@ class connect_controller {
     	
         $connect_user = $data['connect_user'];
         if (is_ecjia_error($connect_user)) {
-            //错误
-            RC_Logger::getlogger('wechat')->info('connect-controller,callback_template');
-            RC_Logger::getlogger('wechat')->error($connect_user->get_error_message());
-            
             if ($connect_user->get_error_code() == 'retry_return_login' || $connect_user->get_error_code() == '-1') {
                 $login_str = user_function::return_login_str();
                 return ecjia_front::$controller->redirect(RC_Uri::url($login_str));
@@ -222,8 +218,6 @@ class connect_controller {
             if ($data['id']) {
                 $result = $connect_user->bindUser($data['id']);
             } else {
-//                 RC_Logger::getlogger('error')->info('connect_controller-关联账号错误');
-//                 RC_Logger::getlogger('error')->info($data);
                 return ecjia_front::$controller->showmessage('用户验证成功，获取用户信息失败，请重试！', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
             if ($result) {
@@ -436,8 +430,6 @@ class connect_controller {
     		if ($data['id']) {
     			$result = $connect_user->bindUser($data['id']);
     		} else {
-//     			RC_Logger::getlogger('error')->info('connect_controller-关联账号错误');
-//     			RC_Logger::getlogger('error')->info($data);
     			return ecjia_front::$controller->showmessage('用户验证成功，获取用户信息失败，请重试！', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		}
 

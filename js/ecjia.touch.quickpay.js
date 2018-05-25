@@ -87,8 +87,6 @@
 				}
 				$this.addClass('disabled');
 				var order_id = $("input[name='order_id']").val();
-				var direct_pay = $("input[name='direct_pay']").val();
-				
 				var show_exclude_amount = $("input[name='show_exclude_amount']:checked").val();
 				var direct_pay = $("input[name='direct_pay']").val();
 				
