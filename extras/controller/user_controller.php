@@ -51,11 +51,6 @@ defined('IN_ECJIA') or exit('No permission resources.');
  */
 RC_Loader::load_app_class('integrate', 'user', false);
 class user_controller {
-    
-    private static function avatar_img($user_id) {
-        $default_headerimg = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
-    }
-    
     /**
      * 会员中心欢迎页
      */
