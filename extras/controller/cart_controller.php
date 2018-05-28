@@ -386,7 +386,8 @@ class cart_controller {
         	$_SESSION['order_address_temp']['address_id'] = $address_id;
         }
         $cart_key = md5($address_id.$rec_id);
-        $rs_session = $rs;unset($rs_session['goods_list']);
+        $rs_session = $rs;
+        unset($rs_session['goods_list']);
         $_SESSION['cart'][$cart_key]['data'] = $rs_session;
         
         //支付方式
