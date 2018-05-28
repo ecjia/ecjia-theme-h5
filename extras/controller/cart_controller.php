@@ -352,7 +352,6 @@ class cart_controller {
         
         $url = RC_Uri::url('cart/index/init');
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::FLOW_CHECKORDER)->data($params_cart)->run();
-
         if (is_ecjia_error($rs)) {
         	return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
         }
@@ -382,8 +381,6 @@ class cart_controller {
         
 		if (!empty($rs['consignee']['id'])) {
         	$address_id = $rs['consignee']['id'];
-        } elseif (!empty($address_id)) {
-        	$address_id = $address_id;
         }
         if (!empty($address_id)) {
         	$_SESSION['order_address_temp']['address_id'] = $address_id;
@@ -568,7 +565,9 @@ class cart_controller {
         
         ecjia_front::$controller->assign('location_url', $map_url);
         ecjia_front::$controller->assign('done_url', RC_Uri::url('cart/flow/done'));
-        ecjia_front::$controller->assign('shipping_type', 'default_shipping');
+        
+        $shipping_type = empty($rs['shipping_list']) ? 'storepickup' : 'default_shipping';
+        ecjia_front::$controller->assign('shipping_type', $shipping_type);
         
         $_SESSION['cart'][$cart_key]['temp']['order_mode'] = 'default';
 
@@ -651,13 +650,15 @@ class cart_controller {
     	if ($rs['shipping_list']) {
     		$rs['shipping_list'] = touch_function::change_array_key($rs['shipping_list'], 'shipping_id');
     	}
-        ecjia_front::$controller->assign('show_storepickup', true);
+    	$show_storepickup = false;
+    	if (!empty($rs['shipping_list'])) {
+    		$show_storepickup = true;
+    	}
+        ecjia_front::$controller->assign('show_storepickup', $show_storepickup);
     	ecjia_front::$controller->assign('data', $rs);
     
     	if (!empty($rs['consignee']['id'])) {
     		$address_id = $rs['consignee']['id'];
-    	} elseif (!empty($address_id)) {
-    		$address_id = $address_id;
     	}
     	if (!empty($address_id)) {
     		$_SESSION['order_address_temp']['address_id'] = $address_id;
