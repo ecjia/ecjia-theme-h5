@@ -570,6 +570,12 @@ class cart_controller {
         $shipping_type = empty($rs['shipping_list']) ? 'storepickup' : 'default_shipping';
         ecjia_front::$controller->assign('shipping_type', $shipping_type);
         
+        $done_url = RC_Uri::url('cart/flow/done');
+        if ($shipping_type == 'storepickup') {
+        	$done_url = RC_Uri::url('cart/flow/storepickup_done');
+        }
+        ecjia_front::$controller->assign('done_url', $done_url);
+        
         $_SESSION['cart'][$cart_key]['temp']['order_mode'] = 'default';
 
         ecjia_front::$controller->display('flow_checkout.dwt');
