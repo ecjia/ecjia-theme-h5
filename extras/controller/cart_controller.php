@@ -651,11 +651,7 @@ class cart_controller {
     	if ($rs['shipping_list']) {
     		$rs['shipping_list'] = touch_function::change_array_key($rs['shipping_list'], 'shipping_id');
     	}
-    	$show_storepickup = false;
-    	if (!empty($rs['shipping_list'])) {
-    		$show_storepickup = true;
-    	}
-        ecjia_front::$controller->assign('show_storepickup', $show_storepickup);
+        ecjia_front::$controller->assign('show_storepickup', true);
     	ecjia_front::$controller->assign('data', $rs);
     
     	if (!empty($rs['consignee']['id'])) {
@@ -666,7 +662,8 @@ class cart_controller {
     	}
     
     	$cart_key = md5($address_id.$rec_id);
-    	$rs_session = $rs;unset($rs_session['goods_list']);
+    	$rs_session = $rs;
+    	unset($rs_session['goods_list']);
     	$_SESSION['cart'][$cart_key]['data'] = $rs_session;
     
     	//支付方式
