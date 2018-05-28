@@ -355,6 +355,15 @@ class cart_controller {
         if (is_ecjia_error($rs)) {
         	return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
         }
+        
+        $cart_key = md5($address_id.$rec_id);
+        $_SESSION['cart'][$cart_key]['temp']['hide_nav'] = 0;
+        
+        if (empty($rs['shipping_list'])) {
+        	$_SESSION['cart'][$cart_key]['temp']['hide_nav'] = 1;
+        	ecjia_front::$controller->redirect(RC_Uri::url('cart/flow/storepickup_checkout', array('store_id' => $store_id, 'rec_id' => $rec_id)));
+        }
+        
         //红包改键
         if ($rs['bonus']) {
         	$rs['bonus'] = touch_function::change_array_key($rs['bonus'], 'bonus_id');
@@ -385,7 +394,7 @@ class cart_controller {
         if (!empty($address_id)) {
         	$_SESSION['order_address_temp']['address_id'] = $address_id;
         }
-        $cart_key = md5($address_id.$rec_id);
+        
         $rs_session = $rs;
         unset($rs_session['goods_list']);
         $_SESSION['cart'][$cart_key]['data'] = $rs_session;
@@ -565,7 +574,6 @@ class cart_controller {
         $map_url .= $url_param;
         
         ecjia_front::$controller->assign('location_url', $map_url);
-        ecjia_front::$controller->assign('done_url', RC_Uri::url('cart/flow/done'));
         
         $shipping_type = empty($rs['shipping_list']) ? 'storepickup' : 'default_shipping';
         ecjia_front::$controller->assign('shipping_type', $shipping_type);
@@ -638,7 +646,7 @@ class cart_controller {
     		'token' 		=> ecjia_touch_user::singleton()->getToken(),
     		'address_id' 	=> $address_id,
     		'rec_id' 		=> $rec_id,
-    		'city_id'   => $_COOKIE['city_id']
+    		'city_id'       => $_COOKIE['city_id']
     	);
 
     	$url = RC_Uri::url('cart/index/init');
@@ -657,7 +665,13 @@ class cart_controller {
     	if ($rs['shipping_list']) {
     		$rs['shipping_list'] = touch_function::change_array_key($rs['shipping_list'], 'shipping_id');
     	}
-        ecjia_front::$controller->assign('show_storepickup', true);
+    	
+    	$cart_key = md5($address_id.$rec_id);
+    	$show_storepickup = true;
+    	if ($_SESSION['cart'][$cart_key]['temp']['hide_nav'] == 1) {
+    		$show_storepickup = false;
+    	}
+        ecjia_front::$controller->assign('show_storepickup', $show_storepickup);
     	ecjia_front::$controller->assign('data', $rs);
     
     	if (!empty($rs['consignee']['id'])) {
@@ -667,7 +681,7 @@ class cart_controller {
     		$_SESSION['order_address_temp']['address_id'] = $address_id;
     	}
     
-    	$cart_key = md5($address_id.$rec_id);
+    	
     	$rs_session = $rs;
     	unset($rs_session['goods_list']);
     	$_SESSION['cart'][$cart_key]['data'] = $rs_session;
