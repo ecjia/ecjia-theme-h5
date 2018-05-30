@@ -359,7 +359,7 @@ class cart_controller {
         $cart_key = md5($address_id.$rec_id);
         $_SESSION['cart'][$cart_key]['temp']['hide_nav'] = 0;
         
-        if (empty($rs['shipping_list'])) {
+        if (empty($rs['shipping_list']) && $rs['checkorder_mode'] == 'storepickup') {
         	$_SESSION['cart'][$cart_key]['temp']['hide_nav'] = 1;
         	ecjia_front::$controller->redirect(RC_Uri::url('cart/flow/storepickup_checkout', array('store_id' => $store_id, 'rec_id' => $rec_id)));
         }
@@ -371,6 +371,7 @@ class cart_controller {
         if ($rs['payment_list']) {
         	$rs['payment_list'] = touch_function::change_array_key($rs['payment_list'], 'pay_id');
         }
+
         $show_storepickup = false;
         if ($rs['shipping_list']) {
         	$shipping_arr = array();
@@ -386,6 +387,9 @@ class cart_controller {
         }
         ecjia_front::$controller->assign('data', $rs);
 
+        if ($rs['checkorder_mode'] != 'storepickup') {
+            $show_storepickup = true;
+        }
         ecjia_front::$controller->assign('show_storepickup', $show_storepickup);
         
 		if (!empty($rs['consignee']['id'])) {
@@ -575,7 +579,7 @@ class cart_controller {
         
         ecjia_front::$controller->assign('location_url', $map_url);
         
-        $shipping_type = empty($rs['shipping_list']) ? 'storepickup' : 'default_shipping';
+        $shipping_type = empty($rs['shipping_list']) && $rs['checkorder_mode'] == 'storepickup' ? 'storepickup' : 'default_shipping';
         ecjia_front::$controller->assign('shipping_type', $shipping_type);
         
         $done_url = RC_Uri::url('cart/flow/done');
