@@ -378,16 +378,14 @@ class cart_controller {
         	foreach ($rs['shipping_list'] as $k => $v) {
         		if ($v['shipping_code'] != 'ship_cac') {
         			$shipping_arr[] = $v;
-        		} else {
-                    $show_storepickup = true;
-                }
+        		}
         	}
         	$rs['shipping_list'] = $shipping_arr;
         	$rs['shipping_list'] = touch_function::change_array_key($rs['shipping_list'], 'shipping_id');
         }
         ecjia_front::$controller->assign('data', $rs);
 
-        if ($rs['checkorder_mode'] != 'storepickup') {
+        if ($rs['checkorder_mode'] == 'default_storepickup') {
             $show_storepickup = true;
         }
         ecjia_front::$controller->assign('show_storepickup', $show_storepickup);
@@ -579,7 +577,7 @@ class cart_controller {
         
         ecjia_front::$controller->assign('location_url', $map_url);
         
-        $shipping_type = empty($rs['shipping_list']) && $rs['checkorder_mode'] == 'storepickup' ? 'storepickup' : 'default_shipping';
+        $shipping_type = $rs['checkorder_mode'];
         ecjia_front::$controller->assign('shipping_type', $shipping_type);
         
         $done_url = RC_Uri::url('cart/flow/done');
@@ -937,7 +935,7 @@ class cart_controller {
    		}
    		
    		if (empty($shipping_id)) {
-   			return ecjia_front::$controller->showmessage('请选择一个配送方式', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+   			return ecjia_front::$controller->showmessage('当前收货地址暂无可用配送方式，请重新更换其他的收货地址', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
    		}
    		
    		if (empty($pay_id)) {
