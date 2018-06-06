@@ -910,14 +910,14 @@ class cart_controller {
       	$shipping_date 	= empty($_POST['shipping_date']) ? '' : trim($_POST['shipping_date']);
    		$shipping_time 	= empty($_POST['shipping_time']) ? '' : trim($_POST['shipping_time']);
    		
-     	$inv_payee 		= empty($_POST['inv_payee'])	? '' : trim($_POST['inv_payee']);
-     	$inv_tax_no     = empty($_POST['inv_tax_no'])	? '' : trim($_POST['inv_tax_no']);
+     	$inv_payee 		= empty($_POST['inv_payee'])	? '' : trim(htmlspecialchars($_POST['inv_payee']));
+     	$inv_tax_no     = empty($_POST['inv_tax_no'])	? '' : trim(htmlspecialchars($_POST['inv_tax_no']));
  		$inv_content 	= empty($_POST['inv_content']) 	? '' : trim($_POST['inv_content']);
      	$inv_type 		= empty($_POST['inv_type']) 	? '' : trim($_POST['inv_type']);
      	$inv_title_type = empty($_POST['inv_title_type'])	? '' : trim($_POST['inv_title_type']);
      	
        	$need_inv 		= empty($_POST['need_inv'])	? '' : trim($_POST['need_inv']);
-		$postscript 	= empty($_POST['note'])		? '' : trim($_POST['note']);
+		$postscript 	= empty($_POST['note'])		? '' : trim(htmlspecialchars($_POST['note']));
 		
    		$integral 		= empty($_POST['integral']) ? 0 : intval($_POST['integral']);
  		$bonus 			= empty($_POST['bonus']) 	? 0 : intval($_POST['bonus']);
@@ -993,14 +993,14 @@ class cart_controller {
     	$pickup_date 	= empty($_POST['pickup_date']) ? '' : trim($_POST['pickup_date']);
     	$pickup_time 	= empty($_POST['pickup_time']) ? '' : trim($_POST['pickup_time']);
     	 
-    	$inv_payee 		= empty($_POST['inv_payee'])	? '' : trim($_POST['inv_payee']);
-    	$inv_tax_no     = empty($_POST['inv_tax_no'])	? '' : trim($_POST['inv_tax_no']);
+    	$inv_payee 		= empty($_POST['inv_payee'])	? '' : trim(htmlspecialchars($_POST['inv_payee']));
+    	$inv_tax_no     = empty($_POST['inv_tax_no'])	? '' : trim(htmlspecialchars($_POST['inv_tax_no']));
     	$inv_content 	= empty($_POST['inv_content']) 	? '' : trim($_POST['inv_content']);
     	$inv_type 		= empty($_POST['inv_type']) 	? '' : trim($_POST['inv_type']);
     	$inv_title_type = empty($_POST['inv_title_type'])	? '' : trim($_POST['inv_title_type']);
     
     	$need_inv 		= empty($_POST['need_inv'])	? '' : trim($_POST['need_inv']);
-    	$postscript 	= empty($_POST['note'])		? '' : trim($_POST['note']);
+    	$postscript 	= empty($_POST['note'])		? '' : trim(htmlspecialchars($_POST['note']));
     
     	$integral 		= empty($_POST['integral']) ? 0 : intval($_POST['integral']);
     	$bonus 			= empty($_POST['bonus']) 	? 0 : intval($_POST['bonus']);
