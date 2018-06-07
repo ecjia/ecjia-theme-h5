@@ -461,6 +461,8 @@ class goods_controller {
     	$store_info = is_ecjia_error($store_info) ? array() : $store_info;
     	ecjia_front::$controller->assign('store_info', $store_info);
     	
+    	$cache_id = sprintf('%X', crc32($limit.'-'.$pages.'-'.$_COOKIE['longitude'].'-'.$_COOKIE['latitude'].'-'.$_COOKIE['city_id']));
+
     	$arr_list = array();
     	if ($keywords !== '') {
     		if (!empty($store_id)) {
@@ -581,7 +583,7 @@ class goods_controller {
     				if ($type == 'ajax_get') {
     					$arr_list = merchant_function::format_distance($arr_list);
     					ecjia_front::$controller->assign('data', $arr_list);
-    					$say_list = ecjia_front::$controller->fetch('library/store_list.lbi');
+    					$say_list = ecjia_front::$controller->fetch('library/store_list.lbi', $cache_id);
     				} else {
     					user_function::insert_search($keywords, $store_id);//记录搜索
     				}
@@ -599,7 +601,7 @@ class goods_controller {
     			if ($type == 'ajax_get') {
     				$arr_list = merchant_function::format_distance($arr_list);
     				ecjia_front::$controller->assign('data', $arr_list);
-    				$say_list = ecjia_front::$controller->fetch('library/store_list.lbi');
+    				$say_list = ecjia_front::$controller->fetch('library/store_list.lbi', $cache_id);
     			}
     		}
     	}
