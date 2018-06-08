@@ -517,7 +517,9 @@ class cart_controller {
         }
         $total['discount_integral'] = 0;
         if ($_SESSION['cart'][$cart_key]['temp']['integral']) {
-        	$total['discount_integral'] = $_SESSION['cart'][$cart_key]['temp']['integral']/100;
+            $integral_response = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_INTEGRAL)->data(
+                array('token' => $token, 'integral' => $_SESSION['cart'][$cart_key]['temp']['integral']))->run();
+        	$total['discount_integral'] = !is_ecjia_error($integral_response) ? $integral_response['bonus'] : $_SESSION['cart'][$cart_key]['temp']['integral']/100;
         }
 
         $total['discount'] = $rs['discount'] + $total['discount_bonus'] + $total['discount_integral'];//优惠金额 -红包 -积分
