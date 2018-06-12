@@ -474,11 +474,7 @@
 					'username': username
 				}
 				$.post(url, options, function(data) {
-					if (data.state == 'error') {
-						$("#modify-username-info").text(data.msg);
-					} else {
-						ecjia.pjax(data.msg);
-					}
+					ecjia.touch.showmessage(data);
 				});
 			});
 		},
