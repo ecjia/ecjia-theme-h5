@@ -346,7 +346,7 @@ ecjia_open::macro('collectmoney', function($querys) {
 });
 //历史记录
 ecjia_open::macro('history', function($querys) {
-	return RC_Uri::url('touch/index/history');
+	return RC_Uri::url('touch/index/search');
 });
 //店铺首页
 ecjia_open::macro('merchant', function($querys) {
