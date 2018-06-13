@@ -58,10 +58,10 @@ return [
     'touch/index/clear_cache'			=> 'touch_controller@clear_cache', //清除缓存
     
     //定位
-    'location/index/select_location'    => 'location_controller@select_location',
-    'location/index/search_list'        => 'location_controller@search_list',
-    'location/index/select_city'        => 'location_controller@select_city',
-    'location/index/get_location_msg'   => 'location_controller@get_location_msg',
+    'touch/location/select_location'    => 'location_controller@select_location',
+    'touch/location/search_list'        => 'location_controller@search_list',
+    'touch/location/select_city'        => 'location_controller@select_city',
+    'touch/location/get_location_msg'   => 'location_controller@get_location_msg',
     
     //商品
     'goods/category/init'               => 'goods_controller@init',
@@ -78,7 +78,7 @@ return [
     'merchant/index/position'           => 'merchant_controller@position',
     'merchant/index/ajax_store_comment' => 'merchant_controller@ajax_store_comment',
     'merchant/quickpay/collectmoney'    => 'merchant_controller@collectmoney',
-    'seller/category/list'              => 'merchant_controller@seller_list',
+    'merchant/category/list'            => 'merchant_controller@seller_list',
     
     //文章
     'article/help/init'                 => 'article_controller@init',
@@ -112,9 +112,9 @@ return [
     'cart/flow/pay_pickup'            	=> 'cart_controller@pay_pickup',
     
     //支付
-    'pay/index/init'                    => 'pay_controller@init',
-    'pay/index/notify'                  => 'pay_controller@notify',
-    'pay/index/pay_order'               => 'pay_controller@pay_order',
+    'payment/pay/init'                  => 'payment_controller@init',
+    'payment/pay/notify'                => 'payment_controller@notify',
+    'payment/pay/pay_order'             => 'payment_controller@pay_order',
 
     //会员
     'touch/my/init'                     => 'user_controller@init',

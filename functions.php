@@ -327,9 +327,9 @@ ecjia_open::macro('goods_list', function($querys) {
 //店铺列表
 ecjia_open::macro('seller', function($querys) {
 	if (!empty($querys['category_id'])) {
-		return RC_Uri::url('seller/category/list', array('cid' => $querys['category_id']));
+		return RC_Uri::url('merchant/category/list', array('cid' => $querys['category_id']));
 	} else {
-		return RC_Uri::url('seller/category/list');
+		return RC_Uri::url('merchant/category/list');
 	}
 });
 //我的红包

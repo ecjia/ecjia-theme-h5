@@ -59,12 +59,10 @@ return [
 	'user_front'                   => 'extras/classes/user/user_front.class.php',
 	
 	'touch_controller'             => 'extras/controller/touch_controller.php',
-	'location_controller'          => 'extras/controller/location_controller.php', //定位
 	'goods_controller'             => 'extras/controller/goods_controller.php',    //商品
 	'merchant_controller'          => 'extras/controller/merchant_controller.php', //店铺
 	'article_controller'           => 'extras/controller/article_controller.php',  //文章
 	'cart_controller'              => 'extras/controller/cart_controller.php',     //购物车
-	'pay_controller'               => 'extras/controller/pay_controller.php',      //支付
 	'user_controller'              => 'extras/controller/user_controller.php',     //会员
 	'affiliate_controller'         => 'extras/controller/affiliate_controller.php',//推荐
 	'franchisee_controller'        => 'extras/controller/franchisee_controller.php',   //商家入驻申请

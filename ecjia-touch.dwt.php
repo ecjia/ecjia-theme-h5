@@ -40,7 +40,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!-- {ecjia:hook id=front_head} -->
 </head>
 <body>
-	<div class="ecjia" id="get_location" data-url="{url path='location/index/get_location_msg'}">
+	<div class="ecjia" id="get_location" data-url="{url path='touch/location/get_location_msg'}">
 		<input type="hidden" name="key" value="{$key}"/>
 		<input type="hidden" name="referer" value="{$referer}"/>
 		{if $is_weixin}<input type="hidden" name="wxconfig_url" value="{url path='user/index/wxconfig'}"/>{/if}

@@ -74,7 +74,7 @@ class location_controller
                     ecjia_front::$controller->assign('address_list', $address_list);
                 }
             }
-            $location_url = RC_Uri::url('location/index/select_location');
+            $location_url = RC_Uri::url('touch/location/select_location');
             ecjia_front::$controller->assign('location_url', urlencode($location_url));
         }
 
@@ -200,7 +200,7 @@ class location_controller
         setcookie("position_latitude", $latitude, time() + 1800);
 
         if (empty($city_id)) {
-            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('location/index/select_city')));
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('touch/location/select_city')));
         }
 
         return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $href_url));

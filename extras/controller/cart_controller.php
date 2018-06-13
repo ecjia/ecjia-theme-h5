@@ -976,7 +976,7 @@ class cart_controller {
    		//释放session
    		unset($_SESSION['cart']);
    		
-   		$url = RC_Uri::url('pay/index/init', array('order_id' => $order_id, 'tips_show' => 1));
+   		$url = RC_Uri::url('payment/pay/init', array('order_id' => $order_id, 'tips_show' => 1));
    		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
     }
     
@@ -1052,7 +1052,7 @@ class cart_controller {
     	//释放session
     	unset($_SESSION['cart']);
     	 
-    	$url = RC_Uri::url('pay/index/init', array('order_id' => $order_id, 'tips_show' => 1));
+    	$url = RC_Uri::url('payment/pay/init', array('order_id' => $order_id, 'tips_show' => 1));
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
     }
 

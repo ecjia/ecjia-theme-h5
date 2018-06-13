@@ -34,7 +34,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <ul class="ecjia-list list-short payment-list">
     <!-- {foreach from=$payment_list item=list} -->
         <li>
-            <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}"><a href='{url path="pay/index/init" args="order_id={$data.order_id}&pay_id={$list.pay_id}&pay_code={$list.pay_code}"}'>{$list.pay_name}</a></span>
+            <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}"><a href='{url path="payment/pay/init" args="order_id={$data.order_id}&pay_id={$list.pay_id}&pay_code={$list.pay_code}"}'>{$list.pay_name}</a></span>
         </li>
     <!-- {/foreach} -->
     </ul>
