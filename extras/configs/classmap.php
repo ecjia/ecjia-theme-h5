@@ -76,6 +76,7 @@ return [
 	'connect_controller'           => 'extras/controller/connect_controller.php',      //授权登录
 	'mobile_controller'            => 'extras/controller/mobile_controller.php',       
 	'quickpay_controller'          => 'extras/controller/quickpay_controller.php',     //闪惠
+	'payment_controller'           => 'extras/controller/payment_controller.php',     //支付
 	
 	'ecjia_location'               => 'extras/classes/ecjia_location.class.php',
 	
