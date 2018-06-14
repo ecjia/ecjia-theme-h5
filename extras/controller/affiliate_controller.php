@@ -51,6 +51,7 @@ defined('IN_ECJIA') or exit('No permission resources.');
  */
 class affiliate_controller {
 	public static function init() {
+		unset($_SESSION['affiliate_temp']);
 		$token = touch_function::get_affiliate_token();
 		
 		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();

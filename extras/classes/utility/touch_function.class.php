@@ -107,7 +107,7 @@ class touch_function {
     public static function get_affiliate_token() {
     	$token = $_SESSION['affiliate_temp']['token'];
     	if (empty($token)) {
-    		$rs_token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
+    		$rs_token = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_SHOP_TOKEN)->run();
     		if (!is_ecjia_error($rs_token)) {
     			$token = $rs_token['access_token'];
     			$_SESSION['affiliate_temp']['token'] = $token;
