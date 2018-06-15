@@ -58,10 +58,10 @@ return [
     'touch/index/clear_cache'			=> 'touch_controller@clear_cache', //清除缓存
     
     //定位
-    'touch/location/select_location'    => 'location_controller@select_location',
-    'touch/location/search_list'        => 'location_controller@search_list',
-    'touch/location/select_city'        => 'location_controller@select_city',
-    'touch/location/get_location_msg'   => 'location_controller@get_location_msg',
+    'touch/location/select_location'    => 'touch_controller@select_location',
+    'touch/location/search_list'        => 'touch_controller@search_list',
+    'touch/location/select_city'        => 'touch_controller@select_city',
+    'touch/location/get_location_msg'   => 'touch_controller@get_location_msg',
     
     //商品
     'goods/category/init'               => 'goods_controller@init',
