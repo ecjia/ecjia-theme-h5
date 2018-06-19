@@ -241,8 +241,8 @@ class user_privilege_controller {
         		$message = $data->get_error_message();
         	} else {
         		$url = RC_Uri::url('touch/my/init');
-        		$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : urldecode($_SESSION['user_temp']['referer_url']);
-        		if (!empty($referer_url) && $referer_url != RC_Uri::url('user/privilege/login') && $referer_url != undefined) {
+        		$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : (isset($_SESSION['user_temp']['referer_url']) ? urldecode($_SESSION['user_temp']['referer_url']) : '');
+        		if (!empty($referer_url) && $referer_url != RC_Uri::url('user/privilege/login') && $referer_url != RC_Uri::url('user/profile/edit_password')) {
         			$url = $referer_url;
         		}
         		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
@@ -277,8 +277,7 @@ class user_privilege_controller {
     		ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
     	}
     	
-    	$token = touch_function::get_token();
-    	$_SESSION['user_temp']['token'] = $token;
+    	$token = touch_function::get_admin_token();
     	
 		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();
 		$res = !is_ecjia_error($res) ? $res : array();

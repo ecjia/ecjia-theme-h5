@@ -47,19 +47,6 @@
 defined('IN_ECJIA') or exit('No permission resources.');
 
 class touch_function {
-    
-    //获取token
-    public static function get_token($return_all = false) {
-        $rs_token = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_TOKEN)->run();
-        if (!is_ecjia_error($rs_token)) {
-        	if ($return_all) {
-        		return $rs_token;
-        	} else {
-        		return $rs_token['access_token'];
-        	}
-        }
-    }
-    
     public static function change_array_key($array, $new_key) {
         $new_array = array();
         if ($array) {
@@ -104,7 +91,7 @@ class touch_function {
     	}
     }
     
-    public static function get_affiliate_token() {
+    public static function get_admin_token() {
     	$token = $_SESSION['affiliate_temp']['token'];
     	if (empty($token)) {
     		$rs_token = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_SHOP_TOKEN)->run();
@@ -112,7 +99,7 @@ class touch_function {
     			$token = $rs_token['access_token'];
     			$_SESSION['affiliate_temp']['token'] = $token;
     		} else {
-    			return self::get_affiliate_token();
+    			return self::get_admin_token();
     		}
     	}
     	return $token;
