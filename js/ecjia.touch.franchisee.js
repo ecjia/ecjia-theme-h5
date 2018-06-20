@@ -253,7 +253,8 @@
 			$("input[name='franchisee_submit']").on('click', function(e) {
 				e.preventDefault();
 				var seller_name = $("input[name='seller_name']").val();
-				var seller_category = $("input[name='seller_category_id']").val();
+				var seller_category = $("input[name='seller_category']").val();
+				var seller_category_name = $("input[name='seller_category_name']").val();
 				var validate_type = $("input[name='validate_type']").val();
 				var province = $("input[name='f_province']").val();
 				var city = $("input[name='f_city']").val();
@@ -277,7 +278,10 @@
 				$.cookie('franchisee_street_name', $("input[name='f_street_name']").val(), {
 					expires: 7
 				});
-				$.cookie('franchisee_seller', $("input[name='seller_category']").val(), {
+				$.cookie('franchisee_seller_category_id', $("input[name='seller_category']").val(), {
+					expires: 7
+				});
+				$.cookie('franchisee_seller_category', $("input[name='seller_category_name']").val(), {
 					expires: 7
 				});
 				$.cookie('franchisee_address', address, {
@@ -327,6 +331,7 @@
 				var info = {
 					'seller_name': seller_name,
 					'seller_category': seller_category,
+					'seller_category_name': seller_category_name,
 					'validate_type': validate_type,
 					'province': province,
 					'city': city,
@@ -645,13 +650,13 @@
 					toolbarCloseText: '完成',
 					cols: [{
 						onChange: function(p, value) {
-							$.cookie('franchisee_seller', value, {
+							$.cookie('franchisee_seller_category', value, {
 								expires: 7
 							});
 							for (i = 0; i < category.length; i++) {
 								if (category[i]['name'] == value) {
-									$.cookie('franchisee_seller_category_id', category[i]['id']);
-									$("input[name='seller_category_id']").val(category[i]['id']);
+									$.cookie('franchisee_seller_category_id', category[i]['id'], {expires: 7});
+									$("input[name='seller_category']").val(category[i]['id']);
 								}
 							}
 						},
@@ -701,9 +706,6 @@
 				var f_address = $("input[name='f_address']").val();
 
 				$.cookie('franchisee_address', f_address, {
-					expires: 7
-				});
-				$.cookie('franchisee_seller_name', seller_name, {
 					expires: 7
 				});
 				if (f_province && f_district && f_district && f_address && f_street) {

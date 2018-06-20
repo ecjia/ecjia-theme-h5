@@ -317,12 +317,10 @@ class franchisee_controller {
                         }
                     }
                 }
-                $_COOKIE['franchisee_seller_category_id']    = $reaudit['seller_category'];
                 $_COOKIE['franchisee_province_id']           = $reaudit['province'];
                 $_COOKIE['franchisee_city_id']               = $reaudit['city'];
                 $_COOKIE['franchisee_district_id']           = $reaudit['district'];
                 $_COOKIE['franchisee_street_id']             = $reaudit['street'];
-                
             }
         }
 
@@ -478,7 +476,7 @@ class franchisee_controller {
     	if (is_ecjia_error($data)) {
 			return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON, array('pjaxurl' => ''));
 		} else {
-			return ecjia_front::$controller->showmessage("入驻信息已提交，请耐心等耐审核", ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url'=>RC_Uri::url('franchisee/index/process', 'show=1')));
+			return ecjia_front::$controller->showmessage("入驻信息已提交，请耐心等耐审核", ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('franchisee/index/process', 'show=1')));
 		}
 	}
 
@@ -611,7 +609,7 @@ class franchisee_controller {
                 'email' 				=> $_SESSION['franchisee_add']['email'],
                 'mobile'		 		=> $_SESSION['franchisee_add']['mobile'],
                 'seller_name' 			=> $_COOKIE['franchisee_seller_name'],
-                'seller_category' 		=> $_COOKIE['franchisee_seller'],
+            	'seller_category' 		=> $_COOKIE['franchisee_seller_category'],
                 'address' 				=> $_COOKIE['franchisee_province_name'].$_COOKIE['franchisee_city_name'].$_COOKIE['franchisee_district_name'].$_COOKIE['franchisee_street_name'].' '.$_COOKIE['franchisee_address'],
             );
         } else {
@@ -621,7 +619,7 @@ class franchisee_controller {
                 'validate_code' => $code,
             );
             $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_MERCHANT_PROCESS)->data($params)->run();
-             
+
             if (!is_ecjia_error($rs)) {
                 $check_status  = $rs['check_status'];
                 $info      	   = $rs['merchant_info'];
