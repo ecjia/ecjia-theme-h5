@@ -67,7 +67,7 @@ class user_privilege_controller {
         	if (!ecjia_front::$controller->is_cached('user_login.dwt', $cache_id)) {
         		$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
         		if (!is_ecjia_error($user)) {
-        			ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
+        			ecjia_front::$controller->redirect(RC_Uri::url('touch/my/init'));
         		} else {
         			ecjia_touch_user::singleton()->signout();
         		}
@@ -123,7 +123,7 @@ class user_privilege_controller {
     		if (!ecjia_front::$controller->is_cached('user_wechat_login.dwt', $cache_id)) {
     			$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
     			if (!is_ecjia_error($user)) {
-    				ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
+    				ecjia_front::$controller->redirect(RC_Uri::url('touch/my/init'));
     			} else {
     				ecjia_touch_user::singleton()->signout();
     			}
@@ -167,7 +167,7 @@ class user_privilege_controller {
     		if (!ecjia_front::$controller->is_cached('user_login.dwt', $cache_id)) {
     			$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
     			if (!is_ecjia_error($user)) {
-    				ecjia_front::$controller->redirect(RC_Uri::url('touch/index/init'));
+    				ecjia_front::$controller->redirect(RC_Uri::url('touch/my/init'));
     			} else {
     				ecjia_touch_user::singleton()->signout();
     			}
@@ -419,9 +419,12 @@ class user_privilege_controller {
             $res = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => ''))->run();
             if (!is_ecjia_error($res)) {
                 $url = RC_Uri::url('touch/my/init');
-                if (!empty($_SESSION['user_temp']['referer_url']) && $_SESSION['user_temp']['referer_url'] != undefined) {
-                    $url = urldecode($_SESSION['user_temp']['referer_url']);
+                
+                $referer_url = isset($_SESSION['user_temp']['referer_url']) ? urldecode($_SESSION['user_temp']['referer_url']) : '';
+                if (!empty($referer_url) && $referer_url != RC_Uri::url('user/profile/edit_password')) {
+                	$url = $referer_url;
                 }
+                
                 unset($_SESSION['user_temp']);
                 
                 ecjia_touch_user::singleton()->signin('smslogin', $res['user']['name'], $password);
@@ -524,9 +527,12 @@ class user_privilege_controller {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_SIGNUP)->data(array('name' => $username, 'mobile' => $mobile, 'password' => $password, 'invite_code' => $verification))->run();
             if (!is_ecjia_error($data)) {
             	$url = RC_Uri::url('touch/my/init');
-            	if (!empty($_SESSION['user_temp']['referer_url']) && $_SESSION['user_temp']['referer_url'] != undefined) {
-            		$url = urldecode($_SESSION['user_temp']['referer_url']);
+
+            	$referer_url = isset($_SESSION['user_temp']['referer_url']) ? urldecode($_SESSION['user_temp']['referer_url']) : '';
+            	if (!empty($referer_url) && $referer_url != RC_Uri::url('user/profile/edit_password')) {
+            		$url = $referer_url;
             	}
+            	
                 unset($_SESSION['user_temp']);
                 
                 ecjia_touch_user::singleton()->signin('password', $username, $password);
