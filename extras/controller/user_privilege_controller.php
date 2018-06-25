@@ -460,7 +460,7 @@ class user_privilege_controller {
      * 验证注册
      */
     public static function signup() {
-        $chars = "/^1(3|4|5|6|7|8)\d{9}$/";
+        $chars = "/^1(3|4|5|6|7|8|9)\d{9}$/";
         $mobile = !empty($_GET['mobile']) ? htmlspecialchars($_GET['mobile']) : '';
         
         if (!preg_match($chars, $mobile)) {
