@@ -370,6 +370,7 @@ class touch_controller {
 
             // 获取周边数据
             $content = $ecjia_location->getNearByBoundary();
+            $content = !is_ecjia_error($content) ? $content : array();
             ecjia_front::$controller->assign('content', $content['data']);
         }
 
@@ -383,6 +384,8 @@ class touch_controller {
         $keywords = $_GET['keywords'];
 
         $content = with(new ecjia_location())->getSuggestionRegion($region, $keywords);
+        $content = !is_ecjia_error($content) ? $content : array();
+        
         return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('content' => $content));
     }
 
@@ -425,7 +428,8 @@ class touch_controller {
     public static function get_location_msg()
     {
         $content = with(new ecjia_location())->getGeoCoder($_GET['lat'], $_GET['lng']);
-
+        $content = !is_ecjia_error($content) ? $content : array();
+        
         $location_content = $content['result']['pois'][0];
         $location_name = $location_content['title'];
         $location_address = $location_content['address'];
