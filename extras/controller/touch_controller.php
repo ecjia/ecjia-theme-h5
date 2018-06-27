@@ -456,7 +456,7 @@ class touch_controller {
 
         $href_url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
 
-        $str1 = 'm=location&c=index&a=select_location';
+        $str1 = 'm=touch&c=location&a=select_location';
         if (strpos($href_url, $str1)) {
             $href_url = RC_Uri::url('touch/index/init');
         }
