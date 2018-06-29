@@ -260,9 +260,13 @@ class user_privilege_controller {
     		return ecjia_front::$controller->showmessage('请输入手机号', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
     	
-    	$chars = "/^1(3|4|5|6|7|8|9)\d{9}$/";
-    	if (!preg_match($chars, $mobile_phone)) {
-    		return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+//     	$chars = "/^1(3|4|5|6|7|8|9)\d{9}$/";
+//     	if (!preg_match($chars, $mobile_phone)) {
+//     		return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+//     	}
+    	$check_mobile = Ecjia\App\Sms\Helper::check_mobile($mobile_phone);
+    	if (is_ecjia_error($check_mobile)) {
+    	    return ecjia_front::$controller->showmessage($check_mobile->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
     	$_SESSION['user_temp']['mobile'] = $mobile_phone;
     	
@@ -460,11 +464,15 @@ class user_privilege_controller {
      * 验证注册
      */
     public static function signup() {
-        $chars = "/^1(3|4|5|6|7|8|9)\d{9}$/";
+//         $chars = "/^1(3|4|5|6|7|8|9)\d{9}$/";
         $mobile = !empty($_GET['mobile']) ? htmlspecialchars($_GET['mobile']) : '';
         
-        if (!preg_match($chars, $mobile)) {
-        	return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+//         if (!preg_match($chars, $mobile)) {
+//         	return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+//         }
+        $check_mobile = Ecjia\App\Sms\Helper::check_mobile($mobile);
+        if (is_ecjia_error($check_mobile)) {
+            return ecjia_front::$controller->showmessage($check_mobile->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         
 		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data(array('type' => 'mobile', 'value' => $mobile))->run();

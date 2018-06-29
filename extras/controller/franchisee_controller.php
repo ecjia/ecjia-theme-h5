@@ -97,9 +97,13 @@ class franchisee_controller {
 		if (empty($code)) {
 			return ecjia_front::$controller->showmessage('验证码不能为空', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 		}
-		$chars = "/^1(3|4|5|6|7|8|9)\d{9}$/";
-		if (!preg_match($chars, $mobile)) {
-			return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+// 		$chars = "/^1(3|4|5|6|7|8|9)\d{9}$/";
+// 		if (!preg_match($chars, $mobile)) {
+// 			return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+// 		}
+		$check_mobile = Ecjia\App\Sms\Helper::check_mobile($mobile);
+		if (is_ecjia_error($check_mobile)) {
+		    return ecjia_front::$controller->showmessage($check_mobile->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 		}
 		
 		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_SHOP_TOKEN)->run();
@@ -217,9 +221,13 @@ class franchisee_controller {
 			if (empty($mobile)) {
 				return ecjia_front::$controller->showmessage('请输入手机号码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 			}
-			$chars = "/^1(3|4|5|6|7|8|9)\d{9}$/";
-			if (!preg_match($chars, $mobile)) {
-				return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+// 			$chars = "/^1(3|4|5|6|7|8|9)\d{9}$/";
+// 			if (!preg_match($chars, $mobile)) {
+// 				return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+// 			}
+			$check_mobile = Ecjia\App\Sms\Helper::check_mobile($mobile);
+			if (is_ecjia_error($check_mobile)) {
+			    return ecjia_front::$controller->showmessage($check_mobile->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 			}
 		}
 	}
@@ -515,9 +523,13 @@ class franchisee_controller {
 			return ecjia_front::$controller->showmessage(__('验证码不能为空'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 		}
 		 
-		$chars = "/^1(3|4|5|6|7|8|9)\d{9}$/";
-		if (!preg_match($chars, $mobile)) {
-			return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+// 		$chars = "/^1(3|4|5|6|7|8|9)\d{9}$/";
+// 		if (!preg_match($chars, $mobile)) {
+// 			return ecjia_front::$controller->showmessage('手机号码格式错误', ecjia::MSGSTAT_ERROR | ecjia::MSGTYPE_JSON);
+// 		}
+		$check_mobile = Ecjia\App\Sms\Helper::check_mobile($mobile);
+		if (is_ecjia_error($check_mobile)) {
+		    return ecjia_front::$controller->showmessage($check_mobile->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 		}
 		 
 		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::ADMIN_SHOP_TOKEN)->run();
