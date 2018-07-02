@@ -530,6 +530,9 @@
                     scroll_list();
                 };
                 $('.wd').scroll(function () {
+                	if ($(this).find('.is-last').length != 0) {
+                        return false;
+                    }
                     scroll_list();
                 });
                 $('.store-container').scroll(function () {
