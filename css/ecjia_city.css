@@ -2891,7 +2891,8 @@ footer {
     width: 11px;
     height: 7px;
     background: url(../images/icon/a.png) 0 0 no-repeat;
-    background-size: 11px 7px
+    background-size: 11px 7px;
+	display: none;
 }
 
 .store-add-cart.a4w .a58 {

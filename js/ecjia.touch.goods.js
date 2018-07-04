@@ -604,6 +604,7 @@
 				$('.store-add-cart').children('.a4x').addClass('light').removeClass('disabled');
 				$('.store-add-cart').children('.a51').removeClass('disabled');
 			} else {
+				$('.a57').css('display', 'block');
 				//禁用滚动条
 				$('body').css('overflow-y', 'hidden').on('touchmove', function(event) {
 					event.preventDefault;
@@ -633,6 +634,7 @@
 
 			//购物车完全清空
 			if (bool == true) {
+				$('.a57').css('display', 'none');
 				$('.store-add-cart').removeClass('active');
 				$('.a4y').remove();
 				$('.store-add-cart').children('.a4x').addClass('disabled').addClass('outcartcontent').removeClass('light').removeClass('incartcontent');
