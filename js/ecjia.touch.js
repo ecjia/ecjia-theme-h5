@@ -45,7 +45,6 @@
             ecjia.touch.close_app_download();
             ecjia.touch.search_header();
             ecjia.touch.del_history();
-            ecjia.touch.share_spread();
             ecjia.touch.copy_btn();
             ecjia.touch.clear_cache();
             ecjia.touch.select_city();
@@ -168,97 +167,6 @@
             }
         },
         //搜索关键词定位结束
-
-        share_spread: function () {
-            var info = {
-                'url': location.href.split('#')[0]
-            };
-            
-            var spread_url = $('input[name="spread_url"]').val();
-            if (spread_url != undefined) {
-                return false;
-            }
-            var wxconfig_url = $('input[name="wxconfig_url"]').val();
-            if (wxconfig_url == undefined) {
-                return false;
-            }
-
-            var title = $('input[name="share_title"]').val() == undefined ? document.title : $('input[name="share_title"]').val();
-            var image = $('input[name="share_image"]').val() == undefined ? $.cookie('wap_logo') : $('input[name="share_image"]').val();
-            var desc = $('input[name="share_desc"]').val() == undefined ? document.title : $('input[name="share_desc"]').val();
-            var link = location.href.split('#')[0];
-
-            $.post(wxconfig_url, info, function (response) {
-                if (response == '' || response.data == undefined) {
-                    return false;
-                }
-                var data = response.data;
-                if (data != undefined && data.appId != '') {
-                    wx.config({
-                        debug: false,
-                        appId: data.appId,
-                        timestamp: data.timestamp,
-                        nonceStr: data.nonceStr,
-                        signature: data.signature,
-                        jsApiList: [
-                            'onMenuShareTimeline',
-                            'onMenuShareAppMessage',
-                            'onMenuShareQQ',
-                        ]
-                    });
-                    wx.error(function (res) {
-                        // console.log(res);
-                        // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-                    });
-//	        		wx.ready(function () {
-                    //分享到朋友圈
-                    wx.onMenuShareTimeline({
-                        title: title, 					// 分享标题【必填】
-                        link: link, 					// 分享链接【必填】
-                        imgUrl: image, 					// 分享图标【必填】
-                        img_url: image,
-                        success: function () {
-                            // 用户确认分享后执行的回调函数
-                        },
-                        cancel: function () {
-                            // 用户取消分享后执行的回调函数
-                        }
-                    });
-
-                    //分享给朋友
-                    wx.onMenuShareAppMessage({
-                        title: title, 					// 分享标题【必填】
-                        desc: desc,	 					// 分享描述【必填】
-                        link: link, 					// 分享链接【必填】
-                        imgUrl: image, 					// 分享图标【必填】
-                        type: 'link', 					// 分享类型,music、video或link，不填默认为link【必填】
-                        img_url: image,
-                        success: function () {
-                            // 用户确认分享后执行的回调函数
-                        },
-                        cancel: function () {
-                            // 用户取消分享后执行的回调函数
-                        }
-                    });
-
-                    //分享到QQ
-                    wx.onMenuShareQQ({
-                        title: title, 					// 分享标题
-                        desc: desc, 					// 分享描述
-                        link: link, 					// 分享链接
-                        imgUrl: image, 					// 分享图标
-                        img_url: image,
-                        success: function () {
-                            // 用户确认分享后执行的回调函数
-                        },
-                        cancel: function () {
-                            // 用户取消分享后执行的回调函数
-                        }
-                    });
-//	        		});	
-                }
-            });
-        },
 
         copy_btn: function () {
             var clipboard = new Clipboard('.copy-btn');
@@ -998,7 +906,6 @@
         ecjia.touch.region_change();
         ecjia.touch.goods_detail.change();
         ecjia.touch.index.init_swiper();
-        ecjia.touch.share_spread();
         ecjia.touch.clear_cache();
 
         var ua = navigator.userAgent.toLowerCase();
