@@ -667,7 +667,8 @@
                     bottom_start = $("#ecjia-menu").css("bottom");
                     top_start = $("#ecjia-menu").offset().top - $("body").scrollTop();
                     //阻止浏览器下拉事件
-                    $('body').css('overflow-y', 'hidden').on('touchmove', function (event) {
+                    $('body').css('overflow-y', 'hidden');
+                    window.addEventListener('touchmove', function (event) {
                         event.preventDefault;
                     }, false);
                 });
