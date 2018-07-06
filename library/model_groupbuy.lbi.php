@@ -5,7 +5,7 @@ Description: 这是首页的团购模块
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
-{if $promotion_goods}
+{if $groupbuy_goods}
 <div class="ecjia-mod ecjia-promotion-model ecjia-margin-t {if !$data && !$new_goods && !$best_goods}ecjia-mod-pb35{/if}">
 	<div class="head-title">
 		<h2><i class="icon-promotion"></i>限时团购<a href="{RC_Uri::url('goods/index/groupbuy')}" class="more_info">更多</a></h2>
