@@ -26,6 +26,10 @@
 			ecjia.touch.category.store_toggle();
 			ecjia.touch.category.promotion_scroll();
 			ecjia.touch.category.image_preview();
+			
+			ecjia.touch.category.add_goods();
+			ecjia.touch.category.remove_goods();
+			ecjia.touch.category.check_groupbuy_cart();
 
 			//分类列表 点击分类切换 滚动到顶部
 			$('.category_left li').on('click', function() {
@@ -142,7 +146,46 @@
 							$('.may_like_' + goods_id).attr('data-num', val);
 						}
 					}
-					ecjia.touch.category.update_cart(rec_id, val, goods_id, '', true, bool_spec, 'add');
+					var goods_activity_id = $this.attr('act_id');
+					ecjia.touch.category.update_cart(rec_id, val, goods_id, '', true, bool_spec, 'add', '', goods_activity_id);
+				}
+			});
+		},
+		
+		//加按钮点击
+		add_goods: function() {
+			$("[data-toggle='add-goods']").off('click').on('click', function(ev) {
+				var $this = $(this);
+				$('.check_groupbuy_cart').removeClass('disabled');
+				
+				$('.check_groupbuy_cart').attr('data-num', 1);
+				if ($this.hasClass('detail-add')) {
+					var val = parseInt($this.parent().children('label').html());
+					val += 1;
+					$('.check_groupbuy_cart').attr('data-num', val);
+					$this.parent().children('label').html(val);
+				} else {
+					var box = $this.siblings('.box');
+					box.removeClass('hide');
+					$this.addClass('hide');
+				}
+			});
+		},
+		
+		remove_goods: function() {
+			$("[data-toggle='remove-goods']").off('click').on('click', function(ev) {
+				var $this = $(this);
+				var val = parseInt($this.parent().children('label').html());
+				val -= 1;
+				
+				$('.check_groupbuy_cart').attr('data-num', val);
+				if (val != 0) {
+					$this.parent().children('label').html(val);
+				} else {
+					$this.parent().children('label').html(1);
+					$('.check_groupbuy_cart').addClass('disabled');
+					$this.parent().addClass('hide');
+					$('.goods-add-cart').removeClass('hide');
 				}
 			});
 		},
@@ -334,7 +377,7 @@
 		//spec 商品规格
 		//type 加/减
 		//div 删除指定div
-		update_cart: function(rec_id, val, goods_id, checked, store, spec, type, div) {
+		update_cart: function(rec_id, val, goods_id, checked, store, spec, type = '', div = '', act_id = 0) {
 			var url = $('input[name="update_cart_url"]').val();
 			var store_id = $('input[name="store_id"]').val();
 
@@ -351,6 +394,7 @@
 				'checked': checked == undefined ? '' : checked,
 				'response': response,
 				'spec': spec,
+				'act_id': act_id
 			};
 
 			//更新购物车中商品
@@ -500,6 +544,7 @@
 					$('.ecjia-attr-modal').find('#goods_' + goods_id).children('label').html(val);
 				}
 
+				var text = $('.a51').attr('data-text') == undefined ? '去结算' : $('.a51').attr('data-text');
 				if (data.count == null) {
 					ecjia.touch.category.hide_cart(true);
 				} else {
@@ -540,7 +585,7 @@
 					}
 
 					if (data.count.goods_number == 0) {
-						$('.a51').addClass('disabled').html('去结算');
+						$('.a51').addClass('disabled').html(text);
 					} else {
 						$('.a51').removeClass('disabled');
 						//隐藏加入购物车按钮 显示加减按钮
@@ -587,9 +632,9 @@
 					var count = data.count;
 					if (count.meet_min_amount == 1 || !count.label_short_amount) {
 						if (count.real_goods_count > 0) {
-							$('.check_cart').removeClass('disabled').html('去结算');
+							$('.check_cart').removeClass('disabled').html(text);
 						} else {
-							$('.check_cart').html('去结算');
+							$('.check_cart').html(text);
 						}
 					} else {
 						$('.check_cart').addClass('disabled').html('还差'+ count.label_short_amount +'起送');
@@ -632,6 +677,7 @@
 			$('.minicart-content').children('.a4x').removeClass('show').attr('show', false);
 			$('.store-add-cart').children('.a4x').addClass('show').attr('show', false);
 
+			var text = $('.a51').attr('data-text') == undefined ? '去结算' : $('.a51').attr('data-text');
 			//购物车完全清空
 			if (bool == true) {
 				$('.a57').css('display', 'none');
@@ -640,7 +686,7 @@
 				$('.store-add-cart').children('.a4x').addClass('disabled').addClass('outcartcontent').removeClass('light').removeClass('incartcontent');
 				$('.minicart-content').children('.a4x').removeClass('light').addClass('disabled');
 				$('.store-add-cart').children('.a4z').children('div').addClass('a50').html('购物车是空的');
-				$('.store-add-cart').children('.a51').addClass('disabled').html('去结算');;
+				$('.store-add-cart').children('.a51').addClass('disabled').html(text);;
 				$('.minicart-goods-list').html('');
 			}
 			//启用用滚动条
@@ -1098,7 +1144,7 @@
 					if (val <= 0 || !ex.test(val)) {
 						var myApp = new Framework7();
 						myApp.modal({
-							title: '修改数量失败请重试',
+							title: '请输入数值大于0的整数',
 							buttons: [{
 								text: '确定',
 								onClick: function() {
@@ -1188,7 +1234,7 @@
 					url += '&store_id=' + store_id;
 				}
 
-				if (rec_id != undefined) {
+				if (rec_id != undefined && rec_id != '') {
 					url += '&rec_id=' + rec_id;
 				}
 				ecjia.pjax(url);
@@ -1198,6 +1244,86 @@
 			});
 			$('.modal-buttons').click(function(e) {
 				e.stopPropagation(); //阻止事件向上冒泡
+			});
+		},
+		
+		check_groupbuy_cart: function() {
+			$('.check_groupbuy_cart').off('click').on('click', function(e) {
+				e.stopPropagation();
+				var $this = $(this),
+					url = $this.attr('data-href'),
+					store_id = $this.attr('data-store'),
+					address_id = $this.attr('data-address'),
+					goods_id = $this.attr('data-goods'),
+					number = $this.attr('data-num'),
+					goods_activity_id = $this.attr('data-act');
+				if ($this.hasClass('disabled')) {
+					return false;
+				}
+				
+				var info = {
+					goods_id: goods_id,
+					number: number,
+					store_id: store_id,
+					goods_activity_id: goods_activity_id
+				}
+				$.post(url, info, function(data) {
+					if (data.state == 'error') {
+						var myApp = new Framework7();
+
+						$('.la-ball-atom').remove();
+						if (data.referer_url || data.message == 'Invalid session') {
+							$(".ecjia-store-goods .a1n .a1x").css({
+								overflow: "hidden"
+							}); //禁用滚动条
+							//禁用滚动条
+							$('body').css('overflow-y', 'hidden').on('touchmove', function(event) {
+								event.preventDefault;
+							}, false);
+
+							myApp.modal({
+								title: '温馨提示',
+								text: '您还没有登录',
+								buttons: [{
+									text: '取消',
+									onClick: function() {
+										$('.modal').remove();
+										$('.modal-overlay').remove();
+										$(".ecjia-store-goods .a1n .a1x").css({
+											overflow: "auto"
+										}); //启用滚动条
+										$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
+										return false;
+									}
+								}, {
+									text: '去登录',
+									onClick: function() {
+										$('.modal').remove();
+										$('.modal-overlay').remove();
+										$(".ecjia-store-goods .a1n .a1x").css({
+											overflow: "auto"
+										}); //启用滚动条
+										$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
+										location.href = data.referer_url;
+										return false;
+									}
+								}, ]
+							});
+							return false;
+						} else {
+							alert(data.message);
+							return false;
+						}
+					}
+					var redirect_url = data.url;
+					if (address_id != undefined && address_id != 0) {
+						redirect_url += '&address_id=' + address_id;
+					}
+					if (store_id != undefined && store_id != 0) {
+						redirect_url += '&store_id=' + store_id;
+					}
+					location.href = redirect_url;
+				});
 			});
 		},
 

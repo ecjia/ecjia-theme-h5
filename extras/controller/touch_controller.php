@@ -127,6 +127,9 @@ class touch_controller {
             //首页促销商品
             ecjia_front::$controller->assign('promotion_goods', $data['promote_goods']);
             
+            //首页团购
+            ecjia_front::$controller->assign('groupbuy_goods', $data['group_goods']);
+            
             //新品首发
             ecjia_front::$controller->assign('new_goods', $data['new_goods']);
             

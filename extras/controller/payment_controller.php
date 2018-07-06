@@ -106,8 +106,11 @@ class payment_controller
         } elseif (!empty($change_result['open_id'])) {
             $params['wxpay_open_id'] = $change_result['open_id'];
         }
-
-        $rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($params)->run();
+		$api = ecjia_touch_api::ORDER_PAY;
+		if ($detail['extension_code'] == 'groupbuy') {
+			$api = ecjia_touch_api::GROUPBUY_ORDER_PAY;
+		}
+        $rs_pay = ecjia_touch_manager::make()->api($api)->data($params)->run();
         if (is_ecjia_error($rs_pay)) {
             return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         }

@@ -71,6 +71,7 @@ return [
     'goods/index/ajax_goods'            => 'goods_controller@ajax_goods',
     'goods/index/new'                   => 'goods_controller@goods_new',
     'goods/index/ajax_goods_comment'    => 'goods_controller@ajax_goods_comment', //获取商品评论
+    'goods/index/groupbuy'    		    => 'goods_controller@groupbuy', //团购商品列表
     
     //店铺
     'merchant/index/init'               => 'merchant_controller@init',
@@ -110,6 +111,7 @@ return [
     'cart/flow/storepickup_checkout'    => 'cart_controller@storepickup_checkout',
     'cart/flow/storepickup_done'        => 'cart_controller@storepickup_done',
     'cart/flow/pay_pickup'            	=> 'cart_controller@pay_pickup',
+    'cart/flow/add_groupbuy'            => 'cart_controller@add_groupbuy',
     
     //支付
     'payment/pay/init'                  => 'payment_controller@init',
@@ -234,6 +236,11 @@ return [
     'user/order/return_way_list'        => 'user_order_controller@return_way_list',
     'user/order/return_way'             => 'user_order_controller@return_way',
     'user/order/add_return_way'         => 'user_order_controller@add_return_way',
+    
+    //团购订单
+    'user/order/groupbuy_order'         => 'user_order_controller@groupbuy_order',
+    'user/order/async_groupbuy_order'   => 'user_order_controller@async_groupbuy_order',
+    'user/order/groupbuy_detail'   		=> 'user_order_controller@groupbuy_detail',
     
     //用户资料
     'user/profile/init'                 => 'user_profile_controller@init',

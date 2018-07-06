@@ -6177,6 +6177,37 @@ footer {
     margin-right: .2em
 }
 
+.goods-info .goods-name-new span.background-ff8214 {
+	background-color: #ff8214;
+	border: none;
+	color: #fff;
+}
+
+.goods-info .goods-groupbuy-div {
+	display: flex;
+    justify-content: space-between;
+    padding: .5em 1em;
+    margin: .5em 0;
+    height: 4em;
+    line-height: 1.5em;
+    text-align: center;
+    background-color: #FDE9E9;
+    color: #ff3434;
+}
+
+.goods-info .goods-groupbuy-div .background-EA2424 {
+	background-color: #EA2424;
+	color: #fff;
+	padding: 0 .5em;
+	border-radius: 8px;
+}
+
+.groupbuy-left {
+	width: 50%;
+	align-items: center;
+	text-align: left;
+}
+
 .goods-info .goods-info-property .goods-price-new {
     padding: .1em .5em .8em .5em;
     color: #ff3434;
@@ -13408,3 +13439,103 @@ footer {
     border-bottom-right-radius: 8px
 }
 
+.ecjia-groupbuy-list {
+	background-color: #fff;
+}
+
+.ecjia-groupbuy-list li {
+	padding: 1em;
+	border-bottom: 1px solid #eee;
+}
+
+.ecjia-groupbuy-list li .list-page-goods-img {
+	height: 10em;
+}
+
+.ecjia-groupbuy-list li .goods-img {
+	width: 10em;
+    height: 10em;
+	position: relative;
+	text-align: center;
+	display: inline-block;
+	float: left;
+}
+
+.ecjia-groupbuy-list li .goods-img img {
+	width: 8em;
+	height: 8em;
+}
+
+.ecjia-groupbuy-list li .goods-img .promote-time {
+	position: absolute;
+    display: block;
+    width: 100%;
+    font-size: .9em;
+    text-align: center;
+    color: #fff;
+    height: 2em;
+    line-height: 2em;
+	background: rgba(0, 0, 0, .4);
+    bottom: 0;
+}
+
+.ecjia-groupbuy-list li .goods-img .groupbuy-icon {
+	position: absolute;
+    width: 2em;
+    height: 2em;
+    left: 0;
+}
+
+.ecjia-groupbuy-list .list-page-box {
+   	padding-left: 1em;
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    flex-direction: column;
+    justify-content: space-between;
+	margin-left: 10em;
+	height: 10em;
+}
+
+.ecjia-groupbuy-list .list-page-box .goods-name {
+	text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -ms-box-orient: vertical;
+    -moz-box-orient: vertical;
+    display: -webkit-box;
+    display: -ms-box;
+    display: -moz-box;
+	font-size: 1em;
+    color: #555;
+}
+
+.ecjia-groupbuy-list .list-page-box .price {
+	color: #ff3434;
+    font-weight: 400;
+    font-size: 1.1em;
+}
+
+.ecjia-groupbuy-list .list-page-goods-price {
+	position: relative;
+}
+
+.ecjia-groupbuy-list li a.btn {
+    position: absolute;
+    width: 5em;
+    text-align: center;
+    color: #fff;
+    line-height: 15px;
+    background-color: #47aa4d;
+    font-size: 1em;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    margin: 0;
+}
