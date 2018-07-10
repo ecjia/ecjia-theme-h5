@@ -14,7 +14,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="swiper-wrapper">
 			<!-- {foreach from=$groupbuy_goods item=val} 循环商品 -->
 			<div class="swiper-slide">
-				<a class="list-page-goods-img" href="{RC_Uri::url('goods/index/show')}&goods_id={$val.id}&act_id={$val.act_id}">
+				<a class="list-page-goods-img" href="{RC_Uri::url('goods/index/show')}&goods_id={$val.id}&act_id={$val.goods_activity_id}">
 					<span class="goods-img">
                         <img src="{$val.img.small}" alt="{$val.name}">
                     </span>

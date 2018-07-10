@@ -464,7 +464,7 @@
 					$('#setion_' + goods_id).remove();
 				}
 				
-				if (div != undefined) {
+				if (div != undefined && div != '') {
 					if (div.hasClass('other_place')) {
 						if (div.parent().find('.other_place').length == 1) {
 							$('.a4u.a4u-gray').remove();

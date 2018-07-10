@@ -79,7 +79,7 @@ var releated_goods = {$releated_goods};
 	            </div>
 	            {if $goods_info.groupbuy_info}
 	            <div class="goods-groupbuy-div">
-	            	<div class="groupbuy-left">
+	            	<div class="groupbuy-left {if $goods_info.groupbuy_info.deposit neq 0}two-line{/if}">
 	            		{if $goods_info.groupbuy_info.left_num}
 	            		<p>还剩{$goods_info.groupbuy_info.left_num}份</p>
 	            		{/if}
