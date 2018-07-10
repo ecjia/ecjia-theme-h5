@@ -1367,6 +1367,10 @@ dd, dl, dt, li, ol, ul {
     background-image: url(../images/icon/promotion.png)
 }
 
+.ecjia-mod .head-title .icon-groupbuy {
+    background-image: url(../images/icon/groupbuy.png)
+}
+
 .ecjia-mod .head-title .icon-new {
     background-image: url(../images/icon/new.png)
 }
