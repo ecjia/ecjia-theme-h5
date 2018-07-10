@@ -211,7 +211,7 @@ class user_address_controller {
     	$adcode = '';
     	$regions = array();
     	if (!empty($latng)) {
-    		$res = RC_Http::remote_get("http://apis.map.qq.com/ws/geocoder/v1/?location=".$latng."&key=".$key);
+    		$res = RC_Http::remote_get("https://apis.map.qq.com/ws/geocoder/v1/?location=".$latng."&key=".$key);
     		$res = json_decode($res['body'], true);
     		if ($res['status'] == 0 && isset($res['result']['ad_info'])) {
     			$adcode = $res['result']['ad_info']['adcode'];
@@ -420,7 +420,7 @@ class user_address_controller {
     	$adcode = '';
     	$regions = array();
     	if (!empty($latng)) {
-    		$res = RC_Http::remote_get("http://apis.map.qq.com/ws/geocoder/v1/?location=".$latng."&key=".$key);
+    		$res = RC_Http::remote_get("https://apis.map.qq.com/ws/geocoder/v1/?location=".$latng."&key=".$key);
     		$res = json_decode($res['body'], true);
     		if ($res['status'] == 0 && isset($res['result']['ad_info'])) {
     			$adcode = $res['result']['ad_info']['adcode'];
