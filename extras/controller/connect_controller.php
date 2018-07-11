@@ -508,6 +508,9 @@ class connect_controller {
     			$result = $connect_user->bindUser($user_id);
     		}
     		if ($result) {
+    			/*获取远程用户头像信息*/
+    			user_controller::sync_avatar($connect_user);
+    			
     			$url = RC_Uri::url('touch/my/init');
     			if (!empty($_SESSION['user_temp']['referer_url'])) {
     				$url = urldecode($_SESSION['user_temp']['referer_url']);
