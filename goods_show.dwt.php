@@ -79,7 +79,7 @@ var releated_goods = {$releated_goods};
 	            </div>
 	            {if $goods_info.groupbuy_info}
 	            <div class="goods-groupbuy-div">
-	            	<div class="groupbuy-left {if $goods_info.groupbuy_info.deposit neq 0}two-line{/if}">
+	            	<div class="groupbuy-left {if $goods_info.groupbuy_info.deposit neq 0 && $goods_info.groupbuy_info.left_num}two-line{/if}">
 	            		{if $goods_info.groupbuy_info.left_num}
 	            		<p>还剩{$goods_info.groupbuy_info.left_num}份</p>
 	            		{/if}
@@ -130,7 +130,7 @@ var releated_goods = {$releated_goods};
 		                 </div>
 	                <!--{else}-->
 	                
-		                {$goods_info.shop_price}
+		                {if $goods_info.promote_price gt 0}{$goods_info.formated_promote_price}{else}{$goods_info.shop_price}{/if}
 		                <del>市场价：{$goods_info.market_price}</del>	
 		                
 		                {if $goods_info.shop_closed neq 1}
