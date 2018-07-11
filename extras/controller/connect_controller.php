@@ -289,7 +289,7 @@ class connect_controller {
     	if (is_ecjia_error($check_mobile)) {
     	    return ecjia_front::$controller->showmessage($check_mobile->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
-    	dd();
+    	dd(ecjia_front::$controller);
     	$_SESSION['user_temp']['mobile'] = $mobile_phone;
     	 
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('connect/index/captcha_validate')));
