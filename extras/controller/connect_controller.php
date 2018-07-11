@@ -285,13 +285,13 @@ class connect_controller {
 //     	if (!preg_match($chars, $mobile_phone)) {
 //     		return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 //     	}
-    	RC_Logger::getlogger('wechat')->error($mobile_phone);
     	$check_mobile = Ecjia\App\Sms\Helper::check_mobile($mobile_phone);
-    	RC_Logger::getlogger('wechat')->error($check_mobile);
-    	
+    	_dump($check_mobile);
     	if (is_ecjia_error($check_mobile)) {
+    		_dump(1,1);
     	    return ecjia_front::$controller->showmessage($check_mobile->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
+    	_dump(2,1);
     	$_SESSION['user_temp']['mobile'] = $mobile_phone;
     	 
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('connect/index/captcha_validate')));
