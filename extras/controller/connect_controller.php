@@ -285,7 +285,10 @@ class connect_controller {
 //     	if (!preg_match($chars, $mobile_phone)) {
 //     		return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 //     	}
+    	RC_Logger::getlogger('wechat')->error($mobile_phone);
     	$check_mobile = Ecjia\App\Sms\Helper::check_mobile($mobile_phone);
+    	RC_Logger::getlogger('wechat')->error($check_mobile);
+    	
     	if (is_ecjia_error($check_mobile)) {
     	    return ecjia_front::$controller->showmessage($check_mobile->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
