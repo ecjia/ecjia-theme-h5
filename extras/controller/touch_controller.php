@@ -290,7 +290,7 @@ class touch_controller {
     }
     
     public static function choose_store() {
-    	$url = RC_Uri::url('touch/index/choose_store');
+    	$url = RC_Uri::url('touch/index/init');
     	touch_function::redirect_referer_url($url);
     		//周边店铺
 		$paramater = array(
@@ -363,7 +363,7 @@ class touch_controller {
                 ecjia_front::$controller->assign('referer_url', $referer_url);
                 $backurl = $referer_url;
             } else {
-                $backurl = RC_Uri::url('touch/index/choose_store');
+                $backurl = RC_Uri::url('touch/index/init');
             }
 
             // 获取当前定位地址
