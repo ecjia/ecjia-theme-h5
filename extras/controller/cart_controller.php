@@ -1462,7 +1462,7 @@ class cart_controller {
     /**
      * 购买团购商品
      */
-    public function add_groupbuy() {
+    public static function add_groupbuy() {
     	$url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
     	$login_str = user_function::return_login_str();
     	
