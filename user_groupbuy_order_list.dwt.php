@@ -56,7 +56,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<ul class="{if count($list.goods_list) > 1}goods-list{else}goods-item{/if} goods_attr_ul"><!-- goods-list 多个商品隐藏商品名称,goods-item -->
 				<li class="goods-img-more more-info">
 					<span class="ecjiaf-ib">
-						<p class="price">{$list.formated_order_amount}</p>
+						<p class="price">{$list.formated_total_fee}</p>
 						<p>共{$list.goods_number}件</p>
 					</span>
 				</li>
