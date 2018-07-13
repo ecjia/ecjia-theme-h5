@@ -359,8 +359,8 @@ var releated_goods = {$releated_goods};
     {else}
     data-href="{RC_Uri::url('cart/flow/checkout')}" 
     {/if}
-    data-store="{$goods_info.seller_id}" data-address="{$address_id}" data-rec="{$data_rec}" href="javascript:;" data-text="立即购买">
-    	{if $count.meet_min_amount eq 1 || !$count.label_short_amount}立即购买{else}还差{$count.label_short_amount}起送{/if}
+    data-store="{$goods_info.seller_id}" data-address="{$address_id}" data-rec="{$data_rec}" href="javascript:;" data-text="{if $goods_info.groupbuy_info}立即购买{else}去结算{/if}">
+    	{if $count.meet_min_amount eq 1 || !$count.label_short_amount}{if $goods_info.groupbuy_info}立即购买{else}去结算{/if}{else}还差{$count.label_short_amount}起送{/if}
     </a>
     
     <div class="minicart-content" style="transform: translateY(0px); display: block;">
