@@ -389,7 +389,8 @@ class cart_controller {
         }
         ecjia_front::$controller->assign('data', $rs);
 
-        if ($rs['checkorder_mode'] == 'default_storepickup') {
+		$order_type = isset($_GET['order_type']) ? trim($_GET['order_type']) : '';
+        if ($rs['checkorder_mode'] == 'default_storepickup' && empty($order_type)) {
             $show_storepickup = true;
         }
         ecjia_front::$controller->assign('show_storepickup', $show_storepickup);
@@ -1526,7 +1527,7 @@ class cart_controller {
     		}
     	}
     	
-    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('cart/flow/checkout', array('rec_id' => $rec_id))));
+    	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('cart/flow/checkout', array('rec_id' => $rec_id, 'order_type' => 'group_buy'))));
     }
 }
 

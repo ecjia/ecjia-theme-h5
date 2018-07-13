@@ -204,9 +204,14 @@ class payment_controller
         ecjia_front::$controller->assign('pay_online', $order['pay_online']);
         ecjia_front::$controller->assign('tips_show', $tips_show);
 
+        $url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id, 'type' => 'detail'));
+        if ($detail['extension_code'] == 'group_buy') {
+			$url = RC_Uri::url('user/order/groupbuy_detail', array('order_id' => $order_id));
+        }
+        
         //生成返回url cookie
         RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
-        RC_Cookie::set('pay_response_order', RC_Uri::url('user/order/order_detail', array('order_id' => $order_id, 'type' => 'detail')));
+        RC_Cookie::set('pay_response_order', $url);
 
         ecjia_front::$controller->display('pay.dwt');
     }
