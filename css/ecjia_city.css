@@ -6848,7 +6848,9 @@ footer {
 
 .ecjia-order-list .order-ft span.two-btn .btn {
     float: right;
-    margin: 0 0 0 4%
+    margin: 0 0 0 4%;
+    min-width: 47%;
+    width: auto;
 }
 
 .ecjia-order-list .order-ft span.two-btn .btn:nth-of-type(2) {

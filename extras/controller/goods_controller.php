@@ -148,7 +148,7 @@ class goods_controller {
 	    /*商品基本信息*/
 	    $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($par)->run();
 
-	    if (is_ecjia_error($goods_info)) {
+		if (is_ecjia_error($goods_info)) {
 	    	ecjia_front::$controller->assign('no_goods_info', 1);
 	    	$goods_info = array();
 	    } else {
@@ -158,7 +158,7 @@ class goods_controller {
 	    	
 	    	$token = ecjia_touch_user::singleton()->getToken();
 	    	$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
-	    	if (!is_ecjia_error($user)) {
+	    	if (!is_ecjia_error($user) && $goods_info['promote_price'] == 0) {
 	    		if (!empty($goods_info['rank_prices'])) {
 	    			foreach ($goods_info['rank_prices'] as $k => $v) {
 	    				if ($v['id'] == $user['rank_id'] && $goods_info['promote_price'] > $v['unformatted_price']) {

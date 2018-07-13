@@ -58,6 +58,9 @@ class payment_controller
         $pay_code = !empty($_GET['pay_code']) ? trim($_GET['pay_code']) : '';
         $tips_show = !empty($_GET['tips_show']) ? trim($_GET['tips_show']) : 0;
 
+        //团购订单
+        $type = !empty($_GET['type']) ? trim($_GET['type']) : '';
+        
         if (empty($order_id)) {
             return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         }
@@ -78,7 +81,20 @@ class payment_controller
 
         /*获取订单信息*/
         $params_order = array('token' => $token, 'order_id' => $order_id);
-        $detail = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
+
+        $api_detail = ecjia_touch_api::ORDER_DETAIL;
+        if ($type == 'group_buy') {
+            $api_detail = ecjia_touch_api::GROUPBUY_ORDER_DETAIL;
+        }
+        $detail = ecjia_touch_manager::make()->api($api_detail)->data($params_order)->run();
+        
+        if ($detail['extension_code'] == 'group_buy') {
+            //支付余额
+            $total_money =  $detail['money_paid'] + $detail['surplus'] + $detail['integral_money'] + $detail['bonus'] + $detail['order_deposit'];
+            $has_paid = $detail['goods_amount'] + $detail['shipping_fee'] + $detail['insure_fee'] + $detail['pay_fee'] + $detail['pack_fee'] + $detail['card_fee'] + $detail['tax'];
+            $detail['formated_pay_money'] = ($total_money - $has_paid) > 0 ? price_format($total_money - $has_paid) : '';
+        }
+
         if (is_ecjia_error($detail)) {
             return ecjia_front::$controller->showmessage($detail->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         }
@@ -107,7 +123,7 @@ class payment_controller
             $params['wxpay_open_id'] = $change_result['open_id'];
         }
 		$api = ecjia_touch_api::ORDER_PAY;
-		if ($detail['extension_code'] == 'groupbuy') {
+		if ($detail['extension_code'] == 'group_buy') {
 			$api = ecjia_touch_api::GROUPBUY_ORDER_PAY;
 		}
         $rs_pay = ecjia_touch_manager::make()->api($api)->data($params)->run();

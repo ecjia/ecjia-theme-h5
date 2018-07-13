@@ -76,7 +76,13 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<span>{$list.order_time}</span>
 		<span class="two-btn ecjiaf-fr">
 		{if $list.order_status_code eq 'await_pay'} 
-			<a class="btn btn-hollow" href='{url path="payment/pay/init" args="order_id={$list.order_id}&from=list"}'>{if $list.has_deposit eq 1}支付余额{else}去支付{/if}</a>
+			<a class="btn btn-hollow" href='{url path="payment/pay/init" args="order_id={$list.order_id}&type=group_buy"}'>
+				{if $list.has_deposit eq 1}
+					支付余额 {if $list.order_amount neq 0}{$list.formated_order_amount}{/if}
+				{else}
+					去支付
+				{/if}
+			</a>
 		{/if}
 		</span>
 	</div>
