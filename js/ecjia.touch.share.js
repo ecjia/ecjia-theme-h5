@@ -31,44 +31,32 @@ function share_spread() {
 				signature: data.signature,
 				jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', ]
 			});
-			//分享到朋友圈
-			wx.onMenuShareTimeline({
-				title: title,
-				// 分享标题【必填】
-				link: link,
-				// 分享链接【必填】
-				imgUrl: image,
-				// 分享图标【必填】
-				img_url: image,
-			});
-
-			//分享给朋友
-			wx.onMenuShareAppMessage({
-				title: title,
-				// 分享标题【必填】
-				desc: desc,
-				// 分享描述【必填】
-				link: link,
-				// 分享链接【必填】
-				imgUrl: image,
-				// 分享图标【必填】
-				type: 'link',
-				// 分享类型,music、video或link，不填默认为link【必填】
-				img_url: image,
-			});
-
-			//分享到QQ
-			wx.onMenuShareQQ({
-				title: title,
-				// 分享标题
-				desc: desc,
-				// 分享描述
-				link: link,
-				// 分享链接
-				imgUrl: image,
-				// 分享图标
-				img_url: image,
-			});
+			wx.ready(function () {
+				//分享到朋友圈
+				wx.onMenuShareTimeline({
+					title: title, // 分享标题【必填】
+					link: link, // 分享链接【必填】
+					imgUrl: image // 分享图标【必填】
+				});
+	
+				//分享给朋友
+				wx.onMenuShareAppMessage({
+					title: title, // 分享标题【必填】
+					desc: desc, // 分享描述【必填】
+					link: link, // 分享链接【必填】
+					imgUrl: image, // 分享图标【必填】
+					type: 'link', // 分享类型,music、video或link，不填默认为link【必填】
+					dataUrl: ''
+				});
+	
+				//分享到QQ
+				wx.onMenuShareQQ({
+					title: title, // 分享标题
+					desc: desc, // 分享描述
+					link: link, // 分享链接
+					imgUrl: image // 分享图标
+				});
+			})
 		}
 	});
 }
