@@ -2,7 +2,7 @@
 <!-- {block name="ajaxinfo"} -->
 	<!-- {foreach from=$data item=val key=key} -->
 	<div class="article-item"> 
-		<a href="{RC_Uri::url('article/index/detail')}&article_id={$val.article_id}">
+		<a {if $val.article_type eq 'redirect'}class="nopjax external" href="{$val.link_url}"{else}href="{RC_Uri::url('article/index/detail')}&article_id={$val.article_id}{/if}">
 			<div class="article-left"> 
 				<p class="article-title line-clamp2">{$val.title}</p> 
 				<p class="article-summary line-clamp2">{$val.description}</p> 
@@ -21,7 +21,7 @@
 						<span>{$val.add_time}</span> 
 					</div> 
 					<div class="article-viewed"> 
-						<span>{$val.click_count}</span> 
+						<span>{if $val.click_count gt 999}1k+{else}{$val.click_count}{/if}</span>
 						<div class="eye little-icon"></div> 
 					</div> 
 				</div> 
