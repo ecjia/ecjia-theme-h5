@@ -13,7 +13,7 @@
 			</div> 
 			<div class="article-right" data-lazy="false"> 
 				<div class="img-box"> 
-					<img class="lazy-img" src="{$val.cover_image}"> 
+					<img class="lazy-img" src="{if $val.cover_image}{$val.cover_image}{else}{$theme_url}images/default-goods-pic.png{/if}"> 
 				</div> 
 				<div class="article-info clearfix"> 
 					<div class="article-time"> 
