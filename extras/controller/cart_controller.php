@@ -229,10 +229,9 @@ class cart_controller {
     		return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('count' => $cart_count, 'response' => $response, 'data_rec' => $data_rec));
     	}
     	$sayList = '';
-    	if ($_POST['checked'] === '') {
-    		ecjia_front::$controller->assign('list', $cart_goods_list);
-    		$sayList = ecjia_front::$controller->fetch('merchant.dwt');
-    	}
+    	ecjia_front::$controller->assign('list', $cart_goods_list);
+    	$sayList = ecjia_front::$controller->fetch('merchant.dwt');
+    		
     	return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('say_list' => $sayList, 'list' => $cart_goods_list, 'count' => $cart_count, 'data_rec' => $data_rec, 'current' => $current));
     }
     
