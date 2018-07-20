@@ -6118,7 +6118,9 @@ footer {
 }
 
 .goods-info .ecjia-price-time {
-    width: 100%
+    width: 100%;
+    display: block;
+    overflow: hidden;
 }
 
 .goods-info .ecjia-price-time .time-left {
@@ -6236,8 +6238,8 @@ footer {
 }
 
 .groupbuy_notice {
-    margin-top: 1em;
     border-top: 1px solid #eee;
+    margin-bottom: .8em;
 }
 
 .groupbuy_notice .item {
@@ -6343,7 +6345,7 @@ footer {
 }
 
 .goods-info .goods-info-property .goods-price-new {
-    padding: .5em .5em .8em .5em;
+    padding: .5em .5em 0 .5em;
     color: #ff3434;
     font-size: 1.3em;
     position: relative
@@ -13287,6 +13289,10 @@ body {
     border-radius: 4px
 }
 
+.store-add-cart.a4w .a4z.m_l1 {
+    left: 1em;
+    font-size: 1.1em;
+}
 /*店铺非营业时间显示样式*/
 
 .store-add-cart.a4w .a61 {

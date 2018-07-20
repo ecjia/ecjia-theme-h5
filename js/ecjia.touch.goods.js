@@ -169,6 +169,22 @@
 					box.removeClass('hide');
 					$this.addClass('hide');
 				}
+
+				//显示价格
+				var goods_id = $('.goods-add-cart').attr('goods_id');
+				var deposit = $('.goods_spec_'+goods_id).attr('data-deposit');
+				var price = $('.goods_spec_'+goods_id).attr('data-price');
+				var formated_price = '';
+				var num = val;
+				if (val == 0 || val == undefined) {
+					num = 1;
+				}
+				if (deposit != 0 && deposit != undefined) {
+					formated_price = '￥' + (deposit * num).toFixed(2);
+				} else {
+					formated_price = '￥' + (price * num).toFixed(2);
+				}
+				$('.a4z').addClass('m_l1').html('<div>'+formated_price+'</div>');
 			});
 		},
 		
@@ -186,7 +202,26 @@
 					$('.check_groupbuy_cart').addClass('disabled');
 					$this.parent().addClass('hide');
 					$('.goods-add-cart').removeClass('hide');
+
+					$('.a4z').removeClass('m_l1').html('');
+					return false;
 				}
+
+				//显示价格
+				var goods_id = $('.goods-add-cart').attr('goods_id');
+				var deposit = $('.goods_spec_'+goods_id).attr('data-deposit');
+				var price = $('.goods_spec_'+goods_id).attr('data-price');
+				var formated_price = '';
+				var num = val;
+				if (val == 0 || val == undefined) {
+					num = 1;
+				}
+				if (deposit != 0 && deposit != undefined) {
+					formated_price = '￥' + (deposit * num).toFixed(2);
+				} else {
+					formated_price = '￥' + (price * num).toFixed(2);
+				}
+				$('.a4z').addClass('m_l1').html('<div>'+formated_price+'</div>');
 			});
 		},
 
