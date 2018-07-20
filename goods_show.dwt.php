@@ -150,6 +150,24 @@ var releated_goods = {$releated_goods};
 	                    {/if}
 	                    
 	                <!-- {/if} -->
+
+					{if $goods_info.groupbuy_info.groupbuy_price_ladder neq '' || $goods_info.groupbuy_info.groupbuy_activity_desc neq ''}
+					<div class="groupbuy_notice">
+						{if $goods_info.groupbuy_info.groupbuy_price_ladder neq ''}
+						<div class="item">
+							<div class="left">价格阶梯</div>
+							<div class="right">{$goods_info.groupbuy_info.groupbuy_price_ladder}</div>
+						</div>
+						{/if}
+						{if $goods_info.groupbuy_info.groupbuy_activity_desc neq ''}
+						<div class="item">
+							<div class="left">活动说明</div>
+							<div class="right">{$goods_info.groupbuy_info.groupbuy_activity_desc}</div>
+						</div>
+						{/if}
+					</div>
+					{/if}
+					
 	            </div>
 	            <!-- {if $goods_info.favourable_list} -->
                 	<div class="ecjia-favourable-goods-list">

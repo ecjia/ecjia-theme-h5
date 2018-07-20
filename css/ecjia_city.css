@@ -6235,6 +6235,37 @@ footer {
     font-size: 1.3em
 }
 
+.groupbuy_notice {
+    margin-top: 10px;
+}
+
+.groupbuy_notice .item {
+    line-height: 20px;
+    font-size: .7em;
+    margin: 5px 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.groupbuy_notice .item:first-child {
+    margin-top: .8em;
+}
+
+.groupbuy_notice .item:last-child {
+    margin-bottom: 0;
+}
+
+.groupbuy_notice .item .left {
+    color: #999;
+    width: 100px;
+    float: left;
+}
+
+.groupbuy_notice .item .right {
+    color: #333;
+    margin-left: 100px;
+}
+
 .goods-info.goods-info-property-new {
     width: 100%
 }
