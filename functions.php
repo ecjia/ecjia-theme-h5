@@ -126,7 +126,7 @@ RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $da
             RC_Cookie::set('wechat_not_login', 1);
             //结合cookie判断返回来源url
             $back_url = RC_Cookie::get('referer', RC_Uri::url('touch/index/init'));
-            ecjia_front::$controller->redirect($back_url);
+            return ecjia_front::$controller->redirect($back_url);
         }
     } else {
         
