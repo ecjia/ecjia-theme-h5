@@ -413,19 +413,21 @@ class connect_controller {
     	 
     	$registered = $_SESSION['user_temp']['registered'];
     	$invited = $_SESSION['user_temp']['invited'];
-    
+    	$connect_code = $_SESSION['user_temp']['connect_code'];
+    	$open_id = $_SESSION['user_temp']['open_id'];
+    	
+    	$connect_user = new \Ecjia\App\Connect\ConnectUser($connect_code, $open_id);
+
     	//已经注册 走登录接口
     	if ($registered == 1) {
     		$data = ecjia_touch_user::singleton()->signin($type, $mobile, $password);
     		if (is_ecjia_error($data)) {
     			return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		}
-    		
-    		$connect_code = $_SESSION['user_temp']['connect_code'];
-    		$open_id = $_SESSION['user_temp']['open_id'];
-    		
-    		$connect_user = new \Ecjia\App\Connect\ConnectUser($connect_code, $open_id);
 
+    		/*获取远程用户头像信息*/
+    		user_controller::sync_avatar($connect_user);
+    		
     		if ($data['id']) {
     			$result = $connect_user->bindUser($data['id']);
     		} else {
@@ -434,8 +436,11 @@ class connect_controller {
 
 			$url = RC_Uri::url('touch/my/init', array('connect_code' => $connect_code, 'open_id' => $open_id));
 			$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : urldecode($_SESSION['user_temp']['referer_url']);
- 			if (!empty($referer_url)) {
+			if (!empty($referer_url) && $referer_url != RC_Uri::url('user/profile/edit_password')) {
     			$url = $referer_url;
+			}
+			if ($url == 'undefined') {
+				$url = RC_Uri::url('touch/my/init');
 			}
     		if ($result) {
     			return ecjia_front::$controller->showmessage('关联成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
@@ -468,6 +473,13 @@ class connect_controller {
     			unset($_SESSION['user_temp']);
     		
     			ecjia_touch_user::singleton()->signin('smslogin', $res['user']['name'], $password);
+    			
+    			/*获取远程用户头像信息*/
+    			user_controller::sync_avatar($connect_user);
+    			
+    			if ($url == 'undefined') {
+    				$url = RC_Uri::url('touch/my/init');
+    			}
     			return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
     		} else {
     			return ecjia_front::$controller->showmessage(__($res->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
