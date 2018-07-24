@@ -130,7 +130,7 @@ RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $da
             return ecjia_front::$controller->redirect($back_url);
         }
     } else {
-        dd('go connect_callback_user_template');
+
         RC_Loader::load_theme('extras/controller/connect_controller.php');
         return connect_controller::callback_template($data);
         
