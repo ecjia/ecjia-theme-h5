@@ -123,6 +123,7 @@ RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $da
             return connect_controller::callback_template($data);
         
         } else {
+            dd('go connect_callback_user_template');
             RC_Cookie::set('wechat_not_login', 1);
             //结合cookie判断返回来源url
             $back_url = RC_Cookie::get('referer', RC_Uri::url('touch/index/init'));
