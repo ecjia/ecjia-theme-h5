@@ -118,12 +118,12 @@ RC_Hook::add_filter('connect_callback_user_template', function($templateStr, $da
         $wechat_auto_register = royalcms('request')->cookie('wechat_auto_register', 0);
         if ($wechat_auto_register) {
             RC_Cookie::delete('wechat_auto_register');
-        
+            dd('go connect_callback_user_template');
             RC_Loader::load_theme('extras/controller/connect_controller.php');
             return connect_controller::callback_template($data);
         
         } else {
-            dd('go connect_callback_user_template');
+
             RC_Cookie::set('wechat_not_login', 1);
             //结合cookie判断返回来源url
             $back_url = RC_Cookie::get('referer', RC_Uri::url('touch/index/init'));
