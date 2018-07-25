@@ -436,7 +436,7 @@ class connect_controller {
 
 			$url = RC_Uri::url('touch/my/init', array('connect_code' => $connect_code, 'open_id' => $open_id));
 			$referer_url = !empty($_POST['referer_url']) ? urldecode($_POST['referer_url']) : urldecode($_SESSION['user_temp']['referer_url']);
-			if (!empty($referer_url) && $referer_url != RC_Uri::url('user/profile/edit_password')) {
+			if (!empty($referer_url) && $referer_url != 'undefined' && !strpos($referer_url, 'user')) {
     			$url = $referer_url;
 			}
 			if ($url == 'undefined') {
@@ -466,7 +466,7 @@ class connect_controller {
     			$url = RC_Uri::url('touch/my/init');
     		
     			$referer_url = isset($_SESSION['user_temp']['referer_url']) ? urldecode($_SESSION['user_temp']['referer_url']) : '';
-    			if (!empty($referer_url) && $referer_url != RC_Uri::url('user/profile/edit_password')) {
+    			if (!empty($referer_url) && $referer_url != 'undefined' && !strpos($referer_url, 'user')) {
     				$url = $referer_url;
     			}
     		
