@@ -194,7 +194,7 @@ class goods_controller {
 		    	
 		    	$cart_goods = array();
 		    	//店铺购物车商品
-		    	if (ecjia_touch_user::singleton()->isSignin()) {
+		    	if (ecjia_touch_user::singleton()->isSignin() && empty($goods_activity_id)) {
 	
 		    		$cart_goods = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($options)->run();
 		    		if (!is_ecjia_error($cart_goods)) {
