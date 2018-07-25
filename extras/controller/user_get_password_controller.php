@@ -121,7 +121,7 @@ class user_get_password_controller {
     	if (empty($code_captcha)) {
     		return ecjia_front::$controller->showmessage('请输入验证码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
-    	if (RC_Time::gmtime() < $_SESSION['user_temp']['resend_sms_time'] + 180) {
+    	if (RC_Time::gmtime() < $_SESSION['user_temp']['resend_sms_time'] + 60) {
     		return ecjia_front::$controller->showmessage('规定时间以外，可重新发送验证码（1分钟）', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
     	$param = array('token' => $token, 'type' => 'mobile', 'value' => $mobile, 'captcha_code' => $code_captcha);
@@ -129,6 +129,7 @@ class user_get_password_controller {
     	if (is_ecjia_error($data)) {
     		return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
+    	$_SESSION['user_temp']['captcha_code'] = $code_captcha;
     	$_SESSION['user_temp']['mobile'] = $mobile;
     	$_SESSION['user_temp']['code_status'] = 'succeed';
     	$_SESSION['user_temp']['resend_sms_time'] = RC_Time::gmtime();
