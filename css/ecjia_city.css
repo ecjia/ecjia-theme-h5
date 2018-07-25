@@ -6351,6 +6351,11 @@ footer {
     position: relative
 }
 
+.goods-info .ecjia-price-span {
+    display: inline-block;
+    margin-bottom: 1em;
+}
+
 .goods-info .goods-info-property .goods-price-new del {
     font-size: .8em
 }
