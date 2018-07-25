@@ -1284,7 +1284,7 @@
 		
 		check_groupbuy_cart: function() {
 			$('.check_groupbuy_cart').off('click').on('click', function(e) {
-				e.stopPropagation();
+				e.preventDefault();
 				var $this = $(this),
 					url = $this.attr('data-href'),
 					store_id = $this.attr('data-store'),
