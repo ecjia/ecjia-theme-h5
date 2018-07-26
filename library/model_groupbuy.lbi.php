@@ -24,10 +24,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							<!--{if $val.promote_price neq 0}-->
 							<span>{$val.formated_promote_price}</span>
 							<!--{else}-->
-							<span>{$val.shop_price}</span>
+							<span>{$val.formated_market_price}</span>
 							<!--{/if}-->
 							<!--{if $val.shop_price}-->
-                    		<span><del>{$val.shop_price}</del></span>
+                    		<span><del>{$val.formated_shop_price}</del></span>
                     		<!--{/if}-->
 						</span>
 					</span>

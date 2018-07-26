@@ -94,7 +94,7 @@ var releated_goods = {$releated_goods};
 	            	</div>
 	            </div>
 	            {/if}
-	            <div class="goods-price goods-price-new" goods_id="{$goods_info.id}">
+	            <div class="goods-price goods-price-new" goods_id="{$goods_info.id}" data-deposit="{$goods_info.groupbuy_info.deposit}" data-price="{$goods_info.promote_price}">
 	                <!-- $goods.is_promote and $goods.gmt_end_time -->
 	                
 	                <!--{if ($goods_info.promote_price gt 0) AND ($goods_info.promote_start_date lt $goods_info.promote_end_date) AND ($goods_info.promote_price lt $goods_info.unformatted_shop_price)} 促销-->
@@ -112,7 +112,7 @@ var releated_goods = {$releated_goods};
 			                </div>
 			                
 			                {if $goods_info.shop_closed neq 1}
-			                <div class="cart-plus-right goods_spec_{$goods_info.id}" goods_id="{$goods_info.id}" data-deposit="{$goods_info.groupbuy_info.deposit}" data-price="{$goods_info.promote_price}">
+			                <div class="cart-plus-right goods_spec_{$goods_info.id}" goods_id="{$goods_info.id}">
 			                	{if $goods_info.specification}
 			                	<span class="goods-add-cart choose_attr {if $goods_info.in_related_goods eq 1}spec_goods{/if}" goods_id="{$goods_info.id}">选规格</span>
 			                	{if $goods_attr_num}<i class="attr-number">{$goods_attr_num}</i>{/if}
@@ -133,7 +133,7 @@ var releated_goods = {$releated_goods};
 		                
 		                {if $goods_info.shop_closed neq 1}
 		                	{if $goods_info.specification}
-		                	<span class="goods_spec_{$goods_info.id}" data-deposit="{$goods_info.groupbuy_info.deposit}" data-price="{$goods_info.promote_price}">
+		                	<span class="goods_spec_{$goods_info.id}">
 					            <span class="goods-add-cart choose_attr {if $goods_info.in_related_goods eq 1}spec_goods{/if}" goods_id="{$goods_info.id}">选规格</span>
 					            {if $goods_attr_num}<i class="attr-number">{$goods_attr_num}</i>{/if}
 					        </span>
