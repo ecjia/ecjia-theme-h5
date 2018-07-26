@@ -480,7 +480,7 @@ class connect_controller {
     			if ($url == 'undefined') {
     				$url = RC_Uri::url('touch/my/init');
     			}
-    			return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
+    			return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
     		} else {
     			return ecjia_front::$controller->showmessage(__($res->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		}
@@ -546,7 +546,7 @@ class connect_controller {
     			unset($_SESSION['user_temp']);
     
     			ecjia_touch_user::singleton()->signin('password', $username, $password);
-    			return ecjia_front::$controller->showmessage(__('恭喜您，绑定注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
+    			return ecjia_front::$controller->showmessage(__('恭喜您，绑定注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
     		} else {
     			return ecjia_front::$controller->showmessage('授权用户信息关联失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		}
