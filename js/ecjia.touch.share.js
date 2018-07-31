@@ -17,7 +17,7 @@ function share_spread() {
     var desc = $('input[name="share_desc"]').val() == undefined || $('input[name="share_desc"]').val() == '' ? document.title : $('input[name="share_desc"]').val();
     var link = location.href.split('#')[0];
 
-    $.post(wxconfig_url, info, function(response) {
+    $.post(wxconfig_url, info, function (response) {
         if (response == '' || response.data == undefined) {
             return false;
         }
@@ -33,11 +33,11 @@ function share_spread() {
             });
             wx.checkJsApi({
                 jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ'],
-                success: function(res) {
+                success: function (res) {
                     console.log(res);
                 }
             });
-            wx.ready(function() {
+            wx.ready(function () {
                 //分享到朋友圈
                 wx.onMenuShareTimeline({
                     title: title, // 分享标题【必填】
@@ -63,7 +63,7 @@ function share_spread() {
                     imgUrl: image // 分享图标
                 });
             });
-            wx.error(function(res) {
+            wx.error(function (res) {
                 console.log(res);
             });
         }
@@ -71,8 +71,8 @@ function share_spread() {
 }
 
 //页面载入方法和pjax刷新执行方法
-$(function() {
+$(function () {
     share_spread();
-}).on('pjax:end', function() {
+}).on('pjax:end', function () {
     share_spread();
 });
