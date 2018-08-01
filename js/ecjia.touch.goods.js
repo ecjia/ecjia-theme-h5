@@ -209,8 +209,8 @@
 
 				//显示价格
 				var goods_id = $('.goods-add-cart').attr('goods_id');
-				var deposit = $('.goods_spec_' + goods_id).attr('data-deposit');
-				var price = $('.goods_spec_' + goods_id).attr('data-price');
+				var deposit = $('.goods-price-new').attr('data-deposit');
+				var price = $('.goods-price-new').attr('data-price');
 				var formated_price = '';
 				var num = val;
 				if (val == 0 || val == undefined) {
