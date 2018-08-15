@@ -173,14 +173,18 @@ RC_Hook::add_action('connect_callback_user_signin', function($connect_user) {
     
     $user->set_session($user_info['name']);
     $user->set_cookie($user_info['name']);
-    $res = array(
-        'session' => array(
-            'sid' => RC_Session::session_id(),
-            'uid' => $_SESSION['user_id']
-        ),
-        'user' => $user_info
-    );
-    ecjia_touch_user::singleton()->setUserinfo($res);
+
+    //这里需要请求connect/signin更新token
+//    $res = array(
+//        'session' => array(
+//            'sid' => RC_Session::session_id(),
+//            'uid' => $_SESSION['user_id']
+//        ),
+//        'user' => $user_info
+//    );
+//    ecjia_touch_user::singleton()->setUserinfo($res);
+
+    ecjia_touch_user::connectSignin($connect_user->getOpenId(), $connect_user->getConnectCode());
      
     update_user_info(); // 更新用户信息
     
