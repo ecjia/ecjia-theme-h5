@@ -13806,6 +13806,7 @@ body {
     height: 100%;
     background-color: #fff;
     position: fixed;
+	max-width: 640px;
 }
 
 .ecjia-add-bonus .bonus_image img {
@@ -13901,7 +13902,7 @@ body {
 }
 
 .ecjia-normal-modal-content .bonus_item.new_line .left {
-    float: left;
+    text-align: left;
 }
 
 .ecjia-normal-modal-content .bonus_item.new_line .right {

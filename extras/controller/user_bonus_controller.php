@@ -234,17 +234,30 @@ class user_bonus_controller
      */
     public static function add_bonus()
     {
-        $type_list = array('success', 'error', 'bonus_info');
-        $key = array_rand($type_list, 1);
-        $type = $type_list[$key];
-        
-        $bonus_number = isset($_POST['bonus_number']) ? $_POST['bonus_number'] : '';
-        if (empty($bonus_number)) {
-            $type = 'error';
-        }
+    	$bonus_number = isset($_POST['bonus_number']) ? $_POST['bonus_number'] : '';
+    	$action = trim($_POST['action']);
+    	
+    	if ($action == 'bind') {
+    		$type = 'success';
+    		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::BONUS_BIND)->data(array('bonus_sn' => $bonus_number))->run();
+    		if (is_ecjia_error($res)) {
+    			$type = 'error';
+    		}
+    	} else {
+    		$type = 'bonus_info';
+    		if (empty($bonus_number)) {
+    			$type = 'error';
+    		} else {
+    			$res = ecjia_touch_manager::make()->api(ecjia_touch_api::BONUS_VALIDATE)->data(array('bonus_sn' => $bonus_number))->run();
+    			if (is_ecjia_error($res)) {
+    				$type = 'error';
+    			}
+    		}
+    		ecjia_front::$controller->assign('bonus_info', $res);
+    	}
         ecjia_front::$controller->assign('type', $type);
+       
         $say_list = ecjia_front::$controller->fetch('library/ecjia_bonus_modal.lbi');
-            
         return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('data' => $say_list));
     }
 }
