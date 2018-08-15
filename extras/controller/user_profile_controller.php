@@ -61,7 +61,7 @@ class user_profile_controller {
     	$cache_id = sprintf('%X', crc32($cache_id));
     	
     	if (!ecjia_front::$controller->is_cached('user_profile.dwt', $cache_id)) {
-    		$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+    		$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
     		$user_img_login = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-in2x.png';
     		$user_img_logout = RC_Theme::get_template_directory_uri().'/images/user_center/icon-login-out2x.png';
     		if (!empty($user) && !is_ecjia_error($user)) {
@@ -95,7 +95,7 @@ class user_profile_controller {
     	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token.'-'.$user_info['id'].'-'.$user_info['name']));
     	
     	if (!ecjia_front::$controller->is_cached('user_modify_username.dwt', $cache_id)) {
-    		$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+    		$user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
     		$user = is_ecjia_error($user) ? array() : $user;
     		$time = RC_Time::gmtime();
     		$last_time = $user['update_username_time'];
@@ -137,6 +137,7 @@ class user_profile_controller {
     	
     	//ajax请求
     	$type = !empty($_GET['type']) ? trim($_GET['type']) : '';
+        $token = ecjia_touch_user::singleton()->getToken();
     	
     	if ($type == 'ajax') {
     		$old_password = !empty($_POST['old_password']) ? trim($_POST['old_password']) : '';
@@ -155,7 +156,7 @@ class user_profile_controller {
     			return ecjia_front::$controller->showmessage(__('请输入确认新密码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     		}
     		 
-    		$token = ecjia_touch_user::singleton()->getToken();
+    		
     		if (!empty($old_password)) {
     			if ($new_password == $comfirm_password) {
     				if ($old_password == $new_password) {
@@ -173,7 +174,7 @@ class user_profile_controller {
     		}
     	}
     	
-        $user_info = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        $user_info = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
         $user_info = !is_ecjia_error($user_info) ? $user_info : array();
     	if (empty($user_info['mobile_phone'])) {
     		return ecjia_front::$controller->showmessage('请先绑定手机号码', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
@@ -216,8 +217,9 @@ class user_profile_controller {
     public static function get_code() {
         $mobile = !empty($_GET['mobile']) ? trim($_GET['mobile']) : '';
         $email = !empty($_GET['email']) ? $_GET['email'] : '';
+        $token = ecjia_touch_user::singleton()->getToken();
 
-        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
         if (is_ecjia_error($user)) {
             return ecjia_front::$controller->showmessage($user->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
@@ -316,7 +318,7 @@ class user_profile_controller {
         $cache_id   = sprintf('%X', crc32($_SERVER['QUERY_STRING'].'-'.$token));
         
         if (!ecjia_front::$controller->is_cached('user_bind_info.dwt', $cache_id)) {
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             $user = !is_ecjia_error($user) ? $user : array();
             
             $type = !empty($_GET['type']) ? trim($_GET['type']) : '';

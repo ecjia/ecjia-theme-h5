@@ -64,7 +64,7 @@ class user_account_controller
         $cache_id = sprintf('%X', crc32($cache_id));
 
         if (!ecjia_front::$controller->is_cached('user_account_detail.dwt', $cache_id)) {
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             $user = is_ecjia_error($user) ? array() : $user;
 
             ecjia_front::$controller->assign('user', $user);
@@ -84,7 +84,7 @@ class user_account_controller
         $cache_id = sprintf('%X', crc32($cache_id));
 
         if (!ecjia_front::$controller->is_cached('user_account_balance.dwt', $cache_id)) {
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             $user = is_ecjia_error($user) ? array() : $user;
 
             ecjia_front::$controller->assign_title('我的余额');
@@ -105,7 +105,7 @@ class user_account_controller
         $cache_id = sprintf('%X', crc32($cache_id));
 
         if (!ecjia_front::$controller->is_cached('user_account_recharge.dwt', $cache_id)) {
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             $user = is_ecjia_error($user) ? array() : $user;
             $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->run();
             $pay = is_ecjia_error($pay) ? array() : $pay;
@@ -203,7 +203,7 @@ class user_account_controller
         $cache_id = sprintf('%X', crc32($cache_id));
 
         if (!ecjia_front::$controller->is_cached('user_account_withdraw.dwt', $cache_id)) {
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             $user = is_ecjia_error($user) ? array() : $user;
             ecjia_front::$controller->assign('user', $user);
 
@@ -219,7 +219,9 @@ class user_account_controller
     {
         $amount = !empty($_POST['amount']) ? $_POST['amount'] : '';
         $note = !empty($_POST['user_note']) ? $_POST['user_note'] : '';
-        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+        $token = ecjia_touch_user::singleton()->getToken();
+
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
         if (is_ecjia_error($user)) {
             return ecjia_front::$controller->showmessage(__('error'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
@@ -253,7 +255,9 @@ class user_account_controller
         $type = '';
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
-        $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $pages, 'count' => $limit), 'type' => $type))->hasPage()->run();
+        $token = ecjia_touch_user::singleton()->getToken();
+
+        $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $pages, 'count' => $limit), 'type' => $type, 'token' => $token))->hasPage()->run();
         if (!is_ecjia_error($account_list)) {
             list($data, $page) = $account_list;
 
@@ -277,7 +281,7 @@ class user_account_controller
                 ecjia_front::$controller->assign('key' . $key, $key);
             }
             $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             if (!is_ecjia_error($user) && !empty($user['avatar_img'])) {
                 $user_img = $user['avatar_img'];
             }
@@ -302,7 +306,9 @@ class user_account_controller
         $type = 'raply';
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
-        $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $pages, 'count' => $limit), 'type' => $type))->hasPage()->run();
+        $token = ecjia_touch_user::singleton()->getToken();
+
+        $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $pages, 'count' => $limit), 'type' => $type, 'token' => $token))->hasPage()->run();
 
         if (!is_ecjia_error($account_list)) {
             list($data, $page) = $account_list;
@@ -327,7 +333,7 @@ class user_account_controller
                 ecjia_front::$controller->assign('key' . $key, $key);
             }
             $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             if (!is_ecjia_error($user) && !empty($user['avatar_img'])) {
                 $user_img = $user['avatar_img'];
             }
@@ -353,7 +359,9 @@ class user_account_controller
         $type = 'deposit';
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
-        $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $pages, 'count' => $limit), 'type' => $type))->hasPage()->run();
+        $token = ecjia_touch_user::singleton()->getToken();
+
+        $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $pages, 'count' => $limit), 'type' => $type, 'token' => $token))->hasPage()->run();
 
         if (!is_ecjia_error($account_list)) {
             list($data, $page) = $account_list;
@@ -377,7 +385,7 @@ class user_account_controller
                 ecjia_front::$controller->assign('key' . $key, $key);
             }
             $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             if (!is_ecjia_error($user) && !empty($user['avatar_img'])) {
                 $user_img = $user['avatar_img'];
             }
@@ -422,7 +430,7 @@ class user_account_controller
             $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
             ecjia_front::$controller->assign('user_img', $user_img);
 
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             $user = is_ecjia_error($user) ? array() : $user;
             $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
 
@@ -478,7 +486,7 @@ class user_account_controller
             ecjia_front::$controller->assign('format_amount', $_GET['format_amount']);
             ecjia_front::$controller->assign('account_id', $_GET['account_id']);
 
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->run();
+            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             $user = is_ecjia_error($user) ? array() : $user;
             $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->run();
             $pay = is_ecjia_error($pay) ? array() : $pay;

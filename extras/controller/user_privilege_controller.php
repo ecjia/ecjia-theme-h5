@@ -491,13 +491,15 @@ class user_privilege_controller {
     /*注册用户验证码接受*/
     public static function validate_code() {
         $verification = !empty($_POST['verification']) ? trim($_POST['verification']) : '';
+        $token = ecjia_touch_user::singleton()->getToken();
+        
         if (strlen($verification) > 6) {
             return ecjia_front::$controller->showmessage(__('邀请码格式不正确'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         $_SESSION['user_temp']['verification'] = $verification;
         $code = !empty($_POST['code']) ? trim($_POST['code']) : '';
         $mobile = !empty($_POST['mobile']) ? htmlspecialchars($_POST['mobile']) : '';
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code))->run();
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('token' => $token, 'type' => 'mobile', 'value' => $mobile, 'code' => $code))->run();
         
         if (!is_ecjia_error($data)) {
             $_SESSION['user_temp']['register_status'] = 'succeed';

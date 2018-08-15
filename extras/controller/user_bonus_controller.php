@@ -236,10 +236,11 @@ class user_bonus_controller
     {
     	$bonus_number = isset($_POST['bonus_number']) ? $_POST['bonus_number'] : '';
     	$action = trim($_POST['action']);
+        $token = ecjia_touch_user::singleton()->getToken();
     	
     	if ($action == 'bind') {
     		$type = 'success';
-    		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::BONUS_BIND)->data(array('bonus_sn' => $bonus_number))->run();
+    		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::BONUS_BIND)->data(array('token' => $token, 'bonus_sn' => $bonus_number))->run();
     		if (is_ecjia_error($res)) {
     			$type = 'error';
     		}
@@ -248,7 +249,7 @@ class user_bonus_controller
     		if (empty($bonus_number)) {
     			$type = 'error';
     		} else {
-    			$res = ecjia_touch_manager::make()->api(ecjia_touch_api::BONUS_VALIDATE)->data(array('bonus_sn' => $bonus_number))->run();
+    			$res = ecjia_touch_manager::make()->api(ecjia_touch_api::BONUS_VALIDATE)->data(array('token' => $token, 'bonus_sn' => $bonus_number))->run();
     			if (is_ecjia_error($res)) {
     				$type = 'error';
     			}
