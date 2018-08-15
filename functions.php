@@ -184,7 +184,7 @@ RC_Hook::add_action('connect_callback_user_signin', function($connect_user) {
 //    );
 //    ecjia_touch_user::singleton()->setUserinfo($res);
 
-    ecjia_touch_user::connectSignin($connect_user->getOpenId(), $connect_user->getConnectCode());
+    ecjia_touch_user::singleton()->connectSignin($connect_user->getOpenId(), $connect_user->getConnectCode());
      
     update_user_info(); // 更新用户信息
     
