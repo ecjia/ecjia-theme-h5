@@ -5,7 +5,7 @@ Description: 这是添加红包弹出层
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
-<div class="ecjia-normal-modal">
+<div class="ecjia-normal-modal {$type}">
 	{if $type eq 'success'}
 	<div class="ecjia-normal-modal-content">
 		<div class="title">恭喜您！</div>

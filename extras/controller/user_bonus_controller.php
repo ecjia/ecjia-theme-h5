@@ -234,8 +234,10 @@ class user_bonus_controller
      */
     public static function add_bonus()
     {
-        $type = 'error';
-
+        $type_list = array('success', 'error', 'bonus_info');
+        $key = array_rand($type_list, 1);
+        $type = $type_list[$key];
+        
         $bonus_number = isset($_POST['bonus_number']) ? $_POST['bonus_number'] : '';
         if (empty($bonus_number)) {
             $type = 'error';

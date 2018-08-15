@@ -13817,9 +13817,10 @@ body {
     font-size: 1.2em;
     margin: 0 4%;
     width: 92%;
-    line-height: 3.5em;
-    height: 3.5em;
+    line-height: 1.5em;
+    height: 1.5em;
     margin-bottom: 1em;
+    padding: 1.5em .5em;
 }
 
 .ecjia-normal-modal {
@@ -13828,13 +13829,17 @@ body {
     z-index: 11000;
     left: 10%;
     margin-top: 0;
-    top: 10em;
+    top: 20%;
     text-align: center;
     border-radius: 7px;
     color: #000;
     display: none;
     overflow: hidden;
     background-color: #fff;
+}
+
+.ecjia-normal-modal.bonus_info {
+    top: 15%;
 }
 
 .ecjia-normal-modal-content {
