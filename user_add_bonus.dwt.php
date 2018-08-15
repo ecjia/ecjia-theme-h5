@@ -1,7 +1,7 @@
 <?php
 /*
-Name: 赚积分
-Description: 赚积分
+Name: 添加红包
+Description: 添加红包
 Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
