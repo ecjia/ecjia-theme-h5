@@ -8,6 +8,7 @@
 			ecjia.touch.user_account.wxpay_user_account();
 			ecjia.touch.user_account.btnflash();
 			ecjia.touch.user_account.btnpay();
+			ecjia.touch.user_account.add_bonus();
 		},
 
 		wxpay_user_account: function () {
@@ -137,6 +138,49 @@
 				});
 			});
 		},
+
+		//添加红包
+		add_bonus: function () {
+			$('input[name="add_bonus"]').off('click').on('click', function (e) {
+				e.preventDefault();
+				var $this = $(this);
+				var bonus_number = $("input[name='bonus_number']").val();
+
+				if (bonus_number == '' || bonus_number == undefined || bonus_number == null) {
+					alert("请输入号码");
+					return false;
+				}
+
+				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+				var html = $this.val();
+				$this.val("请求中...");
+				$this.attr("disabled", true);
+
+				var url = $("form[name='addBonusForm']").attr('action');
+				$("form[name='addBonusForm']").ajaxSubmit({
+					type: 'post',
+					url: url,
+					dataType: "json",
+					success: function (data) {
+						$this.removeAttr("disabled");
+						$this.val(html);
+						$('body').find('.la-ball-atom').remove();
+						$('body').append(data.data);
+						$('.ecjia-normal-modal').show();
+						$('.ecjia-normal-modal-overlay').show();
+						ecjia.touch.user_account.close_nomal_modal();
+					}
+				});
+			});
+		},
+
+		close_nomal_modal: function () {
+			$('.close-normal-btn').off('click').on('click', function (e) {
+				$('.ecjia-normal-modal').remove();
+				$('.ecjia-normal-modal-overlay').remove();
+			});
+		},
+
 	};
 })(ecjia, jQuery);
 
