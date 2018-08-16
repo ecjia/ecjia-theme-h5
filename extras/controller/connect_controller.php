@@ -141,7 +141,7 @@ class connect_controller {
     
         $token = touch_function::get_admin_token();
 
-        $response = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('type' => 'mobile', 'value' => $mobile, 'code' => $code, 'token' => $token))->run();
+        $response = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_BIND)->data(array('token' => $token, 'type' => 'mobile', 'value' => $mobile, 'code' => $code))->run();
         if (is_ecjia_error($response)) {
         	return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
