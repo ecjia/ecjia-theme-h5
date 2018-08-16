@@ -150,6 +150,7 @@
 					alert("请输入号码");
 					return false;
 				}
+				$('.bonus_number_input').blur();
 				$("input[name='bonus_number']").val(bonus_number);
 
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
@@ -173,6 +174,12 @@
 						ecjia.touch.user_account.confirm_add_bonus();
 					}
 				});
+			});
+
+			$(document).keydown(function (event) {
+				if (event.keyCode == 13) {
+					$('input[name="add_bonus"]').trigger('click');
+				}
 			});
 		},
 
@@ -217,7 +224,6 @@
 				});
 			});
 		},
-		
 	};
 })(ecjia, jQuery);
 
