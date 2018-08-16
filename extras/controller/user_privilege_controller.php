@@ -448,7 +448,7 @@ class user_privilege_controller {
     public static function register() {
         $mobile = !empty($_POST['mobile']) ? trim($_POST['mobile']) : '';
         if (!empty($mobile)) {
-            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_VALIDATE)->data(array('mobile' => $mobile))->run();
+            $data = Xecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_VALIDATE)->data(array('mobile' => $mobile))->run();
             $data = is_ecjia_error($data) ? array() : $data;
             $verification = $data['invite_code'];
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('verification' => $verification));

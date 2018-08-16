@@ -494,7 +494,7 @@ class quickpay_controller {
     public static function notify() {
     	$order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
     	 
-    	$params_order = array('token' => $token, 'order_id' => $order_id);
+    	$params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_ORDER_DETAIL)->data($params_order)->run();
     	if (!is_ecjia_error($data)) {
     		if (!empty($data)) {
