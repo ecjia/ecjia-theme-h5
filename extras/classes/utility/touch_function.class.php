@@ -72,7 +72,7 @@ class touch_function {
 	    		'city' 	=> $city_name,
 	    	);
 	    	$header = array('api-version' => '1.9');//小于1.10 兼容新版本
-	    	$rs = ecjia_touch_manager::make()->header($header)->api(ecjia_touch_api::SHOP_REGION_DETAIL)->data($params)->run();
+	    	$rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION_DETAIL)->header($header)->data($params)->run();
 	    	if (is_ecjia_error($rs)) {
 	    		return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
 	    	}
