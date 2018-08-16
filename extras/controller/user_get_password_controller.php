@@ -91,7 +91,7 @@ class user_get_password_controller {
     		ecjia_front::$controller->redirect(RC_Uri::url('user/get_password/init'));
     	}
     	
-        $token = touch_function::get_admin_token();
+        $token = ecjia_touch_user::singleton()->getShopToken();
 		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();
 		$res = !is_ecjia_error($res) ? $res : array();
 		
@@ -169,7 +169,7 @@ class user_get_password_controller {
     	$token = $_SESSION['user_temp']['token'];
     	$mobile = $_SESSION['user_temp']['mobile'];
     	$code = trim($_POST['password']);
-        $token = touch_function::get_admin_token();
+        $token = ecjia_touch_user::singleton()->getShopToken();
 
     	$param = array('token' => $token, 'type' => 'mobile', 'value' => $mobile, 'code' => $code, 'token' => $token);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_FORGET_PASSWORD)->data($param)->run();
@@ -204,7 +204,7 @@ class user_get_password_controller {
         		return ecjia_front::$controller->showmessage(__('两次密码输入不一致'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         	}
         
-        	$token = touch_function::get_admin_token();
+        	$token = ecjia_touch_user::singleton()->getShopToken();
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_RESET_PASSWORD)->data(array('token' => $token, 'type' => 'mobile', 'value' => $mobile, 'password' => $passwordf))->run();
             if (!is_ecjia_error($data)) {
                 unset($_SESSION['user_temp']['mobile']);
