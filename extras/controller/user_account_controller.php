@@ -159,14 +159,15 @@ class user_account_controller
         $amount = is_numeric($_POST['amount']) ? ($_POST['amount']) : '';
         $payment_id = !empty($_POST['payment_id']) ? intval($_POST['payment_id']) : '';
         $account_id = !empty($_POST['account_id']) ? intval($_POST['account_id']) : '';
+        $token = ecjia_touch_user::singleton()->getToken();
 
         if (!empty($amount)) {
-            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('amount' => $amount, 'payment_id' => $payment_id, 'account_id' => $account_id))->run();
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('token' => $token, 'amount' => $amount, 'payment_id' => $payment_id, 'account_id' => $account_id))->run();
             if (!is_ecjia_error($data)) {
                 $data_payment_id = $data['payment']['payment_id'];
                 $data_account_id = $data['payment']['account_id'];
 
-                $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $data_account_id, 'payment_id' => $data_payment_id, 'wxpay_open_id' => $_SESSION['wxpay_open_id']))->run();
+                $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('token' => $token, 'account_id' => $data_account_id, 'payment_id' => $data_payment_id, 'wxpay_open_id' => $_SESSION['wxpay_open_id']))->run();
                 if (!is_ecjia_error($pay)) {
                     //生成返回url cookie
                     RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
@@ -235,7 +236,7 @@ class user_account_controller
         if (empty($amount)) {
             return ecjia_front::$controller->showmessage(__('请输入提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         } else {
-            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RAPLY)->data(array('amount' => $amount, 'note' => $note))->run();
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RAPLY)->data(array('token' => $token, 'amount' => $amount, 'note' => $note))->run();
             $data = is_ecjia_error($data) ? 'error' : $data;
             return ecjia_front::$controller->showmessage(__($data), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/account/balance')));
         }
@@ -257,7 +258,7 @@ class user_account_controller
         $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $token = ecjia_touch_user::singleton()->getToken();
 
-        $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $pages, 'count' => $limit), 'type' => $type, 'token' => $token))->hasPage()->run();
+        $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('token' => $token, 'pagination' => array('page' => $pages, 'count' => $limit), 'type' => $type))->hasPage()->run();
         if (!is_ecjia_error($account_list)) {
             list($data, $page) = $account_list;
 
@@ -308,7 +309,7 @@ class user_account_controller
         $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $token = ecjia_touch_user::singleton()->getToken();
 
-        $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $pages, 'count' => $limit), 'type' => $type, 'token' => $token))->hasPage()->run();
+        $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('token' => $token, 'pagination' => array('page' => $pages, 'count' => $limit), 'type' => $type))->hasPage()->run();
 
         if (!is_ecjia_error($account_list)) {
             list($data, $page) = $account_list;
@@ -361,7 +362,7 @@ class user_account_controller
         $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $token = ecjia_touch_user::singleton()->getToken();
 
-        $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('pagination' => array('page' => $pages, 'count' => $limit), 'type' => $type, 'token' => $token))->hasPage()->run();
+        $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('token' => $token, 'pagination' => array('page' => $pages, 'count' => $limit), 'type' => $type))->hasPage()->run();
 
         if (!is_ecjia_error($account_list)) {
             list($data, $page) = $account_list;
@@ -455,14 +456,16 @@ class user_account_controller
         $record_type = !empty($_POST['record_type']) ? $_POST['record_type'] : '';
         $submit = !empty($_POST['submit']) ? $_POST['submit'] : '';
         $payment_id = !empty($_POST['payment_id']) ? $_POST['payment_id'] : '';
+        $token = ecjia_touch_user::singleton()->getToken();
+
         if ($submit == '取消') {
-            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_CANCEL)->data(array('account_id' => $account_id))->run();
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_CANCEL)->data(array('token' => $token, 'account_id' => $account_id))->run();
             if (is_ecjia_error($data)) {
                 return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
             return ecjia_front::$controller->showmessage('取消成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/account/record')));
         } elseif ($submit == '充值') {
-            $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $account_id, 'payment_id' => $payment_id))->run();
+            $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('token' => $token, 'account_id' => $account_id, 'payment_id' => $payment_id))->run();
             if (is_ecjia_error($pay)) {
                 return ecjia_front::$controller->showmessage($pay->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
@@ -553,11 +556,13 @@ class user_account_controller
     {
         $account_id = intval($_POST['account_id']);
         $payment_id = intval($_POST['pay_id']);
+        $token = ecjia_touch_user::singleton()->getToken();
+        
         if (empty($payment_id)) {
             return ecjia_front::$controller->showmessage(__('请选择支付方式'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
-        $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('account_id' => $account_id, 'payment_id' => $payment_id, 'wxpay_open_id' => $_SESSION['wxpay_open_id']))->run();
+        $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_PAY)->data(array('token' => $token, 'account_id' => $account_id, 'payment_id' => $payment_id, 'wxpay_open_id' => $_SESSION['wxpay_open_id']))->run();
         if (!is_ecjia_error($pay)) {
             $pay_online = array_get($pay, 'payment.private_data.pay_online', array_get($pay, 'payment.pay_online'));
             if (array_get($pay, 'payment.pay_code') == 'pay_alipay') {

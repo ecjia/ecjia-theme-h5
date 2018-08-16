@@ -92,7 +92,6 @@ class user_get_password_controller {
     	}
     	
         $token = touch_function::get_admin_token();
-    	
 		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();
 		$res = !is_ecjia_error($res) ? $res : array();
 		

@@ -68,8 +68,9 @@ class user_bonus_controller
         $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $status = 'allow_use';
+        $token = ecjia_touch_user::singleton()->getToken();
 
-        $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $pages, 'count' => $limit), 'bonus_type' => $status))->hasPage()->run();
+        $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('token' => $token, 'pagination' => array('page' => $pages, 'count' => $limit), 'bonus_type' => $status))->hasPage()->run();
         if (!is_ecjia_error($bonus)) {
             list($data, $page) = $bonus;
             if (isset($page['more']) && $page['more'] == 0) {
@@ -87,8 +88,9 @@ class user_bonus_controller
         $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $status = 'is_used';
+        $token = ecjia_touch_user::singleton()->getToken();
 
-        $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $pages, 'count' => $limit), 'bonus_type' => $status))->hasPage()->run();
+        $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('token' => $token, 'pagination' => array('page' => $pages, 'count' => $limit), 'bonus_type' => $status))->hasPage()->run();
 
         if (!is_ecjia_error($bonus)) {
             list($data, $page) = $bonus;
@@ -107,8 +109,9 @@ class user_bonus_controller
         $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $status = 'expired';
+        $token = ecjia_touch_user::singleton()->getToken();
 
-        $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('page' => $pages, 'count' => $limit), 'bonus_type' => $status))->hasPage()->run();
+        $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('token' => $token, 'page' => $pages, 'count' => $limit), 'bonus_type' => $status))->hasPage()->run();
         if (!is_ecjia_error($bonus)) {
             list($data, $page) = $bonus;
             if (isset($page['more']) && $page['more'] == 0) {

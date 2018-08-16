@@ -881,8 +881,8 @@ class user_order_controller {
     		} else {
     			//店铺信息
     			$parameter_list = array(
-    					'seller_id' => $data['store_id'],
-    					'city_id' => $_COOKIE['city_id']
+    				'seller_id' => $data['store_id'],
+    				'city_id' => $_COOKIE['city_id']
     			);
     			$store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
     			$store_info = is_ecjia_error($store_info) ? array() : $store_info;
