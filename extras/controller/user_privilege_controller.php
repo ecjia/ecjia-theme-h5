@@ -473,8 +473,8 @@ class user_privilege_controller {
         if (is_ecjia_error($check_mobile)) {
             return ecjia_front::$controller->showmessage($check_mobile->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
-        
-		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data(array('type' => 'mobile', 'value' => $mobile))->run();
+        $token = ecjia_touch_user::singleton()->getShopToken();
+		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_USERBIND)->data(array('token' => $token, 'type' => 'mobile', 'value' => $mobile))->run();
 		if (is_ecjia_error($data)) {
 			return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 		}
