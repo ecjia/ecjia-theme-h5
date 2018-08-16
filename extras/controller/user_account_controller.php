@@ -272,7 +272,8 @@ class user_account_controller
                     $day = substr($val['add_time'], 8, 2);
                 }
                 $arr[$time][$key] = $data[$key];
-                $day = substr($val['add_time'], 0, 7);
+                $day = substr($val['add_time'], 0, 10);
+                
                 if ($day == $now_day) {
                     $arr[$time][$key]['add_time'] = '今天' . substr($val['add_time'], 11, 5);
                 } else {
@@ -287,7 +288,6 @@ class user_account_controller
             ecjia_front::$controller->assign('user_img', $user_img);
             ecjia_front::$controller->assign('type', $type);
             ecjia_front::$controller->assign('now_mon', $now_mon);
-            ecjia_front::$controller->assign('now_day', $now_day);
             ecjia_front::$controller->assign('now_year', $now_year);
             ecjia_front::$controller->assign('sur_amount', $arr);
             ecjia_front::$controller->assign_lang();
@@ -323,7 +323,7 @@ class user_account_controller
                     $day = substr($val['add_time'], 8, 2);
                 }
                 $arr[$time][$key] = $data[$key];
-                $day = substr($val['add_time'], 0, 7);
+                $day = substr($val['add_time'], 0, 10);
                 
                 if ($day == $now_day) {
                     $arr[$time][$key]['add_time'] = '今天' . substr($val['add_time'], 11, 5);
@@ -339,7 +339,6 @@ class user_account_controller
             ecjia_front::$controller->assign('user_img', $user_img);
             ecjia_front::$controller->assign('type', $type);
             ecjia_front::$controller->assign('now_mon', $now_mon);
-            ecjia_front::$controller->assign('now_day', $now_day);
             ecjia_front::$controller->assign('now_year', $now_year);
             ecjia_front::$controller->assign('sur_amount', $arr);
             ecjia_front::$controller->assign_lang();
@@ -376,7 +375,8 @@ class user_account_controller
                     $day = substr($val['add_time'], 8, 2);
                 }
                 $arr[$time][$key] = $data[$key];
-                $day = substr($val['add_time'], 0, 7);
+                $day = substr($val['add_time'], 0, 10);
+                
                 if ($day == $now_day) {
                     $arr[$time][$key]['add_time'] = '今天' . substr($val['add_time'], 11, 5);
                 } else {
@@ -391,7 +391,6 @@ class user_account_controller
             ecjia_front::$controller->assign('user_img', $user_img);
             ecjia_front::$controller->assign('type', $type);
             ecjia_front::$controller->assign('now_mon', $now_mon);
-            ecjia_front::$controller->assign('now_day', $now_day);
             ecjia_front::$controller->assign('now_year', $now_year);
             ecjia_front::$controller->assign('sur_amount', $arr);
             ecjia_front::$controller->assign_lang();
