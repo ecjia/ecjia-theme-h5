@@ -111,7 +111,7 @@ class user_bonus_controller
         $status = 'expired';
         $token = ecjia_touch_user::singleton()->getToken();
 
-        $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('pagination' => array('token' => $token, 'page' => $pages, 'count' => $limit), 'bonus_type' => $status))->hasPage()->run();
+        $bonus = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BONUS)->data(array('token' => $token, 'pagination' => array('page' => $pages, 'count' => $limit), 'bonus_type' => $status))->hasPage()->run();
         if (!is_ecjia_error($bonus)) {
             list($data, $page) = $bonus;
             if (isset($page['more']) && $page['more'] == 0) {
