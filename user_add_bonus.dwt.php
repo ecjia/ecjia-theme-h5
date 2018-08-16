@@ -22,14 +22,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                     <img src="{$theme_url}images/wallet/bonus_image.png">
                 </div>
             </div>
-            <div class="ecjia-margin-b">
-                <input class="bonus_number_input" type="text" name="bonus_number" placeholder="请输入号码" />
-            </div>
-
-            <div class="ecjia-margin-b">
-                <input class="btn" type="button" name="add_bonus" value="添加" />
-            </div>
+            <input class="number_hidden" type="hidden" name="bonus_number" placeholder="请输入号码" />
         </form>
+        <div class="ecjia-margin-b">
+            <input class="bonus_number_input" type="text" placeholder="请输入号码" />
+        </div>
+        <div class="ecjia-margin-b">
+            <input class="btn" type="button" name="add_bonus" value="添加" />
+        </div>
     </div>
 
     <!-- {/block} -->

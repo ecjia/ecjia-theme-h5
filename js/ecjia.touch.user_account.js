@@ -144,12 +144,13 @@
 			$('input[name="add_bonus"]').off('click').on('click', function (e) {
 				e.preventDefault();
 				var $this = $(this);
-				var bonus_number = $("input[name='bonus_number']").val();
+				var bonus_number = $(".bonus_number_input").val();
 
 				if (bonus_number == '' || bonus_number == undefined || bonus_number == null) {
 					alert("请输入号码");
 					return false;
 				}
+				$("input[name='bonus_number']").val(bonus_number);
 
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 				var html = $this.val();
@@ -185,7 +186,7 @@
 				$('.ecjia-normal-modal-overlay').remove();
 			});
 		},
-		
+
 		confirm_add_bonus: function () {
 			$('.confirm-add-btn').off('click').on('click', function (e) {
 				var $this = $(this),
@@ -199,8 +200,11 @@
 				var html = $this.html();
 				$this.val("请求中...");
 				$this.attr("disabled", true);
-				
-				$.post(url, {bonus_number: bonus_number, action: 'bind'}, function(data) {
+
+				$.post(url, {
+					bonus_number: bonus_number,
+					action: 'bind'
+				}, function (data) {
 					$this.removeAttr("disabled");
 					$this.html(html);
 					$('body').find('.la-ball-atom').remove();
