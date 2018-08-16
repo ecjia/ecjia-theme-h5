@@ -565,7 +565,7 @@ class user_order_controller {
     		ecjia_front::$controller->assign_title('售后进度');
     		ecjia_front::$controller->assign('title', '售后进度');
     		
-    		ecjia_front::$controller->display('order_return_status.dwt', $cache_id);
+    		ecjia_front::$controller->display('order_return_status.dwt');
     	} elseif ($type == 'return_money') {
     		$data = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_PAYRECORD)->data($params)->run();
     		$data = is_ecjia_error($data) ? array() : $data;
