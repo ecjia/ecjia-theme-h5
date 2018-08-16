@@ -108,7 +108,7 @@ class user_get_password_controller {
     
     //检查图形验证码
     public static function captcha_check() {
-    	$token = $_SESSION['user_temp']['token'];
+    	$token = ecjia_touch_user::singleton()->getShopToken();
     	$mobile = $_SESSION['user_temp']['mobile'];
     	 
     	$type = trim($_POST['type']);
@@ -166,7 +166,7 @@ class user_get_password_controller {
     
     //验证短信验证码
     public static function validate_forget_password() {
-    	$token = $_SESSION['user_temp']['token'];
+    	$token = ecjia_touch_user::singleton()->getShopToken();
     	$mobile = $_SESSION['user_temp']['mobile'];
     	$code = trim($_POST['password']);
         $token = ecjia_touch_user::singleton()->getShopToken();

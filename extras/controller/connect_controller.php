@@ -317,7 +317,7 @@ class connect_controller {
     
     //刷新验证码
     public static function captcha_refresh() {
-    	$token = $_SESSION['user_temp']['token'];
+    	$token = ecjia_touch_user::singleton()->getShopToken();
     	 
     	$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();
     	if (is_ecjia_error($res)) {
@@ -328,7 +328,7 @@ class connect_controller {
     
     //检查图形验证码
     public static function captcha_check() {
-    	$token = $_SESSION['user_temp']['token'];
+    	$token = ecjia_touch_user::singleton()->getShopToken();
     	$mobile = $_SESSION['user_temp']['mobile'];
     	 
     	$type = trim($_POST['type']);
@@ -409,7 +409,7 @@ class connect_controller {
     	$type = trim($_POST['type']);
     	$password = trim($_POST['password']);
     	$mobile = $_SESSION['user_temp']['mobile'];
-    	$token = $_SESSION['user_temp']['token'];
+    	$token = ecjia_touch_user::singleton()->getShopToken();
     	 
     	$registered = $_SESSION['user_temp']['registered'];
     	$invited = $_SESSION['user_temp']['invited'];
