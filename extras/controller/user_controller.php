@@ -60,7 +60,7 @@ class user_controller
         $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
         $signin = ecjia_touch_user::singleton()->isSignin();
 
-        $token = ecjia_touch_user::singleton()->getToken();
+        $token = ecjia_touch_user::singleton()->getShopToken();
         $signup_reward_url = RC_Uri::url('user/mobile_reward/init', array('token' => $token));
 
         if ($signin) {
