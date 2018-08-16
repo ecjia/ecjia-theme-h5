@@ -171,7 +171,7 @@ class user_get_password_controller {
     	$code = trim($_POST['password']);
         $token = ecjia_touch_user::singleton()->getShopToken();
 
-    	$param = array('token' => $token, 'type' => 'mobile', 'value' => $mobile, 'code' => $code, 'token' => $token);
+    	$param = array('token' => $token, 'type' => 'mobile', 'value' => $mobile, 'code' => $code);
     	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::VALIDATE_FORGET_PASSWORD)->data($param)->run();
 
     	if (!is_ecjia_error($data)) {
