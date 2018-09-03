@@ -6141,8 +6141,7 @@ footer {
 
 .goods-info .ecjia-price-time .cart-plus-right {
     float: right;
-    height: 2.8em;
-    position: relative
+    height: 2em;
 }
 
 .goods-add-cart {
@@ -6175,8 +6174,8 @@ footer {
 }
 
 .goods-info .cart-plus-right .attr-number {
-    right: -.2em;
-    bottom: 2.6em
+    right: 0.2em;
+    bottom: 0.2em;
 }
 
 .add-cart-a span {
