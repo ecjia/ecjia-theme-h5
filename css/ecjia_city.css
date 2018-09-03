@@ -7441,7 +7441,7 @@ footer {
 }
 
 .order-log-item:first-child::after {
-    background: url(../images/icon/user_h_circle_50.png) #F7F7F7 no-repeat center;
+    background: url(../images/order_status/done_2.png) #F7F7F7 no-repeat center;
     background-size: 60%
 }
 
@@ -7454,7 +7454,7 @@ footer {
     height: 3em;
     top: 20%;
     padding: .5em;
-    background: url(../images/icon/user_circle_50.png) #F7F7F7 no-repeat center;
+    background: url(../images/order_status/done_1.png) #F7F7F7 no-repeat center;
     background-size: 60%
 }
 
@@ -7566,6 +7566,16 @@ footer {
 }
 .order-log-item.cancel::after {
 	background: url(../images/order_status/canceled_1.png) no-repeat center;
+    background-size: 60%
+}
+
+/*商家已接单*/
+.order-log-item.merchant_confirmed:first-child::after {
+	background: url(../images/order_status/confirmed_2.png) no-repeat center;
+    background-size: 60%
+}
+.order-log-item.merchant_confirmed::after {
+	background: url(../images/order_status/confirmed_1.png) no-repeat center;
     background-size: 60%
 }
 
