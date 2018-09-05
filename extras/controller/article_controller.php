@@ -164,6 +164,9 @@ class article_controller {
     		'article_id'	=> $article_id
     	);
     	$article_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_DETAIL)->data($article_param)->run();
+    	if ($article_info['article_type'] == 'redirect') {
+    		return ecjia_front::$controller->redirect($article_info['link_url']);
+    	}
     	if (!is_ecjia_error($article_info) && !empty($article_info)) {
     		list($data, $info) = $article_info;
     		$res = array();
