@@ -38,5 +38,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<div class="text-center">
 		<input class="btn btn-info" name="submit" type="submit" value="{t}立即提现{/t}" />
 	</div>
+
+	<input name="state_url" type="hidden" value="{RC_Uri::url('user/account/init')}" />
+	<input name="state_title" type="hidden" value="我的钱包" />
 </form>
 <!-- {/block} -->

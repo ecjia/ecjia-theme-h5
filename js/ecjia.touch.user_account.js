@@ -234,6 +234,18 @@
 
 			$('.ecjia-withdraw-notice-btn').off('click').on('click', function () {
 				var url = $(this).attr('data-url');
+
+				var state_url = $('input[name="state_url"]').val();
+				var state_title = $('input[name="state_title"]').val();
+
+				var state = {
+					id: (new Date).getTime(),
+					url: state_url,
+					title: state_title,
+					container: '.ecjia',
+					timeout: 10000
+				}
+				window.history.replaceState(state, state_title, state_url);
 				ecjia.pjax(url);
 			});
 		},
@@ -250,6 +262,18 @@
 						alert(data.message);
 						return false;
 					}
+
+					var state_url = $('input[name="state_url"]').val();
+					var state_title = $('input[name="state_title"]').val();
+					
+					var state = {
+						id: (new Date).getTime(),
+						url: state_url,
+						title: state_title,
+						container: '.ecjia',
+						timeout: 10000
+					}
+					window.history.replaceState(state, state_title, state_url);
 					ecjia.pjax(data.url);
 				}
 			});
