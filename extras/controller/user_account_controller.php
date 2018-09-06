@@ -210,7 +210,9 @@ class user_account_controller
 
             ecjia_front::$controller->assign_title('提现');
         }
-        ecjia_front::$controller->display('user_account_withdraw.dwt', $cache_id);
+        // ecjia_front::$controller->display('user_account_withdraw.dwt', $cache_id);
+
+        ecjia_front::$controller->display('user_account_wechat_withdraw.dwt', $cache_id);
     }
 
     /**
@@ -219,7 +221,7 @@ class user_account_controller
     public static function withdraw_account()
     {
         $amount = !empty($_POST['amount']) ? $_POST['amount'] : '';
-        $note = !empty($_POST['user_note']) ? $_POST['user_note'] : '';
+        // $note = !empty($_POST['user_note']) ? $_POST['user_note'] : '';
         $token = ecjia_touch_user::singleton()->getToken();
 
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
@@ -230,16 +232,27 @@ class user_account_controller
         if ($amount > $user_money) {
             return ecjia_front::$controller->showmessage(__('余额不足，请确定提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
-        if (strlen($note) > '300') {
-            return ecjia_front::$controller->showmessage(__('输入的文字超过规定字数'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-        }
+        // if (strlen($note) > '300') {
+        //     return ecjia_front::$controller->showmessage(__('输入的文字超过规定字数'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        // }
         if (empty($amount)) {
             return ecjia_front::$controller->showmessage(__('请输入提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         } else {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RAPLY)->data(array('token' => $token, 'amount' => $amount, 'note' => $note))->run();
             $data = is_ecjia_error($data) ? 'error' : $data;
-            return ecjia_front::$controller->showmessage(__($data), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/account/balance')));
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('user/account/withdraw_account_notice')));
         }
+    }
+
+    //对会员余额申请的处理 提示页面
+    public static function withdraw_account_notice() {
+        $token = ecjia_touch_user::singleton()->getToken();
+        $user_info = ecjia_touch_user::singleton()->getUserinfo();
+
+        $cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name'];
+        $cache_id = sprintf('%X', crc32($cache_id));
+
+        ecjia_front::$controller->display('user_account_wechat_withdraw_notice.dwt', $cache_id);
     }
 
     /**

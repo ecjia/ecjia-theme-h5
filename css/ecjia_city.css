@@ -4619,6 +4619,12 @@ footer {
     font-size: 1.1em
 }
 
+.ecjia-user .ecjia-list.list-short li .icon {
+    width: 1.6em;
+    height: 1.6em;
+    margin-right: .5em;
+}
+
 .ecjia-user .ecjia-list.list-short li+li::before {
     left: 3.1em;
     border-bottom: 1px solid #eee
@@ -4633,6 +4639,10 @@ footer {
     text-overflow: ellipsis;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical
+}
+
+.ecjia-user .ecjia-list.list-short li span.icon-price.p_r0 {
+    padding-right: 0;
 }
 
 .ecjia-user .ecjia-list.list-short li span.icon-long {
@@ -5028,6 +5038,15 @@ footer {
     color: #A4A4A4
 }
 
+.ecjia-account .text-ty.m_l0 {
+    margin-left: 0;
+}
+
+.ecjia-account .wechat_withdraw_notice {
+    color: #A4A4A4;
+    margin: 1em 0 1em 1em;
+}
+
 .ecjia-account .help-text {
     height: 60px;
     background: #ffecca
@@ -5114,6 +5133,32 @@ footer {
 
 .ecjia-account .height-3 a {
     line-height: 1.7em !important
+}
+
+.ecjia-account .ecjia-list li.height-5 {
+    height: 5em;
+    line-height: 5em;
+    padding: 0 1em;
+}
+
+.ecjia-user .ecjia-list.list-short li.height-5 span {
+    font-size: 2em;
+    position: absolute;
+    width: 1em;
+}
+
+.ecjia-user .ecjia-list.list-short li.height-5 input {
+    width: 100%;
+    padding: 0 5em 0 2.5em;
+}
+
+.ecjia-user .ecjia-list.list-short li.height-5 .widhdraw_all_span {
+    position: absolute;
+    font-size: 1.1em;
+    right: 0;
+    top: 0em;
+    width: 5em;
+    color: #ff3a6d
 }
 
 .ecjia-account .record-money {
@@ -13960,4 +14005,24 @@ body {
     -webkit-transition-duration: .4s;
     transition-duration: .4s;
     display: none
+}
+
+/* 提现通知页面 */
+.ecjia-withdraw-notice {
+    background-color: #fff;
+    margin-bottom: 3em;
+    text-align: center;
+    padding-bottom: .5em;
+    padding-top: 2em;
+}
+
+.ecjia-withdraw-notice p {
+    margin-bottom: .5em;
+}
+
+.ecjia-withdraw-notice p.green {
+    color: #47aa4d;
+    color: #47aa4d;
+    font-size: 1.1em;
+    margin: 1em 0;
 }

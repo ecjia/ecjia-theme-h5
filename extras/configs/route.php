@@ -182,6 +182,7 @@ return [
     'user/account/recharge_account'     => 'user_account_controller@recharge_account',
     'user/account/withdraw'             => 'user_account_controller@withdraw',
     'user/account/withdraw_account'     => 'user_account_controller@withdraw_account',
+    'user/account/withdraw_account_notice' => 'user_account_controller@withdraw_account_notice',
     'user/account/balance'              => 'user_account_controller@balance', //余额
     'user/account/record'               => 'user_account_controller@record',
     'user/account/ajax_record'          => 'user_account_controller@ajax_record',
