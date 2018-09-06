@@ -171,6 +171,11 @@
 					var mobile = $('input[name="mobile"]').val();
 					var url = $('input[name="url"]').val();
 
+					var not_auto_post = $('input[name="not_auto_post"]').val();
+					if (not_auto_post == 1) {
+						$('input[name="confirm_password"]').val(value);
+						return false;
+					}
 					var info = {
 						'type': type,
 						'password': value,
@@ -554,7 +559,7 @@
 				callback: function (data) {
 					if (data.state == 'success') {
 						iosOverlay({
-							text: "绑定成功!",
+							text: "绑定成功！",
 							duration: 2e3,
 						});
 						ecjia.touch.showmessage(data);
@@ -571,6 +576,35 @@
 							});
 						}
 
+					}
+				}
+			});
+
+			$("form[name='payPassForm']").on('submit', function (e) {
+				e.preventDefault();
+				return false;
+			}).Validform({
+				tiptype: function (msg, o, cssctl) {},
+				ajaxPost: true,
+				callback: function (data) {
+					if (data.state == 'success') {
+						ecjia.touch.showmessage(data);
+					} else {
+						if (!data.message) {
+							iosOverlay({
+								text: '请输入验证码！',
+								duration: 2e3,
+							});
+						} else {
+							if (data.type == 'alert') {
+								alert(data.message);
+							} else {
+								iosOverlay({
+									text: data.message,
+									duration: 2e3,
+								});
+							}
+						}
 					}
 				}
 			});

@@ -256,7 +256,9 @@ return [
     'user/profile/get_sms_code'			    => 'user_profile_controller@get_sms_code',
     'user/profile/modify_password'		    => 'user_profile_controller@modify_password',
     'user/profile/set_pay_password'		    => 'user_profile_controller@set_pay_password',
-    
+    'user/profile/set_pay_pass'		        => 'user_profile_controller@set_pay_pass',
+    'user/profile/check_pay_pass'	        => 'user_profile_controller@check_pay_pass',
+
     //授权登录
     'connect/index/dump_user_info'      => 'connect_controller@dump_user_info',
     'connect/index/bind_signup'         => 'connect_controller@bind_signup',
