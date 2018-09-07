@@ -513,9 +513,11 @@
 			$('.confirm-payment').off('click').on('click', function (e) {
 				e.preventDefault();
 
-				if ($("input[name='pay_id']:checked").val() == null) {
-					alert("请选择支付方式");
-					return false;
+				if (!$(this).hasClass('payment-balance')) {
+					if ($("input[name='pay_id']:checked").val() == null) {
+						alert("请选择支付方式");
+						return false;
+					}
 				}
 
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
