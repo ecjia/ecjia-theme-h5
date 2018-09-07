@@ -13195,13 +13195,11 @@ body {
 #payPassword_container .pass_container .input .point {
     width: .5em;
     height: .5em;
-    border-radius: 0.6rem;
+    border-radius: 50%;
     overflow: hidden;
     position: absolute;
-    top: 50%;
-    margin-top: -0.6rem;
-    left: 50%;
-    margin-left: -0.6rem;
+    top: 35%;
+    left: 35%;
     background-color: #333333;
     -webkit-backface-visibility: hidden;
 }

@@ -3,12 +3,7 @@
  */
 ;
 (function (ecjia, $) {
-	var firstResultAry = []; //记录输入结果
-	var $targetInput = $("#payPassword_container").find("div.input"); //模拟输入的input
-	var keyLength = $targetInput.length; //模拟输入的位数
-	var $keyboard = $("#keyboard"); //设置密码中的键盘
-	var $board = $keyboard.find("li"); //模拟键盘中的按键
-	var autoRequest = 0;
+
 
 	ecjia.touch.flow = {
 		init: function () {
@@ -28,6 +23,7 @@
 			ecjia.touch.flow.inv_img();
 			ecjia.touch.flow.selectPayShipping();
 			ecjia.touch.flow.pay_order();
+			ecjia.touch.flow.boardInit();
 
 			$('[data-toggle="selectShipping"]:checked').trigger('click');
 			$('[data-toggle="selectPayment"]:checked').trigger('click');
@@ -41,9 +37,6 @@
 			}
 
 			$(document).winderCheck();
-
-			var _this = this;
-			_this.boardInit();
 		},
 
 		inv_img: function () {
@@ -478,6 +471,7 @@
 			//关闭送达时间选择框
 			$('.mod_address_slide_head .icon-close').off('click').on('click', function () {
 				$('.mod_address_slide').removeClass('show');
+				firstResultAry = [];
 			});
 
 			//点击日期
@@ -575,72 +569,71 @@
 
 		//模拟键盘初始化
 		boardInit: function () {
+			var firstResultAry = []; //记录输入结果
+			var $targetInput = $("#payPassword_container").find("div.input"); //模拟输入的input
+			var keyLength = $targetInput.length; //模拟输入的位数
+			var $keyboard = $("#keyboard"); //设置密码中的键盘
+			var $board = $keyboard.find("li"); //模拟键盘中的按键
+			var autoRequest = 0;
+
 			$board.on("touchend", function (e) {
 				e.preventDefault();
 				var keyType = $(this).attr("data-key");
-				ecjia.touch.flow.dealKeyDown(keyType);
-			})
-		},
 
-		//处理设置密码时键盘按下事件
-		dealKeyDown: function (keyType) {
-			if (keyType == "del") {
-				firstResultAry.pop();
-			} else if (keyType && firstResultAry.length < keyLength) {
-				firstResultAry.push(keyType);
-			}
-			ecjia.touch.flow.showResultInTargetInput();
-		},
-
-		//在模拟输入框展示对应结果
-		showResultInTargetInput: function () {
-			$targetInput.html("");
-			for (var i = 0; i < firstResultAry.length; i++) {
-				$targetInput.eq(i).html('<div class="point"></div>')
-			}
-
-			if (autoRequest == 1) {
-				return false;
-			}
-
-			if (firstResultAry.length == keyLength) {
-				autoRequest = 1;
-				var order_id = $('input[name="order_id"]').val();
-				var pay_id = $('input[name="pay_id"]').val();
-				var url = $('input[name="url"]').val();
-				var value = '';
-				$.each(firstResultAry, function(i, v) {
-					value += v;
-				})
-				
-				var info = {
-					'order_id': order_id,
-					'pay_id': pay_id,
-					'value': value
+				if (keyType == "del") {
+					firstResultAry.pop();
+				} else if (keyType && firstResultAry.length < keyLength) {
+					firstResultAry.push(keyType);
 				}
-				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
-				$.post(url, info, function (data) {
-					autoRequest = 0;
-					$('.la-ball-atom').remove();
-					$('.confirm-payment').removeClass("payment-bottom")
-					$('.confirm-payment').removeAttr("disabled");
-					$('.confirm-payment').val('确认支付');
-					if (data.state == 'error') {
-						$('.mod_address_slide').removeClass('show');
-						$("#payPassword_container").find(".point").remove();
-						ecjia.touch.showmessage(data);
-						return false;
+				$targetInput.html("");
+				for (var i = 0; i < firstResultAry.length; i++) {
+					$targetInput.eq(i).html('<div class="point"></div>')
+				}
+
+				if (autoRequest == 1) {
+					return false;
+				}
+
+				if (firstResultAry.length == keyLength) {
+					autoRequest = 1;
+					var order_id = $('input[name="order_id"]').val();
+					var pay_id = $('input[name="pay_id"]').val();
+					var url = $('input[name="url"]').val();
+					var value = '';
+					$.each(firstResultAry, function (i, v) {
+						value += v;
+					})
+
+					var info = {
+						'order_id': order_id,
+						'pay_id': pay_id,
+						'value': value
 					}
-					if (data.redirect_url) {
-						location.href = data.redirect_url;
-					} else if (data.weixin_data) {
-						$('.wei-xin-pay').html("");
-						$('.wei-xin-pay').html(data.weixin_data);
-						callpay();
-					}
-				})
-				return false;
-			}
+					$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+					$.post(url, info, function (data) {
+						autoRequest = 0;
+						$('.la-ball-atom').remove();
+						$('.confirm-payment').removeClass("payment-bottom")
+						$('.confirm-payment').removeAttr("disabled");
+						$('.confirm-payment').val('确认支付');
+						if (data.state == 'error') {
+							$('.mod_address_slide').removeClass('show');
+							$("#payPassword_container").find(".point").remove();
+							firstResultAry = [];
+							ecjia.touch.showmessage(data);
+							return false;
+						}
+						if (data.redirect_url) {
+							location.href = data.redirect_url;
+						} else if (data.weixin_data) {
+							$('.wei-xin-pay').html("");
+							$('.wei-xin-pay').html(data.weixin_data);
+							callpay();
+						}
+					})
+					return false;
+				}
+			})
 		},
 	};
 

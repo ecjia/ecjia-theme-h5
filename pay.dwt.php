@@ -63,7 +63,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <input name="order_id" type="hidden" value="{$detail.order_id}" />
             <input name="pay_id" type="hidden" value="{$detail.pay_id}" />
             <input name="has_set_paypass" type="hidden" value="0" />
-            <input class="btn confirm-payment payment-balance" name="submit" type="submit" value="{t}确认支付{/t}" />
+            <input class="btn confirm-payment payment-balance" type="button" value="{t}确认支付{/t}" />
         </div>
     </form>
     {/if}
