@@ -234,24 +234,15 @@
 
 			$('.ecjia-withdraw-notice-btn').off('click').on('click', function () {
 				var url = $(this).attr('data-url');
-
-				var state_url = $('input[name="state_url"]').val();
-				var state_title = $('input[name="state_title"]').val();
-
-				var state = {
-					id: (new Date).getTime(),
-					url: state_url,
-					title: state_title,
-					container: '.ecjia',
-					timeout: 10000
-				}
-				window.history.replaceState(state, state_title, state_url);
-				ecjia.pjax(url);
+				ecjia.pjax(url, function () {}, {
+					replace: true
+				});
 			});
 		},
 
 		widthDrawFormSubmit: function () {
 			$("form[name='widthDrawForm']").on('submit', function (e) {
+				$('input[name="submit"]').val('请求中...').prop('disabled', true);
 				e.preventDefault();
 				return false;
 			}).Validform({
@@ -262,19 +253,10 @@
 						alert(data.message);
 						return false;
 					}
-
-					var state_url = $('input[name="state_url"]').val();
-					var state_title = $('input[name="state_title"]').val();
-					
-					var state = {
-						id: (new Date).getTime(),
-						url: state_url,
-						title: state_title,
-						container: '.ecjia',
-						timeout: 10000
-					}
-					window.history.replaceState(state, state_title, state_url);
-					ecjia.pjax(data.url);
+					var url = data.url;
+					ecjia.pjax(url, function () {}, {
+						replace: true
+					});
 				}
 			});
 		},

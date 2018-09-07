@@ -235,6 +235,12 @@ class user_account_controller
         // if (strlen($note) > '300') {
         //     return ecjia_front::$controller->showmessage(__('输入的文字超过规定字数'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         // }
+        if ($amount === 0) {
+            return ecjia_front::$controller->showmessage(__('提现金额不能为0'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+        if ($amount < 1) {
+            return ecjia_front::$controller->showmessage(__('提现金额不能小于1'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
         if (empty($amount)) {
             return ecjia_front::$controller->showmessage(__('请输入提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         } else {

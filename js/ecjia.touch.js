@@ -318,19 +318,22 @@
             /* PJAX基础配置项 */
             ecjia.pjaxoption = {
                 timeout: 10000,
-                container: '.ecjia',
                 /* 内容替换的容器 */
-                cache: false,
+                container: '.ecjia',
                 /* 是否使用缓存 */
-                storage: false,
+                cache: false,
                 /* 是否使用本地存储 */
-                titleSuffix: '.pjax' /* 标题后缀 */
+                storage: false,
+                /* 标题后缀 */
+                titleSuffix: '.pjax',
+                /* 修改历史记录 */
+                replace: false
             };
 
             /* ecjia.pjax */
             ecjia.extend({
-                pjax: function (url, callback) {
-                    var option = $.extend(ecjia.pjaxoption, {
+                pjax: function (url, callback, options = {}) {
+                    var option = $.extend(ecjia.pjaxoption, options, {
                         url: url,
                         callback: function () {
                             if (typeof (callback) === 'function') callback();
@@ -338,6 +341,7 @@
                     });
                     $.pjax(option);
                     delete ecjia.pjaxoption.url;
+                    delete ecjia.pjaxoption.replace;
                 }
             });
             /* pjax刷新当前页面 */
@@ -347,7 +351,11 @@
             /* 移动pjax方法的调用，使用document元素委派pjax点击事件 */
             if ($.support.pjax) {
                 $(document).on('click', 'a:not(.nopjax)', function (event) {
+                    if ($(this).hasClass('fnUrlReplace')) {
+                        ecjia.pjaxoption.replace = true;
+                    }
                     $.pjax.click(event, ecjia.pjaxoption.container, ecjia.pjaxoption);
+                    delete ecjia.pjaxoption.replace;
                 });
             }
         },
@@ -520,11 +528,11 @@
             var date = new Date;
             var year = date.getFullYear();
             for (var i = 2017; i <= year; i++) {
-                for (var j=1; j<13; j++) {
-                    if (j<10) {
+                for (var j = 1; j < 13; j++) {
+                    if (j < 10) {
                         j = '0' + j;
                     }
-                    $('.record-time-'+ i + "-" + j +':first').show();
+                    $('.record-time-' + i + "-" + j + ':first').show();
                 }
             }
         },

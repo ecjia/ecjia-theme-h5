@@ -9,13 +9,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
-<script type="text/javascript" >
+<script type="text/javascript">
 	ecjia.touch.user_account.init();
 </script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<form class="ecjia-account ecjia-form user-profile-form" action="{url path='user/account/withdraw_account'}" method="post" name="widthDrawForm">
+<form class="ecjia-account ecjia-form user-profile-form" action="{url path='user/account/withdraw_account'}" method="post"
+    name="widthDrawForm">
 	<div class="ecjia-user">
 		<div class="ecjia-list list-short">
 			<li class="height-3">
@@ -33,13 +34,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 
 	<p class="wechat_withdraw_notice">申请提交后，我们将3-5个工作日审核，请您耐心等待</p>
-	
+
 	<input name="act" type="hidden" value="profile" />
 	<div class="text-center">
 		<input class="btn btn-info" name="submit" type="submit" value="{t}立即提现{/t}" />
 	</div>
-
-	<input name="state_url" type="hidden" value="{RC_Uri::url('user/account/init')}" />
-	<input name="state_title" type="hidden" value="我的钱包" />
 </form>
 <!-- {/block} -->

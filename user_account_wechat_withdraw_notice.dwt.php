@@ -24,8 +24,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 
 <div class="text-center">
-	<input name="state_url" type="hidden" value="{RC_Uri::url('user/account/init')}" />
-	<input name="state_title" type="hidden" value="我的钱包" />
-	<a class="btn btn-info ecjia-withdraw-notice-btn" data-url="{RC_Uri::url('user/account/balance')}" href="javascript:;">完成</a>
+	<a class="btn btn-info ecjia-withdraw-notice-btn fnUrlReplace" data-url="{RC_Uri::url('user/account/balance')}" href="javascript:;">完成</a>
 </div>
 <!-- {/block} -->
