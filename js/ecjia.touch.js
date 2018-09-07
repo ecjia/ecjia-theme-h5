@@ -427,16 +427,16 @@
             $('.is-last').remove();
             $(window).scrollTop(0);
             var defaults = {
-                    url: false, //url 			请求地址
-                    page: 1, //page			分页
-                    size: 10, //size			分页数量
+                    url: false, //url 请求地址
+                    page: 1, //page 分页
+                    size: 10, //size 分页数量
                     areaSelect: '#J_ItemList', //areaSelect	模块select
-                    areaClass: '', //areaClass		模块class
-                    scroll: true, //scroll		滑动加载
-                    offset: 100, //offset		滑动预留
-                    trigger: '.load-list', //trigger		点击的触发器
-                    lock: false, //lock			锁
-                    type: '', //type			类型
+                    areaClass: '', //areaClass 模块class
+                    scroll: true, //scroll 滑动加载
+                    offset: 100, //offset 滑动预留
+                    trigger: '.load-list', //trigger 点击的触发器
+                    lock: false, //lock 锁
+                    type: '', //type 类型
                 },
                 options = $.extend({}, defaults, options),
                 scroll_list = function () {
@@ -791,7 +791,6 @@
                 var is_order_list = $('input[name="keywords"]').attr("data-type");
                 if (is_order_list) {
                     if (!val) {
-                        //						ecjia.pjax(url);
                         return false;
                     } else {
                         ecjia.pjax(url + '&keywords=' + val);
