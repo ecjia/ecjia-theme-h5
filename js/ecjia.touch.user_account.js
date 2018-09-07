@@ -250,6 +250,7 @@
 				ajaxPost: true,
 				callback: function (data) {
 					if (data.state == 'error') {
+						$('input[name="submit"]').val('立即提现').prop('disabled', false);
 						alert(data.message);
 						return false;
 					}
