@@ -370,17 +370,18 @@
          */
         showmessage: function (options) {
             var defaults = {
+                /* message 提示信息 */
                 message: false,
                 /* message 提示信息 */
                 is_show: true,
-                /* message 提示信息 */
-                state: 'success',
                 /* state 信息状态 */
-                links: false,
+                state: 'success',
                 /* links 链接对象 */
-                close: true,
+                links: false,
                 /* close 是否可以关闭 */
-                pjaxurl: '' /* pjax刷新页面后显示message的时候传递的pjaxURL参数 */
+                close: true,
+                /* pjax刷新页面后显示message的时候传递的pjaxURL参数 */
+                pjaxurl: ''
             };
 
             var options = $.extend({}, defaults, options);
