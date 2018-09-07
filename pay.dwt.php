@@ -62,6 +62,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <div class="ecjia-margin-t ecjia-margin-b">
             <input name="order_id" type="hidden" value="{$detail.order_id}" />
             <input name="pay_id" type="hidden" value="{$detail.pay_id}" />
+            <input name="has_set_paypass" type="hidden" value="0" />
             <input class="btn confirm-payment payment-balance" name="submit" type="submit" value="{t}确认支付{/t}" />
         </div>
     </form>
@@ -85,5 +86,82 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     {/if}
 
 </div>
+
+<div class="mod_address_slide" id="enterPassArea">
+    <div class="mod_address_slide_main">
+        <div class="mod_address_slide_head">
+            请输入支付密码<i class="iconfont icon-close"></i>
+        </div>
+        <div class="mod_address_slide_body h350">
+            <div class="ecjia-form">
+                <p class="ecjiaf-tac ecjia-margin-b ecjia-margin-t ecjia-color-85878c">为了保证您的账户安全，请输入您的支付密码</p>
+                </p>
+                <div id="payPassword_container">
+                    <div class="pass_container enter_paypass_container">
+                        <div class="input" type="tel" maxlength="1"></div>
+                        <div class="input" type="tel" maxlength="1"></div>
+                        <div class="input" type="tel" maxlength="1"></div>
+                        <div class="input" type="tel" maxlength="1"></div>
+                        <div class="input" type="tel" maxlength="1"></div>
+                        <div class="input" type="tel" maxlength="1"></div>
+                    </div>
+                </div>
+                <input name="order_id" type="hidden" value="{$detail.order_id}" />
+                <input name="pay_id" type="hidden" value="{$detail.pay_id}" />
+                <input name="url" type="hidden" value="{url path='payment/pay/pay_order'}" />
+                <a class="ecjiaf-fr blue forget_paypass" href="{RC_Uri::url('user/profile/set_pay_password')}" style="padding-right:2em;">忘记支付密码</a>
+            </div>
+            <ul class="keyboard pct100 abs-lb" id="keyboard">
+                <li data-key="1">
+                    <p>1</p>
+                </li>
+                <li data-key="2">
+                    <p>2</p>
+                    <p class="letter">ABC</p>
+                </li>
+                <li data-key="3">
+                    <p>3</p>
+                    <p class="letter">DEF</p>
+                </li>
+                <li data-key="4">
+                    <p>4</p>
+                    <p class="letter">GHI</p>
+                </li>
+                <li data-key="5">
+                    <p>5</p>
+                    <p class="letter">JKL</p>
+                </li>
+                <li data-key="6">
+                    <p>6</p>
+                    <p class="letter">MNO</p>
+                </li>
+                <li data-key="7">
+                    <p>7</p>
+                    <p class="letter">PQRS</p>
+                </li>
+                <li data-key="8">
+                    <p>8</p>
+                    <p class="letter">TUV</p>
+                </li>
+                <li data-key="9">
+                    <p>9</p>
+                    <p class="letter">WXYZ</p>
+                </li>
+                <li class="bg-gray"></li>
+                <li data-key="0">
+                    <p>0</p>
+                </li>
+                <li class="bg-gray" data-key="del">
+                    <i class="icon-del auto">
+                        <img src="//static.360buyimg.com/finance/mobile/payment/shortPassword/1.0.0/images/keyboard_del.png"
+                            alt="">
+                    </i>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
 <!-- {/block} -->
 {/nocache}

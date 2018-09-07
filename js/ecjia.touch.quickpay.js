@@ -38,7 +38,6 @@
 			$('input[name="drop_out_money"]').koala({
 				delay: 500,
 				keyup: function (event) {
-					console.log(22);
 					ecjia.touch.quickpay.checkout('change_amount');
 				}
 			});

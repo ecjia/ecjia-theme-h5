@@ -3,6 +3,12 @@
  */
 ;
 (function (ecjia, $) {
+	var firstResultAry = []; //记录输入结果
+	var $targetInput = $("#payPassword_container").find("div.input"); //模拟输入的input
+	var keyLength = $targetInput.length; //模拟输入的位数
+	var $keyboard = $("#keyboard"); //设置密码中的键盘
+	var $board = $keyboard.find("li"); //模拟键盘中的按键
+	var autoRequest = 0;
 
 	ecjia.touch.flow = {
 		init: function () {
@@ -35,6 +41,9 @@
 			}
 
 			$(document).winderCheck();
+
+			var _this = this;
+			_this.boardInit();
 		},
 
 		inv_img: function () {
@@ -415,7 +424,7 @@
 				if (pay_code == 'pay_cod') {
 					$('.select-shipping-title.unsupport_cod_shipping').hide();
 					if ($('.select-shipping-title.active').hasClass('unsupport_cod_shipping')) {
-						$('.select-item-li').find('.select-shipping-title').each(function() {
+						$('.select-item-li').find('.select-shipping-title').each(function () {
 							if (!$(this).hasClass('unsupport_cod_shipping')) {
 								$(this).trigger('click');
 								return false;
@@ -432,7 +441,7 @@
 					parent = $this.parents('.ecjia-list'),
 					shipping_id = $this.attr('data-shipping'),
 					shipping_code = $this.attr('data-code');
-				
+
 				parent.find('.select-shipping-title').removeClass('active');
 				$this.addClass('active');
 				$('input[name="shipping"]').val(shipping_id);
@@ -518,6 +527,18 @@
 						alert("请选择支付方式");
 						return false;
 					}
+				} else {
+					var has_set_paypass = $('input[name="has_set_paypass"]').val();
+					if (has_set_paypass == 0) {
+
+						$(this).val("请求中...");
+						$(this).attr("disabled", true);
+						$(this).addClass("payment-bottom");
+
+						$('.mod_address_slide').addClass('show');
+						$(".pass_container input").eq(0).focus();
+					}
+					return false;
 				}
 
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
@@ -550,6 +571,76 @@
 					}
 				});
 			});
+		},
+
+		//模拟键盘初始化
+		boardInit: function () {
+			$board.on("touchend", function (e) {
+				e.preventDefault();
+				var keyType = $(this).attr("data-key");
+				ecjia.touch.flow.dealKeyDown(keyType);
+			})
+		},
+
+		//处理设置密码时键盘按下事件
+		dealKeyDown: function (keyType) {
+			if (keyType == "del") {
+				firstResultAry.pop();
+			} else if (keyType && firstResultAry.length < keyLength) {
+				firstResultAry.push(keyType);
+			}
+			ecjia.touch.flow.showResultInTargetInput();
+		},
+
+		//在模拟输入框展示对应结果
+		showResultInTargetInput: function () {
+			$targetInput.html("");
+			for (var i = 0; i < firstResultAry.length; i++) {
+				$targetInput.eq(i).html('<div class="point"></div>')
+			}
+
+			if (autoRequest == 1) {
+				return false;
+			}
+
+			if (firstResultAry.length == keyLength) {
+				autoRequest = 1;
+				var order_id = $('input[name="order_id"]').val();
+				var pay_id = $('input[name="pay_id"]').val();
+				var url = $('input[name="url"]').val();
+				var value = '';
+				$.each(firstResultAry, function(i, v) {
+					value += v;
+				})
+				
+				var info = {
+					'order_id': order_id,
+					'pay_id': pay_id,
+					'value': value
+				}
+				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
+				$.post(url, info, function (data) {
+					autoRequest = 0;
+					$('.la-ball-atom').remove();
+					$('.confirm-payment').removeClass("payment-bottom")
+					$('.confirm-payment').removeAttr("disabled");
+					$('.confirm-payment').val('确认支付');
+					if (data.state == 'error') {
+						$('.mod_address_slide').removeClass('show');
+						$("#payPassword_container").find(".point").remove();
+						ecjia.touch.showmessage(data);
+						return false;
+					}
+					if (data.redirect_url) {
+						location.href = data.redirect_url;
+					} else if (data.weixin_data) {
+						$('.wei-xin-pay').html("");
+						$('.wei-xin-pay').html(data.weixin_data);
+						callpay();
+					}
+				})
+				return false;
+			}
 		},
 	};
 
