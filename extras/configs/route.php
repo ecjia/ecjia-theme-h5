@@ -70,6 +70,7 @@ return [
     'goods/index/promotion'             => 'goods_controller@promotion',
     'goods/index/ajax_goods'            => 'goods_controller@ajax_goods',
     'goods/index/new'                   => 'goods_controller@goods_new',
+    'goods/index/best'                   => 'goods_controller@goods_best',
     'goods/index/ajax_goods_comment'    => 'goods_controller@ajax_goods_comment', //获取商品评论
     'goods/index/groupbuy'    		    => 'goods_controller@groupbuy', //团购商品列表
     
