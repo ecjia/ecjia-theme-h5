@@ -57,6 +57,7 @@ class touch_controller {
     public static function init() {
         ecjia_front::$controller->assign('more_sales', RC_Uri::url('goods/index/promotion'));
         ecjia_front::$controller->assign('more_news', RC_Uri::url('goods/index/new'));
+        ecjia_front::$controller->assign('more_best', RC_Uri::url('goods/index/best'));
         ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
         
         $url = RC_Uri::url('touch/index/init');
