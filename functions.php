@@ -363,7 +363,7 @@ ecjia_open::macro('merchant', function($querys) {
  */
 RC_Hook::add_filter('payment_respond_template', function($callback) {
     return function ($respond, $msg, $info) {
-        return pay_controller::notify($msg);
+        return payment_controller::notify($msg);
     };
 });
 
