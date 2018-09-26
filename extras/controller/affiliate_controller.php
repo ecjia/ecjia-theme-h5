@@ -56,11 +56,17 @@ class affiliate_controller {
 		
 		$res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();
 		$res = !is_ecjia_error($res) ? $res : array();
-
+		
 		ecjia_front::$controller->assign('captcha_image', $res['base64']);
 		
 		$invite_code = trim($_GET['invite_code']);
 		ecjia_front::$controller->assign('invite_code', $invite_code);
+
+		$token = ecjia_touch_user::singleton()->getToken();
+		$invite_user_detail = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_USER)->data(array('token' => $token))->run();
+		$invite_user_detail['invitee_rule_explain'] = explode("\n", $invite_user_detail['invitee_rule_explain']);
+
+		ecjia_front::$controller->assign('invite_user', $invite_user_detail);
 		
 		ecjia_front::$controller->display('affiliate_invite_register.dwt');
 	}
