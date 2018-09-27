@@ -1047,6 +1047,18 @@
 						$(".identify_code_btn").html(curCount + "s");
 						InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 					}
+					if (data.registered == 1) {
+						var myApp = new Framework7({
+							modalButtonCancel: '取消',
+							modalButtonOk: '确定',
+							modalTitle: ''
+						});
+						var url = data.url;
+						myApp.confirm(data.message, function () {
+							ecjia.pjax(url);
+						});
+						return false;
+					}
 					ecjia.touch.showmessage(data);
 				});
 			});
