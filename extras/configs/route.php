@@ -225,6 +225,7 @@ return [
     'user/order/async_order_list'       => 'user_order_controller@async_order_list',
     'user/order/async_return_order_list'=> 'user_order_controller@async_return_order_list',
     'user/order/order_detail'           => 'user_order_controller@order_detail',
+    'user/order/express_info'           => 'user_order_controller@express_info',
     'user/order/affirm_received'        => 'user_order_controller@affirm_received',
     'user/order/comment_list'           => 'user_order_controller@comment_list',
     'user/order/goods_comment'          => 'user_order_controller@goods_comment',
