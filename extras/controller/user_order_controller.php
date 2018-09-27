@@ -177,6 +177,16 @@ class user_order_controller
                 ecjia_front::$controller->display('user_order_detail.dwt', $cache_id);
             }
         } else {
+            $express_id = $data['express_id'];
+            if (!empty($express_id)) {
+                $params_express = array('token' => $token, 'order_id' => $order_id, 'express_id' => $express_id);
+                $arr = ecjia_touch_manager::make()->api(ecjia_touch_api::EXPRESS_USER_LOCATION)->data($params_express)->run();
+                $arr = is_ecjia_error($arr) ? [] : $arr;
+                if (!empty($arr)) {
+                    ecjia_front::$controller->assign('arr', json_encode($arr));
+                    ecjia_front::$controller->assign('express_info', $arr);
+                }
+            }
             if (!ecjia_front::$controller->is_cached('user_order_status.dwt', $cache_id)) {
                 ecjia_front::$controller->assign('order', $data);
                 ecjia_front::$controller->assign('title', '订单状态');
