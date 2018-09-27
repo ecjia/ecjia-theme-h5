@@ -1017,7 +1017,9 @@
 					mobile = $('input[name="mobile"]').val(),
 					code_captcha = $('input[name="code_captcha"]').val(),
 					url = $this.attr('data-url');
-
+				if ($this.attr('disabled') == 'disabled') {
+					return false;
+				}
 				if (mobile || mobile == '') {
 					if (mobile.length == 11) {
 						url += '&mobile=' + mobile;
