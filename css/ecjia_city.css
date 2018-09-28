@@ -12771,25 +12771,32 @@ footer {
 /*邀请注册样式*/
 
 .ecjia-invite-register {
-    position: relative;
-    height: auto;
-    margin: 0;
-    padding: 0
+	position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	background-color: #7EC730;
+	overflow-y: auto;
+    overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;
+    max-width: 640px;
+	margin: 0 auto;
 }
 
 .ecjia-invite-register .form {
-    position: absolute;
+	position: absolute;
     height: 13em;
     width: 90%;
-    top: 38%;
-    left: 5%
+	bottom: 4.5em;
+    left: 5%;
 }
 
 .ecjia-invite-register .invite-notice {
     position: absolute;
     height: auto;
     width: 92%;
-    bottom: 2%;
+    top: 4.5em;
     left: 4%;
     font-size: 13px
 }
@@ -12799,7 +12806,7 @@ footer {
 }
 
 .ecjia-invite-register .invite-notice p {
-    line-height: 20px;
+    line-height: 1.8em;
     color: #fff;
     position: relative
 }
