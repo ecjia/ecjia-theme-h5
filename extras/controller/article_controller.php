@@ -185,10 +185,10 @@ class article_controller
                 ecjia_front::$controller->assign('content', stripslashes($bodystr));
             }
             ecjia_front::$controller->assign('data', $data);
+            ecjia_front::$controller->assign_title($data['title']);
         }
         ecjia_front::$controller->assign('article_id', $article_id);
 
-        ecjia_front::$controller->assign_title($article_info['title']);
         ecjia_front::$controller->display('discover_article.dwt');
     }
 
