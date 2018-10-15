@@ -19,12 +19,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- TemplateBeginEditable name="页面内容" desc="首页侧边栏" -->
 <!-- #BeginLibraryItem "/library/index_header.lbi" --><!-- #EndLibraryItem -->
 {nocache}
-
+<div class="ecjia-placeholder"></div>
 {if $home_data}
 <!-- {foreach from=$home_data item=value key=key} -->
-	{if $key eq 0}
-	<div class="ecjia-placeholder"></div>
-	{/if}
 	{if $value.module eq 'home_cycleimage'}
 	<!-- #BeginLibraryItem "/library/model_banner.lbi" --><!-- #EndLibraryItem -->
 	{else if $value.module eq 'home_shortcut'}
