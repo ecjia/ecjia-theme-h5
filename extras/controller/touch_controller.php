@@ -152,7 +152,7 @@ class touch_controller
                 $is_last = 1;
             }
 
-            // ecjia_front::$controller->assign('data', $data);
+            ecjia_front::$controller->assign('data', $data);
             ecjia_front::$controller->assign('is_last', $is_last);
         }
         ecjia_front::$controller->display('index.dwt', $cache_id);
