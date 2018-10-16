@@ -542,6 +542,7 @@ class user_order_controller
                     ecjia_front::$controller->assign('store_location', json_encode($store_info['location']));
                 }
             }
+            ecjia_front::$controller->assign_title('配送员位置');
             ecjia_front::$controller->display('user_express_position.dwt');
         }
     }
