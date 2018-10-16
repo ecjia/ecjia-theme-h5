@@ -13,25 +13,25 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <script>
 if ('{$arr}'.length != 0) {
 	var arr = JSON.parse('{$arr}');
-	var center = new qq.maps.LatLng(arr.from.location.lat, arr.from.location.lng);
-	var map = new qq.maps.Map(document.getElementById("expressMap"), {
-		center: center,
-		zoom: 13
-	});
-	var infoWin = new qq.maps.InfoWindow({
-		map: map
-	});
-	var latlngs = [
-		new qq.maps.LatLng(arr.from.location.lat, arr.from.location.lng),
-		new qq.maps.LatLng(arr.to.location.lat, arr.to.location.lng)
-	];
-	var anchor = new qq.maps.Point(75, 42),
-	size = new qq.maps.Size(150, 85),
-	origin = new qq.maps.Point(0, 0),
-	icon_0 = new qq.maps.MarkerImage(theme_url + 'images/icon/icon-shopping-express.png', size, origin, anchor);
+	if (arr.from.length != 0) {
+		var center = new qq.maps.LatLng(arr.from.location.lat, arr.from.location.lng);
+		var map = new qq.maps.Map(document.getElementById("expressMap"), {
+			center: center,
+			zoom: 13
+		});
+		var infoWin = new qq.maps.InfoWindow({
+			map: map
+		});
+		var latlngs = [
+			new qq.maps.LatLng(arr.from.location.lat, arr.from.location.lng),
+			new qq.maps.LatLng(arr.to.location.lat, arr.to.location.lng)
+		];
+		var anchor = new qq.maps.Point(75, 42),
+		size = new qq.maps.Size(150, 85),
+		origin = new qq.maps.Point(0, 0),
+		icon_0 = new qq.maps.MarkerImage(theme_url + 'images/icon/icon-shopping-express.png', size, origin, anchor);
 
-	for (var i = 0;i < latlngs.length; i++) {
-		(function(n){
+		for (var n = 0; n < latlngs.length; n++) {
 			if (n == 0) {
 				var marker = new qq.maps.Marker({
 					position: latlngs[n],
@@ -39,8 +39,10 @@ if ('{$arr}'.length != 0) {
 					icon: icon_0
 				});
 			}
-		})(i);
-	} 
+		}
+	} else {
+		$('.ecjia-express-user-position').hide();
+	}
 }
 
 </script>
