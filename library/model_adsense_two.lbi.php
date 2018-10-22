@@ -23,7 +23,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				</li>
 				{else if $val.count eq 3}
 				<li class="adsense-single img-three-item">
-					<a href="{$val.url}"><img src="{$val.image}"></a>
+					<a href="{$v.url}"><img src="{$v.image}"></a>
 				</li>
 				{/if}
 				<!-- {/foreach} -->
