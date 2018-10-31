@@ -124,7 +124,9 @@ return [
     'touch/my/init'                     => 'user_controller@init',
     'user/index/spread'                 => 'user_controller@spread',
     'user/index/wxconfig'               => 'user_controller@wxconfig',
-    
+    'user/follow/init'                  => 'user_controller@follow_list',
+    'user/follow/ajax_follow_list'      => 'user_controller@ajax_follow_list',
+
     //推荐
     'affiliate/index/init'              => 'affiliate_controller@init', //邀请注册
     'affiliate/index/check'             => 'affiliate_controller@check',

@@ -619,8 +619,9 @@ class merchant_controller {
 			$message = '取消关注成功';
 			$api_url = ecjia_touch_api::STORE_COLLECT_CANCEL;
 		}
-		
-		$response = ecjia_touch_manager::make()->api($api_url)->data(array('store_id' => $store_id))->run();
+		$token = ecjia_touch_user::singleton()->getToken();
+
+		$response = ecjia_touch_manager::make()->api($api_url)->data(array('token' => $token, 'store_id' => $store_id))->run();
 		if (is_ecjia_error($response)) {
 			return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
 		}
