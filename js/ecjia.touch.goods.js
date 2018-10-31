@@ -38,7 +38,9 @@
 			$('body').css('overflow-y', 'auto').off("touchmove").off('click'); //启用滚动条
 			$(".ecjia-store-goods .a1n .a1x").css({
 				overflow: "auto"
-			}); //启用滚动条	
+			}); //启用滚动条
+
+			ecjia.touch.category.follow_store();
 		},
 
 		//加入购物车
@@ -2164,6 +2166,70 @@
 					obj.innerHTML = '全文'
 				}
 			}
+		},
+
+		follow_store: function() {
+			$('[data-toggle="follow_store"]').off('click').on('click', function() {
+				var $this = $(this),
+					type = $this.attr('data-type'),
+					url = $this.attr('data-url');
+
+				$.post(url, {type: type}, function(data) {
+					if (data.state == 'error') {
+						var myApp = new Framework7();
+						if (data.referer_url || data.message == 'Invalid session') {
+							$(".ecjia-store-goods .a1n .a1x").css({
+								overflow: "hidden"
+							}); //禁用滚动条
+							//禁用滚动条
+							$('body').css('overflow-y', 'hidden').on('touchmove', function (event) {
+								event.preventDefault;
+							}, false);
+
+							myApp.modal({
+								title: '温馨提示',
+								text: '您还没有登录',
+								buttons: [{
+									text: '取消',
+									onClick: function () {
+										$('.modal').remove();
+										$('.modal-overlay').remove();
+										$(".ecjia-store-goods .a1n .a1x").css({
+											overflow: "auto"
+										}); //启用滚动条
+										$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
+										return false;
+									}
+								}, {
+									text: '去登录',
+									onClick: function () {
+										$('.modal').remove();
+										$('.modal-overlay').remove();
+										$(".ecjia-store-goods .a1n .a1x").css({
+											overflow: "auto"
+										}); //启用滚动条
+										$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
+										location.href = data.referer_url;
+										return false;
+									}
+								}, ]
+							});
+							return false;
+						} else {
+							alert(data.message);
+							return false;
+						}
+					} else {
+						iosOverlay({
+							text: data.message,
+							duration: 2e3,
+						});
+						ecjia.pjax(window.location.href, function () { }, {
+							replace: true
+						});
+					}
+				});
+			});
 		},
 	};
 

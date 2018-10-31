@@ -81,7 +81,8 @@ return [
     'merchant/index/ajax_store_comment' => 'merchant_controller@ajax_store_comment',
     'merchant/quickpay/collectmoney'    => 'merchant_controller@collectmoney',
     'merchant/category/list'            => 'merchant_controller@seller_list',
-    
+    'merchant/index/follow_store'       => 'merchant_controller@follow_store',
+
     //文章
     'article/help/init'                 => 'article_controller@init',
     'article/help/detail'               => 'article_controller@detail',

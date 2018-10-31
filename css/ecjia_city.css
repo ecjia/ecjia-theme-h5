@@ -1927,14 +1927,14 @@ footer {
     height: 5em;
     border-radius: 50%;
     border: 2px solid #47aa4d;
-    top: 2.5em;
+    top: 3.5em;
     position: absolute
 }
 
 .ecjia-store-brief .store-right {
     float: right;
     width: 100%;
-    margin-top: 2.5em;
+    margin-top: 3em;
     text-align: left;
     font-size: 1em;
     padding-left: 6em
@@ -1965,6 +1965,27 @@ footer {
     line-height: .9em;
     height: 1.3em;
     padding: 2px
+}
+
+.ecjia-store-brief .store-title .follower {
+    position: relative;
+    background-color: #ED1C24;
+    float: right;
+    border-radius: 4px;
+    padding: 0 .5em;
+    line-height: 1.6em;
+    font-size: 1em;
+    border: 1px solid #ED1C24;
+}
+
+.ecjia-store-brief .store-title .follower.not {
+    border: 1px solid #fff;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.ecjia-store-brief .store-title .follower .iconfont.icon-add {
+    top: 0;
+    position: relative;
 }
 
 .ecjia-store-brief .store-title i {

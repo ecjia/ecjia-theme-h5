@@ -290,6 +290,8 @@ class merchant_controller {
 		unset($_SESSION['quick_pay']);
 		ecjia_front::$controller->assign('status', $status);
 	   	ecjia_front::$controller->assign('ajax_url', RC_Uri::url('merchant/index/ajax_store_comment', array('store_id' => $store_id)));
+	   	ecjia_front::$controller->assign('follow_url', RC_Uri::url('merchant/index/follow_store', array('store_id' => $store_id)));
+
 		ecjia_front::$controller->display('merchant.dwt');
 	}
 	
@@ -597,6 +599,33 @@ class merchant_controller {
 		
 		ecjia_front::$controller->display('quickpay_collectmoney.dwt');
 	}
+
+	public static function follow_store() {
+		$url = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
+        $login_str = user_function::return_login_str();
+
+        $referer_url = RC_Uri::url($login_str, array('referer_url' => urlencode($url)));
+        if (!ecjia_touch_user::singleton()->isSignin()) {
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
+        }
+
+		$store_id = intval($_GET['store_id']);
+		$type = intval($_POST['type']);
+
+		if ($type == 1) {
+			$message = '关注成功';
+			$api_url = ecjia_touch_api::STORE_COLLECT_CREATE;
+		} else {
+			$message = '取消关注成功';
+			$api_url = ecjia_touch_api::STORE_COLLECT_CANCEL;
+		}
+		
+		$response = ecjia_touch_manager::make()->api($api_url)->data(array('store_id' => $store_id))->run();
+		if (is_ecjia_error($response)) {
+			return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+		}
+		return ecjia_front::$controller->showmessage($message, ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+ 	}
 }
 
 // end
