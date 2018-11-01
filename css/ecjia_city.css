@@ -9909,6 +9909,15 @@ footer {
     padding: 2px
 }
 
+.ecjia-suggest-store .store-title .followed {
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    z-index: 0;
+    top: 0;
+}
+
 .ecjia-suggest-store i.icon-shop-time {
     background: url(../images/icon/business_hours.png);
     width: 1.5em;
