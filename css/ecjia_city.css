@@ -51,6 +51,10 @@ a.ecjia-color-green {
     color: #FF2500
 }
 
+.ecjia-color-orange {
+    color: #F79B31
+}
+
 .width-25-p {
     width: 25%
 }
@@ -14330,4 +14334,79 @@ body {
     text-align: center;
     font-size: 15px;
     color: #fff;
+}
+
+.franchisee-search-title {
+    text-align: center;
+    width: 100%;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.franchisee-search-input {
+    width: 92%;
+    margin: 2em auto;
+    height: 3em;
+    line-height: 3em;
+    border-bottom: 2px solid #eee;
+}
+
+.franchisee-search-input input {
+    background-color: #f7f7f7;
+    font-size: 1.2em;
+    width: 100%;
+}
+
+.franchisee-input-captcha {
+    width: 92%;
+    margin: 2em auto;
+    height: 3em;
+    line-height: 3em;
+    border-bottom: 2px solid #eee;
+}
+
+.franchisee-input-captcha input {
+    background-color: #f7f7f7;
+    font-size: 1.2em;
+    width: 100%;
+}
+
+.franchisee-img-captcha {
+    margin: 1em auto;
+    text-align: center;
+}
+
+.franchisee-img-captcha img {
+    width: 182px;
+    height: 70px;
+    border: 1px solid #eee;
+}
+
+.franchisee-captcha-refresh {
+    text-align: center;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    color: #378FCB;
+}
+
+.franchisee-input-captcha input.input-captcha {
+    text-align: center;
+    background: #f7f7f7;
+    border: none;
+}
+
+#payPassword_container .franchisee_pass_container input{
+    width: 45px;
+    float: left;
+    border: none;
+    height: 50px;
+    border-radius: 4px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 2em;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    line-height: 50px;
+    border-bottom: 2px solid #eee;
+    background: #f7f7f7;
 }
