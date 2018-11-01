@@ -9799,7 +9799,8 @@ footer {
     border-bottom: 1px solid #eee;
     height: auto;
     min-height: 5em;
-    overflow: hidden
+    overflow: hidden;
+    position: relative;
 }
 
 .ecjia-suggest-store .store-info .store-promotion li {
@@ -9837,7 +9838,7 @@ footer {
     width: 95%;
     height: auto;
     padding: .8em .2em .5em .2em;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .ecjia-suggest-store .store-left {
@@ -14309,4 +14310,24 @@ body {
     margin: 0 auto;
     background-size: 10em;
     max-width: 640px
+}
+
+.remove-info {
+    position: absolute;
+    z-index: 5;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    width: 0;
+    background-color: #ff5757;
+}
+
+.remove-info span {
+    position: absolute;
+    top: 45%;
+    width: 60px;
+    text-align: center;
+    font-size: 15px;
+    color: #fff;
 }
