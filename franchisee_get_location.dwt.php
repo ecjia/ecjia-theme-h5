@@ -20,7 +20,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	height: 60%;
 }
 </style>
-<script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp&key={$key}"></script>
+<script charset="utf-8" src="{ecjia_location_mapjs()}"></script>
 
 <script type="text/javascript">
 var address = '{$shop_address}';
