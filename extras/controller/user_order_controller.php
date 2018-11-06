@@ -588,8 +588,9 @@ class user_order_controller
             ecjia_front::$controller->assign('refund_info', $data['refund_info']);
         } else {
             if (empty($type)) {
-                if ($data['order_status_code'] == 'await_ship') {
+                if ($data['order_status_code'] == 'await_ship' || $data['order_status_code'] == 'payed') {
                     $type = 'refund';
+                    $data['order_status_code'] = 'await_ship';
                 } else if ($data['order_status_code'] == 'shipped' || $type == 'finished') {
                     $type = 'return';
                 }
