@@ -88,19 +88,19 @@ class payment_controller
         }
         $detail = ecjia_touch_manager::make()->api($api_detail)->data($params_order)->run();
         
+        if (is_ecjia_error($detail)) {
+            return ecjia_front::$controller->showmessage($detail->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+        }
+        
         if ($detail['extension_code'] == 'group_buy') {
             if ($detail['order_status_code'] == 'await_pay') {
-                $detail['formated_pay_money'] = $detail['formated_order_amount']; 
+                $detail['formated_pay_money'] = $detail['formated_order_amount'];
             } else {
                 //支付余额
                 $total_money =  $detail['money_paid'] + $detail['surplus'] + $detail['integral_money'] + $detail['bonus'] + $detail['order_deposit'];
                 $has_paid = $detail['goods_amount'] + $detail['shipping_fee'] + $detail['insure_fee'] + $detail['pay_fee'] + $detail['pack_fee'] + $detail['card_fee'] + $detail['tax'];
                 $detail['formated_pay_money'] = price_format($total_money - $has_paid);
             }
-        }
-
-        if (is_ecjia_error($detail)) {
-            return ecjia_front::$controller->showmessage($detail->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         }
 
         $change_result = user_function::is_change_payment($detail['pay_code'], $detail['manage_mode']);
