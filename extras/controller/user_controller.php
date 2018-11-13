@@ -193,13 +193,13 @@ class user_controller
         $param = array(
             'token'      => $token,
             'pagination' => array('count' => $limit, 'page' => $page),
-            'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+            'location'   => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
         );
 
         $response = ecjia_touch_manager::make()->api(ecjia_touch_api::STORE_COLLECT_LIST)->data($param)->hasPage()->run();
         if (!is_ecjia_error($response)) {
             list($data, $paginated) = $response;
-            $data = merchant_function::format_distance($data);
+            $data                   = merchant_function::format_distance($data);
 
             ecjia_front::$controller->assign('data', $data);
             ecjia_front::$controller->assign_lang();
