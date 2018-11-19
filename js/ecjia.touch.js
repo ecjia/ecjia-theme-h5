@@ -332,7 +332,10 @@
 
             /* ecjia.pjax */
             ecjia.extend({
-                pjax: function (url, callback, options = {}) {
+                pjax: function (url, callback, options) {
+                    if (options == undefined) {
+                        options = {};
+                    }
                     var option = $.extend(ecjia.pjaxoption, options, {
                         url: url,
                         callback: function () {
@@ -522,6 +525,8 @@
                 ecjia.touch.record_time();
                 ecjia.touch.category.image_preview();
                 ecjia.touch.user.cancel_order();
+                ecjia.touch.category.follow_store();
+                
             });
         },
 

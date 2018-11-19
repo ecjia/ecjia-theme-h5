@@ -63,7 +63,7 @@ ecjia_extra::routeDispacth();
  * step:5
  * 这个方法在前台控制器加载后执行，这个时候环境初始化完毕，这里开始正式进入主题框架的流程
  */
-RC_Hook::add_action('ecjia_front_finish_launching', function ($arg) {
+RC_Hook::add_action('ecjia_front_finish_launching', function () {
 
     $key = ecjia::config('map_qq_key');
     $referer = ecjia::config('map_qq_referer');
@@ -165,14 +165,8 @@ RC_Hook::add_action('connect_callback_user_signin', function($connect_user) {
     	return ecjia_front::$controller->showmessage($user_info->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     }
     
-    RC_Loader::load_app_class('integrate', 'user', false);
-    $user = integrate::init_users();
-    if (is_ecjia_error($user)) {
-    	return ecjia_front::$controller->showmessage($user->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
-    }
-    
-    $user->set_session($user_info['name']);
-    $user->set_cookie($user_info['name']);
+    ecjia_integrate::setSession($user_info['name']);
+    ecjia_integrate::setCookie($user_info['name']);
 
     //这里需要请求connect/signin更新token
 //    $res = array(
@@ -361,9 +355,11 @@ ecjia_open::macro('merchant', function($querys) {
 /**
  * 支付响应提示模板
  */
-RC_Hook::add_filter('payment_respond_template', function($respond, $msg){
-    return pay_controller::notify($msg);
-}, 10, 2);
+RC_Hook::add_filter('payment_respond_template', function($callback) {
+    return function ($respond, $msg, $info) {
+        return payment_controller::notify($msg);
+    };
+});
 
 /**
  * 自定义站点API地址

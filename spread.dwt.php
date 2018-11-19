@@ -10,9 +10,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">
-var title = '{$share_title}',
-	link = '{$invite_user.invite_url}',
-	image = '{$image}';
+// var title = '{$share_title}',
+// 	link = '{$invite_user.invite_url}',
+// 	image = '{$image}';
+var config = '{$config}';
 ecjia.touch.spread.init();
 </script>
 <!-- {/block} -->
@@ -45,14 +46,12 @@ ecjia.touch.spread.init();
 	<div class="invite_explain"> 
 		<p class="invite_explain-literal">邀请说明：</p>
 		<div class="invite_explain-content">
-			{if $invite_user.invite_explain_new}
-				<!--{foreach from=$invite_user.invite_explain_new item=invite}-->
+			{if $invite_user.invite_explain}
+				<!--{foreach from=$invite_user.invite_explain item=invite}-->
 					{if $invite}
-						<p>{$invite}；</p>
+						<p>{$invite}</p>
 					{/if}
 				<!--{/foreach}-->
-			{else}
-				{$invite_user.invite_explain}
 			{/if}
 		</div>
 	</div>

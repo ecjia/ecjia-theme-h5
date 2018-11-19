@@ -46,23 +46,30 @@
 //
 defined('IN_ECJIA') or exit('No permission resources.');
 
-class mobile_controller {
+class mobile_controller
+{
     /**
      * 百宝箱
      */
-    public static function init() {
+    public static function init()
+    {
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
-    
+
         if (!ecjia_front::$controller->is_cached('application.dwt', $cache_id)) {
             $token = ecjia_touch_user::singleton()->getToken();
-            
-            $discover = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DISCOVER)->run();
-            $signup_reward_url =  RC_Uri::url('market/mobile_reward/init', array('token' => $token));
 
+            $discover          = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DISCOVER)->run();
+            $signup_reward_url = RC_Uri::url('market/mobile_reward/init', array('token' => $token));
             if (!is_ecjia_error($discover) && !empty($discover)) {
                 foreach ($discover as $key => $val) {
                     if (strpos($val['url'], 'ecjiaopen://') === 0) {
-                        $discover[$key]['url'] = with(new ecjia_open($val['url']))->toHttpUrl();
+                        try {
+                            $url = with(new ecjia_open($val['url']))->toHttpUrl();
+                        } catch (BadMethodCallException $e) {
+                            //
+                        } finally {
+                            $discover[$key]['url'] = $url;
+                        }
                     }
                 }
                 ecjia_front::$controller->assign('data', $discover);
@@ -73,7 +80,7 @@ class mobile_controller {
         }
         ecjia_front::$controller->display('application.dwt', $cache_id);
     }
-    
+
 }
 
 // end

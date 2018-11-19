@@ -74,60 +74,70 @@ textarea {
 	body {
 		font-size: 10px
 	}
+
 }
 
 @media only screen and (max-width:320px) and (min-width:310px) {
 	body {
 		font-size: 10px
 	}
+
 }
 
 @media only screen and (max-width:360px) and (min-width:320px) {
 	body {
 		font-size: 12px
 	}
+
 }
 
 @media only screen and (max-width:360px) and (min-width:350px) {
 	body {
 		font-size: 12px
 	}
+
 }
 
 @media only screen and (max-width:480px) and (min-width:360px) {
 	body {
 		font-size: 14px
 	}
+
 }
 
 @media only screen and (max-width:480px) and (min-width:470px) {
 	body {
 		font-size: 14px
 	}
+
 }
 
 @media only screen and (max-width:560px) and (min-width:480px) {
 	body {
 		font-size: 16px
 	}
+
 }
 
 @media only screen and (max-width:570px) and (min-width:560px) {
 	body {
 		font-size: 16px
 	}
+
 }
 
 @media only screen and (max-width:640px) and (min-width:570px) {
 	body {
 		font-size: 18px
 	}
+
 }
 
 @media only screen and (max-width:640px) and (min-width:630px) {
 	body {
 		font-size: 18px
 	}
+
 }
 
 ul,
@@ -412,7 +422,6 @@ textarea {
  * ecjia-margin-(t/b/l/r)
  * 全局元素间距
  */
-
 .ecjia-margin-t {
 	margin-top: 1em;
 }
@@ -437,7 +446,6 @@ textarea {
  * ecjia-margin-(t/b/l/r)
  * 全局字体大小
  */
-
 .ecjia-fz-big {
 	font-size: 1.2em;
 }
@@ -453,7 +461,6 @@ textarea {
 /**
  * toast提示框样式
  */
-
 .ecjia-toast {
 	display: block;
 	position: fixed;
@@ -499,7 +506,6 @@ textarea {
 }
 
 /* 全局短列表 */
-
 .ecjia-list.list-short {
 	border-top: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
@@ -541,7 +547,6 @@ textarea {
 }
 
 /*列表中的数字图标扩展*/
-
 .ecjia-icon {
 	position: relative;
 }
@@ -575,7 +580,6 @@ textarea {
  * 全局一栏列表样式
  * 依赖:ecjia-list
  */
-
 .ecjia-list.list-one li {
 	padding: 1em;
 }
@@ -585,7 +589,6 @@ textarea {
  * 全局两栏列表样式
  * 依赖:ecjia-list
  */
-
 .ecjia-list-two li {
 	float: left;
 	width: 50%;
@@ -612,7 +615,6 @@ textarea {
  * 全局三栏列表样式
  * 依赖:ecjia-list
  */
-
 .ecjia-list-three li {
 	float: left;
 	width: 33.3%;
@@ -626,7 +628,6 @@ textarea {
  * 全局四栏列表样式
  * 依赖:ecjia-list
  */
-
 .ecjia-list-four li {
 	float: left;
 	width: 25%;
@@ -640,7 +641,6 @@ textarea {
  * 全局五栏列表样式
  * 依赖:ecjia-list
  */
-
 .ecjia-list-five li {
 	float: left;
 	width: 20%;
@@ -654,7 +654,6 @@ textarea {
  * 扩展列表nav下划线
  * 依赖:ecjia-list、ecjia-list-three（+）
  */
-
 .ecjia-nav li a {
 	display: block;
 	width: 100%;
@@ -671,7 +670,6 @@ textarea {
  * ecjia-nolist
  * 列表为空时现实的提示信息
  */
-
 .ecjia-nolist {
 	font-size: 1.4em;
 	padding: 5em 0;
@@ -695,7 +693,6 @@ textarea {
 /**
  * 单选框
  */
-
 [type="radio"],
 [type="checkbox"] {
 	display: none;
@@ -706,8 +703,7 @@ textarea {
 	border: 2px solid #ddd;
 }
 
-[type="radio"]:not(:checked)+label,
-[type="radio"]:checked+label {
+[type="radio"]:not(:checked)+label,[type="radio"]:checked+label {
 	position: relative;
 	padding-left: 1.3em;
 	cursor: pointer;
@@ -775,7 +771,6 @@ textarea {
 /**
  * 复选框
  */
-
 [type="checkbox"]+label {
 	position: relative;
 	padding-left: 1.3em;
@@ -1033,7 +1028,6 @@ textarea {
 }
 
 /*表单验证显示的样式扩展*/
-
 .ecjia-form .Validform_checktip {
 	display: none;
 }
@@ -1104,7 +1098,6 @@ textarea {
  * ecjia数字输入框扩展
  * 依赖:ecjia-input-number
  */
-
 .ecjia-input-number-small {
 	width: 6em;
 	height: 1.5em;
@@ -1122,7 +1115,6 @@ textarea {
 }
 
 /*==================== 按钮CSS ====================*/
-
 .btn-loginout,
 .btn-loginout:link,
 .btn-loginout:hover,
@@ -1141,7 +1133,6 @@ textarea {
  * two-btn
  * 按钮组--两个按钮
  */
-
 .two-btn {
 	overflow: hidden;
 	padding: 0 1em;
@@ -1183,7 +1174,6 @@ textarea {
  * btn
  * 按钮基础类
  */
-
 .btn,
 .btn:link,
 .btn:hover,
@@ -1199,7 +1189,6 @@ textarea {
  * btn
  * 小按钮
  */
-
 .btn.btn-small,
 .btn.btn-small:link,
 .btn.btn-small:hover,
@@ -1220,7 +1209,6 @@ textarea {
  * btn-nomargin
  * 按钮去除边距
  */
-
 .btn-nomargin {
 	margin: 0;
 	width: 100%;
@@ -1231,7 +1219,6 @@ textarea {
  * 提现按钮样式
  * 依赖:btn
  */
-
 .input-group-btn .btn {
 	font-size: 14px;
 	line-height: inherit;
@@ -1242,7 +1229,6 @@ textarea {
  * ecjia-header
  * 全局顶条样式
  */
-
 .ecjia-header {
 	height: 3.5em;
 	line-height: 3.5em;
@@ -1263,8 +1249,7 @@ textarea {
 .ecjia-header .ecjia-header-right a {
 	display: block;
 	min-width: 4em;
-	height: 3.5em;
-	/*padding: 1em 0;*/
+	height: 3.5em;	/*padding: 1em 0;*/
 	line-height: 3.5em;
 }
 
@@ -1298,7 +1283,6 @@ textarea {
  * 顶部搜索列表
  * 依赖:ecjia-header
  */
-
 .ecjia-header-index .ecjia-header-logo img {
 	max-width: 100%;
 	max-height: 2em;
@@ -1371,7 +1355,6 @@ textarea {
 }
 
 /*==================== 悬浮导航栏CSS ====================*/
-
 .ecjia-page {
 	position: relative;
 	overflow: hidden;
@@ -1403,7 +1386,6 @@ textarea {
 }
 
 /*==================== 轮播模块CSS ====================*/
-
 .swiper-container .swiper-slide {
 	position: relative;
 	display: inline-block;
@@ -1430,7 +1412,6 @@ textarea {
 /**
  * 加载数据的gif css
  */
-
 a.load-list {
 	display: block;
 	text-align: center;
@@ -1439,7 +1420,6 @@ a.load-list {
 }
 
 /*==================== 评价星级CSS ====================*/
-
 .rating {
 	unicode-bidi: bidi-override;
 	direction: rtl;
@@ -1460,7 +1440,6 @@ a.load-list {
 }
 
 /*==================== 面包屑CSS ====================*/
-
 .breadcrumbs {
 	border-top: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
@@ -1564,14 +1543,12 @@ a.load-list {
 }
 
 /*用户头像*/
-
 .user-img img {
 	border-radius: 100%;
 	background: #9BDCF6;
 }
 
 /*PJAX切换页面动画*/
-
 .con.animated {
 	-webkit-animation-duration: .3s;
 	animation-duration: .3s;
@@ -1583,22 +1560,26 @@ a.load-list {
 	from {
 		opacity: 1
 	}
+
 	to {
 		opacity: 0;
 		-webkit-transform: translate3d(-100%, 0, 0);
 		transform: translate3d(-100%, 0, 0)
 	}
+
 }
 
 @keyframes pjaxAnimationOut {
 	from {
 		opacity: 1
 	}
+
 	to {
 		opacity: 0;
 		-webkit-transform: translate3d(-100%, 0, 0);
 		transform: translate3d(-100%, 0, 0)
 	}
+
 }
 
 @-webkit-keyframes pjaxAnimationIn {
@@ -1607,11 +1588,13 @@ a.load-list {
 		-webkit-transform: translate3d(100%, 0, 0);
 		transform: translate3d(100%, 0, 0)
 	}
+
 	to {
 		opacity: 1;
 		-webkit-transform: none;
 		transform: none
 	}
+
 }
 
 @keyframes pjaxAnimationIn {
@@ -1620,11 +1603,13 @@ a.load-list {
 		-webkit-transform: translate3d(100%, 0, 0);
 		transform: translate3d(100%, 0, 0)
 	}
+
 	to {
 		opacity: 1;
 		-webkit-transform: none;
 		transform: none
 	}
+
 }
 
 .pjaxAnimationIn {
@@ -1638,7 +1623,6 @@ a.load-list {
 }
 
 /*加载动画*/
-
 .la-ball-atom,
 .la-ball-atom>div {
 	position: relative;
@@ -1782,6 +1766,7 @@ a.load-list {
 		top: 100%;
 		left: 100%
 	}
+
 }
 
 @-moz-keyframes ball-atom-position {
@@ -1789,6 +1774,7 @@ a.load-list {
 		top: 100%;
 		left: 100%
 	}
+
 }
 
 @-o-keyframes ball-atom-position {
@@ -1796,6 +1782,7 @@ a.load-list {
 		top: 100%;
 		left: 100%
 	}
+
 }
 
 @keyframes ball-atom-position {
@@ -1803,6 +1790,7 @@ a.load-list {
 		top: 100%;
 		left: 100%
 	}
+
 }
 
 @-webkit-keyframes ball-atom-size {
@@ -1810,6 +1798,7 @@ a.load-list {
 		-webkit-transform: scale(.5, .5);
 		transform: scale(.5, .5)
 	}
+
 }
 
 @-moz-keyframes ball-atom-size {
@@ -1817,6 +1806,7 @@ a.load-list {
 		-moz-transform: scale(.5, .5);
 		transform: scale(.5, .5)
 	}
+
 }
 
 @-o-keyframes ball-atom-size {
@@ -1824,6 +1814,7 @@ a.load-list {
 		-o-transform: scale(.5, .5);
 		transform: scale(.5, .5)
 	}
+
 }
 
 @keyframes ball-atom-size {
@@ -1833,30 +1824,35 @@ a.load-list {
 		-o-transform: scale(.5, .5);
 		transform: scale(.5, .5)
 	}
+
 }
 
 @-webkit-keyframes ball-atom-zindex {
 	50% {
 		z-index: 10
 	}
+
 }
 
 @-moz-keyframes ball-atom-zindex {
 	50% {
 		z-index: 10
 	}
+
 }
 
 @-o-keyframes ball-atom-zindex {
 	50% {
 		z-index: 10
 	}
+
 }
 
 @keyframes ball-atom-zindex {
 	50% {
 		z-index: 10
 	}
+
 }
 
 @-webkit-keyframes ball-atom-shrink {
@@ -1864,6 +1860,7 @@ a.load-list {
 		-webkit-transform: translate(-50%, -50%) scale(.8, .8);
 		transform: translate(-50%, -50%) scale(.8, .8)
 	}
+
 }
 
 @-moz-keyframes ball-atom-shrink {
@@ -1871,6 +1868,7 @@ a.load-list {
 		-moz-transform: translate(-50%, -50%) scale(.8, .8);
 		transform: translate(-50%, -50%) scale(.8, .8)
 	}
+
 }
 
 @-o-keyframes ball-atom-shrink {
@@ -1878,6 +1876,7 @@ a.load-list {
 		-o-transform: translate(-50%, -50%) scale(.8, .8);
 		transform: translate(-50%, -50%) scale(.8, .8)
 	}
+
 }
 
 @keyframes ball-atom-shrink {
@@ -1887,10 +1886,10 @@ a.load-list {
 		-o-transform: translate(-50%, -50%) scale(.8, .8);
 		transform: translate(-50%, -50%) scale(.8, .8)
 	}
+
 }
 
 /* 不换行文本样式 */
-
 .ecjia-truncate {
 	display: block;
 	white-space: nowrap;
