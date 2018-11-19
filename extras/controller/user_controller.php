@@ -130,7 +130,7 @@ class user_controller
             ecjia_front::$controller->assign('image', $image);
 
             $spread_url = RC_Uri::url('user/index/spread', array('name' => $name));
-            $uuid = with(new Ecjia\App\Platform\Frameworks\Platform\AccountManager(0))->getDefaultUUID('wechat');
+            $uuid       = with(new Ecjia\App\Platform\Frameworks\Platform\AccountManager(0))->getDefaultUUID('wechat');
             // if (empty($uuid)) {
             //     return ecjia_front::$controller->showmessage('', ecjia::MSGSTAT_ALERT | ecjia::MSGSTAT_ERROR);
             // }
@@ -144,7 +144,7 @@ class user_controller
             $wechat->js->setUrl($spread_url);
             $config = $wechat->js->config($apis, false);
             // $config = json_decode($config, true);
-            
+
             ecjia_front::$controller->assign('config', $config);
         }
         ecjia_front::$controller->display('spread.dwt', $cache_id);
