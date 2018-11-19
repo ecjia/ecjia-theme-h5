@@ -472,6 +472,10 @@
 			$('.mod_address_slide_head .icon-close').off('click').on('click', function () {
 				$('.mod_address_slide').removeClass('show');
 				firstResultAry = [];
+
+				$('.confirm-payment').val("确认支付");
+				$('.confirm-payment').attr("disabled", false);
+				$('.confirm-payment').removeClass("payment-bottom");
 			});
 
 			//点击日期

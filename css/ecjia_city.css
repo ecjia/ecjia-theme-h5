@@ -11944,7 +11944,9 @@ footer {
     left: 0;
     right: 0;
     z-index: 110;
-    background-color: rgba(0, 0, 0, .7)
+    background-color: rgba(0, 0, 0, .7);
+    max-width: 640px;
+    margin: 0 auto
 }
 
 .mod_address_slide.show {
