@@ -5,16 +5,17 @@
 (function(ecjia, $) {
     ecjia.touch.spread = {
         init: function() {
-            ecjia.touch.spread.spread();
+            ecjia.touch.spread.would_spread();
             ecjia.touch.spread.hint();
             ecjia.touch.spread.article();
             // ecjia.touch.spread.share_spread();
             ecjia.touch.spread.spread();
         },
-        spread: function() {
+        would_spread: function() {
             $('.would-spread').off('click').on('click', function(e) {
                 e.preventDefault();
                 var ua = navigator.userAgent.toLowerCase();
+                console.log(11);
                 if (ua.match(/MicroMessenger/i) == "micromessenger") {
                     $('.ecjia-spread-share').removeClass('hide').css('top', $('body').scrollTop() + 'px');
                     //禁用滚动条
