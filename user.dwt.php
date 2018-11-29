@@ -217,7 +217,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-user-head ecjia-user ecjia-user-marg-t">
     <ul class="ecjia-list list-short">
        <li>
-        	<a class="nopjax external" href="{url path='user/index/spread'}&name={$user.name}">
+        	<a href="{url path='user/index/spread'}&name={$user.name}">
         		<div class="icon-wallet"><img src="{$theme_url}images/user_center/expand.png"></div>
         		<span class="icon-name">{t}我的推广{/t}</span>
         		<i class="iconfont icon-jiantou-right"></i>

@@ -1,7 +1,4 @@
 function share_spread() {
-    var info = {
-        'url': location.href.split('#')[0]
-    };
 
     if (typeof(config) == 'undefined') {
         return false;
