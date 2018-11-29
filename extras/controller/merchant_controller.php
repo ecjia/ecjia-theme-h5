@@ -267,7 +267,7 @@ class merchant_controller
         ecjia_front::$controller->assign('follow_url', RC_Uri::url('merchant/index/follow_store', array('store_id' => $store_id)));
 
         if (user_function::is_weixin()) {
-            $spread_url = RC_Uri::url('merchant/index/init', array('store_id' => $store_id));
+            $spread_url = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
             $uuid       = with(new Ecjia\App\Platform\Frameworks\Platform\AccountManager(0))->getDefaultUUID('wechat');
             $wechat     = with(new Ecjia\App\Wechat\WechatUUID($uuid))->getWechatInstance();
             $apis       = array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ');
