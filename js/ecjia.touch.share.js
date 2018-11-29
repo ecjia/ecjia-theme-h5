@@ -16,6 +16,8 @@ function share_spread() {
     var desc = $('input[name="share_desc"]').val() == undefined || $('input[name="share_desc"]').val() == '' ? document.title : $('input[name="share_desc"]').val();
     var link = $('input[name="share_link"]').val() == undefined ? location.href.split('#')[0] : $('input[name="share_link"]').val();
 
+    console.log(link);
+
     var data = JSON.parse(config);
     wx.config({
         debug: false,
