@@ -3,19 +3,16 @@ function share_spread() {
         'url': location.href.split('#')[0]
     };
 
-    var spread_url = $('input[name="spread_url"]').val();
-    if (spread_url != undefined) {
+    if (typeof(config) == 'undefined') {
         return false;
     }
 
-    var wxconfig_url = $('input[name="wxconfig_url"]').val();
-    if (wxconfig_url == undefined) {
+    var share_page = $('input[name="share_page"]').val();
+    if (share_page != 1) {
         return false;
     }
-
-    if (config == undefined) {
-        return false;
-    }
+    
+    console.log(config);
 
     var title = $('input[name="share_title"]').val() == undefined ? document.title : $('input[name="share_title"]').val();
     var image = $('input[name="share_image"]').val() == undefined ? $.cookie('wap_logo') : $('input[name="share_image"]').val();

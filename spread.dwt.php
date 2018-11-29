@@ -41,7 +41,6 @@ ecjia.touch.spread.init();
 	<div class="ecjia-my-reward">
 		<a class="nopjax external" href="{url path='user/bonus/my_reward'}"><div class="my_reward">查看我的奖励</div></a>
 	</div>
-	<input type="hidden" name="spread_url" value="{$url}" />
 	
 	<div class="invite_explain"> 
 		<p class="invite_explain-literal">邀请说明：</p>
@@ -61,5 +60,7 @@ ecjia.touch.spread.init();
 	<input type="hidden" name="share_desc" value="{$invite_user.invite_template}">
 	<input type="hidden" name="share_image" value="{$image}">
 	<input type="hidden" name="share_link" value="{$invite_user.invite_url}">
+	<input type="hidden" name="share_page" value="1">
+	
 </div>
 <!-- {/block} -->
