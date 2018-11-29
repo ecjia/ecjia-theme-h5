@@ -15,7 +15,6 @@
             $('.would-spread').off('click').on('click', function(e) {
                 e.preventDefault();
                 var ua = navigator.userAgent.toLowerCase();
-                console.log(11);
                 if (ua.match(/MicroMessenger/i) == "micromessenger") {
                     $('.ecjia-spread-share').removeClass('hide').css('top', $('body').scrollTop() + 'px');
                     //禁用滚动条
@@ -154,7 +153,11 @@
         // },
 
         spread: function() {
+            if (config == undefined) {
+                return false;
+            }
             var data = JSON.parse(config);
+            var desc = $('textarea[name="invite_template"]').val();
             wx.config({
                 debug: false,
                 appId: data.appId,

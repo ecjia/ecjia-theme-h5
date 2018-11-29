@@ -7,8 +7,13 @@ function share_spread() {
     if (spread_url != undefined) {
         return false;
     }
+    
     var wxconfig_url = $('input[name="wxconfig_url"]').val();
     if (wxconfig_url == undefined) {
+        return false;
+    }
+
+    if (config == undefined) {
         return false;
     }
 
