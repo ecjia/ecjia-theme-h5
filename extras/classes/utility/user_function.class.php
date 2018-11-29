@@ -109,7 +109,8 @@ class user_function
     {
         if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false) {
             return true;
-        }return false;
+        }
+        return false;
     }
 
     public static function get_region_list($province_id = '', $city_id = '', $district_id = '')
