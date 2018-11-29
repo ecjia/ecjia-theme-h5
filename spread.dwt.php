@@ -10,10 +10,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">
-var title = '{$share_title}',
-	link = '{$invite_user.invite_url}',
-	image = '{$image}';
+{if $is_weixin}
 var config = '{$config}';
+{/if}
+
 ecjia.touch.spread.init();
 </script>
 <!-- {/block} -->
@@ -56,5 +56,10 @@ ecjia.touch.spread.init();
 		</div>
 	</div>
 	<div class="ecjia-spread-share hide"><img src="{$theme_url}images/spread.png"></div>
+
+	<input type="hidden" name="share_title" value="{$share_title}">
+	<input type="hidden" name="share_desc" value="{$invite_user.invite_template}">
+	<input type="hidden" name="share_image" value="{$image}">
+	<input type="hidden" name="share_link" value="{$invite_user.invite_url}">
 </div>
 <!-- {/block} -->

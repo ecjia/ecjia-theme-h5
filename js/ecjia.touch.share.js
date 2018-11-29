@@ -20,7 +20,7 @@ function share_spread() {
     var title = $('input[name="share_title"]').val() == undefined ? document.title : $('input[name="share_title"]').val();
     var image = $('input[name="share_image"]').val() == undefined ? $.cookie('wap_logo') : $('input[name="share_image"]').val();
     var desc = $('input[name="share_desc"]').val() == undefined || $('input[name="share_desc"]').val() == '' ? document.title : $('input[name="share_desc"]').val();
-    var link = location.href.split('#')[0];
+    var link = $('input[name="share_link"]').val() == undefined ? location.href.split('#')[0] : $('input[name="share_link"]').val();
 
     var data = JSON.parse(config);
     wx.config({
