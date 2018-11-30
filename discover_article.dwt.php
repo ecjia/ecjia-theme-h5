@@ -144,6 +144,7 @@ ecjia.touch.index.init();
     <div class="box_overlay"></div>
 </div>
 <input type="hidden" name="share_title" value="{$data.title}">
+<input type="hidden" name="share_link" value="{$share_link}">
 <input type="hidden" name="share_page" value="1">
 <!-- {/block} -->
  {/nocache}

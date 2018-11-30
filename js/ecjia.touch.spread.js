@@ -8,7 +8,6 @@
             ecjia.touch.spread.would_spread();
             ecjia.touch.spread.hint();
             ecjia.touch.spread.article();
-            // ecjia.touch.spread.spread();
         },
         
         would_spread: function () {
@@ -138,52 +137,6 @@
                 ecjia.touch.asynclist();
             });
         },
-
-        // spread: function () {
-        //     if (config == undefined) {
-        //         return false;
-        //     }
-        //     var data = JSON.parse(config);
-        //     var desc = $('textarea[name="invite_template"]').val();
-        //     wx.config({
-        //         debug: false,
-        //         appId: data.appId,
-        //         timestamp: data.timestamp,
-        //         nonceStr: data.nonceStr,
-        //         signature: data.signature,
-        //         jsApiList: [
-        //             'onMenuShareTimeline',
-        //             'onMenuShareAppMessage',
-        //             'onMenuShareQQ',
-        //         ]
-        //     });
-        //     wx.ready(function () {
-        //         //分享到朋友圈
-        //         wx.onMenuShareTimeline({
-        //             title: title, // 分享标题【必填】
-        //             link: link, // 分享链接【必填】
-        //             imgUrl: image, // 分享图标【必填】
-        //         });
-
-        //         //分享给朋友
-        //         wx.onMenuShareAppMessage({
-        //             title: title, // 分享标题【必填】
-        //             desc: desc, // 分享描述【必填】
-        //             link: link, // 分享链接【必填】
-        //             imgUrl: image, // 分享图标【必填】
-        //             type: 'link', // 分享类型,music、video或link，不填默认为link【必填】
-        //             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-        //         });
-
-        //         //分享到QQ
-        //         wx.onMenuShareQQ({
-        //             title: title, // 分享标题
-        //             desc: desc, // 分享描述
-        //             link: link, // 分享链接
-        //             imgUrl: image, // 分享图标
-        //         });
-        //     });
-        // }
     };
 
 })(ecjia, jQuery);

@@ -1,5 +1,4 @@
 function share_spread() {
-
     if (typeof(config) == 'undefined') {
         return false;
     }
@@ -9,10 +8,10 @@ function share_spread() {
         return false;
     }
 
-    var title = $('input[name="share_title"]').val() == undefined ? document.title : $('input[name="share_title"]').val();
-    var image = $('input[name="share_image"]').val() == undefined ? $.cookie('wap_logo') : $('input[name="share_image"]').val();
-    var desc = $('input[name="share_desc"]').val() == undefined || $('input[name="share_desc"]').val() == '' ? document.title : $('input[name="share_desc"]').val();
-    var link = $('input[name="share_link"]').val() == undefined ? location.href.split('#')[0] : $('input[name="share_link"]').val();
+    var title   = $('input[name="share_title"]').val()  == undefined    || $('input[name="share_title"]').val() == '' ? document.title              : $('input[name="share_title"]').val();
+    var image   = $('input[name="share_image"]').val()  == undefined    || $('input[name="share_image"]').val() == '' ? $.cookie('wap_logo')        : $('input[name="share_image"]').val();
+    var desc    = $('input[name="share_desc"]').val()   == undefined    || $('input[name="share_desc"]').val()  == '' ? document.title              : $('input[name="share_desc"]').val();
+    var link    = $('input[name="share_link"]').val()   == undefined    || $('input[name="share_link"]').val()  == '' ? location.href.split('#')[0] : $('input[name="share_link"]').val();
 
     var data = JSON.parse(config);
     wx.config({

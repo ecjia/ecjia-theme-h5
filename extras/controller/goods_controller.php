@@ -357,7 +357,11 @@ class goods_controller
         ecjia_front::$controller->assign_title($goods_info['goods_name']);
 
         if (user_function::is_weixin()) {
-            $spread_url = $spread_url = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+            $protocol   = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+            $spread_url = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            $spread_url = substr($spread_url, 0, strrpos($spread_url, "&_pjax"));
+            ecjia_front::$controller->assign('share_link', $spread_url);
+
             $uuid       = with(new Ecjia\App\Platform\Frameworks\Platform\AccountManager(0))->getDefaultUUID('wechat');
             $wechat     = with(new Ecjia\App\Wechat\WechatUUID($uuid))->getWechatInstance();
             $apis       = array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ');

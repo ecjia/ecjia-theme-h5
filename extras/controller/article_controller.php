@@ -191,6 +191,8 @@ class article_controller
 
         if (user_function::is_weixin()) {
             $spread_url = RC_Uri::url('article/index/detail', array('article_id' => $article_id));
+            ecjia_front::$controller->assign('share_link', $spread_url);
+
             $uuid       = with(new Ecjia\App\Platform\Frameworks\Platform\AccountManager(0))->getDefaultUUID('wechat');
             $wechat     = with(new Ecjia\App\Wechat\WechatUUID($uuid))->getWechatInstance();
             $apis       = array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ');
