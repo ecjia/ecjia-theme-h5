@@ -109,7 +109,7 @@ class franchisee_controller
         return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('franchisee/index/second')));
     }
 
-    public function second()
+    public static function second()
     {
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
 
@@ -130,7 +130,7 @@ class franchisee_controller
         ecjia_front::$controller->display('franchisee_enter_captcha.dwt', $cache_id);
     }
 
-    public function second_check()
+    public static function second_check()
     {
         $mobile = $_SESSION['franchisee_add']['mobile'];
         if (empty($mobile)) {
