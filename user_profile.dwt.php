@@ -56,23 +56,23 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <i class="iconfont icon-jiantou-right margin-r-icon"></i>
             </a>
         </li>
-        <li>
+        <!-- <li>
             <a href="{url path="user/profile/{if $user.wechat}bind_info{else}account_bind{/if}" args='type=wechat'}">
                 <span class="icon-name margin-no-l">绑定微信</span>
                 <span class="icon-price">{if $user.wechat}{$user.wechat}{else}未绑定{/if}</span>
                 <i class="iconfont icon-jiantou-right margin-r-icon"></i>
             </a>
-        </li>
+        </li> -->
     </div>
 
     <div class="ecjia-list list-short">
-        <li>
+        <!-- <li>
             <a href="{url path='user/profile/set_pay_password'}">
                 <span class="icon-name margin-no-l">设置支付密码</span>
                 <span class="icon-price">未设置</span>
                 <i class="iconfont icon-jiantou-right margin-r-icon"></i>
             </a>
-        </li>
+        </li> -->
         <li>
             <a href="{url path='user/profile/edit_password'}">
                 <span class="icon-name margin-no-l">修改登录密码</span>

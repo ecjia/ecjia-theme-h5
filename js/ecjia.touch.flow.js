@@ -526,17 +526,18 @@
 						return false;
 					}
 				} else {
-					var has_set_paypass = $('input[name="has_set_paypass"]').val();
-					if (has_set_paypass == 0) {
+					//TODO 支付时输入支付密码
+					// var has_set_paypass = $('input[name="has_set_paypass"]').val();
+					// if (has_set_paypass == 0) {
 
-						$(this).val("请求中...");
-						$(this).attr("disabled", true);
-						$(this).addClass("payment-bottom");
+					// 	$(this).val("请求中...");
+					// 	$(this).attr("disabled", true);
+					// 	$(this).addClass("payment-bottom");
 
-						$('.mod_address_slide').addClass('show');
-						$(".pass_container input").eq(0).focus();
-					}
-					return false;
+					// 	$('.mod_address_slide').addClass('show');
+					// 	$(".pass_container input").eq(0).focus();
+					// }
+					// return false;
 				}
 
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
