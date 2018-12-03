@@ -1275,6 +1275,18 @@ ul {
     padding-top: 1.5em
 }
 
+.ecjia-row-nav.ecjia-row-nav-four .col-xs-2 {
+    width: 24.666667%;
+}
+
+.ecjia-row-nav.ecjia-row-nav-four li:nth-child(4n+1) {
+    clear: both
+}
+
+.ecjia-row-nav.ecjia-row-nav-four li:nth-child(5n+1) {
+    clear: none
+}
+
 .ecjia-row-nav .col-xs-2 img {
     width: 4em
 }
