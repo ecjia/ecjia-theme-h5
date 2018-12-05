@@ -111,23 +111,19 @@ class franchisee_controller
 
     public static function second()
     {
-        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
-
         $token = ecjia_touch_user::singleton()->getAdminToken();
 
         $res = ecjia_touch_manager::make()->api(ecjia_touch_api::CAPTCHA_IMAGE)->data(array('token' => $token))->run();
         if (is_ecjia_error($res)) {
             return ecjia_front::$controller->showmessage($res->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         }
+
         ecjia_front::$controller->assign('image', $res['base64']);
+        ecjia_front::$controller->assign('url', RC_Uri::url('franchisee/index/second_check'));
+        ecjia_front::$controller->assign_lang();
+        ecjia_front::$controller->assign_title('进度查询');
 
-        if (!ecjia_front::$controller->is_cached('franchisee_enter_captcha.dwt', $cache_id)) {
-            ecjia_front::$controller->assign('url', RC_Uri::url('franchisee/index/second_check'));
-
-            ecjia_front::$controller->assign_lang();
-            ecjia_front::$controller->assign_title('进度查询');
-        }
-        ecjia_front::$controller->display('franchisee_enter_captcha.dwt', $cache_id);
+        ecjia_front::$controller->display('franchisee_enter_captcha.dwt');
     }
 
     public static function second_check()
@@ -389,7 +385,7 @@ class franchisee_controller
         ecjia_front::$controller->assign('code', $code);
         ecjia_front::$controller->assign('longitude', $longitude);
         ecjia_front::$controller->assign('latitude', $latitude);
-        ecjia_front::$controller->assign('province', $province);
+        // ecjia_front::$controller->assign('province', $province);
         ecjia_front::$controller->assign('category', $category);
         ecjia_front::$controller->assign('category_arr', json_decode($category, true));
 
