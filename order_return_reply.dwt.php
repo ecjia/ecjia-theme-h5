@@ -47,7 +47,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<p>退配送费<span class="ecjiaf-fr">{$refund_fee_info.refund_shipping_fee}</span></p>
 						{/if}
 						{if $refund_fee_info.refund_integral neq '0'}
-						<p>退积分<span class="ecjiaf-fr ">{$refund_fee_info.refund_integral}</span></p>
+						<p>退{$integral_name}<span class="ecjiaf-fr ">{$refund_fee_info.refund_integral}</span></p>
 						{/if}
 						{if $refund_fee_info.refund_inv_tax neq '0'}
 						<p>退发票<span class="ecjiaf-fr ">{$refund_fee_info.refund_inv_tax}</span></p>

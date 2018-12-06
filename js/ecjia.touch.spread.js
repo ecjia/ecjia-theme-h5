@@ -87,7 +87,8 @@
             });
 
             $('.alert-text1').on('click', function () {
-                alert('邀请成功即可获得积分奖励' + '<br>' + '积分可在购买商品时使用');
+                var integral_name = $(this).attr('data-integralname');
+                alert('邀请成功即可获得'+integral_name+'奖励' + '<br>' + integral_name + '可在购买商品时使用');
                 $(".modal-overlay").css('transition-duration', "0ms");
                 $(".modal-in").css("position", "absolute");
                 $(".modal-inner").css("background-color", "#FFF");
