@@ -26,7 +26,7 @@ ecjia.touch.user.record_cancel();
         <p class="record-val">{$sur_amount.order_sn}</p>
         <p class="record-key">订单编号</p>
 
-        <p class="record-val">{if $sur_amount.type eq 'raply'}账户余额{else if $sur_amount.payment_name}{$sur_amount.payment_name}{else}银行转账{/if}</p>
+        <p class="record-val">{if $sur_amount.payment_name}{$sur_amount.payment_name}{else}银行转账{/if}</p>
         <p class="record-key">{if $sur_amount.type eq 'raply'}提现方式{else}支付方式{/if}</p>
 
         <p class="record-val">{$sur_amount.type_lable}</p>
