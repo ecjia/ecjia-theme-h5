@@ -14,6 +14,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	ecjia.touch.quickpay.init();
 </script>
 <!-- {/block} -->
+
 <!-- {block name="main-content"} -->
 <div class="ecjia-mod ecjia-header ecjia-store-banner" style="background: url('{if $store_info.seller_banner}{$store_info.seller_banner}{else}{$theme_url}images/default_store_banner.png{/if}') center center no-repeat;background-size: 144% 100%;">
 	<div class="ecjia-store-brief quickpay-brief">
@@ -47,7 +48,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<input type="hidden" name="activity_id" class="auto_activity_id"/>
 			<input type="hidden" name="store_id" value="{$store_id}">
 			<input type="hidden" name="direct_pay" value="{$direct_pay}">
-			<input class="btn quickpay_done external check_quickpay_btn" type="submit" value="我要买单" />
+			<input class="btn quickpay_done external check_quickpay_btn" type="button" value="我要买单" />
 		</div>
 	</form>
 </div>      

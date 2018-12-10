@@ -196,32 +196,35 @@
 					'activity_id': activity_id,
 				};
 				var url = $('input[name="quickpay_done_url"]').val();
-
 				$this.addClass('disabled').html('请求中...');
-				$.post(url, info, function (data) {
-					if (data.status == 'error') {
-						alert(data.message);
+
+				var order_id = 0;
+				$.post(url, info, function (result) {
+					if (result.status == 'error') {
+						alert(result.message);
 						$this.removeClass('disabled').html('确认买单');
 						return false;
 					}
-					var order_id = data.order_id;
-					$.post(pay_url, {
-						order_id: order_id,
-						pay_code: pay_code
-					}, function (data) {
-						$this.removeClass('disabled').html('确认买单');
-						if (data.state == 'error') {
-							alert(data.message);
-							return false;
-						}
-						if (data.redirect_url) {
-							location.href = data.redirect_url;
-						} else if (data.weixin_data) {
-							$('.wei-xin-pay').html("");
-							$('.wei-xin-pay').html(data.weixin_data);
-							callpay();
-						}
-					});
+					order_id = result.order_id;
+					if (order_id > 0) {
+						$.post(pay_url, {
+							order_id: order_id,
+							pay_code: pay_code
+						}, function (data) {
+							$this.removeClass('disabled').html('确认买单');
+							if (data.state == 'error') {
+								alert(data.message);
+								return false;
+							}
+							if (data.redirect_url) {
+								location.href = data.redirect_url;
+							} else if (data.weixin_data) {
+								$('.wei-xin-pay').html("");
+								$('.wei-xin-pay').html(data.weixin_data);
+								callpay();
+							}
+						});
+					}
 				});
 			});
 		},
