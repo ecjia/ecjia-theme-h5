@@ -82,10 +82,10 @@
 			$('.quickpay_done').off('click').on('click', function (e) {
 				e.preventDefault();
 				var $this = $(this);
-				if ($this.hasClass('disabled')) {
+				if ($this.attr('disabled')) {
 					return false;
 				}
-				$this.addClass('disabled');
+				$this.prop('disabled', true);
 				var order_id = $("input[name='order_id']").val();
 				var show_exclude_amount = $("input[name='show_exclude_amount']:checked").val();
 				var direct_pay = $("input[name='direct_pay']").val();
@@ -93,19 +93,19 @@
 				if (order_id == undefined) {
 					var order_money = $("input[name='order_money']").val();
 					if (order_money == '' || order_money == undefined) {
-						$this.removeClass('disabled');
+						$this.prop('disabled', false);
 						alert('消费金额不能为空');
 						return false;
 					}
 					if (order_money == 0) {
-						$this.removeClass('disabled');
+						$this.prop('disabled', false);
 						alert('消费金额不能为0');
 						return false;
 					}
 					var drop_out_money = $("input[name='drop_out_money']").val();
 
 					if (show_exclude_amount == 1 && parseFloat(drop_out_money) > parseFloat(order_money)) {
-						$this.removeClass('disabled');
+						$this.prop('disabled', false);
 						alert('不参与优惠金额不能大于消费总金额');
 						return false;
 					}
@@ -118,7 +118,7 @@
 					url: url,
 					dataType: "json",
 					success: function (data) {
-						$this.removeClass('disabled');
+						$this.prop('disabled', false);
 						$('.la-ball-atom').remove();
 						var myApp = new Framework7();
 						if (data.referer_url || data.message == 'Invalid session') {
