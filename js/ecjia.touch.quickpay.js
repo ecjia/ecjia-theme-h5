@@ -275,7 +275,7 @@
 		},
 
 		quick_pay: function () {
-			$('.quick_pay_btn').on('click', function (e) {
+			$('.quick_pay_btn').off('click').on('click', function (e) {
 				var $this = $(this);
 				e.preventDefault();
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
