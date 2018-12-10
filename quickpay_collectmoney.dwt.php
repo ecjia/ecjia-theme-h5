@@ -16,8 +16,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<div class="ecjia-mod ecjia-header ecjia-store-banner" style="background: url('{if $store_info.seller_banner}{$store_info.seller_banner}{else}{$theme_url}images/default_store_banner.png{/if}') center center no-repeat;background-size: 144% 100%;">
-	<div class="ecjia-store-brief quickpay-brief">
+<div class="ecjia-mod ecjia-header ecjia-store-banner" style="position:relative;background: url('{if $store_info.seller_banner}{$store_info.seller_banner}{else}{$theme_url}images/default_store_banner.png{/if}') center center no-repeat;background-size: 144% 100%;">
+	<div class="ecjia-store-brief quickpay-brief" style="position:relative;">
 		<a class="nopjax external" href="{RC_Uri::url('merchant/index/init')}&store_id={$store_id}">
 			<img src="{if $store_info.seller_logo}{$store_info.seller_logo}{else}{$theme_url}images/store_default.png{/if}">
 		</a>
@@ -51,34 +51,33 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<input class="btn quickpay_done external check_quickpay_btn" type="button" value="我要买单" />
 		</div>
 	</form>
-</div>      
 
-<div class="ecjia-pay-content">
-	<div class="ecjia-pay-content-area">
-		<div class="pay-content-title">确认付款
-          <image class="pay-content-close" src="{$theme_url}images/icon/close.png" />
-        </div>
-        <div class="pay-content-price"></div>
-        <div class="pay-content-li">
-          <div class="left">消费金额</div>
-          <div class="right goods-amount"></div>
-        </div>
-        <div class="pay-content-li">
-          <div class="left">优惠金额</div>
-          <div class="right red discount"></div>
-        </div>
-        <div class="pay-content-li">
-          <div class="left">实付金额</div>
-          <div class="right total-fee"></div>
-        </div>
-        <div class="pay-content-btn">
-        	<input type="hidden" name="quickpay_done_url" value="{url path='quickpay/flow/done'}">
-        	<input type="hidden" name="pay_url" value="{url path='user/quickpay/dopay'}">
-          	<button class="btn confirm-pay-btn" data-money="" data-activity="" data-paycode="{$payment.pay_code}">确认买单</button>
-          	<div class="wei-xin-pay hide"></div>
-        </div>
+	<div class="ecjia-pay-content">
+		<div class="ecjia-pay-content-area">
+			<div class="pay-content-title">确认付款
+			<image class="pay-content-close" src="{$theme_url}images/icon/close.png" />
+			</div>
+			<div class="pay-content-price"></div>
+			<div class="pay-content-li">
+			<div class="left">消费金额</div>
+			<div class="right goods-amount"></div>
+			</div>
+			<div class="pay-content-li">
+			<div class="left">优惠金额</div>
+			<div class="right red discount"></div>
+			</div>
+			<div class="pay-content-li">
+			<div class="left">实付金额</div>
+			<div class="right total-fee"></div>
+			</div>
+			<div class="pay-content-btn">
+				<input type="hidden" name="quickpay_done_url" value="{url path='quickpay/flow/done'}">
+				<input type="hidden" name="pay_url" value="{url path='user/quickpay/dopay'}">
+				<button class="btn confirm-pay-btn" data-money="" data-activity="" data-paycode="{$payment.pay_code}">确认买单</button>
+				<div class="wei-xin-pay hide"></div>
+			</div>
+		</div>
 	</div>
-</div>
-    
+</div>      
 <!-- {/block} -->
 {/nocache}
