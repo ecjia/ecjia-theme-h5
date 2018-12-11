@@ -13030,17 +13030,13 @@ body,
 
 /*优惠买单样式*/
 .ecjia-quickpay-content {
-    margin: 25px;
-    margin-top: 0;
+    margin: 30px 25px;
     font-size: 1em;
-    margin-bottom: 15px;
-    padding: 30px 0;
 }
 
 .ecjia-quickpay-content .quickpay-content-title {
     margin-bottom: 15px;
     margin-top: 0;
-
 }
 
 .ecjia-quickpay-content .quickpay-content-input {
@@ -13064,8 +13060,12 @@ body,
 .ecjia-quickpay-content .quickpay-content-block {
     font-size: 1em;
     color: #838383;
-    margin: 20px 0 8px 0;
-    display: inline-block
+    margin: 0;
+    display: inline-block;
+}
+
+.ecjia-service-content-bottom {
+    margin-top: 15px;
 }
 
 .ecjia-pay-content {
