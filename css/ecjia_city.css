@@ -3912,8 +3912,7 @@ footer {
     align-items: center
 }
 
-.ecjia .ecjia-checkout .checklist .pay_title {
-}
+.ecjia .ecjia-checkout .checklist .pay_title {}
 
 .ecjia .ecjia-checkout .checklist .ecjia-select-pay {
     display: -webkit-box;
@@ -4825,7 +4824,7 @@ footer {
 
 .ecjia-user.ecjia-user-info .user-img {
     padding: 0;
-    border: 2px solid #008f30;
+    border: 2px solid #47aa4d;
     background: #47aa4d
 }
 
@@ -14450,7 +14449,6 @@ body,
 }
 
 .ecjia-withdraw-notice p.green {
-    color: #47aa4d;
     color: #47aa4d;
     font-size: 1.1em;
     margin: 1em 0;
