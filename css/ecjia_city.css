@@ -14475,13 +14475,13 @@ body,
     -ms-box-sizing: border-box;
     box-sizing: border-box;
     height: 25%;
-    border-bottom: 1px solid #e6e6e6;
-    border-right: 1px solid #e6e6e6;
+    border-bottom: 1px solid #D5D8DB;
+    border-right: 1px solid #D5D8DB;
     float: left;
 }
 
 .keyboard li.bg-gray {
-    background-color: #e6e6e6;
+    background-color: #D5D8DB;
 }
 
 .keyboard li p {

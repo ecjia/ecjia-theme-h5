@@ -153,8 +153,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 </li>
                 <li class="bg-gray" data-key="del">
                     <i class="icon-del auto">
-                        <img src="//static.360buyimg.com/finance/mobile/payment/shortPassword/1.0.0/images/keyboard_del.png"
-                            alt="">
+                        <img src="{$theme_url}images/user/keyboard_del.png" alt="">
                     </i>
                 </li>
             </ul>
