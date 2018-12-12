@@ -24,6 +24,7 @@
 			ecjia.touch.user.return_order();
 			ecjia.touch.user.affiliate();
 			ecjia.touch.user.resend_sms();
+			ecjia.touch.user.cancel_account();
 
 			$(function () {
 				$(".del").click(function () {
@@ -72,6 +73,7 @@
 				}
 			});
 		},
+
 		//用户登录
 		ecjia_login: function () {
 			$('input[name="ecjia-login"]').off('click').on('click', function (e) {
@@ -305,6 +307,7 @@
 				}
 			});
 		},
+
 		clear_history: function () {
 			$('.clear_history').on('click', function (e) {
 				e.preventDefault();
@@ -316,6 +319,7 @@
 				}
 			});
 		},
+
 		/* 注册验证码 */
 		get_code: function () {
 			var InterValObj; //timer变量，控制时间
@@ -345,7 +349,7 @@
 					}
 				}
 				$.get(url, function (data) {
-					if (data.state == 'success') {　
+					if (data.state == 'success') {
 						curCount = count;
 						$("#mobile").attr("readonly", "true");
 						$("#get_code").attr("disabled", "true");
@@ -399,6 +403,7 @@
 				});
 			});
 		},
+
 		/* 处理注册  */
 		register_password: function () {
 			$("#signin").off('click').on('click', function (e) {
@@ -419,6 +424,7 @@
 				});
 			});
 		},
+
 		/*找回密码重置密码*/
 		mobile_register: function () {
 			$("input[name='mobile_register']").off('click').on('click', function (e) {
@@ -435,6 +441,7 @@
 				});
 			});
 		},
+
 		/*设置新密码*/
 		reset_password: function () {
 			$("input[name='reset_password']").on('click', function (e) {
@@ -451,6 +458,7 @@
 				});
 			});
 		},
+
 		/*查看密码*/
 		show_password: function () {
 			$("#password1").on('click', function (e) {
@@ -472,6 +480,7 @@
 				}
 			});
 		},
+
 		/*修改用户名*/
 		modify_username: function () {
 			$("input[name='modify_username']").on('click', function (e) {
@@ -486,6 +495,7 @@
 				});
 			});
 		},
+
 		/*取消充值*/
 		record_cancel: function () {
 			$("input[name='record_cancel']").on('click', function (e) {
@@ -1055,7 +1065,7 @@
 				}
 
 				$.get(url, function (data) {
-					if (data.state == 'success') {　
+					if (data.state == 'success') {
 						curCount = count;
 						$("#mobile").attr("readonly", "true");
 						$(".identify_code_btn").attr("disabled", "true");
@@ -1123,6 +1133,135 @@
 					ecjia.touch.showmessage(data);
 				}
 			});
+		},
+
+		cancel_account: function () {
+			var InterObj; //timer变量，控制时间
+			var count_s = 5; //间隔函数，1秒执行
+			var curCount_s; //当前剩余秒数
+
+			$('.confirm-cancel-account').off('click').on('click', function () {
+				var myApp = new Framework7();
+				myApp.modal({
+					title: '',
+					text: '确定要注销当前账号吗？',
+					buttons: [{
+						text: '取消',
+						onClick: function () {
+							$('.modal').remove();
+							$('.modal-overlay').remove();
+							return false;
+						}
+					}, {
+						text: '确定',
+						onClick: function () {
+							resend_cancel_sms();
+						}
+					}, ]
+				});
+				return false;
+			});
+			
+			$('.confirm-activate-account').off('click').on('click', function () {
+				resend_cancel_sms();
+			});
+
+			$('.pass-notice').off('click').on('click', function () {
+				var $this = $(this);
+				if ($this.hasClass('disabled')) {
+					return false;
+				}
+				$this.addClass('disabled');
+				resend_cancel_sms();
+			});
+
+			$('.modal-button.cancel_confirm').off('click').on('click', function () {
+				$('.ecjia-close-modal-icon').trigger('click');
+			});
+
+			$('.ecjia-close-modal-icon').off('click').on('click', function () {
+				$('.ecjia-cancelAccount-modal').hide();
+				$('.ecjia-cancelAccount-overlay').hide();
+				$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
+			});
+
+			$('.modal-button.confirm_cancel').off('click').on('click', function () {
+				var value = '';
+				var $input = $(".pass_container input");
+				$input.each(function () {
+					var val = $(this).val();
+					if (val == '') {
+						$(this).focus();
+						return false;
+					}
+					value += $(this).val();
+				});
+				if (value.length == 6) {
+					var url = $('input[name="confirm_cancel_account"]').val();
+					$.post(url, {value: value}, function(data) {
+						ecjia.touch.showmessage(data);
+					});
+				}
+				return false;
+			});
+
+			function SetTime() {
+				if (curCount_s == 1) {
+					window.clearInterval(InterObj); //停止计时器
+					$(".pass-notice").html("<span></span>重新发送");
+					$('.pass-notice').removeClass('disabled');
+				} else {
+					curCount_s--;
+					$(".pass-notice span").html(curCount_s + "s");
+				}
+			};
+
+			function resend_cancel_sms() {
+				window.clearInterval(InterObj);
+
+				$('.modal').remove();
+				$('.modal-overlay').remove();
+
+				$('.pass-notice').addClass('disabled');
+				
+				var myApp = new Framework7();
+				var url = $('input[name="check_mobile"]').val();
+				$.post(url, function (data) {
+					if (data.state == 'success') {
+						$('.ecjia-cancel-account-modal').show();
+
+						curCount_s = count_s;
+						$(".pass-notice span").html(curCount_s + "s");
+						InterObj = window.setInterval(SetTime, 1000); //启动计时器，1秒执行一次
+
+						//禁用滚动条
+						$('body').css('overflow-y', 'hidden').on('touchmove', function (event) {
+							event.preventDefault;
+						}, false);
+
+						var wHeight = $(window).height();
+						var scrollTop = $(document).scrollTop();
+						var top;
+						if (wHeight - 400 < 0) {
+							top = scrollTop;
+						} else {
+							var ua = navigator.userAgent.toLowerCase();
+							if (ua.match(/MicroMessenger/i) == "micromessenger") {
+								top = scrollTop + (wHeight - 230) / 2;
+							} else {
+								top = scrollTop + (wHeight - 200) / 2;
+							}
+						}
+						$('.ecjia-cancelAccount-modal').show().css('top', top);
+
+						$('.ecjia-cancelAccount-overlay').show();
+						myApp.openModal('.ecjia-cancelAccount-modal');
+						$('.modal-overlay').remove();
+
+						return false;
+					}
+				});
+			}
 		}
 	};
 

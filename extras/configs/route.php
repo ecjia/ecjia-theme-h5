@@ -277,7 +277,12 @@ return [
     'user/profile/set_pay_password'		    => 'user_profile_controller@set_pay_password',
     'user/profile/set_pay_pass'		        => 'user_profile_controller@set_pay_pass',
     'user/profile/check_pay_pass'	        => 'user_profile_controller@check_pay_pass',
-
+    'user/profile/cancel_account'	        => 'user_profile_controller@cancel_account', //注销账号
+    'user/profile/check_mobile'	            => 'user_profile_controller@check_mobile',
+    'user/profile/confirm_cancel_account'   => 'user_profile_controller@confirm_cancel_account',
+    'user/profile/confirm_activate_account' => 'user_profile_controller@confirm_activate_account',
+    'user/profile/cancel_account_notice'    => 'user_profile_controller@cancel_account_notice',
+    
     //授权登录
     'connect/index/dump_user_info'      => 'connect_controller@dump_user_info',
     'connect/index/bind_signup'         => 'connect_controller@bind_signup',
