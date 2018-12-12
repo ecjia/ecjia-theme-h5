@@ -526,18 +526,18 @@
 						return false;
 					}
 				} else {
-					//TODO 支付时输入支付密码
-					// var has_set_paypass = $('input[name="has_set_paypass"]').val();
-					// if (has_set_paypass == 0) {
+					//支付时输入支付密码
+					var has_set_paypass = $('input[name="has_set_paypass"]').val();
+					if (has_set_paypass == 0) {
 
-					// 	$(this).val("请求中...");
-					// 	$(this).attr("disabled", true);
-					// 	$(this).addClass("payment-bottom");
+						$(this).val("请求中...");
+						$(this).attr("disabled", true);
+						$(this).addClass("payment-bottom");
 
-					// 	$('.mod_address_slide').addClass('show');
-					// 	$(".pass_container input").eq(0).focus();
-					// }
-					// return false;
+						$('.mod_address_slide').addClass('show');
+						$(".pass_container input").eq(0).focus();
+					}
+					return false;
 				}
 
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
@@ -612,7 +612,8 @@
 					var info = {
 						'order_id': order_id,
 						'pay_id': pay_id,
-						'value': value
+						'value': value,
+						'type': 'check_paypassword'
 					}
 					$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 					$.post(url, info, function (data) {
@@ -622,7 +623,7 @@
 						$('.confirm-payment').removeAttr("disabled");
 						$('.confirm-payment').val('确认支付');
 						if (data.state == 'error') {
-							$('.mod_address_slide').removeClass('show');
+							// $('.mod_address_slide').removeClass('show');
 							$("#payPassword_container").find(".point").remove();
 							firstResultAry = [];
 							ecjia.touch.showmessage(data);

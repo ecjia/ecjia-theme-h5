@@ -80,7 +80,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
     {if $data.pay_status eq 'success' || $detail.pay_code eq 'pay_cod'}
     <div class="ecjia-margin-t ecjia-margin-b two-btn">
-        <a class="btn" href='{url path="touch/index/init"}'>去购物</a>
+        <a class="btn nopjax external" href='{url path="touch/index/init"}'>去购物</a>
         <a class="btn" href='{if $detail.extension_code eq "group_buy"}{url path="user/order/groupbuy_detail" args="order_id={$data.order_id}"}{else}{url path="user/order/order_detail" args="order_id={$data.order_id}&type=detail"}{/if}'>查看订单</a>
     </div>
     {/if}
