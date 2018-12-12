@@ -11,6 +11,7 @@
 			ecjia.touch.user_account.add_bonus();
 			ecjia.touch.user_account.withdraw_all();
 			ecjia.touch.user_account.widthDrawFormSubmit();
+			ecjia.touch.user_account.widthBtn();
 		},
 
 		wxpay_user_account: function () {
@@ -261,6 +262,32 @@
 				}
 			});
 		},
+
+		widthBtn: function () {
+			$('.withdraw-btn').off('click').on('click', function (e) {
+				var myApp = new Framework7();
+				var url = $(this).attr('data-url');
+				myApp.modal({
+					title: '',
+					text: '您当前的账号还未绑定微信',
+					buttons: [{
+						text: '取消',
+						onClick: function () {
+							$('.modal').remove();
+							$('.modal-overlay').remove();
+							return false;
+						}
+					}, {
+						text: '确定',
+						onClick: function () {
+							window.location.href = url;
+						}
+					}, ]
+				});
+				return false;
+			});
+		}
+
 	};
 })(ecjia, jQuery);
 

@@ -15,6 +15,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
+
+<!-- {nocache} -->
 <form class="ecjia-account ecjia-form user-profile-form" action="{url path='user/account/withdraw_account'}" method="post"
     name="widthDrawForm">
 	<div class="ecjia-user">
@@ -28,7 +30,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<span class="widhdraw_all_span" data-price="{$user.user_money}">全部提现</span>
 			</li>
 			<li class="height-3">
-				<p class="text-ty m_l0">最低提现金额：￥1.00</p>
+				<p class="text-ty m_l0">最低提现金额：{$config.formatted_min_withdraw_amount}</p>
 			</li>
 		</div>
 	</div>
@@ -40,4 +42,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<input class="btn btn-info" name="submit" type="submit" value="{t}立即提现{/t}" />
 	</div>
 </form>
+<!-- {/nocache} -->
+
 <!-- {/block} -->

@@ -15,6 +15,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
+
+<!-- {nocache} -->
 <form class="ecjia-user ecjia-form ecjia-user-no-border-b" name="accountBind" action="{url path='user/profile/check_code'}" method="post" >
     {if $type eq 'mobile'}
     <div class="d_bind">
@@ -81,7 +83,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<li>
 				<a href="javascript:;">
 					<span class="icon-name margin-no-l">绑定微信</span>
-					<span class="icon-price">{if $user.wechat}{$user.wechat}{else}未绑定{/if}</span>
+					<span class="icon-price">{if $user.wechat_is_bind eq 1}{$user.wechat_nickname}{else}未绑定{/if}</span>
 					<i class="iconfont icon-jiantou-right margin-r-icon"></i>
 				</a>
 			</li>
@@ -89,4 +91,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
     {/if}
 </form>
+<!-- {/nocache} -->
+
 <!-- {/block} -->
