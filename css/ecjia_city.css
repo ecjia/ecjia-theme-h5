@@ -24,6 +24,11 @@ body .ecjia .ecjia-select .input100 {
     width: 100%
 }
 
+.swiper-container {
+    border-radius: .5rem;
+    margin: .5rem !important;
+}
+
 .input100 input {
     border-radius: 0;
     padding: 0 1em
@@ -1633,7 +1638,7 @@ ul {
 }
 
 .ecjia-promotion-list img.sales-icon {
-    width: 10%
+    width: 20%
 }
 
 .ecjia-promotion-list .list-page-goods-img .goods-img {
