@@ -70,7 +70,7 @@ var releated_goods = {$releated_goods};
 	<!--商品属性介绍-->
 	<form action="{url path='cart/index/add_to_cart'}" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY">
 		<div class="goods-info">
-			<div class="goods-info-property  goods-info-property-new ecjia-margin-b">
+			<div class="goods-info-property  goods-info-property-new">
 				<!--商品描述-->
 				<div class="goods-style-name goods-style-name-new">
 					<div class=" ecjiaf-fl goods-name-new">

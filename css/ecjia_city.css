@@ -1297,7 +1297,7 @@ ul {
 }
 
 .ecjia-row-nav.index {
-    padding-bottom: 0
+    padding-bottom: 1.5em;
 }
 
 
@@ -6697,7 +6697,7 @@ footer {
 }
 
 .goods-info .address-warehouse-new {
-    padding: 0
+    padding: .5rem
 }
 
 .goods-info .goods-info-property {
@@ -6705,7 +6705,7 @@ footer {
 }
 
 .ecjia-form .may-like {
-    color: #ff3434;
+    color: #555;
     font-size: 1.1em
 }
 
@@ -9550,7 +9550,9 @@ footer {
     height: auto;
     overflow: hidden;
     clear: both;
-    background-color: #f7f7f7
+    background-color: #f7f7f7;
+    border-radius: .8rem;
+    margin: .5rem;
 }
 
 .ecjia-store-comment .ecjia-seller-comment {
