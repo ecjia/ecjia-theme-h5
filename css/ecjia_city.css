@@ -24,6 +24,11 @@ body .ecjia .ecjia-select .input100 {
     width: 100%
 }
 
+.swiper-container {
+    border-radius: .5rem;
+    margin: .5rem !important;
+}
+
 .input100 input {
     border-radius: 0;
     padding: 0 1em
@@ -1297,7 +1302,7 @@ ul {
 }
 
 .ecjia-row-nav.index {
-    padding-bottom: 0
+    padding-bottom: 1.5em;
 }
 
 
@@ -1633,7 +1638,7 @@ ul {
 }
 
 .ecjia-promotion-list img.sales-icon {
-    width: 10%
+    width: 20%
 }
 
 .ecjia-promotion-list .list-page-goods-img .goods-img {
@@ -6697,7 +6702,7 @@ footer {
 }
 
 .goods-info .address-warehouse-new {
-    padding: 0
+    padding: .5rem
 }
 
 .goods-info .goods-info-property {
@@ -6705,7 +6710,7 @@ footer {
 }
 
 .ecjia-form .may-like {
-    color: #ff3434;
+    color: #555;
     font-size: 1.1em
 }
 
@@ -9550,7 +9555,9 @@ footer {
     height: auto;
     overflow: hidden;
     clear: both;
-    background-color: #f7f7f7
+    background-color: #f7f7f7;
+    border-radius: .8rem;
+    margin: .5rem;
 }
 
 .ecjia-store-comment .ecjia-seller-comment {
