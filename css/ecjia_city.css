@@ -1712,7 +1712,7 @@ ul {
     color: #ff3434;
     border: 1px solid #ff3434;
     border-radius: 4px;
-    margin-left: 1em;
+    margin-left: .5em;
     font-size: .9em;
     display: inline-block;
     line-height: 1em;
@@ -13990,7 +13990,6 @@ body,
     flex-direction: column;
     justify-content: space-between;
     margin-left: 10em;
-    height: 10em
 }
 
 .ecjia-groupbuy-list .list-page-box .goods-name {
@@ -14013,8 +14012,19 @@ body,
     font-size: 1.1em
 }
 
+.ecjia-groupbuy-list .merchants-name {
+    margin-top: .5em;
+}
+
+.ecjia-groupbuy-list .merchants-name .icon-shop {
+    font-size: 1.1em;
+    padding-right: .2em;
+    top: 0;
+}
+
 .ecjia-groupbuy-list .list-page-goods-price {
-    position: relative
+    position: relative;
+    margin-top: 4em;
 }
 
 .ecjia-groupbuy-list li a.btn {
