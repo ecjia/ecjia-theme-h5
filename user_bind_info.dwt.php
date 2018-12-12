@@ -34,10 +34,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 {elseif $type eq 'wechat'}
 <div class="ecjia-check-info">
     <div class="bind-info">
-        <p>已绑：{$user.wechat}</p>
+        <p>已绑：{$user.wechat_nickname}</p>
     </div>
     <div>
-    	<a class="btn btn-info nopjax external" href="javascript:;">更换微信号</a>
+    	<a class="btn btn-info nopjax external" href="javascript:;">更换微信</a>
     </div>
 </div>
 {/if}
