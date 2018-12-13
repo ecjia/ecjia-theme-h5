@@ -229,8 +229,27 @@
 		},
 
 		withdraw_all: function () {
-			$('.widhdraw_all_span').off('click').on('click', function () {
+			$('input[name="amount"]').koala({
+				delay: 500,
+				keyup: function () {
+					var $this = $(this),
+						amount = $this.val(),
+						withdraw_fee_percent = $('input[name="withdraw_fee_percent"]').val();
+					if (amount != 0 && amount > 0) {
+						var withdraw_fee = amount * (withdraw_fee_percent / 100);
+						withdraw_fee = withdraw_fee.toFixed(2);
+						$('.withdraw_fee_money').html(withdraw_fee);
+					}
+				}
+			});
+
+			$('.withdraw_all_span').off('click').on('click', function () {
 				$('input[name="amount"]').val($(this).attr('data-price'));
+				var amount = $(this).attr('data-price'),
+					withdraw_fee_percent = $('input[name="withdraw_fee_percent"]').val();
+				var withdraw_fee = amount * (withdraw_fee_percent / 100);
+				withdraw_fee = withdraw_fee.toFixed(2);
+				$('.withdraw_fee_money').html(withdraw_fee);
 			});
 
 			$('.ecjia-withdraw-notice-btn').off('click').on('click', function () {

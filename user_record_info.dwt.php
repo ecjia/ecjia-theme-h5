@@ -17,31 +17,30 @@ ecjia.touch.user.record_cancel();
 
 <!-- {block name="main-content"} -->
 <div class="ecjia-account record-info" method="post">
-    <div class="user-img"><img src="{$user.avatar_img}">
+    <div class="user-img">
+        <img src="{$user.avatar_img}">
         <p class="user-name">{$user.name}</p>
     </div>
-    <p class="record-money">{$sur_amount.format_amount}</p>
+    <p class="record-money">{$sur_amount.formatted_amount}</p>
     <p class="record-status">{$sur_amount.pay_status}</p>
     <div class="record-info">
         <p class="record-val">{$sur_amount.order_sn}</p>
         <p class="record-key">订单编号</p>
 
-        {if $sur_amount.type eq 'raply'}
-        <p class="record-val">{$sur_amount.format_real_amount}</p>
-        <p class="record-key">到账金额</p>
-
-        <p class="record-val">{$sur_amount.format_pay_fee}</p>
-        <p class="record-key">手续费用</p>
-        {/if}
-
-        <p class="record-val">{$sur_amount.type_lable}</p>
+        <p class="record-val">{$sur_amount.lable_type}</p>
         <p class="record-key">交易类型</p>
 
+        <p class="record-val">{$sur_amount.formatted_real_amount}</p>
+        <p class="record-key">到账金额</p>
+
+        <p class="record-val">{$sur_amount.formatted_pay_fee}</p>
+        <p class="record-key">手续费用</p>
+
         <p class="record-val">{if $sur_amount.payment_name}{$sur_amount.payment_name}{else}银行转账{/if}</p>
-        <p class="record-key">{if $sur_amount.type eq 'raply'}提现方式{else}支付方式{/if}</p>
+        <p class="record-key">{if $sur_amount.type eq 'withdraw'}提现方式{else}充值方式{/if}</p>
 
         <p class="record-val">{$sur_amount.add_time}</p>
-        <p class="record-key">{if $sur_amount.type eq 'raply'}申请时间{else}充值时间{/if}</p>
+        <p class="record-key">{if $sur_amount.type eq 'withdraw'}申请时间{else}充值时间{/if}</p>
 
     </div>
 	{if $sur_amount.pay_status eq '已完成'}
@@ -70,7 +69,7 @@ ecjia.touch.user.record_cancel();
                 </div>
                 <input name="record_type" type="hidden" value={$sur_amount.type} />
                 <input name="account_id" type="hidden" value={$sur_amount.account_id}>
-                <input class="btn ecjiaf-fr btn-c ecjia-fl" id="record_cancel" name="record_cancel" data-url="{url path='user/account/record_cancel'}" type="button" value="{t}取消{/t}" />
+                <input class="btn ecjiaf-fr ecjia-fl" id="record_cancel" name="record_cancel" data-url="{url path='user/account/record_cancel'}" type="button" value="{t}取消{/t}" />
         	</div>	
         {/if}	
         </form>
