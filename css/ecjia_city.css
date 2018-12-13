@@ -24,12 +24,6 @@ body .ecjia .ecjia-select .input100 {
     width: 100%
 }
 
-/*h5*/
-.swiper-container {
-    border-radius: .5rem;
-    margin: .5rem !important;
-}
-
 .input100 input {
     border-radius: 0;
     padding: 0 1em
@@ -10677,6 +10671,12 @@ footer {
     display: inline-block;
     text-align: center;
     font-size: .9em
+}
+
+/*h5*/
+.swiper-container {
+    border-radius: .5rem;
+    margin: .5rem !important;
 }
 
 .ecjia-discover #swiper-discover-icon.swiper-container .swiper-slide {
