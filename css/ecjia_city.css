@@ -2279,7 +2279,8 @@ footer {
 .ecjia-store-detail .store-other-info li {
     padding: 1em;
     background-color: #fff;
-    position: relative
+    position: relative;
+    overflow: hidden;
 }
 
 .ecjia-store-detail .store-other-info li+li:before {
@@ -2299,7 +2300,7 @@ footer {
     line-height: 2em
 }
 
-.ecjia-store-detail .store-other-info p.other-info-result {
+.ecjia-store-detail .store-other-info .other-info-result {
     position: relative;
     margin-left: 8em;
     font-size: 1em;
@@ -2321,6 +2322,12 @@ footer {
     height: 1.8em;
     background-size: 1.5em;
     background-repeat: no-repeat
+}
+
+.ecjia-store-detail .store-other-info .other-info-result.business_licence_pic img {
+    width: 200px;
+    height: 120px;
+    float: left;
 }
 
 .ecjia-store-detail .store-goods {
