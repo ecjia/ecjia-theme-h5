@@ -192,6 +192,9 @@ class payment_controller
         RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
         RC_Cookie::set('pay_response_order', $url);
 
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+        ecjia_front::$controller->assign('user', $user);
+
         ecjia_front::$controller->display('pay.dwt');
     }
 

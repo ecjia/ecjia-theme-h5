@@ -528,7 +528,7 @@
 				} else {
 					//支付时输入支付密码
 					var has_set_paypass = $('input[name="has_set_paypass"]').val();
-					if (has_set_paypass == 0) {
+					if (has_set_paypass == 1) {
 
 						$(this).val("请求中...");
 						$(this).attr("disabled", true);
@@ -536,6 +536,26 @@
 
 						$('.mod_address_slide').addClass('show');
 						$(".pass_container input").eq(0).focus();
+					} else {
+                        var myApp = new Framework7();
+                        var url = $('.set_paypass_url').attr('data-url');
+                        myApp.modal({
+                            title: '',
+                            text: '您还未设置支付密码',
+                            buttons: [{
+                                text: '取消',
+                                onClick: function () {
+                                    $('.modal').remove();
+                                    $('.modal-overlay').remove();
+                                    return false;
+                                }
+                            }, {
+                                text: '去设置',
+                                onClick: function () {
+                                    window.location.href = url;
+                                }
+                            }, ]
+                        });
 					}
 					return false;
 				}
