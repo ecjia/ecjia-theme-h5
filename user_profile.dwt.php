@@ -6,6 +6,7 @@ Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
+<!-- {nocache} -->
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
@@ -15,7 +16,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<!-- {nocache} -->
 <div class="ecjia-user ecjia-account">
     <div class="ecjia-user ecjia-user-head ecjia-account">
         <ul class="ecjia-list list-short nmargin-t">
@@ -97,5 +97,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 <!-- {/if} -->
 
-<!-- {/nocache} -->
 <!-- {/block} -->
+<!-- {/nocache} -->
