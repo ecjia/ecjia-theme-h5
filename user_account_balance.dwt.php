@@ -6,6 +6,7 @@ Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
+<!-- {nocache} -->
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
@@ -16,7 +17,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 
-<!-- {nocache} -->
+
 <ul class="ecjia-list ecjia-account">
 	<a href="{url path='user/account/record'}">
 		<p class="cash_list">交易记录</p>
@@ -38,6 +39,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		{/if}
 	</div>
 </ul>
-<!-- {/nocache} -->
 
 <!-- {/block} -->
+<!-- {/nocache} -->

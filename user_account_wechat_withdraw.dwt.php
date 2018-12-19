@@ -6,6 +6,7 @@ Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
+<!-- {nocache} -->
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
@@ -15,8 +16,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-
-<!-- {nocache} -->
 <form class="ecjia-account ecjia-form user-profile-form" action="{url path='user/account/withdraw_account'}" method="post" name="widthDrawForm">
 	<div class="ecjia-user">
 		<div class="ecjia-list list-short">
@@ -47,6 +46,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<input class="btn btn-info" name="submit" type="submit" value="{t}立即提现{/t}" />
 	</div>
 </form>
-<!-- {/nocache} -->
-
 <!-- {/block} -->
+<!-- {/nocache} -->
