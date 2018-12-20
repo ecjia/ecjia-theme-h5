@@ -14552,6 +14552,11 @@ body,
     padding-top: 2em;
 }
 
+.ecjia-withdraw-notice img {
+    width: 4em;
+    height: 4em;
+}
+
 .ecjia-withdraw-notice p {
     margin-bottom: .5em;
 }
