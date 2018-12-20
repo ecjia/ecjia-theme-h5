@@ -6322,7 +6322,8 @@ footer {
 .goods-info .ecjia-price-time {
     width: 100%;
     display: block;
-    overflow: hidden
+    overflow: hidden;
+    line-height: 2em;
 }
 
 .goods-info .ecjia-price-time .time-left {

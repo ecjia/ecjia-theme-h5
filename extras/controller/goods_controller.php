@@ -297,6 +297,10 @@ class goods_controller
             }
 
             ecjia_front::$controller->assign('releated_goods', json_encode($spec_releated_goods));
+
+            if (!empty($goods_info['groupbuy_info']['price_ladder'])) {
+                $goods_info['groupbuy_info']['price_ladder'] = json_encode($goods_info['groupbuy_info']['price_ladder']);
+            }
             ecjia_front::$controller->assign('goods_info', $goods_info);
         }
 
