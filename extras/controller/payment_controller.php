@@ -223,6 +223,7 @@ class payment_controller
         $order_id = intval($_POST['order_id']);
         $pay_id = intval($_POST['pay_id']);
         $type = trim($_POST['type']);
+        $extension_code = trim($_POST['extension_code']);
 
         if (empty($pay_id)) {
             return ecjia_front::$controller->showmessage(__('请选择支付方式'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -240,6 +241,7 @@ class payment_controller
             return ecjia_front::$controller->showmessage($response->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
+
         //获得订单支付信息
         $param_list = array(
             'token' => $token,
@@ -249,7 +251,11 @@ class payment_controller
             $param_list['wxpay_open_id'] = $_SESSION['wxpay_open_id'];
         }
 
-        $rs_pay = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_PAY)->data($param_list)->run();
+        $api = ecjia_touch_api::ORDER_PAY;
+        if ($extension_code == 'group_buy') {
+            $api = ecjia_touch_api::GROUPBUY_ORDER_PAY;
+        }
+        $rs_pay = ecjia_touch_manager::make()->api($api)->data($param_list)->run();
         if (!is_ecjia_error($rs_pay)) {
             //余额支付 校验支付密码
             if ($type === 'check_paypassword') {
@@ -266,9 +272,15 @@ class payment_controller
                 return ecjia_front::$controller->showmessage($rs_pay['payment']['error_message'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
             $notify_url = RC_Uri::url('payment/pay/notify', array('order_id' => $order_id));
+
             //生成返回url cookie
             RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
-            RC_Cookie::set('pay_response_order', RC_Uri::url('user/order/order_detail', array('order_id' => $order_id, 'type' => 'detail')));
+
+            $url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id, 'type' => 'detail'));
+            if ($extension_code == 'group_buy') {
+                $url = RC_Uri::url('user/order/groupbuy_detail', array('order_id' => $order_id));
+            }
+            RC_Cookie::set('pay_response_order', $url);
 
             $pay_online = array_get($rs_pay, 'payment.private_data.pay_online', array_get($rs_pay, 'payment.pay_online'));
             if (array_get($rs_pay, 'payment.pay_code') == 'pay_alipay') {

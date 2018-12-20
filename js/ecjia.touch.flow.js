@@ -624,6 +624,7 @@
 					var order_id = $('input[name="order_id"]').val();
 					var pay_id = $('input[name="pay_id"]').val();
 					var url = $('input[name="url"]').val();
+                    var extension_code = $('input[name="extension_code"]').val();
 					var value = '';
 					$.each(firstResultAry, function (i, v) {
 						value += v;
@@ -633,7 +634,9 @@
 						'order_id': order_id,
 						'pay_id': pay_id,
 						'value': value,
-						'type': 'check_paypassword'
+						'type': 'check_paypassword',
+						'extension_code': extension_code
+
 					}
 					$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 					$.post(url, info, function (data) {

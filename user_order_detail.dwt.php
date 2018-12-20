@@ -197,7 +197,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<a class="btn btn-small btn-hollow external" href="{if $order.service_phone}tel://{$order.service_phone}{else}javascript:alert('无法联系卖家');{/if}">联系卖家</a>
 				{if !$order.refund_info}
 					{if $order.order_status_code eq 'await_pay'}
+                        {if $order.extension_code neq 'group_buy'}
 						<a class="btn btn-small btn-hollow cancel_order_unpay" href='{url path="user/order/order_cancel" args="order_id={$order.order_id}"}'>取消订单</a>
+                        {/if}
 						<a class="btn btn-small btn-hollow" href='{url path="payment/pay/init" args="order_id={$order.order_id}{if $order.extension_code eq 'group_buy'}&type=group_buy{/if}"}'>
 							{if $order.has_deposit eq 1}支付余额{else}去支付{/if}
 						</a>
