@@ -80,7 +80,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <p class="p_bind">绑定成功后，您可使用微信快速登录</p>
 		<div class="ecjia-list list-short">
 			<li>
-				<a href="javascript:;">
+				<a class="nopjax external" href='{url path="connect/index/authorize" args="connect_code=sns_wechat"}'>
 					<span class="icon-name margin-no-l">绑定微信</span>
 					<span class="icon-price">{if $user.wechat_is_bind eq 1}{$user.wechat_nickname}{else}未绑定{/if}</span>
 					<i class="iconfont icon-jiantou-right margin-r-icon"></i>

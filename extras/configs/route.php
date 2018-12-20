@@ -296,8 +296,9 @@ return [
     'connect/index/enter_code'          => 'connect_controller@enter_code',
     'connect/index/mobile_signin'       => 'connect_controller@mobile_signin',
     'connect/index/set_password'        => 'connect_controller@set_password',
-    'connect/index/callback_template'        => 'connect_controller@callback_template',
-    
+    'connect/index/callback_template'   => 'connect_controller@callback_template',
+    'connect/index/authorize'           => 'connect_controller@authorize',
+
     //发现
     'mobile/discover/init'              => 'mobile_controller@init',  //百宝箱
     

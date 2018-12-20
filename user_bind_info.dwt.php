@@ -37,7 +37,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <p>已绑：{$user.wechat_nickname}</p>
     </div>
     <div>
-    	<a class="btn btn-info nopjax external" href="javascript:;">更换微信</a>
+    	<a class="btn btn-info nopjax external" href='{url path="connect/index/authorize" args="connect_code=sns_wechat"}'>更换微信</a>
     </div>
 </div>
 {/if}
