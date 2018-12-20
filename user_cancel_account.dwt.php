@@ -19,16 +19,16 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     <div class="cancel-notice">在您操作注销账号之前，请先确认以下信息，以保证您的账号、财产安全：</div>
     <div class="cancel-sub">
         <ul>
-            <li><i></i>账号处于安全状态，未发生被盗等风险；</li>
-            <li><i></i>请确保账号内交易无未完成订单；</li>
-            <li><i></i>请确保账号内无余额或已结清；</li>
-            <li><i></i>无任何纠纷，包括投诉举报或被投诉举报；</li>
-            <li><i></i>已经解除与其他网站、其他APP的授权登录或绑定关系；</li>
-            <li><i></i>为了账户安全，在您操作注销后，我们将会给您30日的“后悔期”，即先将您的账户锁定30日，30日后，如您未提出异议或未重新“激活账号”，我们将注销您的账户，账户一旦被注销将不可恢复；</li>
+            <li><i><img src="{$theme_url}images/user/cancel.png" /></i>账号处于安全状态，未发生被盗等风险；</li>
+            <li><i><img src="{$theme_url}images/user/cancel.png" /></i>请确保账号内交易无未完成订单；</li>
+            <li><i><img src="{$theme_url}images/user/cancel.png" /></i>请确保账号内无余额或已结清；</li>
+            <li><i><img src="{$theme_url}images/user/cancel.png" /></i>无任何纠纷，包括投诉举报或被投诉举报；</li>
+            <li><i><img src="{$theme_url}images/user/cancel.png" /></i>已经解除与其他网站、其他APP的授权登录或绑定关系；</li>
+            <li><i><img src="{$theme_url}images/user/cancel.png" /></i>为了账户安全，在您操作注销后，我们将会给您30日的“后悔期”，即先将您的账户锁定30日，30日后，如您未提出异议或未重新“激活账号”，我们将注销您的账户，账户一旦被注销将不可恢复；</li>
         </ul>
     </div>
 </div>
-<div class="ecjia-cancel-account-notice">轻按下方“注销账号”按钮，则表示您已阅读并同意<a href="javascript:;">《注销须知》</a></div>
+<div class="ecjia-cancel-account-notice">轻按下方“注销账号”按钮，则表示您已阅读并同意<a class="nopjax external" href="{RC_Uri::url('article/shop/detail')}&title={$article.title}&id={$article.article_id}">《注销须知》</a></div>
 
 <button class="btn confirm-cancel-account">注销账号</button>
 

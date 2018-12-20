@@ -1137,7 +1137,7 @@
 
 		cancel_account: function () {
 			var InterObj; //timer变量，控制时间
-			var count_s = 5; //间隔函数，1秒执行
+			var count_s = 60; //间隔函数，1秒执行
 			var curCount_s; //当前剩余秒数
 
 			$('.confirm-cancel-account').off('click').on('click', function () {

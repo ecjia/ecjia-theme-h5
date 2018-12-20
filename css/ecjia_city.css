@@ -14717,6 +14717,15 @@ body,
     color: #838383;
 }
 
+.ecjia-cancel-account .cancel-sub li i {
+    margin-right: 5px;
+}
+
+.ecjia-cancel-account .cancel-sub li i img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
 .ecjia-cancel-account-notice {
     padding: 20px 10px;
     font-size: 12px;

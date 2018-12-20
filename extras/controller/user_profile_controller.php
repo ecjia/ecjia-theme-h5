@@ -445,19 +445,20 @@ class user_profile_controller
     public static function cancel_account()
     {
         $token = ecjia_touch_user::singleton()->getToken();
-        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'] . '-' . $token));
 
-        if (!ecjia_front::$controller->is_cached('user_cancel_account.dwt', $cache_id)) {
-            $user_info = ecjia_touch_user::singleton()->getUserinfo();
-            if (empty($user_info['avatar_img'])) {
-                $user_info['avatar_img'] = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
-            }
-            $user_info['str_mobile_phone'] = substr_replace($user_info['mobile_phone'], '****', 3, 4);
-            ecjia_front::$controller->assign('user', $user_info);
+        $user_info = ecjia_touch_user::singleton()->getUserinfo();
+        if (empty($user_info['avatar_img'])) {
+            $user_info['avatar_img'] = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
         }
-        ecjia_front::$controller->assign_title('注销账号');
+        $user_info['str_mobile_phone'] = substr_replace($user_info['mobile_phone'], '****', 3, 4);
+        ecjia_front::$controller->assign('user', $user_info);
 
-        ecjia_front::$controller->display('user_cancel_account.dwt', $cache_id);
+        $article = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_SPECIAL_README_USERDELETE)->run();
+        $article = !is_ecjia_error($article) ? $article : [];
+        ecjia_front::$controller->assign('article', $article);
+
+        ecjia_front::$controller->assign_title('注销账号');
+        ecjia_front::$controller->display('user_cancel_account.dwt');
     }
 
     public static function check_mobile()
