@@ -95,6 +95,16 @@ class payment_controller
         if ($detail['pay_status'] == 2) {
             return ecjia_front::$controller->showmessage('该订单已支付请勿重复支付', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjaxurl));
         }
+        
+        //不支持原有支付方式，请切换新的支付方式继续支付
+        $change_result = user_function::is_change_payment($detail['pay_code'], $detail['manage_mode']);
+        ecjia_front::$controller->assign('change_payment', $change_result['change']);
+        
+        if ($change_result['change'] && $detail['pay_code'] != 'pay_cod') {
+            ecjia_front::$controller->assign('detail', $detail);
+            ecjia_front::$controller->assign('payment_list', $change_result['payment']);
+            return ecjia_front::$controller->display('pay_change.dwt');
+        }
 
         if ($detail['extension_code'] == 'group_buy') {
             if ($detail['order_status_code'] == 'await_pay') {
@@ -107,15 +117,6 @@ class payment_controller
             }
         }
 
-        $change_result = user_function::is_change_payment($detail['pay_code'], $detail['manage_mode']);
-        ecjia_front::$controller->assign('change_payment', $change_result['change']);
-
-        if ($change_result['change'] && $detail['pay_code'] != 'pay_cod') {
-            ecjia_front::$controller->assign('detail', $detail);
-            ecjia_front::$controller->assign('payment_list', $change_result['payment']);
-            ecjia_front::$controller->display('pay_change.dwt');
-            return false;
-        }
         //获得订单支付信息
         $params = array(
             'token' => $token,
