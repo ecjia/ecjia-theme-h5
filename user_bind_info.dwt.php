@@ -6,6 +6,8 @@ Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
+<!--{nocache}-->
+
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 
 <!-- {block name="footer"} -->
@@ -34,7 +36,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 {elseif $type eq 'wechat'}
 <div class="ecjia-check-info">
     <div class="bind-info">
-        <p>已绑：{$user.wechat_nickname}</p>
+        <p>已绑：{if $user.wechat_nickname}{$user.wechat_nickname}{else}暂无微信昵称{/if}</p>
     </div>
     <div>
     	<a class="btn btn-info nopjax external" href='{url path="connect/index/authorize" args="connect_code=sns_wechat"}'>更换微信</a>
@@ -42,3 +44,5 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 </div>
 {/if}
 <!-- {/block} -->
+
+<!--{/nocache}-->

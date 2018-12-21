@@ -356,21 +356,20 @@ class user_profile_controller
         $token    = ecjia_touch_user::singleton()->getToken();
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING'] . '-' . $token));
 
-        if (!ecjia_front::$controller->is_cached('user_bind_info.dwt', $cache_id)) {
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
-            $user = !is_ecjia_error($user) ? $user : array();
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+        $user = !is_ecjia_error($user) ? $user : array();
 
-            $type = !empty($_GET['type']) ? trim($_GET['type']) : '';
-            ecjia_front::$controller->assign('user', $user);
-            if ($type == 'mobile') {
-                ecjia_front::$controller->assign('type', 'mobile');
-            } else if ($type == 'email') {
-                ecjia_front::$controller->assign('type', 'email');
-            } else if ($type == 'wechat') {
-                ecjia_front::$controller->assign('type', 'wechat');
-            }
+        $type = !empty($_GET['type']) ? trim($_GET['type']) : '';
+        ecjia_front::$controller->assign('user', $user);
+        if ($type == 'mobile') {
+            ecjia_front::$controller->assign('type', 'mobile');
+        } else if ($type == 'email') {
+            ecjia_front::$controller->assign('type', 'email');
+        } else if ($type == 'wechat') {
+            ecjia_front::$controller->assign('type', 'wechat');
         }
-        ecjia_front::$controller->display('user_bind_info.dwt', $cache_id);
+
+        ecjia_front::$controller->display('user_bind_info.dwt');
     }
 
     //验证设置支付密码手机号 验证码
