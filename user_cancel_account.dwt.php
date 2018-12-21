@@ -28,7 +28,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </ul>
     </div>
 </div>
-<div class="ecjia-cancel-account-notice">轻按下方“注销账号”按钮，则表示您已阅读并同意<a class="nopjax external" href="{RC_Uri::url('article/shop/detail')}&title={$article.title}&id={$article.article_id}">《注销须知》</a></div>
+<div class="ecjia-cancel-account-notice">轻按下方“注销账号”按钮，则表示您已阅读并同意<a class="nopjax external" href="{RC_Uri::url('article/shop/detail')}&title={$article.title}&article_id={$article.article_id}">《注销须知》</a></div>
 
 <button class="btn confirm-cancel-account">注销账号</button>
 
