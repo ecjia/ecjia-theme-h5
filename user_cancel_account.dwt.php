@@ -32,7 +32,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <button class="btn confirm-cancel-account">注销账号</button>
 
-<input type="hidden" name="check_mobile" value="{RC_Uri::url('user/profile/check_mobile')}" />
+<input type="hidden" name="check_mobile" value="{RC_Uri::url('user/profile/check_mobile')}&type=user_delete_account" />
 <input type="hidden" name="confirm_cancel_account" value="{RC_Uri::url('user/profile/confirm_cancel_account')}" />
 
 <div class="ecjia-cancelAccount-modal">
