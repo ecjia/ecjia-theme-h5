@@ -24,7 +24,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <p>恭喜您，订单已经生成~</p>
     </div>
     {/if}
-    <ul class="ecjia-list ecjia-margin-t">
+    <ul class="ecjia-list">
         <li>订单金额：<span class="ecjiaf-fr">{$detail.formated_total_fee}</span></li>
 
         {if $detail.extension_code eq 'group_buy' && $detail.formated_pay_money neq ''}
@@ -34,31 +34,32 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <li>支付方式：<span class="ecjiaf-fr flow-msg">{if $data.pay_name}{$data.pay_name}{else}{$detail.pay_name}{/if}</span></li>
     </ul>
     <div class="ecjia-margin-t ecjia-margin-b flow-msg">{if $data.pay_status eq 'success'}支付成功！{else}{$pay_error}{/if}</div>
+
     {if $payment_list}
-    <ul class="ecjia-list ecjia-margin-t">
-        <li>
-            其它支付方式 <span class="ecjiaf-fr"></span>
-        </li>
-    </ul>
-    <ul class="ecjia-list list-short payment-list ecjia-margin-t ecjia-margin-b">
-        <!-- {foreach from=$payment_list item=list} -->
-        <li>
-            <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}">
-                <a class="fnUrlReplace" href='{url path="payment/pay/init" args="order_id={$data.order_id}&tips_show=1&pay_id={$list.pay_id}&pay_code={$list.pay_code}"}'>{$list.pay_name}</a>
-            </span>
-        </li>
-        <!-- {/foreach} -->
-    </ul>
+        <ul class="ecjia-list">
+            <li>
+                其它支付方式 <span class="ecjiaf-fr"></span>
+            </li>
+        </ul>
+        <ul class="ecjia-list list-short payment-list">
+            <!-- {foreach from=$payment_list item=list} -->
+            <li>
+                <span class="icon-name {$list.pay_code}" data-code="{$list.pay_code}">
+                    <a class="fnUrlReplace" href='{url path="payment/pay/init" args="order_id={$data.order_id}&tips_show=1&pay_id={$list.pay_id}&pay_code={$list.pay_code}"}'>{$list.pay_name}</a>
+                </span>
+            </li>
+            <!-- {/foreach} -->
+        </ul>
     {/if}
 
     {if $pay_online}
-    <div class="ecjia-margin-t ecjia-margin-b">
+    <div class="ecjia-margin-t ecjia-margin-t1 ecjia-margin-b">
         <a class="btn nopjax external" href="{$pay_online}">确认支付</a>
     </div>
     {/if}
 
     {if $detail.pay_code eq 'pay_balance' && $data.pay_status neq 'success'}
-    <form class="ecjia-form" name="payForm" action="{url path='payment/pay/pay_order'}" method="post">
+    <form class="ecjia-form ecjia-margin-t1" name="payForm" action="{url path='payment/pay/pay_order'}" method="post">
         <div class="ecjia-margin-t ecjia-margin-b">
             <input name="order_id" type="hidden" value="{$detail.order_id}" />
             <input name="pay_id" type="hidden" value="{$detail.pay_id}" />
