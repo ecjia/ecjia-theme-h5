@@ -1139,6 +1139,7 @@
 			var InterObj; //timer变量，控制时间
 			var count_s = 60; //间隔函数，1秒执行
 			var curCount_s; //当前剩余秒数
+            window.clearInterval(InterObj);
 
 			$('.confirm-cancel-account').off('click').on('click', function () {
 				var myApp = new Framework7();
@@ -1199,6 +1200,9 @@
 				if (value.length == 6) {
 					var url = $('input[name="confirm_cancel_account"]').val();
 					$.post(url, {value: value}, function(data) {
+						if (data.state == 'success') {
+							window.clearInterval(InterObj);
+						}
 						ecjia.touch.showmessage(data);
 					});
 				}
@@ -1217,7 +1221,7 @@
 			};
 
 			function resend_cancel_sms() {
-				window.clearInterval(InterObj);
+                window.clearInterval(InterObj);
 
 				$('.modal').remove();
 				$('.modal-overlay').remove();
