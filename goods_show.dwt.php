@@ -138,7 +138,9 @@ var releated_goods = {$releated_goods};
 					<!--{else}-->
 					<span class="ecjia-price-span">{if $goods_info.promote_price gt
 						0}{$goods_info.formated_promote_price}{else}{$goods_info.shop_price}{/if}</span>
-					<del>市场价：{$goods_info.market_price}</del>
+					{if $goods_info.market_price}
+                    <del>市场价：{$goods_info.market_price}</del>
+                    {/if}
 
 					{if $goods_info.shop_closed neq 1}
 					{if $goods_info.specification}
