@@ -83,6 +83,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </a>
         </li>
         <li>
+            <a href="{url path='user/profile/withdraw'}">
+                <span class="icon-name margin-no-l">提现管理</span>
+                <i class="iconfont icon-jiantou-right margin-r-icon"></i>
+            </a>
+        </li>
+        <li>
             <a href="{url path='user/profile/cancel_account'}">
                 <span class="icon-name margin-no-l">注销账号</span>
                 <i class="iconfont icon-jiantou-right margin-r-icon"></i>

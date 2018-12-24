@@ -5730,7 +5730,7 @@ footer {
 }
 
 .ecjia-button-top-list {
-    margin-top: 3.5em
+    margin-top: 1em
 }
 
 .ecjia-bouns-list li {
@@ -14875,3 +14875,117 @@ body,
 .confirm-activate-account {
     margin-top: 1em;
 }
+
+.ecjia-list.list-notice li {
+    background-color: #f7f7f7;
+    border: none;
+    padding: .5em 1em 0 1em;
+    min-height: 2em;
+    height: auto;
+    color: #838383;
+    line-height: 1.5em;
+}
+
+.ecjia-list.list-notice li.notice-label {
+    font-size: .9em;
+}
+
+.ecjia-list.list-notice li .notice {
+    position: relative;
+    margin-left: 15px;
+    font-size: .9em;
+}
+
+.ecjia-list.list-notice li .notice .disc {
+    position: absolute;
+    left: -15px;
+}
+
+.ecjia-input {
+    margin-top: 1em;
+}
+
+.ecjia-input .input-li {
+    background-color: #fff;
+    height: 3.2em;
+    line-height: 3.2em;
+    padding: 0 1em;
+    position: relative;
+}
+
+.ecjia-input .input-li.b_t {
+    border-top: 1px solid #eee;
+}
+
+.ecjia-input .input-li:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.ecjia-input .input-li.b_b:after {
+    width: calc(100% - 1em);
+    left: 1em;
+}
+
+.ecjia-input .input-li.b_b_n:after {
+    border: none;
+}
+
+.ecjia-input .input-li .input-fl {
+    position: absolute;
+    left: 1em;
+    top: 0;
+    height: 3.2em;
+    width: 6em;
+    line-height: 3.2em;
+    overflow: hidden;
+}
+
+.ecjia-input .input-li input {
+    display: block;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    font-weight: normal;
+    appearance: normal;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    outline: 0 none;
+    padding-left: 7em;
+    padding-right: 0;
+    height: 3.2em;
+    text-overflow: ellipsis;
+    border-radius: 0;
+    text-align: right;
+}
+
+.ecjia-input .input-li .choose-div {
+    position: relative;
+}
+
+.ecjia-input .input-li .choose-div .choose-name {
+    float: right;
+    width: 65%;
+    text-align: right;
+    padding-right: 1.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.ecjia-input .input-li .choose-div .icon-jiantou-right {
+    position: absolute;
+    color: #999;
+    font-weight: normal;
+    font-size: 1.5em;
+    line-height: 2em;
+    right: 0;
+}
+

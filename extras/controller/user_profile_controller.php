@@ -205,11 +205,19 @@ class user_profile_controller
 
         if ($type == 'mobile') {
             ecjia_front::$controller->assign('type', 'mobile');
+            $title = '绑定手机';
         } else if ($type == 'email') {
             ecjia_front::$controller->assign('type', 'email');
+            $title = '绑定邮箱';
         } else if ($type == 'wechat') {
             ecjia_front::$controller->assign('type', 'wechat');
+            $title = '绑定微信';
+        } else if ($type == 'bank_card') {
+            ecjia_front::$controller->assign('type', 'bank_card');
+            $title = '绑定银行卡';
         }
+
+        ecjia_front::$controller->assign_title($title);
 
         if (!empty($status)) {
             ecjia_front::$controller->assign('status', $status);
@@ -363,11 +371,19 @@ class user_profile_controller
         ecjia_front::$controller->assign('user', $user);
         if ($type == 'mobile') {
             ecjia_front::$controller->assign('type', 'mobile');
+            $title = '更换手机号';
         } else if ($type == 'email') {
             ecjia_front::$controller->assign('type', 'email');
+            $title = '更换邮箱';
         } else if ($type == 'wechat') {
             ecjia_front::$controller->assign('type', 'wechat');
+            $title = '解绑微信';
+        } else if ($type == 'bank_card') {
+            ecjia_front::$controller->assign('type', 'bank_card');
+            $title = '编辑银行卡';
         }
+
+        ecjia_front::$controller->assign_title($title);
 
         ecjia_front::$controller->display('user_bind_info.dwt');
     }
@@ -524,6 +540,18 @@ class user_profile_controller
         } else {
             return ecjia_front::$controller->showmessage('激活成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init')));
         }
+    }
+
+    public static function withdraw()
+    {
+        $token = ecjia_touch_user::singleton()->getToken();
+        $user  = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+        $user  = is_ecjia_error($user) ? [] : $user;
+
+        ecjia_front::$controller->assign('user', $user);
+        ecjia_front::$controller->assign_title('提现管理');
+
+        ecjia_front::$controller->display('user_withdraw.dwt');
     }
 
 }
