@@ -6993,7 +6993,8 @@ footer {
 .order-status-head .order-status-msg .status {
     padding: 0 6em 0 0;
     position: relative;
-    height: auto
+    height: auto;
+    margin-left: 0;
 }
 
 .order-status-head .order-status-msg .more-status {
