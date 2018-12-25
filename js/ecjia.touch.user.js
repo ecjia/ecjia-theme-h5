@@ -26,6 +26,7 @@
 			ecjia.touch.user.resend_sms();
 			ecjia.touch.user.cancel_account();
             ecjia.touch.user.unbind_wechat();
+            ecjia.touch.user.choose_bank();
 
 			$(function () {
 				$(".del").click(function () {
@@ -558,14 +559,7 @@
 				e.preventDefault();
 				return false;
 			}).Validform({
-				tiptype: function (msg, o, cssctl) {
-					//msg：提示信息;
-					//o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
-					//cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
-					//					if (o.type == 3){
-					//						alert(msg);
-					//					}
-				},
+				tiptype: function (msg, o, cssctl) {},
 				ajaxPost: true,
 				callback: function (data) {
 					if (data.state == 'success') {
@@ -573,7 +567,10 @@
 							text: "绑定成功！",
 							duration: 2e3,
 						});
-						ecjia.touch.showmessage(data);
+						// ecjia.touch.showmessage(data);
+                        ecjia.pjax(data.pjaxurl, function () {}, {
+                            replace: true
+                        });
 					} else {
 						if (!data.message) {
 							iosOverlay({
@@ -1269,6 +1266,7 @@
 			}
 		},
 
+		//解除绑定
         unbind_wechat: function() {
             $('.unbind_wechat').off('click').on('click', function () {
                 var myApp = new Framework7();
@@ -1309,7 +1307,71 @@
                 });
                 return false;
             });
-		}
+		},
+
+		//选择银行
+        choose_bank: function () {
+            var App = new Framework7();
+            var list = eval($('input[name="bank_list"]').val());
+            console.log(list);
+            var id_list = [];
+            var value_list = [];
+            if (list == undefined) {
+                return false;
+            }
+
+            for (i = 0; i < list.length; i++) {
+                var id = list[i]['id'];
+                var value = list[i]['value'];
+                id_list.push(id);
+                value_list.push(value);
+            };
+            var pickerStreetToolbar = App.picker({
+                input: '.choose_bank',
+                cssClass: 'choose_bank_modal',
+                toolbarTemplate: '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                    '<div class="left">' +
+                    '<a href="javascript:;" class="link close-picker external">取消</a>' +
+                    '</div>' +
+                    '<div class="right">' +
+                    '<a href="javascript:;" class="link save-picker external">确定</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>',
+                cols: [{
+                    values: id_list,
+                    displayValues: value_list
+                }, ],
+                onOpen: function (picker) {
+                    var $pick_overlay = '<div class="picker-modal-overlay"></div>';
+                    if ($('.picker-modal').hasClass('modal-in')) {
+                        $('.picker-modal').after($pick_overlay);
+                    }
+                    var current_id = $('input[name="bank_id"]').val();
+                    if (current_id != undefined && current_id != '') {
+                        picker.setValue([current_id]); //设置选中值
+                    }
+
+                    picker.container.find('.save-picker').on('click', function () {
+                        var value = picker.cols[0].container.find('.picker-selected').html();
+                        var id = picker.cols[0].container.find('.picker-selected').attr('data-picker-value');
+                        $('.choose_bank').html(value);
+                        $('input[name="bank_id"]').val(id);
+                        picker.close();
+                        remove_overlay();
+                    });
+                    picker.container.find('.close-picker').on('click', function () {
+                        picker.close();
+                        remove_overlay();
+                    });
+                },
+                onClose: function (picker) {
+                    picker.close();
+                    remove_overlay();
+                }
+            });
+        },
 	};
 
 	ecjia.touch.address_form = {

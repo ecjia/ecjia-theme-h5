@@ -283,7 +283,8 @@ return [
     'user/profile/confirm_activate_account' => 'user_profile_controller@confirm_activate_account',
     'user/profile/withdraw'                 => 'user_profile_controller@withdraw',
     'user/profile/unbind_wechat'            => 'user_profile_controller@unbind_wechat',
-    
+    'user/profile/bind_card'                => 'user_profile_controller@bind_card',
+
     //授权登录
     'connect/index/dump_user_info'      => 'connect_controller@dump_user_info',
     'connect/index/bind_signup'         => 'connect_controller@bind_signup',

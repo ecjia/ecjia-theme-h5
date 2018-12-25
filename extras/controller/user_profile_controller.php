@@ -203,6 +203,8 @@ class user_profile_controller
         $type   = !empty($_GET['type']) ? trim($_GET['type']) : '';
         $status = !empty($_GET['status']) ? trim($_GET['status']) : '';
 
+        $form_url = RC_Uri::url('user/profile/check_code');
+
         if ($type == 'mobile') {
             ecjia_front::$controller->assign('type', 'mobile');
             $title = '绑定手机';
@@ -215,9 +217,29 @@ class user_profile_controller
         } else if ($type == 'bank_card') {
             ecjia_front::$controller->assign('type', 'bank_card');
             $title = '绑定银行卡';
+
+            $bank_list = [
+                ['id' => 1, 'value' => '中国工商银行'],
+                ['id' => 2, 'value' => '中国建设银行'],
+                ['id' => 3, 'value' => '招商银行'],
+                ['id' => 4, 'value' => '中国农业银行'],
+                ['id' => 5, 'value' => '交通银行'],
+                ['id' => 6, 'value' => '广发银行'],
+                ['id' => 7, 'value' => '浦发银行'],
+                ['id' => 8, 'value' => '中信银行'],
+                ['id' => 9, 'value' => '兴业银行'],
+                ['id' => 10, 'value' => '中国民生银行'],
+                ['id' => 11, 'value' => '中国邮政储蓄'],
+                ['id' => 12, 'value' => '中国银行']
+            ];
+            ecjia_front::$controller->assign('bank_list', json_encode($bank_list));
+
+            $form_url = RC_Uri::url('user/profile/bind_card');
         }
 
         ecjia_front::$controller->assign_title($title);
+
+        ecjia_front::$controller->assign('form_url', $form_url);
 
         if (!empty($status)) {
             ecjia_front::$controller->assign('status', $status);
@@ -395,6 +417,33 @@ class user_profile_controller
         return ecjia_front::$controller->showmessage('解绑成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('user/profile/account_bind', array('type' => 'wechat'))));
 
         return ecjia_front::$controller->showmessage('解绑失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    }
+
+    //绑定银行卡
+    public static function bind_card()
+    {
+        $card_name   = trim($_POST['card_name']);
+        $bank_id     = intval($_POST['bank_id']);
+        $bank_name   = trim($_POST['bank_name']);
+        $bank_number = trim($_POST['bank_number']);
+
+        if (empty($card_name)) {
+            return ecjia_front::$controller->showmessage('请输入持卡人姓名', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+        if (empty($bank_id)) {
+            return ecjia_front::$controller->showmessage('请选择所属银行', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+        if (empty($bank_name)) {
+            return ecjia_front::$controller->showmessage('请输入开户行', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+        if (empty($bank_number)) {
+            return ecjia_front::$controller->showmessage('请输入银行卡号', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+
+        //TODO绑定银行卡
+        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/account_bind', array('type' => 'bank_card'))));
+
+        return ecjia_front::$controller->showmessage('绑定失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     }
 
     //验证设置支付密码手机号 验证码

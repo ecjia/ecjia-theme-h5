@@ -16,7 +16,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<form class="ecjia-user ecjia-form ecjia-user-no-border-b" name="accountBind" action="{url path='user/profile/check_code'}" method="post" >
+<form class="ecjia-user ecjia-form ecjia-user-no-border-b" name="accountBind" action="{$form_url}" method="post" >
     {if $type eq 'mobile'}
     <div class="d_bind">
         <p class="p_bind">{if $status}请设置新手机号{else}绑定手机号后，你可以使用手机号登录，也可以通过手机号找回密码{/if}</p>
@@ -103,19 +103,20 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <div class="ecjia-input">
             <div class="input-li b_b b_t">
                 <span class="input-fl">持卡人</span>
-                <input type="text" name="card_name" />
+                <input type="text" name="card_name" placeholder="请输入持卡人姓名"/>
             </div>
             <div class="input-li b_b">
                 <span class="input-fl">所属银行</span>
-                <div class="choose-div"><span class="choose-name">请选择</span><i class="iconfont icon-jiantou-right"></i></div>
+                <div class="choose-div"><span class="choose-name choose_bank">请选择</span><i class="iconfont icon-jiantou-right"></i></div>
+                <input type="hidden" name="bank_id" />
             </div>
             <div class="input-li b_b">
                 <span class="input-fl">开户行</span>
-                <input type="text" name="card_name" />
+                <input type="text" name="bank_name" placeholder="请输入开户行"/>
             </div>
             <div class="input-li b_b_n">
                 <span class="input-fl">银行卡号</span>
-                <input type="text" name="card_name" />
+                <input type="text" name="bank_number" placeholder="请输入银行卡号"/>
             </div>
             <div class="ecjia-list list-notice">
                 <li class="notice-label">温馨提示：</li>
@@ -130,5 +131,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
     {/if}
 </form>
+<input type="hidden" name="bank_list" value='{$bank_list}'>
 <!-- {/block} -->
 <!-- {/nocache} -->
