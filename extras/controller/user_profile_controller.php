@@ -388,6 +388,15 @@ class user_profile_controller
         ecjia_front::$controller->display('user_bind_info.dwt');
     }
 
+    //解绑微信账号
+    public static function unbind_wechat()
+    {
+        //TODO微信解绑
+        return ecjia_front::$controller->showmessage('解绑成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('user/profile/account_bind', array('type' => 'wechat'))));
+
+        return ecjia_front::$controller->showmessage('解绑失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    }
+
     //验证设置支付密码手机号 验证码
     public static function set_pay_password()
     {

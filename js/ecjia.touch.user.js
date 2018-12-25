@@ -25,6 +25,7 @@
 			ecjia.touch.user.affiliate();
 			ecjia.touch.user.resend_sms();
 			ecjia.touch.user.cancel_account();
+            ecjia.touch.user.unbind_wechat();
 
 			$(function () {
 				$(".del").click(function () {
@@ -1145,7 +1146,7 @@
 				var myApp = new Framework7();
 				myApp.modal({
 					title: '',
-					text: '确定要注销当前账号吗？',
+					text: '您确定要注销当前账号吗？',
 					buttons: [{
 						text: '取消',
 						onClick: function () {
@@ -1266,6 +1267,48 @@
 					}
 				});
 			}
+		},
+
+        unbind_wechat: function() {
+            $('.unbind_wechat').off('click').on('click', function () {
+                var myApp = new Framework7();
+                var $this = $(this),
+					url = $this.attr('data-url');
+				if ($this.hasClass('disabled')) {
+					return false;
+				}
+                $this.addClass('disabled');
+                myApp.modal({
+                    title: '',
+                    text: '您确定要解绑该微信账号吗？',
+                    buttons: [{
+                        text: '取消',
+                        onClick: function () {
+                            $this.removeClass('disabled');
+                            $('.modal').remove();
+                            $('.modal-overlay').remove();
+                            return false;
+                        }
+                    }, {
+                        text: '确定',
+                        onClick: function () {
+							$.post(url, function(data) {
+                                $this.removeClass('disabled');
+                                if (data.state == 'error') {
+                                    alert(data.message);
+                                    return false;
+								}
+                                alert(data.message);
+                                var url = data.url;
+                                ecjia.pjax(url, function () {}, {
+                                    replace: true
+                                });
+							})
+                        }
+                    }, ]
+                });
+                return false;
+            });
 		}
 	};
 

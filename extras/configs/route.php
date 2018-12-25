@@ -282,6 +282,7 @@ return [
     'user/profile/confirm_cancel_account'   => 'user_profile_controller@confirm_cancel_account',
     'user/profile/confirm_activate_account' => 'user_profile_controller@confirm_activate_account',
     'user/profile/withdraw'                 => 'user_profile_controller@withdraw',
+    'user/profile/unbind_wechat'            => 'user_profile_controller@unbind_wechat',
     
     //授权登录
     'connect/index/dump_user_info'      => 'connect_controller@dump_user_info',
