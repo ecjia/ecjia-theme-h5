@@ -73,8 +73,10 @@ class user_front
         if ($this->check_status()) {
             $url         = RC_Uri::url('user/profile/cancel_account');
             $current_url = RC_Uri::current_url();
+	    
             if ($url != $current_url) {
-                return ecjia_front::$controller->redirect($url);
+                ecjia_front::$controller->redirect($url);
+                ecjia_front::$controller->exited();
             }
         }
     }
