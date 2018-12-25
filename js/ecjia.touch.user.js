@@ -1313,7 +1313,6 @@
         choose_bank: function () {
             var App = new Framework7();
             var list = eval($('input[name="bank_list"]').val());
-            console.log(list);
             var id_list = [];
             var value_list = [];
             if (list == undefined) {
