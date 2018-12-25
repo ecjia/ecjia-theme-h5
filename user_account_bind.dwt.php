@@ -109,7 +109,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <span class="input-fl">所属银行</span>
                 <div class="choose-div"><span class="choose-name">请选择</span><i class="iconfont icon-jiantou-right"></i></div>
             </div>
-            <div class="input-li">
+            <div class="input-li b_b">
                 <span class="input-fl">开户行</span>
                 <input type="text" name="card_name" />
             </div>

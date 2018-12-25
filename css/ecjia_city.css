@@ -14699,6 +14699,7 @@ body,
 .ecjia-cancel-account {
     background-color: #fff;
     padding: 20px 10px;
+    margin-bottom: 1em;
 }
 
 .ecjia-cancel-account .content {
@@ -14796,7 +14797,6 @@ body,
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: #47aa4d
 }
 
 .ecjia-cancelAccount-modal .modal-inners {
@@ -14870,10 +14870,6 @@ body,
 
 .ecjia-cancel-account .cancel-notice.s {
     color: #838383;
-}
-
-.confirm-activate-account {
-    margin-top: 1em;
 }
 
 .ecjia-list.list-notice li {
@@ -14978,6 +14974,7 @@ body,
     text-overflow: ellipsis;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    color: #838383;
 }
 
 .ecjia-input .input-li .choose-div .icon-jiantou-right {

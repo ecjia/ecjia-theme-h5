@@ -369,7 +369,7 @@
             $('.mod_address_slide_head .icon-close').off('click').on('click', function () {
                 $('.mod_address_slide').removeClass('show');
 
-                var bool = $this.hasClass('external');
+                var bool = $('.quick_pay_btn').hasClass('external');
 				if (bool) {
                     $('.quick_pay_btn').val("去支付");
 				} else {

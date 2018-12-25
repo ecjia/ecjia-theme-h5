@@ -43,7 +43,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <!--{if $user.wechat_nickname}-->
                     已绑：<!--{$user.wechat_nickname}-->
                 <!--{else}-->
-                    暂无微信昵称
+                    已绑定
                 <!--{/if}-->
             <!--{else}-->
                 暂未绑定
