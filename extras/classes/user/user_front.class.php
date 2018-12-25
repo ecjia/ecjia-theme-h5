@@ -75,8 +75,7 @@ class user_front
             $current_url = RC_Uri::current_url();
 	    
             if ($url != $current_url) {
-                ecjia_front::$controller->redirect($url);
-                ecjia_front::$controller->exited();
+                return ecjia_front::$controller->redirect($url);
             }
         }
     }
