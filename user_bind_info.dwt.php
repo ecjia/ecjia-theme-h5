@@ -23,7 +23,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <p>已绑：{$user.mobile_phone}</p>
     </div>
     <div>
-    	<a class="btn btn-info nopjax external" href="{RC_uri::url('user/profile/account_bind')}&type=mobile&status=change">更换手机号</a>
+        <a class="btn btn-info nopjax external" href="{RC_uri::url('user/profile/account_bind')}&type=mobile&status=change">更换手机号</a>
     </div>
 </div>
 {elseif $type eq 'email'}
@@ -32,16 +32,30 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <p>已绑：{$user.email}</p>
     </div>
     <div>
-    	<a class="btn btn-info nopjax external" href="{RC_uri::url('user/profile/account_bind')}&type=email&status=change">更换邮箱号</a>
+        <a class="btn btn-info nopjax external" href="{RC_uri::url('user/profile/account_bind')}&type=email&status=change">更换邮箱号</a>
     </div>
 </div>
 {elseif $type eq 'wechat'}
 <div class="ecjia-check-info">
     <div class="bind-info">
-        <p>已绑：{if $user.wechat_nickname}{$user.wechat_nickname}{else}暂无微信昵称{/if}</p>
+        <p>
+            <!--{if $user.wechat_is_bind eq 1}-->
+                <!--{if $user.wechat_nickname}-->
+                    已绑：<!--{$user.wechat_nickname}-->
+                <!--{else}-->
+                    暂无微信昵称
+                <!--{/if}-->
+            <!--{else}-->
+                暂未绑定
+            <!--{/if}-->
+        </p>
     </div>
     <div>
-    	<a class="btn btn-info unbind_wechat" href="javascript:;" data-url="{RC_Uri::url('user/profile/unbind_wechat')}">解除绑定</a>
+        <!--{if $user.wechat_is_bind eq 1}-->
+        <a class="btn btn-info unbind_wechat" href="javascript:;" data-url="{RC_Uri::url('user/profile/unbind_wechat')}">解除绑定</a>
+        <!--{else}-->
+        <a class="btn btn-info nopjax external" href='{url path="connect/index/authorize" args="connect_code=sns_wechat"}'>去绑定</a>
+        <!--{/if}-->
     </div>
 </div>
 {/if}

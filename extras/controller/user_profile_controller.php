@@ -377,7 +377,7 @@ class user_profile_controller
             $title = '更换邮箱';
         } else if ($type == 'wechat') {
             ecjia_front::$controller->assign('type', 'wechat');
-            $title = '解绑微信';
+            $title = '解除绑定';
         } else if ($type == 'bank_card') {
             ecjia_front::$controller->assign('type', 'bank_card');
             $title = '编辑银行卡';

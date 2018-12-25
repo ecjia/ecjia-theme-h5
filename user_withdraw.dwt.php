@@ -19,9 +19,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-user ecjia-account">
     <div class="ecjia-list list-short">
         <li class="height-3">
-            <a href="{url path='user/profile/account_bind'}&type=wechat">
+            <a href="{if $user.wechat_is_bind eq 1}{url path='user/profile/bind_info' args='type=wechat'}
+            {else}{url path='user/profile/account_bind'}&type=wechat{/if}">
                 <span class="icon-name margin-no-l">微信提现</span>
-                <span class="icon-price text-color">未绑定</span>
+                <span class="icon-price text-color">{if $user.wechat_is_bind eq 1}{$user.wechat_nickname}{else}未绑定{/if}</span>
                 <i class="iconfont icon-jiantou-right margin-r-icon"></i>
             </a>
         </li>
