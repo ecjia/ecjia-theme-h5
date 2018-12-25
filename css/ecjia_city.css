@@ -14739,7 +14739,7 @@ body,
 }
 
 .ecjia-cancel-account-notice {
-    padding: 20px 10px;
+    padding: 10px 10px 20px 10px;
     font-size: 12px;
     color: #838383;
 }
@@ -14870,6 +14870,29 @@ body,
 
 .ecjia-cancel-account .cancel-notice.s {
     color: #838383;
+}
+
+.ecjia-cancel-account .lefttime {
+    margin-top: 10px;
+    color: #838383;
+}
+
+.ecjia-cancel-account .lefttime span.days {
+    margin-right: 2px;
+}
+
+.ecjia-cancel-account .lefttime span.hours,
+.ecjia-cancel-account .lefttime span.minutes,
+.ecjia-cancel-account .lefttime span.seconds {
+    background-color: #ff3434;
+    color: #fff;
+    padding: 5px;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+.ecjia-cancel-account .lefttime em {
+    font-style: normal;
 }
 
 .ecjia-list.list-notice li {

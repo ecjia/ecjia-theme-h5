@@ -17,6 +17,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <div class="info">已提交注销</div>
     </div>
     <div class="cancel-notice s">为了您的账户安全，我们将会给您30日的“后悔期”，即先将您的账户锁定30日，30日后，如您未提出异议或未重新点击下方按钮“激活账号”，我们将注销您的账户，账户一旦被注销将不可恢复。</div>
+
+    <div class="lefttime" data-time='{$user.delete_time}'>
+        <span>剩余时间：</span>
+        <span class="days"></span>天
+        <em>:</em>
+        <span class="hours"></span>
+        <em>:</em>
+        <span class="minutes"></span>
+        <em>:</em>
+        <span class="seconds"></span>
+    </div>
+
 </div>
 <button class="btn confirm-activate-account">激活账号</button>
 

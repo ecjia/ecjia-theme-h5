@@ -527,6 +527,12 @@ class user_profile_controller
             $user_info['avatar_img'] = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
         }
         $user_info['str_mobile_phone'] = substr_replace($user_info['mobile_phone'], '****', 3, 4);
+
+        if (!empty($user_info['delete_time'])) {
+            $user_info['delete_time'] = RC_Time::local_strtotime($user_info['delete_time']);
+            $user_info['delete_time'] = RC_Time::local_date('Y/m/d H:i:s O', $user_info['delete_time'] + 30 * 24 * 3600);
+        }
+
         ecjia_front::$controller->assign('user', $user_info);
 
         $article = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_SPECIAL_README_USERDELETE)->run();
