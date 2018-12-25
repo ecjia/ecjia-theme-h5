@@ -87,7 +87,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                     </div>
                 </div>
                 <input name="url" type="hidden" value="{url path='user/quickpay/dopay'}" />
-                <a class="ecjiaf-fr blue forget_paypass" href="{RC_Uri::url('user/profile/set_pay_password')}" style="padding-right:2em;">忘记支付密码</a>
+                <a class="ecjiaf-fr blue forget_paypass" href="{RC_Uri::url('user/profile/set_pay_password')}" style="padding-right:2em;color:#337ab7;">忘记支付密码</a>
             </div>
             <ul class="keyboard pct100 abs-lb" id="keyboard">
                 <li data-key="1">
