@@ -1322,8 +1322,8 @@
             }
 
             for (i = 0; i < list.length; i++) {
-                var id = list[i]['id'];
-                var value = list[i]['value'];
+                var id = list[i]['bank_en_short'];
+                var value = "<img style='margin-right:5px;' src="+ list[i]['bank_icon'] +" width='25' height='25' >" + list[i]['bank_name'];
                 id_list.push(id);
                 value_list.push(value);
             };
@@ -1349,7 +1349,7 @@
                     if ($('.picker-modal').hasClass('modal-in')) {
                         $('.picker-modal').after($pick_overlay);
                     }
-                    var current_id = $('input[name="bank_id"]').val();
+                    var current_id = $('input[name="bank_en_short"]').val();
                     if (current_id != undefined && current_id != '') {
                         picker.setValue([current_id]); //设置选中值
                     }
@@ -1358,7 +1358,7 @@
                         var value = picker.cols[0].container.find('.picker-selected').html();
                         var id = picker.cols[0].container.find('.picker-selected').attr('data-picker-value');
                         $('.choose_bank').html(value);
-                        $('input[name="bank_id"]').val(id);
+                        $('input[name="bank_en_short"]').val(id);
                         picker.close();
                         remove_overlay();
                     });

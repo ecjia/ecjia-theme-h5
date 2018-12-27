@@ -218,22 +218,35 @@ class user_profile_controller
             ecjia_front::$controller->assign('type', 'bank_card');
             $title = '绑定银行卡';
 
-            $bank_list = [
-                ['id' => 1, 'value' => '中国工商银行'],
-                ['id' => 2, 'value' => '中国建设银行'],
-                ['id' => 3, 'value' => '招商银行'],
-                ['id' => 4, 'value' => '中国农业银行'],
-                ['id' => 5, 'value' => '交通银行'],
-                ['id' => 6, 'value' => '广发银行'],
-                ['id' => 7, 'value' => '浦发银行'],
-                ['id' => 8, 'value' => '中信银行'],
-                ['id' => 9, 'value' => '兴业银行'],
-                ['id' => 10, 'value' => '中国民生银行'],
-                ['id' => 11, 'value' => '中国邮政储蓄'],
-                ['id' => 12, 'value' => '中国银行']
-            ];
+            //TODO
+//            $bank_list = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_BANK)->run();
+            $bank_list = array(
+                ["bank_name"     => "工商银行",
+                 "bank_icon"     => "https://cloud.ecjia.com/content/apps/product/statics/images/bank/gongshang.png",
+                 "bank_en_short" => "ICBC"],
+
+                ["bank_name"     => "建设银行",
+                 "bank_icon"     => "https://cloud.ecjia.com/content/apps/product/statics/images/bank/jianshe.png",
+                 "bank_en_short" => "CCB"]
+            );
+
             ecjia_front::$controller->assign('bank_list', json_encode($bank_list));
 
+            //已绑定银行卡获取绑定信息
+//            if ($user['bank_is_bind'] == 1) {
+            //TODO
+//                $bind_info = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO_BANKCARD)->data(array('token' => $token))->run();
+//                $bind_info = is_ecjia_error($bind_info) ? [] : $bind_info;
+
+            $bind_info = ["bank_name"        => "工商银行",
+                          "bank_icon"        => "https://cloud.ecjia.com/content/apps/product/statics/images/bank/gongshang.png",
+                          "bank_en_short"    => "ICBC",
+                          "cardholder"       => 123,
+                          "bank_branch_name" => 234,
+                          "bank_card"        => 456];
+
+            ecjia_front::$controller->assign('bind_info', $bind_info);
+//            }
             $form_url = RC_Uri::url('user/profile/bind_card');
         }
 
@@ -263,8 +276,13 @@ class user_profile_controller
 
         //获取设置支付密码验证码
         $type = trim($_GET['type']);
-        if (!empty($mobile) && $type == 'set_paypass') {
-            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CAPTCHA_SMS)->data(array('token' => $token, 'type' => 'user_modify_paypassword', 'mobile' => $mobile))->run();
+        if (!empty($mobile) && ($type == 'set_paypass' || $type == 'bank_card')) {
+            if ($type == 'set_paypass') {
+                $type == 'user_modify_paypassword';
+            } elseif ($type == 'bank_card') {
+                $type == 'user_bind_bank';
+            }
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CAPTCHA_SMS)->data(array('token' => $token, 'type' => $type, 'mobile' => $mobile))->run();
             if (is_ecjia_error($data)) {
                 return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             } else {
@@ -356,15 +374,28 @@ class user_profile_controller
         $type  = !empty($_POST['type']) ? $_POST['type'] : '';
         $token = ecjia_touch_user::singleton()->getToken();
 
-        //验证设置支付密码验证码
-        if (!empty($code) && $type == 'set_paypass') {
-            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_PAYPASSWORD_SMS_CHECKCODE)->data(array('smscode' => $code, 'token' => $token))->run();
-            if (is_ecjia_error($data)) {
-                return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-            } else {
-                $user_info                                                 = ecjia_touch_user::singleton()->getUserinfo();
-                $_SESSION['set_paypass_temp'][$user_info['id']]['smscode'] = $code;
-                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/set_pay_pass')));
+        if (!empty($code) && ($type == 'set_paypass' || $type == 'bank_card')) {
+            //验证设置支付密码验证码
+            if ($type == 'set_paypass') {
+                $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_PAYPASSWORD_SMS_CHECKCODE)->data(array('smscode' => $code, 'token' => $token))->run();
+                if (is_ecjia_error($data)) {
+                    return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+                } else {
+                    $user_info = ecjia_touch_user::singleton()->getUserinfo();
+
+                    $_SESSION['set_paypass_temp'][$user_info['id']]['smscode'] = $code;
+                    return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/set_pay_pass')));
+                }
+            } elseif ($type == 'bank_card') {
+                //TODO 校验绑定银行卡短信验证码
+//                $data = ecjia_touch_manager::make()->api(ecjia_touch_api::xxx)->data(array('smscode' => $code, 'token' => $token))->run();
+//                if (is_ecjia_error($data)) {
+//                    return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+//                }
+                $user_info = ecjia_touch_user::singleton()->getUserinfo();
+
+                $_SESSION['set_bank_card_temp'][$user_info['id']]['smscode'] = $code;
+                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/account_bind', array('type' => 'bank_card'))));
             }
         }
 
@@ -422,15 +453,16 @@ class user_profile_controller
     //绑定银行卡
     public static function bind_card()
     {
-        $card_name   = trim($_POST['card_name']);
-        $bank_id     = intval($_POST['bank_id']);
-        $bank_name   = trim($_POST['bank_name']);
-        $bank_number = trim($_POST['bank_number']);
+        $token         = ecjia_touch_user::singleton()->getToken();
+        $card_name     = trim($_POST['card_name']);
+        $bank_en_short = trim($_POST['bank_en_short']);
+        $bank_name     = trim($_POST['bank_name']);
+        $bank_number   = trim($_POST['bank_number']);
 
         if (empty($card_name)) {
             return ecjia_front::$controller->showmessage('请输入持卡人姓名', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
-        if (empty($bank_id)) {
+        if (empty($bank_en_short)) {
             return ecjia_front::$controller->showmessage('请选择所属银行', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         if (empty($bank_name)) {
@@ -440,10 +472,24 @@ class user_profile_controller
             return ecjia_front::$controller->showmessage('请输入银行卡号', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
-        //TODO绑定银行卡
-        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/account_bind', array('type' => 'bank_card'))));
+        $user_info = ecjia_touch_user::singleton()->getUserinfo();
+        $code      = $_SESSION['set_bank_card_temp'][$user_info['id']]['smscode'];
 
-        return ecjia_front::$controller->showmessage('绑定失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        $param = array(
+            'token'            => $token,
+            'smscode'          => $code,
+            'cardholder'       => $card_name,
+            'bank_branch_name' => $bank_name,
+            'bank_card'        => $bank_number,
+            'bank_en_short'    => $bank_en_short
+        );
+
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BANK_BIND)->data($param)->run();
+        if (is_ecjia_error($data)) {
+            return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+
+        return ecjia_front::$controller->showmessage('绑定成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/account_bind', array('type' => 'bank_card'))));
     }
 
     //验证设置支付密码手机号 验证码
@@ -616,6 +662,21 @@ class user_profile_controller
         ecjia_front::$controller->assign_title('提现管理');
 
         ecjia_front::$controller->display('user_withdraw.dwt');
+    }
+
+    public static function check_user_mobile()
+    {
+        $token     = ecjia_touch_user::singleton()->getToken();
+        $user_info = ecjia_touch_user::singleton()->getUserinfo();
+        $type      = trim($_GET['type']);
+
+        $user_info['str_mobile_phone'] = substr_replace($user_info['mobile_phone'], '****', 3, 4);
+        ecjia_front::$controller->assign('user', $user_info);
+
+        ecjia_front::$controller->assign('type', $type);
+
+        ecjia_front::$controller->assign_title('验证手机号');
+        ecjia_front::$controller->display('user_check_user_mobile.dwt');
     }
 
 }

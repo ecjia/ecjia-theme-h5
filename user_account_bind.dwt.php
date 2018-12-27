@@ -103,20 +103,29 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <div class="ecjia-input">
             <div class="input-li b_b b_t">
                 <span class="input-fl">持卡人</span>
-                <input type="text" name="card_name" placeholder="请输入持卡人姓名"/>
+                <input type="text" name="card_name" placeholder="请输入持卡人姓名" value="{$bind_info.cardholder}"/>
             </div>
             <div class="input-li b_b">
                 <span class="input-fl">所属银行</span>
-                <div class="choose-div"><span class="choose-name choose_bank">请选择</span><i class="iconfont icon-jiantou-right"></i></div>
-                <input type="hidden" name="bank_id" />
+                <div class="choose-div">
+                    <span class="choose-name choose_bank">
+                        {if $bind_info.bank_name}
+                        <img src="{$bind_info.bank_icon}" width="25" height="25" style="margin-right:5px;">{$bind_info.bank_name}
+                        {else}
+                        请选择
+                        {/if}
+                    </span>
+                    <i class="iconfont icon-jiantou-right"></i>
+                </div>
+                <input type="hidden" name="bank_en_short" value="{$bind_info.bank_en_short}"/>
             </div>
             <div class="input-li b_b">
                 <span class="input-fl">开户行</span>
-                <input type="text" name="bank_name" placeholder="请输入开户行"/>
+                <input type="text" name="bank_name" placeholder="请输入开户行" value="{$bind_info.bank_branch_name}"/>
             </div>
             <div class="input-li b_b_n">
                 <span class="input-fl">银行卡号</span>
-                <input type="text" name="bank_number" placeholder="请输入银行卡号"/>
+                <input type="text" name="bank_number" placeholder="请输入银行卡号" value="{$bind_info.bank_card}"/>
             </div>
             <div class="ecjia-list list-notice">
                 <li class="notice-label">温馨提示：</li>

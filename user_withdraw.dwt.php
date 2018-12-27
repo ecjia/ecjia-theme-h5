@@ -27,9 +27,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             </a>
         </li>
         <li class="ecjia-user-border-b height-3">
-            <a href="{url path='user/profile/account_bind'}&type=bank_card">
+            <a href="{url path='user/profile/check_user_mobile'}&type=bank_card">
                 <span class="icon-name margin-no-l">银行卡提现</span>
+                {if $user.bank_is_bind neq 1}
                 <span class="icon-price text-color">未绑定</span>
+                {/if}
                 <i class="iconfont icon-jiantou-right margin-r-icon"></i>
             </a>
         </li>
