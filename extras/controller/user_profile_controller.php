@@ -218,35 +218,16 @@ class user_profile_controller
             ecjia_front::$controller->assign('type', 'bank_card');
             $title = '绑定银行卡';
 
-            //TODO
-//            $bank_list = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_BANK)->run();
-            $bank_list = array(
-                ["bank_name"     => "工商银行",
-                 "bank_icon"     => "https://cloud.ecjia.com/content/apps/product/statics/images/bank/gongshang.png",
-                 "bank_en_short" => "ICBC"],
-
-                ["bank_name"     => "建设银行",
-                 "bank_icon"     => "https://cloud.ecjia.com/content/apps/product/statics/images/bank/jianshe.png",
-                 "bank_en_short" => "CCB"]
-            );
-
+            $bank_list = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_BANK)->run();
             ecjia_front::$controller->assign('bank_list', json_encode($bank_list));
 
             //已绑定银行卡获取绑定信息
-//            if ($user['bank_is_bind'] == 1) {
-            //TODO
-//                $bind_info = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO_BANKCARD)->data(array('token' => $token))->run();
-//                $bind_info = is_ecjia_error($bind_info) ? [] : $bind_info;
+            if ($user['bank_is_bind'] == 1) {
+                $bind_info = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO_BANKCARD)->data(array('token' => $token))->run();
+                $bind_info = is_ecjia_error($bind_info) ? [] : $bind_info;
 
-            $bind_info = ["bank_name"        => "工商银行",
-                          "bank_icon"        => "https://cloud.ecjia.com/content/apps/product/statics/images/bank/gongshang.png",
-                          "bank_en_short"    => "ICBC",
-                          "cardholder"       => 123,
-                          "bank_branch_name" => 234,
-                          "bank_card"        => 456];
-
-            ecjia_front::$controller->assign('bind_info', $bind_info);
-//            }
+                ecjia_front::$controller->assign('bind_info', $bind_info);
+            }
             $form_url = RC_Uri::url('user/profile/bind_card');
         }
 
@@ -278,9 +259,9 @@ class user_profile_controller
         $type = trim($_GET['type']);
         if (!empty($mobile) && ($type == 'set_paypass' || $type == 'bank_card')) {
             if ($type == 'set_paypass') {
-                $type == 'user_modify_paypassword';
+                $type = 'user_modify_paypassword';
             } elseif ($type == 'bank_card') {
-                $type == 'user_bind_bank';
+                $type = 'user_bind_bank';
             }
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CAPTCHA_SMS)->data(array('token' => $token, 'type' => $type, 'mobile' => $mobile))->run();
             if (is_ecjia_error($data)) {
@@ -377,25 +358,24 @@ class user_profile_controller
         if (!empty($code) && ($type == 'set_paypass' || $type == 'bank_card')) {
             //验证设置支付密码验证码
             if ($type == 'set_paypass') {
-                $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_PAYPASSWORD_SMS_CHECKCODE)->data(array('smscode' => $code, 'token' => $token))->run();
-                if (is_ecjia_error($data)) {
-                    return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-                } else {
-                    $user_info = ecjia_touch_user::singleton()->getUserinfo();
+                $key     = 'set_paypass_temp';
+                $pjaxurl = RC_Uri::url('user/profile/set_pay_pass');
+                $type    = 'user_modify_paypassword';
 
-                    $_SESSION['set_paypass_temp'][$user_info['id']]['smscode'] = $code;
-                    return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/set_pay_pass')));
-                }
             } elseif ($type == 'bank_card') {
-                //TODO 校验绑定银行卡短信验证码
-//                $data = ecjia_touch_manager::make()->api(ecjia_touch_api::xxx)->data(array('smscode' => $code, 'token' => $token))->run();
-//                if (is_ecjia_error($data)) {
-//                    return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-//                }
+                $key     = 'set_bank_card_temp';
+                $pjaxurl = RC_Uri::url('user/profile/account_bind', array('type' => 'bank_card'));
+                $type    = 'user_bind_bank';
+            }
+
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CAPTCHA_SMS_CHECKCODE)->data(array('smscode' => $code, 'token' => $token, 'type' => $type))->run();
+            if (is_ecjia_error($data)) {
+                return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            } else {
                 $user_info = ecjia_touch_user::singleton()->getUserinfo();
 
-                $_SESSION['set_bank_card_temp'][$user_info['id']]['smscode'] = $code;
-                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/account_bind', array('type' => 'bank_card'))));
+                $_SESSION[$key][$user_info['id']]['smscode'] = $code;
+                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pjaxurl));
             }
         }
 
