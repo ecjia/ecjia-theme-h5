@@ -21,7 +21,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="ecjia-list list-short">
 			<li class="height-3">
 				<span class="icon-name margin-no-l">提现方式</span>
-				<span class="icon-price text-color p_r0"><img class="icon" src="{$theme_url}images/user_center/50x50weixin.png" />微信钱包</span>
+				<span class="icon-price text-color choose-div">
+                    <span class="choose_bank">
+                        {if $bank_info}
+                        <img class="icon" src="{$bank_info.bank_icon}" />{$bank_info.bank_name}
+                        {/if}
+                    </span>
+                    <input type="hidden" name="withdraw_type" value="{$bank_info.withdraw_type}" />
+                    <i class="iconfont icon-jiantou-right"></i>
+                </span>
 			</li>
 			<li class="height-5">
 				<span class="icon-name margin-no-l">￥</span>
@@ -46,5 +54,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<input class="btn btn-info" name="submit" type="submit" value="{t}立即提现{/t}" />
 	</div>
 </form>
+
+<input type="hidden" name="bank_list" value='{$bank_list}'>
 <!-- {/block} -->
 <!-- {/nocache} -->

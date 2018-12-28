@@ -4759,9 +4759,19 @@ footer {
 }
 
 .ecjia-user .ecjia-list.list-short li .icon {
-    width: 1.6em;
-    height: 1.6em;
-    margin-right: .5em;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+.ecjia-user .ecjia-list.list-short li .choose-div .icon-jiantou-right {
+    position: absolute;
+    color: #999;
+    font-weight: normal;
+    font-size: 1.5em;
+    line-height: 2em;
+    right: .4em;
+    top: -1px;
 }
 
 .ecjia-user .ecjia-list.list-short li+li::before {

@@ -32,7 +32,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<div class="two-btn">
 		<a href="{url path='user/account/recharge'}" class="btn nopjax external">{t}充值{/t}</a>
-		{if $user.wechat_is_bind eq 1}
+		{if $user.wechat_is_bind eq 1 || $user.bank_is_bind eq 1}
 		<a href="{url path='user/account/withdraw'}" class="btn ecjia-btn-e5 fnUrlReplace">{t}提现{/t}</a>
 		{else}
 		<a href="javascript:;" class="btn ecjia-btn-e5 withdraw-btn" data-url="{RC_Uri::url('user/profile/account_bind')}&type=wechat">{t}提现{/t}</a>

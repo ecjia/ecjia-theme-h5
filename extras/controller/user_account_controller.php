@@ -57,7 +57,7 @@ class user_account_controller
      */
     public static function init()
     {
-        $token = ecjia_touch_user::singleton()->getToken();
+        $token     = ecjia_touch_user::singleton()->getToken();
         $user_info = ecjia_touch_user::singleton()->getUserinfo();
 
         $cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name'];
@@ -72,6 +72,7 @@ class user_account_controller
         }
         ecjia_front::$controller->display('user_account_detail.dwt', $cache_id);
     }
+
     /**
      * 余额
      */
@@ -87,12 +88,13 @@ class user_account_controller
 
         ecjia_front::$controller->display('user_account_balance.dwt');
     }
+
     /**
      * 充值
      */
     public static function recharge()
     {
-        $token = ecjia_touch_user::singleton()->getToken();
+        $token     = ecjia_touch_user::singleton()->getToken();
         $user_info = ecjia_touch_user::singleton()->getUserinfo();
 
         $cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name'];
@@ -101,8 +103,8 @@ class user_account_controller
         if (!ecjia_front::$controller->is_cached('user_account_recharge.dwt', $cache_id)) {
             $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             $user = is_ecjia_error($user) ? array() : $user;
-            $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->run();
-            $pay = is_ecjia_error($pay) ? array() : $pay;
+            $pay  = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->run();
+            $pay  = is_ecjia_error($pay) ? array() : $pay;
 
             if (!empty($pay['payment'])) {
                 foreach ($pay['payment'] as $key => $val) {
@@ -120,8 +122,8 @@ class user_account_controller
                             unset($pay['payment'][$key]);
                         }
                         if ($val['pay_code'] == 'pay_wxpay') {
-                            $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($val['pay_code']);
-                            $open_id = $handler->getWechatOpenId();
+                            $handler                   = with(new Ecjia\App\Payment\PaymentPlugin)->channel($val['pay_code']);
+                            $open_id                   = $handler->getWechatOpenId();
                             $_SESSION['wxpay_open_id'] = $open_id;
                         }
                     }
@@ -150,10 +152,10 @@ class user_account_controller
      */
     public static function recharge_account()
     {
-        $amount = is_numeric($_POST['amount']) ? ($_POST['amount']) : '';
+        $amount     = is_numeric($_POST['amount']) ? ($_POST['amount']) : '';
         $payment_id = !empty($_POST['payment_id']) ? intval($_POST['payment_id']) : '';
         $account_id = !empty($_POST['account_id']) ? intval($_POST['account_id']) : '';
-        $token = ecjia_touch_user::singleton()->getToken();
+        $token      = ecjia_touch_user::singleton()->getToken();
 
         if (!empty($amount)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_DEPOSIT)->data(array('token' => $token, 'amount' => $amount, 'payment_id' => $payment_id, 'account_id' => $account_id))->run();
@@ -201,6 +203,32 @@ class user_account_controller
         $config = is_ecjia_error($config) ? array() : $config;
         ecjia_front::$controller->assign('config', $config);
 
+        $bank_list = [];
+        if ($user['bank_is_bind'] == 1) {
+            $bind_info = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO_BANKCARD)->data(array('token' => $token))->run();
+            $bind_info = is_ecjia_error($bind_info) ? [] : $bind_info;
+
+            $bank_card_str          = substr($bind_info['bank_card'], -4);
+            $bind_info['bank_name'] = $bind_info['bank_name'] . '(' . $bank_card_str . ')';
+
+            $bind_info['withdraw_type'] = 'bank';
+            $bank_list[]                = $bind_info;
+        }
+        if ($user['wechat_is_bind'] == 1) {
+            $theme_url   = RC_Theme::get_template_directory_uri() . '/';
+            $bank_list[] = [
+                'bank_name'     => '微信钱包',
+                'withdraw_type' => 'wechat',
+                'bank_icon'     => $theme_url . 'images/user_center/50x50weixin.png'
+            ];
+        }
+        if (!empty($bank_list)) {
+            $count_bank = count($bank_list);
+            ecjia_front::$controller->assign('bank_info', $bank_list[0]); //默认显示第一种
+
+            ecjia_front::$controller->assign('bank_list', json_encode($bank_list));
+        }
+
         ecjia_front::$controller->assign_title('提现');
         ecjia_front::$controller->display('user_account_wechat_withdraw.dwt');
     }
@@ -210,8 +238,10 @@ class user_account_controller
      */
     public static function withdraw_account()
     {
-        $amount = !empty($_POST['amount']) ? $_POST['amount'] : '';
-        $token = ecjia_touch_user::singleton()->getToken();
+        $amount       = !empty($_POST['amount']) ? $_POST['amount'] : '';
+        $token        = ecjia_touch_user::singleton()->getToken();
+        $note         = '';
+        $withdraw_way = trim($_POST['withdraw_type']);
 
         if (empty($amount)) {
             return ecjia_front::$controller->showmessage(__('请输入提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -233,13 +263,14 @@ class user_account_controller
 
         $config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
         $config = is_ecjia_error($config) ? array() : $config;
+
         $min_withdraw_amount = !empty($config['min_withdraw_amount']) ? $config['min_withdraw_amount'] : 1;
 
         if ($amount < $min_withdraw_amount) {
             return ecjia_front::$controller->showmessage('最低提现金额不能小于' . $config['formatted_min_withdraw_amount'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RAPLY)->data(array('token' => $token, 'amount' => $amount, 'note' => $note))->run();
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_WITHDRAW)->data(array('token' => $token, 'amount' => $amount, 'note' => $note, 'withdraw_way' => $withdraw_way))->run();
         if (is_ecjia_error($data)) {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
@@ -249,7 +280,7 @@ class user_account_controller
     //对会员余额申请的处理 提示页面
     public static function withdraw_account_notice()
     {
-        $token = ecjia_touch_user::singleton()->getToken();
+        $token     = ecjia_touch_user::singleton()->getToken();
         $user_info = ecjia_touch_user::singleton()->getUserinfo();
 
         $cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name'];
@@ -269,7 +300,7 @@ class user_account_controller
 
     public static function ajax_record()
     {
-        $type = '';
+        $type  = '';
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $token = ecjia_touch_user::singleton()->getToken();
@@ -277,18 +308,18 @@ class user_account_controller
         $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('token' => $token, 'pagination' => array('page' => $pages, 'count' => $limit), 'type' => $type))->hasPage()->run();
         if (!is_ecjia_error($account_list)) {
             list($data, $page) = $account_list;
-            $now_mon = RC_Time::local_date('Y-m', RC_Time::gmtime());
-            $now_day = RC_Time::local_date('Y-m-d', RC_Time::gmtime());
+            $now_mon  = RC_Time::local_date('Y-m', RC_Time::gmtime());
+            $now_day  = RC_Time::local_date('Y-m-d', RC_Time::gmtime());
             $now_year = RC_Time::local_date('Y', RC_Time::gmtime());
 
             $time = '';
             foreach ($data as $key => $val) {
                 if ($time != substr($val['add_time'], 0, 7)) {
                     $time = substr($val['add_time'], 0, 7);
-                    $day = substr($val['add_time'], 8, 2);
+                    $day  = substr($val['add_time'], 8, 2);
                 }
                 $arr[$time][$key] = $data[$key];
-                $day = substr($val['add_time'], 0, 10);
+                $day              = substr($val['add_time'], 0, 10);
 
                 if ($day == $now_day) {
                     $arr[$time][$key]['add_time'] = '今天' . substr($val['add_time'], 11, 5);
@@ -297,7 +328,7 @@ class user_account_controller
                 }
             }
             $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+            $user     = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             if (!is_ecjia_error($user) && !empty($user['avatar_img'])) {
                 $user_img = $user['avatar_img'];
             }
@@ -319,7 +350,7 @@ class user_account_controller
     /*提现列表*/
     public static function ajax_record_raply()
     {
-        $type = 'raply';
+        $type  = 'raply';
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $token = ecjia_touch_user::singleton()->getToken();
@@ -328,18 +359,18 @@ class user_account_controller
 
         if (!is_ecjia_error($account_list)) {
             list($data, $page) = $account_list;
-            $now_mon = RC_Time::local_date('Y-m', RC_Time::gmtime());
-            $now_day = RC_Time::local_date('Y-m-d', RC_Time::gmtime());
+            $now_mon  = RC_Time::local_date('Y-m', RC_Time::gmtime());
+            $now_day  = RC_Time::local_date('Y-m-d', RC_Time::gmtime());
             $now_year = RC_Time::local_date('Y', RC_Time::gmtime());
 
             $time = '';
             foreach ($data as $key => $val) {
                 if ($time != substr($val['add_time'], 0, 7)) {
                     $time = substr($val['add_time'], 0, 7);
-                    $day = substr($val['add_time'], 8, 2);
+                    $day  = substr($val['add_time'], 8, 2);
                 }
                 $arr[$time][$key] = $data[$key];
-                $day = substr($val['add_time'], 0, 10);
+                $day              = substr($val['add_time'], 0, 10);
 
                 if ($day == $now_day) {
                     $arr[$time][$key]['add_time'] = '今天' . substr($val['add_time'], 11, 5);
@@ -348,7 +379,7 @@ class user_account_controller
                 }
             }
             $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+            $user     = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             if (!is_ecjia_error($user) && !empty($user['avatar_img'])) {
                 $user_img = $user['avatar_img'];
             }
@@ -371,7 +402,7 @@ class user_account_controller
     /*充值列表*/
     public static function ajax_record_deposit()
     {
-        $type = 'deposit';
+        $type  = 'deposit';
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $token = ecjia_touch_user::singleton()->getToken();
@@ -380,18 +411,18 @@ class user_account_controller
 
         if (!is_ecjia_error($account_list)) {
             list($data, $page) = $account_list;
-            $now_mon = RC_Time::local_date('Y-m', RC_Time::gmtime());
-            $now_day = RC_Time::local_date('Y-m-d', RC_Time::gmtime());
+            $now_mon  = RC_Time::local_date('Y-m', RC_Time::gmtime());
+            $now_day  = RC_Time::local_date('Y-m-d', RC_Time::gmtime());
             $now_year = RC_Time::local_date('Y', RC_Time::gmtime());
 
             $time = '';
             foreach ($data as $key => $val) {
                 if ($time != substr($val['add_time'], 0, 7)) {
                     $time = substr($val['add_time'], 0, 7);
-                    $day = substr($val['add_time'], 8, 2);
+                    $day  = substr($val['add_time'], 8, 2);
                 }
                 $arr[$time][$key] = $data[$key];
-                $day = substr($val['add_time'], 0, 10);
+                $day              = substr($val['add_time'], 0, 10);
 
                 if ($day == $now_day) {
                     $arr[$time][$key]['add_time'] = '今天' . substr($val['add_time'], 11, 5);
@@ -400,7 +431,7 @@ class user_account_controller
                 }
             }
             $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
-            $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+            $user     = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             if (!is_ecjia_error($user) && !empty($user['avatar_img'])) {
                 $user_img = $user['avatar_img'];
             }
@@ -425,7 +456,7 @@ class user_account_controller
      */
     public static function record_info()
     {
-        $token = ecjia_touch_user::singleton()->getToken();
+        $token     = ecjia_touch_user::singleton()->getToken();
         $user_info = ecjia_touch_user::singleton()->getUserinfo();
 
         $account_id = !empty($_GET['account_id']) ? intval($_GET['account_id']) : 0;
@@ -454,11 +485,11 @@ class user_account_controller
      */
     public static function record_cancel()
     {
-        $account_id = !empty($_POST['account_id']) ? $_POST['account_id'] : '';
+        $account_id  = !empty($_POST['account_id']) ? $_POST['account_id'] : '';
         $record_type = !empty($_POST['record_type']) ? $_POST['record_type'] : '';
-        $submit = !empty($_POST['submit']) ? $_POST['submit'] : '';
-        $payment_id = !empty($_POST['payment_id']) ? $_POST['payment_id'] : '';
-        $token = ecjia_touch_user::singleton()->getToken();
+        $submit      = !empty($_POST['submit']) ? $_POST['submit'] : '';
+        $payment_id  = !empty($_POST['payment_id']) ? $_POST['payment_id'] : '';
+        $token       = ecjia_touch_user::singleton()->getToken();
 
         if ($submit == '取消') {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_CANCEL)->data(array('token' => $token, 'account_id' => $account_id))->run();
@@ -481,10 +512,10 @@ class user_account_controller
      */
     public static function recharge_again()
     {
-        $token = ecjia_touch_user::singleton()->getToken();
+        $token     = ecjia_touch_user::singleton()->getToken();
         $user_info = ecjia_touch_user::singleton()->getUserinfo();
-        $cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name'];
-        $cache_id = sprintf('%X', crc32($cache_id));
+        $cache_id  = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name'];
+        $cache_id  = sprintf('%X', crc32($cache_id));
 
         if (!ecjia_front::$controller->is_cached('user_account_recharge_again.dwt', $cache_id)) {
 
@@ -493,8 +524,8 @@ class user_account_controller
 
             $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             $user = is_ecjia_error($user) ? array() : $user;
-            $pay = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->run();
-            $pay = is_ecjia_error($pay) ? array() : $pay;
+            $pay  = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_PAYMENT)->run();
+            $pay  = is_ecjia_error($pay) ? array() : $pay;
             if (!empty($pay['payment'])) {
                 foreach ($pay['payment'] as $key => $val) {
                     if ($val['is_online'] == '0' || $val['pay_code'] == 'pay_balance') {
@@ -510,8 +541,8 @@ class user_account_controller
                             unset($pay['payment'][$key]);
                         }
                         if ($val['pay_code'] == 'pay_wxpay') {
-                            $handler = with(new Ecjia\App\Payment\PaymentPlugin)->channel($val['pay_code']);
-                            $open_id = $handler->getWechatOpenId();
+                            $handler                   = with(new Ecjia\App\Payment\PaymentPlugin)->channel($val['pay_code']);
+                            $open_id                   = $handler->getWechatOpenId();
                             $_SESSION['wxpay_open_id'] = $open_id;
                         }
                     }
@@ -526,7 +557,7 @@ class user_account_controller
 
             //获取对应的pay_code,判断是否支持
             $payment_info = with(new Ecjia\App\Payment\PaymentPlugin)->getPluginDataById($_GET['payment_id']);
-            $pay_code = $payment_info['pay_code'];
+            $pay_code     = $payment_info['pay_code'];
 
             foreach ($pay['payment'] as $key => $val) {
                 if (in_array($pay_code, $val)) {
@@ -558,7 +589,7 @@ class user_account_controller
     {
         $account_id = intval($_POST['account_id']);
         $payment_id = intval($_POST['pay_id']);
-        $token = ecjia_touch_user::singleton()->getToken();
+        $token      = ecjia_touch_user::singleton()->getToken();
 
         if (empty($payment_id)) {
             return ecjia_front::$controller->showmessage(__('请选择支付方式'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);

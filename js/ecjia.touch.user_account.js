@@ -12,6 +12,7 @@
 			ecjia.touch.user_account.withdraw_all();
 			ecjia.touch.user_account.widthDrawFormSubmit();
 			ecjia.touch.user_account.widthBtn();
+            ecjia.touch.user_account.choose_bank();
 		},
 
 		wxpay_user_account: function () {
@@ -305,9 +306,77 @@
 				});
 				return false;
 			});
-		}
+		},
+
+        //选择银行
+        choose_bank: function () {
+            var App = new Framework7();
+            var list = eval($('input[name="bank_list"]').val());
+            var id_list = [];
+            var value_list = [];
+            if (list == undefined) {
+                return false;
+            }
+
+            for (i = 0; i < list.length; i++) {
+                var id = list[i]['withdraw_type'];
+                var value = "<img style='margin-right:5px;' src="+ list[i]['bank_icon'] +" width='25' height='25' >" + list[i]['bank_name'];
+                id_list.push(id);
+                value_list.push(value);
+            };
+            var pickerStreetToolbar = App.picker({
+                input: '.choose_bank',
+                cssClass: 'choose_bank_modal',
+                toolbarTemplate: '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                    '<div class="left">' +
+                    '<a href="javascript:;" class="link close-picker external">取消</a>' +
+                    '</div>' +
+                    '<div class="right">' +
+                    '<a href="javascript:;" class="link save-picker external">确定</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>',
+                cols: [{
+                    values: id_list,
+                    displayValues: value_list
+                }, ],
+                onOpen: function (picker) {
+                    var $pick_overlay = '<div class="picker-modal-overlay"></div>';
+                    if ($('.picker-modal').hasClass('modal-in')) {
+                        $('.picker-modal').after($pick_overlay);
+                    }
+                    var current_id = $('input[name="withdraw_type"]').val();
+                    if (current_id != undefined && current_id != '') {
+                        picker.setValue([current_id]); //设置选中值
+                    }
+
+                    picker.container.find('.save-picker').on('click', function () {
+                        var value = picker.cols[0].container.find('.picker-selected').html();
+                        var id = picker.cols[0].container.find('.picker-selected').attr('data-picker-value');
+                        $('.choose_bank').html(value);
+                        $('input[name="withdraw_type"]').val(id);
+                        picker.close();
+                        remove_overlay();
+                    });
+                    picker.container.find('.close-picker').on('click', function () {
+                        picker.close();
+                        remove_overlay();
+                    });
+                },
+                onClose: function (picker) {
+                    picker.close();
+                    remove_overlay();
+                }
+            });
+        },
 
 	};
+
+    function remove_overlay() {
+        $('.modal-overlay').remove();
+        $('.picker-modal-overlay').remove();
+    }
 })(ecjia, jQuery);
 
 //end
