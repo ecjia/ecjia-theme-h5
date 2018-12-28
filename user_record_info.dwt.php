@@ -10,8 +10,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="footer"} -->
 <script type="text/javascript">
-ecjia.touch.user_account.init();
-ecjia.touch.user.record_cancel();
+    ecjia.touch.user_account.init();
+    ecjia.touch.user.record_cancel();
 </script>
 <!-- {/block} -->
 
@@ -36,43 +36,48 @@ ecjia.touch.user.record_cancel();
         <p class="record-val">{$sur_amount.formatted_pay_fee}</p>
         <p class="record-key">手续费用</p>
 
-        <p class="record-val">{if $sur_amount.payment_name}{$sur_amount.payment_name}{else}银行转账{/if}</p>
+        <p class="record-val">
+            <!-- {if $sur_amount.pay_code eq 'pay_bank'} -->
+                {if $sur_amount.formated_pay_name}{$sur_amount.formated_pay_name}{else}银行转账{/if}
+            <!-- {else} -->
+                {if $sur_amount.pay_name}{$sur_amount.pay_name}{else}银行转账{/if}
+            <!-- {/if} -->
+        </p>
         <p class="record-key">{if $sur_amount.type eq 'withdraw'}提现方式{else}充值方式{/if}</p>
 
         <p class="record-val">{$sur_amount.add_time}</p>
         <p class="record-key">{if $sur_amount.type eq 'withdraw'}申请时间{else}充值时间{/if}</p>
 
     </div>
-	{if $sur_amount.pay_status eq '已完成'}
+    {if $sur_amount.pay_status eq '已完成'}
     {elseif $sur_amount.pay_status eq ''}
     {else}
-        <form class="ecjia-form" name="useraccountForm" action="{url path='user/account/recharge_account'}" method="post" >
+    <form class="ecjia-form" name="useraccountForm" action="{url path='user/account/recharge_account'}" method="post">
         {if $sur_amount.type eq 'deposit'}
-            <div class="two-btn btn-bottom">
-                <input name="record_type" type="hidden" value={$sur_amount.type} />
-                <input name="account_id" type="hidden" value={$sur_amount.account_id}>
-                <input name="payment_id" type="hidden" value={$sur_amount.payment_id} />
-                <input name="amount" type="hidden" value={$sur_amount.amount} />
-                <input name="brownser_wx" type="hidden" value="{$brownser_wx}" />
-                <input name="brownser_other" type="hidden" value="{$brownser_other}" />
-                
-        		<input class="btn ecjia-fl btn-c" id="record_cancel" name="record_cancel" data-url="{url path='user/account/record_cancel'}" type="button" value="{t}取消{/t}" />
-        		
-        		<a  class="btn ecjiaf-fr ecjia-fl nopjax external" href="{RC_Uri::url('user/account/recharge_again')}&format_amount={$sur_amount.format_amount}&order_sn={$sur_amount.order_sn}&account_id={$sur_amount.account_id}&payment_id={$sur_amount.payment_id}" >{t}继续充值{/t}</a>
-        		
-        	</div>
+        <div class="two-btn btn-bottom">
+            <input name="record_type" type="hidden" value={$sur_amount.type}/>
+            <input name="account_id" type="hidden" value={$sur_amount.account_id}>
+            <input name="payment_id" type="hidden" value={$sur_amount.payment_id}/>
+            <input name="amount" type="hidden" value={$sur_amount.amount}/>
+            <input name="brownser_wx" type="hidden" value="{$brownser_wx}"/>
+            <input name="brownser_other" type="hidden" value="{$brownser_other}"/>
+
+            <input class="btn ecjia-fl btn-c" id="record_cancel" name="record_cancel" data-url="{url path='user/account/record_cancel'}" type="button" value="{t}取消{/t}"/>
+
+            <a class="btn ecjiaf-fr ecjia-fl nopjax external" href="{RC_Uri::url('user/account/recharge_again')}&format_amount={$sur_amount.format_amount}&order_sn={$sur_amount.order_sn}&account_id={$sur_amount.account_id}&payment_id={$sur_amount.payment_id}">{t}继续充值{/t}</a>
+        </div>
         {else}
-            <div class="two-btn btn-bottom">
-                <div class="info">
-                    <p class="apply-img"></p>
-                    <p class="apply">已申请</p>
-                </div>
-                <input name="record_type" type="hidden" value={$sur_amount.type} />
-                <input name="account_id" type="hidden" value={$sur_amount.account_id}>
-                <input class="btn ecjiaf-fr ecjia-fl" id="record_cancel" name="record_cancel" data-url="{url path='user/account/record_cancel'}" type="button" value="{t}取消{/t}" />
-        	</div>	
-        {/if}	
-        </form>
-	{/if}
+        <div class="two-btn btn-bottom">
+            <div class="info">
+                <p class="apply-img"></p>
+                <p class="apply">已申请</p>
+            </div>
+            <input name="record_type" type="hidden" value={$sur_amount.type}/>
+            <input name="account_id" type="hidden" value={$sur_amount.account_id}>
+            <input class="btn ecjiaf-fr ecjia-fl" id="record_cancel" name="record_cancel" data-url="{url path='user/account/record_cancel'}" type="button" value="{t}取消{/t}"/>
+        </div>
+        {/if}
+    </form>
+    {/if}
 </div>
 <!-- {/block} -->
