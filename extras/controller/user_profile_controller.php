@@ -82,6 +82,11 @@ class user_profile_controller
         }
         ecjia_front::$controller->assign('is_weixin', $is_weixin);
 
+        $list = user_function::get_userInfo_bankcard();
+
+        $available_withdraw_way = !empty($list['available_withdraw_way']) ? $list['available_withdraw_way'] : [];
+        ecjia_front::$controller->assign('available_withdraw_way', $available_withdraw_way);
+
         ecjia_front::$controller->display('user_profile.dwt');
     }
 
@@ -188,8 +193,43 @@ class user_profile_controller
         ecjia_front::$controller->display('user_modify_password.dwt');
     }
 
+    //提现账户
+    public static function withdraw()
+    {
+        $list = user_function::get_userInfo_bankcard();
+
+        ecjia_front::$controller->assign('list', $list);
+
+        $user_binded_list = !empty($list['user_binded_list']) ? $list['user_binded_list'] : [];
+
+        $bind_list = [];
+        $type_list = [];
+        if (!empty($user_binded_list)) {
+            foreach ($user_binded_list as $k => $v) {
+                $bind_list[$v['bank_type']] = $v;
+                $type_list[]                = $v['bank_type'];
+            }
+        }
+
+        $available_withdraw_way = !empty($list['available_withdraw_way']) ? $list['available_withdraw_way'] : [];
+
+        if (!empty($available_withdraw_way)) {
+            foreach ($available_withdraw_way as $k => $v) {
+                if (in_array($v['bank_type'], $type_list)) {
+                    $available_withdraw_way[$k]['bind_info'] = $bind_list[$v['bank_type']];
+                }
+            }
+        }
+        
+        ecjia_front::$controller->assign('available_withdraw_way', $available_withdraw_way);
+
+        ecjia_front::$controller->assign_title('提现账户');
+
+        ecjia_front::$controller->display('user_withdraw.dwt');
+    }
+
     /**
-     * 修改密码页面
+     * 绑定信息页面
      */
     public static function account_bind()
     {
@@ -206,33 +246,42 @@ class user_profile_controller
         $form_url = RC_Uri::url('user/profile/check_code');
 
         if ($type == 'mobile') {
-            ecjia_front::$controller->assign('type', 'mobile');
             $title = '绑定手机';
         } else if ($type == 'email') {
-            ecjia_front::$controller->assign('type', 'email');
             $title = '绑定邮箱';
-        } else if ($type == 'wechat') {
-            ecjia_front::$controller->assign('type', 'wechat');
-            $title = '绑定微信';
-        } else if ($type == 'bank_card') {
-            ecjia_front::$controller->assign('type', 'bank_card');
-            $title = '绑定银行卡';
+        } else if ($type == 'bank' || $type == 'wechat') {
 
-            $bank_list = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_BANK)->run();
-            ecjia_front::$controller->assign('bank_list', json_encode($bank_list));
-
-            //已绑定银行卡获取绑定信息
-            if ($user['bank_is_bind'] == 1) {
-                $bind_info = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO_BANKCARD)->data(array('token' => $token))->run();
-                $bind_info = is_ecjia_error($bind_info) ? [] : $bind_info;
-
-                ecjia_front::$controller->assign('bind_info', $bind_info);
+            if ($type == 'bank') {
+                $title = '绑定银行卡';
+            } elseif ($type == 'wechat') {
+                $title = '绑定微信钱包提现';
             }
-            $form_url = RC_Uri::url('user/profile/bind_card');
+            $form_url = RC_Uri::url('user/profile/bind_withdraw');
+
+            //获取用户已绑定的提现方式及网站支持的提现方式
+            $list = user_function::get_userInfo_bankcard();
+
+            $user_binded_list = !empty($list['user_binded_list']) ? $list['user_binded_list'] : [];
+
+            $bind_info = [];
+            if (!empty($user_binded_list)) {
+                foreach ($user_binded_list as $k => $v) {
+                    if ($type == $v['bank_type']) {
+                        $bind_info = $v;
+                    }
+                }
+            }
+            ecjia_front::$controller->assign('bind_info', $bind_info);
+
+            //用户提现所支持的银行
+            $bank_list = ecjia_touch_manager::make()->api(ecjia_touch_api::WITHDRAW_BANKS)->run();
+            $bank_list = is_ecjia_error($bank_list) ? [] : $bank_list;
+
+            ecjia_front::$controller->assign('bank_list', json_encode($bank_list));
         }
+        ecjia_front::$controller->assign('type', $type);
 
         ecjia_front::$controller->assign_title($title);
-
         ecjia_front::$controller->assign('form_url', $form_url);
 
         if (!empty($status)) {
@@ -257,11 +306,13 @@ class user_profile_controller
 
         //获取设置支付密码验证码
         $type = trim($_GET['type']);
-        if (!empty($mobile) && ($type == 'set_paypass' || $type == 'bank_card')) {
+        if (!empty($mobile) && ($type == 'set_paypass' || $type == 'bank' || $type == 'wechat' || $type == 'user_unbind_connect')) {
             if ($type == 'set_paypass') {
                 $type = 'user_modify_paypassword';
-            } elseif ($type == 'bank_card') {
+            } elseif ($type == 'bank') {
                 $type = 'user_bind_bank';
+            } elseif ($type == 'wechat') {
+                $type = 'user_bind_wewallet';
             }
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CAPTCHA_SMS)->data(array('token' => $token, 'type' => $type, 'mobile' => $mobile))->run();
             if (is_ecjia_error($data)) {
@@ -355,16 +406,16 @@ class user_profile_controller
         $type  = !empty($_POST['type']) ? $_POST['type'] : '';
         $token = ecjia_touch_user::singleton()->getToken();
 
-        if (!empty($code) && ($type == 'set_paypass' || $type == 'bank_card')) {
+        if (!empty($code) && ($type == 'set_paypass' || $type == 'bank')) {
             //验证设置支付密码验证码
             if ($type == 'set_paypass') {
                 $key     = 'set_paypass_temp';
                 $pjaxurl = RC_Uri::url('user/profile/set_pay_pass');
                 $type    = 'user_modify_paypassword';
 
-            } elseif ($type == 'bank_card') {
+            } elseif ($type == 'bank') {
                 $key     = 'set_bank_card_temp';
-                $pjaxurl = RC_Uri::url('user/profile/account_bind', array('type' => 'bank_card'));
+                $pjaxurl = RC_Uri::url('user/profile/account_bind', array('type' => 'bank'));
                 $type    = 'user_bind_bank';
             }
 
@@ -400,76 +451,144 @@ class user_profile_controller
         $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
         $user = !is_ecjia_error($user) ? $user : array();
 
-        $type = !empty($_GET['type']) ? trim($_GET['type']) : '';
         ecjia_front::$controller->assign('user', $user);
+
+        $type = !empty($_GET['type']) ? trim($_GET['type']) : '';
+        ecjia_front::$controller->assign('type', $type);
+
+        $form_url = '';
         if ($type == 'mobile') {
-            ecjia_front::$controller->assign('type', 'mobile');
             $title = '更换手机号';
         } else if ($type == 'email') {
-            ecjia_front::$controller->assign('type', 'email');
             $title = '更换邮箱';
         } else if ($type == 'wechat') {
-            ecjia_front::$controller->assign('type', 'wechat');
             $title = '解除绑定';
-        } else if ($type == 'bank_card') {
-            ecjia_front::$controller->assign('type', 'bank_card');
+
+            $form_url = RC_Uri::url('user/profile/unbind_wechat');
+        } else if ($type == 'bank') {
             $title = '编辑银行卡';
         }
 
         ecjia_front::$controller->assign_title($title);
+        ecjia_front::$controller->assign('form_url', $form_url);
 
         ecjia_front::$controller->display('user_bind_info.dwt');
     }
 
-    //解绑微信账号
-    public static function unbind_wechat()
+    //删除提现方式/解绑
+    public static function unbind_withdraw()
     {
-        //TODO微信解绑
-        return ecjia_front::$controller->showmessage('解绑成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('user/profile/account_bind', array('type' => 'wechat'))));
+        $token = ecjia_touch_user::singleton()->getToken();
+        $type  = trim($_GET['type']);
 
-        return ecjia_front::$controller->showmessage('解绑失败', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        if ($type == 'wechat' || $type == 'bank') {
+            $id = intval($_GET['id']);
+
+            if (empty($id)) {
+                return ecjia_front::$controller->showmessage('该提现方式不存在', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+
+            $param  = array('token' => $token, 'id' => $id);
+            $result = ecjia_touch_manager::make()->api(ecjia_touch_api::WITHDRAW_BANKCARD_DELETE)->data($param)->run();
+            if (is_ecjia_error($result)) {
+                return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+
+            return ecjia_front::$controller->showmessage('删除成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/account_bind', array('type' => $type))));
+        }
     }
 
-    //绑定银行卡
-    public static function bind_card()
+    //解绑微信
+    public static function unbind_wechat()
     {
-        $token         = ecjia_touch_user::singleton()->getToken();
-        $card_name     = trim($_POST['card_name']);
-        $bank_en_short = trim($_POST['bank_en_short']);
-        $bank_name     = trim($_POST['bank_name']);
-        $bank_number   = trim($_POST['bank_number']);
+        $token = ecjia_touch_user::singleton()->getToken();
 
-        if (empty($card_name)) {
-            return ecjia_front::$controller->showmessage('请输入持卡人姓名', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-        }
-        if (empty($bank_en_short)) {
-            return ecjia_front::$controller->showmessage('请选择所属银行', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-        }
-        if (empty($bank_name)) {
-            return ecjia_front::$controller->showmessage('请输入开户行', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-        }
-        if (empty($bank_number)) {
-            return ecjia_front::$controller->showmessage('请输入银行卡号', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        $smscode = trim($_POST['smscode']);
+        if (empty($smscode)) {
+            return ecjia_front::$controller->showmessage('请输入验证码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
-        $user_info = ecjia_touch_user::singleton()->getUserinfo();
-        $code      = $_SESSION['set_bank_card_temp'][$user_info['id']]['smscode'];
+        $param  = array('token' => $token, 'connect_code' => 'sns_wechat', 'smscode' => $smscode);
+        $result = ecjia_touch_manager::make()->api(ecjia_touch_api::CONNECT_UNBIND)->data($param)->run();
+        if (is_ecjia_error($result)) {
+            return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+        return ecjia_front::$controller->showmessage('解绑成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/account_bind', array('type' => 'wechat'))));
+    }
 
-        $param = array(
-            'token'            => $token,
-            'smscode'          => $code,
-            'cardholder'       => $card_name,
-            'bank_branch_name' => $bank_name,
-            'bank_card'        => $bank_number,
-            'bank_en_short'    => $bank_en_short
-        );
+    //绑定提现方式
+    public static function bind_withdraw()
+    {
+        $token   = ecjia_touch_user::singleton()->getToken();
+        $type    = trim($_POST['type']);
+        $smscode = trim($_POST['smscode']);
 
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_BANK_BIND)->data($param)->run();
-        if (is_ecjia_error($data)) {
-            return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        //绑定银行卡
+        if ($type == 'bank') {
+            $card_name     = trim($_POST['card_name']);
+            $bank_en_short = trim($_POST['bank_en_short']);
+            $bank_name     = trim($_POST['bank_name']);
+            $bank_number   = trim($_POST['bank_number']);
+
+            if (empty($card_name)) {
+                return ecjia_front::$controller->showmessage('请输入持卡人姓名', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+            if (empty($bank_en_short)) {
+                return ecjia_front::$controller->showmessage('请选择所属银行', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+            if (empty($bank_name)) {
+                return ecjia_front::$controller->showmessage('请输入开户行', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+            if (empty($bank_number)) {
+                return ecjia_front::$controller->showmessage('请输入银行卡号', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+            if (empty($smscode)) {
+                return ecjia_front::$controller->showmessage('请输入手机验证码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+
+            $param = array(
+                'token'            => $token,
+                'smscode'          => $smscode,
+                'cardholder'       => $card_name,
+                'bank_branch_name' => $bank_name,
+                'bank_card'        => $bank_number,
+                'bank_en_short'    => $bank_en_short
+            );
+
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::WITHDRAW_BANKCARD_BIND)->data($param)->run();
+            if (is_ecjia_error($data)) {
+                return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+
+            return ecjia_front::$controller->showmessage('绑定成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/account_bind', array('type' => 'bank'))));
         }
 
-        return ecjia_front::$controller->showmessage('绑定成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/account_bind', array('type' => 'bank_card'))));
+        //绑定微信真实姓名
+        if ($type == 'wechat') {
+            $real_name = trim($_POST['real_name']);
+
+            if (empty($real_name)) {
+                return ecjia_front::$controller->showmessage('请输入微信认证的真实姓名', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+
+            if (empty($smscode)) {
+                return ecjia_front::$controller->showmessage('请输入手机验证码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+
+            $param = array(
+                'token'     => $token,
+                'real_name' => $real_name,
+                'smscode'   => $smscode
+            );
+
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::WITHDRAW_WECHAT_WALLET_BIND)->data($param)->run();
+            if (is_ecjia_error($data)) {
+                return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+
+            return ecjia_front::$controller->showmessage('绑定成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/account_bind', array('type' => 'wechat'))));
+        }
+
     }
 
     //验证设置支付密码手机号 验证码
@@ -578,6 +697,7 @@ class user_profile_controller
 
     }
 
+    //注销/激活账号 验证短信验证码
     public static function check_mobile()
     {
         $token = ecjia_touch_user::singleton()->getToken();
@@ -600,6 +720,7 @@ class user_profile_controller
         }
     }
 
+    //确认注销账号
     public static function confirm_cancel_account()
     {
         $code = trim($_POST['value']);
@@ -616,6 +737,7 @@ class user_profile_controller
         }
     }
 
+    //确认激活账号
     public static function confirm_activate_account()
     {
         $code = trim($_POST['value']);
@@ -632,18 +754,7 @@ class user_profile_controller
         }
     }
 
-    public static function withdraw()
-    {
-        $token = ecjia_touch_user::singleton()->getToken();
-        $user  = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
-        $user  = is_ecjia_error($user) ? [] : $user;
-
-        ecjia_front::$controller->assign('user', $user);
-        ecjia_front::$controller->assign_title('提现管理');
-
-        ecjia_front::$controller->display('user_withdraw.dwt');
-    }
-
+    //注销/激活手机号 输短信验证码页
     public static function check_user_mobile()
     {
         $token     = ecjia_touch_user::singleton()->getToken();

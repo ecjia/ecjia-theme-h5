@@ -876,7 +876,6 @@ class user_order_controller
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::GROUPBUY_ORDER_LIST)->data($params_order)->run();
         $data = is_ecjia_error($data) ? array() : $data;
 
-        ecjia_front::$controller->assign('type', $type);
         ecjia_front::$controller->assign('order_list', $data);
 
         $title = '我的团购';

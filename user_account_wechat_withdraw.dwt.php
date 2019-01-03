@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                         <img class="icon" src="{$bank_info.bank_icon}" />{$bank_info.bank_name}
                         {/if}
                     </span>
-                    <input type="hidden" name="withdraw_type" value="{$bank_info.withdraw_type}" />
+                    <input type="hidden" name="bank_type" value="{$bank_info.bank_type}" />
                     <i class="iconfont icon-jiantou-right"></i>
                 </span>
 			</li>

@@ -5,6 +5,9 @@
 (function (ecjia, $) {
 	ecjia.touch.user = {
 		init: function () {
+			var InterValObj; //timer变量，控制时间
+			window.clearInterval(InterValObj); //停止计时器
+			
 			ecjia.touch.user.ecjia_login();
 			ecjia.touch.user.ecjia_logout();
 			ecjia.touch.user.show_goods_list_click();
@@ -25,8 +28,8 @@
 			ecjia.touch.user.affiliate();
 			ecjia.touch.user.resend_sms();
 			ecjia.touch.user.cancel_account();
-            ecjia.touch.user.unbind_wechat();
             ecjia.touch.user.choose_bank();
+            ecjia.touch.user.delete_withdraw();
 
 			$(function () {
 				$(".del").click(function () {
@@ -225,7 +228,7 @@
 				});
 			});
 
-			var InterValObj; //timer变量，控制时间
+			
 			var count = 60; //间隔函数，1秒执行
 			var curCount; //当前剩余秒数
 			curCount = count;
@@ -324,7 +327,6 @@
 
 		/* 注册验证码 */
 		get_code: function () {
-			var InterValObj; //timer变量，控制时间
 			var count = 60; //间隔函数，1秒执行
 			var curCount; //当前剩余秒数
 			$('#get_code').off('click').on('click', function (e) {
@@ -563,8 +565,9 @@
 				ajaxPost: true,
 				callback: function (data) {
 					if (data.state == 'success') {
+                        window.clearInterval(InterValObj); //停止计时器
 						iosOverlay({
-							text: "绑定成功！",
+							text: data.message,
 							duration: 2e3,
 						});
 						// ecjia.touch.showmessage(data);
@@ -721,6 +724,43 @@
 					remove_overlay();
 				}
 			});
+		},
+
+        delete_withdraw: function () {
+            $('.delete_withdraw').off('click').on('click', function (e) {
+                e.preventDefault();
+                var myApp = new Framework7();
+                var $this = $(this),
+					url = $this.attr('data-url'),
+               		msg = $this.attr('data-msg');
+
+                myApp.modal({
+                    title: msg,
+                    buttons: [{
+                        text: '取消',
+                    }, {
+                        text: '确定',
+                        onClick: function () {
+                            $.post(url, function (data) {
+                                if (data.state == 'error') {
+                                    iosOverlay({
+                                        text: data.message,
+                                        duration: 2e3,
+                                    });
+                                    return false;
+								}
+                                iosOverlay({
+                                    text: "删除成功！",
+                                    duration: 2e3,
+                                });
+                                ecjia.pjax(data.pjaxurl, function () {}, {
+                                    replace: true
+                                });
+                            });
+                        },
+                    }]
+                });
+            });
 		},
 
 		return_order: function () {
@@ -1032,7 +1072,6 @@
 		},
 
 		affiliate: function () {
-			var InterValObj; //timer变量，控制时间
 			var count = 60; //间隔函数，1秒执行
 			var curCount; //当前剩余秒数
 
@@ -1266,49 +1305,6 @@
 			}
 
             $('.lefttime').yomi();
-		},
-
-		//解除绑定
-        unbind_wechat: function() {
-            $('.unbind_wechat').off('click').on('click', function () {
-                var myApp = new Framework7();
-                var $this = $(this),
-					url = $this.attr('data-url');
-				if ($this.hasClass('disabled')) {
-					return false;
-				}
-                $this.addClass('disabled');
-                myApp.modal({
-                    title: '',
-                    text: '您确定要解绑该微信账号吗？',
-                    buttons: [{
-                        text: '取消',
-                        onClick: function () {
-                            $this.removeClass('disabled');
-                            $('.modal').remove();
-                            $('.modal-overlay').remove();
-                            return false;
-                        }
-                    }, {
-                        text: '确定',
-                        onClick: function () {
-							$.post(url, function(data) {
-                                $this.removeClass('disabled');
-                                if (data.state == 'error') {
-                                    alert(data.message);
-                                    return false;
-								}
-                                alert(data.message);
-                                var url = data.url;
-                                ecjia.pjax(url, function () {}, {
-                                    replace: true
-                                });
-							})
-                        }
-                    }, ]
-                });
-                return false;
-            });
 		},
 
 		//选择银行

@@ -36,28 +36,56 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     </div>
 </div>
 {elseif $type eq 'wechat'}
-<div class="ecjia-check-info">
-    <div class="bind-info">
-        <p>
-            <!--{if $user.wechat_is_bind eq 1}-->
-                <!--{if $user.wechat_nickname}-->
-                    已绑：<!--{$user.wechat_nickname}-->
+
+<form class="ecjia-user ecjia-form ecjia-user-no-border-b" name="accountBind" action="{$form_url}" method="post">
+    <div class="ecjia-check-info">
+        <div class="bind-info">
+            <p>
+                <!--{if $user.wechat_is_bind eq 1}-->
+                    <!--{if $user.wechat_nickname}-->
+                        已绑：<!--{$user.wechat_nickname}-->
+                    <!--{else}-->
+                        已绑定
+                    <!--{/if}-->
                 <!--{else}-->
-                    已绑定
+                    暂未绑定
                 <!--{/if}-->
+            </p>
+        </div>
+
+        {if $user.wechat_is_bind eq 1}
+        <div class="ecjia-input">
+            <div class="input-li b_b b_t">
+                {if $user.mobile_phone}
+                <span class="input-fl">手机号码</span>
+                <span class="mobile_phone">{$user.mobile_phone}</span>
+                <input class="get_code" type="button" id="get_code" value="获取验证码" data-url="{url path='user/profile/get_code'}&type=user_unbind_connect" />
+                <input type="hidden" name="mobile" value="{$user.mobile_phone}" />
+                {else}
+                <span class="input-fl">手机号码</span>
+                <span class="mobile_phone">请先去绑定手机号</span>
+                <div class="bind_notice"><a class="external nopjax" href="{RC_Uri::url('user/profile/account_bind')}&type=mobile">去绑定</a></div>
+                {/if}
+            </div>
+
+            <div class="input-li">
+                <span class="input-fl">验证码</span>
+                <input class="text_left" type="text" name="smscode" placeholder="请输入手机验证码" value=""/>
+            </div>
+        </div>
+        {/if}
+
+        <div class="ecjia-margin-t2">
+            <!--{if $user.wechat_is_bind eq 1}-->
+            <input class="btn btn-info" name="submit" type="submit" value="解绑微信">
             <!--{else}-->
-                暂未绑定
+            <a class="btn btn-info nopjax external" href='{url path="connect/index/authorize" args="connect_code=sns_wechat"}'>去绑定</a>
             <!--{/if}-->
-        </p>
+        </div>
     </div>
-    <div>
-        <!--{if $user.wechat_is_bind eq 1}-->
-        <a class="btn btn-info unbind_wechat" href="javascript:;" data-url="{RC_Uri::url('user/profile/unbind_wechat')}">解除绑定</a>
-        <!--{else}-->
-        <a class="btn btn-info nopjax external" href='{url path="connect/index/authorize" args="connect_code=sns_wechat"}'>去绑定</a>
-        <!--{/if}-->
-    </div>
-</div>
+    <input type="hidden" name="type" value="unbind_wechat">
+</form>
+
 {/if}
 <!-- {/block} -->
 

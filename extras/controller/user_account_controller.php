@@ -86,6 +86,30 @@ class user_account_controller
         ecjia_front::$controller->assign_title('账户余额');
         ecjia_front::$controller->assign('user', $user);
 
+        //判断用户是否有提现方式
+        $has_withdraw_method = false;
+
+        $list             = user_function::get_userInfo_bankcard();
+        $user_binded_list = !empty($list['user_binded_list']) ? $list['user_binded_list'] : [];
+        $type_list        = [];
+
+        if (!empty($user_binded_list)) {
+            foreach ($user_binded_list as $k => $v) {
+                $type_list[] = $v['bank_type'];
+            }
+        }
+
+        $available_withdraw_way = !empty($list['available_withdraw_way']) ? $list['available_withdraw_way'] : [];
+
+        if (!empty($available_withdraw_way)) {
+            foreach ($available_withdraw_way as $k => $v) {
+                if (in_array($v['bank_type'], $type_list)) {
+                    $has_withdraw_method = true;
+                }
+            }
+        }
+        ecjia_front::$controller->assign('has_withdraw_method', $has_withdraw_method);
+
         ecjia_front::$controller->display('user_account_balance.dwt');
     }
 
@@ -203,31 +227,8 @@ class user_account_controller
         $config = is_ecjia_error($config) ? array() : $config;
         ecjia_front::$controller->assign('config', $config);
 
-        $bank_list = [];
-        if ($user['bank_is_bind'] == 1) {
-            $bind_info = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO_BANKCARD)->data(array('token' => $token))->run();
-            $bind_info = is_ecjia_error($bind_info) ? [] : $bind_info;
-
-            $bank_card_str          = substr($bind_info['bank_card'], -4);
-            $bind_info['bank_name'] = $bind_info['bank_name'] . ' (' . $bank_card_str . ')';
-
-            $bind_info['withdraw_type'] = 'bank';
-            $bank_list[]                = $bind_info;
-        }
-        if ($user['wechat_is_bind'] == 1) {
-            $theme_url   = RC_Theme::get_template_directory_uri() . '/';
-            $bank_list[] = [
-                'bank_name'     => '微信钱包',
-                'withdraw_type' => 'wechat',
-                'bank_icon'     => $theme_url . 'images/user_center/50x50weixin.png'
-            ];
-        }
-        if (!empty($bank_list)) {
-            $count_bank = count($bank_list);
-            ecjia_front::$controller->assign('bank_info', $bank_list[0]); //默认显示第一种
-
-            ecjia_front::$controller->assign('bank_list', json_encode($bank_list));
-        }
+        $available_withdraw_list = user_function::get_user_available_withdraw_way();
+        ecjia_front::$controller->assign('bank_list', json_encode($available_withdraw_list));
 
         ecjia_front::$controller->assign_title('提现');
         ecjia_front::$controller->display('user_account_wechat_withdraw.dwt');
@@ -241,7 +242,17 @@ class user_account_controller
         $amount       = !empty($_POST['amount']) ? $_POST['amount'] : '';
         $token        = ecjia_touch_user::singleton()->getToken();
         $note         = '';
-        $withdraw_way = trim($_POST['withdraw_type']);
+        $withdraw_way = trim($_POST['bank_type']);
+
+        //检查是否设置微信真实姓名
+        if ($withdraw_way == 'wechat') {
+            $result = user_function::check_user_wechat_name();
+            if (!$result) {
+                return ecjia_front::$controller->showmessage('您还未设置微信提现的真实姓名', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('url' => RC_Uri::url('user/profile/account_bind', array('type' => 'wechat'))));
+            }
+        }
+
+        return ecjia_front::$controller->showmessage('您还未设置微信提现的真实姓名', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('url' => RC_Uri::url('user/profile/account_bind', array('type' => 'wechat'))));
 
         if (empty($amount)) {
             return ecjia_front::$controller->showmessage(__('请输入提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -270,7 +281,9 @@ class user_account_controller
             return ecjia_front::$controller->showmessage('最低提现金额不能小于' . $config['formatted_min_withdraw_amount'], ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_WITHDRAW)->data(array('token' => $token, 'amount' => $amount, 'note' => $note, 'withdraw_way' => $withdraw_way))->run();
+        $param = array('token' => $token, 'amount' => $amount, 'note' => $note, 'withdraw_way' => $withdraw_way);
+
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_WITHDRAW)->data($param)->run();
         if (is_ecjia_error($data)) {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
@@ -463,11 +476,16 @@ class user_account_controller
 
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD_DETAIL)->data(array('token' => $token, 'account_id' => $account_id))->run();
         $data = is_ecjia_error($data) ? [] : $data;
+
         if ($data['pay_code'] == 'pay_bank') {
             if (!empty($data['bank_name']) && !empty($data['bank_card'])) {
                 $bank_card_str = substr($data['bank_card'], -4);
 
                 $data['formated_pay_name'] = $data['bank_name'] . ' (' . $bank_card_str . ')';
+            }
+        } elseif ($data['pay_code'] == 'pay_wxpay') {
+            if (!empty($data['bank_name']) && !empty($data['cardholder'])) {
+                $data['formated_pay_name'] = $data['bank_name'] . ' (' . $data['cardholder'] . ')';
             }
         }
 

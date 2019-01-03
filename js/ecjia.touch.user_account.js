@@ -272,6 +272,29 @@
 				callback: function (data) {
 					if (data.state == 'error') {
 						$('input[name="submit"]').val('立即提现').prop('disabled', false);
+
+						if (data.url) {
+                            var myApp = new Framework7();
+                            myApp.modal({
+                                title: '',
+                                text: data.message,
+                                buttons: [{
+                                    text: '取消',
+                                    onClick: function () {
+                                        $('.modal').remove();
+                                        $('.modal-overlay').remove();
+                                        return false;
+                                    }
+                                }, {
+                                    text: '去设置',
+                                    onClick: function () {
+                                        window.location.href = data.url;
+                                    }
+                                }, ]
+                            });
+                            return false;
+						}
+
 						alert(data.message);
 						return false;
 					}
@@ -319,7 +342,7 @@
             }
 
             for (i = 0; i < list.length; i++) {
-                var id = list[i]['withdraw_type'];
+                var id = list[i]['bank_type'];
                 var value = "<img style='margin-right:5px;' src="+ list[i]['bank_icon'] +" width='25' height='25' >" + list[i]['bank_name'];
                 id_list.push(id);
                 value_list.push(value);
@@ -346,7 +369,7 @@
                     if ($('.picker-modal').hasClass('modal-in')) {
                         $('.picker-modal').after($pick_overlay);
                     }
-                    var current_id = $('input[name="withdraw_type"]').val();
+                    var current_id = $('input[name="bank_type"]').val();
                     if (current_id != undefined && current_id != '') {
                         picker.setValue([current_id]); //设置选中值
                     }
@@ -355,7 +378,7 @@
                         var value = picker.cols[0].container.find('.picker-selected').html();
                         var id = picker.cols[0].container.find('.picker-selected').attr('data-picker-value');
                         $('.choose_bank').html(value);
-                        $('input[name="withdraw_type"]').val(id);
+                        $('input[name="bank_type"]').val(id);
                         picker.close();
                         remove_overlay();
                     });
