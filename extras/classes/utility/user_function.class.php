@@ -315,6 +315,27 @@ class user_function
         return $has_wechat_name;
     }
 
+    public static function get_wechat_config($url)
+    {
+        $uuid = with(new Ecjia\App\Platform\Frameworks\Platform\AccountManager(0))->getDefaultUUID('wechat');
+        if (empty($uuid)) {
+            return [];
+        }
+
+        $wechat = with(new Ecjia\App\Wechat\WechatUUID($uuid))->getWechatInstance();
+        if (empty($wechat)) {
+            return [];
+        }
+        
+        $apis = array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ');
+
+        $wechat->js->setUrl($url);
+
+        $config = $wechat->js->config($apis, false);
+
+        return $config;
+    }
+
 }
 
 //end
