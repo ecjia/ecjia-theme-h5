@@ -931,6 +931,8 @@ class user_order_controller
         $params_order = array('token' => $token, 'order_id' => $order_id);
         $data         = ecjia_touch_manager::make()->api(ecjia_touch_api::GROUPBUY_ORDER_DETAIL)->data($params_order)->run();
         $data         = is_ecjia_error($data) ? array() : $data;
+
+        $data['formated_payed'] = ecjia_price_format($data['money_paid'] + $data['surplus']);
         if (empty($data)) {
             return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
         }

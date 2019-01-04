@@ -112,24 +112,40 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<!-- {/foreach} -->
 			</ul>
 			<ul class="ecjia-list">
-				<li>商品金额：<span class="ecjiaf-fr ">{$order.formated_goods_amount}</span></li>
-				{if $order.tax neq 0}
-				<li>税费金额：<span class="ecjiaf-fr ">{$order.formated_tax}</span></li>
-				{/if}
-				{if $order.integral_money neq 0}
-				<li>{$integral_name}抵扣：<span class="ecjiaf-fr ecjia-color-red ">-{$order.formated_integral_money}</span></li>
-				{/if}
-				{if $order.bonus neq 0}
-				<li>红包抵扣：<span class="ecjiaf-fr ecjia-color-red ">-{$order.formated_bonus}</span></li>
-				{/if}
-				{if $order.discount neq 0}
-				<li>优惠金额：<span class="ecjiaf-fr ecjia-color-red ">-{$order.formated_discount}</span></li>
-				{/if}
-				<li>运费：<span class="ecjiaf-fr ">{$order.formated_shipping_fee}</span></li>
-				{if $order.pay_fee neq 0}
-				<li>手续费：<span class="ecjiaf-fr ">{$order.formated_pay_fee}</span></li>
-				{/if}
-				<li>共计：<span class="ecjiaf-fr ">{$order.formated_total_fee}</span></li>
+                {if $order.extension_code eq 'group_buy'}
+                    <li>商品保证金：<span class="ecjiaf-fr">{$order.formated_order_deposit}</span></li>
+                {else}
+                    <li>商品金额：<span class="ecjiaf-fr ">{$order.formated_goods_amount}</span></li>
+                {/if}
+
+                {if $order.tax neq 0}
+                <li>税费金额：<span class="ecjiaf-fr ">{$order.formated_tax}</span></li>
+                {/if}
+
+                {if $order.integral_money neq 0}
+                <li>{$integral_name}抵扣：<span class="ecjiaf-fr ecjia-color-red ">-{$order.formated_integral_money}</span></li>
+                {/if}
+
+                {if $order.bonus neq 0}
+                <li>红包抵扣：<span class="ecjiaf-fr ecjia-color-red ">-{$order.formated_bonus}</span></li>
+                {/if}
+
+                {if $order.discount neq 0}
+                <li>优惠金额：<span class="ecjiaf-fr ecjia-color-red ">-{$order.formated_discount}</span></li>
+                {/if}
+
+                <li>运费：<span class="ecjiaf-fr ">{$order.formated_shipping_fee}</span></li>
+
+                {if $order.pay_fee neq 0}
+                <li>手续费：<span class="ecjiaf-fr ">{$order.formated_pay_fee}</span></li>
+                {/if}
+
+                {if $order.extension_code eq 'group_buy'}
+                    <li>已支付：<span class="ecjiaf-fr">{$order.formated_payed}</span></li>
+                    <li>待支付余额：<span class="ecjiaf-fr ecjia-color-red">{$order.formated_order_amount}</span></li>
+                {else}
+                    <li>共计：<span class="ecjiaf-fr ">{$order.formated_total_fee}</span></li>
+                {/if}
 			</ul>
 			
 			{if $order.order_mode eq 'storepickup'}
