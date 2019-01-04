@@ -266,10 +266,11 @@ class user_function
         return $list;
     }
 
-    //获取用户有效的提现方式
+    //获取用户有效的提现方式和默认一种提现方式
     public static function get_user_available_withdraw_way()
     {
-        $list             = self::get_userInfo_bankcard();
+        $list = self::get_userInfo_bankcard();
+
         $user_binded_list = !empty($list['user_binded_list']) ? $list['user_binded_list'] : [];
 
         $bind_list = [];
@@ -284,15 +285,25 @@ class user_function
         $available_withdraw_way = !empty($list['available_withdraw_way']) ? $list['available_withdraw_way'] : [];
 
         $withdraw_way = [];
+        $bank_info    = [];
+
         if (!empty($available_withdraw_way)) {
             foreach ($available_withdraw_way as $k => $v) {
                 if (in_array($v['bank_type'], $type_list)) {
                     $withdraw_way[] = $bind_list[$v['bank_type']];
+                    if ($v['bank_type'] == 'bank') {
+                        $bank_info = $bind_list[$v['bank_type']];
+                    } elseif ($v['bank_type'] == 'wechat') {
+                        $bank_info = $bind_list[$v['bank_type']];
+                    }
                 }
             }
         }
 
-        return $withdraw_way;
+        return [
+            'withdraw_way' => $withdraw_way,
+            'bank_info'    => $bank_info
+        ];
     }
 
     //检查微信提现是否设置真实姓名
@@ -315,6 +326,7 @@ class user_function
         return $has_wechat_name;
     }
 
+
     public static function get_wechat_config($url)
     {
         $uuid = with(new Ecjia\App\Platform\Frameworks\Platform\AccountManager(0))->getDefaultUUID('wechat');
@@ -326,7 +338,7 @@ class user_function
         if (empty($wechat)) {
             return [];
         }
-        
+
         $apis = array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ');
 
         $wechat->js->setUrl($url);

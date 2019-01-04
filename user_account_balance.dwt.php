@@ -35,7 +35,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		{if $has_withdraw_method}
 		<a href="{url path='user/account/withdraw'}" class="btn ecjia-btn-e5 fnUrlReplace">{t}提现{/t}</a>
 		{else}
-		<a href="javascript:;" class="btn ecjia-btn-e5 withdraw-btn" data-url="{RC_Uri::url('user/profile/account_bind')}&type=wechat">{t}提现{/t}</a>
+		<a href="javascript:;" class="btn ecjia-btn-e5 withdraw-btn" data-url="{$url}">{t}提现{/t}</a>
 		{/if}
 	</div>
 </ul>

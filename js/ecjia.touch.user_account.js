@@ -309,10 +309,15 @@
 		widthBtn: function () {
 			$('.withdraw-btn').off('click').on('click', function (e) {
 				var myApp = new Framework7();
-				var url = $(this).attr('data-url');
+
+				var $this = $(this),
+					url = $this.attr('data-url'),
+                	redirect_url = url != '' ? url : '',
+					message = redirect_url == '' ? '没有可支持的提现方式' : '您还未设置提现账号，请设置好再提现',
+					ok_btn_text = redirect_url == '' ? '确定' : '去设置';
 				myApp.modal({
 					title: '',
-					text: '您当前的账号还未绑定微信',
+					text: message,
 					buttons: [{
 						text: '取消',
 						onClick: function () {
@@ -321,9 +326,12 @@
 							return false;
 						}
 					}, {
-						text: '确定',
+						text: ok_btn_text,
 						onClick: function () {
-							window.location.href = url;
+							if (redirect_url != '') {
+                                window.location.href = redirect_url;
+							}
+							return false;
 						}
 					}, ]
 				});

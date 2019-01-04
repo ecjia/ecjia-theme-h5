@@ -101,14 +101,17 @@ class user_account_controller
 
         $available_withdraw_way = !empty($list['available_withdraw_way']) ? $list['available_withdraw_way'] : [];
 
+        $url = '';
         if (!empty($available_withdraw_way)) {
             foreach ($available_withdraw_way as $k => $v) {
                 if (in_array($v['bank_type'], $type_list)) {
                     $has_withdraw_method = true;
                 }
             }
+            $url = RC_Uri::url('user/profile/withdraw');
         }
         ecjia_front::$controller->assign('has_withdraw_method', $has_withdraw_method);
+        ecjia_front::$controller->assign('url', $url);
 
         ecjia_front::$controller->display('user_account_balance.dwt');
     }
@@ -227,8 +230,13 @@ class user_account_controller
         $config = is_ecjia_error($config) ? array() : $config;
         ecjia_front::$controller->assign('config', $config);
 
-        $available_withdraw_list = user_function::get_user_available_withdraw_way();
+        $withdraw_list = user_function::get_user_available_withdraw_way();
+
+        $available_withdraw_list = $withdraw_list['withdraw_way'];
         ecjia_front::$controller->assign('bank_list', json_encode($available_withdraw_list));
+
+        $bank_info = $withdraw_list['bank_info'];
+        ecjia_front::$controller->assign('bank_info', $bank_info);
 
         ecjia_front::$controller->assign_title('提现');
         ecjia_front::$controller->display('user_account_wechat_withdraw.dwt');
@@ -251,8 +259,6 @@ class user_account_controller
                 return ecjia_front::$controller->showmessage('您还未设置微信提现的真实姓名', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('url' => RC_Uri::url('user/profile/account_bind', array('type' => 'wechat'))));
             }
         }
-
-        return ecjia_front::$controller->showmessage('您还未设置微信提现的真实姓名', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('url' => RC_Uri::url('user/profile/account_bind', array('type' => 'wechat'))));
 
         if (empty($amount)) {
             return ecjia_front::$controller->showmessage(__('请输入提现金额'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);

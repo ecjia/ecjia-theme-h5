@@ -513,7 +513,7 @@ class user_profile_controller
         if (is_ecjia_error($result)) {
             return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
-        return ecjia_front::$controller->showmessage('解绑成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/account_bind', array('type' => 'wechat'))));
+        return ecjia_front::$controller->showmessage('解绑成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/my/init')));
     }
 
     //绑定提现方式
