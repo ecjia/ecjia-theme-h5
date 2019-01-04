@@ -198,8 +198,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </div>
 
         {if $bind_info}
-        <div class="ecjia-button-top-list">
-            <a href="javascript:;" class="btn btn-hollow delete_withdraw" data-msg="确定删除银行卡提现方式？" data-url="{RC_Uri::url('user/profile/unbind_check_mobile')}&id={$bind_info.id}&type=bank">删除此提现方式</a>
+        <div class="ecjia-button-top-list t_c">
+            <a href="javascript:;" class="nopjax external delete_withdraw" data-msg="确定删除银行卡提现方式？" data-url="{RC_Uri::url('user/profile/unbind_check_mobile')}&id={$bind_info.id}&type=bank">删除此提现方式</a>
         </div>
         {/if}
     </div>

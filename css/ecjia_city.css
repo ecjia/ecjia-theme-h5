@@ -5749,6 +5749,10 @@ footer {
     margin-top: 1em
 }
 
+.ecjia-button-top-list.t_c {
+    text-align: center;
+}
+
 .ecjia-bouns-list li {
     background-color: #fff
 }
@@ -14993,7 +14997,7 @@ body,
     height: 2em;
     margin-top: 0.6em;
     line-height: 2em;
-    width: 120px;
+    width: 8em;
     padding-left: 1em;
     float: right;
     background: #fff none repeat scroll 0 0;
@@ -15049,5 +15053,14 @@ body,
     font-size: 1.5em;
     line-height: 2em;
     right: 0;
+}
+
+.ecjia-button-top-list .delete_withdraw {
+    color: #ff3434;
+    border-bottom: 1px solid #ff3434;
+    width: 8em;
+    display: inline-block;
+    line-height: 2em;
+    font-size: 1.2em;
 }
 

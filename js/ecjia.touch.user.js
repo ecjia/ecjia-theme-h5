@@ -577,7 +577,7 @@
                             });
 						} else {
                             setTimeout(function () {
-                                window.history.back(-1);
+                                window.history.go(-1);
                             }, 500);
 						}
 					} else {
