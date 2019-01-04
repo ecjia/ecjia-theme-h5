@@ -36,9 +36,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <p class="record-val">{$sur_amount.formatted_pay_fee}</p>
         <p class="record-key">手续费用</p>
 
-        <p class="record-val">
-            {if $sur_amount.formated_pay_name}{$sur_amount.formated_pay_name}{else}银行转账{/if}
-        </p>
+        <p class="record-val">{$sur_amount.pay_name}</p>
         <p class="record-key">{if $sur_amount.type eq 'withdraw'}提现方式{else}充值方式{/if}</p>
 
         <p class="record-val">{$sur_amount.add_time}</p>

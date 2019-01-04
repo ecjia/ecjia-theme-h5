@@ -483,18 +483,6 @@ class user_account_controller
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD_DETAIL)->data(array('token' => $token, 'account_id' => $account_id))->run();
         $data = is_ecjia_error($data) ? [] : $data;
 
-        if ($data['pay_code'] == 'pay_bank') {
-            if (!empty($data['bank_name']) && !empty($data['bank_card'])) {
-                $bank_card_str = substr($data['bank_card'], -4);
-
-                $data['formated_pay_name'] = $data['bank_name'] . ' (' . $bank_card_str . ')';
-            }
-        } elseif ($data['pay_code'] == 'pay_wxpay') {
-            if (!empty($data['bank_name']) && !empty($data['cardholder'])) {
-                $data['formated_pay_name'] = $data['bank_name'] . ' (' . $data['cardholder'] . ')';
-            }
-        }
-
         $cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name'];
         $cache_id .= $cache_id . '-' . $data['order_sn'] . '-' . $data['type'] . '-' . $data['pay_status'];
         $cache_id = sprintf('%X', crc32($cache_id));
