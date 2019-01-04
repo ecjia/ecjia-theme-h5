@@ -3,11 +3,11 @@
  */
 ;
 (function (ecjia, $) {
+    var InterValObj = null; //timer变量，控制时间
+
 	ecjia.touch.user = {
 		init: function () {
-			var InterValObj; //timer变量，控制时间
 			window.clearInterval(InterValObj); //停止计时器
-			
 			ecjia.touch.user.ecjia_login();
 			ecjia.touch.user.ecjia_logout();
 			ecjia.touch.user.show_goods_list_click();
@@ -1775,6 +1775,11 @@
 		$('.modal-overlay').remove();
 		$('.picker-modal-overlay').remove();
 	}
+
+    //PJAX跳转执行
+    $(document).on('pjax:complete', function () {
+        window.clearInterval(InterValObj); //停止计时器
+    });
 })(ecjia, jQuery);
 
 //end
