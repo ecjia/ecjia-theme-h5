@@ -93,41 +93,6 @@ class connect_controller
             return ecjia_front::$controller->redirect(RC_Uri::url('user/profile/bind_info', array('type' => 'wechat')));
         }
 
-        if ($return_type == 'bind') {
-            $connect_user = $data['connect_user'];
-            if (is_ecjia_error($connect_user)) {
-                if ($connect_user->get_error_message()) {
-                    $msg = $connect_user->get_error_message();
-                } else {
-                    $msg = '登录授权失败，请稍后再试或联系客服';
-                }
-                return ecjia_front::$controller->showmessage($msg, ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-            }
-
-            $connect_code = $connect_user->getConnectCode();
-            $open_id      = $connect_user->getOpenId();
-            $user_name    = $connect_user->getUserName();
-
-            //绑定第三方
-            $token = ecjia_touch_user::singleton()->getToken();
-            $user  = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
-            $user  = is_ecjia_error($user) ? array() : $user;
-
-            $param  = array(
-                'token'        => $token,
-                'openid'       => $open_id,
-                'connect_code' => $connect_code,
-                'smscode'      => $_SESSION['unbind_wechat'][$user['id']]['smscode']
-            );
-            $result = ecjia_touch_manager::make()->api(ecjia_touch_api::CONNECT_UNBIND)->data($param)->run();
-            if (is_ecjia_error($result)) {
-                return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-            }
-
-            return ecjia_front::$controller->redirect(RC_Uri::url('user/profile/bind_info', array('type' => 'wechat')));
-        }
-
-
         $connect_user = $data['connect_user'];
         if (is_ecjia_error($connect_user)) {
             if ($connect_user->get_error_code() == 'retry_return_login' || $connect_user->get_error_code() == '-1') {
