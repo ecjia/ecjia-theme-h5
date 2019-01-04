@@ -36,7 +36,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							<img src="{$theme_url}images/order_status/shipped_2.png">
 						{else if $order.order_status_code eq 'canceled'}
 							<img src="{$theme_url}images/order_status/canceled_2.png">
-						{else if $order.order_status_code eq 'refunded'}
+						{else if $order.order_status_code eq 'refunded' || $order.order_status_code eq 'refund'}
 							<img src="{$theme_url}images/order_status/refund_2.png">
 						{else if $order.order_status_code eq 'payed'}
 							<img src="{$theme_url}images/order_status/wait_confirm_2.png">							
