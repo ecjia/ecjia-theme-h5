@@ -129,7 +129,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </div>
 
         {if $bind_info}
-        <div class="ecjia-button-top-list">
+        <div class="ecjia-button-top-list t_c">
             <a href="javascript:;" class="nopjax external delete_withdraw" data-msg="确定删除微信钱包提现方式？" data-url="{RC_Uri::url('user/profile/unbind_check_mobile')}&id={$bind_info.id}&type=wechat">删除此提现方式</a>
         </div>
         {/if}
