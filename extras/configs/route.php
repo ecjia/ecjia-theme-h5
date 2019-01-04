@@ -276,6 +276,7 @@ return [
     'user/profile/bind_withdraw'                 => 'user_profile_controller@bind_withdraw',
     'user/profile/check_user_mobile'             => 'user_profile_controller@check_user_mobile',
     'user/profile/unbind_wechat'                 => 'user_profile_controller@unbind_wechat',
+    'user/profile/unbind_check_mobile'           => 'user_profile_controller@unbind_check_mobile',
 
     //授权登录
     'connect/index/dump_user_info'               => 'connect_controller@dump_user_info',

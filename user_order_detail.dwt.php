@@ -231,7 +231,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					{/if}
 				{/if}
 				
-				{if $order.order_status_code eq 'canceled' || $order.order_status_code eq 'payed'}
+				{if $order.order_status_code eq 'payed' || $order.extension_code neq 'group_buy'}
 					<a class="btn btn-small btn-hollow" href='{url path="user/order/buy_again" args="order_id={$order.order_id}"}'>再次购买</a>
 				{/if}
 				
@@ -245,7 +245,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				
 				{if $order.order_status_code eq 'refunded' || $order.order_status_code eq 'finished' || $order.refund_info}
 					{if $order.refund_info}
-					<a class="btn btn-small btn-hollow" href='{url path="user/order/return_detail" args="order_id={$order.order_id}{if $order.refund_info}&refund_sn={$order.refund_info.refund_sn}{/if}"}'>售后</a>
+					<a class="btn btn-small btn-hollow" href='{url path="user/order/return_detail" args="order_id={$order.order_id}{if $order.refund_info}&refund_sn={$order.refund_info.refund_sn}{/if}"}'>售后详情</a>
 					{else}
 					<a class="btn btn-small btn-hollow" href='{url path="user/order/return_list" args="order_id={$order.order_id}"}'>售后</a>
 					{/if}

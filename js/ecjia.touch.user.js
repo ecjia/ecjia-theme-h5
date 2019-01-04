@@ -571,9 +571,15 @@
 							duration: 2e3,
 						});
 						// ecjia.touch.showmessage(data);
-                        ecjia.pjax(data.pjaxurl, function () {}, {
-                            replace: true
-                        });
+						if (data.pjaxurl) {
+                            ecjia.pjax(data.pjaxurl, function () {}, {
+                                replace: true
+                            });
+						} else {
+                            setTimeout(function () {
+                                window.history.back(-1);
+                            }, 500);
+						}
 					} else {
 						if (!data.message) {
 							iosOverlay({
@@ -741,22 +747,7 @@
                     }, {
                         text: '确定',
                         onClick: function () {
-                            $.post(url, function (data) {
-                                if (data.state == 'error') {
-                                    iosOverlay({
-                                        text: data.message,
-                                        duration: 2e3,
-                                    });
-                                    return false;
-								}
-                                iosOverlay({
-                                    text: "删除成功！",
-                                    duration: 2e3,
-                                });
-                                ecjia.pjax(data.pjaxurl, function () {}, {
-                                    replace: true
-                                });
-                            });
+							window.location.href = url;
                         },
                     }]
                 });
