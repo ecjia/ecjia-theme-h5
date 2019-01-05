@@ -462,8 +462,10 @@ class user_profile_controller
         } else if ($type == 'email') {
             $title = '更换邮箱';
         } else if ($type == 'wechat') {
-            $title = '解除绑定';
-
+            $title = '绑定微信';
+            if ($user['wechat_is_bind'] == 1) {
+                $title = '解除绑定';
+            }
             $form_url = RC_Uri::url('user/profile/unbind_wechat');
         } else if ($type == 'bank') {
             $title = '编辑银行卡';
