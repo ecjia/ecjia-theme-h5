@@ -575,6 +575,10 @@
                             ecjia.pjax(data.pjaxurl, function () {}, {
                                 replace: true
                             });
+						} else if (data.url) {
+                            setTimeout(function () {
+								window.location.href = data.url;
+                            }, 500);
 						} else {
                             setTimeout(function () {
                                 window.history.back(-1);
@@ -747,7 +751,9 @@
                     }, {
                         text: '确定',
                         onClick: function () {
-							window.location.href = url;
+                            ecjia.pjax(url, function () {}, {
+                                replace: true
+                            });
                         },
                     }]
                 });

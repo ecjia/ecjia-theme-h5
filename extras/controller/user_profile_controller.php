@@ -515,13 +515,17 @@ class user_profile_controller
                 return ecjia_front::$controller->showmessage('该提现方式不存在', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
 
+            if (empty($smscode)) {
+                return ecjia_front::$controller->showmessage('请输入手机验证码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            }
+
             $param  = array('token' => $token, 'id' => $id, 'smscode' => $smscode);
             $result = ecjia_touch_manager::make()->api(ecjia_touch_api::WITHDRAW_BANKCARD_DELETE)->data($param)->run();
             if (is_ecjia_error($result)) {
                 return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
 
-            return ecjia_front::$controller->showmessage('删除成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('user/profile/account_bind', array('type' => $type))));
+            return ecjia_front::$controller->showmessage('删除成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/account_bind', array('type' => $type))));
         }
     }
 
@@ -587,7 +591,7 @@ class user_profile_controller
                 return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
 
-            return ecjia_front::$controller->showmessage('绑定成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/account_bind', array('type' => 'bank'))));
+            return ecjia_front::$controller->showmessage('绑定成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('user/profile/account_bind', array('type' => 'bank'))));
         }
 
         //绑定微信真实姓名
@@ -613,7 +617,7 @@ class user_profile_controller
                 return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
 
-            return ecjia_front::$controller->showmessage('绑定成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/profile/account_bind', array('type' => 'wechat'))));
+            return ecjia_front::$controller->showmessage('绑定成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('user/profile/account_bind', array('type' => 'wechat'))));
         }
 
     }
