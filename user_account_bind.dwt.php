@@ -78,7 +78,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     {elseif $type eq 'wechat'}
     <div class="d_bind">
         <div class="ecjia-input">
-            <a class="nopjax external" href='{if $user.wechat_is_bind eq 1}{url path="user/profile/bind_info" args="type=wechat"}{else}{url path="connect/index/authorize" args="connect_code=sns_wechat"}{/if}'>
+            <a class="nopjax external" href='{url path="user/profile/bind_info" args="type=wechat"}'>
             <div class="input-li b_b b_t">
                 <span class="input-fl">微信钱包</span>
                 <div class="choose-div">
