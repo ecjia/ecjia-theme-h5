@@ -43,9 +43,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         <p class="record-key">{if $sur_amount.type eq 'withdraw'}申请时间{else}充值时间{/if}</p>
 
     </div>
-    {if $sur_amount.pay_status eq '已完成'}
-    {elseif $sur_amount.pay_status eq ''}
-    {else}
+    {if $sur_amount.pay_status neq '已完成' && $sur_amount.pay_status neq '已取消'}
     <form class="ecjia-form" name="useraccountForm" action="{url path='user/account/recharge_account'}" method="post">
         {if $sur_amount.type eq 'deposit'}
         <div class="two-btn btn-bottom">
