@@ -1864,7 +1864,8 @@ footer {
     height: 4em;
     background: #F6F6F6;
     border-bottom: 1px solid #eee;
-    border-right: 1px solid #eee
+    border-right: 1px solid #eee;
+    padding: 0;
 }
 
 .category .category_left li.active {
@@ -1874,7 +1875,10 @@ footer {
 
 .category .category_left li.active a {
     color: #47aa4d;
-    height: 4em
+    height: 4em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .category .category_right {
