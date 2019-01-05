@@ -130,9 +130,7 @@ class user_controller
             ecjia_front::$controller->assign('image', $image);
 
             if (user_function::is_weixin()) {
-                $spread_url = RC_Uri::url('user/index/spread', array('name' => urlencode($name)));
-
-                $config = user_function::get_wechat_config($spread_url);
+                $config = user_function::get_wechat_config($invite_user_detail['invite_url']);
                 ecjia_front::$controller->assign('config', $config);
             }
 
