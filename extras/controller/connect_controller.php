@@ -630,6 +630,8 @@ class connect_controller
 
         RC_Cookie::set('referer', RC_Uri::url('user/profile/bind_info', array('type' => 'wechat')));
 
+        RC_Cookie::set('wechat_auto_register', 1);
+
         return ecjia_front::$controller->redirect($code_url);
     }
 }
