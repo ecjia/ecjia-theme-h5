@@ -449,6 +449,11 @@ class touch_controller
         $longitude        = $latng['lng'];
         $latitude         = $latng['lat'];
 
+        $url = RC_Uri::url('touch/location/select_location');
+        if (empty($longitude) || empty($latitude)) {
+            return ecjia_front::$controller->showmessage('定位失败，请手动选择', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('url' => $url));
+        }
+
         $ad_info   = $location_content['ad_info'];
         $city_name = $ad_info['district'];
         $adcode    = !empty($ad_info['adcode']) ? substr($ad_info['adcode'], 0, 4) : '';
@@ -459,7 +464,7 @@ class touch_controller
         );
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_REGION_DETAIL)->data($params)->run();
         if (is_ecjia_error($rs)) {
-            return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+            return ecjia_front::$controller->showmessage('定位失败，请手动选择', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('url' => $url));
         } else {
             $city_id = !empty($rs['region_id']) ? $rs['region_id'] : '';
         }
