@@ -30,7 +30,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 							<img src="{$theme_url}images/order_status/shipped_2.png">
 						{else if $order.order_status_code eq 'await_pay'}
 							<img src="{$theme_url}images/order_status/wait_pay_2.png">
-						{else if $order.order_status_code eq 'await_ship'}
+						{else if $order.order_status_code eq 'await_ship' || $order.order_status_code eq 'confirmed'}
 							<img src="{$theme_url}images/order_status/confirmed_2.png">
 						{else if $order.order_status_code eq 'shipped_part'}
 							<img src="{$theme_url}images/order_status/shipped_2.png">
@@ -39,7 +39,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						{else if $order.order_status_code eq 'refunded' || $order.order_status_code eq 'refund'}
 							<img src="{$theme_url}images/order_status/refund_2.png">
 						{else if $order.order_status_code eq 'payed'}
-							<img src="{$theme_url}images/order_status/wait_confirm_2.png">							
+							<img src="{$theme_url}images/order_status/wait_confirm_2.png">
+                        {else}
+                            <img src="{$theme_url}images/order_status/done_2.png">
 			        	{/if}
 			        </span>
 			        <div class="order-status-msg">
