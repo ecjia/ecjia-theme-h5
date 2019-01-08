@@ -87,7 +87,8 @@ class connect_controller
             $connect_user = new \Ecjia\App\Connect\ConnectUser($connect_code, $open_id);
             $result       = false;
             if ($user) {
-                $result = $connect_user->bindUser($user['id']);
+                $connect_user->setUserName($user_name);
+                $connect_user->bindUser($user['id']);
             }
 
             return ecjia_front::$controller->redirect(RC_Uri::url('user/profile/bind_info', array('type' => 'wechat')));
@@ -278,23 +279,23 @@ class connect_controller
         }
 
         $wechat_info = array(
-            'openid'     => $user_info['openid'],
-            'nickname'   => $user_info['nickname'],
-            'sex'        => $user_info['sex'],
-            'language'   => $user_info['language'],
-            'city'       => $user_info['city'],
-            'province'   => $user_info['province'],
-            'country'    => $user_info['country'],
+            'openid' => $user_info['openid'],
+            'nickname' => $user_info['nickname'],
+            'sex' => $user_info['sex'],
+            'language' => $user_info['language'],
+            'city' => $user_info['city'],
+            'province' => $user_info['province'],
+            'country' => $user_info['country'],
             'headimgurl' => $user_info['headimgurl'],
-            'privilege'  => array(),
-            'unionid'    => $user_info['unionid'],
+            'privilege' => array(),
+            'unionid' => $user_info['unionid'],
         );
 
         $new_user = array(
             'connect_code' => 'sns_wechat',
-            'user_id'      => $user_info['ect_uid'],
-            'open_id'      => empty($user_info['unionid']) ? $user_info['openid'] : $user_info['unionid'],
-            'profile'      => serialize($wechat_info),
+            'user_id' => $user_info['ect_uid'],
+            'open_id' => empty($user_info['unionid']) ? $user_info['openid'] : $user_info['unionid'],
+            'profile' => serialize($wechat_info),
         );
 
         if (RC_DB::table('connect_user')->where('connect_code', 'sns_wechat')->where('open_id', $new_user['open_id'])->count()) {
@@ -386,9 +387,9 @@ class connect_controller
             return ecjia_front::$controller->showmessage('规定时间1分钟以外，可重新发送验证码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         $param = array(
-            'token'        => $token,
-            'type'         => 'mobile',
-            'value'        => $mobile,
+            'token' => $token,
+            'type' => 'mobile',
+            'value' => $mobile,
             'captcha_code' => $code_captcha,
         );
 
@@ -612,7 +613,7 @@ class connect_controller
             return ecjia_front::$controller->showmessage(RC_Lang::get('connect::connect.not_found'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         }
 
-        $url  = RC_Uri::url('connect/callback/init', array('connect_code' => 'sns_wechat', 'return_type' => 'bind'));
+        $url = RC_Uri::url('connect/callback/init', array('connect_code' => 'sns_wechat', 'return_type' => 'bind'));
 
         /**
          * 第三方登录运行前处理

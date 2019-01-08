@@ -289,7 +289,7 @@ class touch_controller
         foreach ($_COOKIE as $key => $value) {
             setcookie($key, null, -3600);
         }
-
+        RC_Session::destroy();
         $url = RC_Uri::url('touch/my/init');
         return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
     }
