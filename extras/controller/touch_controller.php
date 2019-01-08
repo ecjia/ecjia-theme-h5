@@ -285,11 +285,14 @@ class touch_controller
     {
         ecjia_touch_user::singleton()->signout();
 
-        RC_Cookie::clear();
-        foreach ($_COOKIE as $key => $value) {
-            setcookie($key, null, -3600);
-        }
         RC_Session::destroy();
+        RC_Cookie::clear();
+        if (!empty($_COOKIE)) {
+            foreach ($_COOKIE as $key => $value) {
+                setcookie($key, null, -3600);
+            }
+        }
+
         $url = RC_Uri::url('touch/my/init');
         return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
     }
