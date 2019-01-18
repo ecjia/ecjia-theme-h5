@@ -1178,6 +1178,11 @@ ul {
     right: .5em
 }
 
+.search-no-pro {
+    overflow: hidden;
+    min-height: 306px;
+}
+
 .search-no-pro .ecjia-nolist {
     padding-top: 180px;
     min-height: 306px;
@@ -1189,7 +1194,9 @@ ul {
     bottom: 0;
     top: 0;
     right: 0;
-    background: #f7f7f7
+    background: #f7f7f7;
+    max-width: 640px;
+    margin: 0 auto;
 }
 
 .search-no-pro .ecjia-nolist img {
@@ -15068,3 +15075,91 @@ body,
     font-size: 1.2em;
 }
 
+.ecjia-reward-team .reward-team-top {
+    background-color: #fff;
+    margin-top: 1em;
+    text-align: center;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.ecjia-reward-team .reward-team-top .total-num {
+    padding: 2em 0 1em 0;
+    font-size: 1.2em;
+}
+
+.ecjia-reward-team .reward-team-top .number {
+    padding-bottom: 3em;
+    font-size: 1.2em;
+    color: #FF2500;
+}
+
+.ecjia-reward-team .team-item .search-no-pro .ecjia-nolist {
+    padding-top: 100px;
+}
+
+.reward-team-bottom .bottom-hd {
+    line-height: 3em;
+    padding-left: 1em;
+    border-bottom: 1px solid #eee;
+}
+
+.reward-team-bottom .team-item {
+    overflow: hidden;
+    position: relative;
+    height: auto;
+    background-color: #fff;
+}
+
+.reward-team-bottom .team-item .team-item-li {
+    overflow: hidden;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    position: relative;
+    margin: 1em 0 0 1em;
+}
+
+.reward-team-bottom .team-item .team-item-li:first-child {
+    padding-top: 0;
+}
+
+.reward-team-bottom .team-item .team-item-li:last-child {
+    border-bottom: none;
+}
+
+.reward-team-bottom .team-item .team-img img {
+    height: 4em;
+    width: 4em;
+    border-radius: 50%;
+}
+
+.reward-team-bottom .team-item .team-right {
+    margin-left: 5em;
+}
+
+.reward-team-bottom .team-item .name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: .3em;
+}
+
+.reward-team-bottom .team-item .block {
+    color: #838383;
+    margin-top: .5em;
+    font-size: .9em;
+}
+
+.reward-team-bottom .team-item .next-user {
+    position: absolute;
+    right: 1em;
+    top: 2em;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.reward-team-bottom .team-item .team-item-li:first-child .next-user {
+    top: 1em;
+}

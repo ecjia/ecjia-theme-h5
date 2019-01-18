@@ -253,6 +253,10 @@ return [
     'user/order/async_groupbuy_order'            => 'user_order_controller@async_groupbuy_order',
     'user/order/groupbuy_detail'                 => 'user_order_controller@groupbuy_detail',
 
+    //我的团队
+    'user/team/list'                             => 'user_controller@team_list', //团队列表
+    'user/personal/ajax_team_list'               => 'user_controller@ajax_team_list',
+
     //用户资料
     'user/profile/init'                          => 'user_profile_controller@init',
     'user/profile/modify_username'               => 'user_profile_controller@modify_username',
