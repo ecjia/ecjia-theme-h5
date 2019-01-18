@@ -130,7 +130,7 @@ class goods_controller
      */
     public static function show()
     {
-        $goods_id = isset($_GET['goods_id']) ? $_GET['goods_id'] : 0;
+        $goods_id = isset($_GET['goods_id']) ? intval($_GET['goods_id']) : 0;
 
         $url = RC_Uri::url('goods/index/show', array('goods_id' => $goods_id));
         touch_function::redirect_referer_url($url);
