@@ -60,6 +60,11 @@ ecjia_extra::autoload();
 ecjia_extra::routeDispacth();
 
 /**
+ * 加载主题选项设置面板
+ */
+ecjia_extra::loadThemeFrameworkOptions();
+
+/**
  * step:5
  * 这个方法在前台控制器加载后执行，这个时候环境初始化完毕，这里开始正式进入主题框架的流程
  */
@@ -381,3 +386,4 @@ RC_Hook::add_filter('custom_site_api_url', 'custom_site_api_url');
 RC_Hook::add_filter('http_request_timeout', function($time) {
 	return 20;
 });
+
