@@ -95,5 +95,14 @@ class ecjia_extra
 
 
     }
-    
+
+    /**
+     * 获取图片访问URL
+     * @param $url
+     * @return string
+     */
+    public static function themeUrl($url)
+    {
+        return RC_Theme::get_template_directory_uri() . '/' . $url;
+    }
 }
