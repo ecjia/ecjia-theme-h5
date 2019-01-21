@@ -240,7 +240,7 @@ RC_Hook::add_action('connect_callback_user_bind_complete', function($result) {
  */
 RC_Hook::add_action('connect_code_before_launching', function($connect_code) {
     if ($connect_code == 'sns_wechat' && !ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {
-        echo '请先购买并安装微信登录插件<br><a href="https://ecjia.com/daojia_authorize.html" target="_blank">购买链接</a>';
+        echo '请先购买并安装微信登录插件<br><a href="https://daojia.ecjia.com/opensource.html" target="_blank">购买链接</a>';
         exit();
     }
 });
