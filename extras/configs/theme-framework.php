@@ -33,8 +33,8 @@ return array(
                     'store_goods'   => '店铺+商品展示',
                 ),
                 'options_images' => array(
-                    'goods'         => '',
-                    'store_goods'   => '',
+                    'goods'         => ecjia_extra::themeUrl(''),
+                    'store_goods'   => ecjia_extra::themeUrl(''),
                 ),
                 'default'      => 'goods'
             ),
