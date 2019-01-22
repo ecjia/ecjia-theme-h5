@@ -89,7 +89,7 @@ class ecjia_extra
 
         $frameworks = include_once RC_Theme::get_template_directory() . '/extras/configs/theme-framework.php';
 
-        if (! empty($settings) && !empty($frameworks)) {
+        if (! empty($settings) && ! empty($frameworks)) {
             ecjia_theme_framework::createAdminPanelInstance($settings, $frameworks);
         }
 
