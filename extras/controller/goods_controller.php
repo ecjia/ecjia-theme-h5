@@ -526,7 +526,7 @@ class goods_controller
             ecjia_front::$controller->assign('cid', $cid);
             ecjia_front::$controller->assign('keywords', $keywords);
 
-            ecjia_front::$controller->assign_title('店铺列表');
+            ecjia_front::$controller->assign_title('商品列表');
             ecjia_front::$controller->display('store_goods_list.dwt');
 
             return false;
