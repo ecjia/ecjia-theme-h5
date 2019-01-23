@@ -445,8 +445,8 @@ class touch_controller
         $content = with(new ecjia_location())->getGeoCoder($_GET['lat'], $_GET['lng']);
         $content = !is_ecjia_error($content) ? $content : array();
         
-        $location_content = $content['result'];
-        $location_name    = $location_content['address'];
+        $location_content = !empty($content['result']['pois']) ? $content['result']['pois'][0] : $content['result'];
+        $location_name    = !empty($location_content['title']) ? $location_content['title'] : $location_content['address'];
         $location_address = $location_content['address'];
         $latng            = $location_content['location'];
         $longitude        = $latng['lng'];
