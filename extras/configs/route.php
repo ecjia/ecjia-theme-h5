@@ -66,6 +66,7 @@ return [
     //商品
     'goods/category/init'                        => 'goods_controller@init',
     'goods/category/store_list'                  => 'goods_controller@store_list', //店铺分类列表
+    'goods/category/ajax_store_goods'            => 'goods_controller@ajax_store_goods',
     'goods/index/show'                           => 'goods_controller@show', //商品详情页
     'goods/index/promotion'                      => 'goods_controller@promotion',
     'goods/index/ajax_goods'                     => 'goods_controller@ajax_goods',
