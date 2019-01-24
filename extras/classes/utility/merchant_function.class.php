@@ -84,9 +84,9 @@ class merchant_function
             } else {
                 $data['distance'] = $data['distance'] . 'm';
             }
-            if (mb_strlen($data['seller_name']) > 17) {
-                $data['seller_name'] = mb_substr($data['seller_name'], 0, 14, 'utf8') . '...';
-            }
+        }
+        if (!empty($data['seller_name']) && mb_strlen($data['seller_name']) > 17) {
+            $data['seller_name'] = mb_substr($data['seller_name'], 0, 14, 'utf8') . '...';
         }
         return $data;
     }
