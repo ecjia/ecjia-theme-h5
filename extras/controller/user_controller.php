@@ -239,7 +239,7 @@ class user_controller
 
         if (!empty($result)) {
             list($data, $page) = $result;
-            ecjia_front::$controller->assign('data', $data);
+            ecjia_front::$controller->assign('total_count', $page['total']);
         }
 
         ecjia_front::$controller->display('personal_reward_team.dwt');
