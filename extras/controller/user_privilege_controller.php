@@ -93,11 +93,11 @@ class user_privilege_controller
             } else {
                 $_SESSION['user_temp']['referer_url'] = $GLOBALS['_SERVER']['HTTP_REFERER'];
             }
-            ecjia_front::$controller->assign('header_right', array('info' => '密码登录', 'href' => $url));
+            ecjia_front::$controller->assign('header_right', array('info' => __('密码登录'), 'href' => $url));
 
             ecjia_front::$controller->assign('wechat_login_url', $wechat_login_url);
-            ecjia_front::$controller->assign('title', '手机登录');
-            ecjia_front::$controller->assign_title('手机登录');
+            ecjia_front::$controller->assign('title', __('手机登录'));
+            ecjia_front::$controller->assign_title(__('手机登录'));
             ecjia_front::$controller->assign_lang();
 
             if (ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {
@@ -134,7 +134,7 @@ class user_privilege_controller
         }
 
         if (!ecjia_front::$controller->is_cached('user_wechat_login.dwt', $cache_id)) {
-            ecjia_front::$controller->assign_title('微信快捷登录');
+            ecjia_front::$controller->assign_title(__('微信快捷登录'));
             ecjia_front::$controller->assign_lang();
             ecjia_front::$controller->assign('hidenav', 1);
 
@@ -191,11 +191,11 @@ class user_privilege_controller
                 $_SESSION['user_temp']['referer_url'] = $GLOBALS['_SERVER']['HTTP_REFERER'];
             }
 
-            ecjia_front::$controller->assign('header_right', array('info' => '手机登录', 'href' => $url));
+            ecjia_front::$controller->assign('header_right', array('info' => __('手机登录'), 'href' => $url));
 
             ecjia_front::$controller->assign('wechat_login_url', $wechat_login_url);
-            ecjia_front::$controller->assign('title', '密码登录');
-            ecjia_front::$controller->assign_title('密码登录');
+            ecjia_front::$controller->assign('title', __('密码登录'));
+            ecjia_front::$controller->assign_title(__('密码登录'));
             ecjia_front::$controller->assign_lang();
 
             if (ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {
@@ -237,9 +237,9 @@ class user_privilege_controller
 
         $message = '';
         if (empty($username)) {
-            $message = '请输入用户名或手机号';
+            $message = __('请输入用户名或手机号');
         } elseif (empty($password)) {
-            $message = '请输入密码';
+            $message = __('请输入密码');
         }
 
         $type = 'password';
@@ -269,10 +269,6 @@ class user_privilege_controller
             return ecjia_front::$controller->showmessage('请输入手机号', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
-//         $chars = "/^1(3|4|5|6|7|8|9)\d{9}$/";
-        //         if (!preg_match($chars, $mobile_phone)) {
-        //             return ecjia_front::$controller->showmessage(__('手机号码格式错误'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-        //         }
         $check_mobile = Ecjia\App\Sms\Helper::check_mobile($mobile_phone);
         if (is_ecjia_error($check_mobile)) {
             return ecjia_front::$controller->showmessage($check_mobile->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -298,8 +294,8 @@ class user_privilege_controller
 
         ecjia_front::$controller->assign('captcha_image', $res['base64']);
 
-        ecjia_front::$controller->assign('title', '图形验证码');
-        ecjia_front::$controller->assign_title('图形验证码');
+        ecjia_front::$controller->assign('title', __('图形验证码'));
+        ecjia_front::$controller->assign_title(__('图形验证码'));
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign('url', RC_Uri::url('user/privilege/captcha_check'));
         ecjia_front::$controller->assign('refresh_url', RC_Uri::url('user/privilege/captcha_refresh'));
@@ -332,10 +328,10 @@ class user_privilege_controller
             $code_captcha = trim($_POST['code_captcha']);
         }
         if (empty($code_captcha)) {
-            return ecjia_front::$controller->showmessage('请输入验证码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage(__('请输入验证码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         if (RC_Time::gmtime() < $_SESSION['user_temp']['resend_sms_time'] + 60) {
-            return ecjia_front::$controller->showmessage('规定时间1分钟以外，可重新发送验证码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage(__('规定时间1分钟以外，可重新发送验证码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         $param = array(
             'token'        => $token,
@@ -366,10 +362,10 @@ class user_privilege_controller
         $_SESSION['user_temp']['invited'] = $invited;
 
         $pjaxurl = RC_Uri::url('user/privilege/enter_code');
-        $message = '验证码已发送';
+        $message = __('验证码已发送');
 
         if ($type == 'resend') {
-            return ecjia_front::$controller->showmessage('发送成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+            return ecjia_front::$controller->showmessage(__('发送成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
         }
 
         return ecjia_front::$controller->showmessage($message, ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $pjaxurl));
@@ -385,8 +381,8 @@ class user_privilege_controller
 
         $code_captcha = $_SESSION['user_temp']['captcha_code'];
 
-        ecjia_front::$controller->assign('title', '输入验证码');
-        ecjia_front::$controller->assign_title('输入验证码');
+        ecjia_front::$controller->assign('title', __('输入验证码'));
+        ecjia_front::$controller->assign_title(__('输入验证码'));
         ecjia_front::$controller->assign_lang();
 
         ecjia_front::$controller->assign('type', 'smslogin');
@@ -447,7 +443,7 @@ class user_privilege_controller
                 ecjia_touch_user::singleton()->signin('smslogin', $mobile, $password);
                 return ecjia_front::$controller->showmessage(__('恭喜您，注册成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
             } else {
-                return ecjia_front::$controller->showmessage(__($res->get_error_message()), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+                return ecjia_front::$controller->showmessage($res->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
         }
         return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
@@ -469,9 +465,9 @@ class user_privilege_controller
         }
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
         if (!ecjia_front::$controller->is_cached('user_register.dwt', $cache_id)) {
-            ecjia_front::$controller->assign('title', '手机快速注册');
+            ecjia_front::$controller->assign('title', __('手机快速注册'));
             ecjia_front::$controller->assign_lang();
-            ecjia_front::$controller->assign_title('注册');
+            ecjia_front::$controller->assign_title(__('注册'));
         }
         ecjia_front::$controller->display('user_register.dwt', $cache_id);
     }
@@ -496,7 +492,7 @@ class user_privilege_controller
             return ecjia_front::$controller->showmessage(__('该手机号已被注册，请更换其他手机号'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         } else {
             $_SESSION['user_temp']['mobile'] = $mobile;
-            return ecjia_front::$controller->showmessage(__('短信已发送到手机' . $mobile . '，请注意查看'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+            return ecjia_front::$controller->showmessage(__(sprintf("短信已发送到手机%s，请注意查看", $mobile)), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
         }
     }
 
@@ -540,10 +536,10 @@ class user_privilege_controller
             }
 
             if (empty($username)) {
-                return ecjia_front::$controller->showmessage('请设置用户名', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+                return ecjia_front::$controller->showmessage(__('请设置用户名'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
             if (empty($password)) {
-                return ecjia_front::$controller->showmessage('请设置密码', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+                return ecjia_front::$controller->showmessage(__('请设置密码'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
 
         }
@@ -567,7 +563,7 @@ class user_privilege_controller
         } else {
             $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
             if (!ecjia_front::$controller->is_cached('user_set_password.dwt', $cache_id)) {
-                ecjia_front::$controller->assign('title', '设置名字密码');
+                ecjia_front::$controller->assign('title', __('设置名字密码'));
                 ecjia_front::$controller->assign_lang();
             }
             ecjia_front::$controller->assign('invited', $_SESSION['user_temp']['invited']);

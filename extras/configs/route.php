@@ -308,7 +308,6 @@ return [
     'user/quickpay/explain'                      => 'quickpay_controller@explain',
     'user/quickpay/bonus'                        => 'quickpay_controller@bonus',
     'user/quickpay/integral'                     => 'quickpay_controller@integral',
-    'user/quickpay/notify'                       => 'quickpay_controller@notify',
     'user/quickpay/async_quickpay_list'          => 'quickpay_controller@async_quickpay_list',
     'user/quickpay/quickpay_detail'              => 'quickpay_controller@quickpay_detail',
     'user/quickpay/pay'                          => 'quickpay_controller@pay',

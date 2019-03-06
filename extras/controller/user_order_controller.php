@@ -65,8 +65,8 @@ class user_order_controller
             $data         = is_ecjia_error($data) ? array() : $data;
 
             ecjia_front::$controller->assign('order_list', $data);
-            ecjia_front::$controller->assign_title('售后订单');
-            ecjia_front::$controller->assign('title', '售后订单');
+            ecjia_front::$controller->assign_title(__('售后订单'));
+            ecjia_front::$controller->assign('title', __('售后订单'));
             ecjia_front::$controller->assign('active', 'orderList');
 
             ecjia_front::$controller->assign_lang();
@@ -84,18 +84,18 @@ class user_order_controller
             ecjia_front::$controller->assign('type', $type);
             ecjia_front::$controller->assign('order_list', $data);
 
-            $title = '全部订单';
+            $title = __('全部订单');
             if ($type == 'await_pay') {
-                $title = '待付款订单';
+                $title = __('待付款订单');
             }
             if ($type == 'await_ship') {
-                $title = '待发货订单';
+                $title = __('待发货订单');
             }
             if ($type == 'shipped') {
-                $title = '待收货订单';
+                $title = __('待收货订单');
             }
             if ($type == 'allow_comment') {
-                $title = '待评价订单';
+                $title = __('待评价订单');
             }
             ecjia_front::$controller->assign_title($title);
             ecjia_front::$controller->assign('title', $title);
@@ -115,7 +115,7 @@ class user_order_controller
         $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         $type     = !empty($_GET['type']) ? $_GET['type'] : 'detail';
         if (empty($order_id)) {
-            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
+            return ecjia_front::$controller->showmessage(__('订单不存在'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
         }
 
         $token        = ecjia_touch_user::singleton()->getToken();
@@ -124,7 +124,7 @@ class user_order_controller
         $data         = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_DETAIL)->data($params_order)->run();
         $data         = is_ecjia_error($data) ? array() : $data;
         if (empty($data)) {
-            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
+            return ecjia_front::$controller->showmessage(__('订单不存在'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
         }
         $cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name']
             . '-' . $data['order_status'] . '-' . $data['shipping_status'] . '-' . $data['pay_status'];
@@ -137,8 +137,8 @@ class user_order_controller
                 if (($data['shipping_code'] == 'ship_o2o_express' || $data['shipping_code'] == 'ship_ecjia_express') && !empty($data['express_id'])) {
                     ecjia_front::$controller->assign('express_url', RC_Uri::url('user/order/express_position', array('code' => $data['shipping_code'], 'express_id' => $data['express_id'], 'order_id' => $data['order_id'], 'store_id' => $data['store_id'])));
                 }
-                ecjia_front::$controller->assign('title', '订单详情');
-                ecjia_front::$controller->assign_title('订单详情');
+                ecjia_front::$controller->assign('title', __('订单详情'));
+                ecjia_front::$controller->assign_title(__('订单详情'));
                 ecjia_front::$controller->assign_lang();
 
                 if ($data['shipping_code'] != 'ship_o2o_express' && $data['shipping_code'] != 'ship_ecjia_express') {
@@ -189,8 +189,8 @@ class user_order_controller
             }
             if (!ecjia_front::$controller->is_cached('user_order_status.dwt', $cache_id)) {
                 ecjia_front::$controller->assign('order', $data);
-                ecjia_front::$controller->assign('title', '订单状态');
-                ecjia_front::$controller->assign_title('订单状态');
+                ecjia_front::$controller->assign('title', __('订单状态'));
+                ecjia_front::$controller->assign_title(__('订单状态'));
                 ecjia_front::$controller->assign_lang();
             }
             ecjia_front::$controller->display('user_order_status.dwt', $cache_id);
@@ -204,7 +204,7 @@ class user_order_controller
     {
         $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         if (empty($order_id)) {
-            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
+            return ecjia_front::$controller->showmessage(__('订单不存在'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
         }
 
         $token        = ecjia_touch_user::singleton()->getToken();
@@ -214,7 +214,7 @@ class user_order_controller
         $express_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_EXPRESS)->data($params_order)->run();
         $express_info = is_ecjia_error($express_info) ? array() : $express_info[0];
         if (empty($express_info)) {
-            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
+            return ecjia_front::$controller->showmessage(__('订单不存在'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
         }
 
         $cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name']
@@ -225,8 +225,8 @@ class user_order_controller
             ecjia_front::$controller->assign('express_info', $express_info);
             ecjia_front::$controller->assign('goods_info', $express_info['goods_items'][0]);
 
-            ecjia_front::$controller->assign('title', '物流信息');
-            ecjia_front::$controller->assign_title('物流信息');
+            ecjia_front::$controller->assign('title', __('物流信息'));
+            ecjia_front::$controller->assign_title(__('物流信息'));
         }
         ecjia_front::$controller->display('user_order_express.dwt', $cache_id);
     }
@@ -238,7 +238,7 @@ class user_order_controller
     {
         $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         if (empty($order_id)) {
-            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage(__('订单不存在'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         $reason_id    = !empty($_GET['reason_id']) ? intval($_GET['reason_id']) : 0;
         $refund_type  = !empty($_GET['refund_type']) ? trim($_GET['refund_type']) : '';
@@ -246,12 +246,12 @@ class user_order_controller
 
         if (empty($refund_type)) {
             $data    = ecjia_touch_manager::make()->api(ecjia_touch_api::ORDER_CANCEL)->data($params_order)->run();
-            $message = '取消订单成功';
+            $message = __('取消订单成功');
         } else {
             $params_order['reason_id']   = $reason_id;
             $params_order['refund_type'] = 'refund';
             $data                        = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_APPLY)->data($params_order)->run();
-            $message                     = '订单取消申请已提交至商家审核';
+            $message                     = __('订单取消申请已提交至商家审核');
         }
 
         $url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
@@ -267,7 +267,7 @@ class user_order_controller
     {
         $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         if (empty($order_id)) {
-            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage(__('订单不存在'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
         $params_order = array('token' => ecjia_touch_user::singleton()->getToken(), 'order_id' => $order_id);
@@ -385,7 +385,7 @@ class user_order_controller
     {
         $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         if (empty($order_id)) {
-            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage(__('订单不存在'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         $order_type = trim($_GET['order_type']);
 
@@ -399,7 +399,7 @@ class user_order_controller
         }
 
         if (!is_ecjia_error($data)) {
-            return ecjia_front::$controller->showmessage("收货成功", ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
+            return ecjia_front::$controller->showmessage(__("收货成功"), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
         } else {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
         }
@@ -482,7 +482,7 @@ class user_order_controller
 
         $order_id     = isset($_POST['order_id']) ? intval($_POST['order_id']) : 0;
         $rec_id       = isset($_POST['rec_id']) ? intval($_POST['rec_id']) : '';
-        $content      = !empty($_POST['note']) ? trim(htmlspecialchars($_POST['note'])) : '商品质量俱佳，强烈推荐！';
+        $content      = !empty($_POST['note']) ? trim(htmlspecialchars($_POST['note'])) : __('商品质量俱佳，强烈推荐！');
         $rank         = isset($_POST['score']) ? intval($_POST['score']) : 0;
         $is_anonymous = isset($_POST['anonymity_status']) ? intval($_POST['anonymity_status']) : '';
 
@@ -505,7 +505,7 @@ class user_order_controller
         if (is_ecjia_error($data)) {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         } else {
-            return ecjia_front::$controller->showmessage("提交成功 ", ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/order/comment_list', array('order_id' => $order_id))));
+            return ecjia_front::$controller->showmessage(__("提交成功"), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('user/order/comment_list', array('order_id' => $order_id))));
         }
     }
 
@@ -542,7 +542,7 @@ class user_order_controller
                     ecjia_front::$controller->assign('store_location', json_encode($store_info['location']));
                 }
             }
-            ecjia_front::$controller->assign_title('配送员位置');
+            ecjia_front::$controller->assign_title(__('配送员位置'));
             ecjia_front::$controller->display('user_express_position.dwt');
         }
     }
@@ -557,8 +557,8 @@ class user_order_controller
         ecjia_front::$controller->assign('order_id', $order_id);
         ecjia_front::$controller->assign('refund_sn', $refund_sn);
 
-        ecjia_front::$controller->assign_title('申请查询');
-        ecjia_front::$controller->assign('title', '申请查询');
+        ecjia_front::$controller->assign_title(__('申请查询'));
+        ecjia_front::$controller->assign('title', __('申请查询'));
 
         $param = array('token' => $token, 'order_id' => $order_id, 'pagination' => array('count' => 10, 'page' => 1));
         $data  = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_LIST)->data($param)->run();
@@ -607,8 +607,8 @@ class user_order_controller
         ecjia_front::$controller->assign('order_id', $order_id);
         ecjia_front::$controller->assign('type', $type);
 
-        ecjia_front::$controller->assign_title('申请售后');
-        ecjia_front::$controller->assign('title', '申请售后');
+        ecjia_front::$controller->assign_title(__('申请售后'));
+        ecjia_front::$controller->assign('title', __('申请售后'));
 
         ecjia_front::$controller->assign('img_list', array(0, 1, 2, 3, 4));
 
@@ -634,8 +634,8 @@ class user_order_controller
 
             ecjia_front::$controller->assign('refund_logs', $data['refund_logs']);
 
-            ecjia_front::$controller->assign_title('售后进度');
-            ecjia_front::$controller->assign('title', '售后进度');
+            ecjia_front::$controller->assign_title(__('售后进度'));
+            ecjia_front::$controller->assign('title', __('售后进度'));
 
             ecjia_front::$controller->display('order_return_status.dwt');
         } elseif ($type == 'return_money') {
@@ -643,8 +643,8 @@ class user_order_controller
             $data = is_ecjia_error($data) ? array() : $data;
 
             ecjia_front::$controller->assign('data', $data);
-            ecjia_front::$controller->assign_title('退款详情');
-            ecjia_front::$controller->assign('title', '退款详情');
+            ecjia_front::$controller->assign_title(__('退款详情'));
+            ecjia_front::$controller->assign('title', __('退款详情'));
 
             ecjia_front::$controller->display('order_return_money.dwt');
         } else {
@@ -660,8 +660,8 @@ class user_order_controller
                 ecjia_front::$controller->assign('refund_logs', $data['refund_logs'][0]);
             }
 
-            ecjia_front::$controller->assign_title('售后详情');
-            ecjia_front::$controller->assign('title', '售后详情');
+            ecjia_front::$controller->assign_title(__('售后详情'));
+            ecjia_front::$controller->assign('title', __('售后详情'));
 
             ecjia_front::$controller->display('order_return_detail.dwt');
         }
@@ -676,13 +676,13 @@ class user_order_controller
         $refund_sn          = !empty($_POST['refund_sn']) ? trim($_POST['refund_sn']) : '';
 
         if (empty($order_id)) {
-            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage(__('订单不存在'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         if (empty($reason_id)) {
-            return ecjia_front::$controller->showmessage('申请失败，请选择售后原因', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage(__('申请失败，请选择售后原因'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         if (empty($refund_description)) {
-            return ecjia_front::$controller->showmessage('申请失败，请填写问题描述', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage(__('申请失败，请填写问题描述'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
         $file = array();
@@ -706,7 +706,7 @@ class user_order_controller
         }
 
         $url = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
-        return ecjia_front::$controller->showmessage('提交成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
+        return ecjia_front::$controller->showmessage(__('提交成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
     }
 
     //撤销申请
@@ -718,7 +718,7 @@ class user_order_controller
         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_CANCEL)->data($params_order)->run();
         $url  = RC_Uri::url('user/order/return_detail', array('refund_sn' => $refund_sn));
         if (!is_ecjia_error($data)) {
-            return ecjia_front::$controller->showmessage('撤销成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
+            return ecjia_front::$controller->showmessage(__('撤销成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
         } else {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
         }
@@ -729,7 +729,7 @@ class user_order_controller
     {
         $refund_sn = isset($_GET['refund_sn']) ? trim($_GET['refund_sn']) : '';
         if (empty($refund_sn)) {
-            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage(__('订单不存在'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         }
 
         $token  = ecjia_touch_user::singleton()->getToken();
@@ -747,7 +747,7 @@ class user_order_controller
     {
         $refund_sn = isset($_GET['refund_sn']) ? trim($_GET['refund_sn']) : '';
         if (empty($refund_sn)) {
-            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage(__('订单不存在'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         }
         $type = !empty($_GET['type']) ? trim($_GET['type']) : '';
         ecjia_front::$controller->assign('type', $type);
@@ -776,7 +776,7 @@ class user_order_controller
     {
         $refund_sn = isset($_POST['refund_sn']) ? trim($_POST['refund_sn']) : '';
         if (empty($refund_sn)) {
-            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage(__('订单不存在'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
         $type = !empty($_POST['type']) ? trim($_POST['type']) : '';
 
@@ -789,15 +789,15 @@ class user_order_controller
             $contact_phone      = !empty($_POST['contact_phone']) ? trim($_POST['contact_phone']) : '';
 
             if (empty($expect_pickup_time)) {
-                return ecjia_front::$controller->showmessage('请选择期望取件时间', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+                return ecjia_front::$controller->showmessage(__('请选择期望取件时间'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
 
             if (empty($contact_name)) {
-                return ecjia_front::$controller->showmessage('请输入联系人', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+                return ecjia_front::$controller->showmessage(__('请输入联系人'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
 
             if (empty($contact_phone)) {
-                return ecjia_front::$controller->showmessage('请输入联系电话', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+                return ecjia_front::$controller->showmessage(__('请输入联系电话'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
 
             $params = array(
@@ -819,10 +819,10 @@ class user_order_controller
             $shipping_sn       = !empty($_POST['shipping_sn']) ? trim($_POST['shipping_sn']) : '';
 
             if (empty($shipping_name)) {
-                return ecjia_front::$controller->showmessage('请输入快递名称', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+                return ecjia_front::$controller->showmessage(__('请输入快递名称'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
             if (empty($shipping_sn)) {
-                return ecjia_front::$controller->showmessage('请输入快递单号', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+                return ecjia_front::$controller->showmessage(__('请输入快递单号'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
             }
 
             $params = array(
@@ -855,7 +855,7 @@ class user_order_controller
 
         $url = RC_Uri::url('user/order/return_detail', array('refund_sn' => $refund_sn));
         if (!is_ecjia_error($data)) {
-            return ecjia_front::$controller->showmessage('提交成功', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
+            return ecjia_front::$controller->showmessage(__('提交成功'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
         } else {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
@@ -923,7 +923,7 @@ class user_order_controller
         $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
         $type     = !empty($_GET['type']) ? $_GET['type'] : 'detail';
         if (empty($order_id)) {
-            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
+            return ecjia_front::$controller->showmessage(__('订单不存在'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
         }
 
         $token        = ecjia_touch_user::singleton()->getToken();
@@ -934,7 +934,7 @@ class user_order_controller
 
         $data['formated_payed'] = ecjia_price_format($data['money_paid'] + $data['surplus']);
         if (empty($data)) {
-            return ecjia_front::$controller->showmessage('订单不存在', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
+            return ecjia_front::$controller->showmessage(__('订单不存在'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('user/order/order_list')));
         }
         $cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name']
             . '-' . $data['order_status'] . '-' . $data['shipping_status'] . '-' . $data['pay_status'];
@@ -947,8 +947,8 @@ class user_order_controller
                 if (($data['shipping_code'] == 'ship_o2o_express' || $data['shipping_code'] == 'ship_ecjia_express') && !empty($data['express_id'])) {
                     ecjia_front::$controller->assign('express_url', RC_Uri::url('user/order/express_position', array('code' => $data['shipping_code'], 'express_id' => $data['express_id'], 'order_id' => $data['order_id'], 'store_id' => $data['store_id'])));
                 }
-                ecjia_front::$controller->assign('title', '订单详情');
-                ecjia_front::$controller->assign_title('订单详情');
+                ecjia_front::$controller->assign('title', __('订单详情'));
+                ecjia_front::$controller->assign_title(__('订单详情'));
                 ecjia_front::$controller->assign_lang();
 
                 if (!empty($data['order_status_code'])) {
@@ -983,8 +983,8 @@ class user_order_controller
         } else {
             if (!ecjia_front::$controller->is_cached('user_order_status.dwt', $cache_id)) {
                 ecjia_front::$controller->assign('order', $data);
-                ecjia_front::$controller->assign('title', '订单状态');
-                ecjia_front::$controller->assign_title('订单状态');
+                ecjia_front::$controller->assign('title', __('订单状态'));
+                ecjia_front::$controller->assign_title(__('订单状态'));
                 ecjia_front::$controller->assign_lang();
             }
             ecjia_front::$controller->display('user_order_status.dwt', $cache_id);
