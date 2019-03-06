@@ -218,7 +218,7 @@ class user_order_controller
         }
 
         $cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name']
-            . '-' . $express_info['label_shipping_status'] . '-' . $data['shipping_number'] . '-' . $data['shipping_status'];
+            . '-' . $express_info['label_shipping_status'] . '-' . $express_info['shipping_number'] . '-' . $express_info['shipping_status'];
         $cache_id = sprintf('%X', crc32($cache_id));
 
         if (!ecjia_front::$controller->is_cached('user_order_express.dwt', $cache_id)) {
