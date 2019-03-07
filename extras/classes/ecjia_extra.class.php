@@ -81,6 +81,14 @@ class ecjia_extra
     }
 
     /**
+     * 主题框架默认加载
+     */
+    public static function defaultLoading()
+    {
+        RC_Locale::loadThemeTextdomain('h5');
+    }
+
+    /**
      * 加载主题选项设置面板
      */
     public static function loadThemeFrameworkOptions()
