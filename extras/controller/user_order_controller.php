@@ -1025,6 +1025,7 @@ class user_order_controller
             }
 
             $say_list = '';
+            $data['list'] = [];
             if (!empty($data['list'])) {
                 ecjia_front::$controller->assign('list', $data['list']);
             }
@@ -1048,6 +1049,7 @@ class user_order_controller
         );
 
         $data = ecjia_touch_manager::make()->api()->data($param)->run();
+        $data = [];
         $data = is_ecjia_error($data) ? [] : $data;
         ecjia_front::$controller->assign('data', $data);
 
