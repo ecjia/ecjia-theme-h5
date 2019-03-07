@@ -990,6 +990,69 @@ class user_order_controller
             ecjia_front::$controller->display('user_order_status.dwt', $cache_id);
         }
     }
+
+    //订单分成
+    public static function affiliate()
+    {
+        ecjia_front::$controller->assign('active', 'all');
+
+        $title = __('订单分成', 'h5');
+        ecjia_front::$controller->assign_title($title);
+        ecjia_front::$controller->assign('status', trim($_GET['status']));
+
+        ecjia_front::$controller->display('user_order_affiliate.dwt');
+    }
+
+    //获取分成订单
+    public static function ajax_order_affiliate()
+    {
+        $status = trim($_GET['status']);
+        $limit  = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+        $pages  = intval($_GET['page']) ? intval($_GET['page']) : 1;
+
+        $token = ecjia_touch_user::singleton()->getToken();
+
+        $param  = array(
+            'token'      => $token,
+            'status'     => $status,
+            'pagination' => array('count' => $limit, 'page' => $pages),
+        );
+        $result = ecjia_touch_manager::make()->api()->data($param)->hasPage()->run();
+        if (!is_ecjia_error($result)) {
+            list($data, $page) = $result;
+            if (isset($page['more']) && $page['more'] == 0) {
+                $is_last = 1;
+            }
+
+            $say_list = '';
+            if (!empty($data['list'])) {
+                ecjia_front::$controller->assign('list', $data['list']);
+            }
+            $say_list = ecjia_front::$controller->fetch('user_order_affiliate.dwt');
+
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+        }
+    }
+
+    //分成订单详情
+    public static function affiliate_detail()
+    {
+        $id    = intval($_GET['id']);
+        $title = __('分成详情', 'h5');
+        ecjia_front::$controller->assign_title($title);
+
+        $token = ecjia_touch_user::singleton()->getToken();
+        $param = array(
+            'token'  => $token,
+            'log_id' => $id,
+        );
+
+        $data = ecjia_touch_manager::make()->api()->data($param)->run();
+        $data = is_ecjia_error($data) ? [] : $data;
+        ecjia_front::$controller->assign('data', $data);
+
+        ecjia_front::$controller->display('user_order_affiliate_detail.dwt');
+    }
 }
 
 // end
