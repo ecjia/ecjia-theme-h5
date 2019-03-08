@@ -62,8 +62,9 @@ ecjia_extra::routeDispacth();
 /**
  * 加载主题选项设置面板
  */
-ecjia_extra::loadThemeFrameworkOptions();
 ecjia_extra::defaultLoading();
+ecjia_extra::loadThemeFrameworkOptions();
+
 
 /**
  * step:5
