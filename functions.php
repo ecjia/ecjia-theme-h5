@@ -50,21 +50,31 @@ RC_Loader::load_app_class('touch', 'touch', false);
 RC_Loader::load_theme('extras/classes/ecjia_extra.class.php');
 
 /**
+ * step:1
  * 自动加载类管理
  */
 ecjia_extra::autoload();
 
 /**
+ * step:2
  * 加载路由
  */
 ecjia_extra::routeDispacth();
 
 /**
+ * step:3
  * 加载主题选项设置面板
  */
 ecjia_extra::defaultLoading();
 ecjia_extra::loadThemeFrameworkOptions();
 
+/**
+ * step:4
+ * 自定义主题框架的控制器
+ */
+RC_Hook::add_action('royalcms_default_controller', function($route) {
+    return new ecjia_theme_controller();
+});
 
 /**
  * step:5
