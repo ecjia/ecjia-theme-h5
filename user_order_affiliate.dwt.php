@@ -25,7 +25,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <li class="reward-item ecjia-margin-t">
 	<div class="reward-hd">
 		{t domain="h5"}订单编号{/t}&nbsp;{$val.formatted_order_time}
-		<span class="ecjiaf-fr ecjia-color-red">{$val.label_status}</span>
+		<span class="ecjiaf-fr ecjia-color-red">{$val.label_separate_status}</span>
 	</div>
 	<div class="flow-goods-list">
 		<a class="ecjiaf-db" href='{url path="user/order/affiliate_detail" args="id={$val.order_id}"}'>

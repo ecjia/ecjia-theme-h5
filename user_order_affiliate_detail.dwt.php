@@ -11,16 +11,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <div class="ecjia-reward-detail">
 	<div class="reward-detail-top">
-		{if $data.status eq 'await_seprate'}
+		{if $data.separate_status eq 'await_separate'}
 		<div class="status"><img src="{$theme_url}images/affiliate/wait_affiliate.png" /></div>
-		{else if $data.status eq 'seprated'}
+		{else if $data.separate_status eq 'separated'}
 		<div class="status"><img src="{$theme_url}images/affiliate/affiliated.png" /></div>
-		{else if $data.status eq 'cancel_seprate'}
-		<div class="status"><img src="{$theme_url}images/affiliate/cancel_seprate.png" /></div>
 		{/if}
-		<p>{$data.label_status}</p>
+		<p>{$data.label_separate_status}</p>
 
-        {if $data.status neq 'await_seprate'}
+        {if $data.separate_status neq 'await_seprate'}
 		<p class="price">{$data.formatted_affiliated_amount}</p>
         {/if}
 
