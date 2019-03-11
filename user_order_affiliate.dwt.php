@@ -9,9 +9,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 {nocache}
 <!-- {extends file="ecjia-touch.dwt.php"} -->
 <!-- {block name="main-content"} -->
-<div class="ecjia-reward-list">
+<div class="ecjia-reward-list list-two">
 	<div class="reward-head">
-		<a class="fnUrlReplace" href='{url path="user/order/affiliate"}'><div class="reward-head-item {if !$status}active{/if}"><span>{t domain="h5"}全部{/t}</span></div></a>
 		<a class="fnUrlReplace" href='{url path="user/order/affiliate"}&status=await_separate'><div class="reward-head-item {if $status eq 'await_separate'}active{/if}"><span>{t domain="h5"}待分成{/t}</span></div></a>
 		<a class="fnUrlReplace" href='{url path="user/order/affiliate"}&status=separated'><div class="reward-head-item {if $status eq 'separated'}active{/if}"><span>{t domain="h5"}已分成{/t}</span></div></a>
 	</div>
@@ -29,8 +28,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<span class="ecjiaf-fr ecjia-color-red">{$val.label_status}</span>
 	</div>
 	<div class="flow-goods-list">
-		<a class="ecjiaf-db" href='{url path="user/order/affiliate_detail" args="id={$val.log_id}"}'>
-			<!-- {foreach from=$val.goods_list item=v} -->
+		<a class="ecjiaf-db" href='{url path="user/order/affiliate_detail" args="id={$val.order_id}"}'>
+			<!-- {foreach from=$val.goods_list key=k item=v} -->
+            {if $k eq 0}
 			<ul class="goods-item">
 				<li class="goods-img">
 					<img class="ecjiaf-fl" src="{$v.img.thumb}" />
@@ -40,19 +40,22 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<p class="block">{$v.formatted_goods_price}</p>
 				</div>
 			</ul>
+            {/if}
 			<!-- {/foreach} -->
 		</a>
 	</div>
+    {if $val.separate_status eq 'separated'}
 	<div class="reward-ft">
-		<em class="ecjiaf-fr ecjia-color-red">{$val.formatted_affiliated_amount}</em>
+		<em class="ecjiaf-fr ecjia-color-red">{t domain="h5"}分成：{/t}{$val.formatted_affiliated_amount}</em>
 	</div>
+    {/if}
 </li>
 <!-- {/foreach} -->
 <!-- {else} -->
 <div class="ecjia-mod search-no-pro ecjia-margin-t ecjia-margin-b">
 	<div class="ecjia-nolist">
 		<p><img src="{$theme_url}images/wallet/null280.png"></p>
-		{t domain="h5"}暂无分成{/t}
+		{t domain="h5"}暂无分成记录{/t}
 	</div>
 </div>
 <!-- {/if} -->

@@ -19,7 +19,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="status"><img src="{$theme_url}images/affiliate/cancel_seprate.png" /></div>
 		{/if}
 		<p>{$data.label_status}</p>
+
+        {if $data.status neq 'await_seprate'}
 		<p class="price">{$data.formatted_affiliated_amount}</p>
+        {/if}
+
 		<div class="detail-list">
 			<p><span class="ecjiaf-fl">{t domain="h5"}订单编号{/t}</span><span class="ecjiaf-fr">{$data.order_sn}</span></p>
 			<p><span class="ecjiaf-fl">{t domain="h5"}购买人{/t}</span><span class="ecjiaf-fr">{$data.buyer}</span></p>
@@ -45,7 +49,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 		<div class="detail-list">
 			<p><span class="ecjiaf-fl">{t domain="h5"}订单合计{/t}</span><span class="ecjiaf-fr">{$data.formatted_total_amount}</span></p>
-			<p><span class="ecjiaf-fl">{t domain="h5"}佣金比例{/t}</span><span class="ecjiaf-fr">{$data.formatted_affiliated_amount}</span></p>
             <p><span class="ecjiaf-fl">{t domain="h5"}获得分成{/t}</span><span class="ecjiaf-fr ecjia-color-red">{$data.formatted_affiliated_amount}</span></p>
 		</div>
 	</div>

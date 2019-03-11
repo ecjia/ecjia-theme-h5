@@ -15299,9 +15299,13 @@ body,
     font-size: 1.1em;
 }
 
+.ecjia-reward-list.list-two .reward-head .reward-head-item {
+    width: 50%;
+}
+
 .ecjia-reward-list .reward-head .reward-head-item.active span {
-    color: #6a4699;
-    border-bottom: 2px solid #6a4699;
+    color: #47aa4d;
+    border-bottom: 2px solid #47aa4d;
     height: 3.2em;
     display: inline-block;
     width: 4em;
@@ -15397,12 +15401,11 @@ body,
 }
 
 .ecjia-reward-detail .detail-list {
-    padding: 1em;
-    line-height: 2em
+    padding: .5em 1em;
 }
 
 .ecjia-reward-detail .detail-list p {
-    line-height: 2em;
+    line-height: 2.5em;
     color: #838383;
     display: block;
     overflow: hidden

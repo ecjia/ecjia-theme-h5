@@ -164,14 +164,14 @@ class user_order_controller
                     'seller_id' => $data['store_id'],
                     'city_id'   => $_COOKIE['city_id'],
                 );
-                $store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
-                $store_info = is_ecjia_error($store_info) ? array() : $store_info;
+                $store_info     = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
+                $store_info     = is_ecjia_error($store_info) ? array() : $store_info;
 
                 if (!empty($store_info)) {
                     $map_url   = 'https://3gimg.qq.com/lightmap/v1/marker/index.html?type=0&marker=coord:';
                     $url_param = '' . $store_info['location']['latitude'] . ',' . $store_info['location']['longitude'] . ';title:' . $store_info['seller_name'] . ';addr:' . $store_info['shop_address'];
                     $url_param = urlencode($url_param);
-                    $map_url .= $url_param;
+                    $map_url   .= $url_param;
                     ecjia_front::$controller->assign('location_url', $map_url);
                 }
                 ecjia_front::$controller->display('user_order_detail.dwt', $cache_id);
@@ -486,7 +486,7 @@ class user_order_controller
         $rank         = isset($_POST['score']) ? intval($_POST['score']) : 0;
         $is_anonymous = isset($_POST['anonymity_status']) ? intval($_POST['anonymity_status']) : '';
 
-        $file = array();
+        $file  = array();
         $files = $_FILES['picture'];
         for ($i = 0; $i < 5; $i++) {
             if (!empty($files['name'][$i])) {
@@ -537,7 +537,7 @@ class user_order_controller
                     'seller_id' => $store_id,
                     'city_id'   => $_COOKIE['city_id'],
                 );
-                $store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
+                $store_info     = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
                 if (!is_ecjia_error($store_info)) {
                     ecjia_front::$controller->assign('store_location', json_encode($store_info['location']));
                 }
@@ -685,7 +685,7 @@ class user_order_controller
             return ecjia_front::$controller->showmessage(__('申请失败，请填写问题描述', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
 
-        $file = array();
+        $file  = array();
         $files = $_FILES['refund_images'];
         for ($i = 0; $i < 5; $i++) {
             if (!empty($files['name'][$i])) {
@@ -700,7 +700,7 @@ class user_order_controller
             'reason_id'          => $reason_id,
             'refund_description' => $refund_description,
         );
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_APPLY)->data($params)->file($file)->run();
+        $data   = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_APPLY)->data($params)->file($file)->run();
         if (is_ecjia_error($data)) {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
@@ -808,7 +808,7 @@ class user_order_controller
                 'contact_name'       => $contact_name,
                 'contact_phone'      => $contact_phone,
             );
-            $api = ecjia_touch_api::REFUND_RETURNWAY_HOME;
+            $api    = ecjia_touch_api::REFUND_RETURNWAY_HOME;
         }
 
         if ($type == 'express') {
@@ -834,7 +834,7 @@ class user_order_controller
                 'shipping_name'     => $shipping_name,
                 'shipping_sn'       => $shipping_sn,
             );
-            $api = ecjia_touch_api::REFUND_RETURNWAY_EXPRESS;
+            $api    = ecjia_touch_api::REFUND_RETURNWAY_EXPRESS;
         }
 
         if ($type == 'shop') {
@@ -849,7 +849,7 @@ class user_order_controller
                 'contact_phone' => $contact_phone,
                 'store_address' => $store_address,
             );
-            $api = ecjia_touch_api::REFUND_RETURNWAY_SHOP;
+            $api    = ecjia_touch_api::REFUND_RETURNWAY_SHOP;
         }
         $data = ecjia_touch_manager::make()->api($api)->data($params)->run();
 
@@ -968,14 +968,14 @@ class user_order_controller
                     'seller_id' => $data['store_id'],
                     'city_id'   => $_COOKIE['city_id'],
                 );
-                $store_info = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
-                $store_info = is_ecjia_error($store_info) ? array() : $store_info;
+                $store_info     = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
+                $store_info     = is_ecjia_error($store_info) ? array() : $store_info;
 
                 if (!empty($store_info)) {
                     $map_url   = 'https://3gimg.qq.com/lightmap/v1/marker/index.html?type=0&marker=coord:';
                     $url_param = '' . $store_info['location']['latitude'] . ',' . $store_info['location']['longitude'] . ';title:' . $store_info['seller_name'] . ';addr:' . $store_info['shop_address'];
                     $url_param = urlencode($url_param);
-                    $map_url .= $url_param;
+                    $map_url   .= $url_param;
                     ecjia_front::$controller->assign('location_url', $map_url);
                 }
                 ecjia_front::$controller->display('user_order_detail.dwt', $cache_id);
@@ -994,11 +994,11 @@ class user_order_controller
     //订单分成
     public static function affiliate()
     {
-        ecjia_front::$controller->assign('active', 'all');
+        $status = !empty($_GET['status']) ? trim($_GET['status']) : 'await_separate';
+        $title  = __('订单分成', 'h5');
 
-        $title = __('订单分成', 'h5');
         ecjia_front::$controller->assign_title($title);
-        ecjia_front::$controller->assign('status', trim($_GET['status']));
+        ecjia_front::$controller->assign('status', $status);
 
         ecjia_front::$controller->display('user_order_affiliate.dwt');
     }
@@ -1006,7 +1006,7 @@ class user_order_controller
     //获取分成订单
     public static function ajax_order_affiliate()
     {
-        $status = trim($_GET['status']);
+        $status = !empty($_GET['status']) ? trim($_GET['status']) : 'await_separate';
         $limit  = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $pages  = intval($_GET['page']) ? intval($_GET['page']) : 1;
 
@@ -1017,17 +1017,16 @@ class user_order_controller
             'status'     => $status,
             'pagination' => array('count' => $limit, 'page' => $pages),
         );
-        $result = ecjia_touch_manager::make()->api()->data($param)->hasPage()->run();
+        $result = ecjia_touch_manager::make()->api(ecjia_touch_api::AFFILIATE_ORDER_RECORDS)->data($param)->hasPage()->run();
         if (!is_ecjia_error($result)) {
             list($data, $page) = $result;
+
             if (isset($page['more']) && $page['more'] == 0) {
                 $is_last = 1;
             }
 
-            $say_list = '';
-            $data['list'] = [];
-            if (!empty($data['list'])) {
-                ecjia_front::$controller->assign('list', $data['list']);
+            if (!empty($data)) {
+                ecjia_front::$controller->assign('list', $data);
             }
             $say_list = ecjia_front::$controller->fetch('user_order_affiliate.dwt');
 
@@ -1044,15 +1043,14 @@ class user_order_controller
 
         $token = ecjia_touch_user::singleton()->getToken();
         $param = array(
-            'token'  => $token,
-            'log_id' => $id,
+            'token'    => $token,
+            'order_id' => $id,
         );
 
-        $data = ecjia_touch_manager::make()->api()->data($param)->run();
-        $data = [];
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::AFFILIATE_ORDER_DETAIL)->data($param)->run();
         $data = is_ecjia_error($data) ? [] : $data;
-        ecjia_front::$controller->assign('data', $data);
 
+        ecjia_front::$controller->assign('data', $data);
         ecjia_front::$controller->display('user_order_affiliate_detail.dwt');
     }
 }
