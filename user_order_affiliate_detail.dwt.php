@@ -30,8 +30,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 
 	<div class="reward-detail-bottom">
-		<div class="bottom-hd"><img src="{$theme_url}images/icon/store_green.png" />&nbsp;{$data.store_name}</div>
-		
+		<div class="bottom-hd">
+            <a class="nopjax external" href="{RC_Uri::Url('merchant/index/init')}&store_id={$data.store_id}">
+                <img src="{$theme_url}images/icon/store_green.png" />&nbsp;{$data.store_name} <i class="iconfont icon-jiantou-right" style="top:0;"></i>
+            </a>
+        </div>
+
 		{foreach from=$data.goods_list item=val}
 		<ul class="goods-item">
 			<li class="goods-img">
@@ -39,15 +43,20 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</li>
 			<div class="goods-right">
 				<div class="goods-name">{$val.goods_name}</div>
-				<p class="block">x{$val.goods_number}</p>
-				<p class="block"><span class="ecjiaf-fr ecjia-color-red">{$val.formatted_goods_price}</span></p>
+                <p class="block">{t domain="h5"}货号：{/t}{$val.goods_sn}</p>
+				<div class="block">
+                    <span class="ecjiaf-fl">x{$val.goods_number}</span>
+                    <span class="ecjiaf-fr ecjia-color-red">{$val.formatted_goods_price}</span>
+                </div>
 			</div>
 		</ul>
 		{/foreach}
 
 		<div class="detail-list">
 			<p><span class="ecjiaf-fl">{t domain="h5"}订单合计{/t}</span><span class="ecjiaf-fr">{$data.formatted_total_amount}</span></p>
+            {if $data.formatted_affiliated_amount}
             <p><span class="ecjiaf-fl">{t domain="h5"}获得分成{/t}</span><span class="ecjiaf-fr ecjia-color-red">{$data.formatted_affiliated_amount}</span></p>
+            {/if}
 		</div>
 	</div>
 </div>
