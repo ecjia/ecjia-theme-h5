@@ -20,41 +20,58 @@ class ecjia_theme_controller extends ecjia_front
     {
     	//加载样式
     	RC_Style::enqueue_style('bootstrap', ecjia_extra::themeUrl('lib/bootstrap3/css/bootstrap.css'));
-    	RC_Style::enqueue_style('iconfont', ecjia_extra::themeUrl('dist/css/iconfont.min.css'));
-    	RC_Style::enqueue_style('touch', ecjia_extra::themeUrl('css/ecjia.touch.css'));
+    	RC_Style::enqueue_style('iconfont',  ecjia_extra::themeUrl('dist/css/iconfont.min.css'));
+    	RC_Style::enqueue_style('touch',     ecjia_extra::themeUrl('css/ecjia.touch.css'));
     	RC_Style::enqueue_style('touch-develop', ecjia_extra::themeUrl('css/ecjia.touch.develop.css'));
-    	RC_Style::enqueue_style('touch-b2b2c', ecjia_extra::themeUrl('css/ecjia.touch.b2b2c.css'));
-    	RC_Style::enqueue_style('ecjia_city', ecjia_extra::themeUrl('css/ecjia_city.css'));
-    	RC_Style::enqueue_style('ecjia_help', ecjia_extra::themeUrl('css/ecjia_help.css'));
+    	RC_Style::enqueue_style('touch-b2b2c',   ecjia_extra::themeUrl('css/ecjia.touch.b2b2c.css'));
+    	RC_Style::enqueue_style('ecjia_city',    ecjia_extra::themeUrl('css/ecjia_city.css'));
+    	RC_Style::enqueue_style('ecjia_help',    ecjia_extra::themeUrl('css/ecjia_help.css'));
+    	
+    	//弹窗 
     	RC_Style::enqueue_style('touch-models', ecjia_extra::themeUrl('css/ecjia.touch.models.css'));
-    	RC_Style::enqueue_style('swiper', ecjia_extra::themeUrl('dist/other/swiper.min.css'));
-    	RC_Style::enqueue_style('datePicker', ecjia_extra::themeUrl('lib/datePicker/css/datePicker.min.css'));
-    	RC_Style::enqueue_style('winderCheck', ecjia_extra::themeUrl('lib/winderCheck/css/winderCheck.min.css'));
-    	RC_Style::enqueue_style('photoswipe', ecjia_extra::themeUrl('lib/photoswipe/css/photoswipe.css'));
+    	RC_Style::enqueue_style('swiper',       ecjia_extra::themeUrl('dist/other/swiper.min.css'));
+    	RC_Style::enqueue_style('datePicker',   ecjia_extra::themeUrl('lib/datePicker/css/datePicker.min.css'));
+    	RC_Style::enqueue_style('winderCheck',  ecjia_extra::themeUrl('lib/winderCheck/css/winderCheck.min.css'));
+    	
+    	//图片预览 
+    	RC_Style::enqueue_style('photoswipe',   ecjia_extra::themeUrl('lib/photoswipe/css/photoswipe.css'));
     	RC_Style::enqueue_style('default-skin', ecjia_extra::themeUrl('lib/photoswipe/css/default-skin/default-skin.css'));
-    	RC_Style::enqueue_style('style', ecjia_extra::themeUrl('style.css')); 
+    	
+    	//skin
+    	RC_Style::enqueue_style('style',      ecjia_extra::themeUrl('style.css')); 
     	RC_Style::enqueue_style('iosOverlay', ecjia_extra::themeUrl('lib/iOSOverlay/css/iosOverlay.css'));
 
         //加载脚本
+    	RC_Style::enqueue_style('jquery', ecjia_extra::themeUrl('lib/jquery/jquery.min.js'));
+    	RC_Style::enqueue_style('jquery-quicksearch', ecjia_extra::themeUrl('lib/multi-select/js/jquery.quicksearch.js'));
+    	RC_Style::enqueue_style('jquery-pjax', ecjia_extra::themeUrl('lib/jquery/jquery.pjax.js'));
+    	RC_Style::enqueue_style('jquery-cookie', ecjia_extra::themeUrl('lib/jquery/jquery.cookie.js'));
+    	RC_Style::enqueue_style('iscroll', ecjia_extra::themeUrl('lib/iscroll/js/iscroll.js'));
+    	RC_Style::enqueue_style('bootstrap', ecjia_extra::themeUrl('lib/bootstrap3/js/bootstrap.min.js'));
+    	RC_Style::enqueue_style('ecjia', ecjia_extra::themeUrl('lib/ecjiaUI/ecjia.js'));
+    	RC_Style::enqueue_style('jquery-form', ecjia_extra::themeUrl('lib/jquery-form/jquery.form.min.js'));
+    	RC_Style::enqueue_style('clipboard', ecjia_extra::themeUrl('lib/clipboard/js/clipboard.min.js'));
+
+    	RC_Style::enqueue_style('jquery-localstorage', ecjia_extra::themeUrl('lib/jquery-localstorage/jquery.localstorage.js'));
+
+    	//图片预览
+    	RC_Script::enqueue_script('photoswipe', ecjia_extra::themeUrl('lib/photoswipe/js/photoswipe.min.js'), array(), false, 1);
+    	RC_Script::enqueue_script('photoswipe-ui-default', ecjia_extra::themeUrl('lib/photoswipe/js/photoswipe-ui-default.min.js'), array(), false, 1);
+
     	RC_Script::enqueue_script('jquery-yomi', ecjia_extra::themeUrl('js/jquery.yomi.js'), array(), false, 1);
     	RC_Script::enqueue_script('touch-koala', ecjia_extra::themeUrl('js/ecjia.touch.koala.js'), array(), false, 1);
     	RC_Script::enqueue_script('ecjia-touch', ecjia_extra::themeUrl('js/ecjia.touch.js'), array(), false, 1);
     	RC_Script::enqueue_script('ecjia-touch-others', ecjia_extra::themeUrl('js/ecjia.touch.others.js'), array(), false, 1);
-    	RC_Script::enqueue_script('ecjia-touch-goods', ecjia_extra::themeUrl('js/ecjia.touch.goods.js'), array(), false, 1);
-    	RC_Script::enqueue_script('ecjia-touch-user', ecjia_extra::themeUrl('js/ecjia.touch.user.js'), array(), false, 1);
-    	RC_Script::enqueue_script('ecjia-touch-flow', ecjia_extra::themeUrl('js/ecjia.touch.flow.js'), array(), false, 1);
-    	
-    	//链接赋值位置
-//     	<script type="text/javascript">var theme_url = "{$theme_url}";</script>
+    	RC_Script::enqueue_script('ecjia-touch-goods',  ecjia_extra::themeUrl('js/ecjia.touch.goods.js'), array(), false, 1);
+    	RC_Script::enqueue_script('ecjia-touch-user',   ecjia_extra::themeUrl('js/ecjia.touch.user.js'), array(), false, 1);
+    	RC_Script::enqueue_script('ecjia-touch-flow',   ecjia_extra::themeUrl('js/ecjia.touch.flow.js'), array(), false, 1);
 
     	RC_Script::enqueue_script('ecjia-touch-goods_detail', ecjia_extra::themeUrl('js/ecjia.touch.goods_detail.js'), array(), false, 1);
     	
     	//微信判断位置
-
-//     	{if $is_weixin}
-//     	<script type="text/javascript" src="{$theme_url}js/jweixin-1.2.0.js"></script>
-//     	{/if}
-
+    	if(ecjia_is_weixin()) {
+    		RC_Script::enqueue_script('jweixin', ecjia_extra::themeUrl('js/jweixin-1.2.0.js'), array(), false, 1);
+    	}
     	RC_Script::enqueue_script('ecjia-touch-spread', ecjia_extra::themeUrl('js/ecjia.touch.spread.js'), array(), false, 1);
     	RC_Script::enqueue_script('ecjia-touch-user_account', ecjia_extra::themeUrl('js/ecjia.touch.user_account.js'), array(), false, 1);
     	RC_Script::enqueue_script('ecjia-touch-user_franchisee', ecjia_extra::themeUrl('js/ecjia.touch.franchisee.js'), array(), false, 1);
