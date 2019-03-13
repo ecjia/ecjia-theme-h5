@@ -75,34 +75,5 @@ class ecjia_theme_controller extends ecjia_front
     	RC_Script::enqueue_script('prettify', ecjia_extra::themeUrl('lib/iOSOverlay/js/prettify.js'), array(), false, 1);	
     }
 
-    /**
-     * 前台控制器打印头部style样式文件
-     */
-    protected function front_print_head_styles()
-    {
-        ecjia_loader::print_head_styles();
-    }
-
-    /**
-     * 前台控制器打印头部script脚本文件
-     */
-    protected function front_print_head_scripts()
-    {
-        ecjia_loader::print_head_scripts();
-    }
-
-    /**
-     * 前台控制器打印底部script脚本文件
-     */
-    protected function front_print_footer_scripts()
-    {
-        ecjia_loader::print_footer_scripts();
-    }
-
-    protected function front_print_late_styles()
-    {
-        ecjia_loader::print_late_styles();
-    }
-
 
 }
