@@ -22,7 +22,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	    <!-- {block name="ready_meta"} --><!-- {/block} -->
 	    <!-- {block name="meta"} --><!-- {/block} -->
 		<!-- {ecjia:hook id=front_head} -->
-		
+
+        <script charset="utf-8" src="{ecjia_location_mapjs('convertor')}"></script>
+        <script type="text/javascript">var theme_url = "{$theme_url}";</script>
 		<script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
 	</head>
 	<body>
@@ -35,10 +37,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<!-- #BeginLibraryItem "/library/page_qrcode.lbi" --><!-- #EndLibraryItem -->
 			<!--{/if}-->
 		</div>
-		<script charset="utf-8" src="{ecjia_location_mapjs('convertor')}"></script>
-	
-	    <script type="text/javascript">var theme_url = "{$theme_url}";</script>
-	    
+
 	    <!-- {ecjia:hook id=front_print_footer_scripts} -->
 	    <!-- {block name="ready_footer"} --><!-- {/block} -->
 	    <!-- {block name="footer"} --><!-- {/block} -->
