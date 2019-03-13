@@ -50,6 +50,7 @@ class ecjia_theme_controller extends ecjia_front
     	RC_Script::enqueue_script('ecjia-touch-goods_detail', ecjia_extra::themeUrl('js/ecjia.touch.goods_detail.js'), array(), false, 1);
     	
     	//微信判断位置
+
 //     	{if $is_weixin}
 //     	<script type="text/javascript" src="{$theme_url}js/jweixin-1.2.0.js"></script>
 //     	{/if}
@@ -74,29 +75,34 @@ class ecjia_theme_controller extends ecjia_front
     	RC_Script::enqueue_script('prettify', ecjia_extra::themeUrl('lib/iOSOverlay/js/prettify.js'), array(), false, 1);	
     }
 
-    public function front_enqueue_scripts()
+    /**
+     * 前台控制器打印头部style样式文件
+     */
+    protected function front_print_head_styles()
     {
-
+        ecjia_loader::print_head_styles();
     }
 
-    public function front_print_styles()
+    /**
+     * 前台控制器打印头部script脚本文件
+     */
+    protected function front_print_head_scripts()
     {
-
+        ecjia_loader::print_head_scripts();
     }
 
-    public function front_print_head_scripts()
+    /**
+     * 前台控制器打印底部script脚本文件
+     */
+    protected function front_print_footer_scripts()
     {
-
+        ecjia_loader::print_footer_scripts();
     }
 
-    public function front_print_footer_scripts()
+    protected function front_print_late_styles()
     {
-
+        ecjia_loader::print_late_styles();
     }
 
-    public function _front_footer_scripts()
-    {
-
-    }
 
 }

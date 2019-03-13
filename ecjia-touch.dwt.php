@@ -16,7 +16,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<link href="{if ecjia::config('wap_logo')}{RC_Upload::upload_url(ecjia::config('wap_logo'))}{else}favicon.ico{/if}" rel="shortcut icon bookmark">
 	<link href="{if ecjia::config('wap_logo')}{RC_Upload::upload_url(ecjia::config('wap_logo'))}{else}favicon.ico{/if}" rel="apple-touch-icon-precomposed">
 
-	<!-- {block name="ready_meta"} --><!-- {/block} -->
+    <!-- {ecjia:hook id=front_enqueue_scripts} -->
+    <!-- {ecjia:hook id=front_print_styles} -->
+    <!-- {ecjia:hook id=front_print_scripts} -->
+
 	<link rel="stylesheet" href="{$theme_url}lib/bootstrap3/css/bootstrap.css">
 
 	<link rel="stylesheet" href="{$theme_url}dist/css/iconfont.min.css">
@@ -37,6 +40,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<!-- skin -->
 	<link rel="stylesheet" href="{$theme_url}{$curr_style}">
 	<link rel="stylesheet" href="{$theme_url}lib/iOSOverlay/css/iosOverlay.css">
+    <!-- {block name="ready_meta"} --><!-- {/block} -->
+    <!-- {block name="meta"} --><!-- {/block} -->
 	<!-- {ecjia:hook id=front_head} -->
 </head>
 <body>
@@ -49,7 +54,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<!-- #BeginLibraryItem "/library/page_qrcode.lbi" --><!-- #EndLibraryItem -->
 		<!--{/if}-->
 	</div>
-	<!-- {block name="ready_footer"} --><!-- {/block} -->
 	<script charset="utf-8" src="{ecjia_location_mapjs('convertor')}"></script>
 	<script type="text/javascript" src="{$theme_url}lib/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="{$theme_url}lib/multi-select/js/jquery.quicksearch.js"></script>
@@ -67,7 +71,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	<script type="text/javascript" src="{$theme_url}lib/photoswipe/js/photoswipe.min.js"></script>
 	<script type="text/javascript" src="{$theme_url}lib/photoswipe/js/photoswipe-ui-default.min.js"></script>
 
-	<!-- {block name="meta"} --><!-- {/block} -->
+
     <script type="text/javascript" src="{$theme_url}js/jquery.yomi.js"></script>
 	<script type="text/javascript" src="{$theme_url}js/ecjia.touch.koala.js"></script>
 	<script type="text/javascript" src="{$theme_url}js/ecjia.touch.js"></script>
@@ -102,7 +106,9 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
     <script type="text/javascript" src="{$theme_url}lib/iOSOverlay/js/iosOverlay.js"></script>
     <script type="text/javascript" src="{$theme_url}lib/iOSOverlay/js/prettify.js"></script>
-	<!-- {block name="footer"} --><!-- {/block} -->
+    <!-- {ecjia:hook id=front_print_footer_scripts} -->
+    <!-- {block name="ready_footer"} --><!-- {/block} -->
+    <!-- {block name="footer"} --><!-- {/block} -->
 	<script type="text/javascript">
 		var hidenav = {if $hidenav eq 1}1{else}0{/if}, hidetab = {if $hidetab eq 1}1{else}0{/if}, hideinfo = {if $hideinfo}1{else}0{/if};
 		if (hideinfo) {
