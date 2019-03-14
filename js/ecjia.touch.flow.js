@@ -350,11 +350,11 @@
 			$('[data-flag="need_inv_i"]').on('click', function () {
 				if ($(this).hasClass("fl")) {
 					$(this).removeClass("fl").addClass("fr");
-					$(this).siblings("ins").text("是");
+					$(this).siblings("ins").text(js_lang.yes);
 					$(this).parent().parent("li").siblings().hide();
 				} else if ($(this).hasClass("fr")) {
 					$(this).removeClass("fr").addClass("fl");
-					$(this).siblings("ins").text("否");
+					$(this).siblings("ins").text(js_lang.no);
 					$(this).parent().parent("li").siblings().show();
 				}
 			});
@@ -461,7 +461,7 @@
 				$('.mod_address_slide').removeClass('show');
 				firstResultAry = [];
 
-				$('.confirm-payment').val("确认支付");
+				$('.confirm-payment').val(js_lang.confirm_payment);
 				$('.confirm-payment').attr("disabled", false);
 				$('.confirm-payment').removeClass("payment-bottom");
 			});
@@ -510,15 +510,14 @@
 
 				if (!$(this).hasClass('payment-balance')) {
 					if ($("input[name='pay_id']:checked").val() == null) {
-						alert("请选择支付方式");
+						alert(js_lang.please_select_payment);
 						return false;
 					}
 				} else {
 					//支付时输入支付密码
 					var has_set_paypass = $('input[name="has_set_paypass"]').val();
 					if (has_set_paypass == 1) {
-
-						$(this).val("请求中...");
+						$(this).val(js_lang.requesting);
 						$(this).attr("disabled", true);
 						$(this).addClass("payment-bottom");
 
@@ -529,16 +528,16 @@
                         var url = $('.set_paypass_url').attr('data-url');
                         myApp.modal({
                             title: '',
-                            text: '您还未设置支付密码',
+                            text: js_lang.payment_password,
                             buttons: [{
-                                text: '取消',
+                                text: js_lang.cancel,
                                 onClick: function () {
                                     $('.modal').remove();
                                     $('.modal-overlay').remove();
                                     return false;
                                 }
                             }, {
-                                text: '去设置',
+                                text: js_lang.go_set,
                                 onClick: function () {
                                     window.location.href = url;
                                 }
@@ -550,7 +549,7 @@
 
 				$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 				var alipay_btn_html = $(this).val();
-				$(this).val("请求中...");
+				$(this).val(js_lang.requesting);
 				$(this).attr("disabled", true);
 				$(this).addClass("payment-bottom");
 
@@ -632,7 +631,7 @@
 						$('.la-ball-atom').remove();
 						$('.confirm-payment').removeClass("payment-bottom")
 						$('.confirm-payment').removeAttr("disabled");
-						$('.confirm-payment').val('确认支付');
+						$('.confirm-payment').val(js_lang.confirm_payment);
 						if (data.state == 'error') {
 							// $('.mod_address_slide').removeClass('show');
 							$("#payPassword_container").find(".point").remove();
