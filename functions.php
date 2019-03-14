@@ -179,7 +179,7 @@ RC_Hook::add_action('connect_callback_user_signin', function($connect_user) {
     $userid = $connect_user->getUserId();
     $user_info = EM_user_info($userid);
     if (empty($user_info)) {
-        return ecjia_front::$controller->showmessage('关联用户不存在，请联系管理员', ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+        return ecjia_front::$controller->showmessage(__('关联用户不存在，请联系管理员', 'h5'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     }
 
     if (is_ecjia_error($user_info)) {
@@ -255,7 +255,7 @@ RC_Hook::add_action('connect_callback_user_bind_complete', function($result) {
  */
 RC_Hook::add_action('connect_code_before_launching', function($connect_code) {
     if ($connect_code == 'sns_wechat' && !ecjia_plugin::is_active('sns_wechat/sns_wechat.php')) {
-        echo '请先购买并安装微信登录插件<br><a href="https://daojia.ecjia.com/opensource.html" target="_blank">购买链接</a>';
+        echo __('请先购买并安装微信登录插件', 'h5').'<br><a href="https://daojia.ecjia.com/opensource.html" target="_blank">'.__('购买链接', 'h5').'</a>';
         exit();
     }
 });
