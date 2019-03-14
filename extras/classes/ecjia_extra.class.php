@@ -89,6 +89,18 @@ class ecjia_extra
     }
 
     /**
+     * 加载jslang配置文件
+     */
+    public static function loadJSLang()
+    {
+        $jslang = RC_Theme::get_template_directory() . '/extras/configs/jslang.php';
+
+        if (file_exists($jslang)) {
+            return include_once $jslang;
+        }
+    }
+
+    /**
      * 加载主题选项设置面板
      */
     public static function loadThemeFrameworkOptions()
