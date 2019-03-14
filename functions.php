@@ -402,3 +402,11 @@ RC_Hook::add_filter('http_request_timeout', function($time) {
 	return 20;
 });
 
+RC_Hook::add_action('front_enqueue_scripts', function() {
+    $request = royalcms('request');
+
+    if ($request->query('m') == 'connect' && $request->query('c') == 'callback' && $request->query('a') == 'init' && $request->getBaseUrl() == '/sites/m') {
+        ecjia_theme_controller::registerDefaultStyleScripts();
+    }
+});
+
