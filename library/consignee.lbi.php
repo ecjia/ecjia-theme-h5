@@ -65,7 +65,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-margin-t btn-consignee {if $smarty.session.user_id gt 0 and $consignee.address_id gt 0} two-btn {/if}">
 	<!-- {if $smarty.session.user_id gt 0 and $consignee.address_id gt 0} --> 
 	<!-- 如果登录了，显示删除按钮 --> 
-	<input  class="btn btn-info"  onclick="if (confirm('您确定要删除该收货人信息吗？')) location.href='{url path='flow/drop_consignee' args="id={$consignee.address_id}"}'" value='{t domain="h5"}删除{/t}'>
+	<input  class="btn btn-info"  onclick="if (confirm('{t domain='h5'}您确定要删除该收货人信息吗？{/t}')) location.href='{url path='flow/drop_consignee' args="id={$consignee.address_id}"}'" value='{t domain="h5"}删除{/t}'>
 	<!-- {/if} -->
 	<input class="btn btn-info" name="Submit" type="submit" value='{t domain="h5"}配送至这个地址{/t}'>
 </div>
