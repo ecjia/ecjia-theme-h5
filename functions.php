@@ -408,7 +408,14 @@ RC_Hook::add_filter('http_request_timeout', function($time) {
 RC_Hook::add_action('front_enqueue_scripts', function() {
     $request = royalcms('request');
 
-    if ($request->query('m') == 'connect' && $request->query('c') == 'callback' && $request->query('a') == 'init' && strpos($request->getBaseUrl(), '/sites/m') !== false) {
+    $path = $request->query('m') . '/' . $request->query('c') . '/' . $request->query('a');
+
+    $paths = [
+        'connect/callback/init',
+        'payment/respond/response',
+    ];
+
+    if (in_array($path, $paths) && strpos($request->getBaseUrl(), '/sites/m') !== false) {
         ecjia_theme_controller::registerDefaultStyleScripts();
     }
 });
