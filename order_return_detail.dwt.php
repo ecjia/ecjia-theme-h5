@@ -152,7 +152,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				{if $order.status eq 'canceled'}
 				<span class="canceled">{t domain="h5"}本次申请已撤销{/t}</span>
 				{else}
-				<a class="btn btn-small btn-hollow external" href="{if $order.store_service_phone}tel://{$order.store_service_phone}{else}javascript:alert('无法联系卖家');{/if}">{t domain="h5"}联系卖家{/t}</a>
+				<a class="btn btn-small btn-hollow external" href="{if $order.store_service_phone}tel://{$order.store_service_phone}{else}javascript:alert('{t domain='h5'}无法联系卖家{/t}');{/if}">{t domain="h5"}联系卖家{/t}</a>
 				{/if}
 				
 				{if $order.refund_type eq 'refund' && $order.refund_status neq 'refunded'}
