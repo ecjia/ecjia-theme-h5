@@ -199,7 +199,10 @@ RC_Hook::add_action('connect_callback_user_signin', function($connect_user) {
 //    );
 //    ecjia_touch_user::singleton()->setUserinfo($res);
 
-    $connect_signin = ecjia_touch_user::singleton()->connectSignin($connect_user->getOpenId(), $connect_user->getConnectCode());
+    /**
+     * @var \Ecjia\App\Connect\ConnectUser\ConnectUser $connect_user
+     */
+    $connect_signin = ecjia_touch_user::singleton()->connectSignin($connect_user->getConnectCode(), $connect_user->getOpenId(), $connect_user->getUnionId(), $connect_user->getProfile());
     if (is_ecjia_error($connect_signin)) {
         return ecjia_front::$controller->showmessage($connect_signin->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
     }
