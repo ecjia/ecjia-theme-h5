@@ -53,42 +53,51 @@ defined('IN_ECJIA') or exit('No permission resources.');
 
 return array(
 		//comment  模板：user_goods_comment  地址：user/order/goods_comment
-// 	    'ok'     => __('确定', 'h5'),
-// 	    'cancel' => __('取消', 'h5'),
-// 		'confirm_delete'     => __('您确定要删除照片？', 'h5'),
-// 		'please_choose_star' => __('请选择星级!', 'h5'),
+	    'ok'     => __('确定', 'h5'),
+	    'cancel' => __('取消', 'h5'),
+		'confirm_delete'     => __('您确定要删除照片？', 'h5'),
+		'please_choose_star' => __('请选择星级!', 'h5'),
 			
-// 		//flow      模板：flow_invoice.dwt	  地址：cart/flow/invoice
-// 		'invoice_desc' => '',
-// 		'yes'=> __('是', 'h5'),
-// 		'no' => __('否', 'h5'),
-// 		'confirm_payment'      => __('确认支付', 'h5'),	
-// 		'please_select_payment'=> __('请选择支付方式', 'h5'),	
-// 		'payment_password'     => __('您还未设置支付密码', 'h5'),
-// 		'requesting'           => __('请求中...', 'h5'),
-// 		'go_set'=>__('去设置', 'h5'),
+		//flow      模板：flow_invoice.dwt	  地址：cart/flow/invoice
+		'invoice_desc' => __('<div class="inv_img_invoice"><div class="inv_img_invoice_title"><h2>发票税号说明</h2></div>
+		                        <div class="inv_img_invoice_content">
+		                            <p><b>1、什么是纳税人识别号／统一社会信用代码？</b></p>
+		                            <p class="detail">纳税人识别号，通常简称为“税号”，就是税务登记证上的号，每个企业的识别号都是唯一的，相当于税务局颁发给企业的“身份证”号。统一社会信用代码，是一组长度为18位的用于法人和其他组织身份识别的代码。统一社会信用代码由国家标准委发布。2015年10月1日起，国家启动将企业依次申请的工商营业执照，组织机构代码和税务登记证三证合为一证，并将三证号码合并为统一社会信用代码，目前大部分企业均已完成合并，另外有少部分企业其纳税人识别号仍然有效。</p>
+		                            <p><b>2、如何获取／知晓纳税人识别号／统一社会信用代码？</b></p>
+		                            <p class="detail">您可向贵单位的财务部门索取；另外也可以根据单位名称在国家企业信用信息公示系统（https://www.gsxt.gov.cn/index.html）查询统一社会信用代码。</p>
+		                            <p><b>3、为什么要填写纳税人识别号／统一社会信用代码？</b></p>
+		                            <p class="detail">根据国家税务总局2017年16号公告，从7月1日起企业（包括公司、非公司制企业法人、企业分支机构、个人独资企业、合伙企业和其他企业）索取票面带有“购买方纳税人识别号”栏目的发票时，应向销售方提供纳税人识别号或统一社会信用代码。因此，当您选择开具单位抬头增值税普通发票时，请根据提示准确填写贵单位号码，以免影响您的发票报销。请注意此公告并不适用于政府机构及事业单位中的非企业单位，因此，如贵单位属于这种类型，可无需填写纳税人识别号／统一社会信用代码，谨慎起见，请您与贵单位财务部门联系确认。</p>
+		                        </div>
+		                     </div>', 'h5'),
+		'yes'=> __('是', 'h5'),
+		'no' => __('否', 'h5'),
+		'confirm_payment'      => __('确认支付', 'h5'),	
+		'please_select_payment'=> __('请选择支付方式', 'h5'),	
+		'payment_password'     => __('您还未设置支付密码', 'h5'),
+		'requesting'           => __('请求中...', 'h5'),
+		'go_set'=>__('去设置', 'h5'),
 		
 		
-// 		//franchisee
-// 		'please_enter_correct_tel'   => __('请输入正确的手机号', 'h5'),
-// 		'prompt'                     => __('提示', 'h5'),
-// 		'view_progress'              => __('查看申请进度', 'h5'),
-// 		'resend'                     => __('重新发送', 'h5'),
-// 		'please_enter_name'          => __('请输入真实姓名', 'h5'),
-// 		'please_enter_email'         => __('请输入电子邮箱', 'h5'),
-// 		'please_enter_correct_email' => __('请输入正确的邮箱格式 !', 'h5'),
-// 		'please_enter_tel'           => __('请输入手机号码', 'h5'),
-// 		'verification_filled'        => __('验证码不能为空', 'h5'),
-// 		'please_store_name'          => __('请输入店铺名称', 'h5'),
-// 		'please_select_store_category'   => __('请选择店铺分类', 'h5'),
-// 		'please_select_type'             => __('请选择入驻类型', 'h5'),
-// 		'please_select_province'         => __('请选择店铺所在省', 'h5'),
-// 		'please_select_city'             => __('请选择店铺所在市', 'h5'),
-// 		'please_select_area'             => __('请选择店铺所在区', 'h5'),
-// 		'please_select_street'           => __('请选择店铺所在街道', 'h5'),
-// 		'please_address'                 => __('请填写店铺详细地址', 'h5'),
-// 		'please_get_store_coordinates'   => __('请获取店铺坐标', 'h5'),
-// 		'please_street'          => __('请选择街道', 'h5'),
-// 		'please_street_region'   => __('请先选择所在地区', 'h5'),
+		//franchisee
+		'please_enter_correct_tel'   => __('请输入正确的手机号', 'h5'),
+		'prompt'                     => __('提示', 'h5'),
+		'view_progress'              => __('查看申请进度', 'h5'),
+		'resend'                     => __('重新发送', 'h5'),
+		'please_enter_name'          => __('请输入真实姓名', 'h5'),
+		'please_enter_email'         => __('请输入电子邮箱', 'h5'),
+		'please_enter_correct_email' => __('请输入正确的邮箱格式 !', 'h5'),
+		'please_enter_tel'           => __('请输入手机号码', 'h5'),
+		'verification_filled'        => __('验证码不能为空', 'h5'),
+		'please_store_name'          => __('请输入店铺名称', 'h5'),
+		'please_select_store_category'   => __('请选择店铺分类', 'h5'),
+		'please_select_type'             => __('请选择入驻类型', 'h5'),
+		'please_select_province'         => __('请选择店铺所在省', 'h5'),
+		'please_select_city'             => __('请选择店铺所在市', 'h5'),
+		'please_select_area'             => __('请选择店铺所在区', 'h5'),
+		'please_select_street'           => __('请选择店铺所在街道', 'h5'),
+		'please_address'                 => __('请填写店铺详细地址', 'h5'),
+		'please_get_store_coordinates'   => __('请获取店铺坐标', 'h5'),
+		'please_street'          => __('请选择街道', 'h5'),
+		'please_street_region'   => __('请先选择所在地区', 'h5'),
 ); 
 //end
