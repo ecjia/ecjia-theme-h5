@@ -90,7 +90,7 @@ class ecjia_theme_controller extends ecjia_front
     	RC_Script::enqueue_script('ecjia-touch-prettify', ecjia_extra::themeUrl('lib/iOSOverlay/js/prettify.js'), array(), false, 1);
     	
     	
-    	RC_Script::localize_script('ecjia-touch-jquery', 'js_lang', ecjia_extra::loadJSLang());
+    	RC_Script::localize_script('ecjia-touch', 'js_lang', ecjia_extra::loadJSLang());
     }
 
 }
