@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ECJia到家H5主题 1.29.0\n"
 "Report-Msgid-Bugs-To: https://www.ecjia.com/support/theme/h5\n"
-"POT-Creation-Date: 2019-03-08 07:07:35+00:00\n"
+"POT-Creation-Date: 2019-03-13 09:37:26+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -933,11 +933,11 @@ msgstr ""
 msgid "请输入快递单号"
 msgstr ""
 
-#: extras/controller/user_order_controller.php:999
+#: extras/controller/user_order_controller.php:998
 msgid "订单分成"
 msgstr ""
 
-#: extras/controller/user_order_controller.php:1042
+#: extras/controller/user_order_controller.php:1041
 msgid "分成详情"
 msgstr ""
 
@@ -1173,11 +1173,11 @@ msgid "暂无买单记录"
 msgstr ""
 
 #: sites/m/content/themes/h5/quickpay_list.dwt.php:48
-#: sites/m/content/themes/h5/user_order_affiliate.dwt.php:28
+#: sites/m/content/themes/h5/user_order_affiliate.dwt.php:27
 #: sites/m/content/themes/h5/quickpay_detail.dwt.php:34
 #: sites/m/content/themes/h5/quickpay_notify.dwt.php:28
 #: sites/m/content/themes/h5/user_record_info.dwt.php:28
-#: sites/m/content/themes/h5/user_order_affiliate_detail.dwt.php:24
+#: sites/m/content/themes/h5/user_order_affiliate_detail.dwt.php:26
 msgid "订单编号"
 msgstr ""
 
@@ -1981,16 +1981,20 @@ msgstr ""
 msgid "提现申请"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_order_affiliate.dwt.php:15
+#: sites/m/content/themes/h5/user_order_affiliate.dwt.php:14
 msgid "待分成"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_order_affiliate.dwt.php:16
+#: sites/m/content/themes/h5/user_order_affiliate.dwt.php:15
 msgid "已分成"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_order_affiliate.dwt.php:55
-msgid "暂无分成"
+#: sites/m/content/themes/h5/user_order_affiliate.dwt.php:51
+msgid "分成："
+msgstr ""
+
+#: sites/m/content/themes/h5/user_order_affiliate.dwt.php:61
+msgid "暂无分成记录"
 msgstr ""
 
 #: sites/m/content/themes/h5/discover_init.dwt.php:25
@@ -2103,6 +2107,7 @@ msgid "扫码购"
 msgstr ""
 
 #: sites/m/content/themes/h5/user_order_storebuy_detail.dwt.php:37
+#: sites/m/content/themes/h5/user_order_affiliate_detail.dwt.php:46
 msgid "货号："
 msgstr ""
 
@@ -3718,23 +3723,19 @@ msgstr ""
 msgid "解绑微信"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_order_affiliate_detail.dwt.php:25
+#: sites/m/content/themes/h5/user_order_affiliate_detail.dwt.php:27
 msgid "购买人"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_order_affiliate_detail.dwt.php:26
+#: sites/m/content/themes/h5/user_order_affiliate_detail.dwt.php:28
 msgid "下单时间"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_order_affiliate_detail.dwt.php:47
+#: sites/m/content/themes/h5/user_order_affiliate_detail.dwt.php:56
 msgid "订单合计"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_order_affiliate_detail.dwt.php:48
-msgid "佣金比例"
-msgstr ""
-
-#: sites/m/content/themes/h5/user_order_affiliate_detail.dwt.php:49
+#: sites/m/content/themes/h5/user_order_affiliate_detail.dwt.php:58
 msgid "获得分成"
 msgstr ""
 
