@@ -15,14 +15,14 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<title>{$page_title}</title>
 		<link href="{if ecjia::config('wap_logo')}{RC_Upload::upload_url(ecjia::config('wap_logo'))}{else}favicon.ico{/if}" rel="shortcut icon bookmark">
 		<link href="{if ecjia::config('wap_logo')}{RC_Upload::upload_url(ecjia::config('wap_logo'))}{else}favicon.ico{/if}" rel="apple-touch-icon-precomposed">
-	
+        <!-- {literal} -->
 	    <!-- {ecjia:hook id=front_enqueue_scripts} -->
 	    <!-- {ecjia:hook id=front_print_styles} -->
 	    <!-- {ecjia:hook id=front_print_scripts} -->
 	    <!-- {block name="ready_meta"} --><!-- {/block} -->
 	    <!-- {block name="meta"} --><!-- {/block} -->
 		<!-- {ecjia:hook id=front_head} -->
-
+        <!-- {/literal} -->
         <script charset="utf-8" src="{ecjia_location_mapjs('convertor')}"></script>
         <script type="text/javascript">var theme_url = "{$theme_url}";</script>
 		<script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
