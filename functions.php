@@ -234,18 +234,18 @@ RC_Hook::add_action('connect_callback_user_signin', function($connect_user) {
 RC_Hook::add_action('connect_callback_user_bind_complete', function($result) {
     if (is_ajax() && !is_pjax()) {
         if ($result) {
-            $link[] = array(RC_Lang::get('connect::connect.back_member'), 'href' => RC_Uri::url('touch/my/init'));
-            return ecjia_front::$controller->showmessage(RC_Lang::get('connect::connect.bind_success'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('links' => $link));
+            $link[] = array(__('返回会员中心', 'h5'), 'href' => RC_Uri::url('touch/my/init'));
+            return ecjia_front::$controller->showmessage(__('绑定成功', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('links' => $link));
         } else {
-            $link[] = array('text' => RC_Lang::get('system::system.go_back'), 'href' => 'javascript:history.back(-1)');
-            return ecjia_front::$controller->showmessage(RC_Lang::get('connect::connect.bind_fail'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('links' => $link));
+            $link[] = array('text' => __('返回上一页', 'h5'), 'href' => 'javascript:history.back(-1)');
+            return ecjia_front::$controller->showmessage(__('绑定失败，用户名或密码错误！', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('links' => $link));
         }
     } else {
         if ($result) {
             return ecjia_front::$controller->redirect(RC_Uri::url('touch/my/init'));
         } else {
-            $link[] = array('text' => RC_Lang::get('system::system.go_back'), 'href' => 'javascript:history.back(-1)');
-            return ecjia_front::$controller->showmessage(RC_Lang::get('connect::connect.bind_fail'), ecjia::MSGTYPE_HTML | ecjia::MSGSTAT_ERROR, array('links' => $link));
+            $link[] = array('text' => __('返回上一页', 'h5'), 'href' => 'javascript:history.back(-1)');
+            return ecjia_front::$controller->showmessage(__('绑定失败，用户名或密码错误！', 'h5'), ecjia::MSGTYPE_HTML | ecjia::MSGSTAT_ERROR, array('links' => $link));
         }
     }
 });

@@ -609,7 +609,7 @@ class connect_controller
     {
         $connect_code = $_GET['connect_code'];
         if (empty($connect_code)) {
-            return ecjia_front::$controller->showmessage(RC_Lang::get('connect::connect.not_found'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
+            return ecjia_front::$controller->showmessage(__('未找到第三方登录插件', 'h5'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         }
 
         $url = RC_Uri::url('connect/callback/init', array('connect_code' => 'sns_wechat', 'return_type' => 'bind'));
