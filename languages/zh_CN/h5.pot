@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ECJia到家H5主题 1.29.0\n"
 "Report-Msgid-Bugs-To: https://www.ecjia.com/support/theme/h5\n"
-"POT-Creation-Date: 2019-03-13 09:37:26+00:00\n"
+"POT-Creation-Date: 2019-03-14 03:26:24+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -346,6 +346,10 @@ msgstr ""
 #: extras/controller/connect_controller.php:597
 #: extras/controller/user_privilege_controller.php:566
 msgid "设置名字密码"
+msgstr ""
+
+#: extras/controller/connect_controller.php:612
+msgid "未找到第三方登录插件"
 msgstr ""
 
 #: extras/controller/franchisee_controller.php:63
@@ -1111,7 +1115,7 @@ msgid "请输入银行卡号"
 msgstr ""
 
 #: extras/controller/user_profile_controller.php:594
-#: extras/controller/user_profile_controller.php:620
+#: extras/controller/user_profile_controller.php:620 functions.php:238
 msgid "绑定成功"
 msgstr ""
 
@@ -1145,6 +1149,30 @@ msgstr ""
 
 #: extras/controller/user_profile_controller.php:784
 msgid "激活成功"
+msgstr ""
+
+#: functions.php:182
+msgid "关联用户不存在，请联系管理员"
+msgstr ""
+
+#: functions.php:237
+msgid "返回会员中心"
+msgstr ""
+
+#: functions.php:240 functions.php:247
+msgid "返回上一页"
+msgstr ""
+
+#: functions.php:241 functions.php:248
+msgid "绑定失败，用户名或密码错误！"
+msgstr ""
+
+#: functions.php:258
+msgid "请先购买并安装微信登录插件"
+msgstr ""
+
+#: functions.php:258
+msgid "购买链接"
 msgstr ""
 
 #. Template Name of the plugin/theme
@@ -2158,6 +2186,12 @@ msgid "支付方式："
 msgstr ""
 
 #: sites/m/content/themes/h5/user_order_storebuy_detail.dwt.php:60
+#: sites/m/content/themes/h5/order_return_detail.dwt.php:155
+#: sites/m/content/themes/h5/user_order_detail.dwt.php:215
+msgid "无法联系卖家"
+msgstr ""
+
+#: sites/m/content/themes/h5/user_order_storebuy_detail.dwt.php:60
 #: sites/m/content/themes/h5/quickpay_detail.dwt.php:84
 #: sites/m/content/themes/h5/order_return_detail.dwt.php:155
 #: sites/m/content/themes/h5/user_order_detail.dwt.php:215
@@ -2572,6 +2606,10 @@ msgstr ""
 
 #: sites/m/content/themes/h5/library/consignee.lbi.php:16
 msgid "手机必填"
+msgstr ""
+
+#: sites/m/content/themes/h5/library/consignee.lbi.php:68
+msgid "您确定要删除该收货人信息吗？"
 msgstr ""
 
 #: sites/m/content/themes/h5/library/consignee.lbi.php:70
@@ -2995,6 +3033,7 @@ msgid "退配送费"
 msgstr ""
 
 #: sites/m/content/themes/h5/order_return_detail.dwt.php:60
+#: sites/m/content/themes/h5/order_return_reply.dwt.php:50
 msgid "退"
 msgstr ""
 
