@@ -404,8 +404,9 @@ RC_Hook::add_filter('http_request_timeout', function($time) {
 
 RC_Hook::add_action('front_enqueue_scripts', function() {
     $request = royalcms('request');
-dd($request->getBaseUrl());
+
     if ($request->query('m') == 'connect' && $request->query('c') == 'callback' && $request->query('a') == 'init' && strpos($request->getBaseUrl(), '/sites/m') != false) {
+        dd($request->getBaseUrl());
         ecjia_theme_controller::registerDefaultStyleScripts();
     }
 });
