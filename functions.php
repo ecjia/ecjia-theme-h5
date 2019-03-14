@@ -406,7 +406,7 @@ RC_Hook::add_action('front_enqueue_scripts', function() {
     $request = royalcms('request');
 
     if ($request->query('m') == 'connect' && $request->query('c') == 'callback' && $request->query('a') == 'init' && strpos($request->getBaseUrl(), '/sites/m') !== false) {
-        ecjia_theme_controller::registerDefaultStyleScripts();
+        // ecjia_theme_controller::registerDefaultStyleScripts();
     }
 });
 
