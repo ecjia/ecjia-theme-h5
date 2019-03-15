@@ -4,13 +4,179 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ECJia到家H5主题 1.29.0\n"
 "Report-Msgid-Bugs-To: https://www.ecjia.com/support/theme/h5\n"
-"POT-Creation-Date: 2019-03-14 03:26:24+00:00\n"
+"POT-Creation-Date: 2019-03-15 01:49:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <ecjia@ecjia.com>\n"
+
+#: extras/configs/jslang.php:56
+msgid "确定"
+msgstr ""
+
+#: extras/configs/jslang.php:57
+#: extras/controller/user_account_controller.php:516
+msgid "取消"
+msgstr ""
+
+#: extras/configs/jslang.php:58
+msgid "您确定要删除照片？"
+msgstr ""
+
+#: extras/configs/jslang.php:59
+msgid "请选择星级!"
+msgstr ""
+
+#: extras/configs/jslang.php:62
+msgid ""
+"<div class=\"inv_img_invoice\"><div class=\"inv_img_invoice_title\"><h2>发票"
+"税号说明</h2></div>\n"
+"\t\t                        <div class=\"inv_img_invoice_content\">\n"
+"\t\t                            <p><b>1、什么是纳税人识别号／统一社会信用代"
+"码？</b></p>\n"
+"\t\t                            <p class=\"detail\">纳税人识别号，通常简称"
+"为“税号”，就是税务登记证上的号，每个企业的识别号都是唯一的，相当于税务局颁发"
+"给企业的“身份证”号。统一社会信用代码，是一组长度为18位的用于法人和其他组织身"
+"份识别的代码。统一社会信用代码由国家标准委发布。2015年10月1日起，国家启动将企"
+"业依次申请的工商营业执照，组织机构代码和税务登记证三证合为一证，并将三证号码"
+"合并为统一社会信用代码，目前大部分企业均已完成合并，另外有少部分企业其纳税人"
+"识别号仍然有效。</p>\n"
+"\t\t                            <p><b>2、如何获取／知晓纳税人识别号／统一社会"
+"信用代码？</b></p>\n"
+"\t\t                            <p class=\"detail\">您可向贵单位的财务部门索"
+"取；另外也可以根据单位名称在国家企业信用信息公示系统（https://www.gsxt.gov."
+"cn/index.html）查询统一社会信用代码。</p>\n"
+"\t\t                            <p><b>3、为什么要填写纳税人识别号／统一社会信"
+"用代码？</b></p>\n"
+"\t\t                            <p class=\"detail\">根据国家税务总局2017年16"
+"号公告，从7月1日起企业（包括公司、非公司制企业法人、企业分支机构、个人独资企"
+"业、合伙企业和其他企业）索取票面带有“购买方纳税人识别号”栏目的发票时，应向销"
+"售方提供纳税人识别号或统一社会信用代码。因此，当您选择开具单位抬头增值税普通"
+"发票时，请根据提示准确填写贵单位号码，以免影响您的发票报销。请注意此公告并不"
+"适用于政府机构及事业单位中的非企业单位，因此，如贵单位属于这种类型，可无需填"
+"写纳税人识别号／统一社会信用代码，谨慎起见，请您与贵单位财务部门联系确认。</"
+"p>\n"
+"\t\t                        </div>\n"
+"\t\t                     </div>"
+msgstr ""
+
+#: extras/configs/jslang.php:72
+msgid "是"
+msgstr ""
+
+#: extras/configs/jslang.php:73
+msgid "否"
+msgstr ""
+
+#: extras/configs/jslang.php:74
+msgid "确认支付"
+msgstr ""
+
+#: extras/configs/jslang.php:75 extras/controller/payment_controller.php:230
+#: extras/controller/user_account_controller.php:617
+msgid "请选择支付方式"
+msgstr ""
+
+#: extras/configs/jslang.php:76
+msgid "您还未设置支付密码"
+msgstr ""
+
+#: extras/configs/jslang.php:77
+msgid "请求中..."
+msgstr ""
+
+#: extras/configs/jslang.php:78
+msgid "去设置"
+msgstr ""
+
+#: extras/configs/jslang.php:82
+msgid "请输入正确的手机号"
+msgstr ""
+
+#: extras/configs/jslang.php:83
+msgid "提示"
+msgstr ""
+
+#: extras/configs/jslang.php:84
+msgid "查看申请进度"
+msgstr ""
+
+#: extras/configs/jslang.php:85
+msgid "重新发送"
+msgstr ""
+
+#: extras/configs/jslang.php:86 extras/controller/franchisee_controller.php:87
+#: extras/controller/franchisee_controller.php:443
+msgid "请输入真实姓名"
+msgstr ""
+
+#: extras/configs/jslang.php:87 extras/controller/franchisee_controller.php:90
+msgid "请输入电子邮箱"
+msgstr ""
+
+#: extras/configs/jslang.php:88
+msgid "请输入正确的邮箱格式 !"
+msgstr ""
+
+#: extras/configs/jslang.php:89 extras/controller/franchisee_controller.php:93
+#: extras/controller/franchisee_controller.php:250
+#: extras/controller/franchisee_controller.php:449
+#: extras/controller/franchisee_controller.php:538
+msgid "请输入手机号码"
+msgstr ""
+
+#: extras/configs/jslang.php:90 extras/controller/franchisee_controller.php:633
+#: extras/controller/user_profile_controller.php:759
+#: extras/controller/user_profile_controller.php:776
+msgid "验证码不能为空"
+msgstr ""
+
+#: extras/configs/jslang.php:91
+msgid "请输入店铺名称"
+msgstr ""
+
+#: extras/configs/jslang.php:92 extras/controller/franchisee_controller.php:458
+msgid "请选择店铺分类"
+msgstr ""
+
+#: extras/configs/jslang.php:93
+msgid "请选择入驻类型"
+msgstr ""
+
+#: extras/configs/jslang.php:94
+msgid "请选择店铺所在省"
+msgstr ""
+
+#: extras/configs/jslang.php:95
+msgid "请选择店铺所在市"
+msgstr ""
+
+#: extras/configs/jslang.php:96
+msgid "请选择店铺所在区"
+msgstr ""
+
+#: extras/configs/jslang.php:97
+msgid "请选择店铺所在街道"
+msgstr ""
+
+#: extras/configs/jslang.php:98
+msgid "请填写店铺详细地址"
+msgstr ""
+
+#: extras/configs/jslang.php:99
+msgid "请获取店铺坐标"
+msgstr ""
+
+#: extras/configs/jslang.php:100
+#: extras/controller/franchisee_controller.php:473
+msgid "请选择街道"
+msgstr ""
+
+#: extras/configs/jslang.php:101
+msgid "请先选择所在地区"
+msgstr ""
 
 #: extras/configs/theme-framework.php:18
 msgid "布局"
@@ -364,22 +530,6 @@ msgstr ""
 msgid "店铺入驻"
 msgstr ""
 
-#: extras/controller/franchisee_controller.php:87
-#: extras/controller/franchisee_controller.php:443
-msgid "请输入真实姓名"
-msgstr ""
-
-#: extras/controller/franchisee_controller.php:90
-msgid "请输入电子邮箱"
-msgstr ""
-
-#: extras/controller/franchisee_controller.php:93
-#: extras/controller/franchisee_controller.php:250
-#: extras/controller/franchisee_controller.php:449
-#: extras/controller/franchisee_controller.php:538
-msgid "请输入手机号码"
-msgstr ""
-
 #: extras/controller/franchisee_controller.php:122
 #: extras/controller/franchisee_controller.php:528
 #: extras/controller/franchisee_controller.php:563
@@ -428,10 +578,6 @@ msgstr ""
 msgid "店铺名称不能超过17个字符"
 msgstr ""
 
-#: extras/controller/franchisee_controller.php:458
-msgid "请选择店铺分类"
-msgstr ""
-
 #: extras/controller/franchisee_controller.php:461
 msgid "请选择店铺类型"
 msgstr ""
@@ -448,10 +594,6 @@ msgstr ""
 msgid "请选择区"
 msgstr ""
 
-#: extras/controller/franchisee_controller.php:473
-msgid "请选择街道"
-msgstr ""
-
 #: extras/controller/franchisee_controller.php:476
 #: extras/controller/franchisee_controller.php:479
 msgid "请填写详细地址"
@@ -459,12 +601,6 @@ msgstr ""
 
 #: extras/controller/franchisee_controller.php:514
 msgid "入驻信息已提交，请耐心等耐审核"
-msgstr ""
-
-#: extras/controller/franchisee_controller.php:633
-#: extras/controller/user_profile_controller.php:759
-#: extras/controller/user_profile_controller.php:776
-msgid "验证码不能为空"
 msgstr ""
 
 #: extras/controller/franchisee_controller.php:714
@@ -569,11 +705,6 @@ msgstr ""
 #: extras/controller/payment_controller.php:96
 #: extras/controller/quickpay_controller.php:389
 msgid "该订单已支付请勿重复支付"
-msgstr ""
-
-#: extras/controller/payment_controller.php:230
-#: extras/controller/user_account_controller.php:617
-msgid "请选择支付方式"
 msgstr ""
 
 #: extras/controller/quickpay_controller.php:128
@@ -688,10 +819,6 @@ msgstr ""
 
 #: extras/controller/user_account_controller.php:498
 msgid "交易明细"
-msgstr ""
-
-#: extras/controller/user_account_controller.php:516
-msgid "取消"
 msgstr ""
 
 #: extras/controller/user_account_controller.php:602
@@ -1115,7 +1242,7 @@ msgid "请输入银行卡号"
 msgstr ""
 
 #: extras/controller/user_profile_controller.php:594
-#: extras/controller/user_profile_controller.php:620 functions.php:238
+#: extras/controller/user_profile_controller.php:620 functions.php:241
 msgid "绑定成功"
 msgstr ""
 
@@ -1155,23 +1282,23 @@ msgstr ""
 msgid "关联用户不存在，请联系管理员"
 msgstr ""
 
-#: functions.php:237
+#: functions.php:240
 msgid "返回会员中心"
 msgstr ""
 
-#: functions.php:240 functions.php:247
+#: functions.php:243 functions.php:250
 msgid "返回上一页"
 msgstr ""
 
-#: functions.php:241 functions.php:248
+#: functions.php:244 functions.php:251
 msgid "绑定失败，用户名或密码错误！"
 msgstr ""
 
-#: functions.php:258
+#: functions.php:261
 msgid "请先购买并安装微信登录插件"
 msgstr ""
 
-#: functions.php:258
+#: functions.php:261
 msgid "购买链接"
 msgstr ""
 
@@ -1657,28 +1784,6 @@ msgstr ""
 #: sites/m/content/themes/h5/flow_pay_pickup.dwt.php:75
 #: sites/m/content/themes/h5/flow_checkout.dwt.php:92
 msgid "提货时间"
-msgstr ""
-
-#: sites/m/content/themes/h5/flow_pay_pickup.dwt.php:67
-#: sites/m/content/themes/h5/user_modify_username.dwt.php:29
-#: sites/m/content/themes/h5/flow_integral.dwt.php:23
-#: sites/m/content/themes/h5/user_check_user_mobile.dwt.php:39
-#: sites/m/content/themes/h5/flow_shipping.dwt.php:40
-#: sites/m/content/themes/h5/user_cancel_account_notice.dwt.php:57
-#: sites/m/content/themes/h5/user_unbind_check_mobile.dwt.php:43
-#: sites/m/content/themes/h5/user_get_password.dwt.php:27
-#: sites/m/content/themes/h5/library/change_goods_num.lbi.php:28
-#: sites/m/content/themes/h5/flow_note.dwt.php:22
-#: sites/m/content/themes/h5/flow_pay.dwt.php:57
-#: sites/m/content/themes/h5/user_cancel_account.dwt.php:57
-#: sites/m/content/themes/h5/user_set_paypass.dwt.php:43
-#: sites/m/content/themes/h5/user_edit_password.dwt.php:36
-#: sites/m/content/themes/h5/user_set_paypass_check.dwt.php:37
-#: sites/m/content/themes/h5/flow_pay_shipping.dwt.php:80
-#: sites/m/content/themes/h5/flow_bonus.dwt.php:43
-#: sites/m/content/themes/h5/flow_shipping_date.dwt.php:72
-#: sites/m/content/themes/h5/flow_invoice.dwt.php:80
-msgid "确定"
 msgstr ""
 
 #: sites/m/content/themes/h5/order_return_money.dwt.php:16
@@ -3355,13 +3460,6 @@ msgstr ""
 #: sites/m/content/themes/h5/pay_change.dwt.php:32
 #: sites/m/content/themes/h5/pay.dwt.php:41
 msgid "其它支付方式"
-msgstr ""
-
-#: sites/m/content/themes/h5/pay_change.dwt.php:52
-#: sites/m/content/themes/h5/pay.dwt.php:57
-#: sites/m/content/themes/h5/pay.dwt.php:67
-#: sites/m/content/themes/h5/quickpay_pay.dwt.php:63
-msgid "确认支付"
 msgstr ""
 
 #: sites/m/content/themes/h5/user_cancel_account.dwt.php:17
