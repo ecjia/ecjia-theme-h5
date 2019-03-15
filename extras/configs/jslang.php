@@ -146,6 +146,21 @@ return array(
 		'no_attention_store' => __('暂无关注店铺', 'h5'),
 		'has_been_concerned' => __('已关注', 'h5'),
 		'attention' 		 => __('关注', 'h5'),
+		
+		
+		//touch 
+		'positioning_failed' => __('定位失败，请手动选择', 'h5'),
+		'successful_copy'    => __('复制成功！','h5'),
+		'clear_cache'		 => __('清除缓存中，请稍后...', 'h5'),
+		'history_visit_city' => __('历史访问城市', 'h5'),
+		'click_more'		 => __('点击加载更多', 'h5'),
+		'missing_parameters' => __('缺少参数！','h5'),
+		'delete_msg' 		 => __('您确定要删除此条信息吗？','h5'),
+		'address_range'		 => __('该地址超出配送范围', 'h5'),
+		'empty_search_history'    => __('确定清空搜索记录？', 'h5'),
+		'recommendations_updated' => __('热门推荐已更新', 'h5'),
+		'store_delivery_area'     => __('您的定位已超出该店配送区域', 'h5'),
+		'know'     				  => __('知道了', 'h5'),
 
 ); 
 //end
