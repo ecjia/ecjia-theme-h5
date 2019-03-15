@@ -58,7 +58,7 @@ return array(
 		'confirm_delete'     => __('您确定要删除照片？', 'h5'),
 		'please_choose_star' => __('请选择星级!', 'h5'),
 			
-		//flow      模板：flow_invoice.dwt	  地址：cart/flow/invoice
+		//flow 下单      模板：flow_invoice.dwt	  地址：cart/flow/invoice
 		'invoice_desc' => __('<div class="inv_img_invoice"><div class="inv_img_invoice_title"><h2>发票税号说明</h2></div>
 		                        <div class="inv_img_invoice_content">
 		                            <p><b>1、什么是纳税人识别号／统一社会信用代码？</b></p>
@@ -78,7 +78,7 @@ return array(
 		'go_set'=>__('去设置', 'h5'),
 		
 		
-		//franchisee
+		//franchisee  入驻店铺
 		'please_enter_correct_tel'   => __('请输入正确的手机号', 'h5'),
 		'prompt'                     => __('提示', 'h5'),
 		'view_progress'              => __('查看申请进度', 'h5'),
@@ -109,6 +109,13 @@ return array(
 		'please_where_street'    => __('请选择所在街道', 'h5'),
 		'individual_settlement'  => __('个人入驻', 'h5'),
 		'enterprise_settled'     => __('企业入驻', 'h5'),
-		'longitude_latitude'     => __('经度：%s；纬度：%s','h5')
+		'longitude_latitude'     => __('经度：%s；纬度：%s','h5'),
+		
+		
+		//goods 商品
+		'activity_end_time' => __('距离活动结束还有', 'h5'),
+		'last'	=>	__('剩余', 'h5'),
+		'over'  =>  __('已结束！', 'h5'),
+		'day'   =>  __('天', 'h5'),
 ); 
 //end
