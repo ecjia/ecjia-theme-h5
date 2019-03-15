@@ -99,5 +99,16 @@ return array(
 		'please_get_store_coordinates'   => __('请获取店铺坐标', 'h5'),
 		'please_street'          => __('请选择街道', 'h5'),
 		'please_street_region'   => __('请先选择所在地区', 'h5'),
+		'temporarily_no'         => __('暂无', 'h5'),
+		'temporarily_cat'        => __('暂无店铺分类，未能入驻', 'h5'),
+		'finish'                 => __('完成', 'h5'),
+		'please_select_province_city' => __('请选择省市区、街道并填写详细地址', 'h5'),
+		'cancel_application'     => __('您确定要撤销申请吗', 'h5'),
+		'check_second'           => __('请查收 (%ss)', 'h5'),
+		'resend_second'          => __('重新发送 %s(s)', 'h5'),
+		'please_where_street'    => __('请选择所在街道', 'h5'),
+		'individual_settlement'  => __('个人入驻', 'h5'),
+		'enterprise_settled'     => __('企业入驻', 'h5'),
+		'longitude_latitude'     => __('经度：%s；纬度：%s','h5')
 ); 
 //end
