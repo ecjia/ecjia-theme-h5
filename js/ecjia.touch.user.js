@@ -1254,7 +1254,7 @@
 			function SetTime() {
 				if (curCount_s == 1) {
 					window.clearInterval(InterObj); //停止计时器
-					$(".pass-notice").html("<span></span>重新发送");
+					$(".pass-notice").html(js_lang.resend_css);
 					$('.pass-notice').removeClass('disabled');
 				} else {
 					curCount_s--;
@@ -1632,7 +1632,7 @@
 				var city = $('input[name="city"]').val();
 				var district = $('input[name="district"]').val();
 				if (province == '' || city == '' || district == '') {
-					alert('请先选择所在地区');
+					alert(js_lang.please_street_region);
 					return false;
 				}
 			});

@@ -202,5 +202,6 @@ return array(
 		'bonus_reward' 			=>	__('邀请成功即可获得红包奖励<br>红包可在购买商品时使用', 'h5'),
 		'money_reward' 			=>	__('邀请成功即可获得现金奖励<br>现金可在购买商品时使用', 'h5'),
 		'no_article_yet'		=>	__('暂无文章', 'h5'),
+		'resend_css'			=>	__('<span></span>重新发送', 'h5'),
 ); 
 //end
