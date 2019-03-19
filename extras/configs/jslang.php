@@ -203,5 +203,8 @@ return array(
 		'money_reward' 			=>	__('邀请成功即可获得现金奖励<br>现金可在购买商品时使用', 'h5'),
 		'no_article_yet'		=>	__('暂无文章', 'h5'),
 		'resend_css'			=>	__('<span></span>重新发送', 'h5'),
+		'click_enter'			=>	__('暂无浏览记录，点击', 'h5'),
+		'enter_browse'			=>	__('进入', 'h5'),
+		'browse_products'		=>	__('浏览商品','h5')
 ); 
 //end

@@ -41,7 +41,7 @@
 					$.get(url, '', function (data) {
 						if ('success' == data.state) {
 							if (obj.hasClass("history_clear")) {
-								obj.closest(".ect-pro-list").html("<p class='text-center  ect-margin-tb ect-padding-tb'>暂无浏览记录，点击<a class='ect-color ect-margin-lr' href={url path='category/index')}>进入</a>浏览商品</p>");
+								obj.closest(".ect-pro-list").html("<p class='text-center  ect-margin-tb ect-padding-tb'>" + js_lang.click_enter + "<a class='ect-color ect-margin-lr' href={url path='category/index')}>" + js_lang.enter_browse + "</a>" + js_lang.browse_products + "</p>");
 								obj.parent().siblings("ul").remove();
 							} else {
 								if (obj.closest("li").siblings("li").length == 0) {
