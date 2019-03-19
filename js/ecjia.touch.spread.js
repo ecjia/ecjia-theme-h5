@@ -131,7 +131,7 @@
 
                 if (data.list == null && parseInt($('.detail-list').children('li').length) == 0) {
                     var empty = '<div class="ecjia-nolist">' +
-                        '<div class="img-nolist">' + '<div class="img-noreward">' + ja_lang.no_reward + '</div>' + '</div>' +
+                        '<div class="img-nolist">' + '<div class="img-noreward">' + js_lang.no_reward + '</div>' + '</div>' +
                         '</div>';
                     $(".detail-list").html(empty);
                 }

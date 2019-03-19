@@ -489,7 +489,7 @@
 									return false;
 								}
 							}, {
-								text: '去登录',
+								text: js_lang.go_login,
 								onClick: function () {
 									$('.modal').remove();
 									$('.modal-overlay').remove();
@@ -530,7 +530,7 @@
 					div.remove();
 					if ($('.a57').length == 1 && $('.a4u-gray').length == 0) {
 						var index_url = $('input[name="index_url"]').val();
-						$('.ecjia-flow-cart-list').html('').html('<div class="flow-no-pro"><div class="ecjia-nolist">' + js_lang.add_goods_yet + '<a class="btn btn-small" type="button" href="' + index_url + '">'+js_lang.go_go+'</a></div>');
+						$('.ecjia-flow-cart-list').html('').html('<div class="flow-no-pro"><div class="ecjia-nolist">' + js_lang.add_goods_yet + '<a class="btn btn-small" type="button" href="' + index_url + '">' + js_lang.go_go + '</a></div>');
 					}
 					return false;
 				}
@@ -2215,7 +2215,7 @@
 							if ($.find('.ecjia-follow-list').length != 0) {
 								div.parent('.store-info').remove();
 								if ($('.ecjia-follow-list').find('.store-info').length == 0) {
-									$('.ecjia-follow-list').html('<div class="ecjia-empty-list"><div class="ecjia-nolist">' + ja_lang.no_attention_store + '</div></div>');
+									$('.ecjia-follow-list').html('<div class="ecjia-empty-list"><div class="ecjia-nolist">' + js_lang.no_attention_store + '</div></div>');
 								}
 								return false;
 							}

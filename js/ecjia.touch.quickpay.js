@@ -169,7 +169,7 @@
 				myApp.modal({
 					title: message,
 					buttons: [{
-						text: ja_lang.cancel,
+						text: js_lang.cancel,
 					}, {
 						text: js_lang.ok,
 						onClick: function () {
@@ -295,7 +295,7 @@
                     $('.la-ball-atom').remove();
                     $('.quick_pay_btn').removeAttr("disabled");
                     if (bool) {
-                        $this.val(js_lng.to_pay);
+                        $this.val(js_lang.to_pay);
                     } else {
                         $this.val(js_lang.confirm_payment);
                     }
