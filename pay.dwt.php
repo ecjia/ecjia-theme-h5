@@ -64,7 +64,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
             <input name="order_id" type="hidden" value="{$detail.order_id}" />
             <input name="pay_id" type="hidden" value="{$detail.pay_id}" />
             <input name="has_set_paypass" type="hidden" value="{if $user.has_paypassword eq 1}1{else}0{/if}" />
-            <input class="btn confirm-payment payment-balance" type="button" value="{t}确认支付{/t}" />
+            <input class="btn confirm-payment payment-balance" type="button" value='{t domain="h5"}确认支付{/t}' />
             <input name="extension_code" type="hidden" value="{$detail.extension_code}" />
             <input type="hidden" class="set_paypass_url" data-url="{url path='user/profile/set_pay_password'}" />
         </div>

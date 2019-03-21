@@ -42,7 +42,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<span>{$val.shop_price}</span>
 			<!--{/if}-->
 			<!--{if $val.shop_price}-->
-			<del>原价：{$val.shop_price}</del>
+			<del>{t domain="h5"}原价：{/t}{$val.shop_price}</del>
 			<!--{/if}-->
 		</span>
 		</span>
