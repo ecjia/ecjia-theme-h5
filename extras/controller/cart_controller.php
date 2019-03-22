@@ -593,7 +593,7 @@ class cart_controller
         $total['tax_fee_formated'] = price_format($total['tax_fee']);
         $total['amount']           += $total['tax_fee'];
         
-        RC_Loader::load_app_class('cart', 'cart');
+        RC_Loader::load_app_class('cart', 'cart', false);
         $total['pay_fee']          = cart::pay_fee($selected_payment['pay_id'], $total['amount']);
         $total['pay_fee_formated'] = price_format($total['pay_fee']);
         $total['amount']           += $total['pay_fee'];
