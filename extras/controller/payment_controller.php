@@ -133,22 +133,29 @@ class payment_controller
         }
 
         $rs_pay = [];
-        if (in_array($detail['pay_code'], array('pay_wxpay', 'pay_alipay'))) {
+//        if (in_array($detail['pay_code'], array('pay_wxpay', 'pay_alipay'))) {
             $api = ecjia_touch_api::ORDER_PAY;
             if ($detail['extension_code'] == 'group_buy') {
                 $api = ecjia_touch_api::GROUPBUY_ORDER_PAY;
             }
             $rs_pay = ecjia_touch_manager::make()->api($api)->data($params)->run();
+            //_dump($rs_pay,1);
             if (is_ecjia_error($rs_pay)) {
                 return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
             }
-            $order = !empty($rs_pay['payment']) ? $rs_pay['payment'] : [];
+            RC_Logger::getlogger('info')->info([
+                'file' => __FILE__,
+                'line' => __LINE__,
+                'rs_pay' => $rs_pay,
+            ]);
+
+        $order = !empty($rs_pay['payment']) ? $rs_pay['payment'] : [];
             if (isset($rs_pay) && $rs_pay['payment']['error_message']) {
                 ecjia_front::$controller->assign('pay_error', $rs_pay['payment']['error_message']);
             } else if (empty($rs_pay)) {
                 $order['pay_status'] = 'success';
             }
-        }
+//        }
 
         //免费商品直接余额支付
         if ($detail['order_amount'] !== 0) {
