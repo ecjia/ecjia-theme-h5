@@ -80,7 +80,7 @@ class payment_controller
         }
 
         /*获取订单信息*/
-        $params_order = array('token' => $token, 'order_id' => $order_id);
+        $params_order = array('token' => $token, 'order_id' => $order_id, 'with_goods' => 'no');
 
         $api_detail = ecjia_touch_api::ORDER_DETAIL;
         $pjaxurl = RC_Uri::url('user/order/order_detail', array('order_id' => $order_id));
