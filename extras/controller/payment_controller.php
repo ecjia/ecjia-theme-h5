@@ -143,13 +143,8 @@ class payment_controller
             if (is_ecjia_error($rs_pay)) {
                 return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
             }
-            RC_Logger::getlogger('info')->info([
-                'file' => __FILE__,
-                'line' => __LINE__,
-                'rs_pay' => $rs_pay,
-            ]);
 
-        $order = !empty($rs_pay['payment']) ? $rs_pay['payment'] : [];
+            $order = !empty($rs_pay['payment']) ? $rs_pay['payment'] : [];
             if (isset($rs_pay) && $rs_pay['payment']['error_message']) {
                 ecjia_front::$controller->assign('pay_error', $rs_pay['payment']['error_message']);
             } else if (empty($rs_pay)) {
