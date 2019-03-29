@@ -21,7 +21,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-flow-done ecjia-pay">
     {if $tips_show}
     <div class="flow-success">
-        <p>{t domain="h5"}恭喜您，订单已经生成~{/t}</p>
+        <p><i class="icon-status"></i><span class="icon-status-text">{t domain="h5"}恭喜您，订单已经生成~{/t}</span></p>
     </div>
     {/if}
     <ul class="ecjia-list">

@@ -4315,24 +4315,25 @@ footer {
 .ecjia-flow-done .flow-success,.ecjia-flow-done .flow-fail {
     margin: 2em 0;
 }
-
-.ecjia-flow-done .flow-success p.icon-status,.ecjia-flow-done .flow-fail p.icon-status{
+.ecjia-flow-done .flow-success p,.ecjia-flow-done .flow-fail p {
+    text-align: center;
+}
+.ecjia-flow-done .icon-status-text {
+    position: relative;
+    top: -2em;
+    left: .4em;
+}
+.ecjia-flow-done .icon-status{
     width: 3em;height: 3em;
     padding:0;
     background-color: #47AA4D;
     border-radius: 50%;
     margin:2em auto 1em;
-}
-.ecjia-flow-done .flow-success p,.ecjia-flow-done .flow-fail p {
-    padding-left: 4.5em;
-    width: 15.5em;
-    height: 4em;
-    line-height: 4em;
-    margin: 0 auto;
-    position: relative
+    position: relative;
+    display: inline-block;
 }
 
-.ecjia-flow-done .flow-success p::after {
+.ecjia-flow-done .flow-success .icon-status::after {
     content: '';
     position: absolute;
     left: 1.1em;
@@ -4345,11 +4346,11 @@ footer {
     transform: rotate(45deg)
 }
 
-.ecjia-flow-done .flow-fail p.icon-status{
+.ecjia-flow-done .flow-fail .icon-status{
     background-color: #ef3030;
 }
 
-.ecjia-flow-done .flow-fail p::before {
+.ecjia-flow-done .flow-fail .icon-status::before {
     content: '';
     position: absolute;
     left: 1.2em;
@@ -4359,7 +4360,7 @@ footer {
     border-top: 2px solid #fff;
     transform: rotate(-45deg)
 }
-.ecjia-flow-done .flow-fail p::after {
+.ecjia-flow-done .flow-fail .icon-status::after {
     content: '';
     position: absolute;
     left: 0em;
