@@ -4312,11 +4312,18 @@ footer {
 }
 
 /*========================  结算完成 ===========================*/
-.ecjia-flow-done .flow-success {
-    margin: 2em 0
+.ecjia-flow-done .flow-success,.ecjia-flow-done .flow-fail {
+    margin: 2em 0;
 }
 
-.ecjia-flow-done .flow-success p {
+.ecjia-flow-done .flow-success p.icon-status,.ecjia-flow-done .flow-fail p.icon-status{
+    width: 3em;height: 3em;
+    padding:0;
+    background-color: #47AA4D;
+    border-radius: 50%;
+    margin:2em auto 1em;
+}
+.ecjia-flow-done .flow-success p,.ecjia-flow-done .flow-fail p {
     padding-left: 4.5em;
     width: 15.5em;
     height: 4em;
@@ -4325,27 +4332,41 @@ footer {
     position: relative
 }
 
-.ecjia-flow-done .flow-success p::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    display: inline-block;
-    width: 3em;
-    height: 3em;
-    top: .5em;
-    border-radius: 100%
-}
-
 .ecjia-flow-done .flow-success p::after {
     content: '';
     position: absolute;
     left: 1.1em;
-    top: 1em;
+    top: 0.5em;
     width: .8em;
     height: 1.8em;
     border-right: 2px solid #fff;
     border-bottom: 2px solid #fff;
     border-radius: 0 0 5px 0;
+    transform: rotate(45deg)
+}
+
+.ecjia-flow-done .flow-fail p.icon-status{
+    background-color: #ef3030;
+}
+
+.ecjia-flow-done .flow-fail p::before {
+    content: '';
+    position: absolute;
+    left: 1.2em;
+    top: 1.3em;
+    width: 1.8em;
+    height: 1.8em;
+    border-top: 2px solid #fff;
+    transform: rotate(-45deg)
+}
+.ecjia-flow-done .flow-fail p::after {
+    content: '';
+    position: absolute;
+    left: 0em;
+    top: 1.3em;
+    width: 1.8em;
+    height: 1.8em;
+    border-top: 2px solid #fff;
     transform: rotate(45deg)
 }
 

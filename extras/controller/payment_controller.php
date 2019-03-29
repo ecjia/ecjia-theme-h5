@@ -208,7 +208,13 @@ class payment_controller
 
     public static function notify()
     {
-        $msg = '支付成功';
+        $msg = __('支付成功', 'h5');
+        $pay_status = true;
+        if(isset($_GET['success']) && $_GET['success'] == 'false') {
+            $msg = __('支付失败', 'h5');
+            $pay_status = false;
+        }
+        ecjia_front::$controller->assign('pay_status', $pay_status);
         ecjia_front::$controller->assign('msg', $msg);
         $order_type = isset($_GET['order_type']) ? trim($_GET['order_type']) : '';
         $url['index'] = RC_Cookie::get('pay_response_index');
