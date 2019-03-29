@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ECJia到家H5主题 1.29.0\n"
 "Report-Msgid-Bugs-To: https://www.ecjia.com/support/theme/h5\n"
-"POT-Creation-Date: 2019-03-22 03:53:40+00:00\n"
+"POT-Creation-Date: 2019-03-29 01:42:06+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -74,7 +74,7 @@ msgstr ""
 msgid "确认支付"
 msgstr ""
 
-#: extras/configs/jslang.php:75 extras/controller/payment_controller.php:230
+#: extras/configs/jslang.php:75 extras/controller/payment_controller.php:237
 #: extras/controller/user_account_controller.php:617
 msgid "请选择支付方式"
 msgstr ""
