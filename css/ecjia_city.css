@@ -5430,6 +5430,17 @@ footer {
     font-size: 1.5em
 }
 
+.ecjia-account .title {
+    font-size: 1.1em;
+    font-weight: 700;
+    padding-left: 1em;
+    line-height: 2.5em;
+    background-color: #F7F7F7;
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+}
+
 .ecjia-account .ecjia-list.list-short {
     border-bottom: 1px solid #eee
 }
