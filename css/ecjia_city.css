@@ -14,8 +14,8 @@ html {
     color: #555
 }
 
-[type=radio]+label:after,
-[type=radio]+label:before {
+[type=radio] + label:after,
+[type=radio] + label:before {
     margin: 0 4px
 }
 
@@ -109,7 +109,7 @@ a.ecjia-color-green {
 }
 
 .ecjia-list li,
-.ecjia-list.list-short li+li::before {
+.ecjia-list.list-short li + li::before {
     border-color: #eee
 }
 
@@ -642,7 +642,7 @@ a.ecjia-color-green {
     transform: translateZ(0)
 }
 
-.picker-modal .toolbar+.picker-modal-inner {
+.picker-modal .toolbar + .picker-modal-inner {
     height: -webkit-calc(100% - 44px);
     height: -moz-calc(100% - 44px);
     height: calc(100% - 44px)
@@ -2298,7 +2298,7 @@ footer {
     overflow: hidden;
 }
 
-.ecjia-store-detail .store-other-info li+li:before {
+.ecjia-store-detail .store-other-info li + li:before {
     content: '';
     position: absolute;
     display: block;
@@ -3434,7 +3434,7 @@ footer {
     color: #333
 }
 
-.flow-address .address-info span+span {
+.flow-address .address-info span + span {
     margin-left: 2em
 }
 
@@ -3910,7 +3910,7 @@ footer {
     border-bottom: 1px solid #eee
 }
 
-.ecjia .ecjia-checkout .checklist+.checklist::before {
+.ecjia .ecjia-checkout .checklist + .checklist::before {
     content: '';
     position: absolute;
     top: 0;
@@ -3923,7 +3923,7 @@ footer {
     border-top: none
 }
 
-.ecjia .ecjia-select .ecjia-list .select-item+.select-item::before {
+.ecjia .ecjia-select .ecjia-list .select-item + .select-item::before {
     content: '';
     position: absolute;
     border: 0;
@@ -4312,23 +4312,27 @@ footer {
 }
 
 /*========================  结算完成 ===========================*/
-.ecjia-flow-done .flow-success,.ecjia-flow-done .flow-fail {
+.ecjia-flow-done .flow-success, .ecjia-flow-done .flow-fail {
     margin: 2em 0;
 }
-.ecjia-flow-done .flow-success p,.ecjia-flow-done .flow-fail p {
+
+.ecjia-flow-done .flow-success p, .ecjia-flow-done .flow-fail p {
     text-align: center;
 }
+
 .ecjia-flow-done .icon-status-text {
     position: relative;
     top: -2em;
     left: .4em;
 }
-.ecjia-flow-done .icon-status{
-    width: 3em;height: 3em;
-    padding:0;
+
+.ecjia-flow-done .icon-status {
+    width: 3em;
+    height: 3em;
+    padding: 0;
     background-color: #47AA4D;
     border-radius: 50%;
-    margin:2em auto 1em;
+    margin: 2em auto 1em;
     position: relative;
     display: inline-block;
 }
@@ -4346,7 +4350,7 @@ footer {
     transform: rotate(45deg)
 }
 
-.ecjia-flow-done .flow-fail .icon-status{
+.ecjia-flow-done .flow-fail .icon-status {
     background-color: #ef3030;
 }
 
@@ -4360,6 +4364,7 @@ footer {
     border-top: 2px solid #fff;
     transform: rotate(-45deg)
 }
+
 .ecjia-flow-done .flow-fail .icon-status::after {
     content: '';
     position: absolute;
@@ -4413,7 +4418,7 @@ footer {
     color: #000 !important
 }
 
-.ecjia-flow-done .ecjia-list.list-short li+li::before {
+.ecjia-flow-done .ecjia-list.list-short li + li::before {
     width: 100%;
     left: 8%
 }
@@ -4739,7 +4744,7 @@ footer {
     display: block
 }
 
-.ecjia-user .ecjia-list.list-short li a>.icon-jiantou-right {
+.ecjia-user .ecjia-list.list-short li a > .icon-jiantou-right {
     right: 1%
 }
 
@@ -4813,7 +4818,7 @@ footer {
     top: -1px;
 }
 
-.ecjia-user .ecjia-list.list-short li+li::before {
+.ecjia-user .ecjia-list.list-short li + li::before {
     left: 3.1em;
     border-bottom: 1px solid #eee
 }
@@ -5087,7 +5092,7 @@ footer {
     padding: .5em 0 .5em 1em
 }
 
-.ecjia-user .d_bind .ecjia-list.list-short li+li::before {
+.ecjia-user .d_bind .ecjia-list.list-short li + li::before {
     width: 97%;
     left: 3%;
     border-bottom: 1px solid #eee
@@ -5172,7 +5177,7 @@ footer {
     padding: 1em
 }
 
-.ecjia-account.ecjia-pay.ecjia-flow-done .ecjia-list.list-short li+li::before {
+.ecjia-account.ecjia-pay.ecjia-flow-done .ecjia-list.list-short li + li::before {
     width: 100%;
     left: 3.8em
 }
@@ -5429,7 +5434,7 @@ footer {
     border-bottom: 1px solid #eee
 }
 
-.ecjia-account .ecjia-list.list-short li+li::before {
+.ecjia-account .ecjia-list.list-short li + li::before {
     width: 97%;
     left: 3%
 }
@@ -5640,7 +5645,7 @@ footer {
     border-bottom: 1px solid #eee
 }
 
-.ecjia-account-record.ecjia-list.list-short li+li::before {
+.ecjia-account-record.ecjia-list.list-short li + li::before {
     content: '';
     position: absolute;
     display: block;
@@ -5658,14 +5663,14 @@ footer {
     display: none
 }
 
-.ecjia-list.ecjia-account-record>.ecjia-nolist>p {
+.ecjia-list.ecjia-account-record > .ecjia-nolist > p {
     margin: 40% 0 0 2%;
     position: absolute
 }
 
-.ecjia-account-record .ecjia-nolist>span,
-.ecjia-bonus .ecjia-nolist>span,
-.ecjia-spread-detail .ecjia-nolist>span {
+.ecjia-account-record .ecjia-nolist > span,
+.ecjia-bonus .ecjia-nolist > span,
+.ecjia-spread-detail .ecjia-nolist > span {
     position: relative;
     text-align: center;
     size: 16px;
@@ -5673,7 +5678,7 @@ footer {
 }
 
 .ecjia-account-record li.record-list {
-    padding-right: :0 !important
+    padding-right:: 0 !important
 }
 
 .ecjia-account-record .record-l {
@@ -8201,33 +8206,37 @@ footer {
 
 /*========================  企业发票说明-sqq ===========================*/
 .inv_img_invoice {
-	height: 100%;
+    height: 100%;
 }
-.inv_img_invoice_title{
-	position:fixed;
-	background: #FFF;
-	width: 100%;
-	height: 3em;
-	border-bottom: 1px solid #eee;
-	z-index: 100;
+
+.inv_img_invoice_title {
+    position: fixed;
+    background: #FFF;
+    width: 100%;
+    height: 3em;
+    border-bottom: 1px solid #eee;
+    z-index: 100;
 }
-.inv_img_invoice_title h2{
-	line-height: 2em;
-	position: absolute;
-	right: 0;
-	left: 0;
-	height: 2em;
+
+.inv_img_invoice_title h2 {
+    line-height: 2em;
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 2em;
 }
-.inv_img_invoice_content{
-	padding:15px;
-	overflow-y: scroll;
-	padding-top: 3em;
-	text-align: left;
-	width: 100%;
-	height: 100%;
+
+.inv_img_invoice_content {
+    padding: 15px;
+    overflow-y: scroll;
+    padding-top: 3em;
+    text-align: left;
+    width: 100%;
+    height: 100%;
 }
-.inv_img_invoice_content .detail{
-	color:#838383;
+
+.inv_img_invoice_content .detail {
+    color: #838383;
 }
 
 /*========================  分类店铺 ===========================*/
@@ -8464,7 +8473,7 @@ footer {
     overflow: hidden
 }
 
-.ecjia-store-list ul>li.view-more {
+.ecjia-store-list ul > li.view-more {
     text-align: center;
     line-height: 3em;
     color: #47aa4d;
@@ -9072,7 +9081,7 @@ footer {
     z-index: 998
 }
 
-.ecjia-spread .ecjia-margin-b>a img {
+.ecjia-spread .ecjia-margin-b > a img {
     position: relative;
     width: 100%;
     padding: 0 .8em;
@@ -9124,7 +9133,7 @@ footer {
     height: 14em
 }
 
-.ecjia-spread .ecjia-list.list-short li+li::before {
+.ecjia-spread .ecjia-list.list-short li + li::before {
     content: '';
     position: relative;
     display: block;
@@ -9280,7 +9289,7 @@ footer {
     font-weight: bold
 }
 
-.ecjia-spread-detail .ecjia-list.list-short li+li::before {
+.ecjia-spread-detail .ecjia-list.list-short li + li::before {
     content: '';
     position: absolute;
     display: block;
@@ -9362,27 +9371,27 @@ footer {
     }
 }
 
-.load-list .loader .ball-pulse>div:nth-child(0) {
+.load-list .loader .ball-pulse > div:nth-child(0) {
     -webkit-animation: scale .75s 0s infinite cubic-bezier(.2, .68, .18, 1.08);
     animation: scale .75s 0s infinite cubic-bezier(.2, .68, .18, 1.08)
 }
 
-.load-list .loader .ball-pulse>div:nth-child(1) {
+.load-list .loader .ball-pulse > div:nth-child(1) {
     -webkit-animation: scale .75s .12s infinite cubic-bezier(.2, .68, .18, 1.08);
     animation: scale .75s .12s infinite cubic-bezier(.2, .68, .18, 1.08)
 }
 
-.load-list .loader .ball-pulse>div:nth-child(2) {
+.load-list .loader .ball-pulse > div:nth-child(2) {
     -webkit-animation: scale .75s .24s infinite cubic-bezier(.2, .68, .18, 1.08);
     animation: scale .75s .24s infinite cubic-bezier(.2, .68, .18, 1.08)
 }
 
-.load-list .loader .ball-pulse>div:nth-child(3) {
+.load-list .loader .ball-pulse > div:nth-child(3) {
     -webkit-animation: scale .75s .36s infinite cubic-bezier(.2, .68, .18, 1.08);
     animation: scale .75s .36s infinite cubic-bezier(.2, .68, .18, 1.08)
 }
 
-.load-list .loader .ball-pulse>div {
+.load-list .loader .ball-pulse > div {
     background-color: #47aa4d;
     width: 10px;
     height: 10px;
@@ -10346,8 +10355,8 @@ footer {
     min-height: 2em
 }
 
-.ecjia-attr-static .goods-attr-list ul>li,
-.ecjia-goodsAttr-modal .goods-attr-list ul>li {
+.ecjia-attr-static .goods-attr-list ul > li,
+.ecjia-goodsAttr-modal .goods-attr-list ul > li {
     float: left;
     border: 1px solid #aaa;
     border-radius: 50px;
@@ -10360,8 +10369,8 @@ footer {
     text-align: center
 }
 
-.ecjia-attr-static .goods-attr-list ul>li.active,
-.ecjia-goodsAttr-modal .goods-attr-list ul>li.active {
+.ecjia-attr-static .goods-attr-list ul > li.active,
+.ecjia-goodsAttr-modal .goods-attr-list ul > li.active {
     background-color: #47aa4d;
     color: #fff;
     border: 1px solid #fff
@@ -10792,7 +10801,7 @@ footer {
     margin-bottom: .5em
 }
 
-.ecjia-discover-cycleimage .swiper-container-horizontal>.swiper-pagination {
+.ecjia-discover-cycleimage .swiper-container-horizontal > .swiper-pagination {
     bottom: 0
 }
 
@@ -11745,7 +11754,7 @@ footer {
     padding-top: .8em
 }
 
-.quickpay .checkout .quickpay_div+.quickpay_div::before {
+.quickpay .checkout .quickpay_div + .quickpay_div::before {
     content: '';
     position: absolute;
     display: block;
@@ -11754,7 +11763,7 @@ footer {
     border-bottom: none
 }
 
-.quickpay .checkout .quickpay_div.content+.quickpay_div.content::before {
+.quickpay .checkout .quickpay_div.content + .quickpay_div.content::before {
     border-bottom: 1px solid #eee
 }
 
@@ -11793,7 +11802,7 @@ footer {
     color: #999
 }
 
-.quickpay .checkout .before_two li+li::before {
+.quickpay .checkout .before_two li + li::before {
     content: '';
     position: absolute;
     display: block;
@@ -11802,11 +11811,11 @@ footer {
     width: 100%
 }
 
-.quickpay .checkout .before_two.line li+li::before {
+.quickpay .checkout .before_two.line li + li::before {
     border-bottom: 1px solid #eee
 }
 
-.quickpay .checkout .before_two .quickpay_div.content li+li::before {
+.quickpay .checkout .before_two .quickpay_div.content li + li::before {
     border-bottom: 1px solid #eee
 }
 
@@ -12399,7 +12408,7 @@ footer {
     position: relative
 }
 
-.ecjia-return-list li+li::before {
+.ecjia-return-list li + li::before {
     content: '';
     position: absolute;
     display: block;
@@ -12727,7 +12736,7 @@ footer {
     position: relative
 }
 
-.ecjia-return-way-list li+li::before {
+.ecjia-return-way-list li + li::before {
     content: '';
     position: absolute;
     display: block;
