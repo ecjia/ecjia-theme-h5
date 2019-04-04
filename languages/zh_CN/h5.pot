@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ECJia到家H5主题 1.29.0\n"
 "Report-Msgid-Bugs-To: https://www.ecjia.com/support/theme/h5\n"
-"POT-Creation-Date: 2019-03-29 02:52:11+00:00\n"
+"POT-Creation-Date: 2019-04-04 05:38:47+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -74,7 +74,7 @@ msgstr ""
 msgid "确认支付"
 msgstr ""
 
-#: extras/configs/jslang.php:75 extras/controller/payment_controller.php:243
+#: extras/configs/jslang.php:75 extras/controller/payment_controller.php:238
 #: extras/controller/user_account_controller.php:617
 msgid "请选择支付方式"
 msgstr ""
@@ -128,8 +128,8 @@ msgid "请输入手机号码"
 msgstr ""
 
 #: extras/configs/jslang.php:90 extras/controller/franchisee_controller.php:633
-#: extras/controller/user_profile_controller.php:759
-#: extras/controller/user_profile_controller.php:776
+#: extras/controller/user_profile_controller.php:854
+#: extras/controller/user_profile_controller.php:871
 msgid "验证码不能为空"
 msgstr ""
 
@@ -505,8 +505,8 @@ msgstr ""
 #: extras/controller/connect_controller.php:383
 #: extras/controller/user_get_password_controller.php:121
 #: extras/controller/user_privilege_controller.php:331
-#: extras/controller/user_profile_controller.php:380
-#: extras/controller/user_profile_controller.php:539
+#: extras/controller/user_profile_controller.php:400
+#: extras/controller/user_profile_controller.php:627
 msgid "请输入验证码"
 msgstr ""
 
@@ -914,7 +914,7 @@ msgstr ""
 
 #: extras/controller/connect_controller.php:556
 #: extras/controller/user_privilege_controller.php:542
-#: extras/controller/user_profile_controller.php:383
+#: extras/controller/user_profile_controller.php:403
 msgid "请设置密码"
 msgstr ""
 
@@ -951,8 +951,8 @@ msgstr ""
 
 #: extras/controller/franchisee_controller.php:131
 #: extras/controller/franchisee_controller.php:573
-#: extras/controller/user_profile_controller.php:355
-#: extras/controller/user_profile_controller.php:377
+#: extras/controller/user_profile_controller.php:375
+#: extras/controller/user_profile_controller.php:397
 msgid "手机号码不能为空"
 msgstr ""
 
@@ -1111,12 +1111,12 @@ msgstr ""
 msgid "该订单已支付请勿重复支付"
 msgstr ""
 
-#: extras/controller/payment_controller.php:211
+#: extras/controller/payment_controller.php:206
 #: extras/controller/quickpay_controller.php:551
 msgid "支付成功"
 msgstr ""
 
-#: extras/controller/payment_controller.php:214
+#: extras/controller/payment_controller.php:209
 msgid "支付失败"
 msgstr ""
 
@@ -1131,7 +1131,7 @@ msgstr ""
 
 #: extras/controller/quickpay_controller.php:522
 #: extras/controller/user_address_controller.php:600
-#: extras/controller/user_profile_controller.php:528
+#: extras/controller/user_profile_controller.php:616
 msgid "删除成功"
 msgstr ""
 
@@ -1266,7 +1266,7 @@ msgid "该地址为默认的收货地址，不能删除"
 msgstr ""
 
 #: extras/controller/user_address_controller.php:631
-#: extras/controller/user_profile_controller.php:687
+#: extras/controller/user_profile_controller.php:782
 msgid "设置成功"
 msgstr ""
 
@@ -1324,7 +1324,7 @@ msgid "找回密码"
 msgstr ""
 
 #: extras/controller/user_get_password_controller.php:201
-#: extras/controller/user_profile_controller.php:159
+#: extras/controller/user_profile_controller.php:168
 msgid "请输入新密码"
 msgstr ""
 
@@ -1512,177 +1512,186 @@ msgstr ""
 msgid "注册"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:77
+#: extras/controller/user_profile_controller.php:86
 msgid "个人资料"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:115
+#: extras/controller/user_profile_controller.php:124
 msgid "修改用户名"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:128
+#: extras/controller/user_profile_controller.php:137
 msgid "修改失败，请输入正确的用户名格式"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:133
+#: extras/controller/user_profile_controller.php:142
 msgid "修改成功"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:155
+#: extras/controller/user_profile_controller.php:164
 msgid "请输入旧密码"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:163
+#: extras/controller/user_profile_controller.php:172
 msgid "请输入确认新密码"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:169
+#: extras/controller/user_profile_controller.php:178
 msgid "新密码不能旧密码相同"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:173
+#: extras/controller/user_profile_controller.php:182
 msgid "修改密码成功"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:178
+#: extras/controller/user_profile_controller.php:187
 msgid "两次输入的密码不同，请重新输入"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:186
-#: extras/controller/user_profile_controller.php:738
+#: extras/controller/user_profile_controller.php:195
+#: extras/controller/user_profile_controller.php:833
 msgid "请先绑定手机号码"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:189
-#: extras/controller/user_profile_controller.php:190
+#: extras/controller/user_profile_controller.php:198
+#: extras/controller/user_profile_controller.php:199
 msgid "修改密码"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:226
+#: extras/controller/user_profile_controller.php:235
 msgid "提现账户"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:249
+#: extras/controller/user_profile_controller.php:266
 msgid "绑定手机"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:251
+#: extras/controller/user_profile_controller.php:268
 msgid "绑定邮箱"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:255
+#: extras/controller/user_profile_controller.php:272
 msgid "绑定银行卡"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:257
+#: extras/controller/user_profile_controller.php:274
 msgid "绑定微信钱包提现"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:327
+#: extras/controller/user_profile_controller.php:347
 msgid "该手机号与当前绑定的手机号相同"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:332
+#: extras/controller/user_profile_controller.php:352
 msgid "该邮箱地址与当前绑定的邮箱地址相同"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:386
+#: extras/controller/user_profile_controller.php:406
 msgid "登录密码不能少于 6 个字符"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:395
+#: extras/controller/user_profile_controller.php:415
 msgid "修改成功，请重新登录"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:461
+#: extras/controller/user_profile_controller.php:488
 msgid "更换手机号"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:463
+#: extras/controller/user_profile_controller.php:490
 msgid "更换邮箱"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:465
+#: extras/controller/user_profile_controller.php:492
+#: extras/controller/user_profile_controller.php:531
 msgid "绑定微信"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:467
+#: extras/controller/user_profile_controller.php:494
 msgid "解除绑定"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:471
+#: extras/controller/user_profile_controller.php:498
 msgid "编辑银行卡"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:497
-#: extras/controller/user_profile_controller.php:800
+#: extras/controller/user_profile_controller.php:561
+msgid "选择微信"
+msgstr ""
+
+#: extras/controller/user_profile_controller.php:585
+#: extras/controller/user_profile_controller.php:895
 msgid "验证手机号"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:515
+#: extras/controller/user_profile_controller.php:603
 msgid "该提现方式不存在"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:519
-#: extras/controller/user_profile_controller.php:577
-#: extras/controller/user_profile_controller.php:606
+#: extras/controller/user_profile_controller.php:607
+#: extras/controller/user_profile_controller.php:665
+#: extras/controller/user_profile_controller.php:700
 msgid "请输入手机验证码"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:547
+#: extras/controller/user_profile_controller.php:635
 msgid "解绑成功"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:565
+#: extras/controller/user_profile_controller.php:653
 msgid "请输入持卡人姓名"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:568
+#: extras/controller/user_profile_controller.php:656
 msgid "请选择所属银行"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:571
+#: extras/controller/user_profile_controller.php:659
 msgid "请输入开户行"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:574
+#: extras/controller/user_profile_controller.php:662
 msgid "请输入银行卡号"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:594
-#: extras/controller/user_profile_controller.php:620 functions.php:241
+#: extras/controller/user_profile_controller.php:682
+#: extras/controller/user_profile_controller.php:715 functions.php:241
 msgid "绑定成功"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:602
+#: extras/controller/user_profile_controller.php:692
+msgid "请点击微信钱包选择平台"
+msgstr ""
+
+#: extras/controller/user_profile_controller.php:696
 msgid "请输入微信认证的真实姓名"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:637
+#: extras/controller/user_profile_controller.php:732
 msgid "支付密码"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:653
+#: extras/controller/user_profile_controller.php:748
 msgid "请设置支付密码"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:656
+#: extras/controller/user_profile_controller.php:751
 msgid "再次确认支付密码"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:689
+#: extras/controller/user_profile_controller.php:784
 msgid "两次密码输入不一致，请重试"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:718
+#: extras/controller/user_profile_controller.php:813
 msgid "注销账号"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:722
+#: extras/controller/user_profile_controller.php:817
 msgid "激活账号"
 msgstr ""
 
-#: extras/controller/user_profile_controller.php:784
+#: extras/controller/user_profile_controller.php:879
 msgid "激活成功"
 msgstr ""
 
@@ -1793,6 +1802,24 @@ msgstr ""
 msgid "提交"
 msgstr ""
 
+#: sites/m/content/themes/h5/user_wx_bind_status.dwt.php:26
+#: sites/m/content/themes/h5/user_wx_bind_status.dwt.php:38
+#: sites/m/content/themes/h5/user_wx_choose_wechat.dwt.php:26
+#: sites/m/content/themes/h5/user_wx_choose_wechat.dwt.php:41
+#: sites/m/content/themes/h5/user_bind_info.dwt.php:48
+msgid "已绑定"
+msgstr ""
+
+#: sites/m/content/themes/h5/user_wx_bind_status.dwt.php:26
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:86
+#: sites/m/content/themes/h5/user_wx_choose_wechat.dwt.php:26
+#: sites/m/content/themes/h5/user_wx_choose_wechat.dwt.php:41
+#: sites/m/content/themes/h5/user_profile.dwt.php:49
+#: sites/m/content/themes/h5/user_profile.dwt.php:56
+#: sites/m/content/themes/h5/user_profile.dwt.php:63
+msgid "未绑定"
+msgstr ""
+
 #: sites/m/content/themes/h5/quickpay_collectmoney.dwt.php:38
 #: sites/m/content/themes/h5/quickpay_checkout.dwt.php:21
 msgid "商家打烊中，优惠买单尚未开始~"
@@ -1861,7 +1888,7 @@ msgstr ""
 #: sites/m/content/themes/h5/user_account_bind.dwt.php:39
 #: sites/m/content/themes/h5/user_account_bind.dwt.php:68
 #: sites/m/content/themes/h5/user_account_bind.dwt.php:104
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:174
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:175
 #: sites/m/content/themes/h5/user_bind_signup.dwt.php:38
 #: sites/m/content/themes/h5/user_mobile_register.dwt.php:34
 #: sites/m/content/themes/h5/user_check_user_mobile.dwt.php:33
@@ -1894,13 +1921,6 @@ msgstr ""
 msgid "微信钱包"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:86
-#: sites/m/content/themes/h5/user_profile.dwt.php:49
-#: sites/m/content/themes/h5/user_profile.dwt.php:56
-#: sites/m/content/themes/h5/user_profile.dwt.php:63
-msgid "未绑定"
-msgstr ""
-
 #: sites/m/content/themes/h5/user_account_bind.dwt.php:94
 #: sites/m/content/themes/h5/franchisee_process.dwt.php:83
 msgid "真实姓名"
@@ -1908,8 +1928,8 @@ msgstr ""
 
 #: sites/m/content/themes/h5/user_account_bind.dwt.php:102
 #: sites/m/content/themes/h5/user_account_bind.dwt.php:107
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:172
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:177
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:173
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:178
 #: sites/m/content/themes/h5/user_unbind_check_mobile.dwt.php:23
 #: sites/m/content/themes/h5/user_unbind_check_mobile.dwt.php:28
 #: sites/m/content/themes/h5/franchisee_process.dwt.php:91
@@ -1919,14 +1939,14 @@ msgid "手机号码"
 msgstr ""
 
 #: sites/m/content/themes/h5/user_account_bind.dwt.php:108
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:178
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:179
 #: sites/m/content/themes/h5/user_unbind_check_mobile.dwt.php:29
 #: sites/m/content/themes/h5/user_bind_info.dwt.php:66
 msgid "请先去绑定手机号"
 msgstr ""
 
 #: sites/m/content/themes/h5/user_account_bind.dwt.php:109
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:179
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:180
 #: sites/m/content/themes/h5/user_unbind_check_mobile.dwt.php:30
 #: sites/m/content/themes/h5/user_bind_info.dwt.php:67
 #: sites/m/content/themes/h5/user_bind_info.dwt.php:82
@@ -1934,7 +1954,7 @@ msgid "去绑定"
 msgstr ""
 
 #: sites/m/content/themes/h5/user_account_bind.dwt.php:114
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:184
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:185
 #: sites/m/content/themes/h5/user_unbind_check_mobile.dwt.php:35
 #: sites/m/content/themes/h5/user_bind_info.dwt.php:72
 #: sites/m/content/themes/h5/user_bind_signin.dwt.php:39
@@ -1942,7 +1962,7 @@ msgid "验证码"
 msgstr ""
 
 #: sites/m/content/themes/h5/user_account_bind.dwt.php:119
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:189
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:190
 #: sites/m/content/themes/h5/franchisee_process.dwt.php:68
 #: sites/m/content/themes/h5/order_return_reply.dwt.php:59
 msgid "温馨提示："
@@ -1966,36 +1986,36 @@ msgid ""
 msgstr ""
 
 #: sites/m/content/themes/h5/user_account_bind.dwt.php:123
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:192
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:193
 msgid "若有疑问，请拨打客服热线；"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:128
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:197
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:129
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:198
 #: sites/m/content/themes/h5/quickpay_integral.dwt.php:27
 #: sites/m/content/themes/h5/user_address_edit.dwt.php:85
 #: sites/m/content/themes/h5/quickpay_bonus.dwt.php:43
 msgid "保存"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:133
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:134
 msgid "确定删除微信钱包提现方式？"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:133
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:202
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:134
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:203
 msgid "删除此提现方式"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:142
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:143
 msgid "持卡人"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:146
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:147
 msgid "所属银行"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:152
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:153
 #: sites/m/content/themes/h5/select_location.dwt.php:22
 #: sites/m/content/themes/h5/library/consignee.lbi.php:24
 #: sites/m/content/themes/h5/library/consignee.lbi.php:32
@@ -2004,25 +2024,25 @@ msgstr ""
 msgid "请选择"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:160
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:161
 msgid "开户行"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:164
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:165
 msgid "银行卡号"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:190
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:191
 msgid "绑定后，只能使用该卡进行余额提现；"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:191
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:192
 msgid ""
 "请确保您填写的信息真实有效，若填写的信息有误，导致提现至错误账号，由此造成的"
 "损失需由您自行承担。"
 msgstr ""
 
-#: sites/m/content/themes/h5/user_account_bind.dwt.php:202
+#: sites/m/content/themes/h5/user_account_bind.dwt.php:203
 msgid "确定删除银行卡提现方式？"
 msgstr ""
 
@@ -4153,10 +4173,6 @@ msgstr ""
 
 #: sites/m/content/themes/h5/user_bind_info.dwt.php:35
 msgid "更换邮箱号"
-msgstr ""
-
-#: sites/m/content/themes/h5/user_bind_info.dwt.php:48
-msgid "已绑定"
 msgstr ""
 
 #: sites/m/content/themes/h5/user_bind_info.dwt.php:51
