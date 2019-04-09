@@ -166,6 +166,8 @@ class payment_controller
                     $need_other_payment = 0;
                 }
                 $order['pay_online'] = array_get($order, 'pay_online', array_get($order, 'private_data.pay_online'));
+                $pay_button = array_get($order, 'private_data.pay_button');
+                ecjia_front::$controller->assign('pay_button', $pay_button);
             }
             if ($need_other_payment && empty($order['order_pay_status'])) {
                 $payment_list = user_function::get_payment_list($detail['pay_code'], $detail['manage_mode']);
