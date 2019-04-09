@@ -110,7 +110,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                     </div>
                 </div>
                 <input name="order_id" type="hidden" value="{$detail.order_id}" />
-                <input name="pay_id" type="hidden" value="{$detail.pay_id}" />
+                <input name="pay_balance_id" type="hidden" value="{$pay_balance_id}" />
                 <input name="url" type="hidden" value="{url path='payment/pay/pay_order'}" />
                 <a class="ecjiaf-fr blue forget_paypass" href="{RC_Uri::url('user/profile/set_pay_password')}" style="padding-right:2em;color:#337ab7;">{t domain="h5"}忘记支付密码{/t}</a>
             </div>
