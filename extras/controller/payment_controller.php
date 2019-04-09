@@ -95,16 +95,6 @@ class payment_controller
         if ($detail['pay_status'] == PS_PAYED) {
             return ecjia_front::$controller->showmessage(__('该订单已支付请勿重复支付', 'h5'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjaxurl));
         }
-        
-        //不支持原有支付方式，请切换新的支付方式继续支付
-        $change_result = user_function::is_change_payment($detail['pay_code'], $detail['manage_mode']);
-        ecjia_front::$controller->assign('change_payment', $change_result['change']);
-        
-        if ($change_result['change'] && $detail['pay_code'] != 'pay_cod') {
-            ecjia_front::$controller->assign('detail', $detail);
-            ecjia_front::$controller->assign('payment_list', $change_result['payment']);
-            return ecjia_front::$controller->display('pay_change.dwt');
-        }
 
         if ($detail['extension_code'] == 'group_buy') {
             if ($detail['order_status_code'] == 'await_pay') {
@@ -117,6 +107,20 @@ class payment_controller
             }
         }
 
+        $change_result = user_function::is_change_payment($detail['pay_code'], $detail['manage_mode']);
+        ecjia_front::$controller->assign('change_payment', $change_result['change']);
+        ecjia_front::$controller->assign('pay_balance_id', $change_result['pay_balance_id']);
+
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+        $user = is_ecjia_error($user) ? [] : $user;
+        ecjia_front::$controller->assign('user', $user);
+
+        if ($change_result['change'] && $detail['pay_code'] != 'pay_cod') {
+            ecjia_front::$controller->assign('detail', $detail);
+            ecjia_front::$controller->assign('payment_list', $change_result['payment']);
+            ecjia_front::$controller->display('pay_change.dwt');
+            return false;
+        }
         //获得订单支付信息
         $params = array(
             'token' => $token,
@@ -139,7 +143,6 @@ class payment_controller
                 $api = ecjia_touch_api::GROUPBUY_ORDER_PAY;
             }
             $rs_pay = ecjia_touch_manager::make()->api($api)->data($params)->run();
-            //_dump($rs_pay,1);
             if (is_ecjia_error($rs_pay)) {
                 return ecjia_front::$controller->showmessage($rs_pay->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
             }
@@ -196,9 +199,6 @@ class payment_controller
         //生成返回url cookie
         RC_Cookie::set('pay_response_index', RC_Uri::url('touch/index/init'));
         RC_Cookie::set('pay_response_order', $url);
-
-        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
-        ecjia_front::$controller->assign('user', $user);
 
         ecjia_front::$controller->display('pay.dwt');
     }
