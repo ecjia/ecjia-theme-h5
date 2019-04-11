@@ -14,7 +14,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="swiper-wrapper">
 			<!-- {foreach from=$value.data item=val} 循环商品 -->
 			<div class="swiper-slide">
-				<a class="list-page-goods-img nopjax external" href="{RC_Uri::url('goods/index/show')}&goods_id={$val.id}{if $val.product_id neq 0}&p_id={$val.product_id}{/if}">
+				<a class="list-page-goods-img nopjax external" href="{RC_Uri::url('goods/index/show')}&goods_id={$val.id}{if $val.product_id neq 0}&product_id={$val.product_id}{/if}">
 					<div class="goods-image">
 						<img src="{$val.img.small}" alt="{$val.name}">
 						<img class="sales-icon" src="{$theme_url}images/icon-promote@2x.png">

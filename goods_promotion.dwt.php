@@ -59,12 +59,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <li class="ecjia-margin">
 	<div class="list-page-goods-img">
 		<div class="goods-img">
-			<a class="nopjax external" href="{RC_Uri::url('goods/index/show')}&goods_id={$val.id}{if $val.product_id neq 0}&p_id={$val.product_id}{/if}"><img class="img" src="{$val.img.thumb}" alt="{$val.name}"></a>
+			<a class="nopjax external" href="{RC_Uri::url('goods/index/show')}&goods_id={$val.id}{if $val.product_id neq 0}&product_id={$val.product_id}{/if}"><img class="img" src="{$val.img.thumb}" alt="{$val.name}"></a>
 			<span class="promote-time" data-type="2" value="{$val.promote_end_date}"></span>
 			<img class="sales-icon" src="{$theme_url}images/icon-promote@2x.png">
 		</div>
 		<div class="list-page-box">
-			<a class="nopjax external" href="{RC_Uri::url('goods/index/show')}&goods_id={$val.id}{if $val.product_id neq 0}&p_id={$val.product_id}{/if}"><span class="goods-name">{$val.name}</span></a>
+			<a class="nopjax external" href="{RC_Uri::url('goods/index/show')}&goods_id={$val.id}{if $val.product_id neq 0}&product_id={$val.product_id}{/if}"><span class="goods-name">{$val.name}</span></a>
 			<p class="store-name">
 				<span class="name"><img class="logo" src="{$theme_url}images/icon/seller-name-icon.png" />{$val.store_name}</span>
 				<span class="self-label">{t domain="h5"}自营{/t}</span>
@@ -81,7 +81,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					<del>{$val.shop_price}</del>
 					<!--{/if}-->
 				</div>
-				<a class="btn go-buy nopjax external" href="{RC_Uri::url('goods/index/show')}&goods_id={$val.id}{if $val.product_id neq 0}&p_id={$val.product_id}{/if}">立即购买</a>
+				<a class="btn go-buy nopjax external" href="{RC_Uri::url('goods/index/show')}&goods_id={$val.id}{if $val.product_id neq 0}&product_id={$val.product_id}{/if}">立即购买</a>
 			</div>
 		</div>
 	</div>

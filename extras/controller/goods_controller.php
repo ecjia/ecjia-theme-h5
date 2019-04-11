@@ -137,7 +137,7 @@ class goods_controller
 
         $rec_type  = isset($_GET['rec_type']) ? $_GET['rec_type'] : 0;
         $object_id = isset($_GET['object_id']) ? $_GET['object_id'] : 0;
-        $product_id = isset($_GET['p_id']) ? intval($_GET['p_id']) : 0; //货品id
+        $product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : 0; //货品id
 
         RC_Cache::app_cache_delete(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), 'goods');
 
@@ -193,7 +193,24 @@ class goods_controller
             $goods_info['shop_closed']      = $store_info['shop_closed'];
             $goods_info['label_trade_time'] = $store_info['label_trade_time'];
 
+            $dwt = 'goods_show.dwt';
             if ($store_info['shop_closed'] != 1) {
+                
+                $product_info = [];
+                if (!empty($goods_info['product_specification'])) {
+    
+                    RC_Cache::app_cache_set(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), $goods_info['product_specification'], 'goods');
+    
+                    foreach ($goods_info['product_specification'] as $k => $v) {
+                        if (!empty($product_id) && $v['product_id'] == $product_id) {
+                            $product_info = $v;
+                            $product_info['product_goods_attr_arr'] = explode('|', $v['product_goods_attr']);
+                            $dwt = 'goods_promotion_detail.dwt';
+                        }
+                    }
+                }
+                $goods_info['last_spec'] = $product_info['product_goods_attr_arr'];
+
                 /*商品所属店铺购物车列表*/
                 $token   = ecjia_touch_user::singleton()->getToken();
                 $options = array(
@@ -246,7 +263,7 @@ class goods_controller
                                 $cart_goods['current_goods']['goods_attr_num'] += $val['goods_number'];
                             }
 
-                            if ($val['goods_id'] == $goods_id && !isset($goods_info['last_spec'])) {
+                            if ($val['goods_id'] == $goods_id && (!isset($goods_info['last_spec']) || $goods_info['last_spec'] == $goods_attr_id)) {
                                 $goods_info['last_spec']                     = explode(',', $val['goods_attr_id']);
                                 $cart_goods['current_goods']['rec_id']       = $val['rec_id'];
                                 $cart_goods['current_goods']['goods_number'] = $val['goods_number'];
@@ -259,22 +276,6 @@ class goods_controller
                     }
                 }
             }
-
-            $dwt = 'goods_show.dwt';
-            $product_info = [];
-            if (!empty($goods_info['product_specification'])) {
-
-                RC_Cache::app_cache_set(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), $goods_info['product_specification'], 'goods');
-
-                foreach ($goods_info['product_specification'] as $k => $v) {
-                    if (!empty($product_id) && $v['product_id'] == $product_id) {
-                        $product_info = $v;
-                        $product_info['product_goods_attr_arr'] = explode('|', $v['product_goods_attr']);
-                        $dwt = 'goods_promotion_detail.dwt';
-                    }
-                }
-            }
-            $goods_info['last_spec'] = $product_info['product_goods_attr_arr'];
 
             $product_goods_attr_html = '';
             $goods_info['has_spec'] = 0;

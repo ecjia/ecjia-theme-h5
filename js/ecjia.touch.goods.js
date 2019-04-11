@@ -1796,7 +1796,7 @@
 					var product_id = $('input[name="product_id"]').val();
 					if (product_id != 0) {
 						var url = $('input[name="product_id"]').attr('data-url');
-						url += '&p_id=' + product_id;
+						url += '&product_id=' + product_id;
 						location.href = url;
 					}
 				});
@@ -1915,7 +1915,7 @@
 							ecjia.touch.showmessage(data);
 						}
 					} else {
-						$('input[name="product_id"]').val(data.p_id);
+						$('input[name="product_id"]').val(data.product_id);
 						if (data.info) {
 							$(modal).find('.ecjia-choose-attr-box.box').removeClass('hide').addClass('show').children('label').html(data.info.goods_number);
 							$(modal).find('.ecjia-choose-attr-box.box').children('span').attr('rec_id', data.info.rec_id);
