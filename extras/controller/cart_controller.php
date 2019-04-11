@@ -116,6 +116,7 @@ class cart_controller
         $response          = isset($_POST['response']) ? true : false;
         $spec              = isset($_POST['spec']) ? $_POST['spec'] : '';
         $goods_activity_id = isset($_POST['act_id']) ? $_POST['act_id'] : '';
+        $product_id        = intval($_POST['product_id']);
 
         $token = ecjia_touch_user::singleton()->getToken();
         $arr   = array(
@@ -169,6 +170,7 @@ class cart_controller
                         if (!empty($goods_activity_id)) {
                             $arr['goods_activity_id'] = $goods_activity_id;
                         }
+                        $arr['product_id'] = $product_id;
                         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CREATE)->data($arr)->run();
                     }
                 } else {

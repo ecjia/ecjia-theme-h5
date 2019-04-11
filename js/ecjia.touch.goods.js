@@ -433,6 +433,7 @@
 
 			var url = $('input[name="update_cart_url"]').val();
 			var store_id = $('input[name="store_id"]').val();
+			var product_id = $('input[name="product_id"]').val();
 
 			var response;
 			if (store_id == undefined) {
@@ -447,7 +448,8 @@
 				'checked': checked == undefined ? '' : checked,
 				'response': response,
 				'spec': spec,
-				'act_id': act_id
+				'act_id': act_id,
+				'product_id': product_id
 			};
 
 			//更新购物车中商品
