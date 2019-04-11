@@ -75,7 +75,7 @@ var releated_goods = {$releated_goods};
 				<div class="goods-style-name goods-style-name-new">
 					<div class=" ecjiaf-fl goods-name-new">
 						<span class="background-ff8214">{t domain="h5"}促{/t}</span>
-						{$product_info.product_name}
+						{$goods_info.goods_name}
 					</div>
 				</div>
 
@@ -434,7 +434,7 @@ var releated_goods = {$releated_goods};
 </div>
 <!-- 遮罩层 -->
 <div class="a53" style="display: none;"></div>
-<input type="hidden" name="share_title" value="{$product_info.product_name}">
+<input type="hidden" name="share_title" value="{$goods_info.goods_name}">
 <input type="hidden" name="share_desc" value="{$goods_info.goods_brief}">
 <input type="hidden" name="share_image" value="{$product_info.img.thumb}">
 <input type="hidden" name="share_link" value="{$share_link}">

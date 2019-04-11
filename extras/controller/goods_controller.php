@@ -343,7 +343,7 @@ class goods_controller
         }
 
         /*商品描述*/
-        $goods_desc = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DESC)->data(array('goods_id' => $goods_id))->run();
+        $goods_desc = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DESC)->data(array('goods_id' => $goods_id, 'product_id' => $product_id))->run();
         if (!is_ecjia_error($goods_desc) && !empty($goods_desc)) {
             $res = array();
             preg_match('/<body>([\s\S]*?)<\/body>/', $goods_desc, $res);
