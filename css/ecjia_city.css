@@ -1558,7 +1558,6 @@ ul {
     background-color: #fff;
     bottom: 0;
     text-align: left;
-    margin-top: 5px;
     padding-left: .5em;
 }
 .ecjia-promotion-model .swiper-slide .promote-time.time .end-time {
@@ -1583,6 +1582,9 @@ ul {
     font-weight: 400;
     height: auto;
     white-space: pre-line;
+}
+.ecjia-promotion-model .swiper-promotion-goods .list-page-box .list-page-goods-price {
+    padding-top: .5em;
 }
 .ecjia-mod .swiper-promotion-goods.swiper-container-horizontal>.swiper-pagination {
     bottom: 5px;
@@ -1627,9 +1629,11 @@ ul {
 .end-times {
     color: #fff;
     border-radius: 4px;
-    font-weight: bold;
     font-size: 1em;
-    background: #333;
+    background-color: #fce8e7;
+    color: #e73938;
+    margin: 0 3px;
+    padding: 0 3px;
 }
 
 .ecjia-new-model .swiper-slide .list-page-goods-img .goods-img {
