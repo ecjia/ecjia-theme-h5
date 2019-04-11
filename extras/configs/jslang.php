@@ -165,6 +165,8 @@ return array(
 		
 		//other
 		'remaining'	 	=>	__('剩余', 'h5'),
+		'hour'	 		=>	__('时', 'h5'),
+		'minute'		=>	__('分', 'h5'),
 		'cancel_like'	=>	__('取消点赞', 'h5'),
 		'like_success'	=>	__('点赞成功！', 'h5'),
 		'published_successfully'=>	__('发表成功！', 'h5'),

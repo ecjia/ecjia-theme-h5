@@ -1510,6 +1510,89 @@ ul {
     max-width: 250px
 }
 
+/* 首页促销商品start */
+.swiper-promotion-goods {
+    overflow: hidden;
+    background: #fff;
+    border-bottom-left-radius: .8rem;
+    border-bottom-right-radius: .8rem;
+}
+.swiper-promotion-goods .swiper-slide {
+    position: relative;
+    border-bottom: none;
+    background: #fff;
+    padding: 10px;
+}
+.swiper-promotion-goods .swiper-slide .goods-image {
+    float: left;
+    width: 9em;
+    height: 9em;
+    position: relative;
+}
+.swiper-promotion-goods .swiper-slide .goods-image img {
+    width: 9em;
+    height: 9em;
+}
+.swiper-promotion-goods .swiper-slide .goods-image img.sales-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2.5em;
+    height: 2.5em;
+}
+.swiper-promotion-goods .swiper-slide .list-page-box {
+    margin-left: 9.5em;
+}
+.ecjia-promotion-model .swiper-promotion-goods .list-page-goods-price span del {
+    display: inline-block;
+    margin-left: 10px;
+}
+.ecjia-promotion-model .swiper-slide .promote-time.time {
+    position: relative;
+    display: block;
+    width: 100%;
+    font-size: .8em;
+    color: #555;
+    line-height: 2em;
+    height: 2em;
+    background-color: #fff;
+    bottom: 0;
+    text-align: left;
+    margin-top: 5px;
+    padding-left: .5em;
+}
+.ecjia-promotion-model .swiper-slide .promote-time.time .end-time {
+    background-color: #fce8e7;
+    color: #e73938;
+    padding: 5px;
+    font-weight: normal;
+}
+.ecjia-promotion-model .swiper-promotion-goods .list-page-goods-img .goods-name {
+    font-size: 1em;
+    color: #555;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-left: .5em;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -ms-box-orient: vertical;
+    -moz-box-orient: vertical;
+    display: -webkit-box;
+    display: -ms-box;
+    display: -moz-box;
+    font-weight: 400;
+    height: auto;
+    white-space: pre-line;
+}
+.ecjia-mod .swiper-promotion-goods.swiper-container-horizontal>.swiper-pagination {
+    bottom: 5px;
+}
+/* 首页促销商品end */
+
+.ecjia .swiper-pagination-bullet-active {
+    background: #47aa4d;
+}
+
 .ecjia-promotion-model img.sales-icon {
     position: absolute;
     width: 20%;

@@ -60,7 +60,7 @@
 				slidesPerView: 1,
 				loop: true,
 				//自动播放
-				autoplay: 2500,
+				autoplay: 3500,
 				autoplayDisableOnInteraction: false,
 			});
 			sessionStorage.setItem("swiper", 1);
@@ -76,6 +76,30 @@
 				freeMode: true,
 				freeModeMomentumVelocityRatio: 5,
 			});
+
+			if (sessionStorage.getItem("promotion_swiper") == 1) {
+				return false;
+			}
+			var promotion_swiper = new Swiper('.swiper-promotion-goods', {
+				pagination: '.swiper-pagination',
+				speed: 800,
+				grabCursor: true,
+				centeredSlides: true,
+				coverflow: {
+					rotate: 50,
+					stretch: 0,
+					depth: 100,
+					modifier: 1,
+					slideShadows: true
+				},
+				//无限滚动
+				slidesPerView: 1,
+				loop: true,
+				//自动播放
+				autoplay: 3500,
+				autoplayDisableOnInteraction: false,
+			});
+			sessionStorage.setItem("promotion_swiper", 1);
 		},
 		promote_time: function () {
 			var serverTime = Math.round(new Date().getTime() / 1000) * 1000; //服务器时间，毫秒数 
@@ -107,6 +131,10 @@
 						} else if (type == 2) {
 							msg = '  ';
 							var str = msg + myD + js_lang.day + '&nbsp;<span class="end-time">' + hh + '</span> : <span class="end-time">' + mm + '</span> : <span class="end-time">' + ss + '</span>';
+						//首页促销倒计时 只显示时分
+						} else if (type == 3) {
+							msg = js_lang.remaining;
+							var str = msg + '&nbsp;' + myD + '&nbsp;' + js_lang.day + '&nbsp;<span class="end-time">' + hh + '</span> '+ js_lang.hour +' <span class="end-time">' + mm + '</span>' + js_lang.minute;
 						} else {
 							msg = js_lang.remaining;
 							var str = msg + myD + js_lang.day + '&nbsp;<span class="end-time">' + hh + '</span> : <span class="end-time">' + mm + '</span> : <span class="end-time">' + ss + '</span>';
@@ -210,7 +238,7 @@
 				slidesPerView: 1,
 				loop: true,
 				//自动播放
-				autoplay: 2500,
+				autoplay: 3500,
 				autoplayDisableOnInteraction: false,
 			});
 			sessionStorage.setItem("discover_cycleimage", 1);
