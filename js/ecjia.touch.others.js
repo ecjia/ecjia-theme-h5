@@ -77,9 +77,6 @@
 				freeModeMomentumVelocityRatio: 5,
 			});
 
-			if (sessionStorage.getItem("promotion_swiper") == 1) {
-				return false;
-			}
 			var promotion_swiper = new Swiper('.swiper-promotion-goods', {
 				pagination: '.swiper-pagination',
 				speed: 800,
@@ -99,7 +96,6 @@
 				autoplay: 3500,
 				autoplayDisableOnInteraction: false,
 			});
-			sessionStorage.setItem("promotion_swiper", 1);
 		},
 		promote_time: function () {
 			var serverTime = Math.round(new Date().getTime() / 1000) * 1000; //服务器时间，毫秒数 
