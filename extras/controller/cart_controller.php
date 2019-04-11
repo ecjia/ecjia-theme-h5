@@ -274,26 +274,42 @@ class cart_controller
             }
             RC_Cache::app_cache_set('cart_goods' . $token . $seller_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], $cart_list, 'cart');
         }
+        
+        $product_specification = RC_Cache::app_cache_get(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), 'goods');
+
+        $product_id = 0;
+        if (!empty($product_specification)) {
+            foreach ($product_specification as $key => $value) {
+                if (!empty($value['product_goods_attr'])) {
+                    $goods_attr = explode('|', $value['product_goods_attr']);
+                    asort($goods_attr);
+                    $goods_attr = implode(',', $goods_attr);
+                    if ($spec == $goods_attr && !empty($value['product_id'])) {
+                        $product_id = $value['product_id'];
+                    }
+                }
+            }
+        }
 
         if (!empty($cart_list['cart_list'][0]['goods_list'])) {
             foreach ($cart_list['cart_list'][0]['goods_list'] as $key => $val) {
                 if ($goods_id == $val['goods_id']) {
                     if (empty($val['goods_attr_id']) && empty($spec)) {
-                        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('info' => $val));
+                        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('info' => $val, 'p_id' => $product_id));
                     } else {
                         $goods_attr = explode(',', $val['goods_attr_id']);
                         if (!empty($goods_attr)) {
                             asort($goods_attr);
                             $goods_attr = implode(',', $goods_attr);
                             if ($spec == $goods_attr) {
-                                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('info' => $val));
+                                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('info' => $val, 'p_id' => $product_id));
                             }
                         }
                     }
                 }
             }
         }
-        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
+        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('p_id' => $product_id));
     }
 
     /**

@@ -6615,8 +6615,8 @@ footer {
 
 .goods-info .attr-number {
     position: absolute;
-    right: .5em;
-    bottom: 2em;
+    right: .2em;
+    bottom: 2.3em;
     color: #fff;
     border-radius: 10px;
     background-color: #ff3434;
@@ -6805,6 +6805,10 @@ footer {
 .groupbuy-left.two-line {
     align-items: flex-start;
     flex-direction: column
+}
+
+.groupbuy-right .text-left {
+    text-align: left;
 }
 
 .goods-info .goods-info-property .goods-price-new {
@@ -10132,6 +10136,7 @@ footer {
     overflow: hidden;
     width: 120px;
     height: 20px;
+    line-height: 20px;
     margin-left: 10px
 }
 

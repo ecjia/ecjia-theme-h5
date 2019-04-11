@@ -1793,6 +1793,12 @@
 					$(".ecjia-store-goods .a1n .a1x").css({
 						overflow: "auto"
 					}); //启用滚动条
+					var product_id = $('input[name="product_id"]').val();
+					if (product_id != 0) {
+						var url = $('input[name="product_id"]').attr('data-url');
+						url += '&p_id=' + product_id;
+						location.href = url;
+					}
 				});
 
 				$(overlay).off('click').on('click', function (e) {
@@ -1820,6 +1826,9 @@
 				var $this = $(this);
 
 				if (!$this.hasClass('multi-select')) {
+					if ($this.hasClass('active')) {
+						return false;
+					}
 					$this.addClass('active').siblings('li').removeClass('active');
 				} else {
 					if (!$this.hasClass('active')) {
@@ -1906,6 +1915,7 @@
 							ecjia.touch.showmessage(data);
 						}
 					} else {
+						$('input[name="product_id"]').val(data.p_id);
 						if (data.info) {
 							$(modal).find('.ecjia-choose-attr-box.box').removeClass('hide').addClass('show').children('label').html(data.info.goods_number);
 							$(modal).find('.ecjia-choose-attr-box.box').children('span').attr('rec_id', data.info.rec_id);

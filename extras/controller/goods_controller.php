@@ -137,6 +137,9 @@ class goods_controller
 
         $rec_type  = isset($_GET['rec_type']) ? $_GET['rec_type'] : 0;
         $object_id = isset($_GET['object_id']) ? $_GET['object_id'] : 0;
+        $product_id = isset($_GET['p_id']) ? intval($_GET['p_id']) : 0; //货品id
+
+        RC_Cache::app_cache_delete(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), 'goods');
 
         $par = array(
             'goods_id'  => $goods_id,
@@ -144,10 +147,17 @@ class goods_controller
             'object_id' => $object_id,
         );
 
+        //货品id参数 1.30.1新增
+        if (!empty($product_id)) {
+            $par['product_id'] = $product_id;
+        }
+
         $goods_activity_id = intval($_GET['act_id']);
         if (!empty($goods_activity_id)) {
             $par['goods_activity_id'] = $goods_activity_id;
         }
+        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+
         /*商品基本信息*/
         $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($par)->run();
 
@@ -250,21 +260,47 @@ class goods_controller
                 }
             }
 
+            $dwt = 'goods_show.dwt';
+            $product_info = [];
+            if (!empty($goods_info['product_specification'])) {
+
+                RC_Cache::app_cache_set(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), $goods_info['product_specification'], 'goods');
+
+                foreach ($goods_info['product_specification'] as $k => $v) {
+                    if (!empty($product_id) && $v['product_id'] == $product_id) {
+                        $product_info = $v;
+                        $product_info['product_goods_attr_arr'] = explode('|', $v['product_goods_attr']);
+                        $dwt = 'goods_promotion_detail.dwt';
+                    }
+                }
+            }
+            $goods_info['last_spec'] = $product_info['product_goods_attr_arr'];
+
+            $product_goods_attr_html = '';
             $goods_info['has_spec'] = 0;
             if (!empty($goods_info['specification'])) {
                 foreach ($goods_info['specification'] as $k => $v) {
                     if (!empty($v['value'])) {
                         foreach ($v['value'] as $key => $val) {
+
                             if (!empty($goods_info['last_spec'])) {
                                 if (in_array($val['id'], $goods_info['last_spec'])) {
                                     $goods_info['has_spec']                                   = 1;
                                     $goods_info['specification'][$k]['value'][$key]['active'] = 1;
                                 }
                             }
+
+                            if (!empty($product_info['product_goods_attr_arr']) && in_array($val['id'], $product_info['product_goods_attr_arr'])) {
+                                $product_goods_attr_html .= $val['label'] . '/';
+                            }
                         }
                     }
                 }
             }
+            $product_info['product_goods_attr_html'] = !empty($product_goods_attr_html) ? rtrim($product_goods_attr_html, '/') : '';
+            
+
+            ecjia_front::$controller->assign('product_info', $product_info);
 
             $spec_releated_goods = $related_goods_list = array();
             if (!empty($goods_info['related_goods'])) {
@@ -301,6 +337,7 @@ class goods_controller
             if (!empty($goods_info['groupbuy_info']['price_ladder'])) {
                 $goods_info['groupbuy_info']['price_ladder'] = json_encode($goods_info['groupbuy_info']['price_ladder']);
             }
+
             ecjia_front::$controller->assign('goods_info', $goods_info);
         }
 
@@ -369,8 +406,8 @@ class goods_controller
             $config = user_function::get_wechat_config($spread_url);
             ecjia_front::$controller->assign('config', $config);
         }
-
-        ecjia_front::$controller->display('goods_show.dwt');
+        
+        ecjia_front::$controller->display($dwt);
     }
 
     public static function ajax_goods_comment()
