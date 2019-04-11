@@ -18,12 +18,36 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <div class="ecjia-promotion-model">
 	<ul class="ecjia-promotion-tab">
-		<li class="active"><span>今日促销</span></li>
-		<li><span>明日促销</span></li>
-		<li><span>后日促销</span></li>
-		<li><span>更多促销</span></li>
+		<li class="{if $promotion_type eq 'today'}active{/if}">
+			<!-- {if $promotion_type neq 'today'} -->
+			<a class="fnUrlReplace" href="{RC_Uri::url('goods/index/promotion')}&promotion_type=today"><span>今日促销</span></a>
+			<!-- {else} -->
+			<a href="javascript:;"><span>今日促销</span></a>
+			<!-- {/if} -->
+		</li>
+		<li class="{if $promotion_type eq 'tomorrow'}active{/if}">
+			<!-- {if $promotion_type neq 'tomorrow'} -->
+			<a class="fnUrlReplace" href="{RC_Uri::url('goods/index/promotion')}&promotion_type=tomorrow"><span>明日促销</span></a>
+			<!-- {else} -->
+			<a href="javascript:;"><span>明日促销</span></a>
+			<!-- {/if} -->
+		</li>
+		<li class="{if $promotion_type eq 'aftertheday'}active{/if}">
+			<!-- {if $promotion_type neq 'aftertheday'} -->
+			<a class="fnUrlReplace" href="{RC_Uri::url('goods/index/promotion')}&promotion_type=aftertheday"><span>后日促销</span></a>
+			<!-- {else} -->
+			<a href="javascript:;"><span>后日促销</span></a>
+			<!-- {/if} -->
+		</li>
+		<li class="{if $promotion_type eq 'all'}active{/if}">
+			<!-- {if $promotion_type neq 'all'} -->
+			<a class="fnUrlReplace" href="{RC_Uri::url('goods/index/promotion')}&promotion_type=all"><span>更多促销</span></a>
+			<!-- {else} -->
+			<a href="javascript:;"><span>更多促销</span></a>
+			<!-- {/if} -->
+		</li>
 	</ul>
-	<ul class="ecjia-promotion-list" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='index/ajax_goods' args='type=promotion'}">
+	<ul class="ecjia-promotion-list" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='index/ajax_goods' args='type=promotion'}&promotion_type={$promotion_type}">
 	</ul>
 </div>
 <!-- {/block} -->
@@ -67,7 +91,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-mod search-no-pro ecjia-margin-t ecjia-margin-b">
 	<div class="ecjia-nolist">
 		<p><img src="{$theme_url}images/wallet/null280.png"></p>
-		{t domain="h5"}暂无商品{/t}
+		{t domain="h5"}暂无促销{/t}
 	</div>
 </div>
 <!-- {/if} -->

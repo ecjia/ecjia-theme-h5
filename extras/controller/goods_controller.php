@@ -408,7 +408,10 @@ class goods_controller
      */
     public static function promotion()
     {
-        ecjia_front::$controller->assign_title(__('促销商品', 'h5'));
+        $promotion_type = !empty($_GET['promotion_type']) ? trim($_GET['promotion_type']) : 'today';
+        ecjia_front::$controller->assign('promotion_type', $promotion_type);
+
+        ecjia_front::$controller->assign_title(__('限时促销', 'h5'));
         ecjia_front::$controller->display('goods_promotion.dwt');
     }
 
@@ -442,6 +445,10 @@ class goods_controller
         $api = ecjia_touch_api::GOODS_SUGGESTLIST;
         if ($type == 'promotion') {
             $dwt = 'goods_promotion.dwt';
+            //促销类型 today今日促销，tomorrow明日促销，aftertheday后日促销
+            $promotion_type = !empty($_GET['promotion_type']) ? (trim($_GET['promotion_type']) == 'all' ? '' : trim($_GET['promotion_type'])) : 'today';
+            $paramater['promotion_type'] = $promotion_type;
+
         } elseif ($type == 'new') {
             $dwt = 'goods_new.dwt';
         } elseif ($type == 'best') {
