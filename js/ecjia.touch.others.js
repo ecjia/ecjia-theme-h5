@@ -121,16 +121,19 @@
 					var ss = checkTime(myS);
 
 					if (myD >= 0) {
+						//示例 剩余27天 04:09:34
 						if (type == 1) {
 							msg = js_lang.remaining;
 							var str = msg + myD + js_lang.day + '&nbsp;<span class="end-time">' + hh + '</span> : <span class="end-time">' + mm + '</span> : <span class="end-time">' + ss + '</span>';
+						//示例 27天 04:09:34
 						} else if (type == 2) {
 							msg = '  ';
 							var str = msg + myD + js_lang.day + '&nbsp;<span class="end-time">' + hh + '</span> : <span class="end-time">' + mm + '</span> : <span class="end-time">' + ss + '</span>';
-						//首页促销倒计时 只显示时分
+						//首页促销倒计时 只显示时分 示例  剩余27天 04 时 34 分
 						} else if (type == 3) {
 							msg = js_lang.remaining;
-							var str = msg + '&nbsp;' + myD + '&nbsp;' + js_lang.day + '&nbsp;<span class="end-time">' + hh + '</span> '+ js_lang.hour +' <span class="end-time">' + mm + '</span>' + js_lang.minute;
+							var str = msg + '&nbsp;' + myD + '&nbsp;' + js_lang.day + '&nbsp;<span class="end-time">' + hh + '</span> '+ js_lang.hour +' <span class="end-time">' + mm + '</span> ' + js_lang.minute;
+						//同type 1
 						} else {
 							msg = js_lang.remaining;
 							var str = msg + myD + js_lang.day + '&nbsp;<span class="end-time">' + hh + '</span> : <span class="end-time">' + mm + '</span> : <span class="end-time">' + ss + '</span>';
