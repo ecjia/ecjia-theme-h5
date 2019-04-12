@@ -486,6 +486,9 @@ class goods_controller
             $dwt = 'goods_promotion.dwt';
             //促销类型 today今日促销，tomorrow明日促销，aftertheday后日促销
             $promotion_type = !empty($_GET['promotion_type']) ? (trim($_GET['promotion_type']) == 'all' ? '' : trim($_GET['promotion_type'])) : 'today';
+            if($promotion_type == 'today') {
+            	$promotion_type = 'all';
+            }
             $paramater['promotion_type'] = $promotion_type;
 
         } elseif ($type == 'new') {
