@@ -487,7 +487,7 @@ class goods_controller
             //促销类型 today今日促销，tomorrow明日促销，aftertheday后日促销
             $promotion_type = !empty($_GET['promotion_type']) ? (trim($_GET['promotion_type']) == 'all' ? '' : trim($_GET['promotion_type'])) : 'today';
             if($promotion_type == 'today') {
-            	$promotion_type = 'all';
+            	$promotion_type = '';
             }
             $paramater['promotion_type'] = $promotion_type;
 
