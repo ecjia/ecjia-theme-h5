@@ -467,7 +467,6 @@ class merchant_controller
                         $spec_goods[$v['id']]['goods_price']            = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : ($v['shop_price'] == __('免费', 'h5') ? '0' : $v['shop_price'])), '￥');
                         $spec_goods[$v['id']]['goods_info']             = $v;
                         $spec_goods[$v['id']]['goods_info']['goods_id'] = $v['id'];
-                        $spec_goods[$v['id']]['goods_info']['product_id'] = $v['product_id'];
                     }
                     if (array_key_exists($v['id'], $goods_cart_list['arr'])) {
                         foreach ($goods_cart_list['arr'][$v['id']] as $j => $n) {
