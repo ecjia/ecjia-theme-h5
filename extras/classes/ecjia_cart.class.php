@@ -26,14 +26,14 @@ class ecjia_cart
         }
 
         $longitude = $_COOKIE['longitude'];
-        $latitude = $_COOKIE['latitude'];
-        $city_id = $_COOKIE['city_id'];
+        $latitude  = $_COOKIE['latitude'];
+        $city_id   = $_COOKIE['city_id'];
 
         $this->storage_key = 'cart_goods' . $this->token . $store_id . $longitude . $latitude . $city_id;
     }
 
     /**
-     * 存储购物车数据
+     * 存储购物车缓存数据
      */
     public function saveLocalStorage($cart_list)
     {
@@ -41,7 +41,7 @@ class ecjia_cart
     }
 
     /**
-     * 取出购物车数据
+     * 取出购物车缓存数据
      */
     public function getLocalStorage()
     {
@@ -53,6 +53,14 @@ class ecjia_cart
         }
 
         return $cart_list;
+    }
+
+    /**
+     * 删除购物车缓存数据
+     */
+    public function deleteLocalStorage()
+    {
+        RC_Cache::app_cache_delete($this->storage_key, 'cart');
     }
 
     /**
