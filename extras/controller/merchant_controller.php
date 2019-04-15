@@ -493,6 +493,7 @@ class merchant_controller
 //                        }
                     }
 
+                    $goods_list[$k]['id'] = $v['goods_id'] . '_' . $v['product_id'];
                     $goods_list[$k]['store_id'] = $store_id;
                 }
             }

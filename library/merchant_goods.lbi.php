@@ -24,10 +24,10 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			{if $goods.num}<i class="attr-number">{$goods.num}</i>{/if}
 		</div>
 		{else}
-		<div class="box" id="goods_{$goods.id}_{$goods.product_id}">
-	    	<span class="reduce {if $goods.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$goods.rec_id}">{t domain="h5"}减{/t}</span>
+		<div class="box" id="goods_{$goods.id}">
+	    	<span class="reduce {if $goods.num}show{else}hide{/if}" data-toggle="remove-to-cart" rec_id="{$goods.rec_id}" goods_id="{$goods.id}">{t domain="h5"}减{/t}</span>
 	    	<label class="{if $goods.num}show{else}hide{/if}">{$goods.num}</label>
-			<span class="add" data-toggle="add-to-cart" rec_id="{$goods.rec_id}" goods_id="{$goods.id}" product_id="{$goods.product_id}">{t domain="h5"}加{/t}</span>
+			<span class="add" data-toggle="add-to-cart" rec_id="{$goods.rec_id}" goods_id="{$goods.id}">{t domain="h5"}加{/t}</span>
 		</div>
 		{/if}
 	{/if}
