@@ -90,7 +90,7 @@ class ecjia_cart
 //            });
 
             //单店铺购物车
-            $item = $cart_list['cart_list'][0];
+            $item = array_shift($cart_list['cart_list']);
 
             $arr = collect($item['goods_list'])->map(function($item2) {
                 $goods_attr_id = array();
