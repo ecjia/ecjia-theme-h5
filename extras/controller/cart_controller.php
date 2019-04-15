@@ -111,12 +111,14 @@ class cart_controller
         $rec_id            = is_array(($_POST['rec_id'])) ? $_POST['rec_id'] : $_POST['rec_id'];
         $new_number        = intval($_POST['val']);
         $store_id          = intval($_POST['store_id']);
-        $goods_id          = intval($_POST['goods_id']);
         $checked           = isset($_POST['checked']) ? $_POST['checked'] : '';
         $response          = isset($_POST['response']) ? true : false;
         $spec              = isset($_POST['spec']) ? $_POST['spec'] : '';
         $goods_activity_id = isset($_POST['act_id']) ? $_POST['act_id'] : '';
-        $product_id        = intval($_POST['product_id']);
+
+        list($goods_id, $product_id) = explode('_', trim($_POST['goods_id']));
+        $goods_id          = intval($goods_id);
+        $product_id        = intval($product_id);
 
         $token = ecjia_touch_user::singleton()->getToken();
         $arr   = array(
