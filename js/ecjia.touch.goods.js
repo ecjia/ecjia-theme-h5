@@ -615,7 +615,7 @@
 					if (spec == '') {
 						for (i = 0; i < data.list.length; i++) {
 							if (data.say_list) {
-								if (data.list[i].goods_id == goods_id) {
+								if (data.list[i].id == goods_id) {
 									$('#goods_' + goods_id).children('.reduce').removeClass('hide').attr('rec_id', data.list[i].rec_id);
 									$('#goods_' + goods_id).children('label').removeClass('hide').html(data.list[i].goods_number);
 									$('#goods_' + goods_id).children('.add').removeClass('hide').attr('rec_id', data.list[i].rec_id);
