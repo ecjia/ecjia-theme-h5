@@ -153,7 +153,7 @@
 						}
 					}
 					var goods_activity_id = $this.attr('act_id');
-					ecjia.touch.category.update_cart(rec_id, val, goods_id, '', true, bool_spec, 'add', '', goods_activity_id);
+					ecjia.touch.category.update_product_cart(rec_id, val, goods_id, product_id, '', true, bool_spec, 'add', '', goods_activity_id);
 				}
 			});
 		},
