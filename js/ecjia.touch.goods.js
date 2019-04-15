@@ -284,6 +284,8 @@
 					}
 					if ($this.hasClass('a5u')) {
 						var goods_id = $this.parent('.box').children('.a5v').attr('goods_id');
+						var product_id = $this.parent('.box').children('.a5v').attr('product_id');
+						var element_id = '#goods_' + goods_id + '_' + product_id;
 						$('.minicart-content').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 						var val = parseInt($this.next().html()) - 1;
 						if (val == 0) {
@@ -294,12 +296,12 @@
 								$('.store-add-cart').children('.a51').addClass('disabled').html(js_lang.go_settlement);
 								ecjia.touch.category.hide_cart(true);
 							}
-							$('#goods_' + goods_id).children('.reduce').removeClass('show').addClass('hide');
-							$('#goods_' + goods_id).children('label').removeClass('show').addClass('hide');
-							$('#goods_' + goods_id).children('span').attr('rec_id', '');
+							$(element_id).children('.reduce').removeClass('show').addClass('hide');
+							$(element_id).children('label').removeClass('show').addClass('hide');
+							$(element_id).children('span').attr('rec_id', '');
 
 							//显示商品详情页的移除购物车按钮
-							var span_add = $('#goods_' + goods_id).siblings('span');
+							var span_add = $(element_id).siblings('span');
 							if (span_add.hasClass('goods-add-cart')) {
 								$('#goods_' + goods_id).children('span').addClass('hide');
 								span_add.removeClass('hide').addClass('disabled');
@@ -307,7 +309,7 @@
 						} else {
 							$this.next().html(val);
 						}
-						$('#goods_' + goods_id).children('label').html(val);
+						$(element_id).children('label').html(val);
 					} else {
 						$('body').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 						var show = $this.parent('.box').children('label');
