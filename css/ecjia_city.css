@@ -3017,7 +3017,9 @@ footer {
     display: -webkit-box;
     display: -ms-box;
     display: -moz-box;
-    font-weight: 400
+    font-weight: 400;
+    word-wrap: break-word;
+    -webkit-box-pack: center;
 }
 
 .ecjia-store-goods .r2 li label {
