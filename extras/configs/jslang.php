@@ -199,7 +199,7 @@ return array(
 		'order_cancellation_reason'	=>	__('订单取消原因', 'h5'),
 		'cancel_your_application'	=>	__('您确定要撤销申请？', 'h5'),
 		'verification'				=>	__('验证', 'h5'),
-		'cancel_your_current_account?'	=>	__('您确定要注销当前账号吗？', 'h5'),
+		'cancel_your_current_account'	=>	__('您确定要注销当前账号吗？', 'h5'),
 		'point_reward' 			=>	__('邀请成功即可获得%s奖励<br>%s可在购买商品时使用', 'h5'),
 		'bonus_reward' 			=>	__('邀请成功即可获得红包奖励<br>红包可在购买商品时使用', 'h5'),
 		'money_reward' 			=>	__('邀请成功即可获得现金奖励<br>现金可在购买商品时使用', 'h5'),
