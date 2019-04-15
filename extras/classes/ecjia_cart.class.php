@@ -105,6 +105,8 @@ class ecjia_cart
                         array(
                             'num' => $item2['goods_number'],
                             'rec_id' => $item2['rec_id'],
+                            'goods_id' => $item2['goods_id'],
+                            'product_id' => $item2['product_id'],
                             'goods_attr_id' => $goods_attr_id
                         )];
                 });
