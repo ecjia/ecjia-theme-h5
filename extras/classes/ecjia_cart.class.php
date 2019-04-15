@@ -88,12 +88,18 @@ class ecjia_cart
                         asort($goods_attr_id);
                     }
 
-                    return [
-                        $item2['goods_id'] => array(
-                            'num' => $item2['goods_number'],
-                            'rec_id' => $item2['rec_id'],
-                            'goods_attr_id' => $goods_attr_id
-                        )];
+                    return array(
+                        'num' => $item2['goods_number'],
+                        'rec_id' => $item2['rec_id'],
+                        'goods_attr_id' => $goods_attr_id
+                    );
+
+//                    return [
+//                        $item2['goods_id'] => array(
+//                            'num' => $item2['goods_number'],
+//                            'rec_id' => $item2['rec_id'],
+//                            'goods_attr_id' => $goods_attr_id
+//                        )];
                 });
             });
 
