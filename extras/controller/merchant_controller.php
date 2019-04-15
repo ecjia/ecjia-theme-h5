@@ -480,7 +480,8 @@ class merchant_controller
                     }
 
 //                    if (array_key_exists($v['id'], $goods_cart_list['arr'])) {
-                    if ($cart = $ecjia_cart->findGoodsWithProduct($v['goods_id'], $v['product_id'], $goods_cart_list)) {
+                    $cart = $ecjia_cart->findGoodsWithProduct($v['goods_id'], $v['product_id'], $goods_cart_list);
+                    if (!empty($cart)) {
 //                        foreach ($goods_cart_list as $cart) {
                             $goods_list[$k]['num'] += $cart['num'];
                             if (empty($cart['goods_attr_id'])) {
