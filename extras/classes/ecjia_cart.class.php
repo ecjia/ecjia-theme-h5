@@ -86,25 +86,25 @@ class ecjia_cart
 
             collect($cart_list['cart_list'])->map(function($item) use (& $goods_cart_list) {
 //                dd($item['goods_list']);
-                $goods_cart_list['arr'][] = collect($item['goods_list'])->map(function($item2) {
+                $goods_cart_list['arr'][] = collect($item['goods_list'])->mapWithKeys(function($item2) {
                     $goods_attr_id = array();
                     if (!empty($item2['goods_attr_id'])) {
                         $goods_attr_id = explode(',', $item2['goods_attr_id']);
                         asort($goods_attr_id);
                     }
 
-                    return array(
-                        'num' => $item2['goods_number'],
-                        'rec_id' => $item2['rec_id'],
-                        'goods_attr_id' => $goods_attr_id
-                    );
+//                    return array(
+//                        'num' => $item2['goods_number'],
+//                        'rec_id' => $item2['rec_id'],
+//                        'goods_attr_id' => $goods_attr_id
+//                    );
 
-//                    return [
-//                        $item2['goods_id'] => array(
-//                            'num' => $item2['goods_number'],
-//                            'rec_id' => $item2['rec_id'],
-//                            'goods_attr_id' => $goods_attr_id
-//                        )];
+                    return [
+                        $item2['goods_id'] => array(
+                            'num' => $item2['goods_number'],
+                            'rec_id' => $item2['rec_id'],
+                            'goods_attr_id' => $goods_attr_id
+                        )];
                 });
             });
 
