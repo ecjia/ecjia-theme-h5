@@ -468,6 +468,7 @@ class merchant_controller
 //                }
 //            }
 
+            dd($goods_list);
             dd($goods_cart_list);
             $spec_goods = array();
             if (!empty($goods_list)) {
@@ -477,6 +478,7 @@ class merchant_controller
                         $spec_goods[$v['id']]['goods_info']             = $v;
                         $spec_goods[$v['id']]['goods_info']['goods_id'] = $v['id'];
                     }
+
                     if (array_key_exists($v['id'], $goods_cart_list['arr'])) {
                         foreach ($goods_cart_list['arr'][$v['id']] as $j => $n) {
                             $goods_list[$k]['num'] += $n['num'];
@@ -489,6 +491,7 @@ class merchant_controller
                             }
                         }
                     }
+
                     $goods_list[$k]['store_id'] = $store_id;
                 }
             }
