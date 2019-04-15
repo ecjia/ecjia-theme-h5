@@ -85,7 +85,7 @@ class ecjia_cart
         if (!empty($cart_list)) {
 
             collect($cart_list['cart_list'])->map(function($item) use (& $goods_cart_list) {
-                dd($item['goods_list']);
+//                dd($item['goods_list']);
                 $goods_cart_list['arr'][] = collect($item['goods_list'])->map(function($item2) {
                     $goods_attr_id = array();
                     if (!empty($item2['goods_attr_id'])) {
