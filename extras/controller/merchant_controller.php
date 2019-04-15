@@ -451,19 +451,22 @@ class merchant_controller
 //                }
 //            }
 
-            $goods_cart_list = array();
-            if (!empty($cart_list)) {
-                if (!empty($cart_list['cart_list'][0]['goods_list'])) {
-                    foreach ($cart_list['cart_list'][0]['goods_list'] as $k => $v) {
-                        $goods_attr_id = array();
-                        if (!empty($v['goods_attr_id'])) {
-                            $goods_attr_id = explode(',', $v['goods_attr_id']);
-                            asort($goods_attr_id);
-                        }
-                        $goods_cart_list['arr'][$v['goods_id']][] = array('num' => $v['goods_number'], 'rec_id' => $v['rec_id'], 'goods_attr_id' => $goods_attr_id);
-                    }
-                }
-            }
+
+            $goods_cart_list = $ecjia_cart->getGoodsCartList($cart_list);
+
+//            $goods_cart_list = array();
+//            if (!empty($cart_list)) {
+//                if (!empty($cart_list['cart_list'][0]['goods_list'])) {
+//                    foreach ($cart_list['cart_list'][0]['goods_list'] as $k => $v) {
+//                        $goods_attr_id = array();
+//                        if (!empty($v['goods_attr_id'])) {
+//                            $goods_attr_id = explode(',', $v['goods_attr_id']);
+//                            asort($goods_attr_id);
+//                        }
+//                        $goods_cart_list['arr'][$v['goods_id']][] = array('num' => $v['goods_number'], 'rec_id' => $v['rec_id'], 'goods_attr_id' => $goods_attr_id);
+//                    }
+//                }
+//            }
 
             dd($goods_cart_list);
             $spec_goods = array();

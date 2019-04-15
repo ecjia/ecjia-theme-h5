@@ -75,7 +75,7 @@ class ecjia_cart
     }
 
 
-    public function getGoodsCartList()
+    public function getGoodsCartList($cart_list)
     {
         $goods_cart_list = array();
         if (!empty($cart_list)) {
