@@ -78,12 +78,12 @@ var releated_goods = {$releated_goods};
 						{$goods_info.goods_name}
 					</div>
 				</div>
+				
 
 				<div class="goods-groupbuy-div">
-					<div class="groupbuy-left">
-						{if $product_info.promote_user_limited neq 0}
-						<p>{t domain="h5" 1={$product_info.promote_user_limited}}限购总数：%1 件{/t}</p>
-						{/if}
+					<div class="groupbuy-left two-line">
+						<p>{t domain="h5" 1={$goods_info.promote_limited}}限购总数：%1 件{/t}</p>
+						<p>{t domain="h5" 1={$goods_info.promote_user_limited}}每人限购：%1 件{/t}</p>
 					</div>
 
 					<div class="groupbuy-right">
