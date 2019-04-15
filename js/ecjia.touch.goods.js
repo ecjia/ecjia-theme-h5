@@ -296,9 +296,9 @@
 								$('.store-add-cart').children('.a51').addClass('disabled').html(js_lang.go_settlement);
 								ecjia.touch.category.hide_cart(true);
 							}
-							$('#goods_' + goods_id).children('.reduce').removeClass('show').addClass('hide');
-							$('#goods_' + goods_id).children('label').removeClass('show').addClass('hide');
-							$('#goods_' + goods_id).children('span').attr('rec_id', '');
+							$('#goods_' + goods_id + '_' + product_id).children('.reduce').removeClass('show').addClass('hide');
+							$('#goods_' + goods_id + '_' + product_id).children('label').removeClass('show').addClass('hide');
+							$('#goods_' + goods_id + '_' + product_id).children('span').attr('rec_id', '');
 
 							//显示商品详情页的移除购物车按钮
 							var span_add = $('#goods_' + goods_id).siblings('span');
