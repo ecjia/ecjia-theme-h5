@@ -128,7 +128,9 @@ class cart_controller
             $arr['seller_id'] = $store_id;
         }
 
-        RC_Cache::app_cache_delete('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], 'cart');
+        $ecjia_cart = new ecjia_cart($store_id);
+        $ecjia_cart->deleteLocalStorage();
+//        RC_Cache::app_cache_delete('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], 'cart');
         //修改购物车中商品选中状态
         if ($checked !== '') {
             if (is_array($rec_id)) {
@@ -152,7 +154,8 @@ class cart_controller
                 if (is_ecjia_error($data)) {
                     return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
                 }
-                RC_Cache::app_cache_delete('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], 'cart');
+                $ecjia_cart->deleteLocalStorage();
+//                RC_Cache::app_cache_delete('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], 'cart');
                 return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('empty' => true, 'store_id' => $store_id));
             } else {
                 if (!empty($new_number)) {
@@ -198,7 +201,9 @@ class cart_controller
                 }
             }
         }
-        RC_Cache::app_cache_set('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], $cart_list, 'cart');
+
+        $ecjia_cart->saveLocalStorage($cart_list);
+//        RC_Cache::app_cache_set('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], $cart_list, 'cart');
         $cart_goods_list = $cart_list['cart_list'][0]['goods_list'];
 
         $data_rec = '';

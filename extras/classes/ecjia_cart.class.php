@@ -26,14 +26,14 @@ class ecjia_cart
         }
 
         $longitude = $_COOKIE['longitude'];
-        $latitude = $_COOKIE['latitude'];
-        $city_id = $_COOKIE['city_id'];
+        $latitude  = $_COOKIE['latitude'];
+        $city_id   = $_COOKIE['city_id'];
 
         $this->storage_key = 'cart_goods' . $this->token . $store_id . $longitude . $latitude . $city_id;
     }
 
     /**
-     * 存储购物车数据
+     * 存储购物车缓存数据
      */
     public function saveLocalStorage($cart_list)
     {
@@ -41,7 +41,7 @@ class ecjia_cart
     }
 
     /**
-     * 取出购物车数据
+     * 取出购物车缓存数据
      */
     public function getLocalStorage()
     {
@@ -53,6 +53,14 @@ class ecjia_cart
         }
 
         return $cart_list;
+    }
+
+    /**
+     * 删除购物车缓存数据
+     */
+    public function deleteLocalStorage()
+    {
+        RC_Cache::app_cache_delete($this->storage_key, 'cart');
     }
 
     /**
@@ -84,30 +92,38 @@ class ecjia_cart
         $goods_cart_list = array();
         if (!empty($cart_list)) {
 
-            collect($cart_list['cart_list'])->map(function($item) use (& $goods_cart_list) {
-//                dd($item['goods_list']);
-                $goods_cart_list['arr'][] = collect($item['goods_list'])->map(function($item2) {
-                    $goods_attr_id = array();
-                    if (!empty($item2['goods_attr_id'])) {
-                        $goods_attr_id = explode(',', $item2['goods_attr_id']);
-                        asort($goods_attr_id);
-                    }
+//            collect($cart_list['cart_list'])->map(function($item) use (& $goods_cart_list) {
+////                dd($item['goods_list']);
+//
+//            });
 
-                    return array(
-                        'num' => $item2['goods_number'],
-                        'rec_id' => $item2['rec_id'],
-                        'goods_attr_id' => $goods_attr_id
-                    );
+            //单店铺购物车
+            $item = array_shift($cart_list['cart_list']);
 
-//                    return [
-//                        $item2['goods_id'] => array(
-//                            'num' => $item2['goods_number'],
-//                            'rec_id' => $item2['rec_id'],
-//                            'goods_attr_id' => $goods_attr_id
-//                        )];
-                });
-            });
+            $goods_cart_list = collect($item['goods_list'])->map(function($item2) {
+                $goods_attr_id = array();
+                if (!empty($item2['goods_attr_id'])) {
+                    $goods_attr_id = explode(',', $item2['goods_attr_id']);
+                    asort($goods_attr_id);
+                }
 
+//                    return array(
+//                        'num' => $item2['goods_number'],
+//                        'rec_id' => $item2['rec_id'],
+//                        'goods_attr_id' => $goods_attr_id
+//                    );
+
+                return array(
+                    'num'           => $item2['goods_number'],
+                    'rec_id'        => $item2['rec_id'],
+                    'goods_id'      => $item2['goods_id'],
+                    'product_id'    => $item2['product_id'] ?: 0,
+                    'goods_attr_id' => $goods_attr_id
+                );
+            })->all();
+
+//                dd($arr);
+//            $goods_cart_list = $arr;
 
 
 //            if (!empty($cart_list['cart_list'][0]['goods_list'])) {
@@ -123,6 +139,26 @@ class ecjia_cart
         }
 
         return $goods_cart_list;
+    }
+
+    /**
+     * 匹配购物车中的商品数据
+     * @param $goods_id
+     * @param $product_id
+     * @param $goods_cart_list
+     */
+    public function matchingGoodsWithProduct($goods_id, $product_id, $goods_cart_list)
+    {
+        return collect($goods_cart_list)->contains(function($item) use ($goods_id, $product_id) {
+            return $item['goods_id'] == $goods_id && $item['product_id'] == $product_id;
+        });
+    }
+
+    public function findGoodsWithProduct($goods_id, $product_id, $goods_cart_list)
+    {
+        return collect($goods_cart_list)->first(function($item) use ($goods_id, $product_id) {
+            return $item['goods_id'] == $goods_id && $item['product_id'] == $product_id;
+        });
     }
 
 
