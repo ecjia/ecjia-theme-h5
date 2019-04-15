@@ -52,6 +52,7 @@
 				}
 				var rec_id = $this.attr('rec_id');
 				var goods_id = $this.attr('goods_id');
+				var product_id = $this.attr('product_id');
 				$("[data-toggle='add-to-cart']").addClass('limit_click');
 				$("[data-toggle='remove-to-cart']").addClass('limit_click');
 
