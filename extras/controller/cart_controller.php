@@ -211,7 +211,7 @@ class cart_controller
         $data_rec = '';
         $current  = array();
         if (!empty($cart_goods_list)) {
-            foreach ($cart_goods_list as $k => $v) {
+            foreach ($cart_goods_list as $k => & $v) {
                 if ($v['is_disabled'] == 0 && $v['is_checked'] == 1) {
                     if ($k == 0) {
                         $data_rec = $v['rec_id'];
