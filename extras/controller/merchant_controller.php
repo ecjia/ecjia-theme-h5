@@ -497,7 +497,7 @@ class merchant_controller
                 }
             }
 
-            dd($goods_list);
+//            dd($goods_list);
 
             if ($pages == 1) {
                 ecjia_front::$controller->assign('page', $pages);
