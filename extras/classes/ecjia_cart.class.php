@@ -88,7 +88,7 @@ class ecjia_cart
 //                dd($item['goods_list']);
 
 
-                $arr = collect($item['goods_list'])->mapWithKeys(function($item2) {
+                $arr = collect($item['goods_list'])->map(function($item2) {
                     $goods_attr_id = array();
                     if (!empty($item2['goods_attr_id'])) {
                         $goods_attr_id = explode(',', $item2['goods_attr_id']);
