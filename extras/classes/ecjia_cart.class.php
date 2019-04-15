@@ -133,5 +133,25 @@ class ecjia_cart
         return $goods_cart_list;
     }
 
+    /**
+     * 匹配购物车中的商品数据
+     * @param $goods_id
+     * @param $product_id
+     * @param $goods_cart_list
+     */
+    public function matchingGoodsWithProduct($goods_id, $product_id, $goods_cart_list)
+    {
+        return collect($goods_cart_list)->contains(function($item) use ($goods_id, $product_id) {
+            return $item['goods_id'] == $goods_id && $item['product_id'] == $product_id;
+        });
+    }
+
+    public function findGoodsWithProduct($goods_id, $product_id, $goods_cart_list)
+    {
+        return collect($goods_cart_list)->first(function($item) use ($goods_id, $product_id) {
+            return $item['goods_id'] == $goods_id && $item['product_id'] == $product_id;
+        });
+    }
+
 
 }
