@@ -437,21 +437,21 @@ class merchant_controller
             $ecjia_cart = new ecjia_cart($store_id);
 
             //店铺购物车商品
-//            $cart_list = $ecjia_cart->getLocalStorage();
+            $cart_list = $ecjia_cart->getLocalStorage();
 
-            $cart_list = RC_Cache::app_cache_get('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], 'cart');
-
-            if (empty($cart_list['cart_list'])) {
-                $cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
-                if (!is_ecjia_error($cart_list) && ecjia_touch_user::singleton()->isSignin()) {
-//                    $ecjia_cart->saveLocalStorage($cart_list);
-                    RC_Cache::app_cache_set('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], $cart_list, 'cart');
-                } else {
-                    $cart_list = array();
-                }
-            }
-
-            dd($cart_list);
+//            $cart_list = RC_Cache::app_cache_get('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], 'cart');
+//
+//            if (empty($cart_list['cart_list'])) {
+//                $cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
+//                if (!is_ecjia_error($cart_list) && ecjia_touch_user::singleton()->isSignin()) {
+////                    $ecjia_cart->saveLocalStorage($cart_list);
+//                    RC_Cache::app_cache_set('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], $cart_list, 'cart');
+//                } else {
+//                    $cart_list = array();
+//                }
+//            }
+//
+//            dd($cart_list);
             $goods_cart_list = $ecjia_cart->getGoodsCartList($cart_list);
 
 //            $goods_cart_list = array();
