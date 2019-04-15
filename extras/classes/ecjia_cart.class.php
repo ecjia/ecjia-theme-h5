@@ -8,11 +8,22 @@
 
 class ecjia_cart
 {
-
+    /**
+     * 缓存key
+     * @var string
+     */
     private $storage_key;
 
+    /**
+     * 店铺ID
+     * @var
+     */
     private $store_id;
 
+    /**
+     * 登录token
+     * @var
+     */
     private $token;
 
     public function __construct($store_id, $token = null)
@@ -91,12 +102,6 @@ class ecjia_cart
     {
         $goods_cart_list = array();
         if (!empty($cart_list)) {
-
-//            collect($cart_list['cart_list'])->map(function($item) use (& $goods_cart_list) {
-////                dd($item['goods_list']);
-//
-//            });
-
             //单店铺购物车
             $item = array_shift($cart_list['cart_list']);
 
@@ -107,12 +112,6 @@ class ecjia_cart
                     asort($goods_attr_id);
                 }
 
-//                    return array(
-//                        'num' => $item2['goods_number'],
-//                        'rec_id' => $item2['rec_id'],
-//                        'goods_attr_id' => $goods_attr_id
-//                    );
-
                 return array(
                     'num'           => $item2['goods_number'],
                     'rec_id'        => $item2['rec_id'],
@@ -122,20 +121,6 @@ class ecjia_cart
                 );
             })->all();
 
-//                dd($arr);
-//            $goods_cart_list = $arr;
-
-
-//            if (!empty($cart_list['cart_list'][0]['goods_list'])) {
-//                foreach ($cart_list['cart_list'][0]['goods_list'] as $k => $v) {
-//                    $goods_attr_id = array();
-//                    if (!empty($v['goods_attr_id'])) {
-//                        $goods_attr_id = explode(',', $v['goods_attr_id']);
-//                        asort($goods_attr_id);
-//                    }
-//                    $goods_cart_list['arr'][$v['goods_id']][] = array('num' => $v['goods_number'], 'rec_id' => $v['rec_id'], 'goods_attr_id' => $goods_attr_id);
-//                }
-//            }
         }
 
         return $goods_cart_list;
