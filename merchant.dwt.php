@@ -222,7 +222,7 @@ ecjia.touch.category.init();
 		</table>
 		<div class="box" id="goods_cart_{$val.id}">
 			<span class="a5u reduce {if $val.is_disabled eq 1}disabled{/if} {if $val.attr}attr_spec{/if}" data-toggle="remove-to-cart" rec_id="{$val.rec_id}" goods_id="{$val.id}"></span>
-			<lable class="a5x" {if $val.is_disabled neq 1}data-toggle="change-number"{/if} rec_id="{$val.rec_id}" goods_id="{$val.goods_id}" goods_num="{$val.goods_number}">{$val.goods_number}</lable>
+			<lable class="a5x" {if $val.is_disabled neq 1}data-toggle="change-number"{/if} rec_id="{$val.rec_id}" goods_id="{$val.id}" goods_num="{$val.goods_number}">{$val.goods_number}</lable>
 			<span class="a5v {if $val.is_disabled eq 1}disabled{/if} {if $val.attr}attr_spec{/if}" data-toggle="add-to-cart" rec_id="{$val.rec_id}" goods_id="{$val.id}"></span>
 		</div>
 	</li>
