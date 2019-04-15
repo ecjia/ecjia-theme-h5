@@ -15,17 +15,21 @@ class ecjia_cart
 
     private $token;
 
-    public function __construct($store_id)
+    public function __construct($store_id, $token = null)
     {
         $this->store_id = $store_id;
 
-        $this->token = ecjia_touch_user::singleton()->getToken();
+        if (is_null($token)) {
+            $this->token = $token;
+        } else {
+            $this->token = ecjia_touch_user::singleton()->getToken();
+        }
 
         $longitude = $_COOKIE['longitude'];
         $latitude = $_COOKIE['latitude'];
         $city_id = $_COOKIE['city_id'];
 
-        $this->storage_key = 'cart_goods' . $token . $store_id . $longitude . $latitude . $city_id;
+        $this->storage_key = 'cart_goods' . $this->token . $store_id . $longitude . $latitude . $city_id;
     }
 
     /**
