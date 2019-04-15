@@ -108,7 +108,7 @@ class ecjia_cart
                         'product_id'    => $item2['product_id'] ?: 0,
                         'goods_attr_id' => $goods_attr_id
                     );
-                });
+                })->all();
 
 //                dd($arr);
                 $goods_cart_list['arr'][] = $arr;
