@@ -81,7 +81,7 @@ class ecjia_cart
         if (!empty($cart_list)) {
 
             collect($cart_list)->each(function($item) use (& $goods_cart_list) {
-                $goods_cart_list['arr'][] = collect($item['goods_list'])->mapWithKeys(function($item2) {
+                $goods_cart_list['arr'][] = collect($item['goods_list'])->map(function($item2) {
                     $goods_attr_id = array();
                     if (!empty($item2['goods_attr_id'])) {
                         $goods_attr_id = explode(',', $item2['goods_attr_id']);
