@@ -101,15 +101,14 @@ class ecjia_cart
 //                        'goods_attr_id' => $goods_attr_id
 //                    );
 
-                    return [
-                        array(
-                            'num' => $item2['goods_number'],
-                            'rec_id' => $item2['rec_id'],
-                            'goods_id' => $item2['goods_id'],
-                            'product_id' => $item2['product_id'],
-                            'goods_attr_id' => $goods_attr_id
-                        )];
-                });
+                    return array(
+                        'num'           => $item2['goods_number'],
+                        'rec_id'        => $item2['rec_id'],
+                        'goods_id'      => $item2['goods_id'],
+                        'product_id'    => $item2['product_id'] ?: 0,
+                        'goods_attr_id' => $goods_attr_id
+                    );
+                })->all();
 
 //                dd($arr);
                 $goods_cart_list['arr'][] = $arr;
