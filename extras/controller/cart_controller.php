@@ -176,7 +176,6 @@ class cart_controller
                             $arr['goods_activity_id'] = $goods_activity_id;
                         }
                         $arr['product_id'] = $product_id;
-                        $arr['id'] = $arr['goods_id'] . '_' . $arr['product_id'];
                         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CREATE)->data($arr)->run();
                     }
                 } else {
@@ -232,6 +231,8 @@ class cart_controller
                         $current['goods_number'] = $v['goods_number'];
                     }
                 }
+
+                $v['id'] = $v['goods_id'] . '_' . $v['product_id'];
             }
             $data_rec = trim($data_rec, ',');
         }
