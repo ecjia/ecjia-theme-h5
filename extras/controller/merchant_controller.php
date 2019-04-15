@@ -468,7 +468,7 @@ class merchant_controller
 //                }
 //            }
 
-            dd($goods_list);
+//            dd($goods_list);
             dd($goods_cart_list);
             $spec_goods = array();
             if (!empty($goods_list)) {

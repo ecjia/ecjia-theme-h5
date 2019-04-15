@@ -84,16 +84,20 @@ class ecjia_cart
         $goods_cart_list = array();
         if (!empty($cart_list)) {
 
-            collect($cart_list['cart_list'])->map(function($item) use (& $goods_cart_list) {
-//                dd($item['goods_list']);
+//            collect($cart_list['cart_list'])->map(function($item) use (& $goods_cart_list) {
+////                dd($item['goods_list']);
+//
+//            });
 
+            //单店铺购物车
+            $item = $cart_list['cart_list'][0];
 
-                $arr = collect($item['goods_list'])->map(function($item2) {
-                    $goods_attr_id = array();
-                    if (!empty($item2['goods_attr_id'])) {
-                        $goods_attr_id = explode(',', $item2['goods_attr_id']);
-                        asort($goods_attr_id);
-                    }
+            $arr = collect($item['goods_list'])->map(function($item2) {
+                $goods_attr_id = array();
+                if (!empty($item2['goods_attr_id'])) {
+                    $goods_attr_id = explode(',', $item2['goods_attr_id']);
+                    asort($goods_attr_id);
+                }
 
 //                    return array(
 //                        'num' => $item2['goods_number'],
@@ -101,19 +105,17 @@ class ecjia_cart
 //                        'goods_attr_id' => $goods_attr_id
 //                    );
 
-                    return array(
-                        'num'           => $item2['goods_number'],
-                        'rec_id'        => $item2['rec_id'],
-                        'goods_id'      => $item2['goods_id'],
-                        'product_id'    => $item2['product_id'] ?: 0,
-                        'goods_attr_id' => $goods_attr_id
-                    );
-                })->all();
+                return array(
+                    'num'           => $item2['goods_number'],
+                    'rec_id'        => $item2['rec_id'],
+                    'goods_id'      => $item2['goods_id'],
+                    'product_id'    => $item2['product_id'] ?: 0,
+                    'goods_attr_id' => $goods_attr_id
+                );
+            })->all();
 
 //                dd($arr);
-                $goods_cart_list['arr'][] = $arr;
-            });
-
+            $goods_cart_list['arr'] = $arr;
 
 
 //            if (!empty($cart_list['cart_list'][0]['goods_list'])) {
