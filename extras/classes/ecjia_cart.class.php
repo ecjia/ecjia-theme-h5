@@ -92,7 +92,7 @@ class ecjia_cart
             //单店铺购物车
             $item = array_shift($cart_list['cart_list']);
 
-            $arr = collect($item['goods_list'])->map(function($item2) {
+            $goods_cart_list = collect($item['goods_list'])->map(function($item2) {
                 $goods_attr_id = array();
                 if (!empty($item2['goods_attr_id'])) {
                     $goods_attr_id = explode(',', $item2['goods_attr_id']);
@@ -115,7 +115,7 @@ class ecjia_cart
             })->all();
 
 //                dd($arr);
-            $goods_cart_list['arr'] = $arr;
+//            $goods_cart_list = $arr;
 
 
 //            if (!empty($cart_list['cart_list'][0]['goods_list'])) {
