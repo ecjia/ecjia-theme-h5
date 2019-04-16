@@ -192,10 +192,10 @@ class goods_controller
 
             $goods_info['shop_closed']      = $store_info['shop_closed'];
             $goods_info['label_trade_time'] = $store_info['label_trade_time'];
-            if ($goods_info['promote_price'] == 0) {
-            	$dwt = 'goods_show.dwt';
-            } else {
+            if ($goods_info['promote_price'] != 0 && $goods_info['activity_type'] == 'PROMOTE_GOODS') {
             	$dwt = 'goods_promotion_detail.dwt';
+            } else {
+            	$dwt = 'goods_show.dwt';
             }
            
             if ($store_info['shop_closed'] != 1) {
