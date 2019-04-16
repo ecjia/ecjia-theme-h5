@@ -192,13 +192,16 @@ class goods_controller
 
             $goods_info['shop_closed']      = $store_info['shop_closed'];
             $goods_info['label_trade_time'] = $store_info['label_trade_time'];
-
-            $dwt = 'goods_show.dwt';
+            if ($goods_info['promote_price'] == 0) {
+            	$dwt = 'goods_show.dwt';
+            } else {
+            	$dwt = 'goods_promotion_detail.dwt';
+            }
+           
             if ($store_info['shop_closed'] != 1) {
                 
                 $product_info = [];
                 if (!empty($goods_info['product_specification'])) {
-    
                     RC_Cache::app_cache_set(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), $goods_info['product_specification'], 'goods');
     
                     foreach ($goods_info['product_specification'] as $k => $v) {
