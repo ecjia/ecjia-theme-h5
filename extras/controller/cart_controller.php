@@ -1607,7 +1607,10 @@ class cart_controller
             $arr['seller_id'] = $store_id;
         }
 
-        RC_Cache::app_cache_delete('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], 'cart');
+        $ecjia_cart = new ecjia_cart($store_id);
+        $ecjia_cart->deleteLocalStorage();
+
+//        RC_Cache::app_cache_delete('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], 'cart');
 
         //添加商品到购物车
         $arr['goods_id'] = $goods_id;
@@ -1635,7 +1638,9 @@ class cart_controller
             }
         }
 
-        RC_Cache::app_cache_set('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], $cart_list, 'cart');
+//        RC_Cache::app_cache_set('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], $cart_list, 'cart');
+        $ecjia_cart->saveLocalStorage($cart_list);
+
         $cart_goods_list = $cart_list['cart_list'][0]['goods_list'];
 
         $rec_id = 0;
