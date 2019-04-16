@@ -79,11 +79,10 @@ var releated_goods = {$releated_goods};
 					</div>
 				</div>
 				
-
 				<div class="goods-groupbuy-div">
-					<div class="groupbuy-left two-line">
+					<div class="groupbuy-left {if $goods_info.promote_user_limited}two-line{/if}">
 						<p>{t domain="h5" 1={$goods_info.promote_limited}}限购总数：%1 件{/t}</p>
-						<p>{t domain="h5" 1={$goods_info.promote_user_limited}}每人限购：%1 件{/t}</p>
+						{if $goods_info.promote_user_limited}<p>{t domain="h5" 1={$goods_info.promote_user_limited}}每人限购：%1 件{/t}</p>{/if}
 					</div>
 
 					<div class="groupbuy-right">
@@ -91,7 +90,7 @@ var releated_goods = {$releated_goods};
 						<span class="goods-detail-promote" data-type="2" value="{$goods_info.promote_end_time}"></span>
 					</div>
 				</div>
-
+				
 				<div class="goods-price goods-price-new" goods_id="{$goods_info.id}" data-price="{$goods_info.promote_price}">
 					<!-- $goods.is_promote and $goods.gmt_end_time -->
 
