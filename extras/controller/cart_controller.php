@@ -176,7 +176,7 @@ class cart_controller
                             $arr['goods_activity_id'] = $goods_activity_id;
                         }
                         $arr['product_id'] = $product_id;
-                        dd($arr);
+                       
                         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CREATE)->data($arr)->run();
                     }
                 } else {
