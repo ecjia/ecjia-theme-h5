@@ -76,8 +76,7 @@
 							var str = msg + myD + js_lang.day + '&nbsp;<span class="end-time">' + hh + '</span> : <span class="end-time">' + mm + '</span> : <span class="end-time">' + ss + '</span>';
 						}
 					} else {
-//						var str = js_lang.over;
-						$(".goods-groupbuy-div").remove();
+						var str = js_lang.over;
 					}
 					obj.html(str);
 				});
