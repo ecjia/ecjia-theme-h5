@@ -98,12 +98,47 @@ class cart_controller
         ecjia_front::$controller->display('cart_list.dwt');
     }
 
+    /**
+     * 创建购物车路由
+     * @return mixed|\Royalcms\Component\Foundation\Royalcms|\Royalcms\Component\HttpKernel\Response|string
+     */
+    public static function create_cart()
+    {
+        $url       = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
+        $referer_url = user_function::build_login_url($url);
+        if (!ecjia_touch_user::singleton()->isSignin()) {
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
+        }
+
+        $store_id          = intval($_POST['store_id']);
+        $spec              = isset($_POST['spec']) ? $_POST['spec'] : '';
+        $new_number        = intval($_POST['val']);
+
+        list($goods_id, $product_id) = explode('_', trim($_POST['goods_id']));
+        $goods_id          = intval($goods_id);
+        $product_id        = intval($product_id);
+
+        $ecjia_cart = new ecjia_cart($store_id);
+        $ecjia_cart->deleteLocalStorage();
+
+        $result = $ecjia_cart->createCart($goods_id, $product_id, $spec, $new_number);
+
+        if (is_ecjia_error($result)) {
+            if ($result->get_error_message() == 'Invalid session') {
+                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
+            }
+            return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+
+        //处理购物车返回数据
+
+
+    }
+
     public static function update_cart()
     {
         $url       = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
-        $login_str = user_function::return_login_str();
-
-        $referer_url = RC_Uri::url($login_str, array('referer_url' => urlencode($url)));
+        $referer_url = user_function::build_login_url($url);
         if (!ecjia_touch_user::singleton()->isSignin()) {
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
         }
