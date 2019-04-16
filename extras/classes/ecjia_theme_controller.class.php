@@ -67,6 +67,7 @@ class ecjia_theme_controller extends ecjia_front
         RC_Script::enqueue_script('ecjia-touch-goods',  ecjia_extra::themeUrl('js/ecjia.touch.goods.js'), array(), false, 1);
         RC_Script::enqueue_script('ecjia-touch-user',   ecjia_extra::themeUrl('js/ecjia.touch.user.js'), array(), false, 1);
         RC_Script::enqueue_script('ecjia-touch-flow',   ecjia_extra::themeUrl('js/ecjia.touch.flow.js'), array(), false, 1);
+        RC_Script::enqueue_script('ecjia-touch-cart',   ecjia_extra::themeUrl('js/ecjia.touch.cart.js'), array(), false, 1);
 
         RC_Script::enqueue_script('ecjia-touch-goods_detail', ecjia_extra::themeUrl('js/ecjia.touch.goods_detail.js'), array(), false, 1);
 
