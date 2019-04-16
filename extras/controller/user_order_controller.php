@@ -612,7 +612,7 @@ class user_order_controller
 
         ecjia_front::$controller->assign('img_list', array(0, 1, 2, 3, 4));
 
-        ecjia_front::$controller->display('order_return_reply.dwt');
+        ecjia_front::$controller->display('order_return_apply.dwt');
     }
 
     //售后详情
