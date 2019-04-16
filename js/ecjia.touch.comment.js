@@ -55,6 +55,11 @@
 
 		//评价晒单上传图片，并且不能超过5张。
 		photo: function () {
+			var ua =navigator.userAgent;
+			var wechatInfo = ua.match(/MicroMessenger\/([\d\.]+)/i);
+			var filter = [{title: "Image files", extensions: "jpg,png,jpeg" }]; //如果是安卓微信6.5版本就让filter等于[]
+			if (/android/.test(ua.toLowerCase()) && wechatInfo && parseFloat(wechatInfo[1]) > 6.3 ) { filter = []; }
+
 			$('.push_photo').hide();
 			$('#result0').show();
 			$(".push_img_btn").on('change', function () {
