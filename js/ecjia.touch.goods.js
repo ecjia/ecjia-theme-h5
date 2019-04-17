@@ -1808,7 +1808,7 @@
 
 					if (product_id !== 0) {
 						var go_url = add_tocart_element.attr('data-url');
-						if (go_url == null) {
+						if (go_url != null) {
 							go_url += '&product_id=' + product_id;
 							location.href = go_url;
 						}
