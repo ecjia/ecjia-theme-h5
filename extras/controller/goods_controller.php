@@ -216,68 +216,88 @@ class goods_controller
                 $goods_info['last_spec'] = $product_info['product_goods_attr_arr'];
 
                 /*商品所属店铺购物车列表*/
-                $token   = ecjia_touch_user::singleton()->getToken();
-                $options = array(
-                    'token'     => $token,
-                    'seller_id' => $goods_info['seller_id'],
-                    'location'  => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
-                    'city_id'   => $_COOKIE['city_id'],
-                );
+                $ecjia_cart = new ecjia_cart($goods_info['seller_id']);
 
-                RC_Cache::app_cache_delete('cart_goods' . $token . $goods_info['seller_id'] . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], 'cart');
+                $ecjia_cart->deleteLocalStorage();
+
+//                $token   = ecjia_touch_user::singleton()->getToken();
+//                $options = array(
+//                    'token'     => $token,
+//                    'seller_id' => $goods_info['seller_id'],
+//                    'location'  => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+//                    'city_id'   => $_COOKIE['city_id'],
+//                );
+
+//                RC_Cache::app_cache_delete('cart_goods' . $token . $goods_info['seller_id'] . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], 'cart');
 
                 $cart_goods = array();
                 //店铺购物车商品
                 if (ecjia_touch_user::singleton()->isSignin() && empty($goods_activity_id)) {
 
-                    $cart_goods = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($options)->run();
-                    if (!is_ecjia_error($cart_goods)) {
-                        RC_Cache::app_cache_set('cart_goods' . $token . $goods_info['seller_id'] . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], $cart_goods, 'cart');
+                    $cart_list = $ecjia_cart->getCartList();
+                    if (is_ecjia_error($cart_list)) {
+                        $cart_list = array();
                     } else {
-                        $cart_goods = array();
+                        $ecjia_cart->saveLocalStorage($cart_list);
                     }
+
+//                    $cart_goods = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($options)->run();
+//                    if (!is_ecjia_error($cart_goods)) {
+//                        RC_Cache::app_cache_set('cart_goods' . $token . $goods_info['seller_id'] . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], $cart_goods, 'cart');
+//                    } else {
+//                        $cart_goods = array();
+//                    }
 
                     $cart_goods['arr']                             = array();
-                    $cart_goods['current_goods']['rec_id']         = $cart_goods['current_seller']['data_rec'] = $cart_goods['current_goods']['goods_number'] = '';
-                    $cart_goods['current_goods']['goods_attr_num'] = 0;
+                    $cart_goods['cart_list']                       = $cart_list ? $cart_list['cart_list'] : [];
+                    $cart_goods['current_seller']                  = array(
+                        'data_rec' => '',
+                    );
+                    $cart_goods['current_goods']                   = array(
+                        'rec_id' => '',
+                        'goods_number' => '',
+                        'goods_attr_num' => 0,
+                    );
 
-                    if (!empty($cart_goods['cart_list'][0]['goods_list'])) {
-                        $cart_goods['cart_list'][0]['total']['check_all'] = true;
-                        $cart_goods['cart_list'][0]['total']['check_one'] = false;
+                    $cart_goods = $ecjia_cart->formattedCartGoodsWithCurrentGoods($cart_goods, $goods_id);
 
-                        foreach ($cart_goods['cart_list'][0]['goods_list'] as $key => $val) {
-                            $goods_attr_id = explode(',', $val['goods_attr_id']);
-                            asort($goods_attr_id);
-
-                            $cart_goods['arr'][$val['goods_id']][] = array('num' => $val['goods_number'], 'rec_id' => $val['rec_id'], 'goods_attr_id' => $goods_attr_id);
-
-                            if ($val['is_checked'] == 1 && $val['is_disabled'] == 0) {
-                                $cart_goods['cart_list'][0]['total']['check_one'] = true; //至少选择了一个
-                                if ($key == 0) {
-                                    $cart_goods['current_seller']['data_rec'] = $val['rec_id'];
-                                } else {
-                                    $cart_goods['current_seller']['data_rec'] .= ',' . $val['rec_id'];
-                                }
-                            } elseif ($val['is_checked'] == 0) {
-                                $cart_goods['cart_list'][0]['total']['check_all']    = false; //全部选择
-                                $cart_goods['cart_list'][0]['total']['goods_number'] -= $v['goods_number'];
-                            }
-                            $cart_goods['current_seller']['data_rec'] = trim($cart_goods['current_seller']['data_rec'], ',');
-                            if ($goods_id == $val['goods_id']) {
-                                $cart_goods['current_goods']['goods_attr_num'] += $val['goods_number'];
-                            }
-
-                            if ($val['goods_id'] == $goods_id && (!isset($goods_info['last_spec']) || $goods_info['last_spec'] == $goods_attr_id)) {
-                                $goods_info['last_spec']                     = explode(',', $val['goods_attr_id']);
-                                $cart_goods['current_goods']['rec_id']       = $val['rec_id'];
-                                $cart_goods['current_goods']['goods_number'] = $val['goods_number'];
-                                $cart_goods['current_spec']                  = $val;
-                            }
-                        }
-                    } else {
-                        $cart_goods['cart_list'][0]['total']['check_all'] = false;
-                        $cart_goods['cart_list'][0]['total']['check_one'] = false;
-                    }
+//                    if (!empty($cart_goods['cart_list'][0]['goods_list'])) {
+//                        $cart_goods['cart_list'][0]['total']['check_all'] = true;
+//                        $cart_goods['cart_list'][0]['total']['check_one'] = false;
+//
+//                        foreach ($cart_goods['cart_list'][0]['goods_list'] as $key => $val) {
+//                            $goods_attr_id = explode(',', $val['goods_attr_id']);
+//                            asort($goods_attr_id);
+//
+//                            $cart_goods['arr'][$val['goods_id']][] = array('num' => $val['goods_number'], 'rec_id' => $val['rec_id'], 'goods_attr_id' => $goods_attr_id);
+//
+//                            if ($val['is_checked'] == 1 && $val['is_disabled'] == 0) {
+//                                $cart_goods['cart_list'][0]['total']['check_one'] = true; //至少选择了一个
+//                                if ($key == 0) {
+//                                    $cart_goods['current_seller']['data_rec'] = $val['rec_id'];
+//                                } else {
+//                                    $cart_goods['current_seller']['data_rec'] .= ',' . $val['rec_id'];
+//                                }
+//                            } elseif ($val['is_checked'] == 0) {
+//                                $cart_goods['cart_list'][0]['total']['check_all']    = false; //全部选择
+//                                $cart_goods['cart_list'][0]['total']['goods_number'] -= $v['goods_number'];
+//                            }
+//                            $cart_goods['current_seller']['data_rec'] = trim($cart_goods['current_seller']['data_rec'], ',');
+//                            if ($goods_id == $val['goods_id']) {
+//                                $cart_goods['current_goods']['goods_attr_num'] += $val['goods_number'];
+//                            }
+//
+//                            if ($val['goods_id'] == $goods_id && (!isset($goods_info['last_spec']) || $goods_info['last_spec'] == $goods_attr_id)) {
+//                                $goods_info['last_spec']                     = explode(',', $val['goods_attr_id']);
+//                                $cart_goods['current_goods']['rec_id']       = $val['rec_id'];
+//                                $cart_goods['current_goods']['goods_number'] = $val['goods_number'];
+//                                $cart_goods['current_spec']                  = $val;
+//                            }
+//                        }
+//                    } else {
+//                        $cart_goods['cart_list'][0]['total']['check_all'] = false;
+//                        $cart_goods['cart_list'][0]['total']['check_one'] = false;
+//                    }
                 }
             }
 
@@ -314,15 +334,24 @@ class goods_controller
                         $spec_releated_goods[$v['goods_id']]['goods_price'] = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : ($v['shop_price'] == __('免费', 'h5') ? '0' : $v['shop_price'])), '￥');
                         $spec_releated_goods[$v['goods_id']]['goods_info']  = $v;
 
-                        if (!empty($cart_goods['arr']) && array_key_exists($v['goods_id'], $cart_goods['arr'])) {
-                            foreach ($cart_goods['arr'][$v['goods_id']] as $j => $n) {
-                                $goods_info['related_goods'][$k]['num'] += $n['num'];
+                        if (!empty($cart_goods['arr']) && $find_goods = $ecjia_cart->findGoodsWithProduct($v['goods_id'], $v['product_id'], $cart_goods['arr'])) {
 
-                                if (!empty($n['goods_attr_id']) && !isset($goods_info['related_goods'][$k]['default_spec'])) {
-                                    $goods_info['related_goods'][$k]['default_spec'] = implode(',', $n['goods_attr_id']);
-                                }
+                            $goods_info['related_goods'][$k]['num'] += $find_goods['num'];
+
+                            if (!empty($n['goods_attr_id']) && !isset($goods_info['related_goods'][$k]['default_spec'])) {
+                                $goods_info['related_goods'][$k]['default_spec'] = implode(',', $find_goods['goods_attr_id']);
                             }
                         }
+
+//                        if (!empty($cart_goods['arr']) && array_key_exists($v['goods_id'], $cart_goods['arr'])) {
+//                            foreach ($cart_goods['arr'][$v['goods_id']] as $j => $n) {
+//                                $goods_info['related_goods'][$k]['num'] += $n['num'];
+//
+//                                if (!empty($n['goods_attr_id']) && !isset($goods_info['related_goods'][$k]['default_spec'])) {
+//                                    $goods_info['related_goods'][$k]['default_spec'] = implode(',', $n['goods_attr_id']);
+//                                }
+//                            }
+//                        }
                     }
                     if ($k < 6) {
                         $related_goods_list[] = $v['goods_id'];
@@ -363,8 +392,8 @@ class goods_controller
             ecjia_front::$controller->assign('goods_attr_num', $cart_goods['current_goods']['goods_attr_num']); //多规格商品数量
             ecjia_front::$controller->assign('data_rec', $cart_goods['current_seller']['data_rec']); //该店铺购物车商品rec_id
 
-            ecjia_front::$controller->assign('cart_list', $cart_goods['cart_list'][0]['goods_list']);
-            ecjia_front::$controller->assign('count', $cart_goods['cart_list'][0]['total']);
+            ecjia_front::$controller->assign('cart_list', $cart_goods['cart_list']['goods_list']);
+            ecjia_front::$controller->assign('count', $cart_goods['cart_list']['total']);
 
             ecjia_front::$controller->assign('real_count', $cart_goods['total']);
             ecjia_front::$controller->assign('current_spec', $cart_goods['current_spec']);
