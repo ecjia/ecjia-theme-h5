@@ -203,7 +203,7 @@ class ecjia_cart
      * @param $goods_id
      * @return mixed
      */
-    public function formattedCartGoodsWithCurrentGoods($cart_goods, $goods_id)
+    public function formattedCartGoodsWithCurrentGoods($cart_goods, $goods_id, $product_id = 0)
     {
         //单店铺购物车
         $cart_list = array_shift($cart_goods['cart_list']);
@@ -215,7 +215,7 @@ class ecjia_cart
 
             $data_rec = [];
 
-            $cart_list['goods_list'] = collect($cart_list['goods_list'])->map(function ($item) use (& $cart_list, & $data_rec, & $cart_goods, $goods_id) {
+            $cart_list['goods_list'] = collect($cart_list['goods_list'])->map(function ($item) use (& $cart_list, & $data_rec, & $cart_goods, $goods_id, $product_id) {
 
                 $goods_attr_id = array();
                 if (!empty($item['goods_attr_id'])) {
@@ -231,8 +231,8 @@ class ecjia_cart
                     $cart_list['total']['goods_number'] -= $item['goods_number'];
                 }
 
-                if ($goods_id == $item['goods_id']) {
-                    $cart_goods['current_goods']['goods_attr_num'] += $item['goods_number'];
+                if ($goods_id == $item['goods_id'] && $product_id == $item['product_id']) {
+                    $cart_goods['current_goods']['goods_attr_num'] = $item['goods_number'];
 
                     if ((!isset($cart_goods['goods_info']['last_spec']) || $cart_goods['goods_info']['last_spec'] == $goods_attr_id))
                     {

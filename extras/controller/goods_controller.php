@@ -259,7 +259,7 @@ class goods_controller
                     );
                     $cart_goods['goods_info'] = $goods_info;
 
-                    $cart_goods = $ecjia_cart->formattedCartGoodsWithCurrentGoods($cart_goods, $goods_id);
+                    $cart_goods = $ecjia_cart->formattedCartGoodsWithCurrentGoods($cart_goods, $goods_id, $product_id);
 //                    dd($cart_goods);
 //                    if (!empty($cart_goods['cart_list'][0]['goods_list'])) {
 //                        $cart_goods['cart_list'][0]['total']['check_all'] = true;
