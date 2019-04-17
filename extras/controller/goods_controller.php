@@ -139,7 +139,11 @@ class goods_controller
         $object_id = isset($_GET['object_id']) ? $_GET['object_id'] : 0;
         $product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : 0; //货品id
 
-        RC_Cache::app_cache_delete(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), 'goods');
+        $ecjia_goods_specification = new ecjia_goods_specification($goods_id);
+
+        $ecjia_goods_specification->deleteLocalStorage();
+
+//        RC_Cache::app_cache_delete(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), 'goods');
 
         $par = array(
             'goods_id'  => $goods_id,
@@ -205,7 +209,10 @@ class goods_controller
                 
                 $product_info = [];
                 if (!empty($goods_info['product_specification'])) {
-                    RC_Cache::app_cache_set(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), $goods_info['product_specification'], 'goods');
+
+                    $ecjia_goods_specification = new ecjia_goods_specification($goods_id);
+                    $ecjia_goods_specification->saveLocalStorage($goods_info['product_specification']);
+//                    RC_Cache::app_cache_set(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), $goods_info['product_specification'], 'goods');
     
                     foreach ($goods_info['product_specification'] as $k => $v) {
                         if (!empty($product_id) && $v['product_id'] == $product_id) {

@@ -462,7 +462,10 @@ class cart_controller
             RC_Cache::app_cache_set('cart_goods' . $token . $seller_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], $cart_list, 'cart');
         }
 
-        $product_specification = RC_Cache::app_cache_get(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), 'goods');
+        $ecjia_goods_specification = new ecjia_goods_specification($goods_id);
+        $product_specification = $ecjia_goods_specification->getLocalStorage();
+
+//        $product_specification = RC_Cache::app_cache_get(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), 'goods');
 
         $product_id = 0;
         if (!empty($product_specification)) {
