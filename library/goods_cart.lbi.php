@@ -1,4 +1,10 @@
-
+<?php
+/*
+Name: 商品祥情页购物车
+Description: 这是商品祥情页购物车
+*/
+defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
+?>
 <div class="store-add-cart a4w">
     <div class="a52"></div>
     <a href="javascript:void 0;" class="a4x {if $real_count.goods_number}light{else}disabled{/if} outcartcontent show show_cart"
