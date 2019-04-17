@@ -201,7 +201,7 @@ var releated_goods = {$releated_goods};
 			</a>
 
 
-            <!-- #BeginLibraryItem "/library/goods_simple_comment.lbi" --><!-- #EndLibraryItem -->
+            <!-- #BeginLibraryItem "/library/goods_smiple_comment.lbi" --><!-- #EndLibraryItem -->
             <!-- #BeginLibraryItem "/library/goods_related_goods.lbi" --><!-- #EndLibraryItem -->
 		</div>
 	</form>
