@@ -455,7 +455,6 @@
 				'response': response,
 				'spec': spec,
 				'act_id': act_id
-				// 'product_id': product_id
 			};
 
 			//更新购物车中商品
@@ -1801,11 +1800,14 @@
 					$(".ecjia-store-goods .a1n .a1x").css({
 						overflow: "auto"
 					}); //启用滚动条
-					var product_id = $('input[name="product_id"]').val();
+
+					var add_tocart_element = $(modal).find('.add-tocart.add_spec');
+					var product_id = add_tocart_element.attr('product_id');
+
 					if (product_id != 0) {
-						var url = $('input[name="product_id"]').attr('data-url');
-						url += '&product_id=' + product_id;
-						location.href = url;
+						var go_url = add_tocart_element.attr('data-url');
+						go_url += '&product_id=' + product_id;
+						location.href = go_url;
 					}
 				});
 
