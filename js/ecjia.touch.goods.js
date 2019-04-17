@@ -1928,6 +1928,7 @@
 						// $('input[name="product_id"]').val(data.product_id);
 						// $('input[name="goods_id"]').val(data.id);
 						add_tocart_element.attr('goods_id', data.id);
+						add_tocart_element.attr('product_id', data.product_id);
 
 						if (data.info) {
 							$(modal).find('.ecjia-choose-attr-box.box').removeClass('hide').addClass('show').children('label').html(data.info.goods_number);
