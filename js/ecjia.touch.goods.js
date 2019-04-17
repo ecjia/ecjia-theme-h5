@@ -1923,7 +1923,8 @@
 							ecjia.touch.showmessage(data);
 						}
 					} else {
-						$('input[name="product_id"]').val(data.product_id);
+						// $('input[name="product_id"]').val(data.product_id);
+						$('input[name="goods_id"]').val(data.id);
 						if (data.info) {
 							$(modal).find('.ecjia-choose-attr-box.box').removeClass('hide').addClass('show').children('label').html(data.info.goods_number);
 							$(modal).find('.ecjia-choose-attr-box.box').children('span').attr('rec_id', data.info.rec_id);
