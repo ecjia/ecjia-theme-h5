@@ -1806,10 +1806,12 @@
 					var add_tocart_element = $(modal).find('.add-tocart.add_spec');
 					var product_id = add_tocart_element.attr('product_id');
 
-					if (product_id != 0) {
+					if (product_id !== 0) {
 						var go_url = add_tocart_element.attr('data-url');
-						go_url += '&product_id=' + product_id;
-						location.href = go_url;
+						if (go_url == null) {
+							go_url += '&product_id=' + product_id;
+							location.href = go_url;
+						}
 					}
 				});
 
