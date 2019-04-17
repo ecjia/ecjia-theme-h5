@@ -108,19 +108,19 @@ class cart_controller
      */
     public static function create_cart()
     {
-        $url       = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
+        $url         = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
         $referer_url = user_function::build_login_url($url);
         if (!ecjia_touch_user::singleton()->isSignin()) {
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
         }
 
-        $store_id          = intval($_POST['store_id']);
-        $spec              = isset($_POST['spec']) ? $_POST['spec'] : '';
-        $new_number        = intval($_POST['val']);
+        $store_id   = intval($_POST['store_id']);
+        $spec       = isset($_POST['spec']) ? $_POST['spec'] : '';
+        $new_number = intval($_POST['val']);
 
         list($goods_id, $product_id) = explode('_', trim($_POST['goods_id']));
-        $goods_id          = intval($goods_id);
-        $product_id        = intval($product_id);
+        $goods_id   = intval($goods_id);
+        $product_id = intval($product_id);
 
         $ecjia_cart = new ecjia_cart($store_id);
         $ecjia_cart->deleteLocalStorage();
@@ -154,14 +154,14 @@ class cart_controller
      */
     public static function delete_cart()
     {
-        $url       = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
+        $url         = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
         $referer_url = user_function::build_login_url($url);
         if (!ecjia_touch_user::singleton()->isSignin()) {
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
         }
 
-        $store_id          = intval($_POST['store_id']);
-        $rec_id            = $_POST['rec_id'];
+        $store_id = intval($_POST['store_id']);
+        $rec_id   = $_POST['rec_id'];
 
         $ecjia_cart = new ecjia_cart($store_id);
         $ecjia_cart->deleteLocalStorage();
@@ -197,15 +197,15 @@ class cart_controller
      */
     public static function checked_cart()
     {
-        $url       = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
+        $url         = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
         $referer_url = user_function::build_login_url($url);
         if (!ecjia_touch_user::singleton()->isSignin()) {
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
         }
 
-        $store_id          = intval($_POST['store_id']);
-        $rec_id            = $_POST['rec_id'];
-        $checked           = !empty($_POST['checked']) ? 1 : 0;
+        $store_id = intval($_POST['store_id']);
+        $rec_id   = $_POST['rec_id'];
+        $checked  = !empty($_POST['checked']) ? 1 : 0;
 
         $ecjia_cart = new ecjia_cart($store_id);
         $ecjia_cart->deleteLocalStorage();
@@ -236,15 +236,15 @@ class cart_controller
 
     public static function update_cart2()
     {
-        $url       = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
+        $url         = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
         $referer_url = user_function::build_login_url($url);
         if (!ecjia_touch_user::singleton()->isSignin()) {
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
         }
 
-        $store_id          = intval($_POST['store_id']);
-        $rec_id            = intval($_POST['rec_id']);
-        $new_number        = intval($_POST['val']);
+        $store_id   = intval($_POST['store_id']);
+        $rec_id     = intval($_POST['rec_id']);
+        $new_number = intval($_POST['val']);
 
         $ecjia_cart = new ecjia_cart($store_id);
         $ecjia_cart->deleteLocalStorage();
@@ -275,7 +275,7 @@ class cart_controller
 
     public static function update_cart()
     {
-        $url       = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
+        $url         = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
         $referer_url = user_function::build_login_url($url);
         if (!ecjia_touch_user::singleton()->isSignin()) {
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
@@ -290,8 +290,8 @@ class cart_controller
         $goods_activity_id = isset($_POST['act_id']) ? $_POST['act_id'] : '';
 
         list($goods_id, $product_id) = explode('_', trim($_POST['goods_id']));
-        $goods_id          = intval($goods_id);
-        $product_id        = intval($product_id);
+        $goods_id   = intval($goods_id);
+        $product_id = intval($product_id);
 
         $token = ecjia_touch_user::singleton()->getToken();
         $arr   = array(
@@ -349,7 +349,7 @@ class cart_controller
                             $arr['goods_activity_id'] = $goods_activity_id;
                         }
                         $arr['product_id'] = $product_id;
-                       
+
                         $data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CREATE)->data($arr)->run();
                     }
                 } else {
@@ -461,7 +461,7 @@ class cart_controller
             }
             RC_Cache::app_cache_set('cart_goods' . $token . $seller_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], $cart_list, 'cart');
         }
-        
+
         $product_specification = RC_Cache::app_cache_get(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), 'goods');
 
         $product_id = 0;
@@ -497,7 +497,15 @@ class cart_controller
                 }
             }
         }
-        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('product_id' => $product_id));
+
+        $id = $goods_id . '_' . $product_id;
+
+        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array(
+                'product_id' => $product_id,
+                'goods_id'   => $goods_id,
+                'id'         => $id,
+            )
+        );
     }
 
     /**
@@ -775,7 +783,7 @@ class cart_controller
         $total['discount']          = $rs['discount'] + $total['discount_bonus'] + $total['discount_integral']; //优惠金额 -红包 -积分
         $total['discount_formated'] = price_format($total['discount']);
 
-        $total['amount']            = $total['goods_price'] - $total['discount'];
+        $total['amount'] = $total['goods_price'] - $total['discount'];
 
         if ($total['amount'] < 0) {
             $total['amount'] = 0;
@@ -796,7 +804,7 @@ class cart_controller
         }
         $total['tax_fee_formated'] = price_format($total['tax_fee']);
         $total['amount']           += $total['tax_fee'];
-        
+
         RC_Loader::load_app_class('cart', 'cart', false);
         $total['pay_fee']          = cart::pay_fee($selected_payment['pay_id'], $total['amount']);
         $total['pay_fee_formated'] = price_format($total['pay_fee']);
@@ -1037,7 +1045,7 @@ class cart_controller
             $total['goods_number'] += $item['goods_number'];
             $total['goods_price']  += $item['subtotal'];
         }
-        $total['goods_price_formated']  = price_format($total['goods_price']);
+        $total['goods_price_formated'] = price_format($total['goods_price']);
 //        $total['shipping_fee']          = $selected_shipping['shipping_fee']; //$rs['shipping_list'];
         $total['shipping_fee_formated'] = price_format($total['shipping_fee']);
         $total['discount_bonus']        = 0;
