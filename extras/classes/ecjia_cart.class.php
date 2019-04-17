@@ -121,20 +121,20 @@ class ecjia_cart
         $goods_cart_list = array();
         if (!empty($cart_list)) {
             //单店铺购物车
-            $item = array_shift($cart_list['cart_list']);
+            $cart_list = array_shift($cart_list['cart_list']);
 
-            $goods_cart_list = collect($item['goods_list'])->map(function ($item2) {
+            $goods_cart_list = collect($cart_list['goods_list'])->map(function ($item) {
                 $goods_attr_id = array();
-                if (!empty($item2['goods_attr_id'])) {
-                    $goods_attr_id = explode(',', $item2['goods_attr_id']);
+                if (!empty($item['goods_attr_id'])) {
+                    $goods_attr_id = explode(',', $item['goods_attr_id']);
                     asort($goods_attr_id);
                 }
 
                 return array(
-                    'num'           => $item2['goods_number'],
-                    'rec_id'        => $item2['rec_id'],
-                    'goods_id'      => $item2['goods_id'],
-                    'product_id'    => $item2['product_id'] ?: 0,
+                    'num'           => $item['goods_number'],
+                    'rec_id'        => $item['rec_id'],
+                    'goods_id'      => $item['goods_id'],
+                    'product_id'    => $item['product_id'] ?: 0,
                     'goods_attr_id' => $goods_attr_id
                 );
             })->all();
@@ -142,6 +142,56 @@ class ecjia_cart
         }
 
         return $goods_cart_list;
+    }
+
+    /**
+     * 格式化购物车返回的列表数据
+     * @param $cart_list
+     * @param null $spec
+     * @return array
+     */
+    public function formattedCartGoodsList($cart_list, $spec = null)
+    {
+        $cart_goods_list = array();
+
+        if (!empty($cart_list)) {
+            //单店铺购物车
+            $cart_list = array_shift($cart_list['cart_list']);
+            $cart_count = $cart_list['total'];
+
+            $data_rec = [];
+            $current = [];
+
+            $cart_goods_list = collect($cart_list['goods_list'])->map(function ($item) use (& $cart_count, & $data_rec, & $current, $spec) {
+                if ($item['is_disabled'] == 0 && $item['is_checked'] == 1) {
+                    $data_rec[] = $item['rec_id'];
+                } elseif ($item['is_checked'] == 0) {
+                    $cart_count['check_all']    = false; //全部选择
+                    $cart_count['goods_number'] -= $item['goods_number'];
+                }
+
+                if (!empty($item['goods_attr_id'])) {
+                    $goods_attr_id = explode(',', $item['goods_attr_id']);
+                    if (!empty($spec) && !empty($goods_attr_id)) {
+                        asort($spec);
+                        asort($goods_attr_id);
+
+                        if ($goods_attr_id == $spec) {
+                            $current['rec_id']       = $item['rec_id'];
+                            $current['goods_number'] = $item['goods_number'];
+                        }
+                    }
+                }
+
+                $item['id'] = $item['goods_id'] . '_' . $item['product_id'];
+
+                return $item;
+            })->all();
+
+            $data_rec = implode(',', $data_rec);
+        }
+
+        return [$cart_goods_list, $data_rec, $current, $cart_count];
     }
 
     /**

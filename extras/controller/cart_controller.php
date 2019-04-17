@@ -100,7 +100,7 @@ class cart_controller
 
     /**
      * 创建购物车路由
-     * @return mixed|\Royalcms\Component\Foundation\Royalcms|\Royalcms\Component\HttpKernel\Response|string
+     * @return mixed|\Royalcms\Component\Foundation\Royalcms|\Royalcms\Component\Http\Response|string
      */
     public static function create_cart()
     {
@@ -124,7 +124,8 @@ class cart_controller
         $result = $ecjia_cart->createCart($goods_id, $product_id, $spec, $new_number);
 
         if (is_ecjia_error($result)) {
-            if ($result->get_error_message() == 'Invalid session') {
+            // Invalid session
+            if ($result->get_error_code() == 100) {
                 return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
             }
             return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -241,38 +242,40 @@ class cart_controller
         }
 
         $ecjia_cart->saveLocalStorage($cart_list);
+        list($cart_goods_list, $data_rec, $current, $cart_count) = $ecjia_cart->formattedCartGoodsList($cart_list);
+
 //        RC_Cache::app_cache_set('cart_goods' . $token . $store_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], $cart_list, 'cart');
-        $cart_goods_list = $cart_list['cart_list'][0]['goods_list'];
-
-        $data_rec = '';
-        $current  = array();
-        if (!empty($cart_goods_list)) {
-            foreach ($cart_goods_list as $k => & $v) {
-                if ($v['is_disabled'] == 0 && $v['is_checked'] == 1) {
-                    if ($k == 0) {
-                        $data_rec = $v['rec_id'];
-                    } else {
-                        $data_rec .= ',' . $v['rec_id'];
-                    }
-                } elseif ($v['is_checked'] == 0) {
-                    $cart_list['cart_list'][0]['total']['check_all']    = false; //全部选择
-                    $cart_list['cart_list'][0]['total']['goods_number'] -= $v['goods_number'];
-                }
-                $goods_attr = explode(',', $v['goods_attr_id']);
-                if (!empty($spec) && !empty($goods_attr)) {
-                    asort($spec);
-                    asort($goods_attr);
-                    if ($goods_attr == $spec) {
-                        $current['rec_id']       = $v['rec_id'];
-                        $current['goods_number'] = $v['goods_number'];
-                    }
-                }
-
-                $v['id'] = $v['goods_id'] . '_' . $v['product_id'];
-            }
-            $data_rec = trim($data_rec, ',');
-        }
-        $cart_count = $cart_list['cart_list'][0]['total'];
+//        $cart_goods_list = $cart_list['cart_list'][0]['goods_list'];
+//
+//        $data_rec = '';
+//        $current  = array();
+//        if (!empty($cart_goods_list)) {
+//            foreach ($cart_goods_list as $k => & $v) {
+//                if ($v['is_disabled'] == 0 && $v['is_checked'] == 1) {
+//                    if ($k == 0) {
+//                        $data_rec = $v['rec_id'];
+//                    } else {
+//                        $data_rec .= ',' . $v['rec_id'];
+//                    }
+//                } elseif ($v['is_checked'] == 0) {
+//                    $cart_list['cart_list'][0]['total']['check_all']    = false; //全部选择
+//                    $cart_list['cart_list'][0]['total']['goods_number'] -= $v['goods_number'];
+//                }
+//                $goods_attr = explode(',', $v['goods_attr_id']);
+//                if (!empty($spec) && !empty($goods_attr)) {
+//                    asort($spec);
+//                    asort($goods_attr);
+//                    if ($goods_attr == $spec) {
+//                        $current['rec_id']       = $v['rec_id'];
+//                        $current['goods_number'] = $v['goods_number'];
+//                    }
+//                }
+//
+//                $v['id'] = $v['goods_id'] . '_' . $v['product_id'];
+//            }
+//            $data_rec = trim($data_rec, ',');
+//        }
+//        $cart_count = $cart_list['cart_list'][0]['total'];
 
         //购物车列表 切换状态直接返回
         if ($response) {
