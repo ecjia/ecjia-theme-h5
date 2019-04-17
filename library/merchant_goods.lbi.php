@@ -10,7 +10,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="ajaxinfo"} -->
 <!-- {foreach from=$goods_list item=goods} -->
 <li>
-	<a class="linksGoods w nopjax external" href="{RC_Uri::url('goods/index/show')}&goods_id={$goods.id}&product_id={$goods.product_id}">
+	<a class="linksGoods w nopjax external" href="{RC_Uri::url('goods/index/show')}&goods_id={$goods.goods_id}&product_id={$goods.product_id}">
 		<img class="pic" src="{$goods.img.small}">
 		<dl>
 			<dt>{$goods.name}</dt>
