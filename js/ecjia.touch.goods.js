@@ -454,8 +454,8 @@
 				'checked': checked == undefined ? '' : checked,
 				'response': response,
 				'spec': spec,
-				'act_id': act_id,
-				'product_id': product_id
+				'act_id': act_id
+				// 'product_id': product_id
 			};
 
 			//更新购物车中商品
