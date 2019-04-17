@@ -215,7 +215,7 @@ class ecjia_cart
 
             $data_rec = [];
 
-            $cart_goods_list = collect($cart_list['goods_list'])->map(function ($item) use (& $cart_list, & $data_rec, & $cart_goods, $goods_id) {
+            $cart_list['goods_list'] = collect($cart_list['goods_list'])->map(function ($item) use (& $cart_list, & $data_rec, & $cart_goods, $goods_id) {
 
                 $goods_attr_id = array();
                 if (!empty($item['goods_attr_id'])) {
@@ -256,6 +256,8 @@ class ecjia_cart
             })->all();
 
 //            $cart_goods['arr'] = $cart_goods_list;
+
+            $cart_goods['current_seller']['data_rec'] = implode(',', $data_rec);
 
         }
         else {
