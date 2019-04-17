@@ -259,7 +259,7 @@ class ecjia_cart
             $cart_list['total']['check_one'] = false;
         }
 
-        $cart_goods['cart_list'] = $cart_goods;
+        $cart_goods['cart_list'] = $cart_list;
 
         return $cart_goods;
     }
