@@ -1878,7 +1878,7 @@
 
 				var url = $(modal).find('input[name="check_spec"]').val();
 				var goods_id = $(modal).find('.add-tocart.add_spec').attr('goods_id');
-
+				var add_tocart_element = $(modal).find('.add-tocart.add_spec');
 				var info = {
 					'spec': spec,
 					'goods_id': goods_id,
@@ -1924,7 +1924,9 @@
 						}
 					} else {
 						// $('input[name="product_id"]').val(data.product_id);
-						$('input[name="goods_id"]').val(data.id);
+						// $('input[name="goods_id"]').val(data.id);
+						add_tocart_element.attr('goods_id').val(data.id);
+
 						if (data.info) {
 							$(modal).find('.ecjia-choose-attr-box.box').removeClass('hide').addClass('show').children('label').html(data.info.goods_number);
 							$(modal).find('.ecjia-choose-attr-box.box').children('span').attr('rec_id', data.info.rec_id);
