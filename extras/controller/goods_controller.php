@@ -182,6 +182,8 @@ class goods_controller
                 }
             }
 
+            $goods_info['id'] = $goods_info['goods_id'] . '_' . $goods_info['product_id'];
+
             //店铺信息
             $parameter_list = array(
                 'seller_id' => $goods_info['seller_id'],
