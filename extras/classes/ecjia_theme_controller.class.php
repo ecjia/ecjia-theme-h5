@@ -50,7 +50,6 @@ class ecjia_theme_controller extends ecjia_front
         RC_Script::enqueue_script('ecjia-touch-jquery-cookie', ecjia_extra::themeUrl('lib/jquery/jquery.cookie.js'), array(), false, 1);
         RC_Script::enqueue_script('ecjia-touch-iscroll', ecjia_extra::themeUrl('lib/iscroll/js/iscroll.js'), array(), false, 1);
         RC_Script::enqueue_script('ecjia-touch-bootstrap', ecjia_extra::themeUrl('lib/bootstrap3/js/bootstrap.min.js'), array(), false, 1);
-        RC_Script::enqueue_script('ecjia-touch-ecjia', ecjia_extra::themeUrl('lib/ecjiaUI/ecjia.js'), array(), false, 1);
         RC_Script::enqueue_script('ecjia-touch-jquery-form', ecjia_extra::themeUrl('lib/jquery-form/jquery.form.min.js'), array(), false, 1);
         RC_Script::enqueue_script('ecjia-touch-clipboard', ecjia_extra::themeUrl('lib/clipboard/js/clipboard.min.js'), array(), false, 1);
 
@@ -94,6 +93,7 @@ class ecjia_theme_controller extends ecjia_front
         RC_Script::enqueue_script('ecjia-touch-ios-overlay', ecjia_extra::themeUrl('lib/iOSOverlay/js/iosOverlay.js'), array(), false, 1);
         RC_Script::enqueue_script('ecjia-touch-prettify', ecjia_extra::themeUrl('lib/iOSOverlay/js/prettify.js'), array(), false, 1);
         RC_Script::enqueue_script('js-sprintf');
+        RC_Script::enqueue_script('ecjia-hook');
 
         RC_Script::localize_script('ecjia-touch', 'js_lang', ecjia_extra::loadJSLang());
     }
