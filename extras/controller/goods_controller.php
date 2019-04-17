@@ -258,6 +258,7 @@ class goods_controller
                         'goods_number' => '',
                         'goods_attr_num' => 0,
                     );
+                    $cart_goods['goods_info'] = $goods_info;
 
                     $cart_goods = $ecjia_cart->formattedCartGoodsWithCurrentGoods($cart_goods, $goods_id);
 //                    dd($cart_goods);

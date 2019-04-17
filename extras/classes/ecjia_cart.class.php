@@ -233,9 +233,14 @@ class ecjia_cart
 
                 if ($goods_id == $item['goods_id']) {
                     $cart_goods['current_goods']['goods_attr_num'] += $item['goods_number'];
-                    $cart_goods['current_goods']['rec_id']       = $item['rec_id'];
-                    $cart_goods['current_goods']['goods_number'] = $item['goods_number'];
-                    $cart_goods['current_spec']                  = $item;
+
+                    if ((!isset($cart_goods['goods_info']['last_spec']) || $cart_goods['goods_info']['last_spec'] == $goods_attr_id))
+                    {
+                        $cart_goods['current_goods']['rec_id']       = $item['rec_id'];
+                        $cart_goods['current_goods']['goods_number'] = $item['goods_number'];
+                        $cart_goods['current_spec']                  = $item;
+                    }
+
                 }
 
                 $product_id = $item['product_id'] ?: 0;
