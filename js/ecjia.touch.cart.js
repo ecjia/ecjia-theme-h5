@@ -4,12 +4,11 @@
      * 店铺购物车
      * @param store_id
      * @param goods_id
-     * @param product_id
      * @param spec
      * @param div
      * @constructor
      */
-    var cart = function EcjiaStoreCart(store_id, goods_id, product_id, spec,div) {
+    var cart = function EcjiaStoreCart(store_id, goods_id, spec,div) {
         /**
          * 店铺ID
          */
@@ -21,10 +20,6 @@
          */
         this.goods_id = goods_id === null ? 0 : goods_id;
 
-        /**
-         * 货品ID
-         */
-        this.product_id = product_id == null ? 0 : product_id;
 
         /**
          * 商品规格
@@ -49,12 +44,11 @@
                 'val': num,
                 'store_id': this.store_id,
                 'goods_id': this.goods_id,
-                'spec': this.spec,
-                'product_id': this.product_id
+                'spec': this.spec
             };
 
             //更新购物车中商品
-            $.post(url, info, this.updateCartCallback);
+            $.post(url, info, this.updateCartCallback.bind(this));
         };
 
         /**
@@ -98,7 +92,6 @@
          * @param data
          */
         this.updateCartCallback = function (data) {
-            console.log(data);
             // dom 操作
             ecjia.touch.cartdom.updateCartInitDom();
             // error return
@@ -411,11 +404,10 @@
                 ecjia.touch.category.show_cart(true);
                 var goods_number = data.count.goods_number;
                 var goods_ele = $('#goods_' + goods_id);
-
-                if (spec === '') {
+                if (spec == '' || spec == undefined) {
                     for (var i = 0; i < data.list.length; i++) {
                         if (data.say_list) {
-                            if (data.list[i].id === goods_id) {
+                            if (data.list[i].id == goods_id) {
                                 goods_ele.children('.reduce').removeClass('hide').attr('rec_id', data.list[i].rec_id);
                                 goods_ele.children('label').removeClass('hide').html(data.list[i].goods_number);
                                 goods_ele.children('.add').removeClass('hide').attr('rec_id', data.list[i].rec_id);
@@ -424,12 +416,11 @@
                                 }
                             }
                         }
-                        if (data.list[i].is_checked !== 1) {
+                        if (data.list[i].is_checked != 1) {
                             data.count.goods_number -= data.list[i].goods_number;
                         }
                     }
                 } else {
-                    console.log('----'.spec);
                     goods_ele.children('span').attr('rec_id', data.current.rec_id).removeClass('hide');
                     goods_ele.children('label').removeClass('hide').html(data.current.goods_number);
                 }
