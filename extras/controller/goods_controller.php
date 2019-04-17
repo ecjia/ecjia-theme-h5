@@ -247,9 +247,8 @@ class goods_controller
 //                    } else {
 //                        $cart_goods = array();
 //                    }
-
+                    $cart_goods = $cart_list;
                     $cart_goods['arr']                             = array();
-                    $cart_goods['cart_list']                       = $cart_list ? $cart_list['cart_list'] : [];
                     $cart_goods['current_seller']                  = array(
                         'data_rec' => '',
                     );
