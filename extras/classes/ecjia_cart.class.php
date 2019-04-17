@@ -240,7 +240,7 @@ class ecjia_cart
 
                 $product_id = $item['product_id'] ?: 0;
 
-                return array(
+                $cart_goods['arr'][] = array(
                     'num'           => $item['goods_number'],
                     'id'            => $item['goods_id'] . '_' . $product_id,
                     'rec_id'        => $item['rec_id'],
@@ -249,9 +249,13 @@ class ecjia_cart
                     'goods_attr_id' => $goods_attr_id
                 );
 
+                $item['id'] = $item['goods_id'] . '_' . $item['product_id'];
+
+                return $item;
+
             })->all();
 
-            $cart_goods['arr'] = $cart_goods_list;
+//            $cart_goods['arr'] = $cart_goods_list;
 
         }
         else {
