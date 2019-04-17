@@ -1639,6 +1639,8 @@
 				var spec = $this.attr('data-spec');
 				var modal = '.ecjia-goodsAttr-modal';
 
+				goods_id.replace('_0', '');
+
 				if (spec != undefined && spec.length != 0) {
 					var spec_arr = spec.split(',');
 				}
