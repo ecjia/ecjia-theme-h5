@@ -577,7 +577,9 @@
 							$('.goods_spec_' + goods_id).find('.choose_attr').attr('data-spec', spec);
 						}
 						var n = parseInt($('.goods_spec_' + goods_id).children('i').html()) + 1;
-						if (isNaN(n)) n = 1;
+						if (isNaN(n)) {
+							n = 1;
+						}
 						if ($('.goods_spec_' + goods_id).find('.attr-number').length == 0) {
 							$('.goods_spec_' + goods_id).append('<i class="attr-number">' + n + '</i>');
 						} else {
@@ -585,6 +587,9 @@
 						}
 					} else if (type == 'reduce') {
 						var n = parseInt($('.goods_spec_' + goods_id).children('i').html()) - 1;
+						if (isNaN(n)) {
+							n = 0;
+						}
 						if (n == 0) {
 							$('.goods_spec_' + goods_id).find('.attr-number').remove();
 							$('.goods_spec_' + goods_id).children('.choose_attr').attr('data-spec', '');
