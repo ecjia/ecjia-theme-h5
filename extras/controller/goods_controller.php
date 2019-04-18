@@ -405,7 +405,7 @@ class goods_controller
                 $goods_info['groupbuy_info']['price_ladder'] = json_encode($goods_info['groupbuy_info']['price_ladder']);
             }
 
-            dd($goods_info);
+//            dd($goods_info);
 
             ecjia_front::$controller->assign('goods_info', $goods_info);
         }
