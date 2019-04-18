@@ -388,7 +388,7 @@ class goods_controller
             }
 
             dd($goods_info);
-            
+
             ecjia_front::$controller->assign('goods_info', $goods_info);
         }
 

@@ -138,13 +138,7 @@ class ecjia_goods_specification
             $spec = str_replace(',', '|', $spec);
         }
 
-        $specification = $goods_specification['specification'];
-        $product_goods_attr_label = collect($specification)
-            ->pluck('value')
-            ->collapse()
-            ->whereIn('id', explode('|', $spec))
-            ->pluck('label')
-            ->implode('/');
+
 
         $specification_item = collect($product_specification)->filter(function($item) use ($spec) {
             if (!empty($item['product_goods_attr'])) {
@@ -160,11 +154,28 @@ class ecjia_goods_specification
             $specification_item['product_shop_price'] = min($specification_item['product_shop_price'], $specification_item['promote_price']);
         }
 
-        $specification_item['product_goods_attr_label'] = $product_goods_attr_label;
+        $specification_item['product_goods_attr_label'] = $this->convertProductGoodsAttrLabel($spec);
         $specification_item['product_shop_price_label'] = ecjia_price_format($specification_item['product_shop_price']);
 
         return $specification_item;
     }
 
+
+    public function convertProductGoodsAttrLabel($spec)
+    {
+        $spec = explode('|', $spec);
+
+        $goods_specification = $this->getLocalStorage();
+
+        $specification = $goods_specification['specification'];
+        $product_goods_attr_label = collect($specification)
+            ->pluck('value')
+            ->collapse()
+            ->whereIn('id', $spec)
+            ->pluck('label')
+            ->implode('/');
+
+        return $product_goods_attr_label;
+    }
 
 }
