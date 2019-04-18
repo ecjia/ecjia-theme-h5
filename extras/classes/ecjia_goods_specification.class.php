@@ -175,9 +175,8 @@ class ecjia_goods_specification
             ->pluck('value')
             ->map(function($item) {
                 return $item[0];
-            });dd($product_goods_attr_label);
-//            ->collapse()
-//            ->pluck('id')
+            })
+            ->pluck('id');dd($product_goods_attr_label);
 //            ->implode(',');
 
         return $product_goods_attr_label;
