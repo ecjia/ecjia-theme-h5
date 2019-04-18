@@ -2361,32 +2361,32 @@
 
 	//切换属性
 	function spec_html(modal) {
-		$spec_html = '(';
-		$spec_price = parseFloat($(modal).find($('input[name="goods_price"]')).val());
-		$(modal).find('.goods-attr-list').find('li.active').each(function (n, j) {
-			if (n == 0) {
-				$spec_html += $(this).html();
-			} else {
-				$spec_html += '/' + $(this).html();
-			}
-			var sprice = parseFloat($(this).attr('data-price'));
-			if (isNaN(sprice)) {
-				sprice = 0;
-			}
-			$spec_price += sprice;
-		});
-		$spec_price = $spec_price.toFixed(2);
-		$spec_html += ')';
-		if ($spec_price == 0) {
-			$spec_price = js_lang.free;
-		} else {
-			$spec_price = '￥' + $spec_price;
-		}
-		if ($spec_html == '()') {
-			$spec_html = '';
-		}
-		$(modal).find('.goods-attr-name').html($spec_html);
-		$(modal).find('.goods-attr-price').html($spec_price);
+		// $spec_html = '(';
+		// $spec_price = parseFloat($(modal).find($('input[name="goods_price"]')).val());
+		// $(modal).find('.goods-attr-list').find('li.active').each(function (n, j) {
+		// 	if (n == 0) {
+		// 		$spec_html += $(this).html();
+		// 	} else {
+		// 		$spec_html += '/' + $(this).html();
+		// 	}
+		// 	var sprice = parseFloat($(this).attr('data-price'));
+		// 	if (isNaN(sprice)) {
+		// 		sprice = 0;
+		// 	}
+		// 	$spec_price += sprice;
+		// });
+		// $spec_price = $spec_price.toFixed(2);
+		// $spec_html += ')';
+		// if ($spec_price == 0) {
+		// 	$spec_price = js_lang.free;
+		// } else {
+		// 	$spec_price = '￥' + $spec_price;
+		// }
+		// if ($spec_html == '()') {
+		// 	$spec_html = '';
+		// }
+		// $(modal).find('.goods-attr-name').html($spec_html);
+		// $(modal).find('.goods-attr-price').html($spec_price);
 	};
 
 	function calc_price(num, price_ladder, price) {
