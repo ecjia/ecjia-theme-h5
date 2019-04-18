@@ -452,15 +452,17 @@ class cart_controller
         );
 
         //店铺购物车商品
-        $cart_list = RC_Cache::app_cache_get('cart_goods' . $token . $seller_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], 'cart');
+        $ecjia_cart = new ecjia_cart($seller_id);
+        $cart_list = $ecjia_cart->getLocalStorage();
+//        $cart_list = RC_Cache::app_cache_get('cart_goods' . $token . $seller_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], 'cart');
 
-        if (empty($cart_list['cart_list'])) {
-            $cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
-            if (is_ecjia_error($cart_list)) {
-                return ecjia_front::$controller->showmessage($cart_list->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-            }
-            RC_Cache::app_cache_set('cart_goods' . $token . $seller_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], $cart_list, 'cart');
-        }
+//        if (empty($cart_list['cart_list'])) {
+//            $cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
+//            if (is_ecjia_error($cart_list)) {
+//                return ecjia_front::$controller->showmessage($cart_list->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+//            }
+//            RC_Cache::app_cache_set('cart_goods' . $token . $seller_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], $cart_list, 'cart');
+//        }
 
         $ecjia_goods_specification = new ecjia_goods_specification($goods_id);
         $product_specification = $ecjia_goods_specification->getLocalStorage();
@@ -503,12 +505,13 @@ class cart_controller
 
         $id = $goods_id . '_' . $product_id;
 
-        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array(
-                'product_id' => $product_id,
-                'goods_id'   => $goods_id,
-                'id'         => $id,
-            )
+        $data = array(
+            'product_id' => $product_id,
+            'goods_id'   => $goods_id,
+            'id'         => $id,
         );
+
+        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, $data);
     }
 
     /**
