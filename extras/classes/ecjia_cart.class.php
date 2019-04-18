@@ -298,6 +298,17 @@ class ecjia_cart
             return $item['goods_id'] == $goods_id && $item['product_id'] == $product_id;
         });
 
+        if (! ecjia::config('show_product')) {
+            if (empty($product)) {
+                $product = collect($goods_cart_list)->first(function ($item) use ($goods_id) {
+                    return $item['goods_id'] == $goods_id;
+                });
+                $num = $product->pluck('num')->sum();
+                $product = $product->first();
+                $product['num'] = $num;
+            }
+        }
+
         return $product;
     }
 

@@ -362,7 +362,7 @@ class goods_controller
                         $find_goods = $ecjia_cart->findGoodsWithProduct($v['goods_id'], $v['product_id'], $cart_goods['arr']);
                         if (!empty($find_goods)) {
 
-                            $v['num'] += $find_goods['num'];
+                            $v['num'] = $find_goods['num'];
                             $v['rec_id'] = $find_goods['rec_id'];
                             
                             if (!empty($find_goods['goods_attr_id'])) {
