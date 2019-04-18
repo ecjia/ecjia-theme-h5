@@ -1706,72 +1706,74 @@
 							};
 							var error = 0;
 
-							$.ajax({type: "post", url: url, data: info, async: false, success: function (data) {
-									if (data.state == 'error') {
-										error = 1;
-										if (data.referer_url || data.message == 'Invalid session') {
-											$(".ecjia-store-goods .a1n .a1x").css({
-												overflow: "hidden"
-											}); //禁用滚动条
-											//禁用滚动条
-											$('body').css('overflow-y', 'hidden').on('touchmove', function (event) {
-												event.preventDefault;
-											}, false);
+							if (url != null) {
+								$.ajax({type: "post", url: url, data: info, async: false, success: function (data) {
+										if (data.state == 'error') {
+											error = 1;
+											if (data.referer_url || data.message == 'Invalid session') {
+												$(".ecjia-store-goods .a1n .a1x").css({
+													overflow: "hidden"
+												}); //禁用滚动条
+												//禁用滚动条
+												$('body').css('overflow-y', 'hidden').on('touchmove', function (event) {
+													event.preventDefault;
+												}, false);
 
-											myApp.modal({
-												title: js_lang.tips,
-												text: js_lang.logged_yet,
-												buttons: [{
-													text: js_lang.cancel,
-													onClick: function () {
-														$('.modal').remove();
-														$('.modal-overlay').remove();
-														$(".ecjia-store-goods .a1n .a1x").css({
-															overflow: "auto"
-														}); //启用滚动条
-														$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
-														return false;
-													}
-												}, {
-													text: js_lang.go_login,
-													onClick: function () {
-														$('.modal').remove();
-														$('.modal-overlay').remove();
-														$(".ecjia-store-goods .a1n .a1x").css({
-															overflow: "auto"
-														}); //启用滚动条
-														$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
-														location.href = data.referer_url;
-														return false;
-													}
-												}, ]
-											});
-											return false;
-										} else {
-											ecjia.touch.showmessage(data);
-											return false;
+												myApp.modal({
+													title: js_lang.tips,
+													text: js_lang.logged_yet,
+													buttons: [{
+														text: js_lang.cancel,
+														onClick: function () {
+															$('.modal').remove();
+															$('.modal-overlay').remove();
+															$(".ecjia-store-goods .a1n .a1x").css({
+																overflow: "auto"
+															}); //启用滚动条
+															$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
+															return false;
+														}
+													}, {
+														text: js_lang.go_login,
+														onClick: function () {
+															$('.modal').remove();
+															$('.modal-overlay').remove();
+															$(".ecjia-store-goods .a1n .a1x").css({
+																overflow: "auto"
+															}); //启用滚动条
+															$('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
+															location.href = data.referer_url;
+															return false;
+														}
+													}, ]
+												});
+												return false;
+											} else {
+												ecjia.touch.showmessage(data);
+												return false;
+											}
+										}
+										else {
+
+											$(modal).find('.goods-attr-price').html(data.product_spec.product_shop_price_label);
+											$(modal).find('.goods-attr-name').html('(' + data.product_spec.product_goods_attr_label + ')');
+
+											if (data.info) {
+												$('.ecjia-attr-static .ecjia-choose-attr-box').addClass('show').removeClass('hide').attr('id', 'goods_' + goods_id);
+												$('.ecjia-attr-static .ecjia-choose-attr-box').children('span').attr('rec_id', data.info.rec_id);
+												$('.ecjia-attr-static .add-tocart').removeClass('show').addClass('hide').attr('goods_id', goods_id);
+												$('.ecjia-attr-static .ecjia-choose-attr-box').children('label').html(data.info.goods_number);
+											} else {
+												$('.ecjia-attr-static .ecjia-choose-attr-box').removeClass('show').addClass('hide').attr('id', 'goods_' + goods_id);
+												$('.ecjia-attr-static .ecjia-choose-attr-box').children('span').attr('rec_id', '');
+												$('.ecjia-attr-static .add-tocart').addClass('show').removeClass('hide').attr('goods_id', goods_id);
+												$('.ecjia-attr-static .ecjia-choose-attr-box').children('label').html('');
+											}
 										}
 									}
-									else {
-
-										$(modal).find('.goods-attr-price').html(data.product_spec.product_shop_price_label);
-										$(modal).find('.goods-attr-name').html('(' + data.product_spec.product_goods_attr_label + ')');
-
-										if (data.info) {
-											$('.ecjia-attr-static .ecjia-choose-attr-box').addClass('show').removeClass('hide').attr('id', 'goods_' + goods_id);
-											$('.ecjia-attr-static .ecjia-choose-attr-box').children('span').attr('rec_id', data.info.rec_id);
-											$('.ecjia-attr-static .add-tocart').removeClass('show').addClass('hide').attr('goods_id', goods_id);
-											$('.ecjia-attr-static .ecjia-choose-attr-box').children('label').html(data.info.goods_number);
-										} else {
-											$('.ecjia-attr-static .ecjia-choose-attr-box').removeClass('show').addClass('hide').attr('id', 'goods_' + goods_id);
-											$('.ecjia-attr-static .ecjia-choose-attr-box').children('span').attr('rec_id', '');
-											$('.ecjia-attr-static .add-tocart').addClass('show').removeClass('hide').attr('goods_id', goods_id);
-											$('.ecjia-attr-static .ecjia-choose-attr-box').children('label').html('');
-										}
-									}
-								}
-							});
-
+								});
+							}
+							
 							break;
 						}
 					}
