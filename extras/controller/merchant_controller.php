@@ -483,14 +483,14 @@ class merchant_controller
 
                     $cart = $ecjia_cart->findGoodsWithProduct($v['goods_id'], $v['product_id'], $goods_cart_list);
                     if (!empty($cart)) {
-                            $goods_list[$k]['num'] += $cart['num'];
-                            if (empty($cart['goods_attr_id'])) {
-                                $v['rec_id'] = $cart['rec_id'];
-                            }
+                        $v['num'] += $cart['num'];
+                        if (empty($cart['goods_attr_id'])) {
+                            $v['rec_id'] = $cart['rec_id'];
+                        }
 
-                            if (!empty($cart['goods_attr_id']) && !isset($v['default_spec'])) {
-                                $v['default_spec'] = implode(',', $cart['goods_attr_id']);
-                            }
+                        if (!empty($cart['goods_attr_id'])) {
+                            $v['default_spec'] = implode(',', $cart['goods_attr_id']);
+                        }
                     }
                     else {
                         if (!empty($v['specification'])) {
