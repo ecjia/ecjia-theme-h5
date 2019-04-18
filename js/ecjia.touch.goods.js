@@ -1849,7 +1849,7 @@
 			var spec_price_label = $(modal).find('input[name="goods_price_label"]').val();
 			var goods_attr_label = $(modal).find('input[name="goods_attr_label"]').val();
 
-			if (spec_price_label != null && goods_attr_label != null) {
+			if (spec_price_label && goods_attr_label) {
 				$(modal).find('.goods-attr-name').html('(' + goods_attr_label + ')');
 				$(modal).find('.goods-attr-price').html(spec_price_label);
 			}
