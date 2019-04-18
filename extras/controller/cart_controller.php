@@ -440,7 +440,6 @@ class cart_controller
         $store_id = $request->input('store_id', 0);
 
         if (!is_array($spec)) {
-            $spec = ltrim($spec, ',');
             $spec = explode(',', $spec);
         }
 
