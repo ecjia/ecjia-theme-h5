@@ -606,7 +606,8 @@
 						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box .add.add_spec').attr('goods_id', goods_id);
 						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box .reduce.remove_spec').attr('goods_id', goods_id);
 					}
-					$('.ecjia-attr-modal').find('#goods_' + goods_id).children('label').html(val);
+					// $('.ecjia-attr-modal').find('#goods_' + goods_id).children('label').html(val);
+					$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('label').html(val);
 				}
 
 				var text = $('.a51').attr('data-text') == undefined ? js_lang.go_settlement : $('.a51').attr('data-text');
