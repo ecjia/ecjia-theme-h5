@@ -1678,7 +1678,7 @@
 								for (var k in s.value) {
 									var t = s.value[k];
 									if (spec_arr != undefined) {
-										if ($.inArray(t.id, spec_arr) !== -1) {
+										if ($.inArray(t.id.toString(), spec_arr) !== -1) {
 											html += '<li class="active ' + multi + '" data-attr=' + t.id + ' data-price=' + t.price + '>' + t.label + '</li>';
 										} else {
 											html += '<li class="' + multi + '" data-attr=' + t.id + ' data-price=' + t.price + '>' + t.label + '</li>';
