@@ -1928,11 +1928,14 @@
 						} else {
 							ecjia.touch.showmessage(data);
 						}
-					} else {
+					}
+					else {
 						// $('input[name="product_id"]').val(data.product_id);
 						// $('input[name="goods_id"]').val(data.id);
 						add_tocart_element.attr('goods_id', data.id);
 						add_tocart_element.attr('product_id', data.product_id);
+						$(modal).find('.goods-attr-price').val(data.product_spec.product_shop_price);
+						$(modal).find('.goods-attr-name').attr('product_id', data.product_spec.product_goods_attr_label);
 						// $('.ecjia-attr-modal').find('#goods_' + goods_id).attr('id', data.id);
 
 						if (data.info) {
@@ -1940,7 +1943,7 @@
 							$(modal).find('.ecjia-choose-attr-box.box').children('span').attr('rec_id', data.info.rec_id);
 							$(modal).find('.add-tocart.add_spec').addClass('hide').removeClass('show');
 						} else {
-							$(modal).find('.ecjia-choose-attr-box.box').addClass('hide').removeClass('show').children('label').html('1');
+							$(modal).find('.ecjia-choose-attr-box.box').removeClass('show').addClass('hide').children('label').html('1');
 							$(modal).find('.add-tocart.add_spec').removeClass('hide').addClass('show');
 							$(modal).find('.ecjia-choose-attr-box.box').children('span').attr('rec_id', '');
 						}
