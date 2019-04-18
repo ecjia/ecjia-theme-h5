@@ -1781,8 +1781,8 @@
 				}
 				// spec_html(modal);
 				if (attr_data != null) {
-					$('.ecjia-attr-static .goods-attr-price').html(data.product_spec.formatted_product_shop_price);
-					$('.ecjia-attr-static .goods-attr-name').html('(' + data.product_spec.product_goods_attr_label + ')');
+					$('.ecjia-attr-static .goods-attr-price').html(attr_data.product_spec.formatted_product_shop_price);
+					$('.ecjia-attr-static .goods-attr-name').html('(' + attr_data.product_spec.product_goods_attr_label + ')');
 				}
 
 				if ($('body').width() < 640) {
