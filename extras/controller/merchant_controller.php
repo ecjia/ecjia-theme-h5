@@ -476,6 +476,10 @@ class merchant_controller
                     $v['store_id'] = $store_id;
                     $v['id'] = $v['goods_id'] . '_' . $v['product_id'];
 
+                    $v['num'] = '';
+                    $v['rec_id'] = '';
+                    $v['default_spec'] = '';
+
                     $cart = $ecjia_cart->findGoodsWithProduct($v['goods_id'], $v['product_id'], $goods_cart_list);
                     if (!empty($cart)) {
                             $goods_list[$k]['num'] += $cart['num'];
@@ -488,18 +492,16 @@ class merchant_controller
                             }
                     }
                     else {
-                        $v['num'] = '';
-                        $v['rec_id'] = '';
-                        $v['default_spec'] = '';
+                        if (!empty($v['specification'])) {
+                            $ecjia_goods_specification = new ecjia_goods_specification($v['goods_id']);
+                            $v['default_spec'] = $ecjia_goods_specification->findDefaultProductGoodsAttrId($v['specification']);
+                        }
                     }
 
                     if (!empty($v['specification'])) {
-                        $ecjia_goods_specification = new ecjia_goods_specification($v['goods_id']);
-                        $v['default_spec'] = $ecjia_goods_specification->findDefaultProductGoodsAttrId($v['specification']);
-
                         $spec_goods[$v['id']]['goods_price']            = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : ($v['shop_price'] == __('免费', 'h5') ? '0' : $v['shop_price'])), '￥');
-                        $spec_goods[$v['id']]['goods_info']             = $v;
                         $spec_goods[$v['id']]['goods_info']['goods_id'] = $v['goods_id'];
+                        $spec_goods[$v['id']]['goods_info']             = $v;
                     }
 
                 }
