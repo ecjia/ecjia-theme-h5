@@ -426,13 +426,13 @@ class merchant_controller
         $store_info = is_ecjia_error($store_info) ? array() : $store_info;
 
         if ($store_info['shop_closed'] != 1) {
-            $token = ecjia_touch_user::singleton()->getToken();
-            $arr   = array(
-                'token'     => $token,
-                'seller_id' => $store_id,
-                'location'  => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
-                'city_id'   => $_COOKIE['city_id'],
-            );
+//            $token = ecjia_touch_user::singleton()->getToken();
+//            $arr   = array(
+//                'token'     => $token,
+//                'seller_id' => $store_id,
+//                'location'  => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+//                'city_id'   => $_COOKIE['city_id'],
+//            );
 
             $ecjia_cart = new ecjia_cart($store_id);
 
@@ -474,9 +474,10 @@ class merchant_controller
             if (!empty($goods_list)) {
                 foreach ($goods_list as $k => $v) {
                     if (!empty($v['specification'])) {
-                        $spec_goods[$v['goods_id']]['goods_price']            = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : ($v['shop_price'] == __('免费', 'h5') ? '0' : $v['shop_price'])), '￥');
-                        $spec_goods[$v['goods_id']]['goods_info']             = $v;
-                        $spec_goods[$v['goods_id']]['goods_info']['goods_id'] = $v['goods_id'];
+                        $v['id'] = $v['goods_id'] . '_' . $v['product_id'];
+                        $spec_goods[$v['id']]['goods_price']            = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : ($v['shop_price'] == __('免费', 'h5') ? '0' : $v['shop_price'])), '￥');
+                        $spec_goods[$v['id']]['goods_info']             = $v;
+                        $spec_goods[$v['id']]['goods_info']['goods_id'] = $v['goods_id'];
                     }
 
 //                    if (array_key_exists($v['id'], $goods_cart_list['arr'])) {
@@ -494,7 +495,7 @@ class merchant_controller
 //                        }
                     }
 
-                    $goods_list[$k]['id'] = $v['goods_id'] . '_' . $v['product_id'];
+//                    $goods_list[$k]['id'] = $v['goods_id'] . '_' . $v['product_id'];
                     $goods_list[$k]['store_id'] = $store_id;
                 }
             }
