@@ -217,11 +217,11 @@ class ecjia_cart
 
             $cart_list['goods_list'] = collect($cart_list['goods_list'])->map(function ($item) use (& $cart_list, & $data_rec, & $cart_goods, $goods_id, $product_id) {
 
-                $goods_attr_id = array();
-                if (!empty($item['goods_attr_id'])) {
-                    $goods_attr_id = explode(',', $item['goods_attr_id']);
-                    asort($goods_attr_id);
-                }
+//                $goods_attr_id = array();
+//                if (!empty($item['goods_attr_id'])) {
+//                    $goods_attr_id = explode(',', $item['goods_attr_id']);
+//                    asort($goods_attr_id);
+//                }
 
                 if ($item['is_checked'] == 1 && $item['is_disabled'] == 0) {
                     $cart_list['total']['check_one'] = true; //至少选择了一个
@@ -234,7 +234,8 @@ class ecjia_cart
                 if ($goods_id == $item['goods_id'] && $product_id == $item['product_id']) {
                     $cart_goods['current_goods']['goods_attr_num'] = $item['goods_number'];
 
-                    if ((!isset($cart_goods['goods_info']['last_spec']) || $cart_goods['goods_info']['last_spec'] == $goods_attr_id)) {
+                    $last_spec_str = implode(',', $cart_goods['goods_info']['last_spec']);
+                    if ($last_spec_str == $item['goods_attr_id']) {
                         $cart_goods['goods_info']['last_spec']       = explode(',', $item['goods_attr_id']);
                         $cart_goods['current_goods']['rec_id']       = $item['rec_id'];
                         $cart_goods['current_goods']['goods_number'] = $item['goods_number'];
