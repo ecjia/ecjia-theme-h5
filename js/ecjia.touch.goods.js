@@ -682,7 +682,7 @@
 					}
 					var discount_html = '';
 					if (data.count.discount != 0) {
-						discount_html = '<label>' + sprintf(js_lang.have_select, data.count.discount) + '<label>';
+						discount_html = '<label>' + sprintf(js_lang.reduced, data.count.discount) + '<label>';
 					}
 					$('.a4z').html('<div>' + data.count.goods_price + discount_html + '</div>');
 
