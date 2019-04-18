@@ -1663,7 +1663,7 @@
 					var multi = '';
 					for (var i in releated_goods) {
 						var r = releated_goods[i];
-						if (r.goods_info != undefined && goods_id == r.goods_info.goods_id) {
+						if (r.goods_info != undefined && goods_id == r.goods_info.id) {
 							$('.ecjia-attr-static .modal-title').html(r.goods_info.name);
 							$('.ecjia-attr-static .goods-attr-list').html('');
 							var html = '';
