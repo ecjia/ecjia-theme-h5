@@ -628,11 +628,8 @@
 							if (data.say_list) {
 								if (data.list[i].id == goods_id) {
 									$('#goods_' + goods_id).children('.reduce').removeClass('hide').attr('rec_id', data.list[i].rec_id);
-									// $('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('.reduce').removeClass('hide').attr('rec_id', data.list[i].rec_id);
 									$('#goods_' + goods_id).children('label').removeClass('hide').html(data.list[i].goods_number);
-									// $('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('label').removeClass('hide').html(data.list[i].goods_number);
 									$('#goods_' + goods_id).children('.add').removeClass('hide').attr('rec_id', data.list[i].rec_id);
-									// $('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('.add').removeClass('hide').attr('rec_id', data.list[i].rec_id);
 									if ($.find('.may_like_' + goods_id)) {
 										$('.may_like_' + goods_id).attr('rec_id', data.list[i].rec_id);
 									}
