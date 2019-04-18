@@ -596,7 +596,7 @@
 						val = 1;
 						$('.ecjia-attr-modal').find('.add-tocart').addClass('show').removeClass('hide');
 						// $('.ecjia-attr-modal').find('#goods_' + goods_id).removeClass('show').addClass('hide').children().attr('rec_id', '');
-						$('.ecjia-attr-modal').find('#.ecjia-choose-attr-box.box').removeClass('show').addClass('hide').children().attr('rec_id', '');
+						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').removeClass('show').addClass('hide').children().attr('rec_id', '');
 					} else {
 						$('.ecjia-attr-modal').find('.add-tocart').removeClass('show').addClass('hide');
 						// $('.ecjia-attr-modal').find('#goods_' + goods_id).addClass('show').removeClass('hide');
@@ -604,8 +604,8 @@
 						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').addClass('show').removeClass('hide');
 						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children().addClass('show').removeClass('hide');
 						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').attr('id', goods_id);
-						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box .add.add_spec').attr('goods_id', goods_id);
-						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box .reduce.remove_spec').attr('goods_id', goods_id);
+						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box .add.add_spec').attr('goods_id', goods_id).attr('rec_id', data.data_rec);
+						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box .reduce.remove_spec').attr('goods_id', goods_id).attr('rec_id', data.data_rec);
 					}
 					// $('.ecjia-attr-modal').find('#goods_' + goods_id).children('label').html(val);
 					$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('label').html(val);
@@ -622,12 +622,12 @@
 						for (i = 0; i < data.list.length; i++) {
 							if (data.say_list) {
 								if (data.list[i].id == goods_id) {
-									// $('#goods_' + goods_id).children('.reduce').removeClass('hide').attr('rec_id', data.list[i].rec_id);
-									$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('.reduce').removeClass('hide').attr('rec_id', data.list[i].rec_id);
-									// $('#goods_' + goods_id).children('label').removeClass('hide').html(data.list[i].goods_number);
-									$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('label').removeClass('hide').html(data.list[i].goods_number);
+									$('#goods_' + goods_id).children('.reduce').removeClass('hide').attr('rec_id', data.list[i].rec_id);
+									// $('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('.reduce').removeClass('hide').attr('rec_id', data.list[i].rec_id);
+									$('#goods_' + goods_id).children('label').removeClass('hide').html(data.list[i].goods_number);
+									// $('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('label').removeClass('hide').html(data.list[i].goods_number);
 									$('#goods_' + goods_id).children('.add').removeClass('hide').attr('rec_id', data.list[i].rec_id);
-									$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('.add').removeClass('hide').attr('rec_id', data.list[i].rec_id);
+									// $('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('.add').removeClass('hide').attr('rec_id', data.list[i].rec_id);
 									if ($.find('.may_like_' + goods_id)) {
 										$('.may_like_' + goods_id).attr('rec_id', data.list[i].rec_id);
 									}
@@ -638,10 +638,10 @@
 							}
 						}
 					} else {
-						// $('#goods_' + goods_id).children('span').attr('rec_id', data.current.rec_id).removeClass('hide');
-						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('span').attr('rec_id', data.current.rec_id).removeClass('hide');
-						// $('#goods_' + goods_id).children('label').removeClass('hide').html(data.current.goods_number);
-						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('label').removeClass('hide').html(data.current.goods_number);
+						$('#goods_' + goods_id).children('span').attr('rec_id', data.current.rec_id).removeClass('hide');
+						// $('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('span').attr('rec_id', data.current.rec_id).removeClass('hide');
+						$('#goods_' + goods_id).children('label').removeClass('hide').html(data.current.goods_number);
+						// $('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('label').removeClass('hide').html(data.current.goods_number);
 					}
 
 					if (data.say_list) {
