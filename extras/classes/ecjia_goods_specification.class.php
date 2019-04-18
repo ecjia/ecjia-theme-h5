@@ -128,6 +128,10 @@ class ecjia_goods_specification
         $goods_specification = $this->getLocalStorage();
         $product_specification = $goods_specification['product_specification'];
 
+        $specification = $goods_specification['specification'];
+        $specification = collect($specification)->collapse();
+        dd($specification);
+
         //判断是否是数组，转换为竖线分隔的字符串
         if (is_array($spec)) {
             $spec = implode('|', $spec);
