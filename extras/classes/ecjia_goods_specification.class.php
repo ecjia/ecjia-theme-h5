@@ -91,5 +91,65 @@ class ecjia_goods_specification
         return $cart_list;
     }
 
+    /**
+     * 通过规格参数查找product_id
+     * @param $spec
+     */
+    public function findProductIdBySpec($spec)
+    {
+        $goods_specification = $this->getLocalStorage();
+        $product_specification = $goods_specification['product_specification'];
+
+        if (is_array($spec)) {
+            $spec = implode('|', $spec);
+        }
+
+        $product_id = 0;
+        if (!empty($product_specification)) {
+            foreach ($product_specification as $key => $value) {
+                if (!empty($value['product_goods_attr'])) {
+                    if ($spec == $value['product_goods_attr'] && !empty($value['product_id'])) {
+                        $product_id = $value['product_id'];
+                        break;
+                    }
+                }
+            }
+        }
+
+        return $product_id;
+    }
+
+    /**
+     * 通过规格参数查找货品规格
+     * @param $spec
+     */
+    public function findProductSpecificationBySpec($spec)
+    {
+        $goods_specification = $this->getLocalStorage();
+        $product_specification = $goods_specification['product_specification'];
+
+        //判断是否是数组，转换为竖线分隔的字符串
+        if (is_array($spec)) {
+            $spec = implode('|', $spec);
+        }
+
+        //判断逗号分隔是否存在，转换为竖线分隔
+        if (strpos($spec, ',') !== false) {
+            $spec = str_replace(',', '|', $spec);
+        }
+
+        $specification = collect($product_specification)->filter(function($item) use ($spec) {
+            if (!empty($item['product_goods_attr'])) {
+                if ($spec == $item['product_goods_attr']) {
+                    return true;
+                }
+            }
+
+            return false;
+        })->first();
+
+        return $specification;
+    }
+
 
 }

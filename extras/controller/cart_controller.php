@@ -431,29 +431,49 @@ class cart_controller
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
         }
 
-        $spec = !empty($_POST['spec']) ? $_POST['spec'] : '';
+        /**
+         * @var \Royalcms\Component\Http\Request $request
+         */
+        $request = royalcms('request');
+        $spec    = $request->input('spec');
+        $goods_id = trim($request->input('goods_id', 0));
+        $store_id = $request->input('store_id', 0);
+
         if (!is_array($spec)) {
             $spec = ltrim($spec, ',');
             $spec = explode(',', $spec);
         }
+
         if (!empty($spec)) {
             asort($spec);
-            $spec = implode(',', $spec);
+            $spec = implode('|', $spec);
         }
-        $goods_id  = !empty($_POST['goods_id']) ? intval($_POST['goods_id']) : 0;
-        $seller_id = !empty($_POST['store_id']) ? intval($_POST['store_id']) : (!empty($_GET['store_id']) ? intval($_GET['store_id']) : 0);
 
-        $token = ecjia_touch_user::singleton()->getToken();
-        $arr   = array(
-            'token'     => $token,
-            'seller_id' => $seller_id,
-            'location'  => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
-            'city_id'   => $_COOKIE['city_id'],
-        );
+
+//        $spec = !empty($_POST['spec']) ? $_POST['spec'] : '';
+
+
+//        $goods_id = !empty($_POST['goods_id']) ? intval($_POST['goods_id']) : 0;
+//        $store_id = !empty($_POST['store_id']) ? intval($_POST['store_id']) : (!empty($_GET['store_id']) ? intval($_GET['store_id']) : 0);
+
+        list($goods_id, $product_id) = explode('_', $goods_id);
+        $goods_id   = intval($goods_id);
+//        $product_id = intval($product_id);
+
+
+
+//        $token = ecjia_touch_user::singleton()->getToken();
+//        $arr   = array(
+//            'token'     => $token,
+//            'seller_id' => $seller_id,
+//            'location'  => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+//            'city_id'   => $_COOKIE['city_id'],
+//        );
 
         //店铺购物车商品
-        $ecjia_cart = new ecjia_cart($seller_id);
-        $cart_list = $ecjia_cart->getLocalStorage();
+//        $ecjia_cart = new ecjia_cart($store_id);
+//        $cart_list  = $ecjia_cart->getLocalStorage();
+
 //        $cart_list = RC_Cache::app_cache_get('cart_goods' . $token . $seller_id . $_COOKIE['longitude'] . $_COOKIE['latitude'] . $_COOKIE['city_id'], 'cart');
 
 //        if (empty($cart_list['cart_list'])) {
@@ -465,50 +485,56 @@ class cart_controller
 //        }
 
         $ecjia_goods_specification = new ecjia_goods_specification($goods_id);
-        $product_specification = $ecjia_goods_specification->getLocalStorage();
+
+        $product_spec = $ecjia_goods_specification->findProductSpecificationBySpec($spec);
+
+//        $goods_specification = $ecjia_goods_specification->getLocalStorage();
+//        $product_specification = $goods_specification['product_specification'];
 
 //        $product_specification = RC_Cache::app_cache_get(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), 'goods');
 
-        $product_id = 0;
-        if (!empty($product_specification)) {
-            foreach ($product_specification as $key => $value) {
-                if (!empty($value['product_goods_attr'])) {
-                    $goods_attr = explode('|', $value['product_goods_attr']);
-                    asort($goods_attr);
-                    $goods_attr = implode(',', $goods_attr);
-                    if ($spec == $goods_attr && !empty($value['product_id'])) {
-                        $product_id = $value['product_id'];
-                        break;
-                    }
-                }
-            }
-        }
+//        $product_id = 0;
+//        if (!empty($product_specification)) {
+//            foreach ($product_specification as $key => $value) {
+//                if (!empty($value['product_goods_attr'])) {
+////                    $goods_attr = explode('|', $value['product_goods_attr']);
+////                    asort($goods_attr);
+////                    $goods_attr = implode(',', $goods_attr);
+//                    if ($spec == $value['product_goods_attr'] && !empty($value['product_id'])) {
+//                        $product_id = $value['product_id'];
+//                        break;
+//                    }
+//                }
+//            }
+//        }
 
-        if (!empty($cart_list['cart_list'][0]['goods_list'])) {
-            foreach ($cart_list['cart_list'][0]['goods_list'] as $key => $val) {
-                if ($goods_id == $val['goods_id']) {
-                    if (empty($val['goods_attr_id']) && empty($spec)) {
-                        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('info' => $val, 'product_id' => $product_id));
-                    } else {
-                        $goods_attr = explode(',', $val['goods_attr_id']);
-                        if (!empty($goods_attr)) {
-                            asort($goods_attr);
-                            $goods_attr = implode(',', $goods_attr);
-                            if ($spec == $goods_attr) {
-                                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('info' => $val, 'product_id' => $product_id));
-                            }
-                        }
-                    }
-                }
-            }
-        }
+//        if (!empty($cart_list['cart_list'][0]['goods_list'])) {
+//            foreach ($cart_list['cart_list'][0]['goods_list'] as $key => $val) {
+//                if ($goods_id == $val['goods_id']) {
+//                    if (empty($val['goods_attr_id']) && empty($spec)) {
+//                        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('info' => $val, 'product_id' => $product_id));
+//                    } else {
+//                        $goods_attr = explode(',', $val['goods_attr_id']);
+//                        if (!empty($goods_attr)) {
+//                            asort($goods_attr);
+//                            $goods_attr = implode(',', $goods_attr);
+//                            if ($spec == $goods_attr) {
+//                                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('info' => $val, 'product_id' => $product_id));
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
+        $product_id = $product_spec['product_id'];
         $id = $goods_id . '_' . $product_id;
 
         $data = array(
-            'product_id' => $product_id,
-            'goods_id'   => $goods_id,
-            'id'         => $id,
+            'product_id'   => $product_id,
+            'product_spec' => $product_spec,
+            'goods_id'     => $goods_id,
+            'id'           => $id,
         );
 
         return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, $data);

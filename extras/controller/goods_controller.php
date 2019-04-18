@@ -160,7 +160,6 @@ class goods_controller
         if (!empty($goods_activity_id)) {
             $par['goods_activity_id'] = $goods_activity_id;
         }
-        $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
 
         /*商品基本信息*/
         $goods_info = ecjia_touch_manager::make()->api(ecjia_touch_api::GOODS_DETAIL)->data($par)->run();
