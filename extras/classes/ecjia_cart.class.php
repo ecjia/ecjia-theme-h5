@@ -230,15 +230,15 @@ class ecjia_cart
                     $cart_list['total']['check_all']    = false; //全部选择
                     $cart_list['total']['goods_number'] -= $item['goods_number'];
                 }
-                _dump($goods_id);
-                _dump($product_id,0);
-                _dump($item,0);
-                _dump(($goods_id == $item['goods_id'] && $product_id == $item['product_id']),1);
+//                _dump($goods_id);
+//                _dump($product_id,0);
+//                _dump($item,0);
+//                _dump(($goods_id == $item['goods_id'] && $product_id == $item['product_id']),1);
                 if ($goods_id == $item['goods_id'] && $product_id == $item['product_id']) {
                     $cart_goods['current_goods']['goods_attr_num'] = $item['goods_number'];
 
                     $last_spec_str = implode(',', $cart_goods['goods_info']['last_spec']);
-                    dd($last_spec_str);
+//                    dd($last_spec_str);
                     if ($last_spec_str == $item['goods_attr_id']) {
                         $cart_goods['goods_info']['last_spec']       = explode(',', $item['goods_attr_id']);
                         $cart_goods['current_goods']['rec_id']       = $item['rec_id'];
