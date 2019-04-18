@@ -177,6 +177,10 @@ class ecjia_goods_specification
             return false;
         })->first();
 
+        if (empty($specification_item)) {
+            $specification_item = $product_specification[0];
+        }
+
         if ($specification_item) {
             if ($specification_item['is_promote'] == 1) {
                 $specification_item['product_shop_price'] = min($specification_item['product_shop_price'], $specification_item['promote_price']);
