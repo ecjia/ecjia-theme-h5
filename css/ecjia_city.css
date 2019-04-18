@@ -1874,6 +1874,7 @@ ul {
     line-height: 3em;
     font-size: 1.1em;
     z-index: 1;
+	max-width: 640px;
 }
 
 .ecjia-promotion-tab li {
