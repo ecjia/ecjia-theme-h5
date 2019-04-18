@@ -431,7 +431,7 @@ class goods_controller
             }
         }
 
-        dd($cart_goods);
+//        dd($cart_goods);
 
         if (ecjia_touch_user::singleton()->isSignin()) {
             ecjia_front::$controller->assign('rec_id', $cart_goods['current_goods']['rec_id']);
