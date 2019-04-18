@@ -1853,7 +1853,12 @@
 				}
 
 				// $spec_html = '(';
-				$spec_price = parseFloat($(modal).find('input[name="goods_price"]').val());
+				//初始值
+				$spec_price_label = $(modal).find('input[name="goods_price_label"]').val();
+				$goods_attr_label = $(modal).find('input[name="goods_attr_label"]').val();
+				$(modal).find('.goods-attr-name').html($goods_attr_label);
+				$(modal).find('.goods-attr-price').html($spec_price_label);
+
 				var spec = [];
 
 				$(modal).find('.goods-attr-list').find('li.active').each(function (n, j) {
@@ -1879,8 +1884,7 @@
 				// if ($spec_html == '()') {
 				// 	$spec_html = '';
 				// }
-				// $(modal).find('.goods-attr-name').html($spec_html);
-				// $(modal).find('.goods-attr-price').html($spec_price);
+
 
 				var url = $(modal).find('input[name="check_spec"]').val();
 				var goods_id = $(modal).find('.add-tocart.add_spec').attr('goods_id');
