@@ -300,7 +300,7 @@ class ecjia_cart
 
         if (! ecjia::config('show_product')) {
             if (empty($product)) {
-                $product = collect($goods_cart_list)->first(function ($item) use ($goods_id) {
+                $product = collect($goods_cart_list)->filter(function ($item) use ($goods_id) {
                     return $item['goods_id'] == $goods_id;
                 });
                 $num = $product->pluck('num')->sum();
