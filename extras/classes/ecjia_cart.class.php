@@ -232,6 +232,7 @@ class ecjia_cart
                 }
                 _dump($goods_id);
                 _dump($product_id,0);
+                _dump($item,0);
                 _dump(($goods_id == $item['goods_id'] && $product_id == $item['product_id']),1);
                 if ($goods_id == $item['goods_id'] && $product_id == $item['product_id']) {
                     $cart_goods['current_goods']['goods_attr_num'] = $item['goods_number'];
