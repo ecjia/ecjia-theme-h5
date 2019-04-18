@@ -598,8 +598,10 @@
 						$('.ecjia-attr-modal').find('#goods_' + goods_id).removeClass('show').addClass('hide').children().attr('rec_id', '');
 					} else {
 						$('.ecjia-attr-modal').find('.add-tocart').removeClass('show').addClass('hide');
-						$('.ecjia-attr-modal').find('#goods_' + goods_id).addClass('show').removeClass('hide');
-						$('.ecjia-attr-modal').find('#goods_' + goods_id).children().addClass('show').removeClass('hide');
+						// $('.ecjia-attr-modal').find('#goods_' + goods_id).addClass('show').removeClass('hide');
+						// $('.ecjia-attr-modal').find('#goods_' + goods_id).children().addClass('show').removeClass('hide');
+						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').addClass('show').removeClass('hide');
+						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children().addClass('show').removeClass('hide');
 					}
 					$('.ecjia-attr-modal').find('#goods_' + goods_id).children('label').html(val);
 				}
