@@ -122,7 +122,7 @@ RC_Hook::add_action('ecjia_front_finish_launching', function () {
         ecjia_front::$controller->assign('ecjia_qrcode_image', $qrcode);
     }
 
-    $integral_name = !empty(ecjia::config('integral_name')) ? ecjia::config('integral_name') : '积分';
+    $integral_name = !empty(ecjia::config('integral_name')) ? ecjia::config('integral_name') : __('积分', 'h5');
     ecjia_front::$controller->assign('integral_name', $integral_name);
 
     ecjia_front::$controller->assign('theme_url', RC_Theme::get_template_directory_uri() . '/');
