@@ -161,6 +161,7 @@ class ecjia_goods_specification
         }
 
         $specification_item['product_goods_attr_label'] = $product_goods_attr_label;
+        $specification_item['product_shop_price_label'] = ecjia_price_format($specification_item['product_shop_price']);
 
         return $specification_item;
     }
