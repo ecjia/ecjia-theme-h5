@@ -1781,8 +1781,8 @@
 				}
 				// spec_html(modal);
 				if (attr_data != null) {
-					$(model).find('.goods-attr-price').html(attr_data.product_spec.formatted_product_shop_price);
-					$(model).find('.goods-attr-name').html('(' + attr_data.product_spec.product_goods_attr_label + ')');
+					$(modal).find('.goods-attr-price').html(attr_data.product_spec.formatted_product_shop_price);
+					$(modal).find('.goods-attr-name').html('(' + attr_data.product_spec.product_goods_attr_label + ')');
 				}
 
 				if ($('body').width() < 640) {
