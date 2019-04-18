@@ -186,7 +186,7 @@ class goods_controller
                 }
             }
 
-            dd($goods_info);
+//            dd($goods_info);
             $goods_info['id'] = $goods_info['goods_id'] . '_' . $goods_info['product_id'];
 
             //店铺信息
@@ -210,7 +210,11 @@ class goods_controller
                 $product_info = [];
                 if (!empty($goods_info['product_specification'])) {
 
-                    $ecjia_goods_specification->saveLocalStorage($goods_info['product_specification']);
+                    $ecjia_goods_specification->saveLocalStorage([
+                        'specification' => $goods_info['specification'],
+                        'product_specification' => $goods_info['product_specification'],
+                    ]);
+
 //                    RC_Cache::app_cache_set(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), $goods_info['product_specification'], 'goods');
     
                     foreach ($goods_info['product_specification'] as $k => $v) {
