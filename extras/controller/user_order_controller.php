@@ -704,8 +704,10 @@ class user_order_controller
             'file' => __FILE__,
             'line' => __LINE__,
             '$_FILES' => $_FILES,
-            '$file' => $file
+            '$file' => $file,
+            'post' => $_POST
         ]);
+
         $data   = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_APPLY)->data($params)->file($file)->run();
         if (is_ecjia_error($data)) {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
