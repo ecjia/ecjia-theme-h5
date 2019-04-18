@@ -546,10 +546,14 @@ class goods_controller
         $response = ecjia_touch_manager::make()->api($api)->data($paramater)->hasPage()->run();
         if (!is_ecjia_error($response)) {
             list($goods_list, $page) = $response;
-
+			$now_time = RC_Time::gmtime();
             if (!empty($goods_list)) {
                 foreach ($goods_list as $k => $v) {
-                    $goods_list[$k]['promote_end_date'] = RC_Time::local_strtotime($v['promote_end_date']);
+                	if(RC_Time::local_strtotime($v['promote_start_date']) > $now_time) {
+                		$goods_list[$k]['promote_end_date'] = RC_Time::local_strtotime($v['promote_start_date']);
+                	} else {
+                		$goods_list[$k]['promote_end_date'] = RC_Time::local_strtotime($v['promote_end_date']);
+                	}
                 }
             }
             ecjia_front::$controller->assign('goods_list', $goods_list);
