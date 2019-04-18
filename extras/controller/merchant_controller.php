@@ -494,6 +494,14 @@ class merchant_controller
                             }
 //                        }
                     }
+                    else {
+
+                        $ecjia_goods_specification = new ecjia_goods_specification($v['goods_id']);
+
+                        $goods_list[$k]['num'] = '';
+                        $goods_list[$k]['rec_id'] = '';
+                        $goods_list[$k]['default_spec'] = $ecjia_goods_specification->findDefaultProductGoodsAttrId($v['specification']);
+                    }
 
 //                    $goods_list[$k]['id'] = $v['goods_id'] . '_' . $v['product_id'];
                     $goods_list[$k]['store_id'] = $store_id;

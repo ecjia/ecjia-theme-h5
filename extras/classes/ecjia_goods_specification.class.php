@@ -160,7 +160,34 @@ class ecjia_goods_specification
         return $specification_item;
     }
 
+    /**
+     * 获取默认的spec id
+     * @return mixed
+     */
+    public function findDefaultProductGoodsAttrId($specification = null)
+    {
+        if (is_null($specification)) {
+            $goods_specification = $this->getLocalStorage();
+            $specification = $goods_specification['specification'];
+        }
 
+        $product_goods_attr_label = collect($specification)
+            ->pluck('value')
+            ->map(function($item) {
+                return $item[0];
+            })
+            ->collapse()
+            ->pluck('id')
+            ->implode(',');
+
+        return $product_goods_attr_label;
+    }
+
+    /**
+     * 转换spec id 为 字符串名字
+     * @param $spec
+     * @return mixed
+     */
     public function convertProductGoodsAttrLabel($spec)
     {
         $spec = explode('|', $spec);

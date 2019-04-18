@@ -1647,13 +1647,19 @@
 				var error = 0;
 				if ($this.hasClass('spec_goods')) {
 					var choose_attr = $('.goods_attr.goods_spec_' + goods_id).children('.choose_attr');
-					if (store_id == undefined) store_id = choose_attr.attr('data-store');
-					if (url == undefined) url = choose_attr.attr('data-url');
-					if (spec == undefined) spec = choose_attr.attr('data-spec');
-					if (spec != undefined && spec.length != 0) {
+
+					store_id = ecjia._default(store_id, choose_attr.attr('data-store'));
+					url = ecjia._default(url, choose_attr.attr('data-url'));
+					spec = ecjia._default(spec, choose_attr.attr('data-spec'));
+
+					// if (store_id == undefined) store_id = choose_attr.attr('data-store');
+					// if (url == undefined) url = choose_attr.attr('data-url');
+					// if (spec == undefined) spec = choose_attr.attr('data-spec');
+					if (spec !== undefined && spec.length !== 0) {
 						var spec_arr = spec.split(',');
 					}
-					var modal = '.ecjia-attr-static';
+
+					modal = '.ecjia-attr-static';
 					var multi = '';
 					for (var i in releated_goods) {
 						var r = releated_goods[i];
@@ -1691,7 +1697,7 @@
 							}
 							$('.ecjia-attr-static .goods-attr-list').html(html);
 							$('.ecjia-attr-static .ecjia-choose-attr-box').children('span').attr('goods_id', goods_id);
-							$('.ecjia-attr-static input[name="goods_price"]').val(r.goods_price);
+							// $('.ecjia-attr-static input[name="goods_price"]').val(r.goods_price);
 
 							var info = {
 								'goods_id': goods_id,
