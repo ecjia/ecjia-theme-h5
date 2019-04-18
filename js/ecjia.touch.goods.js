@@ -1769,8 +1769,10 @@
 											$('.ecjia-attr-static .ecjia-choose-attr-box').children('label').html('');
 										}
 									}
-								},
+								}
 							});
+
+							break;
 						}
 					}
 				}
