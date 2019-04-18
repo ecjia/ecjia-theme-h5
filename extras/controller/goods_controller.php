@@ -387,6 +387,9 @@ class goods_controller
                     }
 
                     if ($k < 6) {
+                        /**
+                         * @todo 相关商品处理
+                         */
 //                        $related_goods_list[] = $v['goods_id'];
                     }
                 }
@@ -420,6 +423,8 @@ class goods_controller
                 ecjia_front::$controller->assign('goods_desc', stripslashes($bodystr));
             }
         }
+
+        dd($cart_goods);
 
         if (ecjia_touch_user::singleton()->isSignin()) {
             ecjia_front::$controller->assign('rec_id', $cart_goods['current_goods']['rec_id']);
