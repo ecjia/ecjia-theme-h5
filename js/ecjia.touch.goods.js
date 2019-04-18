@@ -1812,16 +1812,7 @@
 						overflow: "auto"
 					}); //启用滚动条
 
-					var add_tocart_element = $(modal).find('.add-tocart.add_spec');
-					var product_id = add_tocart_element.attr('product_id');
-
-					if (product_id !== 0) {
-						var go_url = add_tocart_element.attr('data-url');
-						if (go_url != null) {
-							go_url += '&product_id=' + product_id;
-							location.href = go_url;
-						}
-					}
+					ecjia.touch.toggle_product_url(modal);
 				});
 
 				$(overlay).off('click').on('click', function (e) {
@@ -1831,6 +1822,8 @@
 					$(".ecjia-store-goods .a1n .a1x").css({
 						overflow: "auto"
 					}); //启用滚动条
+
+					ecjia.touch.toggle_product_url(modal);
 				});
 
 				ecjia.touch.category.toggle_spec(modal);
@@ -1841,6 +1834,19 @@
 					e.stopPropagation();
 				});
 			});
+		},
+
+		toggle_product_url: function(modal) {
+			var add_tocart_element = $(modal).find('.add-tocart.add_spec');
+			var product_id = add_tocart_element.attr('product_id');
+
+			if (product_id !== 0) {
+				var go_url = add_tocart_element.attr('data-url');
+				if (go_url != null) {
+					go_url += '&product_id=' + product_id;
+					location.href = go_url;
+				}
+			}
 		},
 
 		toggle_spec: function (modal) {
