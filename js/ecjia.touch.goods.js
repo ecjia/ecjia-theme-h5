@@ -1852,7 +1852,7 @@
 					}
 				}
 
-				$spec_html = '(';
+				// $spec_html = '(';
 				$spec_price = parseFloat($(modal).find('input[name="goods_price"]').val());
 				var spec = [];
 
