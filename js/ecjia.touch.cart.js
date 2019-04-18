@@ -33,6 +33,26 @@
         this.div = div;
 
         /**
+         * 默认方法
+         * @param url
+         * @param num
+         * @param act_id
+         * @param checked
+         */
+        this.update = function (url,num,act_id,checked) {
+            var info = {
+            	'val': num,
+            	'rec_id': rec_id,
+            	'store_id': this.store_id,
+            	'goods_id': this.goods_id,
+            	'checked': ecjia._default(checked,''),
+            	'response': response,
+            	'spec': this.spec,
+            	'act_id': ecjia._default(act_id,0)
+            };
+            $.post(url,info,this.updateCartCallback.bind(this));
+        };
+        /**
          * 添加购物车，增加数量
          * rec_id 不赋值为add 赋值为reduce
          * @param url
@@ -46,7 +66,8 @@
                 'val': num,
                 'store_id': this.store_id,
                 'goods_id': this.goods_id,
-                'act_id': act_id === undefined ? 0 : act_id
+                'act_id': ecjia._default(act_id,0),
+                'spec': ecjia._default(this.spec,'')
             };
 
             //更新购物车中商品
@@ -69,7 +90,7 @@
                 'store_id': this.store_id,
                 'goods_id': this.goods_id,
                 'spec': this.spec,
-                'act_id': act_id === undefined ? 0 : act_id
+                'act_id': ecjia._default(act_id,0)
             };
 
             //更新购物车中商品
@@ -77,7 +98,7 @@
         };
 
         /**
-         * 跟新购物车中某件商品的数量
+         * 更新购物车中某件商品的数量
          * @param url
          * @param rec_id
          * @param num
@@ -104,7 +125,8 @@
          * @param rec_id
          * ecjia.touch.category.deleteall
          */
-        this.deleteAllProduce = function (url,rec_id) {
+        this.deleteAllProducts = function (url,rec_id) {
+            this.type ='del_all_pro';
             var info = {
                 'val': 0,
                 'goos_id': this.goods_id,
@@ -119,10 +141,11 @@
          * @param url
          * @param rec_id string or array
          * @param is_checked
-         * ecjia.touch.category.toogle_checkbox
+         * ecjia.touch.category.toggle_checkbox
          * ecjia.touch.category.check_goods
          */
-        this.toogleCheckbox = function (url,rec_id,is_checked) {
+        this.toggleCheckbox = function (url,rec_id,is_checked) {
+            this.type = 'toggle_status';
             var info = {
                 'val': 0,
                 'rec_id': rec_id,
@@ -131,7 +154,6 @@
                 'checked': is_checked === undefined ? '' : is_checked
             };
             $.post(url,info,this.updateCartCallback.bind(this));
-            //ecjia.touch.category.update_cart(rec_id, 0, 0, checked, true);
         };
 
         /**
@@ -326,9 +348,6 @@
                 // 显示
                 $('.a57').css('display', 'block');
                 //禁用滚动条
-                // $('body').css('overflow-y', 'hidden').on('touchmove', function (event) {
-                //     event.preventDefault();
-                // }, false);
                 ecjia.touch.cartdom.isScroll('body','y',false);
                 minicart_content_ele.on('touchmove', function (e) {
                     e.stopPropagation();
@@ -518,6 +537,7 @@
                 ecjia.touch.category.hide_cart(true);
             } else {
                 ecjia.touch.category.show_cart(true);
+                // 更新商家商品的选中数量等信息
                 var goods_number = data.count.goods_number;
                 var goods_ele = $('#goods_' + goods_id);
                 if (spec == '' || spec == undefined) {
@@ -542,10 +562,12 @@
                 }
 
                 if (data.say_list) {
+                    // 重绘购物车，并且绑定事件
                     $('.minicart-goods-list').html(data.say_list);
                     ecjia.touch.category.change_num();
                 }
 
+                // 购物车右上方的数量显示更新
                 $('p.a6c').html(sprintf(js_lang.have_select, data.count.goods_number));
                 if (goods_number > 99) {
                     $('.a4x').html('<i class="a4y">99+</i>');
@@ -562,7 +584,7 @@
                     var ecjia_goods_plus_box_ele = $('.ecjia-goods-plus-box');
                     if (goods_add_cart_ele.attr('goods_id') === goods_id) {
                         if (spec === '') {
-                            if (val > 0) {
+                            if (num > 0) {
                                 goods_add_cart_ele.addClass('hide').removeClass('show');
                                 ecjia_goods_plus_box_ele.removeClass('hide').addClass('show');
                             } else {
@@ -577,6 +599,7 @@
                         }
                     }
                 }
+                // 结算部分信息更新
                 var discount_html = '';
                 if (parseFloat(data.count.discount) !== 0) {
                     discount_html = '<label>' + sprintf(js_lang.have_select, data.count.discount) + '<label>';
@@ -600,7 +623,7 @@
                 } else {
                     check_cart_ele.addClass('disabled').html(sprintf(js_lang.deviation_pick_up, count.label_short_amount));
                 }
-
+                // 对更新的dom绑定事件
                 ecjia.touch.category.add_tocart();
                 ecjia.touch.category.remove_tocart();
                 ecjia.touch.category.toggle_checkbox();
@@ -609,6 +632,9 @@
             }
         },
 
+        /**
+         * remove modal
+         */
         removeModal: function(){
             $('.modal').remove();
             $('.modal-overlay').remove();
@@ -616,7 +642,7 @@
         },
 
         /**
-         * 禁止滚动
+         * 禁止/启动滚动
          * @param ele
          * @param direction
          * @param is_scroll
@@ -650,6 +676,84 @@
             $(ele).css('transform','translateY('+x+'px)');
         }
     };
+    ecjia.touch.cartBindEvent = {
+        init: function(){
+           this.addToCart();
+           this.removeCart();
+           this.changeNum();
+           this.toggleCart();
+           this.toggleCategory();
+        },
+        /**
+         * + 按钮点击绑定事件
+         * 把事件绑定到 ul 父元素上，避免需要重复绑定
+         */
+        addToCart: function () {
+            $('.store_goods_all').on('click',"[data-toggle='add-to-cart']",this.addToCartBindFunc.bind(this));
+            $('.minicart-goods-list').on('click',"[data-toggle='add-to-cart']",this.addToCartBindFunc.bind(this));
+        },
+        /**
+         * - 按钮点击绑定事件
+         * 把事件绑定到 ul 父元素上，避免需要重复绑定
+         */
+        removeCart: function () {
+            $('.store_goods_all').on('click',"[data-toggle='remove-to-cart']",this.removeToCartBindFunc.bind(this));
+            $('.minicart-goods-list').on('click',"[data-toggle='remove-to-cart']",this.removeToCartBindFunc.bind(this))
+        },
+
+        /**
+         * 订单页面
+         * + 按钮点击绑定事件
+         * 把事件绑定到 ul 父元素上，避免需要重复绑定
+         */
+        addGoods: function(){
+
+        },
+        /**
+         * 订单页面
+         * - 按钮点击绑定事件
+         * 把事件绑定到 ul 父元素上，避免需要重复绑定
+         */
+        removeGoods: function(){
+
+        },
+        /**
+         * 改变商品数量相关事件
+         * 同样绑定到购物车列表上
+         */
+        changeNum: function(){
+            $('.minicart-goods-list').on('click',"[data-toggle='change-number']",function () {});
+            // 弹出框上元素的事件绑定一次即可
+        },
+        /**
+         * 购物车动画效果
+         */
+        toggleCart: function(){
+            // 同样绑定一次即可
+        },
+        /**
+         * 左侧分类绑定事件
+         */
+        toggleCategory: function(){
+
+        },
+        //-----以下为绑定的函数方法----
+        /**
+         * 添加到购物车按钮绑定事件
+         * @param ev
+         */
+        addToCartBindFunc: function (ev) {
+
+        },
+        /**
+         *
+         * @param ev
+         */
+        removeToCartBindFunc: function (ev) {
+
+        }
+
+    }
 
 })(ecjia, jQuery);
 
