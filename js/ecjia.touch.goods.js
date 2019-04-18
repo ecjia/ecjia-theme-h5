@@ -1678,7 +1678,7 @@
 								for (var k in s.value) {
 									var t = s.value[k];
 									if (spec_arr != undefined) {
-										if ($.inArray(t.id, spec_arr) != -1) {
+										if ($.inArray(t.id, spec_arr) !== -1) {
 											html += '<li class="active ' + multi + '" data-attr=' + t.id + ' data-price=' + t.price + '>' + t.label + '</li>';
 										} else {
 											html += '<li class="' + multi + '" data-attr=' + t.id + ' data-price=' + t.price + '>' + t.label + '</li>';
@@ -1756,6 +1756,7 @@
 
 										$(modal).find('.goods-attr-price').html(data.product_spec.formatted_product_shop_price);
 										$(modal).find('.goods-attr-name').html('(' + data.product_spec.product_goods_attr_label + ')');
+										$(modal).find('.goods-attr-list').find('li').eq();
 
 										if (data.info) {
 											$('.ecjia-attr-static .ecjia-choose-attr-box').addClass('show').removeClass('hide').attr('id', 'goods_' + goods_id);
