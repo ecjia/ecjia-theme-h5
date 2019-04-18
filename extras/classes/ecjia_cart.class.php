@@ -235,6 +235,7 @@ class ecjia_cart
                     $cart_goods['current_goods']['goods_attr_num'] = $item['goods_number'];
 
                     $last_spec_str = implode(',', $cart_goods['goods_info']['last_spec']);
+                    dd($last_spec_str);
                     if ($last_spec_str == $item['goods_attr_id']) {
                         $cart_goods['goods_info']['last_spec']       = explode(',', $item['goods_attr_id']);
                         $cart_goods['current_goods']['rec_id']       = $item['rec_id'];
