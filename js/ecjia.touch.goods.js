@@ -1856,19 +1856,19 @@
 				$spec_price = parseFloat($(modal).find('input[name="goods_price"]').val());
 				var spec = [];
 
-				// $(modal).find('.goods-attr-list').find('li.active').each(function (n, j) {
-				// 	spec.push($(this).attr('data-attr'));
-				// 	if (n == 0) {
-				// 		$spec_html += $(this).html();
-				// 	} else {
-				// 		$spec_html += '/' + $(this).html();
-				// 	}
-				// 	var sprice = parseFloat($(this).attr('data-price'));
-				// 	if (isNaN(sprice)) {
-				// 		sprice = 0;
-				// 	}
-				// 	$spec_price += sprice;
-				// });
+				$(modal).find('.goods-attr-list').find('li.active').each(function (n, j) {
+					spec.push($(this).attr('data-attr'));
+					// if (n == 0) {
+					// 	$spec_html += $(this).html();
+					// } else {
+					// 	$spec_html += '/' + $(this).html();
+					// }
+					// var sprice = parseFloat($(this).attr('data-price'));
+					// if (isNaN(sprice)) {
+					// 	sprice = 0;
+					// }
+					// $spec_price += sprice;
+				});
 				// $spec_price = $spec_price.toFixed(2);
 				// $spec_html += ')';
 				// if ($spec_price == 0) {
