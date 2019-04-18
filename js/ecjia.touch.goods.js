@@ -602,6 +602,9 @@
 						// $('.ecjia-attr-modal').find('#goods_' + goods_id).children().addClass('show').removeClass('hide');
 						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').addClass('show').removeClass('hide');
 						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children().addClass('show').removeClass('hide');
+						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').attr('id', goods_id);
+						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box .add.add_spec').attr('goods_id', goods_id);
+						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box .reduce.remove_spec').attr('goods_id', goods_id);
 					}
 					$('.ecjia-attr-modal').find('#goods_' + goods_id).children('label').html(val);
 				}
