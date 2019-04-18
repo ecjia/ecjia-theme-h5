@@ -442,6 +442,11 @@ class cart_controller
         $goods_id = trim($request->input('goods_id', 0));
         $store_id = $request->input('store_id', 0);
 
+        if (empty($spec)) {
+            $ecjia_goods_specification = new ecjia_goods_specification($goods_id);
+            $spec = $ecjia_goods_specification->findDefaultProductGoodsAttrId();
+        }
+
         if (!is_array($spec)) {
             $spec = explode(',', $spec);
         }
