@@ -465,6 +465,32 @@ class cart_controller
             'id'           => $id,
         );
 
+        $ecjia_cart = new ecjia_cart($store_id);
+        $cart_list = $ecjia_cart->getLocalStorage();
+        $goods_list = $cart_list['cart_list'][0]['goods_list'];
+
+        if (!empty($goods_list)) {
+            foreach ($goods_list as $key => $val) {
+                if ($goods_id == $val['goods_id']) {
+                    if (empty($val['goods_attr_id']) && empty($spec)) {
+
+                        $data['info'] = $val;
+//                        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('info' => $val, 'product_id' => $product_id));
+                    } else {
+                        $goods_attr = explode(',', $val['goods_attr_id']);
+                        if (!empty($goods_attr)) {
+                            asort($goods_attr);
+                            $goods_attr = implode('|', $goods_attr);
+                            if ($spec == $goods_attr) {
+                                $data['info'] = $val;
+//                                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('info' => $val, 'product_id' => $product_id));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, $data);
     }
 
