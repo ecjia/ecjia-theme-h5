@@ -334,23 +334,26 @@ class cart_controller
                 return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('empty' => true, 'store_id' => $store_id));
             } else {
                 if (!empty($new_number)) {
-                    $arr['new_number'] = $new_number;
+//                    $arr['new_number'] = $new_number;
                     if (!empty($rec_id)) {
                         //更新购物车中商品
-                        $arr['rec_id'] = $rec_id;
-                        $data          = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_UPDATE)->data($arr)->run();
+//                        $arr['rec_id'] = $rec_id;
+//                        $data          = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_UPDATE)->data($arr)->run();
+                        $data = $ecjia_cart->updateCart($rec_id, $new_number);
                     } elseif (!empty($goods_id)) {
                         //添加商品到购物车
-                        $arr['goods_id'] = $goods_id;
-                        if ($spec != 'false' && !empty($spec)) {
-                            $arr['spec'] = $spec;
-                        }
+//                        $arr['goods_id'] = $goods_id;
+//                        if ($spec != 'false' && !empty($spec)) {
+//                            $arr['spec'] = $spec;
+//                        }
                         if (!empty($goods_activity_id)) {
                             $arr['goods_activity_id'] = $goods_activity_id;
                         }
-                        $arr['product_id'] = $product_id;
+//                        $arr['product_id'] = $product_id;
 
-                        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CREATE)->data($arr)->run();
+//                        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CREATE)->data($arr)->run();
+
+                        $data = $ecjia_cart->createCart($goods_id, $product_id, $spec, $new_number);
                     }
                 } else {
                     if (!empty($rec_id)) {
