@@ -493,10 +493,8 @@ class merchant_controller
                     }
                     else {
                         if (!empty($v['specification'])) {
-//                            dd($v);
                             $ecjia_goods_specification = new ecjia_goods_specification($v['goods_id']);
                             $v['default_spec'] = $ecjia_goods_specification->findDefaultProductGoodsAttrId($v['specification']);
-                            dd($v);
                         }
                     }
 
