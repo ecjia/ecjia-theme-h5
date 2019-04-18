@@ -1754,7 +1754,7 @@
 									}
 									else {
 
-										$('.ecjia-attr-static .goods-attr-price').html(data.product_spec.product_shop_price_label);
+										$('.ecjia-attr-static .goods-attr-price').html(data.product_spec.formatted_product_shop_price);
 										$('.ecjia-attr-static .goods-attr-name').html('(' + data.product_spec.product_goods_attr_label + ')');
 
 										if (data.info) {
@@ -1949,7 +1949,7 @@
 						// $('input[name="goods_id"]').val(data.id);
 						add_tocart_element.attr('goods_id', data.id);
 						add_tocart_element.attr('product_id', data.product_id);
-						$(modal).find('.goods-attr-price').html(data.product_spec.product_shop_price_label);
+						$(modal).find('.goods-attr-price').html(data.product_spec.formatted_product_shop_price);
 						$(modal).find('.goods-attr-name').html('(' + data.product_spec.product_goods_attr_label + ')');
 						// $('.ecjia-attr-modal').find('#goods_' + goods_id).attr('id', data.id);
 
