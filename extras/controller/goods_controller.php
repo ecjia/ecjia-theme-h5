@@ -361,7 +361,6 @@ class goods_controller
                     if (!empty($cart_goods['arr'])) {
                         $find_goods = $ecjia_cart->findGoodsWithProduct($v['goods_id'], $v['product_id'], $cart_goods['arr']);
                         if (!empty($find_goods)) {
-
                             $v['num'] = $find_goods['num'];
                             $v['rec_id'] = $find_goods['rec_id'];
                             
@@ -369,12 +368,11 @@ class goods_controller
                                 $v['default_spec'] = implode(',', $find_goods['goods_attr_id']);
                             }
                         }
-                        else {
-                            if (!empty($v['specification'])) {
-                                $ecjia_goods_specification = new ecjia_goods_specification($v['goods_id']);
-                                $v['default_spec'] = $ecjia_goods_specification->findDefaultProductGoodsAttrId($v['specification']);
-                            }
-                        }
+                    } else {
+                    	if (!empty($v['specification'])) {
+                    		$ecjia_goods_specification = new ecjia_goods_specification($v['goods_id']);
+                    		$v['default_spec'] = $ecjia_goods_specification->findDefaultProductGoodsAttrId($v['specification']);
+                    	}
                     }
 
                     if (!empty($v['specification'])) {
