@@ -669,6 +669,14 @@ class user_order_controller
 
     public static function add_return()
     {
+        RC_Logger::getlogger('info')->info([
+            'file' => __FILE__,
+            'line' => __LINE__,
+            '$_FILES' => $_FILES,
+            '$file' => $file,
+            'post' => $_POST
+        ]);
+        
         $order_id           = !empty($_POST['order_id']) ? intval($_POST['order_id']) : 0;
         $reason_id          = !empty($_POST['reason_id']) ? intval($_POST['reason_id']) : 0;
         $refund_type        = !empty($_POST['refund_type']) ? trim($_POST['refund_type']) : '';
@@ -703,9 +711,9 @@ class user_order_controller
         RC_Logger::getlogger('info')->info([
             'file' => __FILE__,
             'line' => __LINE__,
-            '$_FILES' => $_FILES,
-            '$file' => $file
+            '$file' => $file,
         ]);
+
         $data   = ecjia_touch_manager::make()->api(ecjia_touch_api::REFUND_APPLY)->data($params)->file($file)->run();
         if (is_ecjia_error($data)) {
             return ecjia_front::$controller->showmessage($data->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
