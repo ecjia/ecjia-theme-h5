@@ -358,7 +358,7 @@ class goods_controller
 
                             $v['num'] += $find_goods['num'];
 
-                            if (!empty($n['goods_attr_id'])) {
+                            if (!empty($find_goods['goods_attr_id'])) {
                                 $v['default_spec'] = implode(',', $find_goods['goods_attr_id']);
                             }
                         }
