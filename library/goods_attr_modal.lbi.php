@@ -36,8 +36,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	</div>
 	<div class="modal-buttons modal-buttons-2 modal-buttons-vertical">
 		<div class="modal-left">
-			<span class="goods-attr-price">{if $current_spec.goods_price}￥{$current_spec.goods_price}{else}￥{$goods_info.spec_price}{/if}</span>
-			<span class="goods-attr-name">{$current_spec.attr}</span>
+			<span class="goods-attr-price">{if $current_spec.goods_price}￥{$current_spec.goods_price}{else}{$goods_info.default_product_spec.product_shop_price_label}{/if}</span>
+			<span class="goods-attr-name">{if $current_spec.attr}{$current_spec.attr}{else}{$goods_info.default_product_spec.product_goods_attr_label}{/if}</span>
 		</div>
 		<div class="ecjia-choose-attr-box box {if $current_spec.rec_id}show{else}hide{/if}" id="goods_{$goods_info.id}">
 			<span class="add add_spec" data-toggle="add-to-cart" goods_id="{$goods_info.id}" rec_id="{$current_spec.rec_id}"></span>

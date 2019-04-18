@@ -231,6 +231,7 @@ class goods_controller
 //                    }
 
                     $goods_info['last_spec'] = explode('|', $product_info['product_goods_attr']);
+                    $goods_info['default_product_spec'] = $product_info;
                 }
 
 
