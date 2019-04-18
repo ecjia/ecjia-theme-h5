@@ -139,7 +139,11 @@ class ecjia_goods_specification
         }
 
         $specification = $goods_specification['specification'];
-        $specification = collect($specification)->pluck('value')->collapse()->whereIn('id', explode('|', $spec));
+        $specification = collect($specification)
+            ->pluck('value')
+            ->collapse()
+            ->whereIn('id', explode('|', $spec))
+            ->pluck('label');
         dd($specification);
 
         $specification = collect($product_specification)->filter(function($item) use ($spec) {
