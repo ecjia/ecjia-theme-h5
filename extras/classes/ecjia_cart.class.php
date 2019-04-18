@@ -290,9 +290,17 @@ class ecjia_cart
 
     public function findGoodsWithProduct($goods_id, $product_id, $goods_cart_list)
     {
-        return collect($goods_cart_list)->first(function ($item) use ($goods_id, $product_id) {
+        $product = collect($goods_cart_list)->first(function ($item) use ($goods_id, $product_id) {
             return $item['goods_id'] == $goods_id && $item['product_id'] == $product_id;
         });
+
+        if (empty($product)) {
+            $product = collect($goods_cart_list)->first(function ($item) use ($goods_id, $product_id) {
+                return $item['goods_attr_id'] == $goods_id && $item['product_id'] == $product_id;
+            });
+        }
+
+        return $product;
     }
 
     /**

@@ -1756,7 +1756,6 @@
 
 										$(modal).find('.goods-attr-price').html(data.product_spec.formatted_product_shop_price);
 										$(modal).find('.goods-attr-name').html('(' + data.product_spec.product_goods_attr_label + ')');
-										$(modal).find('.goods-attr-list').find('li').eq();
 
 										if (data.info) {
 											$('.ecjia-attr-static .ecjia-choose-attr-box').addClass('show').removeClass('hide').attr('id', 'goods_' + goods_id);
