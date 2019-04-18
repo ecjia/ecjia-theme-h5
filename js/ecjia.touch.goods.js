@@ -1773,7 +1773,7 @@
 									}
 								});
 							}
-							
+
 							break;
 						}
 					}
@@ -1814,7 +1814,7 @@
 						overflow: "auto"
 					}); //启用滚动条
 
-					ecjia.touch.toggle_product_url(modal);
+					ecjia.touch.category.toggle_product_url(modal);
 				});
 
 				$(overlay).off('click').on('click', function (e) {
@@ -1825,7 +1825,7 @@
 						overflow: "auto"
 					}); //启用滚动条
 
-					ecjia.touch.toggle_product_url(modal);
+					ecjia.touch.category.toggle_product_url(modal);
 				});
 
 				ecjia.touch.category.toggle_spec(modal);
