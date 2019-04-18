@@ -387,7 +387,7 @@ class goods_controller
                     }
 
                     if ($k < 6) {
-                        $related_goods_list[] = $v['goods_id'];
+//                        $related_goods_list[] = $v['goods_id'];
                     }
                 }
             }
