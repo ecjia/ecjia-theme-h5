@@ -472,39 +472,36 @@ class merchant_controller
 //            dd($goods_cart_list);
             $spec_goods = array();
             if (!empty($goods_list)) {
-                foreach ($goods_list as $k => $v) {
+                foreach ($goods_list as $k => & $v) {
+                    $v['store_id'] = $store_id;
+
+                    $cart = $ecjia_cart->findGoodsWithProduct($v['goods_id'], $v['product_id'], $goods_cart_list);
+                    if (!empty($cart)) {
+                            $goods_list[$k]['num'] += $cart['num'];
+                            if (empty($cart['goods_attr_id'])) {
+                                $v['rec_id'] = $cart['rec_id'];
+                            }
+
+                            if (!empty($cart['goods_attr_id']) && !isset($v['default_spec'])) {
+                                $v['default_spec'] = implode(',', $cart['goods_attr_id']);
+                            }
+                    }
+                    else {
+                        $v['num'] = '';
+                        $v['rec_id'] = '';
+                        $v['default_spec'] = '';
+                    }
+
                     if (!empty($v['specification'])) {
+                        $ecjia_goods_specification = new ecjia_goods_specification($v['goods_id']);
                         $v['id'] = $v['goods_id'] . '_' . $v['product_id'];
+                        $v['default_spec'] = $ecjia_goods_specification->findDefaultProductGoodsAttrId($v['specification']);
+
                         $spec_goods[$v['id']]['goods_price']            = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : ($v['shop_price'] == __('免费', 'h5') ? '0' : $v['shop_price'])), '￥');
                         $spec_goods[$v['id']]['goods_info']             = $v;
                         $spec_goods[$v['id']]['goods_info']['goods_id'] = $v['goods_id'];
                     }
 
-//                    if (array_key_exists($v['id'], $goods_cart_list['arr'])) {
-                    $cart = $ecjia_cart->findGoodsWithProduct($v['goods_id'], $v['product_id'], $goods_cart_list);
-                    if (!empty($cart)) {
-//                        foreach ($goods_cart_list as $cart) {
-                            $goods_list[$k]['num'] += $cart['num'];
-                            if (empty($cart['goods_attr_id'])) {
-                                $goods_list[$k]['rec_id'] = $cart['rec_id'];
-                            }
-
-                            if (!empty($cart['goods_attr_id']) && !isset($goods_list[$k]['default_spec'])) {
-                                $goods_list[$k]['default_spec'] = implode(',', $cart['goods_attr_id']);
-                            }
-//                        }
-                    }
-                    else {
-
-                        $ecjia_goods_specification = new ecjia_goods_specification($v['goods_id']);
-
-                        $goods_list[$k]['num'] = '';
-                        $goods_list[$k]['rec_id'] = '';
-                        $goods_list[$k]['default_spec'] = $ecjia_goods_specification->findDefaultProductGoodsAttrId($v['specification']);
-                    }
-
-//                    $goods_list[$k]['id'] = $v['goods_id'] . '_' . $v['product_id'];
-                    $goods_list[$k]['store_id'] = $store_id;
                 }
             }
 
