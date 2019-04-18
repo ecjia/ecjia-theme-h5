@@ -146,11 +146,11 @@ var releated_goods = {$releated_goods};
 					{/if}
 					<!-- {/if} -->
 					
-					{if $product_info.product_goods_attr_html neq ''}
+					{if $product_info.product_goods_attr_label neq ''}
 					<div class="groupbuy_notice">
 						<div class="item">
 							<div class="left" style="width:3em;">{t domain="h5"}已选{/t}</div>
-							<div class="right" style="margin-left:3em;">{$product_info.product_goods_attr_html}</div>
+							<div class="right" style="margin-left:3em;">{$product_info.product_goods_attr_label}</div>
 						</div>
 					</div>
 					{/if}
