@@ -453,7 +453,7 @@ class merchant_controller
 //
 //            dd($cart_list);
             $goods_cart_list = $ecjia_cart->getGoodsCartList($cart_list);
-            dd($goods_cart_list);
+//            dd($goods_cart_list);
 
 //            $goods_cart_list = array();
 //            if (!empty($cart_list)) {
