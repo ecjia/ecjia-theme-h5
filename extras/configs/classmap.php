@@ -80,6 +80,7 @@ return [
 	
 	'ecjia_location'               => 'extras/classes/ecjia_location.class.php',
 	'ecjia_cart'                   => 'extras/classes/ecjia_cart.class.php',
+	'ecjia_goods_specification'    => 'extras/classes/ecjia_goods_specification.class.php',
 	'ecjia_theme_controller'       => 'extras/classes/ecjia_theme_controller.class.php',
 
 ];
