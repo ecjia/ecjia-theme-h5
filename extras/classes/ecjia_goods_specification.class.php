@@ -129,7 +129,7 @@ class ecjia_goods_specification
         $product_specification = $goods_specification['product_specification'];
 
         $specification = $goods_specification['specification'];
-        $specification = collect($specification)->collapse();
+        $specification = collect($specification)->pluck('value');
         dd($specification);
 
         //判断是否是数组，转换为竖线分隔的字符串
