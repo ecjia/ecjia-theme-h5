@@ -159,11 +159,11 @@ class ecjia_cart
 
         if (!empty($cart_list)) {
             //单店铺购物车
-            $cart_list = array_shift($cart_list['cart_list']);
+            $cart_list  = array_shift($cart_list['cart_list']);
             $cart_count = $cart_list['total'];
 
             $data_rec = [];
-            $current = [];
+            $current  = [];
 
             $cart_goods_list = collect($cart_list['goods_list'])->map(function ($item) use (& $cart_count, & $data_rec, & $current, $spec) {
                 if ($item['is_disabled'] == 0 && $item['is_checked'] == 1) {
@@ -225,7 +225,7 @@ class ecjia_cart
 
                 if ($item['is_checked'] == 1 && $item['is_disabled'] == 0) {
                     $cart_list['total']['check_one'] = true; //至少选择了一个
-                    $data_rec[] = $item['rec_id'];
+                    $data_rec[]                      = $item['rec_id'];
                 } elseif ($item['is_checked'] == 0) {
                     $cart_list['total']['check_all']    = false; //全部选择
                     $cart_list['total']['goods_number'] -= $item['goods_number'];
@@ -234,8 +234,8 @@ class ecjia_cart
                 if ($goods_id == $item['goods_id'] && $product_id == $item['product_id']) {
                     $cart_goods['current_goods']['goods_attr_num'] = $item['goods_number'];
 
-                    if ((!isset($cart_goods['goods_info']['last_spec']) || $cart_goods['goods_info']['last_spec'] == $goods_attr_id))
-                    {
+                    if ((!isset($cart_goods['goods_info']['last_spec']) || $cart_goods['goods_info']['last_spec'] == $goods_attr_id)) {
+                        $cart_goods['goods_info']['last_spec']       = explode(',', $item['goods_attr_id']);
                         $cart_goods['current_goods']['rec_id']       = $item['rec_id'];
                         $cart_goods['current_goods']['goods_number'] = $item['goods_number'];
                         $cart_goods['current_spec']                  = $item;
@@ -264,8 +264,7 @@ class ecjia_cart
 
             $cart_goods['current_seller']['data_rec'] = implode(',', $data_rec);
 
-        }
-        else {
+        } else {
             $cart_list['total']['check_all'] = false;
             $cart_list['total']['check_one'] = false;
         }
