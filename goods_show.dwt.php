@@ -290,14 +290,14 @@ var releated_goods = {$releated_goods};
 
 									{if $goods_info.shop_closed neq 1}
 										{if $goods.specification}
-										<div class="goods_attr goods_spec_{$goods.goods_id}" goods_id="{$goods_info.id}">
-											<span class="choose_attr spec_goods" rec_id="{$goods.rec_id}" goods_id="{$goods.goods_id}" data-num="{$goods.num}"
+										<div class="goods_attr goods_spec_{$goods.id}" goods_id="{$goods_info.id}">
+											<span class="choose_attr spec_goods" rec_id="{$goods.rec_id}" goods_id="{$goods.id}" data-num="{$goods.num}"
 											data-spec="{$goods.default_spec}" data-url="{RC_Uri::url('cart/index/check_spec')}" data-store="{$store_id}">{t domain="h5"}选规格{/t}</span>
 											{if $goods.num}<i class="attr-number">{$goods.num}</i>{/if}
 										</div>
 										{else}
-										<span class="goods-price-plus may_like_{$goods.goods_id}" data-toggle="add-to-cart" rec_id="{$goods.rec_id}"
-										goods_id="{$goods.goods_id}" data-num="{$goods.num}"></span>
+										<span class="goods-price-plus may_like_{$goods.id}" data-toggle="add-to-cart" rec_id="{$goods.rec_id}"
+										goods_id="{$goods.id}" data-num="{$goods.num}"></span>
 										{/if}
 									{/if}
 								</div>
