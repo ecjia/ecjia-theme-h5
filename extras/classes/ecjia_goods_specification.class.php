@@ -139,14 +139,14 @@ class ecjia_goods_specification
         }
 
         $specification = $goods_specification['specification'];
-        $specification = collect($specification)
+        $product_goods_attr_label = collect($specification)
             ->pluck('value')
             ->collapse()
             ->whereIn('id', explode('|', $spec))
-            ->pluck('label')->implode('/');
-        dd($specification);
+            ->pluck('label')
+            ->implode('/');
 
-        $specification = collect($product_specification)->filter(function($item) use ($spec) {
+        $specification_item = collect($product_specification)->filter(function($item) use ($spec) {
             if (!empty($item['product_goods_attr'])) {
                 if ($spec == $item['product_goods_attr']) {
                     return true;
@@ -156,7 +156,9 @@ class ecjia_goods_specification
             return false;
         })->first();
 
-        return $specification;
+        $specification_item['product_goods_attr_label'] = $product_goods_attr_label;
+
+        return $specification_item;
     }
 
 
