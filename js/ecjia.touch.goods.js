@@ -1699,12 +1699,8 @@
 								'store_id': store_id
 							};
 							var error = 0;
-							$.ajax({
-								type: "post",
-								url: url,
-								data: info,
-								async: false,
-								success: function (data) {
+
+							$.ajax({type: "post", url: url, data: info, async: false, success: function (data) {
 									if (data.state == 'error') {
 										error = 1;
 										if (data.referer_url || data.message == 'Invalid session') {
@@ -1749,7 +1745,12 @@
 											ecjia.touch.showmessage(data);
 											return false;
 										}
-									} else {
+									}
+									else {
+
+										$(modal).find('.goods-attr-price').html(data.product_spec.product_shop_price_label);
+										$(modal).find('.goods-attr-name').html('(' + data.product_spec.product_goods_attr_label + ')');
+
 										if (data.info) {
 											$('.ecjia-attr-static .ecjia-choose-attr-box').addClass('show').removeClass('hide').attr('id', 'goods_' + goods_id);
 											$('.ecjia-attr-static .ecjia-choose-attr-box').children('span').attr('rec_id', data.info.rec_id);
@@ -1837,10 +1838,10 @@
 		toggle_spec: function (modal) {
 
 			//初始值
-			$spec_price_label = $(modal).find('input[name="goods_price_label"]').val();
-			$goods_attr_label = $(modal).find('input[name="goods_attr_label"]').val();
-			$(modal).find('.goods-attr-name').html('(' + $goods_attr_label + ')');
-			$(modal).find('.goods-attr-price').html($spec_price_label);
+			var spec_price_label = $(modal).find('input[name="goods_price_label"]').val();
+			var goods_attr_label = $(modal).find('input[name="goods_attr_label"]').val();
+			$(modal).find('.goods-attr-name').html('(' + goods_attr_label + ')');
+			$(modal).find('.goods-attr-price').html(spec_price_label);
 
 			//切换属性
 			$('.goods-attr-list .goods-attr li').off('click').on('click', function () {
