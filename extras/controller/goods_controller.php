@@ -344,19 +344,36 @@ class goods_controller
 
             $spec_releated_goods = $related_goods_list = array();
             if (!empty($goods_info['related_goods'])) {
-                foreach ($goods_info['related_goods'] as $k => $v) {
-                    if (!empty($v['specification'])) {
-                        $spec_releated_goods[$v['goods_id']]['goods_price'] = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : ($v['shop_price'] == __('免费', 'h5') ? '0' : $v['shop_price'])), '￥');
-                        $spec_releated_goods[$v['goods_id']]['goods_info']  = $v;
+                foreach ($goods_info['related_goods'] as $k => & $v) {
+                    $v['id'] = $v['goods_id'] . '_' . $v['product_id'];
+                    $v['store_id'] = $goods_info['seller_id'];
 
-                        if (!empty($cart_goods['arr']) && $find_goods = $ecjia_cart->findGoodsWithProduct($v['goods_id'], $v['product_id'], $cart_goods['arr'])) {
+                    $v['num'] = '';
+                    $v['rec_id'] = '';
+                    $v['default_spec'] = '';
 
-                            $goods_info['related_goods'][$k]['num'] += $find_goods['num'];
+                    if (!empty($cart_goods['arr'])) {
+                        $find_goods = $ecjia_cart->findGoodsWithProduct($v['goods_id'], $v['product_id'], $cart_goods['arr']);
+                        if (!empty($find_goods)) {
 
-                            if (!empty($n['goods_attr_id']) && !isset($goods_info['related_goods'][$k]['default_spec'])) {
-                                $goods_info['related_goods'][$k]['default_spec'] = implode(',', $find_goods['goods_attr_id']);
+                            $v['num'] += $find_goods['num'];
+
+                            if (!empty($n['goods_attr_id'])) {
+                                $v['default_spec'] = implode(',', $find_goods['goods_attr_id']);
                             }
                         }
+                        else {
+                            if (!empty($v['specification'])) {
+                                $ecjia_goods_specification = new ecjia_goods_specification($v['goods_id']);
+                                $v['default_spec'] = $ecjia_goods_specification->findDefaultProductGoodsAttrId($v['specification']);
+                            }
+                        }
+                    }
+
+                    if (!empty($v['specification'])) {
+                        $spec_releated_goods[$v['id']]['goods_price'] = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : ($v['shop_price'] == __('免费', 'h5') ? '0' : $v['shop_price'])), '￥');
+                        $spec_releated_goods[$v['id']]['goods_info']['goods_id'] = $v['goods_id'];
+                        $spec_releated_goods[$v['id']]['goods_info']  = $v;
 
 //                        if (!empty($cart_goods['arr']) && array_key_exists($v['goods_id'], $cart_goods['arr'])) {
 //                            foreach ($cart_goods['arr'][$v['goods_id']] as $j => $n) {
@@ -368,6 +385,7 @@ class goods_controller
 //                            }
 //                        }
                     }
+
                     if ($k < 6) {
                         $related_goods_list[] = $v['goods_id'];
                     }
