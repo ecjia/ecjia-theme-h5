@@ -215,9 +215,9 @@ class goods_controller
 
                     $product_info = $ecjia_goods_specification->findProductSpecificationByProductId($product_id, $goods_info['product_specification']);
 
-                    if (!empty($product_info)) {
-                        $dwt = 'goods_promotion_detail.dwt';
-                    }
+//                    if (!empty($product_info)) {
+//                        $dwt = 'goods_promotion_detail.dwt';
+//                    }
 
 //                    RC_Cache::app_cache_set(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), $goods_info['product_specification'], 'goods');
     
