@@ -9,6 +9,7 @@
      * @constructor
      */
     var cart = function EcjiaStoreCart(store_id, goods_id, spec,div) {
+
         /**
          * 店铺ID
          */
@@ -36,15 +37,16 @@
          * rec_id 不赋值为add 赋值为reduce
          * @param url
          * @param num
+         * @param act_id
          */
-        this.add = function (url,num) {
+        this.add = function (url,num,act_id) {
             this.num = num;
             this.type = 'add';
             var info ={
                 'val': num,
                 'store_id': this.store_id,
                 'goods_id': this.goods_id,
-                'spec': this.spec
+                'act_id': act_id === undefined ? 0 : act_id
             };
 
             //更新购物车中商品
@@ -56,8 +58,9 @@
          * @param url
          * @param rec_id
          * @param num
+         * @param act_id
          */
-        this.reduce = function (url,rec_id,num) {
+        this.reduce = function (url,rec_id,num,act_id) {
             this.num = num;
             this.type = 'reduce';
             var info = {
@@ -66,27 +69,92 @@
                 'store_id': this.store_id,
                 'goods_id': this.goods_id,
                 'spec': this.spec,
-                'product_id': this.product_id
+                'act_id': act_id === undefined ? 0 : act_id
             };
 
             //更新购物车中商品
-            $.post(url, info, this.updateCartCallback);
+            $.post(url, info, this.updateCartCallback.bind(this));
         };
 
         /**
-         * 改变购物车中商品的数量
+         * 跟新购物车中某件商品的数量
          * @param url
+         * @param rec_id
          * @param num
+         * touch.category.change_num
          */
-        this.changeNum = function (url,num) {
+        this.changeNum = function (url,rec_id,num) {
+            this.num = num;
+            this.type = 'change_num';
             var info = {
-                'rec_id': this.rec_id,
                 'val': num,
-                'goods_id': this.goods_id
+                'rec_id': rec_id,
+                'store_id': this.store_id,
+                'goods_id': this.goods_id,
+                'spec': this.spec
             };
-            $.post(url,info,this.updateCartCallback)
+
+            //更新购物车中商品
+            $.post(url, info, this.updateCartCallback.bind(this));
         };
 
+        /**
+         * 清空购物车中的全部商品
+         * @param url
+         * @param rec_id
+         * ecjia.touch.category.deleteall
+         */
+        this.deleteAllProduce = function (url,rec_id) {
+            var info = {
+                'val': 0,
+                'goos_id': this.goods_id,
+                'store_id': this.store_id,
+                'rec_id': rec_id
+            };
+            $.post(url,info,this.deleteAllProductsCallBack.bind(this))
+        };
+
+        /**
+         * 改变购物车中商品的状态,单个或者全部
+         * @param url
+         * @param rec_id string or array
+         * @param is_checked
+         * ecjia.touch.category.toogle_checkbox
+         * ecjia.touch.category.check_goods
+         */
+        this.toogleCheckbox = function (url,rec_id,is_checked) {
+            var info = {
+                'val': 0,
+                'rec_id': rec_id,
+                'store_id': this.store_id,
+                'goods_id': 0,
+                'checked': is_checked === undefined ? '' : is_checked
+            };
+            $.post(url,info,this.updateCartCallback.bind(this));
+            //ecjia.touch.category.update_cart(rec_id, 0, 0, checked, true);
+        };
+
+        /**
+         * 删除购物车中某个商家
+         * @param url
+         * @param rec_id
+         * @param response
+         * ecjia.touch.goods.category.check_cart
+         */
+        this.removeCartItem = function (url,rec_id,response) {
+            // response true
+            var info = {
+                'val': 0,
+                'rec_id': rec_id,
+                'store_id': this.store_id,
+                'goods_id': 0,
+                'spec': this.spec,
+                'response': response
+
+            };
+            //更新购物车中商品
+            $.post(url, info, this.updateCartCallback.bind(this));
+        };
         /**
          * 请求回调
          * @param data
@@ -101,21 +169,17 @@
             }
             // 传入的商品数量为0
             if (this.num === 0) {
+                // 移除购物车中的商品
                 ecjia.touch.cartdom.removeProduct(this.goods_id);
             }
-            // 移除相关div
+            // 移除购物车中某个商铺
             if (div !== undefined && div !== '') {
-                ecjia.touch.cartdom.removeDiv(div);
+                ecjia.touch.cartdom.removeElement(div);
                 return  false;
             }
-            // 返回 empty 字段为 true
+            // empty  true, clear cart list
             if (data.empty === true) {
-                var li = $('.check_cart_' + data.store_id).parents('.cart-single');
-                li.remove();
-                if ($('li.cart-single').length === 0) {
-                    $('.ecjia-flow-cart').remove();
-                    $('.flow-no-pro').removeClass('hide');
-                }
+                ecjia.touch.cartdom.clearCartList(data.store_id);
                 return false;
             }
             // 返回 response 字段为true
@@ -152,6 +216,45 @@
             ecjia.touch.category.check_all();
         };
 
+        /**
+         * 清空购物车商品回调
+         * @param data
+         */
+        this.deleteAllProductsCallBack = function(data){
+            if (data.state === 'success') {
+                this.hideCart(true);
+                if ($.find('.box').length !== 0) {
+                    $('.box').each(function () {
+                        if ($(this).parent().find('.goods-add-cart').length !== 0) {
+                            $(this).removeClass('show').addClass('hide');
+                            $(this).children('label').html('1');
+                        } else {
+                            $(this).children('span.reduce').addClass('hide').removeClass('show');
+                            $(this).children('label').html('');
+                        }
+                        $(this).children('span').attr('rec_id', '');
+                    });
+                }
+                if ($.find('.goods-add-cart').length !== 0) {
+                    $('.box').addClass('hide');
+                    $('.goods-add-cart').removeClass('hide').attr('rec_id', '');
+                }
+                if ($.find('.goods-price-plus').length !== 0) {
+                    $('.goods-price-plus').attr('rec_id', '').attr('data-num', '');
+                }
+                if ($.find('i.attr-number').length !== 0) {
+                    $('i.attr-number').remove();
+                }
+                if ($.find('.choose_attr').length !== 0) {
+                    $('.choose_attr').attr('data-spec', '');
+                }
+                $('.ecjia-choose-attr-box.box').removeClass('show').addClass('hide'); //隐藏加减按钮
+                $('.add-tocart.add_spec').addClass('show').removeClass('hide'); //显示加入购物车按钮
+            } else {
+                ecjia.touch.showmessage(data);
+            }
+            return false;
+        };
         /**
          * 消息提示
          * @param data
@@ -292,7 +395,7 @@
     ecjia.touch.cartdom = {
 
         /**
-         * 从购物车中移除该货品
+         * 从商品列表中隐藏数量以及 reduce 按钮
          * @param goods_id
          */
         removeProduct: function (goods_id) {
@@ -323,10 +426,10 @@
         },
 
         /**
-         * 移除相关的 div
+         * 删除购物车列表中的某个商家
          * @param element
          */
-        removeDiv: function (element) {
+        removeElement: function (element) {
             if (element.hasClass('other_place')) {
                 if (element.parent().find('.other_place').length === 1) {
                     $('.a4u.a4u-gray').remove();
@@ -340,6 +443,19 @@
             if ($('.a57').length === 1 && $('.a4u-gray').length === 0) {
                 var index_url = $('input[name="index_url"]').val();
                 $('.ecjia-flow-cart-list').html('').html('<div class="flow-no-pro"><div class="ecjia-nolist">' + js_lang.add_goods_yet + '<a class="btn btn-small" type="button" href="' + index_url + '">' + js_lang.go_go + '</a></div>');
+            }
+        },
+
+        /**
+         * 清空购物车商家列表
+         */
+        clearCartList: function(store_id){
+            var li = $('.check_cart_' + store_id).parents('.cart-single');
+            li.remove();
+            if ($('li.cart-single').length === 0) {
+                // 清空购物车列表
+                $('.ecjia-flow-cart').remove();
+                $('.flow-no-pro').removeClass('hide');
             }
         },
 
@@ -491,6 +607,12 @@
                 //隐藏修改购物车商品数量弹窗
                 $('.ecjia-num-content').removeClass('show');
             }
+        },
+
+        removeModal: function(){
+            $('.modal').remove();
+            $('.modal-overlay').remove();
+            $('body').css('overflow-y', 'auto').off("touchmove"); //启用滚动条
         },
 
         /**
