@@ -474,6 +474,7 @@ class merchant_controller
             if (!empty($goods_list)) {
                 foreach ($goods_list as $k => & $v) {
                     $v['store_id'] = $store_id;
+                    $v['id'] = $v['goods_id'] . '_' . $v['product_id'];
 
                     $cart = $ecjia_cart->findGoodsWithProduct($v['goods_id'], $v['product_id'], $goods_cart_list);
                     if (!empty($cart)) {
@@ -494,7 +495,6 @@ class merchant_controller
 
                     if (!empty($v['specification'])) {
                         $ecjia_goods_specification = new ecjia_goods_specification($v['goods_id']);
-                        $v['id'] = $v['goods_id'] . '_' . $v['product_id'];
                         $v['default_spec'] = $ecjia_goods_specification->findDefaultProductGoodsAttrId($v['specification']);
 
                         $spec_goods[$v['id']]['goods_price']            = ltrim((!empty($v['promote_price']) ? $v['promote_price'] : ($v['shop_price'] == __('免费', 'h5') ? '0' : $v['shop_price'])), '￥');
