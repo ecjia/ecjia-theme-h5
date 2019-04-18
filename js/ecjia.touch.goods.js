@@ -1661,6 +1661,7 @@
 
 					modal = '.ecjia-attr-static';
 					var multi = '';
+					var attr_data = null;
 					for (var i in releated_goods) {
 						var r = releated_goods[i];
 						if (r.goods_info != undefined && goods_id == r.goods_info.id) {
@@ -1754,8 +1755,7 @@
 									}
 									else {
 
-										$('.ecjia-attr-static .goods-attr-price').html(data.product_spec.formatted_product_shop_price);
-										$('.ecjia-attr-static .goods-attr-name').html('(' + data.product_spec.product_goods_attr_label + ')');
+										attr_data = data;
 
 										if (data.info) {
 											$('.ecjia-attr-static .ecjia-choose-attr-box').addClass('show').removeClass('hide').attr('id', 'goods_' + goods_id);
@@ -1780,6 +1780,10 @@
 					return false;
 				}
 				// spec_html(modal);
+				if (attr_data != null) {
+					$('.ecjia-attr-static .goods-attr-price').html(data.product_spec.formatted_product_shop_price);
+					$('.ecjia-attr-static .goods-attr-name').html('(' + data.product_spec.product_goods_attr_label + ')');
+				}
 
 				if ($('body').width() < 640) {
 					$(modal).css('left', '2.5%');
