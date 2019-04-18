@@ -215,7 +215,7 @@ class goods_controller
 
                     $product_info = $ecjia_goods_specification->findProductSpecificationByProductId($product_id, $goods_info['product_specification']);
 
-                    if (!empty($specification)) {
+                    if (!empty($product_info)) {
                         $dwt = 'goods_promotion_detail.dwt';
                     }
 

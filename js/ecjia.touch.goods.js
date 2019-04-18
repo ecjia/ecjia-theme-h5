@@ -595,7 +595,8 @@
 					if (val == 0) {
 						val = 1;
 						$('.ecjia-attr-modal').find('.add-tocart').addClass('show').removeClass('hide');
-						$('.ecjia-attr-modal').find('#goods_' + goods_id).removeClass('show').addClass('hide').children().attr('rec_id', '');
+						// $('.ecjia-attr-modal').find('#goods_' + goods_id).removeClass('show').addClass('hide').children().attr('rec_id', '');
+						$('.ecjia-attr-modal').find('#.ecjia-choose-attr-box.box').removeClass('show').addClass('hide').children().attr('rec_id', '');
 					} else {
 						$('.ecjia-attr-modal').find('.add-tocart').removeClass('show').addClass('hide');
 						// $('.ecjia-attr-modal').find('#goods_' + goods_id).addClass('show').removeClass('hide');
