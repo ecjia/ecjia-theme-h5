@@ -143,7 +143,7 @@ class ecjia_goods_specification
             ->pluck('value')
             ->collapse()
             ->whereIn('id', explode('|', $spec))
-            ->pluck('label');
+            ->pluck('label')->implode('/');
         dd($specification);
 
         $specification = collect($product_specification)->filter(function($item) use ($spec) {
