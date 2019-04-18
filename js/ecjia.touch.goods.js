@@ -612,7 +612,7 @@
 						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box .add.add_spec').attr('goods_id', goods_id).attr('rec_id', data.data_rec);
 						$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box .reduce.remove_spec').attr('goods_id', goods_id).attr('rec_id', data.data_rec);
 					}
-					// $('.ecjia-attr-modal').find('#goods_' + goods_id).children('label').html(val);
+					$('.ecjia-attr-modal').find('#goods_' + goods_id).children('label').html(val);
 					$('.ecjia-attr-modal').find('.ecjia-choose-attr-box.box').children('label').html(val);
 				}
 
