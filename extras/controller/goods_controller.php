@@ -234,7 +234,6 @@ class goods_controller
                     $goods_info['default_product_spec'] = $product_info;
                 }
 
-
                 /*商品所属店铺购物车列表*/
                 $ecjia_cart = new ecjia_cart($goods_info['seller_id']);
 
@@ -348,7 +347,6 @@ class goods_controller
             $product_info['product_goods_attr_html'] = !empty($product_goods_attr_html) ? rtrim($product_goods_attr_html, '/') : '';
 
             $goods_info['product_goods_attr_label'] = $ecjia_goods_specification->convertProductGoodsAttrLabel($goods_info['product_goods_attr']);
-
             ecjia_front::$controller->assign('product_info', $product_info);
 
             $spec_releated_goods = $related_goods_list = array();
@@ -356,17 +354,17 @@ class goods_controller
                 foreach ($goods_info['related_goods'] as $k => & $v) {
                     $v['id'] = $v['goods_id'] . '_' . $v['product_id'];
                     $v['store_id'] = $goods_info['seller_id'];
-
                     $v['num'] = '';
                     $v['rec_id'] = '';
                     $v['default_spec'] = '';
-
+                    
                     if (!empty($cart_goods['arr'])) {
                         $find_goods = $ecjia_cart->findGoodsWithProduct($v['goods_id'], $v['product_id'], $cart_goods['arr']);
                         if (!empty($find_goods)) {
 
                             $v['num'] += $find_goods['num'];
-
+                            $v['rec_id'] = $find_goods['rec_id'];
+                            
                             if (!empty($find_goods['goods_attr_id'])) {
                                 $v['default_spec'] = implode(',', $find_goods['goods_attr_id']);
                             }
@@ -418,7 +416,6 @@ class goods_controller
             }
 
 //            dd($goods_info);
-
             ecjia_front::$controller->assign('goods_info', $goods_info);
         }
 
