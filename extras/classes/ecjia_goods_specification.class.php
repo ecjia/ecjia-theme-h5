@@ -138,8 +138,6 @@ class ecjia_goods_specification
             $spec = str_replace(',', '|', $spec);
         }
 
-
-
         $specification_item = collect($product_specification)->filter(function($item) use ($spec) {
             if (!empty($item['product_goods_attr'])) {
                 if ($spec == $item['product_goods_attr']) {
@@ -159,6 +157,40 @@ class ecjia_goods_specification
 
         return $specification_item;
     }
+
+    /**
+     * 通过product_id查找货品规格
+     * @param $spec
+     */
+    public function findProductSpecificationByProductId($product_id, $product_specification = null)
+    {
+        if (is_null($product_specification)) {
+            $goods_specification = $this->getLocalStorage();
+            $product_specification = $goods_specification['product_specification'];
+        }
+
+        $specification_item = collect($product_specification)->filter(function($item) use ($product_id) {
+            if ($item['product_id'] == $product_id) {
+                return true;
+            }
+
+            return false;
+        })->first();
+
+        if ($specification_item) {
+            if ($specification_item['is_promote'] == 1) {
+                $specification_item['product_shop_price'] = min($specification_item['product_shop_price'], $specification_item['promote_price']);
+            }
+
+            $specification_item['product_goods_attr_label'] = $this->convertProductGoodsAttrLabel($specification_item['product_goods_attr']);
+            $specification_item['product_shop_price_label'] = ecjia_price_format($specification_item['product_shop_price']);
+
+            return $specification_item;
+        }
+
+        return null;
+    }
+
 
     /**
      * 获取默认的spec id

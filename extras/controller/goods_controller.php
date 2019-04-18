@@ -206,7 +206,6 @@ class goods_controller
            
             if ($store_info['shop_closed'] != 1) {
                 
-                $product_info = [];
                 if (!empty($goods_info['product_specification'])) {
 
                     $ecjia_goods_specification->saveLocalStorage([
@@ -214,18 +213,26 @@ class goods_controller
                         'product_specification' => $goods_info['product_specification'],
                     ]);
 
+                    $product_info = $ecjia_goods_specification->findProductSpecificationByProductId($product_id, $goods_info['product_specification']);
+
+                    if (!empty($specification)) {
+                        $dwt = 'goods_promotion_detail.dwt';
+                    }
+
 //                    RC_Cache::app_cache_set(sprintf('%X', crc32('goods_product_specification_' . $goods_id)), $goods_info['product_specification'], 'goods');
     
-                    foreach ($goods_info['product_specification'] as $k => $v) {
-                        if (!empty($product_id) && $v['product_id'] == $product_id) {
-                            $product_info = $v;
-                            $product_info['product_goods_attr_arr'] = explode('|', $v['product_goods_attr']);
-                            $dwt = 'goods_promotion_detail.dwt';
-                            break;
-                        }
-                    }
+//                    foreach ($goods_info['product_specification'] as $k => $v) {
+//                        if (!empty($product_id) && $v['product_id'] == $product_id) {
+//                            $product_info = $v;
+//                            $product_info['product_goods_attr_arr'] = explode('|', $v['product_goods_attr']);
+//                            $dwt = 'goods_promotion_detail.dwt';
+//                            break;
+//                        }
+//                    }
+
+                    $goods_info['last_spec'] = explode('|', $product_info['product_goods_attr']);
                 }
-                $goods_info['last_spec'] = $product_info['product_goods_attr_arr'];
+
 
                 /*商品所属店铺购物车列表*/
                 $ecjia_cart = new ecjia_cart($goods_info['seller_id']);
