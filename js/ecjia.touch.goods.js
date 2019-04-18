@@ -1848,8 +1848,11 @@
 			//初始值
 			var spec_price_label = $(modal).find('input[name="goods_price_label"]').val();
 			var goods_attr_label = $(modal).find('input[name="goods_attr_label"]').val();
-			$(modal).find('.goods-attr-name').html('(' + goods_attr_label + ')');
-			$(modal).find('.goods-attr-price').html(spec_price_label);
+
+			if (spec_price_label != null && goods_attr_label != null) {
+				$(modal).find('.goods-attr-name').html('(' + goods_attr_label + ')');
+				$(modal).find('.goods-attr-price').html(spec_price_label);
+			}
 
 			//切换属性
 			$('.goods-attr-list .goods-attr li').off('click').on('click', function () {
