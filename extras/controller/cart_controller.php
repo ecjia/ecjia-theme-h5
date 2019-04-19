@@ -337,7 +337,14 @@ class cart_controller
         $checked           = isset($_POST['checked']) ? $_POST['checked'] : '';
         $response          = isset($_POST['response']) ? true : false;
         $spec              = isset($_POST['spec']) ? $_POST['spec'] : '';
+
+        /**
+         * 如果是团购活动，转到新方法，专门处理团购
+         */
         $goods_activity_id = isset($_POST['act_id']) ? $_POST['act_id'] : '';
+        if (!empty($goods_activity_id)) {
+            return self::create_groupbuy_cart();
+        }
 
         list($goods_id, $product_id) = explode('_', trim($_POST['goods_id']));
         $goods_id   = intval($goods_id);
