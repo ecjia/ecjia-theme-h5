@@ -71,9 +71,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</p>
 			<div class="list-page-goods-price">
 				<div class="left">
-					<!--{if $val.shop_price}-->
-					<del>{$val.shop_price}</del>
-					<!--{/if}-->
+					<p>{$val.shop_price}</p>
+
 					<!--{if $val.market_price}-->
 					<del>{$val.market_price}</del>
 					<!--{/if}-->
