@@ -12,37 +12,37 @@ class ecjia_cart
      * 缓存key
      * @var string
      */
-    private $storage_key;
+    protected $storage_key;
 
     /**
      * 店铺ID
      * @var
      */
-    private $store_id;
+    protected $store_id;
 
     /**
      * 登录token
      * @var
      */
-    private $token;
+    protected $token;
 
     /**
      * 城市ID
      * @var
      */
-    private $city_id;
+    protected $city_id;
 
     /**
      * 经度
      * @var
      */
-    private $longitude;
+    protected $longitude;
 
     /**
      * 纬度
      * @var
      */
-    private $latitude;
+    protected $latitude;
 
     public function __construct($store_id, $token = null)
     {
@@ -98,18 +98,13 @@ class ecjia_cart
      */
     public function getServerCartData()
     {
-        $arr = array(
-            'token'     => $this->token,
-            'seller_id' => $this->store_id,
-            'location'  => array('longitude' => $this->longitude, 'latitude' => $this->latitude),
-            'city_id'   => $this->city_id,
-        );
+        $cart_list = array();
 
-        $cart_list = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_LIST)->data($arr)->run();
-        if (!is_ecjia_error($cart_list) && ecjia_touch_user::singleton()->isSignin()) {
-            $this->saveLocalStorage($cart_list);
-        } else {
-            $cart_list = array();
+        if (ecjia_touch_user::singleton()->isSignin()) {
+            $cart_list = $this->getCartList();
+            if (! is_ecjia_error($cart_list)) {
+                $this->saveLocalStorage($cart_list);
+            }
         }
 
         return $cart_list;
@@ -298,13 +293,13 @@ class ecjia_cart
             return $item['goods_id'] == $goods_id && $item['product_id'] == $product_id;
         });
 
-        if (! ecjia::config('show_product')) {
+        if (!ecjia::config('show_product')) {
             if (empty($product)) {
-                $product = collect($goods_cart_list)->filter(function ($item) use ($goods_id) {
+                $product        = collect($goods_cart_list)->filter(function ($item) use ($goods_id) {
                     return $item['goods_id'] == $goods_id;
                 });
-                $num = $product->pluck('num')->sum();
-                $product = $product->first();
+                $num            = $product->pluck('num')->sum();
+                $product        = $product->first();
                 $product['num'] = $num;
             }
         }
@@ -328,6 +323,39 @@ class ecjia_cart
             'goods_id'   => $goods_id,
             'product_id' => $product_id,
             'number'     => $number,
+        );
+
+        if ($spec != 'false' && !empty($spec)) {
+            $data['spec'] = $spec;
+        }
+
+        $result = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CREATE)->data($data)->run();
+
+
+        return $result;
+    }
+
+    /**
+     * 创建团购活动的购物车
+     * @param $act_id
+     * @param $goods_id
+     * @param int $product_id
+     * @param null $spec
+     * @param int $number
+     * @return array|ecjia_error
+     */
+    public function createCartWithGroupBuy($act_id, $goods_id, $product_id = 0, $spec = null, $number = 1)
+    {
+        $data = array(
+            'token'             => $this->token,
+            'location'          => array('longitude' => $this->longitude, 'latitude' => $this->latitude),
+            'city_id'           => $this->city_id,
+            'seller_id'         => $this->store_id,
+            'goods_id'          => $goods_id,
+            'product_id'        => $product_id,
+            'number'            => $number,
+            'rec_type'          => 'GROUPBUY_GOODS',
+            'goods_activity_id' => $act_id,
         );
 
         if ($spec != 'false' && !empty($spec)) {
