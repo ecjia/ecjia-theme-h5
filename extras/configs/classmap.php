@@ -79,9 +79,11 @@ return [
     'payment_controller'           => 'extras/controller/payment_controller.php',     //支付
 
     'ecjia_location'            => 'extras/classes/ecjia_location.class.php',
+    'ecjia_map'                 => 'extras/classes/ecjia_map.class.php',
     'ecjia_cart'                => 'extras/classes/ecjia_cart.class.php',
     'ecjia_cart_groupbuy'       => 'extras/classes/ecjia_cart_groupbuy.class.php',
     'ecjia_goods_specification' => 'extras/classes/ecjia_goods_specification.class.php',
+    'ecjia_open_handler'        => 'extras/classes/ecjia_open_handler.class.php',
     'ecjia_theme_controller'    => 'extras/classes/ecjia_theme_controller.class.php',
 
 ];
