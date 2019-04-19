@@ -101,7 +101,7 @@ var releated_goods = {$releated_goods};
 							{if $goods_info.default_product_spec.product_shop_price_label neq ''}
 								<span class="ecjia-promote_price-span">{$goods_info.default_product_spec.product_shop_price_label}</span>
 							{else}
-								<span class="ecjia-promote_price-span">{$goods_info.formated_promote_price}</span>
+								<span class="ecjia-promote_price-span">{$goods_info.shop_price}</span>
 							{/if}
 							<del>{t domain="h5"}原价：{/t}{$goods_info.unformatted_shop_price}</del></br>
 						</div>

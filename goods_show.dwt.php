@@ -121,7 +121,7 @@ var releated_goods = {$releated_goods};
 						<div class="cart-plus-right goods_spec_{$goods_info.id}" goods_id="{$goods_info.id}">
 							{if $goods_info.specification}
 							<span class="goods-add-cart choose_attr {if $goods_info.in_related_goods eq 1}spec_goods{/if}" goods_id="{$goods_info.id}">{t domain="h5"}选规格{/t}</span>
-							{if $goods_attr_num}<i class="attr-number">{$goods_attr_num}</i>{/if}
+							{if $goods_attr_num}<i class="attr-number" style="right: 0.2em;top: 0.2em;">{$goods_attr_num}</i>{/if}
 							{else}
 							<span class="goods-add-cart add-cart-a {if $rec_id}hide{/if}" data-toggle="{if !$goods_info.groupbuy_info}add-to-cart{else}add-goods{/if}"
 							 goods_id="{$goods_info.id}" act_id="{$goods_info.goods_activity_id}">{t domain="h5"}加入购物车{/t}</span>
@@ -139,7 +139,7 @@ var releated_goods = {$releated_goods};
 					{if $goods_info.default_product_spec.product_shop_price_label neq ''}
 					<span class="ecjia-price-span">{$goods_info.default_product_spec.product_shop_price_label}</span>
 					{else}
-					<span class="ecjia-price-span">{if $goods_info.promote_price gt 0}{$goods_info.formated_promote_price}{else}{$goods_info.shop_price}{/if}</span>
+					<span class="ecjia-price-span">{$goods_info.shop_price}</span>
 					{/if}	
 						
 					{if $goods_info.market_price}
