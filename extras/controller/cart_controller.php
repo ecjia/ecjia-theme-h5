@@ -147,6 +147,56 @@ class cart_controller
     }
 
     /**
+     * 创建团购商品进购物车
+     * POST:    store_id
+     *          spec
+     *          val
+     *          goods_id
+     *          act_id
+     * @return mixed|\Royalcms\Component\Foundation\Royalcms|\Royalcms\Component\Http\Response|string
+     */
+    public static function create_groupbuy_cart()
+    {
+        $url         = RC_Uri::site_url() . substr($_SERVER['HTTP_REFERER'], strripos($_SERVER['HTTP_REFERER'], '/'));
+        $referer_url = user_function::build_login_url($url);
+        if (!ecjia_touch_user::singleton()->isSignin()) {
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
+        }
+
+        $store_id   = intval($_POST['store_id']);
+        $spec       = isset($_POST['spec']) ? $_POST['spec'] : '';
+        $new_number = intval($_POST['val']);
+        $goods_activity_id = intval($_POST['act_id']);
+
+        list($goods_id, $product_id) = explode('_', trim($_POST['goods_id']));
+        $goods_id   = intval($goods_id);
+        $product_id = intval($product_id);
+
+        $ecjia_cart = new ecjia_cart_groupbuy($store_id);
+        $ecjia_cart->deleteLocalStorage();
+
+        $result = $ecjia_cart->createCartWithGroupBuy($goods_activity_id, $goods_id, $product_id, $spec, $new_number);
+
+        if (is_ecjia_error($result)) {
+            // Invalid session
+            if ($result->get_error_code() == 100) {
+                return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('referer_url' => $referer_url));
+            }
+            return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+        }
+
+        $ecjia_cart->saveLocalStorage($result);
+
+        //处理购物车返回数据
+        list($cart_goods_list, $data_rec, $current, $cart_count) = $ecjia_cart->formattedCartGoodsList($result);
+
+        ecjia_front::$controller->assign('list', $cart_goods_list);
+        $sayList = ecjia_front::$controller->fetch('merchant.dwt');
+
+        return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('say_list' => $sayList, 'list' => $cart_goods_list, 'count' => $cart_count, 'data_rec' => $data_rec, 'current' => $current));
+    }
+
+    /**
      * 从购物车中删除商品
      * POST:    store_id
      *          rec_id
@@ -341,19 +391,32 @@ class cart_controller
 //                        $data          = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_UPDATE)->data($arr)->run();
                         $data = $ecjia_cart->updateCart($rec_id, $new_number);
                     } elseif (!empty($goods_id)) {
-                        //添加商品到购物车
+
 //                        $arr['goods_id'] = $goods_id;
 //                        if ($spec != 'false' && !empty($spec)) {
 //                            $arr['spec'] = $spec;
 //                        }
-                        if (!empty($goods_activity_id)) {
-                            $arr['goods_activity_id'] = $goods_activity_id;
-                        }
+
+//                            $arr['goods_activity_id'] = $goods_activity_id;
+
+//                        //添加团购商品到购物车
+//                        if (!empty($goods_activity_id)) {
+//                            $ecjia_cart_groupbuy = new ecjia_cart_groupbuy($store_id);
+//                            $data = $ecjia_cart_groupbuy->createCartWithGroupBuy($goods_activity_id, $goods_id, $product_id, $spec, $new_number);
+//                        }
+//
+//                        else {
+//
+//                        }
+
+                        //添加普通商品到购物车
+                        $data = $ecjia_cart->createCart($goods_id, $product_id, $spec, $new_number);
+
 //                        $arr['product_id'] = $product_id;
 
 //                        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CREATE)->data($arr)->run();
 
-                        $data = $ecjia_cart->createCart($goods_id, $product_id, $spec, $new_number);
+
                     }
                 } else {
                     if (!empty($rec_id)) {
