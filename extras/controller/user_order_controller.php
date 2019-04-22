@@ -279,10 +279,11 @@ class user_order_controller
         if (isset($data['goods_list'])) {
             foreach ($data['goods_list'] as $goods) {
                 $params_cart = array(
-                    'token'    => ecjia_touch_user::singleton()->getToken(),
-                    'goods_id' => $goods['goods_id'],
-                    'number'   => $goods['goods_number'],
-                    'location' => array(
+                    'token'      => ecjia_touch_user::singleton()->getToken(),
+                    'goods_id'   => $goods['goods_id'],
+                	'product_id' => $goods['product_id'],
+                    'number'     => $goods['goods_number'],
+                    'location'   => array(
                         'longitude' => $_COOKIE['longitude'],
                         'latitude'  => $_COOKIE['latitude'],
                     ),
