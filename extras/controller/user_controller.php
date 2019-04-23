@@ -212,7 +212,7 @@ class user_controller
 
             ecjia_front::$controller->assign('data', $data);
             ecjia_front::$controller->assign_lang();
-            $sayList = ecjia_front::$controller->fetch('follow_list.dwt');
+            $sayList = ecjia_front::$controller->fetch('follow_list_ajax.dwt');
 
             if (isset($paginated['more']) && $paginated['more'] == 0) {
                 $data['is_last'] = 1;
