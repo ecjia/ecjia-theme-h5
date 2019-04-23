@@ -38,11 +38,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<p class="merchants-name"><i class="iconfont icon-shop"></i>{$goods.seller_name}{if $goods.manage_mode eq 'self'}<span class="manage_mode">{t domain="h5"}自营{/t}</span>{/if}</p>
 			<span class="goods-name">{$goods.name}</span>
 			<span class="list-page-goods-price">
-				<!--{if $goods.promote_price}-->
-				<span>{$goods.promote_price}</span>
-				<!--{else}-->
 				<span>{$goods.shop_price}</span>
-				<!--{/if}-->
 			</span>
 		</span>
 	</a>
