@@ -295,7 +295,6 @@ class article_controller
             list($data, $paginated) = $response;
             ecjia_front::$controller->assign('data', $data);
             $say_list = ecjia_front::$controller->fetch('library/ajax/article_list_ajax.lbi');
-
             if (isset($paginated['more']) && $paginated['more'] == 1) {
                 $is_last = 0;
             }
