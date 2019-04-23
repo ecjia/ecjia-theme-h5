@@ -294,7 +294,7 @@ class article_controller
         if (!is_ecjia_error($response)) {
             list($data, $paginated) = $response;
             ecjia_front::$controller->assign('data', $data);
-            $say_list = ecjia_front::$controller->fetch('library/article_list.lbi');
+            $say_list = ecjia_front::$controller->fetch('article_list_ajax.dwt');
 
             if (isset($paginated['more']) && $paginated['more'] == 1) {
                 $is_last = 0;
