@@ -370,7 +370,7 @@ class user_order_controller
                 ecjia_front::$controller->assign('order_list', $orders);
                 ecjia_front::$controller->assign_lang();
                 if (!empty($order_id)) {
-                    $say_list = ecjia_front::$controller->fetch('order_return_list.dwt');
+                    $say_list = ecjia_front::$controller->fetch('order_return_list_ajax.dwt');
                 } else {
                     $say_list = ecjia_front::$controller->fetch('user_order_return_list_ajax.dwt');
                 }
