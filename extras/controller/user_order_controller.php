@@ -1043,7 +1043,7 @@ class user_order_controller
             if (!empty($data)) {
                 ecjia_front::$controller->assign('list', $data);
             }
-            $say_list = ecjia_front::$controller->fetch('user_order_affiliate.dwt');
+            $say_list = ecjia_front::$controller->fetch('user_order_affiliate_ajax.dwt');
 
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
         }
