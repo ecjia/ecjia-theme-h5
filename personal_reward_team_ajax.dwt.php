@@ -6,22 +6,30 @@ Libraries: model_bar
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
-
 {nocache}
 <!-- {extends file="ecjia-touch-ajax.dwt.php"} -->
-<!-- {block name="main-content"} -->
-<div class="ecjia-reward-team">
-	<div class="reward-team-top">
-		<p class="total-num">{t domain="h5"}团队总人数（人）{/t}</p>
-		<p class="number">{if $total_count}{$total_count}{else}0{/if}</p>
-	</div>
 
-	<div class="reward-team-bottom">
-		<div class="bottom-hd">{t domain="h5"}团队列表{/t}</div>
-		<ul class="team-item" id="team-list" data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='user/personal/ajax_team_list'}">
-		</ul>
+<!-- {block name="ajaxinfo"} -->
+<!-- {if $list} -->
+<!-- {foreach from=$list item=val} 循环商品 -->
+<li class="team-item-li">
+	<div class="team-img">
+		<img class="ecjiaf-fl" src="{if $val.avatar_img}{$val.avatar_img}{else}{$theme_url}images/default_user.png{/if}" />
+	</div>
+	<div class="team-right">
+		<div class="name">{$val.user_name}</div>
+		<p class="block">{t domain="h5"}加入时间：{/t}{$val.formatted_reg_time}</p>
+	</div>
+</li>
+<!-- {/foreach} -->
+<!-- {else} -->
+<div class="ecjia-mod search-no-pro">
+	<div class="ecjia-nolist">
+		<p><img src="{$theme_url}images/wallet/null280.png"></p>
+		{t domain="h5"}暂无团队成员{/t}
 	</div>
 </div>
+<!-- {/if} -->
 <!-- {/block} -->
 
 {/nocache}
