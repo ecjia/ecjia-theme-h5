@@ -588,7 +588,7 @@ class quickpay_controller
             if (!empty($orders)) {
                 ecjia_front::$controller->assign('data', $orders);
                 ecjia_front::$controller->assign_lang();
-                $say_list = ecjia_front::$controller->fetch('quickpay_list.dwt');
+                $say_list = ecjia_front::$controller->fetch('quickpay_list_ajax.dwt');
             }
             return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
         }
