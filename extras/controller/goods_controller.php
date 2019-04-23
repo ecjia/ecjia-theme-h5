@@ -565,11 +565,11 @@ class goods_controller
             $paramater['promotion_type'] = $promotion_type;
 
         } elseif ($type == 'new') {
-            $dwt = 'goods_new.dwt';
+            $dwt = 'goods_new_ajax.dwt';
         } elseif ($type == 'best') {
-            $dwt = 'goods_best.dwt';
+            $dwt = 'goods_best_ajax.dwt';
         } elseif ($type == 'groupbuy') {
-            $dwt = 'goods_groupbuy.dwt';
+            $dwt = 'goods_groupbuy_ajax.dwt';
             $api = ecjia_touch_api::GROUPBUY_GOODS_LIST;
         }
 
