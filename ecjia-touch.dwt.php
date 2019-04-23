@@ -2,9 +2,6 @@
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 ?>
 <!-- {if not is_pjax()} -->
-<!-- {if is_ajax()} -->
-<!-- {block name="ajaxinfo"} --><!-- {/block} -->
-<!-- {else} -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 	<head>
@@ -52,7 +49,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</script>
 	</body>
 </html>
-<!-- {/if} -->
 <!-- {else} -->
 <title>{block name="title"}{$page_title}{/block}</title>
 <!-- {block name="meta"} --><!-- {/block} -->
