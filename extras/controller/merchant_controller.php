@@ -524,7 +524,7 @@ class merchant_controller
         ecjia_front::$controller->assign('goods_list', $goods_list);
         ecjia_front::$controller->assign('shop_closed', $store_info['shop_closed']);
 
-        $say_list = ecjia_front::$controller->fetch('library/merchant_goods.lbi');
+        $say_list = ecjia_front::$controller->fetch('library/ajax/merchant_goods_ajax.lbi');
         if (isset($page['more']) && $page['more'] == 0) {
             $data['is_last'] = 1;
         }

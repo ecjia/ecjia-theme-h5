@@ -788,7 +788,7 @@ class goods_controller
                     if ($type == 'ajax_get') {
                         $arr_list = merchant_function::format_distance($arr_list);
                         ecjia_front::$controller->assign('data', $arr_list);
-                        $say_list = ecjia_front::$controller->fetch('library/store_list.lbi', $cache_id);
+                        $say_list = ecjia_front::$controller->fetch('library/ajax/store_list_ajax.lbi', $cache_id);
                     } else {
                         user_function::insert_search($keywords, $store_id); //记录搜索
                     }
@@ -806,7 +806,7 @@ class goods_controller
                 if ($type == 'ajax_get') {
                     $arr_list = merchant_function::format_distance($arr_list);
                     ecjia_front::$controller->assign('data', $arr_list);
-                    $say_list = ecjia_front::$controller->fetch('library/store_list.lbi', $cache_id);
+                    $say_list = ecjia_front::$controller->fetch('library/ajax/store_list_ajax.lbi', $cache_id);
                 }
             }
         }

@@ -219,7 +219,7 @@ class touch_controller
 
             $sayList = '';
             if (!empty($data)) {
-                $sayList = ecjia_front::$controller->fetch('library/suggest_store.lbi', $cache_id);
+                $sayList = ecjia_front::$controller->fetch('library/ajax/suggest_store_ajax.lbi', $cache_id);
             }
             if (isset($paginated['more']) && $paginated['more'] == 0) {
                 $data['is_last'] = 1;
