@@ -875,7 +875,7 @@ class goods_controller
             ecjia_front::$controller->assign('goods_list', $goods_list);
             ecjia_front::$controller->assign_lang();
 
-            $sayList = ecjia_front::$controller->fetch('store_goods_list.dwt');
+            $sayList = ecjia_front::$controller->fetch('store_goods_list_ajax.dwt');
 
             if (isset($page['more']) && $page['more'] == 0) {
                 $goods_list['is_last'] = 1;
