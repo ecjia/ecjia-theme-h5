@@ -579,7 +579,7 @@ class merchant_controller
                 $arr_list          = merchant_function::format_distance($data);
 
                 ecjia_front::$controller->assign('data', $arr_list);
-                $say_list = ecjia_front::$controller->fetch('seller_list.dwt');
+                $say_list = ecjia_front::$controller->fetch('seller_list_ajax.dwt');
 
                 if (isset($page['more']) && $page['more'] == 0) {
                     $data['is_last'] = 1;
