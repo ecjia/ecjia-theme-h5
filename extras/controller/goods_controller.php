@@ -773,7 +773,7 @@ class goods_controller
                 }
                 if ($type == 'ajax_get') {
                     ecjia_front::$controller->assign('goods_list', $arr_list);
-                    $say_list = ecjia_front::$controller->fetch('store_list.dwt');
+                    $say_list = ecjia_front::$controller->fetch('store_list_ajax.dwt');
                 } else {
                     user_function::insert_search($keywords, $store_id); //记录搜索
                 }
