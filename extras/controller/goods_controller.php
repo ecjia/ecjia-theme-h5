@@ -559,7 +559,7 @@ class goods_controller
 
         $api = ecjia_touch_api::GOODS_SUGGESTLIST;
         if ($type == 'promotion') {
-            $dwt = 'goods_promotion.dwt';
+            $dwt = 'goods_promotion_ajax.dwt';
             //促销类型 today今日促销，tomorrow明日促销，aftertheday后日促销
             $promotion_type = !empty($_GET['promotion_type']) ? (trim($_GET['promotion_type']) == 'all' ? '' : trim($_GET['promotion_type'])) : 'today';
             $paramater['promotion_type'] = $promotion_type;
