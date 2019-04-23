@@ -87,7 +87,7 @@ var releated_goods = {$releated_goods};
 								<span class="goods-image"><img src="{$goods.img.small}"></span>
 								<p>
 									{$goods.name}
-									<label class="price">{if $goods.promote_price}{$goods.promote_price}{else}{$goods.shop_price}{/if}</label>
+									<label class="price">{$goods.shop_price}</label>
 								</p>
 							</li>
 							</a>
@@ -113,7 +113,7 @@ var releated_goods = {$releated_goods};
 				<img class="pic" src="{$val.img.small}">
 				<dl>
 					<dt>{$val.name}</dt>
-					<dd><label>{if $val.unformatted_promote_price neq 0 && $val.unformatted_promote_price lt $val.unformatted_shop_price}{$val.promote_price}{else}{$val.shop_price}{/if}</label></dd>
+					<dd><label>{$val.shop_price}</label></dd>
 				</dl>
 			</a>
 			{if $store_info.shop_closed neq 1}
@@ -261,7 +261,7 @@ var releated_goods = {$releated_goods};
 			<dl>
 				<dt>{$val.name}</dt>
 				<dd></dd>
-				<dd><label>{if $val.unformatted_promote_price neq 0 && $val.unformatted_promote_price lt $val.unformatted_shop_price}{$val.promote_price}{else}{$val.shop_price}{/if}</label></dd>
+				<dd><label>{$val.shop_price}</label></dd>
 			</dl>
 		</a>
 		{if $store_info.shop_closed neq 1}
