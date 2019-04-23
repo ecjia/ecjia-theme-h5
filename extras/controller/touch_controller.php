@@ -185,7 +185,7 @@ class touch_controller
 
             ecjia_front::$controller->assign('goods_list', $data);
             ecjia_front::$controller->assign_lang();
-            $sayList = ecjia_front::$controller->fetch('index.dwt');
+            $sayList = ecjia_front::$controller->fetch('index_ajax.dwt');
 
             if (isset($paginated['more']) && $paginated['more'] == 0) {
                 $data['is_last'] = 1;
