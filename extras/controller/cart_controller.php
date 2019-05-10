@@ -500,10 +500,6 @@ class cart_controller
 
     public static function check_spec()
     {
-        if (!ecjia_touch_user::singleton()->isSignin()) {
-            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS);
-        }
-
         /**
          * @var \Royalcms\Component\Http\Request $request
          */
