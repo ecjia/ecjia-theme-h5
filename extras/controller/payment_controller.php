@@ -103,7 +103,7 @@ class payment_controller
                 //支付余额
                 $total_money = $detail['money_paid'] + $detail['surplus'] + $detail['integral_money'] + $detail['bonus'] + $detail['order_deposit'];
                 $has_paid = $detail['goods_amount'] + $detail['shipping_fee'] + $detail['insure_fee'] + $detail['pay_fee'] + $detail['pack_fee'] + $detail['card_fee'] + $detail['tax'];
-                $detail['formated_pay_money'] = price_format($total_money - $has_paid);
+                $detail['formated_pay_money'] = ecjia_price_format(($total_money - $has_paid), false);
             }
         }
 
@@ -182,7 +182,7 @@ class payment_controller
         }
 
         if ($order['pay_code'] != 'pay_balance') {
-            $order['formated_order_amount'] = price_format($order['order_amount']);
+            $order['formated_order_amount'] = ecjia_price_format($order['order_amount'], false);
         }
         $order['order_id'] = $order_id;
 
