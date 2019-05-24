@@ -519,7 +519,7 @@ class cart_controller
 
         if (!empty($spec)) {
             asort($spec);
-            $spec = implode('|', $spec);
+            $spec = implode('|', $spec);//123|124
         }
 
         list($goods_id, $product_id) = explode('_', $goods_id);
