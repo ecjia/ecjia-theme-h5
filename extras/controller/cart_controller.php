@@ -522,21 +522,13 @@ class cart_controller
             $spec = implode('|', $spec);//123|124
         }
 
-        if($goods_id == 1712) {
-            _dump($request);
-            _dump($spec);
-        }
-
         list($goods_id, $product_id) = explode('_', $goods_id);
         $goods_id   = intval($goods_id);
 
         $ecjia_goods_specification = new ecjia_goods_specification($goods_id);
 
         $product_spec = $ecjia_goods_specification->findProductSpecificationBySpec($spec);
-        if($goods_id == 1712) {
-            _dump($product_spec);
-        }
-        
+
         $product_id = $product_spec['product_id'];
         $id = $goods_id . '_' . $product_id;
 
@@ -546,9 +538,6 @@ class cart_controller
             'goods_id'     => $goods_id,
             'id'           => $id,
         );
-        if($goods_id == 1712) {
-            _dump($data,1);
-        }
 
         $ecjia_cart = new ecjia_cart($store_id);
         $cart_list = $ecjia_cart->getLocalStorage();

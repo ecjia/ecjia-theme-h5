@@ -127,7 +127,6 @@ class ecjia_goods_specification
     {
         $goods_specification = $this->getLocalStorage();
         $product_specification = $goods_specification['product_specification'];
-        _dump($product_specification);
 
         //判断是否是数组，转换为竖线分隔的字符串
         if (is_array($spec)) {
@@ -139,7 +138,6 @@ class ecjia_goods_specification
         if (strpos($spec, ',') !== false) {
             $spec = str_replace(',', '|', $spec);
         }
-        _dump($spec);
 
         $specification_item = collect($product_specification)->filter(function($item) use ($spec) {
             if (!empty($item['product_goods_attr'])) {
