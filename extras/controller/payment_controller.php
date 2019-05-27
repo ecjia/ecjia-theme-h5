@@ -156,7 +156,7 @@ class payment_controller
 //        }
 
         //免费商品直接余额支付
-        if ($detail['order_amount'] !== 0) {
+        //if ($detail['order_amount'] !== 0) {
             $need_other_payment = 1;
             /* 调起微信支付*/
             if ($detail['pay_code'] == 'pay_wxpay') {
@@ -176,10 +176,16 @@ class payment_controller
                 $payment_list = user_function::get_payment_list($detail['pay_code'], $detail['manage_mode']);
                 ecjia_front::$controller->assign('payment_list', $payment_list);
             }
-        } else {
-            $order['pay_status'] = 'success';
-            unset($order['pay_online']);
-        }
+        //} else {
+        //   $order['pay_status'] = 'success';
+        //   unset($order['pay_online']);
+        //}
+	
+       if ($detail['order_amount'] <= 0) {
+           $detail['pay_code'] = 'pay_balance';
+           $order['pay_code'] = 'pay_balance';
+           ecjia_front::$controller->assign('payment_list', []);
+       }
 
         if ($order['pay_code'] != 'pay_balance') {
             $order['formated_order_amount'] = ecjia_price_format($order['order_amount'], false);
