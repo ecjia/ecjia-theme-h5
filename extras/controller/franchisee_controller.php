@@ -74,7 +74,7 @@ class franchisee_controller
         ecjia_front::$controller->assign_title(__('店铺入驻', 'h5'));
         ecjia_front::$controller->assign_lang();
 
-        ecjia_front::$controller->display('franchisee_first.dwt');
+        return ecjia_front::$controller->display('franchisee_first.dwt');
     }
 
     public static function first_check()
@@ -121,7 +121,7 @@ class franchisee_controller
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign_title(__('进度查询', 'h5'));
 
-        ecjia_front::$controller->display('franchisee_enter_captcha.dwt');
+        return ecjia_front::$controller->display('franchisee_enter_captcha.dwt');
     }
 
     public static function second_check()
@@ -176,7 +176,7 @@ class franchisee_controller
         ecjia_front::$controller->assign('resend_url', RC_Uri::url('franchisee/index/resend_sms'));
         ecjia_front::$controller->assign('url', RC_Uri::url('franchisee/index/three_check'));
 
-        ecjia_front::$controller->display('franchisee_enter_code.dwt');
+        return ecjia_front::$controller->display('franchisee_enter_code.dwt');
     }
 
     //检查短信验证码
@@ -393,7 +393,7 @@ class franchisee_controller
 
         ecjia_front::$controller->assign_title(__('店铺入驻', 'h5'));
         ecjia_front::$controller->assign_lang();
-        ecjia_front::$controller->display('franchisee_second.dwt');
+        return ecjia_front::$controller->display('franchisee_second.dwt');
     }
 
     public static function get_region()
@@ -527,7 +527,7 @@ class franchisee_controller
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign_title(__('进度查询', 'h5'));
 
-        ecjia_front::$controller->display('franchisee_search.dwt');
+        return ecjia_front::$controller->display('franchisee_search.dwt');
     }
 
     //检查手机号
@@ -562,7 +562,7 @@ class franchisee_controller
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign_title(__('进度查询', 'h5'));
 
-        ecjia_front::$controller->display('franchisee_enter_captcha.dwt');
+        return ecjia_front::$controller->display('franchisee_enter_captcha.dwt');
     }
 
     //检查图形验证码
@@ -620,7 +620,7 @@ class franchisee_controller
         ecjia_front::$controller->assign('resend_url', RC_Uri::url('franchisee/index/resend_sms'));
         ecjia_front::$controller->assign('url', RC_Uri::url('franchisee/index/process_validate_code'));
 
-        ecjia_front::$controller->display('franchisee_process_enter_code.dwt');
+        return ecjia_front::$controller->display('franchisee_process_enter_code.dwt');
     }
 
     //检查短信验证码
@@ -713,7 +713,7 @@ class franchisee_controller
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign_title(__('申请进度', 'h5'));
 
-        ecjia_front::$controller->display('franchisee_process.dwt');
+        return ecjia_front::$controller->display('franchisee_process.dwt');
     }
 
     public static function location()
@@ -736,7 +736,7 @@ class franchisee_controller
         ecjia_front::$controller->assign_lang();
         ecjia_front::$controller->assign_title(__('店铺精确位置', 'h5'));
 
-        ecjia_front::$controller->display('franchisee_get_location.dwt');
+        return ecjia_front::$controller->display('franchisee_get_location.dwt');
     }
 
     //刷新验证码

@@ -61,7 +61,7 @@ class user_get_password_controller
             ecjia_front::$controller->assign('title', __('找回密码', 'h5'));
             ecjia_front::$controller->assign_title(__('找回密码', 'h5'));
         }
-        ecjia_front::$controller->display('user_get_password.dwt', $cache_id);
+        return ecjia_front::$controller->display('user_get_password.dwt', $cache_id);
     }
 
     //手机号码检查
@@ -102,7 +102,7 @@ class user_get_password_controller
         ecjia_front::$controller->assign('url', RC_Uri::url('user/get_password/captcha_check'));
         ecjia_front::$controller->assign('refresh_url', RC_Uri::url('user/privilege/captcha_refresh'));
 
-        ecjia_front::$controller->display('user_captcha_validate.dwt');
+        return ecjia_front::$controller->display('user_captcha_validate.dwt');
     }
 
     //检查图形验证码
@@ -162,7 +162,7 @@ class user_get_password_controller
         ecjia_front::$controller->assign('resend_url', RC_Uri::url('user/get_password/captcha_check'));
         ecjia_front::$controller->assign('url', RC_Uri::url('user/get_password/validate_forget_password'));
 
-        ecjia_front::$controller->display('user_enter_code.dwt');
+        return ecjia_front::$controller->display('user_enter_code.dwt');
     }
 
     //验证短信验证码
@@ -224,7 +224,7 @@ class user_get_password_controller
             ecjia_front::$controller->assign('title', __('设置新密码', 'h5'));
             ecjia_front::$controller->assign_title(__('设置新密码', 'h5'));
         }
-        ecjia_front::$controller->display('user_reset_password.dwt', $cache_id);
+        return ecjia_front::$controller->display('user_reset_password.dwt', $cache_id);
     }
 }
 
