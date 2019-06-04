@@ -1,7 +1,7 @@
 <?php
 /*
 Name: 用户中心模板
-Description: 这是招募代理商页面
+Description: 这是推广店铺入驻
 Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
@@ -14,14 +14,15 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 var config = '{$config}';
 {/if}
 
-ecjia.touch.store_agent.init();
+ecjia.touch.affiliate.init();
 </script>
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
 
 <div class="ecjia-store-agent">
-	<div class="bg-img-store-agent"></div>
+
+	<div class="bg-img-store-affiliate"></div>
 	
 	<div class="ecjia-bg-qr-code">
 		<div class="qrcode_image">

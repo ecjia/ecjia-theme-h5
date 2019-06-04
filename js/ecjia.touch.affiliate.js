@@ -3,9 +3,9 @@
  */
 ;
 (function (ecjia, $) {
-    ecjia.touch.store_agent = {
+    ecjia.touch.affiliate = {
         init: function () {
-            ecjia.touch.store_agent.would_store_agent();
+            ecjia.touch.affiliate.would_store_agent();
         },
         
         would_store_agent: function () {
