@@ -132,6 +132,7 @@ return [
     'affiliate/index/check'                      => 'affiliate_controller@check',
     'affiliate/index/refresh'                    => 'affiliate_controller@refresh',
     'affiliate/index/invite'                     => 'affiliate_controller@invite',
+    'affiliate/index/store_agent'                => 'affiliate_controller@store_agent',
 
     //商家入驻申请
     'franchisee/index/first'                     => 'franchisee_controller@first',           //入驻申请第一步（真实姓名、电子邮箱、手机号码）
