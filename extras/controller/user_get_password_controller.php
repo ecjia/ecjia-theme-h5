@@ -87,7 +87,7 @@ class user_get_password_controller
         $mobile_phone = $_SESSION['user_temp']['mobile'];
 
         if (empty($mobile_phone)) {
-            ecjia_front::$controller->redirect(RC_Uri::url('user/get_password/init'));
+            return ecjia_front::$controller->redirect(RC_Uri::url('user/get_password/init'));
         }
 
         $token = ecjia_touch_user::singleton()->getShopToken();
@@ -147,7 +147,7 @@ class user_get_password_controller
     {
         $mobile = $_SESSION['user_temp']['mobile'];
         if (empty($mobile)) {
-            ecjia_front::$controller->redirect(RC_Uri::url('user/get_password/init'));
+            return ecjia_front::$controller->redirect(RC_Uri::url('user/get_password/init'));
         }
 
         $code_captcha = $_SESSION['user_temp']['captcha_code'];
@@ -193,7 +193,7 @@ class user_get_password_controller
         $passwords = !empty($_POST['passwords']) ? trim($_POST['passwords']) : '';
         $mobile    = !empty($_SESSION['user_temp']['mobile']) ? trim($_SESSION['user_temp']['mobile']) : '';
         if ($_SESSION['user_temp']['code_status'] != 'succeed') {
-            ecjia_front::$controller->redirect(RC_Uri::url('user/get_password/init'));
+            return ecjia_front::$controller->redirect(RC_Uri::url('user/get_password/init'));
         }
 
         if (isset($_POST['passwordf'])) {

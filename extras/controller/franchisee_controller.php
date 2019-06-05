@@ -164,7 +164,7 @@ class franchisee_controller
     {
         $mobile = $_SESSION['franchisee_add']['mobile'];
         if (empty($mobile)) {
-            ecjia_front::$controller->redirect(RC_Uri::url('franchisee/index/first'));
+            return ecjia_front::$controller->redirect(RC_Uri::url('franchisee/index/first'));
         }
 
         ecjia_front::$controller->assign('title', __('输入验证码', 'h5'));
@@ -608,7 +608,7 @@ class franchisee_controller
     {
         $mobile = $_SESSION['franchisee_add']['mobile'];
         if (empty($mobile)) {
-            ecjia_front::$controller->redirect(RC_Uri::url('franchisee/index/search'));
+            return ecjia_front::$controller->redirect(RC_Uri::url('franchisee/index/search'));
         }
 
         ecjia_front::$controller->assign('title', __('输入验证码', 'h5'));

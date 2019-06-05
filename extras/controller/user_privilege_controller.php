@@ -69,7 +69,7 @@ class user_privilege_controller
             if (!ecjia_front::$controller->is_cached('user_login.dwt', $cache_id)) {
                 $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
                 if (!is_ecjia_error($user)) {
-                    ecjia_front::$controller->redirect(RC_Uri::url('touch/my/init'));
+                    return ecjia_front::$controller->redirect(RC_Uri::url('touch/my/init'));
                 } else {
                     ecjia_touch_user::singleton()->signout();
                 }
@@ -126,7 +126,7 @@ class user_privilege_controller
             if (!ecjia_front::$controller->is_cached('user_wechat_login.dwt', $cache_id)) {
                 $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
                 if (!is_ecjia_error($user)) {
-                    ecjia_front::$controller->redirect(RC_Uri::url('touch/my/init'));
+                    return ecjia_front::$controller->redirect(RC_Uri::url('touch/my/init'));
                 } else {
                     ecjia_touch_user::singleton()->signout();
                 }
@@ -171,7 +171,7 @@ class user_privilege_controller
             if (!ecjia_front::$controller->is_cached('user_login.dwt', $cache_id)) {
                 $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
                 if (!is_ecjia_error($user)) {
-                    ecjia_front::$controller->redirect(RC_Uri::url('touch/my/init'));
+                    return ecjia_front::$controller->redirect(RC_Uri::url('touch/my/init'));
                 } else {
                     ecjia_touch_user::singleton()->signout();
                 }
@@ -284,7 +284,7 @@ class user_privilege_controller
         $mobile_phone = $_SESSION['user_temp']['mobile'];
 
         if (empty($mobile_phone)) {
-            ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
+            return ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
         }
 
         $token = ecjia_touch_user::singleton()->getShopToken();
@@ -376,7 +376,7 @@ class user_privilege_controller
     {
         $mobile = $_SESSION['user_temp']['mobile'];
         if (empty($mobile)) {
-            ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
+            return ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
         }
 
         $code_captcha = $_SESSION['user_temp']['captcha_code'];
@@ -523,7 +523,7 @@ class user_privilege_controller
         $mobile = !empty($_SESSION['user_temp']['mobile']) ? $_SESSION['user_temp']['mobile'] : '';
 
         if ($_SESSION['user_temp']['register_status'] != 'succeed' || empty($mobile)) {
-            ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
+            return ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
         }
         if (isset($_POST['username'])) {
             $username          = !empty($_POST['username']) ? trim($_POST['username']) : '';
