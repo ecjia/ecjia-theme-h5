@@ -150,6 +150,80 @@ class affiliate_controller
         }
         return ecjia_front::$controller->showmessage(__('领取成功', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => RC_Uri::url('touch/index/init')));
     }
+    
+    /**
+     * 招募代理
+     */
+    public static function store_agent()
+    {
+    	$token     = ecjia_touch_user::singleton()->getToken();
+    	$user_info = ecjia_touch_user::singleton()->getUserinfo();
+    	$cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name'];
+    	$cache_id = sprintf('%X', crc32($cache_id));
+    
+    	if (!ecjia_front::$controller->is_cached('store_agent.dwt', $cache_id)) {
+    		$user_id = $user_info['id'];
+    		
+    		
+    		$name                                 = trim($_GET['name']);
+    		$invite_user_detail                   = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_USER)->data(array('token' => $token))->run();
+    		$invite_user_detail                   = is_ecjia_error($invite_user_detail) ? array() : $invite_user_detail;
+    		$invite_user_detail['invite_explain'] = explode("\n", $invite_user_detail['invite_explain']);
+    
+    		$invite_user_detail['invite_url'] = RC_Uri::url('affiliate/index/init', array('invite_code' => $invite_user_detail['invite_code']));
+    		ecjia_front::$controller->assign_title(__('招募下级代理', 'h5'));
+    		ecjia_front::$controller->assign('invite_user', $invite_user_detail);
+    		ecjia_front::$controller->assign('url', RC_Uri::url('user/index/wxconfig'));
+    
+    		$image = ecjia::config('mobile_app_icon') != '' ? RC_Upload::upload_url(ecjia::config('mobile_app_icon')) : '';
+    		ecjia_front::$controller->assign('image', $image);
+    
+    		if (user_function::is_weixin()) {
+    			$spread_url = RC_Uri::url('user/index/spread', array('name' => $name));
+ 
+    			$config     = user_function::get_wechat_config($spread_url);
+    			ecjia_front::$controller->assign('config', $config);
+    		}
+    	}
+    	ecjia_front::$controller->display('store_agent.dwt', $cache_id);
+    }
+    
+    /**
+     * 店铺推广
+     */
+    public static function store_affiliate()
+    {
+    	$token     = ecjia_touch_user::singleton()->getToken();
+    	$user_info = ecjia_touch_user::singleton()->getUserinfo();
+    	$cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name'];
+    	$cache_id = sprintf('%X', crc32($cache_id));
+    
+    	if (!ecjia_front::$controller->is_cached('store_agent.dwt', $cache_id)) {
+    		$user_id = $user_info['id'];
+    
+    
+    		$name                                 = trim($_GET['name']);
+    		$invite_user_detail                   = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_USER)->data(array('token' => $token))->run();
+    		$invite_user_detail                   = is_ecjia_error($invite_user_detail) ? array() : $invite_user_detail;
+    		$invite_user_detail['invite_explain'] = explode("\n", $invite_user_detail['invite_explain']);
+    
+    		$invite_user_detail['invite_url'] = RC_Uri::url('affiliate/index/init', array('invite_code' => $invite_user_detail['invite_code']));
+    		ecjia_front::$controller->assign_title(__('推广店铺入驻', 'h5'));
+    		ecjia_front::$controller->assign('invite_user', $invite_user_detail);
+    		ecjia_front::$controller->assign('url', RC_Uri::url('user/index/wxconfig'));
+    
+    		$image = ecjia::config('mobile_app_icon') != '' ? RC_Upload::upload_url(ecjia::config('mobile_app_icon')) : '';
+    		ecjia_front::$controller->assign('image', $image);
+    
+    		if (user_function::is_weixin()) {
+    			$spread_url = RC_Uri::url('user/index/spread', array('name' => $name));
+    
+    			$config     = user_function::get_wechat_config($spread_url);
+    			ecjia_front::$controller->assign('config', $config);
+    		}
+    	}
+    	ecjia_front::$controller->display('store_affiliate.dwt', $cache_id);
+    }
 }
 
 // end
