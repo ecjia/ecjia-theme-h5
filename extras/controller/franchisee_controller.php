@@ -480,6 +480,9 @@ class franchisee_controller
         }
 
         $token     = ecjia_touch_user::singleton()->getAdminToken();
+        
+        $invite_code = !empty($_POST['invite_code']) ? $_POST['invite_code'] : '';
+        
         $parameter = array(
             'token'              => $token,
             'responsible_person' => $responsible_person,
@@ -500,6 +503,7 @@ class franchisee_controller
             ),
             'validate_code' => $validate_code,
             'city_id'       => $_COOKIE['city_id'],
+        	'invite_code'   => $invite_code,
         );
 
         if ($_SESSION['franchisee_add']['property'] == 'resignup') {

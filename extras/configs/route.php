@@ -132,8 +132,11 @@ return [
     'affiliate/index/check'                      => 'affiliate_controller@check',
     'affiliate/index/refresh'                    => 'affiliate_controller@refresh',
     'affiliate/index/invite'                     => 'affiliate_controller@invite',
-    'affiliate/index/store_agent'                => 'affiliate_controller@store_agent',
-    'affiliate/index/store_affiliate'            => 'affiliate_controller@store_affiliate',
+    'affiliate/index/store_agent'                => 'affiliate_controller@store_agent',//扫码招募下级代理
+    'affiliate/index/invite_agent'               => 'affiliate_controller@invite_agent',//一级代理商资料
+    'affiliate/index/invite_agent_insert'        => 'affiliate_controller@invite_agent_insert',//加入二级代理商
+    'affiliate/index/store_affiliate'            => 'affiliate_controller@store_affiliate',//推广店铺
+    
 
     //商家入驻申请
     'franchisee/index/first'                     => 'franchisee_controller@first',           //入驻申请第一步（真实姓名、电子邮箱、手机号码）

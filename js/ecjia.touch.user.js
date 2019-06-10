@@ -26,6 +26,7 @@
 			ecjia.touch.user.cancel_order();
 			ecjia.touch.user.return_order();
 			ecjia.touch.user.affiliate();
+			ecjia.touch.user.affiliate_invite_agent();
 			ecjia.touch.user.resend_sms();
 			ecjia.touch.user.cancel_account();
             ecjia.touch.user.choose_bank();
@@ -1177,7 +1178,24 @@
 				}
 			});
 		},
-
+		
+		affiliate_invite_agent: function () {
+			$("form[name='inviteForm']").on('submit', function (e) {
+				e.preventDefault();
+				return false;
+			}).Validform({
+				tiptype: function (msg, o, cssctl) {
+					if (o.type == 3) {
+						alert(msg);
+					}
+				},
+				ajaxPost: true,
+				callback: function (data) {
+					ecjia.touch.showmessage(data);
+				}
+			});
+		},
+		
 		cancel_account: function () {
 			var InterObj; //timer变量，控制时间
 			var count_s = 60; //间隔函数，1秒执行

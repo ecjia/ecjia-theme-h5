@@ -14,7 +14,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 var config = '{$config}';
 {/if}
 
-ecjia.touch.store_agent.init();
+ecjia.touch.spread.init();
 </script>
 <!-- {/block} -->
 
@@ -25,7 +25,7 @@ ecjia.touch.store_agent.init();
 	
 	<div class="ecjia-bg-qr-code">
 		<div class="qrcode_image">
-			<img src="{$invite_user.invite_qrcode_image}" />
+			<img src="{$invite_agent.invite_qrcode_image}" />
 		</div>
 		
 		<div class="my-invite-code">
@@ -34,15 +34,15 @@ ecjia.touch.store_agent.init();
 	</div>
 	
 	<div class="go-to-spread">
-		<a class="show_spread_share nopjax external" href="javascript:;"><div class="would-store-agent">{t domain="h5"}分享二维码{/t}</div></a>
+		<a class="show_spread_share nopjax external" href="javascript:;"><div class="would-spread">{t domain="h5"}分享二维码{/t}</div></a>
 	</div>
 	
-	<div class="ecjia-store-agent-share hide"><img src="{$theme_url}images/spread.png"></div>
+	<div class="ecjia-spread-share hide"><img src="{$theme_url}images/spread.png"></div>
 
 	<input type="hidden" name="share_title" value="{$share_title}">
-	<input type="hidden" name="share_desc" value="{$invite_user.invite_template}">
+	<input type="hidden" name="share_desc" value="{$invite_agent.invite_template}">
 	<input type="hidden" name="share_image" value="{$image}">
-	<input type="hidden" name="share_link" value="{$invite_user.invite_url}">
+	<input type="hidden" name="share_link" value="{$invite_agent.invite_url}">
 	<input type="hidden" name="share_page" value="1">
 	
 </div>

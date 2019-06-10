@@ -9034,6 +9034,72 @@ footer {
 }
 
 
+/*======================== 二级代理加入 ===========================*/
+.ecjia-next-agent {
+    height: auto;
+    position: relative;
+	margin-top: 66px;
+}
+
+.ecjia-next-agent .qrcode_image {
+    height: auto;
+    width: 100%;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+	margin-bottom:0.5em;
+}
+
+.ecjia-next-agent .qrcode_image img {
+    position: relative;
+    height: 5em;
+    width: 5em
+}
+
+.ecjia-next-agent .my-invite-code {
+    width: 100%;
+    padding-bottom: 1em
+}
+
+.ecjia-next-agent .my-invite-code p {
+    text-align: center;
+    position: relative;
+    font-size: 16px;
+    padding-top: 1em;
+}
+
+.ecjia-next-agent .my-invite-code .code-style {
+    text-align: center;
+    position: relative;
+    font-size: 16px;
+}
+
+.ecjia-next-agent .invite-template {
+	position: relative;
+    width: 100%;
+    margin-bottom: 3%;
+    border: 1px solid #fff;
+    border-radius: 20px;
+}
+
+.ecjia-next-agent .go-to-spread {
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em
+}
+
+.ecjia-next-agent .go-to-spread .receive_btn {
+	width: 100%;
+    font-size: 18px;
+    border-radius: 7px;
+    height: 42px;
+    line-height: 42px;
+    color: #fff;
+    text-align: center;
+    background: #47aa4d none repeat scroll 0 0;
+	margin-top:2em;
+}
 
 
 /*======================== 招募代理 ===========================*/
@@ -9106,7 +9172,7 @@ footer {
     padding-bottom: 1em
 }
 
-.ecjia-store-agent .go-to-spread .would-store-agent {
+.ecjia-store-agent .go-to-spread .would-spread {
     font-size: 18px;
     border-radius: 7px;
     height: 42px;
@@ -9117,7 +9183,7 @@ footer {
 	background:linear-gradient(to bottom, #ffba28,#fe9101);
 }
 
-.ecjia-store-agent .ecjia-store-agent-share {
+.ecjia-store-agent .ecjia-spread-share {
     position: fixed;
     top: 0;
     left: 0;
@@ -9127,7 +9193,7 @@ footer {
     z-index: 999
 }
 
-.ecjia-store-agent .ecjia-store-agent-share img {
+.ecjia-store-agent .ecjia-spread-share img {
     position: relative;
     left: 0;
     top: 5px;

@@ -297,7 +297,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		<i class="iconfont icon-jiantou-right"></i>
         	</a>
         </li>
-        
+        {if $is_agent.affiliate_agent_level eq 'level1'}
         <li>
     	    <a class="external" href="{url path='affiliate/index/store_agent'}">
         		<div class="icon-expand"><img src="{$theme_url}images/user_center/store_agent_icon.png"></div>
@@ -305,6 +305,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		<i class="iconfont icon-jiantou-right"></i>
         	</a>
         </li>
+        {/if}
     </ul>
 
     <ul class="ecjia-list list-short">
@@ -352,6 +353,8 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
     
     {if $merchant_join_close neq 1}
     <ul class="ecjia-list list-short">
+    
+    	{if $is_agent.is_affiliate_agent eq 'yes'}
       	<li>
         	<a class="nopjax external" href="{url path='affiliate/index/store_affiliate'}">
         		<div class="icon-help-center"><img src="{$theme_url}images/user_center/store_affiliate_icon.png"></div>
@@ -359,6 +362,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		<i class="iconfont icon-jiantou-right"></i>
         	</a>
         </li>
+        {/if}
         
         <li>
         	<a class="nopjax external" href="{url path='franchisee/index/first'}">
