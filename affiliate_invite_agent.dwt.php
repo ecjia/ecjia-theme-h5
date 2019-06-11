@@ -1,7 +1,7 @@
 <?php
 /*
 Name: 邀请注册模板
-Description: 这是邀请注册首页
+Description: 这是邀请二级代理商首页
 Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
