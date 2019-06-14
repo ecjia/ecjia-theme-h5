@@ -144,6 +144,7 @@ class goods_controller
         $rec_type  = isset($_GET['rec_type']) ? $_GET['rec_type'] : 0;
         $object_id = isset($_GET['object_id']) ? $_GET['object_id'] : 0;
         $product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : 0; //货品id
+        $dwt = 'goods_show.dwt';
 
         $ecjia_goods_specification = new ecjia_goods_specification($goods_id);
 
@@ -206,8 +207,6 @@ class goods_controller
             $goods_info['label_trade_time'] = $store_info['label_trade_time'];
             if ($goods_info['promote_price'] != 0 && $goods_info['activity_type'] == 'PROMOTE_GOODS') {
             	$dwt = 'goods_promotion_detail.dwt';
-            } else {
-            	$dwt = 'goods_show.dwt';
             }
            
             if ($store_info['shop_closed'] != 1) {
