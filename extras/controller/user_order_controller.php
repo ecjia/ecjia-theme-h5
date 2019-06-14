@@ -303,7 +303,7 @@ class user_order_controller
                 }
             }
             $url = RC_Uri::url('cart/index/init');
-            return ecjia_front::$controller->redirect($url);
+            return ecjia_front::$controller->redirectWithExited($url);
         }
     }
 
