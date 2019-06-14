@@ -133,7 +133,13 @@ class goods_controller
         $goods_id = isset($_GET['goods_id']) ? intval($_GET['goods_id']) : 0;
 
         $url = RC_Uri::url('goods/index/show', array('goods_id' => $goods_id));
-        touch_function::redirect_referer_url($url);
+        $result = touch_function::redirect_referer_url($url);
+        if (is_ecjia_error($result)) {
+            return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+        }
+        if (is_redirect_response($result)) {
+            return $result;
+        }
 
         $rec_type  = isset($_GET['rec_type']) ? $_GET['rec_type'] : 0;
         $object_id = isset($_GET['object_id']) ? $_GET['object_id'] : 0;
@@ -670,7 +676,13 @@ class goods_controller
         if ($keywords !== '') {
             if (!empty($store_id)) {
                 $url = RC_Uri::url('goods/category/store_list', array('store_id' => $store_id, 'keywords' => $keywords));
-                touch_function::redirect_referer_url($url);
+                $result = touch_function::redirect_referer_url($url);
+                if (is_ecjia_error($result)) {
+                    return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+                }
+                if (is_redirect_response($result)) {
+                    return $result;
+                }
 
                 $arr['filter']['keywords'] = $keywords;
                 $arr['seller_id']          = $store_id;
