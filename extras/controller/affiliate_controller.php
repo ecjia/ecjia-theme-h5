@@ -223,9 +223,13 @@ class affiliate_controller
     	$invite_code = intval($_GET['invite_code']);
     	ecjia_front::$controller->assign('invite_code', $invite_code);
     	
-    	$token     = ecjia_touch_user::singleton()->getToken();
+    	$token = ecjia_touch_user::singleton()->getToken();
+    	if (empty($token)) {
+    		return ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
+    	}
+    		
     	$params = array(
-    		'token' 		=> ecjia_touch_user::singleton()->getToken(),
+    		'token' 		=> $token,
     		'invite_code' 	=> $invite_code,
     	);
     	$agent_info = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_STORE_AGENT_INVITER)->data($params)->run();
