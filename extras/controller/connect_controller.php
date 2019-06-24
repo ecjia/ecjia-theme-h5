@@ -132,6 +132,9 @@ class connect_controller
             if (empty($connect_code) || empty($open_id)) {
                 return ecjia_front::$controller->showmessage(__('授权信息异常，请重新授权', 'h5'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
             }
+            $referer = $_GET['referer'];
+            ecjia_front::$controller->assign('referer', $referer);
+
             ecjia_front::$controller->assign('connect_code', $connect_code);
             ecjia_front::$controller->assign('open_id', $open_id);
 
@@ -213,6 +216,8 @@ class connect_controller
     {
         $connect_code = !empty($_GET['connect_code']) ? trim($_GET['connect_code']) : '';
         $open_id      = !empty($_GET['open_id']) ? trim($_GET['open_id']) : '';
+        $referer = $_GET['referer'];
+        ecjia_front::$controller->assign('referer', $referer);
         if (empty($connect_code) || empty($open_id)) {
             return ecjia_front::$controller->showmessage(__('授权信息异常，请重新授权', 'h5'), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR);
         }
@@ -338,6 +343,9 @@ class connect_controller
             $login_str = user_function::return_login_str();
             return ecjia_front::$controller->redirect(RC_Uri::url($login_str));
         }
+
+        $referer_url = $_GET['referer_url'];
+        ecjia_front::$controller->assign('referer_url', $referer_url);
 
         $token = ecjia_touch_user::singleton()->getShopToken();
 

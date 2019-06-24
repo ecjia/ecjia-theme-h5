@@ -367,6 +367,9 @@ class touch_controller
         ecjia_front::$controller->assign('title', __('定位', 'h5'));
         ecjia_front::$controller->assign_title(__('定位', 'h5'));
 
+        $city_id = $_GET['city_id'];
+        ecjia_front::$controller->assign('city_id', $city_id);
+
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
 
         if (ecjia_touch_user::singleton()->isSignin()) {
@@ -427,6 +430,11 @@ class touch_controller
     public static function select_city()
     {
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+
+        $address_id = $_GET['address_id'];
+        $type = $_GET['type'];
+        ecjia_front::$controller->assign('address_id', $address_id);
+        ecjia_front::$controller->assign('type', $type);
 
         $rs = ecjia_touch_manager::make()->api(ecjia_touch_api::STORE_BUSINESS_CITY)->run();
         if (is_ecjia_error($rs)) {
