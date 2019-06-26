@@ -1327,28 +1327,28 @@ class cart_controller
 //     	}
     
     	//发票
-    	if ($_POST['inv_update']) {
-    		if (empty($_POST['inv_content']) || $_POST['inv_type_name'] == 'enterprise') {
-    			if (empty($_POST['inv_payee']) || empty($_POST['inv_bill_code'])) {
-    				return ecjia_front::$controller->showmessage(__('请填写完整的发票信息', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
-    			}
-    		}
-    		$_SESSION['cart'][$cart_key]['temp']['inv_type_name'] = empty($_POST['inv_type_name']) ? '' : trim($_POST['inv_type_name']);
-    		$_SESSION['cart'][$cart_key]['temp']['inv_bill_code'] = empty($_POST['inv_bill_code']) ? '' : trim($_POST['inv_bill_code']);
-    		$_SESSION['cart'][$cart_key]['temp']['inv_payee']     = empty($_POST['inv_payee']) ? '' : trim($_POST['inv_payee']);
-    		$_SESSION['cart'][$cart_key]['temp']['inv_content']   = empty($_POST['inv_content']) ? '' : trim($_POST['inv_content']);
-    		$_SESSION['cart'][$cart_key]['temp']['inv_type']      = empty($_POST['inv_type']) ? '' : trim($_POST['inv_type']);
-    		$_SESSION['cart'][$cart_key]['temp']['need_inv']      = 1;
-    	}
-    	//发票清空
-    	if ($_POST['inv_clear']) {
-    		$_SESSION['cart'][$cart_key]['temp']['inv_payee']     = '';
-    		$_SESSION['cart'][$cart_key]['temp']['inv_type_name'] = '';
-    		$_SESSION['cart'][$cart_key]['temp']['inv_bill_code'] = '';
-    		$_SESSION['cart'][$cart_key]['temp']['inv_content']   = '';
-    		$_SESSION['cart'][$cart_key]['temp']['inv_type']      = '';
-    		$_SESSION['cart'][$cart_key]['temp']['need_inv']      = 0;
-    	}
+//     	if ($_POST['inv_update']) {
+//     		if (empty($_POST['inv_content']) || $_POST['inv_type_name'] == 'enterprise') {
+//     			if (empty($_POST['inv_payee']) || empty($_POST['inv_bill_code'])) {
+//     				return ecjia_front::$controller->showmessage(__('请填写完整的发票信息', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+//     			}
+//     		}
+//     		$_SESSION['cart'][$cart_key]['temp']['inv_type_name'] = empty($_POST['inv_type_name']) ? '' : trim($_POST['inv_type_name']);
+//     		$_SESSION['cart'][$cart_key]['temp']['inv_bill_code'] = empty($_POST['inv_bill_code']) ? '' : trim($_POST['inv_bill_code']);
+//     		$_SESSION['cart'][$cart_key]['temp']['inv_payee']     = empty($_POST['inv_payee']) ? '' : trim($_POST['inv_payee']);
+//     		$_SESSION['cart'][$cart_key]['temp']['inv_content']   = empty($_POST['inv_content']) ? '' : trim($_POST['inv_content']);
+//     		$_SESSION['cart'][$cart_key]['temp']['inv_type']      = empty($_POST['inv_type']) ? '' : trim($_POST['inv_type']);
+//     		$_SESSION['cart'][$cart_key]['temp']['need_inv']      = 1;
+//     	}
+//     	//发票清空
+//     	if ($_POST['inv_clear']) {
+//     		$_SESSION['cart'][$cart_key]['temp']['inv_payee']     = '';
+//     		$_SESSION['cart'][$cart_key]['temp']['inv_type_name'] = '';
+//     		$_SESSION['cart'][$cart_key]['temp']['inv_bill_code'] = '';
+//     		$_SESSION['cart'][$cart_key]['temp']['inv_content']   = '';
+//     		$_SESSION['cart'][$cart_key]['temp']['inv_type']      = '';
+//     		$_SESSION['cart'][$cart_key]['temp']['need_inv']      = 0;
+//     	}
     
     	//留言
 //     	if ($_POST['note_update']) {

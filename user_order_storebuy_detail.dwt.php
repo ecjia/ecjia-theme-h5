@@ -1,7 +1,7 @@
 <?php
 /*
-Name: 扫码购订单详情模板
-Description: 这是扫码购订单详情页
+Name: 到店订单详情模板
+Description: 这是到店订单详情页
 Libraries: page_menu,page_header
 */
 defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
@@ -23,7 +23,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<a class="ecjiaf-fl nopjax external" href='{url path="merchant/index/init" args="store_id={$order.store_id}"}'>
 					<i class="iconfont icon-shop"></i>{$order.seller_name}
 				</a>
-				<div class="ecjiaf-fr"><span class="ecjiaf-order-status">{t domain="h5"}扫码购{/t}</span></div>
+				<div class="ecjiaf-fr"><span class="ecjiaf-order-status">{t domain="h5"}到店{/t}</span></div>
 			</div>
 			<ul class="goods-item">
 				<!-- {foreach from=$order.goods_list item=goods} -->
@@ -50,6 +50,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 				<li>{t domain="h5"}应付金额：{/t}<span class="ecjiaf-fr ecjia-color-red ">-{$order.formated_total_fee}</span></li>
 			</ul>
 
+			<p class="select-title ecjiaf-fwb ecjia-margin-l">{t domain="h5"}堂食信息{/t}</p>
+			<ul class="ecjia-list">
+				<li class="remark"><span class="ecjiaf-fl width-25-p">{t domain="h5"}堂食桌号：{/t}</span><span class="ecjiaf-fr width-75-p">{if $order.postscript}{$order.postscript}{else}{t domain="h5"}暂无{/t}{/if}</span></li>
+			</ul>
+			
 			<p class="select-title ecjiaf-fwb ecjia-margin-l">{t domain="h5"}订单信息{/t}</p>
 			<ul class="ecjia-list">
 			    <li><span class="ecjiaf-fl width-25-p">{t domain="h5"}订单编号：{/t}</span><span class="width-75-p">{$order.order_sn}</span><button class="copy-btn" data-clipboard-text="{$order.order_sn}">{t domain="h5"}复制{/t}</button></li>
