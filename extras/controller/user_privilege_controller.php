@@ -60,6 +60,9 @@ class user_privilege_controller
         unset($_SESSION['user_temp']);
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
 
+        $referer_url = $_GET['referer_url'];
+        ecjia_front::$controller->assign('referer_url', $referer_url);
+
         $signin = ecjia_touch_user::singleton()->isSignin();
         if ($signin) {
             $token    = ecjia_touch_user::singleton()->getToken();
@@ -161,6 +164,9 @@ class user_privilege_controller
     {
         unset($_SESSION['user_temp']);
         $cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+
+        $referer_url = $_GET['referer_url'];
+        ecjia_front::$controller->assign('referer_url', $referer_url);
 
         $signin = ecjia_touch_user::singleton()->isSignin();
         if ($signin) {
@@ -286,6 +292,9 @@ class user_privilege_controller
         if (empty($mobile_phone)) {
             return ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
         }
+
+        $referer_url = $_GET['referer_url'];
+        ecjia_front::$controller->assign('referer_url', $referer_url);
 
         $token = ecjia_touch_user::singleton()->getShopToken();
 
@@ -440,7 +449,7 @@ class user_privilege_controller
 
                 unset($_SESSION['user_temp']);
 
-                ecjia_touch_user::singleton()->signin('smslogin', $mobile, $password);
+                ecjia_touch_user::singleton()->setUserinfo($res);//登录
                 return ecjia_front::$controller->showmessage(__('恭喜您，注册成功', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => $url));
             } else {
                 return ecjia_front::$controller->showmessage($res->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
@@ -456,6 +465,9 @@ class user_privilege_controller
     {
         $mobile = !empty($_POST['mobile']) ? trim($_POST['mobile']) : '';
         $token  = ecjia_touch_user::singleton()->getShopToken();
+
+        $referer = $_GET['referer'];
+        ecjia_front::$controller->assign('referer', $referer);
 
         if (!empty($mobile)) {
             $data         = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_VALIDATE)->data(array('token' => $token, 'mobile' => $mobile))->run();

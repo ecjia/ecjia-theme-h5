@@ -63,7 +63,13 @@ class merchant_controller
         $category_id = intval($_GET['category_id']);
 
         $url = RC_Uri::url('merchant/index/init', array('store_id' => $store_id));
-        touch_function::redirect_referer_url($url);
+        $result = touch_function::redirect_referer_url($url);
+        if (is_ecjia_error($result)) {
+            return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+        }
+        if (is_redirect_response($result)) {
+            return $result;
+        }
 
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
@@ -596,6 +602,11 @@ class merchant_controller
     public static function collectmoney()
     {
         $store_id = intval($_GET['store_id']);
+
+        $from = $_GET['from'];
+        $out = $_GET['out'];
+        ecjia_front::$controller->assign('from', $from);
+        ecjia_front::$controller->assign('out', $out);
 
         //店铺信息
         $parameter_list = array(

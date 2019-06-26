@@ -57,7 +57,13 @@ class cart_controller
     public static function init()
     {
         $url = RC_Uri::url('cart/index/init');
-        touch_function::redirect_referer_url($url);
+        $result = touch_function::redirect_referer_url($url);
+        if (is_ecjia_error($result)) {
+            return ecjia_front::$controller->showmessage($result->get_error_message(), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
+        }
+        if (is_redirect_response($result)) {
+            return $result;
+        }
 
         $token = ecjia_touch_user::singleton()->getToken();
         $arr   = array(
@@ -1758,6 +1764,9 @@ class cart_controller
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
         $rec_id     = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
 
+        $pay_id = $_GET['pay_id'];
+        ecjia_front::$controller->assign('pay_id', $pay_id);
+
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
         if (empty($rec_id)) {
             return ecjia_front::$controller->showmessage(__('请选择商品再进行结算', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => RC_Uri::url('cart/index/init')));
@@ -1820,6 +1829,9 @@ class cart_controller
 
         $address_id = empty($_GET['address_id']) ? 0 : intval($_GET['address_id']);
         $rec_id     = empty($_GET['rec_id']) ? 0 : trim($_GET['rec_id']);
+
+        $shipping_id = $_GET['shipping_id'];
+        ecjia_front::$controller->assign('shipping_id', $shipping_id);
 
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
         if (empty($rec_id)) {

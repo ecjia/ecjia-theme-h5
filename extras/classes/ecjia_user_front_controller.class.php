@@ -49,13 +49,13 @@ defined('IN_ECJIA') or exit('No permission resources.');
 /**
  * ecjia 前端页面控制器父类
  */
-class user_front
+class ecjia_user_front_controller extends ecjia_theme_controller
 {
-
-    private $public_route;
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->makePublicRoute();
 
         if (!$this->check_login()) {
@@ -72,7 +72,7 @@ class user_front
         if ($this->check_status()) {
             $url         = RC_Uri::url('user/profile/cancel_account');
             $current_url = RC_Uri::current_url();
-	    
+
             if ($url != $current_url) {
                 return ecjia_front::$controller->redirectWithExited($url);
             }
