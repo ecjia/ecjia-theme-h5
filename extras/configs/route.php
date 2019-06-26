@@ -114,6 +114,9 @@ return [
     'cart/flow/storepickup_done'                 => 'cart_controller@storepickup_done',
     'cart/flow/pay_pickup'                       => 'cart_controller@pay_pickup',
     'cart/flow/add_groupbuy'                     => 'cart_controller@add_groupbuy',
+    'cart/flow/storebuy_checkout'             	 => 'cart_controller@storebuy_checkout',
+    'cart/flow/storebuy_done'                 	 => 'cart_controller@storebuy_done',
+    'cart/flow/pay_storebuy'                 	 => 'cart_controller@pay_storebuy',
 
     //支付
     'payment/pay/init'                           => 'payment_controller@init',
