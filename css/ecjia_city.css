@@ -14097,8 +14097,15 @@ body,
 }
 
 .ecjia-checkout-tab .tab-middle {
+    border-top: 1px solid #47aa4d;
+	border-bottom: 1px solid #47aa4d;
+    padding: .5em 1em;
+}
+
+.ecjia-checkout-tab .tab-all {
     border: 1px solid #47aa4d;
     padding: .5em 1em;
+    border-radius: 20px 20px 20px 20px;
 }
 
 .ecjia-checkout-tab .tab {

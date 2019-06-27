@@ -1,4 +1,5 @@
 <?php
+use GuzzleHttp\Promise\all;
 //
 //    ______         ______           __         __         ______
 //   /\  ___\       /\  ___\         /\_\       /\_\       /\  __ \
@@ -588,7 +589,7 @@ class cart_controller
         $address_id = empty($_REQUEST['address_id']) ? 0 : intval($_REQUEST['address_id']);
         $rec_id     = empty($_REQUEST['rec_id']) ? 0 : trim($_REQUEST['rec_id']);
         $store_id   = empty($_REQUEST['store_id']) ? 0 : intval($_REQUEST['store_id']);
-
+        
         $url = RC_Uri::site_url() . substr($_SERVER['REQUEST_URI'], strripos($_SERVER['REQUEST_URI'], '/'));
 
         $_SESSION['order_address_temp']['rec_id']   = $rec_id;
@@ -645,7 +646,12 @@ class cart_controller
         if (is_ecjia_error($rs)) {
             return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
         }
-
+        $link_type = 'default';
+        ecjia_front::$controller->assign('link_type', $link_type);
+        $tab_list = self::tab_list($store_id, $rec_id, $rs['checkorder_mode'], $link_type);
+        ecjia_front::$controller->assign('tab_list', $tab_list);
+   
+        
         $cart_key = md5($address_id . $rec_id . serialize($rs['goods_list']));
         if (!empty($_SESSION['cart_temp_key']) && $_SESSION['cart_temp_key'] != $cart_key) {
             unset($_SESSION['cart']);
@@ -916,7 +922,7 @@ class cart_controller
         ecjia_front::$controller->assign('done_url', $done_url);
 
         $_SESSION['cart'][$cart_key]['temp']['order_mode'] = 'default';
-
+        
         return ecjia_front::$controller->display('flow_checkout.dwt');
     }
 
@@ -987,7 +993,12 @@ class cart_controller
 
         $url = RC_Uri::url('cart/index/init');
         $rs  = ecjia_touch_manager::make()->api(ecjia_touch_api::STOREPICKUP_FLOW_CHECKORDER)->data($params_cart)->run();
-
+        
+        $link_type = 'storepickup';
+        ecjia_front::$controller->assign('link_type', $link_type);
+        $tab_list = self::tab_list($store_id, $rec_id, $rs['checkorder_mode'], $link_type);
+        ecjia_front::$controller->assign('tab_list', $tab_list);
+        
         if (is_ecjia_error($rs)) {
             return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
         }
@@ -1186,7 +1197,7 @@ class cart_controller
         ecjia_front::$controller->assign('shipping_type', 'storepickup');
 
         $_SESSION['cart'][$cart_key]['temp']['order_mode'] = 'storepickup';
-
+        
         return ecjia_front::$controller->display('flow_checkout.dwt');
     }
 
@@ -1256,11 +1267,16 @@ class cart_controller
     	);
     
     	$url = RC_Uri::url('cart/index/init');
-    	$rs  = ecjia_touch_manager::make()->api(ecjia_touch_api::STOREPICKUP_FLOW_CHECKORDER)->data($params_cart)->run();
-    
+    	$rs  = ecjia_touch_manager::make()->api(ecjia_touch_api::FLOW_CHECKORDER)->data($params_cart)->run();
     	if (is_ecjia_error($rs)) {
     		return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
     	}
+    	
+    	$link_type = 'storebuy';
+    	ecjia_front::$controller->assign('link_type', $link_type);
+    	$tab_list = self::tab_list($store_id, $rec_id, $rs['checkorder_mode'], $link_type);
+    	ecjia_front::$controller->assign('tab_list', $tab_list);
+    	 
     	//红包改键
     	if ($rs['bonus']) {
     		$rs['bonus'] = touch_function::change_array_key($rs['bonus'], 'bonus_id');
@@ -1457,7 +1473,7 @@ class cart_controller
     	ecjia_front::$controller->assign('shipping_type', 'storebuy');
     
     	$_SESSION['cart'][$cart_key]['temp']['order_mode'] = 'storebuy';
-    
+    	
     	return ecjia_front::$controller->display('flow_checkout.dwt');
     }
 
@@ -2338,6 +2354,89 @@ class cart_controller
 
         return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('url' => RC_Uri::url('cart/flow/checkout', array('rec_id' => $rec_id, 'order_type' => 'group_buy'))));
     }
+    
+    
+	private static function tab_list($store_id, $rec_id, $checkorder_mode, $link_type) {
+		$tabs = [
+			'default' => [
+				'label' => __('配送', 'h5'),
+				'link'  => RC_Uri::url('cart/flow/checkout', ['store_id' => $store_id, 'rec_id' => $rec_id]),
+				'type'  => 'default',
+				'class' => 'tab-left',
+				'active'=> false,
+			],
+			
+			'storepickup' => [
+				'label' => __('提货', 'h5'),
+				'link' => RC_Uri::url('cart/flow/storepickup_checkout', ['store_id' => $store_id, 'rec_id' => $rec_id]),
+				'type'  => 'storepickup',
+				'class' => 'tab-middle',
+				'active'=> false,
+			],
+			
+			'storebuy' => [
+				'label' => __('堂食', 'h5'),
+				'link'  => RC_Uri::url('cart/flow/storebuy_checkout', ['store_id' => $store_id, 'rec_id' => $rec_id]),
+				'type'  => 'storebuy',
+				'class' => 'tab-right',
+				'active'=> false,
+			]
+		];
+
+		$tabs[$link_type]['active'] = true;
+		
+		//获取堂食开关
+// 		$parameter_list = array(
+// 			'seller_id' => $store_id,
+// 			'city_id'   => $_COOKIE['city_id'],
+// 		);
+// 		$store_info     = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
+// 		$store_info     = is_ecjia_error($store_info) ? array() : $store_info;
+// 		_dump($rs['shipping_list'],1);
+
+		//筛选条件
+		if ($checkorder_mode == 'default') {
+			unset($tabs['storepickup']);
+		} elseif ($checkorder_mode == 'storepickup') {
+			unset($tabs['default']);
+		}
+		
+		$store_info['open_storebuy'] = 1;
+		if(!$store_info['open_storebuy']) {
+			unset($tabs['storebuy']);
+		}
+		
+// 		if(empty($rs['shipping_list'])) {
+// 			unset($tabs['default']);
+// 		}
+		
+		
+		$count = count($tabs);
+		if ($count === 1) {
+			foreach ($tabs as &$tab) {
+				$tab['class'] = 'tab-all';
+			}
+		} elseif ($count === 2) {
+			foreach ($tabs as &$tab) {
+				if ($tab == head($tabs)) {
+					$tab['class'] = 'tab-left';
+				} elseif ($tab == last($tabs)){
+					$tab['class'] = 'tab-right';
+				}
+			}
+		}
+		
+
+		$tabs = collect($tabs)->map(function($item){
+			if ($item['active']) {
+				$item['class'] .= ' active';
+				$item['link'] = 'javascript:;';
+			}
+			return $item;
+		})->all();
+		
+		return $tabs; 
+	}
 }
 
 // end
