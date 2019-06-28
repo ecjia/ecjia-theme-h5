@@ -202,7 +202,7 @@ class user_address_controller
             ecjia_front::$controller->assign('clear', $clear);
         }
 
-        $referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : (!empty($_SESSION['referer_url']) ? $_SESSION['referer_url'] : '');
+        $referer_url = !empty($_GET['referer_url']) ? htmlspecialchars_decode(urlencode($_GET['referer_url'])) : (!empty($_SESSION['referer_url']) ? $_SESSION['referer_url'] : '');
         if (!empty($referer_url)) {
             $_SESSION['referer_url'] = $referer_url;
             ecjia_front::$controller->assign('referer_url', $referer_url);
@@ -403,7 +403,7 @@ class user_address_controller
         $location_backurl = urlencode(RC_Uri::url('user/address/edit_address', array('id' => $id, 'clear' => 0)));
         ecjia_front::$controller->assign('location_backurl', $location_backurl);
 
-        $referer_url = !empty($_GET['referer_url']) ? urlencode($_GET['referer_url']) : (!empty($_SESSION['referer_url']) ? $_SESSION['referer_url'] : '');
+        $referer_url = !empty($_GET['referer_url']) ? htmlspecialchars_decode(urlencode($_GET['referer_url'])) : (!empty($_SESSION['referer_url']) ? $_SESSION['referer_url'] : '');
         if (!empty($referer_url)) {
             $_SESSION['referer_url'] = $referer_url;
             ecjia_front::$controller->assign('referer_url', $referer_url);
@@ -639,7 +639,7 @@ class user_address_controller
      */
     public static function near_location()
     {
-        $referer_url = !empty($_GET['referer_url']) ? $_GET['referer_url'] : '';
+        $referer_url = !empty($_GET['referer_url']) ? htmlspecialchars_decode($_GET['referer_url']) : '';
         if (!empty($referer_url)) {
             ecjia_front::$controller->assign('referer_url', $referer_url);
         }
@@ -662,7 +662,7 @@ class user_address_controller
 
     public static function choose_address()
     {
-        $referer_url = !empty($_GET['referer_url']) ? urldecode($_GET['referer_url']) : RC_Uri::url('touch/index/init');
+        $referer_url = !empty($_GET['referer_url']) ? htmlspecialchars_decode(urldecode($_GET['referer_url'])) : RC_Uri::url('touch/index/init');
         $address_id  = !empty($_GET['address_id']) ? intval($_GET['address_id']) : 0;
         $type        = !empty($_GET['type']) ? trim($_GET['type']) : '';
 
