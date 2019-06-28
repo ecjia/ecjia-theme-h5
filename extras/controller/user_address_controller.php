@@ -662,7 +662,7 @@ class user_address_controller
 
     public static function choose_address()
     {
-        $referer_url = !empty($_GET['referer_url']) ? urldecode($_GET['referer_url']) : RC_Uri::url('touch/index/init');
+        $referer_url = !empty($_GET['referer_url']) ? htmlspecialchars_decode(urldecode($_GET['referer_url'])) : RC_Uri::url('touch/index/init');
         $address_id  = !empty($_GET['address_id']) ? intval($_GET['address_id']) : 0;
         $type        = !empty($_GET['type']) ? trim($_GET['type']) : '';
 
