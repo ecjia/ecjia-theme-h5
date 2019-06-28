@@ -2198,10 +2198,10 @@ class cart_controller
         if (empty($rec_id)) {
             return ecjia_front::$controller->showmessage(__('请选择商品再进行结算', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         }
-        if (empty($address_id)) {
-            $pjax_url = !empty($_SESSION['order_address_temp']['pjax_url']) ? trim($_SESSION['order_address_temp']['pjax_url']) : RC_Uri::url('cart/index/init');
-            return ecjia_front::$controller->showmessage(__('请先选择收货地址', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
-        }
+//         if (empty($address_id)) {
+//             $pjax_url = !empty($_SESSION['order_address_temp']['pjax_url']) ? trim($_SESSION['order_address_temp']['pjax_url']) : RC_Uri::url('cart/index/init');
+//             return ecjia_front::$controller->showmessage(__('请先选择收货地址', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
+//         }
 
         $cart_key = $_SESSION['cart_temp_key'];
         $data     = $_SESSION['cart'][$cart_key]['data'];
@@ -2245,10 +2245,10 @@ class cart_controller
         if (empty($rec_id)) {
             return ecjia_front::$controller->showmessage(__('请选择商品再进行结算', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => ''));
         }
-        if (empty($address_id)) {
-            $pjax_url = !empty($_SESSION['order_address_temp']['pjax_url']) ? trim($_SESSION['order_address_temp']['pjax_url']) : RC_Uri::url('cart/index/init');
-            return ecjia_front::$controller->showmessage(__('请先选择收货地址', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
-        }
+//         if (empty($address_id)) {
+//             $pjax_url = !empty($_SESSION['order_address_temp']['pjax_url']) ? trim($_SESSION['order_address_temp']['pjax_url']) : RC_Uri::url('cart/index/init');
+//             return ecjia_front::$controller->showmessage(__('请先选择收货地址', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $pjax_url));
+//         }
 
         $integral_name = !empty(ecjia::config('integral_name')) ? ecjia::config('integral_name') : __('积分', 'h5');
         $cart_key      = $_SESSION['cart_temp_key'];
@@ -2403,7 +2403,7 @@ class cart_controller
        
   //       }
 		
-		// $store_info['open_storebuy'] = 1;
+		$store_info['open_storebuy'] = 1;
 		if(!$store_info['open_storebuy']) {
 			unset($tabs['storebuy']);
 		}
