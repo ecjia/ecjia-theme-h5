@@ -646,6 +646,7 @@ class cart_controller
         if (is_ecjia_error($rs)) {
             return ecjia_front::$controller->showmessage($rs->get_error_message(), ecjia::MSGTYPE_ALERT | ecjia::MSGSTAT_ERROR, array('pjaxurl' => $url));
         }
+
         $link_type = 'default';
         ecjia_front::$controller->assign('link_type', $link_type);
         $tab_list = self::tab_list($store_id, $rec_id, $rs['checkorder_mode'], $link_type);
@@ -993,7 +994,6 @@ class cart_controller
 
         $url = RC_Uri::url('cart/index/init');
         $rs  = ecjia_touch_manager::make()->api(ecjia_touch_api::STOREPICKUP_FLOW_CHECKORDER)->data($params_cart)->run();
-        
         $link_type = 'storepickup';
         ecjia_front::$controller->assign('link_type', $link_type);
         $tab_list = self::tab_list($store_id, $rec_id, $rs['checkorder_mode'], $link_type);
@@ -2386,29 +2386,31 @@ class cart_controller
 		$tabs[$link_type]['active'] = true;
 		
 		//获取堂食开关
-// 		$parameter_list = array(
-// 			'seller_id' => $store_id,
-// 			'city_id'   => $_COOKIE['city_id'],
-// 		);
-// 		$store_info     = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
-// 		$store_info     = is_ecjia_error($store_info) ? array() : $store_info;
-// 		_dump($rs['shipping_list'],1);
+		$parameter_list = array(
+			'seller_id' => $store_id,
+			'city_id'   => $_COOKIE['city_id'],
+		);
+		$store_info     = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_CONFIG)->data($parameter_list)->run();
+		$store_info     = is_ecjia_error($store_info) ? array() : $store_info;
 
 		//筛选条件
 		if ($checkorder_mode == 'default') {
 			unset($tabs['storepickup']);
-		} elseif ($checkorder_mode == 'storepickup') {
-			unset($tabs['default']);
-		}
+		} 
+  //       elseif ($checkorder_mode == 'storepickup') {
+		// 	unset($tabs['default']);
+		// } elseif ($checkorder_mode == 'default_storepickup') {
+       
+  //       }
 		
-		$store_info['open_storebuy'] = 1;
+		// $store_info['open_storebuy'] = 1;
 		if(!$store_info['open_storebuy']) {
 			unset($tabs['storebuy']);
 		}
 		
-// 		if(empty($rs['shipping_list'])) {
-// 			unset($tabs['default']);
-// 		}
+		// if(empty($rs['shipping_list'])) {
+		// 	unset($tabs['default']);
+		// }
 		
 		
 		$count = count($tabs);
