@@ -1721,7 +1721,11 @@ class cart_controller
     	if (empty($rec_id)) {
     		return ecjia_front::$controller->showmessage(__('请选择商品再进行结算', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
     	}
-    
+    	
+    	if (empty($postscript)) {
+    		return ecjia_front::$controller->showmessage(__('请填写桌号', 'h5'), ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
+    	}
+    	
 //     	$expect_pickup_time = '';
 //     	if (!empty($pickup_date) || !empty($pickup_time)) {
 //     		$expect_pickup_time = $pickup_date . ' ' . $pickup_time;
