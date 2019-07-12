@@ -95,6 +95,11 @@ class user_controller
             ecjia_front::$controller->assign('merchant_join_close', $config['merchant_join_close']);
         }
 
+        $is_agent = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_AGENT_INFO)->data(array('token' => $token))->run();
+        if (!is_ecjia_error($is_agent)) {
+        	ecjia_front::$controller->assign('is_agent', $is_agent);
+        }
+        
         ecjia_front::$controller->assign('active', 'mine');
         ecjia_front::$controller->assign_title(__('个人中心', 'h5'));
 

@@ -21,13 +21,18 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="main-content"} -->
 <!-- #EndLibraryItem -->
 <div class="ecjia-checkout ecjia-padding-b">
-	{if $show_storepickup}
 	<div class="ecjia-checkout-tab">
-		<a href="{if $shipping_type eq 'default'}javascript:;{else}{RC_Uri::url('cart/flow/checkout')}&store_id={$store_id}&rec_id={$rec_id}{/if}"><span class="tab tab-left {if $shipping_type eq 'default' || $shipping_type eq 'default_storepickup'}active{/if}">{t domain="h5"}配送上门{/t}</span></a><a href="{if $shipping_type eq 'storepickup'}javascript:;{else}{RC_Uri::url('cart/flow/storepickup_checkout')}&store_id={$store_id}&rec_id={$rec_id}{/if}"><span class="tab tab-right {if $shipping_type eq 'storepickup'}active{/if}">{t domain="h5"}门店提货{/t}</span></a>
+	
+		<!-- {foreach from=$tab_list item=tab} -->
+	        <a href="{$tab.link}">
+	             <span class="tab {$tab.class}">
+	                  {$tab.label}
+	             </span>
+	        </a>
+	   <!-- {/foreach} -->
 	</div>
-	{/if}
+	
 	<form id="theForm" name="checkForm" action="{$done_url}" method="post">
-		
 		{if $shipping_type eq 'default' || $shipping_type eq 'default_storepickup'}
 		<a class="ecjia-default-shipping" href="{if !$address_list && !$address_id}{RC_Uri::url('user/address/add_address')}&clear=1{else}{RC_Uri::url('user/address/address_list')}&store_id={$store_id}&rec_id={$rec_id}&type=choose{/if}">
 			<div class="flow-address ecjia-margin-b {if !$data.consignee}choose-address{/if}">
@@ -106,6 +111,27 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		</section>
 		{/if}
 		
+		{if $shipping_type eq 'storebuy'}
+		<section class="checklist  note">
+			<span class="note-title">{t domain="h5"}桌号{/t}</span>
+			<input class="note" type="text" name="note" placeholder='{t domain="h5"}请输入您当前所在的桌号{/t}' />
+		</section>
+		<div class="ecjia-margin-b"></div>
+		<section class="checklist line border-top-none flex">
+			<a class="check_address" href='{url path="cart/flow/pay_storebuy" args="rec_id={$rec_id}"}'>
+				<span class="pay_title">{t domain="h5"}支付方式{/t}</span>
+				<div class="ecjia-select-pay">
+					<div class="select-pay-left">
+						<span class="select_nav ecjia-truncate">{$selected_payment.pay_name}</span>
+					</div>
+					<i class="iconfont icon-jiantou-right"></i>
+					<input type="hidden" name="pay_id" value="{$selected_payment.pay_id}" />
+					<input type="hidden" name="shipping_id" value="{$selected_shipping.shipping_id}" />
+				</div>
+			</a>
+		</section>
+		{/if}
+		
 		<section class="flow-goods-list border">
 			{if count($data.goods_list) gt 1}<a href='{url path="cart/flow/goods_list" args="address_id={$address_id}&rec_id={$rec_id}"}'>{/if}
 			<ul class="{if count($data.goods_list) > 1}goods-list{else}goods-item{/if}"><!-- goods-list 多个商品隐藏商品名称,goods-item -->
@@ -144,14 +170,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			</ul>
 			{if count($data.goods_list) gt 1}</a>{/if}
 		</section>
-
+		
+		{if $shipping_type neq 'storebuy'}
 		<section class="checklist border note">
 			<span class="note-title">{t domain="h5"}备注{/t}</span>
 			<input class="note" type="text" name="note" placeholder='{t domain="h5"}我们将尽力满足您的要求{/t}' />
 		</section>
-		<div class="ecjia-margin-b"></div>
+		{/if}
 		
-		{if $data.allow_can_invoice}
+		
+		<div class="ecjia-margin-b"></div>
+		{if $data.allow_can_invoice and $shipping_type neq 'storebuy'}
 		<section class="checklist">
 			<a class="check_address" href='{url path="cart/flow/invoice" args="address_id={$address_id}&rec_id={$rec_id}"}'>
 				<span>{t domain="h5"}发票信息{/t}<!-- invoice --></span>
