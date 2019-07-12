@@ -14,7 +14,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <li class="ecjia-order-item ecjia-checkout ecjia-margin-t {if $type == "whole"}ecjia-order-mt{/if}">
 	<div class="order-hd">
 		<a class="ecjiaf-fl nopjax external" href='{url path="merchant/index/init" args="store_id={$list.seller_id}"}'>
-			<span class="order_model">{if $list.order_mode eq 'default'}{t domain="h5"}【配送】{/t}{elseif $list.order_mode eq 'storepickup'}{t domain="h5"}【自提】{/t}{elseif $list.order_mode eq 'storebuy'}{t domain="h5"}【到店】{/t}{/if}</span>{$list.seller_name}<i class="iconfont icon-jiantou-right"></i>
+			<span class="order_model">{if $list.order_mode eq 'default'}{t domain="h5"}【配送】{/t}{elseif $list.order_mode eq 'storepickup'}{t domain="h5"}【自提】{/t}{elseif $list.order_mode eq 'storebuy'}{t domain="h5"}【扫码购】{/t}{/if}</span>{$list.seller_name}<i class="iconfont icon-jiantou-right"></i>
 		</a>
 		<a class="ecjiaf-fr" href='{url path="user/order/order_detail" args="order_id={$list.order_id}"}'><span class="{if $list.order_status_code eq 'finished'}ecjia-color-green{else if $list.order_status_code eq 'canceled'}ecjia-color-red{/if}">{$list.label_order_status}</span></a>
 	</div>

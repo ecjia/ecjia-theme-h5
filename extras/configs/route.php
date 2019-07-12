@@ -114,9 +114,6 @@ return [
     'cart/flow/storepickup_done'                 => 'cart_controller@storepickup_done',
     'cart/flow/pay_pickup'                       => 'cart_controller@pay_pickup',
     'cart/flow/add_groupbuy'                     => 'cart_controller@add_groupbuy',
-    'cart/flow/storebuy_checkout'             	 => 'cart_controller@storebuy_checkout',
-    'cart/flow/storebuy_done'                 	 => 'cart_controller@storebuy_done',
-    'cart/flow/pay_storebuy'                 	 => 'cart_controller@pay_storebuy',
 
     //支付
     'payment/pay/init'                           => 'payment_controller@init',
@@ -135,11 +132,6 @@ return [
     'affiliate/index/check'                      => 'affiliate_controller@check',
     'affiliate/index/refresh'                    => 'affiliate_controller@refresh',
     'affiliate/index/invite'                     => 'affiliate_controller@invite',
-    'affiliate/index/store_agent'                => 'affiliate_controller@store_agent',//扫码招募下级代理
-    'affiliate/index/invite_agent'               => 'affiliate_controller@invite_agent',//一级代理商资料
-    'affiliate/index/invite_agent_insert'        => 'affiliate_controller@invite_agent_insert',//加入二级代理商
-    'affiliate/index/store_affiliate'            => 'affiliate_controller@store_affiliate',//推广店铺
-    
 
     //商家入驻申请
     'franchisee/index/first'                     => 'franchisee_controller@first',           //入驻申请第一步（真实姓名、电子邮箱、手机号码）
