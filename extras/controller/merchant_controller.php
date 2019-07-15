@@ -61,6 +61,15 @@ class merchant_controller
 
         $store_id    = intval($_GET['store_id']);
         $category_id = intval($_GET['category_id']);
+        //推广邀请
+        $open_type   = remove_xss($_GET['open_type']);
+        if($open_type == 'affiliate') {
+            if(!ecjia_touch_user::singleton()->isSignin()) {
+                return new ecjia_user_front_controller();
+            }
+            //绑定店铺会员
+            RC_Api::api('customer', 'store_user_buy', array('user_id' => $_SESSION['user_id'], 'store_id' => $store_id, 'join_scene' => 'affiliate'));
+        }
 
         $url = RC_Uri::url('merchant/index/init', array('store_id' => $store_id));
         $result = touch_function::redirect_referer_url($url);
