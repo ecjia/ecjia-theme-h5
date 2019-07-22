@@ -53,9 +53,16 @@ class user_card_controller
 {
     public static function init()
     {
-
-        
-        return ecjia_front::$controller->display('user_card.dwt');
+    	$cache_id = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+    	if (!ecjia_front::$controller->is_cached('user_card.dwt', $cache_id)) {
+	    	$data = ecjia_touch_manager::make()->api(ecjia_touch_api::AFFILIATE_GRADE)->run();
+	    	
+	    	if (!is_ecjia_error($data)) {
+	    		ecjia_front::$controller->assign('data', $data);
+	    	}
+	    	ecjia_front::$controller->assign_title(__('开通VIP', 'h5'));
+    	}
+        return ecjia_front::$controller->display('user_card.dwt', $cache_id);
     }
 
     /**
@@ -63,43 +70,30 @@ class user_card_controller
      */
     public static function user_grade_intro()
     {
-    	$article_id    = !empty($_GET['article_id']) ? intval($_GET['article_id']) : 0;
-    	$token         = ecjia_touch_user::singleton()->getToken();
-    	$article_param = array(
-    			'token'      => $token,
-    			'article_id' => $article_id,
-    	);
-    	$article_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_DETAIL)->data($article_param)->run();
-    	if (!is_ecjia_error($article_info) && !empty($article_info)) {
-    		list($data, $info) = $article_info;
-    		if ($data['article_type'] == 'redirect') {
-    			return ecjia_front::$controller->redirect($data['link_url']);
+    	$cache_id   = sprintf('%X', crc32($_SERVER['QUERY_STRING']));
+    	if (!ecjia_front::$controller->is_cached('article_detail.dwt', $cache_id)) {
+    		$grade_id    = !empty($_GET['grade_id']) ? intval($_GET['grade_id']) : 0;
+    		$param = array(
+    			'grade_id' => $grade_id,
+    		);
+    		
+    		$grade_info = ecjia_touch_manager::make()->api(ecjia_touch_api::AFFILIATE_GRADE_DETAIL)->data($param)->run();
+    		
+    		if (!is_ecjia_error($grade_info) && !empty($grade_info)) {
+    			list($data, $info) = $grade_info;
+    			if (!empty($data['user_card_intro'])) {
+    				$data['user_card_intro'] = stripslashes($data['user_card_intro']);
+    			}
+    			if (!empty($data['grade_intro'])) {
+    				$data['grade_intro'] = stripslashes($data['grade_intro']);
+    			}
+    			ecjia_front::$controller->assign('data', $data);
     		}
-    		$res = array();
-    		if (!empty($data['content'])) {
-    			$data['content'] = stripslashes($data['content']);
-    		}
-    		preg_match('/<body>([\s\S]*?)<\/body>/', $data['content'], $res);
-    		$bodystr = trim($res[0]);
-    		if ($bodystr != '<body></body>') {
-    			ecjia_front::$controller->assign('content', stripslashes($bodystr));
-    		}
-    		ecjia_front::$controller->assign('data', $data);
-    		ecjia_front::$controller->assign_title($data['title']);
+    		
+    		ecjia_front::$controller->assign_title(__('权益介绍', 'h5'));
     	}
-    	ecjia_front::$controller->assign('article_id', $article_id);
-    	
-    	if (user_function::is_weixin()) {
-    		$spread_url = RC_Uri::url('article/index/detail', array('article_id' => $article_id));
-    		ecjia_front::$controller->assign('share_link', $spread_url);
-    	
-    		$config = user_function::get_wechat_config($spread_url);
-    		ecjia_front::$controller->assign('config', $config);
-    	}
-    	
-    	
-    	
-        return ecjia_front::$controller->display('user_grade_intro.dwt');
+
+        return ecjia_front::$controller->display('user_grade_intro.dwt', $cache_id);
     }
    
 }

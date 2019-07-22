@@ -23,18 +23,19 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 	
 	<div class="ecjia-card-list">
 		<ul class="ecjia-grade-goods">
+			<!-- {foreach from=$data item=list}-->
 			<li class="grade-goods-info">
 				<div class="basic-info">
 					<div class="grade-goods-left">
-						<a class="goods-logo nopjax external" href="http://cityo2o-supplier.test/sites/m/index.php?m=merchant&amp;c=index&amp;a=init&amp;store_id=62">
-							<img src="http://cityo2o-supplier.test/content/uploads/data/afficheimg/1477679989058885859.png">
+						<a class="goods-logo nopjax external" href="">
+							<img src="{$list.goods.img.thumb}">
 						</a>
 					</div>
 					
 					<div class="grade-goods-right">
-						<span class="grade-goods-name">以色列葡萄柚4个约250g/个</span>
+						<span class="grade-goods-name">{$list.goods.name}</span>
 						<div class="grade-goods-range">
-							<span class="goods-price">￥66.66</span>
+							<span class="goods-price">{$list.goods.formatted_shop_price}</span>
 							<a href=''>
 								<span class="card-quickpay-btn">立即购买</span>
 							</a>
@@ -43,6 +44,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 					</div>					
 				</div>
 			</li>
+			<!-- {/foreach} -->
 		</ul>
 	</div>
 </div>
