@@ -17,8 +17,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 <!-- {block name="main-content"} -->
 {if $user}
+
+{if $tip_msg}<p class="ecjia-payment-notice">{$tip_msg}</p>{/if}
+
 <a href="{url path='user/profile/init'}">
     <div class="ecjia-user-info user-new-info ecjia-user">
+	   
     	<div class="user-img ecjiaf-fl"><img src="{if $user_img}{$user_img}{else}{$theme_url}images/default_user.png{/if}"></div>
     	<i class="iconfont icon-jiantou-right user_info_title"></i>
     	<div class="ecjiaf-fl ecjia-margin-l user-rank-name">
@@ -297,13 +301,17 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         		<i class="iconfont icon-jiantou-right"></i>
         	</a>
         </li>
-        <li>
-    	    <a class="external" href="{url path='user/card/init'}">
-        		<div class="icon-expand"><img src="{$theme_url}images/user_center/user_card.png"></div>
-        		<span class="icon-name">{t domain="h5"}开通VIP{/t}</span>
-        		<i class="iconfont icon-jiantou-right"></i>
-        	</a>
-        </li>
+        
+        {if $user.id and $shop_config.affiliate_vip}
+	        <li>
+	    	    <a class="external" href="{url path='user/card/init'}">
+	        		<div class="icon-expand"><img src="{$theme_url}images/user_center/user_card.png"></div>
+	        		<span class="icon-name">{t domain="h5"}开通VIP{/t}</span>
+	        		<i class="iconfont icon-jiantou-right"></i>
+	        	</a>
+	        </li>
+        {/if}
+        
     </ul>
 
     <ul class="ecjia-list list-short">

@@ -73,6 +73,16 @@ class user_controller
                 }
                 ecjia_front::$controller->assign('order_num', $user['order_num']);
                 ecjia_front::$controller->assign('user', $user);
+                
+                //会员卡到期提醒
+                $distributor_info = ecjia_touch_manager::make()->api(ecjia_touch_api::AFFILIATE_DISTRIBUTOR_USERINFO)->data(array('token' => $token))->run();
+                $distributor_info = is_ecjia_error($distributor_info) ? array() : $distributor_info;
+                $last_month = RC_Time::local_strtotime('-1 month', $distributor_info['expiry_time']);
+                $now_time   = RC_Time::gmtime();
+                if($now_time > $last_month) {
+                	$tip_msg  =  '您好，您的会员卡将于'.$distributor_info['expiry_time_formatted'].'过期，请尽快续费！';
+                	ecjia_front::$controller->assign('tip_msg', $tip_msg);
+                }
             } else {
                 ecjia_touch_user::singleton()->signout();
             }
@@ -86,7 +96,6 @@ class user_controller
         $shop        = is_ecjia_error($shop) ? array() : $shop;
         $shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
         $shop_config = is_ecjia_error($shop_config) ? array() : $shop_config;
-
         ecjia_front::$controller->assign('shop', $shop);
         ecjia_front::$controller->assign('shop_config', $shop_config);
 
