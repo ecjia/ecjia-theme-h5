@@ -44,48 +44,64 @@
 //
 //  ---------------------------------------------------------------------------------
 //
+defined('IN_ECJIA') or exit('No permission resources.');
+
 /**
- * 加载手动加载的类
+ * 会员卡模块控制器代码
  */
-return [
-    'touch_function'    => 'extras/classes/utility/touch_function.class.php',
-    'article_function'  => 'extras/classes/utility/article_function.class.php',
-    'cart_function'     => 'extras/classes/utility/cart_function.class.php',
-    'goods_function'    => 'extras/classes/utility/goods_function.class.php',
-    'orders_function'   => 'extras/classes/utility/orders_function.class.php',
-    'user_function'     => 'extras/classes/utility/user_function.class.php',
-    'merchant_function' => 'extras/classes/utility/merchant_function.class.php',
+class user_card_controller
+{
+    public static function init()
+    {
 
-    'user_front' => 'extras/classes/user/user_front.class.php',
+        
+        return ecjia_front::$controller->display('user_card.dwt');
+    }
 
-    'touch_controller'             => 'extras/controller/touch_controller.php',
-    'goods_controller'             => 'extras/controller/goods_controller.php',    //商品
-    'merchant_controller'          => 'extras/controller/merchant_controller.php', //店铺
-    'article_controller'           => 'extras/controller/article_controller.php',  //文章
-    'cart_controller'              => 'extras/controller/cart_controller.php',     //购物车
-    'user_controller'              => 'extras/controller/user_controller.php',     //会员
-    'affiliate_controller'         => 'extras/controller/affiliate_controller.php',//推荐
-    'franchisee_controller'        => 'extras/controller/franchisee_controller.php',   //商家入驻申请
-    'user_privilege_controller'    => 'extras/controller/user_privilege_controller.php',   //登录注册
-    'user_get_password_controller' => 'extras/controller/user_get_password_controller.php',//找回密码
-    'user_account_controller'      => 'extras/controller/user_account_controller.php',
-    'user_address_controller'      => 'extras/controller/user_address_controller.php', //用户收货地址
-    'user_bonus_controller'        => 'extras/controller/user_bonus_controller.php',   //用户红包
-    'user_card_controller'         => 'extras/controller/user_card_controller.php',    //会员卡
-    'user_order_controller'        => 'extras/controller/user_order_controller.php',   //订单
-    'user_profile_controller'      => 'extras/controller/user_profile_controller.php', //用户资料
-    'connect_controller'           => 'extras/controller/connect_controller.php',      //授权登录
-    'mobile_controller'            => 'extras/controller/mobile_controller.php',
-    'quickpay_controller'          => 'extras/controller/quickpay_controller.php',     //闪惠
-    'payment_controller'           => 'extras/controller/payment_controller.php',     //支付
+    /**
+     * 权益介绍
+     */
+    public static function user_grade_intro()
+    {
+    	$article_id    = !empty($_GET['article_id']) ? intval($_GET['article_id']) : 0;
+    	$token         = ecjia_touch_user::singleton()->getToken();
+    	$article_param = array(
+    			'token'      => $token,
+    			'article_id' => $article_id,
+    	);
+    	$article_info = ecjia_touch_manager::make()->api(ecjia_touch_api::ARTICLE_DETAIL)->data($article_param)->run();
+    	if (!is_ecjia_error($article_info) && !empty($article_info)) {
+    		list($data, $info) = $article_info;
+    		if ($data['article_type'] == 'redirect') {
+    			return ecjia_front::$controller->redirect($data['link_url']);
+    		}
+    		$res = array();
+    		if (!empty($data['content'])) {
+    			$data['content'] = stripslashes($data['content']);
+    		}
+    		preg_match('/<body>([\s\S]*?)<\/body>/', $data['content'], $res);
+    		$bodystr = trim($res[0]);
+    		if ($bodystr != '<body></body>') {
+    			ecjia_front::$controller->assign('content', stripslashes($bodystr));
+    		}
+    		ecjia_front::$controller->assign('data', $data);
+    		ecjia_front::$controller->assign_title($data['title']);
+    	}
+    	ecjia_front::$controller->assign('article_id', $article_id);
+    	
+    	if (user_function::is_weixin()) {
+    		$spread_url = RC_Uri::url('article/index/detail', array('article_id' => $article_id));
+    		ecjia_front::$controller->assign('share_link', $spread_url);
+    	
+    		$config = user_function::get_wechat_config($spread_url);
+    		ecjia_front::$controller->assign('config', $config);
+    	}
+    	
+    	
+    	
+        return ecjia_front::$controller->display('user_grade_intro.dwt');
+    }
+   
+}
 
-    'ecjia_location'            => 'extras/classes/ecjia_location.class.php',
-    'ecjia_map'                 => 'extras/classes/ecjia_map.class.php',
-    'ecjia_cart'                => 'extras/classes/ecjia_cart.class.php',
-    'ecjia_cart_groupbuy'       => 'extras/classes/ecjia_cart_groupbuy.class.php',
-    'ecjia_goods_specification' => 'extras/classes/ecjia_goods_specification.class.php',
-    'ecjia_open_handler'        => 'extras/classes/ecjia_open_handler.class.php',
-    'ecjia_theme_controller'    => 'extras/classes/ecjia_theme_controller.class.php',
-    'ecjia_user_front_controller'    => 'extras/classes/ecjia_user_front_controller.class.php',
-
-];
+// end

@@ -298,7 +298,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         	</a>
         </li>
         <li>
-    	    <a class="external" href="{url path=''}">
+    	    <a class="external" href="{url path='user/card/init'}">
         		<div class="icon-expand"><img src="{$theme_url}images/user_center/user_card.png"></div>
         		<span class="icon-name">{t domain="h5"}开通VIP{/t}</span>
         		<i class="iconfont icon-jiantou-right"></i>

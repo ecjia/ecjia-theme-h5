@@ -226,6 +226,11 @@ return [
     'user/bonus/async_reward_detail'             => 'user_bonus_controller@async_reward_detail',
     'user/bonus/add'                             => 'user_bonus_controller@add',
     'user/bonus/add_bonus'                       => 'user_bonus_controller@add_bonus',
+    
+    //用户会员卡
+    'user/card/init'                             => 'user_card_controller@init',
+    'user/card/user_grade_intro'                 => 'user_card_controller@user_grade_intro',
+    
 
     //订单
     'user/order/order_list'                      => 'user_order_controller@order_list',
