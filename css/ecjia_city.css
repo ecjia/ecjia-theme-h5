@@ -9042,14 +9042,9 @@ footer {
 }
 
 .ecjia-spread .ecjia-my-reward .my_reward {
-    font-size: 18px;
-    border-radius: 7px;
-    height: 42px;
-    line-height: 42px;
-    color: #47aa4d;
+    font-size: 16px;
     text-align: center;
-    background: #fff none repeat scroll 0 0;
-    border: 1px solid #47aa4d
+    line-height: 42px;
 }
 
 .ecjia-spread {
@@ -9062,14 +9057,15 @@ footer {
     padding-top: 0 !important
 }
 
-.ecjia-spread .bg-img {
-    background-image: url(../images/spread-bg.png);
+.ecjia-spread .ecjia-bg-qr-code {
+    background-image: url(../images/affiliate/bg.png);
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    height: 5em;
+    background-position: top center;
+    background-size: 100% ;
     width: 100%;
     position: relative;
-    background-origin: content-box
+    background-origin: content-box;
+    overflow: hidden;
 }
 
 .ecjia-spread .ecjia-list .reward-title {
@@ -9147,6 +9143,12 @@ footer {
     vertical-align: middle;
     text-align: center
 }
+.ecjia-spread .qrcode_image_spread {
+    width: 18em;
+    margin: 8em auto 4em;
+    padding-bottom: 1em;
+    background-color: #fff;
+}
 
 .ecjia-spread .qrcode_image3 {
     height: auto;
@@ -9200,19 +9202,13 @@ footer {
 
 .ecjia-spread .my-invite-code p {
     text-align: center;
-    position: relative;
     font-size: 16px;
-    padding-top: 1em;
-    width: 30%;
-    left: 35%
+    padding: 1em 0 .5em;
 }
 
 .ecjia-spread .my-invite-code .code-style {
     text-align: center;
-    position: relative;
     font-size: 22px;
-    width: 30%;
-    left: 35%;
     color: #ff3434
 }
 
@@ -9243,7 +9239,8 @@ footer {
     line-height: 42px;
     color: #fff;
     text-align: center;
-    background: #47aa4d none repeat scroll 0 0
+    background: #47aa4d none repeat scroll 0 0;
+    margin-top: 1em;
 }
 
 .ecjia-spread .invite_explain {
@@ -9254,7 +9251,7 @@ footer {
 .ecjia-spread .invite_explain .invite_explain-literal {
     font-weight: 700;
     font-size: 16px;
-    padding-left: 1em
+    margin-bottom: 0.5em;
 }
 
 .ecjia-spread .invite_explain .invite_explain-content {
