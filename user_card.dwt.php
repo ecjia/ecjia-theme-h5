@@ -27,7 +27,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 			<li class="grade-goods-info">
 				<div class="basic-info">
 					<div class="grade-goods-left">
-						<a class="goods-logo nopjax external" href="">
+						<a class="goods-logo nopjax external">
 							<img src="{$list.goods.img.thumb}">
 						</a>
 					</div>
@@ -36,7 +36,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<span class="grade-goods-name">{$list.goods.name}</span>
 						<div class="grade-goods-range">
 							<span class="goods-price">{$list.goods.formatted_shop_price}</span>
-							<a href=''>
+							<a href='{url path="user/card/buy_now"}&store_id={$list.goods.store_id}&goods_id={$list.goods.id}'>
 								<span class="card-quickpay-btn">立即购买</span>
 							</a>
 						</div>		

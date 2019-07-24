@@ -14,11 +14,12 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="item_list">
 			<div class="quickpay_div content">
 	            <li class="explain_title"><span><b>{t domain="h5"}会员卡介绍{/t}</b></span></li>
-	            <li class="quickpay_list m_b0">
-	                <p>{$data.user_card_intro}</p>
+	            <li class="quickpay_list m_b0 ecjia-discover-detail article-p">
+	                {$data.user_card_intro}
 	            </li>
+	            
 	            <li class="explain_title"><span><b>{t domain="h5"}VIP权益介绍{/t}</b></span></li>
-	            <li class="quickpay_list m_b0">
+	            <li class="quickpay_list m_b0 ecjia-discover-detail article-p">
 	                <p>{$data.grade_intro}</p>
 	            </li>
         	</div>

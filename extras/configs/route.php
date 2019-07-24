@@ -231,6 +231,7 @@ return [
     //用户会员卡
     'user/card/init'                             => 'user_card_controller@init',
     'user/card/user_grade_intro'                 => 'user_card_controller@user_grade_intro',
+    'user/card/buy_now'                 		 => 'user_card_controller@buy_now',
     
 
     //订单

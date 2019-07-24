@@ -64,6 +64,46 @@ class user_card_controller
     	}
         return ecjia_front::$controller->display('user_card.dwt', $cache_id);
     }
+    
+    /**
+     * 立即购买
+     */
+    public static function buy_now()
+    {
+    	$store_id = intval($_GET['store_id']);
+    	$goods_id = intval($_GET['goods_id']);
+    	
+    	$token = ecjia_touch_user::singleton()->getToken();
+    	$arr  = array(
+    		'token'    => $token,
+    		'location' => array('longitude' => $_COOKIE['longitude'], 'latitude' => $_COOKIE['latitude']),
+    		'city_id'  => $_COOKIE['city_id'],
+    		'goods_id' => $goods_id,
+    	);
+    	
+        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::CART_CREATE)->data($arr)->run();
+        $cart_list = array();
+        if (!is_ecjia_error($data) && !empty($data['cart_list'])) {
+            foreach ($data['cart_list'] as $k => $v) {
+                if ($v['seller_id'] == $store_id) {
+                    $cart_list['cart_list'][0] = $v;
+                }
+            }
+            $cart_goods_list = $cart_list['cart_list'][0]['goods_list'];
+            
+            $rec_id = 0;
+            if (!empty($cart_goods_list)) {
+            	foreach ($cart_goods_list as $k => $v) {
+            		if ($goods_id == $v['goods_id']) {
+            			$rec_id = $v['rec_id'];
+            		}
+            	}
+            }
+            
+            $url = RC_Uri::url('cart/flow/checkout', array('rec_id' => $rec_id, 'store_id' => $store_id));
+            return ecjia_front::$controller->redirectWithExited($url);
+        }
+    }
 
     /**
      * 权益介绍
