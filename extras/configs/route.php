@@ -126,6 +126,7 @@ return [
     'user/index/wxconfig'                        => 'user_controller@wxconfig',
     'user/follow/init'                           => 'user_controller@follow_list',
     'user/follow/ajax_follow_list'               => 'user_controller@ajax_follow_list',
+    'user/index/spread_center'                   => 'user_controller@spread_center', //推广中心
 
     //推荐
     'affiliate/index/init'                       => 'affiliate_controller@init', //邀请注册
