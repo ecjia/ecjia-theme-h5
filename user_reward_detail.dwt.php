@@ -33,11 +33,11 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-spread-detail">
     <ul class="ecjia-list list-short detail-list" data-loadimg="{$theme_url}dist/images/loader.gif"  data-page="2" data-toggle="{if $is_last}asynclist{/if}" data-url="{if $is_last}{url path='async_reward_detail'}&date={$max_month}{/if}">
         <!--{foreach from=$data item=record}-->
-        <li>
+       <!-- <li>
 	         <span class="record-label">{$record.label_reward_type}</span>
 	         <span class="icon-price-red ecjiaf-fr">{$record.give_reward}</span>
 	         <span class="record-time">{$record.reward_time}</span>
-	    </li>
+	    </li>-->
         <!-- {foreachelse} -->
         <div class="ecjia-nolist">
 	        <div class="img-noreward">{t domain="h5"}暂无奖励{/t}</div>

@@ -150,7 +150,7 @@ class user_bonus_controller
     }
 
     /**
-     * 奖励明细
+     * 注册奖励
      */
     public static function reward_detail()
     {
@@ -175,7 +175,7 @@ class user_bonus_controller
         ecjia_front::$controller->assign('data', $data);
         ecjia_front::$controller->assign('is_last', $data['paginated']['more']);
         ecjia_front::$controller->assign('max_month', $max_month);
-        ecjia_front::$controller->assign_title(__('奖励明细', 'h5'));
+        ecjia_front::$controller->assign_title(__('注册奖励', 'h5'));
 
         return ecjia_front::$controller->display('user_reward_detail.dwt');
     }
