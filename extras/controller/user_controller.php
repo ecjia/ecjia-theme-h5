@@ -80,7 +80,7 @@ class user_controller
                 if($distributor_info) {
                 	$last_month = RC_Time::local_strtotime('-1 month', $distributor_info['expiry_time']);
                 	$now_time   = RC_Time::gmtime();
-                	if($now_time > $last_month) {
+                	if($now_time > $last_month && $now_time < $distributor_info['expiry_time']) {
                 		$tip_msg  =  '您好，您的会员卡将于'.$distributor_info['expiry_time_formatted'].'过期，请尽快续费！';
                 		ecjia_front::$controller->assign('tip_msg', $tip_msg);
                 	}

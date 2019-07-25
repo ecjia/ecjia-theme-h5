@@ -60,6 +60,18 @@ class user_card_controller
 	    	if (!is_ecjia_error($data)) {
 	    		ecjia_front::$controller->assign('data', $data);
 	    	}
+	    	
+	    	//会员卡到期提醒
+	    	$distributor_info = ecjia_touch_manager::make()->api(ecjia_touch_api::AFFILIATE_DISTRIBUTOR_USERINFO)->data(array('token' => $token))->run();
+	    	$distributor_info = is_ecjia_error($distributor_info) ? array() : $distributor_info;
+	    	if($distributor_info) {
+	    		$last_month = RC_Time::local_strtotime('-1 month', $distributor_info['expiry_time']);
+	    		$now_time   = RC_Time::gmtime();
+		    	if($now_time > $last_month && $now_time < $distributor_info['expiry_time']) {
+                	ecjia_front::$controller->assign('last_month', 'last_month');
+                }
+		    }
+	    	
 	    	ecjia_front::$controller->assign_title(__('开通VIP', 'h5'));
     	}
         return ecjia_front::$controller->display('user_card.dwt', $cache_id);

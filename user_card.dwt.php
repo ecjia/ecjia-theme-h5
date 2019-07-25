@@ -37,7 +37,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 						<div class="grade-goods-range">
 							<span class="goods-price">{$list.goods.formatted_shop_price}</span>
 							<a href='{url path="user/card/buy_now"}&store_id={$list.goods.store_id}&goods_id={$list.goods.id}'>
-								<span class="card-quickpay-btn">立即购买</span>
+								<span class="card-quickpay-btn">{if $last_month}立即续费{else}立即购买{/if}</span>
 							</a>
 						</div>		
 						<a href='{url path="user/card/user_grade_intro"}&grade_id={$list.grade_id}'><p class="grade-intro"><i class="icon-grade-intro"></i>权益介绍</p></a>
