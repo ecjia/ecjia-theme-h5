@@ -22,7 +22,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
         </div>
         <div class="flow-goods-list">
             <a class="ecjiaf-db">
-                <ul class="goods-item" style="padding: 0;">
+                <ul class="goods-item">
                     <li class="goods-img">
                         <img class="ecjiaf-fl" style="border: none; border-radius: 2.5em;" src="{if $record.avatar_img}{$record.avatar_img}{else}{$theme_url}images/default_user.png{/if}" />
                         <div class="goods-right">

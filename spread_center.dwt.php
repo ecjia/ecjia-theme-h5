@@ -79,7 +79,7 @@ ecjia.touch.spread.init();
         <div class="ecjia-user-head ecjia-user ecjia-color-green ecjia-user-marg-t">
             <ul class="ecjia-user-marg-t ecjia-list list-short">
                 <li>
-                    <a href="{url path='user/order/order_list'}&type={'whole'}">
+                    <a href="{url path='touch/index/init'}">
                         <span class="icon-name">{t domain="h5"}邀请好友下单{/t}</span>
                         <i class="iconfont icon-jiantou-right"></i>
                     </a>

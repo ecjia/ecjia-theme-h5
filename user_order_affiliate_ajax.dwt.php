@@ -37,9 +37,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 
 	<div class="reward-ft">
         <em class="ecjiaf-fl">{$val.formatted_order_time}</em>
-        {if $val.separate_status eq 'separated'}
-		<em class="ecjiaf-fr ecjia-color-red">{t domain="h5"}分成：{/t}{$val.formatted_affiliated_amount}</em>
-        {/if}
+		<em class="ecjiaf-fr ecjia-color-red">{$val.formatted_affiliated_amount}</em>
 	</div>
 
 </li>
