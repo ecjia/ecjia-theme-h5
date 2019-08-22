@@ -20,9 +20,6 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<div class="name">{$val.user_name}</div>
 		<p class="block">{t domain="h5"}加入时间：{/t}{$val.formatted_reg_time}</p>
 	</div>
-    {if $val.has_sub_team eq 1}
-    <span class="next-user"><a href="{RC_Uri::url('user/team/list')}&parent_id={$val.user_id}">下级会员</a></span>
-    {/if}
 </li>
 <!-- {/foreach} -->
 <!-- {else} -->

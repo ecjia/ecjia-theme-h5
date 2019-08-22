@@ -9038,13 +9038,18 @@ footer {
     width: 100%;
     padding-left: 1em;
     padding-right: 1em;
-    padding-bottom: 2em
+    padding-bottom: 1em
 }
 
 .ecjia-spread .ecjia-my-reward .my_reward {
-    font-size: 16px;
-    text-align: center;
+    font-size: 18px;
+    border-radius: 7px;
+    height: 42px;
     line-height: 42px;
+    color: #47aa4d;
+    text-align: center;
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #47aa4d
 }
 
 .ecjia-spread {
@@ -9057,15 +9062,14 @@ footer {
     padding-top: 0 !important
 }
 
-.ecjia-spread .ecjia-bg-qr-code {
-    background-image: url(../images/affiliate/bg.png);
+.ecjia-spread .bg-img {
+    background-image: url(../images/spread-bg.png);
     background-repeat: no-repeat;
-    background-position: top center;
-    background-size: 100% ;
+    background-size: 100% 100%;
+    height: 5em;
     width: 100%;
     position: relative;
-    background-origin: content-box;
-    overflow: hidden;
+    background-origin: content-box
 }
 
 .ecjia-spread .ecjia-list .reward-title {
@@ -9143,12 +9147,6 @@ footer {
     vertical-align: middle;
     text-align: center
 }
-.ecjia-spread .qrcode_image_spread {
-    width: 18em;
-    margin: 8em auto 4em;
-    padding-bottom: 1em;
-    background-color: #fff;
-}
 
 .ecjia-spread .qrcode_image3 {
     height: auto;
@@ -9202,13 +9200,19 @@ footer {
 
 .ecjia-spread .my-invite-code p {
     text-align: center;
+    position: relative;
     font-size: 16px;
-    padding: 1em 0 .5em;
+    padding-top: 1em;
+    width: 30%;
+    left: 35%
 }
 
 .ecjia-spread .my-invite-code .code-style {
     text-align: center;
+    position: relative;
     font-size: 22px;
+    width: 30%;
+    left: 35%;
     color: #ff3434
 }
 
@@ -9239,8 +9243,7 @@ footer {
     line-height: 42px;
     color: #fff;
     text-align: center;
-    background: #47aa4d none repeat scroll 0 0;
-    margin-top: 1em;
+    background: #47aa4d none repeat scroll 0 0
 }
 
 .ecjia-spread .invite_explain {
@@ -9251,7 +9254,7 @@ footer {
 .ecjia-spread .invite_explain .invite_explain-literal {
     font-weight: 700;
     font-size: 16px;
-    margin-bottom: 0.5em;
+    padding-left: 1em
 }
 
 .ecjia-spread .invite_explain .invite_explain-content {
@@ -9500,160 +9503,6 @@ footer {
     left: 5%;
     top: 0;
     border-bottom: 1px solid #eee
-}
-
-/* 推广中心 */
-.ecjia-spread-center {
-    position: relative;
-    padding: 0;
-    width: 100%;
-    background: #f7f7f7;
-}
-
-.ecjia-spread-background {
-    height: 7em;
-    background-color: #47aa4d;
-    width: 100%;
-}
-
-.ecjia-spread-center .spread-container {
-    position: absolute;
-    top: 1em;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    overflow: hidden;
-    padding: 1em;
-}
-
-.ecjia-spread-center .spread-container .user-info {
-    background-color: #fff;
-    z-index: 2;
-    border-radius: 8px;
-    padding-bottom: .5em;
-    color: #774d10;
-}
-
-.ecjia-spread-center .user-info-top {
-    padding: 1em 2em;
-    overflow: hidden;
-}
-
-.ecjia-spread-center .user-info-top img {
-    width: 4em;
-    height: 4em;
-    border-radius: 50%;
-    float: left;
-    margin-top: .5em;
-}
-
-.ecjia-spread-center .user-info-top .top-right {
-    float: left;
-    margin-left: 1em;
-}
-
-.ecjia-spread-center .user-info-top .top-right .name {
-    font-size: 1.2em;
-    color: #555;
-}
-
-.ecjia-spread-center .user-info-top .top-right .rank {
-    margin-top: .5em;
-    background-color: #FFBF27;
-    color: #fff;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.ecjia-spread-center .user-info-bottom {
-    /*background-color: #E5C58F;*/
-    margin: .5em;
-    overflow: hidden;
-    border-radius: 8px;
-    margin-top: 0;
-    padding-bottom: 1em;
-    background-image: url(../images/spread/background.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-}
-
-.ecjia-spread-center .user-info-bottom .bottom-top {
-    padding: 1em;
-    overflow: hidden;
-}
-
-.ecjia-spread-center .user-info-bottom .top-left {
-    float: left;
-    font-size: 1.1em;
-}
-
-.ecjia-spread-center .user-info-bottom .top-left .title {
-    font-size: 1em;
-}
-
-.ecjia-spread-center .user-info-bottom .top-left .price {
-    margin-top: .5em;
-    font-size: 1.3em;
-    font-weight: bold;
-}
-
-.ecjia-spread-center .user-info-bottom .top-right {
-    float: right;
-    margin-top: 1.5em;
-}
-
-.ecjia-spread-center .user-info-bottom .top-right a {
-    background-color: #fff;
-    padding: 5px 20px;
-    border-radius: 20px;
-}
-
-.ecjia-spread-center .user-info-bottom .bottom-bottom {
-    padding: 0;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.ecjia-spread-center .user-info-bottom .bottom-bottom .bottom-item {
-    width: 33.3%;
-    float: left;
-    font-size: 1.1em;
-    line-height: 2em;
-    text-align: center;
-    position: relative;
-}
-
-.ecjia-spread-center .user-info-bottom .bottom-bottom .bottom-item .bottom-border {
-    height: 1em;
-    position: absolute;
-    left: 100%;
-    top: 1.5em;
-    width: .1em;
-    background: #c49953;
-}
-
-.ecjia-spread-center .spread-info {
-    background-color: #fff;
-    border-radius: 8px;
-    margin-top: 1em;
-    overflow: hidden;
-    padding-top: 1em;
-}
-
-.ecjia-spread-center .spread-info .info-item {
-    float: left;
-    width: 25%;
-    text-align: center;
-    line-height: 1em;
-}
-
-.ecjia-spread-center .spread-info .info-item img {
-    width: 4em;
-    height: 4em;
-}
-
-.ecjia-spread-center .spread-info .info-item .title {
-    margin: 1em 0;
 }
 
 /*======================== 加载动画 ===========================*/
@@ -15852,113 +15701,3 @@ body,
 .ecjia-reward-detail .reward-detail-bottom .detail-list {
     border-top: 1px solid #eee
 }
-
-
-/* 会员卡start */
-.ecjia-card-box {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #141414;
-    overflow-y: auto;
-    overflow-scrolling: touch;
-    -webkit-overflow-scrolling: touch;
-    max-width: 640px;
-    margin: 0 auto
-}
-
-.ecjia-card-top img{
-	width: 100%; 
-	height: 18em;
-}
-
-.ecjia-grade-goods {
-    background: #141414;
-    height: auto;
-    margin-top: 0
-}
-
-.ecjia-grade-goods .grade-goods-info {
-    background: #fff;
-	border: 1px solid #eee;
-    border-radius: 10px;
-    height: auto;
-    min-height: 9.3em;
-    overflow: hidden;
-    position: relative;
-	width:91%;
-	margin-bottom: 2em;
-	margin-left: 1.5em;
-}
-
-.ecjia-grade-goods .grade-goods-info .basic-info {
-    width: 95%;
-    height: auto;
-    padding: .8em .2em .5em .2em;
-    margin: 0 auto
-}
-
-.ecjia-grade-goods .grade-goods-left {
-    float: left;
-    width: 20%
-}
-
-.ecjia-grade-goods .grade-goods-left img {
-    width: 100%;
-    max-width: 4.5em;
-    height: 4.5em;
-}
-
-.ecjia-grade-goods .grade-goods-left .goods-logo {
-    position: relative;
-    width: 100%;
-    max-width: 4.5em;
-    height: 4.5em;
-    display: inline-block
-}
-
-.ecjia-grade-goods .grade-goods-right {
-    float: left;
-    width: 80%
-}
-
-.ecjia-grade-goods .card-quickpay-btn {
-    color: #fff;
-    display: inline-block;
-    border: 1px solid #47aa4d;
-	border-radius: 40px;
-    font-size: 1em;
-    background: #47aa4d;
-    padding: 0 1em;
-    line-height: 1.6em;
-    float: right
-}
-
-.ecjia-grade-goods .grade-goods-range {
-    line-height: 1.5em;
-    color: #777;
-    margin-top: 1.8em;
-}
-
-.ecjia-grade-goods .grade-intro {
-    color: #47aa4d;
-	text-align:right;
-	margin-top: 1em;
-}
-
-.ecjia-grade-goods i.icon-grade-intro {
-    background: url(../images/icon/grade_intro50.png);
-    width: 1.5em;
-    height: 1.3em;
-    background-size: 1.3em;
-    background-repeat: no-repeat;
-    float: right;
-}
-
-.ecjia-grade-goods .goods-price {
-    color: #ff3434;
-    font-size: 1.1em;
-}
-/* 会员卡end */

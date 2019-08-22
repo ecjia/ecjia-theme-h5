@@ -22,26 +22,28 @@ ecjia.touch.spread.init();
 
 <div class="ecjia-spread">
 	<div class="ecjia-bg-qr-code">
-		<div class="qrcode_image qrcode_image_spread">
-            <div class="my-invite-code">
-                <p>{t domain="h5"}我的邀请码{/t}</p>
-                <div class="code-style">{$invite_user.invite_code}</div>
-            </div>
+		<div class="bg-img"></div>
+		<div class="qrcode_image">
 			<img src="{$invite_user.invite_qrcode_image}" />
-
-            <div class="go-to-spread">
-                <a class="show_spread_share nopjax external" href="javascript:;"><div class="would-spread">{t domain="h5"}我要邀请{/t}</div></a>
-            </div>
 		</div>
-
+		<div class="my-invite-code">
+			<p>{t domain="h5"}我的邀请码{/t}</p>
+			<div class="code-style">{$invite_user.invite_code}</div>
+		</div>
 	</div>
-
+	<div class="invite-template">
+		<textarea class="invite-template-style" name="invite_template">{$invite_user.invite_template}</textarea>
+	</div>
+	<div class="go-to-spread">
+		<a class="show_spread_share nopjax external" href="javascript:;"><div class="would-spread">{t domain="h5"}我要推广{/t}</div></a>
+	</div>
+	
 	<div class="ecjia-my-reward">
-		<a class="nopjax external" href="{url path='user/index/spread_center'}"><div class="my_reward">{t domain="h5"}我的邀请{/t}<i class="iconfont icon-jiantou-right"></i></div></a>
+		<a class="nopjax external" href="{url path='user/bonus/my_reward'}"><div class="my_reward">{t domain="h5"}查看我的奖励{/t}</div></a>
 	</div>
 	
 	<div class="invite_explain"> 
-		<p class="invite_explain-literal text-center">{t domain="h5"}邀请说明：{/t}</p>
+		<p class="invite_explain-literal">{t domain="h5"}邀请说明：{/t}</p>
 		<div class="invite_explain-content">
 			{if $invite_user.invite_explain}
 				<!--{foreach from=$invite_user.invite_explain item=invite}-->

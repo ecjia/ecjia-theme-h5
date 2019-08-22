@@ -71,7 +71,6 @@ return [
     'user_account_controller'      => 'extras/controller/user_account_controller.php',
     'user_address_controller'      => 'extras/controller/user_address_controller.php', //用户收货地址
     'user_bonus_controller'        => 'extras/controller/user_bonus_controller.php',   //用户红包
-    'user_card_controller'         => 'extras/controller/user_card_controller.php',    //会员卡
     'user_order_controller'        => 'extras/controller/user_order_controller.php',   //订单
     'user_profile_controller'      => 'extras/controller/user_profile_controller.php', //用户资料
     'connect_controller'           => 'extras/controller/connect_controller.php',      //授权登录

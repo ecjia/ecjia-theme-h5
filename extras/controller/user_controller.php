@@ -73,18 +73,6 @@ class user_controller
                 }
                 ecjia_front::$controller->assign('order_num', $user['order_num']);
                 ecjia_front::$controller->assign('user', $user);
-                
-                //会员卡到期提醒
-                $distributor_info = ecjia_touch_manager::make()->api(ecjia_touch_api::AFFILIATE_DISTRIBUTOR_USERINFO)->data(array('token' => $token))->run();
-                $distributor_info = is_ecjia_error($distributor_info) ? array() : $distributor_info;
-                if($distributor_info) {
-                	$last_month = RC_Time::local_strtotime('-1 month', $distributor_info['expiry_time']);
-                	$now_time   = RC_Time::gmtime();
-                	if($now_time > $last_month && $now_time < $distributor_info['expiry_time']) {
-                		$tip_msg  =  '您好，您的会员卡将于'.$distributor_info['expiry_time_formatted'].'过期，请尽快续费！';
-                		ecjia_front::$controller->assign('tip_msg', $tip_msg);
-                	}
-                }
             } else {
                 ecjia_touch_user::singleton()->signout();
             }
@@ -98,6 +86,7 @@ class user_controller
         $shop        = is_ecjia_error($shop) ? array() : $shop;
         $shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
         $shop_config = is_ecjia_error($shop_config) ? array() : $shop_config;
+
         ecjia_front::$controller->assign('shop', $shop);
         ecjia_front::$controller->assign('shop_config', $shop_config);
 
@@ -150,31 +139,6 @@ class user_controller
 
         }
         return ecjia_front::$controller->display('spread.dwt', $cache_id);
-    }
-
-    //推广中心
-    public static function spread_center()
-    {
-        $token     = ecjia_touch_user::singleton()->getToken();
-        $user_info = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_AGENT_USERINFO)->data(array('token' => $token))->run();
-//        _dump($user_info,1);
-        $user_info = is_ecjia_error($user_info) ? [] : $user_info;
-
-        $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
-
-        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
-        $user = is_ecjia_error($user) ? array() : $user;
-
-        if (!empty($user['avatar_img'])) {
-            $user_img = $user['avatar_img'];
-        }
-
-        ecjia_front::$controller->assign('user_info', $user_info);
-        ecjia_front::$controller->assign('user_img', $user_img);
-
-        ecjia_front::$controller->assign_title('推广中心');
-
-        ecjia_front::$controller->display('spread_center.dwt');
     }
 
     public static function wxconfig()

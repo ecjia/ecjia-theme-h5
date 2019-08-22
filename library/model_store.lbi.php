@@ -12,7 +12,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 		<h2><i class="icon-store"></i>{t domain="h5"}推荐店铺{/t}</h2>
 	</div>
 	<div class="ecjia-suggest-store-content">
-		<ul class="ecjia-suggest-store" id="suggest_store_list" {if $is_last neq 1}data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='#index/ajax_suggest_store'}" data-page="2" {/if}>
+		<ul class="ecjia-suggest-store" id="suggest_store_list" {if $is_last neq 1}data-toggle="asynclist" data-loadimg="{$theme_url}dist/images/loader.gif" data-url="{url path='index/ajax_suggest_store'}" data-page="2" {/if}>
 			<!-- {foreach from=$data item=val} -->
 			<li class="store-info">
 				<div class="basic-info">
