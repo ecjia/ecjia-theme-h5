@@ -321,7 +321,7 @@ class user_account_controller
 
     public static function ajax_record()
     {
-        $type  = isset($_GET['type']) ? remove_xss($_GET['type']) : '';
+        $type  = '';
         $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
         $token = ecjia_touch_user::singleton()->getToken();
@@ -401,7 +401,7 @@ class user_account_controller
                 }
             }
             $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
-            $user     = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token,))->run();
+            $user     = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
             if (!is_ecjia_error($user) && !empty($user['avatar_img'])) {
                 $user_img = $user['avatar_img'];
             }

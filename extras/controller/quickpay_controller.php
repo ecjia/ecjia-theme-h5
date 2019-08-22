@@ -392,10 +392,8 @@ class quickpay_controller
             if (empty($_SESSION['wxpay_open_id']) && cart_function::is_weixin()) {
                 //提前获取微信支付wxpay_open_id
                 $handler                   = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
-                if(!is_ecjia_error($handler)) {
-                    $open_id                   = $handler->getWechatOpenId();
-                    $_SESSION['wxpay_open_id'] = $open_id;
-                }
+                $open_id                   = $handler->getWechatOpenId();
+                $_SESSION['wxpay_open_id'] = $open_id;
             }
 
             $params       = array('store_id' => $order_info['store_id']);
@@ -442,10 +440,8 @@ class quickpay_controller
             if (empty($_SESSION['wxpay_open_id']) && cart_function::is_weixin()) {
                 //提前获取微信支付wxpay_open_id
                 $handler                   = with(new Ecjia\App\Payment\PaymentPlugin)->channel('pay_wxpay');
-                if(!is_ecjia_error($handler)) {
-                    $open_id                   = $handler->getWechatOpenId();
-                    $_SESSION['wxpay_open_id'] = $open_id;
-                }
+                $open_id                   = $handler->getWechatOpenId();
+                $_SESSION['wxpay_open_id'] = $open_id;
             }
             $params_list['wxpay_open_id'] = $_SESSION['wxpay_open_id'];
         }

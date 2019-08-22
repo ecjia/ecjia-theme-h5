@@ -917,9 +917,6 @@ class cart_controller
 
         $_SESSION['cart'][$cart_key]['temp']['order_mode'] = 'default';
 
-        $ecjia_cart = new ecjia_cart($store_id);
-        $ecjia_cart->deleteLocalStorage();
-
         return ecjia_front::$controller->display('flow_checkout.dwt');
     }
 

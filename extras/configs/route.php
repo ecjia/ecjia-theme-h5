@@ -126,7 +126,6 @@ return [
     'user/index/wxconfig'                        => 'user_controller@wxconfig',
     'user/follow/init'                           => 'user_controller@follow_list',
     'user/follow/ajax_follow_list'               => 'user_controller@ajax_follow_list',
-    'user/index/spread_center'                   => 'user_controller@spread_center', //推广中心
 
     //推荐
     'affiliate/index/init'                       => 'affiliate_controller@init', //邀请注册
@@ -227,12 +226,6 @@ return [
     'user/bonus/async_reward_detail'             => 'user_bonus_controller@async_reward_detail',
     'user/bonus/add'                             => 'user_bonus_controller@add',
     'user/bonus/add_bonus'                       => 'user_bonus_controller@add_bonus',
-    
-    //用户会员卡
-    'user/card/init'                             => 'user_card_controller@init',
-    'user/card/user_grade_intro'                 => 'user_card_controller@user_grade_intro',
-    'user/card/buy_now'                 		 => 'user_card_controller@buy_now',
-    
 
     //订单
     'user/order/order_list'                      => 'user_order_controller@order_list',
