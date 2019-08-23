@@ -13228,13 +13228,13 @@ footer {
 }
 
 .ecjia-quickpay-form {
-    position: fixed;
+    /*position: fixed;
     top: 12.5em;
     bottom: 0;
     height: 100%;
     background-color: #fff;
     max-width: 640px;
-    width: 100%
+    width: 100%*/
 }
 
 .ecjia-quickpay-content {
