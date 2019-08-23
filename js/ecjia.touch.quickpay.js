@@ -5,6 +5,16 @@
 (function (ecjia, $) {
 	ecjia.touch.quickpay = {
 		init: function () {
+			//解决IOS12并且微信版本6.7.4页面,键盘弹出bug
+			if (_.isIOS()) {
+				window.addEventListener('focusout', function () {
+					//软键盘收起的事件处理
+					setTimeout(function() {
+						window.scrollTo(0 ,document.documentElement.scrollTop || document.body.scrollTop);
+					});
+				});
+			}
+
 			$("body").greenCheck();
 			ecjia.touch.quickpay.checkbtn();
 			ecjia.touch.quickpay.order_money();
