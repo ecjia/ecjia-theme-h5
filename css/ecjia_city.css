@@ -2137,7 +2137,7 @@ footer {
 .ecjia-header.ecjia-store-banner {
     background: #fff;
     height: 12.5em;
-    /*position: fixed;*/
+    position: fixed;
     width: 100%;
     max-width: 640px
 }
@@ -2172,7 +2172,7 @@ footer {
 
 .ecjia-store-brief {
     height: 12.5em;
-    /*position: fixed;*/
+    position: fixed;
     width: 100%;
     top: 0;
     max-width: 640px;
@@ -13228,15 +13228,13 @@ footer {
 }
 
 .ecjia-quickpay-form {
-    /*margin-top:12.5em;*/
-    padding-top:1em;
-    /*position: fixed;
+    position: fixed;
     top: 12.5em;
     bottom: 0;
     height: 100%;
     background-color: #fff;
     max-width: 640px;
-    width: 100%*/
+    width: 100%
 }
 
 .ecjia-quickpay-content {

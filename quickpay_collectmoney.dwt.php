@@ -24,8 +24,8 @@ body {
 <!-- {/block} -->
 
 <!-- {block name="main-content"} -->
-<div class="ecjia-mod ecjia-header ecjia-store-banner" style=" position: unset;background: url('{if $store_info.seller_banner}{$store_info.seller_banner}{else}{$theme_url}images/default_store_banner.png{/if}') center center no-repeat;background-size: 144% 100%;">
-	<div class="ecjia-store-brief quickpay-brief" style="">
+<div class="ecjia-mod ecjia-header ecjia-store-banner" style="position:relative;background: url('{if $store_info.seller_banner}{$store_info.seller_banner}{else}{$theme_url}images/default_store_banner.png{/if}') center center no-repeat;background-size: 144% 100%;">
+	<div class="ecjia-store-brief quickpay-brief" style="position:relative;">
 		<a class="nopjax external" href="{RC_Uri::url('merchant/index/init')}&store_id={$store_id}">
 			<img src="{if $store_info.seller_logo}{$store_info.seller_logo}{else}{$theme_url}images/store_default.png{/if}">
 		</a>

@@ -28,7 +28,7 @@ class ecjia_theme_controller extends ecjia_front
         RC_Style::enqueue_style('ecjia-touch-touch',     ecjia_extra::themeUrl('css/ecjia.touch.css'));
         RC_Style::enqueue_style('ecjia-touch-touch-develop', ecjia_extra::themeUrl('css/ecjia.touch.develop.css'));
         RC_Style::enqueue_style('ecjia-touch-touch-b2b2c',   ecjia_extra::themeUrl('css/ecjia.touch.b2b2c.css'));
-        RC_Style::enqueue_style('ecjia-touch-ecjia_city',    ecjia_extra::themeUrl('css/ecjia_city.css'), [], 20190823);
+        RC_Style::enqueue_style('ecjia-touch-ecjia_city',    ecjia_extra::themeUrl('css/ecjia_city.css'));
         RC_Style::enqueue_style('ecjia-touch-ecjia_help',    ecjia_extra::themeUrl('css/ecjia_help.css'));
         //弹窗
         RC_Style::enqueue_style('ecjia-touch-touch-models', ecjia_extra::themeUrl('css/ecjia.touch.models.css'));
@@ -80,7 +80,7 @@ class ecjia_theme_controller extends ecjia_front
         RC_Script::enqueue_script('ecjia-touch-comment', ecjia_extra::themeUrl('js/ecjia.touch.comment.js'), array(), false, 1);
         RC_Script::enqueue_script('ecjia-touch-raty', ecjia_extra::themeUrl('js/ecjia.touch.raty.js'), array(), false, 1);
         RC_Script::enqueue_script('ecjia-touch-fly', ecjia_extra::themeUrl('js/ecjia.touch.fly.js'), array(), false, 1);
-        RC_Script::enqueue_script('ecjia-touch-quickpay', ecjia_extra::themeUrl('js/ecjia.touch.quickpay.js'), array(), 20190823, 1);
+        RC_Script::enqueue_script('ecjia-touch-quickpay', ecjia_extra::themeUrl('js/ecjia.touch.quickpay.js'), array(), false, 1);
         RC_Script::enqueue_script('ecjia-touch-share', ecjia_extra::themeUrl('js/ecjia.touch.share.js'), array(), false, 1);
 
         //弹窗
