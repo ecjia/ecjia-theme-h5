@@ -302,11 +302,6 @@ class cart_controller
         $rec_id     = intval($_POST['rec_id']);
         $new_number = intval($_POST['val']);
 
-        if($new_number <= 0 && ! is_null($new_number))
-        {
-            return ecjia_front::$controller->showmessage('请输入大于0的正整数', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-        }
-
         $ecjia_cart = new ecjia_cart($store_id);
         $ecjia_cart->deleteLocalStorage();
 
@@ -348,11 +343,6 @@ class cart_controller
         $checked           = isset($_POST['checked']) ? $_POST['checked'] : '';
         $response          = isset($_POST['response']) ? true : false;
         $spec              = isset($_POST['spec']) ? $_POST['spec'] : '';
-
-        if($new_number <= 0 && ! is_null($new_number))
-        {
-            return ecjia_front::$controller->showmessage('请输入大于0的正整数', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
-        }
         
         /**
          * 如果是团购活动，转到新方法，专门处理团购

@@ -257,6 +257,7 @@
 					$this.parents('.ecjia-attr-modal').append('<div class="la-ball-atom"><div></div><div></div><div></div><div></div></div>');
 					var store_id = $('input[name="store_id"]').val();
 					var val = parseInt($this.siblings('label').html()) - 1;
+					if(val <= 0) {val = 0;}
 					var goods_id = $this.attr('goods_id');
                     if (spec.length == 0) {
                         spec = [0];
