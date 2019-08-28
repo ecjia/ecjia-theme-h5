@@ -302,7 +302,7 @@ class cart_controller
         $rec_id     = intval($_POST['rec_id']);
         $new_number = intval($_POST['val']);
 
-        if($new_number <= 0)
+        if($new_number <= 0 && ! is_null($new_number))
         {
             return ecjia_front::$controller->showmessage('请输入大于0的正整数', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
@@ -349,7 +349,7 @@ class cart_controller
         $response          = isset($_POST['response']) ? true : false;
         $spec              = isset($_POST['spec']) ? $_POST['spec'] : '';
 
-        if($new_number <= 0)
+        if($new_number <= 0 && ! is_null($new_number))
         {
             return ecjia_front::$controller->showmessage('请输入大于0的正整数', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_ERROR);
         }
