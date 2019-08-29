@@ -343,7 +343,7 @@ class cart_controller
         $checked           = isset($_POST['checked']) ? $_POST['checked'] : '';
         $response          = isset($_POST['response']) ? true : false;
         $spec              = isset($_POST['spec']) ? $_POST['spec'] : '';
-
+        
         /**
          * 如果是团购活动，转到新方法，专门处理团购
          */
