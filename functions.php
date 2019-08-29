@@ -286,7 +286,7 @@ ecjia_open_handler::macro();
  */
 RC_Hook::add_filter('payment_respond_template', function($respond, $msg, $info) {
     return payment_controller::notify($msg);
-});
+}, 10, 3);
 
 /**
  * 自定义站点API地址
