@@ -382,7 +382,7 @@
 					return false;
 				}
 				$this.addClass('disabled');
-				if (num == 0 || isNaN(num) || num == undefined) {
+				if (num <= 0 || isNaN(num) || num == undefined) {
 					$this.removeClass('disabled');
 					alert(js_lang.quantity_out_range);
 					return false;
