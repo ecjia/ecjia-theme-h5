@@ -284,10 +284,8 @@ ecjia_open_handler::macro();
 /**
  * 支付响应提示模板
  */
-RC_Hook::add_filter('payment_respond_template', function($callback) {
-    return function ($respond, $msg, $info) {
-        return payment_controller::notify($msg);
-    };
+RC_Hook::add_filter('payment_respond_template', function($respond, $msg, $info) {
+    return payment_controller::notify($msg);
 });
 
 /**
