@@ -111,7 +111,7 @@ class quickpay_controller
             if ($total_fee < 0) {
                 $total_fee = 0;
             }
-            ecjia_front::$controller->assign('total_fee', $total_fee);
+            ecjia_front::$controller->assign('total_fee', price_format($total_fee));
         }
 
         if (empty($_SESSION['quick_pay']['data']['activity_list'])) {
