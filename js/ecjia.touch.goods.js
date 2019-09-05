@@ -31,7 +31,7 @@
 			ecjia.touch.category.remove_goods();
 			ecjia.touch.category.check_groupbuy_cart();
 
-			//分类列表 点击分类切换 滚动到顶部
+            //分类列表 点击分类切换 滚动到顶部
 			$('.category_left li').on('click', function () {
 				$(window).scrollTop(0);
 			});
