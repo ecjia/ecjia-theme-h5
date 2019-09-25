@@ -573,24 +573,48 @@ class user_account_controller
         $user_info = ecjia_touch_user::singleton()->getUserinfo();
 
         $account_id = !empty($_GET['account_id']) ? intval($_GET['account_id']) : 0;
+        $log_id = intval($_GET['log_id']);
 
-        $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD_DETAIL)->data(array('token' => $token, 'account_id' => $account_id))->run();
-        $data = is_ecjia_error($data) ? [] : $data;
+        if (empty($log_id))
+        {
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD_DETAIL)->data(array('token' => $token, 'account_id' => $account_id))->run();
+            $data = is_ecjia_error($data) ? [] : $data;
 
-        $cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name'];
-        $cache_id .= $cache_id . '-' . $data['order_sn'] . '-' . $data['type'] . '-' . $data['pay_status'];
-        $cache_id = sprintf('%X', crc32($cache_id));
+            $cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name'];
+            $cache_id .= $cache_id . '-' . $data['order_sn'] . '-' . $data['type'] . '-' . $data['pay_status'];
+            $cache_id = sprintf('%X', crc32($cache_id));
 
-        if (!ecjia_front::$controller->is_cached('user_record_info.dwt', $cache_id)) {
-            if (empty($user_info['avatar_img'])) {
-                $user_info['avatar_img'] = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
+            if (!ecjia_front::$controller->is_cached('user_record_info.dwt', $cache_id)) {
+                if (empty($user_info['avatar_img'])) {
+                    $user_info['avatar_img'] = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
+                }
+                ecjia_front::$controller->assign('user', $user_info);
+                ecjia_front::$controller->assign_title(__('交易明细', 'h5'));
+
+                ecjia_front::$controller->assign('sur_amount', $data);
             }
-            ecjia_front::$controller->assign('user', $user_info);
-            ecjia_front::$controller->assign_title(__('交易明细', 'h5'));
+            return ecjia_front::$controller->display('user_record_info.dwt', $cache_id);
+        }else{
 
-            ecjia_front::$controller->assign('sur_amount', $data);
+            $data = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_STORE_AGENT_AFFILIATE_ACCOUNT_LOGDETAIL)->data(array('token' => $token, 'log_id' => $log_id))->run();
+            $data = is_ecjia_error($data) ? [] : $data;
+
+            $cache_id = $_SERVER['QUERY_STRING'] . '-' . $token . '-' . $user_info['id'] . '-' . $user_info['name'];
+            $cache_id .= $cache_id . '-' . $data['order_sn'] . '-' . $data['type'] . '-' . $data['pay_status'];
+            $cache_id = sprintf('%X', crc32($cache_id));
+
+            if (!ecjia_front::$controller->is_cached('user_record_info.dwt', $cache_id)) {
+                if (empty($user_info['avatar_img'])) {
+                    $user_info['avatar_img'] = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
+                }
+                ecjia_front::$controller->assign('user', $user_info);
+                ecjia_front::$controller->assign_title(__('交易明细', 'h5'));
+
+                ecjia_front::$controller->assign('sur_amount', $data);
+            }
+            return ecjia_front::$controller->display('user_affiliate_info.dwt', $cache_id);
         }
-        return ecjia_front::$controller->display('user_record_info.dwt', $cache_id);
+
     }
 
     /**
