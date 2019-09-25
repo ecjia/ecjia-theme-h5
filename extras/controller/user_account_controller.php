@@ -321,31 +321,64 @@ class user_account_controller
 
     public static function ajax_record()
     {
-        $type  = '';
-        $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
-        $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
+        $type  = isset($_GET['type']) ? $_GET['type'] : '';
+        $limit = intval($_GET['size']) > 0 ? $_GET['size'] : 10;
+        $pages = intval($_GET['page']) ? $_GET['page'] : 1;
         $token = ecjia_touch_user::singleton()->getToken();
 
         $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_ACCOUNT_RECORD)->data(array('token' => $token, 'pagination' => array('page' => $pages, 'count' => $limit), 'type' => $type))->hasPage()->run();
-        if (!is_ecjia_error($account_list)) {
-            list($data, $page) = $account_list;
+        $affiliate_list = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_STORE_AGENT_AFFILIATE_ACCOUNT_LOG)->data(array('token' => $token, 'pagination' => array('page' => $pages, 'count' => $limit)))->hasPage()->run();
+
+        $all_list =  array_merge($account_list['0'],$affiliate_list['0']);
+        $all_page = array_merge($account_list['1'],$affiliate_list['1']);
+
+        if (!is_ecjia_error($all_list)) {
+
+            $data = $all_list;
+            $page = $all_page;
             $now_mon  = RC_Time::local_date('Y-m', RC_Time::gmtime());
             $now_day  = RC_Time::local_date('Y-m-d', RC_Time::gmtime());
             $now_year = RC_Time::local_date('Y', RC_Time::gmtime());
 
             $time = '';
             foreach ($data as $key => $val) {
-                if ($time != substr($val['add_time'], 0, 7)) {
-                    $time = substr($val['add_time'], 0, 7);
-                    $day  = substr($val['add_time'], 8, 2);
-                }
-                $arr[$time][$key] = $data[$key];
-                $day              = substr($val['add_time'], 0, 10);
+                if(empty($val['add_time']))
+                {
+                    if ($time != substr($val['formatted_change_time'], 0, 7)) {
+                        $time = substr($val['formatted_change_time'], 0, 7);
+                        $day  = substr($val['formatted_change_time'], 8, 2);
+                    }
+                    $arr[$time][$key] = $data[$key];
+                    $day              = substr($val['add_time'], 0, 10);
 
-                if ($day == $now_day) {
-                    $arr[$time][$key]['add_time'] = sprintf(__("今天%s", 'h5'), substr($val['add_time'], 11, 5));
-                } else {
-                    $arr[$time][$key]['add_time'] = substr($val['add_time'], 5, 11);
+                    if ($day == $now_day) {
+                        $arr[$time][$key]['add_time'] = '今天' . substr($val['formatted_change_time'], 11, 5);
+                    } else {
+                        $arr[$time][$key]['add_time'] = substr($val['formatted_change_time'], 5, 11);
+                    }
+                }else{
+                    if ($time != substr($val['add_time'], 0, 7)) {
+                        $time = substr($val['add_time'], 0, 7);
+                        $day  = substr($val['add_time'], 8, 2);
+                    }
+                    $arr[$time][$key] = $data[$key];
+                    $day              = substr($val['add_time'], 0, 10);
+
+                    if ($day == $now_day) {
+                        $arr[$time][$key]['add_time'] = '今天' . substr($val['add_time'], 11, 5);
+                    } else {
+                        $arr[$time][$key]['add_time'] = substr($val['add_time'], 5, 11);
+                    }
+                }
+
+                if (empty($val['type_lable'])){
+                    $arr[$time][$key]['type_lable'] = $val['label_type'];
+                }
+                if (empty($val['amount'])){
+                    $arr[$time][$key]['amount'] = $val['change_amount'];
+                }
+                if (empty($val['pay_status'])){
+                    $arr[$time][$key]['pay_status'] = $val['label_status'];
                 }
             }
             $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
@@ -460,6 +493,62 @@ class user_account_controller
             }
             ecjia_front::$controller->assign('user_img', $user_img);
             ecjia_front::$controller->assign('type', $type);
+            ecjia_front::$controller->assign('now_mon', $now_mon);
+            ecjia_front::$controller->assign('now_year', $now_year);
+            ecjia_front::$controller->assign('sur_amount', $arr);
+            ecjia_front::$controller->assign('pages', $pages);
+            ecjia_front::$controller->assign_lang();
+            $say_list = ecjia_front::$controller->fetch('user_record_ajax.dwt');
+
+            if ((isset($page['more']) && $page['more'] == 0) || empty($arr)) {
+                $is_last = 1;
+            }
+
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+        }
+    }
+
+    /*分成列表*/
+    public static function ajax_record_affiliate()
+    {
+        $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+        $pages = intval($_GET['page']) ? intval($_GET['page']) : 1;
+        $token = ecjia_touch_user::singleton()->getToken();
+
+        $account_list = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_STORE_AGENT_AFFILIATE_ACCOUNT_LOG)->data(array('token' => $token, 'pagination' => array('page' => $pages, 'count' => $limit)))->hasPage()->run();
+
+        if (!is_ecjia_error($account_list)) {
+            list($data, $page) = $account_list;
+            $now_mon  = RC_Time::local_date('Y-m', RC_Time::gmtime());
+            $now_day  = RC_Time::local_date('Y-m-d', RC_Time::gmtime());
+            $now_year = RC_Time::local_date('Y', RC_Time::gmtime());
+
+            $time = '';
+            foreach ($data as $key => $val) {
+                if ($time != substr($val['formatted_change_time'], 0, 7)) {
+                    $time = substr($val['formatted_change_time'], 0, 7);
+                    $day  = substr($val['formatted_change_time'], 8, 2);
+                }
+                $arr[$time][$key] = $data[$key];
+                $day              = substr($val['add_time'], 0, 10);
+
+                if ($day == $now_day) {
+                    $arr[$time][$key]['add_time'] = '今天' . substr($val['formatted_change_time'], 11, 5);
+                } else {
+                    $arr[$time][$key]['add_time'] = substr($val['formatted_change_time'], 5, 11);
+                }
+                $arr[$time][$key]['type_lable'] = $val['label_type'];
+                $arr[$time][$key]['amount'] = $val['change_amount'];
+                $arr[$time][$key]['pay_status'] = $val['label_status'];
+
+
+            }
+            $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
+            $user     = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+            if (!is_ecjia_error($user) && !empty($user['avatar_img'])) {
+                $user_img = $user['avatar_img'];
+            }
+            ecjia_front::$controller->assign('user_img', $user_img);
             ecjia_front::$controller->assign('now_mon', $now_mon);
             ecjia_front::$controller->assign('now_year', $now_year);
             ecjia_front::$controller->assign('sur_amount', $arr);
