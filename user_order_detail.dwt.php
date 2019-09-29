@@ -213,7 +213,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
                 <li class="remark"><span class="ecjiaf-fl width-25-p">{t domain="h5"}订单备注：{/t}</span><span class="ecjiaf-fr width-75-p">{if $order.postscript}{$order.postscript}{else}{t domain="h5"}暂无{/t}{/if}</span></li>
 			</ul>
 			<div class="order-ft-link">
-				<a class="btn btn-small btn-hollow external" href="{if $order.service_phone}tel://{$order.service_phone}{else}javascript:alert('{t domain='h5'}无法联系卖家{/t}');{/if}">{t domain="h5"}联系卖家{/t}</a>
+				<a class="btn btn-small btn-hollow external" href="{if $order.service_phone}wtai://wp//mc;{$order.service_phone}{else}javascript:alert('{t domain='h5'}无法联系卖家{/t}');{/if}">{t domain="h5"}联系卖家{/t}</a>
 				{if !$order.refund_info}
 					{if $order.order_status_code eq 'await_pay'}
                         {if $order.extension_code neq 'group_buy'}
