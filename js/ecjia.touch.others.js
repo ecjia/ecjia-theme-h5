@@ -393,7 +393,7 @@
 						});
 						textarea.val('');
 						ecjia.touch.index.hide_box();
-                        $('.comment-item').remove();
+                        window.location.reload();
                     } else {
 						if (data.referer_url) {
 							ecjia.touch.index.show_login_message(data.referer_url);
@@ -402,7 +402,6 @@
 						}
 					}
 				});
-                ecjia.touch.asynclist();
             });
 
 			$('.box_overlay').off('click').on('click', function () {
