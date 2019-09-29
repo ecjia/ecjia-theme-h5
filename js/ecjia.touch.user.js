@@ -736,16 +736,6 @@
 		},
 
 
-        service_phone: function() {
-			$('.service_phone').off('click').on('click', function (e) {
-                e.preventDefault();
-                var $this = $(this),
-                    tel = $this.attr('data-tel');
-
-                window.location.href = "tel:" + tel;
-            });
-		},
-
         delete_withdraw: function () {
             $('.delete_withdraw').off('click').on('click', function (e) {
                 e.preventDefault();
