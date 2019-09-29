@@ -25,7 +25,6 @@
 			ecjia.touch.user.account_bind();
 			ecjia.touch.user.cancel_order();
 			ecjia.touch.user.return_order();
-			ecjia.touch.user.affiliate();
 			ecjia.touch.user.resend_sms();
 			ecjia.touch.user.cancel_account();
             ecjia.touch.user.choose_bank();
@@ -734,6 +733,17 @@
 					remove_overlay();
 				}
 			});
+		},
+
+
+        service_phone: function() {
+			$('.service_phone').off('click').on('click', function (e) {
+                e.preventDefault();
+                var $this = $(this),
+                    tel = $this.attr('data-tel');
+
+                window.location.href = "tel:" + tel;
+            });
 		},
 
         delete_withdraw: function () {
