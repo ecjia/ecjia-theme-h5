@@ -15784,21 +15784,20 @@ body,
 
 .ecjia-reward-list .reward-head .reward-head-item {
     float: left;
-    width: 33.3%;
+    width: 50%;
     text-align: center;
     font-size: 1.1em;
 }
 
-.ecjia-reward-list.list-two .reward-head .reward-head-item {
-    width: 50%;
-}
-
 .ecjia-reward-list .reward-head .reward-head-item.active span {
-    color: #47aa4d;
-    border-bottom: 2px solid #47aa4d;
+    color: #1ca74e;
+    border-bottom: 2px solid #1ca74e;
     height: 3.2em;
     display: inline-block;
     width: 4em;
+}
+.ecjia-reward-list.list-two .reward-head .reward-head-item {
+    width: 50%;
 }
 
 .ecjia-reward-list .reward-item {

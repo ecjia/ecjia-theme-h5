@@ -145,6 +145,8 @@ class user_controller
     public static function spread_center()
     {
         $token     = ecjia_touch_user::singleton()->getToken();
+        $user_info = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_AGENT_USERINFO)->data(array('token' => $token))->run();
+        $user_info = is_ecjia_error($user_info) ? [] : $user_info;
 
         $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
 
@@ -155,6 +157,7 @@ class user_controller
             $user_img = $user['avatar_img'];
         }
 
+        ecjia_front::$controller->assign('user_info', $user_info);
         ecjia_front::$controller->assign('user_img', $user_img);
         ecjia_front::$controller->assign('user', $user);
 
@@ -169,7 +172,7 @@ class user_controller
     {
         $token     = ecjia_touch_user::singleton()->getToken();
         $user_info = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_AGENT_USERINFO)->data(array('token' => $token))->run();
-//        _dump($user_info,1);
+        _dump($user_info,1);
         $user_info = is_ecjia_error($user_info) ? [] : $user_info;
 
         $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
@@ -188,6 +191,60 @@ class user_controller
 
         ecjia_front::$controller->display('spread_center_agent.dwt');
     }
+
+
+    //个人销售奖励
+    public static function personal_reward()
+    {
+
+        ecjia_front::$controller->assign('active', 'await_separate');
+        $title = '销售奖励';
+        ecjia_front::$controller->assign_title($title);
+        ecjia_front::$controller->assign('status', trim($_GET['status']));
+
+        ecjia_front::$controller->display('personal_reward_list.dwt');
+    }
+
+    //获取个人销售奖励
+    public static function ajax_personal_reward()
+    {
+        $status = !empty($_GET['status']) ? trim($_GET['status']) : 'await_separate';
+        $limit = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+        $pages = !empty($_GET['page']) ? intval($_GET['page']) : 2;
+        ecjia_front::$controller->assign('status', $status);
+
+        $token = ecjia_touch_user::singleton()->getToken();
+
+        $param = array(
+            'token' => $token,
+            'status' => $status,
+            'pagination' => array('count' => $limit, 'page' => $pages),
+        );
+
+        $result = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_STORE_AGENT_AFFILIATE_RECORDS)->data($param)->hasPage()->run();
+
+        if (!is_ecjia_error($result)) {
+            list($data, $page) = $result;
+            ecjia_front::$controller->assign('pages', $pages);
+
+            $say_list = '';
+            if (!empty($data)) {
+                ecjia_front::$controller->assign('list', $data);
+            }
+            $say_list = ecjia_front::$controller->fetch('personal_reward_list_ajax.dwt');
+
+            if (isset($page['more']) && $page['more'] == 0) {
+                $is_last = 1;
+            }
+
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+        } else {
+            $say_list = ecjia_front::$controller->fetch('personal_reward_list_ajax.dwt');
+            $is_last = 1;
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+        }
+    }
+
 
     public static function wxconfig()
     {

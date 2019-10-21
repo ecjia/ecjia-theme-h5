@@ -40,17 +40,17 @@ ecjia.touch.spread.init();
                 <div class="bottom-bottom">
                     <div class="bottom-item">
                         <p>今日收入(元)</p>
-                        <span>{$user_info.affiliate_summary.today_affiliate_amount}</span>
+                        <span>{if $user_info.affiliate_summary.today_affiliate_amount}{$user_info.affiliate_summary.today_affiliate_amount}{else}0{/if}</span>
                         <span class="bottom-border"></span>
                     </div>
                     <div class="bottom-item">
                         <p>待分成(元)</p>
-                        <span>{$user_info.affiliate_summary.await_affiliate_amount}</span>
+                        <span>{if $user_info.affiliate_summary.await_affiliate_amount}{$user_info.affiliate_summary.await_affiliate_amount}{else}0{/if}</span>
                         <span class="bottom-border"></span>
                     </div>
                     <div class="bottom-item">
                         <p>累计收入(元)</p>
-                        <span>{$user_info.affiliate_summary.total_affiliate_amount}</span>
+                        <span>{if $user_info.affiliate_summary.total_affiliate_amount}{$user_info.affiliate_summary.total_affiliate_amount}{else}0{/if}</span>
                     </div>
                 </div>
             </div>
