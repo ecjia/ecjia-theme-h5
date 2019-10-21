@@ -324,4 +324,7 @@ return [
     //优惠买单
     'quickpay/flow/flow_checkorder'              => 'quickpay_controller@flow_checkorder',
     'quickpay/flow/done'                         => 'quickpay_controller@done',
+
+    //推广中心
+    'user/index/spread_center'                   => 'user_controller@spread_center', //推广中心
 ];

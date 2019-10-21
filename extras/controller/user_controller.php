@@ -141,6 +141,54 @@ class user_controller
         return ecjia_front::$controller->display('spread.dwt', $cache_id);
     }
 
+
+    public static function spread_center()
+    {
+        $token     = ecjia_touch_user::singleton()->getToken();
+
+        $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
+
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+        $user = is_ecjia_error($user) ? array() : $user;
+
+        if (!empty($user['avatar_img'])) {
+            $user_img = $user['avatar_img'];
+        }
+
+        ecjia_front::$controller->assign('user_img', $user_img);
+        ecjia_front::$controller->assign('user', $user);
+
+        ecjia_front::$controller->assign_title('我的收入');
+
+        ecjia_front::$controller->display('spread_center.dwt');
+    }
+
+
+    //推广中心
+    public static function spread_center_agent()
+    {
+        $token     = ecjia_touch_user::singleton()->getToken();
+        $user_info = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_AGENT_USERINFO)->data(array('token' => $token))->run();
+//        _dump($user_info,1);
+        $user_info = is_ecjia_error($user_info) ? [] : $user_info;
+
+        $user_img = RC_Theme::get_template_directory_uri() . '/images/user_center/icon-login-in2x.png';
+
+        $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
+        $user = is_ecjia_error($user) ? array() : $user;
+
+        if (!empty($user['avatar_img'])) {
+            $user_img = $user['avatar_img'];
+        }
+
+        ecjia_front::$controller->assign('user_info', $user_info);
+        ecjia_front::$controller->assign('user_img', $user_img);
+
+        ecjia_front::$controller->assign_title('推广中心');
+
+        ecjia_front::$controller->display('spread_center_agent.dwt');
+    }
+
     public static function wxconfig()
     {
         $url = trim($_POST['url']);
