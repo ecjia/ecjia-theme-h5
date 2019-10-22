@@ -228,7 +228,7 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <div class="ecjia-user-border-b">
     <ul class="ecjia-user ecjia-list bonus ecjia-nav-child-f ecjia-list-four ecjia-login-nav-bottom">
         <li>
-            <a href="{url path='user/index/spread_center'}">
+            <a href="{url path='user/index/spread_center_normal'}">
                 <p><img src="{$theme_url}images/user_center/get_integral.png" /></p>
                 <p>{t domain="h5"}推广中心{/t}</p>
             </a>
