@@ -271,6 +271,77 @@ class user_controller
         return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('data' => $config));
     }
 
+    //个人开店奖励
+    public static function store_reward()
+    {
+        ecjia_front::$controller->assign('active', 'all');
+
+        $token = ecjia_touch_user::singleton()->getToken();
+
+        $param = array(
+            'token'      => $token,
+            'type'     => 'self_recommend',
+            'pagination' => array('count' => 10, 'page' => 1),
+        );
+        $result1 = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_STORE_AGENT_INVITE_STORE)->data($param)->hasPage()->run();
+
+        $param = array(
+            'token'      => $token,
+            'type'     => 'sub_recommend',
+            'pagination' => array('count' => 10, 'page' => 1),
+        );
+        $result2 = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_STORE_AGENT_INVITE_STORE)->data($param)->hasPage()->run();
+
+        $total = null;
+        if(! is_ecjia_error($result1) && ! is_ecjia_error($result2))
+        {
+            $total = $result1['1']['total'] + $result2['1']['total'];
+        }
+        ecjia_front::$controller->assign('total', $total);
+
+        $title = '推广店铺';
+        ecjia_front::$controller->assign_title($title);
+        ecjia_front::$controller->assign('status', trim($_GET['status']));
+
+        ecjia_front::$controller->display('store_reward_list.dwt');
+    }
+
+    //获取个人开店奖励
+    public static function ajax_store_list()
+    {
+        $status = !empty($_GET['status']) ? trim($_GET['status']) : 'self_recommend';
+        $limit  = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
+        $pages  = intval($_GET['page']) ? intval($_GET['page']) : 1;
+
+        $token = ecjia_touch_user::singleton()->getToken();
+
+        $param = array(
+            'token'      => $token,
+            'type'     => $status,
+            'pagination' => array('count' => $limit, 'page' => $pages),
+        );
+        $result = ecjia_touch_manager::make()->api(ecjia_touch_api::INVITE_STORE_AGENT_INVITE_STORE)->data($param)->hasPage()->run();
+
+        if (!is_ecjia_error($result)) {
+            list($data, $page) = $result;
+            if (isset($page['more']) && $page['more'] == 0) {
+                $is_last = 1;
+            }
+
+            $say_list = '';
+            if (!empty($data)) {
+                ecjia_front::$controller->assign('list', $data);
+            }
+            $say_list = ecjia_front::$controller->fetch('store_reward_list_ajax.dwt');
+
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+        } else {
+            $say_list = ecjia_front::$controller->fetch('store_reward_list_ajax.dwt');
+            $is_last = 1;
+            return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('list' => $say_list, 'is_last' => $is_last));
+        }
+    }
+
     public static function sync_avatar($connect_user)
     {
         $user_id = $connect_user->getUserId();
