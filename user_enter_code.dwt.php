@@ -12,6 +12,24 @@ defined('IN_ECJIA') or header("HTTP/1.0 404 Not Found");exit('404 Not Found');
 <!-- {block name="footer"} -->
 <script type="text/javascript">
 	ecjia.touch.user.init();
+
+    document.addEventListener('paste', e => {
+        const text = e.clipboardData.getData('text/plain');
+        console.log('Got pasted text: ', text);
+        console.log('1:', text.substring(0,1));
+        console.log('2:', text.substring(1,2));
+        console.log('3:', text.substring(2,3));
+        console.log('4:', text.substring(3,4));
+        console.log('5:', text.substring(4,5));
+        console.log('6:', text.substring(5,6));
+
+        $(".input:eq(0)").val(text.substring(0,1));
+        $(".input:eq(1)").val(text.substring(1,2));
+        $(".input:eq(2)").val(text.substring(2,3));
+        $(".input:eq(3)").val(text.substring(3,4));
+        $(".input:eq(4)").val(text.substring(4,5));
+        $(".input:eq(5)").val(text.substring(5,6));
+    })
 </script>
 <!-- {/block} -->
 
