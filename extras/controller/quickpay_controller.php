@@ -270,7 +270,7 @@ class quickpay_controller
         if (!ecjia_front::$controller->is_cached('quickpay_explain.dwt', $cache_id)) {
             $data = ecjia_touch_manager::make()->api(ecjia_touch_api::QUICKPAY_ACTIVIRY_LIST)->data($param)->run();
             $data = !is_ecjia_error($data) ? $data : array();
-dd($data);
+
             ecjia_front::$controller->assign('data', $data);
         }
         return ecjia_front::$controller->display('quickpay_explain.dwt', $cache_id);
