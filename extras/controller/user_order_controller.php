@@ -191,6 +191,7 @@ class user_order_controller
                 }
             }
             if (!ecjia_front::$controller->is_cached('user_order_status.dwt', $cache_id)) {
+
                 ecjia_front::$controller->assign('order', $data);
                 ecjia_front::$controller->assign('title', __('订单状态', 'h5'));
                 ecjia_front::$controller->assign_title(__('订单状态', 'h5'));
@@ -536,6 +537,7 @@ class user_order_controller
         ecjia_front::$controller->assign('express_info', $arr);
         ecjia_front::$controller->assign('hidenav', 1);
         if (!is_ecjia_error($data)) {
+
             if (!empty($data['order_status_log']) && $data['order_status_log'][0]['status'] == 'finished') {
                 //店铺信息
                 $parameter_list = array(
