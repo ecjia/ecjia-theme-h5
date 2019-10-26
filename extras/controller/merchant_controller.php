@@ -61,6 +61,7 @@ class merchant_controller
 
         $store_id    = intval($_GET['store_id']);
         $category_id = intval($_GET['category_id']);
+        $token = ecjia_touch_user::singleton()->getToken();
 
         $type = $_GET['type'];
 
