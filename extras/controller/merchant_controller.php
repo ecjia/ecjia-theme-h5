@@ -70,10 +70,9 @@ class merchant_controller
                 $_SESSION['user_temp']['store_id'] = $store_id;
                 return ecjia_front::$controller->redirect(RC_Uri::url('user/privilege/login'));
             }else{
-                $token             = ecjia_touch_user::singleton()->getToken();
                 $user = ecjia_touch_manager::make()->api(ecjia_touch_api::USER_INFO)->data(array('token' => $token))->run();
 
-                $ecjia_add_storeuser =  new ecjia_add_storeuser();
+                $ecjia_add_storeuser =  new ecjia_qrcode_add_storeuser();
                 $ecjia_add_storeuser->add_store_user(array('user_id' => $user['id'], 'store_id' => $store_id));
             }
         }
