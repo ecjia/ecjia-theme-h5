@@ -54,7 +54,8 @@ class ecjia_qrcode_add_storeuser {
     public static function add_store_user($options) {
 
         if (!empty($options['store_id']) && !empty($options['user_id'])) {
-            $is_exist_store_user = RC_DB::table('store_users')->where('store_id', $options['store_id'])->where('user_id', $options['user_id'])->first();
+            $is_exist_store_user = RC_DB::table('store_users')->where('user_id', $options['user_id'])->where('store_id', $options['store_id'])->get();
+
             if (empty($is_exist_store_user)) {
                 $store_name = self::get_store_name($options['store_id']);
                 $data = array(
