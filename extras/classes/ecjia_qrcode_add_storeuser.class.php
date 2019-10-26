@@ -50,10 +50,6 @@ defined('IN_ECJIA') or exit('No permission resources.');
  * 添加商家会员
  */
 class ecjia_qrcode_add_storeuser {
-    /**
-     * 添加商家会员
-     *
-     */
 
     public static function add_store_user($options) {
 

@@ -61,9 +61,9 @@ class merchant_controller
 
         $store_id    = intval($_GET['store_id']);
         $category_id = intval($_GET['category_id']);
-        $token = ecjia_touch_user::singleton()->getToken();
-
         $type = $_GET['type'];
+
+        $token   = ecjia_touch_user::singleton()->getToken();
 
         if ($type == 'affiliate') {
             $signin = ecjia_touch_user::singleton()->isSignin();
@@ -108,7 +108,20 @@ class merchant_controller
 
             if (!empty($store_info['favourable_list'])) {
                 $store_info['favourable_count'] = count($store_info['favourable_list']);
+            } else {
+                $store_info['favourable_list'] = array();
             }
+
+            if($store_info['gift_activity']) {
+                $store_info['favourable_count'] =count($store_info['favourable_list']) + 1;
+
+                $gift_activity_arr = array(
+                    'name' 		 => '购买指定商品，可得赠品（赠完为止）',
+                    'type_label' => '买赠'
+                );
+                array_push($store_info['favourable_list'], $gift_activity_arr);
+            }
+
             $store_info['shop_address'] = trim($store_info['shop_address']);
             ecjia_front::$controller->assign('store_info', $store_info);
             ecjia_front::$controller->assign_title($store_info['seller_name']);
@@ -141,6 +154,8 @@ class merchant_controller
             $type_name = __('热销', 'h5');
         } elseif ($store_temp_action_type == 'new') {
             $type_name = __('新品', 'h5');
+        } elseif ($store_temp_action_type == 'gift') {
+            $type_name = __('买一赠一', 'h5');
         }
 
         if (!empty($store_temp_action_type)) {
@@ -180,12 +195,22 @@ class merchant_controller
 
         $goods_list = array();
         if (!empty($action_type) && $action_type != 'all' && !is_numeric($action_type)) {
-            $parameter = array(
-                'action_type' => $action_type,
-                'pagination'  => array('count' => $limit, 'page' => $pages),
-                'seller_id'   => $store_id,
-            );
-            $response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_SUGGESTLIST)->data($parameter)->hasPage()->run();
+
+            if($action_type == 'gift') {
+                $parameter = array(
+                    'store_id'   => $store_id,
+                    'pagination'  => array('count' => $limit, 'page' => $pages),
+                );
+                $response = ecjia_touch_manager::make()->api(ecjia_touch_api::AGENCYSALE_STORE_GIFT_ACTIVITY)->data($parameter)->hasPage()->run();
+            } else {
+                $parameter = array(
+                    'action_type' => $action_type,
+                    'pagination'  => array('count' => $limit, 'page' => $pages),
+                    'seller_id'   => $store_id,
+                );
+                $response = ecjia_touch_manager::make()->api(ecjia_touch_api::MERCHANT_GOODS_SUGGESTLIST)->data($parameter)->hasPage()->run();
+            }
+
             if (!is_ecjia_error($response)) {
                 list($data, $page) = $response;
                 $goods_num         = $page['count'];
@@ -326,6 +351,14 @@ class merchant_controller
         unset($_SESSION['quick_pay']);
         ecjia_front::$controller->assign('status', $status);
         ecjia_front::$controller->assign('ajax_url', RC_Uri::url('merchant/index/ajax_store_comment', array('store_id' => $store_id)));
+
+        //用户是否购买会员卡判断
+        $token            = ecjia_touch_user::singleton()->getToken();
+        $distributor_info = ecjia_touch_manager::make()->api(ecjia_touch_api::AFFILIATE_DISTRIBUTOR_USERINFO)->data(array('token' => $token))->run();
+        $distributor_info = is_ecjia_error($distributor_info) ? array() : $distributor_info;
+        if($distributor_info) {
+            ecjia_front::$controller->assign('is_distributor', 'is_distributor');
+        }
 
         return ecjia_front::$controller->display('merchant.dwt');
     }
