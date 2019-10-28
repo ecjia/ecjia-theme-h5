@@ -1030,7 +1030,7 @@ class user_order_controller
     //获取分成订单
     public static function ajax_order_affiliate()
     {
-        $status = !empty($_GET['status']) ? trim($_GET['status']) : 'await_separate';
+        $status = !empty($_GET['status']) ? trim($_GET['status']) : '';
         $limit  = intval($_GET['size']) > 0 ? intval($_GET['size']) : 10;
         $pages  = intval($_GET['page']) ? intval($_GET['page']) : 1;
 
