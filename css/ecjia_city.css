@@ -15791,7 +15791,9 @@ body,
 .ecjia-reward-list.list-two .reward-head .reward-head-item {
     width: 50%;
 }
-
+.ecjia-reward-list.list-three .reward-head .reward-head-item {
+    width: 33%;
+}
 .ecjia-reward-list .reward-head .reward-head-item.active span {
     color: #47aa4d;
     border-bottom: 2px solid #47aa4d;

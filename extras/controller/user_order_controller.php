@@ -1018,7 +1018,7 @@ class user_order_controller
     //订单分成
     public static function affiliate()
     {
-        $status = !empty($_GET['status']) ? trim($_GET['status']) : 'await_separate';
+        $status = !empty($_GET['status']) ? trim($_GET['status']) : '';
         $title  = __('订单分成', 'h5');
 
         ecjia_front::$controller->assign_title($title);
