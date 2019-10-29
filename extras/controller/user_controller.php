@@ -95,6 +95,16 @@ class user_controller
             ecjia_front::$controller->assign('merchant_join_close', $config['merchant_join_close']);
         }
 
+        $discover = ecjia_touch_manager::make()->api(ecjia_touch_api::HOME_DISCOVER)->run();
+        if (!is_ecjia_error($discover) && !empty($discover)) {
+            foreach ($discover as $key => $val) {
+                if (strpos($val['url'], 'ecjiaopen://') === 0) {
+                    $discover[$key]['url'] = with(new ecjia_open($val['url']))->toHttpUrl();
+                }
+            }
+            ecjia_front::$controller->assign('data', $discover);
+        }
+
         ecjia_front::$controller->assign('active', 'mine');
         ecjia_front::$controller->assign_title(__('个人中心', 'h5'));
 
