@@ -114,6 +114,25 @@ class user_controller
         return ecjia_front::$controller->display('user.dwt');
     }
 
+    public static function about_us()
+    {
+        $cache_id = $_SERVER['QUERY_STRING'];
+        $cache_id = sprintf('%X', crc32($cache_id));
+        if (!ecjia_front::$controller->is_cached('about_us.dwt', $cache_id)) {
+
+            $shop = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_INFO)->run();
+            $shop = is_ecjia_error($shop) ? array() : $shop;
+            ecjia_front::$controller->assign('shop', $shop);
+
+            $shop_config = ecjia_touch_manager::make()->api(ecjia_touch_api::SHOP_CONFIG)->run();
+            $shop_config = is_ecjia_error($shop_config) ? array() : $shop_config;
+            ecjia_front::$controller->assign('shop_config', $shop_config);
+
+            ecjia_front::$controller->assign_title(__('关于我们', 'h5'));
+        }
+        return ecjia_front::$controller->display('about_us.dwt', $cache_id);
+    }
+
     /**
      * 推广页面
      */
