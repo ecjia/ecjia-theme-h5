@@ -320,12 +320,15 @@
 						if (val == 0) {
 							span.attr('rec_id', '');
 							var span_add = $this.parent().siblings('span');
-							show.html(1);
+							show.html(0);
 						} else {
 							show.html(val);
 						}
 						var goods_id = $this.parent('.box').children('.add').attr('goods_id');
 					}
+					
+					
+					
 
 					if ($.find('.may_like_' + goods_id)) {
 						if (val == 0) {
