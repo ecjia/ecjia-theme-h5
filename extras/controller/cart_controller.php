@@ -1327,6 +1327,10 @@ class cart_controller
         $order_id = $rs['order_id'];
         //释放session
         unset($_SESSION['cart']);
+        $store_id = $rs['store_id'];
+        
+        $ecjia_cart = new ecjia_cart($store_id);
+        $ecjia_cart->deleteLocalStorage();
 
         $url = RC_Uri::url('payment/pay/init', array('order_id' => $order_id, 'tips_show' => 1));
         return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
@@ -1404,6 +1408,10 @@ class cart_controller
         $order_id = $rs['order_id'];
         //释放session
         unset($_SESSION['cart']);
+        
+        $store_id = $rs['store_id'];
+        $ecjia_cart = new ecjia_cart($store_id);
+        $ecjia_cart->deleteLocalStorage();
 
         $url = RC_Uri::url('payment/pay/init', array('order_id' => $order_id, 'tips_show' => 1));
         return ecjia_front::$controller->showmessage('', ecjia::MSGTYPE_JSON | ecjia::MSGSTAT_SUCCESS, array('pjaxurl' => $url));
